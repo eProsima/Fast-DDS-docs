@@ -1,4 +1,6 @@
-#Advanced Functionalities
+Advanced Functionalities
+=====================
+
 
 This section covers slightly more advanced, but useful features that enrichen your implementation.
 

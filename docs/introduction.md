@@ -1,4 +1,6 @@
-#Getting Started
+Getting Started
+================
+
 
 ## Brief introduction to the RTPS protocol
 

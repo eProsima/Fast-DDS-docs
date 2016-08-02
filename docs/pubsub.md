@@ -1,4 +1,5 @@
-#Publisher-Subscriber Layer
+Publisher-Subscriber Layer
+==================
 
 *eprosima Fast RTPS* provides a high level Publisher-Subscriber Layer, which is a simple to use abstraction over the RTPS protocol. 
 By using this layer, you can code a straight-to-the-point application while letting the library take care of the lower level configuration. 

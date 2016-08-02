@@ -1,4 +1,5 @@
-#Writer-Reader Layer
+Writer-Reader Layer
+==============
 
 The lower level Writer-Reader Layer of *eprosima Fast RTPS* provides a raw implementation of th RTPS protocol. It provides more control over the internals of the protocol than the Publisher-Subscriber layer. 
 Advanced users can make use of this layer directly to gain more control over the functionality of the library.

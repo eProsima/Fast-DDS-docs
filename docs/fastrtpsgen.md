@@ -1,4 +1,5 @@
-#Code generation using fastrtpsgen
+Code generation using fastrtpsgen
+====================
 
 *eprosima Fast RTPS* comes with a built-in code generation tool, fastrtpsgen, which eases the process of
 translating an IDL specification of a topic to a working implementation of the methods needed to create

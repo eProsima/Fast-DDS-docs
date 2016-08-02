@@ -1,4 +1,5 @@
 site_name: eProsima Fast RTPS
+site_description: Documentation for eProsima Fast RTPS
 markdown_extensions: [toc,fenced_code]
 pages:
 - 'eProsima Fast RTPS': index.md

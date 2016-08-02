@@ -3,8 +3,8 @@ markdown_extensions: [toc,fenced_code]
 pages:
 - Home: index.md
 - Getting Started: introduction.md
-- Objects and Data Structures: list.md
 - Library Overview: overview.md
+- Objects and Data Structures: list.md
 - Publisher-Subscriber Layer : pubsub.md
 - Writer-Reader Layer: rtps.md
 - Advanced Functionalities: advanced.md

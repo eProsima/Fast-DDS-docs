@@ -5,7 +5,7 @@ You can interact with Fast RTPS at two different levels:
 * Publisher-Subscriber: Simplified abstraction over RTPS.
 * Writer-Reader: Direct control over RTPS endpoints.
 
-![Diagram](http://www.eprosima.com/images/diagrams/RTPS-structure.png)
+![Diagram](https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/docs/architecture.png)
 
 In red, the Publisher-Subscriber layer offers a convenient abstraction for most use cases. It allows you to define Publishers and Subscribers associated to a topic, and a simple way to transmit topic data. You may remember this from the example we generated in the "Getting Started" section, where we updated our local copy of the topic data, and called a write() method on it.
 In blue, the Writer-Reader layer is closer to the concepts defined in the RTPS standard, and allows for finer control, but requires you to interact directly with history caches for each endpoint.

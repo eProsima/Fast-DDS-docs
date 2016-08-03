@@ -46,6 +46,7 @@ RTPS Domain
 
 * RTPSDomain: Use it to create, manage and destroy low-level RTPSParticipants.
 * RTPSParticipant: Contains RTPS Writers and Readers, and manages their configuration.
+
 	* RTPSParticipantAttributes: Configuration parameters used in the creation of an RTPS Participant.
 	* PDPSimple: Allows the participant to become aware of the other participants within the Network, through the Participant Discovery Protocol.
 	* EDPSimple: Allows the Participant to become aware of the endpoints (RTPS Writers and Readers) present in the other Participants within the network, through the Endpoint Discovery Protocol.
@@ -56,6 +57,7 @@ RTPS Reader
 ^^^^^^^^^^^
 
 * RTPSReader: Base class for the reader endpoint. 
+
 	* ReaderAttributes: Configuration parameters used in the creation of an RTPS Reader.
 	* ReaderHistory: History data structure. Stores recent topic changes.
 	* ReaderListener: Use it to define callbacks in scope of the Reader.
@@ -64,6 +66,7 @@ RTPS Writer
 ^^^^^^^^^^^
 
 * RTPSWriter: Base class for the writer endpoint.
+
 	* WriterAttributes: Configuration parameters used in the creation of an RTPS Writer.
 	* WriterHistory: History data structure. Stores outgoing topic changes and schedules them to be sent.
 

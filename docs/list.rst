@@ -11,12 +11,17 @@ This module composes the Publisher-Subscriber abstraction we saw in the Library 
 
 * Domain: Used to create, manage and destroy high-level Participants.
 * Participant: Contains Publishers and Subscribers, and manages their configuration.
+
 	* ParticipantAttributes: Configuration parameters used in the creation of a Participant.
 	* ParticipantListener: Allows you to implement callbacks within scope of the Participant.
+	
 * Publisher: Sends (publishes) data in the form of topic changes.
+
 	* PublisherAttributes: Configuration parameters for the construction of a Publisher.
 	* PublisherListener: Allows you to implement callbacks within scope of the Publisher.
+	
 * Subscriber: Receives data for the topics it subscribes to.
+
 	* SubscriberAttributes: Configuration parameters for the construction of a Subscriber.
 	* SubscriberListener: Allows you to implement callbacks within scope of the Subscriber.
 

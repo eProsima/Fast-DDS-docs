@@ -29,6 +29,7 @@ This documentation is organized into the following sections:
 * :ref:`installation`
 * :ref:`user`
 * :ref:`notes`
+* :ref:`gen`
 
 .. _installation:
 
@@ -62,5 +63,15 @@ This documentation is organized into the following sections:
    notes
 
 
+.. _gen:
 
+.. toctree::
+   :caption: FastRTPSGen Manual
+
+   geninfo
+   gencompile
+   genuse
+
+   
+   
 

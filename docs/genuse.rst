@@ -31,10 +31,6 @@ Where the option choices are:
 	| -replace            |Replaces the generated source code files whether they exist.											 |
 	+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
 
-
-
-
-
 Defining a data type via IDL
 ----------------------------
 
@@ -63,3 +59,11 @@ The following table shows the basic IDL types supported by *fastrtpsgen* and how
 	+---------------------+-------------+
 	| string              | std::string |
 	+---------------------+-------------+
+
+Arrays
+------
+
+*fastrtpsgen* supports unidimensional and multidimensional arrays. Arrays are always mapped to std::array containers. The following table shows the array types supported and how they map.
+
+
+

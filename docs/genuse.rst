@@ -7,8 +7,7 @@ This section guides you through the usage of this Java application and briefly d
 
 The Java application can be executed using the following scripts depending on if you are on Windows or Linux: ::
 
-	> fastrtpsgen.bat ::
- 
+	> fastrtpsgen.bat
 	$ fastrtpsgen
 
 The expected argument list of the application is: ::
@@ -61,13 +60,13 @@ The following table shows the basic IDL types supported by *fastrtpsgen* and how
 	+---------------------+-------------+
 
 Arrays
-------
+^^^^^^
 
 *fastrtpsgen* supports unidimensional and multidimensional arrays. Arrays are always mapped to std::array containers. The following table shows the array types supported and how they map.
 
 	+--------------------------+--------------------------+
 	| IDL                      | C++11                    |
-	+--------------------------+--------------------------+
+	+==========================+==========================+
 	| char a[5]                | std::array<char,5> a     |
 	+--------------------------+--------------------------+
 	| octet a[5]               | std::array<uint8_t,5> a  |
@@ -84,5 +83,77 @@ Arrays
 	+--------------------------+--------------------------+
 	| double a[5]              | std::array<double,5> a   |
 	+--------------------------+--------------------------+
+
+Sequences
+^^^^^^^^^
+
+*fastrtpsgen* fupports sequences, which map into the STD vector container. The following table represents how the map between IDL and C++11 is handled.
+
+	+-------------------------------+--------------------------+
+	| IDL                           | C++11                    |
+	+===============================+==========================+
+	| sequence<char>                |    std::vector<char>     |
+	+-------------------------------+--------------------------+
+	| sequence<octet>               |    std::vector<uint8_t>  |
+	+-------------------------------+--------------------------+
+	| sequence<short>               |    std::vector<int16_t>  |
+	+-------------------------------+--------------------------+
+	| sequence<unsigned short>      |    std::vector<uint16_t> |
+	+-------------------------------+--------------------------+
+	|  sequence<long long>          |    std::vector<int64_t>  |
+	+-------------------------------+--------------------------+
+	| sequence<unsigned long long>  |    std::vector<uint64_t> |
+	+-------------------------------+--------------------------+
+	| sequence<float>               |    std::vector<float>    |
+	+-------------------------------+--------------------------+
+	| sequence<double>              |    std::vector<double>   |
+	+-------------------------------+--------------------------+
+
+Structures
+^^^^^^^^^^
+
+You can define an IDL structure with a set of members with multiple types. It will be converted into a C++ class with each member mapped as an attributes plus method to *get* and *set* each member.
+
+The following IDL structure: ::
+
+	struct Structure
+	{
+    	octet octet_value;
+   	long long_value;
+    	string string_value;
+	};
+
+Would be converted: ::
+
+	class Structure
+	{
+	public:
+	   Structure();
+	   ~Structure();
+	   Structure(const Structure &x);
+	   Structure(Structure &&x);
+	   Structure& operator=( const Structure &x);
+	   Structure& operator=(Structure &&x);
+
+	   void octet_value(uint8_t _octet_value);
+	   uint8_t octet_value() const;
+	   uint8_t& octet_value();
+	   void long_value(int64_t _long_value);
+	   int64_t long_value() const;
+	   int64_t& long_value();
+	   void string_value(const std::string
+	      &_string_value);
+	   void string_value(std::string &&_string_value);
+	   const std::string& string_value() const;
+	   std::string& string_value();
+
+	private:
+	   uint8_t m_octet_value;
+	   int64_t m_long_value;
+	   std::string m_string_value; 
+	}; 
+
+Unions
+^^^^^^
 
 

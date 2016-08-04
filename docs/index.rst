@@ -70,7 +70,8 @@ This documentation is organized into the following sections:
 .. toctree::
    :caption: Release Notes
 
-   notes
+   version130.rst
+   version120.rst
 
 
    

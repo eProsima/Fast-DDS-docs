@@ -48,6 +48,7 @@ If you want to compile the performance tests, you will need to add the argument 
 
 You can access the documentation online, which is hosted on [Read the Docs](http://eprosima-fast-rtps.readthedocs.io).
 
+* [Start Page](http://eprosima-fast-rtps.readthedocs.io)
 * [Installation manual](http://eprosima-fast-rtps.readthedocs.io/en/latest/requirements.html)
 * [User manual](http://eprosima-fast-rtps.readthedocs.io/en/latest/introduction.html)
 * [FastRTPSGen manual](http://eprosima-fast-rtps.readthedocs.io/en/latest/geninfo.html)

@@ -28,7 +28,9 @@ By choosing Quality of Service policies, you can affect how these history caches
 Building your first application
 -------------------------------
 
-To build a minimal application, you must first define the topic. Write an IDL file containing the specification you want. In this case, a single string is sufficient. ::
+To build a minimal application, you must first define the topic. Write an IDL file containing the specification you want. In this case, a single string is sufficient.
+
+.. code-block:: idl
 
     // HelloWorld.idl
     struct HelloWorld
@@ -67,7 +69,9 @@ Each time you press <Enter\> on the Publisher, a new datagram is generated, sent
 and receiver by Subscribers currently online. If more than one subscriber is available, it can be seen that the
 message is equally received on all listening nodes.
 
-You can modify any values on your custom, IDL-generated data type before sending. ::
+You can modify any values on your custom, IDL-generated data type before sending.
+
+.. code-block:: c++
 
         HelloWorld myHelloWorld;
         myHelloWorld.message("HelloWorld");

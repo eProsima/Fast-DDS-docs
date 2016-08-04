@@ -65,5 +65,24 @@ Arrays
 
 *fastrtpsgen* supports unidimensional and multidimensional arrays. Arrays are always mapped to std::array containers. The following table shows the array types supported and how they map.
 
+	+--------------------------+--------------------------+
+	| IDL                      | C++11                    |
+	+--------------------------+--------------------------+
+	| char a[5]                | std::array<char,5> a     |
+	+--------------------------+--------------------------+
+	| octet a[5]               | std::array<uint8_t,5> a  |
+	+--------------------------+--------------------------+
+	| short a[5]               | std::array<int16_t,5> a  |
+	+--------------------------+--------------------------+
+	| unsigned short a[5]      | std::array<uint16_t,5> a |
+	+--------------------------+--------------------------+
+	|  long long a[5]          | std::array<int64_t,5> a  |
+	+--------------------------+--------------------------+
+	| unsigned long long a[5]  | std::array<uint64_t,5> a |
+	+--------------------------+--------------------------+
+	| float a[5]               | std::array<float,5> a    |
+	+--------------------------+--------------------------+
+	| double a[5]              | std::array<double,5> a   |
+	+--------------------------+--------------------------+
 
 

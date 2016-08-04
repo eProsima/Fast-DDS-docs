@@ -25,13 +25,13 @@ Extract the contents of the package. It will containt both *eProsima Fast RTPS* 
 
 Configure the compilation: ::
 
-        ./configure --libdir=/usr/lib
+        $ ./configure --libdir=/usr/lib
 
 If you want to compile with debug symbols (which also enables verbose mode): ::
 
-        ./configure CXXFLAGS="-g -D__DEBUG"  --libdir=/usr/lib
+        $ ./configure CXXFLAGS="-g -D__DEBUG"  --libdir=/usr/lib
 
 After configuring the project compile and install the library: ::
 
-        sudo make install
+        $ sudo make install
 

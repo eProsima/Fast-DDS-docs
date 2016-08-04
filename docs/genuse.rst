@@ -123,7 +123,7 @@ The following IDL structure: ::
     	string string_value;
 	};
 
-Would be converted: ::
+Would be converted to: ::
 
 	class Structure
 	{
@@ -155,5 +155,94 @@ Would be converted: ::
 
 Unions
 ^^^^^^
+
+In IDL, a union is defined as a sequence of members with their own types and a discriminant that specifies which member is in use. An IDL union type is mapped as a C++ class with access functions to the union members and the discriminant.
+
+The following IDL union: ::
+
+	union Union switch(long)
+	{
+ 	 case 1:
+	    octet octet_value;
+	  case 2:
+	    long long_value;
+	  case 3:
+	    string string_value;
+	};
+
+Would be converted to: ::
+
+	class Union
+	{
+	public:
+	   Union();
+	   ~Union();
+	   Union(const Union &x);
+	   Union(Union &&x);
+	   Union& operator=(const Union &x);
+	   Union& operator=(Union &&x);
+
+	   void d(int32t __d);
+	   int32_t _d() const;
+	   int32_t& _d();
+
+	   void octet_value(uint8_t _octet_value);
+	   uint8_t octet_value() const;
+	   uint8_t& octet_value();
+	   void long_value(int64_t _long_value);
+	   int64_t long_value() const;
+	   int64_t& long_value();
+	   void string_value(const std::string
+	      &_string_value);
+	   void string_value(std:: string &&_string_value);
+	   const std::string& string_value() const;
+	   std::string& string_value();
+
+	private:
+	   int32_t m__d;
+	   uint8_t m_octet_value;
+	   int64_t m_long_value;
+	   std::string m_string_value; 
+	};
+
+Enumerations
+^^^^^^^^^^^^
+
+An enumeration in IDL format is a collection of identifiers that have a numeric value associated. An IDL enumeration type is mapped directly to the corresponding C++11 enumeration definition. 
+
+The following IDL enumeration: ::
+
+	enum Enumeration
+	{
+	    RED,
+	    GREEN,
+	    BLUE
+	};
+
+Would be converted to: ::
+
+	enum Enumeration : uint32_t
+	{
+	    RED,
+	    GREEN,
+	    BLUE
+	};
+
+Keyed Types
+^^^^^^^^^^^
+
+In order to use keyed topics the user should define some key members inside the structure. This is achieved by writting “@Key” before the members of the structure you want to use as keys. 
+For example in the following IDL file the *id* and *type* field would be the keys: ::
+
+	struct MyType
+	{
+	    @Key long id;
+	    @Key string type;
+	    long positionX;
+	    long positionY;
+	};
+
+*fastrtpsgen* automatically detects these tags and correctly generates the serialization methods for the key generation function in TopicDataType (getKey). This function will obtain the 128 MD5 digest  of the big endian serialization of the Key Members. 
+
 
 

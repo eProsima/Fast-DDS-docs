@@ -61,7 +61,6 @@ This documentation is organized into the following sections:
    :caption: FastRTPSGen Manual
 
    geninfo
-   gencompile
    genuse
 
 
@@ -73,7 +72,4 @@ This documentation is organized into the following sections:
    version130.rst
    version120.rst
 
-
-   
-   
 

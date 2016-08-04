@@ -16,10 +16,6 @@ Gtest
 
 Gtest is needed to compile the tests when building from sources.
 
-QT GUI Development tools
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-You will only need to install the QT Graphic Library to build and execute the Shapes Demo included in this version.
 
 Windows 7 32-bit and 64-bit
 ---------------------------

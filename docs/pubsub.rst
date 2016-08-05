@@ -187,7 +187,7 @@ Configuring sample storage
 
 The mode is changed the following way:
 
-.. code-blocks:: c++
+.. code-block:: c++
 
     Wparam.topic.historyQos.king = KEEP_LAST;
 

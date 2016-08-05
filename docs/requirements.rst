@@ -20,6 +20,7 @@ Java
 ^^^^
 
 Java is required to make use of our buil-in code generation tool *fastrtpsgen*.
+
 Windows 7 32-bit and 64-bit
 ---------------------------
 

@@ -177,6 +177,29 @@ You can specify which mode you want to use in the publisher or subscriber parame
 
 Keep in mind that different reliability mode configurations will make a Publisher and a Subscriber incompatible and unable to talk to each other. Read more about this in the [Built-In Prococols](#built-in-procotols) section.
 
+Configuring sample storage
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*eProsima Fast RTPS* provides two policies for sample storage: 
+
+* Keep-All (Default): Store all samples in memory.
+* Keep-Last: Store samples up to a maximum *depth*. When this limit is reached, they start to become overwritten. 
+
+The mode is changed the following way:
+
+.. code-blocks:: c++
+
+    Wparam.topic.historyQos.king = KEEP_LAST;
+
+The depth of the stored samples in keep-last mode is changes in the following way:
+
+.. code-block:: c++
+    
+    Wparam.topic.historyQos.depth = 5; //changes the maximum number of stored samples
+
+
+
+
 Additional Concepts
 -------------------
 

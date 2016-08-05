@@ -1,7 +1,7 @@
 Version 1.3.0
 =============
 
-This release introduces several important new features:
+This release introduces several new features:
 
 * Unbound Arrays support: Now you can send variable size data arrays. 
 * Extended Fragmentation Configuration: It allows you to setup a Message/Fragment max size different to the standard 64Kb limit. 

@@ -24,6 +24,17 @@ Publishers and Subscribers using topics with keys must be configured to use them
 
 The RTPS Layer requires you to call the :func:`getKey()` method manually within your callbacks.
 
+You can tweak the History to accomodate data from multiples keys based on your current configuration. This consinst on defining a maximum number of data sinks and a maximum size for each sink:
+
+.. code-block:: c++
+
+	Rparam.topic.resourceLimitsQos.max_instances = 3; //Set the subscriber to remember and store up to 3 different keys
+	Rparam.topic.resourceLimitsQos.max_samples_per_instance = 20; //Hold a maximum of 20 samples per key
+	
+Note that your History must be big enough to accomodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
+	
+
+
 Sending large data
 ------------------
 

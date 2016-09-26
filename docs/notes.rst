@@ -1,5 +1,19 @@
-Version 1.3.0
+Version 1.3.1
 =============
+
+This release includes the following:
+
+* New examples that illustrate how to tweak Fast RTPS towards different applications.
+* Improved support for embedded Linux.
+* Bug fixing.
+
+
+
+Previous versions
+------------
+
+Version 1.3.0 
+^^^^^^^^^^^^^
 
 This release introduces several new features:
 
@@ -10,11 +24,8 @@ This release introduces several new features:
 * Stability and performance improvements: A new iteration of our built-in performance tests will make benchmarking easier for you.
 * ReadTheDocs Support: We improved our documentation format and now our installation and user manuals are available online on ReadTheDocs.
 
-Previous versions
-------------
-
 Version 1.2.0
-^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 This release introduces two important new features:
 

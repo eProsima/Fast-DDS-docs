@@ -40,7 +40,7 @@ To create a :class:`RTPSParticipant`, the process is very similar to the one sho
 
 .. code-block:: c++
 
-    RTPSParticipantAttributes PParam;
+    RTPSParticipantAttributes Pparam;
     Pparam.setName("participant");
     RTPSParticipant* p = RTPSDomain::createRTPSParticipant(PParam);
 
@@ -50,7 +50,7 @@ field in the Publisher-Subscriber Layer, so you can configure your :class:`RTPSP
 .. code-block:: c++
 
     RTPSParticipantAttributes Pparam;
-    PParam.setName("my_participant");
+    Pparam.setName("my_participant");
     //etc.
 
 Managing the Writers and Readers

@@ -199,8 +199,8 @@ You can use this sample XML as a base for building your configuration files:
         </participant>
     </staticdiscovery>
 
-Making the most out of the built-in protocols
----------------------------------------------
+Subscribing to Discovery Topics
+-------------------------------
 
 As specified in the Built-In protocols section, the Participant or RTPS Participant has a series of meta-data endpoints
 for use during the discovery process.  It is possible to create a custom listener that listens
@@ -208,11 +208,31 @@ to the Endpoint Discovery Protocol meta-data. This allows you to create your own
 
 .. code-block:: c++
 
-   CustomReaderListener *my_readerListenerSub = new(CustomReaderListener); // Custom user ReaderListeners
+   /* Create Custom user ReaderListeners */
+   CustomReaderListener *my_readerListenerSub = new(CustomReaderListener); 
    CustomReaderListener *my_readerListenerPub = new(CustomReaderListener);
-   std::pair<StatefulReader*,StatefulReader*> EDPReaders = my_participant->getEDPReaders(); //Get access to the EDP endpoints
-   EDPReaders.first()->setListener(my_readerListenerSub); // Perform attachments
+   /* Get access to the EDP endpoints */
+   std::pair<StatefulReader*,StatefulReader*> EDPReaders = my_participant->getEDPReaders(); 
+   /* Install the listeners for Subscribers and Publishers Discovery Data*/ 
+   EDPReaders.first()->setListener(my_readerListenerSub); 
    EDPReaders.second()->setListener(my_readerListenerPub);
+   /* ... */
+   /* Custom Reader Listener onNewCacheChangeAdded*/
+   void onNewCacheChangeAdded(RTPSReader * reader, const CacheChange_t * const change)
+   {
+    (void)reader;
+    if (change->kind == ALIVE) {
+      WriterProxyData proxyData;
+      CDRMessage_t tempMsg;
+      tempMsg.msg_endian = change->serializedPayload.encapsulation ==
+        PL_CDR_BE ? BIGEND : LITTLEEND;
+      tempMsg.length = change->serializedPayload.length;
+      memcpy(tempMsg.buffer, change->serializedPayload.data, tempMsg.length);
+      if (proxyData.readFromCDRMessage(&tempMsg)) {
+        cout << proxyData.topicName();
+	cout << proxyData.typeName();
+      }
+     }
 
 The callbacks defined in the ReaderListener you attach to the EDP will execute for each data message after
 the built-in protocols have processed it.

@@ -157,7 +157,7 @@ html_static_path = ['_static']
 
 html_context = {
         'css_files': [
-            '_static/css/logo_css.css', #logo
+            '_static/css/fiware_readthedocs.css', #logo
             ],
         }
 

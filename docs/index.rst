@@ -23,6 +23,10 @@ Some of the main features of this library are:
 * Configurable network behavior and interchangeable transport layer: Choose the best protocol and system input/output channel combination for each deployment.
 * Two API Layers: a high-level Publisher-Subscriber one focused on usability and a lower-level Writer-Reader one that provides finer access to the inner workings of the RTPS protocol.
 
+eProsima Fast RTPS has been adopted by multiple organizations in many sectors including these important cases:
+
+Robotics: ROS (Robotic Operating System) as their default middleware for ROS2.
+EU R&D: FIWARE Incubated GE.
 
 This documentation is organized into the following sections:
 

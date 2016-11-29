@@ -25,8 +25,8 @@ Some of the main features of this library are:
 
 eProsima Fast RTPS has been adopted by multiple organizations in many sectors including these important cases:
 
-Robotics: ROS (Robotic Operating System) as their default middleware for ROS2.
-EU R&D: FIWARE Incubated GE.
+* Robotics: ROS (Robotic Operating System) as their default middleware for ROS2.
+* EU R&D: FIWARE Incubated GE.
 
 This documentation is organized into the following sections:
 

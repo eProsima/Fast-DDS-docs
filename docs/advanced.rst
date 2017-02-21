@@ -55,6 +55,8 @@ In the Writer-Subscriber layer, you have to configure the Writer: ::
 	
 Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster rate than what the client can process messages.
 
+When you are sending large data, it is convenient to setup a flow controller to avoid a burst of messages in the network and increase performance. See :ref:`Flow Controllers`
+
 Tuning Realiable mode
 ---------------------
 

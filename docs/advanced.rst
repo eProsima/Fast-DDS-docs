@@ -83,6 +83,8 @@ In the Writer-Reader layer, this belong to the :class:`WriterAttributes`:
 A smaller heartbeat period increases the amount of overhead messages in the network,
 but speeds up the system response when a piece of data is lost.
 
+.. _flow-controllers:
+
 Flow Controllers
 ----------------
 

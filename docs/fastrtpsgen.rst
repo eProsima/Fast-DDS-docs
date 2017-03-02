@@ -23,12 +23,9 @@ Output
 *fastrtpsgen* outputs the several files. Assuming the IDL file had the name *“Mytype”*, these files are:
 
 * MyType.cxx/.h: Type definition.
-* MyTypePublisher.cxx/.h: Definition of the Publisher as well as of a PublisherListener. The user must
-fill the needed methods for his application.
-* MyTypeSubscriber.cxx/.h: Definition of the Subscriber as well as of a SubscriberListener. The behavior
-of the subscriber can be altered changing the methods implemented on these files.
-* MyTypePubSubType.cxx/.h: Serialization and Deserialization code for the type. It also defines the
-getKey method in case the topic uses keys.
+* MyTypePublisher.cxx/.h: Definition of the Publisher as well as of a PublisherListener. The user must fill the needed methods for his application.
+* MyTypeSubscriber.cxx/.h: Definition of the Subscriber as well as of a SubscriberListener. The behavior of the subscriber can be altered changing the methods implemented on these files.
+* MyTypePubSubType.cxx/.h: Serialization and Deserialization code for the type. It also defines the getKey method in case the topic uses keys.
 * MyTypePubSubMain.cxx: Main file of the example application in case it is generated.
 * Makefiles or Visual studio project files.
 

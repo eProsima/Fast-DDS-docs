@@ -194,7 +194,7 @@ The mode is changed the following way:
 The depth of the stored samples in keep-last mode is changes in the following way:
 
 .. code-block:: c++
-    
+
     Wparam.topic.historyQos.depth = 5; //changes the maximum number of stored samples
 
 The durability configuration of the endpoint defines how it behaves regarding samples that existed on the topic before a Subscriber joins
@@ -205,12 +205,12 @@ The durability configuration of the endpoint defines how it behaves regarding sa
 To set the durability mode:
 
 .. code-block:: c++
-	
-	Rparam.qos.m_durability.kind = VOLATILE_DURABILITY_QOS; 
-	
+
+    Rparam.qos.m_durability.kind = VOLATILE_DURABILITY_QOS; 
+
 It is also possible to control the maximum size of the History:
 
-.. code-blocks:: c++
+.. code-block:: c++
 
 	Rparam.topic.resourceLimitsQos.max_samples = 200; // Sets the History to hold a maximum of 200 samples
 

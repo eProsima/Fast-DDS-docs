@@ -10,9 +10,9 @@ This release includes the following:
 
 
 Previous versions
-------------
+-----------------
 
-Version 1.3.0 
+Version 1.3.0
 ^^^^^^^^^^^^^
 
 This release introduces several new features:

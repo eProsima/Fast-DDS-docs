@@ -19,7 +19,7 @@ Publishers and Subscribers using topics with keys must be configured to use them
 
 .. code-block:: c++
 
-    //Publicher-Subscriber Layer configuration
+    //Publisher-Subscriber Layer configuration
     PubAttributes.topic.topicKind = WITH_KEY
 
 The RTPS Layer requires you to call the :func:`getKey()` method manually within your callbacks.
@@ -30,9 +30,9 @@ You can tweak the History to accomodate data from multiples keys based on your c
 
 	Rparam.topic.resourceLimitsQos.max_instances = 3; //Set the subscriber to remember and store up to 3 different keys
 	Rparam.topic.resourceLimitsQos.max_samples_per_instance = 20; //Hold a maximum of 20 samples per key
-	
+
 Note that your History must be big enough to accomodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
-	
+
 
 
 Sending large data
@@ -48,14 +48,20 @@ To make this possible, you must configure the Publisher to work in asynchronous 
    PublisherAttributes Wparam;
    Wparam.qos.m_publishMode.kind = ASYNCHRONOUS_PUBLISH_MODE; // Allows fragmentation
 
-In the Writer-Subscriber layer, you have to configure the Writer: ::
+In the Writer-Subscriber layer, you have to configure the Writer:
 
-        WriterAttributes Wparam;
-        Wparam.mode= ASYNCHRONOUS_WRITER;	// Allows fragmentation
-	
+.. code-block:: c++
+
+    WriterAttributes Wparam;
+    Wparam.mode= ASYNCHRONOUS_WRITER;	// Allows fragmentation
+
 Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster rate than what the client can process messages.
 
+In the other hand, in reliable mode, the existence of a lot of data fragments could decrease the frecuency in which messages are received. If this happens, it can be resolved setting a lower Heartbeat period, as stated in :ref:`tuning-reliable-mode`.
+
 When you are sending large data, it is convenient to setup a flow controller to avoid a burst of messages in the network and increase performance. See :ref:`flow-controllers`
+
+.. _tuning-reliable-mode:
 
 Tuning Realiable mode
 ---------------------
@@ -70,7 +76,7 @@ The heartbeat period in the Publisher-Subscriber level is configured as part of 
 
     PublisherAttributes pubAttr;
     pubAttr.times.heartbeatPeriod.seconds = 0;
-    pubAttr.times.heartbeatPeriod.fraction = 500; //500 ms
+    pubAttr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
 
 In the Writer-Reader layer, this belong to the :class:`WriterAttributes`:
 
@@ -78,7 +84,7 @@ In the Writer-Reader layer, this belong to the :class:`WriterAttributes`:
 
     WriterAttributes Wattr;
     Wattr.times.heartbeatPeriod.seconds = 0;
-    Wattr.times.heartbeatPeriod.fraction = 500;
+    Wattr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
 
 A smaller heartbeat period increases the amount of overhead messages in the network,
 but speeds up the system response when a piece of data is lost.
@@ -130,7 +136,7 @@ by providing an alternative configuration when you create the Participant.
 
 Note that unless you manually disable the built-in transport layer, the Participant will use
 your custom transport configuration along the built-in one.
-	
+
 This distribution comes with an example of how to change the configuration of the transport layer. It can be found `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/UserDefinedTransportExample>`_.
 
 Matching endpoints the manual way
@@ -191,7 +197,7 @@ You can use this sample XML as a base for building your configuration files:
                 <reliabilityQos>RELIABLE_RELIABILITY_QOS</reliabilityQos>
                 <unicastLocator
                     address="127.0.0.1"
-                    port="31377">    
+                    port="31377">
                 </unicastLocator>
                 <multicastLocator
                     address="127.0.0.1"
@@ -212,12 +218,12 @@ to the Endpoint Discovery Protocol meta-data. This allows you to create your own
 .. code-block:: c++
 
    /* Create Custom user ReaderListeners */
-   CustomReaderListener *my_readerListenerSub = new(CustomReaderListener); 
+   CustomReaderListener *my_readerListenerSub = new(CustomReaderListener);
    CustomReaderListener *my_readerListenerPub = new(CustomReaderListener);
    /* Get access to the EDP endpoints */
-   std::pair<StatefulReader*,StatefulReader*> EDPReaders = my_participant->getEDPReaders(); 
-   /* Install the listeners for Subscribers and Publishers Discovery Data*/ 
-   EDPReaders.first()->setListener(my_readerListenerSub); 
+   std::pair<StatefulReader*,StatefulReader*> EDPReaders = my_participant->getEDPReaders();
+   /* Install the listeners for Subscribers and Publishers Discovery Data*/
+   EDPReaders.first()->setListener(my_readerListenerSub);
    EDPReaders.second()->setListener(my_readerListenerPub);
    /* ... */
    /* Custom Reader Listener onNewCacheChangeAdded*/
@@ -255,4 +261,3 @@ These examples come with their own `Readme.txt` that explains how the implementa
 
 This marks the end of this document. We recommend you to take a look at the doxygen API reference and
 the embedded examples that come with the distribution. If you need more help, send us an email it `support@eprosima.com`.
-

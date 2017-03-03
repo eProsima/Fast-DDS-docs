@@ -1,3 +1,5 @@
+.. _installation-from-sources:
+
 Installation from Sources
 =========================
 

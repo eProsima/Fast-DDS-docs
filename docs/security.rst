@@ -47,7 +47,7 @@ with the value ``ENCRYPT``.
 You can configure an entity (Writer or Reader) to encrypt its RTPS submessages using Entity property ``rtps.endpoint.submessage_protection_kind``
 with the value ``ÈNCRYPT``.
 
-**Encrypt payload of a particualr Writer**
+**Encrypt payload of a particular Writer**
 
 You can configure a Writer to encrypt its payload using Writer property ``rtps.endpoint.payload_protection_kind`` with
 the value ``ENCRYPT``.

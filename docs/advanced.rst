@@ -33,34 +33,6 @@ You can tweak the History to accomodate data from multiples keys based on your c
 
 Note that your History must be big enough to accomodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
 
-
-
-Sending large data
-------------------
-
-The default size *eProsima Fast RTPS* uses to create sockets is a conservative value of 65kb. If your topic data is bigger, it must be fragmented.
-
-Fragmented messages are sent over multiple packets, as understood by the particular transport layer.
-To make this possible, you must configure the Publisher to work in asynchronous mode.
-
-.. code-block:: c++
-
-   PublisherAttributes Wparam;
-   Wparam.qos.m_publishMode.kind = ASYNCHRONOUS_PUBLISH_MODE; // Allows fragmentation
-
-In the Writer-Subscriber layer, you have to configure the Writer:
-
-.. code-block:: c++
-
-    WriterAttributes Wparam;
-    Wparam.mode= ASYNCHRONOUS_WRITER;	// Allows fragmentation
-
-Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster rate than what the client can process messages.
-
-In the other hand, in reliable mode, the existence of a lot of data fragments could decrease the frecuency in which messages are received. If this happens, it can be resolved setting a lower Heartbeat period, as stated in :ref:`tuning-reliable-mode`.
-
-When you are sending large data, it is convenient to setup a flow controller to avoid a burst of messages in the network and increase performance. See :ref:`flow-controllers`
-
 .. _tuning-reliable-mode:
 
 Tuning Realiable mode
@@ -94,7 +66,7 @@ but speeds up the system response when a piece of data is lost.
 Flow Controllers
 ----------------
 
-*eprosima Fast RTPS* supports user configurable flow controllers on a Publisher and Participant level. These
+*eProsima Fast RTPS* supports user configurable flow controllers on a Publisher and Participant level. These
 controllers can be used to limit the amount of data to be sent under certain conditions depending on the
 kind of controller implemented.
 
@@ -118,6 +90,47 @@ To change the values:
     WParams.throughputController.timeMS = 1000; //1000ms
 
 Note that specifying a throughput controller with a size smaller than the socket size can cause messages to never become sent.
+
+Sending large data
+------------------
+
+The default size *eProsima Fast RTPS* uses to create sockets is a conservative value of 65kb. If your topic data is bigger, it must be fragmented.
+
+Fragmented messages are sent over multiple packets, as understood by the particular transport layer.
+To make this possible, you must configure the Publisher to work in asynchronous mode.
+
+.. code-block:: c++
+
+   PublisherAttributes Wparam;
+   Wparam.qos.m_publishMode.kind = ASYNCHRONOUS_PUBLISH_MODE; // Allows fragmentation
+
+In the Writer-Subscriber layer, you have to configure the Writer:
+
+.. code-block:: c++
+
+    WriterAttributes Wparam;
+    Wparam.mode= ASYNCHRONOUS_WRITER;	// Allows fragmentation
+
+Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster rate than what the client can process messages. In the other hand, in reliable mode, the existence of a lot of data fragments could decrease the frequency in which messages are received.
+
+For an easier understanding, here are proposed two examples of how to configure an application:
+
+* Sending an unique big file. In the case of an application which requires to send an only one large file, it is important to make sure that all fragments of the message are received. The loss of a fragment means the loss of the entire message, so reliable mode has to be selected. Additionally, if there exists a lot of fragments it can be useful to set a low heartbeat period.
+* Video streaming. In audio or video transmissions, sometimes is better to have an stable and high datarate feed than a 100% lossless communication. Working with frequencies of 30Hz or 50Hz, for example, makes insignificant the loss of one or two samples each second. Thus, for a higher performance it can be appropiate to configure the reliability mode to best-effort.
+
+More informatition about reliability configuration can be found on :ref:`tuning-reliable-mode`.
+
+When you are sending large data, it is convenient to setup a flow controller to avoid a burst of messages in the network and increase performance. See :ref:`flow-controllers`
+
+A last consideration to have in mind is to check the size of the system UDP buffers. In Linux, buffers can be enlarged with:
+
+.. code-block:: bash
+
+    sysctl -w net.ipv4.udp_mem="102400 873800 16777216"
+    sysctl -w net.core.netdev_max_backlog="30000"
+    sysctl -w net.core.rmem_max="16777216"
+    sysctl -w net.core.wmem_max="16777216"
+
 
 Transport Layer
 ---------------

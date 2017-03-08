@@ -108,30 +108,191 @@ Publishers and Subscribers can only talk to each other if their Participants bel
 
     Pparam.rtps.builtin.domainId = 80;
 
-Defining Input and Output channels
+Setting up network configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the RTPS Standard, input-output channels (sockets) are defined as Locators. Locators in *eprosima Fast RTPS* are enclosed as type :class:`Locator_t`, which has the following fields:
+*eProsima Fast RTPS* implements an architecture of pluggable network transports. Current version implements two network
+transports: UDPv4 and UDPv6. By default, when a :class:`Participant` is created, one built-in UDPv4 network transport is
+configured.
 
-* Kind: Defines the protocol. *eProsima Fast RTPS* currently supports UDPv4 or UDPv6
-* Port: Port as an UDP/IP port.
-* Address: Maps to IP address.
-
-You can specify a default list of channels for the Publishers and Subscribers by passing lists of Locators to the configuration structure
+You can add custom transport using the attribute ``rtps.userTransports``.
 
 .. code-block:: c++
 
-    Locator_t loc1.set_IP4_address(127,0,0,1);
-    loc1.port = 22222;
-    Pparam.rtps.defaultUnicastLocatorList.push_back(loc1); //Input for Unicast messages
-    Locator_t loc2.set_IP4_address(127,0,0,1);
-    loc2.port = 33333;
-    Pparam.rtps.defaultMulticastLocatorList.push_back(loc2); //Input for Multicast messages
-    Locator_t loc3.set_IP4_address(127,0,0,1);
-    loc3.port = 44444;
-    Pparam.rtps.defaultOutLocatorList.push_back(loc3); //Output Channels
+    //Creation of the participant
+    eprosima::fastrtps::ParticipantAttributes part_attr;
 
-If no Locators are specified by the user *eprosima Fast RTPS* will calculate a minimalistic set to ensure correct behaviour. 
+    auto customTransport = std::make_shared<UDPv4TransportDescriptor>();
+        customTransport->sendBufferSize = 9216;
+        customTransport->receiveBufferSize = 9216;
+
+    part_attr.rtps.userTransports.push_back(customTransport);
+
+Also you can disable built-in UDPv4 network transport using the attribute ``rtps.useBuiltinTransports``.
+
+.. code-block:: c++
+
+    eprosima::fastrtps::ParticipantAttributes part_attr;
+
+    part_attr.rtps.useBuiltinTransports = false;
+
+Network endpoints are defined by *eProsima Fast RTPS* as locators. Locators in *eProsima Fast RTPS* are enclosed as type :class:`Locator_t`, which has the following fields:
+
+* ``kind``: Defines the protocol. *eProsima Fast RTPS* currently supports UDPv4 or UDPv6
+* ``port``: Port as an UDP/IP port.
+* ``address``: Maps to IP address
+
+Listening locators
+******************
+
+*eProsima Fast RTPS* divides listening locators in four categories:
+
+* Metatraffic Multicast Locators: these locators are used to receive metatraffic information using multicast.
+  They usually are used by built-in endpoints, like the discovery built-in endpoints. You can set your own locators
+  using attribute ``rtps.builtin.metatrafficMulticastLocatorList``.
+
+  .. code-block:: c++
+
+    eprosima::fastrtps::ParticipantAttributes part_attr;
+
+    // This locator will open a socket to listen network messages on UDPv4 port 22222 over multicast address 239.255.0.1
+    eprosima::fastrtps::rtps::Locator_t locator.set_IP4_address(239, 255, 0 , 1);
+    locator.port = 22222;
+
+    part_attr.rtps.builtin.metatrafficMulticastLocatorList.push_back(locator);
+
+* Metatraffic Unicast Locators: these locators are used to receive metatraffic information using unicast.
+  The usually are used by built-in endpoints, like the discovery built-in endpoints. You can set your own locators using
+  attribute ``rtps.builtin.metatrafficUnicastLocatorList``.
+
+  .. code-block:: c++
+
+    eprosima::fastrtps::ParticipantAttributes part_attr;
+
+    // This locator will open a socket to listen network messages on UDPv4 port 22223 over network interface 192.168.0.1
+    eprosima::fastrtps::rtps::Locator_t locator.set_IP4_address(192, 168, 0 , 1);
+    locator.port = 22223;
+
+    part_attr.rtps.builtin.metatrafficUniicastLocatorList.push_back(locator);
+
+* User Multicast Locators: these locators are used to receive user information using multicast. They are used by user
+  endpoints. You can set your own locators using attribute ``rtps.defaultMulticastLocatorList``.
+
+  .. code-block:: c++
+
+    eprosima::fastrtps::ParticipantAttributes part_attr;
+
+    // This locator will open a socket to listen network messages on UDPv4 port 22224 over multicast address 239.255.0.1
+    eprosima::fastrtps::rtps::Locator_t locator.set_IP4_address(239, 255, 0 , 1);
+    locator.port = 22224;
+
+    part_attr.rtps.defaultMulticastLocatorList.push_back(locator);
+
+* User Unicast Locators: these locators are used to receive user information using unicast. They are used by user
+  endpoints. You can set your own locators using attributes ``rtps.defaultUnicastLocatorList``.
+
+  .. code-block:: c++
+
+    eprosima::fastrtps::ParticipantAttributes part_attr;
+
+    // This locator will open a socket to listen network messages on UDPv4 port 22225 over network interface 192.168.0.1
+    eprosima::fastrtps::rtps::Locator_t locator.set_IP4_address(192, 168, 0 , 1);
+    locator.port = 22225;
+
+    part_attr.rtps.builtin.defaultUnicastLocatorList.push_back(locator);
+
+By default *eProsima Fast RTPS* calculates the listening locators for the built-in UDPv4 network transport using
+well-known ports. These well-known ports are calculated using next predefined rules:
+
+.. list-table:: Ports used
+   :header-rows: 1
+
+   * - Traffic type
+     - Well-known port expression
+   * - Metatraffic multicast
+     - PB + DG * *domainId* + offsetd0
+   * - Metatraffic unicast
+     - PB + DG * *domainId* + offsetd1 + PG * *participantId*
+   * - User multicast
+     - PB + DG * *domainId* + offsetd2
+   * - User unicast
+     - PB + DG * *domainId* + offsetd3 + PG * *participantId*
+
+These predefined rules use some values explained here:
+
+* DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``. Default value is ``250``.
+* PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``. Default value is ``2``.
+* PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``. Default value is ``7400``.
+* offsetd0, offsetd1, offsetd2, offsetd3: Additional offsets. You can set these values using attributes
+  ``rtps.port.offsetdN``. Default values are: ``offsetd0 = 0``, ``offsetd1 = 10``, ``offsetd2 = 1``, ``offsetd3 = 11``.
+
+A UDPv4 unicast locator supports to have a null address. In that case *eProsima Fast RTPS* understands to get local network
+addresses and use them.
+
+A UDPv4 locator support to have a zero port. In that case *eProsima Fast RTPS* understands to calculate well-known port
+for that type of traffic.
+
+Sending locators
+****************
+
+These locators are used to create network endpoints to send all network messages. You can set your own locators using
+the attribute ``rtps.defaultOutLocatorList``.
+
+.. code-block:: c++
+
+   eprosima::fastrtps::ParticipantAttributes part_attr;
+
+   // This locator will create a socket to send network message on UDPv4 port 34000 over network interface 192.168.0.1
+   Locator_t locator.set_IP4_address(192.168.0.1);
+   locator.port = 34000;
+
+   part_attr.rtps.defaultOutLocatorList.push_back(locator);
+
+By default *eProsima Fast RTPS* sends network messages using a random UDPv4 port over all interface networks.
+
+A UDPv4 unicast locator supports to have a null address. In that case *eProsima Fast RTPS* understands to get local network
+addresses and use them to listen network messages.
+
+A UDPv4 locator support to have a zero port. In that case *eProsima Fast RTPS* understands to get a random UDPv4 port.
+
+Initial peers
+*************
+
+These locators are used to know where to send initial discovery network messages. You can set your own locators using
+attribute ``rtps.builtin.initialPeersList``. By default *eProsima Fast RTPS* uses as initial peers the Metatraffic
+Multicast Locators.
+
+.. code-block:: c++
+
+   eprosima::fastrtps::ParticipantAttributes part_attr;
+
+   // This locator configures as initial peer the UDPv4 address 192.168.0.2:7600.
+   // Initial discovery network messages will send to this UDPv4 address.
+   Locator_t locator.set_IP4_address(192.168.0.2);
+   locator.port = 7600;
+
+   part_attr.rtps.builtin.initialPeersList.push_back(locator);
+
+Tips
+****
+
+**Disabling all multicast traffic**
+
+.. code-block:: c++
+
+   eprosima::fastrtps::ParticipantAttributes part_attr;
+
+   // Metatraffic Multicast Locator List will be empty.
+   // Metatraffic Unicast Locator List will contain one locator, with null address and null port.
+   // Then eProsima Fast RTPS will use all network interfaces to receive network messages using a well-known port.
+   Locator_t default_unicast_locator;
+   participant_attr_.rtps.builtin.metatrafficUnicastLocatorList.push_back(default_unicast_locator);
+
+   // Initial peer will be UDPv4 addresss 192.168.0.1. The port will be a well-known port.
+   // Initial discovery network messages will be sent to this UDPv4 address.
+   Locator_t initial_peer;
+   initial_peer.set_IP4_address(192, 168, 0, 1);
+   participant_attr_.rtps.builtin.initialPeersList.push_back(initial_peer);
 
 Publisher and Subscriber Configuration
 --------------------------------------

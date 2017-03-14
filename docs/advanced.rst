@@ -66,7 +66,7 @@ but speeds up the system response when a piece of data is lost.
 Flow Controllers
 ----------------
 
-*eProsima Fast RTPS* supports user configurable flow controllers on a Publisher and Participant level. These
+*eprosima Fast RTPS* supports user configurable flow controllers on a Publisher and Participant level. These
 controllers can be used to limit the amount of data to be sent under certain conditions depending on the
 kind of controller implemented.
 
@@ -78,7 +78,7 @@ or Publisher Attributes.
 
     PublisherAttributes WparamSlow;
     ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000}; //Limit to 300kb per second
-    WparamSlow.terminalThroughputController = slowPublisherThroughputController;
+    WparamSlow.throughputController = slowPublisherThroughputController;
 
 In the Writer-Reader layer, the throughput controllers is built-in and the descriptor defaults to infinite throughput.
 To change the values:
@@ -111,18 +111,25 @@ In the Writer-Subscriber layer, you have to configure the Writer:
     WriterAttributes Wparam;
     Wparam.mode= ASYNCHRONOUS_WRITER;	// Allows fragmentation
 
-Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster rate than what the client can process messages. In the other hand, in reliable mode, the existence of a lot of data fragments could decrease the frequency in which messages are received.
-
-For an easier understanding, here are proposed two examples of how to configure an application:
-
-* Sending an unique big file. In the case of an application which requires to send an only one large file, it is important to make sure that all fragments of the message are received. The loss of a fragment means the loss of the entire message, so reliable mode has to be selected. Additionally, if there exists a lot of fragments it can be useful to set a low heartbeat period.
-* Video streaming. In audio or video transmissions, sometimes is better to have an stable and high datarate feed than a 100% lossless communication. Working with frequencies of 30Hz or 50Hz, for example, makes insignificant the loss of one or two samples each second. Thus, for a higher performance it can be appropiate to configure the reliability mode to best-effort.
-
-More informatition about reliability configuration can be found on :ref:`tuning-reliable-mode`.
+Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster rate than what the client can process messages. In the other hand, in reliable mode, the existence of a lot of data fragments could decrease the frecuency in which messages are received. If this happens, it can be resolved setting a lower Heartbeat period, as stated in :ref:`tuning-reliable-mode`.
 
 When you are sending large data, it is convenient to setup a flow controller to avoid a burst of messages in the network and increase performance. See :ref:`flow-controllers`
 
-A last consideration to have in mind is to check the size of the system UDP buffers. In Linux, buffers can be enlarged with:
+
+Example: Sending a unique large file
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is a proposed example of how should the user configure its application in order to achieve the best performance. To make this example more tangible, it is going to be supposed that the file have a size of 9.9MB and the network in which the publisher and the subscriber are operating has a bandwith of 100MB/s
+
+First of all, asynchronous mode has to be activated in the publisher parameters. Then, a suitable reliability mode has to be selected. In this case it is important to make sure that all fragments of the message are received. The loss of a fragment means the loss of the entire message, so it would be best to choose reliable mode.
+
+The default size of this fragments using the UDPv4 transport has a value of 65kb (which includes the space reserved to the data and the message header).This means that the publisher would have to write at least about 1100 fragments.
+
+This amount of fragment could slow down the transmission, so it could be interesting to decrease the heartbeat period in order to increase the reactivity of the publisher.
+
+Another important consideration is the addition of a flow controller. Without a flow controller, the publisher can occupy the entire bandwith. A reasonable flow controller for this application could be a limit of 5MB/s, which represents only a 5% of the total bandwith. Anyway, this values are highly dependant of the specific application and its desired behaviour.
+
+At last, there is another detail to have in mind: it is critical to check the size of the system UDP buffers. In Linux, buffers can be enlarged with
 
 .. code-block:: bash
 
@@ -130,7 +137,6 @@ A last consideration to have in mind is to check the size of the system UDP buff
     sysctl -w net.core.netdev_max_backlog="30000"
     sysctl -w net.core.rmem_max="16777216"
     sysctl -w net.core.wmem_max="16777216"
-
 
 Transport Layer
 ---------------

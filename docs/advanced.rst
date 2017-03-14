@@ -138,6 +138,17 @@ At last, there is another detail to have in mind: it is critical to check the si
     sysctl -w net.core.rmem_max="16777216"
     sysctl -w net.core.wmem_max="16777216"
 
+
+Example: Video streaming
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+In this example the target application transmits video between a publisher and a subscriber. This video will have a resolution of 640x480 and a frequency of 50fps.
+
+As in the previous example, since the application is sending data that requires fragmentation, asynchronous mode has to be activated in the publisher parameters.
+
+In audio or video transmissions, sometimes is better to have an stable and high datarate feed than a 100% lossless communication. Working with a frequency of 50hz, makes insignificant the loss of one or two samples each second. Thus, for a higher performance it can be appropiate to configure the reliability mode to best-effort.
+
+
 Transport Layer
 ---------------
 

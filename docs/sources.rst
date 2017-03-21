@@ -19,7 +19,9 @@ If you are on Windows, choose your version of Visual Studio: ::
     > cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON ..
     > cmake --build . --target install
 
-If you want to compile the performance tests, you will need to add the argument ``-DPERFORMANCE_TESTS=ON`` when calling Cmake.
+If you want to compile the examples, you will need to add the argmuent ``-DCOMPILE_EXAMPLES=ON`` when calling CMake.
+
+If you want to compile the performance tests, you will need to add the argument ``-DPERFORMANCE_TESTS=ON`` when calling CMake.
 
 Security
 --------

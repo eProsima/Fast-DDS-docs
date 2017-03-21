@@ -1,16 +1,24 @@
-Version 1.3.1
+Version 1.4.0
 =============
+
+This release includes the following:
+
+* Added secure communications.
+* Removed all Boost dependencies. Fast RTPS is not using Boost libraries anymore.
+* Added compatibility with Android.
+* Bug fixing.
+
+Previous versions
+-----------------
+
+Version 1.3.1
+^^^^^^^^^^^^^
 
 This release includes the following:
 
 * New examples that illustrate how to tweak Fast RTPS towards different applications.
 * Improved support for embedded Linux.
 * Bug fixing.
-
-
-
-Previous versions
------------------
 
 Version 1.3.0
 ^^^^^^^^^^^^^

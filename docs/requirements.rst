@@ -6,11 +6,6 @@ Requirements
 Common Dependencies
 -------------------
 
-Boost Libraries
-^^^^^^^^^^^^^^^
-
-The Windows installer version provides the necessary boost binaries and headers. If you are using Linux or compiling from source you will need to install version **1.61**
-
 Gtest
 ^^^^^
 

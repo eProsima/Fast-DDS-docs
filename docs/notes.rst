@@ -8,6 +8,9 @@ This release includes the following:
 * Added compatibility with Android.
 * Bug fixing.
 
+**Note:** After upgrading to this release, it is advisable to regenerate generated source from IDL files using 
+*fastrtpsgen*
+
 Previous versions
 -----------------
 

@@ -13,6 +13,14 @@ If you are on Linux, execute: ::
     $ cmake -DTHIRDPARTY=ON ..
     $ make
     $ sudo make install
+    
+In addition, the installation of the cdr library is needed: ::
+
+    $ cd ../thirdparty/fastcdr/
+    $ mkdir build && cd build
+    $ cmake ..
+    $ make
+    $ sudo make install
 
 If you are on Windows, choose your version of Visual Studio: ::
 

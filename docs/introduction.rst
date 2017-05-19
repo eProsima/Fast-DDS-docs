@@ -74,7 +74,7 @@ You can modify any values on your custom, IDL-generated data type before sending
 .. code-block:: c++
 
         HelloWorld myHelloWorld;
-        myHelloWorld.message("HelloWorld");
+        myHelloWorld.msg("HelloWorld");
         mp_publisher->write((void*)&myHelloWorld);
 
 Take a look at the `examples/` folder for ideas on how to improve this basic application through different configuration options, and for examples of advanced Fast RTPS features.

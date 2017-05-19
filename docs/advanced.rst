@@ -66,7 +66,7 @@ but speeds up the system response when a piece of data is lost.
 Flow Controllers
 ----------------
 
-*eprosima Fast RTPS* supports user configurable flow controllers on a Publisher and Participant level. These
+*eProsima Fast RTPS* supports user configurable flow controllers on a Publisher and Participant level. These
 controllers can be used to limit the amount of data to be sent under certain conditions depending on the
 kind of controller implemented.
 
@@ -152,7 +152,7 @@ In audio or video transmissions, sometimes is better to have an stable and high 
 Transport Layer
 ---------------
 
-Unless you specify other configuration, *eprosima Fast RTPS* will use its built in UDPv4 Transport Layer with
+Unless you specify other configuration, *eProsima Fast RTPS* will use its built in UDPv4 Transport Layer with
 a default configuration. You can change this default configuration or switch to UDPv6
 by providing an alternative configuration when you create the Participant.
 
@@ -261,15 +261,15 @@ A basic xml configuration file(in this case, for a publisher) would contain info
 .. code-block:: xml
 
     <staticdiscovery>
-    	<participant>
-    		<name>HelloWorldSubscriber</name>
-    		<reader>
+        <participant>
+            <name>HelloWorldSubscriber</name>
+            <reader>
                 <userId>3</userId>
                 <entityId>4</userId>
                 <topicName>HelloWorldTopic</topicName>
-    			<topicDataType>HelloWorld</topicDataType>
-    		</reader>
-    	</participant>
+                <topicDataType>HelloWorld</topicDataType>
+            </reader>
+        </participant>
     </staticdiscovery>
 
 The xml that configures the participant on the other side (in this case, a subscriber) could look like this:
@@ -277,15 +277,15 @@ The xml that configures the participant on the other side (in this case, a subsc
 .. code-block:: xml
 
     <staticdiscovery>
-    	<participant>
-    		<name>HelloWorldPublisher</name>
-    		<writer>
-    			<userId>1</userId>
+        <participant>
+            <name>HelloWorldPublisher</name>
+            <writer>
+                <userId>1</userId>
                 <entityId>2</userId>
                 <topicName>HelloWorldTopic</topicName>
-    			<topicDataType>HelloWorld</topicDataType>
-    		</writer>
-    	</participant>
+                <topicDataType>HelloWorld</topicDataType>
+            </writer>
+        </participant>
     </staticdiscovery>
 
 The full list of fields for readers and writes includes the following parameters:
@@ -297,21 +297,21 @@ The full list of fields for readers and writes includes the following parameters
 * **topicDataType**: text value.
 * **topicKind**: *NO_KEY* or *WITH_KEY*.
 * **reliabilityQos**: *BEST_EFFORT_RELIABILITY_QOS* or *RELIABLE_RELIABILITY_QOS*.
-* **unicastLocator**:
+* **unicastLocator**
     - address: text value.
     - port: numeric value.
-* **multicastLocator**:
+* **multicastLocator**
     - address: text value.
     - port: numeric value.
-* **topic**:
+* **topic**
     - name: text value.
     - data type: text value.
     - kind: text value.
 * **durabilityQos**: *VOLATILE_DURABILITY_QOS* or *TRANSIENT_LOCAL_DURABILITY_QOS*.
-* **ownershipQos**:
+* **ownershipQos**
     - kind: *SHARED_OWNERSHIP_QOS* or *EXCLUSIVE_OWNERSHIP_QOS*.
 * **partitionQos**: text value.
-* **livelinessQos**:
+* **livelinessQos**
     - kind: *AUTOMATIC_LIVELINESS_QOS*, *MANUAL_BY_PARTICIPANT_LIVELINESS_QOS* or *MANUAL_BY_TOPIC_LIVELINESS_QOS*.
     - leaseDuration_ms: numeric value.
 

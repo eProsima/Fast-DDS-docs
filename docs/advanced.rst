@@ -109,7 +109,7 @@ In the Writer-Subscriber layer, you have to configure the Writer:
 .. code-block:: c++
 
     WriterAttributes Wparam;
-    Wparam.mode= ASYNCHRONOUS_WRITER;	// Allows fragmentation
+    Wparam.mode = ASYNCHRONOUS_WRITER;	// Allows fragmentation
 
 Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster rate than what the client can process messages. In the other hand, in reliable mode, the existence of a lot of data fragments could decrease the frecuency in which messages are received. If this happens, it can be resolved setting a lower Heartbeat period, as stated in :ref:`tuning-reliable-mode`.
 
@@ -169,23 +169,21 @@ your custom transport configuration along the built-in one.
 
 This distribution comes with an example of how to change the configuration of the transport layer. It can be found `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/UserDefinedTransportExample>`_.
 
-Matching endpoints the manual way
+..
+.. Matching endpoints the manual way
 ---------------------------------
 
-By default, when you create a Participant or a RTPS Participant the built-in protocols for automatic discovery of
-endpoints will be active. You can disable them by configuring the Participant:
+.. By default, when you create a Participant or a RTPS Participant the built-in protocols for automatic discovery of endpoints will be active. You can disable them by configuring the Participant:
 
-.. code-block:: c++
+.. .. code-block:: c++
 
     ParticipantAttributes Pparam;
     Pparam.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
     Pparam.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;
 
-If you disable the built-in discovery protocols, you will need to manually match Readers and Writers.
-To inform a Writer about a remote Reader, you can either provide an XML configuration
-file or use the :class::`RemoteReaderAttributes` structure:
+.. If you disable the built-in discovery protocols, you will need to manually match Readers and Writers. To inform a Writer about a remote Reader, you can either provide an XML configuration file or use the :class::`RemoteReaderAttributes` structure:
 
-.. code-block:: c++
+.. .. code-block:: c++
 
     RemoteReaderAttributes ratt;
     Locator_t loc; //Add the locator that represents a channel the Reader listens to
@@ -195,24 +193,24 @@ file or use the :class::`RemoteReaderAttributes` structure:
     ratt.guid = c_Guid_Unknown; //GUID_t is left blank, but must be configured when using Reliable Mode.
     writer->matched_writer_add(ratt);
 
-Registering a remote Writer into a Reliable mode Reader works the same way:
+.. Registering a remote Writer into a Reliable mode Reader works the same way:
 
-.. code-block:: c++
+.. .. code-block:: c++
 
     RemoteWriterAttributes watt;
     //Configure watt
     reader->matched_reader_add(watt);
 
-If you decide to provide the information via XML, you have to specify the file where you want to load from:
+.. If you decide to provide the information via XML, you have to specify the file where you want to load from:
 
-.. code-block:: c++
+.. .. code-block:: c++
 
     participant_attributes.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
     participant_attributes.rtps.builtin.setStaticEndpointXMLFilename("my_xml_configuration.xml");
 
-You can use this sample XML as a base for building your configuration files:
+.. You can use this sample XML as a base for building your configuration files:
 
-.. code-block:: xml
+.. .. code-block:: xml
 
     <staticdiscovery>
         <participant>
@@ -237,6 +235,86 @@ You can use this sample XML as a base for building your configuration files:
             </reader>
         </participant>
     </staticdiscovery>
+
+
+Using static discovery
+----------------------
+
+When static discovery is active, remote endpoints are passed to the application via an xml file.
+
+First of all, you have to disable the automatic endpoint discovery and enable the static endpoint discovery. This can be done from the participant attributes as shown in this code:
+
+.. code-block:: c++
+
+    ParticipantAttributes PParam;
+    PParam.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
+    PParam.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
+
+Then, you will need to load the xml file containing the configuration of the remote participant. So, for example, if there is a participant with a publisher which is going to write to a specific topic, you will need to load the configuration of the subscriber like this:
+
+.. code-block:: c++
+
+    PParam.rtps.builtin.setStaticEndpointXMLFilename("ParticipantSubscriber.xml");
+
+A basic xml configuration file(in this case, for a publisher) would contain information like the name of the remote participant, the topic name and data type of the reader, and its entity and user defined ID. All these parameters have to exactly match the parameters that the user has defined previously in his application code (as ParticipantAttributes). Missing elements will acquire default values. For example:
+
+.. code-block:: xml
+
+    <staticdiscovery>
+    	<participant>
+    		<name>HelloWorldSubscriber</name>
+    		<reader>
+                <userId>3</userId>
+                <entityId>4</userId>
+                <topicName>HelloWorldTopic</topicName>
+    			<topicDataType>HelloWorld</topicDataType>
+    		</reader>
+    	</participant>
+    </staticdiscovery>
+
+The xml that configures the participant on the other side (in this case, a subscriber) could look like this:
+
+.. code-block:: xml
+
+    <staticdiscovery>
+    	<participant>
+    		<name>HelloWorldPublisher</name>
+    		<writer>
+    			<userId>1</userId>
+                <entityId>2</userId>
+                <topicName>HelloWorldTopic</topicName>
+    			<topicDataType>HelloWorld</topicDataType>
+    		</writer>
+    	</participant>
+    </staticdiscovery>
+
+The full list of fields for readers and writes includes the following parameters:
+
+* userId: numeric value.
+* entityID: numeric value.
+* expectsInlineQos: *true* or *false*. **(only valid for readers)**
+* topicName: text value.
+* topicDataType: text value.
+* topicKind: *NO_KEY* or *WITH_KEY*.
+* reliabilityQos: *BEST_EFFORT_RELIABILITY_QOS* or *RELIABLE_RELIABILITY_QOS*.
+* unicastLocator
+    - address: text value.
+    - port: numeric value.
+* multicastLocator
+    - address: text value.
+    - port: numeric value.
+* topic
+    - name: text value.
+    - data type: text value.
+    - kind: text value.
+* durabilityQos: *VOLATILE_DURABILITY_QOS* or *TRANSIENT_LOCAL_DURABILITY_QOS*.
+* ownershipQos
+    - kind: *SHARED_OWNERSHIP_QOS* or *EXCLUSIVE_OWNERSHIP_QOS*.
+* partitionQos: text value.
+* livelinessQos
+    - kind: *AUTOMATIC_LIVELINESS_QOS*, *MANUAL_BY_PARTICIPANT_LIVELINESS_QOS* or *MANUAL_BY_TOPIC_LIVELINESS_QOS*.
+    - leaseDuration_ms: numeric value.
+
 
 Subscribing to Discovery Topics
 -------------------------------

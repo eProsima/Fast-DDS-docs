@@ -290,28 +290,28 @@ The xml that configures the participant on the other side (in this case, a subsc
 
 The full list of fields for readers and writes includes the following parameters:
 
-* userId: numeric value.
-* entityID: numeric value.
-* expectsInlineQos: *true* or *false*. **(only valid for readers)**
-* topicName: text value.
-* topicDataType: text value.
-* topicKind: *NO_KEY* or *WITH_KEY*.
-* reliabilityQos: *BEST_EFFORT_RELIABILITY_QOS* or *RELIABLE_RELIABILITY_QOS*.
-* unicastLocator
+* **userId**: numeric value.
+* **entityID**: numeric value.
+* **expectsInlineQos**: *true* or *false*. **(only valid for readers)**
+* **topicName**: text value.
+* **topicDataType**: text value.
+* **topicKind**: *NO_KEY* or *WITH_KEY*.
+* **reliabilityQos**: *BEST_EFFORT_RELIABILITY_QOS* or *RELIABLE_RELIABILITY_QOS*.
+* **unicastLocator**:
     - address: text value.
     - port: numeric value.
-* multicastLocator
+* **multicastLocator**:
     - address: text value.
     - port: numeric value.
-* topic
+* **topic**:
     - name: text value.
     - data type: text value.
     - kind: text value.
-* durabilityQos: *VOLATILE_DURABILITY_QOS* or *TRANSIENT_LOCAL_DURABILITY_QOS*.
-* ownershipQos
+* **durabilityQos**: *VOLATILE_DURABILITY_QOS* or *TRANSIENT_LOCAL_DURABILITY_QOS*.
+* **ownershipQos**:
     - kind: *SHARED_OWNERSHIP_QOS* or *EXCLUSIVE_OWNERSHIP_QOS*.
-* partitionQos: text value.
-* livelinessQos
+* **partitionQos**: text value.
+* **livelinessQos**:
     - kind: *AUTOMATIC_LIVELINESS_QOS*, *MANUAL_BY_PARTICIPANT_LIVELINESS_QOS* or *MANUAL_BY_TOPIC_LIVELINESS_QOS*.
     - leaseDuration_ms: numeric value.
 

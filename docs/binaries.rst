@@ -1,12 +1,12 @@
 Installation from Binaries
 ==========================
 
-You can always download the latest binary realese of *eProsima Fast RTPS* from the `company website <https://www.eprosima.com/>`_.
+You can always download the latest binary realese of *eProsima Fast RTPS* from the `company website <http://www.eprosima.com/>`_.
 
 Windows 7 32-bit and 64-bit
 ---------------------------
 
-Execute the installer and follow the instructions, choosing your preffered Visual Studio version and architecture when prompted.
+Execute the installer and follow the instructions, choosing your preferred Visual Studio version and architecture when prompted.
 
 Environmental Variables
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -34,4 +34,3 @@ If you want to compile with debug symbols (which also enables verbose mode): ::
 After configuring the project compile and install the library: ::
 
         $ sudo make install
-

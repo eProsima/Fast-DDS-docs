@@ -256,7 +256,7 @@ Then, you will need to load the xml file containing the configuration of the rem
 
     PParam.rtps.builtin.setStaticEndpointXMLFilename("ParticipantSubscriber.xml");
 
-A basic xml configuration file(in this case, for a publisher) would contain information like the name of the remote participant, the topic name and data type of the reader, and its entity and user defined ID. All these parameters have to exactly match the parameters that the user has defined previously in his application code (as ParticipantAttributes). Missing elements will acquire default values. For example:
+A basic xml configuration file(in this case, for a publisher) would contain information like the name of the remote participant, the topic name and data type of the reader, and its entity and user defined ID. All these parameters have to exactly match the parameters that the user has defined previously in his application (ParticipantAttributes). Missing elements will acquire default values. For example:
 
 .. code-block:: xml
 

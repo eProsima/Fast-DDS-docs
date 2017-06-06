@@ -67,7 +67,7 @@ Writers are configured with a :class:`WriterAttributes` structure. They also nee
     HistoryAttributes hatt;
     WriterHistory * history = new WriterHistory(hatt);
     WriterAttributes watt;
-    RTPSWriter* writer = RTPSDomain::createRTPSWriter(rtpsParticipant,watt,hist);
+    RTPSWriter* writer = RTPSDomain::createRTPSWriter(rtpsParticipant, watt, history);
 
 The creation of a Reader is similar. Note that in this case you can provide a :class:`ReaderListener` instance that
 implements your callbacks:
@@ -79,7 +79,7 @@ implements your callbacks:
     HistoryAttributes hatt;
     ReaderHistory * history = new ReaderHistory(hatt);
     ReaderAttributes ratt;
-    RTPSReader* reader = RTPSDomain::createRTPSReader(rtpsParticipant,watt,hist,&listen);
+    RTPSReader* reader = RTPSDomain::createRTPSReader(rtpsParticipant, watt, history, &listen);
 
 Using the History to Send and Receive Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -96,13 +96,16 @@ You can interact with the History of the Writer to send data:
 
 .. code-block:: c++
 
-    CacheChange_t* ch = writer->newCacheChange(ALIVE); //Request a change from the history
-    ch->serializedPayload->length = sprintf(ch->serializedPayload->data,"My String %d",2); //Write serialized data into the change
-    history->add_change(ch); //Insert change back into the history. The Writer takes care of the rest.
+    //Request a change from the history
+    CacheChange_t* ch = writer->newCacheChange(ALIVE);
+    //Write serialized data into the change
+    ch->serializedPayload->length = sprintf(ch->serializedPayload->data, "My String %d", 2);
+    //Insert change back into the history. The Writer takes care of the rest.
+    history->add_change(ch);
 
 If your topic data type has several fields, you will have to provide functions to serialize and deserialize
 your data in and out of the :class:`CacheChange_t`. *FastRTPSGen* does this for you.
-	
+
 You can receive data from within a :class:`ReaderListener` callback method as we did in the Publisher-Subscriber Layer:
 
 .. code-block:: c++
@@ -115,8 +118,10 @@ You can receive data from within a :class:`ReaderListener` callback method as we
         ~MyReaderListener(){}
         void onNewCacheChangeAdded(RTPSReader* reader,const CacheChange_t* const change)
         {
-            printf("%s\n",change->serializedPayload.data); // The incoming message is enclosed within the `change` in the function parameters
-            reader->getHistory()->remove_change((CacheChange_t*)change); //Once done, remove the change
+            // The incoming message is enclosed within the `change` in the function parameters
+            printf("%s\n",change->serializedPayload.data);
+            //Once done, remove the change
+            reader->getHistory()->remove_change((CacheChange_t*)change);
         }
     }
 
@@ -124,13 +129,16 @@ Additionally you can read an incoming message directly by interacting with the H
 
 .. code-block:: c++
 
-    reader->waitForUnreadMessage(); //Blocking method
+    //Blocking method
+    reader->waitForUnreadMessage();
     CacheChange_t* change;
-    if(reader->nextUnreadCache(&change)) //Take the first unread change present in the History
+    //Take the first unread change present in the History
+    if(reader->nextUnreadCache(&change))
     {
         /* use data */
     }
-    history->remove_change(change); //Once done, remove the change
+    //Once done, remove the change
+    history->remove_change(change);
 
 Configuring Readers and Writers
 -------------------------------
@@ -196,4 +204,3 @@ You can specify a maximum amount of changes for the History to hold and initial 
     HistoryAttributes.maximumReservedCaches = 500; //Dedaults to 0 = Unlimited Changes
 
 When the initial amount of reserved changes is lower than the maximum, the History will allocate more changes as they are needed until it reaches the maximum size.
-

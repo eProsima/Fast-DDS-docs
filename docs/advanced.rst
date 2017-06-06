@@ -169,94 +169,56 @@ your custom transport configuration along the built-in one.
 
 This distribution comes with an example of how to change the configuration of the transport layer. It can be found `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/UserDefinedTransportExample>`_.
 
-..
-.. Matching endpoints the manual way
----------------------------------
+Discovery
+---------
 
-.. By default, when you create a Participant or a RTPS Participant the built-in protocols for automatic discovery of endpoints will be active. You can disable them by configuring the Participant:
+Fast RTPS provides a discovery mechanism that allows to match automatically publishers and subscribers. The discovery mechanism is divided in two phases: Participant Discovery Phase and Endpoints Discovery Phase.
 
-.. .. code-block:: c++
+* Participant Discovery Phase (PDP)
+    Before discovering any entity of a remote participant, both participants have to met between them. Participant Discovery
+    Phase provides this step and is responsible for sending periodic information about itself. To know how to configure where to
+    send this periodic information, see :ref:`initial-peers`. When both participants are met, is the turn of Endpoints
+    Discovery Phase.
 
-    ParticipantAttributes Pparam;
-    Pparam.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
-    Pparam.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;
+* Endpoints Discovery Phase (EDP)
+    This phase is responsible for sending entities information to the remote participant. Also it has to process the
+    entities information of the remote participant and check which entities can match between them.
 
-.. If you disable the built-in discovery protocols, you will need to manually match Readers and Writers. To inform a Writer about a remote Reader, you can either provide an XML configuration file or use the :class::`RemoteReaderAttributes` structure:
-
-.. .. code-block:: c++
-
-    RemoteReaderAttributes ratt;
-    Locator_t loc; //Add the locator that represents a channel the Reader listens to
-    loc.set_IP4_address(127,0,0,1);
-    loc.port = 22222;
-    ratt.endpoint.unicastLocatorList.push_back(loc)
-    ratt.guid = c_Guid_Unknown; //GUID_t is left blank, but must be configured when using Reliable Mode.
-    writer->matched_writer_add(ratt);
-
-.. Registering a remote Writer into a Reliable mode Reader works the same way:
-
-.. .. code-block:: c++
-
-    RemoteWriterAttributes watt;
-    //Configure watt
-    reader->matched_reader_add(watt);
-
-.. If you decide to provide the information via XML, you have to specify the file where you want to load from:
-
-.. .. code-block:: c++
-
-    participant_attributes.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
-    participant_attributes.rtps.builtin.setStaticEndpointXMLFilename("my_xml_configuration.xml");
-
-.. You can use this sample XML as a base for building your configuration files:
-
-.. .. code-block:: xml
-
-    <staticdiscovery>
-        <participant>
-            <name>RTPSParticipant</name>
-            <reader>
-                <userId>3</userId>
-                <entityId>4</entityId>
-                <expectsInlineQos>false</expectsInlineQos>
-                <topicName>TEST_TOPIC_NAME</topicName>
-                <topicDataType>HelloWorldType</topicDataType>
-                <topicKind>NO_KEY</topicKind>
-                <reliabilityQos>RELIABLE_RELIABILITY_QOS</reliabilityQos>
-                <unicastLocator
-                    address="127.0.0.1"
-                    port="31377">
-                </unicastLocator>
-                <multicastLocator
-                    address="127.0.0.1"
-                    port="31378">
-                </multicastLocator>
-                <durabilityQos>TRANSIENT_LOCAL_DURABILITY_QOS</durabilityQos>
-            </reader>
-        </participant>
-    </staticdiscovery>
-
-
-Using static discovery
-----------------------
-
-When static discovery is active, remote endpoints are passed to the application via an xml file.
-
-First of all, you have to disable the automatic endpoint discovery and enable the static endpoint discovery. This can be done from the participant attributes as shown in this code:
+By default the discovery mechanism is enabled, but you can disable it through participant attributes.
 
 .. code-block:: c++
 
-    ParticipantAttributes PParam;
-    PParam.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
-    PParam.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
+    ParticipantAttributes participant_attr;
+    participant_attr.rtps.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;
 
-Then, you will need to load the xml file containing the configuration of the remote participant. So, for example, if there is a participant with a publisher which is going to write to a specific topic, you will need to load the configuration of the subscriber like this:
+Static Endpoints Discovery
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Endpoints Discovery Phase can be replaced by a static version that doesn't send any information. It is useful when
+you have a limited network bandwidth and a well-known schema of publishers and subscribers. Instead of receiving entities
+information for matching, this information is loaded from a XML file.
+
+First of all, you have to disable the Endpoints Discovery Phase and enable the Static Endpoints Discovery. This can be done
+from the participant attributes.
 
 .. code-block:: c++
 
-    PParam.rtps.builtin.setStaticEndpointXMLFilename("ParticipantSubscriber.xml");
+    ParticipantAttributes participant_attr;
+    participant_attr.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
+    participant_attr.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
 
-A basic xml configuration file(in this case, for a publisher) would contain information like the name of the remote participant, the topic name and data type of the reader, and its entity and user defined ID. All these parameters have to exactly match the parameters that the user has defined previously in his application code (as ParticipantAttributes). Missing elements will acquire default values. For example:
+Then, you will need to load the XML file containing the configuration of the remote participant. So, for example, if there
+is a remote participant with a subscriber which is waiting to receive samples from your publisher, you will need to load
+the configuration of this remote participant.
+
+.. code-block:: c++
+
+    participant_attr.rtps.builtin.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
+
+A basic XML configuration file for this remote participant would contain information like the name of the remote participant, the topic name and
+data type of the subscriber, and its entity and user defined ID. All these values have to exactly match the parameter
+values used to configure the remote participant (through the class :class:`ParticipantAttributes`) and its subscriber (through
+the class :class:`SubscriberAttributes`). Missing elements will acquire default values. For example:
 
 .. code-block:: xml
 
@@ -272,7 +234,7 @@ A basic xml configuration file(in this case, for a publisher) would contain info
         </participant>
     </staticdiscovery>
 
-The xml that configures the participant on the other side (in this case, a subscriber) could look like this:
+The XML that configures the participant on the other side (in this case, a subscriber) could look like this:
 
 .. code-block:: xml
 
@@ -337,19 +299,23 @@ to the Endpoint Discovery Protocol meta-data. This allows you to create your own
    /* Custom Reader Listener onNewCacheChangeAdded*/
    void onNewCacheChangeAdded(RTPSReader * reader, const CacheChange_t * const change)
    {
-    (void)reader;
-    if (change->kind == ALIVE) {
-      WriterProxyData proxyData;
-      CDRMessage_t tempMsg;
-      tempMsg.msg_endian = change->serializedPayload.encapsulation ==
-        PL_CDR_BE ? BIGEND : LITTLEEND;
-      tempMsg.length = change->serializedPayload.length;
-      memcpy(tempMsg.buffer, change->serializedPayload.data, tempMsg.length);
-      if (proxyData.readFromCDRMessage(&tempMsg)) {
-        cout << proxyData.topicName();
-	cout << proxyData.typeName();
-      }
-     }
+       (void)reader;
+       if (change->kind == ALIVE) {
+           WriterProxyData proxyData;
+
+           CDRMessage_t tempMsg(0);
+           tempMsg.wraps = true;
+           tempMsg.msg_endian = change_in->serializedPayload.encapsulation == PL_CDR_BE ? BIGEND : LITTLEEND;
+           tempMsg.length = change_in->serializedPayload.length;
+           tempMsg.max_size = change_in->serializedPayload.max_size;
+           tempMsg.buffer = change_in->serializedPayload.data;
+
+           if (proxyData.readFromCDRMessage(&tempMsg)) {
+               cout << proxyData.topicName();
+               cout << proxyData.typeName();
+           }
+       }
+    }
 
 The callbacks defined in the ReaderListener you attach to the EDP will execute for each data message after
 the built-in protocols have processed it.

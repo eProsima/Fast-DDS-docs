@@ -38,10 +38,10 @@ Note that your History must be big enough to accomodate the maximum number of sa
 Tuning Realiable mode
 ---------------------
 
-RTPS protocol uses Heartbeat messages to make matched endpoints exchange meta-data on what pieces of data
-they hold so the missing ones can be re-sent (on Reliable mode of course).
-You can modify the frequency of this meta-data exchange by specifying a custom heartbeat period.
+RTPS protocol can maintain a reliable communication using special messages (Heartbeat and Ack/Nack messages). RTPS protocol
+can detect which samples are lost and re-sent them again.
 
+You can modify the frequency these special submessages are exchange by specifying a custom heartbeat period.
 The heartbeat period in the Publisher-Subscriber level is configured as part of the :class:`ParticipantAttributes`:
 
 .. code-block:: c++
@@ -169,6 +169,8 @@ your custom transport configuration along the built-in one.
 
 This distribution comes with an example of how to change the configuration of the transport layer. It can be found `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/UserDefinedTransportExample>`_.
 
+.. _discovery:
+
 Discovery
 ---------
 
@@ -283,7 +285,7 @@ The full list of fields for readers and writes includes the following parameters
 Subscribing to Discovery Topics
 -------------------------------
 
-As specified in the Built-In protocols section, the Participant or RTPS Participant has a series of meta-data endpoints
+As specified in the :ref:`discovery` section, the Participant or RTPS Participant has a series of meta-data endpoints
 for use during the discovery process.  It is possible to create a custom listener that listens
 to the Endpoint Discovery Protocol meta-data. This allows you to create your own network analysis tools.
 

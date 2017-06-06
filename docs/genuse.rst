@@ -30,6 +30,8 @@ Where the option choices are:
 	| -replace            |Replaces the generated source code files whether they exist.											 |
 	+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. _idl-types:
+
 Defining a data type via IDL
 ----------------------------
 

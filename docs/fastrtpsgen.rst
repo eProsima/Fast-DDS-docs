@@ -2,8 +2,8 @@ Code generation using fastrtpsgen
 =================================
 
 *eprosima Fast RTPS* comes with a built-in code generation tool, fastrtpsgen, which eases the process of
-translating an IDL specification of a topic to a working implementation of the methods needed to create
-publishers and subscribers of that type. This tool can be instructed to generate a sample application using
+translating an IDL specification of a data type to a working implementation of the methods needed to create
+topics, used by publishers and subscribers, of that data type. This tool can be instructed to generate a sample application using
 this data type, providing a Makefile to compile it on Linux and a Visual Studio project for Windows.
 
 *fastrtpsgen* can be invoked by calling fastrtpsgen on Linux or fastrtpsgen.bat on Windows. ::
@@ -29,9 +29,9 @@ Output
 * MyTypePubSubMain.cxx: Main file of the example application in case it is generated.
 * Makefiles or Visual studio project files.
 
-Compilation
------------
+Where to find *fastrtpsgen*
+---------------------------
 
-If you are using the binary distribution of *eProsima Fast RTPS*, *fastrtpsgen* is already compiled for you.
-If you are building from sources, you will need to compile the tool manually using 'gradle'
+If you are using the binary distribution of *eProsima Fast RTPS*, *fastrtpsgen* is already provided for you.
+If you are building from sources, you have to compile *fastrtpsgen*. You can find instruction in section.
 

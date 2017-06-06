@@ -21,7 +21,8 @@ We also need to pass a configuration structure for the Participant, which can be
 The default configuration provides a basic working set of options with predefined ports for communications.
 During this tutorial you will learn to tune *eProsima Fast RTPS*.
 
-In order to use our topic, we have to register it within the :class:`Participant` using the code generated with *fastrtpsgen*. Once again, this is done by using the :class:`Domain` class:
+In order to use our topic, we have to register it within the :class:`Participant` using the code generated with *fastrtpsgen*
+(see :ref:`fastrtpsgen-intro`. Once again, this is done by using the :class:`Domain` class:
 
 .. code-block:: c++
 
@@ -247,13 +248,13 @@ We will now go over the most common configuration options.
    Some reliability combinations make a publisher and a subscriber incompatible and unable  to talk to each other. Next
    table shows the incompatibilities.
 
-   +----------------------+-----------------+--------------+
-   | **Writer \\ Reader** | **Best Effort** | **Reliable** |
-   +----------------------+-----------------+--------------+
-   | **Best Effort**      |  ✓              |  ✕           |
-   +----------------------+-----------------+--------------+
-   | **Reliable**         |  ✓              |  ✓           |
-   +----------------------+-----------------+--------------+
+   +-----------------------------+-----------------+--------------+
+   | **Publisher \\ Subscriber** | **Best Effort** | **Reliable** |
+   +-----------------------------+-----------------+--------------+
+   | **Best Effort**             |  ✓              |  ✕           |
+   +-----------------------------+-----------------+--------------+
+   | **Reliable**                |  ✓              |  ✓           |
+   +-----------------------------+-----------------+--------------+
 
 
 * **History:** there are two policies for sample storage:
@@ -604,7 +605,7 @@ deeper into it.
 XML profiles are loaded from XML files. *eProsima Fast RTPS* permits to load as much XML files as you want. An XML file
 can contains several XML profiles. An XML profile is defined by a unique name that is used to reference the XML profile
 when you create a Fast RTPS entity. *eProsima Fast RTPS* also try to find in current execution path and load an XML file with the name
-*DEFAULT_FASTRTPS_PROFILES.xml*.
+*DEFAULT_FASTRTPS_PROFILES.xml*. If this file exists, it is loaded at the library initialization.
 
 Making an XML
 ^^^^^^^^^^^^^

@@ -14,7 +14,7 @@ If you are on Linux, execute: ::
     $ make
     $ sudo make install
 
-If you are on Windows, choose your version of Visual Studio: ::
+If you are on Windows, choose your version of Visual Studio using CMake option *-G*: ::
 
     > cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON ..
     > cmake --build . --target install
@@ -47,7 +47,7 @@ OpenSSL installation on Windows
 
 .. _webpage: https://slproweb.com/products/Win32OpenSSL.html
 
-You can download OpenSSL for Windows in this webpage_. This is the OpenSSL version tested by our team. Download the
+You can download OpenSSL 1.0.2 for Windows in this webpage_. This is the OpenSSL version tested by our team. Download the
 installer that fits your requirements and install it. After installing, add the environment variable
 ``OPENSSL_ROOT_DIR`` pointing to the installation root directory. For example:
 

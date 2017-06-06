@@ -250,6 +250,8 @@ The XML that configures the participant on the other side (in this case, a subsc
         </participant>
     </staticdiscovery>
 
+You can find an example that uses `Static Endpoint Discovery <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_.
+
 The full list of fields for readers and writes includes the following parameters:
 
 * **userId**: numeric value.

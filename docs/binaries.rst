@@ -1,7 +1,7 @@
 Installation from Binaries
 ==========================
 
-You can always download the latest binary realese of *eProsima Fast RTPS* from the `company website <http://www.eprosima.com/>`_.
+You can always download the latest binary release of *eProsima Fast RTPS* from the `company website <http://www.eprosima.com/>`_.
 
 Windows 7 32-bit and 64-bit
 ---------------------------

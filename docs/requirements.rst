@@ -11,10 +11,10 @@ Gtest
 
 Gtest is needed to compile the tests when building from sources.
 
-Java
-^^^^
+Java & Gradle
+^^^^^^^^^^^^^
 
-Java is required to make use of our built-in code generation tool *fastrtpsgen*.
+Java & gradle is required to make use of our built-in code generation tool *fastrtpsgen* (see :ref:`.. _compile-fastrtpsgen:`).
 
 Windows 7 32-bit and 64-bit
 ---------------------------

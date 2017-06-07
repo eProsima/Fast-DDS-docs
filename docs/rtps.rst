@@ -142,25 +142,13 @@ Additionally you can read an incoming message directly by interacting with the H
 
 Configuring Readers and Writers
 -------------------------------
-One of the benefits of using the Writer-Reader layer is that it provides new configuration possibilities while maintaining the options from the Publisher-Subscriber layer.
+One of the benefits of using the Writer-Reader layer is that it provides new configuration possibilities while
+maintaining the options from the Publisher-Subscriber layer (see :ref:`configuration`).
 For example, you can set a Writer or a Reader as a Reliable or Best-Effort endpoint as previously:
 
 .. code-block:: c++
 
     Wattr.endpoint.reliabilityKind = BEST_EFFORT;
-
-Setting the Input and Output Channels
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-As in the Publisher-Subscriber Layer, you can specify the input and output channels you want your Writer/Reader to listen to or speak from in the form of Locators.
-This configuration overrides the one inherited from the :class:`RTPSParticipant`.
-
-.. code-block:: c++
-
-    WriterAttributes Wattr;
-    Locator_t my_locator;
-    //Set up your Locator
-    Wattr.endpoint.OutLocatorList.push_back(my_locator);
 
 Setting the data durability kind
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -10,6 +10,15 @@ To declare your structured data, you have to use IDL (Interface Definition Langu
 eProsima FASTRTPSGEN is a tool that reads IDL files and parses a subset of the OMG IDL specification to generate serialization source code.
 This subset includes the data type descriptions included in :ref:`idl-types`. The rest of the file content is ignored.
 
-eProsima FASTRTPSGEN generated source code uses `Fast CDR <https://github.com/eProsima/Fast-CDR>`_: a C++11 library that provides a serialization mechanism. In this case, as indicated by the RTPS specification document, the serialization mechanism used in CDR. The standard CDR (Common Data Representation)1 is a transfer syntax low-level representation for transfer between agents, mapping from data types defined in OMG IDL to byte streams. 
+eProsima FASTRTPSGEN generated source code uses `Fast CDR <https://github.com/eProsima/Fast-CDR>`_: a C++11 library that provides a serialization mechanism. In this case, as indicated by the RTPS specification document, the serialization mechanism used in CDR. The standard CDR (Common Data Representation)1 is a transfer syntax low-level representation for transfer between agents, mapping from data types defined in OMG IDL to byte streams.
 
 One of the main features of eProsima FASTRTPSGEN is to avoid the users the trouble of knowing anything about serialization or deserialization procedures. It also provides a first implementation of a publisher and a subscriber using eProsima RTPS library.
+
+.. _compile-fastrtpsgen:
+
+Compile
+-------
+
+In order to compile *fastrtpsgen* we first need already have installed `gradle <https://gradle.org/install>`_ and `java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ (please, check the JDK recommended version for the gradle version you have installed).
+
+To generate *fastrtpsgen* we will need to add the argument ``-DBUILD_JAVA=ON`` when calling CMake.

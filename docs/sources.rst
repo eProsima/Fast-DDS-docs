@@ -23,6 +23,8 @@ If you want to compile the examples, you will need to add the argmuent ``-DCOMPI
 
 If you want to compile the performance tests, you will need to add the argument ``-DPERFORMANCE_TESTS=ON`` when calling CMake.
 
+For generate *fastrtpsgen* please see :ref:`compile-fastrtpsgen`.
+
 Security
 --------
 

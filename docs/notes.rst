@@ -8,8 +8,14 @@ This release include the following features:
 
 Also bug fixing.
 
+**Note:** If you are upgrading from an older version than 1.4.0, it is advisable to regenerate generated source from IDL files using
+*fastrtpsgen*
+
+Previous versions
+-----------------
+
 Version 1.4.0
-=============
+^^^^^^^^^^^^^
 
 This release includes the following:
 
@@ -18,11 +24,8 @@ This release includes the following:
 * Added compatibility with Android.
 * Bug fixing.
 
-**Note:** After upgrading to this release, it is advisable to regenerate generated source from IDL files using 
+**Note:** After upgrading to this release, it is advisable to regenerate generated source from IDL files using
 *fastrtpsgen*
-
-Previous versions
------------------
 
 Version 1.3.1
 ^^^^^^^^^^^^^

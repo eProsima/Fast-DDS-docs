@@ -268,10 +268,10 @@ We will now go over the most common configuration options.
    | .. code-block:: c++                           | .. code-block:: xml                                      |
    |                                               |                                                          |
    |    publisher_attr.topic.historyQos.kind =     |    <profiles>                                            |
-   |       KEEP_ALL;                               |       <publisher profile_name="publisher_xml_profile">   |
+   |       KEEP_ALL_HISTORY_QOS;                   |       <publisher profile_name="publisher_xml_profile">   |
    |                                               |          <topic>                                         |
    |    subscriber_attr.topic.historyQos.kind =    |             <historyQos>                                 |
-   |       KEEP_LAST;                              |                <kind>KEEP_ALL</kind>                     |
+   |       KEEP_LAST_HISTORY_QOS;                  |                <kind>KEEP_ALL</kind>                     |
    |    subscriber_attr.topic.historyQos.depth = 5 |             </historyQos>                                |
    |                                               |          </topic>                                        |
    |                                               |       </publisher>                                       |

@@ -259,8 +259,8 @@ We will now go over the most common configuration options.
 
 * **History:** there are two policies for sample storage:
 
-   * Keep-All (Default): Store all samples in memory.
-   * Keep-Last: Store samples up to a maximum *depth*. When this limit is reached, they start to become overwritten.
+   * Keep-All: Store all samples in memory.
+   * Keep-Last (Default): Store samples up to a maximum *depth*. When this limit is reached, they start to become overwritten.
 
    +-----------------------------------------------+----------------------------------------------------------+
    | C++                                           | XML                                                      |

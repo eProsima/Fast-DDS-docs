@@ -7,28 +7,32 @@ This section guides you through the usage of this Java application and briefly d
 
 The Java application can be executed using the following scripts depending on if you are on Windows or Linux: ::
 
-	> fastrtpsgen.bat
-	$ fastrtpsgen
+    > fastrtpsgen.bat
+    $ fastrtpsgen
 
 The expected argument list of the application is: ::
 
-	fastrtpsgen [<options>] <IDL file> [<IDL file> ...]
+    fastrtpsgen [<options>] <IDL file> [<IDL file> ...]
 
 Where the option choices are:
 
-	+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-	| Option              | Description																	 |
-	+=====================+==================================================================================================================================================+
-	| -help               | Shows the help information.															 |
-	+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-	| -version            | Shows the current version of eProsima FASTRTPSGEN.												 |
-	+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-	| -d <directory>      | Output directory where the generated files are created.												 |
-	+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-	| -example <platform> |Generates an example and a solution to compile the generated source code for a specific platform. The help command shows the supported platforms. |
-	+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-	| -replace            |Replaces the generated source code files whether they exist.											 |
-	+---------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Option              | Description                                                                                                                                       |
+    +=====================+===================================================================================================================================================+
+    | -help               | Shows the help information.                                                                                                                       |
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+    | -version            | Shows the current version of eProsima FASTRTPSGEN.                                                                                                |
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+    | -d <directory>      | Output directory where the generated files are created.                                                                                           |
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+    | -example <platform> | Generates an example and a solution to compile the generated source code for a specific platform. The help command shows the supported platforms. |
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+    | -replace            | Replaces the generated source code files whether they exist.                                                                                      |
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+    | -ppDisable          | Disables the preprocessor.                                                                                                                        |
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+    | -ppPath             | Specifies the preprocessor path.                                                                                                                  |
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _idl-types:
 
@@ -37,29 +41,31 @@ Defining a data type via IDL
 
 The following table shows the basic IDL types supported by *fastrtpsgen* and how they are mapped to C++11.
 
-	+---------------------+-------------+
-	| IDL                 | C++11       |
-	+=====================+=============+
-	| char                | char        |
-	+---------------------+-------------+
-	| octet               | uint8_t     |
-	+---------------------+-------------+
-	| short               | int16_t     |
-	+---------------------+-------------+
-	| unsigned short      | uint16_t    |
-	+---------------------+-------------+
-	|  long long          | int64_t     |
-	+---------------------+-------------+
-	| unsigned long long  | uint64_t    |
-	+---------------------+-------------+
-	| float               | float       |
-	+---------------------+-------------+
-	| double              | double      |
-	+---------------------+-------------+
-	| boolean             | bool        |
-	+---------------------+-------------+
-	| string              | std::string |
-	+---------------------+-------------+
+    +--------------------+-------------+
+    | IDL                | C++11       |
+    +====================+=============+
+    | char               | char        |
+    +--------------------+-------------+
+    | octet              | uint8_t     |
+    +--------------------+-------------+
+    | short              | int16_t     |
+    +--------------------+-------------+
+    | unsigned short     | uint16_t    |
+    +--------------------+-------------+
+    |  long long         | int64_t     |
+    +--------------------+-------------+
+    | unsigned long long | uint64_t    |
+    +--------------------+-------------+
+    | float              | float       |
+    +--------------------+-------------+
+    | double             | double      |
+    +--------------------+-------------+
+    | long double        | long double |
+    +--------------------+-------------+
+    | boolean            | bool        |
+    +--------------------+-------------+
+    | string             | std::string |
+    +--------------------+-------------+
 
 Arrays
 ^^^^^^
@@ -246,5 +252,16 @@ For example in the following IDL file the *id* and *type* field would be the key
 
 *fastrtpsgen* automatically detects these tags and correctly generates the serialization methods for the key generation function in TopicDataType (getKey). This function will obtain the 128 MD5 digest  of the big endian serialization of the Key Members. 
 
+Including other IDL files
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
+You can include another IDL files in yours in order to use data types defined in them. *fastrtpsgen* uses a C/C++
+preprocessor for this purpose, and you can use ``#include`` directive to include an IDL file.
 
+.. code-block:: c++
+
+    #include "OtherFile.idl"
+    #include <AnotherFile.idl>
+
+If *fastrtpsgen* doesn't find a C/C++ preprocessor in default system paths, you could specify the preprocessor path using
+parameter ``-ppPath``. If you want to disable the usage of preprocessor, you could use the parameter ``-ppDisable``.

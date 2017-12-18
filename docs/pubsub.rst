@@ -497,7 +497,7 @@ Listening locators
     eprosima::fastrtps::rtps::Locator_t locator.set_IP4_address(192, 168, 0 , 1);
     locator.port = 22225;
 
-    part_attr.rtps.builtin.defaultUnicastLocatorList.push_back(locator);
+    part_attr.rtps.defaultUnicastLocatorList.push_back(locator);
 
 By default *eProsima Fast RTPS* calculates the listening locators for the built-in UDPv4 network transport using
 well-known ports. These well-known ports are calculated using next predefined rules:

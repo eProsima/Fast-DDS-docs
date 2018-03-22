@@ -92,14 +92,15 @@ Changes are always managed by the History. As an user, the procedure for interac
 2. Use it
 3. Release it
 
-You can interact with the History of the Writer to send data:
+You can interact with the History of the Writer to send data.
+A callback that returns the maximum number of payload bytes is required:
 
 .. code-block:: c++
 
     //Request a change from the history
-    CacheChange_t* ch = writer->newCacheChange(ALIVE);
+    CacheChange_t* ch = writer->new_change([]() -> uint32_t { return 255;}, ALIVE);
     //Write serialized data into the change
-    ch->serializedPayload->length = sprintf(ch->serializedPayload->data, "My String %d", 2);
+    ch->serializedPayload.length = sprintf((char*) ch->serializedPayload.data, "My example string %d", 2)+1;
     //Insert change back into the history. The Writer takes care of the rest.
     history->add_change(ch);
 

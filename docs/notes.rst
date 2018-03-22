@@ -1,7 +1,7 @@
 Version 1.5.0
 =============
 
-This release include the following features:
+This release includes the following features:
 
 * Configuration of Fast RTPS entities through XML profiles.
 * Added heartbeat piggyback support.

@@ -2,7 +2,7 @@ Objects and Data Structures
 ===========================
 
 
-In order to make the most of *eProsima Fast RTPS* it is important to have a grasp of the objects and data structures that conform the library. *eProsima Fast RTPS* objects are classified by modules, which are briefly listed and descripted in this section. For full coverage take a look at the API Reference document that comes with the distribution.
+In order to make the most of *eProsima Fast RTPS* it is important to have a grasp of the objects and data structures that conform the library. *eProsima Fast RTPS* objects are classified by modules, which are briefly listed and described in this section. For full coverage take a look at the API Reference document that comes with the distribution.
 
 Publisher Subscriber Module
 ---------------------------

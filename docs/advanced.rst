@@ -41,7 +41,7 @@ Tuning Realiable mode
 RTPS protocol can maintain a reliable communication using special messages (Heartbeat and Ack/Nack messages). RTPS protocol
 can detect which samples are lost and re-sent them again.
 
-You can modify the frequency these special submessages are exchange by specifying a custom heartbeat period.
+You can modify the frequency these special submessages are exchanged by specifying a custom heartbeat period.
 The heartbeat period in the Publisher-Subscriber level is configured as part of the :class:`ParticipantAttributes`:
 
 .. code-block:: c++
@@ -152,7 +152,7 @@ In audio or video transmissions, sometimes is better to have an stable and high 
 Transport Layer
 ---------------
 
-Unless you specify other configuration, *eProsima Fast RTPS* will use its built in UDPv4 Transport Layer with
+Unless you specify other configuration, *eProsima Fast RTPS* will use its built-in UDPv4 Transport Layer with
 a default configuration. You can change this default configuration or switch to UDPv6
 by providing an alternative configuration when you create the Participant.
 
@@ -254,7 +254,7 @@ The XML that configures the participant on the other side (in this case, a subsc
 
 You can find an example that uses `Static Endpoint Discovery <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_.
 
-The full list of fields for readers and writes includes the following parameters:
+The full list of fields for readers and writers includes the following parameters:
 
 * **userId**: numeric value.
 * **entityID**: numeric value.
@@ -328,7 +328,7 @@ Additional Quality of Service options
 -------------------------------------
 
 As a user, you can implement your own quality of service (QoS) restrictions in your application. *eProsima Fast RTPS*
-comes bundles with a set of examples of how to implement common client-wise QoS settings:
+comes bundled with a set of examples of how to implement common client-wise QoS settings:
 
 * Deadline: Rise an alarm when the frequency of message arrival for a topic falls below a certain threshold.
 * Ownership Srength: When multiple data sources come online, filter duplicates by focusing on the higher priority sources.

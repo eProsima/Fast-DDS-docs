@@ -1,7 +1,7 @@
 Writer-Reader Layer
 ===================
 
-The lower level Writer-Reader Layer of *eprosima Fast RTPS* provides a raw implementation of th RTPS protocol.
+The lower level Writer-Reader Layer of *eprosima Fast RTPS* provides a raw implementation of the RTPS protocol.
 It provides more control over the internals of the protocol than the Publisher-Subscriber layer.
 Advanced users can make use of this layer directly to gain more control over the functionality of the library.
 
@@ -158,7 +158,7 @@ The Durability parameter defines the behaviour of the Writer regarding samples a
 * VOLATILE (default): Messages are discarded as they are sent. If a new Reader matches after message *n*, it will start received from message *n+1*.
 * TRANSIENT_LOCAL: The Writer saves a record of the lask *k* messages it has sent. If a new reader matches after message *n*, it will start receiving from message *n-k*
 
-To choose you preferred option:
+To choose your preferred option:
 
 .. code-block:: c++
 
@@ -175,7 +175,7 @@ The History has its own configuration structure, the :class:`HistoryAttributes`.
 Changing the maximum size of the payload
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can choose the maximum size of they Payload that can go into a :class:`CacheChange_t`. Be sure to choose a size that allows it to hold the biggest possible piece of data:
+You can choose the maximum size of the Payload that can go into a :class:`CacheChange_t`. Be sure to choose a size that allows it to hold the biggest possible piece of data:
 
 .. code-block:: c++
 

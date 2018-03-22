@@ -24,7 +24,7 @@ This should not impact the way you use the library: the public API is thread saf
 * Main thread: Managed by the application.
 * Event thread: Each participant owns one of these, and it processes periodic and triggered events.
 * Asynchronous writer thread: This thread manages asynchronous writes for all participants. Even for synchronous writers, some forms of communication must be initiated in the background.
-* Reception threads: Participants spawn a thread for each reception channel, where the concept of  channel depends on the transport layer (e.g.  an UDP port).
+* Reception threads: Participants spawn a thread for each reception channel, where the concept of channel depends on the transport layer (e.g. an UDP port).
 
 Events
 ^^^^^^

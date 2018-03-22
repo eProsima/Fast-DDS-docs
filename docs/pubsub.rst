@@ -9,7 +9,7 @@ How to use the Publisher-Subscriber Layer
 
 We are going to use the example built in the previous section to explain how this layer works.
 
-The first step to create a :class:`Participant` instance, which will act as a container for the Publishers and
+The first step is to create a :class:`Participant` instance, which will act as a container for the Publishers and
 Subscribers our application needs. For this we use :class:`Domain`, a static class that manages RTPS entities.
 We also need to pass a configuration structure for the Participant, which can be left in its default configuration for now:
 
@@ -99,7 +99,7 @@ Configuration
 Participant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The :class:`Participant` can be  configured via the :class:`ParticipantAttributes` structure.
+The :class:`Participant` can be configured via the :class:`ParticipantAttributes` structure.
 ``createParticipant`` function accepts an instance of this structure.
 
 .. code-block:: c++
@@ -245,7 +245,7 @@ We will now go over the most common configuration options.
    |                                             |    </profiles>                                           |
    +---------------------------------------------+----------------------------------------------------------+
 
-   Some reliability combinations make a publisher and a subscriber incompatible and unable  to talk to each other. Next
+   Some reliability combinations make a publisher and a subscriber incompatible and unable to talk to each other. Next
    table shows the incompatibilities.
 
    +-----------------------------+-----------------+--------------+
@@ -345,7 +345,7 @@ We will now go over the most common configuration options.
 
 * **Unicast locators:** they are network endpoints where the entity will receive data. For more information about network,
   see :ref:`network-configuration`. Publishers and subscribers inherit unicast locators from the participant. You can set
-  a different locators through this attribute.
+  a different set of locators through this attribute.
 
    +---------------------------------------------------------------+----------------------------------------------------------+
    | C++                                                           | XML                                                      |
@@ -460,7 +460,7 @@ Listening locators
     part_attr.rtps.builtin.metatrafficMulticastLocatorList.push_back(locator);
 
 * Metatraffic Unicast Locators: these locators are used to receive metatraffic information using unicast.
-  The usually are used by built-in endpoints, like the discovery built-in endpoints. You can set your own locators using
+  They usually are used by built-in endpoints, like the discovery built-in endpoints. You can set your own locators using
   attribute ``rtps.builtin.metatrafficUnicastLocatorList``.
 
   .. code-block:: c++
@@ -500,7 +500,7 @@ Listening locators
     part_attr.rtps.defaultUnicastLocatorList.push_back(locator);
 
 By default *eProsima Fast RTPS* calculates the listening locators for the built-in UDPv4 network transport using
-well-known ports. These well-known ports are calculated using next predefined rules:
+well-known ports. These well-known ports are calculated using the following predefined rules:
 
 .. list-table:: Ports used
    :header-rows: 1
@@ -549,7 +549,7 @@ the attribute ``rtps.defaultOutLocatorList``.
 By default *eProsima Fast RTPS* sends network messages using a random UDPv4 port over all interface networks.
 
 A UDPv4 unicast locator supports to have a null address. In that case *eProsima Fast RTPS* understands to get local network
-addresses and use them to listen network messages.
+addresses and use them.
 
 A UDPv4 locator support to have a zero port. In that case *eProsima Fast RTPS* understands to get a random UDPv4 port.
 
@@ -599,12 +599,12 @@ Tips
 XML profiles
 ------------
 
-In :ref:`configuration` section you could see how configure entity attributes using XML profiles, but this section goes
+In the :ref:`configuration` section you could see how to configure entity attributes using XML profiles, but this section goes
 deeper into it.
 
 XML profiles are loaded from XML files. *eProsima Fast RTPS* permits to load as much XML files as you want. An XML file
-can contains several XML profiles. An XML profile is defined by a unique name that is used to reference the XML profile
-when you create a Fast RTPS entity. *eProsima Fast RTPS* also try to find in current execution path and load an XML file with the name
+can contain several XML profiles. An XML profile is defined by a unique name that is used to reference the XML profile
+when you create a Fast RTPS entity. *eProsima Fast RTPS* will also try to find in current execution path and load an XML file with the name
 *DEFAULT_FASTRTPS_PROFILES.xml*. If this file exists, it is loaded at the library initialization.
 
 Making an XML

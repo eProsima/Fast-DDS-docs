@@ -57,6 +57,7 @@ This documentation is organized into the following sections:
    rtps
    advanced
    security
+   persistence
    fastrtpsgen
 
 

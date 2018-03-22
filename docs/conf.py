@@ -49,7 +49,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Fast RTPS'
-copyright = u'2016, eProsima'
+copyright = u'2018, eProsima'
 author = u'eProsima'
 
 # The version info for the project you're documenting, acts as replacement for

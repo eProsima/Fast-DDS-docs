@@ -34,7 +34,7 @@ Security
 By default Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
 configuration step. More information about security on Fast RTPS, see :ref:`security`.
 
-When security is activated on compilation Fast RTPS builds two built-tin security plugins. Both have the dependency of
+When security is activated on compilation Fast RTPS builds two built-in security plugins. Both have the dependency of
 OpenSSL library.
 
 OpenSSL installation on Linux

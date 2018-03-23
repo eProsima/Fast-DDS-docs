@@ -58,7 +58,7 @@ On Linux: ::
 
     fastrtpsgen -example x64Linux2.6gcc HelloWorld.idl
 
-The `-example` option creates an example application, which you can use to spawn any number of publishers and a subscribers associated with your topic.i ::
+The `-example` option creates an example application, which you can use to spawn any number of publishers and a subscribers associated with your topic. ::
 
     ./HelloWorldPublisherSubscriber publisher
     ./HelloWorldPublisherSubscriber subscriber

@@ -83,7 +83,7 @@ Arrays
 	+--------------------------+--------------------------+
 	| unsigned short a[5]      | std::array<uint16_t,5> a |
 	+--------------------------+--------------------------+
-	|  long long a[5]          | std::array<int64_t,5> a  |
+	| long long a[5]           | std::array<int64_t,5> a  |
 	+--------------------------+--------------------------+
 	| unsigned long long a[5]  | std::array<uint64_t,5> a |
 	+--------------------------+--------------------------+
@@ -95,7 +95,7 @@ Arrays
 Sequences
 ^^^^^^^^^
 
-*fastrtpsgen* fupports sequences, which map into the STD vector container. The following table represents how the map between IDL and C++11 is handled.
+*fastrtpsgen* supports sequences, which map into the STD vector container. The following table represents how the map between IDL and C++11 is handled.
 
 	+-------------------------------+--------------------------+
 	| IDL                           | C++11                    |
@@ -108,7 +108,7 @@ Sequences
 	+-------------------------------+--------------------------+
 	| sequence<unsigned short>      |    std::vector<uint16_t> |
 	+-------------------------------+--------------------------+
-	|  sequence<long long>          |    std::vector<int64_t>  |
+	| sequence<long long>           |    std::vector<int64_t>  |
 	+-------------------------------+--------------------------+
 	| sequence<unsigned long long>  |    std::vector<uint64_t> |
 	+-------------------------------+--------------------------+
@@ -120,15 +120,15 @@ Sequences
 Structures
 ^^^^^^^^^^
 
-You can define an IDL structure with a set of members with multiple types. It will be converted into a C++ class with each member mapped as an attributes plus method to *get* and *set* each member.
+You can define an IDL structure with a set of members with multiple types. It will be converted into a C++ class with each member mapped as an attribute plus methods to *get* and *set* each member.
 
 The following IDL structure: ::
 
 	struct Structure
 	{
-    	octet octet_value;
-   	long long_value;
-    	string string_value;
+        octet octet_value;
+   	    long long_value;
+        string string_value;
 	};
 
 Would be converted to: ::
@@ -170,7 +170,7 @@ The following IDL union: ::
 
 	union Union switch(long)
 	{
- 	 case 1:
+ 	  case 1:
 	    octet octet_value;
 	  case 2:
 	    long long_value;
@@ -239,7 +239,7 @@ Would be converted to: ::
 Keyed Types
 ^^^^^^^^^^^
 
-In order to use keyed topics the user should define some key members inside the structure. This is achieved by writting “@Key” before the members of the structure you want to use as keys. 
+In order to use keyed topics the user should define some key members inside the structure. This is achieved by writing “@Key” before the members of the structure you want to use as keys. 
 For example in the following IDL file the *id* and *type* field would be the keys: ::
 
 	struct MyType
@@ -250,7 +250,7 @@ For example in the following IDL file the *id* and *type* field would be the key
 	    long positionY;
 	};
 
-*fastrtpsgen* automatically detects these tags and correctly generates the serialization methods for the key generation function in TopicDataType (getKey). This function will obtain the 128 MD5 digest  of the big endian serialization of the Key Members. 
+*fastrtpsgen* automatically detects these tags and correctly generates the serialization methods for the key generation function in TopicDataType (getKey). This function will obtain the 128-bit MD5 digest of the big-endian serialization of the Key Members.
 
 Including other IDL files
 ^^^^^^^^^^^^^^^^^^^^^^^^^

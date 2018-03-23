@@ -11,7 +11,7 @@ Fast RTPS can be configured to provide secure communications. For this purpose F
 at two levels: authentication of remote participants and encryption of data.
 
 By default Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
-configuration step. More information about Fast RTPS compilation, see :ref:`installation-from-sources`.
+configuration step. For more information about Fast RTPS compilation, see :ref:`installation-from-sources`.
 
 You can activate and configure security plugins through :class:`eprosima::fastrtps::Participant` attributes using properties.
 A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value (:class:`std::string`).
@@ -22,7 +22,7 @@ Authentication plugins
 
 They provide authentication on discovery of remote participants. When a remote participant is detected, Fast RTPS tries
 to authenticate using the activated Authentication plugin. If the authentication process finishes successfully then both
-participants matches and discovery protocol continues. On failure, the remote participant is rejected.
+participants match and discovery protocol continues. On failure, the remote participant is rejected.
 
 You can activate an Authentication plugin using Participant property ``dds.sec.auth.plugin``. Fast RTPS provides a
 built-in Authentication plugin. More information on :ref:`auth-pki-dh`.
@@ -45,7 +45,7 @@ with the value ``ENCRYPT``.
 **Encrypt RTPS submessages of a particular entity**
 
 You can configure an entity (Writer or Reader) to encrypt its RTPS submessages using Entity property ``rtps.endpoint.submessage_protection_kind``
-with the value ``ÈNCRYPT``.
+with the value ``ENCRYPT``.
 
 **Encrypt payload of a particular Writer**
 
@@ -104,7 +104,7 @@ You can generate you own x509 certificates using OpenSSL application. This secti
 
 **Generate a certificate for the CA**
 
-Wether you want to create your own CA certificate, first you have to write a configuration file with your CA
+When you want to create your own CA certificate, you first have to write a configuration file with your CA
 information.
 
 .. code-block:: ini
@@ -193,7 +193,7 @@ After writing the configuration file, next commands generate the certificate usi
 
 **Generate a certificate for the Participant**
 
-Wether you want to create your own certificate for your Participant, first you have to write a configuration file.
+When you want to create your own certificate for your Participant, you first have to write a configuration file.
 
 .. code-block:: ini
 
@@ -227,7 +227,7 @@ Crypto:AES-GCM-GMAC
 ^^^^^^^^^^^^^^^^^^^
 
 This built-in plugin provides authenticated encryption using AES in Galois Counter Mode (AES-GCM).
-It also provide additional reader-specific message authentication codes (MACs) using Galois MAC (AES-GMAC).
+It also provides additional reader-specific message authentication codes (MACs) using Galois MAC (AES-GMAC).
 This plugin needs the activation of the security plugin :ref:`auth-pki-dh`.
 
 You can activate this plugin using Participant property ``dds.sec.crypto.plugin`` with the value ``builtin.AES-GCM-GMAC``.
@@ -238,7 +238,7 @@ Example
 ^^^^^^^
 
 This example show you how to configure a Participant to activate and configure :ref:`auth-pki-dh` and
-:ref:`crypto-aes-gcm-gmac` plugins. Also it configures Participant to encrypt its RTPS messages, Writer and Reader to
+:ref:`crypto-aes-gcm-gmac` plugins. It also configures Participant to encrypt its RTPS messages, Writer and Reader to
 encrypt their RTPS submessages and Writer to encrypt the payload (user data).
 
 **Participant attributes**

@@ -1,7 +1,7 @@
 Writer-Reader Layer
 ===================
 
-The lower level Writer-Reader Layer of *eprosima Fast RTPS* provides a raw implementation of th RTPS protocol.
+The lower level Writer-Reader Layer of *eprosima Fast RTPS* provides a raw implementation of the RTPS protocol.
 It provides more control over the internals of the protocol than the Publisher-Subscriber layer.
 Advanced users can make use of this layer directly to gain more control over the functionality of the library.
 
@@ -92,14 +92,15 @@ Changes are always managed by the History. As an user, the procedure for interac
 2. Use it
 3. Release it
 
-You can interact with the History of the Writer to send data:
+You can interact with the History of the Writer to send data.
+A callback that returns the maximum number of payload bytes is required:
 
 .. code-block:: c++
 
     //Request a change from the history
-    CacheChange_t* ch = writer->newCacheChange(ALIVE);
+    CacheChange_t* ch = writer->new_change([]() -> uint32_t { return 255;}, ALIVE);
     //Write serialized data into the change
-    ch->serializedPayload->length = sprintf(ch->serializedPayload->data, "My String %d", 2);
+    ch->serializedPayload.length = sprintf((char*) ch->serializedPayload.data, "My example string %d", 2)+1;
     //Insert change back into the history. The Writer takes care of the rest.
     history->add_change(ch);
 
@@ -158,7 +159,7 @@ The Durability parameter defines the behaviour of the Writer regarding samples a
 * VOLATILE (default): Messages are discarded as they are sent. If a new Reader matches after message *n*, it will start received from message *n+1*.
 * TRANSIENT_LOCAL: The Writer saves a record of the lask *k* messages it has sent. If a new reader matches after message *n*, it will start receiving from message *n-k*
 
-To choose you preferred option:
+To choose your preferred option:
 
 .. code-block:: c++
 
@@ -175,7 +176,7 @@ The History has its own configuration structure, the :class:`HistoryAttributes`.
 Changing the maximum size of the payload
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can choose the maximum size of they Payload that can go into a :class:`CacheChange_t`. Be sure to choose a size that allows it to hold the biggest possible piece of data:
+You can choose the maximum size of the Payload that can go into a :class:`CacheChange_t`. Be sure to choose a size that allows it to hold the biggest possible piece of data:
 
 .. code-block:: c++
 

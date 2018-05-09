@@ -191,8 +191,10 @@ accept a name of an XML profile.
 
 We will now go over the most common configuration options.
 
-* **Topic information:** the topic name and data type are used as meta-data to determine whether Publishers and Subscribers
-  can exchange messages.
+Topic information
+*****************
+
+The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange messages.
 
    +------------------------------------------------------------+----------------------------------------------------------+
    | C++                                                        | XML                                                      |
@@ -216,10 +218,18 @@ We will now go over the most common configuration options.
    |                                                            |    </profiles>                                           |
    +------------------------------------------------------------+----------------------------------------------------------+
 
-* **Reliability:** the RTPS standard defines two behaviour modes for message delivery:
+.. _reliability:
 
-   * Best-Effort (default): Messages are sent without arrival confirmation from the receiver (subscriber). It is fast, but messages can be lost.
-   * Reliable: The sender agent (publisher) expects arrival confirmation from the receiver (subscriber). It is slower, but prevents data loss.
+Reliability
+***********
+
+The RTPS standard defines two behaviour modes for message delivery:
+
+   * Best-Effort (default): Messages are sent without arrival confirmation from the receiver (subscriber).
+     It is fast, but messages can be lost.
+
+   * Reliable: The sender agent (publisher) expects arrival confirmation from the receiver (subscriber).
+     It is slower, but prevents data loss.
 
    +---------------------------------------------+----------------------------------------------------------+
    | C++                                         | XML                                                      |
@@ -245,8 +255,8 @@ We will now go over the most common configuration options.
    |                                             |    </profiles>                                           |
    +---------------------------------------------+----------------------------------------------------------+
 
-   Some reliability combinations make a publisher and a subscriber incompatible and unable to talk to each other. Next
-   table shows the incompatibilities.
+   Some reliability combinations make a publisher and a subscriber incompatible and unable to talk to each other.
+   Next table shows the incompatibilities.
 
    +-----------------------------+-----------------+--------------+
    | **Publisher \\ Subscriber** | **Best Effort** | **Reliable** |
@@ -257,10 +267,17 @@ We will now go over the most common configuration options.
    +-----------------------------+-----------------+--------------+
 
 
-* **History:** there are two policies for sample storage:
+.. _history-qos:
+
+History
+*******
+
+There are two policies for sample storage:
 
    * Keep-All: Store all samples in memory.
-   * Keep-Last (Default): Store samples up to a maximum *depth*. When this limit is reached, they start to become overwritten.
+
+   * Keep-Last (Default): Store samples up to a maximum *depth*.
+     When this limit is reached, they start to become overwritten.
 
    +-----------------------------------------------+----------------------------------------------------------+
    | C++                                           | XML                                                      |
@@ -287,10 +304,14 @@ We will now go over the most common configuration options.
    |                                               |    </profiles>                                           |
    +-----------------------------------------------+----------------------------------------------------------+
 
-* **Durability:** durability configuration of the endpoint defines how it behaves regarding samples that existed on the
-  topic before a subscriber joins
+Durability
+**********
+
+Durability configuration of the endpoint defines how it behaves regarding samples that existed on the topic before a
+subscriber joins
 
    * Volatile: Past samples are ignored, a joining subscriber receives samples generated after the moment it matches.
+
    * Transient Local (Default): When a new subscriber joins, its History is filled with past samples.
 
    +--------------------------------------------+----------------------------------------------------------+
@@ -317,7 +338,10 @@ We will now go over the most common configuration options.
    |                                            |    </profiles>                                           |
    +--------------------------------------------+----------------------------------------------------------+
 
-* **Resource limits:** allow to control the maximum size of the History and other resources.
+Resource limits
+***************
+
+Allow to control the maximum size of the History and other resources.
 
    +---------------------------------------------------------------+----------------------------------------------------------+
    | C++                                                           | XML                                                      |
@@ -343,9 +367,13 @@ We will now go over the most common configuration options.
    |                                                               |    </profiles>                                           |
    +---------------------------------------------------------------+----------------------------------------------------------+
 
-* **Unicast locators:** they are network endpoints where the entity will receive data. For more information about network,
-  see :ref:`network-configuration`. Publishers and subscribers inherit unicast locators from the participant. You can set
-  a different set of locators through this attribute.
+Unicast locators
+****************
+
+They are network endpoints where the entity will receive data.
+For more information about network, see :ref:`network-configuration`.
+Publishers and subscribers inherit unicast locators from the participant.
+You can set a different set of locators through this attribute.
 
    +---------------------------------------------------------------+----------------------------------------------------------+
    | C++                                                           | XML                                                      |
@@ -371,9 +399,15 @@ We will now go over the most common configuration options.
    |                                                               |    </profiles>                                           |
    +---------------------------------------------------------------+----------------------------------------------------------+
 
-* **Multicast locators:** they are network endpoints where the entity will receive data. For more information about network,
-  see :ref:`network-configuration`. By default publishers and subscribers don't use any multicast locator. This
-  attribute is useful when you have a lot of entities and you want to reduce the network usage.
+.. _multicast-locators:
+
+Multicast locators
+******************
+
+They are network endpoints where the entity will receive data.
+For more information about network, see :ref:`network-configuration`.
+By default publishers and subscribers don't use any multicast locator.
+This attribute is useful when you have a lot of entities and you want to reduce the network usage.
 
    +-----------------------------------------------------------------+----------------------------------------------------------+
    | C++                                                             | XML                                                      |

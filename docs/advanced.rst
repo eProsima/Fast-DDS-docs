@@ -33,34 +33,6 @@ You can tweak the History to accomodate data from multiples keys based on your c
 
 Note that your History must be big enough to accomodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
 
-.. _tuning-reliable-mode:
-
-Tuning Realiable mode
----------------------
-
-RTPS protocol can maintain a reliable communication using special messages (Heartbeat and Ack/Nack messages). RTPS protocol
-can detect which samples are lost and re-sent them again.
-
-You can modify the frequency these special submessages are exchanged by specifying a custom heartbeat period.
-The heartbeat period in the Publisher-Subscriber level is configured as part of the :class:`ParticipantAttributes`:
-
-.. code-block:: c++
-
-    PublisherAttributes pubAttr;
-    pubAttr.times.heartbeatPeriod.seconds = 0;
-    pubAttr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
-
-In the Writer-Reader layer, this belong to the :class:`WriterAttributes`:
-
-.. code-block:: c++
-
-    WriterAttributes Wattr;
-    Wattr.times.heartbeatPeriod.seconds = 0;
-    Wattr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
-
-A smaller heartbeat period increases the amount of overhead messages in the network,
-but speeds up the system response when a piece of data is lost.
-
 .. _flow-controllers:
 
 Flow Controllers
@@ -94,7 +66,8 @@ Note that specifying a throughput controller with a size smaller than the socket
 Sending large data
 ------------------
 
-The default size *eProsima Fast RTPS* uses to create sockets is a conservative value of 65kb. If your topic data is bigger, it must be fragmented.
+The default message size *eProsima Fast RTPS* uses is a conservative value of 65kb.
+If your topic data is bigger, it must be fragmented.
 
 Fragmented messages are sent over multiple packets, as understood by the particular transport layer.
 To make this possible, you must configure the Publisher to work in asynchronous mode.
@@ -111,10 +84,16 @@ In the Writer-Subscriber layer, you have to configure the Writer:
     WriterAttributes Wparam;
     Wparam.mode = ASYNCHRONOUS_WRITER;	// Allows fragmentation
 
-Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster rate than what the client can process messages. In the other hand, in reliable mode, the existence of a lot of data fragments could decrease the frecuency in which messages are received. If this happens, it can be resolved setting a lower Heartbeat period, as stated in :ref:`tuning-reliable-mode`.
+Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster
+rate than what the client can process messages.
+On the other hand, in reliable mode, the existence of a lot of data fragments could decrease the frequency at which
+messages are received.
+If this happens, it can be resolved by increasing socket buffers size, as described in :ref:`tuning-socket-buffer`.
+It can also help to set a lower Heartbeat period in reliable mode, as stated in :ref:`tuning-reliable-mode`.
 
-When you are sending large data, it is convenient to setup a flow controller to avoid a burst of messages in the network and increase performance. See :ref:`flow-controllers`
-
+When you are sending large data, it is convenient to setup a flow controller to avoid a burst of messages in the network
+and increase performance.
+See :ref:`flow-controllers`
 
 Example: Sending a unique large file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -123,7 +102,9 @@ This is a proposed example of how should the user configure its application in o
 
 First of all, asynchronous mode has to be activated in the publisher parameters. Then, a suitable reliability mode has to be selected. In this case it is important to make sure that all fragments of the message are received. The loss of a fragment means the loss of the entire message, so it would be best to choose reliable mode.
 
-The default size of this fragments using the UDPv4 transport has a value of 65kb (which includes the space reserved to the data and the message header).This means that the publisher would have to write at least about 1100 fragments.
+The default message size of this fragments using the UDPv4 transport has a value of 65kb (which includes the space
+reserved to the data and the message header).
+This means that the publisher would have to write at least about 1100 fragments.
 
 This amount of fragment could slow down the transmission, so it could be interesting to decrease the heartbeat period in order to increase the reactivity of the publisher.
 
@@ -160,7 +141,6 @@ by providing an alternative configuration when you create the Participant.
 
     RTPSParticipantAttributes Pparams;
     auto my_transport = std::make_shared<UDPv6Transport::TransportDescriptor>(); //Create a descriptor for the new transport
-    my_transport->receiveBufferSize = 65536; //Configuration parameters
     Pparams.useBuiltinTransport = false; //Disable the built-in Transport Layer
     Pparams.userTransports.push_back(my_transport); //Link the Transport Layer to the Participant
 
@@ -323,6 +303,116 @@ to the Endpoint Discovery Protocol meta-data. This allows you to create your own
 
 The callbacks defined in the ReaderListener you attach to the EDP will execute for each data message after
 the built-in protocols have processed it.
+
+Tuning
+-------
+
+Taking advantage of multicast
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For topics with several subscribers it is recommendable to configure them to use multicast instead of unicast.
+By doing so, only one network package will be sent for each sample.
+This will improve both CPU and network usage. Multicast configuration is explained in :ref:`multicast-locators`.
+
+.. _tuning-socket-buffer:
+
+Increasing socket buffers size
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In high rate scenarios or large data scenarios the bottleneck could be the size of the socket buffers.
+Network packages could be dropped because there is no space in the socket buffer.
+Using Reliable :ref:`reliability` *Fast RTPS* will try to recover lost samples, but with the penalty of retransmission.
+Using Best-Effort :ref:`reliability` samples will be definitely lost.
+
+By default *eProsima Fast RTPS* creates socket buffers with the system default size, but you can modify it.
+``sendSocketBufferSize`` attribute helps increasing the socket buffer used to send data.
+``listenSocketBufferSize`` attribute helps increasing the socket buffer used to read data.
+
+   +-----------------------------------------------------+---------------------------------------------------------------------+
+   | C++                                                 | XML                                                                 |
+   +=====================================================+=====================================================================+
+   | .. code-block:: c++                                 | .. code-block:: xml                                                 |
+   |                                                     |                                                                     |
+   |    part_attr.rtps.sendSocketBufferSize = 1048576;   |    <profiles>                                                       |
+   |    part_attr.rtps.listenSocketBufferSize = 4194304; |       <participant profile_name="participant_xml_profile">          |
+   |                                                     |          <rtps>                                                     |
+   |                                                     |            <sendSocketBufferSize>1048576</sendSocketBufferSize>     |
+   |                                                     |            <listenSocketBufferSize>4194304</listenSocketBufferSize> |
+   |                                                     |          </rtps>                                                    |
+   |                                                     |       </participant>                                                |
+   |                                                     |    </profiles>                                                      |
+   +-----------------------------------------------------+---------------------------------------------------------------------+
+
+Finding out system maximum values
+"""""""""""""""""""""""""""""""""
+
+Linux operating system sets a maximum value for socket buffer sizes.
+When you set in *Fast RTPS* a socket buffer size, your value cannot exceed the maximum value of the system.
+
+For getting these values you can use the command ``sysctl``.
+Maximum buffer size value of socket buffers used to send data could be retrieved using this command:
+
+.. code-block:: bash
+
+   $> sudo sysctl -a | grep net.core.wmem_max
+   net.core.wmem_max = 1048576
+
+For socket buffers used to receive data the command is:
+
+.. code-block:: bash
+
+   $> sudo sysctl -a | grep net.core.rmem_max
+   net.core.rmem_max = 4194304
+
+If these default maximum values are not enough for you, you can also increase them.
+
+.. code-block:: bash
+
+    $> echo 'net.core.wmem_max=12582912' >> /etc/sysctl.conf
+    $> echo 'net.core.rmem_max=12582912' >> /etc/sysctl.conf
+
+.. _tuning-reliable-mode:
+
+Tuning Realiable mode
+^^^^^^^^^^^^^^^^^^^^^
+
+RTPS protocol can maintain a reliable communication using special messages (Heartbeat and Ack/Nack messages).
+RTPS protocol can detect which samples are lost and re-sent them again.
+
+You can modify the frequency these special submessages are exchanged by specifying a custom heartbeat period.
+The heartbeat period in the Publisher-Subscriber level is configured as part of the :class:`ParticipantAttributes`:
+
+.. code-block:: c++
+
+    PublisherAttributes pubAttr;
+    pubAttr.times.heartbeatPeriod.seconds = 0;
+    pubAttr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
+
+In the Writer-Reader layer, this belong to the :class:`WriterAttributes`:
+
+.. code-block:: c++
+
+    WriterAttributes Wattr;
+    Wattr.times.heartbeatPeriod.seconds = 0;
+    Wattr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
+
+A smaller heartbeat period increases the amount of overhead messages in the network,
+but speeds up the system response when a piece of data is lost.
+
+Non-strict reliability
+""""""""""""""""""""""
+
+Using a strict reliability, configuring :ref:`history-qos` kind as ``KEEP_ALL``, determinates all samples have to be
+received by all subscribers.
+This implicates a performance decrease in case a lot of samples are dropped.
+If you don't need this strictness, use a non-strict reliability, i.e. configure :ref:`history-qos` kind as ``KEEP_LAST``.
+
+Slow down sample rate
+^^^^^^^^^^^^^^^^^^^^^
+
+Sometimes publishers could send data in a too high rate for subscribers.
+This can end dropping samples.
+To avoid this you can slow down the rate using :ref:`flow-controllers`.
 
 Additional Quality of Service options
 -------------------------------------

@@ -154,10 +154,11 @@ For example, you can set a Writer or a Reader as a Reliable or Best-Effort endpo
 Setting the data durability kind
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Durability parameter defines the behaviour of the Writer regarding samples already sent when a new Reader matches. *eProsima Fast RTPS* offers two Durability options:
+The Durability parameter defines the behaviour of the Writer regarding samples already sent when a new Reader matches. *eProsima Fast RTPS* offers three Durability options:
 
 * VOLATILE (default): Messages are discarded as they are sent. If a new Reader matches after message *n*, it will start received from message *n+1*.
 * TRANSIENT_LOCAL: The Writer saves a record of the lask *k* messages it has sent. If a new reader matches after message *n*, it will start receiving from message *n-k*
+* TRANSIENT: As TRANSIENT_LOCAL, but the record of messages will be saved to persistent storage, so it will be available if the writer is destroyed and recreated, or in case of an application crash (see :ref:`persistence`)
 
 To choose your preferred option:
 
@@ -166,7 +167,7 @@ To choose your preferred option:
     WriterAttributes Wparams;
     Wparams.endpoint.durabilityKind = TRANSIENT_LOCAL;
 
-Because in the Writer-Reader layer you have control over the History, in TRANSIENT_LOCAL mode the Writer send all changes you have not explicitly released from the History.
+Because in the Writer-Reader layer you have control over the History, in TRANSIENT_LOCAL and TRANSIENT modes the Writer sends all changes you have not explicitly released from the History.
 
 Configuring the History
 -----------------------

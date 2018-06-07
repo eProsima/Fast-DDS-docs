@@ -253,7 +253,7 @@ The full list of fields for readers and writers includes the following parameter
     - name: text value.
     - data type: text value.
     - kind: text value.
-* **durabilityQos**: *VOLATILE_DURABILITY_QOS* or *TRANSIENT_LOCAL_DURABILITY_QOS*.
+* **durabilityQos**: *VOLATILE_DURABILITY_QOS*, *TRANSIENT_LOCAL_DURABILITY_QOS* or *TRANSIENT_DURABILITY_QOS*.
 * **ownershipQos**
     - kind: *SHARED_OWNERSHIP_QOS* or *EXCLUSIVE_OWNERSHIP_QOS*.
 * **partitionQos**: text value.
@@ -428,4 +428,4 @@ These examples come with their own `Readme.txt` that explains how the implementa
 
 
 This marks the end of this document. We recommend you to take a look at the doxygen API reference and
-the embedded examples that come with the distribution. If you need more help, send us an email it `support@eprosima.com`.
+the embedded examples that come with the distribution. If you need more help, send us an email to `support@eprosima.com`.

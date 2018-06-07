@@ -311,8 +311,8 @@ Durability configuration of the endpoint defines how it behaves regarding sample
 subscriber joins
 
    * Volatile: Past samples are ignored, a joining subscriber receives samples generated after the moment it matches.
-
    * Transient Local (Default): When a new subscriber joins, its History is filled with past samples.
+   * Transient: When a new subscriber joins, its History is filled with past samples, which are stored on persistent storage (see :ref:`persistence`).
 
    +--------------------------------------------+----------------------------------------------------------+
    | C++                                        | XML                                                      |

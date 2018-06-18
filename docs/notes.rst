@@ -1,5 +1,21 @@
-Version 1.5.0
+Version 1.6.0
 =============
+
+This release includes the following features:
+
+* :ref:`persistence`
+* Security access control plugin API and builtín :ref:`access-permissions` plugin.
+
+Also bug fixing.
+
+**Note:** If you are upgrading from an older version than 1.4.0, it is advisable to regenerate generated source from IDL files using
+*fastrtpsgen*
+
+Previous versions
+-----------------
+
+Version 1.5.0
+^^^^^^^^^^^^^
 
 This release includes the following features:
 
@@ -10,9 +26,6 @@ Also bug fixing.
 
 **Note:** If you are upgrading from an older version than 1.4.0, it is advisable to regenerate generated source from IDL files using
 *fastrtpsgen*
-
-Previous versions
------------------
 
 Version 1.4.0
 ^^^^^^^^^^^^^

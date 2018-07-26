@@ -7,25 +7,50 @@
 Persistence
 ===========
 
-Fast RTPS can be configured to provide persistence to the history of a writer 
-and the highest sequence number notified by a reader.
+By default, writer's history is available for remote readers throughout writer's life. 
+You can configure Fast RTPS to provide persistence between application executions. 
+When a writer is created again, it will maintain the previous history and a new remote reader will receive all 
+samples sent by the writer throughout its life.
 
-We recommend you to look at the example of how to use this feature the distribution comes with while reading
-this section. It is located in `examples/RTPSTest_persistent`
+A reader keeps information on the latest change notified to the user for each matching writer.
+Persisting this information, you could save bandwith, as the reader will not ask the writers for changes already notified.
 
-You can select and configure the persistence plugin through :class:`eprosima::fastrtps::rtps::RTPSParticipant` attributes using properties.
-A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value (:class:`std::string`).
-Throughout this page there are tables showing you the properties used by each persistence plugin.
+In summary, enabling this feature you will protect the state of endpoints against unexpected failures, 
+as they will continue communicating after being restarted as if they were just disconnected from the network.
+
+Imagine, for instance, that a writer with a policy to keep its last 100 samples has its history full of changes and 
+the machine where it runs has a power failure. 
+When the writer is started again, if a new reader is created, it will not receive the 100 samples that were on the history of the writer. 
+With persistence enabled, changes in the history of the writer will be written to disk, and read again when the writer is restarted.
+
+With readers, the information written to disk is different. 
+Only information about the last change notified to the user is stored on disk.
+When a persistent reader is restarted, it will load this information, and will only ask the matching writers to 
+resend those changes that were not notified to the upper layers.
+
+**persistence_guid**
+
+Whenever an endpoint (reader or writer) is created, a unique identifier (GUID) is generated. 
+If the endpoint is restarted, a new GUID will be generated, and other endpoints won't be able to know it was the same one.
+For this reason, a specific parameter persistence_guid should be configured on :class:`eprosima::fastrtps::rtps::EndpointAttributes`.
+This parameter will be used as the primary key of the data saved on disk, and will also be used to identify the endpoint on the DDS domain.
 
 Configuration
 -------------
 
-In order for the persistence service to work, some specific :class:`eprosima::fastrtps::rtps::Writer` or
+We recommend you to look at the example of how to use this feature the distribution comes with while reading
+this section. It is located in `examples/RTPSTest_persistent`
+
+In order for the persistence feature to work, some specific :class:`eprosima::fastrtps::rtps::Writer` or
 :class:`eprosima::fastrtps::rtps::Reader` attributes should be set:
 
 * ``durabilityKind`` should be set to ``TRANSIENT``
 * ``persistence_guid`` should not be all zeros
 * A persistence plugin should be configured either on the :class:`eprosima::fastrtps::rtps::Writer`, the :class:`eprosima::fastrtps::rtps::Reader` or the :class:`eprosima::fastrtps::rtps::RTPSParticipant`
+
+You can select and configure the persistence plugin through :class:`eprosima::fastrtps::rtps::RTPSParticipant` attributes using properties.
+A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value (:class:`std::string`).
+Throughout this page there are tables showing you the properties used by each persistence plugin.
 
 Built-in plugins
 ----------------

@@ -612,21 +612,28 @@ Tips
 
 **Disabling all multicast traffic**
 
-.. code-block:: c++
-
-   eprosima::fastrtps::ParticipantAttributes part_attr;
-
-   // Metatraffic Multicast Locator List will be empty.
-   // Metatraffic Unicast Locator List will contain one locator, with null address and null port.
-   // Then eProsima Fast RTPS will use all network interfaces to receive network messages using a well-known port.
-   Locator_t default_unicast_locator;
-   participant_attr_.rtps.builtin.metatrafficUnicastLocatorList.push_back(default_unicast_locator);
-
-   // Initial peer will be UDPv4 addresss 192.168.0.1. The port will be a well-known port.
-   // Initial discovery network messages will be sent to this UDPv4 address.
-   Locator_t initial_peer;
-   initial_peer.set_IP4_address(192, 168, 0, 1);
-   participant_attr_.rtps.builtin.initialPeersList.push_back(initial_peer);
+   +--------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
+   | C++                                                                                                                | XML                                                                               |
+   +====================================================================================================================+===================================================================================+
+   | .. code-block:: c++                                                                                                | .. code-block:: xml                                                               |
+   |                                                                                                                    |                                                                                   |
+   |    eprosima::fastrtps::ParticipantAttributes part_attr;                                                            |    <profiles>                                                                     |
+   |                                                                                                                    |        <participant profile_name="participant_profile" is_default_profile="true"> |
+   |    // Metatraffic Multicast Locator List will be empty.                                                            |            <rtps>                                                                 |
+   |    // Metatraffic Unicast Locator List will contain one locator, with null address and null port.                  |                <builtin>                                                          |
+   |    // Then eProsima Fast RTPS will use all network interfaces to receive network messages using a well-known port. |                    <metatrafficUnicastLocatorList>                                |
+   |    Locator_t default_unicast_locator;                                                                              |                        <locator/>                                                 |
+   |    participant_attr_.rtps.builtin.metatrafficUnicastLocatorList.push_back(default_unicast_locator);                |                    </metatrafficUnicastLocatorList>                               |
+   |                                                                                                                    |                    <initialPeersList>                                             |
+   |    // Initial peer will be UDPv4 addresss 192.168.0.1. The port will be a well-known port.                         |                        <locator>                                                  |
+   |    // Initial discovery network messages will be sent to this UDPv4 address.                                       |                            <address>192.168.0.1</address>                         |
+   |    Locator_t initial_peer;                                                                                         |                        </locator>                                                 |
+   |    initial_peer.set_IP4_address(192, 168, 0, 1);                                                                   |                    </initialPeersList>                                            |
+   |    participant_attr_.rtps.builtin.initialPeersList.push_back(initial_peer);                                        |                </builtin>                                                         |
+   |                                                                                                                    |            </rtps>                                                                |
+   |                                                                                                                    |        </participant>                                                             |
+   |                                                                                                                    |    </profiles>                                                                    |
+   +--------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
 
 .. _xml-profiles:
 

@@ -513,9 +513,6 @@ TCP Transport Configuration
 
 To use TCP as transport you need to define some more configurations:
 
-First, you need to indicate Fast-RTPS to not use default transports (if you only want to use TCP) through
-``rtps.useBuiltinTransports`` attribute.
-
 Then, you must create a new TCP transport descriptor, for example TCPv4.
 
 This transport descriptor has a field named ``listening_ports`` that indicates to Fast-RTPS in which physical TCP

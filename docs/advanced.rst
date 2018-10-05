@@ -134,7 +134,7 @@ Transport Layer
 ---------------
 
 Unless you specify other configuration, *eProsima Fast RTPS* will use its built-in UDPv4 Transport Layer with
-a default configuration. You can change this default configuration or switch to UDPv6
+a default configuration. You can change this default configuration or switch to UDPv6, TCPv4 or TCPv6
 by providing an alternative configuration when you create the Participant.
 
 .. code-block:: c++
@@ -144,10 +144,14 @@ by providing an alternative configuration when you create the Participant.
     Pparams.useBuiltinTransport = false; //Disable the built-in Transport Layer
     Pparams.userTransports.push_back(my_transport); //Link the Transport Layer to the Participant
 
+See :ref:`network-configuration` for TCP examples.
+
 Note that unless you manually disable the built-in transport layer, the Participant will use
 your custom transport configuration along the built-in one.
 
 This distribution comes with an example of how to change the configuration of the transport layer. It can be found `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/UserDefinedTransportExample>`_.
+
+Also a TCP version of helloworld example can be found `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
 
 .. _discovery:
 

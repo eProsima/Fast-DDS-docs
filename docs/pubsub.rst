@@ -416,7 +416,7 @@ This attribute is useful when you have a lot of entities and you want to reduce 
    |                                                                 |                                                          |
    |    Locator_t new_locator;                                       |    <profiles>                                            |
    |                                                                 |       <publisher profile_name="publisher_xml_profile">   |
-   |    IPLocator::setIPv4(new_locator, "239.255.0.4");                  |          <multicastLocatorList>                          |
+   |    IPLocator::setIPv4(new_locator, "239.255.0.4");              |          <multicastLocatorList>                          |
    |    new_locator.port = 7900;                                     |             <locator>                                    |
    |                                                                 |                <address>239.255.0.4</address>            |
    |    subscriber_attr.multicastLocatorList.push_back(new_locator); |                <port>7900</port>                         |
@@ -719,7 +719,7 @@ Tips
    |    // Initial peer will be UDPv4 addresss 192.168.0.1. The port will be a well-known port.                         |                        <locator>                                                  |
    |    // Initial discovery network messages will be sent to this UDPv4 address.                                       |                            <address>192.168.0.1</address>                         |
    |    Locator_t initial_peer;                                                                                         |                        </locator>                                                 |
-   |    IPLocator::setIPv4(initial_peer, 192, 168, 0, 1);                                                                   |                    </initialPeersList>                                            |
+   |    IPLocator::setIPv4(initial_peer, 192, 168, 0, 1);                                                               |                    </initialPeersList>                                            |
    |    participant_attr_.rtps.builtin.initialPeersList.push_back(initial_peer);                                        |                </builtin>                                                         |
    |                                                                                                                    |            </rtps>                                                                |
    |                                                                                                                    |        </participant>                                                             |

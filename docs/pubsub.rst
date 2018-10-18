@@ -371,7 +371,7 @@ Unicast locators
 ****************
 
 They are network endpoints where the entity will receive data.
-For more information about network, see :ref:`network-configuration`.
+For more information about network, see :ref:`comm-transports-configuration`.
 Publishers and subscribers inherit unicast locators from the participant.
 You can set a different set of locators through this attribute.
 
@@ -405,7 +405,7 @@ Multicast locators
 ******************
 
 They are network endpoints where the entity will receive data.
-For more information about network, see :ref:`network-configuration`.
+For more information about network, see :ref:`comm-transports-configuration`.
 By default publishers and subscribers don't use any multicast locator.
 This attribute is useful when you have a lot of entities and you want to reduce the network usage.
 
@@ -438,58 +438,41 @@ This attribute is useful when you have a lot of entities and you want to reduce 
 Advanced configuration
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. _network-configuration:
+.. _comm-transports-configuration:
 
-Transport configuration
-********************************
+Communication transport configuration
+*************************************
 
-*eProsima Fast RTPS* implements an architecture of pluggable transports. Current version implements four
-transports: UDPv4, UDPv6, TCPv4 and TCPv6. By default, when a :class:`Participant` is created, one built-in
-UDPv4 transport is configured.
+*eProsima Fast RTPS* implements an architecture of pluggable communication transports, or simply *transports*.
+Current version implements four transports: UDPv4, UDPv6, TCPv4 and TCPv6.
+By default, when a :class:`Participant` is created, one built-in UDPv4 transport is configured.
+
++---------------------------------------------------------------------------------+---------------------------------------------------------------------+
+| C++                                                                             | XML                                                                 |
++=================================================================================+=====================================================================+
+| .. code-block:: c++                                                             | .. code-block:: xml                                                 |
+|                                                                                 |                                                                     |
+|     //Creation of the participant                                               |     <profiles>                                                      |
+|     eprosima::fastrtps::ParticipantAttributes part_attr;                        |         <transport_descriptors>                                     |
+|                                                                                 |             <transport_descriptor>                                  |
+|     auto customTransport = std::make_shared<UDPv4TransportDescriptor>();        |                 <transport_id>my_transport</transport_id>           |
+|         customTransport->sendBufferSize = 9216;                                 |                 <sendBufferSize>9216</sendBufferSize>               |
+|         customTransport->receiveBufferSize = 9216;                              |                 <receiveBufferSize>9216</receiveBufferSize>         |
+|                                                                                 |             </transport_descriptor>                                 |
+|     part_attr.rtps.userTransports.push_back(customTransport);                   |         </transport_descriptors>                                    |
+|                                                                                 |                                                                     |
+|                                                                                 |         <participant profile_name="my_transport">                   |
+|                                                                                 |             <rtps>                                                  |
+|                                                                                 |                 <userTransports>                                    |
+|                                                                                 |                     <transport_id>my_transport</transport_id>       |
+|                                                                                 |                 </userTransports>                                   |
+|                                                                                 |             </rtps>                                                 |
+|                                                                                 |         </participant>                                              |
+|                                                                                 |         ...                                                         |
+|                                                                                 |     </profiles>                                                     |
++---------------------------------------------------------------------------------+---------------------------------------------------------------------+
 
 You can add custom transports using the attribute ``rtps.userTransports``.
-
-.. code-block:: c++
-
-    //Creation of the participant
-    eprosima::fastrtps::ParticipantAttributes part_attr;
-
-    auto customTransport = std::make_shared<UDPv4TransportDescriptor>();
-        customTransport->sendBufferSize = 9216;
-        customTransport->receiveBufferSize = 9216;
-
-    part_attr.rtps.userTransports.push_back(customTransport);
-
-Also you can disable the built-in UDPv4 network transport using the attribute ``rtps.useBuiltinTransports``.
-
-+---------------------------------------------------------------------------------+----------------------------------------------------------------+
-| C++                                                                             | XML                                                            |
-+=================================================================================+================================================================+
-| .. code-block:: c++                                                             | .. code-block:: xml                                            |
-|                                                                                 |                                                                |
-|     eprosima::fastrtps::ParticipantAttributes part_attr;                        |     <participant profile_name="CustomParticipant">             |
-|     part_attr.rtps.useBuiltinTransports = false;                                |         <rtps>                                                 |
-|                                                                                 |             <useBuiltinTransports>false</useBuiltinTransports> |
-|                                                                                 |         </rtps>                                                |
-|                                                                                 |     </participant>                                             |
-+---------------------------------------------------------------------------------+----------------------------------------------------------------+
-
-Note that unless you manually disable the built-in transport layer, the Participant will use
-your custom transport configuration along the built-in one.
-
-This distribution comes with an example of how to change the configuration of the transport layer. It can be found `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/UserDefinedTransportExample>`_.
-
-Transport endpoints are defined by *eProsima Fast RTPS* as locators.
-Locators in *eProsima Fast RTPS* are enclosed as type :class:`Locator_t`, which has the following fields:
-
-* ``kind``: Defines the protocol. *eProsima Fast RTPS* currently supports UDPv4, UDPv6, TCPv4 or TCPv6
-* ``port``: Port as an UDP/IP port.
-* ``address``: Maps to IP address
-
-UDP Transport
-"""""""""""""
-
-You can configure UDP Transports, either UDPv4 or UDPv6, from C++ or XML.
 
 +---------------------------------------------------------------------------------+---------------------------------------------------------------------+
 | C++                                                                             | XML                                                                 |
@@ -497,12 +480,12 @@ You can configure UDP Transports, either UDPv4 or UDPv6, from C++ or XML.
 | .. code-block:: c++                                                             | .. code-block:: xml                                                 |
 |                                                                                 |                                                                     |
 |     RTPSParticipantAttributes Pparams;                                          |     <profiles>                                                      |
-|     //Create a descriptor for the new transport                                 |         <transports>                                                |
-|     auto my_transport = std::make_shared<UDPv6Transport::TransportDescriptor>();|             <transport>                                             |
+|     //Create a descriptor for the new transport                                 |         <transport_descriptors>                                     |
+|     auto my_transport = std::make_shared<UDPv6Transport::TransportDescriptor>();|             <transport_descriptor>                                  |
 |     //Disable the built-in Transport Layer                                      |                 <transport_id>my_transport</transport_id>           |
 |     Pparams.useBuiltinTransport = false;                                        |                 <type>UDPv6</type>                                  |
-|     //Link the Transport Layer to the Participant                               |             </transport>                                            |
-|     Pparams.userTransports.push_back(my_transport);                             |         </transports>                                               |
+|     //Link the Transport Layer to the Participant                               |             </transport_descriptor>                                 |
+|     Pparams.userTransports.push_back(my_transport);                             |         </transport_descriptors>                                    |
 |                                                                                 |                                                                     |
 |                                                                                 |         <participant profile_name="my_transport">                   |
 |                                                                                 |             <rtps>                                                  |
@@ -523,10 +506,39 @@ TCP Transport
 To use TCP transports you need to define some more configurations:
 
 You must create a new TCP transport descriptor, for example TCPv4.
-This transport descriptor has a field named ``listening_ports`` that indicates to Fast-RTPS in which physical TCP
-port our participant will listen for input conections. If ommited, the participant will not be able to receive incoming
-connections, but will be able to connect to others participants that have configured their listening ports.
+This transport descriptor has a field named ``listening_ports`` that indicates to Fast-RTPS
+in which physical TCP ports our participant will listen for input conections.
+If ommited, the participant will not be able to receive incoming connections, but will be able
+to connect to others participants that have configured their listening ports.
 The transport must be added in the ``userTransports`` list of the participant attributes.
+
++---------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| C++                                                                             | XML                                                                |
++=================================================================================+====================================================================+
+| .. code-block:: c++                                                             | .. code-block:: xml                                                |
+|                                                                                 |                                                                    |
+|     eprosima::fastrtps::ParticipantAttributes part_attr;                        |     <profiles>                                                     |
+|     part_attr.rtps.useBuiltinTransports = false;                                |         <transport_descriptors>                                    |
+|                                                                                 |             <transport_descriptor>                                 |
+|     auto tcpTransport = std::make_shared<TCPv4TransportDescriptor>();           |                 <transport_id>tcpTransport</transport_id>          |
+|     tcpTransport->add_listener_port(5100);                                      |                 <type>TCPv4</type>                                 |
+|     part_attr.rtps.userTransports.push_back(tcpTransport);                      |                 <listening_ports>                                  |
+|                                                                                 |                     <port>5100</port>                              |
+|                                                                                 |                 </listening_ports>                                 |
+|                                                                                 |             </transport_descriptor>                                |
+|                                                                                 |         </transport_descriptors>                                   |
+|                                                                                 |                                                                    |
+|                                                                                 |         <participant profile_name="TCPParticipant">                |
+|                                                                                 |             <rtps>                                                 |
+|                                                                                 |                 <userTransports>                                   |
+|                                                                                 |                     <transport_id>tcpTransport</transport_id>      |
+|                                                                                 |                 </userTransports>                                  |
+|                                                                                 |                 <useBuiltinTransports>false</useBuiltinTransports> |
+|                                                                                 |             </rtps>                                                |
+|                                                                                 |         </participant>                                             |
+|                                                                                 |     </profiles>                                                    |
+|                                                                                 |                                                                    |
++---------------------------------------------------------------------------------+--------------------------------------------------------------------+
 
 To configure the participant to connect to another node through TCP, you must configure add Locator to its ``initialPeersList`` that points to the remote *listening port*.
 
@@ -536,20 +548,17 @@ To configure the participant to connect to another node through TCP, you must co
 | .. code-block:: c++                                                             | .. code-block:: xml                                                |
 |                                                                                 |                                                                    |
 |     eprosima::fastrtps::ParticipantAttributes part_attr;                        |     <profiles>                                                     |
-|     part_attr.rtps.useBuiltinTransports = false;                                |         <transports>                                               |
-|                                                                                 |             <transport>                                            |
+|     part_attr.rtps.useBuiltinTransports = false;                                |         <transport_descriptors>                                    |
+|                                                                                 |             <transport_descriptor>                                 |
 |     auto tcpTransport = std::make_shared<TCPv4TransportDescriptor>();           |                 <transport_id>tcpTransport</transport_id>          |
-|     tcpTransport->add_listener_port(5100);                                      |                 <type>TCPv4</type>                                 |
-|     part_attr.rtps.userTransports.push_back(tcpTransport);                      |                 <listening_ports>                                  |
-|                                                                                 |                     <port>5100</port>                              |
-|     Locator_t initial_peer_locator;                                             |                 </listening_ports>                                 |
-|     initial_peer_locator.kind = LOCATOR_KIND_TCPv4;                             |             </transport>                                           |
-|     IPLocator::setIPv4(initial_peer_locator, "192.168.1.55");                   |         </transports>                                              |
-|     initial_peer_locator.port = 5100;                                           |                                                                    |
-|     part_attr.rtps.builtin.initialPeersList.push_back(initial_peer_locator);    |         <participant profile_name="TCPParticipant">                |
-|                                                                                 |             <rtps>                                                 |
+|                                                                                 |                 <type>TCPv4</type>                                 |
+|     Locator_t initial_peer_locator;                                             |             </transport_descriptor>                                |
+|     initial_peer_locator.kind = LOCATOR_KIND_TCPv4;                             |         </transport_descriptors>                                   |
+|     IPLocator::setIPv4(initial_peer_locator, "192.168.1.55");                   |                                                                    |
+|     initial_peer_locator.port = 5100;                                           |         <participant profile_name="TCPParticipant">                |
+|     part_attr.rtps.builtin.initialPeersList.push_back(initial_peer_locator);    |             <rtps>                                                 |
 |                                                                                 |                 <userTransports>                                   |
-|                                                                                 |                     <transport_id>tcpTransport</transport_id>      |
+|     part_attr.rtps.userTransports.push_back(tcpTransport);                      |                     <transport_id>tcpTransport</transport_id>      |
 |                                                                                 |                 </userTransports>                                  |
 |                                                                                 |                 <builtin>                                          |
 |                                                                                 |                     <initialPeersList>                             |
@@ -571,7 +580,7 @@ To configure the participant to connect to another node through TCP, you must co
 |                                                                                 |                                                                    |
 +---------------------------------------------------------------------------------+--------------------------------------------------------------------+
 
-With this example, we configured our participant being able to receive incoming connections through port 5100
+Both examples can be combined to configure our participant being able to receive incoming connections through port 5100
 and trying to connect to another participant at 192.168.1.55:5100.
 
 Also a TCP version of helloworld example can be found in this `link <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
@@ -585,6 +594,19 @@ Logical port can be seen as RTPS port, or UDP's equivalent port (physical ports 
 Logical ports normally are not neccesary to manage explicitely, but you can do it through IPLocator class.
 Physical ports instead, must be set to explicitely use certain ports, to allow the communication through a NAT, for
 example.
+
+.. code-block:: c++
+
+    // Get & Set Physical Port
+    uint16_t physical_port = IPLocator::getPhysicalPort(locator);
+    IPLocator::setPhysicalPort(locator, 5555);
+
+    // Get & Set Logical Port
+    uint16_t logical_port = IPLocator::getLogicalPort(locator);
+    IPLocator::setLogicalPort(locator, 7400);
+
+    // Set WAN Address
+    IPLocator::setWan(locator, "80.88.75.55");
 
 **NOTE**
 

@@ -37,6 +37,10 @@ Where the option choices are:
     +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
     | -ppPath             | Specifies the preprocessor path.                                                                                                                  |
     +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+    | -typeobject         | Generates `TypeObject` files for the IDL provided and modifies MyType constructor to register the TypeObject representation into the factory.     |
+    +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+For more information about TypeObject representation read :ref:`dynamic-types`.
 
 .. _idl-types:
 
@@ -162,8 +166,8 @@ Would be converted to: ::
 	private:
 	   uint8_t m_octet_value;
 	   int64_t m_long_value;
-	   std::string m_string_value; 
-	}; 
+	   std::string m_string_value;
+	};
 
 Unions
 ^^^^^^
@@ -214,13 +218,13 @@ Would be converted to: ::
 	   int32_t m__d;
 	   uint8_t m_octet_value;
 	   int64_t m_long_value;
-	   std::string m_string_value; 
+	   std::string m_string_value;
 	};
 
 Enumerations
 ^^^^^^^^^^^^
 
-An enumeration in IDL format is a collection of identifiers that have a numeric value associated. An IDL enumeration type is mapped directly to the corresponding C++11 enumeration definition. 
+An enumeration in IDL format is a collection of identifiers that have a numeric value associated. An IDL enumeration type is mapped directly to the corresponding C++11 enumeration definition.
 
 The following IDL enumeration: ::
 
@@ -243,7 +247,7 @@ Would be converted to: ::
 Keyed Types
 ^^^^^^^^^^^
 
-In order to use keyed topics the user should define some key members inside the structure. This is achieved by writing “@Key” before the members of the structure you want to use as keys. 
+In order to use keyed topics the user should define some key members inside the structure. This is achieved by writing “@Key” before the members of the structure you want to use as keys.
 For example in the following IDL file the *id* and *type* field would be the keys: ::
 
 	struct MyType

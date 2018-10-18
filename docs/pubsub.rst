@@ -640,13 +640,14 @@ Tips
 XML profiles
 ------------
 
-In the :ref:`configuration` section you could see how to configure entity attributes using XML profiles, but this section goes
-deeper into it.
+In the :ref:`configuration` section you could see how to configure entity attributes using XML profiles,
+but this section goes deeper into it.
 
 XML profiles are loaded from XML files. *eProsima Fast RTPS* permits to load as much XML files as you want. An XML file
 can contain several XML profiles. An XML profile is defined by a unique name that is used to reference the XML profile
-when you create a Fast RTPS entity. *eProsima Fast RTPS* will also try to find in current execution path and load an XML file with the name
-*DEFAULT_FASTRTPS_PROFILES.xml*. If this file exists, it is loaded at the library initialization.
+when you create a Fast RTPS entity. *eProsima Fast RTPS* will also try to find in current execution path and
+load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml*.
+If this file exists, it is loaded at the library initialization.
 
 Making an XML
 ^^^^^^^^^^^^^
@@ -698,11 +699,16 @@ Using message meta-data
 
 When a message is taken from the Subscriber, an auxiliary :class:`SampleInfo_t` structure instance is also returned.
 
-.. code-block:: c++
-
-    HelloWorld m_Hello;
-    SampleInfo_t m_info;
-    sub->takeNextData((void*)&m_Hello, &m_info);
++-------------------------------------------------------+-------------------------------------------------------------------------------------------------+
+| Static types                                          | Dynamic types                                                                                   |
++=======================================================+=================================================================================================+
+| .. code-block:: c++                                   | .. code-block:: c++                                                                             |
+|                                                       |                                                                                                 |
+|     HelloWorld m_Hello;                               |     // input_type is an instance of DynamicPubSubType of out current dynamic type               |
+|     SampleInfo_t m_info;                              |     DynamicPubSubType *pst = dynamic_cast<DynamicPubSubType*>(input_type);                      |
+|     sub->takeNextData((void*)&m_Hello, &m_info);      |     DynamicData *m_Hello = DynamicDataFactory::GetInstance()->CreateData(pst->GetDynamicType());|
+|                                                       |     sub->takeNextData(m_Hello, &m_info);                                                        |
++-------------------------------------------------------+-------------------------------------------------------------------------------------------------+
 
 This :class:`SampleInfo_t` structure contains meta-data on the incoming message:
 

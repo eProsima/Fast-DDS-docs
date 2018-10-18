@@ -10,9 +10,10 @@ Topics and Keys
 
 The RTPS standard contemplates the use of keys to define multiple data sources/sinks within a single topic.
 
-There are two ways of implementing keys into your topic:
+There are three ways of implementing keys into your topic:
 
 * Defining a `@Key` field in the IDL file when using FastRTPSGen (see the examples that come with the distribution).
+* Adding the attribute `Key` to the member and its parents when using dynamic types (see :ref:`dynamic-types`).
 * Manually implementing and using a :func:`getKey()` method.
 
 Publishers and Subscribers using topics with keys must be configured to use them, otherwise they will have no effect:

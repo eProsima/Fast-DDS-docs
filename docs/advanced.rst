@@ -130,25 +130,6 @@ As in the previous example, since the application is sending data that requires 
 In audio or video transmissions, sometimes is better to have an stable and high datarate feed than a 100% lossless communication. Working with a frequency of 50hz, makes insignificant the loss of one or two samples each second. Thus, for a higher performance it can be appropiate to configure the reliability mode to best-effort.
 
 
-Transport Layer
----------------
-
-Unless you specify other configuration, *eProsima Fast RTPS* will use its built-in UDPv4 Transport Layer with
-a default configuration. You can change this default configuration or switch to UDPv6
-by providing an alternative configuration when you create the Participant.
-
-.. code-block:: c++
-
-    RTPSParticipantAttributes Pparams;
-    auto my_transport = std::make_shared<UDPv6Transport::TransportDescriptor>(); //Create a descriptor for the new transport
-    Pparams.useBuiltinTransport = false; //Disable the built-in Transport Layer
-    Pparams.userTransports.push_back(my_transport); //Link the Transport Layer to the Participant
-
-Note that unless you manually disable the built-in transport layer, the Participant will use
-your custom transport configuration along the built-in one.
-
-This distribution comes with an example of how to change the configuration of the transport layer. It can be found `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/UserDefinedTransportExample>`_.
-
 .. _discovery:
 
 Discovery

@@ -83,7 +83,7 @@ values and making the code harder to debug.
 
 Class that inherits from TopicDataType and works as an intermediator between RTPS
 Domain and the Dynamic Types. It implements the methods needed to create, serialize,
-deserialize and delete dynamicdatas when the participants need to convert the
+deserialize and delete DynamicData instances when the participants need to convert the
 received information from any transport to the registered dynamic type.
 
 

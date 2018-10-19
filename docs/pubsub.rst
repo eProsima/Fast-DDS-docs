@@ -440,10 +440,10 @@ Advanced configuration
 
 .. _comm-transports-configuration:
 
-Communication transport configuration
-*************************************
+Transports
+**********
 
-*eProsima Fast RTPS* implements an architecture of pluggable communication transports, or simply *transports*.
+*eProsima Fast RTPS* implements an architecture of pluggable transports.
 Current version implements four transports: UDPv4, UDPv6, TCPv4 and TCPv6.
 By default, when a :class:`Participant` is created, one built-in UDPv4 transport is configured.
 

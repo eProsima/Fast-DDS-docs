@@ -33,7 +33,6 @@ This documentation is organized into the following sections:
 * :ref:`installation`
 * :ref:`user`
 * :ref:`gen`
-* :ref:`dynamic-types-index`
 * :ref:`notes`
 
 .. _installation:
@@ -58,6 +57,7 @@ This documentation is organized into the following sections:
    rtps
    advanced
    security
+   dynamictypes
    persistence
    fastrtpsgen
 
@@ -69,14 +69,6 @@ This documentation is organized into the following sections:
 
    geninfo
    genuse
-
-
-.. _dynamic-types-index:
-
-.. toctree::
-    :caption: Dynamic Topic Types
-
-    dynamictypes
 
 .. _notes:
 

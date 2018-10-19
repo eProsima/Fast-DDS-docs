@@ -5,7 +5,7 @@ Dynamic Topic Types
 
 .. _link: http://www.omg.org/spec/DDS-XTypes/1.2
 
-eProsima Fast-RTPS provides a dynamic way to define and use topic types and topic data.
+eProsima Fast RTPS provides a dynamic way to define and use topic types and topic data.
 Our implementation follows the OMG Extensible and Dynamic Topic Types for DDS interface.
 For more information you can read the document (DDS-XTypes V1.2) in this link_.
 
@@ -17,6 +17,9 @@ The management of dynamic types is splitted into two main groups.
 The first one manages the declaration of the types, building and
 setting the configuration of every type and the second one is in charge of
 the data instances and their information.
+
+Concepts
+--------
 
 **Type Descriptor**
 
@@ -576,7 +579,7 @@ with them will cause a crash.
 Dynamic Types Discovery and Endpoint Matching
 ---------------------------------------------
 
-When using Dynamic Types support, Fast-RTPS make use of an optional TopicDiscoveryKind QoS Policy and TypeIdV1.
+When using Dynamic Types support, Fast RTPS make use of an optional TopicDiscoveryKind QoS Policy and TypeIdV1.
 At its current state, the matching will only verify that both endpoints are using the same topic type,
 but will not negotiate about it.
 
@@ -632,7 +635,7 @@ TypeObjectFactory in its constructor, making very easy the use of static types w
 XML Dynamic Types
 -----------------
 
-XML Dynamic Types allows eProsima Fast-RTPS to create Dynamic Types directly defining them through XML.
+XML Dynamic Types allows eProsima Fast RTPS to create Dynamic Types directly defining them through XML.
 This allows any application to change TopicDataTypes without the need to change its source code.
 
 XML Structure

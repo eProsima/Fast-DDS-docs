@@ -8,7 +8,7 @@ this data type, providing a Makefile to compile it on Linux and a Visual Studio 
 
 *fastrtpsgen* can be invoked by calling fastrtpsgen on Linux or fastrtpsgen.bat on Windows. ::
 
-	fastrtpsgen -d <outputdir> -example <platform> -replace <IDLfile> [-typeobject]
+    fastrtpsgen [-d <outputdir>] [-example <platform>] [-replace] [-typeobject] <IDLfile> [<IDLfile> ...]
 
 The `-replace` argument is needed to replace the currently existing files in case the files for the IDL have been
 generated previously.
@@ -18,8 +18,7 @@ it for the platform currently invoked. The `-help` argument provides a list of c
 versions and platforms.
 
 When `-typeobject` argument is used, the tool will generate additional files for TypeObject generation and
-management from the IDL specification.
-
+management.
 For more information about TypeObject go to :ref:`dynamic-types`.
 
 Output

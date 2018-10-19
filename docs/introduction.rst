@@ -30,9 +30,12 @@ communication loop remains the same. You can read more information in :ref:`conf
 Building your first application
 -------------------------------
 
-To build a minimal application, you must first define the topic. Interface Definition Language (IDL) is
-used to define the data type of the topic and you have more information about IDL in :ref:`fastrtpsgen-intro`. Write an
-IDL file containing the specification you want. In this case, a single string is sufficient.
+To build a minimal application, you must first define the topic. To define the data type of the topic Fast-RTPS offers
+two different approaches, dynamically through :ref:`dynamic-types` and statically through
+Interface Definition Language (IDL). In this example, we will define the data type statically with IDL,
+you have more information about IDL in :ref:`fastrtpsgen-intro`.
+
+Write an IDL file containing the specification you want. In this case, a single string is sufficient.
 
 .. code-block:: idl
 
@@ -51,7 +54,7 @@ fastrtpsgen (see :ref:`fastrtpsgen-intro`), which can do two different things:
 You may want to check out the fastrtpsgen user manual, which comes with the distribution of the library. But for now the following commands will do:
 
 On Windows: ::
-    
+
     fastrtpsgen.bat -example x64Win64VS2015 HelloWorld.idl
 
 On Linux: ::
@@ -67,7 +70,7 @@ On Windows: ::
 
     HelloWorldPublisherSubscriber.exe publisher
     HelloWorldPublisherSubscriber.exe subscriber
-	
+
 You may need to set up a special rule in your Firewall for *eprosima Fast RTPS* to work correctly on Windows.
 
 Each time you press <Enter\> on the Publisher, a new datagram is generated, sent over the network

@@ -554,20 +554,19 @@ These two factories in charge to manage these objects, and they must create and 
 .. code-block:: c++
 
     DynamicTypeBuilder* pBuilder = DynamicTypeBuilderFactory::GetInstance()->CreateUint32Builder();
-    DynamicType* pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
     DynamicData* pData = DynamicDataFactory::GetInstance()->CreateData(pType);
 
-    DynamicTypeBuilderFactory::GetInstance()->DeleteType(pType);
     DynamicTypeBuilderFactory::GetInstance()->DeleteBuilder(pBuilder);
     DynamicDataFactory::GetInstance()->DeleteData(pData);
 
 To ease this management, the library incorporates special shared pointers to call
-to the factories to delete the object directly ( `DynamicTypeBuilder_ptr`,
-`DynamicType_ptr` and  `DynamicData_ptr`).
+to the factories to delete the object directly ( `DynamicTypeBuilder_ptr` and  `DynamicData_ptr`).
 The only restriction about using this kind of pointers are
 the methods `LoanValue` and `ReturnLoanedValue`, because they return a pointer
 to an object that is already managed by the library and using a `DynamicData_ptr`
 with them will cause a crash.
+DynamicType will always be return as DynamicType_ptr because there is no internal management of its memory.
 
 .. code-block:: c++
 

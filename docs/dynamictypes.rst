@@ -784,7 +784,7 @@ All of them are defined simply:
 
     <longlong name="my_long"/>
 
-Except for boundedString and boundedWString that an inner element *maxLength* whose value indicates
+Except for boundedString and boundedWString that should include an inner element *maxLength* whose value indicates
 the maximum length of the string.
 
 .. code-block:: xml

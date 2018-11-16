@@ -53,7 +53,7 @@ OpenSSL installation on Windows
 .. _webpage: https://slproweb.com/products/Win32OpenSSL.html
 
 You can download OpenSSL 1.0.2 for Windows in this webpage_. This is the OpenSSL version tested by our team. Download the
-installer that fits your requirements and installs it. After installing, add the environment variable
+Download and use the installer that fits your requirements. After installing, add the environment variable
 ``OPENSSL_ROOT_DIR`` pointing to the installation root directory. For example:
 
 .. code-block:: bash

@@ -396,6 +396,20 @@ Sometimes publishers could send data in a too high rate for subscribers.
 This can end dropping samples.
 To avoid this you can slow down the rate using :ref:`flow-controllers`.
 
+Whitelist Interfaces
+-------------------------------------
+
+There could be situations where you want to block some network interfaces to avoid connections or sending data through them.
+To able this management exists the field *interface whitelist* in the transport descriptors, 
+and with them, you can set what interfaces do you want to filter to send or receive packets.
+The values that you must add to this list are the IPs of your machine in that networks. For example:
+
+.. code-block:: c++
+
+	UDPv4TransportDescriptor descriptor;
+	descriptor.interfaceWhiteList.emplace_back("127.0.0.1");
+
+
 Additional Quality of Service options
 -------------------------------------
 

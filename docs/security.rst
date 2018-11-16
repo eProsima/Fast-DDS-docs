@@ -7,20 +7,20 @@
 Security
 ========
 
-Fast RTPS can be configured to provide secure communications. For this purpose Fast RTPS implements pluggable security
+Fast RTPS can be configured to provide secure communications. For this purpose, Fast RTPS implements pluggable security
 at three levels: authentication of remote participants, access control of entities and encryption of data.
 
-By default Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
+By default, Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
 configuration step. For more information about Fast RTPS compilation, see :ref:`installation-from-sources`.
 
 You can activate and configure security plugins through :class:`eprosima::fastrtps::Participant` attributes using properties.
 A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value (:class:`std::string`).
-Throughout this page there are tables showing you the properties used by each security plugin.
+Throughout this page, there are tables showing you the properties used by each security plugin.
 
 Authentication plugins
 ----------------------
 
-They provide authentication on discovery of remote participants. When a remote participant is detected, Fast RTPS tries
+They provide authentication on the discovery of remote participants. When a remote participant is detected, Fast RTPS tries
 to authenticate using the activated Authentication plugin. If the authentication process finishes successfully then both
 participants match and discovery protocol continues. On failure, the remote participant is rejected.
 
@@ -36,7 +36,7 @@ After a remote participant is authenticated, its permissions need to be validate
 Access rights that each entity has over a resource are described.
 Main entity is the Participant and it is used to access or produce information on a Domain;
 hence the Participant has to be allowed to run in a certain Domain.
-Also a Participant is responsible for creating Publishers and Subscribers that communicate over a certain Topic.
+Also, a Participant is responsible for creating Publishers and Subscribers that communicate over a certain Topic.
 Hence, a Participant has to have the permissions needed to create a Topic, to publish
 through its Publishers certain Topics, and to subscribe via its Subscribers to certain Topics.
 Access control plugin can configure the Cryptographic plugin because its usage is based on the Participant's
@@ -57,7 +57,7 @@ You can activate an Cryptographic plugin using Participant property ``dds.sec.cr
 built-in Cryptographic plugin. More information on :ref:`crypto-aes-gcm-gmac`.
 
 The Cryptographic plugin is configured by the Access control plugin.
-If Access control will not be used, you can configure Cryptographic plugin manually with next properties:
+If Access control will not be used, you can configure the Cryptographic plugin manually with the next properties:
 
 **Encrypt whole RTPS messages**
 
@@ -77,7 +77,7 @@ the value ``ENCRYPT``.
 Built-in plugins
 ----------------
 
-Current version comes out with three security built-in plugins:
+The current version comes out with three security built-in plugins:
 
 * :ref:`auth-pki-dh`: this plugin provides authentication using a trusted *Certificate Authority* (CA).
 * :ref:`access-permissions`: this plugin provides access control to Participants at the Domain and Topic level.
@@ -109,7 +109,7 @@ Next tables show you the Participant properties used by this security plugin.
        Supported URI schemes: file. |br|
        The **file** schema shall refer to a X.509 v3 certificate in PEM format.
    * - identity_certificate
-     - URI to a X509 certificate signed by the Identity CA in PEM format containing the signed public key for the Participant. |br|
+     - URI to an X509 certificate signed by the Identity CA in PEM format containing the signed public key for the Participant. |br|
        Supported URI schemes: file.
    * - identity_crl *(optional)*
      - URI to a X509 Certificate Revocation List (CRL). |br|
@@ -125,7 +125,7 @@ Next tables show you the Participant properties used by this security plugin.
 Generation of x509 certificates
 """""""""""""""""""""""""""""""
 
-You can generate you own x509 certificates using OpenSSL application. This section teaches you how to do this.
+You can generate your own x509 certificates using OpenSSL application. This section teaches you how to do this.
 
 **Generate a certificate for the CA**
 
@@ -268,7 +268,7 @@ Next table shows the Participant properties used by this security plugin.
    * - permissions_ca
      - URI to the X509 certificate of the Permissions CA. |br|
        Supported URI schemes: file. |br|
-       The **file** schema shall refer to a X.509 v3 certificate in PEM format.
+       The **file** schema shall refer to an X.509 v3 certificate in PEM format.
    * - governance
      - URI to shared Governance Document signed by the Permissions CA in S/MIME format. |br|
        Supported URI schemes: file.
@@ -279,7 +279,7 @@ Next table shows the Participant properties used by this security plugin.
 Permissions CA Certificate
 """"""""""""""""""""""""""
 
-This is a X.509 certificate that contains the Public Key of the CA that will be used to sign the Domain Governance and
+This is an X.509 certificate that contains the Public Key of the CA that will be used to sign the Domain Governance and
 Domain Permissions documents.
 
 Domain Governance Document
@@ -346,7 +346,7 @@ Allow Unauthenticated Participants element
 ******************************************
 
 This element is delimited by the XML element ``<allow_unauthenticated_participants>``.
-Indicates whether the matching of the Participant with a remote Participant requieres authentication.
+Indicates whether the matching of the Participant with a remote Participant requires authentication.
 If the value is ``false``, the Participant shall enforce the authentication of remote Participants and
 disallow matching those that cannot be successfully authenticated.
 If the value is ``true``, the Participant shall allow matching other Participants (event if the remote Participant cannot
@@ -389,7 +389,7 @@ Topic Rule Section
 ******************
 
 This element is delimited by the XML element ``<topic_rule>`` and appears within the Topic Access Rules Section whose
-XML elmement is ``<topic_access_rules>``.
+XML element is ``<topic_access_rules>``.
 
 Each one contains the following elements:
 
@@ -423,7 +423,7 @@ Enable Discovery protection element
 This element is delimited by the XML element ``<enable_discovery_protection>``.
 Indicates whether the entity related discovery information shall go through the secure channel of endpoint discovery
 phase.
-If the value is ``false``, the entity discovery information shall be sent by unsecure channel of discovery.
+If the value is ``false``, the entity discovery information shall be sent by an unsecured channel of discovery.
 If the value is ``true``, the information shall be sent by the secure channel.
 
 Enable Liveliness Protection element
@@ -431,7 +431,7 @@ Enable Liveliness Protection element
 
 This element is delimited by the XML element ``<enable_liveliness_protection>``.
 Indicates whether the entity related liveliness information shall go through the secure channel of liveliness mechanism.
-If the value is ``false``, the entity liveliness information shall be sent by unsecure channel of liveliness.
+If the value is ``false``, the entity liveliness information shall be sent by an unsecured channel of liveliness.
 If the value is ``true``, the information shall be sent by the secure channel.
 
 Enable Read Access Control element
@@ -456,7 +456,7 @@ Metadata Protection Kind element
 ********************************
 
 This element is delimited by the XML element ``<metadata_protection_kind>``.
-Indicates whether entity's RTPS submessages shall be encrypted by Cryptographic plugin.
+Indicates whether the entity's RTPS submessages shall be encrypted by the Cryptographic plugin.
 If the value is ``true``, the RTPS submessages shall be encrypted.
 If the value is ``false``, they shall not.
 
@@ -464,7 +464,7 @@ Data Protection Kind element
 ****************************
 
 This element is delimited by the XML element ``<data_protection_kind>``.
-Indicates whether the data payload shall be encrypted by Cryptogpraphic plugin.
+Indicates whether the data payload shall be encrypted by the Cryptographic plugin.
 If the value is ``true``, the data payload shall be encrypted.
 If the value is ``false``, the data payload shall not.
 
@@ -489,7 +489,7 @@ This section is delimited by the ``<grant>`` XML element tag.
 Each grant section contains three sections:
 
 * Subject name
-* Validaty
+* Validity
 * Rules
 
 Subject name
@@ -511,7 +511,7 @@ Rules
 *****
 
 This section contains the permissions assigned to the Participant.
-The rules are applied in the same order that appear in the document.
+The rules are applied in the same order that appears in the document.
 If the criteria for the rule matched the Domain join and/or publish or subscribe operation that is being attempted,
 then the allow or deny decision is applied.
 If the criteria for a rule does not match the operation being attempted, the evaluation shall proceed to the next rule.
@@ -522,7 +522,7 @@ If the default rule is not present, the implied default decision is DENY.
 For the grant to match there shall be a match of the topics and partitions criteria.
 
 Allow rules are delimited by the XML element ``<allow_rule>``. Deny rules are delimited by the XML element
-``<deny_rule>``. Both contains the same element children.
+``<deny_rule>``. Both contain the same element children.
 
 
 Domains Section
@@ -535,7 +535,7 @@ The syntax is the same as for the :ref:`domains_section` of the Governance docum
 Format of the Allowed/Denied Actions sections
 *********************************************
 
-The sections for each of the three action kinds have similar format.
+The sections for each of the three action kinds have a similar format.
 The only difference is the name of the XML element used to delimit the action:
 
 * The Allow/Deny Publish Action is delimited by the ``<publish>`` XML element.
@@ -586,8 +586,8 @@ If there is no ``<partitions>`` section within a rule, then the default "empty s
 Signing documents using x509 certificate
 """"""""""""""""""""""""""""""""""""""""
 
-Governance document and Permissions document have to be signed by a X509 certificate.
-Generation of a X509 certificate is explained in :ref:`generate_x509`.
+Governance document and Permissions document have to be signed by an X509 certificate.
+Generation of an X509 certificate is explained in :ref:`generate_x509`.
 Next commands sign the necessary documents for Access:Permissions plugin.
 
 .. code-block:: bash
@@ -647,10 +647,10 @@ This example show you how to configure a Participant to activate and configure :
    // Activate Crypto:AES-GCM-GMAC plugin
    part_attr.rtps.properties.properties().emplace_back("dds.sec.crypto.plugin", "builtin.AES-GCM-GMAC");
 
-This example show you how to configure a Participant to activate and configure :ref:`auth-pki-dh` and
+This example shows you how to configure a Participant to activate and configure :ref:`auth-pki-dh` and
 :ref:`crypto-aes-gcm-gmac` plugins, without and Access control plugin.
 It also configures Participant to encrypt its RTPS messages, Writer and Reader to encrypt their RTPS submessages and
-Writer to encrypt the payload (user data).
+a writer to encrypt the payload (user data).
 
 **Participant attributes**
 

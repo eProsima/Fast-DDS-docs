@@ -1,7 +1,7 @@
 Publisher-Subscriber Layer
 ==========================
 
-*eProsima Fast RTPS* provides a high level Publisher-Subscriber Layer, which is a simple to use abstraction over the RTPS protocol.
+*eProsima Fast RTPS* provides a high-level Publisher-Subscriber Layer, which is a simple to use abstraction over the RTPS protocol.
 By using this layer, you can code a straight-to-the-point application while letting the library take care of the lower level configuration.
 
 How to use the Publisher-Subscriber Layer
@@ -19,7 +19,7 @@ We also need to pass a configuration structure for the Participant, which can be
    Participant *participant = Domain::createParticipant(participant_attr);
 
 The default configuration provides a basic working set of options with predefined ports for communications.
-During this tutorial you will learn to tune *eProsima Fast RTPS*.
+During this tutorial, you will learn to tune *eProsima Fast RTPS*.
 
 In order to use our topic, we have to register it within the :class:`Participant` using the code generated with *fastrtpsgen*
 (see :ref:`fastrtpsgen-intro`. Once again, this is done by using the :class:`Domain` class:
@@ -62,7 +62,7 @@ We pass an instance to this class during the creation of the :class:`Publisher`.
         }
     } m_listener;
 
-The :class:`Subscriber` creation and implementation is symmetric.
+The :class:`Subscriber` creation and implementation are symmetric.
 
 .. code-block:: c++
 
@@ -111,7 +111,7 @@ The :class:`Participant` can be configured via the :class:`ParticipantAttributes
 
    Participant *participant = Domain::createParticipant(participant_attr);
 
-Also it can be configured through an XML profile. ``createParticipant`` function accepts a name of an XML profile.
+Also, it can be configured through an XML profile. ``createParticipant`` function accepts a name of an XML profile.
 
 .. code-block:: c++
 
@@ -181,8 +181,8 @@ The :class:`Publisher` can be configured via the :class:`PublisherAttributes` st
    SubscriberAttributes subscriber_attr;
    Subscriber *subscriber = Domain::createSubscriber(participant, subscriber_attr);
 
-Also these entities can be configured through an XML profile. ``createPublisher`` and ``createSubscriber`` functions
-accept a name of an XML profile.
+Also, these entities can be configured through an XML profile. ``createPublisher`` and ``createSubscriber`` functions
+accept the name of an XML profile.
 
 .. code-block:: c++
 
@@ -223,13 +223,13 @@ The topic name and data type are used as meta-data to determine whether Publishe
 Reliability
 ***********
 
-The RTPS standard defines two behaviour modes for message delivery:
+The RTPS standard defines two behavior modes for message delivery:
 
    * Best-Effort (default): Messages are sent without arrival confirmation from the receiver (subscriber).
      It is fast, but messages can be lost.
 
    * Reliable: The sender agent (publisher) expects arrival confirmation from the receiver (subscriber).
-     It is slower, but prevents data loss.
+     It is slower but prevents data loss.
 
    +---------------------------------------------+----------------------------------------------------------+
    | C++                                         | XML                                                      |
@@ -341,7 +341,7 @@ subscriber joins
 Resource limits
 ***************
 
-Allow to control the maximum size of the History and other resources.
+Allow controlling the maximum size of the History and other resources.
 
    +---------------------------------------------------------------+----------------------------------------------------------+
    | C++                                                           | XML                                                      |
@@ -371,7 +371,7 @@ Unicast locators
 ****************
 
 They are network endpoints where the entity will receive data.
-For more information about network, see :ref:`comm-transports-configuration`.
+For more information about the network, see :ref:`comm-transports-configuration`.
 Publishers and subscribers inherit unicast locators from the participant.
 You can set a different set of locators through this attribute.
 
@@ -405,7 +405,7 @@ Multicast locators
 ******************
 
 They are network endpoints where the entity will receive data.
-For more information about network, see :ref:`comm-transports-configuration`.
+For more information about the network, see :ref:`comm-transports-configuration`.
 By default publishers and subscribers don't use any multicast locator.
 This attribute is useful when you have a lot of entities and you want to reduce the network usage.
 
@@ -507,8 +507,8 @@ To use TCP transports you need to define some more configurations:
 
 You must create a new TCP transport descriptor, for example TCPv4.
 This transport descriptor has a field named ``listening_ports`` that indicates to Fast-RTPS
-in which physical TCP ports our participant will listen for input conections.
-If ommited, the participant will not be able to receive incoming connections, but will be able
+in which physical TCP ports our participant will listen for input connections.
+If omitted, the participant will not be able to receive incoming connections but will be able
 to connect to others participants that have configured their listening ports.
 The transport must be added in the ``userTransports`` list of the participant attributes.
 
@@ -583,16 +583,16 @@ To configure the participant to connect to another node through TCP, you must co
 Both examples can be combined to configure our participant being able to receive incoming connections through port 5100
 and trying to connect to another participant at 192.168.1.55:5100.
 
-Also a TCP version of helloworld example can be found in this `link <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
+Also, a TCP version of helloworld example can be found in this `link <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
 
 **IPLocator**
 
 IPLocator is an auxiliary static class that offers methods to ease the management of IP based locators, as UDP or TCP.
 In TCP, the port field of the locator is divided into physical and logical port.
-Physical port is the port used by the network device, the real port that the operating system understands.
-Logical port can be seen as RTPS port, or UDP's equivalent port (physical ports of UDP, are logical ports in TCP).
-Logical ports normally are not neccesary to manage explicitely, but you can do it through IPLocator class.
-Physical ports instead, must be set to explicitely use certain ports, to allow the communication through a NAT, for
+The physical port is the port used by the network device, the real port that the operating system understands.
+The logical port can be seen as RTPS port, or UDP's equivalent port (physical ports of UDP, are logical ports in TCP).
+Logical ports normally are not necessary to manage explicitly, but you can do it through IPLocator class.
+Physical ports instead, must be set to explicitly use certain ports, to allow the communication through a NAT, for
 example.
 
 .. code-block:: c++
@@ -610,15 +610,15 @@ example.
 
 **NOTE**
 
-TCP doesn't support multicast scenarios, so you must planify carefully your network architecture.
+TCP doesn't support multicast scenarios, so you must plan carefully your network architecture.
 
 Listening locators
 """"""""""""""""""
 
-*eProsima Fast RTPS* divides listening locators in four categories:
+*eProsima Fast RTPS* divides listening locators into four categories:
 
 * Metatraffic Multicast Locators: these locators are used to receive metatraffic information using multicast.
-  They usually are used by built-in endpoints, like the discovery built-in endpoints. You can set your own locators
+  They usually are used by built-in endpoints, like the discovery of built-in endpoints. You can set your own locators
   using attribute ``rtps.builtin.metatrafficMulticastLocatorList``.
 
   .. code-block:: c++
@@ -633,7 +633,7 @@ Listening locators
     part_attr.rtps.builtin.metatrafficMulticastLocatorList.push_back(locator);
 
 * Metatraffic Unicast Locators: these locators are used to receive metatraffic information using unicast.
-  They usually are used by built-in endpoints, like the discovery built-in endpoints. You can set your own locators using
+  They usually are used by built-in endpoints, like the discovery of built-in endpoints. You can set your own locators using
   attribute ``rtps.builtin.metatrafficUnicastLocatorList``.
 
   .. code-block:: c++
@@ -694,17 +694,17 @@ well-known ports. These well-known ports are calculated using the following pred
 
 These predefined rules use some values explained here:
 
-* DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``. Default value is ``250``.
-* PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``. Default value is ``2``.
-* PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``. Default value is ``7400``.
+* DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``. The default value is ``250``.
+* PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``. The default value is ``2``.
+* PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``. The default value is ``7400``.
 * offsetd0, offsetd1, offsetd2, offsetd3: Additional offsets. You can set these values using attributes
   ``rtps.port.offsetdN``. Default values are: ``offsetd0 = 0``, ``offsetd1 = 10``, ``offsetd2 = 1``, ``offsetd3 = 11``.
 
 Both UDP and TCP unicast locators support to have a null address.
-In that case *eProsima Fast RTPS* understands to get local network addresses and use them.
+In that case, *eProsima Fast RTPS* understands to get local network addresses and use them.
 
 Both UDP and TCP locators support to have a zero port.
-In that case *eProsima Fast RTPS* understands to calculate well-known port for that type of traffic.
+In that case, *eProsima Fast RTPS* understands to calculate well-known port for that type of traffic.
 
 Sending locators
 """"""""""""""""
@@ -726,10 +726,10 @@ the attribute ``rtps.defaultOutLocatorList``.
 By default *eProsima Fast RTPS* sends network messages using a random UDPv4 port over all interface networks.
 
 Both UDP and TCP unicast locators support to have a null address.
-In that case *eProsima Fast RTPS* understands to get local network addresses and use them.
+In that case, *eProsima Fast RTPS* understands to get local network addresses and use them.
 
 Both UDP and TCP locators support to have a zero port.
-In that case *eProsima Fast RTPS* understands to get a random port. In TCP case, this applies to logical and physical
+In that case, *eProsima Fast RTPS* understands to get a random port. In TCP case, this applies to logical and physical
 ports.
 
 .. _initial-peers:
@@ -798,7 +798,7 @@ If this file exists, it is loaded at the library initialization.
 Making an XML
 ^^^^^^^^^^^^^
 
-An XML file can contain several XML profiles. They can be divided in participant, publisher and
+An XML file can contain several XML profiles. They can be divided into participant, publisher and
 subscriber profiles.
 
 .. code-block:: xml
@@ -824,8 +824,7 @@ Loading and applying profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before creating any entity, you can load XML files using ``Domain::loadXMLProfilesFile`` function.
-``createParticipant``, ``createPublisher`` and ``createSubscriber`` have a version that expects the profile name as
-argument. *eProsima Fast RTPS* searches the XML profile using this profile name and applies the XML profile to the
+``createParticipant``, ``createPublisher`` and ``createSubscriber`` have a version that expects the profile name as an argument. *eProsima Fast RTPS* searches the XML profile using this profile name and applies the XML profile to the
 entity.
 
 .. code-block:: c++

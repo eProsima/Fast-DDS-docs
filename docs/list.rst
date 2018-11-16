@@ -2,9 +2,9 @@ Objects and Data Structures
 ===========================
 
 
-In order to make the most of *eProsima Fast RTPS* it is important to have a grasp of the objects and data structures that conform the library. *eProsima Fast RTPS* objects are classified by modules, which are briefly listed and described in this section. For full coverage take a look at the API Reference document that comes with the distribution.
+In order to make the most of *eProsima Fast RTPS* it is important to have a grasp of the objects and data structures that conform to the library. *eProsima Fast RTPS* objects are classified by modules, which are briefly listed and described in this section. For full coverage take a look at the API Reference document that comes with the distribution.
 
-Publisher Subscriber Module
+Publisher-Subscriber Module
 ---------------------------
 
 This module composes the Publisher-Subscriber abstraction we saw in the Library Overview. The concepts here are higher level than the RTPS standard. 
@@ -13,29 +13,29 @@ This module composes the Publisher-Subscriber abstraction we saw in the Library 
 * :class:`Participant` Contains Publishers and Subscribers, and manages their configuration.
 
     * :class:`ParticipantAttributes` Configuration parameters used in the creation of a Participant.
-    * :class:`ParticipantListener` Allows you to implement callbacks within scope of the Participant.
+    * :class:`ParticipantListener` Allows you to implement callbacks within the scope of the Participant.
 
 * :class:`Publisher` Sends (publishes) data in the form of topic changes.
 
     * :class:`PublisherAttributes` Configuration parameters for the construction of a Publisher.
-    * :class:`PublisherListener` Allows you to implement callbacks within scope of the Publisher.
+    * :class:`PublisherListener` Allows you to implement callbacks within the scope of the Publisher.
 
 * :class:`Subscriber` Receives data for the topics it subscribes to.
 
     * :class:`SubscriberAttributes` Configuration parameters for the construction of a Subscriber.
-    * :class:`SubscriberListener` Allows you to implement callbacks within scope of the Subscriber.
+    * :class:`SubscriberListener` Allows you to implement callbacks within the scope of the Subscriber.
 
 RTPS Module
 -----------
 
-This module directly maps to the ideas defined in the RTPS standard, and allows you to interact with RTPS entities directly. It consists of a few sub-modules:
+This module directly maps to the ideas defined in the RTPS standard and allows you to interact with RTPS entities directly. It consists of a few sub-modules:
 
 RTPS Common
 ^^^^^^^^^^^
 
 * :class:`CacheChange_t` Represents a change to a topic, to be stored in a history cache.
-* :class:`Data` Payload associated to a cache change. May be empty depending on the message and change type.
-* :class:`Message` Defines the organization of a RTPS Message.
+* :class:`Data` Payload associated with a cache change. It may be empty depending on the message and change type.
+* :class:`Message` Defines the organization of an RTPS Message.
 * :class:`Header` Standard header that identifies a message as belonging to the RTPS protocol, and includes the vendor id.
 * :class:`Sub-Message Header` Identifier for an RTPS sub-message. An RTPS Message can be composed of several sub-messages.
 * :class:`MessageReceiver` Deserializes and processes received RTPS messages.

@@ -2,7 +2,7 @@ Advanced Functionalities
 ========================
 
 
-This section covers slightly more advanced, but useful features that enriches your implementation.
+This section covers slightly more advanced, but useful features that enrich your implementation.
 
 
 Topics and Keys
@@ -16,7 +16,7 @@ There are three ways of implementing keys into your topic:
 * Manually implementing and using a :func:`getKey()` method.
 * Adding the attribute `Key` to the member and its parents when using dynamic types (see :ref:`dynamic-types`).
 
-Publishers and Subscribers using topics with keys must be configured to use them, otherwise they will have no effect:
+Publishers and Subscribers using topics with keys must be configured to use them, otherwise, they will have no effect:
 
 .. code-block:: c++
 
@@ -25,14 +25,14 @@ Publishers and Subscribers using topics with keys must be configured to use them
 
 The RTPS Layer requires you to call the :func:`getKey()` method manually within your callbacks.
 
-You can tweak the History to accomodate data from multiples keys based on your current configuration. This consinst on defining a maximum number of data sinks and a maximum size for each sink:
+You can tweak the History to accommodate data from multiples keys based on your current configuration. This consist of defining a maximum number of data sinks and a maximum size for each sink:
 
 .. code-block:: c++
 
-	Rparam.topic.resourceLimitsQos.max_instances = 3; //Set the subscriber to remember and store up to 3 different keys
-	Rparam.topic.resourceLimitsQos.max_samples_per_instance = 20; //Hold a maximum of 20 samples per key
+    Rparam.topic.resourceLimitsQos.max_instances = 3; //Set the subscriber to remember and store up to 3 different keys
+    Rparam.topic.resourceLimitsQos.max_samples_per_instance = 20; //Hold a maximum of 20 samples per key
 
-Note that your History must be big enough to accomodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
+Note that your History must be big enough to accommodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
 
 .. _flow-controllers:
 
@@ -53,7 +53,7 @@ or Publisher Attributes.
     ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000}; //Limit to 300kb per second
     WparamSlow.throughputController = slowPublisherThroughputController;
 
-In the Writer-Reader layer, the throughput controllers is built-in and the descriptor defaults to infinite throughput.
+In the Writer-Reader layer, the throughput controller is built-in and the descriptor defaults to infinite throughput.
 To change the values:
 
 .. code-block:: c++
@@ -83,7 +83,7 @@ In the Writer-Subscriber layer, you have to configure the Writer:
 .. code-block:: c++
 
     WriterAttributes Wparam;
-    Wparam.mode = ASYNCHRONOUS_WRITER;	// Allows fragmentation
+    Wparam.mode = ASYNCHRONOUS_WRITER;    // Allows fragmentation
 
 Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster
 rate than what the client can process messages.
@@ -99,17 +99,17 @@ See :ref:`flow-controllers`
 Example: Sending a unique large file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This is a proposed example of how should the user configure its application in order to achieve the best performance. To make this example more tangible, it is going to be supposed that the file have a size of 9.9MB and the network in which the publisher and the subscriber are operating has a bandwith of 100MB/s
+This is a proposed example of how should the user configure its application in order to achieve the best performance. To make this example more tangible, it is going to be supposed that the file has a size of 9.9MB and the network in which the publisher and the subscriber are operating has a bandwidth of 100MB/s
 
-First of all, asynchronous mode has to be activated in the publisher parameters. Then, a suitable reliability mode has to be selected. In this case it is important to make sure that all fragments of the message are received. The loss of a fragment means the loss of the entire message, so it would be best to choose reliable mode.
+First of all, the asynchronous mode has to be activated in the publisher parameters. Then, a suitable reliability mode has to be selected. In this case, it is important to make sure that all fragments of the message are received. The loss of a fragment means the loss of the entire message, so it would be best to choose the reliable mode.
 
 The default message size of this fragments using the UDPv4 transport has a value of 65kb (which includes the space
-reserved to the data and the message header).
+reserved for the data and the message header).
 This means that the publisher would have to write at least about 1100 fragments.
 
 This amount of fragment could slow down the transmission, so it could be interesting to decrease the heartbeat period in order to increase the reactivity of the publisher.
 
-Another important consideration is the addition of a flow controller. Without a flow controller, the publisher can occupy the entire bandwith. A reasonable flow controller for this application could be a limit of 5MB/s, which represents only a 5% of the total bandwith. Anyway, this values are highly dependant of the specific application and its desired behaviour.
+Another important consideration is the addition of a flow controller. Without a flow controller, the publisher can occupy the entire bandwidth. A reasonable flow controller for this application could be a limit of 5MB/s, which represents only 5% of the total bandwidth. Anyway, these values are highly dependent on the specific application and its desired behaviour.
 
 At last, there is another detail to have in mind: it is critical to check the size of the system UDP buffers. In Linux, buffers can be enlarged with
 
@@ -124,11 +124,11 @@ At last, there is another detail to have in mind: it is critical to check the si
 Example: Video streaming
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this example the target application transmits video between a publisher and a subscriber. This video will have a resolution of 640x480 and a frequency of 50fps.
+In this example, the target application transmits video between a publisher and a subscriber. This video will have a resolution of 640x480 and a frequency of 50fps.
 
-As in the previous example, since the application is sending data that requires fragmentation, asynchronous mode has to be activated in the publisher parameters.
+As in the previous example, since the application is sending data that requires fragmentation, the asynchronous mode has to be activated in the publisher parameters.
 
-In audio or video transmissions, sometimes is better to have an stable and high datarate feed than a 100% lossless communication. Working with a frequency of 50hz, makes insignificant the loss of one or two samples each second. Thus, for a higher performance it can be appropiate to configure the reliability mode to best-effort.
+In audio or video transmissions, sometimes is better to have a stable and high datarate feed than a 100% lossless communication. Working with a frequency of 50hz makes insignificant the loss of one or two samples each second. Thus, for a higher performance, it can be appropriate to configure the reliability mode to best-effort.
 
 
 .. _discovery:
@@ -136,19 +136,18 @@ In audio or video transmissions, sometimes is better to have an stable and high 
 Discovery
 ---------
 
-Fast RTPS provides a discovery mechanism that allows to match automatically publishers and subscribers. The discovery mechanism is divided in two phases: Participant Discovery Phase and Endpoints Discovery Phase.
+Fast RTPS provides a discovery mechanism that allows matching automatically publishers and subscribers. The discovery mechanism is divided into two phases: Participant Discovery Phase and Endpoints Discovery Phase.
 
 * Participant Discovery Phase (PDP)
-    Before discovering any entity of a remote participant, both participants have to met between them. Participant Discovery
-    Phase provides this step and is responsible for sending periodic information about itself. To know how to configure where to
-    send this periodic information, see :ref:`initial-peers`. When both participants are met, is the turn of Endpoints
+    Before discovering any entity of a remote participant, both participants have to meet between them. Participant Discovery
+    Phase provides this step and is responsible for sending periodic information about itself. To know how to configure where to send this periodic information, see :ref:`initial-peers`. When both participants are met, is the turn of Endpoints
     Discovery Phase.
 
 * Endpoints Discovery Phase (EDP)
-    This phase is responsible for sending entities information to the remote participant. Also it has to process the
+    This phase is responsible for sending entities information to the remote participant. Also, it has to process the
     entities information of the remote participant and check which entities can match between them.
 
-By default the discovery mechanism is enabled, but you can disable it through participant attributes.
+By default, the discovery mechanism is enabled, but you can disable it through participant attributes.
 
 .. code-block:: c++
 
@@ -160,7 +159,7 @@ Static Endpoints Discovery
 
 Endpoints Discovery Phase can be replaced by a static version that doesn't send any information. It is useful when
 you have a limited network bandwidth and a well-known schema of publishers and subscribers. Instead of receiving entities
-information for matching, this information is loaded from a XML file.
+information for matching, this information is loaded from an XML file.
 
 First of all, you have to disable the Endpoints Discovery Phase and enable the Static Endpoints Discovery. This can be done
 from the participant attributes.
@@ -180,7 +179,7 @@ the configuration of this remote participant.
     participant_attr.rtps.builtin.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
 
 A basic XML configuration file for this remote participant would contain information like the name of the remote participant, the topic name and
-data type of the subscriber, and its entity and user defined ID. All these values have to exactly match the parameter
+data type of the subscriber, and its entity and user-defined ID. All these values have to exactly match the parameter
 values used to configure the remote participant (through the class :class:`ParticipantAttributes`) and its subscriber (through
 the class :class:`SubscriberAttributes`). Missing elements will acquire default values. For example:
 
@@ -292,7 +291,7 @@ Tuning
 Taking advantage of multicast
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For topics with several subscribers it is recommendable to configure them to use multicast instead of unicast.
+For topics with several subscribers, it is recommendable to configure them to use multicast instead of unicast.
 By doing so, only one network package will be sent for each sample.
 This will improve both CPU and network usage. Multicast configuration is explained in :ref:`multicast-locators`.
 
@@ -301,14 +300,14 @@ This will improve both CPU and network usage. Multicast configuration is explain
 Increasing socket buffers size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In high rate scenarios or large data scenarios the bottleneck could be the size of the socket buffers.
+In high rate scenarios or large data scenarios, the bottleneck could be the size of the socket buffers.
 Network packages could be dropped because there is no space in the socket buffer.
 Using Reliable :ref:`reliability` *Fast RTPS* will try to recover lost samples, but with the penalty of retransmission.
 Using Best-Effort :ref:`reliability` samples will be definitely lost.
 
 By default *eProsima Fast RTPS* creates socket buffers with the system default size, but you can modify it.
-``sendSocketBufferSize`` attribute helps increasing the socket buffer used to send data.
-``listenSocketBufferSize`` attribute helps increasing the socket buffer used to read data.
+``sendSocketBufferSize`` attribute helps to increase the socket buffer used to send data.
+``listenSocketBufferSize`` attribute helps to increase the socket buffer used to read data.
 
    +-----------------------------------------------------+---------------------------------------------------------------------+
    | C++                                                 | XML                                                                 |
@@ -331,7 +330,7 @@ Finding out system maximum values
 Linux operating system sets a maximum value for socket buffer sizes.
 When you set in *Fast RTPS* a socket buffer size, your value cannot exceed the maximum value of the system.
 
-For getting these values you can use the command ``sysctl``.
+To get these values you can use the command ``sysctl``.
 Maximum buffer size value of socket buffers used to send data could be retrieved using this command:
 
 .. code-block:: bash
@@ -355,10 +354,10 @@ If these default maximum values are not enough for you, you can also increase th
 
 .. _tuning-reliable-mode:
 
-Tuning Realiable mode
+Tuning Reliable mode
 ^^^^^^^^^^^^^^^^^^^^^
 
-RTPS protocol can maintain a reliable communication using special messages (Heartbeat and Ack/Nack messages).
+RTPS protocol can maintain reliable communication using special messages (Heartbeat and Ack/Nack messages).
 RTPS protocol can detect which samples are lost and re-sent them again.
 
 You can modify the frequency these special submessages are exchanged by specifying a custom heartbeat period.
@@ -370,7 +369,7 @@ The heartbeat period in the Publisher-Subscriber level is configured as part of 
     pubAttr.times.heartbeatPeriod.seconds = 0;
     pubAttr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
 
-In the Writer-Reader layer, this belong to the :class:`WriterAttributes`:
+In the Writer-Reader layer, this belongs to the :class:`WriterAttributes`:
 
 .. code-block:: c++
 
@@ -378,7 +377,7 @@ In the Writer-Reader layer, this belong to the :class:`WriterAttributes`:
     Wattr.times.heartbeatPeriod.seconds = 0;
     Wattr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
 
-A smaller heartbeat period increases the amount of overhead messages in the network,
+A smaller heartbeat period increases the number of overhead messages in the network,
 but speeds up the system response when a piece of data is lost.
 
 Non-strict reliability
@@ -402,13 +401,24 @@ Whitelist Interfaces
 There could be situations where you want to block some network interfaces to avoid connections or sending data through them.
 This can be managed using the field *interface whitelist* in the transport descriptors, 
 and with them, you can set the interfaces you want to use to send or receive packets.
-The values on this list should match the IPs of your machine in that networks. For example:
+The values on this list should match the IPs of your machine in that networks.
+For example:
 
-.. code-block:: c++
-
-	UDPv4TransportDescriptor descriptor;
-	descriptor.interfaceWhiteList.emplace_back("127.0.0.1");
-
+   +-------------------------------------------------------------+---------------------------------------------------------------------+
+   | C++                                                         | XML                                                                 |
+   +=============================================================+=====================================================================+
+   | .. code-block:: c++                                         | .. code-block:: xml                                                 |
+   |                                                             |                                                                     |
+   |    UDPv4TransportDescriptor descriptor;                     |    <profiles>                                                       |
+   |    descriptor.interfaceWhiteList.emplace_back("127.0.0.1"); |       <transport_descriptors>                                       |
+   |                                                             |         <transport_descriptor>                                      |
+   |                                                             |           <interfaceWhiteList>                                      |
+   |                                                             |             <address>127.0.0.1</address>                            |
+   |                                                             |           </interfaceWhiteList>                                     |
+   |                                                             |          </transport_descriptor>                                    |
+   |                                                             |       </transport_descriptors>                                      |
+   |                                                             |    </profiles>                                                      |
+   +-------------------------------------------------------------+---------------------------------------------------------------------+
 
 Additional Quality of Service options
 -------------------------------------
@@ -417,11 +427,11 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
 comes bundled with a set of examples of how to implement common client-wise QoS settings:
 
 * Deadline: Rise an alarm when the frequency of message arrival for a topic falls below a certain threshold.
-* Ownership Srength: When multiple data sources come online, filter duplicates by focusing on the higher priority sources.
+* Ownership Strength: When multiple data sources come online, filter duplicates by focusing on the higher priority sources.
 * Filtering: Filter incoming messages based on content, time, or both.
 
 These examples come with their own `Readme.txt` that explains how the implementations work.
 
 
-This marks the end of this document. We recommend you to take a look at the doxygen API reference and
+This marks the end of this document. We recommend you to take a look at the Doxygen API reference and
 the embedded examples that come with the distribution. If you need more help, send us an email to `support@eprosima.com`.

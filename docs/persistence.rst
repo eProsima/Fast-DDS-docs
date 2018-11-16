@@ -7,21 +7,20 @@
 Persistence
 ===========
 
-By default, writer's history is available for remote readers throughout writer's life. 
+By default, the writer's history is available for remote readers throughout writer's life. 
 You can configure Fast RTPS to provide persistence between application executions. 
 When a writer is created again, it will maintain the previous history and a new remote reader will receive all 
 samples sent by the writer throughout its life.
 
 A reader keeps information on the latest change notified to the user for each matching writer.
-Persisting this information, you could save bandwith, as the reader will not ask the writers for changes already notified.
+Persisting this information, you could save bandwidth, as the reader will not ask the writers for changes already notified.
 
 In summary, enabling this feature you will protect the state of endpoints against unexpected failures, 
 as they will continue communicating after being restarted as if they were just disconnected from the network.
 
-Imagine, for instance, that a writer with a policy to keep its last 100 samples has its history full of changes and 
-the machine where it runs has a power failure. 
+Imagine, for instance, that a writer with a policy to keep its last 100 samples has its history full of changes and the machine where it runs has a power failure. 
 When the writer is started again, if a new reader is created, it will not receive the 100 samples that were on the history of the writer. 
-With persistence enabled, changes in the history of the writer will be written to disk, and read again when the writer is restarted.
+With persistence enabled, changes in the history of the writer will be written to disk and read again when the writer is restarted.
 
 With readers, the information written to disk is different. 
 Only information about the last change notified to the user is stored on disk.
@@ -50,12 +49,12 @@ In order for the persistence feature to work, some specific :class:`eprosima::fa
 
 You can select and configure the persistence plugin through :class:`eprosima::fastrtps::rtps::RTPSParticipant` attributes using properties.
 A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value (:class:`std::string`).
-Throughout this page there are tables showing you the properties used by each persistence plugin.
+Throughout this page, there are tables showing you the properties used by each persistence plugin.
 
 Built-in plugins
 ----------------
 
-Current version comes out with one persistence built-in plugin:
+The current version comes out with one persistence built-in plugin:
 
 * **SQLITE3**: this plugin provides persistence on a local file using SQLite3 API.
 
@@ -83,7 +82,7 @@ Next table shows you the properties used by this persistence plugin.
 Example
 ^^^^^^^
 
-This example shows you how to configure a RTPSParticipant to activate and configure :ref:`persistence-sqlite3` plugin.
+This example shows you how to configure an RTPSParticipant to activate and configure :ref:`persistence-sqlite3` plugin.
 It also configures a Writer to persist its history on local storage, and a Reader to persist the highest notified
 sequence number on local storage.
 

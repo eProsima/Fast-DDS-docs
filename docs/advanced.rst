@@ -400,7 +400,7 @@ Whitelist Interfaces
 -------------------------------------
 
 There could be situations where you want to block some network interfaces to avoid connections or sending data through them.
-To able this management exists the field *interface whitelist* in the transport descriptors, 
+This can be managed using the field *interface whitelist* in the transport descriptors, 
 and with them, you can set what interfaces do you want to filter to send or receive packets.
 The values that you must add to this list are the IPs of your machine in that networks. For example:
 

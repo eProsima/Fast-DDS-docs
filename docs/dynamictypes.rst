@@ -831,7 +831,7 @@ As IDL would be:
 
     sequence<sequence<long,2>,3> my_sequence_sequence;
 
-Note that the inner (or content) sequence has no name, due to it would be ignored by the parser.
+Note that the inner (or content) sequence has no name, as it would be ignored by the parser.
 
 **Maps**
 

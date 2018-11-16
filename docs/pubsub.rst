@@ -405,7 +405,7 @@ Multicast locators
 ******************
 
 They are network endpoints where the entity will receive data.
-For more information about the network, see :ref:`comm-transports-configuration`.
+For more information about network configuration, see :ref:`comm-transports-configuration`.
 By default publishers and subscribers don't use any multicast locator.
 This attribute is useful when you have a lot of entities and you want to reduce the network usage.
 

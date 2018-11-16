@@ -558,7 +558,7 @@ These two factories in charge to manage these objects, and they must create and 
     DynamicTypeBuilderFactory::GetInstance()->DeleteBuilder(pBuilder);
     DynamicDataFactory::GetInstance()->DeleteData(pData);
 
-To ease this management, the library incorporates especially shared pointers to call
+To ease this management, the library incorporates a special kind of shared pointers to call
 to the factories to delete the object directly ( `DynamicTypeBuilder_ptr` and  `DynamicData_ptr`).
 The only restriction on using this kind of pointers are
 the methods `LoanValue` and `ReturnLoanedValue`, because they return a pointer

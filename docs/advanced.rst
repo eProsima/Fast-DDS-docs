@@ -18,19 +18,41 @@ There are three ways of implementing keys into your topic:
 
 Publishers and Subscribers using topics with keys must be configured to use them, otherwise, they will have no effect:
 
-.. code-block:: c++
-
-    //Publisher-Subscriber Layer configuration
-    PubAttributes.topic.topicKind = WITH_KEY
+    +---------------------------------------------------------------------------------+--------------------------------------------------------------------+
+    | C++                                                                             | XML                                                                |
+    +=================================================================================+====================================================================+
+    | .. code-block:: c++                                                             | .. code-block:: xml                                                |
+    |                                                                                 |                                                                    |
+    |     //Publisher-Subscriber Layer configuration                                  |     <profiles>                                                     |
+    |     PubAttributes.topic.topicKind = WITH_KEY                                    |         <publisher profile_name="PubAttributesProfile">            |
+    |                                                                                 |             <topic>                                                |
+    |                                                                                 |                 <kind>WITH_KEY</kind>                              |
+    |                                                                                 |             </topic>                                               |
+    |                                                                                 |         </publisher>                                               |
+    |                                                                                 |     </profiles>                                                    |
+    +---------------------------------------------------------------------------------+--------------------------------------------------------------------+
 
 The RTPS Layer requires you to call the :func:`getKey()` method manually within your callbacks.
 
 You can tweak the History to accommodate data from multiples keys based on your current configuration. This consist of defining a maximum number of data sinks and a maximum size for each sink:
 
-.. code-block:: c++
-
-    Rparam.topic.resourceLimitsQos.max_instances = 3; //Set the subscriber to remember and store up to 3 different keys
-    Rparam.topic.resourceLimitsQos.max_samples_per_instance = 20; //Hold a maximum of 20 samples per key
+    +---------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+    | C++                                                                             | XML                                                                             |
+    +=================================================================================+=================================================================================+
+    | .. code-block:: c++                                                             | .. code-block:: xml                                                             |
+    |                                                                                 |                                                                                 |
+    |     //Set the subscriber to remember and store up to 3 different keys           |     <profiles>                                                                  |
+    |     Rparam.topic.resourceLimitsQos.max_instances = 3;                           |         <subscriber profile_name="reader_profile">                              |
+    |     //Hold a maximum of 20 samples per key                                      |             <topic>                                                             |
+    |     Rparam.topic.resourceLimitsQos.max_samples_per_instance = 20;               |                 <resourceLimitsQos>                                             |
+    |                                                                                 |                     <max_instances>3</max_instances>                            |
+    |                                                                                 |                     <max_samples_per_instance>20</max_samples_per_instance>     |
+    |                                                                                 |                 </resourceLimitsQos>                                            |
+    |                                                                                 |             </topic>                                                            |
+    |                                                                                 |         </subscriber>                                                           |
+    |                                                                                 |     </profiles>                                                                 |
+    |                                                                                 |                                                                                 |
+    +---------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
 
 Note that your History must be big enough to accommodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
 
@@ -47,11 +69,20 @@ The current release implement throughput controllers, which can be used to limit
 over the network per time measurement unit. In order to use them, a descriptor must be passed into the Participant
 or Publisher Attributes.
 
-.. code-block:: c++
+    +------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+    | C++                                                                                | XML                                                                             |
+    +====================================================================================+=================================================================================+
+    | .. code-block:: c++                                                                | .. code-block:: xml                                                             |
+    |                                                                                    |                                                                                 |
+    |     PublisherAttributes WparamSlow;                                                |     <publisher profile_name="WparamSlow_profile">                               |
+    |     //Limit to 300kb per second                                                    |         <throughputController>                                                  |
+    |     ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000};|             <bytesPerPeriod>300000</bytesPerPeriod>                             |
+    |     WparamSlow.throughputController = slowPublisherThroughputController;           |             <periodMillisecs>1000</periodMillisecs>                             |
+    |                                                                                    |         </throughputController>                                                 |
+    |                                                                                    |     </publisher>                                                                |
+    |                                                                                    |                                                                                 |
+    +------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
 
-    PublisherAttributes WparamSlow;
-    ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000}; //Limit to 300kb per second
-    WparamSlow.throughputController = slowPublisherThroughputController;
 
 In the Writer-Reader layer, the throughput controller is built-in and the descriptor defaults to infinite throughput.
 To change the values:
@@ -73,10 +104,20 @@ If your topic data is bigger, it must be fragmented.
 Fragmented messages are sent over multiple packets, as understood by the particular transport layer.
 To make this possible, you must configure the Publisher to work in asynchronous mode.
 
-.. code-block:: c++
-
-   PublisherAttributes Wparam;
-   Wparam.qos.m_publishMode.kind = ASYNCHRONOUS_PUBLISH_MODE; // Allows fragmentation
++------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+| C++                                                                                | XML                                                                             |
++====================================================================================+=================================================================================+
+| .. code-block:: c++                                                                | .. code-block:: xml                                                             |
+|                                                                                    |                                                                                 |
+|     PublisherAttributes Wparam;                                                    |     <publisher profile_name="Wparam_profile">                                   |
+|     // Allows fragmentation                                                        |         <qos>                                                                   |
+|     Wparam.qos.m_publishMode.kind = ASYNCHRONOUS_PUBLISH_MODE;                     |             <publishMode>                                                       |
+|                                                                                    |                 <kind>ASYNCHRONOUS</kind>                                       |
+|                                                                                    |             </publishMode>                                                      |
+|                                                                                    |         </qos>                                                                  |
+|                                                                                    |     </publisher>                                                                |
+|                                                                                    |                                                                                 |
++------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
 
 In the Writer-Subscriber layer, you have to configure the Writer:
 
@@ -149,10 +190,19 @@ Fast RTPS provides a discovery mechanism that allows matching automatically publ
 
 By default, the discovery mechanism is enabled, but you can disable it through participant attributes.
 
-.. code-block:: c++
-
-    ParticipantAttributes participant_attr;
-    participant_attr.rtps.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;
++---------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+| C++                                                                                   | XML                                                                             |
++=======================================================================================+=================================================================================+
+| .. code-block:: c++                                                                   | .. code-block:: xml                                                             |
+|                                                                                       |                                                                                 |
+|     ParticipantAttributes participant_attr;                                           |     <participant profile_name="participant_profile">                            |
+|     participant_attr.rtps.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;|         <rtps>                                                                  |
+|                                                                                       |             <builtin>                                                           |
+|                                                                                       |                 <use_SIMPLE_RTPS_PDP>true</use_SIMPLE_RTPS_PDP>                 |
+|                                                                                       |             </builtin>                                                          |
+|                                                                                       |         </rtps>                                                                 |
+|                                                                                       |     </participant>                                                              |
++---------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
 
 Static Endpoints Discovery
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -399,7 +449,7 @@ Whitelist Interfaces
 -------------------------------------
 
 There could be situations where you want to block some network interfaces to avoid connections or sending data through them.
-This can be managed using the field *interface whitelist* in the transport descriptors, 
+This can be managed using the field *interface whitelist* in the transport descriptors,
 and with them, you can set the interfaces you want to use to send or receive packets.
 The values on this list should match the IPs of your machine in that networks.
 For example:

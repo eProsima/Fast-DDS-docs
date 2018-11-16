@@ -3,7 +3,7 @@ Getting Started
 
 
 A brief introduction to the RTPS protocol
----------------------------------------
+-----------------------------------------
 
 At the top of RTPS, we find the Domain, which defines a separate plane of communication. Several domains can coexist at
 the same time independently. A domain contains any number of Participants, elements capable of sending and receiving data. To do this, the participants use their Endpoints:

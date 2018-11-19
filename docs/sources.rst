@@ -31,7 +31,7 @@ For generate *fastrtpsgen* please see :ref:`compile-fastrtpsgen`.
 Security
 --------
 
-By default Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
+By default, Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
 configuration step. More information about security on Fast RTPS, see :ref:`security`.
 
 When security is activated on compilation Fast RTPS builds two built-in security plugins. Both have the dependency of
@@ -40,7 +40,7 @@ OpenSSL library.
 OpenSSL installation on Linux
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Surely you can install OpenSSL using the package manager of your Linux distribution. For example on Fedora you can
+Surely you can install OpenSSL using the package manager of your Linux distribution. For example, on Fedora you can
 install OpenSSL using its package manager with next command.
 
 .. code-block:: bash
@@ -52,8 +52,8 @@ OpenSSL installation on Windows
 
 .. _webpage: https://slproweb.com/products/Win32OpenSSL.html
 
-You can download OpenSSL 1.0.2 for Windows in this webpage_. This is the OpenSSL version tested by our team. Download the
-installer that fits your requirements and install it. After installing, add the environment variable
+You can download OpenSSL 1.0.2 for Windows in this webpage_. This is the OpenSSL version tested by our team.
+Download and use the installer that fits your requirements. After installing, add the environment variable
 ``OPENSSL_ROOT_DIR`` pointing to the installation root directory. For example:
 
 .. code-block:: bash

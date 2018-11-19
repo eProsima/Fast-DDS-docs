@@ -7,13 +7,13 @@ Dynamic Topic Types
 
 eProsima Fast RTPS provides a dynamic way to define and use topic types and topic data.
 Our implementation follows the OMG Extensible and Dynamic Topic Types for DDS interface.
-For more information you can read the document (DDS-XTypes V1.2) in this link_.
+For more information, you can read the document (DDS-XTypes V1.2) in this link_.
 
-The dynamic topic types offers the possibility to work over rtps without the restrictions related with the IDLs.
+The dynamic topic types offer the possibility to work over rtps without the restrictions related to the IDLs.
 Using them the users can declare the different types that they need and manage the information directly,
 avoiding the additional step of updating the IDL file and the generation of C++ classes.
 
-The management of dynamic types is splitted into two main groups.
+The management of dynamic types is split into two main groups.
 The first one manages the declaration of the types, building and
 setting the configuration of every type and the second one is in charge of
 the data instances and their information.
@@ -24,7 +24,7 @@ Concepts
 **Type Descriptor**
 
 Stores the information about one type with its relationships and restrictions.
-It's the minimum class needed to generate a Dynamic type, and in case of the
+It's the minimum class needed to generate a Dynamic type and in case of the
 complex ones, it stores information about its children or its parent types.
 
 **Member Descriptor**
@@ -45,8 +45,7 @@ Every object created by the factory must be deleted calling the DeleteType metho
 **Dynamic Type Builder**
 
 Intermediate class used to configure and create Dynamic Types.
-By design Dynamic types can't be modified, so the previous step to create a
-new one is to create a builder and apply the settings that the user needs.
+By design Dynamic types can't be modified, so the previous step to create a new one is to create a builder and apply the settings that the user needs.
 Users can create several types using the same builder, but the changes applied
 to the builder don't affect to the types created previously.
 Every object created by a builder must be deleted calling the DeleteType method
@@ -60,7 +59,7 @@ It creates a copy of the descriptor on its creation and cannot be changed to kee
 
 **Dynamic Type Member**
 
-Class that creates the relationship between a member descriptor with its parent type.
+A class that creates the relationship between a member descriptor with its parent type.
 Dynamic Types have a one Dynamic type member for every child member added to it.
 
 **Dynamic Data Factory**
@@ -69,12 +68,12 @@ Singleton class that is in charge of the creation and the management of every
 DynamicData.
 It creates them using the given Dynamic Type with its settings.
 Every data object created by the factory must be deleted calling the DeleteType method.
-Allows to create a TypeIdentifier and a (Minimal)TypeObject from a TypeDescriptor.
+Allows creating a TypeIdentifier and a (Minimal)TypeObject from a TypeDescriptor.
 CompleteTypeObject support is planned to be added in the future.
 
 **Dynamic Data**
 
-Class that manages the data of the Dynamic Types. It stores the information that is
+A class that manages the data of the Dynamic Types. It stores the information that is
 sent and received.
 There are two ways to work with DynamicDatas, the first one is the
 most secured, activating the macro `DYNAMIC_TYPES_CHECKING`, it creates a variable for
@@ -84,7 +83,7 @@ values and making the code harder to debug.
 
 **Dynamic PubSubType**
 
-Class that inherits from TopicDataType and works as an intermediator between RTPS
+A class that inherits from TopicDataType and works as an intermediator between RTPS
 Domain and the Dynamic Types. It implements the methods needed to create, serialize,
 deserialize and delete DynamicData instances when the participants need to convert the
 received information from any transport to the registered dynamic type.
@@ -96,7 +95,7 @@ Supported Types
 Primitive Types
 ^^^^^^^^^^^^^^^
 
-This section includes every simple kinds:
+This section includes every simple kind:
 
 - BYTE
 - CHAR8
@@ -112,10 +111,10 @@ This section includes every simple kinds:
 - FLOAT64
 - FLOAT128
 
-Primitive types don't need an specific configuration to create the type. Because of that
+Primitive types don't need a specific configuration to create the type. Because of that
 DynamicTypeBuilderFactory has got exposed several methods to allow users to create
 the Dynamic Types avoiding the DynamicTypeBuilder step. The example below shows the two
-ways to create a dynamic data of a primitive type.
+ways to create dynamic data of a primitive type.
 The DynamicData class has a specific `Get` and `Set` Methods for each primitive
 type of the list.
 
@@ -138,7 +137,7 @@ String and WString
 Strings are pretty similar to primitive types with one exception, they need to set the size
 of the buffer that they can manage.
 To do that, DynamicTypeBuilderFactory exposes the methods `CreateStringType` and `CreateWstringType`.
-By default its size is set to 255 characters.
+By default, its size is set to 255 characters.
 
 .. code-block:: c++
 
@@ -161,7 +160,7 @@ Alias types have been implemented to rename an existing type, keeping the rest o
 of the given type.
 DynamicTypeBuilderFactory exposes the method `CreateAliasType` to create alias types
 taking the base type and the new name that the alias is going to set.
-After the creation of the DynamicData, users can access to its information like
+After the creation of the DynamicData, users can access its information like
 they were working with the base type.
 
 .. code-block:: c++
@@ -182,12 +181,12 @@ they were working with the base type.
 Enum
 ^^^^
 
-The enum type is managed as complex in Dynamic Types, because it allows to add members
+The enum type is managed as complex in Dynamic Types because it allows adding members
 to set the different values that the enum is going to manage.
-Internally, it works with an `UINT32` to store what value is selected.
+Internally, it works with a `UINT32` to store what value is selected.
 
 To use enums users must create a Dynamic Type builder calling to `CreateEnumType`
-and after that they can call to `AddMember` given the index and the name of the
+and after that, they can call to `AddMember` given the index and the name of the
 different values that the enum is going to support.
 
 The DynamicData class has got methods `GetEnumValue` and `SetEnumValue` to work
@@ -210,13 +209,12 @@ with `UINT32` or with strings using the names of the members added to the builde
 Bitset
 ^^^^^^
 
-Bitset types emulate a list of boolean values, but optimized for space allocation
+Bitset types emulate a list of boolean values but optimized for space allocation
 using each bit for a different value.
 They work like a boolean type with the only difference that the `GetBoolValue` and
 `SetBoolValue` need the index of the bit that users want to read or write.
 
-DynamicTypeBuilderFactory offers the possibility to set the maximum value that the
-bitset is going to manage, but it should be less or equal to 64 bits.
+DynamicTypeBuilderFactory offers the possibility to set the maximum value that the bitset is going to manage, but it should be less or equal to 64 bits.
 
 .. code-block:: c++
 
@@ -240,7 +238,7 @@ bitset is going to manage, but it should be less or equal to 64 bits.
 Bitmask
 ^^^^^^^
 
-Bitmasks are the complex way to work with bitsets because they opens the option to
+Bitmasks are the complex way to work with bitsets because they open the option to
 add members and access to each boolean value with the name of the member.
 DynamicData has the special methods `GetBitmaskValue` and `SetBitmaskValue`
 using the name of the member, but they can be used like bitsets too.
@@ -268,7 +266,7 @@ inside them.
 They don't have any value, they are only used to contain other types.
 
 To manage the types inside the structure, users can call the Get and Set methods
-according with the kind of the type inside the structure using their ids.
+according to the kind of the type inside the structure using their ids.
 If the structure contains a complex value, it should be used with `LoanValue` to
 access to it and `ReturnLoanedValue` to release that pointer.
 DynamicData manages the counter of loaned values and users can't loan a value that
@@ -321,7 +319,7 @@ optionally if it is the default value of the union.
 Sequence
 ^^^^^^^^
 
-Complex type that manages its members as a list of items allowing users to
+A complex type that manages its members as a list of items allowing users to
 insert, remove or access to a member of the list. To create this type users
 need to specify the type that it is going to store and optionally the size
 limit of the list.
@@ -360,7 +358,7 @@ the item if there isn't any in the given Id.
 Arrays also have methods to handle the creation and deletion of elements like
 sequences, they are `InsertArrayData`, `RemoveArrayData` and `ClearData`.
 Additionally, there is a special method `GetArrayIndex` that returns the position id
-giving a vector of indexes on every dimension that the arrays supports, that is
+giving a vector of indexes on every dimension that the arrays support, that is
 useful in multidimensional arrays.
 
 .. code-block:: c++
@@ -380,7 +378,7 @@ useful in multidimensional arrays.
 Map
 ^^^
 
-Maps contains a list of pairs 'key-value' types, allowing users to insert, remove or
+Maps contain a list of pairs 'key-value' types, allowing users to insert, remove or
 modify the element types of the map. The main difference with sequences is that the map
 works with pairs of elements and creates copies of the key element to block the access
 to these elements.
@@ -453,7 +451,7 @@ has the method `CreateChildStructType` that relates the given struct type with
 the new one. The resultant type contains the members of the base class and the ones
 that users have added to it.
 
-Structures support several levels of inheritance, creating recursivelly the members
+Structures support several levels of inheritance, creating recursively the members
 of all the types in the hierarchy of the struct.
 
 .. code-block:: c++
@@ -475,8 +473,8 @@ of all the types in the hierarchy of the struct.
 Alias of an alias
 ^^^^^^^^^^^^^^^^^
 
-Alias types support recursivity, so if users need to create alias of another alias,
-it can be done calling `CreateAliasType` method giving the alias as base type.
+Alias types support recursivity, so if users need to create an alias of another alias,
+it can be done calling `CreateAliasType` method giving the alias as a base type.
 
 .. code-block:: c++
 
@@ -545,9 +543,9 @@ their management is pretty similar to them.
 Important Notes
 ---------------
 
-The most important part about Dynamic Types is the memory management, because
+The most important part of Dynamic Types is memory management because
 every dynamic type and dynamic data are managed with pointers. Every object stored
-inside of other dynamic object is managed by its owner, so users only must  take care
+inside of other dynamic object is managed by its owner, so users only must take care
 of the objects that they have created calling to the factories.
 These two factories in charge to manage these objects, and they must create and delete every object.
 
@@ -560,13 +558,13 @@ These two factories in charge to manage these objects, and they must create and 
     DynamicTypeBuilderFactory::GetInstance()->DeleteBuilder(pBuilder);
     DynamicDataFactory::GetInstance()->DeleteData(pData);
 
-To ease this management, the library incorporates special shared pointers to call
+To ease this management, the library incorporates a special kind of shared pointers to call
 to the factories to delete the object directly ( `DynamicTypeBuilder_ptr` and  `DynamicData_ptr`).
-The only restriction about using this kind of pointers are
+The only restriction on using this kind of pointers are
 the methods `LoanValue` and `ReturnLoanedValue`, because they return a pointer
 to an object that is already managed by the library and using a `DynamicData_ptr`
 with them will cause a crash.
-DynamicType will always be return as DynamicType_ptr because there is no internal management of its memory.
+DynamicType will always be returned as DynamicType_ptr because there is no internal management of its memory.
 
 .. code-block:: c++
 
@@ -612,8 +610,8 @@ TypeIdentifier (TypeIdV1)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 TypeIdentifier is described too in the annexes of DDS-XTypes V1.2 document.
-It represents a full description for basic types and has an EquivalenceKind for complex ones.
-An EquivalenceKind is a hash code of 14 octet, as described by the DDS-XTypes V1.2 document.
+It represents a full description of basic types and has an EquivalenceKind for complex ones.
+An EquivalenceKind is a hash code of 14 octets, as described by the DDS-XTypes V1.2 document.
 
 TypeObjectFactory
 ^^^^^^^^^^^^^^^^^
@@ -626,8 +624,8 @@ Fastrtpsgen
 ^^^^^^^^^^^
 
 FastRTPSGen has been upgraded to generate XXXTypeObject.h and .cxx files, taking XXX as our IDL type.
-These files provides a small Type Factory for the type XXX.
-Generally this files are not used directly, as now the type XXX will register itself through its factory to
+These files provide a small Type Factory for the type XXX.
+Generally, these files are not used directly, as now the type XXX will register itself through its factory to
 TypeObjectFactory in its constructor, making very easy the use of static types with dynamic types.
 
 
@@ -640,8 +638,8 @@ This allows any application to change TopicDataTypes without the need to change 
 XML Structure
 ^^^^^^^^^^^^^
 
-The XML Types definition (`<types>`, types tag) in the XML file can be placed similary to the profiles tag.
-It can be a stand-alone XML Types file or be a child of the fastrtps xml root tag (`<dds>`).
+The XML Types definition (`<types>`, types tag) in the XML file can be placed similarly to the profiles tag.
+It can be a stand-alone XML Types file or be a child of the fastrtps XML root tag (`<dds>`).
 Inside the types tag, must be one or more type tags (`<type>`).
 
 Stand-Alone:
@@ -674,7 +672,7 @@ Rooted:
         </types>
     </dds>
 
-Finally each type tag can contain one or more Type definition.
+Finally, each type tag can contain one or more Type definition.
 Define several types inside a type tag or each type in its own type tag has the same result.
 
 Type definition
@@ -708,7 +706,7 @@ Example:
         <long dimensions="2,2"/>
     </typedef>
 
-Typedefs correspond to Alias in Dynamic Types glosary.
+Typedefs correspond to Alias in Dynamic Types glossary.
 
 **Struct**
 
@@ -726,7 +724,7 @@ Example:
 **Union**
 
 The union type is defined by its name, a discriminator and a set of cases.
-Each case have one or more caseValue and a member.
+Each case has one or more caseValue and a member.
 
 
 Example:
@@ -753,14 +751,14 @@ Example:
 Member types
 ^^^^^^^^^^^^
 
-By member types we refer to any type that can belong to a struct or an union, or be aliased by a typedef.
+By member types, we refer to any type that can belong to a struct or a union, or be aliased by a typedef.
 
 When used as sequences elements, key or value types of a map, as an aliased type, etc., its name attribute
-is ignored and can be omited.
+is ignored and can be omitted.
 
 **Basic types**
 
-The available basic types xml tags are:
+The available basic types XML tags are:
 
 - boolean
 - octet
@@ -786,7 +784,7 @@ All of them are defined simply:
 
     <longlong name="my_long"/>
 
-Except boundedString and boundedWString that an inner element *maxLength* whose value indicates
+Except for boundedString and boundedWString that should include an inner element *maxLength* whose value indicates
 the maximum length of the string.
 
 .. code-block:: xml
@@ -807,7 +805,7 @@ Example:
 
     <long name="long_array" dimensions="2,3,4"/>
 
-It's IDL analog would be:
+It's IDL analogue would be:
 
 .. code-block:: c++
 
@@ -833,17 +831,17 @@ As IDL would be:
 
     sequence<sequence<long,2>,3> my_sequence_sequence;
 
-Note that the inner (or content) sequence has no name, due it would be ignored by the parser.
+Note that the inner (or content) sequence has no name, as it would be ignored by the parser.
 
 **Maps**
 
 Maps are similar to sequences but they need to define two types instead one. One for its key and another
 for its value.
 Again, both types can be defined as attributes or as members, but in this cases, when defined
-as members they are content in another xml element key_type and value_type respectively.
+as members, they are content in another XML element key_type and value_type respectively.
 
-The definition kind of each type can be mixed, this is, one type can be defined as attribute and the
-other as member.
+The definition kind of each type can be mixed, this is, one type can be defined as an attribute and the
+other as a member.
 
 Example:
 
@@ -877,10 +875,10 @@ Example:
 Usage
 ^^^^^
 
-In the application that will make use of XML Types, we need to load the xml file that defines our types,
+In the application that will make use of XML Types, we need to load the XML file that defines our types,
 and then, simply instantiate DynamicPubSubTypes of our desired type.
 
-Remeber that only Structs generate usable DynamicPubSubType instances.
+Remember that only Structs generate usable DynamicPubSubType instances.
 
 .. code-block:: cpp
 

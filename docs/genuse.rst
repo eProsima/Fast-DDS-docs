@@ -80,50 +80,50 @@ Arrays
 
 *fastrtpsgen* supports unidimensional and multidimensional arrays. Arrays are always mapped to std::array containers. The following table shows the array types supported and how they map.
 
-	+--------------------------+--------------------------+
-	| IDL                      | C++11                    |
-	+==========================+==========================+
-	| char a[5]                | std::array<char,5> a     |
-	+--------------------------+--------------------------+
-	| octet a[5]               | std::array<uint8_t,5> a  |
-	+--------------------------+--------------------------+
-	| short a[5]               | std::array<int16_t,5> a  |
-	+--------------------------+--------------------------+
-	| unsigned short a[5]      | std::array<uint16_t,5> a |
-	+--------------------------+--------------------------+
-	| long long a[5]           | std::array<int64_t,5> a  |
-	+--------------------------+--------------------------+
-	| unsigned long long a[5]  | std::array<uint64_t,5> a |
-	+--------------------------+--------------------------+
-	| float a[5]               | std::array<float,5> a    |
-	+--------------------------+--------------------------+
-	| double a[5]              | std::array<double,5> a   |
-	+--------------------------+--------------------------+
+    +--------------------------+--------------------------+
+    | IDL                      | C++11                    |
+    +==========================+==========================+
+    | char a[5]                | std::array<char,5> a     |
+    +--------------------------+--------------------------+
+    | octet a[5]               | std::array<uint8_t,5> a  |
+    +--------------------------+--------------------------+
+    | short a[5]               | std::array<int16_t,5> a  |
+    +--------------------------+--------------------------+
+    | unsigned short a[5]      | std::array<uint16_t,5> a |
+    +--------------------------+--------------------------+
+    | long long a[5]           | std::array<int64_t,5> a  |
+    +--------------------------+--------------------------+
+    | unsigned long long a[5]  | std::array<uint64_t,5> a |
+    +--------------------------+--------------------------+
+    | float a[5]               | std::array<float,5> a    |
+    +--------------------------+--------------------------+
+    | double a[5]              | std::array<double,5> a   |
+    +--------------------------+--------------------------+
 
 Sequences
 ^^^^^^^^^
 
 *fastrtpsgen* supports sequences, which map into the STD vector container. The following table represents how the map between IDL and C++11 is handled.
 
-	+-------------------------------+--------------------------+
-	| IDL                           | C++11                    |
-	+===============================+==========================+
-	| sequence<char>                |    std::vector<char>     |
-	+-------------------------------+--------------------------+
-	| sequence<octet>               |    std::vector<uint8_t>  |
-	+-------------------------------+--------------------------+
-	| sequence<short>               |    std::vector<int16_t>  |
-	+-------------------------------+--------------------------+
-	| sequence<unsigned short>      |    std::vector<uint16_t> |
-	+-------------------------------+--------------------------+
-	| sequence<long long>           |    std::vector<int64_t>  |
-	+-------------------------------+--------------------------+
-	| sequence<unsigned long long>  |    std::vector<uint64_t> |
-	+-------------------------------+--------------------------+
-	| sequence<float>               |    std::vector<float>    |
-	+-------------------------------+--------------------------+
-	| sequence<double>              |    std::vector<double>   |
-	+-------------------------------+--------------------------+
+    +-------------------------------+--------------------------+
+    | IDL                           | C++11                    |
+    +===============================+==========================+
+    | sequence<char>                |    std::vector<char>     |
+    +-------------------------------+--------------------------+
+    | sequence<octet>               |    std::vector<uint8_t>  |
+    +-------------------------------+--------------------------+
+    | sequence<short>               |    std::vector<int16_t>  |
+    +-------------------------------+--------------------------+
+    | sequence<unsigned short>      |    std::vector<uint16_t> |
+    +-------------------------------+--------------------------+
+    | sequence<long long>           |    std::vector<int64_t>  |
+    +-------------------------------+--------------------------+
+    | sequence<unsigned long long>  |    std::vector<uint64_t> |
+    +-------------------------------+--------------------------+
+    | sequence<float>               |    std::vector<float>    |
+    +-------------------------------+--------------------------+
+    | sequence<double>              |    std::vector<double>   |
+    +-------------------------------+--------------------------+
 
 Structures
 ^^^^^^^^^^
@@ -132,42 +132,42 @@ You can define an IDL structure with a set of members with multiple types. It wi
 
 The following IDL structure: ::
 
-	struct Structure
-	{
+    struct Structure
+    {
         octet octet_value;
-   	    long long_value;
+           long long_value;
         string string_value;
-	};
+    };
 
 Would be converted to: ::
 
-	class Structure
-	{
-	public:
-	   Structure();
-	   ~Structure();
-	   Structure(const Structure &x);
-	   Structure(Structure &&x);
-	   Structure& operator=( const Structure &x);
-	   Structure& operator=(Structure &&x);
+    class Structure
+    {
+    public:
+       Structure();
+       ~Structure();
+       Structure(const Structure &x);
+       Structure(Structure &&x);
+       Structure& operator=( const Structure &x);
+       Structure& operator=(Structure &&x);
 
-	   void octet_value(uint8_t _octet_value);
-	   uint8_t octet_value() const;
-	   uint8_t& octet_value();
-	   void long_value(int64_t _long_value);
-	   int64_t long_value() const;
-	   int64_t& long_value();
-	   void string_value(const std::string
-	      &_string_value);
-	   void string_value(std::string &&_string_value);
-	   const std::string& string_value() const;
-	   std::string& string_value();
+       void octet_value(uint8_t _octet_value);
+       uint8_t octet_value() const;
+       uint8_t& octet_value();
+       void long_value(int64_t _long_value);
+       int64_t long_value() const;
+       int64_t& long_value();
+       void string_value(const std::string
+          &_string_value);
+       void string_value(std::string &&_string_value);
+       const std::string& string_value() const;
+       std::string& string_value();
 
-	private:
-	   uint8_t m_octet_value;
-	   int64_t m_long_value;
-	   std::string m_string_value;
-	};
+    private:
+       uint8_t m_octet_value;
+       int64_t m_long_value;
+       std::string m_string_value;
+    };
 
 Unions
 ^^^^^^
@@ -176,50 +176,50 @@ In IDL, a union is defined as a sequence of members with their own types and a d
 
 The following IDL union: ::
 
-	union Union switch(long)
-	{
- 	  case 1:
-	    octet octet_value;
-	  case 2:
-	    long long_value;
-	  case 3:
-	    string string_value;
-	};
+    union Union switch(long)
+    {
+       case 1:
+        octet octet_value;
+      case 2:
+        long long_value;
+      case 3:
+        string string_value;
+    };
 
 Would be converted to: ::
 
-	class Union
-	{
-	public:
-	   Union();
-	   ~Union();
-	   Union(const Union &x);
-	   Union(Union &&x);
-	   Union& operator=(const Union &x);
-	   Union& operator=(Union &&x);
+    class Union
+    {
+    public:
+       Union();
+       ~Union();
+       Union(const Union &x);
+       Union(Union &&x);
+       Union& operator=(const Union &x);
+       Union& operator=(Union &&x);
 
-	   void d(int32t __d);
-	   int32_t _d() const;
-	   int32_t& _d();
+       void d(int32t __d);
+       int32_t _d() const;
+       int32_t& _d();
 
-	   void octet_value(uint8_t _octet_value);
-	   uint8_t octet_value() const;
-	   uint8_t& octet_value();
-	   void long_value(int64_t _long_value);
-	   int64_t long_value() const;
-	   int64_t& long_value();
-	   void string_value(const std::string
-	      &_string_value);
-	   void string_value(std:: string &&_string_value);
-	   const std::string& string_value() const;
-	   std::string& string_value();
+       void octet_value(uint8_t _octet_value);
+       uint8_t octet_value() const;
+       uint8_t& octet_value();
+       void long_value(int64_t _long_value);
+       int64_t long_value() const;
+       int64_t& long_value();
+       void string_value(const std::string
+          &_string_value);
+       void string_value(std:: string &&_string_value);
+       const std::string& string_value() const;
+       std::string& string_value();
 
-	private:
-	   int32_t m__d;
-	   uint8_t m_octet_value;
-	   int64_t m_long_value;
-	   std::string m_string_value;
-	};
+    private:
+       int32_t m__d;
+       uint8_t m_octet_value;
+       int64_t m_long_value;
+       std::string m_string_value;
+    };
 
 Enumerations
 ^^^^^^^^^^^^
@@ -228,35 +228,35 @@ An enumeration in IDL format is a collection of identifiers that have a numeric 
 
 The following IDL enumeration: ::
 
-	enum Enumeration
-	{
-	    RED,
-	    GREEN,
-	    BLUE
-	};
+    enum Enumeration
+    {
+        RED,
+        GREEN,
+        BLUE
+    };
 
 Would be converted to: ::
 
-	enum Enumeration : uint32_t
-	{
-	    RED,
-	    GREEN,
-	    BLUE
-	};
+    enum Enumeration : uint32_t
+    {
+        RED,
+        GREEN,
+        BLUE
+    };
 
 Keyed Types
 ^^^^^^^^^^^
 
-In order to use keyed topics the user should define some key members inside the structure. This is achieved by writing “@Key” before the members of the structure you want to use as keys.
+In order to use keyed topics, the user should define some key members inside the structure. This is achieved by writing “@Key” before the members of the structure you want to use as keys.
 For example in the following IDL file the *id* and *type* field would be the keys: ::
 
-	struct MyType
-	{
-	    @Key long id;
-	    @Key string type;
-	    long positionX;
-	    long positionY;
-	};
+    struct MyType
+    {
+        @Key long id;
+        @Key string type;
+        long positionX;
+        long positionY;
+    };
 
 *fastrtpsgen* automatically detects these tags and correctly generates the serialization methods for the key generation function in TopicDataType (getKey). This function will obtain the 128-bit MD5 digest of the big-endian serialization of the Key Members.
 
@@ -272,4 +272,4 @@ preprocessor for this purpose, and you can use ``#include`` directive to include
     #include <AnotherFile.idl>
 
 If *fastrtpsgen* doesn't find a C/C++ preprocessor in default system paths, you could specify the preprocessor path using
-parameter ``-ppPath``. If you want to disable the usage of preprocessor, you could use the parameter ``-ppDisable``.
+parameter ``-ppPath``. If you want to disable the usage of the preprocessor, you could use the parameter ``-ppDisable``.

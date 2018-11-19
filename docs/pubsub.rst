@@ -757,44 +757,6 @@ Tips
    |                                                                                                                    |    </profiles>                                                                    |
    +--------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
 
-.. _xml-profiles:
-
-XML profiles
-------------
-
-In the :ref:`configuration` section you could see how to configure entity attributes using XML profiles,
-but this section goes deeper into it.
-
-XML profiles are loaded from XML files. *eProsima Fast RTPS* permits to load as much XML files as you want. An XML file
-can contain several XML profiles. An XML profile is defined by a unique name that is used to reference the XML profile
-when you create a Fast RTPS entity. *eProsima Fast RTPS* will also try to find in current execution path and
-load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml*.
-If this file exists, it is loaded at the library initialization.
-
-Making an XML
-^^^^^^^^^^^^^
-
-An XML file can contain several XML profiles. They can be divided into participant, publisher and
-subscriber profiles.
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <profiles>
-        <participant profile_name="participant_profile">
-            ....
-        </participant>
-
-        <publisher profile_name="publisher_profile">
-            ....
-        </publisher>
-
-        <subscriber profile_name="subscriber_profile">
-            ....
-        </subscriber>
-    </profiles>
-
-The entire list of supported attributes can be checked in this `XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_.
 
 Loading and applying profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

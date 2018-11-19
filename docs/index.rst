@@ -59,6 +59,7 @@ This documentation is organized into the following sections:
    security
    dynamictypes
    persistence
+   xmlprofiles
    fastrtpsgen
 
 

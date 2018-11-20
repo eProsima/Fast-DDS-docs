@@ -96,6 +96,8 @@ Configuration
 
 *eProsima Fast RTPS* entities can be configured through the code or XML profiles. This section will show both alternatives.
 
+.. _participantconfiguration:
+
 Participant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 

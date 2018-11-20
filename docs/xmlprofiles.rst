@@ -172,9 +172,9 @@ This allows any application to change TopicDataTypes without the need to change 
 XML Structure
 ^^^^^^^^^^^^^
 
-The XML Types definition (`<types>`, types tag) in the XML file can be placed similarly to the profiles tag.
-It can be a stand-alone XML Types file or be a child of the fastrtps XML root tag (`<dds>`).
-Inside the types tag, must be one or more type tags (`<type>`).
+The XML Types definition (``<types>``, types tag) in the XML file can be placed similarly to the profiles tag.
+It can be a stand-alone XML Types file or be a child of the fastrtps XML root tag (``<dds>``).
+Inside the types tag, must be one or more type tags (``<type>``).
 
 Stand-Alone:
 
@@ -227,7 +227,7 @@ Example:
     |       <literal name="A" value="0"/>           |     enum_builder->SetName("MyEnum");                                                                      |
     |       <literal name="B" value="1"/>           |     enum_builder->AddEmptyMember(0, "A");                                                                 |
     |       <literal name="C" value="2"/>           |     enum_builder->AddEmptyMember(1, "B");                                                                 |
-    |   </enum>                                     |     enum_builder->AddEmptyMember(2, "C");                                                                 | 
+    |   </enum>                                     |     enum_builder->AddEmptyMember(2, "C");                                                                 |
     |                                               |     DynamicType_ptr enum_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(enum_builder.get()); |
     |                                               |                                                                                                           |
     +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------+
@@ -316,30 +316,30 @@ Member types
 
 By member types, we refer to any type that can belong to a struct or a union, or be aliased by a typedef.
 
-When used as sequences elements, key or value types of a map, as an aliased type, etc., its name attribute
+When used as sequence's elements, key or value types of a map, as an aliased type, etc., its name attribute
 is ignored and can be omitted.
 
 **Basic types**
 
 The available basic types XML tags are:
 
-- boolean
-- octet
-- char
-- wchar
-- short
-- long
-- longlong
-- unsignedshort
-- unsignedlong
-- unsignedlonglong
-- float
-- double
-- longdouble
-- string
-- wstring
-- boundedString
-- boundedWString
+- ``<boolean>``
+- ``<octet>``
+- ``<char>``
+- ``<wchar>``
+- ``<short>``
+- ``<long>``
+- ``<longlong>``
+- ``<unsignedshort>``
+- ``<unsignedlong>``
+- ``<unsignedlonglong>``
+- ``<float>``
+- ``<double>``
+- ``<longdouble>``
+- ``<string>``
+- ``<wstring>``
+- ``<boundedString>``
+- ``<boundedWString>``
 
 All of them are defined simply:
 
@@ -354,8 +354,8 @@ All of them are defined simply:
     |                                        |                                                                                                                                |
     +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
 
-Except for boundedString and boundedWString that should include an inner element *maxLength* whose value indicates
-the maximum length of the string.
+Except for ``<boundedString>`` and ``<boundedWString>`` that should include an inner element :class:`maxLength`
+whose value indicates the maximum length of the string.
 
     +--------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
     | XML                                        | C++                                                                                                                            |
@@ -374,7 +374,7 @@ the maximum length of the string.
 
 **Arrays**
 
-Arrays are defined exactly the same way as any other member type, but adds the attribute *dimensions*.
+Arrays are defined exactly the same way as any other member type, but adds the attribute :class:`dimensions`.
 The format of this dimensions attribute is the size of each dimension separated by commas.
 
 Example:
@@ -402,8 +402,8 @@ It's IDL analogue would be:
 
 **Sequences**
 
-Sequences are defined by its name, its content type and its (optional) length.
-The type of its content can be defined by its type attribute or by a member type.
+Sequences are defined by its :class:`name`, its content :class:`type` and its (optional) :class:`length`.
+The type of its content can be defined by its :class:`type` attribute or by a member type.
 
 Example:
 
@@ -433,10 +433,10 @@ Note that the inner (or content) sequence has no name, as it would be ignored by
 
 **Maps**
 
-Maps are similar to sequences but they need to define two types instead one. One for its key and another
-for its value.
+Maps are similar to sequences but they need to define two types instead one.
+One for its :class:`key_type` and anotherfor its :class:`value_type`.
 Again, both types can be defined as attributes or as members, but in this cases, when defined
-as members, they are content in another XML element key_type and value_type respectively.
+as members, they are content in another XML element ``<key_type>`` and ``<value_type>`` respectively.
 
 The definition kind of each type can be mixed, this is, one type can be defined as an attribute and the
 other as a member.
@@ -943,7 +943,7 @@ or by :class:`<seconds>` plus :class:`<fraction>` labels:
 Topic Type
 ^^^^^^^^^^^^^^^^^^^^
 
-Topic Type (XML label :class:`<topic>`) is used to configure the topic 
+Topic Type (XML label :class:`<topic>`) is used to configure the topic
 that publishers and subscribers are going register.
 
 .. code-block:: xml

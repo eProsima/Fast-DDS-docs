@@ -1026,4 +1026,787 @@ very useful at defining extended or custom configuration parameters.
 Example
 -------
 
-klsahdklhasd
+In this section, you can see a full XML example with all possible configuration.
+It can be used as a quick reference, but it may not be valid due to incompatibility or exclusive properties.
+Don't take it as a working example.
+
+.. code-block:: xml
+
+    <profiles>
+        <transport_descriptors>
+            <transport_descriptor>
+                <transport_id>TransportId1</transport_id>
+                <type>TCPv4</type>
+                <sendBufferSize>8192</sendBufferSize>
+                <receiveBufferSize>8192</receiveBufferSize>
+                <TTL>250</TTL>
+                <maxMessageSize>16384</maxMessageSize>
+                <maxInitialPeersRange>100</maxInitialPeersRange>
+                <interfaceWhiteList>
+                    <id>192.168.1.41</id>
+                    <id>127.0.0.1</id>
+                </interfaceWhiteList>
+                <wan_addr>80.80.55.44</wan_addr>
+                <output_port>5101</output_port>
+                <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
+                <keep_alive_timeout_ms>25000</keep_alive_timeout_ms>
+                <max_logical_port>200</max_logical_port>
+                <logical_port_range>20</logical_port_range>
+                <logical_port_increment>2</logical_port_increment>
+                <ListeningPorts>
+                    <port>5100</port>
+                    <port>5200</port>
+                </ListeningPorts>
+            </transport_descriptor>
+            <transport_descriptor>
+                <transport_id>TransportId2</transport_id>
+                <type>UDPv6</type>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <types>
+            <type> <!-- Types can be defined in its own type tag or sharing the same tag -->
+                <enum name="MyAloneEnumType">
+                    <literal name="A" value="0"/>
+                    <literal name="B" value="1"/>
+                    <literal name="C" value="2"/>
+                </enum>
+            </type>
+            <type>
+                <enum name="MyEnumType">
+                    <literal name="A" value="0"/>
+                    <literal name="B" value="1"/>
+                    <literal name="C" value="2"/>
+                </enum>
+
+                <typedef name="MyAlias1" value="MyEnum"/>
+
+                <typedef name="MyAlias2">
+                    <long dimensions="2,2"/>
+                </typedef>
+
+                <struct name="MyStruct">
+                    <long name="first"/>
+                    <longlong name="second"/>
+                </struct>
+
+                <union name="MyUnion">
+                    <discriminator type="octet"/>
+                    <case>
+                        <caseValue value="0"/>
+                        <caseValue value="1"/>
+                        <long name="first"/>
+                    </case>
+                    <case>
+                        <caseValue value="2"/>
+                        <MyStruct name="second"/>
+                    </case>
+                    <case>
+                        <caseValue value="default"/>
+                        <longlong name="third"/>
+                    </case>
+                </union>
+
+                <!-- All possible members struct type -->
+                <struct name="MyFullStruct">
+                    <!-- Primitives & basic -->
+                    <boolean name="my_bool"/>
+                    <octet name="my_octet"/>
+                    <char name="my_char"/>
+                    <wchar name="my_wchar"/>
+                    <short name="my_short"/>
+                    <long name="my_long"/>
+                    <longlong name="my_longlong"/>
+                    <unsignedshort name="my_unsignedshort"/>
+                    <unsignedlong name="my_unsignedlong"/>
+                    <unsignedlonglong name="my_unsignedlonglong"/>
+                    <float name="my_float"/>
+                    <double name="my_double"/>
+                    <longdouble name="my_longdouble"/>
+                    <string name="my_string"/>
+                    <wstring name="my_wstring"/>
+                    <boundedString name="my_boundedString">
+                        <maxLength value="41925"/>
+                    </boundedString>
+                    <boundedWString name="my_boundedWString">
+                        <maxLength value="41925"/>
+                    </boundedWString>
+
+                    <!-- long long_array[2][3][4]; -->
+                    <long name="long_array" dimensions="2,3,4"/>
+
+                    <!-- sequence<sequence<long,2>,3> my_sequence_sequence; -->
+                    <sequence name="my_sequence_sequence" length="3">
+                        <sequence type="long" length="2"/>
+                    </sequence>
+
+                    <!-- map<long,map<long,long,2>,2> my_map_map; -->
+                    <map name="my_map_map" key_type="long" length="2">
+                        <value_type>
+                            <map key_type="long" value_type="long" length="2"/>
+                        </value_type>
+                    </map>
+
+                    <!-- Complex types -->
+                    <struct name="OtherStruct">
+                        <MyEnum name="my_enum"/>
+                        <MyStruct name="my_struct" dimensions="5"/>
+                    </struct>
+                </struct>
+            </type>
+        </types>
+
+        <participant profile_name="part_profile_name">
+            <rtps>
+                <name>Participant Name</name> <!-- String -->
+
+                <defaultUnicastLocatorList>
+                    <locator>
+                        <kind>UDPv4</kind>
+                        <!-- Access as physical, like UDP -->
+                        <port>7400</port>
+                        <address>192.168.1.41</address>
+                    </locator>
+                    <locator>
+                        <kind>TCPv4</kind>
+                        <!-- Both physical and logical, like TCP -->
+                        <port_>
+                            <physical_port>5100</physical_port>
+                            <logical_port>7400</logical_port>
+                        </port_>
+                        <addresses_>
+                            <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                            <wan_address>80.80.99.45</wan_address>
+                            <ip_address>192.168.1.55</ip_address>
+                        </addresses_>
+                    </locator>
+                    <locator>
+                        <kind>UDPv6</kind>
+                        <port>8844</port>
+                        <ipv6_address>::1</ipv6_address>
+                    </locator>
+                </defaultUnicastLocatorList>
+
+                <defaultMulticastLocatorList>
+                    <locator>
+                        <kind>UDPv4</kind>
+                        <!-- Access as physical, like UDP -->
+                        <port>7400</port>
+                        <address>192.168.1.41</address>
+                    </locator>
+                    <locator>
+                        <kind>TCPv4</kind>
+                        <!-- Both physical and logical, like TCP -->
+                        <port_>
+                            <physical_port>5100</physical_port>
+                            <logical_port>7400</logical_port>
+                        </port_>
+                        <addresses_>
+                            <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                            <wan_address>80.80.99.45</wan_address>
+                            <ip_address>192.168.1.55</ip_address>
+                        </addresses_>
+                    </locator>
+                    <locator>
+                        <kind>UDPv6</kind>
+                        <port>8844</port>
+                        <ipv6_address>::1</ipv6_address>
+                    </locator>
+                </defaultMulticastLocatorList>
+
+                <sendSocketBufferSize>8192</sendSocketBufferSize>
+
+                <listenSocketBufferSize>8192</listenSocketBufferSize>
+
+                <builtin>
+                    <use_SIMPLE_RTPS_PDP>FALSE</use_SIMPLE_RTPS_PDP>
+
+                    <use_WriterLivelinessProtocol>FALSE</use_WriterLivelinessProtocol>
+
+                    <EDP>SIMPLE</EDP>
+
+                    <domainId>4</domainId>
+
+                    <leaseDuration>INFINITE</leaseDuration>
+
+                    <leaseAnnouncement>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </leaseAnnouncement>
+
+                    <simpleEDP>
+                        <PUBWRITER_SUBREADER>TRUE</PUBWRITER_SUBREADER>
+                        <PUBREADER_SUBWRITER>TRUE</PUBREADER_SUBWRITER>
+                    </simpleEDP>
+
+                    <metatrafficUnicastLocatorList>
+                        <locator>
+                            <kind>UDPv4</kind>
+                            <!-- Access as physical, like UDP -->
+                            <port>7400</port>
+                            <address>192.168.1.41</address>
+                        </locator>
+                        <locator>
+                            <kind>TCPv4</kind>
+                            <!-- Both physical and logical, like TCP -->
+                            <port_>
+                                <physical_port>5100</physical_port>
+                                <logical_port>7400</logical_port>
+                            </port_>
+                            <addresses_>
+                                <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                                <wan_address>80.80.99.45</wan_address>
+                                <ip_address>192.168.1.55</ip_address>
+                            </addresses_>
+                        </locator>
+                        <locator>
+                            <kind>UDPv6</kind>
+                            <port>8844</port>
+                            <ipv6_address>::1</ipv6_address>
+                        </locator>
+                    </metatrafficUnicastLocatorList>
+
+                    <metatrafficMulticastLocatorList>
+                        <locator>
+                            <kind>UDPv4</kind>
+                            <!-- Access as physical, like UDP -->
+                            <port>7400</port>
+                            <address>192.168.1.41</address>
+                        </locator>
+                        <locator>
+                            <kind>TCPv4</kind>
+                            <!-- Both physical and logical, like TCP -->
+                            <port_>
+                                <physical_port>5100</physical_port>
+                                <logical_port>7400</logical_port>
+                            </port_>
+                            <addresses_>
+                                <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                                <wan_address>80.80.99.45</wan_address>
+                                <ip_address>192.168.1.55</ip_address>
+                            </addresses_>
+                        </locator>
+                        <locator>
+                            <kind>UDPv6</kind>
+                            <port>8844</port>
+                            <ipv6_address>::1</ipv6_address>
+                        </locator>
+                    </metatrafficMulticastLocatorList>
+
+                    <initialPeersList>
+                        <locator>
+                            <kind>UDPv4</kind>
+                            <!-- Access as physical, like UDP -->
+                            <port>7400</port>
+                            <address>192.168.1.41</address>
+                        </locator>
+                        <locator>
+                            <kind>TCPv4</kind>
+                            <!-- Both physical and logical, like TCP -->
+                            <port_>
+                                <physical_port>5100</physical_port>
+                                <logical_port>7400</logical_port>
+                            </port_>
+                            <addresses_>
+                                <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                                <wan_address>80.80.99.45</wan_address>
+                                <ip_address>192.168.1.55</ip_address>
+                            </addresses_>
+                        </locator>
+                        <locator>
+                            <kind>UDPv6</kind>
+                            <port>8844</port>
+                            <ipv6_address>::1</ipv6_address>
+                        </locator>
+                    </initialPeersList>
+
+                    <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
+
+                    <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
+
+                    <writerHistoryMemoryPolicy>PREALLOCATED</writerHistoryMemoryPolicy>
+                </builtin>
+
+                <port>
+                    <portBase>7400</portBase>
+                    <domainIDGain>200</domainIDGain>
+                    <participantIDGain>10</participantIDGain>
+                    <offsetd0>0</offsetd0>
+                    <offsetd1>1</offsetd1>
+                    <offsetd2>2</offsetd2>
+                    <offsetd3>3</offsetd3>
+                </port>
+
+                <userData>111222333</userData>
+
+                <participantID>99</participantID>
+
+                <throughputController>
+                    <bytesPerPeriod>8192</bytesPerPeriod>
+                    <periodMillisecs>1000</periodMillisecs>
+                </throughputController>
+
+                <userTransports>
+                    <id>TransportId1</id>
+                    <id>TransportId2</id>
+                </userTransports>
+
+                <useBuiltinTransports>FALSE</useBuiltinTransports>
+
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>Property1Name</name>
+                            <value>Property1Value</value>
+                            <propagate>FALSE</propagate>
+                        </property>
+                        <property>
+                            <name>Property2Name</name>
+                            <value>Property2Value</value>
+                            <propagate>FALSE</propagate>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+
+        <publisher profile_name="part_profile_name">
+            <topic>
+                <kind>WITH_KEY</kind>
+                <name>TopicName</name>
+                <dataType>TopicDataTypeName</dataType>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>20</depth>
+                </historyQos>
+                <resourceLimitsQos>
+                    <max_samples>5</max_samples>
+                    <max_instances>2</max_instances>
+                    <max_samples_per_instance>1</max_samples_per_instance>
+                    <allocated_samples>20</allocated_samples>
+                </resourceLimitsQos>
+            </topic>
+
+            <qos> <!-- writerQosPoliciesType -->
+                <durability>
+                    <kind>VOLATILE</kind>
+                </durability>
+                <durabilityService>
+                    <service_cleanup_delay>
+                        <seconds>10</seconds>
+                        <fraction>0</fraction>
+                    </service_cleanup_delay>
+                    <history_kind>KEEP_LAST</history_kind>
+                    <history_depth>20</history_depth>
+                    <max_samples>10</max_samples>
+                    <max_instances>2</max_instances>
+                    <max_samples_per_instance>10</max_samples_per_instance>
+                </durabilityService>
+                <deadline>
+                    <period>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </period>
+                </deadline>
+                <latencyBudget>
+                    <duration>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </duration>
+                </latencyBudget>
+                <liveliness>
+                    <kind>AUTOMATIC</kind>
+                    <leaseDuration>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </leaseDuration>
+                    <announcement_period>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </announcement_period>
+                </liveliness>
+                <reliability>
+                    <kind>BEST_EFFORT</kind>
+                    <max_blocking_time>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </max_blocking_time>
+                </reliability>
+                <lifespan>
+                    <seconds>1</seconds>
+                    <fraction>856000</fraction>
+                </lifespan>
+                <userData>155463</userData>
+                <timeBasedFilter>
+                    <minimum_separation>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </minimum_separation>
+                </timeBasedFilter>
+                <ownership>
+                    <kind>SHARED</kind>
+                </ownership>
+                <ownershipStrength>
+                    <value>5</value>
+                </ownershipStrength>
+                <destinationOrder>
+                    <kind>BY_RECEPTION_TIMESTAMP</kind>
+                </destinationOrder>
+                <presentation>
+                    <access_scope>TOPIC</access_scope>
+                    <coherent_access>TRUE</coherent_access>
+                    <ordered_access>TRUE</ordered_access>
+                </presentation>
+                <partition>
+                    <name>part1</name>
+                    <name>part2</name>
+                </partition>
+                <topicData>
+                    <value>155645</value>
+                </topicData>
+                <groupData>
+                    <value>6546</value>
+                </groupData>
+                <publishMode>
+                    <kind>ASYNCHRONOUS</kind>
+                </publishMode>
+            </qos>
+
+            <times>
+                <initialHeartbeatDelay>
+                    <seconds>1</seconds>
+                    <fraction>856000</fraction>
+                </initialHeartbeatDelay>
+                <heartbeatPeriod>
+                    <seconds>1</seconds>
+                    <fraction>856000</fraction>
+                </heartbeatPeriod>
+                <nackResponseDelay>
+                    <seconds>1</seconds>
+                    <fraction>856000</fraction>
+                </nackResponseDelay>
+                <nackSupressionDuration>
+                    <seconds>1</seconds>
+                    <fraction>856000</fraction>
+                </nackSupressionDuration>
+            </times>
+
+            <unicastLocatorList>
+                <locator>
+                    <kind>UDPv4</kind>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </locator>
+                <locator>
+                    <kind>TCPv4</kind>
+                    <!-- Both physical and logical, like TCP -->
+                    <port_>
+                        <physical_port>5100</physical_port>
+                        <logical_port>7400</logical_port>
+                    </port_>
+                    <addresses_>
+                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                        <wan_address>80.80.99.45</wan_address>
+                        <ip_address>192.168.1.55</ip_address>
+                    </addresses_>
+                </locator>
+                <locator>
+                    <kind>UDPv6</kind>
+                    <port>8844</port>
+                    <ipv6_address>::1</ipv6_address>
+                </locator>
+            </unicastLocatorList>
+
+            <multicastLocatorList>
+                <locator>
+                    <kind>UDPv4</kind>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </locator>
+                <locator>
+                    <kind>TCPv4</kind>
+                    <!-- Both physical and logical, like TCP -->
+                    <port_>
+                        <physical_port>5100</physical_port>
+                        <logical_port>7400</logical_port>
+                    </port_>
+                    <addresses_>
+                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                        <wan_address>80.80.99.45</wan_address>
+                        <ip_address>192.168.1.55</ip_address>
+                    </addresses_>
+                </locator>
+                <locator>
+                    <kind>UDPv6</kind>
+                    <port>8844</port>
+                    <ipv6_address>::1</ipv6_address>
+                </locator>
+            </multicastLocatorList>
+
+            <outLocatorList>
+                <locator>
+                    <kind>UDPv4</kind>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </locator>
+                <locator>
+                    <kind>TCPv4</kind>
+                    <!-- Both physical and logical, like TCP -->
+                    <port_>
+                        <physical_port>5100</physical_port>
+                        <logical_port>7400</logical_port>
+                    </port_>
+                    <addresses_>
+                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                        <wan_address>80.80.99.45</wan_address>
+                        <ip_address>192.168.1.55</ip_address>
+                    </addresses_>
+                </locator>
+                <locator>
+                    <kind>UDPv6</kind>
+                    <port>8844</port>
+                    <ipv6_address>::1</ipv6_address>
+                </locator>
+            </outLocatorList>
+
+            <throughputController>
+                <bytesPerPeriod>8192</bytesPerPeriod>
+                <periodMillisecs>1000</periodMillisecs>
+            </throughputController>
+
+            <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+
+            <propertiesPolicy>
+                <properties>
+                    <property>
+                        <name>Property1Name</name>
+                        <value>Property1Value</value>
+                        <propagate>FALSE</propagate>
+                    </property>
+                    <property>
+                        <name>Property2Name</name>
+                        <value>Property2Value</value>
+                        <propagate>FALSE</propagate>
+                    </property>
+                </properties>
+            </propertiesPolicy>
+
+            <userDefinedID>45</userDefinedID>
+
+            <entityID>76</entityID>
+        </publisher>
+
+        <subscriber profile_name="part_profile_name">
+            <topic>
+                <kind>WITH_KEY</kind>
+                <name>TopicName</name>
+                <dataType>TopicDataTypeName</dataType>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>20</depth>
+                </historyQos>
+                <resourceLimitsQos>
+                    <max_samples>5</max_samples>
+                    <max_instances>2</max_instances>
+                    <max_samples_per_instance>1</max_samples_per_instance>
+                    <allocated_samples>20</allocated_samples>
+                </resourceLimitsQos>
+            </topic>
+
+            <qos>
+                <durability>
+                    <kind>PERSISTENT</kind>
+                </durability>
+                <durabilityService>
+                    <service_cleanup_delay>
+                        <!-- DURATION -->
+                    </service_cleanup_delay>
+                    <history_kind>KEEP_LAST</history_kind>
+                    <history_depth>50</history_depth>
+                    <max_samples>20</max_samples>
+                    <max_instances>3</max_instances>
+                    <max_samples_per_instance>5</max_samples_per_instance>
+                </durabilityService>
+                <deadline>
+                    <period>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </period>
+                </deadline>
+                <latencyBudget>
+                    <duration>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </duration>
+                </latencyBudget>
+                <liveliness>
+                    <kind>MANUAL_BY_PARTICIPANT</kind>
+                    <leaseDuration>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </leaseDuration>
+                    <announcement_period>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </announcement_period>
+                </liveliness>
+                <reliability>
+                    <kind>BEST_EFFORT | RELIABLE</kind>
+                    <max_blocking_time>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </max_blocking_time>
+                </reliability>
+                <lifespan>
+                    <seconds>1</seconds>
+                    <fraction>856000</fraction>
+                </lifespan>
+                <userData>554688</userData>
+                <timeBasedFilter>
+                    <minimum_separation>
+                        <seconds>1</seconds>
+                        <fraction>856000</fraction>
+                    </minimum_separation>
+                </timeBasedFilter>
+                <ownership>
+                    <kind>EXCLUSIVE</kind>
+                </ownership>
+                <destinationOrder>
+                    <kind>BY_RECEPTION_TIMESTAMP</kind>
+                </destinationOrder>
+                <presentation>
+                    <access_scope>INSTANCE</access_scope>
+                    <coherent_access>TRUE</coherent_access>
+                    <ordered_access>TRUE</ordered_access>
+                </presentation>
+                <partition>
+                    <name>part1</name>
+                    <name>part2</name>
+                </partition>
+                <topicData>
+                    <value>165733</value>
+                </topicData>
+                <groupData>
+                    <value>165433</value>
+                </groupData>
+            </qos>
+
+            <times>
+                <initialAcknackDelay>
+                    <seconds>1</seconds>
+                    <fraction>856000</fraction>
+                </initialAcknackDelay>
+                <heartbeatResponseDelay>
+                    <seconds>1</seconds>
+                    <fraction>856000</fraction>
+                </heartbeatResponseDelay>
+            </times>
+
+            <unicastLocatorList>
+                <locator>
+                    <kind>UDPv4</kind>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </locator>
+                <locator>
+                    <kind>TCPv4</kind>
+                    <!-- Both physical and logical, like TCP -->
+                    <port_>
+                        <physical_port>5100</physical_port>
+                        <logical_port>7400</logical_port>
+                    </port_>
+                    <addresses_>
+                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                        <wan_address>80.80.99.45</wan_address>
+                        <ip_address>192.168.1.55</ip_address>
+                    </addresses_>
+                </locator>
+                <locator>
+                    <kind>UDPv6</kind>
+                    <port>8844</port>
+                    <ipv6_address>::1</ipv6_address>
+                </locator>
+            </unicastLocatorList>
+
+            <multicastLocatorList>
+                <locator>
+                    <kind>UDPv4</kind>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </locator>
+                <locator>
+                    <kind>TCPv4</kind>
+                    <!-- Both physical and logical, like TCP -->
+                    <port_>
+                        <physical_port>5100</physical_port>
+                        <logical_port>7400</logical_port>
+                    </port_>
+                    <addresses_>
+                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                        <wan_address>80.80.99.45</wan_address>
+                        <ip_address>192.168.1.55</ip_address>
+                    </addresses_>
+                </locator>
+                <locator>
+                    <kind>UDPv6</kind>
+                    <port>8844</port>
+                    <ipv6_address>::1</ipv6_address>
+                </locator>
+            </multicastLocatorList>
+
+            <outLocatorList>
+                <locator>
+                    <kind>UDPv4</kind>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </locator>
+                <locator>
+                    <kind>TCPv4</kind>
+                    <!-- Both physical and logical, like TCP -->
+                    <port_>
+                        <physical_port>5100</physical_port>
+                        <logical_port>7400</logical_port>
+                    </port_>
+                    <addresses_>
+                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                        <wan_address>80.80.99.45</wan_address>
+                        <ip_address>192.168.1.55</ip_address>
+                    </addresses_>
+                </locator>
+                <locator>
+                    <kind>UDPv6</kind>
+                    <port>8844</port>
+                    <ipv6_address>::1</ipv6_address>
+                </locator>
+            </outLocatorList>
+
+            <expectsInlineQos>TRUE</expectsInlineQos>
+
+            <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+
+            <propertiesPolicy>
+                <properties>
+                    <property>
+                        <name>Property1Name</name>
+                        <value>Property1Value</value>
+                        <propagate>FALSE</propagate>
+                    </property>
+                    <property>
+                        <name>Property2Name</name>
+                        <value>Property2Value</value>
+                        <propagate>FALSE</propagate>
+                    </property>
+                </properties>
+            </propertiesPolicy>
+
+            <userDefinedID>55</userDefinedID>
+
+            <entityID>66</entityID>
+        </subscriber>
+    </profiles>

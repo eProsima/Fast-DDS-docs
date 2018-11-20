@@ -127,37 +127,37 @@ The complete list of configurable parameters is shown in the following XML code:
 
 The XML label :class:`<transport_descriptors>` can hold any number of :class:`<transport_descriptor>`.
 
-- **transport_id**: Unique name to identify each transport descriptor.
+- ``<transport_id>``: Unique name to identify each transport descriptor.
 
-- **type**: Type of the transport descriptor. Current supported types are UDPv4, UDPv6, TCPv4, and TCPv6.
+- ``<type>``: Type of the transport descriptor. Current supported types are UDPv4, UDPv6, TCPv4, and TCPv6.
 
-- **sendBufferSize**: Size, in bytes, of the socket send buffer.
+- ``<sendBufferSize>``: Size, in bytes, of the socket send buffer.
 
-- **receiveBufferSize**: Size, in bytes, of the socket receive buffer.
+- ``<receiveBufferSize>``: Size, in bytes, of the socket receive buffer.
 
-- **TTL**: *Time To Live*, **only** for UDP transports.
+- ``<TTL>``: *Time To Live*, **only** for UDP transports.
 
-- **maxMessageSize**: Maximum size in bytes of the transport message buffer.
+- ``<maxMessageSize>``: Maximum size in bytes of the transport message buffer.
 
-- **maxInitialPeersRange**: Stablishes the maximum number of guessed inital peers to try to connect (default **4**).
+- ``<maxInitialPeersRange>``: Stablishes the maximum number of guessed inital peers to try to connect (default **4**).
 
-- **interfaceWhiteList**: Allows you to define :ref:`whitelist-interfaces`.
+- ``<interfaceWhiteList>``: Allows you to define :ref:`whitelist-interfaces`.
 
-- **wan_addr**: Allows you to declare the public WAN address when using **TCPv4 transports**.
+- ``<wan_addr>``: Allows you to declare the public WAN address when using **TCPv4 transports**.
 
-- **output_port**: Port used for output bound, instead a random one.
+- ``<output_port>``: Port used for output bound, instead a random one.
 
-- **keep_alive_frequency_ms**: Frequency in milliseconds for sending RTCP keep alive requests (**only** TCP).
+- ``<keep_alive_frequency_ms>``: Frequency in milliseconds for sending RTCP keep alive requests (**only** TCP).
 
-- **keep_alive_timeout_ms**: Time in milliseconds to consider a connection is broken since the last keep alive requests was sent (**only** TCP).
+- ``<keep_alive_timeout_ms>``: Time in milliseconds to consider a connection is broken since the last keep alive requests was sent (**only** TCP).
 
-- **max_logical_port**: Maximum number of logical ports to try during RTCP negotiation (**only** TCP).
+- ``<max_logical_port>``: Maximum number of logical ports to try during RTCP negotiation (**only** TCP).
 
-- **logical_port_range**: Maximum number of logical ports per request to try during RTCP negotiation (**only** TCP).
+- ``<logical_port_range>``: Maximum number of logical ports per request to try during RTCP negotiation (**only** TCP).
 
-- **logical_port_increment**: Increment between logical ports to try during RTCP negotiation (**only** TCP).
+- ``<logical_port_increment>``: Increment between logical ports to try during RTCP negotiation (**only** TCP).
 
-- **ListeningPorts**: Local port to work as TCP acceptor for input connections. If not set, the transport will work as TCP client only (**only** TCP).
+- ``<ListeningPorts>``: Local port to work as TCP acceptor for input connections. If not set, the transport will work as TCP client only (**only** TCP).
 
 You can see more examples in :ref:`comm-transports-configuration`.
 
@@ -574,54 +574,54 @@ as shown in :ref:`loadingapplyingprofiles`.
 
 Now, we are going to explain each possible configuration parameter:
 
-- **name**: Participant's name. Don't confuse it with ``profile_name``.
+- ``<name>``: Participant's name. Don't confuse it with ``profile_name``.
 
-- **defaultUnicastLocatorList**: List of default unicast locators. It expects a :ref:`LocatorListType`.
+- ``<defaultUnicastLocatorList>``: List of default unicast locators. It expects a :ref:`LocatorListType`.
 
-- **defaultMulticastLocatorList**: List of default multicast locators. It expects a :ref:`LocatorListType`.
+- ``<defaultMulticastLocatorList>``: List of default multicast locators. It expects a :ref:`LocatorListType`.
 
-- **sendSocketBufferSize**: Size in bytes of the output socket buffer.
+- ``<sendSocketBufferSize>``: Size in bytes of the output socket buffer.
 
-- **listenSocketBufferSize**: Size in bytes of the input socket buffer.
+- ``<listenSocketBufferSize>``: Size in bytes of the input socket buffer.
 
-- **builtin**: Built in parameters. Explained in the :ref:`builtin` section.
+- ``<builtin>``: Built in parameters. Explained in the :ref:`builtin` section.
 
-- **port**: Allows you to define the port parameters and gains related with the RTPS protocol. It has several subfields:
+- ``<port>``: Allows you to define the port parameters and gains related with the RTPS protocol. It has several subfields:
 
-    * *portBase*: Base ``port`` (*default 7400*).
+    * ``<portBase>``: Base ``port`` (*default 7400*).
 
-    * *domainIDGain*: Gain in ``domainId`` (*default 250*).
+    * ``<domainIDGain>``: Gain in ``domainId`` (*default 250*).
 
-    * *participantIDGain*: Gain in ``participantId`` (*default 2*).
+    * ``<participantIDGain>``: Gain in ``participantId`` (*default 2*).
 
-    * *offsetd0*: Multicast metadata offset (*default 0*).
+    * ``<offsetd0>``: Multicast metadata offset (*default 0*).
 
-    * *offsetd1*: Unicast metadata offset (*default 10*).
+    * ``<offsetd1>``: Unicast metadata offset (*default 10*).
 
-    * *offsetd2*: Multicast user data offset (*default 1*).
+    * ``<offsetd2>``: Multicast user data offset (*default 1*).
 
-    * *offsetd3*: Unicast user data offser (*default 11*).
+    * ``<offsetd3>``: Unicast user data offser (*default 11*).
 
 
-- **userData**: Allows you to add your own information.
+- ``<userData>``: Allows you to add your own information.
 
-- **participantID**: Allows you to set the participant's identifier. Typically it will be autogenerated by the ``Domain``.
+- ``<participantID>``: Allows you to set the participant's identifier. Typically it will be autogenerated by the ``Domain``.
 
-- **throughputController**: Allows you to define a maximum throughput:
+- ``<throughputController>``: Allows you to define a maximum throughput:
 
-    * *bytesPerPeriod*: Maximum bytes to send by period.
-    * *periodMillisecs*: Period in milliseconds.
+    * ``<bytesPerPeriod>``: Maximum bytes to send by period.
+    * ``<periodMillisecs>``: Period in milliseconds.
 
-- **userTransports**: Allows you to add transport descriptors to be used by the participant, as a list of :class:`<id>`.
+- ``<userTransports>``: Allows you to add transport descriptors to be used by the participant, as a list of :class:`<id>`.
 
     .. code-block:: xml
 
         <id>TransportId1</id> <!-- string -->
         <id>TransportId2</id> <!-- string -->
 
-- **useBuiltinTransports**: Boolean field to indicate to the system that the participant will use the default builtin transport independiently of its :class:`<userTransports>`.
+- ``<useBuiltinTransports>``: Boolean field to indicate to the system that the participant will use the default builtin transport independiently of its :class:`<userTransports>`.
 
-- **propertiesPolicy**: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
+- ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
 
 
 .. _builtin:
@@ -674,35 +674,35 @@ This section of the :class:`Participant's rtps` configuration allows you to defi
         <writerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</writerHistoryMemoryPolicy>
     </builtin>
 
-- **use_SIMPLE_RTPS_PDP**: Boolean attribute to establish if simple RTPS participant discovery protocol must be used.
+- ``<use_SIMPLE_RTPS_PDP>``: Boolean attribute to establish if simple RTPS participant discovery protocol must be used.
 
-- **use_WriterLivelinessProtocol**: Boolean attribute to establish the usage of the writer liveliness protocol.
+- ``<use_WriterLivelinessProtocol>``: Boolean attribute to establish the usage of the writer liveliness protocol.
 
-- **EDP**: It establishes the type of EDP protocol. It can take :class:`SIMPLE` or :class:`STATIC` values.
+- ``<EDP>``: It establishes the type of EDP protocol. It can take :class:`SIMPLE` or :class:`STATIC` values.
 
-- **domainId**: Sets the domain identifier.
+- ``<domainId>``: Sets the domain identifier.
 
-- **leaseDuration**: :ref:`DurationType` to set duration of lease period.
+- ``<leaseDuration>``: :ref:`DurationType` to set duration of lease period.
 
-- **leaseAnnouncement**: :ref:`DurationType` to set announcement of lease period.
+- ``<leaseAnnouncement>``: :ref:`DurationType` to set announcement of lease period.
 
-- **simpleEDP**: If :class:`EDP` is set to :class:`SIMPLE`, allows you to configure the use of :class:`PUBWRITER_SUBREADER` and :class:`PUBREADER_SUBWRITER`.
+- ``<simpleEDP>``: If :class:`EDP` is set to :class:`SIMPLE`, allows you to configure the use of :class:`PUBWRITER_SUBREADER` and :class:`PUBREADER_SUBWRITER`.
 
-    * *PUBWRITER_SUBREADER*: Boolean value to determine if :class:`PUBWRITER_SUBREADER` must be used.
+    * ``<PUBWRITER_SUBREADER>``: Boolean value to determine if :class:`PUBWRITER_SUBREADER` must be used.
 
-    * *PUBREADER_SUBWRITER*: Boolean value to determine if :class:`PUBREADER_SUBWRITER` must be used.
+    * ``<PUBREADER_SUBWRITER>``: Boolean value to determine if :class:`PUBREADER_SUBWRITER` must be used.
 
-- **metatrafficUnicastLocatorList**: List of metatraffic unicast locators. It expects a :ref:`LocatorListType`.
+- ``<metatrafficUnicastLocatorList>``: List of metatraffic unicast locators. It expects a :ref:`LocatorListType`.
 
-- **metatrafficMulticastLocatorList**: List of metatraffic multicast locators. It expects a :ref:`LocatorListType`.
+- ``<metatrafficMulticastLocatorList>``: List of metatraffic multicast locators. It expects a :ref:`LocatorListType`.
 
-- **initialPeersList**: List of initial peers locators. It expects a :ref:`LocatorListType`.
+- ``<initialPeersList>``: List of initial peers locators. It expects a :ref:`LocatorListType`.
 
-- **staticEndpointXMLFilename**: If :class:`EDP` is set to :class:`STATIC`, allows you to set the XML file path that contains the endpoint configuration.
+- ``<staticEndpointXMLFilename>``: If :class:`EDP` is set to :class:`STATIC`, allows you to set the XML file path that contains the endpoint configuration.
 
-- **readerHistoryMemoryPolicy**: Policy of memory allocation for reader's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+- ``<readerHistoryMemoryPolicy>``: Policy of memory allocation for reader's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
 
-- **writerHistoryMemoryPolicy**: Policy of memory allocation for writer's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+- ``<writerHistoryMemoryPolicy>``: Policy of memory allocation for writer's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
 
 
 .. _publisherprofiles:
@@ -778,31 +778,31 @@ as shown in :ref:`loadingapplyingprofiles`.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
-- **topic**: :ref:`TopicType` configuration of the subscriber.
+- ``<topic>``: :ref:`TopicType` configuration of the subscriber.
 
-- **qos**: Subscriber :ref:`CommonQOS` configuration.
+- ``<qos>``: Subscriber :ref:`CommonQOS` configuration.
 
-- **times**:  Allows you to configure some time related parameters of the subscriber:
+- ``<times>``:  Allows you to configure some time related parameters of the subscriber:
 
-    * *initialAcknackDelay*: :ref:`DurationType` of the initial :class:`Acknack` message.
+    * ``<initialAcknackDelay>``: :ref:`DurationType` of the initial :class:`Acknack` message.
 
-    * *heartbeatResponseDelay*: :ref:`DurationType` to set the delay of the :class:`heartbeat` message response.
+    * ``<heartbeatResponseDelay>``: :ref:`DurationType` to set the delay of the :class:`heartbeat` message response.
 
-- **unicastLocatorList**: List of unicast locators. It expects a :ref:`LocatorListType`.
+- ``<unicastLocatorList>``: List of unicast locators. It expects a :ref:`LocatorListType`.
 
-- **multicastLocatorList**: List of multicast locators. It expects a :ref:`LocatorListType`.
+- ``<multicastLocatorList>``: List of multicast locators. It expects a :ref:`LocatorListType`.
 
-- **outLocatorList**:  List of output locators. It expects a :ref:`LocatorListType`.
+- ``<outLocatorList>``:  List of output locators. It expects a :ref:`LocatorListType`.
 
-- **expectsInlineQos**: Boolean parameter to indicate if QOS is expected inline.
+- ``<expectsInlineQos>``: Boolean parameter to indicate if QOS is expected inline.
 
-- **historyMemoryPolicy**: Policy of memory allocation for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+- ``<historyMemoryPolicy>``: Policy of memory allocation for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
 
-- **propertiesPolicy**: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
+- ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
 
-- **userDefinedID**: Allows you to set a custom identifier.
+- ``<userDefinedID>``: Allows you to set a custom identifier.
 
-- **entityID**: Allows you to establish the entityID of the subscriber.
+- ``<entityID>``: Allows you to establish the entityID of the subscriber.
 
 
 .. _commonxml:
@@ -858,17 +858,17 @@ In this example, we declared three different locators in :class:`<defaultUnicast
 
 Let's see each Locator's field in detail:
 
-- **kind**: Type of the Locator can be UDPv4, UDPv6, TCPv4, and TCPv6.
+- ``<kind>``: Type of the Locator can be UDPv4, UDPv6, TCPv4, and TCPv6.
 
-- **port**: Physical port number of the locator.
+- ``<port>``: Physical port number of the locator.
 
-- **port_**: Allows you to manage low-level detail in ports of TCP locators, allowing set both **physical_port** and **logical_port**.
+- ``<port_>``: Allows you to manage low-level detail in ports of TCP locators, allowing set both **physical_port** and **logical_port**.
 
-- **address**: Allows you to set the IPv4 address of the locator.
+- ``<address>``: Allows you to set the IPv4 address of the locator.
 
-- **addresses_**: Allows you to manage low-level details in address of TCP locators (**unique_lan_id**, **wan_address** and **ip_address**).
+- ``<addresses_>``: Allows you to manage low-level details in address of TCP locators (**unique_lan_id**, **wan_address** and **ip_address**).
 
-- **ipv6_address**:  Allows you to set the IPv6 address of the locator.
+- ``<ipv6_address>``:  Allows you to set the IPv6 address of the locator.
 
 .. _PropertiesPolicyType:
 
@@ -896,11 +896,11 @@ very useful at defining extended or custom configuration parameters.
         </properties>
     </propertiesPolicy>
 
-- **name**: Name to identify the property.
+- ``<name>``: Name to identify the property.
 
-- **value**: Property's value.
+- ``<value>``: Property's value.
 
-- **propagate**: Indicates if the property is meant to be serialized along with the object it belongs to.
+- ``<propagate>``: Indicates if the property is meant to be serialized along with the object it belongs to.
 
 .. _DurationType:
 
@@ -928,15 +928,15 @@ configuration parameter labels that give it sense, like :class:`<leaseAnnounceme
 Duration time can be defined through a constant value directly (:class:`INFINITE`, :class:`ZERO`, or :class:`INVALID`),
 or by :class:`<seconds>` plus :class:`<fraction>` labels:
 
-- **INFINITE**: Constant value, represents an infinite period of time.
+- ``<INFINITE>``: Constant value, represents an infinite period of time.
 
-- **ZERO**: Constant value, represents 0.0 seconds.
+- ``<ZERO>``: Constant value, represents 0.0 seconds.
 
-- **INVALID**: Constant value, represents an invalid period of time.
+- ``<INVALID>``: Constant value, represents an invalid period of time.
 
-- **seconds**: Integer seconds value.
+- ``<seconds>``: Integer seconds value.
 
-- **fraction**: Fractions of a second. A fraction is :class:`1/(2^32)` seconds.
+- ``<fraction>``: Fractions of a second. A fraction is :class:`1/(2^32)` seconds.
 
 .. _TopicType:
 
@@ -964,23 +964,23 @@ that publishers and subscribers are going register.
         </resourceLimitsQos>
     </topic>
 
-- **kind**: String field that sets if the topic uses keys or not. The available values are: *NO_KEY* and *WITH_KEY*.
+- ``<kind>``: String field that sets if the topic uses keys or not. The available values are: *NO_KEY* and *WITH_KEY*.
 
-- **name**: Name of the topic.
+- ``<name>``: Name of the topic.
 
-- **dataType**: Indicates if the property is meant to be serialized along with the object it belongs to.
+- ``<dataType>``: Indicates if the property is meant to be serialized along with the object it belongs to.
 
-- **historyQos**: The history QoS manages the number of messages that are going to be stored in publishers and subscribers in their histories.
+- ``<historyQos>``: The history QoS manages the number of messages that are going to be stored in publishers and subscribers in their histories.
 
-    * *kind*: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
+    * ``<kind>``: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
 
-    * *depth*: Number of packages that can be stored with the *KEEP_LAST* option.
+    * ``<depth>``: Number of packages that can be stored with the *KEEP_LAST* option.
 
-- **resourceLimitsQos**: The history QoS manages the number of messages that are going to be stored in publishers and subscribers in their histories.
+- ``<resourceLimitsQos>``: The history QoS manages the number of messages that are going to be stored in publishers and subscribers in their histories.
 
-    * *kind*: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
+    * ``<kind>``: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
 
-    * *depth*: Number of packages that can be stored with the *KEEP_LAST* option.
+    * ``<depth>``: Number of packages that can be stored with the *KEEP_LAST* option.
 
 .. _CommonQOS:
 
@@ -1014,11 +1014,11 @@ very useful at defining extended or custom configuration parameters.
         </properties>
     </propertiesPolicy>
 
-- **name**: Name to identify the property.
+- ``<name>``: Name to identify the property.
 
-- **value**: Property's value.
+- ``<value>``: Property's value.
 
-- **propagate**: Indicates if the property is meant to be serialized along with the object it belongs to.
+- ``<propagate>``: Indicates if the property is meant to be serialized along with the object it belongs to.
 
 
 .. _examplexml:

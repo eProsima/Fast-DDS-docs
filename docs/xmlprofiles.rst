@@ -59,6 +59,23 @@ This example is useful as a quick reference when you want to look for some parti
 This `XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_ can be used
 as quick reference too.
 
+Loading and applying profiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before creating any entity, you can load XML files using ``Domain::loadXMLProfilesFile`` function.
+``createParticipant``, ``createPublisher`` and ``createSubscriber`` have a version
+that expects the profile name as an argument. *eProsima Fast RTPS* searches the XML profile using
+this profile name and applies the XML profile to the entity.
+
+.. code-block:: c++
+
+   eprosima::fastrtps::Domain::loadXMLProfilesFile("my_profiles.xml");
+
+   Participant *participant = Domain::createParticipant("participant_xml_profile");
+   Publisher *publisher = Domain::createPublisher(participant, "publisher_xml_profile");
+   Subscriber *subscriber = Domain::createSubscriber(participant, "subscriber_xml_profile");
+
+To load dynamic types from its declaration through XML see the :ref:`Usage` section of :ref:`xmldynamictypes`.
 
 .. _transportdescriptors:
 
@@ -112,13 +129,13 @@ The XML label :class:`<transport_descriptors>` can hold any number of :class:`<t
 
 - **type**: Type of the transport descriptor. Current supported types are UDPv4, UDPv6, TCPv4, and TCPv6.
 
-- **sendBufferSize**: Size, in bytes, of the send buffer.
+- **sendBufferSize**: Size, in bytes, of the socket send buffer.
 
-- **receiveBufferSize**: Size, in bytes, of the receive buffer.
+- **receiveBufferSize**: Size, in bytes, of the socket receive buffer.
 
 - **TTL**: *Time To Live*, **only** for UDP transports.
 
-- **maxMessageSize**: Maximum size in bytes of the messages.
+- **maxMessageSize**: Maximum size in bytes of the transport message buffer.
 
 - **maxInitialPeersRange**: Stablishes the maximum number of guessed inital peers to try to connect (default **4**).
 
@@ -450,6 +467,8 @@ Example:
         <MyStruct name="my_struct" dimensions="5"/>
     </struct>
 
+.. _Usage:
+
 Usage
 ^^^^^
 
@@ -472,7 +491,106 @@ Remember that only Structs generate usable DynamicPubSubType instances.
 Participant profiles
 --------------------
 
-gfhfgh
+Participant profiles allows you to declare participant configurations from XML file.
+
+.. code-block:: xml
+
+    <participant profile_name="part_profile_name">
+        <rtps>
+            <name>Participant Name</name> <!-- String -->
+
+            <defaultUnicastLocatorList>
+                <!-- LOCATOR_LIST -->
+            </defaultUnicastLocatorList>
+
+            <defaultMulticastLocatorList>
+                <!-- LOCATOR_LIST -->
+            </defaultMulticastLocatorList>
+
+            <sendSocketBufferSize>8192</sendSocketBufferSize> <!-- uint32 -->
+
+            <listenSocketBufferSize>8192</listenSocketBufferSize>  <!-- uint32 -->
+
+            <builtin>
+                <use_SIMPLE_RTPS_PDP>FALSE</use_SIMPLE_RTPS_PDP> <!-- boolean -->
+
+                <use_WriterLivelinessProtocol>FALSE</use_WriterLivelinessProtocol>  <!-- boolean -->
+
+                <EDP> SIMPLE | STATIC </EDP> <!-- string -->
+
+                <domainId>4</domainId> <!-- uint32 -->
+
+                <leaseDuration>
+                    <!-- DURATION -->
+                </leaseDuration>
+
+                <leaseAnnouncement>
+                    <!-- DURATION -->
+                </leaseAnnouncement>
+
+                <simpleEDP>
+                    <PUBWRITER_SUBREADER>TRUE</PUBWRITER_SUBREADER> <!-- boolean -->
+                    <PUBREADER_SUBWRITER>TRUE</PUBREADER_SUBWRITER> <!-- boolean -->
+                </simpleEDP>
+
+                <metatrafficUnicastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                </metatrafficUnicastLocatorList>
+
+                <metatrafficMulticastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                </metatrafficMulticastLocatorList>
+
+                <initialPeersList>
+                    <!-- LOCATOR_LIST -->
+                </initialPeersList>
+
+                <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename> <!-- string -->
+
+                <readerHistoryMemoryPolicy> PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC  </readerHistoryMemoryPolicy> <!-- historyMemoryPolicyType -->
+
+                <writerHistoryMemoryPolicy> <!-- historyMemoryPolicyType --> </writerHistoryMemoryPolicy>
+            </builtin>
+
+            <port>
+                <portBase>7400</portBase> <!-- uint16 -->
+                <domainIDGain>200</domainIDGain> <!-- uint16 -->
+                <participantIDGain>10</participantIDGain> <!-- uint16 -->
+                <offsetd0>0</offsetd0> <!-- uint16 -->
+                <offsetd1>1</offsetd1> <!-- uint16 -->
+                <offsetd2>2</offsetd2> <!-- uint16 -->
+                <offsetd3>3</offsetd3> <!-- uint16 -->
+            </port>
+
+            <userData> <!-- octetVector (string) -->  </userData>
+
+            <participantID>99</participantID>   <!-- int32 -->
+
+            <throughputController>
+                <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
+                <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
+            </throughputController>
+
+            <userTransports>
+                <id>TransportId1</id> <!-- string -->
+                <id>TransportId2</id> <!-- string -->
+            </userTransports>
+
+            <useBuiltinTransports>FALSE</useBuiltinTransports> <!-- boolean -->
+
+            <propertiesPolicy>
+                <!-- PROPERTIES_POLICY -->
+            </propertiesPolicy>
+        </rtps>
+    </participant>
+
+**NOTES**:
+
+- :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
+
+- :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
+
+- :class:`DURATION` means it expects a :ref:`DurationType`.
 
 .. _publisherprofiles:
 
@@ -493,7 +611,140 @@ fghfghfgh
 Common
 ------
 
-sdfsdf
+In the above profiles, some types are used in several different places. To avoid too many details, in some of that
+places you found a tag like :class:`<LocatorListType>` that indicates that field is defined in this section.
+
+Now we are going to fully explain these common types:
+
+.. _LocatorListType:
+
+LocatorListType
+^^^^^^^^^^^^^^^
+
+It is used to represent a list of :class:`Locator_t`.
+LocatorListType is normally used as an anonymous type, this is, it hasn't its own label.
+Instead, it is used inside other configuration parameter labels that expect a list of locators and give it sense,
+for example, in :class:`<defaultUnicastLocatorList>`:
+
+.. code-block:: xml
+
+    <defaultUnicastLocatorList>
+        <locator>
+            <kind>UDPv4</kind>
+            <!-- Access as physical, typical UDP usage -->
+            <port>7400</port> <!-- uint32 -->
+            <address>192.168.1.41</address>
+        </locator>
+        <locator>
+            <kind>TCPv4</kind>
+            <!-- Both physical and logical, useful in TCP transports -->
+            <port_>
+                <physical_port>5100</physical_port> <!-- uint16 -->
+                <logical_port>7400</logical_port> <!-- uint16 -->
+            </port_>
+            <addresses_>
+                <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                <wan_address>80.80.99.45</wan_address>
+                <ip_address>192.168.1.55</ip_address>
+            </addresses_>
+        </locator>
+        <locator>
+            <kind>UDPv6</kind>
+            <port>8844</port>
+            <ipv6_address>::1</ipv6_address>
+        </locator>
+    </defaultUnicastLocatorList>
+
+In this example, we declared three different locators in :class:`<defaultUnicastLocatorList>`.
+
+Let's see each Locator's field in detail:
+
+- **kind**: Type of the Locator can be UDPv4, UDPv6, TCPv4, and TCPv6.
+
+- **port**: Physical port number of the locator.
+
+- **port_**: Allows you to manage low-level detail in ports of TCP locators, allowing set both **physical_port** and **logical_port**.
+
+- **address**: Allows you to set the IPv4 address of the locator.
+
+- **addresses_**: Allows you to manage low-level details in address of TCP locators (**unique_lan_id**, **wan_address** and **ip_address**).
+
+- **ipv6_address**:  Allows you to set the IPv6 address of the locator.
+
+.. _PropertiesPolicyType:
+
+PropertiesPolicyType
+^^^^^^^^^^^^^^^^^^^^
+
+PropertiesPolicyType (XML label :class:`<propertiesPolicy>`) allows you to define a set of generic properties.
+It can be used to set a variable number of properties,
+very useful at defining extended or custom configuration parameters.
+
+.. code-block:: xml
+
+    <propertiesPolicy>
+        <properties>
+            <property>
+                <name>Property1Name</name> <!-- string -->
+                <value>Property1Value</value> <!-- string -->
+                <propagate>FALSE</propagate> <!-- boolean -->
+            </property>
+            <property>
+                <name>Property2Name</name> <!-- string -->
+                <value>Property2Value</value> <!-- string -->
+                <propagate>TRUE</propagate> <!-- boolean -->
+            </property>
+        </properties>
+    </propertiesPolicy>
+
+- **name**: Name to identify the property.
+
+- **value**: Property's value.
+
+- **propagate**: Indicates if the property is meant to be serialized along with the object it belongs to.
+
+.. _DurationType:
+
+DurationType
+^^^^^^^^^^^^
+
+DurationType expresses a period of time.
+DurationType is normally used as an anonymous type, this is, it hasn't its own label. Instead, it is used inside other
+configuration parameter labels that give it sense, like :class:`<leaseAnnouncement>` or :class:`<leaseDuration>`.
+
+.. code-block:: xml
+
+    <leaseDuration>INFINITE</leaseDuration> <!-- string -->
+
+    <leaseDuration>
+        <seconds>500</seconds> <!-- int32 -->
+        <fraction>0</fraction> <!-- uint32 -->
+    </leaseDuration>
+
+    <leaseAnnouncement>
+        <seconds>1</seconds> <!-- int32 -->
+        <fraction>856000</fraction> <!-- uint32 -->
+    </leaseAnnouncement>
+
+Duration time can be defined through a constant value directly (:class:`INFINITE`, :class:`ZERO`, or :class:`INVALID`),
+or by :class:`<seconds>` plus :class:`<fraction>` labels:
+
+- **INFINITE**: Constant value, represents an infinite period of time.
+
+- **ZERO**: Constant value, represents 0.0 seconds.
+
+- **INVALID**: Constant value, represents an invalid period of time.
+
+- **seconds**: Integer seconds value.
+
+- **fraction**: Fractions of a second. A fraction is :class:`1/(2^32)` seconds.
+
+.. _CommonQOS:
+
+QOS
+^^^
+
+QOS blah blah blah
 
 .. _examplexml:
 

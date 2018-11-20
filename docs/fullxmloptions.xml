@@ -237,7 +237,7 @@
                     </property>
                 </properties>
 
-                <binary_properties>
+                <binary_properties> <!-- TODO: Not yet implemented, not documented -->
                     <property>
                         <name>Property1Name</name> <!-- string -->
                         <value>Property1Value</value> <!-- string -->
@@ -282,46 +282,36 @@
             </durabilityService>
             <deadline>
                 <period>
-                    <seconds>10</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </period>
             </deadline>
             <latencyBudget>
                 <duration>
-                    <seconds>10</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </duration>
             </latencyBudget>
             <liveliness>
                 <kind>AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC</kind> <!-- string -->
-                <leaseDuration> INFINITE | ZERO | INVALID </leaseDuration> <!-- sttring -->
-                            <!-- OR -->
-                            <leaseDuration>
-                                <seconds>500</seconds> <!-- int32 -->
-                                <fraction>0</fraction> <!-- uint32 -->
-                            </leaseDuration>
-                            <!-- -->
+                <leaseDuration>
+                    <!-- DURATION -->
+                </leaseDuration>
                 <announcement_period>
-                    <seconds>1</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </announcement_period>
             </liveliness>
             <reliability>
                 <kind>BEST_EFFORT | RELIABLE</kind>
                 <max_blocking_time>
-                    <seconds>1</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </max_blocking_time>
             </reliability>
             <lifespan>
-                <seconds>10</seconds> <!-- int32 -->
-                <fraction>0</fraction> <!-- uint32 -->
+                <!-- DURATION -->
             </lifespan>
             <userData> <!-- octetVector (string) -->  </userData>
             <timeBasedFilter>
                 <minimum_separation>
-                    <seconds>1</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </minimum_separation>
             </timeBasedFilter>
             <ownership>
@@ -355,20 +345,16 @@
 
         <times> <!-- writerTimesType -->
             <initialHeartbeatDelay>
-                <seconds>1</seconds> <!-- int32 -->
-                <fraction>0</fraction> <!-- uint32 -->
+                <!-- DURATION -->
             </initialHeartbeatDelay>
             <heartbeatPeriod>
-                <seconds>1</seconds> <!-- int32 -->
-                <fraction>0</fraction> <!-- uint32 -->
+                <!-- DURATION -->
             </heartbeatPeriod>
             <nackResponseDelay>
-                <seconds>1</seconds> <!-- int32 -->
-                <fraction>0</fraction> <!-- uint32 -->
+                <!-- DURATION -->
             </nackResponseDelay>
             <nackSupressionDuration>
-                <seconds>1</seconds> <!-- int32 -->
-                <fraction>0</fraction> <!-- uint32 -->
+                <!-- DURATION -->
             </nackSupressionDuration>
         </times>
 
@@ -409,8 +395,7 @@
             </durability>
             <durabilityService>
                 <service_cleanup_delay>
-                    <seconds>10</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </service_cleanup_delay>
                 <history_kind>KEEP_LAST | KEEP_ALL</history_kind> <!-- string -->
                 <history_depth></history_depth> <!-- unint32 -->
@@ -420,46 +405,36 @@
             </durabilityService>
             <deadline>
                 <period>
-                    <seconds>10</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </period>
             </deadline>
             <latencyBudget>
                 <duration>
-                    <seconds>10</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </duration>
             </latencyBudget>
             <liveliness>
                 <kind>AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC</kind> <!-- string -->
-                <leaseDuration> INFINITE | ZERO | INVALID </leaseDuration> <!-- sttring -->
-                            <!-- OR -->
-                            <leaseDuration>
-                                <seconds>500</seconds> <!-- int32 -->
-                                <fraction>0</fraction> <!-- uint32 -->
-                            </leaseDuration>
-                            <!-- -->
+                <leaseDuration>
+                    <!-- DURATION -->
+                </leaseDuration>
                 <announcement_period>
-                    <seconds>1</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </announcement_period>
             </liveliness>
             <reliability>
                 <kind>BEST_EFFORT | RELIABLE</kind>
                 <max_blocking_time>
-                    <seconds>1</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <!-- DURATION -->
                 </max_blocking_time>
             </reliability>
             <lifespan>
-                <seconds>10</seconds> <!-- int32 -->
-                <fraction>0</fraction> <!-- uint32 -->
+                <!-- DURATION -->
             </lifespan>
             <userData> <!-- octetVector (string) -->  </userData>
             <timeBasedFilter>
                 <minimum_separation>
-                    <seconds>1</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                      <!-- DURATION -->
                 </minimum_separation>
             </timeBasedFilter>
             <ownership>
@@ -487,12 +462,10 @@
 
         <times> <!-- readerTimesType -->
             <initialAcknackDelay>
-                <seconds>1</seconds> <!-- int32 -->
-                <fraction>0</fraction> <!-- uint32 -->
+                <!-- DURATION -->
             </initialAcknackDelay>
             <heartbeatResponseDelay>
-                <seconds>1</seconds> <!-- int32 -->
-                <fraction>0</fraction> <!-- uint32 -->
+                <!-- DURATION -->
             </heartbeatResponseDelay>
         </times>
 

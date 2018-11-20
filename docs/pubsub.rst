@@ -758,22 +758,6 @@ Tips
    +--------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
 
 
-Loading and applying profiles
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Before creating any entity, you can load XML files using ``Domain::loadXMLProfilesFile`` function.
-``createParticipant``, ``createPublisher`` and ``createSubscriber`` have a version that expects the profile name as an argument. *eProsima Fast RTPS* searches the XML profile using this profile name and applies the XML profile to the
-entity.
-
-.. code-block:: c++
-
-   eprosima::fastrtps::Domain::loadXMLProfilesFile("my_profiles.xml");
-
-   Participant *participant = Domain::createParticipant("participant_xml_profile");
-   Publisher *publisher = Domain::createPublisher(participant, "publisher_xml_profile");
-   Subscriber *subscriber = Domain::createSubscriber(participant, "subscriber_xml_profile");
-
-
 Additional Concepts
 -------------------
 

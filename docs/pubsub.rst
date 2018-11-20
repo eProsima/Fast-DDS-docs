@@ -168,7 +168,7 @@ We will now go over the most common configuration options.
    |                                                 |    </profiles>                                             |
    +-------------------------------------------------+------------------------------------------------------------+
 
-.. _pubsubdonfiguration:
+.. _pubsubconfiguration:
 
 Publisher and Subscriber configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -194,6 +194,8 @@ accept the name of an XML profile.
    Subscriber *subscriber = Domain::createSubscriber(participant, "subscriber_xml_profile");
 
 We will now go over the most common configuration options.
+
+.. _Topic_information:
 
 Topic information
 *****************
@@ -308,6 +310,8 @@ There are two policies for sample storage:
    |                                               |    </profiles>                                           |
    +-----------------------------------------------+----------------------------------------------------------+
 
+.. _durability-qos:
+
 Durability
 **********
 
@@ -341,6 +345,8 @@ subscriber joins
    |                                            |       </subscriber>                                      |
    |                                            |    </profiles>                                           |
    +--------------------------------------------+----------------------------------------------------------+
+
+.. _resourceLimits-qos:
 
 Resource limits
 ***************

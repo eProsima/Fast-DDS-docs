@@ -57,7 +57,7 @@ For commodity, these common structs have been grouped in section :ref:`commonxml
 Finally, an XML example file with all possibilities being used can be found at :ref:`examplexml`.
 This example is useful as a quick reference when you want to look for some particular property.
 This `XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_ can be used
-as quick reference too.
+as a quick reference too.
 
 .. _loadingapplyingprofiles:
 
@@ -84,9 +84,9 @@ To load dynamic types from its declaration through XML see the :ref:`Usage` sect
 Transport descriptors
 ---------------------
 
-This section allow us to create transport descriptors to be referenced by the :ref:`participantprofiles`.
-Once a well defined transport descriptor is referenced by a **Participant profile**, every time that profile
-is instantiate it will use or create the described transport.
+This section allows us to create transport descriptors to be referenced by the :ref:`participantprofiles`.
+Once a well-defined transport descriptor is referenced by a **Participant profile**, every time that profile
+is instantiated it will use or create the described transport.
 
 The complete list of configurable parameters is shown in the following XML code:
 
@@ -129,7 +129,7 @@ The XML label :class:`<transport_descriptors>` can hold any number of :class:`<t
 
 - ``<transport_id>``: Unique name to identify each transport descriptor.
 
-- ``<type>``: Type of the transport descriptor. Current supported types are UDPv4, UDPv6, TCPv4, and TCPv6.
+- ``<type>``: Type of the transport descriptor. The supported types are UDPv4, UDPv6, TCPv4, and TCPv6.
 
 - ``<sendBufferSize>``: Size, in bytes, of the socket send buffer.
 
@@ -139,17 +139,17 @@ The XML label :class:`<transport_descriptors>` can hold any number of :class:`<t
 
 - ``<maxMessageSize>``: Maximum size in bytes of the transport message buffer.
 
-- ``<maxInitialPeersRange>``: Stablishes the maximum number of guessed inital peers to try to connect (default **4**).
+- ``<maxInitialPeersRange>``: Establishes the maximum number of guessed initial peers to try to connect (default **4**).
 
 - ``<interfaceWhiteList>``: Allows you to define :ref:`whitelist-interfaces`.
 
 - ``<wan_addr>``: Allows you to declare the public WAN address when using **TCPv4 transports**.
 
-- ``<output_port>``: Port used for output bound, instead a random one.
+- ``<output_port>``: Port used for output bound, instead of a random one.
 
 - ``<keep_alive_frequency_ms>``: Frequency in milliseconds for sending RTCP keep alive requests (**only** TCP).
 
-- ``<keep_alive_timeout_ms>``: Time in milliseconds to consider a connection is broken since the last keep alive requests was sent (**only** TCP).
+- ``<keep_alive_timeout_ms>``: Time in milliseconds to consider a connection is broken since the last keep alive requests were sent (**only** TCP).
 
 - ``<max_logical_port>``: Maximum number of logical ports to try during RTCP negotiation (**only** TCP).
 
@@ -394,7 +394,7 @@ Example:
     +--------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
 
-It's IDL analogue would be:
+It's IDL analog would be:
 
 .. code-block:: c++
 
@@ -503,7 +503,7 @@ Remember that only Structs generate usable DynamicPubSubType instances.
 Participant profiles
 --------------------
 
-Participant profiles allows you to declare :ref:`participantconfiguration` from XML file.
+Participant profiles allow you to declare :ref:`participantconfiguration` from an XML file.
 The configuration options for the participant belongs to the :class:`<rtps>` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
 as shown in :ref:`loadingapplyingprofiles`.
@@ -584,9 +584,9 @@ Now, we are going to explain each possible configuration parameter:
 
 - ``<listenSocketBufferSize>``: Size in bytes of the input socket buffer.
 
-- ``<builtin>``: Built in parameters. Explained in the :ref:`builtin` section.
+- ``<builtin>``: Built-in parameters. Explained in the :ref:`builtin` section.
 
-- ``<port>``: Allows you to define the port parameters and gains related with the RTPS protocol. It has several subfields:
+- ``<port>``: Allows you to define the port parameters and gains related to the RTPS protocol. It has several subfields:
 
     * ``<portBase>``: Base ``port`` (*default 7400*).
 
@@ -600,8 +600,9 @@ Now, we are going to explain each possible configuration parameter:
 
     * ``<offsetd2>``: Multicast user data offset (*default 1*).
 
-    * ``<offsetd3>``: Unicast user data offser (*default 11*).
+    * ``<offsetd3>``: Unicast user data offset (*default 11*).
 
+    * *offsetd3*: 
 
 - ``<userData>``: Allows you to add your own information.
 
@@ -619,7 +620,7 @@ Now, we are going to explain each possible configuration parameter:
         <id>TransportId1</id> <!-- string -->
         <id>TransportId2</id> <!-- string -->
 
-- ``<useBuiltinTransports>``: Boolean field to indicate to the system that the participant will use the default builtin transport independiently of its :class:`<userTransports>`.
+- ``<useBuiltinTransports>``: Boolean field to indicate to the system that the participant will use the default builtin transport independently of its :class:`<userTransports>`.
 
 - ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
 
@@ -629,7 +630,7 @@ Now, we are going to explain each possible configuration parameter:
 Built-in parameters
 ^^^^^^^^^^^^^^^^^^^
 
-This section of the :class:`Participant's rtps` configuration allows you to define builtin parameters.
+This section of the :class:`Participant's rtps` configuration allows you to define built-in parameters.
 
 .. code-block:: xml
 
@@ -710,14 +711,103 @@ This section of the :class:`Participant's rtps` configuration allows you to defi
 Publisher profiles
 ------------------
 
-fghfghfg
+Publisher profiles allows you to declare :ref:`Publisher configuration <pubsubconfiguration>` from XML file.
+The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
+as shown in :ref:`loadingapplyingprofiles`.
+
+.. code-block:: xml
+
+    <publisher profile_name="part_profile_name">
+        <topic>
+            <!-- TOPIC_TYPE -->
+        </topic>
+
+        <qos>
+            <!-- QOS -->
+        </qos>
+
+        <times> <!-- readerTimesType -->
+            <initialAcknackDelay>
+                <!-- DURATION -->
+            </initialAcknackDelay>
+            <heartbeatResponseDelay>
+                <!-- DURATION -->
+            </heartbeatResponseDelay>
+        </times>
+
+        <unicastLocatorList>
+            <!-- LOCATOR_LIST -->
+        </unicastLocatorList>
+
+        <multicastLocatorList>
+            <!-- LOCATOR_LIST -->
+        </multicastLocatorList>
+
+        <outLocatorList>
+            <!-- LOCATOR_LIST -->
+        </outLocatorList>
+
+        <throughputController>
+            <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
+            <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
+        </throughputController>
+
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+
+        <propertiesPolicy>
+            <!-- PROPERTIES_POLICY -->
+        </propertiesPolicy>
+
+        <userDefinedID>55</userDefinedID> <!-- Int16 -->
+
+        <entityID>66</entityID> <!-- Int16 -->
+    </publisher>
+
+.. note::
+
+    - :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
+
+    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
+
+    - :class:`DURATION` means it expects a :ref:`DurationType`.
+
+    - For :class:`QOS` details, please refer to :ref:`CommonQOS`.
+
+    - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
+
+- **topic**: :ref:`TopicType` configuration of the subscriber.
+
+- **qos**: Subscriber :ref:`CommonQOS` configuration.
+
+- **times**:  Allows you to configure some time related parameters of the subscriber:
+
+    * *initialAcknackDelay*: :ref:`DurationType` of the initial :class:`Acknack` message.
+
+    * *heartbeatResponseDelay*: :ref:`DurationType` to set the delay of the :class:`heartbeat` message response.
+
+- **unicastLocatorList**: List of unicast locators. It expects a :ref:`LocatorListType`.
+
+- **multicastLocatorList**: List of multicast locators. It expects a :ref:`LocatorListType`.
+
+- **outLocatorList**:  List of output locators. It expects a :ref:`LocatorListType`.
+
+- **throughputController**: Limits the output bandwidth of the publisher.
+
+- **historyMemoryPolicy**: Policy of memory allocation for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+
+- **propertiesPolicy**: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
+
+- **userDefinedID**: Allows you to set a custom identifier.
+
+- **entityID**: Allows you to establish the entityID of the subscriber.
+
 
 .. _subscriberprofiles:
 
 Subscriber profiles
 -------------------
 
-Subscriber profiles allows you to declare :ref:`Subscriber configuration <pubsubdonfiguration>` from XML file.
+Subscriber profiles allows you to declare :ref:`Subscriber configuration <pubsubconfiguration>` from XML file.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -943,8 +1033,8 @@ or by :class:`<seconds>` plus :class:`<fraction>` labels:
 Topic Type
 ^^^^^^^^^^^^^^^^^^^^
 
-Topic Type (XML label :class:`<topic>`) is used to configure the topic
-that publishers and subscribers are going register.
+The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange messages.
+You can see a deeper explanation of the "topic" field here: :ref:`Topic_information`.
 
 .. code-block:: xml
 
@@ -953,7 +1043,7 @@ that publishers and subscribers are going register.
         <name>TopicName</name> <!-- string -->
         <dataType>TopicDataTypeName</dataType> <!-- string -->
         <historyQos>
-            <kind>KEEP_ALL</kind> <!-- string -->
+            <kind>KEEP_LAST</kind> <!-- string -->
             <depth>20</depth> <!-- uint32 -->
         </historyQos>
         <resourceLimitsQos>
@@ -976,11 +1066,15 @@ that publishers and subscribers are going register.
 
     * ``<depth>``: Number of packages that can be stored with the *KEEP_LAST* option.
 
-- ``<resourceLimitsQos>``: The history QoS manages the number of messages that are going to be stored in publishers and subscribers in their histories.
+- ``<resourceLimitsQos>``: The :ref:`history QoS <resourceLimits-qos>`
 
-    * ``<kind>``: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
+    * ``<max_samples>``: Maximum number of samples that can be stored in the history of publishers or subscribers. Its default value is 5000.
 
-    * ``<depth>``: Number of packages that can be stored with the *KEEP_LAST* option.
+    * ``<max_instances>``: Maximum number of instances that a publisher or a subscriber can manage. Its default value is 10.
+
+    * ``<max_samples_per_instance>``: Maximum number of samples for each instance. Its default value is 400.
+    
+    * ``<allocated_samples>``: Initial samples reserved in the history of publishers or subscribers.
 
 .. _CommonQOS:
 

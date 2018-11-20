@@ -199,29 +199,41 @@ The enum type is defined by its name and a set of literals, each of them with it
 
 Example:
 
-.. code-block:: xml
-
-    <enum name="MyEnum">
-        <literal name="A" value="0"/>
-        <literal name="B" value="1"/>
-        <literal name="C" value="2"/>
-    </enum>
+    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+    | XML                                           | C++                                                                                                       |
+    +===============================================+===========================================================================================================+
+    | .. code-block:: xml                           | .. code-block:: c++                                                                                       |
+    |                                               |                                                                                                           |
+    |   <enum name="MyEnum">                        |     DynamicTypeBuilder_ptr enum_builder = DynamicTypeBuilderFactory::GetInstance()->CreateEnumBuilder();  |
+    |       <literal name="A" value="0"/>           |     enum_builder->AddEmptyMember(0, "A");                                                                 |
+    |       <literal name="B" value="1"/>           |     enum_builder->AddEmptyMember(1, "B");                                                                 |
+    |       <literal name="C" value="2"/>           |     enum_builder->AddEmptyMember(2, "C");                                                                 |
+    |   </enum>                                     |     DynamicType_ptr enum_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(enum_builder.get()); |
+    |                                               |                                                                                                           |
+    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 **Typedef**
 
 The typedef type is defined by its name and its value or an inner element for complex types.
+Typedefs correspond to Alias in Dynamic Types glossary.
 
 Example:
 
-.. code-block:: xml
-
-    <typedef name="MyAlias1" value="MyEnum"/>
-
-    <typedef name="MyAlias2">
-        <long dimensions="2,2"/>
-    </typedef>
-
-Typedefs correspond to Alias in Dynamic Types glossary.
+    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+    | XML                                           | C++                                                                                                                                           |
+    +===============================================+===============================================================================================================================================+
+    | .. code-block:: xml                           | .. code-block:: c++                                                                                                                           |
+    |                                               |                                                                                                                                               |
+    |   <typedef name="MyAlias1" value="MyEnum"/>   |     DynamicTypeBuilder_ptr alias_builder = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(enum_builder.get(), "MyAlias1");      |
+    |                                               |     DynamicType_ptr alias_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(alias_builder.get());                                   |
+    |                                               |                                                                                                                                               |
+    |   <typedef name="MyAlias2">                   |     std::vector<uint32_t> sequence_lengths = { 2, 2 };                                                                                        |
+    |       <long dimensions="2,2"/>                |     DynamicTypeBuilder_ptr int_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                                      |
+    |   </typedef>                                  |     DynamicTypeBuilder_ptr array_builder = DynamicTypeBuilderFactory::GetInstance()->CreateArrayBuilder(int_builder.get(), sequence_lengths); |
+    |                                               |     DynamicTypeBuilder_ptr alias_builder = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(array_builder.get(), "MyAlias2");     |
+    |                                               |     DynamicType_ptr alias_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(alias_builder.get());                                   |
+    |                                               |                                                                                                                                               |
+    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Struct**
 
@@ -229,12 +241,21 @@ The struct type is defined by its name and inner members.
 
 Example:
 
-.. code-block:: xml
+    +-------------------------------------+----------------------------------------------------------------------------------------------------------------+
+    | XML                                 | C++                                                                                                            |
+    +=====================================+================================================================================================================+
+    | .. code-block:: xml                 | .. code-block:: c++                                                                                            |
+    |                                     |                                                                                                                |
+    |   <struct name="MyStruct">          |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();      |
+    |       <long name="first"/>          |     DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt64Builder(); |
+    |       <longlong name="second"/>     |     DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();   |
+    |   </struct>                         |                                                                                                                |
+    |                                     |     struct_builder->AddMember(0, "first", long_builder);                                                       |
+    |                                     |     struct_builder->AddMember(1, "second", long_long_builder);                                                 |
+    |                                     |     DynamicType_ptr struct_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(struct_builder.get());  |
+    |                                     |                                                                                                                |
+    +-------------------------------------+----------------------------------------------------------------------------------------------------------------+
 
-    <struct name="MyStruct">
-        <long name="first"/>
-        <longlong name="second"/>
-    </struct>
 
 **Union**
 
@@ -244,24 +265,30 @@ Each case has one or more caseValue and a member.
 
 Example:
 
-.. code-block:: xml
+    +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+    | XML                                    | C++                                                                                                                            |
+    +========================================+================================================================================================================================+
+    | .. code-block:: xml                    | .. code-block:: c++                                                                                                            |
+    |                                        |                                                                                                                                |
+    |   <union name="MyUnion">               |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                      |
+    |       <discriminator type="octet"/>    |     DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt64Builder();                 |
+    |       <case>                           |     DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();                   |
+    |           <caseValue value="0"/>       |     DynamicTypeBuilder_ptr octet_builder = DynamicTypeBuilderFactory::GetInstance()->CreateByteBuilder();                      |
+    |           <caseValue value="1"/>       |     DynamicTypeBuilder_ptr union_builder = DynamicTypeBuilderFactory::GetInstance()->CreateUnionBuilder(octet_builder.get());  |
+    |            <long name="first"/>        |                                                                                                                                |
+    |       </case>                          |     union_builder->AddMember(0, "first", long_builder, "", { 0, 1 }, false);                                                   |
+    |       <case>                           |     union_builder->AddMember(1, "second", struct_builder, "", { 2 }, false);                                                   |
+    |           <caseValue value="2"/>       |     union_builder->AddMember(2, "third", long_long_builder, "", { }, true);                                                    |
+    |           <MyStruct name="second"/>    |     DynamicType_ptr union_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(union_builder.get());                    |
+    |       </case>                          |                                                                                                                                |
+    |       <case>                           |                                                                                                                                |
+    |           <caseValue value="default"/> |                                                                                                                                |
+    |           <longlong name="third"/>     |                                                                                                                                |
+    |       </case>                          |                                                                                                                                |
+    |   </union>                             |                                                                                                                                |
+    |                                        |                                                                                                                                |
+    +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
 
-    <union name="MyUnion">
-        <discriminator type="octet"/>
-        <case>
-            <caseValue value="0"/>
-            <caseValue value="1"/>
-            <long name="first"/>
-        </case>
-        <case>
-            <caseValue value="2"/>
-            <MyStruct name="second"/>
-        </case>
-        <case>
-            <caseValue value="default"/>
-            <longlong name="third"/>
-        </case>
-    </union>
 
 Member types
 ^^^^^^^^^^^^
@@ -295,19 +322,33 @@ The available basic types XML tags are:
 
 All of them are defined simply:
 
-.. code-block:: xml
-
-    <longlong name="my_long"/>
+    +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+    | XML                                    | C++                                                                                                                            |
+    +========================================+================================================================================================================================+
+    | .. code-block:: xml                    | .. code-block:: c++                                                                                                            |
+    |                                        |                                                                                                                                |
+    |   <longlong name="my_long"/>           |     DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt64Builder();                 |
+    |                                        |     DynamicType_ptr long_long_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(long_long_builder.get());            |
+    |                                        |                                                                                                                                |
+    +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 Except for boundedString and boundedWString that should include an inner element *maxLength* whose value indicates
 the maximum length of the string.
 
-.. code-block:: xml
-
-    <boundedString name="my_large_string">
-        <maxLength value="41925"/>
-    </boundedString>
-
+    +--------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+    | XML                                        | C++                                                                                                                            |
+    +============================================+================================================================================================================================+
+    | .. code-block:: xml                        | .. code-block:: c++                                                                                                            |
+    |                                            |                                                                                                                                |
+    |   <boundedString name="my_large_string">   |     DynamicTypeBuilder_ptr string_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStringBuilder(41925);              |
+    |       <maxLength value="41925"/>           |     DynamicType_ptr string_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(string_builder.get());                  |
+    |   </boundedString>                         |                                                                                                                                |
+    |                                            |                                                                                                                                |
+    |   <boundedWString name="my_large_wstring"> |     DynamicTypeBuilder_ptr wstring_builder = DynamicTypeBuilderFactory::GetInstance()->CreateWstringBuilder(20925);            |
+    |       <maxLength value="20925"/>           |     DynamicType_ptr wstring_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(wstring_builder.get());                |
+    |   </boundedWString>                        |                                                                                                                                |
+    |                                            |                                                                                                                                |
+    +--------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 **Arrays**
 
@@ -316,9 +357,19 @@ The format of this dimensions attribute is the size of each dimension separated 
 
 Example:
 
-.. code-block:: xml
 
-    <long name="long_array" dimensions="2,3,4"/>
+    +--------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+    | XML                                              | C++                                                                                                                                    |
+    +==================================================+========================================================================================================================================+
+    | .. code-block:: xml                              | .. code-block:: c++                                                                                                                    |
+    |                                                  |                                                                                                                                        |
+    |   <long name="long_array" dimensions="2,3,4"/>   |     std::vector<uint32_t> lengths = { 2, 3, 4 };                                                                                       |
+    |                                                  |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                              |
+    |                                                  |     DynamicTypeBuilder_ptr array_builder = DynamicTypeBuilderFactory::GetInstance()->CreateArrayBuilder(long_builder.get(), lengths);  |
+    |                                                  |     DynamicType_ptr array_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(array_builder.get());                            |
+    |                                                  |                                                                                                                                        |
+    +--------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
 
 It's IDL analogue would be:
 
@@ -333,11 +384,17 @@ The type of its content can be defined by its type attribute or by a member type
 
 Example:
 
-.. code-block:: xml
-
-    <sequence name="my_sequence_sequence" length="3">
-        <sequence type="long" length="2"/>
-    </sequence>
+    +-------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+    | XML                                                   | C++                                                                                                                                    |
+    +=======================================================+========================================================================================================================================+
+    | .. code-block:: xml                                   | .. code-block:: c++                                                                                                                    |
+    |                                                       |                                                                                                                                        |
+    |   <sequence name="my_sequence_sequence" length="3">   |     uint32_t length = 2;                                                                                                               |
+    |       <sequence type="long" length="2"/>              |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                              |
+    |   </sequence>                                         |     DynamicTypeBuilder_ptr seq_builder = DynamicTypeBuilderFactory::GetInstance()->CreateSequenceBuilder(long_builder.get(), length);  |
+    |                                                       |     DynamicType_ptr seq_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(seq_builder.get());                                |
+    |                                                       |                                                                                                                                        |
+    +-------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
 The example shows a sequence with length 3 of sequences with length 2 with long contents.
 As IDL would be:
@@ -360,13 +417,19 @@ other as a member.
 
 Example:
 
-.. code-block:: xml
-
-    <map name="my_map_map" key_type="long" length="2">
-        <value_type>
-            <map key_type="long" value_type="long" length="2"/>
-        </value_type>
-    </map>
+    +---------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+    | XML                                                           | C++                                                                                                                            |
+    +===============================================================+================================================================================================================================+
+    | .. code-block:: xml                                           | .. code-block:: c++                                                                                                            |
+    |                                                               |                                                                                                                                |
+    |   <map name="my_map_map" key_type="long" length="2">          |     uint32_t length = 2;                                                                                                       |
+    |       <value_type>                                            |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                      |
+    |           <map key_type="long" value_type="long" length="2"/> |     DynamicTypeBuilder_ptr map_builder = DynamicTypeBuilderFactory::GetInstance()->CreateMapBuilder(long_builder.get(),        |
+    |       </value_type>                                           |     long_builder.get(), length);                                                                                               |
+    |   </map>                                                      |                                                                                                                                |
+    |                                                               |     DynamicType_ptr map_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(map_builder.get());                        |
+    |                                                               |                                                                                                                                |
+    +---------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 Is equivalent to the IDL:
 

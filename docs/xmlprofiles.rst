@@ -938,12 +938,88 @@ or by :class:`<seconds>` plus :class:`<fraction>` labels:
 
 - **fraction**: Fractions of a second. A fraction is :class:`1/(2^32)` seconds.
 
+.. _TopicType:
+
+Topic Type
+^^^^^^^^^^^^^^^^^^^^
+
+Topic Type (XML label :class:`<topic>`) is used to configure the topic 
+that publishers and subscribers are going register.
+
+.. code-block:: xml
+
+    <topic>
+        <kind>NO_KEY</kind> <!-- string -->
+        <name>TopicName</name> <!-- string -->
+        <dataType>TopicDataTypeName</dataType> <!-- string -->
+        <historyQos>
+            <kind>KEEP_ALL</kind> <!-- string -->
+            <depth>20</depth> <!-- uint32 -->
+        </historyQos>
+        <resourceLimitsQos>
+            <max_samples>5</max_samples> <!-- unint32 -->
+            <max_instances>2</max_instances> <!-- unint32 -->
+            <max_samples_per_instance>1</max_samples_per_instance> <!-- unint32 -->
+            <allocated_samples>20</allocated_samples> <!-- unint32 -->
+        </resourceLimitsQos>
+    </topic>
+
+- **kind**: String field that sets if the topic uses keys or not. The available values are: *NO_KEY* and *WITH_KEY*.
+
+- **name**: Name of the topic.
+
+- **dataType**: Indicates if the property is meant to be serialized along with the object it belongs to.
+
+- **historyQos**: The history QoS manages the number of messages that are going to be stored in publishers and subscribers in their histories.
+
+    * *kind*: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
+
+    * *depth*: Number of packages that can be stored with the *KEEP_LAST* option.
+
+- **resourceLimitsQos**: The history QoS manages the number of messages that are going to be stored in publishers and subscribers in their histories.
+
+    * *kind*: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
+
+    * *depth*: Number of packages that can be stored with the *KEEP_LAST* option.
+
 .. _CommonQOS:
 
 QOS
 ^^^
 
 QOS blah blah blah
+
+
+historyQos
+^^^^^^^^^^^^^^^^^^^^
+
+The history QoS manages the amount of rtps messages that are going to be stored in publishers and subscribers.
+It can be used to set a variable number of properties,
+very useful at defining extended or custom configuration parameters.
+
+.. code-block:: xml
+
+    <propertiesPolicy>
+        <properties>
+            <property>
+                <name>Property1Name</name> <!-- string -->
+                <value>Property1Value</value> <!-- string -->
+                <propagate>FALSE</propagate> <!-- boolean -->
+            </property>
+            <property>
+                <name>Property2Name</name> <!-- string -->
+                <value>Property2Value</value> <!-- string -->
+                <propagate>TRUE</propagate> <!-- boolean -->
+            </property>
+        </properties>
+    </propertiesPolicy>
+
+- **name**: Name to identify the property.
+
+- **value**: Property's value.
+
+- **propagate**: Indicates if the property is meant to be serialized along with the object it belongs to.
+
 
 .. _examplexml:
 

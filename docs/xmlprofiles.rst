@@ -717,7 +717,93 @@ fghfghfg
 Subscriber profiles
 -------------------
 
-fghfghfgh
+Subscriber profiles allows you to declare :ref:`Subscriber configuration <pubsubdonfiguration>` from XML file.
+The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
+as shown in :ref:`loadingapplyingprofiles`.
+
+.. code-block:: xml
+
+    <subscriber profile_name="part_profile_name">
+        <topic>
+            <!-- TOPIC_TYPE -->
+        </topic>
+
+        <qos>
+            <!-- QOS -->
+        </qos>
+
+        <times> <!-- readerTimesType -->
+            <initialAcknackDelay>
+                <!-- DURATION -->
+            </initialAcknackDelay>
+            <heartbeatResponseDelay>
+                <!-- DURATION -->
+            </heartbeatResponseDelay>
+        </times>
+
+        <unicastLocatorList>
+            <!-- LOCATOR_LIST -->
+        </unicastLocatorList>
+
+        <multicastLocatorList>
+            <!-- LOCATOR_LIST -->
+        </multicastLocatorList>
+
+        <outLocatorList>
+            <!-- LOCATOR_LIST -->
+        </outLocatorList>
+
+        <expectsInlineQos>TRUE</expectsInlineQos> <!-- boolean -->
+
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+
+        <propertiesPolicy>
+            <!-- PROPERTIES_POLICY -->
+        </propertiesPolicy>
+
+        <userDefinedID>55</userDefinedID> <!-- Int16 -->
+
+        <entityID>66</entityID> <!-- Int16 -->
+    </subscriber>
+
+.. note::
+
+    - :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
+
+    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
+
+    - :class:`DURATION` means it expects a :ref:`DurationType`.
+
+    - For :class:`QOS` details, please refer to :ref:`CommonQOS`.
+
+    - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
+
+- **topic**: :ref:`TopicType` configuration of the subscriber.
+
+- **qos**: Subscriber :ref:`CommonQOS` configuration.
+
+- **times**:  Allows you to configure some time related parameters of the subscriber:
+
+    * *initialAcknackDelay*: :ref:`DurationType` of the initial :class:`Acknack` message.
+
+    * *heartbeatResponseDelay*: :ref:`DurationType` to set the delay of the :class:`heartbeat` message response.
+
+- **unicastLocatorList**: List of unicast locators. It expects a :ref:`LocatorListType`.
+
+- **multicastLocatorList**: List of multicast locators. It expects a :ref:`LocatorListType`.
+
+- **outLocatorList**:  List of output locators. It expects a :ref:`LocatorListType`.
+
+- **expectsInlineQos**: Boolean parameter to indicate if QOS is expected inline.
+
+- **historyMemoryPolicy**: Policy of memory allocation for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+
+- **propertiesPolicy**: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
+
+- **userDefinedID**: Allows you to set a custom identifier.
+
+- **entityID**: Allows you to establish the entityID of the subscriber.
+
 
 .. _commonxml:
 

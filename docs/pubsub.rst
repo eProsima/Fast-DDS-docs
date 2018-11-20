@@ -168,6 +168,8 @@ We will now go over the most common configuration options.
    |                                                 |    </profiles>                                             |
    +-------------------------------------------------+------------------------------------------------------------+
 
+.. _pubsubdonfiguration:
+
 Publisher and Subscriber configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

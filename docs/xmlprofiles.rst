@@ -3,16 +3,16 @@
 XML profiles
 ============
 
-In the :ref:`configuration` section you could see how to configure entity attributes using XML profiles,
+In the :ref:`configuration` section, you could see how to configure entity attributes using XML profiles,
 but this section goes deeper into it.
 
 XML profiles are loaded from XML files. *eProsima Fast RTPS* permits to load as much XML files as you want. An XML file
-can contain several XML profiles. An XML profile is defined by a unique name (or :class:`<transport_id>` label
+can contain several XML profiles. An XML profile is defined by a unique name (or ``<transport_id>`` label
 in the :ref:`transportdescriptors` case) that is used to reference the XML profile
 when you create a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
 *eProsima Fast RTPS* will also try to find in current execution path and
 load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml*.
-If this file exists, it is loaded at the library initialization.
+This file is loaded at the library initialization if it exists.
 
 Making an XML
 -------------
@@ -125,7 +125,7 @@ The complete list of configurable parameters is shown in the following XML code:
         </transport_descriptors>
     </profiles>
 
-The XML label :class:`<transport_descriptors>` can hold any number of :class:`<transport_descriptor>`.
+The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
 - ``<transport_id>``: Unique name to identify each transport descriptor.
 
@@ -504,7 +504,7 @@ Participant profiles
 --------------------
 
 Participant profiles allow you to declare :ref:`participantconfiguration` from an XML file.
-The configuration options for the participant belongs to the :class:`<rtps>` label.
+The configuration options for the participant belongs to the ``<rtps>`` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -611,14 +611,14 @@ Now, we are going to explain each possible configuration parameter:
     * ``<bytesPerPeriod>``: Maximum bytes to send by period.
     * ``<periodMillisecs>``: Period in milliseconds.
 
-- ``<userTransports>``: Allows you to add transport descriptors to be used by the participant, as a list of :class:`<id>`.
+- ``<userTransports>``: Allows you to add transport descriptors to be used by the participant, as a list of ``<id>``.
 
     .. code-block:: xml
 
         <id>TransportId1</id> <!-- string -->
         <id>TransportId2</id> <!-- string -->
 
-- ``<useBuiltinTransports>``: Boolean field to indicate to the system that the participant will use the default builtin transport independently of its :class:`<userTransports>`.
+- ``<useBuiltinTransports>``: Boolean field to indicate to the system that the participant will use the default builtin transport independently of its ``<userTransports>``.
 
 - ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
 
@@ -899,7 +899,7 @@ Common
 ------
 
 In the above profiles, some types are used in several different places. To avoid too many details, in some of that
-places you found a tag like :class:`<LocatorListType>` that indicates that field is defined in this section.
+places you found a tag like :class:`LocatorListType` that indicates that field is defined in this section.
 
 Now we are going to fully explain these common types:
 
@@ -911,7 +911,7 @@ LocatorListType
 It is used to represent a list of :class:`Locator_t`.
 LocatorListType is normally used as an anonymous type, this is, it hasn't its own label.
 Instead, it is used inside other configuration parameter labels that expect a list of locators and give it sense,
-for example, in :class:`<defaultUnicastLocatorList>`:
+for example, in ``<defaultUnicastLocatorList>``:
 
 .. code-block:: xml
 
@@ -942,19 +942,19 @@ for example, in :class:`<defaultUnicastLocatorList>`:
         </locator>
     </defaultUnicastLocatorList>
 
-In this example, we declared three different locators in :class:`<defaultUnicastLocatorList>`.
+In this example, we declared three different locators in ``<defaultUnicastLocatorList>``.
 
-Let's see each Locator's field in detail:
+Let's see each Locator's fields in detail:
 
 - ``<kind>``: Type of the Locator can be UDPv4, UDPv6, TCPv4, and TCPv6.
 
 - ``<port>``: Physical port number of the locator.
 
-- ``<port_>``: Allows you to manage low-level detail in ports of TCP locators, allowing set both **physical_port** and **logical_port**.
+- ``<port_>``: Allows you to manage low-level detail in ports of TCP locators, allowing set both :``<physical_port>`` and ``<logical_port>``.
 
 - ``<address>``: Allows you to set the IPv4 address of the locator.
 
-- ``<addresses_>``: Allows you to manage low-level details in address of TCP locators (**unique_lan_id**, **wan_address** and **ip_address**).
+- ``<addresses_>``: Allows you to manage low-level details in address of TCP locators (``<unique_lan_id>``, ``<wan_address>`` and ``<ip_address>``).
 
 - ``<ipv6_address>``:  Allows you to set the IPv6 address of the locator.
 
@@ -963,7 +963,7 @@ Let's see each Locator's field in detail:
 PropertiesPolicyType
 ^^^^^^^^^^^^^^^^^^^^
 
-PropertiesPolicyType (XML label :class:`<propertiesPolicy>`) allows you to define a set of generic properties.
+PropertiesPolicyType (XML label ``<propertiesPolicy>``) allows you to define a set of generic properties.
 It can be used to set a variable number of properties,
 very useful at defining extended or custom configuration parameters.
 
@@ -997,7 +997,7 @@ DurationType
 
 DurationType expresses a period of time.
 DurationType is normally used as an anonymous type, this is, it hasn't its own label. Instead, it is used inside other
-configuration parameter labels that give it sense, like :class:`<leaseAnnouncement>` or :class:`<leaseDuration>`.
+configuration parameter labels that give it sense, like ``<leaseAnnouncement>`` or ``<leaseDuration>``.
 
 .. code-block:: xml
 
@@ -1120,6 +1120,7 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
         </lifespan>
 
         <userData>148875 </userData>
+
         <timeBasedFilter>
             <minimum_separation>
                 <!-- DURATION -->

@@ -540,7 +540,7 @@ as shown in :ref:`loadingapplyingprofiles`.
                 <offsetd3>3</offsetd3> <!-- uint16 -->
             </port>
 
-            <userData> <!-- octetVector (string) -->  </userData>
+            <userData>148875 </userData>
 
             <participantID>99</participantID>   <!-- int32 -->
 
@@ -1119,7 +1119,7 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
             <!-- DURATION -->
         </lifespan>
 
-        <userData> <!-- octetVector (string) -->  </userData>
+        <userData>148875 </userData>
         <timeBasedFilter>
             <minimum_separation>
                 <!-- DURATION -->
@@ -1146,11 +1146,11 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
         </partition>
 
         <topicData>
-            <value> <!-- octetVector (string) --> </value>
+            <value>148875</value>
         </topicData>
 
         <groupData>
-            <value> <!-- octetVector (string) --> </value>
+            <value>148875</value>
         </groupData>
     </qos>
 
@@ -1166,12 +1166,12 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
 
 - ``<reliability>``: is defined on :ref:`reliability` section.
 
-- ``<ownership>``: ``<kind>`` determines whether an instance of the Topic is owned by a single Publisher. If the selected ownership is EXCLUSIVE the Publisher will use the Ownership strength value as the strength of its publication. Only the publisher with the highest strength can publish in the same Topic with the same Key.
+- ``<ownership>``: ``<kind>`` determines whether an instance of the Topic is owned by a single Publisher. If the selected ownership is :class:`EXCLUSIVE` the Publisher will use the Ownership strength value as the strength of its publication. Only the publisher with the highest strength can publish in the same Topic with the same Key.
 
-- ``<destinationOrder>``: ``<kind>`` determines the destination timestamp. BY_RECEPTION_TIMESTAMP for reception and BY_SOURCE_TIMESTAMP for the source.
+- ``<destinationOrder>``: ``<kind>`` determines the destination timestamp. :class:`BY_RECEPTION_TIMESTAMP` for reception and :class:`BY_SOURCE_TIMESTAMP` for the source.
 
 - ``<presentation>``:
-    * ``<access_scope>`` defines the scope of presentation and can be INSTANCE, TOPIC, GROUP.
+    * ``<access_scope>`` defines the scope of presentation and can be :class:`INSTANCE`, :class:`TOPIC`, or :class:`GROUP`.
 
     * ``<coherent_access>`` defines if the access must be coherent. It's a boolean value.
 

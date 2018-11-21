@@ -16,7 +16,7 @@ If you are on Linux, execute: ::
 
 If you are on Windows, choose your version of Visual Studio using CMake option *-G*: ::
 
-    > cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON ..
+    > cmake -G "Visual Studio 15 2017 Win64" -DTHIRDPARTY=ON ..
     > cmake --build . --target install
 
 If you want to compile *fastrtpsgen* java application, you will need to add the argument ``-DBUILD_JAVA=ON`` when
@@ -34,8 +34,8 @@ Security
 By default, Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
 configuration step. More information about security on Fast RTPS, see :ref:`security`.
 
-When security is activated on compilation Fast RTPS builds two built-in security plugins. Both have the dependency of
-OpenSSL library.
+When security is activated on compilation Fast RTPS builds several built-in security plugins. 
+Some of them have the dependency of OpenSSL library.
 
 OpenSSL installation on Linux
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -53,15 +53,31 @@ fastrtpsgen (see :ref:`fastrtpsgen-intro`), which can do two different things:
 
 You may want to check out the fastrtpsgen user manual, which comes with the distribution of the library. But for now, the following commands will do:
 
+On Linux: ::
+
+    fastrtpsgen -example CMake HelloWorld.idl
+
 On Windows: ::
 
-    fastrtpsgen.bat -example x64Win64VS2015 HelloWorld.idl
+    fastrtpsgen.bat -example CMake HelloWorld.idl
+
+The `-example` option creates an example application, and the files needed to build it.
 
 On Linux: ::
 
-    fastrtpsgen -example x64Linux2.6gcc HelloWorld.idl
+    mkdir build && cd build
+    cmake ..
+    make
 
-The `-example` option creates an example application, which you can use to spawn any number of publishers and subscribers associated with your topic. ::
+On Windows: ::
+
+    mkdir build && cd build
+    cmake -G "Visual Studio 15 2017 Win64" ..
+    cmake --build .
+
+The application build can be used to spawn any number of publishers and subscribers associated with your topic.
+
+On Linux: ::
 
     ./HelloWorldPublisherSubscriber publisher
     ./HelloWorldPublisherSubscriber subscriber

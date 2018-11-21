@@ -500,6 +500,8 @@ You can add custom transports using the attribute ``rtps.userTransports``.
 +---------------------------------------------------------------------------------+---------------------------------------------------------------------+
 
 
+.. _comm-transports-tcp:
+
 TCP Transport
 """""""""""""
 
@@ -705,32 +707,6 @@ In that case, *eProsima Fast RTPS* understands to get local network addresses an
 
 Both UDP and TCP locators support to have a zero port.
 In that case, *eProsima Fast RTPS* understands to calculate well-known port for that type of traffic.
-
-Sending locators
-""""""""""""""""
-
-These locators are used to create network endpoints to send all network messages. You can set your own locators using
-the attribute ``rtps.defaultOutLocatorList``.
-
-.. code-block:: c++
-
-   eprosima::fastrtps::ParticipantAttributes part_attr;
-
-   // This locator will create a socket to send network message on UDPv4 port 34000 over network interface 192.168.0.1
-   Locator_t locator;
-   IPLocator::setIPv4(locator, "192.168.0.1");
-   locator.port = 34000;
-
-   part_attr.rtps.defaultOutLocatorList.push_back(locator);
-
-By default *eProsima Fast RTPS* sends network messages using a random UDPv4 port over all interface networks.
-
-Both UDP and TCP unicast locators support to have a null address.
-In that case, *eProsima Fast RTPS* understands to get local network addresses and use them.
-
-Both UDP and TCP locators support to have a zero port.
-In that case, *eProsima Fast RTPS* understands to get a random port. In TCP case, this applies to logical and physical
-ports.
 
 .. _initial-peers:
 

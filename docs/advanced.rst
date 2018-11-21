@@ -297,40 +297,57 @@ Subscribing to Discovery Topics
 -------------------------------
 
 As specified in the :ref:`discovery` section, the Participant or RTPS Participant has a series of meta-data endpoints
-for use during the discovery process.  It is possible to create a custom listener that listens
-to the Endpoint Discovery Protocol meta-data. This allows you to create your own network analysis tools.
+for use during the discovery process.
+The participant listener interface includes methods which are called each time a Publisher or a Subscriber is discovered.
+This allows you to create your own network analysis tools.
 
 .. code-block:: c++
 
-   /* Create Custom user ReaderListeners */
-   CustomReaderListener *my_readerListenerSub = new(CustomReaderListener);
-   CustomReaderListener *my_readerListenerPub = new(CustomReaderListener);
-   /* Get access to the EDP endpoints */
-   std::pair<StatefulReader*,StatefulReader*> EDPReaders = my_participant->getEDPReaders();
-   /* Install the listeners for Subscribers and Publishers Discovery Data*/
-   EDPReaders.first()->setListener(my_readerListenerSub);
-   EDPReaders.second()->setListener(my_readerListenerPub);
+   /* Create Custom user ParticipantListener (should inherit from eprosima::fastrtps::ParticipantListener */
+   CustomParticipantListener *my_participantListener = new(CustomParticipantListener);
+   /* Pass the listener on participant creation */
+   participant = Domain::createParticipant(participantAttrs, my_participantListener);
    /* ... */
-   /* Custom Reader Listener onNewCacheChangeAdded*/
-   void onNewCacheChangeAdded(RTPSReader * reader, const CacheChange_t * const change)
+   /* Custom Listener onSubscriberDiscovery */
+   void onSubscriberDiscovery(
+     eprosima::fastrtps::Participant * participant,
+     eprosima::fastrtps::rtps::ReaderDiscoveryInfo && info) override
    {
-       (void)reader;
-       if (change->kind == ALIVE) {
-           WriterProxyData proxyData;
-
-           CDRMessage_t tempMsg(0);
-           tempMsg.wraps = true;
-           tempMsg.msg_endian = change_in->serializedPayload.encapsulation == PL_CDR_BE ? BIGEND : LITTLEEND;
-           tempMsg.length = change_in->serializedPayload.length;
-           tempMsg.max_size = change_in->serializedPayload.max_size;
-           tempMsg.buffer = change_in->serializedPayload.data;
-
-           if (proxyData.readFromCDRMessage(&tempMsg)) {
-               cout << proxyData.topicName();
-               cout << proxyData.typeName();
-           }
+       (void)participant;
+       switch(info.status) {
+           case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
+               /* Process the case when a new subscriber was found in the domain */
+               cout << "New subscriber for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() << "' discovered";
+               break;
+           case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
+               /* Process the case when a subscriber changed its QOS */
+               break;
+           case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
+               /* Process the case when a subscriber was removed from the domain */
+               cout << "Subscriber for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() << "' left the domain.";
+               break;
        }
-    }
+   }
+   /* Custom Listener onPublisherDiscovery */
+   void onPublisherDiscovery(
+     eprosima::fastrtps::Participant * participant,
+     eprosima::fastrtps::rtps::WriterDiscoveryInfo  && info) override
+   {
+       (void)participant;
+       switch(info.status) {
+           case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::DISCOVERED_WRITER:
+               /* Process the case when a new publisher was found in the domain */
+               cout << "New publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() << "' discovered";
+               break;
+           case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::CHANGED_QOS_WRITER:
+               /* Process the case when a publisher changed its QOS */
+               break;
+           case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::REMOVED_WRITER:
+               /* Process the case when a publisher was removed from the domain */
+               cout << "publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() << "' left the domain.";
+               break;
+       }
+   }
 
 The callbacks defined in the ReaderListener you attach to the EDP will execute for each data message after
 the built-in protocols have processed it.

@@ -17,7 +17,7 @@ This file is loaded at the library initialization if it exists.
 Making an XML
 -------------
 
-An XML file can contain several XML profiles. They can be divided into :ref:`transportdescriptors`,
+An XML file can contain several XML profiles. Each profile can be divided into :ref:`transportdescriptors`,
 :ref:`xmldynamictypes`, :ref:`participantprofiles`, :ref:`publisherprofiles`, and :ref:`subscriberprofiles`.
 
 .. code-block:: xml
@@ -86,7 +86,7 @@ Transport descriptors
 
 This section allows us to create transport descriptors to be referenced by the :ref:`participantprofiles`.
 Once a well-defined transport descriptor is referenced by a **Participant profile**, every time that profile
-is instantiated it will use or create the described transport.
+is instantiated it will use or create the related transport.
 
 The complete list of configurable parameters is shown in the following XML code:
 
@@ -137,7 +137,7 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 
 - ``<TTL>``: *Time To Live*, **only** for UDP transports.
 
-- ``<maxMessageSize>``: Maximum size in bytes of the transport message buffer.
+- ``<maxMessageSize>``: The maximum size in bytes of the transport message buffer.
 
 - ``<maxInitialPeersRange>``: Establishes the maximum number of guessed initial peers to try to connect (default **4**).
 
@@ -147,13 +147,13 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 
 - ``<output_port>``: Port used for output bound, instead of a random one.
 
-- ``<keep_alive_frequency_ms>``: Frequency in milliseconds for sending RTCP keep alive requests (**only** TCP).
+- ``<keep_alive_frequency_ms>``: Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP).
 
-- ``<keep_alive_timeout_ms>``: Time in milliseconds to consider a connection is broken since the last keep alive requests were sent (**only** TCP).
+- ``<keep_alive_timeout_ms>``: Time in milliseconds to consider a connection is broken since the last keepalive requests were sent (**only** TCP).
 
-- ``<max_logical_port>``: Maximum number of logical ports to try during RTCP negotiation (**only** TCP).
+- ``<max_logical_port>``: The maximum number of logical ports to try during RTCP negotiation (**only** TCP).
 
-- ``<logical_port_range>``: Maximum number of logical ports per request to try during RTCP negotiation (**only** TCP).
+- ``<logical_port_range>``: The maximum number of logical ports per request to try during RTCP negotiation (**only** TCP).
 
 - ``<logical_port_increment>``: Increment between logical ports to try during RTCP negotiation (**only** TCP).
 
@@ -173,7 +173,7 @@ XML Structure
 ^^^^^^^^^^^^^
 
 The XML Types definition (``<types>``, types tag) in the XML file can be placed similarly to the profiles tag.
-It can be a stand-alone XML Types file or be a child of the fastrtps XML root tag (``<dds>``).
+It can be a stand-alone XML Types file or be a child of the Fast-RTPS XML root tag (``<dds>``).
 Inside the types tag, must be one or more type tags (``<type>``).
 
 Stand-Alone:
@@ -206,8 +206,8 @@ Rooted:
         </types>
     </dds>
 
-Finally, each type tag can contain one or more Type definition.
-Define several types inside a type tag or each type in its own type tag has the same result.
+Finally, each type of tag can contain one or more Type definition.
+Define several types inside a type of tag or each type in its own type of tag has the same result.
 
 Type definition
 ^^^^^^^^^^^^^^^
@@ -608,7 +608,7 @@ Now, we are going to explain each possible configuration parameter:
 
 - ``<throughputController>``: Allows you to define a maximum throughput:
 
-    * ``<bytesPerPeriod>``: Maximum bytes to send by period.
+    * ``<bytesPerPeriod>``: The maximum bytes to send by period.
     * ``<periodMillisecs>``: Period in milliseconds.
 
 - ``<userTransports>``: Allows you to add transport descriptors to be used by the participant, as a list of ``<id>``.
@@ -1066,11 +1066,11 @@ You can see a deeper explanation of the "topic" field here: :ref:`Topic_informat
 
 - ``<resourceLimitsQos>``: The :ref:`history QoS <resourceLimits-qos>`
 
-    * ``<max_samples>``: Maximum number of samples that can be stored in the history of publishers or subscribers. Its default value is 5000.
+    * ``<max_samples>``: The maximum number of samples that can be stored in the history of publishers or subscribers. Its default value is 5000.
 
-    * ``<max_instances>``: Maximum number of instances that a publisher or a subscriber can manage. Its default value is 10.
+    * ``<max_instances>``: The maximum number of instances that a publisher or a subscriber can manage. Its default value is 10.
 
-    * ``<max_samples_per_instance>``: Maximum number of samples for each instance. Its default value is 400.
+    * ``<max_samples_per_instance>``: The maximum number of samples for each instance. Its default value is 400.
 
     * ``<allocated_samples>``: Initial samples reserved in the history of publishers or subscribers.
 
@@ -1310,7 +1310,7 @@ Don't take it as a working example.
         </transport_descriptors>
 
         <types>
-            <type> <!-- Types can be defined in its own type tag or sharing the same tag -->
+            <type> <!-- Types can be defined in its own type of tag or sharing the same tag -->
                 <enum name="MyAloneEnumType">
                     <literal name="A" value="0"/>
                     <literal name="B" value="1"/>

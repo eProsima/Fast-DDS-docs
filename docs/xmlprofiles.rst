@@ -1081,7 +1081,145 @@ You can see a deeper explanation of the "topic" field here: :ref:`Topic_informat
 QOS
 ^^^
 
-QOS blah blah blah
+As a user, you can implement your own quality of service (QoS) restrictions in your application. 
+
+.. code-block:: xml
+
+    <qos> <!-- readerQosPoliciesType -->    
+        <durability>
+            <kind>VOLATILE</kind> <!-- string -->
+        </durability>
+    
+        <durabilityService>
+            <!-- DURABILITY_SERVICE -->            
+        </durabilityService>
+    
+        <deadline>
+            <period>
+                <!-- DURATION -->
+            </period>
+        </deadline>
+    
+        <latencyBudget>
+            <duration>
+                <!-- DURATION -->
+            </duration>
+        </latencyBudget>
+    
+        <liveliness>
+            <!-- LIVELINESS -->            
+        </liveliness>
+
+        <reliability>
+            <kind>BEST_EFFORT</kind>
+            <max_blocking_time>
+                <!-- DURATION -->
+            </max_blocking_time>
+        </reliability>
+
+        <lifespan>
+            <!-- DURATION -->
+        </lifespan>
+
+        <userData> <!-- octetVector (string) -->  </userData>
+        <timeBasedFilter>
+            <minimum_separation>
+                <!-- DURATION -->
+            </minimum_separation>
+        </timeBasedFilter>
+
+        <ownership>
+            <kind>SHARED</kind> <!-- string -->
+        </ownership>
+
+        <destinationOrder>
+            <kind>BY_RECEPTION_TIMESTAMP</kind> <!-- string -->
+        </destinationOrder>
+
+        <presentation>
+            <access_scope>INSTANCE</access_scope> <!-- string -->
+            <coherent_access>TRUE</coherent_access> <!-- bool -->
+            <ordered_access>TRUE</ordered_access> <!-- bool -->       
+        </presentation>
+
+        <partition>
+            <name>part1</name> <!-- string -->
+            <name>part2</name> <!-- string -->
+        </partition>
+
+        <topicData>
+            <value> <!-- octetVector (string) --> </value>
+        </topicData>
+
+        <groupData>
+            <value> <!-- octetVector (string) --> </value>
+        </groupData>
+    </qos>
+
+**NOTES**:
+
+- :class:`DURABILITY_SERVICE` means that the label is a :ref:`DurabilityServiceType` block.
+
+- :class:`LIVELINESS` means that the label is a :ref:`LiveLinessType` block.
+
+- **durability** is defined on :ref:`SettingDataDurability` section. 
+    
+- **reliability** is defined on :ref:`reliability` section.
+    
+- **ownership** 
+    - *kind* determines whether an instance of the Topic is owned by a single Publisher. If the selected ownership is EXCLUSIVE the Publisher will use the Ownership strength value as the strength of its publication. Only the publisher with the highest strength can publish in the same Topic with the same Key.
+       
+- **destinationOrder** 
+    - *kind* determines the destination timestamp. BY_RECEPTION_TIMESTAMP for reception and BY_SOURCE_TIMESTAMP for the source.
+
+- **presentation**
+    - *access_scope* defines the scope of presentation and can be INSTANCE, TOPIC, GROUP.
+
+.. _DurabilityServiceType:
+
+DurabilityServiceType
+^^^^^^^^^^^^^^^^^^^^^
+
+Durability configuration of the endpoint defines how it behaves regarding samples that existed on the topic before a
+subscriber joins.
+
+.. code-block:: xml
+
+    <durabilityService>
+        <service_cleanup_delay>
+            <!-- DURATION -->
+        </service_cleanup_delay>
+        <history_kind>KEEP_LAST</history_kind> <!-- string -->
+        <history_depth></history_depth> <!-- unint32 -->
+        <max_samples></max_samples> <!-- unint32 -->
+        <max_instances></max_instances> <!-- unint32 -->
+        <max_samples_per_instance></max_samples_per_instance> <!-- unint32 -->
+    </durabilityService>    
+
+- **KEEP_ALL** to determinate that all samples have to be received by all subscribers.
+- **KEEP_LAST** to use a non-strict reliability.
+
+.. _LivelinessType:
+
+LivelinessType
+^^^^^^^^^^^^^^
+
+This parameter defines who is responsible for issues of liveliness packets.
+
+.. code-block:: xml
+
+    <liveliness>
+        <kind>AUTOMATIC</kind> <!-- string -->
+        <leaseDuration>
+            <!-- DURATION -->
+        </leaseDuration>
+        <announcement_period>
+            <!-- DURATION -->
+        </announcement_period>
+    </liveliness>
+
+- **AUTOMATIC** liveliness packets are managed by infrastructure. 
+- **MANUAL_BY_PARTICIPANT** | **MANUAL_BY_TOPIC**: liveliness packets managed by the application.
 
 
 historyQos

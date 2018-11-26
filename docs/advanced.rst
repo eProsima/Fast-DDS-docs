@@ -18,41 +18,41 @@ There are three ways of implementing keys into your topic:
 
 Publishers and Subscribers using topics with keys must be configured to use them, otherwise, they will have no effect:
 
-    +---------------------------------------------------------------------------------+--------------------------------------------------------------------+
-    | C++                                                                             | XML                                                                |
-    +=================================================================================+====================================================================+
-    | .. code-block:: c++                                                             | .. code-block:: xml                                                |
-    |                                                                                 |                                                                    |
-    |     //Publisher-Subscriber Layer configuration                                  |     <profiles>                                                     |
-    |     PubAttributes.topic.topicKind = WITH_KEY                                    |         <publisher profile_name="PubAttributesProfile">            |
-    |                                                                                 |             <topic>                                                |
-    |                                                                                 |                 <kind>WITH_KEY</kind>                              |
-    |                                                                                 |             </topic>                                               |
-    |                                                                                 |         </publisher>                                               |
-    |                                                                                 |     </profiles>                                                    |
-    +---------------------------------------------------------------------------------+--------------------------------------------------------------------+
++--------------------------------------------+
+| **C++**                                    |
++--------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp |
+|    :language: c++                          |
+|    :start-after: //CONF-QOS-KEY            |
+|    :end-before: //!--                      |
++--------------------------------------------+
+| **XML**                                    |
++--------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml  |
+|    :language: xml                          |
+|    :start-after: <!-->CONF-QOS-KEY         |
+|    :end-before: <!--><-->                  |
++--------------------------------------------+
 
 The RTPS Layer requires you to call the :func:`getKey()` method manually within your callbacks.
 
 You can tweak the History to accommodate data from multiples keys based on your current configuration. This consist of defining a maximum number of data sinks and a maximum size for each sink:
 
-    +---------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-    | C++                                                                             | XML                                                                             |
-    +=================================================================================+=================================================================================+
-    | .. code-block:: c++                                                             | .. code-block:: xml                                                             |
-    |                                                                                 |                                                                                 |
-    |     //Set the subscriber to remember and store up to 3 different keys           |     <profiles>                                                                  |
-    |     Rparam.topic.resourceLimitsQos.max_instances = 3;                           |         <subscriber profile_name="reader_profile">                              |
-    |     //Hold a maximum of 20 samples per key                                      |             <topic>                                                             |
-    |     Rparam.topic.resourceLimitsQos.max_samples_per_instance = 20;               |                 <resourceLimitsQos>                                             |
-    |                                                                                 |                     <max_instances>3</max_instances>                            |
-    |                                                                                 |                     <max_samples_per_instance>20</max_samples_per_instance>     |
-    |                                                                                 |                 </resourceLimitsQos>                                            |
-    |                                                                                 |             </topic>                                                            |
-    |                                                                                 |         </subscriber>                                                           |
-    |                                                                                 |     </profiles>                                                                 |
-    |                                                                                 |                                                                                 |
-    +---------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
++--------------------------------------------------------+
+| **C++**                                                |
++--------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp             |
+|    :language: c++                                      |
+|    :start-after: //CONF-QOS-RESOURCELIMIT-INSTANCES    |
+|    :end-before: //!--                                  |
++--------------------------------------------------------+
+| **XML**                                                |
++--------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml              |
+|    :language: xml                                      |
+|    :start-after: <!-->CONF-QOS-RESOURCELIMIT-INSTANCES |
+|    :end-before: <!--><-->                              |
++--------------------------------------------------------+
 
 Note that your History must be big enough to accommodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
 
@@ -69,19 +69,21 @@ The current release implement throughput controllers, which can be used to limit
 over the network per time measurement unit. In order to use them, a descriptor must be passed into the Participant
 or Publisher Attributes.
 
-    +------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-    | C++                                                                                | XML                                                                             |
-    +====================================================================================+=================================================================================+
-    | .. code-block:: c++                                                                | .. code-block:: xml                                                             |
-    |                                                                                    |                                                                                 |
-    |     PublisherAttributes WparamSlow;                                                |     <publisher profile_name="WparamSlow_profile">                               |
-    |     //Limit to 300kb per second                                                    |         <throughputController>                                                  |
-    |     ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000};|             <bytesPerPeriod>300000</bytesPerPeriod>                             |
-    |     WparamSlow.throughputController = slowPublisherThroughputController;           |             <periodMillisecs>1000</periodMillisecs>                             |
-    |                                                                                    |         </throughputController>                                                 |
-    |                                                                                    |     </publisher>                                                                |
-    |                                                                                    |                                                                                 |
-    +------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
++-----------------------------------------------+
+| **C++**                                       |
++-----------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp    |
+|    :language: c++                             |
+|    :start-after: //CONF-QOS-FLOWCONTROLLER    |
+|    :end-before: //!--                         |
++-----------------------------------------------+
+| **XML**                                       |
++-----------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml     |
+|    :language: xml                             |
+|    :start-after: <!-->CONF-QOS-FLOWCONTROLLER |
+|    :end-before: <!--><-->                     |
++-----------------------------------------------+
 
 
 In the Writer-Reader layer, the throughput controller is built-in and the descriptor defaults to infinite throughput.
@@ -104,20 +106,21 @@ If your topic data is bigger, it must be fragmented.
 Fragmented messages are sent over multiple packets, as understood by the particular transport layer.
 To make this possible, you must configure the Publisher to work in asynchronous mode.
 
-+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| C++                                                                                | XML                                                                             |
-+====================================================================================+=================================================================================+
-| .. code-block:: c++                                                                | .. code-block:: xml                                                             |
-|                                                                                    |                                                                                 |
-|     PublisherAttributes Wparam;                                                    |     <publisher profile_name="Wparam_profile">                                   |
-|     // Allows fragmentation                                                        |         <qos>                                                                   |
-|     Wparam.qos.m_publishMode.kind = ASYNCHRONOUS_PUBLISH_MODE;                     |             <publishMode>                                                       |
-|                                                                                    |                 <kind>ASYNCHRONOUS</kind>                                       |
-|                                                                                    |             </publishMode>                                                      |
-|                                                                                    |         </qos>                                                                  |
-|                                                                                    |     </publisher>                                                                |
-|                                                                                    |                                                                                 |
-+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
++--------------------------------------------+
+| **C++**                                    |
++--------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp |
+|    :language: c++                          |
+|    :start-after: //CONF-QOS-PUBLISHMODE    |
+|    :end-before: //!--                      |
++--------------------------------------------+
+| **XML**                                    |
++--------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml  |
+|    :language: xml                          |
+|    :start-after: <!-->CONF-QOS-PUBLISHMODE |
+|    :end-before: <!--><-->                  |
++--------------------------------------------+
 
 In the Writer-Subscriber layer, you have to configure the Writer:
 
@@ -190,19 +193,21 @@ Fast RTPS provides a discovery mechanism that allows matching automatically publ
 
 By default, the discovery mechanism is enabled, but you can disable it through participant attributes.
 
-+---------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| C++                                                                                   | XML                                                                             |
-+=======================================================================================+=================================================================================+
-| .. code-block:: c++                                                                   | .. code-block:: xml                                                             |
-|                                                                                       |                                                                                 |
-|     ParticipantAttributes participant_attr;                                           |     <participant profile_name="participant_profile">                            |
-|     participant_attr.rtps.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;|         <rtps>                                                                  |
-|                                                                                       |             <builtin>                                                           |
-|                                                                                       |                 <use_SIMPLE_RTPS_PDP>true</use_SIMPLE_RTPS_PDP>                 |
-|                                                                                       |             </builtin>                                                          |
-|                                                                                       |         </rtps>                                                                 |
-|                                                                                       |     </participant>                                                              |
-+---------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
++--------------------------------------------------+
+| **C++**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp       |
+|    :language: c++                                |
+|    :start-after: //CONF-QOS-DISABLE-DISCOVERY    |
+|    :end-before: //!--                            |
++--------------------------------------------------+
+| **XML**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml        |
+|    :language: xml                                |
+|    :start-after: <!-->CONF-QOS-DISABLE-DISCOVERY |
+|    :end-before: <!--><-->                        |
++--------------------------------------------------+
 
 Static Endpoints Discovery
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -301,53 +306,21 @@ for use during the discovery process.
 The participant listener interface includes methods which are called each time a Publisher or a Subscriber is discovered.
 This allows you to create your own network analysis tools.
 
-.. code-block:: c++
-
-   /* Create Custom user ParticipantListener (should inherit from eprosima::fastrtps::ParticipantListener */
-   CustomParticipantListener *my_participantListener = new(CustomParticipantListener);
-   /* Pass the listener on participant creation */
-   participant = Domain::createParticipant(participantAttrs, my_participantListener);
-   /* ... */
-   /* Custom Listener onSubscriberDiscovery */
-   void onSubscriberDiscovery(
-     eprosima::fastrtps::Participant * participant,
-     eprosima::fastrtps::rtps::ReaderDiscoveryInfo && info) override
-   {
-       (void)participant;
-       switch(info.status) {
-           case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
-               /* Process the case when a new subscriber was found in the domain */
-               cout << "New subscriber for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() << "' discovered";
-               break;
-           case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
-               /* Process the case when a subscriber changed its QOS */
-               break;
-           case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
-               /* Process the case when a subscriber was removed from the domain */
-               cout << "Subscriber for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() << "' left the domain.";
-               break;
-       }
-   }
-   /* Custom Listener onPublisherDiscovery */
-   void onPublisherDiscovery(
-     eprosima::fastrtps::Participant * participant,
-     eprosima::fastrtps::rtps::WriterDiscoveryInfo  && info) override
-   {
-       (void)participant;
-       switch(info.status) {
-           case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::DISCOVERED_WRITER:
-               /* Process the case when a new publisher was found in the domain */
-               cout << "New publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() << "' discovered";
-               break;
-           case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::CHANGED_QOS_WRITER:
-               /* Process the case when a publisher changed its QOS */
-               break;
-           case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::REMOVED_WRITER:
-               /* Process the case when a publisher was removed from the domain */
-               cout << "publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() << "' left the domain.";
-               break;
-       }
-   }
++--------------------------------------------------+
+| **Implementation of custom listener**            |
++--------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp       |
+|    :language: c++                                |
+|    :start-after: //API-DISCOVERY-TOPICS-LISTENER |
+|    :end-before: //!--                            |
++--------------------------------------------------+
+| **Setting the custom listener**                  |
++--------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp       |
+|    :language: c++                                |
+|    :start-after: //API-DISCOVERY-TOPICS-SET      |
+|    :end-before: //!--                            |
++--------------------------------------------------+
 
 The callbacks defined in the ReaderListener you attach to the EDP will execute for each data message after
 the built-in protocols have processed it.
@@ -376,20 +349,21 @@ By default *eProsima Fast RTPS* creates socket buffers with the system default s
 ``sendSocketBufferSize`` attribute helps to increase the socket buffer used to send data.
 ``listenSocketBufferSize`` attribute helps to increase the socket buffer used to read data.
 
-   +-----------------------------------------------------+---------------------------------------------------------------------+
-   | C++                                                 | XML                                                                 |
-   +=====================================================+=====================================================================+
-   | .. code-block:: c++                                 | .. code-block:: xml                                                 |
-   |                                                     |                                                                     |
-   |    part_attr.rtps.sendSocketBufferSize = 1048576;   |    <profiles>                                                       |
-   |    part_attr.rtps.listenSocketBufferSize = 4194304; |       <participant profile_name="participant_xml_profile">          |
-   |                                                     |          <rtps>                                                     |
-   |                                                     |            <sendSocketBufferSize>1048576</sendSocketBufferSize>     |
-   |                                                     |            <listenSocketBufferSize>4194304</listenSocketBufferSize> |
-   |                                                     |          </rtps>                                                    |
-   |                                                     |       </participant>                                                |
-   |                                                     |    </profiles>                                                      |
-   +-----------------------------------------------------+---------------------------------------------------------------------+
+   +-------------------------------------------------------+
+   | **C++**                                               |
+   +-------------------------------------------------------+
+   | .. literalinclude:: ../code/CodeTester.cpp            |
+   |    :language: c++                                     |
+   |    :start-after: //CONF-QOS-INCREASE-SOCKETBUFFERS    |
+   |    :lines: 1-2                                        |
+   +-------------------------------------------------------+
+   | **XML**                                               |
+   +-------------------------------------------------------+
+   | .. literalinclude:: ../code/XMLTester.xml             |
+   |    :language: xml                                     |
+   |    :start-after: <!-->CONF-QOS-INCREASE-SOCKETBUFFERS |
+   |    :lines: 1-6                                        |
+   +-------------------------------------------------------+
 
 Finding out system maximum values
 """""""""""""""""""""""""""""""""
@@ -471,21 +445,21 @@ and with them, you can set the interfaces you want to use to send or receive pac
 The values on this list should match the IPs of your machine in that networks.
 For example:
 
-   +-------------------------------------------------------------+---------------------------------------------------------------------+
-   | C++                                                         | XML                                                                 |
-   +=============================================================+=====================================================================+
-   | .. code-block:: c++                                         | .. code-block:: xml                                                 |
-   |                                                             |                                                                     |
-   |    UDPv4TransportDescriptor descriptor;                     |    <profiles>                                                       |
-   |    descriptor.interfaceWhiteList.emplace_back("127.0.0.1"); |       <transport_descriptors>                                       |
-   |                                                             |         <transport_descriptor>                                      |
-   |                                                             |           <interfaceWhiteList>                                      |
-   |                                                             |             <address>127.0.0.1</address>                            |
-   |                                                             |           </interfaceWhiteList>                                     |
-   |                                                             |          </transport_descriptor>                                    |
-   |                                                             |       </transport_descriptors>                                      |
-   |                                                             |    </profiles>                                                      |
-   +-------------------------------------------------------------+---------------------------------------------------------------------+
++--------------------------------------------------+
+| **C++**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp       |
+|    :language: c++                                |
+|    :start-after: //CONF-TRANSPORT-DESCRIPTORS    |
+|    :end-before: //!--                            |
++--------------------------------------------------+
+| **XML**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml        |
+|    :language: xml                                |
+|    :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS |
+|    :end-before: <!--><-->                        |
++--------------------------------------------------+
 
 Additional Quality of Service options
 -------------------------------------

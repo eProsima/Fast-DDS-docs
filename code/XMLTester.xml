@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles>
+
+<!-->CONF-QOS-KEY<-->
+<publisher profile_name="publisher_profile">
+    <topic>
+        <kind>WITH_KEY</kind>
+    </topic>
+</publisher>
+<!--><-->
+
+<!-->CONF-QOS-RESOURCELIMIT-INSTANCES<-->
+<subscriber profile_name="subscriber_profile">
+    <topic>
+        <resourceLimitsQos>
+            <max_instances>3</max_instances>
+            <max_samples_per_instance>20</max_samples_per_instance>
+        </resourceLimitsQos>
+    </topic>
+</subscriber>
+<!--><-->
+
+<!-->CONF-QOS-FLOWCONTROLLER<-->
+<publisher profile_name="publisher_profile">
+    <throughputController>
+        <bytesPerPeriod>300000</bytesPerPeriod>
+        <periodMillisecs>1000</periodMillisecs>
+    </throughputController>
+</publisher>
+<!--><-->
+
+<!-->CONF-QOS-PUBLISHMODE<-->
+<publisher profile_name="publisher_profile">
+    <qos>
+        <publishMode>
+            <kind>ASYNCHRONOUS</kind>
+        </publishMode>
+    </qos>
+</publisher>
+<!--><-->
+
+<!-->CONF-QOS-DISABLE-DISCOVERY<-->
+<participant profile_name="participant_profile">
+    <rtps>
+        <builtin>
+            <use_SIMPLE_RTPS_PDP>false</use_SIMPLE_RTPS_PDP>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-QOS-INCREASE-SOCKETBUFFERS<-->
+<participant profile_name="participant_xml_profile">
+    <rtps>
+        <sendSocketBufferSize>1048576</sendSocketBufferSize>
+        <listenSocketBufferSize>4194304</listenSocketBufferSize>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-TRANSPORT-DESCRIPTORS<-->
+<transport_descriptors>
+    <transport_descriptor>
+        <interfaceWhiteList>
+            <address>127.0.0.1</address>
+        </interfaceWhiteList>
+    </transport_descriptor>
+</transport_descriptors>
+<!--><-->
+
+<profiles>

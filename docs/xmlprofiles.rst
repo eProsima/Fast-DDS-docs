@@ -72,37 +72,51 @@ The following XML code shows the complete list of configurable parameters:
 
 The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
-- ``<transport_id>``: Unique name to identify each transport descriptor.
-
-- ``<type>``: Type of the transport descriptor. The supported types are UDPv4, UDPv6, TCPv4, and TCPv6.
-
-- ``<sendBufferSize>``: Size in bytes of the socket send buffer.
-
-- ``<receiveBufferSize>``: Size in bytes of the socket receive buffer.
-
-- ``<TTL>``: *Time To Live*, **only** for UDP transports.
-
-- ``<maxMessageSize>``: The maximum size in bytes of the transport's message buffer.
-
-- ``<maxInitialPeersRange>``: Establishes the maximum number of guessed initial peers to try to connect (default **4**).
-
-- ``<interfaceWhiteList>``: Allows defining :ref:`whitelist-interfaces`.
-
-- ``<wan_addr>``: Public WAN address when using **TCPv4 transports**. This field is optional if the transport doesn't need to define a WAN address.
-
-- ``<output_port>``: Port used for output bound. If this field isn't defined, the output port will be random.
-
-- ``<keep_alive_frequency_ms>``: Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP).
-
-- ``<keep_alive_timeout_ms>``: Time in milliseconds since sending the last keepalive request to consider a connection as broken. (**only** TCP).
-
-- ``<max_logical_port>``: The maximum number of logical ports to try during RTCP negotiation (**only** TCP).
-
-- ``<logical_port_range>``: The maximum number of logical ports per request to try during RTCP negotiation (**only** TCP).
-
-- ``<logical_port_increment>``: Increment between logical ports to try during RTCP negotiation (**only** TCP).
-
-- ``<ListeningPorts>``: Local port to work as TCP acceptor for input connections. If not set, the transport will work as TCP client only (**only** TCP).
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| Name                           | Description                                                                       | Values                           | Default |
++================================+===================================================================================+==================================+=========+
+| ``<transport_id>``             | Unique name to identify each transport descriptor.                                | :class:`string`                  |         |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<type>``                     | Type of the transport descriptor.                                                 | UDPv4, UDPv6, TCPv4, TCPv6       | UDPv4   |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<sendBufferSize>``           | Size in bytes of the socket send buffer.                                          | :class:`uint32`                  | 0       |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<receiveBufferSize>``        | Size in bytes of the socket receive buffer.                                       | :class:`uint32`                  | 0       |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<TTL>``                      | *Time To Live*, **only** for UDP transports.                                      | :class:`uint8`                   | 1       |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<maxMessageSize>``           | The maximum size in bytes of the transport's message buffer.                      | :class:`uint32`                  | 65500   |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<maxInitialPeersRange>``     | The maximum number of guessed initial peers to try to connect.                    | :class:`uint32`                  | 4       |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<interfaceWhiteList>``       | Allows defining :ref:`whitelist-interfaces`.                                      | :ref:`whitelist-interfaces`      |         |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<wan_addr>``                 | Public WAN address when using **TCPv4 transports**.                               |  :class:`string` with IPv4 Format|         |
+|                                |                                                                                   |                                  |         |
+|                                | This field is optional if the transport doesn't need to define a WAN address.     |  XXX.XXX.XXX.XXX.                |         |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<output_port>``              | Port used for output bound.                                                       | :class:`uint16`                  | 0       |
+|                                |                                                                                   |                                  |         |
+|                                | If this field isn't defined, the output port will be random.                      |                                  |         |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<keep_alive_frequency_ms>``  | Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP).     | :class:`uint32`                  | 50000   |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<keep_alive_timeout_ms>``    | Time in milliseconds since sending the last keepalive request                     | :class:`uint32`                  | 10000   |
+|                                |                                                                                   |                                  |         |
+|                                | to consider a connection as broken. (**only** TCP).                               |                                  |         |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<max_logical_port>``         | The maximum number of logical ports to try during RTCP negotiation (**only** TCP).| :class:`uint16`                  | 100     |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<logical_port_range>``       | The maximum number of logical ports per request to try                            | :class:`uint16`                  | 20      |
+|                                |                                                                                   |                                  |         |
+|                                | during RTCP negotiation (**only** TCP).                                           |                                  |         |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<logical_port_increment>``   | Increment between logical ports to try during RTCP negotiation (**only** TCP).    | :class:`uint16`                  | 2       |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<ListeningPorts>``           | Local port to work as TCP acceptor for input connections.                         | :class:`List `<uint16>``         |         |
+|                                |                                                                                   |                                  |         |
+|                                | If not set, the transport will work as TCP client only (**only** TCP).            |                                  |         |
++--------------------------------+-----------------------------------------------------------------------------------+----------------------------------+---------+
 
 There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
 

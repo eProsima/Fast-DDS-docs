@@ -3,7 +3,7 @@
 XML profiles
 ============
 
-The :ref:`configuration` section shows how to configure entity attributes using XML profiles, 
+The :ref:`configuration` section shows how to configure entity attributes using XML profiles,
 but this section goes deeper on it, explaining each field with its available values and how to compound the complete XML files.
 
 *eProsima Fast RTPS* permits to load as several XML files in the same execution, and they can contain several XML profiles.
@@ -26,7 +26,7 @@ An XML file can contain several XML profiles. Each profile can be divided into :
     :dedent: 4
 
 The Fast-RTPS XML format uses some structs along several profiles types.
-For commodity, these common structs have been grouped in section :ref:`commonxml`.
+For readability, the :ref:`commonxml` section groups these common structs.
 
 Finally, The :ref:`examplexml` section shows an XML file that uses all the possibilities.
 This example is useful as a quick reference to look for a particular property and how to use it.
@@ -62,7 +62,7 @@ This section allows creating transport descriptors to be referenced by the :ref:
 Once a well-defined transport descriptor is referenced by a **Participant profile**, every time that profile
 is instantiated it will use or create the related transport.
 
-The complete list of configurable parameters is shown in the following XML code:
+The following XML code shows the complete list of configurable parameters:
 
 .. literalinclude:: xmlprofiles.xml
     :language: xml
@@ -137,8 +137,10 @@ Rooted:
     :end-before: <!-- ROOTED TYPES END -->
     :dedent: 4
 
-Finally, each type of tag can contain one or more Type definition.
-Defining several types inside a *type* tag or defining each type in its own *type* tag has the same result.
+Finally, each type of tag can contain one or more :ref:`Type definitions <Type definition>`.
+Defining several types inside a *type* tag or defining each type in its *type* tag has the same result.
+
+.. _Type definition:
 
 Type definition
 ^^^^^^^^^^^^^^^
@@ -272,7 +274,7 @@ The tags of the available basic types are:
 - ``<boundedString>``
 - ``<boundedWString>``
 
-All of them are defined simply:
+All of them are defined as follows:
 
     +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
     | XML                                    | C++                                                                                                                            |
@@ -305,7 +307,7 @@ whose value indicates the maximum length of the string.
 
 **Arrays**
 
-Arrays are defined exactly the same way as any other member type, but adds the attribute :class:`dimensions`.
+Arrays are defined in the same way as any other member type but add the attribute :class:`dimensions`.
 The format of this dimensions attribute is the size of each dimension separated by commas.
 
 Example:
@@ -333,7 +335,7 @@ It's IDL analog would be:
 
 **Sequences**
 
-Sequences are defined by its :class:`name`, its content :class:`type` and its (optional) :class:`length`.
+Sequences are defined by its :class:`name`, its content :class:`type`, and optionally its :class:`length`.
 The type of its content can be defined by its :class:`type` attribute or by a member type.
 
 Example:
@@ -364,8 +366,8 @@ Note that the inner (or content) sequence has no name, as it would be ignored by
 
 **Maps**
 
-Maps are similar to sequences but they need to define two types instead one.
-One for its :class:`key_type` and anotherfor its :class:`value_type`.
+Maps are similar to sequences, but they need to define two types instead one.
+One type defines its :class:`key_type`, and the other type defines its :class:`value_type`.
 Again, both types can be defined as attributes or as members, but in this cases, when defined
 as members, they are content in another XML element ``<key_type>`` and ``<value_type>`` respectively.
 
@@ -432,9 +434,9 @@ It's important to remark that only Structs generate usable DynamicPubSubType ins
 Participant profiles
 --------------------
 
-Participant profiles allow declaring :ref:`participantconfiguration` from an XML file and 
+Participant profiles allow declaring :ref:`participantconfiguration` from an XML file and
 the configuration options for the participant belongs to the ``<rtps>`` label.
-The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
+The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
 .. literalinclude:: xmlprofiles.xml
@@ -453,7 +455,7 @@ as shown in :ref:`loadingapplyingprofiles`.
 
     - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
 
-This is the list of each possible configuration parameter:
+List with the possible configuration parameter:
 
 - ``<name>``: Participant's name. It's not the same that ``profile_name``.
 
@@ -553,7 +555,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 Publisher profiles
 ------------------
 
-Publisher profiles allow declaring :ref:`Publisher configuration <pubsubconfiguration>` from XML file.
+Publisher profiles allow declaring :ref:`Publisher configuration <pubsubconfiguration>` from an XML file.
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in the :ref:`loadingapplyingprofiles` section.
 
@@ -607,7 +609,7 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 Subscriber profiles
 -------------------
 
-Subscriber profiles allows declaring :ref:`Subscriber configuration <pubsubconfiguration>` from XML file.
+Subscriber profiles allow declaring :ref:`Subscriber configuration <pubsubconfiguration>` from an XML file.
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -663,8 +665,6 @@ Common
 
 In the above profiles, some types are used in several different places. To avoid too many details, some of that
 places have a tag like :class:`LocatorListType` that indicates that field is defined in this section.
-
-This is the complete list of common types:
 
 .. _LocatorListType:
 
@@ -759,7 +759,7 @@ There is a deeper explanation of the "topic" field here: :ref:`Topic_information
     :end-before: <!-- TOPIC END -->
     :dedent: 4
 
-- ``<kind>``: String field that sets if the topic uses keys or not. The available values are: *NO_KEY* and *WITH_KEY*.
+- ``<kind>``: String field that sets if the topic uses keys or not. The available values are *NO_KEY* and *WITH_KEY*.
 
 - ``<name>``: Name of the topic.
 
@@ -767,7 +767,7 @@ There is a deeper explanation of the "topic" field here: :ref:`Topic_information
 
 - ``<historyQos>``: The history QoS handles the number of messages that are going to be stored by publishers and subscribers in their histories.
 
-    * ``<kind>``: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
+    * ``<kind>``: History type, the available values are *KEEP_ALL* and *KEEP_LAST*.
 
     * ``<depth>``: Number of packages that can be stored with the *KEEP_LAST* option.
 

@@ -30,7 +30,7 @@ For commodity, these common structs have been grouped in section :ref:`commonxml
 
 Finally, The :ref:`examplexml` section shows an XML file that uses all the possibilities.
 This example is useful as a quick reference to look for a particular property and how to use it.
-This `XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_ can be used
+This `XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`__ can be used
 as a quick reference too.
 
 .. _loadingapplyingprofiles:

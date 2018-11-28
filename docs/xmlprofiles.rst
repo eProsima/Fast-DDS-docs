@@ -591,15 +591,19 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
-- ``<topic>``: :ref:`TopicType` configuration of the subscriber.
+- ``<topic>``: :ref:`TopicType` configuration of the pubsliher.
 
 - ``<qos>``: Subscriber :ref:`CommonQOS` configuration.
 
-- ``<times>``:  Allows configuring some time related parameters of the subscriber:
+- ``<times>``:  Allows configuring some time related parameters of the publisher:
 
-    * ``<initialAcknackDelay>``: :ref:`DurationType` of the initial :class:`Acknack` message.
+    * ``<initialAcknackDelay>``: :ref:`DurationType` of the initial dealy of the :class:`Acknack` message.
 
-    * ``<heartbeatResponseDelay>``: :ref:`DurationType` to set the delay of the :class:`heartbeat` message response.
+    * ``<heartbeatPeriod>``: :ref:`DurationType` to set the period of the :class:`heartbeat` messages.
+
+    * ``<nackResponseDelay>``: :ref:`DurationType` of the delay of the :class:`nack` message response.
+
+    * ``<nackSupressionDuration>``: :ref:`DurationType` to set supression duration of the :class:`nack` message.
 
 - ``<unicastLocatorList>``: List of unicast input locators. It expects a :ref:`LocatorListType`.
 
@@ -609,13 +613,13 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 
 - ``<throughputController>``: Limits the output bandwidth of the publisher.
 
-- ``<historyMemoryPolicy>``: Memory allocation kind for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+- ``<historyMemoryPolicy>``: Memory allocation kind for publisher's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
 
 - ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
 
 - ``<userDefinedID>``: Allows setting a custom identifier.
 
-- ``<entityID>``: Allows establishing the entityID of the subscriber.
+- ``<entityID>``: Allows establishing the entityID of the publisher.
 
 
 .. _subscriberprofiles:
@@ -762,7 +766,7 @@ or by ``<seconds>`` plus ``<fraction>`` labels:
 .. _TopicType:
 
 Topic Type
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
 
 The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange messages.
 There is a deeper explanation of the "topic" field here: :ref:`Topic_information`.
@@ -823,7 +827,17 @@ The quality of service (QoS) handles the restrictions applied to the application
 
 - ``<durability>``: is defined on :ref:`SettingDataDurability` section.
 
+- ``<deadline>``: Period of the samples deadline as :ref:`DurationType` within a ``<period>`` tag.
+
+- ``<latencyBudget>``: Latency budget os the samples as :ref:`DurationType` within a ``<duration>`` tag.
+
 - ``<reliability>``: is defined on :ref:`reliability` section.
+
+- ``<lifespan>``: lifespan as :ref:`DurationType`
+
+- ``<userData>``: Allows adding custom information.
+
+- ``<timeBasedFilter>``: Allows filtering by time. It's a :ref:`DurationType` within a ``<minimum_separation>`` tag.
 
 - ``<ownership>``: ``<kind>`` determines whether an instance of the Topic is owned by a single Publisher. If the selected ownership is :class:`EXCLUSIVE` the Publisher will use the Ownership strength value as the strength of its publication. Only the publisher with the highest strength can publish in the same Topic with the same Key.
 
@@ -835,6 +849,13 @@ The quality of service (QoS) handles the restrictions applied to the application
     * ``<coherent_access>`` Boolean value to set if the access must be coherent.
 
     * ``<ordered_access>`` Boolean value to set if the access must be ordered.
+
+- ``<partition>``: Allows to define the participant's partitions as a list of ``<name>``.
+
+- ``<topicData>``: Allows adding custom topic data.
+
+- ``<groupData>``: Allows adding custom group data.
+
 
 .. .. _DurabilityServiceType:
 
@@ -880,7 +901,7 @@ This parameter defines who is responsible for issues of liveliness packets.
     :end-before: <!-- LIVELINESS END -->
     :dedent: 4
 
-- ``<kind>``: Specifies how to manage liveliness. Can take values :class:`AUTOMATIC`, :class:`MANUAL_BY_PARTICIPANT`, and :class:`MANUAL_BY_TOPIC`.
+- ``<kind>``: Specifies how to manage liveliness. Can take values :class:`AUTOMATIC`, :class:`MANUAL_BY_PARTICIPANT`, and :class:`MANUAL_BY_TOPIC`. The default value is :class:`AUTOMATIC`.
 
 - ``<leaseDuration>``: How much time remote RTPSParticipants should consider this RTPSParticipant alive the lease is being announced. It is a :ref:`DurationType`.
 

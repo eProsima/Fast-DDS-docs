@@ -3,16 +3,15 @@
 XML profiles
 ============
 
-In the :ref:`configuration` section, you could see how to configure entity attributes using XML profiles,
-but this section goes deeper into it.
+The :ref:`configuration` section shows how to configure entity attributes using XML profiles, 
+but this section goes deeper on it, explaining each field with its available values and how to compound the complete XML files.
 
-XML profiles are loaded from XML files. *eProsima Fast RTPS* permits to load as much XML files as you want. An XML file
-can contain several XML profiles. An XML profile is defined by a unique name (or ``<transport_id>`` label
+*eProsima Fast RTPS* permits to load as several XML files in the same execution, and they can contain several XML profiles.
+An XML profile is defined by a unique name (or ``<transport_id>`` label
 in the :ref:`transportdescriptors` case) that is used to reference the XML profile
-when you create a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
+when during the creation of a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
 *eProsima Fast RTPS* will also try to find in current execution path and
-load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml*.
-This file is loaded at the library initialization if it exists.
+load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml*, during its initialization.
 
 Making an XML
 -------------
@@ -54,8 +53,8 @@ An XML file can contain several XML profiles. Each profile can be divided into :
 The Fast-RTPS XML format uses some structs along several profiles types.
 For commodity, these common structs have been grouped in section :ref:`commonxml`.
 
-Finally, an XML example file with all possibilities being used can be found at :ref:`examplexml`.
-This example is useful as a quick reference when you want to look for some particular property.
+Finally, The :ref:`examplexml` section shows an XML file that uses all the possibilities.
+This example is useful as a quick reference to look for a particular property and how to use it.
 This `XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_ can be used
 as a quick reference too.
 
@@ -64,7 +63,7 @@ as a quick reference too.
 Loading and applying profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before creating any entity, you can load XML files using ``Domain::loadXMLProfilesFile`` function.
+Before creating any entity, it's required to load XML files using ``Domain::loadXMLProfilesFile`` function.
 ``createParticipant``, ``createPublisher`` and ``createSubscriber`` have a version
 that expects the profile name as an argument. *eProsima Fast RTPS* searches the XML profile using
 this profile name and applies the XML profile to the entity.
@@ -84,7 +83,7 @@ To load dynamic types from its declaration through XML see the :ref:`Usage` sect
 Transport descriptors
 ---------------------
 
-This section allows us to create transport descriptors to be referenced by the :ref:`participantprofiles`.
+This section allows creating transport descriptors to be referenced by the :ref:`participantprofiles`.
 Once a well-defined transport descriptor is referenced by a **Participant profile**, every time that profile
 is instantiated it will use or create the related transport.
 
@@ -131,25 +130,25 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 
 - ``<type>``: Type of the transport descriptor. The supported types are UDPv4, UDPv6, TCPv4, and TCPv6.
 
-- ``<sendBufferSize>``: Size, in bytes, of the socket send buffer.
+- ``<sendBufferSize>``: Size in bytes of the socket send buffer.
 
-- ``<receiveBufferSize>``: Size, in bytes, of the socket receive buffer.
+- ``<receiveBufferSize>``: Size in bytes of the socket receive buffer.
 
 - ``<TTL>``: *Time To Live*, **only** for UDP transports.
 
-- ``<maxMessageSize>``: The maximum size in bytes of the transport message buffer.
+- ``<maxMessageSize>``: The maximum size in bytes of the transport's message buffer.
 
 - ``<maxInitialPeersRange>``: Establishes the maximum number of guessed initial peers to try to connect (default **4**).
 
-- ``<interfaceWhiteList>``: Allows you to define :ref:`whitelist-interfaces`.
+- ``<interfaceWhiteList>``: Allows defining :ref:`whitelist-interfaces`.
 
-- ``<wan_addr>``: Allows you to declare the public WAN address when using **TCPv4 transports**.
+- ``<wan_addr>``: Public WAN address when using **TCPv4 transports**. This field is optional if the transport doesn't need to define a WAN address.
 
-- ``<output_port>``: Port used for output bound, instead of a random one.
+- ``<output_port>``: Port used for output bound. If this field isn't defined, the output port will be random.
 
 - ``<keep_alive_frequency_ms>``: Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP).
 
-- ``<keep_alive_timeout_ms>``: Time in milliseconds to consider a connection is broken since the last keepalive requests were sent (**only** TCP).
+- ``<keep_alive_timeout_ms>``: Time in milliseconds since sending the last keepalive request to consider a connection as broken. (**only** TCP).
 
 - ``<max_logical_port>``: The maximum number of logical ports to try during RTCP negotiation (**only** TCP).
 
@@ -159,22 +158,22 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 
 - ``<ListeningPorts>``: Local port to work as TCP acceptor for input connections. If not set, the transport will work as TCP client only (**only** TCP).
 
-You can see more examples in :ref:`comm-transports-configuration`.
+There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
 
 .. _xmldynamictypes:
 
 XML Dynamic Types
 -----------------
 
-XML Dynamic Types allows eProsima Fast RTPS to create Dynamic Types directly defining them through XML.
-This allows any application to change TopicDataTypes without the need to change its source code.
+XML Dynamic Types allows creating Dynamic Types to *eProsima Fast RTPS* directly defining them through XML.
+It allows any application to change TopicDataTypes without modifying its source code.
 
 XML Structure
 ^^^^^^^^^^^^^
 
-The XML Types definition (``<types>``, types tag) in the XML file can be placed similarly to the profiles tag.
+The XML Types definition (``<types>``, types tag) can be placed similarly to the profiles tag inside the XML file.
 It can be a stand-alone XML Types file or be a child of the Fast-RTPS XML root tag (``<dds>``).
-Inside the types tag, must be one or more type tags (``<type>``).
+Inside the types tag, there must be one or more type tags (``<type>``).
 
 Stand-Alone:
 
@@ -207,7 +206,7 @@ Rooted:
     </dds>
 
 Finally, each type of tag can contain one or more Type definition.
-Define several types inside a type of tag or each type in its own type of tag has the same result.
+Defining several types inside a *type* tag or defining each type in its own *type* tag has the same result.
 
 Type definition
 ^^^^^^^^^^^^^^^
@@ -314,14 +313,14 @@ Example:
 Member types
 ^^^^^^^^^^^^
 
-By member types, we refer to any type that can belong to a struct or a union, or be aliased by a typedef.
+Member types are any type that can belong to a struct or a union, or be aliased by a typedef.
 
 When used as sequence's elements, key or value types of a map, as an aliased type, etc., its name attribute
 is ignored and can be omitted.
 
 **Basic types**
 
-The available basic types XML tags are:
+The tags of the available basic types are:
 
 - ``<boolean>``
 - ``<octet>``
@@ -484,10 +483,8 @@ Example:
 Usage
 ^^^^^
 
-In the application that will make use of XML Types, we need to load the XML file that defines our types,
-and then, simply instantiate DynamicPubSubTypes of our desired type.
-
-Remember that only Structs generate usable DynamicPubSubType instances.
+In the application that will make use of XML Types, it's mandatory to load the XML file that defines the types before trying to instantiate DynamicPubSubTypes of these types.
+It's important to remark that only Structs generate usable DynamicPubSubType instances.
 
 .. code-block:: cpp
 
@@ -503,8 +500,8 @@ Remember that only Structs generate usable DynamicPubSubType instances.
 Participant profiles
 --------------------
 
-Participant profiles allow you to declare :ref:`participantconfiguration` from an XML file.
-The configuration options for the participant belongs to the ``<rtps>`` label.
+Participant profiles allow declaring :ref:`participantconfiguration` from an XML file and 
+the configuration options for the participant belongs to the ``<rtps>`` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -572,13 +569,13 @@ as shown in :ref:`loadingapplyingprofiles`.
 
     - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
 
-Now, we are going to explain each possible configuration parameter:
+This is the list of each possible configuration parameter:
 
-- ``<name>``: Participant's name. Don't confuse it with ``profile_name``.
+- ``<name>``: Participant's name. It's not the same that ``profile_name``.
 
-- ``<defaultUnicastLocatorList>``: List of default unicast locators. It expects a :ref:`LocatorListType`.
+- ``<defaultUnicastLocatorList>``: List of default input unicast locators. It expects a :ref:`LocatorListType`.
 
-- ``<defaultMulticastLocatorList>``: List of default multicast locators. It expects a :ref:`LocatorListType`.
+- ``<defaultMulticastLocatorList>``: List of default input multicast locators. It expects a :ref:`LocatorListType`.
 
 - ``<sendSocketBufferSize>``: Size in bytes of the output socket buffer.
 
@@ -586,7 +583,7 @@ Now, we are going to explain each possible configuration parameter:
 
 - ``<builtin>``: Built-in parameters. Explained in the :ref:`builtin` section.
 
-- ``<port>``: Allows you to define the port parameters and gains related to the RTPS protocol. It has several subfields:
+- ``<port>``: Allows defining the port parameters and gains related to the RTPS protocol. It has several subfields:
 
     * ``<portBase>``: Base ``port`` (*default 7400*).
 
@@ -602,16 +599,16 @@ Now, we are going to explain each possible configuration parameter:
 
     * ``<offsetd3>``: Unicast user data offset (*default 11*).
 
-- ``<userData>``: Allows you to add your own information.
+- ``<userData>``: Allows adding custom information.
 
-- ``<participantID>``: Allows you to set the participant's identifier. Typically it will be autogenerated by the ``Domain``.
+- ``<participantID>``: Participant's identifier. Typically it will be autogenerated by the ``Domain``.
 
-- ``<throughputController>``: Allows you to define a maximum throughput:
+- ``<throughputController>``: Allows defining a maximum throughput:
 
     * ``<bytesPerPeriod>``: The maximum bytes to send by period.
     * ``<periodMillisecs>``: Period in milliseconds.
 
-- ``<userTransports>``: Allows you to add transport descriptors to be used by the participant, as a list of ``<id>``.
+- ``<userTransports>``: Transport descriptors to be used by the participant, as a list of ``<id>``.
 
     .. code-block:: xml
 
@@ -628,7 +625,7 @@ Now, we are going to explain each possible configuration parameter:
 Built-in parameters
 ^^^^^^^^^^^^^^^^^^^
 
-This section of the :class:`Participant's rtps` configuration allows you to define built-in parameters.
+This section of the :class:`Participant's rtps` configuration allows defining built-in parameters.
 
 .. code-block:: xml
 
@@ -673,7 +670,7 @@ This section of the :class:`Participant's rtps` configuration allows you to defi
         <writerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</writerHistoryMemoryPolicy>
     </builtin>
 
-- ``<use_SIMPLE_RTPS_PDP>``: Boolean attribute to establish if simple RTPS participant discovery protocol must be used.
+- ``<use_SIMPLE_RTPS_PDP>``: Boolean attribute to establish if the participant must use the simple RTPS discovery protocol.
 
 - ``<use_WriterLivelinessProtocol>``: Boolean attribute to establish the usage of the writer liveliness protocol.
 
@@ -685,7 +682,7 @@ This section of the :class:`Participant's rtps` configuration allows you to defi
 
 - ``<leaseAnnouncement>``: :ref:`DurationType` to set announcement of lease period.
 
-- ``<simpleEDP>``: If :class:`EDP` is set to :class:`SIMPLE`, allows you to configure the use of :class:`PUBWRITER_SUBREADER` and :class:`PUBREADER_SUBWRITER`.
+- ``<simpleEDP>``: If :class:`EDP` is set to :class:`SIMPLE`, allows configuring the use of :class:`PUBWRITER_SUBREADER` and :class:`PUBREADER_SUBWRITER`.
 
     * ``<PUBWRITER_SUBREADER>``: Boolean value to determine if :class:`PUBWRITER_SUBREADER` must be used.
 
@@ -697,11 +694,11 @@ This section of the :class:`Participant's rtps` configuration allows you to defi
 
 - ``<initialPeersList>``: List of initial peers locators. It expects a :ref:`LocatorListType`.
 
-- ``<staticEndpointXMLFilename>``: If :class:`EDP` is set to :class:`STATIC`, allows you to set the XML file path that contains the endpoint configuration.
+- ``<staticEndpointXMLFilename>``: If :class:`EDP` is set to :class:`STATIC`, allows setting the XML file path that contains the endpoint configuration.
 
-- ``<readerHistoryMemoryPolicy>``: Policy of memory allocation for reader's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+- ``<readerHistoryMemoryPolicy>``: Memory allocation kind for reader's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
 
-- ``<writerHistoryMemoryPolicy>``: Policy of memory allocation for writer's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+- ``<writerHistoryMemoryPolicy>``: Memory allocation kind for writer's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
 
 
 .. _publisherprofiles:
@@ -709,9 +706,9 @@ This section of the :class:`Participant's rtps` configuration allows you to defi
 Publisher profiles
 ------------------
 
-Publisher profiles allows you to declare :ref:`Publisher configuration <pubsubconfiguration>` from XML file.
-The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
-as shown in :ref:`loadingapplyingprofiles`.
+Publisher profiles allow declaring :ref:`Publisher configuration <pubsubconfiguration>` from XML file.
+The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
+as shown in the :ref:`loadingapplyingprofiles` section.
 
 .. code-block:: xml
 
@@ -777,27 +774,27 @@ as shown in :ref:`loadingapplyingprofiles`.
 
 - ``<qos>``: Subscriber :ref:`CommonQOS` configuration.
 
-- ``<times>``:  Allows you to configure some time related parameters of the subscriber:
+- ``<times>``:  Allows configuring some time related parameters of the subscriber:
 
     * ``<initialAcknackDelay>``: :ref:`DurationType` of the initial :class:`Acknack` message.
 
     * ``<heartbeatResponseDelay>``: :ref:`DurationType` to set the delay of the :class:`heartbeat` message response.
 
-- ``<unicastLocatorList>``: List of unicast locators. It expects a :ref:`LocatorListType`.
+- ``<unicastLocatorList>``: List of unicast input locators. It expects a :ref:`LocatorListType`.
 
-- ``<multicastLocatorList>``: List of multicast locators. It expects a :ref:`LocatorListType`.
+- ``<multicastLocatorList>``: List of multicast input locators. It expects a :ref:`LocatorListType`.
 
 - ``<outLocatorList>``:  List of output locators. It expects a :ref:`LocatorListType`.
 
 - ``<throughputController>``: Limits the output bandwidth of the publisher.
 
-- ``<historyMemoryPolicy>``: Policy of memory allocation for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+- ``<historyMemoryPolicy>``: Memory allocation kind for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
 
 - ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
 
-- ``<userDefinedID>``: Allows you to set a custom identifier.
+- ``<userDefinedID>``: Allows setting a custom identifier.
 
-- ``<entityID>``: Allows you to establish the entityID of the subscriber.
+- ``<entityID>``: Allows establishing the entityID of the subscriber.
 
 
 .. _subscriberprofiles:
@@ -805,8 +802,8 @@ as shown in :ref:`loadingapplyingprofiles`.
 Subscriber profiles
 -------------------
 
-Subscriber profiles allows you to declare :ref:`Subscriber configuration <pubsubconfiguration>` from XML file.
-The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile in order to load it
+Subscriber profiles allows declaring :ref:`Subscriber configuration <pubsubconfiguration>` from XML file.
+The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
 .. code-block:: xml
@@ -870,7 +867,7 @@ as shown in :ref:`loadingapplyingprofiles`.
 
 - ``<qos>``: Subscriber :ref:`CommonQOS` configuration.
 
-- ``<times>``:  Allows you to configure some time related parameters of the subscriber:
+- ``<times>``:  Allows configuring some time related parameters of the subscriber:
 
     * ``<initialAcknackDelay>``: :ref:`DurationType` of the initial :class:`Acknack` message.
 
@@ -884,13 +881,13 @@ as shown in :ref:`loadingapplyingprofiles`.
 
 - ``<expectsInlineQos>``: Boolean parameter to indicate if QOS is expected inline.
 
-- ``<historyMemoryPolicy>``: Policy of memory allocation for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
+- ``<historyMemoryPolicy>``: Memory allocation kind for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
 
 - ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
 
-- ``<userDefinedID>``: Allows you to set a custom identifier.
+- ``<userDefinedID>``: Allows setting a custom identifier.
 
-- ``<entityID>``: Allows you to establish the entityID of the subscriber.
+- ``<entityID>``: Allows establishing the entityID of the subscriber.
 
 
 .. _commonxml:
@@ -898,17 +895,17 @@ as shown in :ref:`loadingapplyingprofiles`.
 Common
 ------
 
-In the above profiles, some types are used in several different places. To avoid too many details, in some of that
-places you found a tag like :class:`LocatorListType` that indicates that field is defined in this section.
+In the above profiles, some types are used in several different places. To avoid too many details, some of that
+places have a tag like :class:`LocatorListType` that indicates that field is defined in this section.
 
-Now we are going to fully explain these common types:
+This is the complete list of common types:
 
 .. _LocatorListType:
 
 LocatorListType
 ^^^^^^^^^^^^^^^
 
-It is used to represent a list of :class:`Locator_t`.
+It represents a list of :class:`Locator_t`.
 LocatorListType is normally used as an anonymous type, this is, it hasn't its own label.
 Instead, it is used inside other configuration parameter labels that expect a list of locators and give it sense,
 for example, in ``<defaultUnicastLocatorList>``:
@@ -942,30 +939,29 @@ for example, in ``<defaultUnicastLocatorList>``:
         </locator>
     </defaultUnicastLocatorList>
 
-In this example, we declared three different locators in ``<defaultUnicastLocatorList>``.
+In this example, there are three different locators in ``<defaultUnicastLocatorList>``.
 
 Let's see each Locator's fields in detail:
 
-- ``<kind>``: Type of the Locator can be UDPv4, UDPv6, TCPv4, and TCPv6.
+- ``<kind>``: Type of the Locator. It can be UDPv4, UDPv6, TCPv4, and TCPv6.
 
 - ``<port>``: Physical port number of the locator.
 
-- ``<port_>``: Allows you to manage low-level detail in ports of TCP locators, allowing set both :``<physical_port>`` and ``<logical_port>``.
+- ``<port_>``: Allows managing low-level detail in ports of TCP locators, allowing set both :``<physical_port>`` and ``<logical_port>``.
 
-- ``<address>``: Allows you to set the IPv4 address of the locator.
+- ``<address>``: IPv4 address of the locator.
 
-- ``<addresses_>``: Allows you to manage low-level details in address of TCP locators (``<unique_lan_id>``, ``<wan_address>`` and ``<ip_address>``).
+- ``<addresses_>``: Allows managing low-level details in address of TCP locators (``<unique_lan_id>``, ``<wan_address>`` and ``<ip_address>``).
 
-- ``<ipv6_address>``:  Allows you to set the IPv6 address of the locator.
+- ``<ipv6_address>``: IPv6 address of the locator.
 
 .. _PropertiesPolicyType:
 
 PropertiesPolicyType
 ^^^^^^^^^^^^^^^^^^^^
 
-PropertiesPolicyType (XML label ``<propertiesPolicy>``) allows you to define a set of generic properties.
-It can be used to set a variable number of properties,
-very useful at defining extended or custom configuration parameters.
+PropertiesPolicyType (XML label ``<propertiesPolicy>``) allows defining a set of generic properties.
+It's useful at defining extended or custom configuration parameters.
 
 .. code-block:: xml
 
@@ -988,16 +984,15 @@ very useful at defining extended or custom configuration parameters.
 
 - ``<value>``: Property's value.
 
-- ``<propagate>``: Indicates if the property is meant to be serialized along with the object it belongs to.
+- ``<propagate>``: Boolean value that indicates if the property is going to be serialized along with the object it belongs to.
 
 .. _DurationType:
 
 DurationType
 ^^^^^^^^^^^^
 
-DurationType expresses a period of time.
-DurationType is normally used as an anonymous type, this is, it hasn't its own label. Instead, it is used inside other
-configuration parameter labels that give it sense, like ``<leaseAnnouncement>`` or ``<leaseDuration>``.
+DurationType expresses a period of time and it's commonly used as an anonymous type, this is, it hasn't its own label.
+Instead, it is used inside other configuration parameter labels that give it sense, like ``<leaseAnnouncement>`` or ``<leaseDuration>``.
 
 .. code-block:: xml
 
@@ -1032,7 +1027,7 @@ Topic Type
 ^^^^^^^^^^^^^^^^^^^^
 
 The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange messages.
-You can see a deeper explanation of the "topic" field here: :ref:`Topic_information`.
+There is a deeper explanation of the "topic" field here: :ref:`Topic_information`.
 
 .. code-block:: xml
 
@@ -1056,9 +1051,9 @@ You can see a deeper explanation of the "topic" field here: :ref:`Topic_informat
 
 - ``<name>``: Name of the topic.
 
-- ``<dataType>``: Indicates if the property is meant to be serialized along with the object it belongs to.
+- ``<dataType>``: Name of the data type.
 
-- ``<historyQos>``: The history QoS manages the number of messages that are going to be stored in publishers and subscribers in their histories.
+- ``<historyQos>``: The history QoS handles the number of messages that are going to be stored by publishers and subscribers in their histories.
 
     * ``<kind>``: History type, the available values are: *KEEP_ALL* and *KEEP_LAST*.
 
@@ -1079,7 +1074,12 @@ You can see a deeper explanation of the "topic" field here: :ref:`Topic_informat
 QOS
 ^^^
 
-As a user, you can implement your own quality of service (QoS) restrictions in your application.
+The quality of service (QoS) handles the restrictions applied to the application.
+
+.. AFTER DURABILITY
+    <durabilityService>
+        <!-- DURABILITY_SERVICE -->
+    </durabilityService>
 
 .. code-block:: xml
 
@@ -1087,10 +1087,6 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
         <durability>
             <kind>VOLATILE</kind> <!-- string -->
         </durability>
-
-        <durabilityService>
-            <!-- DURABILITY_SERVICE -->
-        </durabilityService>
 
         <deadline>
             <period>
@@ -1159,7 +1155,7 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
 
     - :class:`DURATION` means it expects a :ref:`DurationType`.
 
-    - :class:`DURABILITY_SERVICE` means that the label is a :ref:`DurabilityServiceType` block.
+..  - :class:`DURABILITY_SERVICE` means that the label is a :ref:`DurabilityServiceType` block.::
 
     - :class:`LIVELINESS` means that the label is a :ref:`LiveLinessType` block.
 
@@ -1174,40 +1170,40 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
 - ``<presentation>``:
     * ``<access_scope>`` defines the scope of presentation and can be :class:`INSTANCE`, :class:`TOPIC`, or :class:`GROUP`.
 
-    * ``<coherent_access>`` defines if the access must be coherent. It's a boolean value.
+    * ``<coherent_access>`` Boolean value to set if the access must be coherent.
 
-    * ``<ordered_access>`` establishes if the access must be ordered. It's a boolean value.
+    * ``<ordered_access>`` Boolean value to set if the access must be ordered.
 
-.. _DurabilityServiceType:
+.. .. _DurabilityServiceType:
 
-DurabilityServiceType
-^^^^^^^^^^^^^^^^^^^^^
+..
+    DurabilityServiceType
+    ^^^^^^^^^^^^^^^^^^^^^
 
-Durability configuration of the endpoint defines how it behaves regarding samples that existed on the topic before a
-subscriber joins.
+    Durability defines the behavior regarding samples that existed on the topic before a subscriber joins.
 
-.. code-block:: xml
+    .. code-block:: xml
 
-    <durabilityService>
-        <service_cleanup_delay>
-            <!-- DURATION -->
-        </service_cleanup_delay>
-        <history_kind>KEEP_LAST</history_kind> <!-- string -->
-        <history_depth></history_depth> <!-- unint32 -->
-        <max_samples></max_samples> <!-- unint32 -->
-        <max_instances></max_instances> <!-- unint32 -->
-        <max_samples_per_instance></max_samples_per_instance> <!-- unint32 -->
-    </durabilityService>
+        <durabilityService>
+            <service_cleanup_delay>
+                <!-- DURATION -->
+            </service_cleanup_delay>
+            <history_kind>KEEP_LAST</history_kind> <!-- string -->
+            <history_depth></history_depth> <!-- unint32 -->
+            <max_samples></max_samples> <!-- unint32 -->
+            <max_instances></max_instances> <!-- unint32 -->
+            <max_samples_per_instance></max_samples_per_instance> <!-- unint32 -->
+        </durabilityService>
 
-- ``<history_kind>``: Allows to set the History kind. It accepts :class:`KEEP_LAST` and :class:`KEEP_ALL` values.
+    - ``<history_kind>``: History handling kind. It accepts :class:`KEEP_LAST` and :class:`KEEP_ALL` values.
 
-- ``<history_depth>``: Allows to establish the depth of the history.
+    - ``<history_depth>``: Allows establishing the depth of the history.
 
-- ``<max_samples>``: Allows to establish the maximum number of samples to be stored.
+    - ``<max_samples>``: The maximum number of samples to be stored.
 
-- ``<max_instances>``: Allows to establish the maximum number of history instances.
+    - ``<max_instances>``: The maximum number of history instances.
 
-- ``<max_samples_per_instance>``: Allows to establish the maximum number of samples per history instance.
+    - ``<max_samples_per_instance>``: Allows establishing the maximum number of samples per history instance.
 
 .. _LivelinessType:
 
@@ -1228,52 +1224,46 @@ This parameter defines who is responsible for issues of liveliness packets.
         </announcement_period>
     </liveliness>
 
-- ``<kind>``: Especifies how liveliness is managed. Can take values :class:`AUTOMATIC`, :class:`MANUAL_BY_PARTICIPANT`, and :class:`MANUAL_BY_TOPIC`.
+- ``<kind>``: Specifies how to manage liveliness. Can take values :class:`AUTOMATIC`, :class:`MANUAL_BY_PARTICIPANT`, and :class:`MANUAL_BY_TOPIC`.
 
-- ``<leaseDuration>``: Allows to define how much time the lease is being announced. It is a :ref:`DurationType`.
+- ``<leaseDuration>``: How much time remote RTPSParticipants should consider this RTPSParticipant alive the lease is being announced. It is a :ref:`DurationType`.
 
-- ``<announcement_period>``: Allows to define the lease time period. It's a :ref:`DurationType`.
-
-
-historyQos
-^^^^^^^^^^^^^^^^^^^^
-
-The history QoS manages the amount of rtps messages that are going to be stored in publishers and subscribers.
-It can be used to set a variable number of properties,
-very useful at defining extended or custom configuration parameters.
-
-.. code-block:: xml
-
-    <propertiesPolicy>
-        <properties>
-            <property>
-                <name>Property1Name</name> <!-- string -->
-                <value>Property1Value</value> <!-- string -->
-                <propagate>FALSE</propagate> <!-- boolean -->
-            </property>
-            <property>
-                <name>Property2Name</name> <!-- string -->
-                <value>Property2Value</value> <!-- string -->
-                <propagate>TRUE</propagate> <!-- boolean -->
-            </property>
-        </properties>
-    </propertiesPolicy>
-
-- ``<name>``: Name to identify the property.
-
-- ``<value>``: Property's value.
-
-- ``<propagate>``: Indicates if the property is meant to be serialized along with the object it belongs to.
-
+- ``<announcement_period>``: The period to send its Discovery Message to all other discovered RTPSParticipants as well as to all Multicast ports. It's a :ref:`DurationType`.
 
 .. _examplexml:
 
 Example
 -------
 
-In this section, you can see a full XML example with all possible configuration.
+In this section, there is a full XML example with all possible configuration.
 It can be used as a quick reference, but it may not be valid due to incompatibility or exclusive properties.
 Don't take it as a working example.
+
+
+.. AFTER PUBLISHER->DURABILITY
+     <durabilityService>
+        <service_cleanup_delay>
+            <seconds>10</seconds>
+            <fraction>0</fraction>
+        </service_cleanup_delay>
+        <history_kind>KEEP_LAST</history_kind>
+        <history_depth>20</history_depth>
+        <max_samples>10</max_samples>
+        <max_instances>2</max_instances>
+        <max_samples_per_instance>10</max_samples_per_instance>
+    </durabilityService>
+
+.. AFTER SUBSCRIBER->DURABILITY
+    <durabilityService>
+        <service_cleanup_delay>
+            <!-- DURATION -->
+        </service_cleanup_delay>
+        <history_kind>KEEP_LAST</history_kind>
+        <history_depth>50</history_depth>
+        <max_samples>20</max_samples>
+        <max_instances>3</max_instances>
+        <max_samples_per_instance>5</max_samples_per_instance>
+    </durabilityService>
 
 .. code-block:: xml
 
@@ -1636,17 +1626,6 @@ Don't take it as a working example.
                 <durability>
                     <kind>VOLATILE</kind>
                 </durability>
-                <durabilityService>
-                    <service_cleanup_delay>
-                        <seconds>10</seconds>
-                        <fraction>0</fraction>
-                    </service_cleanup_delay>
-                    <history_kind>KEEP_LAST</history_kind>
-                    <history_depth>20</history_depth>
-                    <max_samples>10</max_samples>
-                    <max_instances>2</max_instances>
-                    <max_samples_per_instance>10</max_samples_per_instance>
-                </durabilityService>
                 <deadline>
                     <period>
                         <seconds>1</seconds>
@@ -1865,16 +1844,6 @@ Don't take it as a working example.
                 <durability>
                     <kind>PERSISTENT</kind>
                 </durability>
-                <durabilityService>
-                    <service_cleanup_delay>
-                        <!-- DURATION -->
-                    </service_cleanup_delay>
-                    <history_kind>KEEP_LAST</history_kind>
-                    <history_depth>50</history_depth>
-                    <max_samples>20</max_samples>
-                    <max_instances>3</max_instances>
-                    <max_samples_per_instance>5</max_samples_per_instance>
-                </durabilityService>
                 <deadline>
                     <period>
                         <seconds>1</seconds>

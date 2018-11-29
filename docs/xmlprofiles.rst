@@ -72,55 +72,48 @@ The following XML code shows the complete list of configurable parameters:
 
 The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| Name                         | Description                                                                   | Values                           | Default |
-+==============================+===============================================================================+==================================+=========+
-| ``<transport_id>``           | Unique name to identify each transport descriptor.                            | ``string``                       |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<type>``                   | Type of the transport descriptor.                                             | UDPv4, UDPv6, TCPv4, TCPv6       | UDPv4   |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<sendBufferSize>``         | Size in bytes of the socket send buffer.                                      | ``uint32``                       | 0       |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<receiveBufferSize>``      | Size in bytes of the socket receive buffer.                                   | ``uint32``                       | 0       |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<TTL>``                    | *Time To Live*, **only** for UDP transports.                                  | ``uint8``                        | 1       |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<maxMessageSize>``         | The maximum size in bytes of the transport's message buffer.                  | ``uint32``                       | 65500   |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<maxInitialPeersRange>``   | The maximum number of guessed initial peers to try to connect.                | ``uint32``                       | 4       |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<interfaceWhiteList>``     | Allows defining :ref:`whitelist-interfaces`.                                  | :ref:`whitelist-interfaces`      |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<wan_addr>``               | Public WAN address when using **TCPv4 transports**.                           | ``string`` with IPv4 Format      |         |
-|                              |                                                                               |                                  |         |
-|                              | This field is optional if the transport doesn't need to define a WAN address. | XXX.XXX.XXX.XXX.                 |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<output_port>``            | Port used for output bound.                                                   | ``uint16``                       | 0       |
-|                              |                                                                               |                                  |         |
-|                              | If this field isn't defined, the output port will be random.                  |                                  |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<keep_alive_frequency_ms>``| Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP). | ``uint32``                       | 50000   |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<keep_alive_timeout_ms>``  | Time in milliseconds since sending the last keepalive request                 | ``uint32``                       | 10000   |
-|                              |                                                                               |                                  |         |
-|                              | to consider a connection as broken. (**only** TCP).                           |                                  |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<max_logical_port>``       | The maximum number of logical ports to try during RTCP negotiation.           | ``uint16``                       | 100     |
-|                              |                                                                               |                                  |         |
-|                              | (**only** TCP)                                                                |                                  |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<logical_port_range>``     | The maximum number of logical ports per request to try                        | ``uint16``                       | 20      |
-|                              |                                                                               |                                  |         |
-|                              | during RTCP negotiation (**only** TCP).                                       |                                  |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<logical_port_increment>`` | Increment between logical ports to try during RTCP negotiation.               | ``uint16``                       | 2       |
-|                              |                                                                               |                                  |         |
-|                              | (**only** TCP)                                                                |                                  |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<ListeningPorts>``         | Local port to work as TCP acceptor for input connections.                     | ``List <uint16>``                |         |
-|                              |                                                                               |                                  |         |
-|                              | If not set, the transport will work as TCP client only (**only** TCP).        |                                  |         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| Name                         | Description                                                                     | Values                           | Default |
++==============================+=================================================================================+==================================+=========+
+| ``<transport_id>``           | Unique name to identify each transport descriptor.                              | ``string``                       |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<type>``                   | Type of the transport descriptor.                                               | UDPv4, UDPv6, TCPv4, TCPv6       | UDPv4   |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<sendBufferSize>``         | Size in bytes of the socket send buffer.                                        | ``uint32``                       | 0       |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<receiveBufferSize>``      | Size in bytes of the socket receive buffer.                                     | ``uint32``                       | 0       |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<TTL>``                    | *Time To Live*, **only** for UDP transports.                                    | ``uint8``                        | 1       |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<maxMessageSize>``         | The maximum size in bytes of the transport's message buffer.                    | ``uint32``                       | 65500   |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<maxInitialPeersRange>``   | The maximum number of guessed initial peers to try to connect.                  | ``uint32``                       | 4       |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<interfaceWhiteList>``     | Allows defining :ref:`whitelist-interfaces`.                                    | :ref:`whitelist-interfaces`      |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<wan_addr>``               | | Public WAN address when using **TCPv4 transports**.                           | | ``string`` with IPv4 Format    |         |
+|                              | | This field is optional if the transport doesn't need to define a WAN address. | | XXX.XXX.XXX.XXX.               |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<output_port>``            | | Port used for output bound.                                                   | ``uint16``                       | 0       |
+|                              | | If this field isn't defined, the output port will be random.                  |                                  |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<keep_alive_frequency_ms>``| Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP).   | ``uint32``                       | 50000   |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<keep_alive_timeout_ms>``  | | Time in milliseconds since sending the last keepalive request                 | ``uint32``                       | 10000   |
+|                              | | to consider a connection as broken. (**only** TCP).                           |                                  |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<max_logical_port>``       | | The maximum number of logical ports to try during RTCP negotiation.           | ``uint16``                       | 100     |
+|                              | | (**only** TCP)                                                                |                                  |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<logical_port_range>``     | | The maximum number of logical ports per request to try                        | ``uint16``                       | 20      |
+|                              | | during RTCP negotiation (**only** TCP).                                       |                                  |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<logical_port_increment>`` | | Increment between logical ports to try during RTCP negotiation.               | ``uint16``                       | 2       |
+|                              | | (**only** TCP).                                                               |                                  |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<ListeningPorts>``         | | Local port to work as TCP acceptor for input connections.                     | ``List <uint16>``                |         |
+|                              | | If not set, the transport will work as TCP client only (**only** TCP).        |                                  |         |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
 
 There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
 
@@ -484,41 +477,32 @@ List with the possible configuration parameter:
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
 | ``<defaultMulticastLocatorList>`` | List of default input multicast locators. It expects a :ref:`LocatorListType`.| ``LocatorListType``              |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<sendSocketBufferSize>``        | Size in bytes of the output socket buffer.                                    | ``uint32``                       | 0       |
-|                                   |                                                                               |                                  |         |
-|                                   | If the value is zero then FastRTPS will use the default size from             |                                  |         |
-|                                   |                                                                               |                                  |         |
-|                                   | the configuration of the sockets, using a minimum size of 65536 bytes.        |                                  |         |
+| ``<sendSocketBufferSize>``        | | Size in bytes of the output socket buffer.                                  | ``uint32``                       | 0       |
+|                                   | | If the value is zero then FastRTPS will use the default size from           |                                  |         |
+|                                   | | the configuration of the sockets, using a minimum size of 65536 bytes.      |                                  |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<listenSocketBufferSize>``      | Size in bytes of the input socket buffer.                                     | ``uint32``                       | 0       |
-|                                   |                                                                               |                                  |         |
-|                                   | If the value is zero then FastRTPS will use the default size from             |                                  |         |
-|                                   |                                                                               |                                  |         |
-|                                   | the configuration of the sockets, using a minimum size of 65536 bytes.        |                                  |         |
+| ``<listenSocketBufferSize>``      | | Size in bytes of the input socket buffer.                                   | ``uint32``                       | 0       |
+|                                   | | If the value is zero then FastRTPS will use the default size from           |                                  |         |
+|                                   | | the configuration of the sockets, using a minimum size of 65536 bytes.      |                                  |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
 | ``<builtin>``                     | Built-in parameters. Explained in the :ref:`builtin` section.                 | :ref:`builtin`                   |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<port>``                        | Allows defining the port parameters and gains related to the RTPS protocol.   | `Port`_                          |         |
-|                                   |                                                                               |                                  |         |
-|                                   | Explained in the `Port`_ section.                                             |                                  |         |
+| ``<port>``                        | | Allows defining the port parameters and gains related to the RTPS protocol. | `Port`_                          |         |
+|                                   | | Explained in the `Port`_ section.                                           |                                  |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<participantID>``               | Participant's identifier.                                                     | ``int32``                        | 0       |
-|                                   |                                                                               |                                  |         |
-|                                   | Typically it will be autogenerated by the ``Domain``.                         |                                  |         |
+| ``<participantID>``               | | Participant's identifier.                                                   | ``int32``                        | 0       |
+|                                   | | Typically it will be autogenerated by the ``Domain``.                       |                                  |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<throughputController>``        | Allows defining a maximum throughput.                                         | `Throughput`_                    |         |
-|                                   |                                                                               |                                  |         |
-|                                   | Explained in the `Throughput`_ section.                                       |                                  |         |
+| ``<throughputController>``        | | Allows defining a maximum throughput.                                       | `Throughput`_                    |         |
+|                                   | | Explained in the `Throughput`_ section.                                     |                                  |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
 | ``<userTransports>``              | Transport descriptors to be used by the participant.                          | ``List <string>``                |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<useBuiltinTransports>``        | Boolean field to indicate to the system that the participant will use         | ``bool``                         | true    |
-|                                   |                                                                               |                                  |         |
-|                                   | the default builtin transport independently of its ``<userTransports>``.      |                                  |         |
+| ``<useBuiltinTransports>``        | | Boolean field to indicate to the system that the participant will use       | ``bool``                         | true    |
+|                                   | | the default builtin transport independently of its ``<userTransports>``.    |                                  |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<propertiesPolicy>``            | Additional configuration properties.                                          | :ref:`PropertiesPolicyType`      |         |
-|                                   |                                                                               |                                  |         |
-|                                   | It expects a :ref:`PropertiesPolicyType`.                                     |                                  |         |
+| ``<propertiesPolicy>``            | | Additional configuration properties.                                        | :ref:`PropertiesPolicyType`      |         |
+|                                   | | It expects a :ref:`PropertiesPolicyType`.                                   |                                  |         |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
 
 .. | ``<userData>``                    | Allows adding custom information.                                             | ``string``                       |         |
@@ -750,15 +734,13 @@ Let's see each Locator's fields in detail:
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 | ``<port>``                   | Physical port number of the locator.                                          | ``Uint32``                       | 0                  |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<port_>``                  | It allows to access low-level TCP port details.                               | :ref:`TCP Ports <tcpports>`      |                    |
-|                              |                                                                               |                                  |                    |
-|                              | It is detailed in :ref:`TCP Ports <tcpports>`                                 |                                  |                    |
+| ``<port_>``                  | | It allows to access low-level TCP port details.                             | :ref:`TCP Ports <tcpports>`      |                    |
+|                              | | It is detailed in :ref:`TCP Ports <tcpports>`                               |                                  |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 | ``<address>``                | IPv4 address of the locator                                                   | ``string`` with IPv4 Format      | :class:`0.0.0.0`   |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<addresses_>``             | It allows managing low-level details in address of TCP locators.              | :ref:`TCP Addresses <tcpaddrs>`  |                    |
-|                              |                                                                               |                                  |                    |
-|                              | It is detailed in :ref:`TCP Addresses <tcpaddrs>`                             |                                  |                    |
+| ``<addresses_>``             | | It allows managing low-level details in address of TCPv4 locators.          | :ref:`TCP Addresses <tcpaddrs>`  |                    |
+|                              | | It is detailed in :ref:`TCP Addresses <tcpaddrs>`                           |                                  |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 | ``<ipv6_address>``           | IPv6 address of the locator                                                   | ``string`` with IPv6 Format      | :class:`::`        |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
@@ -859,24 +841,22 @@ There is a deeper explanation of the "topic" field here: :ref:`Topic_information
     :end-before: <!-- TOPIC END -->
     :dedent: 4
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<kind>``                   | It defines the Topic's kind                                                   | :class:`NO_KEY`,                 | :class:`NO_KEY`    |
-|                              |                                                                               | :class:`WITH_KEY`                |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<name>``                   | It defines the Topic's name. Must be unique.                                  | ``string``                       |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<dataType>``               | It references the Topic's data type.                                          | ``string``                       |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<historyQos>``             | It controls the behavior of *Fast RTPS* when the value of an instance changes | :ref:`HistoryQos <hQos>`         |                    |
-|                              |                                                                               |                                  |                    |
-|                              | before it is finally communicated to some of its existing DataReader entities.|                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<resourceLimitsQos>``      | It controls the resources that *Fast RTPS* can use in order to meet the       | :ref:`ResourceLimitsQos <rLsQos>`|                    |
-|                              |                                                                               |                                  |                    |
-|                              | requirements imposed by the application and other QoS settings.               |                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                     | Values                           | Default            |
++==============================+=================================================================================+==================================+====================+
+| ``<kind>``                   | It defines the Topic's kind                                                     | :class:`NO_KEY`,                 | :class:`NO_KEY`    |
+|                              |                                                                                 | :class:`WITH_KEY`                |                    |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<name>``                   | It defines the Topic's name. Must be unique.                                    | ``string``                       |                    |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<dataType>``               | It references the Topic's data type.                                            | ``string``                       |                    |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<historyQos>``             | | It controls the behavior of *Fast RTPS* when the value of an instance changes | :ref:`HistoryQos <hQos>`         |                    |
+|                              | | before it is finally communicated to some of its existing DataReader entities.|                                  |                    |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<resourceLimitsQos>``      | | It controls the resources that *Fast RTPS* can use in order to meet the       | :ref:`ResourceLimitsQos <rLsQos>`|                    |
+|                              | | requirements imposed by the application and other QoS settings.               |                                  |                    |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 .. _hQos:
 
@@ -894,15 +874,9 @@ communicated to some of its existing DataReader entities.
 | ``<depth>``                  |                                                                               | ``UInt32``                       | 1000               |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
-If the ``<kind>`` is set to :class:`KEEP_LAST`, then *Fast RTPS* will only attempt to keep the latest values of the instance and
-discard the older ones.
-
-If the ``<kind>`` is set to :class:`KEEP_ALL`, then *Fast RTPS* will attempt to maintain and deliver all the values of the instance to
-existing subscribers.
-
-The setting of ``<depth>`` must be consistent with the :ref:`ResourceLimitsQos <rLsQos>`
-``<max_samples_per_instance>``. For these two QoS to be consistent,
-they must verify that ``depth <= max_samples_per_instance``.
+| If the ``<kind>`` is set to :class:`KEEP_LAST`, then *Fast RTPS* will only attempt to keep the latest values of the instance and discard the older ones.
+| If the ``<kind>`` is set to :class:`KEEP_ALL`, then *Fast RTPS* will attempt to maintain and deliver all the values of the instance to existing subscribers.
+| The setting of ``<depth>`` must be consistent with the :ref:`ResourceLimitsQos <rLsQos>` ``<max_samples_per_instance>``. For these two QoS to be consistent, they must verify that ``depth <= max_samples_per_instance``.
 
 .. _rLsQos:
 
@@ -955,9 +929,8 @@ The quality of service (QoS) handles the restrictions applied to the application
 |                              |                                                                               | :class:`BEST_EFFORT`             |                    |
 |                              |                                                                               |                                  |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<partition>``              | It allows the introduction of a logical partition concept                     | ``List <string>``                |                    |
-|                              |                                                                               |                                  |                    |
-|                              | inside the ‘physical’ partition induced by a domain.                          |                                  |                    |
+| ``<partition>``              | | It allows the introduction of a logical partition concept                   | ``List <string>``                |                    |
+|                              | | inside the ‘physical’ partition induced by a domain.                        |                                  |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 ..
@@ -1049,13 +1022,11 @@ This parameter defines who is responsible for issues of liveliness packets.
 |                              |                                                                               | :class:`MANUAL_BY_TOPIC`,        |                    |
 |                              |                                                                               | :class:`MANUAL_BY_TOPIC`         |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<leaseDuration>``          | Amount of time that the remote RTPSParticipants should consider this          | :ref:`DurationType`              | 130 s              |
-|                              |                                                                               |                                  |                    |
-|                              | RTPSParticipant to be alive since the last message.                           |                                  |                    |
+| ``<leaseDuration>``          | | Amount of time that the remote RTPSParticipants should consider this        | :ref:`DurationType`              | 130 s              |
+|                              | | RTPSParticipant to be alive since the last message.                         |                                  |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<announcement_period>``    | The period to send its Discovery Message to all other                         | :ref:`DurationType`              | 40 s               |
-|                              |                                                                               |                                  |                    |
-|                              | discovered RTPSParticipants as well as to all Multicast ports.                |                                  |                    |
+| ``<announcement_period>``    | | The period to send its Discovery Message to all other                       | :ref:`DurationType`              | 40 s               |
+|                              | | discovered RTPSParticipants as well as to all Multicast ports.              |                                  |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 .. _examplexml:

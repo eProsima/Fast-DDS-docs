@@ -555,35 +555,56 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
     :end-before: <!-- BUILTIN END -->
     :dedent: 4
 
-- ``<use_SIMPLE_RTPS_PDP>``: Boolean attribute to establish if the participant must use the simple RTPS discovery protocol.
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| Name                                   | Description                                                                | Values                              | Default               |
++========================================+============================================================================+=====================================+=======================+
+| ``<use_SIMPLE_RTPS_PDP>``              | Indicates if the Participant must use the Simple RTPS Discovery Protocol.  | ``Boolean``                         | :class:`TRUE`         |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<use_WriterLivelinessProtocol>``     | Indicates to use the WriterLiveliness protocol.                            | ``Boolean``                         | :class:`TRUE`         |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<EDP>``                              | | - If set to :class:`SIMPLE`, ``<simpleEDP`` would be used.               | :class:`SIMPLE`, :class:`STATIC`    | :class:`SIMPLE`       |
+|                                        | | - If set to :class:`STATIC`, StaticEDP based on an XML file would be used|                                     |                       |
+|                                        | |       with the contents of ``<staticEndpointXMLFilename>``.              |                                     |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<domainId>``                         | DomainId to be used by the RTPSParticipant.                                | ``UInt32``                          | 80                    |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<leaseDuration>``                    | | Indicates how much time remote RTPSParticipants should consider this     | :ref:`DurationType`                 | 130 s                 |
+|                                        | | RTPSParticipant alive.                                                   |                                     |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<leaseAnnouncement>``                | | The period for the RTPSParticipant to send its Discovery Message to all  | :ref:`DurationType`                 | 40 s                  |
+|                                        | | other discovered RTPSParticipants as well as to all Multicast ports.     |                                     |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<simpleEDP>``                        | Attributes of the SimpleEDP protocol                                       | :ref:`simpleEDP <sedp>`             |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<metatrafficUnicastLocatorList>``    | Metatraffic Unicast Locator List                                           | List of :ref:`LocatorListType`      |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<metatrafficMulticastLocatorList>``  | Metatraffic Multicast Locator List.                                        | List of :ref:`LocatorListType`      |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<initialPeersList>``                 | Initial peers.                                                             | List of :ref:`LocatorListType`      |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<staticEndpointXMLFilename>``        | | StaticEDP XML filename.                                                  | ``string``                          |                       |
+|                                        | | Only necessary if ``<EDP>`` is set to :class:`STATIC`                    |                                     |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<readerHistoryMemoryPolicy>``        | Memory policy for builtin readers.                                         | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
+|                                        |                                                                            | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
+|                                        |                                                                            | :class:`DYNAMIC`                    |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<writerHistoryMemoryPolicy>``        | Memory policy for builtin writers.                                         | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
+|                                        |                                                                            | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
+|                                        |                                                                            | :class:`DYNAMIC`                    |                       |
++----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
 
-- ``<use_WriterLivelinessProtocol>``: Boolean attribute to establish the usage of the writer liveliness protocol.
+.. _sedp:
 
-- ``<EDP>``: It establishes the type of EDP protocol. It can take :class:`SIMPLE` or :class:`STATIC` values.
+**simpleEDP**
 
-- ``<domainId>``: Sets the domain identifier.
-
-- ``<leaseDuration>``: :ref:`DurationType` to set duration of lease period.
-
-- ``<leaseAnnouncement>``: :ref:`DurationType` to set announcement of lease period.
-
-- ``<simpleEDP>``: If :class:`EDP` is set to :class:`SIMPLE`, allows configuring the use of :class:`PUBWRITER_SUBREADER` and :class:`PUBREADER_SUBWRITER`.
-
-    * ``<PUBWRITER_SUBREADER>``: Boolean value to determine if :class:`PUBWRITER_SUBREADER` must be used.
-
-    * ``<PUBREADER_SUBWRITER>``: Boolean value to determine if :class:`PUBREADER_SUBWRITER` must be used.
-
-- ``<metatrafficUnicastLocatorList>``: List of metatraffic unicast locators. It expects a :ref:`LocatorListType`.
-
-- ``<metatrafficMulticastLocatorList>``: List of metatraffic multicast locators. It expects a :ref:`LocatorListType`.
-
-- ``<initialPeersList>``: List of initial peers locators. It expects a :ref:`LocatorListType`.
-
-- ``<staticEndpointXMLFilename>``: If :class:`EDP` is set to :class:`STATIC`, allows setting the XML file path that contains the endpoint configuration.
-
-- ``<readerHistoryMemoryPolicy>``: Memory allocation kind for reader's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
-
-- ``<writerHistoryMemoryPolicy>``: Memory allocation kind for writer's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
++------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
+| Name                         | Description                                                                      | Values              | Default            |
++==============================+==================================================================================+=====================+====================+
+| ``<PUBWRITER_SUBREADER>``    | Indicates if the participant must use Publication Writer and Subcription Reader. | ``Boolean``         | :class:`TRUE`      |
++------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
+| ``<PUBREADER_SUBWRITER>``    | Indicates if the participant must use Publication Reader and Subcription Writer. | ``Boolean``         | :class:`TRUE`      |
++------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
 
 
 .. _publisherprofiles:

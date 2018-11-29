@@ -475,20 +475,17 @@ as shown in :ref:`loadingapplyingprofiles`.
 
 List with the possible configuration parameter:
 
-+---------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| Name                            | Description                                                                   | Values                           | Default |
-+=================================+===============================================================================+==================================+=========+
-| ``<name>``                      | Participant's name. It's not the same field that ``profile_name``.            | ``string``                       |         |
-+---------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-|                                 |                                                                               |                                  |         |
-| ``<defaultUnicastLocatorList>`` | Participant's name. It's not the same field that ``profile_name``.            | ``string``                       |         |
-+---------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
++-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
+| Name                              | Description                                                                   | Values                           | Default |
++===================================+===============================================================================+==================================+=========+
+| ``<name>``                        | Participant's name. It's not the same field that ``profile_name``.            | ``string``                       |         |
++-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<defaultUnicastLocatorList>``   | List of default input unicast locators. It expects a :ref:`LocatorListType`.  | ``LocatorListType``              |         |
++-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
+| ``<defaultMulticastLocatorList>`` | List of default input unicast locators. It expects a :ref:`LocatorListType`.  | ``LocatorListType``              |         |
++-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
 
-- : 
-
-- `: List of default input unicast locators. It expects a :ref:`LocatorListType`.
-
-- ``<defaultMulticastLocatorList>``: List of default input multicast locators. It expects a :ref:`LocatorListType`.
+- : List of default input multicast locators. It expects a :ref:`LocatorListType`.
 
 - ``<sendSocketBufferSize>``: Size in bytes of the output socket buffer.
 

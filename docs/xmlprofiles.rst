@@ -613,35 +613,62 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
-- ``<topic>``: :ref:`TopicType` configuration of the pubsliher.
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| Name                              | Description                                                             | Values                              | Default               |
++===================================+=========================================================================+=====================================+=======================+
+| ``<topic>``                       | :ref:`TopicType` configuration of the pubsliher.                        | :ref:`TopicType`                    |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<qos>``                         | Subscriber :ref:`CommonQOS` configuration.                              | :ref:`CommonQOS`                    |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<times>``                       | It allows configuring some time related parameters of the publisher .   | :ref:`Times <pubtimes>`             |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<unicastLocatorList>``          | List of unicast locators. It expects a :ref:`LocatorListType`.          | List of :ref:`LocatorListType`      |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<multicastLocatorList>``        | List of multicast locators. It expects a :ref:`LocatorListType`.        | List of :ref:`LocatorListType`      |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<outLocatorList>``              | List of output locators. It expects a :ref:`LocatorListType`.           | List of :ref:`LocatorListType`      |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<throughputController>``        | Limits the output bandwidth of the publisher.                           | :ref:`Throughput Controller <tpcon>`|                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<historyMemoryPolicy>``         | Memory allocation kind for pubsliher's history.                         | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
+|                                   |                                                                         | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
+|                                   |                                                                         | :class:`DYNAMIC`                    |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<propertiesPolicy>``            | Additional configuration properties.                                    | :ref:`PropertiesPolicyType`         |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<userDefinedID>``               | Used for StaticEndpointDiscovery.                                       | ``Int16``                           | -1                    |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<entityID>``                    | EntityId of the *endpoint*.                                             | ``Int16``                           | -1                    |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 
-- ``<qos>``: Subscriber :ref:`CommonQOS` configuration.
+.. _pubtimes:
 
-- ``<times>``:  Allows configuring some time related parameters of the publisher:
+**Times**
 
-    * ``<initialAcknackDelay>``: :ref:`DurationType` of the initial dealy of the :class:`Acknack` message.
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                   | Values                           | Default            |
++==============================+===============================================================================+==================================+====================+
+| ``<initialAcknackDelay>``    | Initial heartbeat delay.                                                      | :ref:`DurationType`              | ~45 ms             |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<heartbeatPeriod>``        | Periodic HB period.                                                           | :ref:`DurationType`              | 3 s                |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<nackResponseDelay>``      | Delay to apply to the response of a ACKNACK message.                          | :ref:`DurationType`              | ~45 ms             |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<nackSupressionDuration>`` | | This time allows the RTPSWriter to ignore nack messages                     | :ref:`DurationType`              | 0 ms               |
+|                              | | too soon after the data as sent                                             |                                  |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
-    * ``<heartbeatPeriod>``: :ref:`DurationType` to set the period of the :class:`heartbeat` messages.
+.. _tpcon:
 
-    * ``<nackResponseDelay>``: :ref:`DurationType` of the delay of the :class:`nack` message response.
+**Throughput Controller**
 
-    * ``<nackSupressionDuration>``: :ref:`DurationType` to set supression duration of the :class:`nack` message.
-
-- ``<unicastLocatorList>``: List of unicast input locators. It expects a :ref:`LocatorListType`.
-
-- ``<multicastLocatorList>``: List of multicast input locators. It expects a :ref:`LocatorListType`.
-
-- ``<outLocatorList>``:  List of output locators. It expects a :ref:`LocatorListType`.
-
-- ``<throughputController>``: Limits the output bandwidth of the publisher.
-
-- ``<historyMemoryPolicy>``: Memory allocation kind for publisher's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
-
-- ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
-
-- ``<userDefinedID>``: Allows setting a custom identifier.
-
-- ``<entityID>``: Allows establishing the entityID of the publisher.
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                   | Values                           | Default            |
++==============================+===============================================================================+==================================+====================+
+| ``<bytesPerPeriod>``         | Packet size in bytes that this controller will allow in a given period.       | ``UInt32``                       |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<periodMillisecs>``        | Window of time in which no more than 'bytesPerPeriod' bytes are allowed.      | ``UInt32``                       |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 
 .. _subscriberprofiles:
@@ -671,32 +698,45 @@ as shown in :ref:`loadingapplyingprofiles`.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
-- ``<topic>``: :ref:`TopicType` configuration of the subscriber.
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| Name                              | Description                                                             | Values                              | Default               |
++===================================+=========================================================================+=====================================+=======================+
+| ``<topic>``                       | :ref:`TopicType` configuration of the subscriber.                       | :ref:`TopicType`                    |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<qos>``                         | Subscriber :ref:`CommonQOS` configuration.                              | :ref:`CommonQOS`                    |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<times>``                       | It allows configuring some time related parameters of the subscriber.   | :ref:`Times <subtimes>`             |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<unicastLocatorList>``          | List of unicast locators. It expects a :ref:`LocatorListType`.          | List of :ref:`LocatorListType`      |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<multicastLocatorList>``        | List of multicast locators. It expects a :ref:`LocatorListType`.        | List of :ref:`LocatorListType`      |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<outLocatorList>``              | List of output locators. It expects a :ref:`LocatorListType`.           | List of :ref:`LocatorListType`      |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<expectsInlineQos>``            | It indicates if QOS is expected inline.                                 | ``Boolean``                         | :class:`FALSE`        |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<historyMemoryPolicy>``         | Memory allocation kind for subscriber's history.                        | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
+|                                   |                                                                         | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
+|                                   |                                                                         | :class:`DYNAMIC`                    |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<propertiesPolicy>``            | Additional configuration properties.                                    | :ref:`PropertiesPolicyType`         |                       |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<userDefinedID>``               | Used for StaticEndpointDiscovery.                                       | ``Int16``                           | -1                    |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
+| ``<entityID>``                    | EntityId of the *endpoint*.                                             | ``Int16``                           | -1                    |
++-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 
-- ``<qos>``: Subscriber :ref:`CommonQOS` configuration.
+.. _subtimes:
 
-- ``<times>``:  Allows configuring some time related parameters of the subscriber:
+**Times**
 
-    * ``<initialAcknackDelay>``: :ref:`DurationType` of the initial :class:`Acknack` message.
-
-    * ``<heartbeatResponseDelay>``: :ref:`DurationType` to set the delay of the :class:`heartbeat` message response.
-
-- ``<unicastLocatorList>``: List of unicast locators. It expects a :ref:`LocatorListType`.
-
-- ``<multicastLocatorList>``: List of multicast locators. It expects a :ref:`LocatorListType`.
-
-- ``<outLocatorList>``:  List of output locators. It expects a :ref:`LocatorListType`.
-
-- ``<expectsInlineQos>``: Boolean parameter to indicate if QOS is expected inline.
-
-- ``<historyMemoryPolicy>``: Memory allocation kind for subscriber's history. It can be :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC` or :class:`DYNAMIC`.
-
-- ``<propertiesPolicy>``: Additional configuration properties. It expects a :ref:`PropertiesPolicyType`.
-
-- ``<userDefinedID>``: Allows setting a custom identifier.
-
-- ``<entityID>``: Allows establishing the entityID of the subscriber.
-
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                   | Values                           | Default            |
++==============================+===============================================================================+==================================+====================+
+| ``<initialAcknackDelay>``    | Initial AckNack delay.                                                        | :ref:`DurationType`              | ~45 ms             |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<heartbeatResponseDelay>`` | Delay to be applied when a hearbeat message is received.                      | :ref:`DurationType`              | ~4.5 ms            |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 .. _commonxml:
 

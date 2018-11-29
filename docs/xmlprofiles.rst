@@ -815,27 +815,70 @@ There is a deeper explanation of the "topic" field here: :ref:`Topic_information
     :end-before: <!-- TOPIC END -->
     :dedent: 4
 
-- ``<kind>``: String field that sets if the topic uses keys or not. The available values are *NO_KEY* and *WITH_KEY*.
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                   | Values                           | Default            |
++==============================+===============================================================================+==================================+====================+
+| ``<kind>``                   | It defines the Topic's kind                                                   | :class:`NO_KEY`,                 | :class:`NO_KEY`    |
+|                              |                                                                               | :class:`WITH_KEY`                |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<name>``                   | It defines the Topic's name. Must be unique.                                  | ``string``                       |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<dataType>``               | It references the Topic's data type.                                          | ``string``                       |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<historyQos>``             | It controls the behavior of *Fast RTPS* when the value of an instance changes | :ref:`HistoryQos <hQos>`         |                    |
+|                              |                                                                               |                                  |                    |
+|                              | before it is finally communicated to some of its existing DataReader entities.|                                  |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<resourceLimitsQos>``      | It controls the resources that *Fast RTPS* can use in order to meet the       | :ref:`ResourceLimitsQos <rLsQos>`|                    |
+|                              |                                                                               |                                  |                    |
+|                              | requirements imposed by the application and other QoS settings.               |                                  |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
-- ``<name>``: Name of the topic.
+.. _hQos:
 
-- ``<dataType>``: Name of the data type.
+**HistoryQoS**
 
-- ``<historyQos>``: The history QoS handles the number of messages that are going to be stored by publishers and subscribers in their histories.
+It controls the behavior of *Fast RTPS* when the value of an instance changes before it is finally
+communicated to some of its existing DataReader entities.
 
-    * ``<kind>``: History type, the available values are *KEEP_ALL* and *KEEP_LAST*.
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                   | Values                           | Default            |
++==============================+===============================================================================+==================================+====================+
+| ``<kind>``                   | See description below.                                                        | :class:`KEEP_LAST`,              | :class:`KEEP_LAST` |
+|                              |                                                                               | :class:`KEEP_ALL`                |                    |
++------------------------------+                                                                               +----------------------------------+--------------------+
+| ``<depth>``                  |                                                                               | ``UInt32``                       | 1000               |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
-    * ``<depth>``: Number of packages that can be stored with the *KEEP_LAST* option.
+If the ``<kind>`` is set to :class:`KEEP_LAST`, then *Fast RTPS* will only attempt to keep the latest values of the instance and
+discard the older ones.
 
-- ``<resourceLimitsQos>``: The :ref:`history QoS <resourceLimits-qos>`
+If the ``<kind>`` is set to :class:`KEEP_ALL`, then *Fast RTPS* will attempt to maintain and deliver all the values of the instance to
+existing subscribers.
 
-    * ``<max_samples>``: The maximum number of samples that can be stored in the history of publishers or subscribers. Its default value is 5000.
+The setting of ``<depth>`` must be consistent with the :ref:`ResourceLimitsQos <rLsQos>`
+``<max_samples_per_instance>``. For these two QoS to be consistent,
+they must verify that ``depth <= max_samples_per_instance``.
 
-    * ``<max_instances>``: The maximum number of instances that a publisher or a subscriber can manage. Its default value is 10.
+.. _rLsQos:
 
-    * ``<max_samples_per_instance>``: The maximum number of samples for each instance. Its default value is 400.
+**ResourceLimitsQos**
 
-    * ``<allocated_samples>``: Initial samples reserved in the history of publishers or subscribers.
+It controls the resources that *Fast RTPS* can use in order to meet the requirements imposed by the
+application and other QoS settings.
+
++-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                          | Description                                                                   | Values                           | Default            |
++===============================+===============================================================================+==================================+====================+
+| ``<max_samples>``             | It must verify that ``max_samples >= max_samples_per_instance``.              | ``UInt32``                       | 5000               |
++-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<max_instances>``           | It defines the maximum number of instances.                                   | ``UInt32``                       | 10                 |
++-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<max_samples_per_instance>``| It must verify that :ref:`HistoryQos <hQos>`                                  | ``UInt32``                       | 400                |
+|                               | ``depth <= max_samples_per_instance``.                                        |                                  |                    |
++-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<allocated_samples>``       | It controls the maximum number of samples to be stored.                       | ``UInt32``                       | 100                |
++-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 .. _CommonQOS:
 
@@ -855,49 +898,64 @@ The quality of service (QoS) handles the restrictions applied to the application
     :end-before: <!-- QOS END -->
     :dedent: 4
 
-.. note::
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                   | Values                           | Default            |
++==============================+===============================================================================+==================================+====================+
+| ``<durability>``             | It is defined on :ref:`SettingDataDurability` section.                        | :class:`VOLATILE`,               | :class:`VOLATILE`  |
+|                              |                                                                               | :class:`TRANSIENT_LOCAL`,        |                    |
+|                              |                                                                               | :class:`TRANSIENT`               |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<liveliness>``             | Defines the liveliness of the participant.                                    | :ref:`LivelinessType`            |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<reliability>``            | It is defined on :ref:`reliability` section.                                  | :class:`RELIABLE`,               | :class:`RELIABLE`  |
+|                              |                                                                               | :class:`BEST_EFFORT`             |                    |
+|                              |                                                                               |                                  |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<partition>``              | It allows the introduction of a logical partition concept                     | ``List <string>``                |                    |
+|                              |                                                                               |                                  |                    |
+|                              | inside the ‘physical’ partition induced by a domain.                          |                                  |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
-    - :class:`DURATION` means it expects a :ref:`DurationType`.
+..
+    .. note::
 
-..  - :class:`DURABILITY_SERVICE` means that the label is a :ref:`DurabilityServiceType` block.::
+        - :class:`DURATION` means it expects a :ref:`DurationType`.
 
-    - :class:`LIVELINESS` means that the label is a :ref:`LiveLinessType` block.
+    ..  - :class:`DURABILITY_SERVICE` means that the label is a :ref:`DurabilityServiceType` block.::
 
-- ``<durability>``: is defined on :ref:`SettingDataDurability` section.
+        - :class:`LIVELINESS` means that the label is a :ref:`LiveLinessType` block.
 
-- ``<deadline>``: Period of the samples deadline as :ref:`DurationType` within a ``<period>`` tag.
 
-- ``<latencyBudget>``: Latency budget os the samples as :ref:`DurationType` within a ``<duration>`` tag.
+    .. NOT YET SUPPORTED
+        - ``<deadline>``: Period of the samples deadline as :ref:`DurationType` within a ``<period>`` tag.
 
-- ``<reliability>``: is defined on :ref:`reliability` section.
+        - ``<latencyBudget>``: Latency budget os the samples as :ref:`DurationType` within a ``<duration>`` tag.
 
-- ``<lifespan>``: lifespan as :ref:`DurationType`
+        - ``<lifespan>``: lifespan as :ref:`DurationType`
 
-- ``<userData>``: Allows adding custom information.
+        - ``<userData>``: Allows adding custom information.
 
-- ``<timeBasedFilter>``: Allows filtering by time. It's a :ref:`DurationType` within a ``<minimum_separation>`` tag.
+        - ``<timeBasedFilter>``: Allows filtering by time. It's a :ref:`DurationType` within a ``<minimum_separation>`` tag.
 
-- ``<ownership>``: ``<kind>`` determines whether an instance of the Topic is owned by a single Publisher. If the selected ownership is :class:`EXCLUSIVE` the Publisher will use the Ownership strength value as the strength of its publication. Only the publisher with the highest strength can publish in the same Topic with the same Key.
+        - ``<ownership>``: ``<kind>`` determines whether an instance of the Topic is owned by a single Publisher. If the selected ownership is :class:`EXCLUSIVE` the Publisher will use the Ownership strength value as the strength of its publication. Only the publisher with the highest strength can publish in the same Topic with the same Key.
 
-- ``<destinationOrder>``: ``<kind>`` determines the destination timestamp. :class:`BY_RECEPTION_TIMESTAMP` for reception and :class:`BY_SOURCE_TIMESTAMP` for the source.
+        - ``<destinationOrder>``: ``<kind>`` determines the destination timestamp. :class:`BY_RECEPTION_TIMESTAMP` for reception and :class:`BY_SOURCE_TIMESTAMP` for the source.
 
-- ``<presentation>``:
-    * ``<access_scope>`` defines the scope of presentation and can be :class:`INSTANCE`, :class:`TOPIC`, or :class:`GROUP`.
+        - ``<presentation>``:
+            * ``<access_scope>`` defines the scope of presentation and can be :class:`INSTANCE`, :class:`TOPIC`, or :class:`GROUP`.
 
-    * ``<coherent_access>`` Boolean value to set if the access must be coherent.
+            * ``<coherent_access>`` Boolean value to set if the access must be coherent.
 
-    * ``<ordered_access>`` Boolean value to set if the access must be ordered.
+            * ``<ordered_access>`` Boolean value to set if the access must be ordered.
 
-- ``<partition>``: Allows to define the participant's partitions as a list of ``<name>``.
+        - ``<topicData>``: Allows adding custom topic data.
 
-- ``<topicData>``: Allows adding custom topic data.
+        - ``<groupData>``: Allows adding custom group data.
 
-- ``<groupData>``: Allows adding custom group data.
 
 
 .. .. _DurabilityServiceType:
 
-..
     DurabilityServiceType
     ^^^^^^^^^^^^^^^^^^^^^
 
@@ -939,11 +997,22 @@ This parameter defines who is responsible for issues of liveliness packets.
     :end-before: <!-- LIVELINESS END -->
     :dedent: 4
 
-- ``<kind>``: Specifies how to manage liveliness. Can take values :class:`AUTOMATIC`, :class:`MANUAL_BY_PARTICIPANT`, and :class:`MANUAL_BY_TOPIC`. The default value is :class:`AUTOMATIC`.
 
-- ``<leaseDuration>``: How much time remote RTPSParticipants should consider this RTPSParticipant alive the lease is being announced. It is a :ref:`DurationType`.
-
-- ``<announcement_period>``: The period to send its Discovery Message to all other discovered RTPSParticipants as well as to all Multicast ports. It's a :ref:`DurationType`.
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                   | Values                           | Default            |
++==============================+===============================================================================+==================================+====================+
+| ``<kind>``                   | Specifies how to manage liveliness.                                           | :class:`AUTOMATIC`,              | :class:`AUTOMATIC` |
+|                              |                                                                               | :class:`MANUAL_BY_TOPIC`,        |                    |
+|                              |                                                                               | :class:`MANUAL_BY_TOPIC`         |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<leaseDuration>``          | Amount of time that the remote RTPSParticipants should consider this          | :ref:`DurationType`              | 130 s              |
+|                              |                                                                               |                                  |                    |
+|                              | RTPSParticipant to be alive since the last message.                           |                                  |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<announcement_period>``    | The period to send its Discovery Message to all other                         | :ref:`DurationType`              | 40 s               |
+|                              |                                                                               |                                  |                    |
+|                              | discovered RTPSParticipants as well as to all Multicast ports.                |                                  |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 .. _examplexml:
 

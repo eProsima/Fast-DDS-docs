@@ -367,67 +367,18 @@
             <kind>VOLATILE</kind> <!-- string -->
         </durability>
 
-        <deadline>
-            <period>
-                <!-- DURATION -->
-            </period>
-        </deadline>
-
-        <latencyBudget>
-            <duration>
-                <!-- DURATION -->
-            </duration>
-        </latencyBudget>
-
         <liveliness>
             <!-- LIVELINESS -->
         </liveliness>
 
         <reliability>
             <kind>BEST_EFFORT</kind>
-            <max_blocking_time>
-                <!-- DURATION -->
-            </max_blocking_time>
         </reliability>
-
-        <lifespan>
-            <!-- DURATION -->
-        </lifespan>
-
-        <userData>148875 </userData>
-
-        <timeBasedFilter>
-            <minimum_separation>
-                <!-- DURATION -->
-            </minimum_separation>
-        </timeBasedFilter>
-
-        <ownership>
-            <kind>SHARED</kind> <!-- string -->
-        </ownership>
-
-        <destinationOrder>
-            <kind>BY_RECEPTION_TIMESTAMP</kind> <!-- string -->
-        </destinationOrder>
-
-        <presentation>
-            <access_scope>INSTANCE</access_scope> <!-- string -->
-            <coherent_access>TRUE</coherent_access> <!-- bool -->
-            <ordered_access>TRUE</ordered_access> <!-- bool -->
-        </presentation>
 
         <partition>
             <name>part1</name> <!-- string -->
             <name>part2</name> <!-- string -->
         </partition>
-
-        <topicData>
-            <value>148875</value>
-        </topicData>
-
-        <groupData>
-            <value>148875</value>
-        </groupData>
     </qos>
 <!-- QOS END -->
 

@@ -122,8 +122,6 @@
                 <offsetd3>3</offsetd3> <!-- uint16 -->
             </port>
 
-            <userData>148875 </userData>
-
             <participantID>99</participantID>   <!-- int32 -->
 
             <throughputController>
@@ -144,6 +142,10 @@
         </rtps>
     </participant>
 <!-- PARTICIPANT END -->
+
+	<!-- Not Used at the moment -->
+	<!-- <userData>148875 </userData> -->
+
 
 <!-- BUILTIN START -->
     <builtin>

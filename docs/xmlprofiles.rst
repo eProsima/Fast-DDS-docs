@@ -6,17 +6,17 @@ XML profiles
 The :ref:`configuration` section shows how to configure entity attributes using XML profiles,
 but this section goes deeper on it, explaining each field with its available values and how to compound the complete XML files.
 
-*eProsima Fast RTPS* permits to load as several XML files in the same execution, and they can contain several XML profiles.
+*eProsima Fast RTPS* permits to load several XML files in the same execution, as they can contain several XML profiles.
 An XML profile is defined by a unique name (or ``<transport_id>`` label
 in the :ref:`transportdescriptors` case) that is used to reference the XML profile
 when during the creation of a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
-*eProsima Fast RTPS* will also try to find in current execution path and
-load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml*, during its initialization.
+During *eProsima Fast RTPS* initialization,
+it tries to load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* in the current execution path.
 
 Making an XML
 -------------
 
-An XML file can contain several XML profiles. Each profile can be divided into :ref:`transportdescriptors`,
+An XML file can contain several XML profiles. The available profile types are :ref:`transportdescriptors`,
 :ref:`xmldynamictypes`, :ref:`participantprofiles`, :ref:`publisherprofiles`, and :ref:`subscriberprofiles`.
 
 .. literalinclude:: xmlprofiles.xml
@@ -72,48 +72,49 @@ The following XML code shows the complete list of configurable parameters:
 
 The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| Name                         | Description                                                                     | Values                           | Default |
-+==============================+=================================================================================+==================================+=========+
-| ``<transport_id>``           | Unique name to identify each transport descriptor.                              | ``string``                       |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<type>``                   | Type of the transport descriptor.                                               | UDPv4, UDPv6, TCPv4, TCPv6       | UDPv4   |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<sendBufferSize>``         | Size in bytes of the socket send buffer.                                        | ``uint32``                       | 0       |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<receiveBufferSize>``      | Size in bytes of the socket receive buffer.                                     | ``uint32``                       | 0       |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<TTL>``                    | *Time To Live*, **only** for UDP transports.                                    | ``uint8``                        | 1       |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<maxMessageSize>``         | The maximum size in bytes of the transport's message buffer.                    | ``uint32``                       | 65500   |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<maxInitialPeersRange>``   | The maximum number of guessed initial peers to try to connect.                  | ``uint32``                       | 4       |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<interfaceWhiteList>``     | Allows defining :ref:`whitelist-interfaces`.                                    | :ref:`whitelist-interfaces`      |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<wan_addr>``               | | Public WAN address when using **TCPv4 transports**.                           | | ``string`` with IPv4 Format    |         |
-|                              | | This field is optional if the transport doesn't need to define a WAN address. | | XXX.XXX.XXX.XXX.               |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<output_port>``            | | Port used for output bound.                                                   | ``uint16``                       | 0       |
-|                              | | If this field isn't defined, the output port will be random.                  |                                  |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<keep_alive_frequency_ms>``| Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP).   | ``uint32``                       | 50000   |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<keep_alive_timeout_ms>``  | | Time in milliseconds since sending the last keepalive request                 | ``uint32``                       | 10000   |
-|                              | | to consider a connection as broken. (**only** TCP).                           |                                  |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<max_logical_port>``       | | The maximum number of logical ports to try during RTCP negotiation.           | ``uint16``                       | 100     |
-|                              | | (**only** TCP)                                                                |                                  |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<logical_port_range>``     | | The maximum number of logical ports per request to try                        | ``uint16``                       | 20      |
-|                              | | during RTCP negotiation (**only** TCP).                                       |                                  |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<logical_port_increment>`` | | Increment between logical ports to try during RTCP negotiation.               | ``uint16``                       | 2       |
-|                              | | (**only** TCP).                                                               |                                  |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<ListeningPorts>``         | | Local port to work as TCP acceptor for input connections.                     | ``List <uint16>``                |         |
-|                              | | If not set, the transport will work as TCP client only (**only** TCP).        |                                  |         |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+---------+
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| Name                         | Description                                                                     | Values                           | Default        |
++==============================+=================================================================================+==================================+================+
+| ``<transport_id>``           | Unique name to identify each transport descriptor.                              | ``string``                       |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<type>``                   | Type of the transport descriptor.                                               | :class:`UDPv4`, :class:`UDPv6`,  | :class:`UDPv4` |
+|                              |                                                                                 | :class:`TCPv4`, :class:`TCPv6`   |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<sendBufferSize>``         | Size in bytes of the socket send buffer.                                        | ``uint32``                       | 0              |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<receiveBufferSize>``      | Size in bytes of the socket receive buffer.                                     | ``uint32``                       | 0              |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<TTL>``                    | *Time To Live*, **only** for UDP transports.                                    | ``uint8``                        | 1              |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<maxMessageSize>``         | The maximum size in bytes of the transport's message buffer.                    | ``uint32``                       | 65500          |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<maxInitialPeersRange>``   | The maximum number of guessed initial peers to try to connect.                  | ``uint32``                       | 4              |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<interfaceWhiteList>``     | Allows defining :ref:`whitelist-interfaces`.                                    | :ref:`whitelist-interfaces`      |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<wan_addr>``               | | Public WAN address when using **TCPv4 transports**.                           | | ``string`` with IPv4 Format    |                |
+|                              | | This field is optional if the transport doesn't need to define a WAN address. | | :class:`XXX.XXX.XXX.XXX`.      |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<output_port>``            | | Port used for output bound.                                                   | ``uint16``                       | 0              |
+|                              | | If this field isn't defined, the output port will be random.                  |                                  |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<keep_alive_frequency_ms>``| Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP).   | ``uint32``                       | 50000          |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<keep_alive_timeout_ms>``  | | Time in milliseconds since sending the last keepalive request                 | ``uint32``                       | 10000          |
+|                              | | to consider a connection as broken. (**only** TCP).                           |                                  |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<max_logical_port>``       | | The maximum number of logical ports to try during RTCP negotiation.           | ``uint16``                       | 100            |
+|                              | | (**only** TCP)                                                                |                                  |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<logical_port_range>``     | | The maximum number of logical ports per request to try                        | ``uint16``                       | 20             |
+|                              | | during RTCP negotiation (**only** TCP).                                       |                                  |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<logical_port_increment>`` | | Increment between logical ports to try during RTCP negotiation.               | ``uint16``                       | 2              |
+|                              | | (**only** TCP).                                                               |                                  |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
+| ``<ListeningPorts>``         | | Local port to work as TCP acceptor for input connections.                     | ``List <uint16>``                |                |
+|                              | | If not set, the transport will work as TCP client only (**only** TCP).        |                                  |                |
++------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
 
 There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
 
@@ -122,13 +123,13 @@ There are more examples of transports descriptors in :ref:`comm-transports-confi
 XML Dynamic Types
 -----------------
 
-XML Dynamic Types allows creating Dynamic Types to *eProsima Fast RTPS* directly defining them through XML.
+XML Dynamic Types allows creating *eProsima Fast RTPS Dynamic Types* directly defining them through XML.
 It allows any application to change TopicDataTypes without modifying its source code.
 
 XML Structure
 ^^^^^^^^^^^^^
 
-The XML Types definition (``<types>``, types tag) can be placed similarly to the profiles tag inside the XML file.
+The XML Types definition (``<types>`` tag) can be placed similarly to the profiles tag inside the XML file.
 It can be a stand-alone XML Types file or be a child of the Fast-RTPS XML root tag (``<dds>``).
 Inside the types tag, there must be one or more type tags (``<type>``).
 
@@ -148,8 +149,8 @@ Rooted:
     :end-before: <!-- ROOTED TYPES END -->
     :dedent: 4
 
-Finally, each type of tag can contain one or more :ref:`Type definitions <Type definition>`.
-Defining several types inside a *type* tag or defining each type in its *type* tag has the same result.
+Finally, each ``<type>`` tag can contain one or more :ref:`Type definitions <Type definition>`.
+Defining several types inside a ``<type>`` tag or defining each type in its ``<type>`` tag has the same result.
 
 .. _Type definition:
 
@@ -158,7 +159,8 @@ Type definition
 
 **Enum**
 
-The enum type is defined by its name and a set of literals, each of them with its name and its (optional) value.
+The ``<enum>`` type is defined by its ``name`` and a set of ``literals``,
+each of them with its ``name`` and its (optional) ``value``.
 
 Example:
 
@@ -178,8 +180,8 @@ Example:
 
 **Typedef**
 
-The typedef type is defined by its name and its value or an inner element for complex types.
-Typedefs correspond to Alias in Dynamic Types glossary.
+The ``<typedef>`` type is defined by its ``name`` and its ``value`` or an inner element for complex types.
+Typedefs correspond to :class:`Alias` in Dynamic Types glossary.
 
 Example:
 
@@ -201,7 +203,7 @@ Example:
 
 **Struct**
 
-The struct type is defined by its name and inner members.
+The ``<struct>`` type is defined by its ``name`` and inner *members*.
 
 Example:
 
@@ -224,8 +226,8 @@ Example:
 
 **Union**
 
-The union type is defined by its name, a discriminator and a set of cases.
-Each case has one or more caseValue and a member.
+The ``<union>`` type is defined by its ``name``, a ``discriminator`` and a set of ``cases``.
+Each ``case`` has one or more ``caseValue`` and a *member*.
 
 
 Example:
@@ -258,32 +260,29 @@ Example:
 Member types
 ^^^^^^^^^^^^
 
-Member types are any type that can belong to a struct or a union, or be aliased by a typedef.
+Member types are any type that can belong to a ``<struct>`` or a ``<union>``, or be aliased by a ``<typedef>``.
 
-When used as sequence's elements, key or value types of a map, as an aliased type, etc., its name attribute
-is ignored and can be omitted.
+When used as ``<sequence>``'s elements, ``key`` or ``value`` types of a map, as an aliased type, etc.,
+its ``name`` attribute is ignored and can be omitted.
 
 **Basic types**
 
 The tags of the available basic types are:
 
-- ``<boolean>``
-- ``<octet>``
-- ``<char>``
-- ``<wchar>``
-- ``<short>``
-- ``<long>``
-- ``<longlong>``
-- ``<unsignedshort>``
-- ``<unsignedlong>``
-- ``<unsignedlonglong>``
-- ``<float>``
-- ``<double>``
-- ``<longdouble>``
-- ``<string>``
-- ``<wstring>``
-- ``<boundedString>``
-- ``<boundedWString>``
++--------------------------+--------------------------+--------------------------+
+| ``<boolean>``            | ``<longlong>``           | ``<longdouble>``         |
++--------------------------+--------------------------+--------------------------+
+| ``<octet>``              | ``<unsignedshort>``      | ``<string>``             |
++--------------------------+--------------------------+--------------------------+
+| ``<char>``               | ``<unsignedlong>``       | ``<wstring>``            |
++--------------------------+--------------------------+--------------------------+
+| ``<wchar>``              | ``<unsignedlonglong>``   | ``<boundedString>``      |
++--------------------------+--------------------------+--------------------------+
+| ``<short>``              | ``<float>``              | ``<boundedWString>``     |
++--------------------------+--------------------------+--------------------------+
+| ``<long>``               | ``<double>``             |                          |
++--------------------------+--------------------------+--------------------------+
+
 
 All of them are defined as follows:
 
@@ -366,14 +365,14 @@ Example:
     |                                                       |                                                                                                                                         |
     +-------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 
-The example shows a sequence with length 3 of sequences with length 2 with long contents.
+The example shows a sequence with ``length`` ``3`` of sequences with ``length`` ``2`` with ``<long>`` contents.
 As IDL would be:
 
 .. code-block:: c++
 
     sequence<sequence<long,2>,3> my_sequence_sequence;
 
-Note that the inner (or content) sequence has no name, as it would be ignored by the parser.
+Note that the inner (or content) sequence has no ``name``, as it would be ignored by the parser.
 
 **Maps**
 
@@ -428,8 +427,9 @@ Example:
 Usage
 ^^^^^
 
-In the application that will make use of XML Types, it's mandatory to load the XML file that defines the types before trying to instantiate DynamicPubSubTypes of these types.
-It's important to remark that only Structs generate usable DynamicPubSubType instances.
+In the application that will make use of *XML Types*, it's mandatory to load the XML file that defines
+the types before trying to instantiate *DynamicPubSubTypes* of these types.
+It's important to remark that only ``<struct>`` types generate usable *DynamicPubSubType* instances.
 
 .. code-block:: cpp
 
@@ -445,8 +445,8 @@ It's important to remark that only Structs generate usable DynamicPubSubType ins
 Participant profiles
 --------------------
 
-Participant profiles allow declaring :ref:`participantconfiguration` from an XML file and
-the configuration options for the participant belongs to the ``<rtps>`` label.
+Participant profiles allow declaring :ref:`participantconfiguration` from an XML file.
+All the configuration options for the participant belongs to the ``<rtps>`` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -529,18 +529,6 @@ List with the possible configuration parameter:
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
 | ``<offsetd3>``                    | Unicast user data offset.                                                     | ``uint16``                       | 11      |
 +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-
-.. _Throughput:
-
-**Throughput Configuration**
-
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+------------+
-| Name                              | Description                                                                   | Values                           | Default    |
-+===================================+===============================================================================+==================================+============+
-| ``<bytesPerPeriod>``              | The maximum bytes to send by period.                                          | ``uint32``                       | 4294967295 |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+------------+
-| ``<periodMillisecs>``             | Period in milliseconds.                                                       | ``uint32``                       | 0          |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+------------+
 
 .. _builtin:
 
@@ -649,7 +637,7 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<outLocatorList>``              | List of output locators. It expects a :ref:`LocatorListType`.           | List of :ref:`LocatorListType`      |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<throughputController>``        | Limits the output bandwidth of the publisher.                           | :ref:`Throughput Controller <tpcon>`|                       |
+| ``<throughputController>``        | Limits the output bandwidth of the publisher.                           | `Throughput`_                       |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<historyMemoryPolicy>``         | Memory allocation kind for pubsliher's history.                         | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
 |                                   |                                                                         | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
@@ -678,19 +666,6 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 | ``<nackSupressionDuration>`` | | This time allows the RTPSWriter to ignore nack messages                     | :ref:`DurationType`              | 0 ms               |
 |                              | | too soon after the data as sent                                             |                                  |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-
-.. _tpcon:
-
-**Throughput Controller**
-
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<bytesPerPeriod>``         | Packet size in bytes that this controller will allow in a given period.       | ``UInt32``                       |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<periodMillisecs>``        | Window of time in which no more than 'bytesPerPeriod' bytes are allowed.      | ``UInt32``                       |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-
 
 .. _subscriberprofiles:
 
@@ -1088,6 +1063,21 @@ This parameter defines who is responsible for issues of liveliness packets.
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 | ``<announcement_period>``    | | The period to send its Discovery Message to all other                       | :ref:`DurationType`              | 40 s               |
 |                              | | discovered RTPSParticipants as well as to all Multicast ports.              |                                  |                    |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+
+.. _Throughput:
+
+Throughput Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Throughput Configuration allows to limit the output bandwidth.
+
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| Name                         | Description                                                                   | Values                           | Default            |
++==============================+===============================================================================+==================================+====================+
+| ``<bytesPerPeriod>``         | Packet size in bytes that this controller will allow in a given period.       | ``UInt32``                       | 4294967295         |
++------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
+| ``<periodMillisecs>``        | Window of time in which no more than ``<bytesPerPeriod>`` bytes are allowed.  | ``UInt32``                       | 0                  |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 .. _examplexml:

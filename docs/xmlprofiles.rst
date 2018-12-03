@@ -9,7 +9,7 @@ but this section goes deeper on it, explaining each field with its available val
 *eProsima Fast RTPS* permits to load several XML files in the same execution, as they can contain several XML profiles.
 An XML profile is defined by a unique name (or ``<transport_id>`` label
 in the :ref:`transportdescriptors` case) that is used to reference the XML profile
-when during the creation of a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
+during the creation of a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
 During *eProsima Fast RTPS* initialization,
 it tries to load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* in the current execution path.
 
@@ -378,8 +378,8 @@ Note that the inner (or content) sequence has no ``name``, as it would be ignore
 
 Maps are similar to sequences, but they need to define two types instead one.
 One type defines its :class:`key_type`, and the other type defines its :class:`value_type`.
-Again, both types can be defined as attributes or as members, but in this cases, when defined
-as members, they are content in another XML element ``<key_type>`` and ``<value_type>`` respectively.
+Again, both types can be defined as attributes or as members, but when defined
+as members, they should be contained in another XML element (``<key_type>`` and ``<value_type>`` respectively).
 
 The definition kind of each type can be mixed, this is, one type can be defined as an attribute and the
 other as a member.
@@ -550,11 +550,11 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 +----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<use_WriterLivelinessProtocol>``     | Indicates to use the WriterLiveliness protocol.                            | ``Boolean``                         | :class:`TRUE`         |
 +----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<EDP>``                              | | - If set to :class:`SIMPLE`, ``<simpleEDP`` would be used.               | :class:`SIMPLE`, :class:`STATIC`    | :class:`SIMPLE`       |
+| ``<EDP>``                              | | - If set to :class:`SIMPLE`, ``<simpleEDP>`` would be used.              | :class:`SIMPLE`, :class:`STATIC`    | :class:`SIMPLE`       |
 |                                        | | - If set to :class:`STATIC`, StaticEDP based on an XML file would be used|                                     |                       |
 |                                        | |       with the contents of ``<staticEndpointXMLFilename>``.              |                                     |                       |
 +----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<domainId>``                         | DomainId to be used by the RTPSParticipant.                                | ``UInt32``                          | 80                    |
+| ``<domainId>``                         | DomainId to be used by the RTPSParticipant.                                | ``UInt32``                          | 0                     |
 +----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<leaseDuration>``                    | | Indicates how much time remote RTPSParticipants should consider this     | :ref:`DurationType`                 | 130 s                 |
 |                                        | | RTPSParticipant alive.                                                   |                                     |                       |
@@ -627,13 +627,13 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 +===================================+=========================================================================+=====================================+=======================+
 | ``<topic>``                       | :ref:`TopicType` configuration of the pubsliher.                        | :ref:`TopicType`                    |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<qos>``                         | Subscriber :ref:`CommonQOS` configuration.                              | :ref:`CommonQOS`                    |                       |
+| ``<qos>``                         | Publisher :ref:`CommonQOS` configuration.                               | :ref:`CommonQOS`                    |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<times>``                       | It allows configuring some time related parameters of the publisher .   | :ref:`Times <pubtimes>`             |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<unicastLocatorList>``          | List of unicast locators. It expects a :ref:`LocatorListType`.          | List of :ref:`LocatorListType`      |                       |
+| ``<unicastLocatorList>``          | List of input unicast locators. It expects a :ref:`LocatorListType`.    | List of :ref:`LocatorListType`      |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<multicastLocatorList>``        | List of multicast locators. It expects a :ref:`LocatorListType`.        | List of :ref:`LocatorListType`      |                       |
+| ``<multicastLocatorList>``        | List of input multicast locators. It expects a :ref:`LocatorListType`.  | List of :ref:`LocatorListType`      |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<outLocatorList>``              | List of output locators. It expects a :ref:`LocatorListType`.           | List of :ref:`LocatorListType`      |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+

@@ -19,11 +19,10 @@ Making an XML
 An XML file can contain several XML profiles. The available profile types are :ref:`transportdescriptors`,
 :ref:`xmldynamictypes`, :ref:`participantprofiles`, :ref:`publisherprofiles`, and :ref:`subscriberprofiles`.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- PROFILES START -->
-    :end-before: <!-- PROFILES END -->
-    :dedent: 4
+    :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS<-->
+    :lines: 1-6, 13-33
 
 The Fast-RTPS XML format uses some structs along several profiles types.
 For readability, the :ref:`commonxml` section groups these common structs.
@@ -43,13 +42,10 @@ Before creating any entity, it's required to load XML files using ``Domain::load
 that expects the profile name as an argument. *eProsima Fast RTPS* searches the XML profile using
 this profile name and applies the XML profile to the entity.
 
-.. code-block:: c++
-
-   eprosima::fastrtps::Domain::loadXMLProfilesFile("my_profiles.xml");
-
-   Participant *participant = Domain::createParticipant("participant_xml_profile");
-   Publisher *publisher = Domain::createPublisher(participant, "publisher_xml_profile");
-   Subscriber *subscriber = Domain::createSubscriber(participant, "subscriber_xml_profile");
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: cpp
+    :start-after: //XML-LOAD-APPLY-PROFILES
+    :end-before: //!--
 
 To load dynamic types from its declaration through XML see the :ref:`Usage` section of :ref:`xmldynamictypes`.
 
@@ -64,11 +60,10 @@ is instantiated it will use or create the related transport.
 
 The following XML code shows the complete list of configurable parameters:
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- TRANSPORTS START -->
-    :end-before: <!-- TRANSPORTS END -->
-    :dedent: 4
+    :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS<-->
+    :lines: 1, 11-39, 48
 
 The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
@@ -139,19 +134,17 @@ Inside the types tag, there must be one or more type tags (``<type>``).
 
 Stand-Alone:
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-- STAND ALONE TYPES START -->
     :end-before: <!-- STAND ALONE TYPES END -->
-    :dedent: 4
 
 Rooted:
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-- ROOTED TYPES START -->
     :end-before: <!-- ROOTED TYPES END -->
-    :dedent: 4
 
 Finally, each ``<type>`` tag can contain one or more :ref:`Type definitions <Type definition>`.
 Defining several types inside a ``<type>`` tag or defining each type in its ``<type>`` tag has the same result.
@@ -168,19 +161,15 @@ each of them with its ``name`` and its (optional) ``value``.
 
 Example:
 
-    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-    | XML                                           | C++                                                                                                       |
-    +===============================================+===========================================================================================================+
-    | .. code-block:: xml                           | .. code-block:: c++                                                                                       |
-    |                                               |                                                                                                           |
-    |   <enum name="MyEnum">                        |     DynamicTypeBuilder_ptr enum_builder = DynamicTypeBuilderFactory::GetInstance()->CreateEnumBuilder();  |
-    |       <literal name="A" value="0"/>           |     enum_builder->SetName("MyEnum");                                                                      |
-    |       <literal name="B" value="1"/>           |     enum_builder->AddEmptyMember(0, "A");                                                                 |
-    |       <literal name="C" value="2"/>           |     enum_builder->AddEmptyMember(1, "B");                                                                 |
-    |   </enum>                                     |     enum_builder->AddEmptyMember(2, "C");                                                                 |
-    |                                               |     DynamicType_ptr enum_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(enum_builder.get()); |
-    |                                               |                                                                                                           |
-    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+-------------------------------------------------------+
+| XML                                           | C++                                                   |
++===============================================+=======================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp            |
+|   :language: xml                              |     :language: cpp                                    |
+|   :start-after: <!-->XML-DYN-ENUM<-->         |     :start-after: //XML-DYN-ENUM                      |
+|   :end-before: <!--><-->                      |     :end-before: //!--                                |
+|                                               |                                                       |
++-----------------------------------------------+-------------------------------------------------------+
 
 **Typedef**
 
@@ -189,21 +178,15 @@ Typedefs correspond to :class:`Alias` in Dynamic Types glossary.
 
 Example:
 
-    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-    | XML                                           | C++                                                                                                                                           |
-    +===============================================+===============================================================================================================================================+
-    | .. code-block:: xml                           | .. code-block:: c++                                                                                                                           |
-    |                                               |                                                                                                                                               |
-    |   <typedef name="MyAlias1" value="MyEnum"/>   |     DynamicTypeBuilder_ptr alias_builder = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(enum_builder.get(), "MyAlias1");      |
-    |                                               |     DynamicType_ptr alias_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(alias_builder.get());                                   |
-    |                                               |                                                                                                                                               |
-    |   <typedef name="MyAlias2">                   |     std::vector<uint32_t> sequence_lengths = { 2, 2 };                                                                                        |
-    |       <long dimensions="2,2"/>                |     DynamicTypeBuilder_ptr int_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                                      |
-    |   </typedef>                                  |     DynamicTypeBuilder_ptr array_builder = DynamicTypeBuilderFactory::GetInstance()->CreateArrayBuilder(int_builder.get(), sequence_lengths); |
-    |                                               |     DynamicTypeBuilder_ptr alias_builder = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(array_builder.get(), "MyAlias2");     |
-    |                                               |     DynamicType_ptr alias_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(alias_builder.get());                                   |
-    |                                               |                                                                                                                                               |
-    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+------------------------------------------------------+
+| XML                                           | C++                                                  |
++===============================================+======================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp           |
+|   :language: xml                              |     :language: cpp                                   |
+|   :start-after: <!-->XML-TYPEDEF<-->          |     :start-after: //XML-TYPEDEF                      |
+|   :end-before: <!--><-->                      |     :end-before: //!--                               |
+|                                               |                                                      |
++-----------------------------------------------+------------------------------------------------------+
 
 **Struct**
 
@@ -211,21 +194,15 @@ The ``<struct>`` type is defined by its ``name`` and inner *members*.
 
 Example:
 
-    +-------------------------------------+----------------------------------------------------------------------------------------------------------------+
-    | XML                                 | C++                                                                                                            |
-    +=====================================+================================================================================================================+
-    | .. code-block:: xml                 | .. code-block:: c++                                                                                            |
-    |                                     |                                                                                                                |
-    |   <struct name="MyStruct">          |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();      |
-    |       <long name="first"/>          |     DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt64Builder(); |
-    |       <longlong name="second"/>     |     DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();   |
-    |   </struct>                         |                                                                                                                |
-    |                                     |     struct_builder->SetName("MyStruct");                                                                       |
-    |                                     |     struct_builder->AddMember(0, "first", long_builder);                                                       |
-    |                                     |     struct_builder->AddMember(1, "second", long_long_builder);                                                 |
-    |                                     |     DynamicType_ptr struct_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(struct_builder.get());  |
-    |                                     |                                                                                                                |
-    +-------------------------------------+----------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-STRUCT<-->           |     :start-after: //XML-STRUCT                      |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
 
 
 **Union**
@@ -236,29 +213,15 @@ Each ``case`` has one or more ``caseValue`` and a *member*.
 
 Example:
 
-    +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
-    | XML                                    | C++                                                                                                                            |
-    +========================================+================================================================================================================================+
-    | .. code-block:: xml                    | .. code-block:: c++                                                                                                            |
-    |                                        |                                                                                                                                |
-    |   <union name="MyUnion">               |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                      |
-    |       <discriminator type="octet"/>    |     DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt64Builder();                 |
-    |       <case>                           |     DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();                   |
-    |           <caseValue value="0"/>       |     DynamicTypeBuilder_ptr octet_builder = DynamicTypeBuilderFactory::GetInstance()->CreateByteBuilder();                      |
-    |           <caseValue value="1"/>       |     DynamicTypeBuilder_ptr union_builder = DynamicTypeBuilderFactory::GetInstance()->CreateUnionBuilder(octet_builder.get());  |
-    |            <long name="first"/>        |                                                                                                                                |
-    |       </case>                          |     union_builder->SetName("MyUnion");                                                                                         |
-    |       <case>                           |     union_builder->AddMember(0, "first", long_builder, "", { 0, 1 }, false);                                                   |
-    |           <caseValue value="2"/>       |     union_builder->AddMember(1, "second", struct_builder, "", { 2 }, false);                                                   |
-    |           <MyStruct name="second"/>    |     union_builder->AddMember(2, "third", long_long_builder, "", { }, true);                                                    |
-    |       </case>                          |     DynamicType_ptr union_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(union_builder.get());                    |
-    |       <case>                           |                                                                                                                                |
-    |           <caseValue value="default"/> |                                                                                                                                |
-    |           <longlong name="third"/>     |                                                                                                                                |
-    |       </case>                          |                                                                                                                                |
-    |   </union>                             |                                                                                                                                |
-    |                                        |                                                                                                                                |
-    +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-UNION<-->            |     :start-after: //XML-UNION                       |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
 
 
 Member types
@@ -290,34 +253,28 @@ The tags of the available basic types are:
 
 All of them are defined as follows:
 
-    +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
-    | XML                                    | C++                                                                                                                            |
-    +========================================+================================================================================================================================+
-    | .. code-block:: xml                    | .. code-block:: c++                                                                                                            |
-    |                                        |                                                                                                                                |
-    |   <longlong name="my_long"/>           |     DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt64Builder();                 |
-    |                                        |     long_long_builder->SetName("my_long");                                                                                     |
-    |                                        |     DynamicType_ptr long_long_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(long_long_builder.get());            |
-    |                                        |                                                                                                                                |
-    +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-GENERIC<-->          |     :start-after: //XML-GENERIC                     |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
 
 Except for ``<boundedString>`` and ``<boundedWString>`` that should include an inner element :class:`maxLength`
 whose value indicates the maximum length of the string.
 
-    +--------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
-    | XML                                        | C++                                                                                                                            |
-    +============================================+================================================================================================================================+
-    | .. code-block:: xml                        | .. code-block:: c++                                                                                                            |
-    |                                            |                                                                                                                                |
-    |   <boundedString name="my_large_string">   |     DynamicTypeBuilder_ptr string_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStringBuilder(41925);              |
-    |       <maxLength value="41925"/>           |     string_builder->SetName("my_large_string");                                                                                |
-    |   </boundedString>                         |     DynamicType_ptr string_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(string_builder.get());                  |
-    |                                            |                                                                                                                                |
-    |   <boundedWString name="my_large_wstring"> |     DynamicTypeBuilder_ptr wstring_builder = DynamicTypeBuilderFactory::GetInstance()->CreateWstringBuilder(20925);            |
-    |       <maxLength value="20925"/>           |     wstring_builder->SetName("my_large_wstring");                                                                              |
-    |   </boundedWString>                        |     DynamicType_ptr wstring_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(wstring_builder.get());                |
-    |                                            |                                                                                                                                |
-    +--------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-BOUNDEDSTRINGS<-->   |     :start-after: //XML-BOUNDEDSTRINGS              |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
 
 **Arrays**
 
@@ -327,18 +284,15 @@ The format of this dimensions attribute is the size of each dimension separated 
 Example:
 
 
-    +--------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-    | XML                                              | C++                                                                                                                                    |
-    +==================================================+========================================================================================================================================+
-    | .. code-block:: xml                              | .. code-block:: c++                                                                                                                    |
-    |                                                  |                                                                                                                                        |
-    |   <long name="long_array" dimensions="2,3,4"/>   |     std::vector<uint32_t> lengths = { 2, 3, 4 };                                                                                       |
-    |                                                  |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                              |
-    |                                                  |     DynamicTypeBuilder_ptr array_builder = DynamicTypeBuilderFactory::GetInstance()->CreateArrayBuilder(long_builder.get(), lengths);  |
-    |                                                  |     array_builder->SetName("long_array");                                                                                              |
-    |                                                  |     DynamicType_ptr array_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(array_builder.get());                            |
-    |                                                  |                                                                                                                                        |
-    +--------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-ARRAYS<-->           |     :start-after: //XML-ARRAYS                      |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
 
 
 It's IDL analog would be:
@@ -354,20 +308,15 @@ The type of its content can be defined by its :class:`type` attribute or by a me
 
 Example:
 
-    +-------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-    | XML                                                   | C++                                                                                                                                     |
-    +=======================================================+=========================================================================================================================================+
-    | .. code-block:: xml                                   | .. code-block:: c++                                                                                                                     |
-    |                                                       |                                                                                                                                         |
-    |   <sequence name="my_sequence_sequence" length="3">   |     uint32_t child_len = 2;                                                                                                             |
-    |       <sequence type="long" length="2"/>              |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                               |
-    |   </sequence>                                         |     DynamicTypeBuilder_ptr seq_builder = DynamicTypeBuilderFactory::GetInstance()->CreateSequenceBuilder(long_builder.get(), child_len);|
-    |                                                       |     uint32_t length = 3;                                                                                                                |
-    |                                                       |     DynamicTypeBuilder_ptr seq_seq_builder = DynamicTypeBuilderFactory::GetInstance()->CreateSequenceBuilder(seq_builder.get(),length); |
-    |                                                       |     seq_seq_builder->SetName("my_sequence_sequence");                                                                                   |
-    |                                                       |     DynamicType_ptr seq_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(seq_seq_builder.get());                             |
-    |                                                       |                                                                                                                                         |
-    +-------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-SEQUENCES<-->        |     :start-after: //XML-SEQUENCES                   |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
 
 The example shows a sequence with ``length`` ``3`` of sequences with ``length`` ``2`` with ``<long>`` contents.
 As IDL would be:
@@ -390,22 +339,15 @@ other as a member.
 
 Example:
 
-    +---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
-    | XML                                                           | C++                                                                                                                         |
-    +===============================================================+=============================================================================================================================+
-    | .. code-block:: xml                                           | .. code-block:: c++                                                                                                         |
-    |                                                               |                                                                                                                             |
-    |   <map name="my_map_map" key_type="long" length="2">          |     uint32_t length = 2;                                                                                                    |
-    |       <value_type>                                            |     DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();                   |
-    |           <map key_type="long" value_type="long" length="2"/> |     DynamicTypeBuilder_ptr map_builder = DynamicTypeBuilderFactory::GetInstance()->CreateMapBuilder(long_builder.get(),     |
-    |       </value_type>                                           |     long_builder.get(), length);                                                                                            |
-    |   </map>                                                      |                                                                                                                             |
-    |                                                               |     DynamicTypeBuilder_ptr map_map_builder = DynamicTypeBuilderFactory::GetInstance()->CreateMapBuilder(long_builder.get(), |
-    |                                                               |     map_builder.get(), length);                                                                                             |
-    |                                                               |     map_map_builder->SetName("my_map_map");                                                                                 |
-    |                                                               |     DynamicType_ptr map_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(map_map_builder.get());                 |
-    |                                                               |                                                                                                                             |
-    +---------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-MAPS<-->             |     :start-after: //XML-MAPS                        |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
 
 Is equivalent to the IDL:
 
@@ -419,12 +361,10 @@ Once defined, complex types can be used as members in the same way a basic or ar
 
 Example:
 
-.. code-block:: xml
-
-    <struct name="OtherStruct">
-        <MyEnum name="my_enum"/>
-        <MyStruct name="my_struct" dimensions="5"/>
-    </struct>
+.. literalinclude:: ../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-COMPLEX<-->
+    :end-before: <!--><-->
 
 .. _Usage:
 
@@ -435,14 +375,10 @@ In the application that will make use of *XML Types*, it's mandatory to load the
 the types before trying to instantiate *DynamicPubSubTypes* of these types.
 It's important to remark that only ``<struct>`` types generate usable *DynamicPubSubType* instances.
 
-.. code-block:: cpp
-
-    // Load the XML File
-    XMLP_ret ret = XMLProfileManager::loadXMLFile("types.xml");
-    // Create the "MyStructPubSubType"
-    DynamicPubSubType *pbType = XMLProfileManager::CreateDynamicPubSubType("MyStruct");
-    // Create a "MyStruct" instance
-    DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(pbType->GetDynamicType());
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: cpp
+    :start-after: //XML-USAGE
+    :end-before: //!--
 
 .. _participantprofiles:
 
@@ -454,11 +390,10 @@ All the configuration options for the participant belongs to the ``<rtps>`` labe
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- PARTICIPANT START -->
-    :end-before: <!-- PARTICIPANT END -->
-    :dedent: 4
+    :start-after: <!-->XML-PARTICIPANT<-->
+    :end-before: <!--><-->
 
 .. note::
 
@@ -541,18 +476,17 @@ Built-in parameters
 
 This section of the :class:`Participant's rtps` configuration allows defining built-in parameters.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- BUILTIN START -->
-    :end-before: <!-- BUILTIN END -->
-    :dedent: 4
+    :start-after: <!-->XML-BUILTIN<-->
+    :end-before: <!--><-->
 
 +----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | Name                                   | Description                                                                | Values                              | Default               |
 +========================================+============================================================================+=====================================+=======================+
-| ``<use_SIMPLE_RTPS_PDP>``              | Indicates if the Participant must use the Simple RTPS Discovery Protocol.  | ``Boolean``                         | :class:`TRUE`         |
+| ``<use_SIMPLE_RTPS_PDP>``              | Indicates if the Participant must use the Simple RTPS Discovery Protocol.  | ``Boolean``                         | :class:`true`         |
 +----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<use_WriterLivelinessProtocol>``     | Indicates to use the WriterLiveliness protocol.                            | ``Boolean``                         | :class:`TRUE`         |
+| ``<use_WriterLivelinessProtocol>``     | Indicates to use the WriterLiveliness protocol.                            | ``Boolean``                         | :class:`true`         |
 +----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<EDP>``                              | | - If set to :class:`SIMPLE`, ``<simpleEDP>`` would be used.              | :class:`SIMPLE`, :class:`STATIC`    | :class:`SIMPLE`       |
 |                                        | | - If set to :class:`STATIC`, StaticEDP based on an XML file would be used|                                     |                       |
@@ -593,9 +527,9 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 +------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
 | Name                         | Description                                                                      | Values              | Default            |
 +==============================+==================================================================================+=====================+====================+
-| ``<PUBWRITER_SUBREADER>``    | Indicates if the participant must use Publication Writer and Subcription Reader. | ``Boolean``         | :class:`TRUE`      |
+| ``<PUBWRITER_SUBREADER>``    | Indicates if the participant must use Publication Writer and Subcription Reader. | ``Boolean``         | :class:`true`      |
 +------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
-| ``<PUBREADER_SUBWRITER>``    | Indicates if the participant must use Publication Reader and Subcription Writer. | ``Boolean``         | :class:`TRUE`      |
+| ``<PUBREADER_SUBWRITER>``    | Indicates if the participant must use Publication Reader and Subcription Writer. | ``Boolean``         | :class:`true`      |
 +------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
 
 
@@ -608,11 +542,10 @@ Publisher profiles allow declaring :ref:`Publisher configuration <pubsubconfigur
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in the :ref:`loadingapplyingprofiles` section.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- PUBLISHER START -->
-    :end-before: <!-- PUBLISHER END -->
-    :dedent: 4
+    :start-after: <!-->XML-PUBLISHER<-->
+    :end-before: <!--><-->
 
 .. note::
 
@@ -678,11 +611,10 @@ Subscriber profiles allow declaring :ref:`Subscriber configuration <pubsubconfig
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- SUBSCRIBER START -->
-    :end-before: <!-- SUBSCRIBER END -->
-    :dedent: 4
+    :start-after: <!-->XML-SUBSCRIBER<-->
+    :end-before: <!--><-->
 
 .. note::
 
@@ -709,7 +641,7 @@ as shown in :ref:`loadingapplyingprofiles`.
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<multicastLocatorList>``        | List of input multicast locators. It expects a :ref:`LocatorListType`.  | List of :ref:`LocatorListType`      |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<expectsInlineQos>``            | It indicates if QOS is expected inline.                                 | ``Boolean``                         | :class:`FALSE`        |
+| ``<expectsInlineQos>``            | It indicates if QOS is expected inline.                                 | ``Boolean``                         | :class:`false`        |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<historyMemoryPolicy>``         | Memory allocation kind for subscriber's history.                        | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
 |                                   |                                                                         | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
@@ -752,11 +684,10 @@ LocatorListType is normally used as an anonymous type, this is, it hasn't its ow
 Instead, it is used inside other configuration parameter labels that expect a list of locators and give it sense,
 for example, in ``<defaultUnicastLocatorList>``:
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- LOCATOR LIST START -->
-    :end-before: <!-- LOCATOR LIST END -->
-    :dedent: 4
+    :start-after: <!-->XML-LOCATOR-LIST<-->
+    :end-before: <!--><-->
 
 In this example, there are three different locators in ``<defaultUnicastLocatorList>``.
 
@@ -816,11 +747,10 @@ PropertiesPolicyType
 PropertiesPolicyType (XML label ``<propertiesPolicy>``) allows defining a set of generic properties.
 It's useful at defining extended or custom configuration parameters.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- PROPERTIES POLICY START -->
-    :end-before: <!-- PROPERTIES POLICY END -->
-    :dedent: 4
+    :start-after: <!-->XML-PROPERTIES-POLICY<-->
+    :end-before: <!--><-->
 
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 | Name                         | Description                                                                   | Values                           | Default            |
@@ -829,7 +759,7 @@ It's useful at defining extended or custom configuration parameters.
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 | ``<value>``                  | Property's value.                                                             | ``string``                       |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<propagate>``              | Indicates if is going to be serialized along with the object it belongs to.   | ``Boolean``                      | :class:`FALSE`     |
+| ``<propagate>``              | Indicates if is going to be serialized along with the object it belongs to.   | ``Boolean``                      | :class:`false`     |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 .. _DurationType:
@@ -840,11 +770,10 @@ DurationType
 DurationType expresses a period of time and it's commonly used as an anonymous type, this is, it hasn't its own label.
 Instead, it is used inside other configuration parameter labels that give it sense, like ``<leaseAnnouncement>`` or ``<leaseDuration>``.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- DURATION POLICY START -->
-    :end-before: <!-- DURATION POLICY END -->
-    :dedent: 4
+    :start-after: <!-->XML-DURATION<-->
+    :end-before: <!--><-->
 
 Duration time can be defined through a constant value directly (:class:`INFINITE`, :class:`ZERO`, or :class:`INVALID`),
 or by ``<seconds>`` plus ``<fraction>`` labels:
@@ -871,11 +800,10 @@ Topic Type
 The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange messages.
 There is a deeper explanation of the "topic" field here: :ref:`Topic_information`.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- TOPIC START -->
-    :end-before: <!-- TOPIC END -->
-    :dedent: 4
+    :start-after: <!-->XML-TOPIC<-->
+    :end-before: <!--><-->
 
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
 | Name                         | Description                                                                     | Values                           | Default            |
@@ -946,11 +874,10 @@ The quality of service (QoS) handles the restrictions applied to the application
         <!-- DURABILITY_SERVICE -->
     </durabilityService>
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- QOS START -->
-    :end-before: <!-- QOS END -->
-    :dedent: 4
+    :start-after: <!-->XML-QOS<-->
+    :end-before: <!--><-->
 
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 | Name                         | Description                                                                   | Values                           | Default            |
@@ -1044,11 +971,10 @@ LivelinessType
 
 This parameter defines who is responsible for issues of liveliness packets.
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- LIVELINESS START -->
-    :end-before: <!-- LIVELINESS END -->
-    :dedent: 4
+    :start-after: <!-->XML-LIVELINESS<-->
+    :end-before: <!--><-->
 
 
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
@@ -1115,8 +1041,8 @@ Don't take it as a working example.
         <max_samples_per_instance>5</max_samples_per_instance>
     </durabilityService>
 
-.. literalinclude:: xmlprofiles.xml
+.. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    :start-after: <!-- EXAMPLE START -->
-    :end-before: <!-- EXAMPLE END -->
-    :dedent: 4
+    :start-after: <!-->XML-EXAMPLE<-->
+    :end-before: <!--><-->
+    :lines: 2,4-

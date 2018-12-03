@@ -130,8 +130,8 @@
             </throughputController>
 
             <userTransports>
-                <id>TransportId1</id> <!-- string -->
-                <id>TransportId2</id> <!-- string -->
+                <transport_id>TransportId1</transport_id> <!-- string -->
+                <transport_id>TransportId2</transport_id> <!-- string -->
             </userTransports>
 
             <useBuiltinTransports>FALSE</useBuiltinTransports> <!-- boolean -->
@@ -147,48 +147,52 @@
 	<!-- <userData>148875 </userData> -->
 
 
-<!-- BUILTIN START -->
-    <builtin>
-        <use_SIMPLE_RTPS_PDP>FALSE</use_SIMPLE_RTPS_PDP> <!-- boolean -->
+<participant profile_name="part_builtin_example">
+<rtps>
+<!-->XML-BUILTIN<-->
+<builtin>
+    <use_SIMPLE_RTPS_PDP>FALSE</use_SIMPLE_RTPS_PDP> <!-- boolean -->
 
-        <use_WriterLivelinessProtocol>FALSE</use_WriterLivelinessProtocol>  <!-- boolean -->
+    <use_WriterLivelinessProtocol>FALSE</use_WriterLivelinessProtocol>  <!-- boolean -->
 
-        <EDP>SIMPLE</EDP> <!-- string -->
+    <EDP>SIMPLE</EDP> <!-- string -->
 
-        <domainId>4</domainId> <!-- uint32 -->
+    <domainId>4</domainId> <!-- uint32 -->
 
-        <leaseDuration>
-            <!-- DURATION -->
-        </leaseDuration>
+    <leaseDuration>
+        <!-- DURATION -->
+    </leaseDuration>
 
-        <leaseAnnouncement>
-            <!-- DURATION -->
-        </leaseAnnouncement>
+    <leaseAnnouncement>
+        <!-- DURATION -->
+    </leaseAnnouncement>
 
-        <simpleEDP>
-            <PUBWRITER_SUBREADER>TRUE</PUBWRITER_SUBREADER> <!-- boolean -->
-            <PUBREADER_SUBWRITER>TRUE</PUBREADER_SUBWRITER> <!-- boolean -->
-        </simpleEDP>
+    <simpleEDP>
+        <PUBWRITER_SUBREADER>TRUE</PUBWRITER_SUBREADER> <!-- boolean -->
+        <PUBREADER_SUBWRITER>TRUE</PUBREADER_SUBWRITER> <!-- boolean -->
+    </simpleEDP>
 
-        <metatrafficUnicastLocatorList>
-            <!-- LOCATOR_LIST -->
-        </metatrafficUnicastLocatorList>
+    <metatrafficUnicastLocatorList>
+        <!-- LOCATOR_LIST -->
+    </metatrafficUnicastLocatorList>
 
-        <metatrafficMulticastLocatorList>
-            <!-- LOCATOR_LIST -->
-        </metatrafficMulticastLocatorList>
+    <metatrafficMulticastLocatorList>
+        <!-- LOCATOR_LIST -->
+    </metatrafficMulticastLocatorList>
 
-        <initialPeersList>
-            <!-- LOCATOR_LIST -->
-        </initialPeersList>
+    <initialPeersList>
+        <!-- LOCATOR_LIST -->
+    </initialPeersList>
 
-        <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename> <!-- string -->
+    <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename> <!-- string -->
 
-        <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
+    <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
 
-        <writerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</writerHistoryMemoryPolicy>
-    </builtin>
-<!-- BUILTIN END -->
+    <writerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</writerHistoryMemoryPolicy>
+</builtin>
+<!--><-->
+</rtps>
+</participant>
 
 <!-- PUBLISHER START -->
     <publisher profile_name="part_profile_name">
@@ -702,8 +706,8 @@
                 </throughputController>
 
                 <userTransports>
-                    <id>TransportId1</id>
-                    <id>TransportId2</id>
+                    <transport_id>TransportId1</transport_id>
+                    <transport_id>TransportId2</transport_id>
                 </userTransports>
 
                 <useBuiltinTransports>FALSE</useBuiltinTransports>

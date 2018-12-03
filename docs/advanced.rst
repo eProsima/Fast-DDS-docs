@@ -460,7 +460,7 @@ For example:
 | .. literalinclude:: ../code/XMLTester.xml        |
 |    :language: xml                                |
 |    :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS |
-|    :end-before: <!--><-->                        |
+|    :lines: 1-8,48                                |
 +--------------------------------------------------+
 
 Additional Quality of Service options

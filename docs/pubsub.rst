@@ -768,6 +768,11 @@ Tips
    +--------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
 
 
+**XML Configuration**
+
+The :ref:`xml-profiles` section contains the full information about how to configuring *Fast RTPS* through an
+*XML file*.
+
 Additional Concepts
 -------------------
 

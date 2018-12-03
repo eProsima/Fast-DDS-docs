@@ -217,10 +217,6 @@
             <!-- LOCATOR_LIST -->
         </multicastLocatorList>
 
-        <outLocatorList>
-            <!-- LOCATOR_LIST -->
-        </outLocatorList>
-
         <throughputController>
             <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
             <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
@@ -264,10 +260,6 @@
         <multicastLocatorList>
             <!-- LOCATOR_LIST -->
         </multicastLocatorList>
-
-        <outLocatorList>
-            <!-- LOCATOR_LIST -->
-        </outLocatorList>
 
         <expectsInlineQos>TRUE</expectsInlineQos> <!-- boolean -->
 
@@ -897,33 +889,6 @@
                 </locator>
             </multicastLocatorList>
 
-            <outLocatorList>
-                <locator>
-                    <kind>UDPv4</kind>
-                    <!-- Access as physical, like UDP -->
-                    <port>7400</port>
-                    <address>192.168.1.41</address>
-                </locator>
-                <locator>
-                    <kind>TCPv4</kind>
-                    <!-- Both physical and logical, like TCP -->
-                    <port_>
-                        <physical_port>5100</physical_port>
-                        <logical_port>7400</logical_port>
-                    </port_>
-                    <addresses_>
-                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
-                        <wan_address>80.80.99.45</wan_address>
-                        <ip_address>192.168.1.55</ip_address>
-                    </addresses_>
-                </locator>
-                <locator>
-                    <kind>UDPv6</kind>
-                    <port>8844</port>
-                    <ipv6_address>::1</ipv6_address>
-                </locator>
-            </outLocatorList>
-
             <throughputController>
                 <bytesPerPeriod>8192</bytesPerPeriod>
                 <periodMillisecs>1000</periodMillisecs>
@@ -1100,33 +1065,6 @@
                     <ipv6_address>::1</ipv6_address>
                 </locator>
             </multicastLocatorList>
-
-            <outLocatorList>
-                <locator>
-                    <kind>UDPv4</kind>
-                    <!-- Access as physical, like UDP -->
-                    <port>7400</port>
-                    <address>192.168.1.41</address>
-                </locator>
-                <locator>
-                    <kind>TCPv4</kind>
-                    <!-- Both physical and logical, like TCP -->
-                    <port_>
-                        <physical_port>5100</physical_port>
-                        <logical_port>7400</logical_port>
-                    </port_>
-                    <addresses_>
-                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
-                        <wan_address>80.80.99.45</wan_address>
-                        <ip_address>192.168.1.55</ip_address>
-                    </addresses_>
-                </locator>
-                <locator>
-                    <kind>UDPv6</kind>
-                    <port>8844</port>
-                    <ipv6_address>::1</ipv6_address>
-                </locator>
-            </outLocatorList>
 
             <expectsInlineQos>TRUE</expectsInlineQos>
 

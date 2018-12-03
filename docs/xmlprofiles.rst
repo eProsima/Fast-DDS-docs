@@ -80,9 +80,13 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 | ``<type>``                   | Type of the transport descriptor.                                               | :class:`UDPv4`, :class:`UDPv6`,  | :class:`UDPv4` |
 |                              |                                                                                 | :class:`TCPv4`, :class:`TCPv6`   |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<sendBufferSize>``         | Size in bytes of the socket send buffer.                                        | ``uint32``                       | 0              |
+| ``<sendBufferSize>``         | | Size in bytes of the socket send buffer.                                      | ``uint32``                       | 0              |
+|                              | | If the value is zero then FastRTPS will use the default size from             |                                  |                |
+|                              | | the configuration of the sockets, using a minimum size of 65536 bytes.        |                                  |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<receiveBufferSize>``      | Size in bytes of the socket receive buffer.                                     | ``uint32``                       | 0              |
+| ``<receiveBufferSize>``      | | Size in bytes of the socket receive buffer.                                   | ``uint32``                       | 0              |
+|                              | | If the value is zero then FastRTPS will use the default size from             |                                  |                |
+|                              | | the configuration of the sockets, using a minimum size of 65536 bytes.        |                                  |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
 | ``<TTL>``                    | *Time To Live*, **only** for UDP transports.                                    | ``uint8``                        | 1              |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
@@ -98,22 +102,22 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 | ``<output_port>``            | | Port used for output bound.                                                   | ``uint16``                       | 0              |
 |                              | | If this field isn't defined, the output port will be random.                  |                                  |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<keep_alive_frequency_ms>``| Frequency in milliseconds for sending RTCP keepalive requests (**only** TCP).   | ``uint32``                       | 50000          |
+| ``<keep_alive_frequency_ms>``| Frequency in milliseconds for sending RTCP keepalive requests (TCP **only**).   | ``uint32``                       | 50000          |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
 | ``<keep_alive_timeout_ms>``  | | Time in milliseconds since sending the last keepalive request                 | ``uint32``                       | 10000          |
-|                              | | to consider a connection as broken. (**only** TCP).                           |                                  |                |
+|                              | | to consider a connection as broken. (TCP **only**).                           |                                  |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
 | ``<max_logical_port>``       | | The maximum number of logical ports to try during RTCP negotiation.           | ``uint16``                       | 100            |
-|                              | | (**only** TCP)                                                                |                                  |                |
+|                              | | (TCP **only**)                                                                |                                  |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
 | ``<logical_port_range>``     | | The maximum number of logical ports per request to try                        | ``uint16``                       | 20             |
-|                              | | during RTCP negotiation (**only** TCP).                                       |                                  |                |
+|                              | | during RTCP negotiation (TCP **only**).                                       |                                  |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
 | ``<logical_port_increment>`` | | Increment between logical ports to try during RTCP negotiation.               | ``uint16``                       | 2              |
-|                              | | (**only** TCP).                                                               |                                  |                |
+|                              | | (TCP **only**).                                                               |                                  |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
 | ``<ListeningPorts>``         | | Local port to work as TCP acceptor for input connections.                     | ``List <uint16>``                |                |
-|                              | | If not set, the transport will work as TCP client only (**only** TCP).        |                                  |                |
+|                              | | If not set, the transport will work as TCP client only (TCP **only**).        |                                  |                |
 +------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
 
 There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
@@ -635,8 +639,6 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<multicastLocatorList>``        | List of input multicast locators. It expects a :ref:`LocatorListType`.  | List of :ref:`LocatorListType`      |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<outLocatorList>``              | List of output locators. It expects a :ref:`LocatorListType`.           | List of :ref:`LocatorListType`      |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<throughputController>``        | Limits the output bandwidth of the publisher.                           | `Throughput`_                       |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<historyMemoryPolicy>``         | Memory allocation kind for pubsliher's history.                         | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
@@ -664,7 +666,7 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 | ``<nackResponseDelay>``      | Delay to apply to the response of a ACKNACK message.                          | :ref:`DurationType`              | ~45 ms             |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 | ``<nackSupressionDuration>`` | | This time allows the RTPSWriter to ignore nack messages                     | :ref:`DurationType`              | 0 ms               |
-|                              | | too soon after the data as sent                                             |                                  |                    |
+|                              | | too soon after the data has been sent.                                      |                                  |                    |
 +------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
 
 .. _subscriberprofiles:
@@ -703,11 +705,9 @@ as shown in :ref:`loadingapplyingprofiles`.
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<times>``                       | It allows configuring some time related parameters of the subscriber.   | :ref:`Times <subtimes>`             |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<unicastLocatorList>``          | List of unicast locators. It expects a :ref:`LocatorListType`.          | List of :ref:`LocatorListType`      |                       |
+| ``<unicastLocatorList>``          | List of input unicast locators. It expects a :ref:`LocatorListType`.    | List of :ref:`LocatorListType`      |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<multicastLocatorList>``        | List of multicast locators. It expects a :ref:`LocatorListType`.        | List of :ref:`LocatorListType`      |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<outLocatorList>``              | List of output locators. It expects a :ref:`LocatorListType`.           | List of :ref:`LocatorListType`      |                       |
+| ``<multicastLocatorList>``        | List of input multicast locators. It expects a :ref:`LocatorListType`.  | List of :ref:`LocatorListType`      |                       |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
 | ``<expectsInlineQos>``            | It indicates if QOS is expected inline.                                 | ``Boolean``                         | :class:`FALSE`        |
 +-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+

@@ -53,7 +53,7 @@ set(PRODUCT_CMAKELIST_CONTENT "
         GIT_TAG  origin/${REPO_TAG}
         GIT_SHALLOW TRUE
         CMAKE_GENERATOR Ninja
-        CMAKE_ARGS -DEPROSIMA_BUILD=ON \"-DCMAKE_INSTALL_PREFIX=${PROJECT_BINARY_DIR}/install\"
+        CMAKE_ARGS -DEPROSIMA_BUILD=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \"-DCMAKE_INSTALL_PREFIX=${PROJECT_BINARY_DIR}/install\"
         UPDATE_COMMAND \"\"
         )
     ")
@@ -85,6 +85,7 @@ target_link_libraries(doctest fastrtps)
 enable_testing()
 include(CTest)
 
-add_test(NAME doctest COMMAND doctest XMLTester.xml
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    )
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTester.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/XMLTester.xml COPYONLY)
+
+add_test(NAME doctest COMMAND doctest XMLTester.xml)

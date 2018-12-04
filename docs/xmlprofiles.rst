@@ -329,7 +329,7 @@ Note that the inner (or content) sequence has no ``name``, as it would be ignore
 
 **Maps**
 
-Maps are similar to sequences, but they need to define two types instead one.
+Maps are similar to sequences, but they need to define two types instead of one.
 One type defines its :class:`key_type`, and the other type defines its :class:`value_type`.
 Again, both types can be defined as attributes or as members, but when defined
 as members, they should be contained in another XML element (``<key_type>`` and ``<value_type>`` respectively).

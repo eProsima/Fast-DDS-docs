@@ -1,0 +1,494 @@
+<profiles>
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>TransportId1</transport_id> <!-- string -->
+            <type>UDPv4</type> <!-- string -->
+            <sendBufferSize>8192</sendBufferSize> <!-- uint32 -->
+            <receiveBufferSize>8192</receiveBufferSize> <!-- uint32 -->
+            <TTL>250</TTL> <!-- uint8 -->
+            <maxMessageSize>16384</maxMessageSize> <!-- uint32 -->
+            <maxInitialPeersRange>100</maxInitialPeersRange> <!-- uint32 -->
+            <interfaceWhiteList>
+                <id>192.168.1.41</id> <!-- string -->
+                <id>127.0.0.1</id> <!-- string -->
+            </interfaceWhiteList>
+            <wan_addr>80.80.55.44</wan_addr> <!-- string -->
+            <output_port>5101</output_port> <!-- uint16 -->
+            <keep_alive_frequency_ms>5000</keep_alive_frequency_ms> <!-- uint32 -->
+            <keep_alive_timeout_ms>25000</keep_alive_timeout_ms> <!-- uint32 -->
+            <max_logical_port>9000</max_logical_port> <!-- uint16 -->
+            <logical_port_range>100</logical_port_range> <!-- uint16 -->
+            <logical_port_increment>2</logical_port_increment> <!-- uint16 -->
+            <ListeningPorts>
+                <port>5100</port> <!-- uint16 -->
+                <port>5200</port> <!-- uint16 -->
+            </ListeningPorts>
+        </transport_descriptor>
+    </transport_descriptors>
+
+    <types>
+        <type> <!-- Types can be defined in its own type tag or sharing the same tag -->
+            <enum name="MyAloneEnumType">
+                <literal name="A" value="0"/>
+                <literal name="B" value="1"/>
+                <literal name="C" value="2"/>
+            </enum>
+        </type>
+        <type>
+            <enum name="MyEnumType">
+                <literal name="A" value="0"/>
+                <literal name="B" value="1"/>
+                <literal name="C" value="2"/>
+            </enum>
+
+            <typedef name="MyAlias1" value="MyEnum"/>
+
+            <typedef name="MyAlias2">
+                <long dimensions="2,2"/>
+            </typedef>
+
+            <struct name="MyStruct">
+                <long name="first"/>
+                <longlong name="second"/>
+            </struct>
+
+            <union name="MyUnion">
+                <discriminator type="octet"/>
+                <case>
+                    <caseValue value="0"/>
+                    <caseValue value="1"/>
+                    <long name="first"/>
+                </case>
+                <case>
+                    <caseValue value="2"/>
+                    <MyStruct name="second"/>
+                </case>
+                <case>
+                    <caseValue value="default"/>
+                    <longlong name="third"/>
+                </case>
+            </union>
+
+            <!-- All possible members struct type -->
+            <struct name="MyFullStruct">
+                <!-- Primitives & basic -->
+                <boolean name="my_bool"/>
+                <octet name="my_octet"/>
+                <char name="my_char"/>
+                <wchar name="my_wchar"/>
+                <short name="my_short"/>
+                <long name="my_long"/>
+                <longlong name="my_longlong"/>
+                <unsignedshort name="my_unsignedshort"/>
+                <unsignedlong name="my_unsignedlong"/>
+                <unsignedlonglong name="my_unsignedlonglong"/>
+                <float name="my_float"/>
+                <double name="my_double"/>
+                <longdouble name="my_longdouble"/>
+                <string name="my_string"/>
+                <wstring name="my_wstring"/>
+                <boundedString name="my_boundedString">
+                    <maxLength value="41925"/>
+                </boundedString>
+                <boundedWString name="my_boundedWString">
+                    <maxLength value="41925"/>
+                </boundedWString>
+
+                <!-- long long_array[2][3][4]; -->
+                <long name="long_array" dimensions="2,3,4"/>
+
+                <!-- sequence<sequence<long,2>,3> my_sequence_sequence; -->
+                <sequence name="my_sequence_sequence" length="3">
+                    <sequence type="long" length="2"/>
+                </sequence>
+
+                <!-- map<long,map<long,long,2>,2> my_map_map; -->
+                <map name="my_map_map" key_type="long" length="2">
+                    <value_type>
+                        <map key_type="long" value_type="long" length="2"/>
+                    </value_type>
+                </map>
+
+                <!-- Complex types -->
+                <struct name="OtherStruct">
+                    <MyEnum name="my_enum"/>
+                    <MyStruct name="my_struct" dimensions="5"/>
+                </struct>
+            </struct>
+        </type>
+    </types>
+
+    <participant profile_name="part_profile_name">
+        <rtps>
+            <name>Participant Name</name> <!-- String -->
+
+            <defaultUnicastLocatorList> <!-- LOCATOR_LIST -->
+                <locator>
+                    <kind>UDPv4</kind>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port> <!-- uint32 -->
+                    <address>192.168.1.41</address>
+                </locator>
+                <locator>
+                    <kind>TCPv4</kind>
+                    <!-- Both physical and logical, like TCP -->
+                    <port_>
+                        <physical_port>5100</physical_port> <!-- uint16 -->
+                        <logical_port>7400</logical_port> <!-- uint16 -->
+                    </port_>
+                    <addresses_>
+                        <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
+                        <wan_address>80.80.99.45</wan_address>
+                        <ip_address>192.168.1.55</ip_address>
+                    </addresses_>
+                </locator>
+                <locator>
+                    <kind>UDPv6</kind>
+                    <port>8844</port>
+                    <ipv6_address>::1</ipv6_address>
+                </locator>
+            </defaultUnicastLocatorList>
+
+            <defaultMulticastLocatorList>
+                <!-- LOCATOR_LIST -->
+            </defaultMulticastLocatorList>
+
+            <sendSocketBufferSize>8192</sendSocketBufferSize> <!-- uint32 -->
+
+            <listenSocketBufferSize>8192</listenSocketBufferSize>  <!-- uint32 -->
+
+            <builtin>
+                <use_SIMPLE_RTPS_PDP>FALSE</use_SIMPLE_RTPS_PDP> <!-- boolean -->
+
+                <use_WriterLivelinessProtocol>FALSE</use_WriterLivelinessProtocol>  <!-- boolean -->
+
+                <EDP> SIMPLE | STATIC </EDP> <!-- string -->
+
+                <domainId>4</domainId> <!-- uint32 -->
+
+                <leaseDuration> INFINITE | ZERO | INVALID </leaseDuration> <!-- sttring -->
+                <!-- OR -->
+                <leaseDuration>
+                    <seconds>500</seconds> <!-- int32 -->
+                    <fraction>0</fraction> <!-- uint32 -->
+                </leaseDuration>
+
+                <leaseAnnouncement>
+                    <seconds>1</seconds> <!-- int32 -->
+                    <fraction>856000</fraction> <!-- uint32 -->
+                </leaseAnnouncement>
+
+                <simpleEDP>
+                    <PUBWRITER_SUBREADER>TRUE</PUBWRITER_SUBREADER> <!-- boolean -->
+                    <PUBREADER_SUBWRITER>TRUE</PUBREADER_SUBWRITER> <!-- boolean -->
+                </simpleEDP>
+
+                <metatrafficUnicastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                </metatrafficUnicastLocatorList>
+
+                <metatrafficMulticastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                </metatrafficMulticastLocatorList>
+
+                <initialPeersList>
+                    <!-- LOCATOR_LIST -->
+                </initialPeersList>
+
+                <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename> <!-- string -->
+
+                <readerHistoryMemoryPolicy> PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC  </readerHistoryMemoryPolicy> <!-- historyMemoryPolicyType -->
+
+                <writerHistoryMemoryPolicy> <!-- historyMemoryPolicyType --> </writerHistoryMemoryPolicy>
+            </builtin>
+
+            <port>
+                <portBase>7400</portBase> <!-- uint16 -->
+                <domainIDGain>200</domainIDGain> <!-- uint16 -->
+                <participantIDGain>10</participantIDGain> <!-- uint16 -->
+                <offsetd0>0</offsetd0> <!-- uint16 -->
+                <offsetd1>1</offsetd1> <!-- uint16 -->
+                <offsetd2>2</offsetd2> <!-- uint16 -->
+                <offsetd3>3</offsetd3> <!-- uint16 -->
+            </port>
+
+            <userData> <!-- octetVector (string) -->  </userData>
+
+            <participantID>99</participantID>   <!-- int32 -->
+
+            <throughputController>
+                <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
+                <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
+            </throughputController>
+
+            <userTransports>
+                <id>TransportId1</id> <!-- string -->
+                <id>TransportId2</id> <!-- string -->
+            </userTransports>
+
+            <useBuiltinTransports>FALSE</useBuiltinTransports> <!-- boolean -->
+
+            <propertiesPolicy> <!-- PropertiesPolicy -->
+                <properties>
+                    <property>
+                        <name>Property1Name</name> <!-- string -->
+                        <value>Property1Value</value> <!-- string -->
+                        <propagate>FALSE</propagate> <!-- boolean -->
+                    </property>
+                </properties>
+
+                <binary_properties> <!-- TODO: Not yet implemented, not documented -->
+                    <property>
+                        <name>Property1Name</name> <!-- string -->
+                        <value>Property1Value</value> <!-- string -->
+                        <propagate>FALSE</propagate> <!-- boolean -->
+                    </property>
+                </binary_properties>
+            </propertiesPolicy>
+        </rtps>
+    </participant>
+
+    <publisher profile_name="part_profile_name">
+        <topic> <!-- topicAttributesType -->
+            <kind>NO_KEY | WITH_KEY</kind> <!-- string -->
+            <name>TopicName</name> <!-- string -->
+            <dataType>TopicDataTypeName</dataType> <!-- string -->
+            <historyQos>
+                <kind>KEEP_LAST | KEEP_ALL</kind> <!-- string -->
+                <depth>20</depth> <!-- uint32 -->
+            </historyQos>
+            <resourceLimitsQos>
+                <max_samples>5</max_samples> <!-- unint32 -->
+                <max_instances>2</max_instances> <!-- unint32 -->
+                <max_samples_per_instance>1</max_samples_per_instance> <!-- unint32 -->
+                <allocated_samples>20</allocated_samples> <!-- unint32 -->
+            </resourceLimitsQos>
+        </topic>
+
+        <qos> <!-- writerQosPoliciesType -->
+            <durability>
+                <kind>VOLATILE | TRANSIENT_LOCAL | TRANSIENT | PERSISTENT</kind> <!-- string -->
+            </durability>
+            <durabilityService>
+                <service_cleanup_delay>
+                    <seconds>10</seconds> <!-- int32 -->
+                    <fraction>0</fraction> <!-- uint32 -->
+                </service_cleanup_delay>
+                <history_kind>KEEP_LAST | KEEP_ALL</history_kind> <!-- string -->
+                <history_depth></history_depth> <!-- unint32 -->
+                <max_samples></max_samples> <!-- unint32 -->
+                <max_instances></max_instances> <!-- unint32 -->
+                <max_samples_per_instance></max_samples_per_instance> <!-- unint32 -->
+            </durabilityService>
+            <deadline>
+                <period>
+                    <!-- DURATION -->
+                </period>
+            </deadline>
+            <latencyBudget>
+                <duration>
+                    <!-- DURATION -->
+                </duration>
+            </latencyBudget>
+            <liveliness>
+                <kind>AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC</kind> <!-- string -->
+                <leaseDuration>
+                    <!-- DURATION -->
+                </leaseDuration>
+                <announcement_period>
+                    <!-- DURATION -->
+                </announcement_period>
+            </liveliness>
+            <reliability>
+                <kind>BEST_EFFORT | RELIABLE</kind>
+                <max_blocking_time>
+                    <!-- DURATION -->
+                </max_blocking_time>
+            </reliability>
+            <lifespan>
+                <!-- DURATION -->
+            </lifespan>
+            <userData> <!-- octetVector (string) -->  </userData>
+            <timeBasedFilter>
+                <minimum_separation>
+                    <!-- DURATION -->
+                </minimum_separation>
+            </timeBasedFilter>
+            <ownership>
+                <kind>SHARED | EXCLUSIVE</kind> <!-- string -->
+            </ownership>
+            <ownershipStrength>
+                <value>5</value> <!-- uint32 -->
+            </ownershipStrength>
+            <destinationOrder>
+                <kind>BY_RECEPTION_TIMESTAMP | BY_SOURCE_TIMESTAMP</kind> <!-- string -->
+            </destinationOrder>
+            <presentation>
+                <access_scope>INSTANCE | TOPIC | GROUP</access_scope> <!-- string -->
+                <coherent_access>TRUE</coherent_access> <!-- bool -->
+                <ordered_access>TRUE</ordered_access> <!-- bool -->
+            </presentation>
+            <partition>
+                <name>part1</name> <!-- string -->
+                <name>part2</name> <!-- string -->
+            </partition>
+            <topicData>
+                <value> <!-- octetVector (string) --> </value>
+            </topicData>
+            <groupData>
+                <value> <!-- octetVector (string) --> </value>
+            </groupData>
+            <publishMode>
+                <kind>SYNCHRONOUS | ASYNCHRONOUS</kind> <!-- string -->
+            </publishMode>
+        </qos>
+
+        <times> <!-- writerTimesType -->
+            <initialHeartbeatDelay>
+                <!-- DURATION -->
+            </initialHeartbeatDelay>
+            <heartbeatPeriod>
+                <!-- DURATION -->
+            </heartbeatPeriod>
+            <nackResponseDelay>
+                <!-- DURATION -->
+            </nackResponseDelay>
+            <nackSupressionDuration>
+                <!-- DURATION -->
+            </nackSupressionDuration>
+        </times>
+
+        <unicastLocatorList>
+            <!-- LOCATOR_LIST -->
+        </unicastLocatorList>
+
+        <multicastLocatorList>
+            <!-- LOCATOR_LIST -->
+        </multicastLocatorList>
+
+        <outLocatorList>
+            <!-- LOCATOR_LIST -->
+        </outLocatorList>
+
+        <throughputController>
+            <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
+            <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
+        </throughputController>
+
+        <historyMemoryPolicy> <!-- historyMemoryPolicyType --> </historyMemoryPolicy>
+
+        <propertiesPolicy> <!-- PropertiesPolicy --> </propertiesPolicy>
+
+        <userDefinedID>45</userDefinedID> <!-- Int16 -->
+
+        <entityID>76</entityID> <!-- Int16 -->
+    </publisher>
+
+    <subscriber profile_name="part_profile_name">
+        <topic>
+            <!-- topicAttributesType -->
+        </topic>
+
+        <qos> <!-- readerQosPoliciesType -->
+            <durability>
+                <kind>VOLATILE | TRANSIENT_LOCAL | TRANSIENT | PERSISTENT</kind> <!-- string -->
+            </durability>
+            <durabilityService>
+                <service_cleanup_delay>
+                    <!-- DURATION -->
+                </service_cleanup_delay>
+                <history_kind>KEEP_LAST | KEEP_ALL</history_kind> <!-- string -->
+                <history_depth></history_depth> <!-- unint32 -->
+                <max_samples></max_samples> <!-- unint32 -->
+                <max_instances></max_instances> <!-- unint32 -->
+                <max_samples_per_instance></max_samples_per_instance> <!-- unint32 -->
+            </durabilityService>
+            <deadline>
+                <period>
+                    <!-- DURATION -->
+                </period>
+            </deadline>
+            <latencyBudget>
+                <duration>
+                    <!-- DURATION -->
+                </duration>
+            </latencyBudget>
+            <liveliness>
+                <kind>AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC</kind> <!-- string -->
+                <leaseDuration>
+                    <!-- DURATION -->
+                </leaseDuration>
+                <announcement_period>
+                    <!-- DURATION -->
+                </announcement_period>
+            </liveliness>
+            <reliability>
+                <kind>BEST_EFFORT | RELIABLE</kind>
+                <max_blocking_time>
+                    <!-- DURATION -->
+                </max_blocking_time>
+            </reliability>
+            <lifespan>
+                <!-- DURATION -->
+            </lifespan>
+            <userData> <!-- octetVector (string) -->  </userData>
+            <timeBasedFilter>
+                <minimum_separation>
+                      <!-- DURATION -->
+                </minimum_separation>
+            </timeBasedFilter>
+            <ownership>
+                <kind>SHARED | EXCLUSIVE</kind> <!-- string -->
+            </ownership>
+            <destinationOrder>
+                <kind>BY_RECEPTION_TIMESTAMP | BY_SOURCE_TIMESTAMP</kind> <!-- string -->
+            </destinationOrder>
+            <presentation>
+                <access_scope>INSTANCE | TOPIC | GROUP</access_scope> <!-- string -->
+                <coherent_access>TRUE</coherent_access> <!-- bool -->
+                <ordered_access>TRUE</ordered_access> <!-- bool -->
+            </presentation>
+            <partition>
+                <name>part1</name> <!-- string -->
+                <name>part2</name> <!-- string -->
+            </partition>
+            <topicData>
+                <value> <!-- octetVector (string) --> </value>
+            </topicData>
+            <groupData>
+                <value> <!-- octetVector (string) --> </value>
+            </groupData>
+        </qos>
+
+        <times> <!-- readerTimesType -->
+            <initialAcknackDelay>
+                <!-- DURATION -->
+            </initialAcknackDelay>
+            <heartbeatResponseDelay>
+                <!-- DURATION -->
+            </heartbeatResponseDelay>
+        </times>
+
+        <unicastLocatorList>
+            <!-- LOCATOR_LIST -->
+        </unicastLocatorList>
+
+        <multicastLocatorList>
+            <!-- LOCATOR_LIST -->
+        </multicastLocatorList>
+
+        <outLocatorList>
+            <!-- LOCATOR_LIST -->
+        </outLocatorList>
+
+        <expectsInlineQos>TRUE</expectsInlineQos> <!-- boolean -->
+
+        <historyMemoryPolicy> <!-- historyMemoryPolicyType --> </historyMemoryPolicy>
+
+        <propertiesPolicy> <!-- PropertiesPolicy --> </propertiesPolicy>
+
+        <userDefinedID>55</userDefinedID> <!-- Int16 -->
+
+        <entityID>66</entityID> <!-- Int16 -->
+    </subscriber>
+</profiles>

@@ -436,6 +436,8 @@ Sometimes publishers could send data in a too high rate for subscribers.
 This can end dropping samples.
 To avoid this you can slow down the rate using :ref:`flow-controllers`.
 
+.. _whitelist-interfaces:
+
 Whitelist Interfaces
 -------------------------------------
 
@@ -458,7 +460,7 @@ For example:
 | .. literalinclude:: ../code/XMLTester.xml        |
 |    :language: xml                                |
 |    :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS |
-|    :end-before: <!--><-->                        |
+|    :lines: 1-8,48                                |
 +--------------------------------------------------+
 
 Additional Quality of Service options

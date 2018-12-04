@@ -96,6 +96,8 @@ Configuration
 
 *eProsima Fast RTPS* entities can be configured through the code or XML profiles. This section will show both alternatives.
 
+.. _participantconfiguration:
+
 Participant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -166,6 +168,8 @@ We will now go over the most common configuration options.
    |                                                 |    </profiles>                                             |
    +-------------------------------------------------+------------------------------------------------------------+
 
+.. _pubsubconfiguration:
+
 Publisher and Subscriber configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -190,6 +194,8 @@ accept the name of an XML profile.
    Subscriber *subscriber = Domain::createSubscriber(participant, "subscriber_xml_profile");
 
 We will now go over the most common configuration options.
+
+.. _Topic_information:
 
 Topic information
 *****************
@@ -304,6 +310,8 @@ There are two policies for sample storage:
    |                                               |    </profiles>                                           |
    +-----------------------------------------------+----------------------------------------------------------+
 
+.. _durability-qos:
+
 Durability
 **********
 
@@ -337,6 +345,8 @@ subscriber joins
    |                                            |       </subscriber>                                      |
    |                                            |    </profiles>                                           |
    +--------------------------------------------+----------------------------------------------------------+
+
+.. _resourceLimits-qos:
 
 Resource limits
 ***************
@@ -757,60 +767,11 @@ Tips
    |                                                                                                                    |    </profiles>                                                                    |
    +--------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
 
-.. _xml-profiles:
 
-XML profiles
-------------
+**XML Configuration**
 
-In the :ref:`configuration` section you could see how to configure entity attributes using XML profiles,
-but this section goes deeper into it.
-
-XML profiles are loaded from XML files. *eProsima Fast RTPS* permits to load as much XML files as you want. An XML file
-can contain several XML profiles. An XML profile is defined by a unique name that is used to reference the XML profile
-when you create a Fast RTPS entity. *eProsima Fast RTPS* will also try to find in current execution path and
-load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml*.
-If this file exists, it is loaded at the library initialization.
-
-Making an XML
-^^^^^^^^^^^^^
-
-An XML file can contain several XML profiles. They can be divided into participant, publisher and
-subscriber profiles.
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <profiles>
-        <participant profile_name="participant_profile">
-            ....
-        </participant>
-
-        <publisher profile_name="publisher_profile">
-            ....
-        </publisher>
-
-        <subscriber profile_name="subscriber_profile">
-            ....
-        </subscriber>
-    </profiles>
-
-The entire list of supported attributes can be checked in this `XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_.
-
-Loading and applying profiles
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Before creating any entity, you can load XML files using ``Domain::loadXMLProfilesFile`` function.
-``createParticipant``, ``createPublisher`` and ``createSubscriber`` have a version that expects the profile name as an argument. *eProsima Fast RTPS* searches the XML profile using this profile name and applies the XML profile to the
-entity.
-
-.. code-block:: c++
-
-   eprosima::fastrtps::Domain::loadXMLProfilesFile("my_profiles.xml");
-
-   Participant *participant = Domain::createParticipant("participant_xml_profile");
-   Publisher *publisher = Domain::createPublisher(participant, "publisher_xml_profile");
-   Subscriber *subscriber = Domain::createSubscriber(participant, "subscriber_xml_profile");
-
+The :ref:`xml-profiles` section contains the full information about how to setup *Fast RTPS* through an
+*XML file*.
 
 Additional Concepts
 -------------------

@@ -151,6 +151,8 @@ For example, you can set a Writer or a Reader as a Reliable or Best-Effort endpo
 
     Wattr.endpoint.reliabilityKind = BEST_EFFORT;
 
+.. _SettingDataDurability:
+
 Setting the data durability kind
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -20,6 +20,93 @@
 </subscriber>
 <!--><-->
 
+<!-->CONF-COMMON-TRANSPORT-SETTING<-->
+<transport_descriptors>
+    <transport_descriptor>
+        <transport_id>my_transport</transport_id>
+        <type>UDPv4</type>
+        <sendBufferSize>9216</sendBufferSize>
+        <receiveBufferSize>9216</receiveBufferSize>
+    </transport_descriptor>
+</transport_descriptors>
+
+<participant profile_name="my_transport">
+    <rtps>
+        <userTransports>
+            <transport_id>my_transport</transport_id>
+        </userTransports>
+        <useBuiltinTransports>false</useBuiltinTransports>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-TCP-TRANSPORT-SETTING<-->
+<transport_descriptors>
+    <transport_descriptor>
+        <transport_id>tcp_transport</transport_id>
+        <type>TCPv4</type>
+        <listening_ports>
+            <port>5100</port>
+        </listening_ports>
+    </transport_descriptor>
+</transport_descriptors>
+
+<participant profile_name="TCPParticipant">
+    <rtps>
+        <userTransports>
+            <transport_id>tcp_transport</transport_id>
+        </userTransports>
+        <useBuiltinTransports>false</useBuiltinTransports>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-TCP2-TRANSPORT-SETTING<-->
+<transport_descriptors>
+    <transport_descriptor>
+        <transport_id>tcp2_transport</transport_id>
+        <type>TCPv4</type>
+    </transport_descriptor>
+</transport_descriptors>
+
+<participant profile_name="TCP2Participant">
+    <rtps>
+        <userTransports>
+            <transport_id>tcp2_transport</transport_id>
+        </userTransports>
+        <builtin>
+            <initialPeersList>
+                <locator>
+                    <kind>TCPv4</kind>
+                    <address>192.168.1.55</address>
+                    <ports_>
+                        <physical_port>5100</physical_port>
+                    </ports_>
+                </locator>
+            </initialPeersList>
+        </builtin>
+        <useBuiltinTransports>false</useBuiltinTransports>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-DISABLE-MULTICAST<-->
+<participant profile_name="disable_multicast" is_default_profile="true">
+    <rtps>
+        <builtin>
+            <metatrafficUnicastLocatorList>
+                <locator/>
+            </metatrafficUnicastLocatorList>
+            <initialPeersList>
+                <locator>
+                    <address>192.168.0.1</address>
+                </locator>
+            </initialPeersList>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->CONF-QOS-FLOWCONTROLLER<-->
 <publisher profile_name="publisher_profile_qos_flowcontroller">
     <throughputController>

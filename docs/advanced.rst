@@ -1,12 +1,12 @@
 Advanced Functionalities
-========================
+########################
 
 
 This section covers slightly more advanced, but useful features that enrich your implementation.
 
 
 Topics and Keys
----------------
+***************
 
 The RTPS standard contemplates the use of keys to define multiple data sources/sinks within a single topic.
 
@@ -56,10 +56,246 @@ You can tweak the History to accommodate data from multiples keys based on your 
 
 Note that your History must be big enough to accommodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
 
+.. _comm-transports-configuration:
+
+Transports
+**********
+
+*eProsima Fast RTPS* implements an architecture of pluggable transports.
+Current version implements four transports: UDPv4, UDPv6, TCPv4 and TCPv6.
+By default, when a :class:`Participant` is created, one built-in UDPv4 transport is configured.
+You can add custom transports using the attribute ``rtps.userTransports``.
+
++-----------------------------------------------------+
+| **C++**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp          |
+|    :language: c++                                   |
+|    :start-after: //CONF-COMMON-TRANSPORT-SETTING    |
+|    :end-before: //!--                               |
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
+
+.. _comm-transports-tcp:
+
+TCP Transport
+=============
+
+To use TCP transports you need to define some more configurations:
+
+You must create a new TCP transport descriptor, for example TCPv4.
+This transport descriptor has a field named ``listening_ports`` that indicates to Fast-RTPS
+in which physical TCP ports our participant will listen for input connections.
+If omitted, the participant will not be able to receive incoming connections but will be able
+to connect to others participants that have configured their listening ports.
+The transport must be added in the ``userTransports`` list of the participant attributes.
+
++--------------------------------------------------+
+| **C++**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp       |
+|    :language: c++                                |
+|    :start-after: //CONF-TCP-TRANSPORT-SETTING    |
+|    :end-before: //!--                            |
++--------------------------------------------------+
+| **XML**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml        |
+|    :language: xml                                |
+|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING |
+|    :end-before: <!--><-->                        |
++--------------------------------------------------+
+
+To configure the participant to connect to another node through TCP, you must configure add Locator to its ``initialPeersList`` that points to the remote *listening port*.
+
++---------------------------------------------------+
+| **C++**                                           |
++---------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp        |
+|    :language: c++                                 |
+|    :start-after: //CONF-TCP2-TRANSPORT-SETTING    |
+|    :end-before: //!--                             |
++---------------------------------------------------+
+| **XML**                                           |
++---------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml         |
+|    :language: xml                                 |
+|    :start-after: <!-->CONF-TCP2-TRANSPORT-SETTING |
+|    :end-before: <!--><-->                         |
++---------------------------------------------------+
+
+Both examples can be combined to configure our participant being able to receive incoming connections through port 5100
+and trying to connect to another participant at 192.168.1.55:5100.
+
+Also, a TCP version of helloworld example can be found in this `link <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
+
+**IPLocator**
+
+IPLocator is an auxiliary static class that offers methods to ease the management of IP based locators, as UDP or TCP.
+In TCP, the port field of the locator is divided into physical and logical port.
+The physical port is the port used by the network device, the real port that the operating system understands.
+The logical port can be seen as RTPS port, or UDP's equivalent port (physical ports of UDP, are logical ports in TCP).
+Logical ports normally are not necessary to manage explicitly, but you can do it through IPLocator class.
+Physical ports instead, must be set to explicitly use certain ports, to allow the communication through a NAT, for
+example.
+
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //CONF-IPLOCATOR-USAGE
+    :end-before: //!--
+
+**NOTE**
+
+TCP doesn't support multicast scenarios, so you must plan carefully your network architecture.
+
+Listening locators
+==================
+
+*eProsima Fast RTPS* divides listening locators into four categories:
+
+* Metatraffic Multicast Locators: these locators are used to receive metatraffic information using multicast.
+  They usually are used by built-in endpoints, like the discovery of built-in endpoints. You can set your own locators
+  using attribute ``rtps.builtin.metatrafficMulticastLocatorList``.
+
+  .. literalinclude:: ../code/CodeTester.cpp
+      :language: c++
+      :start-after: //CONF-METAMULTICASTLOCATOR
+      :end-before: //!--
+
+* Metatraffic Unicast Locators: these locators are used to receive metatraffic information using unicast.
+  They usually are used by built-in endpoints, like the discovery of built-in endpoints. You can set your own locators using
+  attribute ``rtps.builtin.metatrafficUnicastLocatorList``.
+
+  .. literalinclude:: ../code/CodeTester.cpp
+      :language: c++
+      :start-after: //CONF-METAUNICASTLOCATOR
+      :end-before: //!--
+
+* User Multicast Locators: these locators are used to receive user information using multicast. They are used by user
+  endpoints. You can set your own locators using attribute ``rtps.defaultMulticastLocatorList``.
+
+  .. literalinclude:: ../code/CodeTester.cpp
+      :language: c++
+      :start-after: //CONF-USERMULTICASTLOCATOR
+      :end-before: //!--
+
+* User Unicast Locators: these locators are used to receive user information using unicast. They are used by user
+  endpoints. You can set your own locators using attributes ``rtps.defaultUnicastLocatorList``.
+
+  .. literalinclude:: ../code/CodeTester.cpp
+      :language: c++
+      :start-after: //CONF-USERUNICASTLOCATOR
+      :end-before: //!--
+
+By default *eProsima Fast RTPS* calculates the listening locators for the built-in UDPv4 network transport using
+well-known ports. These well-known ports are calculated using the following predefined rules:
+
+.. list-table:: Ports used
+   :header-rows: 1
+
+   * - Traffic type
+     - Well-known port expression
+   * - Metatraffic multicast
+     - PB + DG * *domainId* + offsetd0
+   * - Metatraffic unicast
+     - PB + DG * *domainId* + offsetd1 + PG * *participantId*
+   * - User multicast
+     - PB + DG * *domainId* + offsetd2
+   * - User unicast
+     - PB + DG * *domainId* + offsetd3 + PG * *participantId*
+
+These predefined rules use some values explained here:
+
+* DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``. The default value is ``250``.
+* PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``. The default value is ``2``.
+* PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``. The default value is ``7400``.
+* offsetd0, offsetd1, offsetd2, offsetd3: Additional offsets. You can set these values using attributes
+  ``rtps.port.offsetdN``. Default values are: ``offsetd0 = 0``, ``offsetd1 = 10``, ``offsetd2 = 1``, ``offsetd3 = 11``.
+
+Both UDP and TCP unicast locators support to have a null address.
+In that case, *eProsima Fast RTPS* understands to get local network addresses and use them.
+
+Both UDP and TCP locators support to have a zero port.
+In that case, *eProsima Fast RTPS* understands to calculate well-known port for that type of traffic.
+
+.. _initial-peers:
+
+Initial peers
+=============
+
+These locators are used to know where to send initial discovery network messages. You can set your own locators using
+attribute ``rtps.builtin.initialPeersList``. By default *eProsima Fast RTPS* uses as initial peers the Metatraffic
+Multicast Locators.
+
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //CONF-INITIALPEERS
+    :end-before: //!--
+
+.. _whitelist-interfaces:
+
+Whitelist Interfaces
+====================
+
+There could be situations where you want to block some network interfaces to avoid connections or sending data through them.
+This can be managed using the field *interface whitelist* in the transport descriptors,
+and with them, you can set the interfaces you want to use to send or receive packets.
+The values on this list should match the IPs of your machine in that networks.
+For example:
+
++--------------------------------------------------+
+| **C++**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp       |
+|    :language: c++                                |
+|    :start-after: //CONF-TRANSPORT-DESCRIPTORS    |
+|    :end-before: //!--                            |
++--------------------------------------------------+
+| **XML**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml        |
+|    :language: xml                                |
+|    :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS |
+|    :lines: 1-8,48                                |
++--------------------------------------------------+
+
+Tips
+====
+
+**Disabling all multicast traffic**
+
++----------------------------------------------+
+| **C++**                                      |
++----------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp   |
+|    :language: c++                            |
+|    :start-after: //CONF-DISABLE-MULTICAST    |
+|    :end-before: //!--                        |
++----------------------------------------------+
+| **XML**                                      |
++----------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml    |
+|    :language: xml                            |
+|    :start-after: <!-->CONF-DISABLE-MULTICAST |
+|    :end-before: <!--><-->                    |
++----------------------------------------------+
+
+**XML Configuration**
+
+The :ref:`xml-profiles` section contains the full information about how to setup *Fast RTPS* through an
+*XML file*.
+
+
 .. _flow-controllers:
 
 Flow Controllers
-----------------
+****************
 
 *eProsima Fast RTPS* supports user configurable flow controllers on a Publisher and Participant level. These
 controllers can be used to limit the amount of data to be sent under certain conditions depending on the
@@ -98,7 +334,7 @@ To change the values:
 Note that specifying a throughput controller with a size smaller than the socket size can cause messages to never become sent.
 
 Sending large data
-------------------
+******************
 
 The default message size *eProsima Fast RTPS* uses is a conservative value of 65kb.
 If your topic data is bigger, it must be fragmented.
@@ -141,7 +377,7 @@ and increase performance.
 See :ref:`flow-controllers`
 
 Example: Sending a unique large file
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+====================================
 
 This is a proposed example of how should the user configure its application in order to achieve the best performance. To make this example more tangible, it is going to be supposed that the file has a size of 9.9MB and the network in which the publisher and the subscriber are operating has a bandwidth of 100MB/s
 
@@ -166,7 +402,7 @@ At last, there is another detail to have in mind: it is critical to check the si
 
 
 Example: Video streaming
-^^^^^^^^^^^^^^^^^^^^^^^^
+========================
 
 In this example, the target application transmits video between a publisher and a subscriber. This video will have a resolution of 640x480 and a frequency of 50fps.
 
@@ -178,7 +414,7 @@ In audio or video transmissions, sometimes is better to have a stable and high d
 .. _discovery:
 
 Discovery
----------
+*********
 
 Fast RTPS provides a discovery mechanism that allows matching automatically publishers and subscribers. The discovery mechanism is divided into two phases: Participant Discovery Phase and Endpoints Discovery Phase.
 
@@ -210,7 +446,7 @@ By default, the discovery mechanism is enabled, but you can disable it through p
 +--------------------------------------------------+
 
 Static Endpoints Discovery
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==========================
 
 Endpoints Discovery Phase can be replaced by a static version that doesn't send any information. It is useful when
 you have a limited network bandwidth and a well-known schema of publishers and subscribers. Instead of receiving entities
@@ -299,7 +535,7 @@ The full list of fields for readers and writers includes the following parameter
 
 
 Subscribing to Discovery Topics
--------------------------------
+*******************************
 
 As specified in the :ref:`discovery` section, the Participant or RTPS Participant has a series of meta-data endpoints
 for use during the discovery process.
@@ -326,10 +562,10 @@ The callbacks defined in the ReaderListener you attach to the EDP will execute f
 the built-in protocols have processed it.
 
 Tuning
--------
+******
 
 Taking advantage of multicast
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=============================
 
 For topics with several subscribers, it is recommendable to configure them to use multicast instead of unicast.
 By doing so, only one network package will be sent for each sample.
@@ -338,7 +574,7 @@ This will improve both CPU and network usage. Multicast configuration is explain
 .. _tuning-socket-buffer:
 
 Increasing socket buffers size
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==============================
 
 In high rate scenarios or large data scenarios, the bottleneck could be the size of the socket buffers.
 Network packages could be dropped because there is no space in the socket buffer.
@@ -366,7 +602,7 @@ By default *eProsima Fast RTPS* creates socket buffers with the system default s
    +-------------------------------------------------------+
 
 Finding out system maximum values
-"""""""""""""""""""""""""""""""""
+---------------------------------
 
 Linux operating system sets a maximum value for socket buffer sizes.
 When you set in *Fast RTPS* a socket buffer size, your value cannot exceed the maximum value of the system.
@@ -396,7 +632,7 @@ If these default maximum values are not enough for you, you can also increase th
 .. _tuning-reliable-mode:
 
 Tuning Reliable mode
-^^^^^^^^^^^^^^^^^^^^^
+====================
 
 RTPS protocol can maintain reliable communication using special messages (Heartbeat and Ack/Nack messages).
 RTPS protocol can detect which samples are lost and re-sent them again.
@@ -422,7 +658,7 @@ A smaller heartbeat period increases the number of overhead messages in the netw
 but speeds up the system response when a piece of data is lost.
 
 Non-strict reliability
-""""""""""""""""""""""
+----------------------
 
 Using a strict reliability, configuring :ref:`history-qos` kind as ``KEEP_ALL``, determinates all samples have to be
 received by all subscribers.
@@ -430,41 +666,14 @@ This implicates a performance decrease in case a lot of samples are dropped.
 If you don't need this strictness, use a non-strict reliability, i.e. configure :ref:`history-qos` kind as ``KEEP_LAST``.
 
 Slow down sample rate
-^^^^^^^^^^^^^^^^^^^^^
+=====================
 
 Sometimes publishers could send data in a too high rate for subscribers.
 This can end dropping samples.
 To avoid this you can slow down the rate using :ref:`flow-controllers`.
 
-.. _whitelist-interfaces:
-
-Whitelist Interfaces
--------------------------------------
-
-There could be situations where you want to block some network interfaces to avoid connections or sending data through them.
-This can be managed using the field *interface whitelist* in the transport descriptors,
-and with them, you can set the interfaces you want to use to send or receive packets.
-The values on this list should match the IPs of your machine in that networks.
-For example:
-
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp       |
-|    :language: c++                                |
-|    :start-after: //CONF-TRANSPORT-DESCRIPTORS    |
-|    :end-before: //!--                            |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml        |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS |
-|    :lines: 1-8,48                                |
-+--------------------------------------------------+
-
 Additional Quality of Service options
--------------------------------------
+*************************************
 
 As a user, you can implement your own quality of service (QoS) restrictions in your application. *eProsima Fast RTPS*
 comes bundled with a set of examples of how to implement common client-wise QoS settings:

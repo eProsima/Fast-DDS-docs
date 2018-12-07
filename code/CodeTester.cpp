@@ -2,7 +2,9 @@
 #include <fastrtps/participant/ParticipantListener.h>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
 #include <fastrtps/transport/UDPv4TransportDescriptor.h>
+#include <fastrtps/transport/TCPv4TransportDescriptor.h>
 #include <fastrtps/types/DynamicDataFactory.h>
+#include <fastrtps/utils/IPLocator.h>
 
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
@@ -24,6 +26,134 @@ publisher_attr.topic.topicKind = WITH_KEY;
 subscriber_attr.topic.resourceLimitsQos.max_instances = 3;
 // Hold a maximum of 20 samples per key.
 subscriber_attr.topic.resourceLimitsQos.max_samples_per_instance = 20;
+//!--
+
+//CONF-COMMON-TRANSPORT-SETTING
+//Create a descriptor for the new transport.
+auto custom_transport = std::make_shared<UDPv4TransportDescriptor>();
+    custom_transport->sendBufferSize = 9216;
+    custom_transport->receiveBufferSize = 9216;
+
+//Disable the built-in Transport Layer.
+participant_attr.rtps.useBuiltinTransports = false;
+
+//Link the Transport Layer to the Participant.
+participant_attr.rtps.userTransports.push_back(custom_transport);
+//!--
+
+//CONF-TCP-TRANSPORT-SETTING
+//Create a descriptor for the new transport.
+auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+tcp_transport->add_listener_port(5100);                           
+
+//Disable the built-in Transport Layer.
+participant_attr.rtps.useBuiltinTransports = false;
+
+//Link the Transport Layer to the Participant.
+participant_attr.rtps.userTransports.push_back(tcp_transport);           
+//!--
+
+//CONF-TCP2-TRANSPORT-SETTING
+auto tcp2_transport = std::make_shared<TCPv4TransportDescriptor>();
+
+//Disable the built-in Transport Layer.
+participant_attr.rtps.useBuiltinTransports = false;
+
+//Set initial peers.
+Locator_t initial_peer_locator;
+initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
+IPLocator::setIPv4(initial_peer_locator, "192.168.1.55");
+initial_peer_locator.port = 5100;
+participant_attr.rtps.builtin.initialPeersList.push_back(initial_peer_locator);
+
+//Link the Transport Layer to the Participant.
+participant_attr.rtps.userTransports.push_back(tcp2_transport);
+//!--
+
+{
+//CONF-IPLOCATOR-USAGE
+Locator_t locator;
+// Get & Set Physical Port
+uint16_t physical_port = IPLocator::getPhysicalPort(locator);
+IPLocator::setPhysicalPort(locator, 5555);
+
+// Get & Set Logical Port
+uint16_t logical_port = IPLocator::getLogicalPort(locator);
+IPLocator::setLogicalPort(locator, 7400);
+
+// Set WAN Address
+IPLocator::setWan(locator, "80.88.75.55");
+//!--
+}
+
+{
+//CONF-METAMULTICASTLOCATOR
+// This locator will open a socket to listen network messages on UDPv4 port 22222 over multicast address 239.255.0.1
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, 239, 255, 0 , 1);
+locator.port = 22222;
+
+participant_attr.rtps.builtin.metatrafficMulticastLocatorList.push_back(locator);
+//!--
+}
+
+{
+//CONF-METAUNICASTLOCATOR
+// This locator will open a socket to listen network messages on UDPv4 port 22223 over network interface 192.168.0.1
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, 192, 168, 0 , 1);
+locator.port = 22223;
+
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(locator);
+//!--
+}
+
+{
+//CONF-USERMULTICASTLOCATOR
+// This locator will open a socket to listen network messages on UDPv4 port 22224 over multicast address 239.255.0.1
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, 239, 255, 0 , 1);
+locator.port = 22224;
+
+participant_attr.rtps.defaultMulticastLocatorList.push_back(locator);
+//!--
+}
+
+{
+//CONF-USERUNICASTLOCATOR
+// This locator will open a socket to listen network messages on UDPv4 port 22225 over network interface 192.168.0.1
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, 192, 168, 0 , 1);
+locator.port = 22225;
+
+participant_attr.rtps.defaultUnicastLocatorList.push_back(locator);
+//!--
+}
+
+{
+//CONF-INITIALPEERS
+// This locator configures as initial peer the UDPv4 address 192.168.0.2:7600.
+// Initial discovery network messages will send to this UDPv4 address.
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, "192.168.0.2");
+locator.port = 7600;
+
+participant_attr.rtps.builtin.initialPeersList.push_back(locator);
+//!--
+}
+
+//CONF-DISABLE-MULTICAST
+// Metatraffic Multicast Locator List will be empty.
+// Metatraffic Unicast Locator List will contain one locator, with null address and null port.
+// Then eProsima Fast RTPS will use all network interfaces to receive network messages using a well-known port.
+Locator_t default_unicast_locator;
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(default_unicast_locator);
+
+// Initial peer will be UDPv4 addresss 192.168.0.1. The port will be a well-known port.
+// Initial discovery network messages will be sent to this UDPv4 address.
+Locator_t initial_peer;
+IPLocator::setIPv4(initial_peer, 192, 168, 0, 1);
+participant_attr.rtps.builtin.initialPeersList.push_back(initial_peer);
 //!--
 
 //CONF-QOS-FLOWCONTROLLER

@@ -238,6 +238,8 @@ Multicast Locators.
     :start-after: //CONF-INITIALPEERS
     :end-before: //!--
 
+.. _whitelist-interfaces:
+
 Whitelist Interfaces
 ====================
 
@@ -669,8 +671,6 @@ Slow down sample rate
 Sometimes publishers could send data in a too high rate for subscribers.
 This can end dropping samples.
 To avoid this you can slow down the rate using :ref:`flow-controllers`.
-
-.. _whitelist-interfaces:
 
 Additional Quality of Service options
 *************************************

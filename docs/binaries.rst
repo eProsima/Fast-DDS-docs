@@ -21,7 +21,7 @@ These variables are set automatically by checking the corresponding box during t
 Linux
 -----
 
-Extract the contents of the package. It will contain both *eProsima Fast RTPS* and its required package *eProsima Fast CDR*. You will have follow the same procedure for both packages, starting with *Fast CDR*.
+Extract the contents of the package. It will contain both *eProsima Fast RTPS* and its required package *eProsima Fast CDR*. You will have to follow the same procedure for both packages, starting with *Fast CDR*.
 
 Configure the compilation: ::
 

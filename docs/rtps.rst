@@ -57,8 +57,8 @@ Managing the Writers and Readers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As the RTPS standard specifies, Writers and Readers are always associated with a History element.
-In the Publisher-Subscriber Layer its creation and management is hidden,
-but in the Writer-Reader Layer you have full control over its creation and configuration.
+In the Publisher-Subscriber Layer, its creation and management is hidden,
+but in the Writer-Reader Layer, you have full control over its creation and configuration.
 
 Writers are configured with a :class:`WriterAttributes` structure. They also need a :class:`WriterHistory` which is configured with a :class:`HistoryAttributes` structure.
 
@@ -69,7 +69,7 @@ Writers are configured with a :class:`WriterAttributes` structure. They also nee
     WriterAttributes watt;
     RTPSWriter* writer = RTPSDomain::createRTPSWriter(rtpsParticipant, watt, history);
 
-The creation of a Reader is similar. Note that in this case you can provide a :class:`ReaderListener` instance that
+The creation of a Reader is similar. Note that in this case, you can provide a :class:`ReaderListener` instance that
 implements your callbacks:
 
 .. code-block:: c++
@@ -86,7 +86,7 @@ Using the History to Send and Receive Data
 
 In the RTPS Protocol, Readers and Writers save the data about a topic in their associated History.
 Each piece of data is represented by a Change, which *eprosima Fast RTPS* implements as :class:`CacheChange_t`.
-Changes are always managed by the History. As an user, the procedure for interacting with the History is always the same:
+Changes are always managed by the History. As a user, the procedure for interacting with the History is always the same:
 
 1. Request a :class:`CacheChange_t` from the History
 2. Use it
@@ -126,7 +126,7 @@ You can receive data from within a :class:`ReaderListener` callback method as we
         }
     }
 
-Additionally you can read an incoming message directly by interacting with the History:
+Additionally, you can read an incoming message directly by interacting with the History:
 
 .. code-block:: c++
 
@@ -151,10 +151,12 @@ For example, you can set a Writer or a Reader as a Reliable or Best-Effort endpo
 
     Wattr.endpoint.reliabilityKind = BEST_EFFORT;
 
+.. _SettingDataDurability:
+
 Setting the data durability kind
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Durability parameter defines the behaviour of the Writer regarding samples already sent when a new Reader matches. *eProsima Fast RTPS* offers three Durability options:
+The Durability parameter defines the behavior of the Writer regarding samples already sent when a new Reader matches. *eProsima Fast RTPS* offers three Durability options:
 
 * VOLATILE (default): Messages are discarded as they are sent. If a new Reader matches after message *n*, it will start received from message *n+1*.
 * TRANSIENT_LOCAL: The Writer saves a record of the lask *k* messages it has sent. If a new reader matches after message *n*, it will start receiving from message *n-k*
@@ -186,7 +188,7 @@ You can choose the maximum size of the Payload that can go into a :class:`CacheC
 Changing the size of the History
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can specify a maximum amount of changes for the History to hold and initial amount of allocated changes:
+You can specify a maximum amount of changes for the History to hold and an initial amount of allocated changes:
 
 .. code-block:: c++
 

@@ -11,7 +11,8 @@ An XML profile is defined by a unique name (or ``<transport_id>`` label
 in the :ref:`transportdescriptors` case) that is used to reference the XML profile
 during the creation of a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
 During *eProsima Fast RTPS* initialization,
-it tries to load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* in the current execution path.
+it tries to load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* in the current execution path and additionally
+it checks if there is an environment variable called *FASTRTPS_DEFAULT_PROFILES_FILE* with an absolute path of an additional file.
 
 Making an XML
 -------------

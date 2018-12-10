@@ -691,7 +691,7 @@ the embedded examples that come with the distribution. If you need more help, se
 Logging
 -------
 
-Fast-RTPS includes an extensible logging system with the following class hierarchy:
+Fast RTPS includes an extensible logging system with the following class hierarchy:
 
 .. image:: logging.png
    :align: center

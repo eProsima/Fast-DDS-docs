@@ -9,7 +9,7 @@ but this section goes deeper on it, explaining each field with its available val
 *eProsima Fast RTPS* permits to load several XML files, each one containing XML profiles.
 In addition to the API functions to load user XML files, at initialization *eProsima Fast RTPS* tries to locate and load
 several default XML files.
-*eProsima Fast RTPS* offers two ways to use default XML files.
+*eProsima Fast RTPS* offers the following options to use default XML files:
 
 * Using an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* and located in the current execution path.
 * Using an XML file which location is defined in the environment variable *FASTRTPS_DEFAULT_PROFILES_FILE*.

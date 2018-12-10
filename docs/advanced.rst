@@ -696,7 +696,8 @@ Fast RTPS includes an extensible logging system with the following class hierarc
 .. image:: logging.png
    :align: center
 
-:class:`Log` is the entry point of the Logging system. It exposes three macro definitions to ease its use:
+:class:`Log` is the entry point of the Logging system.
+It exposes three macro definitions to ease its usage:
 
 .. code-block:: c++
 

@@ -758,7 +758,8 @@ They must be registered into the Log system to be called with the log messages (
 Currently there are two LogConsumer implementations:
 
 - :class:`StdoutConsumer`:
-    Default consumer, it prints the logging messages to the standard output. It has no configuration available.
+    Default consumer, it prints the logging messages to the standard output.
+    It has no configuration available.
 
 - :class:`FileConsumer`:
     It prints the logging messages to a file. It has two configuration parameters, :class:`filename` that defines the

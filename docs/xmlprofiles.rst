@@ -6,7 +6,7 @@ XML profiles
 The :ref:`configuration` section shows how to configure entity attributes using XML profiles,
 but this section goes deeper on it, explaining each field with its available values and how to compound the complete XML files.
 
-*eProsima Fast RTPS* permits to load several XML files, each one containing several XML profiles.
+*eProsima Fast RTPS* permits to load several XML files, each one containing XML profiles.
 In addition to the API functions to load user XML files, at initialization *eProsima Fast RTPS* tries to locate and load
 several default XML files.
 *eProsima Fast RTPS* offers two ways to use default XML files.

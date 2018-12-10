@@ -753,7 +753,7 @@ LogConsumers
 ^^^^^^^^^^^^
 
 LogConsumers are classes that implement how to manage the log information.
-They must register into the Log system to be called with the log messages (after filtering).
+They must be registered into the Log system to be called with the log messages (after filtering).
 
 Currently there are two LogConsumer implementations:
 

@@ -6,13 +6,17 @@ XML profiles
 The :ref:`configuration` section shows how to configure entity attributes using XML profiles,
 but this section goes deeper on it, explaining each field with its available values and how to compound the complete XML files.
 
-*eProsima Fast RTPS* permits to load several XML files in the same execution, as they can contain several XML profiles.
+*eProsima Fast RTPS* permits to load several XML files, each one containing several XML profiles.
+In addition to the API functions to load user XML files, at initialization *eProsima Fast RTPS* tries to locate and load
+several default XML files.
+*eProsima Fast RTPS* offers two ways to use default XML files.
+
+* Using an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* and located in the current execution path.
+* Using an XML file which location is defined in the environment variable *FASTRTPS_DEFAULT_PROFILES_FILE*.
+
 An XML profile is defined by a unique name (or ``<transport_id>`` label
 in the :ref:`transportdescriptors` case) that is used to reference the XML profile
 during the creation of a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
-During *eProsima Fast RTPS* initialization,
-it tries to load an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* in the current execution path and additionally
-it checks if there is an environment variable called *FASTRTPS_DEFAULT_PROFILES_FILE* with an absolute path of an additional file.
 
 Making an XML
 -------------

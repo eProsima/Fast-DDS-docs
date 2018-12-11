@@ -689,7 +689,7 @@ This marks the end of this document. We recommend you to take a look at the Doxy
 the embedded examples that come with the distribution. If you need more help, send us an email to `support@eprosima.com`.
 
 Logging
--------
+*******
 
 Fast RTPS includes an extensible logging system with the following class hierarchy:
 
@@ -721,9 +721,12 @@ You can control the verbosity of the log system and filter it by category:
     Log::SetCategoryFilter(my_regex);
 
 The possible verbosity levels are :class:`Log::Kind::Info`, :class:`Log::Kind::Warning` and :class:`Log::Kind::Error`.
-When selecting one of them, you also select the ones with more priority. For example,
-selecting :class:`Log::Kind::Info` will select all of them, selecting :class:`Log::Kind::Warning` you select
-:class:`Log::Kind::Error` too, and selecting :class:`Log::Kind::Error`, you will only receive error messages.
+
+When selecting one of them, you also select the ones with more priority.
+
+* Selecting :class:`Log::Kind::Error`, you will only receive error messages.
+* Selecting :class:`Log::Kind::Warning` you select :class:`Log::Kind::Error` too.
+* Selecting :class:`Log::Kind::Info` will select all of them
 
 To filter by category, you must provide a valid :class:`std::regex` expression that will be applied to the category.
 The categories that matches the expression, will be logged.
@@ -750,7 +753,7 @@ There are some others configurable parameters:
    RTPS_DllAPI static void SetErrorStringFilter (const std::regex&);
 
 LogConsumers
-^^^^^^^^^^^^
+============
 
 LogConsumers are classes that implement how to manage the log information.
 They must be registered into the Log system to be called with the log messages (after filtering).
@@ -762,9 +765,11 @@ Currently there are two LogConsumer implementations:
     It has no configuration available.
 
 - :class:`FileConsumer`:
-    It prints the logging messages to a file. It has two configuration parameters, :class:`filename` that defines the
-    file where the consumer will write the log messages and :class:`append` that indicates to the consumer if the
-    output file must be opened to append new content.
+    It prints the logging messages to a file. It has two configuration parameters:
+
+      * :class:`filename` that defines the file where the consumer will write the log messages.
+      * :class:`append` that indicates to the consumer if the output file must be opened to append new content.
+
     By default, :class:`filename` is **output.log** and :class:`append` is equals to **false**.
 
 If you want to add a consumer to manage the logs, you must call the :class:`RegisterConsumer` method of the Log.
@@ -784,28 +789,16 @@ its :class:`Reset` method.
     Log::Reset();
 
 XML Log configuration
-^^^^^^^^^^^^^^^^^^^^^
+=====================
 
 You can configure the logging system through xml with the tag :class:`<log>` under the :class:`<dds>` tag, or as an standalone file (without the :class:`<dds>` tag, just :class:`<log>` as root).
 You can set :class:`<use_default>` and a set of :class:`<consumer>`. Each :class:`<consumer>` is defined by its
 :class:`<class>` and a set of :class:`<property>`.
 
-.. code-block:: xml
-
-    <log>
-        <use_default>FALSE</use_default>
-        <consumer>
-            <class>FileConsumer</class>
-            <property>
-                <name>filename</name>
-                <value>test1.log</value>
-            </property>
-            <property>
-                <name>append</name>
-                <value>TRUE</value>
-            </property>
-        </consumer>
-    </log>
+.. literalinclude:: ../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->LOG-CONFIG<-->
+    :end-before: <!--><--> 
 
 :class:`<use_default>` indicates if we want to use the default consumer :class:`StdoutConsumer`.
 

@@ -1296,3 +1296,20 @@
     </subscriber>
 </profiles>
 <!--><-->
+
+<!-->LOG-CONFIG<-->
+<log>
+    <use_default>FALSE</use_default>
+    <consumer>
+        <class>FileConsumer</class>
+        <property>
+            <name>filename</name>
+            <value>test1.log</value>
+        </property>
+        <property>
+            <name>append</name>
+            <value>TRUE</value>
+        </property>
+    </consumer>
+</log>
+<!--><-->

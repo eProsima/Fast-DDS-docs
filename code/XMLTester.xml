@@ -538,78 +538,70 @@
 <type>
 <!-->XML-DYN-ENUM<-->
 <enum name="MyEnum">
-    <literal name="A" value="0"/>
-    <literal name="B" value="1"/>
-    <literal name="C" value="2"/>
+    <enumerator name="A" value="0"/>
+    <enumerator name="B" value="1"/>
+    <enumerator name="C" value="2"/>
 </enum>
 <!--><-->
 
 <!-->XML-TYPEDEF<-->
-<typedef name="MyAlias1" value="MyEnum"/>
+<typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyAlias1"/>
 
-<typedef name="MyAlias2">
-    <long dimensions="2,2"/>
-</typedef>
+<typedef name="MyAlias2" type="int32" arrayDimension="2,2"/>
 <!--><-->
 
 <!-->XML-STRUCT<-->
 <struct name="MyStruct">
-    <long name="first"/>
-    <longlong name="second"/>
+    <member name="first" type="int32"/>
+    <member name="second" type="int64"/>
 </struct>
 <!--><-->
 
 <!-->XML-UNION<-->
 <union name="MyUnion">
-    <discriminator type="octet"/>
+    <discriminator type="byte"/>
     <case>
-        <caseValue value="0"/>
-        <caseValue value="1"/>
-         <long name="first"/>
+        <caseDiscriminator value="0"/>
+        <caseDiscriminator value="1"/>
+         <member name="first" type="int32"/>
     </case>
     <case>
-        <caseValue value="2"/>
-        <MyStruct name="second"/>
+        <caseDiscriminator value="2"/>
+        <member name="second" type="nonBasic" nonBasicTypeName="MyStruct"/>
     </case>
     <case>
-        <caseValue value="default"/>
-        <longlong name="third"/>
+        <caseDiscriminator value="default"/>
+        <member name="third" type="nonBasic" nonBasicTypeName="int64"/>
     </case>
 </union>
 <!--><-->
 
 <struct name="MembersExample">
 <!-->XML-GENERIC<-->
-<longlong name="my_long"/>
+<member name="my_long" type="int64"/>
 <!--><-->
 <!-->XML-BOUNDEDSTRINGS<-->
-<boundedString name="my_large_string">
-    <maxLength value="41925"/>
-</boundedString>
+<member name="my_large_string" type="string" stringMaxLength="41925">
 
-<boundedWString name="my_large_wstring">
-    <maxLength value="20925"/>
-</boundedWString>
+<member name="my_large_wstring" type="wstring" stringMaxLength="20925">
 <!--><-->
 <!-->XML-ARRAYS<-->
-<long name="long_array" dimensions="2,3,4"/>
+<member name="long_array" type="int32" arrayDimensions="2,3,4"/>
 <!--><-->
 <!-->XML-SEQUENCES<-->
-<sequence name="my_sequence_sequence" length="3">
-    <sequence type="long" length="2"/>
-</sequence>
+<typedef name="my_sequence_inner" type="int32" sequenceMaxLength="2"/>
+<member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="my_sequence_inner" sequenceMaxLength="3">
 <!--><-->
 <!-->XML-MAPS<-->
-<map name="my_map_map" key_type="long" length="2">
-    <value_type>
-        <map key_type="long" value_type="long" length="2"/>
-    </value_type>
-</map>
+<typedef name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
+<struct name="MapMapStruct">
+    <member name="my_map_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
+</struct>
 <!--><-->
 <!-->XML-COMPLEX<-->
 <struct name="OtherStruct">
-    <MyEnum name="my_enum"/>
-    <MyStruct name="my_struct" dimensions="5"/>
+    <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
+    <member name="my_struct" type="nonBasic" nonBasicTypeName="MyStruct" arrayDimensions="5"/>
 </struct>
 <!--><-->
 </struct>
@@ -1015,90 +1007,81 @@
     <types>
         <type> <!-- Types can be defined in its own type of tag or sharing the same tag -->
             <enum name="MyAloneEnumType">
-                <literal name="A" value="0"/>
-                <literal name="B" value="1"/>
-                <literal name="C" value="2"/>
+                <enumerator name="A" value="0"/>
+                <enumerator name="B" value="1"/>
+                <enumerator name="C" value="2"/>
             </enum>
         </type>
         <type>
             <enum name="MyEnumType">
-                <literal name="A" value="0"/>
-                <literal name="B" value="1"/>
-                <literal name="C" value="2"/>
+                <enumerator name="A" value="0"/>
+                <enumerator name="B" value="1"/>
+                <enumerator name="C" value="2"/>
             </enum>
 
-            <typedef name="MyAlias1" value="MyEnum"/>
+            <typedef name="MyAlias1" type="nonBasic" type="MyEnum"/>
 
-            <typedef name="MyAlias2">
-                <long dimensions="2,2"/>
-            </typedef>
+            <typedef name="MyAlias2" type="int32" arrayDimensions="2,2"/>
 
             <struct name="MyStruct">
-                <long name="first"/>
-                <longlong name="second"/>
+                <member name="first" type="int32"/>
+                <member name="second" type="int64"/>
             </struct>
 
             <union name="MyUnion">
-                <discriminator type="octet"/>
+                <discriminator type="byte"/>
                 <case>
-                    <caseValue value="0"/>
-                    <caseValue value="1"/>
-                    <long name="first"/>
+                    <caseDiscriminator value="0"/>
+                    <caseDiscriminator value="1"/>
+                    <member name="first" type="int32"/>
                 </case>
                 <case>
-                    <caseValue value="2"/>
-                    <MyStruct name="second"/>
+                    <caseDiscriminator value="2"/>
+                    <member name="second" type="nonBasic" nonBasicTypeName="MyStruct"/>
                 </case>
                 <case>
-                    <caseValue value="default"/>
-                    <longlong name="third"/>
+                    <caseDiscriminator value="default"/>
+                    <member name="third" type="int64"/>
                 </case>
             </union>
 
             <!-- All possible members struct type -->
             <struct name="MyFullStruct">
                 <!-- Primitives & basic -->
-                <boolean name="my_bool"/>
-                <octet name="my_octet"/>
-                <char name="my_char"/>
-                <wchar name="my_wchar"/>
-                <short name="my_short"/>
-                <long name="my_long"/>
-                <longlong name="my_longlong"/>
-                <unsignedshort name="my_unsignedshort"/>
-                <unsignedlong name="my_unsignedlong"/>
-                <unsignedlonglong name="my_unsignedlonglong"/>
-                <float name="my_float"/>
-                <double name="my_double"/>
-                <longdouble name="my_longdouble"/>
-                <string name="my_string"/>
-                <wstring name="my_wstring"/>
-                <boundedString name="my_boundedString">
-                    <maxLength value="41925"/>
-                </boundedString>
-                <boundedWString name="my_boundedWString">
-                    <maxLength value="41925"/>
-                </boundedWString>
+                <member name="my_bool" type="boolean"/>
+                <member name="my_byte" type="byte"/>
+                <member name="my_char" type="char"/>
+                <member name="my_wchar" type="wchar"/>
+                <member name="my_short" type="int16"/>
+                <member name="my_long" type="int32"/>
+                <member name="my_longlong" type="int64"/>
+                <member name="my_unsignedshort" type="uint16"/>
+                <member name="my_unsignedlong" type="uint32"/>
+                <member name="my_unsignedlonglong" type="uint64"/>
+                <member name="my_float" type="float32"/>
+                <member name="my_double" type="float64"/>
+                <member name="my_longdouble" type="float128"/>
+                <member name="my_string" type="string"/>
+                <member name="my_wstring" type="wstring"/>
+                <member name="my_boundedString" type="string" stringMaxLength="41925"/>
+                <member name="my_boundedWString" type="wstring" stringMaxLength="41925"/>
 
                 <!-- long long_array[2][3][4]; -->
-                <long name="long_array" dimensions="2,3,4"/>
+                <long name="long_array" dimensions="2,3,4" type="int32"/>
 
                 <!-- sequence<sequence<long,2>,3> my_sequence_sequence; -->
-                <sequence name="my_sequence_sequence" length="3">
-                    <sequence type="long" length="2"/>
-                </sequence>
+                <typedef name="my_sequence_inner" type="int32" sequenceMaxLength="2"/>
+
+                <sequence name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="my_sequence_inner" sequenceMaxLength="3"/>
 
                 <!-- map<long,map<long,long,2>,2> my_map_map; -->
-                <map name="my_map_map" key_type="long" length="2">
-                    <value_type>
-                        <map key_type="long" value_type="long" length="2"/>
-                    </value_type>
-                </map>
+                <typdefe name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
+                <member name="my_map_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
 
                 <!-- Complex types -->
                 <struct name="OtherStruct">
-                    <MyEnum name="my_enum"/>
-                    <MyStruct name="my_struct" dimensions="5"/>
+                    <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
+                    <member name="my_struct" type="nonBasic" nonBasicTypeName="MyStruct" arrayDimensions="5"/>
                 </struct>
             </struct>
         </type>

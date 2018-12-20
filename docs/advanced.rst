@@ -777,16 +777,10 @@ To remove all consumers, including the default one, you should call the :class:`
 If you want to reset the Log configuration to its defaults, including recovering the default consumer, you can call to
 its :class:`Reset` method.
 
-.. code-block:: c++
-
-    Log::ClearConsumers(); // Deactivate StdoutConsumer
-
-    // Add FileConsumer consumer
-    std::unique_ptr<FileConsumer> fileConsumer(new FileConsumer("append.log", true));
-    Log::RegisterConsumer(std::move(fileConsumer));
-
-    // Back to its defaults: StdoutConsumer will be enable and FileConsumer removed.
-    Log::Reset();
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //LOG-CONFIG
+    :end-before: //!--
 
 XML Log configuration
 =====================

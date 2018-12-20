@@ -5,6 +5,8 @@
 #include <fastrtps/transport/TCPv4TransportDescriptor.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastrtps/utils/IPLocator.h>
+#include <fastrtps/log/Log.h>
+#include <fastrtps/log/FileConsumer.h>
 
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
@@ -179,6 +181,17 @@ participant_attr.rtps.listenSocketBufferSize = 4194304;
 //CONF-TRANSPORT-DESCRIPTORS
 UDPv4TransportDescriptor descriptor;
 descriptor.interfaceWhiteList.emplace_back("127.0.0.1");
+//!--
+
+//LOG-CONFIG
+Log::ClearConsumers(); // Deactivate StdoutConsumer
+
+// Add FileConsumer consumer
+std::unique_ptr<FileConsumer> fileConsumer(new FileConsumer("append.log", true));
+Log::RegisterConsumer(std::move(fileConsumer));
+
+// Back to its defaults: StdoutConsumer will be enable and FileConsumer removed.
+Log::Reset();
 //!--
 
 }

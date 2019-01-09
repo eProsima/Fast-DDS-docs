@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <profiles>
 
 <!-->PUBSUB_API_CONF_PARTICIPANT<-->
@@ -233,11 +234,10 @@
         <builtin>
             <initialPeersList>
                 <locator>
-                    <kind>TCPv4</kind>
-                    <address>192.168.1.55</address>
-                    <ports_>
+                    <tcpv4>
+                        <address>192.168.1.55</address>
                         <physical_port>5100</physical_port>
-                    </ports_>
+                    </tcpv4>
                 </locator>
             </initialPeersList>
         </builtin>
@@ -255,7 +255,9 @@
             </metatrafficUnicastLocatorList>
             <initialPeersList>
                 <locator>
-                    <address>192.168.0.1</address>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </initialPeersList>
         </builtin>
@@ -463,10 +465,10 @@
         <max_logical_port>9000</max_logical_port> <!-- uint16 -->
         <logical_port_range>100</logical_port_range> <!-- uint16 -->
         <logical_port_increment>2</logical_port_increment> <!-- uint16 -->
-        <ListeningPorts>
+        <listening_ports>
             <port>5100</port> <!-- uint16 -->
             <port>5200</port> <!-- uint16 -->
-        </ListeningPorts>
+        </listening_ports>
     </transport_descriptor>
     <transport_descriptor>
         <transport_id>TransportId2</transport_id>
@@ -520,20 +522,6 @@
 </types>
 <!-- STAND ALONE TYPES END -->
 
-<!-- ROOTED TYPES START -->
-<dds>
-    <types>
-        <type>
-            <!-- Type definition -->
-        </type>
-        <type>
-            <!-- Type definition -->
-            <!-- Type definition -->
-        </type>
-    </types>
-</dds>
-<!-- ROOTED TYPES END -->
-
 <types>
 <type>
 <!-->XML-DYN-ENUM<-->
@@ -545,9 +533,9 @@
 <!--><-->
 
 <!-->XML-TYPEDEF<-->
-<typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyAlias1"/>
+<typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
 
-<typedef name="MyAlias2" type="int32" arrayDimension="2,2"/>
+<typedef name="MyAliasArray" type="int32" arrayDimension="2,2"/>
 <!--><-->
 
 <!-->XML-STRUCT<-->
@@ -581,16 +569,21 @@
 <member name="my_long" type="int64"/>
 <!--><-->
 <!-->XML-BOUNDEDSTRINGS<-->
-<member name="my_large_string" type="string" stringMaxLength="41925">
+<member name="my_large_string" type="string" stringMaxLength="41925"/>
 
-<member name="my_large_wstring" type="wstring" stringMaxLength="20925">
+<member name="my_large_wstring" type="wstring" stringMaxLength="20925"/>
 <!--><-->
 <!-->XML-ARRAYS<-->
 <member name="long_array" type="int32" arrayDimensions="2,3,4"/>
 <!--><-->
+</struct>
+
+
 <!-->XML-SEQUENCES<-->
 <typedef name="my_sequence_inner" type="int32" sequenceMaxLength="2"/>
-<member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="my_sequence_inner" sequenceMaxLength="3">
+<struct name="SeqSeqStruct">
+    <member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="my_sequence_inner" sequenceMaxLength="3"/>
+</struct>
 <!--><-->
 <!-->XML-MAPS<-->
 <typedef name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
@@ -604,7 +597,7 @@
     <member name="my_struct" type="nonBasic" nonBasicTypeName="MyStruct" arrayDimensions="5"/>
 </struct>
 <!--><-->
-</struct>
+
 </type>
 </types>
 
@@ -616,14 +609,14 @@
         <defaultUnicastLocatorList>
             <!-- LOCATOR_LIST -->
             <locator>
-                <kind>UDPv4</kind>
+                <udpv4/>
             </locator>
         </defaultUnicastLocatorList>
 
         <defaultMulticastLocatorList>
             <!-- LOCATOR_LIST -->
             <locator>
-                <kind>UDPv4</kind>
+                <udpv4/>
             </locator>
         </defaultMulticastLocatorList>
 
@@ -696,21 +689,21 @@
     <metatrafficUnicastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <kind>UDPv4</kind>
+            <udpv4/>
         </locator>
     </metatrafficUnicastLocatorList>
 
     <metatrafficMulticastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <kind>UDPv4</kind>
+            <udpv4/>
         </locator>
     </metatrafficMulticastLocatorList>
 
     <initialPeersList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <kind>UDPv4</kind>
+            <udpv4/>
         </locator>
     </initialPeersList>
 
@@ -734,26 +727,32 @@
         <!-- QOS -->
     </qos>
 
-    <times> <!-- readerTimesType -->
-        <initialAcknackDelay>
+    <times> <!-- writerTimesType -->
+        <initialHeartbeatDelay>
             <!-- DURATION -->
-        </initialAcknackDelay>
-        <heartbeatResponseDelay>
+        </initialHeartbeatDelay>
+        <heartbeatPeriod>
             <!-- DURATION -->
-        </heartbeatResponseDelay>
+        </heartbeatPeriod>
+        <nackResponseDelay>
+            <!-- DURATION -->
+        </nackResponseDelay>
+        <nackSupressionDuration>
+            <!-- DURATION -->
+        </nackSupressionDuration>
     </times>
 
     <unicastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <kind>UDPv4</kind>
+            <udpv4/>
         </locator>
     </unicastLocatorList>
 
     <multicastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <kind>UDPv4</kind>
+            <udpv4/>
         </locator>
     </multicastLocatorList>
 
@@ -795,14 +794,14 @@
     <unicastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <kind>UDPv4</kind>
+            <udpv4/>
         </locator>
     </unicastLocatorList>
 
     <multicastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <kind>UDPv4</kind>
+            <udpv4/>
         </locator>
     </multicastLocatorList>
 
@@ -825,28 +824,35 @@
 <!-->XML-LOCATOR-LIST<-->
 <defaultUnicastLocatorList>
     <locator>
-        <kind>UDPv4</kind>
-        <!-- Access as physical, typical UDP usage -->
-        <port>7400</port> <!-- uint32 -->
-        <address>192.168.1.41</address>
+        <udpv4>
+            <!-- Access as physical, typical UDP usage -->
+            <port>7400</port> <!-- uint32 -->
+            <address>192.168.1.41</address>
+        </udpv4>
     </locator>
     <locator>
-        <kind>TCPv4</kind>
-        <!-- Both physical and logical, useful in TCP transports -->
-        <port_>
+        <tcpv4>
+            <!-- Both physical and logical (port), useful in TCP transports -->
             <physical_port>5100</physical_port> <!-- uint16 -->
-            <logical_port>7400</logical_port> <!-- uint16 -->
-        </port_>
-        <addresses_>
+            <port>7400</port> <!-- uint16 -->
             <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
             <wan_address>80.80.99.45</wan_address>
-            <ip_address>192.168.1.55</ip_address>
-        </addresses_>
+            <address>192.168.1.55</address>
+        </tcpv4>
     </locator>
     <locator>
-        <kind>UDPv6</kind>
-        <port>8844</port>
-        <ipv6_address>::1</ipv6_address>
+        <udpv6>
+            <port>8844</port>
+            <address>::1</address>
+        </udpv6>
+    </locator>
+    <locator>
+        <tcpv6>
+            <!-- Both physical and logical (port), useful in TCP transports -->
+            <physical_port>5100</physical_port> <!-- uint16 -->
+            <port>7400</port> <!-- uint16 -->
+            <address>fe80::55e3:290:165:5af8</address>
+        </tcpv6>
     </locator>
 </defaultUnicastLocatorList>
 <!--><-->
@@ -874,19 +880,26 @@
 </rtps>
 </participant>
 
-<!-->XML-DURATION<--> <!-- TODO Make it compilable -->
+
+<participant profile_name="part_duration_examples">
+<rtps>
+<builtin>
+<!-->XML-DURATION<-->
 <leaseDuration>INFINITE</leaseDuration> <!-- string -->
 
 <leaseDuration>
-    <seconds>500</seconds> <!-- int32 -->
+    <sec>500</sec> <!-- int32 -->
     <fraction>0</fraction> <!-- uint32 -->
 </leaseDuration>
 
 <leaseAnnouncement>
-    <seconds>1</seconds> <!-- int32 -->
+    <sec>1</sec> <!-- int32 -->
     <fraction>856000</fraction> <!-- uint32 -->
 </leaseAnnouncement>
 <!--><-->
+</builtin>
+</rtps>
+</participant>
 
 <subscriber profile_name="sub_topic_qos">
 <!-->XML-TOPIC<-->
@@ -955,9 +968,9 @@
 <!-->XML-LIVELINESS<-->
 <liveliness>
     <kind>AUTOMATIC</kind> <!-- string -->
-    <leaseDuration>
+    <lease_duration>
         <!-- DURATION -->
-    </leaseDuration>
+    </lease_duration>
     <announcement_period>
         <!-- DURATION -->
     </announcement_period>
@@ -987,16 +1000,15 @@
                 <id>127.0.0.1</id>
             </interfaceWhiteList>
             <wan_addr>80.80.55.44</wan_addr>
-            <output_port>5101</output_port>
             <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
             <keep_alive_timeout_ms>25000</keep_alive_timeout_ms>
             <max_logical_port>200</max_logical_port>
             <logical_port_range>20</logical_port_range>
             <logical_port_increment>2</logical_port_increment>
-            <ListeningPorts>
+            <listening_ports>
                 <port>5100</port>
                 <port>5200</port>
-            </ListeningPorts>
+            </listening_ports>
         </transport_descriptor>
         <transport_descriptor>
             <transport_id>ExampleTransportId2</transport_id>
@@ -1019,16 +1031,16 @@
                 <enumerator name="C" value="2"/>
             </enum>
 
-            <typedef name="MyAlias1" type="nonBasic" type="MyEnum"/>
+            <typedef name="MyAlias1" type="nonBasic" nonBasicTypeName="MyEnumType"/>
 
             <typedef name="MyAlias2" type="int32" arrayDimensions="2,2"/>
 
-            <struct name="MyStruct">
+            <struct name="MyStruct1">
                 <member name="first" type="int32"/>
                 <member name="second" type="int64"/>
             </struct>
 
-            <union name="MyUnion">
+            <union name="MyUnion1">
                 <discriminator type="byte"/>
                 <case>
                     <caseDiscriminator value="0"/>
@@ -1093,55 +1105,53 @@
 
             <defaultUnicastLocatorList>
                 <locator>
-                    <kind>UDPv4</kind>
-                    <!-- Access as physical, like UDP -->
-                    <port>7400</port>
-                    <address>192.168.1.41</address>
+                    <udpv4>
+                        <!-- Access as physical, like UDP -->
+                        <port>7400</port>
+                        <address>192.168.1.41</address>
+                    </udpv4>
                 </locator>
                 <locator>
-                    <kind>TCPv4</kind>
-                    <!-- Both physical and logical, like TCP -->
-                    <port_>
+                    <tcpv4>
+                        <!-- Both physical and logical (port), like TCP -->
                         <physical_port>5100</physical_port>
-                        <logical_port>7400</logical_port>
-                    </port_>
-                    <addresses_>
+                        <port>7400</port>
                         <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                         <wan_address>80.80.99.45</wan_address>
-                        <ip_address>192.168.1.55</ip_address>
-                    </addresses_>
+                        <address>192.168.1.55</address>
+                    </tcpv4>
                 </locator>
                 <locator>
-                    <kind>UDPv6</kind>
-                    <port>8844</port>
-                    <ipv6_address>::1</ipv6_address>
+                    <udpv6>
+                        <port>8844</port>
+                        <address>::1</address>
+                    </udpv6>
                 </locator>
             </defaultUnicastLocatorList>
 
             <defaultMulticastLocatorList>
                 <locator>
-                    <kind>UDPv4</kind>
-                    <!-- Access as physical, like UDP -->
-                    <port>7400</port>
-                    <address>192.168.1.41</address>
+                    <udpv4>
+                        <!-- Access as physical, like UDP -->
+                        <port>7400</port>
+                        <address>192.168.1.41</address>
+                    </udpv4>
                 </locator>
                 <locator>
-                    <kind>TCPv4</kind>
-                    <!-- Both physical and logical, like TCP -->
-                    <port_>
+                    <tcpv4>
+                        <!-- Both physical and logical (port), like TCP -->
                         <physical_port>5100</physical_port>
-                        <logical_port>7400</logical_port>
-                    </port_>
-                    <addresses_>
+                        <port>7400</port>
                         <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                         <wan_address>80.80.99.45</wan_address>
-                        <ip_address>192.168.1.55</ip_address>
-                    </addresses_>
+                        <address>192.168.1.55</address>
+                    </tcpv4>
                 </locator>
                 <locator>
-                    <kind>UDPv6</kind>
-                    <port>8844</port>
-                    <ipv6_address>::1</ipv6_address>
+                    <udpv6>
+                        <port>8844</port>
+                        <address>::1</address>
+                    </udpv6>
                 </locator>
             </defaultMulticastLocatorList>
 
@@ -1161,7 +1171,7 @@
                 <leaseDuration>INFINITE</leaseDuration>
 
                 <leaseAnnouncement>
-                    <seconds>1</seconds>
+                    <sec>1</sec>
                     <fraction>856000</fraction>
                 </leaseAnnouncement>
 
@@ -1172,82 +1182,79 @@
 
                 <metatrafficUnicastLocatorList>
                     <locator>
-                        <kind>UDPv4</kind>
-                        <!-- Access as physical, like UDP -->
-                        <port>7400</port>
-                        <address>192.168.1.41</address>
+                        <udpv4>
+                            <!-- Access as physical, like UDP -->
+                            <port>7400</port>
+                            <address>192.168.1.41</address>
+                        </udpv4>
                     </locator>
                     <locator>
-                        <kind>TCPv4</kind>
-                        <!-- Both physical and logical, like TCP -->
-                        <port_>
+                        <tcpv4>
+                            <!-- Both physical and logical (port), like TCP -->
                             <physical_port>5100</physical_port>
-                            <logical_port>7400</logical_port>
-                        </port_>
-                        <addresses_>
+                            <port>7400</port>
                             <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                             <wan_address>80.80.99.45</wan_address>
-                            <ip_address>192.168.1.55</ip_address>
-                        </addresses_>
+                            <address>192.168.1.55</address>
+                        </tcpv4>
                     </locator>
                     <locator>
-                        <kind>UDPv6</kind>
-                        <port>8844</port>
-                        <ipv6_address>::1</ipv6_address>
+                        <udpv6>
+                            <port>8844</port>
+                            <address>::1</address>
+                        </udpv6>
                     </locator>
                 </metatrafficUnicastLocatorList>
 
                 <metatrafficMulticastLocatorList>
                     <locator>
-                        <kind>UDPv4</kind>
-                        <!-- Access as physical, like UDP -->
-                        <port>7400</port>
-                        <address>192.168.1.41</address>
+                        <udpv4>
+                            <!-- Access as physical, like UDP -->
+                            <port>7400</port>
+                            <address>192.168.1.41</address>
+                        </udpv4>
                     </locator>
                     <locator>
-                        <kind>TCPv4</kind>
-                        <!-- Both physical and logical, like TCP -->
-                        <port_>
+                        <tcpv4>
+                            <!-- Both physical and logical (port), like TCP -->
                             <physical_port>5100</physical_port>
-                            <logical_port>7400</logical_port>
-                        </port_>
-                        <addresses_>
+                            <port>7400</port>
                             <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                             <wan_address>80.80.99.45</wan_address>
-                            <ip_address>192.168.1.55</ip_address>
-                        </addresses_>
+                            <address>192.168.1.55</address>
+                        </tcpv4>
                     </locator>
                     <locator>
-                        <kind>UDPv6</kind>
-                        <port>8844</port>
-                        <ipv6_address>::1</ipv6_address>
+                        <udpv6>
+                            <port>8844</port>
+                            <address>::1</address>
+                        </udpv6>
                     </locator>
                 </metatrafficMulticastLocatorList>
 
                 <initialPeersList>
                     <locator>
-                        <kind>UDPv4</kind>
-                        <!-- Access as physical, like UDP -->
-                        <port>7400</port>
-                        <address>192.168.1.41</address>
+                        <udpv4>
+                            <!-- Access as physical, like UDP -->
+                            <port>7400</port>
+                            <address>192.168.1.41</address>
+                        </udpv4>
                     </locator>
                     <locator>
-                        <kind>TCPv4</kind>
-                        <!-- Both physical and logical, like TCP -->
-                        <port_>
+                        <tcpv4>
+                            <!-- Both physical and logical (port), like TCP -->
                             <physical_port>5100</physical_port>
-                            <logical_port>7400</logical_port>
-                        </port_>
-                        <addresses_>
+                            <port>7400</port>
                             <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                             <wan_address>80.80.99.45</wan_address>
-                            <ip_address>192.168.1.55</ip_address>
-                        </addresses_>
+                            <address>192.168.1.55</address>
+                        </tcpv4>
                     </locator>
                     <locator>
-                        <kind>UDPv6</kind>
-                        <port>8844</port>
-                        <ipv6_address>::1</ipv6_address>
+                        <udpv6>
+                            <port>8844</port>
+                            <address>::1</address>
+                        </udpv6>
                     </locator>
                 </initialPeersList>
 
@@ -1322,19 +1329,19 @@
             </durability>
             <liveliness>
                 <kind>AUTOMATIC</kind>
-                <leaseDuration>
-                    <seconds>1</seconds>
+                <lease_duration>
+                    <sec>1</sec>
                     <fraction>856000</fraction>
-                </leaseDuration>
+                </lease_duration>
                 <announcement_period>
-                    <seconds>1</seconds>
+                    <sec>1</sec>
                     <fraction>856000</fraction>
                 </announcement_period>
             </liveliness>
             <reliability>
                 <kind>BEST_EFFORT</kind>
                 <max_blocking_time>
-                    <seconds>1</seconds>
+                    <sec>1</sec>
                     <fraction>856000</fraction>
                 </max_blocking_time>
             </reliability>
@@ -1351,74 +1358,72 @@
 
         <times>
             <initialHeartbeatDelay>
-                <seconds>1</seconds>
+                <sec>1</sec>
                 <fraction>856000</fraction>
             </initialHeartbeatDelay>
             <heartbeatPeriod>
-                <seconds>1</seconds>
+                <sec>1</sec>
                 <fraction>856000</fraction>
             </heartbeatPeriod>
             <nackResponseDelay>
-                <seconds>1</seconds>
+                <sec>1</sec>
                 <fraction>856000</fraction>
             </nackResponseDelay>
             <nackSupressionDuration>
-                <seconds>1</seconds>
+                <sec>1</sec>
                 <fraction>856000</fraction>
             </nackSupressionDuration>
         </times>
 
         <unicastLocatorList>
             <locator>
-                <kind>UDPv4</kind>
-                <!-- Access as physical, like UDP -->
-                <port>7400</port>
-                <address>192.168.1.41</address>
+                <udpv4>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </udpv4>
             </locator>
             <locator>
-                <kind>TCPv4</kind>
-                <!-- Both physical and logical, like TCP -->
-                <port_>
+                <tcpv4>
+                    <!-- Both physical and logical (port), like TCP -->
                     <physical_port>5100</physical_port>
-                    <logical_port>7400</logical_port>
-                </port_>
-                <addresses_>
+                    <port>7400</port>
                     <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                     <wan_address>80.80.99.45</wan_address>
-                    <ip_address>192.168.1.55</ip_address>
-                </addresses_>
+                    <address>192.168.1.55</address>
+                </tcpv4>
             </locator>
             <locator>
-                <kind>UDPv6</kind>
-                <port>8844</port>
-                <ipv6_address>::1</ipv6_address>
+                <udpv6>
+                    <port>8844</port>
+                    <address>::1</address>
+                </udpv6>
             </locator>
         </unicastLocatorList>
 
         <multicastLocatorList>
             <locator>
-                <kind>UDPv4</kind>
-                <!-- Access as physical, like UDP -->
-                <port>7400</port>
-                <address>192.168.1.41</address>
+                <udpv4>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </udpv4>
             </locator>
             <locator>
-                <kind>TCPv4</kind>
-                <!-- Both physical and logical, like TCP -->
-                <port_>
+                <tcpv4>
+                    <!-- Both physical and logical (port), like TCP -->
                     <physical_port>5100</physical_port>
-                    <logical_port>7400</logical_port>
-                </port_>
-                <addresses_>
+                    <port>7400</port>
                     <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                     <wan_address>80.80.99.45</wan_address>
-                    <ip_address>192.168.1.55</ip_address>
-                </addresses_>
+                    <address>192.168.1.55</address>
+                </tcpv4>
             </locator>
             <locator>
-                <kind>UDPv6</kind>
-                <port>8844</port>
-                <ipv6_address>::1</ipv6_address>
+                <udpv6>
+                    <port>8844</port>
+                    <address>::1</address>
+                </udpv6>
             </locator>
         </multicastLocatorList>
 
@@ -1472,19 +1477,19 @@
             </durability>
             <liveliness>
                 <kind>MANUAL_BY_PARTICIPANT</kind>
-                <leaseDuration>
-                    <seconds>1</seconds>
+                <lease_duration>
+                    <sec>1</sec>
                     <fraction>856000</fraction>
-                </leaseDuration>
+                </lease_duration>
                 <announcement_period>
-                    <seconds>1</seconds>
+                    <sec>1</sec>
                     <fraction>856000</fraction>
                 </announcement_period>
             </liveliness>
             <reliability>
                 <kind>BEST_EFFORT</kind>
                 <max_blocking_time>
-                    <seconds>1</seconds>
+                    <sec>1</sec>
                     <fraction>856000</fraction>
                 </max_blocking_time>
             </reliability>
@@ -1498,66 +1503,64 @@
 
         <times>
             <initialAcknackDelay>
-                <seconds>1</seconds>
+                <sec>1</sec>
                 <fraction>856000</fraction>
             </initialAcknackDelay>
             <heartbeatResponseDelay>
-                <seconds>1</seconds>
+                <sec>1</sec>
                 <fraction>856000</fraction>
             </heartbeatResponseDelay>
         </times>
 
         <unicastLocatorList>
             <locator>
-                <kind>UDPv4</kind>
-                <!-- Access as physical, like UDP -->
-                <port>7400</port>
-                <address>192.168.1.41</address>
+                <udpv4>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </udpv4>
             </locator>
             <locator>
-                <kind>TCPv4</kind>
-                <!-- Both physical and logical, like TCP -->
-                <port_>
+                <tcpv4>
+                    <!-- Both physical and logical (port), like TCP -->
                     <physical_port>5100</physical_port>
-                    <logical_port>7400</logical_port>
-                </port_>
-                <addresses_>
+                    <port>7400</port>
                     <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                     <wan_address>80.80.99.45</wan_address>
-                    <ip_address>192.168.1.55</ip_address>
-                </addresses_>
+                    <address>192.168.1.55</address>
+                </tcpv4>
             </locator>
             <locator>
-                <kind>UDPv6</kind>
-                <port>8844</port>
-                <ipv6_address>::1</ipv6_address>
+                <udpv6>
+                    <port>8844</port>
+                    <address>::1</address>
+                </udpv6>
             </locator>
         </unicastLocatorList>
 
         <multicastLocatorList>
             <locator>
-                <kind>UDPv4</kind>
-                <!-- Access as physical, like UDP -->
-                <port>7400</port>
-                <address>192.168.1.41</address>
+                <udpv4>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </udpv4>
             </locator>
             <locator>
-                <kind>TCPv4</kind>
-                <!-- Both physical and logical, like TCP -->
-                <port_>
+                <tcpv4>
+                    <!-- Both physical and logical (port), like TCP -->
                     <physical_port>5100</physical_port>
-                    <logical_port>7400</logical_port>
-                </port_>
-                <addresses_>
+                    <port>7400</port>
                     <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                     <wan_address>80.80.99.45</wan_address>
-                    <ip_address>192.168.1.55</ip_address>
-                </addresses_>
+                    <address>192.168.1.55</address>
+                </tcpv4>
             </locator>
             <locator>
-                <kind>UDPv6</kind>
-                <port>8844</port>
-                <ipv6_address>::1</ipv6_address>
+                <udpv6>
+                    <port>8844</port>
+                    <address>::1</address>
+                </udpv6>
             </locator>
         </multicastLocatorList>
 

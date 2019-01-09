@@ -19,10 +19,10 @@
             <max_logical_port>9000</max_logical_port> <!-- uint16 -->
             <logical_port_range>100</logical_port_range> <!-- uint16 -->
             <logical_port_increment>2</logical_port_increment> <!-- uint16 -->
-            <ListeningPorts>
+            <listening_ports>
                 <port>5100</port> <!-- uint16 -->
                 <port>5200</port> <!-- uint16 -->
-            </ListeningPorts>
+            </listening_ports>
         </transport_descriptor>
     </transport_descriptors>
 

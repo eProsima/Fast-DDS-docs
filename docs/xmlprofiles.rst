@@ -28,7 +28,7 @@ An XML file can contain several XML profiles. The available profile types are :r
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS<-->
-    :lines: 1-6, 13-33
+    :lines: 1-6, 11-32
 
 The Fast-RTPS XML format uses some structures along several profiles types.
 For readability, the :ref:`commonxml` section groups these common structures.
@@ -120,7 +120,8 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<output_port>``             | Port used for output bound.       | ``uint16``                      | 0              |
 |                               | If this field isn't defined,      |                                 |                |
-|                               | the output port will be random.   |                                 |                |
+|                               | the output port will be random    |                                 |                |
+|                               | (UDP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<keep_alive_frequency_ms>`` | Frequency in milliseconds         | ``uint32``                      | 50000          |
 |                               | for sending RTCP keep-alive       |                                 |                |
@@ -146,7 +147,7 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | negotiation.                      |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<ListeningPorts>``          | Local port to work as TCP         | ``List <uint16>``               |                |
+| ``<listening_ports>``         | Local port to work as TCP        | ``List <uint16>``               |                |
 |                               | acceptor for input connections.   |                                 |                |
 |                               | If not set, the transport will    |                                 |                |
 |                               | work as TCP client only           |                                 |                |
@@ -179,7 +180,7 @@ Stand-Alone:
 
 Rooted:
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: ../code/XMLTesterAux.xml
     :language: xml
     :start-after: <!-- ROOTED TYPES START -->
     :end-before: <!-- ROOTED TYPES END -->
@@ -798,7 +799,9 @@ LocatorListType
 It represents a list of :class:`Locator_t`.
 LocatorListType is normally used as an anonymous type, this is, it hasn't its own label.
 Instead, it is used inside other configuration parameter labels that expect a list of locators and give it sense,
-for example, in ``<defaultUnicastLocatorList>``:
+for example, in ``<defaultUnicastLocatorList>``.
+The locator kind is defined by its own tag and can take the values ``<udpv4>``, ``<tcpv4>``, ``<udpv6>``, and
+``<tcpv6>``:
 
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml

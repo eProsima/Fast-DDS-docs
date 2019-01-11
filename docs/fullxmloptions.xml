@@ -44,12 +44,12 @@
             <typedef name="MyAlias1" value="MyEnum"/>
 
             <typedef name="MyAlias2">
-                <long dimensions="2,2"/>
+                <int32 dimensions="2,2"/>
             </typedef>
 
             <struct name="MyStruct">
-                <long name="first"/>
-                <longlong name="second"/>
+                <int32 name="first"/>
+                <int64 name="second"/>
             </struct>
 
             <union name="MyUnion">
@@ -57,7 +57,7 @@
                 <case>
                     <caseValue value="0"/>
                     <caseValue value="1"/>
-                    <long name="first"/>
+                    <int32 name="first"/>
                 </case>
                 <case>
                     <caseValue value="2"/>
@@ -65,7 +65,7 @@
                 </case>
                 <case>
                     <caseValue value="default"/>
-                    <longlong name="third"/>
+                    <int64 name="third"/>
                 </case>
             </union>
 
@@ -73,39 +73,33 @@
             <struct name="MyFullStruct">
                 <!-- Primitives & basic -->
                 <boolean name="my_bool"/>
-                <octet name="my_octet"/>
+                <byte name="my_octet"/>
                 <char name="my_char"/>
                 <wchar name="my_wchar"/>
-                <short name="my_short"/>
-                <long name="my_long"/>
-                <longlong name="my_longlong"/>
-                <unsignedshort name="my_unsignedshort"/>
-                <unsignedlong name="my_unsignedlong"/>
-                <unsignedlonglong name="my_unsignedlonglong"/>
-                <float name="my_float"/>
-                <double name="my_double"/>
-                <longdouble name="my_longdouble"/>
+                <int16 name="my_short"/>
+                <int32 name="my_long"/>
+                <int64 name="my_longlong"/>
+                <uint16 name="my_unsignedshort"/>
+                <uint32 name="my_unsignedlong"/>
+                <uint64 name="my_unsignedlonglong"/>
+                <float32 name="my_float"/>
+                <float64 name="my_double"/>
+                <float128 name="my_longdouble"/>
                 <string name="my_string"/>
                 <wstring name="my_wstring"/>
-                <boundedString name="my_boundedString">
-                    <maxLength value="41925"/>
-                </boundedString>
-                <boundedWString name="my_boundedWString">
-                    <maxLength value="41925"/>
-                </boundedWString>
 
-                <!-- long long_array[2][3][4]; -->
-                <long name="long_array" dimensions="2,3,4"/>
+                <!-- int32 long_array[2][3][4]; -->
+                <int32 name="long_array" dimensions="2,3,4"/>
 
-                <!-- sequence<sequence<long,2>,3> my_sequence_sequence; -->
+                <!-- sequence<sequence<int32,2>,3> my_sequence_sequence; -->
                 <sequence name="my_sequence_sequence" length="3">
-                    <sequence type="long" length="2"/>
+                    <sequence type="int32" length="2"/>
                 </sequence>
 
-                <!-- map<long,map<long,long,2>,2> my_map_map; -->
-                <map name="my_map_map" key_type="long" length="2">
+                <!-- map<int32,map<int32,int32,2>,2> my_map_map; -->
+                <map name="my_map_map" key_type="int32" length="2">
                     <value_type>
-                        <map key_type="long" value_type="long" length="2"/>
+                        <map key_type="int32" value_type="int32" length="2"/>
                     </value_type>
                 </map>
 
@@ -124,28 +118,25 @@
 
             <defaultUnicastLocatorList> <!-- LOCATOR_LIST -->
                 <locator>
-                    <kind>UDPv4</kind>
-                    <!-- Access as physical, like UDP -->
-                    <port>7400</port> <!-- uint32 -->
-                    <address>192.168.1.41</address>
+                    <udpv4>
+                        <port>7400</port>
+                        <address>192.168.1.41</address>
+                    </udpv4>
                 </locator>
                 <locator>
-                    <kind>TCPv4</kind>
-                    <!-- Both physical and logical, like TCP -->
-                    <port_>
+                    <tcpv4>
+                        <port>7400</port> <!-- uint16 -->
                         <physical_port>5100</physical_port> <!-- uint16 -->
-                        <logical_port>7400</logical_port> <!-- uint16 -->
-                    </port_>
-                    <addresses_>
                         <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
                         <wan_address>80.80.99.45</wan_address>
-                        <ip_address>192.168.1.55</ip_address>
-                    </addresses_>
+                        <address>192.168.1.55</address>
+                    </tcpv4>
                 </locator>
                 <locator>
-                    <kind>UDPv6</kind>
-                    <port>8844</port>
-                    <ipv6_address>::1</ipv6_address>
+                    <udpv6>
+                        <port>8844</port>
+                        <address>::1</address>
+                    </udpv6>
                 </locator>
             </defaultUnicastLocatorList>
 
@@ -158,29 +149,33 @@
             <listenSocketBufferSize>8192</listenSocketBufferSize>  <!-- uint32 -->
 
             <builtin>
-                <use_SIMPLE_RTPS_PDP>FALSE</use_SIMPLE_RTPS_PDP> <!-- boolean -->
+                <use_SIMPLE_RTPS_PDP>false</use_SIMPLE_RTPS_PDP> <!-- boolean -->
 
-                <use_WriterLivelinessProtocol>FALSE</use_WriterLivelinessProtocol>  <!-- boolean -->
+                <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>  <!-- boolean -->
 
-                <EDP> SIMPLE | STATIC </EDP> <!-- string -->
+                <EDP>SIMPLE</EDP> <!-- string SIMPLE | STATIC-->
 
                 <domainId>4</domainId> <!-- uint32 -->
 
-                <leaseDuration> INFINITE | ZERO | INVALID </leaseDuration> <!-- sttring -->
-                <!-- OR -->
                 <leaseDuration>
-                    <seconds>500</seconds> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
-                </leaseDuration>
+                    <sec>DURATION_INFINITY</sec><!-- string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* -->
+                </leaseDuration> 
 
+                <!-- OR -->
+                <!--
+                <leaseDuration>
+                    <sec>500</sec> <!- - string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* - ->
+                    <fraction>0</fraction> <!- - string DURATION_INFINITY|DURATION_INFINITE_NSEC|([0-9])* - ->
+                </leaseDuration>
+                -->
                 <leaseAnnouncement>
-                    <seconds>1</seconds> <!-- int32 -->
+                    <sec>1</sec> <!-- int32 -->
                     <fraction>856000</fraction> <!-- uint32 -->
                 </leaseAnnouncement>
 
                 <simpleEDP>
-                    <PUBWRITER_SUBREADER>TRUE</PUBWRITER_SUBREADER> <!-- boolean -->
-                    <PUBREADER_SUBWRITER>TRUE</PUBREADER_SUBWRITER> <!-- boolean -->
+                    <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER> <!-- boolean -->
+                    <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER> <!-- boolean -->
                 </simpleEDP>
 
                 <metatrafficUnicastLocatorList>
@@ -197,9 +192,9 @@
 
                 <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename> <!-- string -->
 
-                <readerHistoryMemoryPolicy> PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC  </readerHistoryMemoryPolicy> <!-- historyMemoryPolicyType -->
+                <readerHistoryMemoryPolicy>PREALLOCATED</readerHistoryMemoryPolicy> <!-- historyMemoryPolicyType PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC -->
 
-                <writerHistoryMemoryPolicy> <!-- historyMemoryPolicyType --> </writerHistoryMemoryPolicy>
+                <writerHistoryMemoryPolicy>PREALLOCATED</writerHistoryMemoryPolicy> <!-- historyMemoryPolicyType PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC -->
             </builtin>
 
             <port>
@@ -212,7 +207,7 @@
                 <offsetd3>3</offsetd3> <!-- uint16 -->
             </port>
 
-            <userData> <!-- octetVector (string) -->  </userData>
+            <!--<userData>  octetVector (string) </userData> -->
 
             <participantID>99</participantID>   <!-- int32 -->
 
@@ -226,14 +221,14 @@
                 <id>TransportId2</id> <!-- string -->
             </userTransports>
 
-            <useBuiltinTransports>FALSE</useBuiltinTransports> <!-- boolean -->
+            <useBuiltinTransports>false</useBuiltinTransports> <!-- boolean -->
 
             <propertiesPolicy> <!-- PropertiesPolicy -->
                 <properties>
                     <property>
                         <name>Property1Name</name> <!-- string -->
                         <value>Property1Value</value> <!-- string -->
-                        <propagate>FALSE</propagate> <!-- boolean -->
+                        <propagate>false</propagate> <!-- boolean -->
                     </property>
                 </properties>
 
@@ -241,7 +236,7 @@
                     <property>
                         <name>Property1Name</name> <!-- string -->
                         <value>Property1Value</value> <!-- string -->
-                        <propagate>FALSE</propagate> <!-- boolean -->
+                        <propagate>false</propagate> <!-- boolean -->
                     </property>
                 </binary_properties>
             </propertiesPolicy>
@@ -250,11 +245,11 @@
 
     <publisher profile_name="part_profile_name">
         <topic> <!-- topicAttributesType -->
-            <kind>NO_KEY | WITH_KEY</kind> <!-- string -->
+            <kind>NO_KEY</kind> <!-- string NO_KEY | WITH_KEY-->
             <name>TopicName</name> <!-- string -->
             <dataType>TopicDataTypeName</dataType> <!-- string -->
             <historyQos>
-                <kind>KEEP_LAST | KEEP_ALL</kind> <!-- string -->
+                <kind>KEEP_LAST</kind> <!-- string KEEP_LAST | KEEP_ALL-->
                 <depth>20</depth> <!-- uint32 -->
             </historyQos>
             <resourceLimitsQos>
@@ -267,70 +262,75 @@
 
         <qos> <!-- writerQosPoliciesType -->
             <durability>
-                <kind>VOLATILE | TRANSIENT_LOCAL | TRANSIENT | PERSISTENT</kind> <!-- string -->
+                <kind>VOLATILE</kind> <!-- string VOLATILE | TRANSIENT_LOCAL | TRANSIENT | PERSISTENT-->
             </durability>
             <durabilityService>
                 <service_cleanup_delay>
-                    <seconds>10</seconds> <!-- int32 -->
+                    <sec>10</sec> <!-- int32 -->
                     <fraction>0</fraction> <!-- uint32 -->
                 </service_cleanup_delay>
-                <history_kind>KEEP_LAST | KEEP_ALL</history_kind> <!-- string -->
-                <history_depth></history_depth> <!-- unint32 -->
-                <max_samples></max_samples> <!-- unint32 -->
-                <max_instances></max_instances> <!-- unint32 -->
-                <max_samples_per_instance></max_samples_per_instance> <!-- unint32 -->
+                <history_kind>KEEP_LAST</history_kind> <!-- string KEEP_LAST | KEEP_ALL -->
+                <history_depth>1</history_depth> <!-- unint32 -->
+                <max_samples>1</max_samples> <!-- unint32 -->
+                <max_instances>1</max_instances> <!-- unint32 -->
+                <max_samples_per_instance>1</max_samples_per_instance> <!-- unint32 -->
             </durabilityService>
             <deadline>
                 <period>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </period>
             </deadline>
             <latencyBudget>
                 <duration>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </duration>
             </latencyBudget>
             <liveliness>
-                <kind>AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC</kind> <!-- string -->
+                <kind>AUTOMATIC</kind> <!-- string AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC -->
                 <leaseDuration>
-                    <!-- DURATION -->
+                    <sec>500</sec> <!-- int32 -->
+                    <fraction>0</fraction> <!-- uint32 -->
                 </leaseDuration>
                 <announcement_period>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </announcement_period>
             </liveliness>
             <reliability>
-                <kind>BEST_EFFORT | RELIABLE</kind>
+                <kind>BEST_EFFORT</kind> <!-- string BEST_EFFORT | RELIABLE -->
                 <max_blocking_time>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </max_blocking_time>
             </reliability>
             <lifespan>
-                <!-- DURATION -->
+                <duration>
+                    <sec>DURATION_INFINITY</sec>
+                </duration>
             </lifespan>
-            <userData> <!-- octetVector (string) -->  </userData>
+            <!--<userData>  octetVector (string) </userData> -->
             <timeBasedFilter>
                 <minimum_separation>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </minimum_separation>
             </timeBasedFilter>
             <ownership>
-                <kind>SHARED | EXCLUSIVE</kind> <!-- string -->
+                <kind>SHARED</kind> <!-- string SHARED | EXCLUSIVE-->
             </ownership>
             <ownershipStrength>
                 <value>5</value> <!-- uint32 -->
             </ownershipStrength>
             <destinationOrder>
-                <kind>BY_RECEPTION_TIMESTAMP | BY_SOURCE_TIMESTAMP</kind> <!-- string -->
+                <kind>BY_RECEPTION_TIMESTAMP</kind> <!-- string BY_RECEPTION_TIMESTAMP | BY_SOURCE_TIMESTAMP-->
             </destinationOrder>
             <presentation>
-                <access_scope>INSTANCE | TOPIC | GROUP</access_scope> <!-- string -->
-                <coherent_access>TRUE</coherent_access> <!-- bool -->
-                <ordered_access>TRUE</ordered_access> <!-- bool -->
+                <access_scope>INSTANCE</access_scope> <!-- string INSTANCE | TOPIC | GROUP-->
+                <coherent_access>true</coherent_access> <!-- bool -->
+                <ordered_access>true</ordered_access> <!-- bool -->
             </presentation>
             <partition>
-                <name>part1</name> <!-- string -->
-                <name>part2</name> <!-- string -->
+                <names>
+                    <name>part1</name> <!-- string -->
+                    <name>part2</name> <!-- string -->
+                </names>
             </partition>
             <topicData>
                 <value> <!-- octetVector (string) --> </value>
@@ -339,22 +339,22 @@
                 <value> <!-- octetVector (string) --> </value>
             </groupData>
             <publishMode>
-                <kind>SYNCHRONOUS | ASYNCHRONOUS</kind> <!-- string -->
+                <kind>SYNCHRONOUS</kind> <!-- string SYNCHRONOUS | ASYNCHRONOUS-->
             </publishMode>
         </qos>
 
         <times> <!-- writerTimesType -->
             <initialHeartbeatDelay>
-                <!-- DURATION -->
+                <sec>DURATION_INFINITY</sec>
             </initialHeartbeatDelay>
             <heartbeatPeriod>
-                <!-- DURATION -->
+                <sec>DURATION_INFINITY</sec>
             </heartbeatPeriod>
             <nackResponseDelay>
-                <!-- DURATION -->
+                <sec>DURATION_INFINITY</sec>
             </nackResponseDelay>
             <nackSupressionDuration>
-                <!-- DURATION -->
+                <sec>DURATION_INFINITY</sec>
             </nackSupressionDuration>
         </times>
 
@@ -375,7 +375,7 @@
             <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
         </throughputController>
 
-        <historyMemoryPolicy> <!-- historyMemoryPolicyType --> </historyMemoryPolicy>
+        <historyMemoryPolicy>PREALLOCATED</historyMemoryPolicy> <!-- historyMemoryPolicyType PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC -->
 
         <propertiesPolicy> <!-- PropertiesPolicy --> </propertiesPolicy>
 
@@ -391,66 +391,71 @@
 
         <qos> <!-- readerQosPoliciesType -->
             <durability>
-                <kind>VOLATILE | TRANSIENT_LOCAL | TRANSIENT | PERSISTENT</kind> <!-- string -->
+                <kind>VOLATILE</kind> <!-- string VOLATILE | TRANSIENT_LOCAL | TRANSIENT | PERSISTENT-->
             </durability>
             <durabilityService>
                 <service_cleanup_delay>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </service_cleanup_delay>
-                <history_kind>KEEP_LAST | KEEP_ALL</history_kind> <!-- string -->
-                <history_depth></history_depth> <!-- unint32 -->
-                <max_samples></max_samples> <!-- unint32 -->
-                <max_instances></max_instances> <!-- unint32 -->
-                <max_samples_per_instance></max_samples_per_instance> <!-- unint32 -->
+                <history_kind>KEEP_LAST</history_kind> <!-- string KEEP_LAST | KEEP_ALL-->
+                <history_depth>0</history_depth> <!-- unint32 -->
+                <max_samples>0</max_samples> <!-- unint32 -->
+                <max_instances>0</max_instances> <!-- unint32 -->
+                <max_samples_per_instance>0</max_samples_per_instance> <!-- unint32 -->
             </durabilityService>
             <deadline>
                 <period>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </period>
             </deadline>
             <latencyBudget>
                 <duration>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </duration>
             </latencyBudget>
             <liveliness>
-                <kind>AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC</kind> <!-- string -->
+                <kind>AUTOMATIC</kind> <!-- string AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC-->
                 <leaseDuration>
-                    <!-- DURATION -->
+                    <sec>500</sec> <!-- string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* -->
+                    <fraction>0</fraction> <!-- string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* -->
                 </leaseDuration>
                 <announcement_period>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </announcement_period>
             </liveliness>
             <reliability>
-                <kind>BEST_EFFORT | RELIABLE</kind>
+                <kind>BEST_EFFORT</kind> <!-- string BEST_EFFORT | RELIABLE -->
                 <max_blocking_time>
-                    <!-- DURATION -->
+                    <sec>DURATION_INFINITY</sec>
                 </max_blocking_time>
             </reliability>
             <lifespan>
-                <!-- DURATION -->
+                <duration>
+                    <sec>DURATION_INFINITY</sec>
+                </duration>
             </lifespan>
-            <userData> <!-- octetVector (string) -->  </userData>
+            <!--<userData>  octetVector (string) </userData> -->
             <timeBasedFilter>
                 <minimum_separation>
-                      <!-- DURATION -->
+                      <sec>DURATION_INFINITY</sec>
                 </minimum_separation>
             </timeBasedFilter>
             <ownership>
-                <kind>SHARED | EXCLUSIVE</kind> <!-- string -->
+                <kind>SHARED</kind> <!-- string SHARED | EXCLUSIVE-->
             </ownership>
             <destinationOrder>
-                <kind>BY_RECEPTION_TIMESTAMP | BY_SOURCE_TIMESTAMP</kind> <!-- string -->
+                <kind>BY_RECEPTION_TIMESTAMP</kind> <!-- string BY_RECEPTION_TIMESTAMP | BY_SOURCE_TIMESTAMP-->
             </destinationOrder>
             <presentation>
-                <access_scope>INSTANCE | TOPIC | GROUP</access_scope> <!-- string -->
-                <coherent_access>TRUE</coherent_access> <!-- bool -->
-                <ordered_access>TRUE</ordered_access> <!-- bool -->
+                <access_scope>INSTANCE</access_scope> <!-- string INSTANCE | TOPIC | GROUP-->
+                <coherent_access>true</coherent_access> <!-- bool -->
+                <ordered_access>true</ordered_access> <!-- bool -->
             </presentation>
             <partition>
-                <name>part1</name> <!-- string -->
-                <name>part2</name> <!-- string -->
+                <names>
+                    <name>part1</name> <!-- string -->
+                    <name>part2</name> <!-- string -->
+                </names>
             </partition>
             <topicData>
                 <value> <!-- octetVector (string) --> </value>
@@ -462,10 +467,10 @@
 
         <times> <!-- readerTimesType -->
             <initialAcknackDelay>
-                <!-- DURATION -->
+                <sec>DURATION_INFINITY</sec>
             </initialAcknackDelay>
             <heartbeatResponseDelay>
-                <!-- DURATION -->
+                <sec>DURATION_INFINITY</sec>
             </heartbeatResponseDelay>
         </times>
 
@@ -481,9 +486,9 @@
             <!-- LOCATOR_LIST -->
         </outLocatorList>
 
-        <expectsInlineQos>TRUE</expectsInlineQos> <!-- boolean -->
+        <expectsInlineQos>true</expectsInlineQos> <!-- boolean -->
 
-        <historyMemoryPolicy> <!-- historyMemoryPolicyType --> </historyMemoryPolicy>
+        <historyMemoryPolicy>PREALLOCATED</historyMemoryPolicy> <!-- historyMemoryPolicyType PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC -->
 
         <propertiesPolicy> <!-- PropertiesPolicy --> </propertiesPolicy>
 

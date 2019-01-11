@@ -273,7 +273,7 @@ Member types are any type that can belong to a ``<struct>`` or a ``<union>``, or
 The indentifiers of the available basic types are:
 
 +------------------------+------------------------+------------------------+
-| ``boolean``            | ``int64``              | ``float64``            |
+| ``boolean``            | ``int64``              | ``float128``           |
 +------------------------+------------------------+------------------------+
 | ``byte``               | ``uint16``             | ``string``             |
 +------------------------+------------------------+------------------------+

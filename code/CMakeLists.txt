@@ -53,7 +53,7 @@ set(PRODUCT_CMAKELIST_CONTENT "
         GIT_TAG  origin/${REPO_TAG}
         GIT_SHALLOW TRUE
         CMAKE_GENERATOR Ninja
-        CMAKE_ARGS -DEPROSIMA_BUILD=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \"-DCMAKE_INSTALL_PREFIX=${PROJECT_BINARY_DIR}/install\"
+        CMAKE_ARGS -DEPROSIMA_BUILD=ON -DSECURITY=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \"-DCMAKE_INSTALL_PREFIX=${PROJECT_BINARY_DIR}/install\"
         UPDATE_COMMAND \"\"
         )
     ")
@@ -77,6 +77,7 @@ find_package(fastrtps REQUIRED)
 # Compile example
 ########################################################################################################################
 add_executable(doctest CodeTester.cpp)
+target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/product/src/fastrtps/src)
 target_link_libraries(doctest fastrtps)
 
 ########################################################################################################################
@@ -87,5 +88,14 @@ include(CTest)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTester.xml
     ${CMAKE_CURRENT_BINARY_DIR}/XMLTester.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/GovernanceTester.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/GovernanceTester.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/PermissionsTester.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/PermissionsTester.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/StaticTester.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/StaticTester.xml COPYONLY)
 
-add_test(NAME doctest COMMAND doctest XMLTester.xml)
+add_test(NAME xmltest COMMAND doctest XMLTester.xml)
+add_test(NAME governancetest COMMAND doctest GovernanceTester.xml)
+add_test(NAME permissionstest COMMAND doctest PermissionsTester.xml)
+add_test(NAME statictest COMMAND doctest StaticTester.xml)

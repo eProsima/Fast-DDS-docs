@@ -59,7 +59,7 @@ html:
 .PHONY: compile
 compile:
 	mkdir -p build/code
-	cmake -G Ninja -S code -B build/code
+	cd build/code && cmake -G Ninja ../../code
 	cmake --build build/code
 	@echo
 	@echo "Source code build finished."
@@ -79,7 +79,7 @@ test:
 	@echo
 	@echo "Check xml code-block finished."
 	mkdir -p build/code
-	cmake -G Ninja -S code -B build/code
+	cd build/code && cmake -G Ninja ../../code
 	cmake --build build/code
 	@echo
 	@echo "Source code build finished."

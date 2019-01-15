@@ -31,12 +31,21 @@ project(fastrtps-doc-checker VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 ########################################################################################################################
 # Get documentation git branch
 ########################################################################################################################
-find_package(Git REQUIRED)
+set(ENV_FASTRTPS_BRANCH $ENV{FASTRTPS_BRANCH})
+set(FASTRTPS_BRANCH "" CACHE STRING "Fast RTPS repository branch agains test the source code.")
 
-execute_process(
-    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
-    RESULT_VARIABLE RESULT
-    OUTPUT_VARIABLE REPO_TAG)
+if(NOT "${ENV_FASTRTPS_BRANCH}" STREQUAL "")
+    set(REPO_TAG "${ENV_FASTRTPS_BRANCH}")
+elseif(NOT "${FASTRTPS_BRANCH}" STREQUAL "")
+    set(REPO_TAG "${FASTRTPS_BRANCH}")
+else()
+    find_package(Git REQUIRED)
+
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+        RESULT_VARIABLE RESULT
+        OUTPUT_VARIABLE REPO_TAG)
+endif()
 
 ########################################################################################################################
 # Download and compile product

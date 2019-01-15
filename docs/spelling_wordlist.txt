@@ -29,6 +29,7 @@ GMAC
 gradle
 gtest
 IDL
+interoperability
 IPv
 middleware
 metatraffic
@@ -55,4 +56,5 @@ uint
 unicast
 unidimensional
 XTypes
+whitelist
 WString

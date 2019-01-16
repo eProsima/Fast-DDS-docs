@@ -114,7 +114,7 @@ The transport must be added in the ``userTransports`` list of the participant at
 |    :end-before: <!--><-->                        |
 +--------------------------------------------------+
 
-To configure the participant to connect to another node through TCP, you must configure add Locator to its
+To configure the participant to connect to another node through TCP, you must add a Locator to its
 ``initialPeersList`` that points to the remote *listening port*.
 
 +---------------------------------------------------+

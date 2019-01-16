@@ -10,19 +10,23 @@ Security
 Fast RTPS can be configured to provide secure communications. For this purpose, Fast RTPS implements pluggable security
 at three levels: authentication of remote participants, access control of entities and encryption of data.
 
-By default, Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
-configuration step. For more information about Fast RTPS compilation, see :ref:`installation-from-sources`.
+By default, Fast RTPS doesn't compile security support.
+You can activate it adding ``-DSECURITY=ON`` at CMake configuration step.
+For more information about Fast RTPS compilation, see :ref:`installation-from-sources`.
 
-You can activate and configure security plugins through :class:`eprosima::fastrtps::Participant` attributes using properties.
-A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value (:class:`std::string`).
+You can activate and configure security plugins through :class:`eprosima::fastrtps::Participant` attributes using
+properties.
+A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value
+(:class:`std::string`).
 Throughout this page, there are tables showing you the properties used by each security plugin.
 
 Authentication plugins
 ----------------------
 
-They provide authentication on the discovery of remote participants. When a remote participant is detected, Fast RTPS tries
-to authenticate using the activated Authentication plugin. If the authentication process finishes successfully then both
-participants match and discovery protocol continues. On failure, the remote participant is rejected.
+They provide authentication on the discovery of remote participants.
+When a remote participant is detected, Fast RTPS tries to authenticate using the activated Authentication plugin.
+If the authentication process finishes successfully then both participants match and discovery protocol continues.
+On failure, the remote participant is rejected.
 
 You can activate an Authentication plugin using Participant property ``dds.sec.auth.plugin``. Fast RTPS provides a
 built-in Authentication plugin. More information on :ref:`auth-pki-dh`.
@@ -61,13 +65,13 @@ If Access control will not be used, you can configure the Cryptographic plugin m
 
 **Encrypt whole RTPS messages**
 
-You can configure a Participant to encrypt all RTPS messages using Participant property ``rtps.participant.rtps_protection_kind``
-with the value ``ENCRYPT``.
+You can configure a Participant to encrypt all RTPS messages using Participant property
+``rtps.participant.rtps_protection_kind`` with the value ``ENCRYPT``.
 
 **Encrypt RTPS submessages of a particular entity**
 
-You can configure an entity (Writer or Reader) to encrypt its RTPS submessages using Entity property ``rtps.endpoint.submessage_protection_kind``
-with the value ``ENCRYPT``.
+You can configure an entity (Writer or Reader) to encrypt its RTPS submessages using Entity property
+``rtps.endpoint.submessage_protection_kind`` with the value ``ENCRYPT``.
 
 **Encrypt payload of a particular Writer**
 
@@ -81,18 +85,19 @@ The current version comes out with three security built-in plugins:
 
 * :ref:`auth-pki-dh`: this plugin provides authentication using a trusted *Certificate Authority* (CA).
 * :ref:`access-permissions`: this plugin provides access control to Participants at the Domain and Topic level.
-* :ref:`crypto-aes-gcm-gmac`: this plugin provides authenticated encryption using Advanced Encryption Standard (AES) in Galois Counter
-  Mode (AES-GCM).
+* :ref:`crypto-aes-gcm-gmac`: this plugin provides authenticated encryption using Advanced Encryption Standard (AES) in
+  Galois Counter Mode (AES-GCM).
 
 .. _auth-pki-dh:
 
 Auth:PKI-DH
 ^^^^^^^^^^^
 
-This built-in plugin provides authentication between discovered participants. It is supplied by a trusted *Certificate
-Authority* (CA) and uses ECDSA Digital Signature Algorithms to perform the mutual authentication. It also establishes a shared
-secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement Methods. This shared secret can be used by other
-security plugins as :ref:`crypto-aes-gcm-gmac`.
+This built-in plugin provides authentication between discovered participants.
+It is supplied by a trusted *Certificate Authority* (CA) and uses ECDSA Digital Signature Algorithms to perform the
+mutual authentication.
+It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement Methods.
+This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm-gmac`.
 
 You can activate this plugin using Participant property ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.
 Next tables show you the Participant properties used by this security plugin.
@@ -109,7 +114,8 @@ Next tables show you the Participant properties used by this security plugin.
        Supported URI schemes: file. |br|
        The **file** schema shall refer to a X.509 v3 certificate in PEM format.
    * - identity_certificate
-     - URI to an X509 certificate signed by the Identity CA in PEM format containing the signed public key for the Participant. |br|
+     - URI to an X509 certificate signed by the Identity CA in PEM format containing the signed public key for the
+       Participant. |br|
        Supported URI schemes: file.
    * - identity_crl *(optional)*
      - URI to a X509 Certificate Revocation List (CRL). |br|
@@ -310,7 +316,8 @@ and sections:
 * Topic Access Rules section
 
 The domain rules are evaluated in the same order as they appear in the document.
-A rule only applies to a particular Participant if the domain section matches the domain to which the Participant belongs.
+A rule only applies to a particular Participant if the domain section matches the domain to which the Participant
+belongs.
 If multiple rules match, the first rule that matches is the only one that applies.
 
 .. _domains_section:
@@ -323,22 +330,17 @@ The value in this element identifies the collection of Domains values to which t
 
 The ``<domains>`` element can contain a single domain identifier, for example:
 
-.. code-block:: xml
-
-   <domains>
-       <id>1</id>
-   </domain>
+.. literalinclude:: ../code/GovernanceTester.xml
+   :language: xml
+   :start-after: <!-->GOVERNANCE_DOMAIN_ID
+   :end-before: <!--><-->
 
 Or it can contain a range of domain identifiers, for example:
 
-.. code-block:: xml
-
-   <domains>
-       <id_range>
-           <min>1</min>
-           <max>10</max>
-       </id_range>
-   </domain>
+.. literalinclude:: ../code/GovernanceTester.xml
+   :language: xml
+   :start-after: <!-->GOVERNANCE_RANGE_DOMAINS
+   :end-before: <!--><-->
 
 Or it can contain both, a list of domain identifiers and ranges of domain identifiers.
 
@@ -349,8 +351,8 @@ This element is delimited by the XML element ``<allow_unauthenticated_participan
 Indicates whether the matching of the Participant with a remote Participant requires authentication.
 If the value is ``false``, the Participant shall enforce the authentication of remote Participants and
 disallow matching those that cannot be successfully authenticated.
-If the value is ``true``, the Participant shall allow matching other Participants (event if the remote Participant cannot
-authenticate) as long as there is not an already valid authentication with the same Participant's GUID.
+If the value is ``true``, the Participant shall allow matching other Participants (event if the remote Participant
+cannot authenticate) as long as there is not an already valid authentication with the same Participant's GUID.
 
 Enable Join Access Control element
 **********************************
@@ -556,15 +558,13 @@ Topic names may be given explicitly or by means of Topic name expressions.
 Each topic name of topic-name expressions appears separately in a ``<topic>`` sub-element within the ``<topics>``
 element.
 
-The Topic name expressión syntax and matching shall use the syntax and rules of the POSIX ``fnmatch()`` function as
+The Topic name expression syntax and matching shall use the syntax and rules of the POSIX ``fnmatch()`` function as
 specified in *POSIX 1003.1-1992, Section B.6*.
 
-.. code-block:: xml
-
-   <topics>
-       <topic>Plane<topic>
-       <topic>Hel*<topic>
-   <topics>
+.. literalinclude:: ../code/PermissionsTester.xml
+   :language: xml
+   :start-after: <!-->PERMISSIONS_TOPIC_CONDITION
+   :end-before: <!--><-->
 
 Partitions condition
 ********************
@@ -576,12 +576,10 @@ Partition names expression syntax and matching shall use the syntax and rules of
 specified in *POSIX 1003.2-1992, Section B.6*.
 If there is no ``<partitions>`` section within a rule, then the default "empty string" partition is assumed.
 
-.. code-block:: xml
-
-   <partitions>
-       <partition>A</partition>
-       <partition>B*</partition>
-   </partitions>
+.. literalinclude:: ../code/PermissionsTester.xml
+   :language: xml
+   :start-after: <!-->PERMISSIONS_PARTITION_CONDITION
+   :end-before: <!--><-->
 
 Signing documents using x509 certificate
 """"""""""""""""""""""""""""""""""""""""
@@ -609,7 +607,8 @@ This built-in plugin provides authenticated encryption using AES in Galois Count
 It also provides additional reader-specific message authentication codes (MACs) using Galois MAC (AES-GMAC).
 This plugin needs the activation of the security plugin :ref:`auth-pki-dh`.
 
-You can activate this plugin using Participant property ``dds.sec.crypto.plugin`` with the value ``builtin.AES-GCM-GMAC``.
+You can activate this plugin using Participant property ``dds.sec.crypto.plugin`` with the value
+``builtin.AES-GCM-GMAC``.
 
 .. Como generar los ficheros PEM
 
@@ -623,95 +622,21 @@ This example show you how to configure a Participant to activate and configure :
 
 **Participant attributes**
 
-+----------------------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                                          |
-+----------------------------------------------------------------------------------------------------------------------------------+
-|.. code-block:: c++                                                                                                               |
-|                                                                                                                                  |
-|   eprosima::fastrtps::ParticipantAttributes part_attr;                                                                           |
-|                                                                                                                                  |
-|   // Activate Auth:PKI-DH plugin                                                                                                 |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");                                  |
-|                                                                                                                                  |
-|   // Configure Auth:PKI-DH plugin                                                                                                |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca", "file://maincacert.pem");       |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate", "file://appcert.pem"); |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key", "file://appkey.pem");           |
-|                                                                                                                                  |
-|   // Activate Access:Permissions plugin                                                                                          |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.access.plugin", "builtin.Access-Permissions");                    |
-|                                                                                                                                  |
-|   // Configure Access:Permissions plugin                                                                                         |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.permissions_ca",                |
-|       "file://maincacet.pem");                                                                                                   |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.governance",                    |
-|       "file://governance.smime");                                                                                                |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.permissions",                   |
-|       "file://permissions.smime");                                                                                               |
-|                                                                                                                                  |
-|   // Activate Crypto:AES-GCM-GMAC plugin                                                                                         |
-|   part_attr.rtps.properties.properties().emplace_back("dds.sec.crypto.plugin", "builtin.AES-GCM-GMAC");                          |
-+----------------------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                                          |
-+----------------------------------------------------------------------------------------------------------------------------------+
-| .. code-block:: xml                                                                                                              |
-|                                                                                                                                  |
-|    <profiles>                                                                                                                    |
-|       <participant profile_name="secure_participant_xml_profile">                                                                |
-|          <rtps>                                                                                                                  |
-|             <propertiesPolicy>                                                                                                   |
-|                <properties>                                                                                                      |
-|                   <!-- Activate Auth:PKI-DH plugin -->                                                                           |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.auth.plugin</name>                                                                            |
-|                      <value>builtin.PKI-DH</value>                                                                               |
-|                   </property>                                                                                                    |
-|                                                                                                                                  |
-|                   <!-- Configure Auth:PKI-DH plugin -->                                                                          |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>                                                        |
-|                      <value>file://maincacert.pem</value>                                                                        |
-|                   </property>                                                                                                    |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>                                               |
-|                      <value>file://appcert.pem</value>                                                                           |
-|                   </property>                                                                                                    |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.auth.builtin.PKI-DH.private_key</name>                                                        |
-|                      <value>file://appkey.pem</value>                                                                            |
-|                   </property>                                                                                                    |
-|                                                                                                                                  |
-|                   <!-- Activate Access:Permissions plugin -->                                                                    |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.access.plugin</name>                                                                          |
-|                      <value>builtin.Access-Permissions</value>                                                                   |
-|                   </property>                                                                                                    |
-|                                                                                                                                  |
-|                   <!-- Configure Access:Permissions plugin -->                                                                   |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>                                       |
-|                      <value>file://maincacet.pem</value>                                                                         |
-|                   </property>                                                                                                    |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.access.builtin.Access-Permissions.governance</name>                                           |
-|                      <value>file://governance.smime</value>                                                                      |
-|                   </property>                                                                                                    |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.access.builtin.Access-Permissions.permissions</name>                                          |
-|                      <value>file://permissions.smime</value>                                                                     |
-|                   </property>                                                                                                    |
-|                                                                                                                                  |
-|                   <!-- Activate Crypto:AES-GCM-GMAC plugin -->                                                                   |
-|                   <property>                                                                                                     |
-|                      <name>dds.sec.crypto.plugin</name>                                                                          |
-|                      <value>builtin.AES-GCM-GMAC</value>                                                                         |
-|                   </property>                                                                                                    |
-|                </properties>                                                                                                     |
-|             </propertiesPolicy>                                                                                                  |
-|          </rtps>                                                                                                                 |
-|       </participant>                                                                                                             |
-|    </profiles>                                                                                                                   |
-+----------------------------------------------------------------------------------------------------------------------------------+
++-------------------------------------------------+
+| **C++**                                         |
++-------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp      |
+|    :language: c++                               |
+|    :start-after: //SECURITY_CONF_ALL_PLUGINS    |
+|    :end-before: //!--                           |
++-------------------------------------------------+
+| **XML**                                         |
++-------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml       |
+|    :language: xml                               |
+|    :start-after: <!-->SECURITY_CONF_ALL_PLUGINS |
+|    :end-before: <!--><-->                       |
++-------------------------------------------------+
 
 This example shows you how to configure a Participant to activate and configure :ref:`auth-pki-dh` and
 :ref:`crypto-aes-gcm-gmac` plugins, without and Access control plugin.
@@ -720,141 +645,54 @@ a writer to encrypt the payload (user data).
 
 **Participant attributes**
 
-+-----------------------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                                           |
-+-----------------------------------------------------------------------------------------------------------------------------------+
-| .. code-block:: c++                                                                                                               |
-|                                                                                                                                   |
-|    eprosima::fastrtps::ParticipantAttributes part_attr;                                                                           |
-|                                                                                                                                   |
-|    // Activate Auth:PKI-DH plugin                                                                                                 |
-|    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");                                  |
-|                                                                                                                                   |
-|    // Configure Auth:PKI-DH plugin                                                                                                |
-|    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca", "file://maincacert.pem");       |
-|    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate", "file://appcert.pem"); |
-|    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key", "file://appkey.pem");           |
-|                                                                                                                                   |
-|    // Activate Crypto:AES-GCM-GMAC plugin                                                                                         |
-|    part_attr.rtps.properties.properties().emplace_back("dds.sec.crypto.plugin", "builtin.AES-GCM-GMAC");                          |
-|                                                                                                                                   |
-|    // Encrypt all RTPS submessages                                                                                                |
-|    part_attr.rtps.properties.properties().emplace_back("rtps.participant.rtps_protection_kind", "ENCRYPT");                       |
-+-----------------------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                                           |
-+-----------------------------------------------------------------------------------------------------------------------------------+
-| .. code-block:: xml                                                                                                               |
-|                                                                                                                                   |
-|    <profiles>                                                                                                                     |
-|       <participant profile_name="secure_participant_no_access_control_xml_profile">                                               |
-|          <rtps>                                                                                                                   |
-|             <propertiesPolicy>                                                                                                    |
-|                <properties>                                                                                                       |
-|                   <!-- Activate Auth:PKI-DH plugin -->                                                                            |
-|                   <property>                                                                                                      |
-|                      <name>dds.sec.auth.plugin</name>                                                                             |
-|                      <value>builtin.PKI-DH</value>                                                                                |
-|                   </property>                                                                                                     |
-|                                                                                                                                   |
-|                   <!-- Configure Auth:PKI-DH plugin -->                                                                           |
-|                   <property>                                                                                                      |
-|                      <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>                                                         |
-|                      <value>file://maincacert.pem</value>                                                                         |
-|                   </property>                                                                                                     |
-|                   <property>                                                                                                      |
-|                      <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>                                                |
-|                      <value>file://appcert.pem</value>                                                                            |
-|                   </property>                                                                                                     |
-|                   <property>                                                                                                      |
-|                      <name>dds.sec.auth.builtin.PKI-DH.private_key</name>                                                         |
-|                      <value>file://appkey.pem</value>                                                                             |
-|                   </property>                                                                                                     |
-|                                                                                                                                   |
-|                   <!-- Activate Crypto:AES-GCM-GMAC plugin -->                                                                    |
-|                   <property>                                                                                                      |
-|                      <name>dds.sec.crypto.plugin</name>                                                                           |
-|                      <value>builtin.AES-GCM-GMAC</value>                                                                          |
-|                   </property>                                                                                                     |
-|                                                                                                                                   |
-|                   <!-- Encrypt all RTPS submessages -->                                                                           |
-|                   <property>                                                                                                      |
-|                      <name>rtps.participant.rtps_protection_kind</name>                                                           |
-|                      <value>ENCRYPT</value>                                                                                       |
-|                   </property>                                                                                                     |
-|                </properties>                                                                                                      |
-|             </propertiesPolicy>                                                                                                   |
-|          </rtps>                                                                                                                  |
-|       </participant>                                                                                                              |
-|    </profiles>                                                                                                                    |
-+-----------------------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //SECURITY_CONF_AUTH_AND_CRYPT_PLUGINS    |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->SECURITY_CONF_AUTH_AND_CRYPT_PLUGINS |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
 
 **Publisher attributes**
 
-+----------------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                                    |
-+----------------------------------------------------------------------------------------------------------------------------+
-| .. code-block:: c++                                                                                                        |
-|                                                                                                                            |
-|    eprosima::fastrtps::PublisherAttributes pub_attr;                                                                       |
-|                                                                                                                            |
-|    // Encrypt RTPS submessages                                                                                             |
-|    pub_attr.properties.properties().emplace_back("rtps.endpoint.submessage_protection_kind", "ENCRYPT");                   |
-|                                                                                                                            |
-|    // Encrypt payload                                                                                                      |
-|    pub_attr.properties.properties().emplace_back("rtps.endpoint.payload_protection_kind", "ENCRYPT");                      |
-+----------------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                                    |
-+----------------------------------------------------------------------------------------------------------------------------+
-| .. code-block:: xml                                                                                                        |
-|                                                                                                                            |
-|    <profiles>                                                                                                              |
-|       <publisher profile_name="secure_publisher_xml_profile">                                                              |
-|          <propertiesPolicy>                                                                                                |
-|             <properties>                                                                                                   |
-|                <!-- Encrypt RTPS submessages -->                                                                           |
-|                <property>                                                                                                  |
-|                   <name>rtps.endpoint.submessage_protection_kind</name>                                                    |
-|                   <value>ENCRYPT</value>                                                                                   |
-|                </property>                                                                                                 |
-|                                                                                                                            |
-|                <!-- Encrypt payload -->                                                                                    |
-|                <property>                                                                                                  |
-|                   <name>rtps.endpoint.payload_protection_kind</name>                                                       |
-|                   <value>ENCRYPT</value>                                                                                   |
-|                </property>                                                                                                 |
-|             </properties>                                                                                                  |
-|          </propertiesPolicy>                                                                                               |
-|       </publisher>                                                                                                         |
-|    </profiles>                                                                                                             |
-+----------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------+
+| **C++**                                                              |
++----------------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                           |
+|    :language: c++                                                    |
+|    :start-after: //SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS    |
+|    :end-before: //!--                                                |
++----------------------------------------------------------------------+
+| **XML**                                                              |
++----------------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                            |
+|    :language: xml                                                    |
+|    :start-after: <!-->SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS |
+|    :end-before: <!--><-->                                            |
++----------------------------------------------------------------------+
 
 **Subscriber attributes**
 
-+----------------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                                    |
-+----------------------------------------------------------------------------------------------------------------------------+
-|.. code-block:: c++                                                                                                         |
-|                                                                                                                            |
-|   eprosima::fastrtps::SubscriberAttributes sub_attr;                                                                       |
-|                                                                                                                            |
-|   // Encrypt RTPS submessages                                                                                              |
-|   sub_attr.properties.properties().emplace_back("rtps.endpoint.submessage_protection_kind", "ENCRYPT");                    |
-+----------------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                                    |
-+----------------------------------------------------------------------------------------------------------------------------+
-| .. code-block:: xml                                                                                                        |
-|                                                                                                                            |
-|    <profiles>                                                                                                              |
-|       <subscriber profile_name="secure_publisher_xml_profile">                                                             |
-|          <propertiesPolicy>                                                                                                |
-|             <properties>                                                                                                   |
-|                <!-- Encrypt RTPS submessages -->                                                                           |
-|                <property>                                                                                                  |
-|                   <name>rtps.endpoint.submessage_protection_kind</name>                                                    |
-|                   <value>ENCRYPT</value>                                                                                   |
-|                </property>                                                                                                 |
-|             </properties>                                                                                                  |
-|          </propertiesPolicy>                                                                                               |
-|       </subscriber>                                                                                                        |
-|    </profiles>                                                                                                             |
-+----------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------+
+| **C++**                                                               |
++-----------------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                            |
+|    :language: c++                                                     |
+|    :start-after: //SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS    |
+|    :end-before: //!--                                                 |
++-----------------------------------------------------------------------+
+| **XML**                                                               |
++-----------------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                             |
+|    :language: xml                                                     |
+|    :start-after: <!-->SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS |
+|    :end-before: <!--><-->                                             |
++-----------------------------------------------------------------------+

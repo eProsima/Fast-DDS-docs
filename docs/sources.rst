@@ -24,7 +24,8 @@ calling CMake (see :ref:`compile-fastrtpsgen`).
 
 If you want to compile the examples, you will need to add the argument ``-DCOMPILE_EXAMPLES=ON`` when calling CMake.
 
-If you want to compile the performance tests, you will need to add the argument ``-DPERFORMANCE_TESTS=ON`` when calling CMake.
+If you want to compile the performance tests, you will need to add the argument ``-DPERFORMANCE_TESTS=ON`` when calling
+CMake.
 
 For generate *fastrtpsgen* please see :ref:`compile-fastrtpsgen`.
 
@@ -32,9 +33,10 @@ Security
 --------
 
 By default, Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
-configuration step. More information about security on Fast RTPS, see :ref:`security`.
+configuration step.
+More information about security on Fast RTPS, see :ref:`security`.
 
-When security is activated on compilation Fast RTPS builds several built-in security plugins. 
+When security is activated on compilation Fast RTPS builds several built-in security plugins.
 Some of them have the dependency of OpenSSL library.
 
 OpenSSL installation on Linux

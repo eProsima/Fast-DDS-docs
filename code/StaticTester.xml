@@ -1,0 +1,22 @@
+<!-->STATIC_DISCOVERY_CONF<-->
+<staticdiscovery>
+    <participant>
+        <name>HelloWorldSubscriber</name>
+        <reader>
+            <userId>3</userId>
+            <entityId>4</entityId>
+            <topicName>HelloWorldTopic</topicName>
+            <topicDataType>HelloWorld</topicDataType>
+        </reader>
+    </participant>
+    <participant>
+        <name>HelloWorldPublisher</name>
+        <writer>
+            <userId>1</userId>
+            <entityId>2</entityId>
+            <topicName>HelloWorldTopic</topicName>
+            <topicDataType>HelloWorld</topicDataType>
+        </writer>
+    </participant>
+</staticdiscovery>
+<!--><-->

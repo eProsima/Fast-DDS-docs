@@ -38,20 +38,18 @@ Managing the Participant
 
 To create a :class:`RTPSParticipant`, the process is very similar to the one shown in the Publisher-Subscriber layer.
 
-.. code-block:: c++
-
-    RTPSParticipantAttributes Pparam;
-    Pparam.setName("participant");
-    RTPSParticipant* p = RTPSDomain::createRTPSParticipant(PParam);
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_CREATE_PARTICIPANT
+    :end-before: //!--
 
 The :class:`RTPSParticipantAttributes` structure is equivalent to the `rtps` member of :class:`ParticipantAttributes`
 field in the Publisher-Subscriber Layer, so you can configure your :class:`RTPSParticipant` the same way as before:
 
-.. code-block:: c++
-
-    RTPSParticipantAttributes Pparam;
-    Pparam.setName("my_participant");
-    //etc.
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_CONF_PARTICIPANT
+    :end-before: //!--
 
 Managing the Writers and Readers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -60,26 +58,21 @@ As the RTPS standard specifies, Writers and Readers are always associated with a
 In the Publisher-Subscriber Layer, its creation and management is hidden,
 but in the Writer-Reader Layer, you have full control over its creation and configuration.
 
-Writers are configured with a :class:`WriterAttributes` structure. They also need a :class:`WriterHistory` which is configured with a :class:`HistoryAttributes` structure.
+Writers are configured with a :class:`WriterAttributes` structure.
+They also need a :class:`WriterHistory` which is configured with a :class:`HistoryAttributes` structure.
 
-.. code-block:: c++
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_WRITER_CONF_HISTORY
+    :end-before: //!--
 
-    HistoryAttributes hatt;
-    WriterHistory * history = new WriterHistory(hatt);
-    WriterAttributes watt;
-    RTPSWriter* writer = RTPSDomain::createRTPSWriter(rtpsParticipant, watt, history);
+The creation of a Reader is similar.
+Note that in this case, you can provide a :class:`ReaderListener` instance that implements your callbacks:
 
-The creation of a Reader is similar. Note that in this case, you can provide a :class:`ReaderListener` instance that
-implements your callbacks:
-
-.. code-block:: c++
-
-    class MyReaderListener:public ReaderListener;
-    MyReaderListener listen;
-    HistoryAttributes hatt;
-    ReaderHistory * history = new ReaderHistory(hatt);
-    ReaderAttributes ratt;
-    RTPSReader* reader = RTPSDomain::createRTPSReader(rtpsParticipant, watt, history, &listen);
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_READER_CONF_HISTORY
+    :end-before: //!--
 
 Using the History to Send and Receive Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -95,51 +88,21 @@ Changes are always managed by the History. As a user, the procedure for interact
 You can interact with the History of the Writer to send data.
 A callback that returns the maximum number of payload bytes is required:
 
-.. code-block:: c++
-
-    //Request a change from the history
-    CacheChange_t* ch = writer->new_change([]() -> uint32_t { return 255;}, ALIVE);
-    //Write serialized data into the change
-    ch->serializedPayload.length = sprintf((char*) ch->serializedPayload.data, "My example string %d", 2)+1;
-    //Insert change back into the history. The Writer takes care of the rest.
-    history->add_change(ch);
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_WRITE_SAMPLE
+    :end-before: //!--
 
 If your topic data type has several fields, you will have to provide functions to serialize and deserialize
-your data in and out of the :class:`CacheChange_t`. *FastRTPSGen* does this for you.
+your data in and out of the :class:`CacheChange_t`.
+*FastRTPSGen* does this for you.
 
 You can receive data from within a :class:`ReaderListener` callback method as we did in the Publisher-Subscriber Layer:
 
-.. code-block:: c++
-
-    class MyReaderListener: public ReaderListener
-    {
-        public:
-
-        MyReaderListener(){}
-        ~MyReaderListener(){}
-        void onNewCacheChangeAdded(RTPSReader* reader,const CacheChange_t* const change)
-        {
-            // The incoming message is enclosed within the `change` in the function parameters
-            printf("%s\n",change->serializedPayload.data);
-            //Once done, remove the change
-            reader->getHistory()->remove_change((CacheChange_t*)change);
-        }
-    }
-
-Additionally, you can read an incoming message directly by interacting with the History:
-
-.. code-block:: c++
-
-    //Blocking method
-    reader->waitForUnreadMessage();
-    CacheChange_t* change;
-    //Take the first unread change present in the History
-    if(reader->nextUnreadCache(&change))
-    {
-        /* use data */
-    }
-    //Once done, remove the change
-    history->remove_change(change);
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_READER_LISTENER
+    :end-before: //!--
 
 Configuring Readers and Writers
 -------------------------------
@@ -147,29 +110,35 @@ One of the benefits of using the Writer-Reader layer is that it provides new con
 maintaining the options from the Publisher-Subscriber layer (see :ref:`configuration`).
 For example, you can set a Writer or a Reader as a Reliable or Best-Effort endpoint as previously:
 
-.. code-block:: c++
-
-    Wattr.endpoint.reliabilityKind = BEST_EFFORT;
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_WRITER_CONF_RELIABILITY
+    :end-before: //!--
 
 .. _SettingDataDurability:
 
 Setting the data durability kind
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Durability parameter defines the behavior of the Writer regarding samples already sent when a new Reader matches. *eProsima Fast RTPS* offers three Durability options:
+The Durability parameter defines the behavior of the Writer regarding samples already sent when a new Reader matches.
+*eProsima Fast RTPS* offers three Durability options:
 
-* VOLATILE (default): Messages are discarded as they are sent. If a new Reader matches after message *n*, it will start received from message *n+1*.
-* TRANSIENT_LOCAL: The Writer saves a record of the lask *k* messages it has sent. If a new reader matches after message *n*, it will start receiving from message *n-k*
-* TRANSIENT: As TRANSIENT_LOCAL, but the record of messages will be saved to persistent storage, so it will be available if the writer is destroyed and recreated, or in case of an application crash (see :ref:`persistence`)
+* VOLATILE (default): Messages are discarded as they are sent.
+  If a new Reader matches after message *n*, it will start received from message *n+1*.
+* TRANSIENT_LOCAL: The Writer saves a record of the last *k* messages it has sent.
+  If a new reader matches after message *n*, it will start receiving from message *n-k*
+* TRANSIENT: As TRANSIENT_LOCAL, but the record of messages will be saved to persistent storage, so it will be available
+  if the writer is destroyed and recreated, or in case of an application crash (see :ref:`persistence`)
 
 To choose your preferred option:
 
-.. code-block:: c++
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_WRITER_CONF_DURABILITY
+    :end-before: //!--
 
-    WriterAttributes Wparams;
-    Wparams.endpoint.durabilityKind = TRANSIENT_LOCAL;
-
-Because in the Writer-Reader layer you have control over the History, in TRANSIENT_LOCAL and TRANSIENT modes the Writer sends all changes you have not explicitly released from the History.
+Because in the Writer-Reader layer you have control over the History, in TRANSIENT_LOCAL and TRANSIENT modes the Writer
+sends all changes you have not explicitly released from the History.
 
 Configuring the History
 -----------------------
@@ -179,20 +148,23 @@ The History has its own configuration structure, the :class:`HistoryAttributes`.
 Changing the maximum size of the payload
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can choose the maximum size of the Payload that can go into a :class:`CacheChange_t`. Be sure to choose a size that allows it to hold the biggest possible piece of data:
+You can choose the maximum size of the Payload that can go into a :class:`CacheChange_t`.
+Be sure to choose a size that allows it to hold the biggest possible piece of data:
 
-.. code-block:: c++
-
-    HistoryAttributes.payloadMaxSize  = 250; //Defaults to 500 bytes
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_HISTORY_CONF_PAYLOADMAXSIZE
+    :end-before: //!--
 
 Changing the size of the History
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can specify a maximum amount of changes for the History to hold and an initial amount of allocated changes:
 
-.. code-block:: c++
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_HISTORY_CONF_RESOURCES
+    :end-before: //!--
 
-    HistoryAttributes.initialReservedCaches = 250; //Defaults to 500
-    HistoryAttributes.maximumReservedCaches = 500; //Dedaults to 0 = Unlimited Changes
-
-When the initial amount of reserved changes is lower than the maximum, the History will allocate more changes as they are needed until it reaches the maximum size.
+When the initial amount of reserved changes is lower than the maximum, the History will allocate more changes as they
+are needed until it reaches the maximum size.

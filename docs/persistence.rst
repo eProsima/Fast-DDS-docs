@@ -7,32 +7,39 @@
 Persistence
 ===========
 
-By default, the writer's history is available for remote readers throughout writer's life. 
-You can configure Fast RTPS to provide persistence between application executions. 
-When a writer is created again, it will maintain the previous history and a new remote reader will receive all 
+By default, the writer's history is available for remote readers throughout writer's life.
+You can configure Fast RTPS to provide persistence between application executions.
+When a writer is created again, it will maintain the previous history and a new remote reader will receive all
 samples sent by the writer throughout its life.
 
 A reader keeps information on the latest change notified to the user for each matching writer.
-Persisting this information, you could save bandwidth, as the reader will not ask the writers for changes already notified.
+Persisting this information, you could save bandwidth, as the reader will not ask the writers for changes already
+notified.
 
-In summary, enabling this feature you will protect the state of endpoints against unexpected failures, 
+In summary, enabling this feature you will protect the state of endpoints against unexpected failures,
 as they will continue communicating after being restarted as if they were just disconnected from the network.
 
-Imagine, for instance, that a writer with a policy to keep its last 100 samples has its history full of changes and the machine where it runs has a power failure. 
-When the writer is started again, if a new reader is created, it will not receive the 100 samples that were on the history of the writer. 
-With persistence enabled, changes in the history of the writer will be written to disk and read again when the writer is restarted.
+Imagine, for instance, that a writer with a policy to keep its last 100 samples has its history full of changes and the
+machine where it runs has a power failure.
+When the writer is started again, if a new reader is created, it will not receive the 100 samples that were on the
+history of the writer.
+With persistence enabled, changes in the history of the writer will be written to disk and read again when the writer is
+restarted.
 
-With readers, the information written to disk is different. 
+With readers, the information written to disk is different.
 Only information about the last change notified to the user is stored on disk.
-When a persistent reader is restarted, it will load this information, and will only ask the matching writers to 
+When a persistent reader is restarted, it will load this information, and will only ask the matching writers to
 resend those changes that were not notified to the upper layers.
 
 **persistence_guid**
 
-Whenever an endpoint (reader or writer) is created, a unique identifier (GUID) is generated. 
-If the endpoint is restarted, a new GUID will be generated, and other endpoints won't be able to know it was the same one.
-For this reason, a specific parameter persistence_guid should be configured on :class:`eprosima::fastrtps::rtps::EndpointAttributes`.
-This parameter will be used as the primary key of the data saved on disk, and will also be used to identify the endpoint on the DDS domain.
+Whenever an endpoint (reader or writer) is created, a unique identifier (GUID) is generated.
+If the endpoint is restarted, a new GUID will be generated, and other endpoints won't be able to know it was the same
+one.
+For this reason, a specific parameter `persistence_guid` should be configured on
+:class:`eprosima::fastrtps::rtps::EndpointAttributes`.
+This parameter will be used as the primary key of the data saved on disk, and will also be used to identify the endpoint
+on the DDS domain.
 
 Configuration
 -------------
@@ -45,10 +52,13 @@ In order for the persistence feature to work, some specific :class:`eprosima::fa
 
 * ``durabilityKind`` should be set to ``TRANSIENT``
 * ``persistence_guid`` should not be all zeros
-* A persistence plugin should be configured either on the :class:`eprosima::fastrtps::rtps::Writer`, the :class:`eprosima::fastrtps::rtps::Reader` or the :class:`eprosima::fastrtps::rtps::RTPSParticipant`
+* A persistence plugin should be configured either on the :class:`eprosima::fastrtps::rtps::Writer`, the
+  :class:`eprosima::fastrtps::rtps::Reader` or the :class:`eprosima::fastrtps::rtps::RTPSParticipant`
 
-You can select and configure the persistence plugin through :class:`eprosima::fastrtps::rtps::RTPSParticipant` attributes using properties.
-A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value (:class:`std::string`).
+You can select and configure the persistence plugin through :class:`eprosima::fastrtps::rtps::RTPSParticipant`
+attributes using properties.
+A :class:`eprosima::fastrtps::rtps::Property` is defined by its name (:class:`std::string`) and its value
+(:class:`std::string`).
 Throughout this page, there are tables showing you the properties used by each persistence plugin.
 
 Built-in plugins
@@ -65,7 +75,8 @@ PERSISTENCE:SQLITE3
 
 This built-in plugin provides persistence on a local file using SQLite3 API.
 
-You can activate this plugin using RTPSParticipant, Reader or Writer property ``dds.persistence.plugin`` with the value ``builtin.SQLITE3``.
+You can activate this plugin using RTPSParticipant, Reader or Writer property ``dds.persistence.plugin`` with the value
+``builtin.SQLITE3``.
 Next table shows you the properties used by this persistence plugin.
 
 .. list-table:: **Properties to configure Persistence::SQLITE3**
@@ -88,39 +99,21 @@ sequence number on local storage.
 
 **RTPSParticipant attributes**
 
-.. code-block:: c++
-
-   eprosima::fastrtps::rtps::RTPSParticipantAttributes part_attr;
-
-   // Activate Persistence:SQLITE3 plugin
-   part_attr.properties.properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
-
-   // Configure Persistence:SQLITE3 plugin
-   part_attr.properties.properties().emplace_back("dds.persistence.sqlite3.filename", "example.db");
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //PERSISTENCE_CONF_PARTICIPANT
+    :end-before: //!--
 
 **Writer attributes**
 
-.. code-block:: c++
-
-   eprosima::fastrtps::rtps::WriterAttributes writer_attr;
-
-   // Set durability to TRANSIENT
-   writer_attr.endpoint.durabilityKind = TRANSIENT;
-
-   // Set persistence_guid
-   writer_attr.endpoint.persistence_guid.guidPrefix.value[11] = 1;
-   writer_attr.endpoint.persistence_guid.entityId = 0x12345678;
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //PERSISTENCE_CONF_WRITER
+    :end-before: //!--
 
 **Reader attributes**
 
-.. code-block:: c++
-
-   eprosima::fastrtps::rtps::ReaderAttributes reader_attr;
-
-   // Set durability to TRANSIENT
-   reader_attr.endpoint.durabilityKind = TRANSIENT;
-
-   // Set persistence_guid
-   reader_attr.endpoint.persistence_guid.guidPrefix.value[11] = 1;
-   reader_attr.endpoint.persistence_guid.entityId = 0x3456789A;
-
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //PERSISTENCE_CONF_READER
+    :end-before: //!--

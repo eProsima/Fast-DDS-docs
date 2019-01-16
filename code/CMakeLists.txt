@@ -31,12 +31,21 @@ project(fastrtps-doc-checker VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 ########################################################################################################################
 # Get documentation git branch
 ########################################################################################################################
-find_package(Git REQUIRED)
+set(ENV_FASTRTPS_BRANCH $ENV{FASTRTPS_BRANCH})
+set(FASTRTPS_BRANCH "" CACHE STRING "Fast RTPS repository branch against which test the source code.")
 
-execute_process(
-    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
-    RESULT_VARIABLE RESULT
-    OUTPUT_VARIABLE REPO_TAG)
+if(NOT "${ENV_FASTRTPS_BRANCH}" STREQUAL "")
+    set(REPO_TAG "${ENV_FASTRTPS_BRANCH}")
+elseif(NOT "${FASTRTPS_BRANCH}" STREQUAL "")
+    set(REPO_TAG "${FASTRTPS_BRANCH}")
+else()
+    find_package(Git REQUIRED)
+
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+        RESULT_VARIABLE RESULT
+        OUTPUT_VARIABLE REPO_TAG)
+endif()
 
 ########################################################################################################################
 # Download and compile product
@@ -53,7 +62,7 @@ set(PRODUCT_CMAKELIST_CONTENT "
         GIT_TAG  origin/${REPO_TAG}
         GIT_SHALLOW TRUE
         CMAKE_GENERATOR Ninja
-        CMAKE_ARGS -DEPROSIMA_BUILD=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \"-DCMAKE_INSTALL_PREFIX=${PROJECT_BINARY_DIR}/install\"
+        CMAKE_ARGS -DBUILD_SHARED_LIBS=OFF -DEPROSIMA_BUILD=ON -DSECURITY=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \"-DCMAKE_INSTALL_PREFIX=${PROJECT_BINARY_DIR}/install\"
         UPDATE_COMMAND \"\"
         )
     ")
@@ -77,6 +86,8 @@ find_package(fastrtps REQUIRED)
 # Compile example
 ########################################################################################################################
 add_executable(doctest CodeTester.cpp)
+target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/product/src/fastrtps/src
+    ${PROJECT_BINARY_DIR}/external/product/src/fastrtps/thirdparty/tinyxml2)
 target_link_libraries(doctest fastrtps)
 
 ########################################################################################################################
@@ -87,5 +98,14 @@ include(CTest)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTester.xml
     ${CMAKE_CURRENT_BINARY_DIR}/XMLTester.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/GovernanceTester.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/GovernanceTester.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/PermissionsTester.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/PermissionsTester.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/StaticTester.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/StaticTester.xml COPYONLY)
 
-add_test(NAME doctest COMMAND doctest XMLTester.xml)
+add_test(NAME xmltest COMMAND doctest XMLTester.xml)
+add_test(NAME governancetest COMMAND doctest GovernanceTester.xml)
+add_test(NAME permissionstest COMMAND doctest PermissionsTester.xml)
+add_test(NAME statictest COMMAND doctest StaticTester.xml)

@@ -32,7 +32,7 @@ project(fastrtps-doc-checker VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 # Get documentation git branch
 ########################################################################################################################
 set(ENV_FASTRTPS_BRANCH $ENV{FASTRTPS_BRANCH})
-set(FASTRTPS_BRANCH "" CACHE STRING "Fast RTPS repository branch agains test the source code.")
+set(FASTRTPS_BRANCH "" CACHE STRING "Fast RTPS repository branch against which test the source code.")
 
 if(NOT "${ENV_FASTRTPS_BRANCH}" STREQUAL "")
     set(REPO_TAG "${ENV_FASTRTPS_BRANCH}")

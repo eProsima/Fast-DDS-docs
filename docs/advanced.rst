@@ -36,7 +36,7 @@ Publishers and Subscribers using topics with keys must be configured to use them
 
 The RTPS Layer requires you to call the :func:`getKey()` method manually within your callbacks.
 
-You can tweak the History to accommodate data from multiples keys based on your current configuration.
+You can tweak the History to accommodate data from multiple keys based on your current configuration.
 This consist of defining a maximum number of data sinks and a maximum size for each sink:
 
 +--------------------------------------------------------+

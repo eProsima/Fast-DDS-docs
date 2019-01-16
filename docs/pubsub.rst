@@ -78,8 +78,8 @@ Incoming messages are processed within the callback that is called when a new me
 Configuration
 -------------
 
-*eProsima Fast RTPS* entities can be configured through the code or XML profiles. This section will show both
-alternatives.
+*eProsima Fast RTPS* entities can be configured through the code or XML profiles.
+This section will show both alternatives.
 
 .. _participantconfiguration:
 
@@ -94,14 +94,16 @@ The :class:`Participant` can be configured via the :class:`ParticipantAttributes
     :start-after: //PUBSUB_API_CONF_PARTICIPANT
     :end-before: //!--
 
-Also, it can be configured through an XML profile. ``createParticipant`` function accepts a name of an XML profile.
+Also, it can be configured through an XML profile.
+``createParticipant`` function accepts a name of an XML profile.
 
 .. literalinclude:: ../code/CodeTester.cpp
     :language: c++
     :start-after: //PUBSUB_API_CONF_PARTICIPANT_XML
     :end-before: //!--
 
-About XML profiles you can learn more in :ref:`xml-profiles`. This is an example of a participant XML profile.
+About XML profiles you can learn more in :ref:`xml-profiles`.
+This is an example of a participant XML profile.
 
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
@@ -392,7 +394,8 @@ When a message is taken from the Subscriber, an auxiliary :class:`SampleInfo_t` 
 
 This :class:`SampleInfo_t` structure contains meta-data on the incoming message:
 
-* `sampleKind`: type of the sample, as defined by the RTPS Standard. Healthy messages from a topic are always ALIVE.
+* `sampleKind`: type of the sample, as defined by the RTPS Standard.
+  Healthy messages from a topic are always ALIVE.
 * `WriterGUID`: Signature of the sender (Publisher) the message comes from.
 * `OwnershipStrength`: When several senders are writing the same data, this field can be used to determine which data is
   more reliable.

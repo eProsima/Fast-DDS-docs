@@ -31,8 +31,8 @@ However, it is still useful to know how Fast RTPS schedules work:
 
 * Main thread: Managed by the application.
 * Event thread: Each participant owns one of these, and it processes periodic and triggered events.
-* Asynchronous writer thread: This thread manages asynchronous writes for all participants. Even for synchronous
-  writers, some forms of communication must be initiated in the background.
+* Asynchronous writer thread: This thread manages asynchronous writes for all participants.
+  Even for synchronous writers, some forms of communication must be initiated in the background.
 * Reception threads: Participants spawn a thread for each reception channel, where the concept of a channel depends on
   the transport layer (e.g. a UDP port).
 

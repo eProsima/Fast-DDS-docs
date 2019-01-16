@@ -13,7 +13,8 @@ language-independent way, enabling communication between software components tha
 
 eProsima FASTRTPSGEN is a tool that reads IDL files and parses a subset of the OMG IDL specification to generate
 serialization source code.
-This subset includes the data type descriptions included in :ref:`idl-types`. The rest of the file content is ignored.
+This subset includes the data type descriptions included in :ref:`idl-types`.
+The rest of the file content is ignored.
 
 eProsima FASTRTPSGEN generated source code uses `Fast CDR <https://github.com/eProsima/Fast-CDR>`_: a C++11 library that
 provides a serialization mechanism.

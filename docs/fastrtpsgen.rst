@@ -46,5 +46,5 @@ Where to find *fastrtpsgen*
 ---------------------------
 
 If you are using the binary distribution of *eProsima Fast RTPS*, *fastrtpsgen* is already provided for you.
-If you are building from sources, you have to compile *fastrtpsgen*. You can find instructions in section
-:ref:`installation-from-sources`.
+If you are building from sources, you have to compile *fastrtpsgen*.
+You can find instructions in section :ref:`installation-from-sources`.

@@ -84,10 +84,9 @@ values and making the code harder to debug.
 
 **Dynamic PubSubType**
 
-A class that inherits from ``TopicDataType`` and works as an intermediary between RTPS
-Domain and the Dynamic Types. It implements the methods needed to create, serialize,
-deserialize and delete ``DynamicData`` instances when the participants need to convert the
-received information from any transport to the registered dynamic type.
+A class that inherits from ``TopicDataType`` and works as an intermediary between RTPS Domain and the Dynamic Types.
+It implements the methods needed to create, serialize, deserialize and delete ``DynamicData`` instances when the
+participants need to convert the received information from any transport to the registered dynamic type.
 
 
 Supported Types

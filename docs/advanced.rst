@@ -698,6 +698,6 @@ comes bundled with a set of examples of how to implement common client-wise QoS 
 These examples come with their own `Readme.txt` that explains how the implementations work.
 
 
-This marks the end of this document. We recommend you to take a look at the Doxygen API reference and the embedded
-examples that come with the distribution.
+This marks the end of this document.
+We recommend you to take a look at the Doxygen API reference and the embedded examples that come with the distribution.
 If you need more help, send us an email to `support@eprosima.com`.

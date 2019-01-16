@@ -480,8 +480,7 @@ It is useful when you have a limited network bandwidth and a well-known schema o
 Instead of receiving entities information for matching, this information is loaded from an XML file.
 
 First of all, you have to disable the Endpoints Discovery Phase and enable the Static Endpoints Discovery.
-This can be done
-from the participant attributes.
+This can be done from the participant attributes.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++

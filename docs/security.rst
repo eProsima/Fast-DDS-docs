@@ -10,8 +10,9 @@ Security
 Fast RTPS can be configured to provide secure communications. For this purpose, Fast RTPS implements pluggable security
 at three levels: authentication of remote participants, access control of entities and encryption of data.
 
-By default, Fast RTPS doesn't compile security support. You can activate it adding ``-DSECURITY=ON`` at CMake
-configuration step. For more information about Fast RTPS compilation, see :ref:`installation-from-sources`.
+By default, Fast RTPS doesn't compile security support.
+You can activate it adding ``-DSECURITY=ON`` at CMake configuration step.
+For more information about Fast RTPS compilation, see :ref:`installation-from-sources`.
 
 You can activate and configure security plugins through :class:`eprosima::fastrtps::Participant` attributes using
 properties.
@@ -94,8 +95,8 @@ Auth:PKI-DH
 
 This built-in plugin provides authentication between discovered participants.
 It is supplied by a trusted *Certificate Authority* (CA) and uses ECDSA Digital Signature Algorithms to perform the
-mutual authentication. It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement
-Methods.
+mutual authentication.
+It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement Methods.
 This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm-gmac`.
 
 You can activate this plugin using Participant property ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.

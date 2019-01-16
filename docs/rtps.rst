@@ -66,8 +66,8 @@ They also need a :class:`WriterHistory` which is configured with a :class:`Histo
     :start-after: //RTPS_API_WRITER_CONF_HISTORY
     :end-before: //!--
 
-The creation of a Reader is similar. Note that in this case, you can provide a :class:`ReaderListener` instance that
-implements your callbacks:
+The creation of a Reader is similar.
+Note that in this case, you can provide a :class:`ReaderListener` instance that implements your callbacks:
 
 .. literalinclude:: ../code/CodeTester.cpp
     :language: c++
@@ -94,7 +94,8 @@ A callback that returns the maximum number of payload bytes is required:
     :end-before: //!--
 
 If your topic data type has several fields, you will have to provide functions to serialize and deserialize
-your data in and out of the :class:`CacheChange_t`. *FastRTPSGen* does this for you.
+your data in and out of the :class:`CacheChange_t`.
+*FastRTPSGen* does this for you.
 
 You can receive data from within a :class:`ReaderListener` callback method as we did in the Publisher-Subscriber Layer:
 

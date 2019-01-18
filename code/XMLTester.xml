@@ -124,7 +124,9 @@
 <publisher profile_name="publisher_xml_conf_unicast_locators_profile">
     <unicastLocatorList>
         <locator>
-            <port>7800</port>
+            <udpv4>
+                <port>7800</port>
+            </udpv4>
         </locator>
     </unicastLocatorList>
 </publisher>
@@ -132,7 +134,9 @@
 <subscriber profile_name="subscriber_xml_conf_unicast_locators_profile">
     <unicastLocatorList>
         <locator>
-            <port>7800</port>
+            <udpv4>
+                <port>7800</port>
+            </udpv4>
         </locator>
     </unicastLocatorList>
 </subscriber>
@@ -142,8 +146,10 @@
 <publisher profile_name="publisher_xml_conf_multicast_locators_profile">
     <multicastLocatorList>
         <locator>
-            <address>239.255.0.4</address>
-            <port>7900</port>
+            <udpv4>
+                <address>239.255.0.4</address>
+                <port>7900</port>
+            </udpv4>
         </locator>
     </multicastLocatorList>
 </publisher>
@@ -151,8 +157,10 @@
 <subscriber profile_name="subscriber_xml_conf_multicast_locators_profile">
     <multicastLocatorList>
         <locator>
-            <address>239.255.0.4</address>
-            <port>7900</port>
+            <udpv4>
+                <address>239.255.0.4</address>
+                <port>7900</port>
+            </udpv4>
         </locator>
     </multicastLocatorList>
 </subscriber>
@@ -950,13 +958,13 @@
 <!--
 <durabilityService>
     <service_cleanup_delay>
-        <!-- DURATION
+        <!- DURATION
     </service_cleanup_delay>
-    <history_kind>KEEP_LAST</history_kind> <!-- string
-    <history_depth></history_depth> <!-- unint32
-    <max_samples></max_samples> <!-- unint32
-    <max_instances></max_instances> <!-- unint32
-    <max_samples_per_instance></max_samples_per_instance> <!-- unint32
+    <history_kind>KEEP_LAST</history_kind> <!- string
+    <history_depth></history_depth> <!- unint32
+    <max_samples></max_samples> <!- unint32
+    <max_instances></max_instances> <!- unint32
+    <max_samples_per_instance></max_samples_per_instance> <!- unint32
 </durabilityService>
 -->
 <!--><-->
@@ -1062,8 +1070,8 @@
                 <!-- Primitives & basic -->
                 <member name="my_bool" type="boolean"/>
                 <member name="my_byte" type="byte"/>
-                <member name="my_char" type="char"/>
-                <member name="my_wchar" type="wchar"/>
+                <member name="my_char" type="char8"/>
+                <member name="my_wchar" type="char16"/>
                 <member name="my_short" type="int16"/>
                 <member name="my_long" type="int32"/>
                 <member name="my_longlong" type="int64"/>
@@ -1079,22 +1087,16 @@
                 <member name="my_boundedWString" type="wstring" stringMaxLength="41925"/>
 
                 <!-- long long_array[2][3][4]; -->
-                <long name="long_array" dimensions="2,3,4" type="int32"/>
-
-                <!-- sequence<sequence<long,2>,3> my_sequence_sequence; -->
-                <typedef name="my_sequence_inner" type="int32" sequenceMaxLength="2"/>
-
-                <sequence name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="my_sequence_inner" sequenceMaxLength="3"/>
+                <member name="long_array" arrayDimensions="2,3,4" type="int32"/>
 
                 <!-- map<long,map<long,long,2>,2> my_map_map; -->
+                <!-->
                 <typdefe name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
+                <-->
                 <member name="my_map_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
 
                 <!-- Complex types -->
-                <struct name="OtherStruct">
-                    <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-                    <member name="my_struct" type="nonBasic" nonBasicTypeName="MyStruct" arrayDimensions="5"/>
-                </struct>
+                <member name="my_other_struct" type="nonBasic" nonBasicTypeName="OtherStruct"/>
             </struct>
         </type>
     </types>

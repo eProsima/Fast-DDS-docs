@@ -270,7 +270,7 @@ Member types are any type that can belong to a ``<struct>`` or a ``<union>``, or
 
 **Basic types**
 
-The indentifiers of the available basic types are:
+The identifiers of the available basic types are:
 
 +------------------------+------------------------+------------------------+
 | ``boolean``            | ``int64``              | ``float128``           |
@@ -341,7 +341,8 @@ Example:
 |                                               |                                                     |
 +-----------------------------------------------+-----------------------------------------------------+
 
-The example shows a sequence with ``sequenceMaxLength`` ``3`` of sequences with ``sequenceMaxLength`` ``2`` with ``<int32>`` contents.
+The example shows a sequence with ``sequenceMaxLength`` ``3`` of sequences with ``sequenceMaxLength`` ``2``
+with ``<int32>`` contents.
 As IDL would be:
 
 .. code-block:: c
@@ -808,62 +809,28 @@ The locator kind is defined by its own tag and can take the values ``<udpv4>``, 
     :start-after: <!-->XML-LOCATOR-LIST<-->
     :end-before: <!--><-->
 
-In this example, there are three different locators in ``<defaultUnicastLocatorList>``.
+In this example, there are one locator of each kind in ``<defaultUnicastLocatorList>``.
 
-Let's see each Locator's fields in detail:
+Let's see each possible Locator's field in detail:
 
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| Name               | Description                          | Values                          | Default          |
-+====================+======================================+=================================+==================+
-| ``<kind>``         | Locator's kind.                      | :class:`UDPv4`, :class:`UDPv6`, | :class:`UDPv4`   |
-|                    |                                      | :class:`TCPv4`, :class:`TCPv6`  |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<port>``         | Physical port number                 | ``Uint32``                      | 0                |
-|                    | of the locator.                      |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<port_>``        | It allows to access low-level        | :ref:`TCP Ports <tcpports>`     |                  |
-|                    | TCP port details.                    |                                 |                  |
-|                    | It is detailed in                    |                                 |                  |
-|                    | :ref:`TCP Ports <tcpports>`          |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<address>``      | IPv4 address of the                  | ``string`` with IPv4 Format     | :class:`0.0.0.0` |
-|                    | locator                              |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<addresses_>``   | It allows managing low-level details | :ref:`TCP Addresses <tcpaddrs>` |                  |
-|                    | in address of TCPv4 locators.        |                                 |                  |
-|                    | It is detailed in                    |                                 |                  |
-|                    | :ref:`TCP Addresses <tcpaddrs>`      |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<ipv6_address>`` | IPv6 address of the                  | ``string`` with IPv6 Format     | :class:`::`      |
-|                    | locator                              |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-
-.. _tcpports:
-
-**TCP Ports**
-
-+---------------------+--------------------+------------+---------+
-| Name                | Description        | Values     | Default |
-+=====================+====================+============+=========+
-| ``<physical_port>`` | TCP port.          | ``UInt16`` | 0       |
-+---------------------+--------------------+------------+---------+
-| ``<logical_port>``  | RTPS logical port. | ``UInt16`` | 0       |
-+---------------------+--------------------+------------+---------+
-
-.. _tcpaddrs:
-
-**TCP Addresses**
-
-+---------------------+---------------------------------+-----------------------------+------------------+
-| Name                | Description                     | Values                      | Default          |
-+=====================+=================================+=============================+==================+
-| ``<unique_lan_id>`` | The LAN ID uniquely identifies  | ``string`` (16 bytes)       |                  |
-|                     | the LAN the locator belongs to. |                             |                  |
-+---------------------+---------------------------------+-----------------------------+------------------+
-| ``<wan_address>``   | WAN IPv4 address.               | ``string`` with IPv4 Format | :class:`0.0.0.0` |
-+---------------------+---------------------------------+-----------------------------+------------------+
-| ``<ip_address>``    | WAN IPv4 address.               | ``string`` with IPv4 Format | :class:`0.0.0.0` |
-+---------------------+---------------------------------+-----------------------------+------------------+
++---------------------+----------------------------------+----------------------------------+------------------+
+| Name                | Description                      | Values                           | Default          |
++=====================+==================================+==================================+==================+
+| ``<port>``          | RTPS port number of the locator. | ``Uint32``                       | 0                |
+|                     | *Physical port* in UDP,          |                                  |                  |
+|                     | *logical port* in TCP.           |                                  |                  |
++---------------------+----------------------------------+----------------------------------+------------------+
+| ``<physical_port>`` | TCP's *physical port*.           | ``Uint32``                       | 0                |
++---------------------+----------------------------------+----------------------------------+------------------+
+| ``<address>``       | IP address of the locator.       | ``string`` with expected format  | ""               |
++---------------------+----------------------------------+----------------------------------+------------------+
+| ``<unique_lan_id>`` | The LAN ID uniquely identifies   | ``string`` (16 bytes)            |                  |
+|                     | the LAN the locator belongs to   |                                  |                  |
+|                     | (**TCPv4 only**).                |                                  |                  |
++---------------------+----------------------------------+----------------------------------+------------------+
+| ``<wan_address>``   | WAN IPv4 address                 | ``string`` with IPv4 Format      | :class:`0.0.0.0` |
+|                     | (**TCPv4 only**).                |                                  |                  |
++---------------------+----------------------------------+----------------------------------+------------------+
 
 
 .. _PropertiesPolicyType:

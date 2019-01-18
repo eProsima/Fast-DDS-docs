@@ -5,8 +5,10 @@ Getting Started
 A brief introduction to the RTPS protocol
 -----------------------------------------
 
-At the top of RTPS, we find the Domain, which defines a separate plane of communication. Several domains can coexist at
-the same time independently. A domain contains any number of Participants, elements capable of sending and receiving data. To do this, the participants use their Endpoints:
+At the top of RTPS, we find the Domain, which defines a separate plane of communication.
+Several domains can coexist at the same time independently.
+A domain contains any number of Participants, elements capable of sending and receiving data.
+To do this, the participants use their Endpoints:
 
 * Reader: Endpoint able to receive data.
 * Writer: Endpoint able to send data.
@@ -15,8 +17,11 @@ A Participant can have any number of writer and reader endpoints.
 
 .. image:: RTPS-structure.png
 
-Communication revolves around Topics, which define the data being exchanged. Topics don’t belong to any participant in particular; instead, all interested participants keep track of changes to the topic data and make sure to keep each other up to date.
-The unit of communication is called a Change, which represents an update to a topic. Endpoints register these changes on their History, a data structure that serves as a cache for recent changes.
+Communication revolves around Topics, which define the data being exchanged.
+Topics don’t belong to any participant in particular; instead, all interested participants keep track of changes to the
+topic data and make sure to keep each other up to date.
+The unit of communication is called a Change, which represents an update to a topic.
+Endpoints register these changes on their History, a data structure that serves as a cache for recent changes.
 When you publish a change through a writer endpoint, the following steps happen behind the scenes:
 
 * The change is added to the writer’s history cache.
@@ -51,7 +56,8 @@ fastrtpsgen (see :ref:`fastrtpsgen-intro`), which can do two different things:
 * Generate C++ definitions for your custom topic.
 * Optionally, generate a working example that uses your topic data.
 
-You may want to check out the fastrtpsgen user manual, which comes with the distribution of the library. But for now, the following commands will do:
+You may want to check out the fastrtpsgen user manual, which comes with the distribution of the library.
+But for now, the following commands will do:
 
 On Linux: ::
 
@@ -95,10 +101,10 @@ message is equally received on all listening nodes.
 
 You can modify any values on your custom, IDL-generated data type before sending.
 
-.. code-block:: c++
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //PUBSUB_API_WRITE_SAMPLE
+   :end-before: //!
 
-        HelloWorld myHelloWorld;
-        myHelloWorld.msg("HelloWorld");
-        mp_publisher->write((void*)&myHelloWorld);
-
-Take a look at the `examples/` folder for ideas on how to improve this basic application through different configuration options, and for examples of advanced Fast RTPS features.
+Take a look at the `examples/` folder for ideas on how to improve this basic application through different configuration
+options, and for examples of advanced Fast RTPS features.

@@ -36,7 +36,8 @@ Publishers and Subscribers using topics with keys must be configured to use them
 
 The RTPS Layer requires you to call the :func:`getKey()` method manually within your callbacks.
 
-You can tweak the History to accommodate data from multiples keys based on your current configuration. This consist of defining a maximum number of data sinks and a maximum size for each sink:
+You can tweak the History to accommodate data from multiple keys based on your current configuration.
+This consist of defining a maximum number of data sinks and a maximum size for each sink:
 
 +--------------------------------------------------------+
 | **C++**                                                |
@@ -54,7 +55,8 @@ You can tweak the History to accommodate data from multiples keys based on your 
 |    :end-before: <!--><-->                              |
 +--------------------------------------------------------+
 
-Note that your History must be big enough to accommodate the maximum number of samples for each key. eProsima Fast RTPS will notify you if your History is too small.
+Note that your History must be big enough to accommodate the maximum number of samples for each key.
+eProsima Fast RTPS will notify you if your History is too small.
 
 .. _comm-transports-configuration:
 
@@ -112,7 +114,8 @@ The transport must be added in the ``userTransports`` list of the participant at
 |    :end-before: <!--><-->                        |
 +--------------------------------------------------+
 
-To configure the participant to connect to another node through TCP, you must configure add Locator to its ``initialPeersList`` that points to the remote *listening port*.
+To configure the participant to connect to another node through TCP, you must add a Locator to its
+``initialPeersList`` that points to the remote *listening port*.
 
 +---------------------------------------------------+
 | **C++**                                           |
@@ -133,7 +136,7 @@ To configure the participant to connect to another node through TCP, you must co
 Both examples can be combined to configure our participant being able to receive incoming connections through port 5100
 and trying to connect to another participant at 192.168.1.55:5100.
 
-Also, a TCP version of helloworld example can be found in this `link <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
+Also, a TCP version of Hello-World example can be found in this `link <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
 
 **IPLocator**
 
@@ -169,8 +172,8 @@ Listening locators
       :end-before: //!--
 
 * Metatraffic Unicast Locators: these locators are used to receive metatraffic information using unicast.
-  They usually are used by built-in endpoints, like the discovery of built-in endpoints. You can set your own locators using
-  attribute ``rtps.builtin.metatrafficUnicastLocatorList``.
+  They usually are used by built-in endpoints, like the discovery of built-in endpoints.
+  You can set your own locators using attribute ``rtps.builtin.metatrafficUnicastLocatorList``.
 
   .. literalinclude:: ../code/CodeTester.cpp
       :language: c++
@@ -212,10 +215,14 @@ well-known ports. These well-known ports are calculated using the following pred
 
 These predefined rules use some values explained here:
 
-* DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``. The default value is ``250``.
-* PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``. The default value is ``2``.
-* PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``. The default value is ``7400``.
-* offsetd0, offsetd1, offsetd2, offsetd3: Additional offsets. You can set these values using attributes
+* DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``.
+  The default value is ``250``.
+* PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``.
+  The default value is ``2``.
+* PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``.
+  The default value is ``7400``.
+* offsetd0, offsetd1, offsetd2, offsetd3: Additional offsets.
+  You can set these values using attributes
   ``rtps.port.offsetdN``. Default values are: ``offsetd0 = 0``, ``offsetd1 = 10``, ``offsetd2 = 1``, ``offsetd3 = 11``.
 
 Both UDP and TCP unicast locators support to have a null address.
@@ -243,9 +250,10 @@ Multicast Locators.
 Whitelist Interfaces
 ====================
 
-There could be situations where you want to block some network interfaces to avoid connections or sending data through them.
-This can be managed using the field *interface whitelist* in the transport descriptors,
-and with them, you can set the interfaces you want to use to send or receive packets.
+There could be situations where you want to block some network interfaces to avoid connections or sending data through
+them.
+This can be managed using the field *interface whitelist* in the transport descriptors, and with them, you can set the
+interfaces you want to use to send or receive packets.
 The values on this list should match the IPs of your machine in that networks.
 For example:
 
@@ -325,18 +333,18 @@ or Publisher Attributes.
 In the Writer-Reader layer, the throughput controller is built-in and the descriptor defaults to infinite throughput.
 To change the values:
 
-.. code-block:: c++
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //CONF_QOS_RTPS_FLOWCONTROLLER
+   :end-before: //!
 
-    WriterAttributes WParams;
-    WParams.throughputController.size = 300000; //300kb
-    WParams.throughputController.timeMS = 1000; //1000ms
-
-Note that specifying a throughput controller with a size smaller than the socket size can cause messages to never become sent.
+Note that specifying a throughput controller with a size smaller than the socket size can cause messages to never become
+sent.
 
 Sending large data
 ******************
 
-The default message size *eProsima Fast RTPS* uses is a conservative value of 65kb.
+The default message size *eProsima Fast RTPS* uses is a conservative value of 65Kb.
 If your topic data is bigger, it must be fragmented.
 
 Fragmented messages are sent over multiple packets, as understood by the particular transport layer.
@@ -360,10 +368,10 @@ To make this possible, you must configure the Publisher to work in asynchronous 
 
 In the Writer-Subscriber layer, you have to configure the Writer:
 
-.. code-block:: c++
-
-    WriterAttributes Wparam;
-    Wparam.mode = ASYNCHRONOUS_WRITER;    // Allows fragmentation
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //CONF_QOS_RTPS_PUBLISHMODE
+   :end-before: //!
 
 Note that in best-effort mode messages can be lost if you send big data too fast and the buffer is filled at a faster
 rate than what the client can process messages.
@@ -379,19 +387,30 @@ See :ref:`flow-controllers`
 Example: Sending a unique large file
 ====================================
 
-This is a proposed example of how should the user configure its application in order to achieve the best performance. To make this example more tangible, it is going to be supposed that the file has a size of 9.9MB and the network in which the publisher and the subscriber are operating has a bandwidth of 100MB/s
+This is a proposed example of how should the user configure its application in order to achieve the best performance.
+To make this example more tangible, it is going to be supposed that the file has a size of 9.9MB and the network in
+which the publisher and the subscriber are operating has a bandwidth of 100MB/s
 
-First of all, the asynchronous mode has to be activated in the publisher parameters. Then, a suitable reliability mode has to be selected. In this case, it is important to make sure that all fragments of the message are received. The loss of a fragment means the loss of the entire message, so it would be best to choose the reliable mode.
+First of all, the asynchronous mode has to be activated in the publisher parameters.
+Then, a suitable reliability mode has to be selected.
+In this case, it is important to make sure that all fragments of the message are received.
+The loss of a fragment means the loss of the entire message, so it would be best to choose the reliable mode.
 
-The default message size of this fragments using the UDPv4 transport has a value of 65kb (which includes the space
+The default message size of this fragments using the UDPv4 transport has a value of 65Kb (which includes the space
 reserved for the data and the message header).
 This means that the publisher would have to write at least about 1100 fragments.
 
-This amount of fragment could slow down the transmission, so it could be interesting to decrease the heartbeat period in order to increase the reactivity of the publisher.
+This amount of fragment could slow down the transmission, so it could be interesting to decrease the heartbeat period
+in order to increase the reactivity of the publisher.
 
-Another important consideration is the addition of a flow controller. Without a flow controller, the publisher can occupy the entire bandwidth. A reasonable flow controller for this application could be a limit of 5MB/s, which represents only 5% of the total bandwidth. Anyway, these values are highly dependent on the specific application and its desired behaviour.
+Another important consideration is the addition of a flow controller.
+Without a flow controller, the publisher can occupy the entire bandwidth.
+A reasonable flow controller for this application could be a limit of 5MB/s, which represents only 5% of the total
+bandwidth.
+Anyway, these values are highly dependent on the specific application and its desired behavior.
 
-At last, there is another detail to have in mind: it is critical to check the size of the system UDP buffers. In Linux, buffers can be enlarged with
+At last, there is another detail to have in mind: it is critical to check the size of the system UDP buffers.
+In Linux, buffers can be enlarged with
 
 .. code-block:: bash
 
@@ -404,11 +423,16 @@ At last, there is another detail to have in mind: it is critical to check the si
 Example: Video streaming
 ========================
 
-In this example, the target application transmits video between a publisher and a subscriber. This video will have a resolution of 640x480 and a frequency of 50fps.
+In this example, the target application transmits video between a publisher and a subscriber.
+This video will have a resolution of 640x480 and a frequency of 50fps.
 
-As in the previous example, since the application is sending data that requires fragmentation, the asynchronous mode has to be activated in the publisher parameters.
+As in the previous example, since the application is sending data that requires fragmentation, the asynchronous mode
+has to be activated in the publisher parameters.
 
-In audio or video transmissions, sometimes is better to have a stable and high datarate feed than a 100% lossless communication. Working with a frequency of 50hz makes insignificant the loss of one or two samples each second. Thus, for a higher performance, it can be appropriate to configure the reliability mode to best-effort.
+In audio or video transmissions, sometimes is better to have a stable and high datarate feed than a 100% lossless
+communication.
+Working with a frequency of 50Hz makes insignificant the loss of one or two samples each second.
+Thus, for a higher performance, it can be appropriate to configure the reliability mode to best-effort.
 
 
 .. _discovery:
@@ -416,16 +440,19 @@ In audio or video transmissions, sometimes is better to have a stable and high d
 Discovery
 *********
 
-Fast RTPS provides a discovery mechanism that allows matching automatically publishers and subscribers. The discovery mechanism is divided into two phases: Participant Discovery Phase and Endpoints Discovery Phase.
+Fast RTPS provides a discovery mechanism that allows matching automatically publishers and subscribers.
+The discovery mechanism is divided into two phases: Participant Discovery Phase and Endpoints Discovery Phase.
 
 * Participant Discovery Phase (PDP)
-    Before discovering any entity of a remote participant, both participants have to meet between them. Participant Discovery
-    Phase provides this step and is responsible for sending periodic information about itself. To know how to configure where to send this periodic information, see :ref:`initial-peers`. When both participants are met, is the turn of Endpoints
-    Discovery Phase.
+    Before discovering any entity of a remote participant, both participants have to meet between them.
+    Participant Discovery Phase provides this step and is responsible for sending periodic information about itself.
+    To know how to configure where to send this periodic information, see :ref:`initial-peers`.
+    When both participants are met, is the turn of Endpoints Discovery Phase.
 
 * Endpoints Discovery Phase (EDP)
-    This phase is responsible for sending entities information to the remote participant. Also, it has to process the
-    entities information of the remote participant and check which entities can match between them.
+    This phase is responsible for sending entities information to the remote participant.
+    Also, it has to process the entities information of the remote participant and check which entities can match
+    between them.
 
 By default, the discovery mechanism is enabled, but you can disable it through participant attributes.
 
@@ -448,61 +475,46 @@ By default, the discovery mechanism is enabled, but you can disable it through p
 Static Endpoints Discovery
 ==========================
 
-Endpoints Discovery Phase can be replaced by a static version that doesn't send any information. It is useful when
-you have a limited network bandwidth and a well-known schema of publishers and subscribers. Instead of receiving entities
-information for matching, this information is loaded from an XML file.
+Endpoints Discovery Phase can be replaced by a static version that doesn't send any information.
+It is useful when you have a limited network bandwidth and a well-known schema of publishers and subscribers.
+Instead of receiving entities information for matching, this information is loaded from an XML file.
 
-First of all, you have to disable the Endpoints Discovery Phase and enable the Static Endpoints Discovery. This can be done
-from the participant attributes.
+First of all, you have to disable the Endpoints Discovery Phase and enable the Static Endpoints Discovery.
+This can be done from the participant attributes.
 
-.. code-block:: c++
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //CONF_QOS_STATIC_DISCOVERY_CODE
+   :end-before: //!
 
-    ParticipantAttributes participant_attr;
-    participant_attr.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
-    participant_attr.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
+Then, you will need to load the XML file containing the configuration of the remote participant.
+So, for example, if there is a remote participant with a subscriber which is waiting to receive samples from your
+publisher, you will need to load the configuration of this remote participant.
 
-Then, you will need to load the XML file containing the configuration of the remote participant. So, for example, if there
-is a remote participant with a subscriber which is waiting to receive samples from your publisher, you will need to load
-the configuration of this remote participant.
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //CONF_QOS_STATIC_DISCOVERY_XML
+   :end-before: //!
 
-.. code-block:: c++
+A basic XML configuration file for this remote participant would contain information like the name of the remote
+participant, the topic name and data type of the subscriber, and its entity and user-defined ID.
+All these values have to exactly match the parameter values used to configure the remote participant (through the
+class :class:`ParticipantAttributes`) and its subscriber (through the class :class:`SubscriberAttributes`).
+Missing elements will acquire default values. For example:
 
-    participant_attr.rtps.builtin.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
-
-A basic XML configuration file for this remote participant would contain information like the name of the remote participant, the topic name and
-data type of the subscriber, and its entity and user-defined ID. All these values have to exactly match the parameter
-values used to configure the remote participant (through the class :class:`ParticipantAttributes`) and its subscriber (through
-the class :class:`SubscriberAttributes`). Missing elements will acquire default values. For example:
-
-.. code-block:: xml
-
-    <staticdiscovery>
-        <participant>
-            <name>HelloWorldSubscriber</name>
-            <reader>
-                <userId>3</userId>
-                <entityId>4</userId>
-                <topicName>HelloWorldTopic</topicName>
-                <topicDataType>HelloWorld</topicDataType>
-            </reader>
-        </participant>
-    </staticdiscovery>
+.. literalinclude:: ../code/StaticTester.xml
+   :language: xml
+   :start-after: <!-->STATIC_DISCOVERY_CONF<-->
+   :end-before: <!--><-->
+   :lines: 1-10,20
 
 The XML that configures the participant on the other side (in this case, a subscriber) could look like this:
 
-.. code-block:: xml
-
-    <staticdiscovery>
-        <participant>
-            <name>HelloWorldPublisher</name>
-            <writer>
-                <userId>1</userId>
-                <entityId>2</userId>
-                <topicName>HelloWorldTopic</topicName>
-                <topicDataType>HelloWorld</topicDataType>
-            </writer>
-        </participant>
-    </staticdiscovery>
+.. literalinclude:: ../code/StaticTester.xml
+   :language: xml
+   :start-after: <!-->STATIC_DISCOVERY_CONF<-->
+   :end-before: <!--><-->
+   :lines: 1,11-20
 
 You can find an example that uses `Static Endpoint Discovery <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_.
 
@@ -516,22 +528,22 @@ The full list of fields for readers and writers includes the following parameter
 * **topicKind**: *NO_KEY* or *WITH_KEY*.
 * **reliabilityQos**: *BEST_EFFORT_RELIABILITY_QOS* or *RELIABLE_RELIABILITY_QOS*.
 * **unicastLocator**
-    - address: text value.
-    - port: numeric value.
+    - `address`: text value.
+    - `port`: numeric value.
 * **multicastLocator**
-    - address: text value.
-    - port: numeric value.
+    - `address`: text value.
+    - `port`: numeric value.
 * **topic**
-    - name: text value.
-    - data type: text value.
-    - kind: text value.
+    - `name`: text value.
+    - `data type`: text value.
+    - `kind`: text value.
 * **durabilityQos**: *VOLATILE_DURABILITY_QOS*, *TRANSIENT_LOCAL_DURABILITY_QOS* or *TRANSIENT_DURABILITY_QOS*.
 * **ownershipQos**
-    - kind: *SHARED_OWNERSHIP_QOS* or *EXCLUSIVE_OWNERSHIP_QOS*.
+    - `kind`: *SHARED_OWNERSHIP_QOS* or *EXCLUSIVE_OWNERSHIP_QOS*.
 * **partitionQos**: text value.
 * **livelinessQos**
-    - kind: *AUTOMATIC_LIVELINESS_QOS*, *MANUAL_BY_PARTICIPANT_LIVELINESS_QOS* or *MANUAL_BY_TOPIC_LIVELINESS_QOS*.
-    - leaseDuration_ms: numeric value.
+    - `kind`: *AUTOMATIC_LIVELINESS_QOS*, *MANUAL_BY_PARTICIPANT_LIVELINESS_QOS* or *MANUAL_BY_TOPIC_LIVELINESS_QOS*.
+    - `leaseDuration_ms`: numeric value.
 
 
 Subscribing to Discovery Topics
@@ -539,7 +551,8 @@ Subscribing to Discovery Topics
 
 As specified in the :ref:`discovery` section, the Participant or RTPS Participant has a series of meta-data endpoints
 for use during the discovery process.
-The participant listener interface includes methods which are called each time a Publisher or a Subscriber is discovered.
+The participant listener interface includes methods which are called each time a Publisher or a Subscriber is
+discovered.
 This allows you to create your own network analysis tools.
 
 +--------------------------------------------------+
@@ -640,19 +653,17 @@ RTPS protocol can detect which samples are lost and re-sent them again.
 You can modify the frequency these special submessages are exchanged by specifying a custom heartbeat period.
 The heartbeat period in the Publisher-Subscriber level is configured as part of the :class:`ParticipantAttributes`:
 
-.. code-block:: c++
-
-    PublisherAttributes pubAttr;
-    pubAttr.times.heartbeatPeriod.seconds = 0;
-    pubAttr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //CONF_QOS_TUNING_RELIABLE_PUBLISHER
+   :end-before: //!--
 
 In the Writer-Reader layer, this belongs to the :class:`WriterAttributes`:
 
-.. code-block:: c++
-
-    WriterAttributes Wattr;
-    Wattr.times.heartbeatPeriod.seconds = 0;
-    Wattr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //CONF_QOS_TUNING_RELIABLE_WRITER
+   :end-before: //!--
 
 A smaller heartbeat period increases the number of overhead messages in the network,
 but speeds up the system response when a piece of data is lost.
@@ -660,10 +671,11 @@ but speeds up the system response when a piece of data is lost.
 Non-strict reliability
 ----------------------
 
-Using a strict reliability, configuring :ref:`history-qos` kind as ``KEEP_ALL``, determinates all samples have to be
+Using a strict reliability, configuring :ref:`history-qos` kind as ``KEEP_ALL``, determines all samples have to be
 received by all subscribers.
 This implicates a performance decrease in case a lot of samples are dropped.
-If you don't need this strictness, use a non-strict reliability, i.e. configure :ref:`history-qos` kind as ``KEEP_LAST``.
+If you don't need this strictness, use a non-strict reliability, i.e. configure :ref:`history-qos` kind as
+``KEEP_LAST``.
 
 Slow down sample rate
 =====================
@@ -679,14 +691,11 @@ As a user, you can implement your own quality of service (QoS) restrictions in y
 comes bundled with a set of examples of how to implement common client-wise QoS settings:
 
 * Deadline: Rise an alarm when the frequency of message arrival for a topic falls below a certain threshold.
-* Ownership Strength: When multiple data sources come online, filter duplicates by focusing on the higher priority sources.
+* Ownership Strength: When multiple data sources come online, filter duplicates by focusing on the higher priority
+  sources.
 * Filtering: Filter incoming messages based on content, time, or both.
 
 These examples come with their own `Readme.txt` that explains how the implementations work.
-
-
-This marks the end of this document. We recommend you to take a look at the Doxygen API reference and
-the embedded examples that come with the distribution. If you need more help, send us an email to `support@eprosima.com`.
 
 Logging
 *******
@@ -699,26 +708,25 @@ Fast RTPS includes an extensible logging system with the following class hierarc
 :class:`Log` is the entry point of the Logging system.
 It exposes three macro definitions to ease its usage:
 
-.. code-block:: c++
-
-    logInfo(INFO_MSG, "This is an info message");
-    logWarning(WARN_MSG, "This is a warning message");
-    logError(ERROR_MSG, "This is an error message");
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //LOG_USAGE_PRINT
+    :end-before: //!--
 
 In all cases, :class:`INFO_MSG`, :class:`WARN_MSG` and :class:`ERROR_MSG` will be used as category for the log entry as
 a preprocessor string, so you can use define any category inline.
 
-.. code-block:: c++
-
-    logInfo(NEW_CATEGORY, "This log message belong to NEW_CATEGORY category.");
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //LOG_USAGE_INFO
+    :end-before: //!--
 
 You can control the verbosity of the log system and filter it by category:
 
-.. code-block:: c++
-
-    Log::SetVerbosity(Log::Kind::Warning);
-    std::regex my_regex("NEW_CATEGORY");
-    Log::SetCategoryFilter(my_regex);
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //LOG_USAGE_VERBOSITY
+    :end-before: //!--
 
 The possible verbosity levels are :class:`Log::Kind::Info`, :class:`Log::Kind::Warning` and :class:`Log::Kind::Error`.
 
@@ -735,22 +743,10 @@ By default, the verbosity is set to :class:`Log::Kind::Error` and without catego
 
 There are some others configurable parameters:
 
-.. code-block:: c++
-
-   //! Enables the reporting of filenames in log entries. Disabled by default.
-   RTPS_DllAPI static void ReportFilenames(bool);
-   //! Enables the reporting of function names in log entries. Enabled by default when supported.
-   RTPS_DllAPI static void ReportFunctions(bool);
-   //! Sets the verbosity level, allowing for messages equal or under that priority to be logged.
-   RTPS_DllAPI static void SetVerbosity(Log::Kind);
-   //! Returns the current verbosity level.
-   RTPS_DllAPI static Log::Kind GetVerbosity();
-   //! Sets a filter that will pattern-match against log categories, dropping any unmatched categories.
-   RTPS_DllAPI static void SetCategoryFilter    (const std::regex&);
-   //! Sets a filter that will pattern-match against filenames, dropping any unmatched categories.
-   RTPS_DllAPI static void SetFilenameFilter    (const std::regex&);
-   //! Sets a filter that will pattern-match against the provided error string, dropping any unmatched categories.
-   RTPS_DllAPI static void SetErrorStringFilter (const std::regex&);
+.. literalinclude:: ../code/CodeTester.cpp
+    :language: c++
+    :start-after: //LOG_USAGE_API
+    :end-before: //!--
 
 LogConsumers
 ============
@@ -785,17 +781,23 @@ its :class:`Reset` method.
 XML Log configuration
 =====================
 
-You can configure the logging system through xml with the tag :class:`<log>` under the :class:`<dds>` tag, or as an standalone file (without the :class:`<dds>` tag, just :class:`<log>` as root).
-You can set :class:`<use_default>` and a set of :class:`<consumer>`. Each :class:`<consumer>` is defined by its
-:class:`<class>` and a set of :class:`<property>`.
+You can configure the logging system through xml with the tag :class:`<log>` under the :class:`<dds>` tag, or as an
+standalone file (without the :class:`<dds>` tag, just :class:`<log>` as root).
+You can set :class:`<use_default>` and a set of :class:`<consumer>`.
+Each :class:`<consumer>` is defined by its :class:`<class>` and a set of :class:`<property>`.
 
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-->LOG-CONFIG<-->
-    :end-before: <!--><--> 
+    :end-before: <!--><-->
 
 :class:`<use_default>` indicates if we want to use the default consumer :class:`StdoutConsumer`.
 
 Each :class:`<consumer>` defines a consumer that will be added to the consumers list of the Log.
 :class:`<class>` indicates which consumer class to instantiate and the set of :class:`<property>` configures it.
-:class:`StdoutConsumer` has no properties to be configured, but :class:`FileConsumer` has :class:`filename` and :class:`append`.
+:class:`StdoutConsumer` has no properties to be configured, but :class:`FileConsumer` has :class:`filename`
+and :class:`append`.
+
+This marks the end of this document.
+We recommend you to take a look at the Doxygen API reference and the embedded examples that come with the distribution.
+If you need more help, send us an email to `support@eprosima.com`.

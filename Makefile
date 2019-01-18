@@ -18,6 +18,8 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) docs
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html       to make standalone HTML files"
+	@echo "  compile    to compile the source code. You can use env variable FASTRTPS_BRANCH."
+	@echo "  test       to check the spelling, and the source code"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
 	@echo "  pickle     to make pickle files"
@@ -53,6 +55,37 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
+.PHONY: compile
+compile:
+	mkdir -p build/code
+	cd build/code && cmake -G Ninja ../../code
+	cmake --build build/code
+	@echo
+	@echo "Source code build finished."
+
+.PHONY: test
+test:
+	doc8 --max-line-length 120 docs
+	@echo
+	@echo "RST checking finished."
+	$(SPHINXBUILD) -W -b spelling $(ALLSPHINXOPTS) $(BUILDDIR)/spelling
+	@echo
+	@echo "Spell checking finished. The results in $(BUILDDIR)/spelling."
+	grep -Rn "code-block::.*c++" docs; test "$$?" -ne "0"
+	@echo
+	@echo "Check c++ code-block finished."
+	grep -Rn "code-block::.*xml" docs; test "$$?" -ne "0"
+	@echo
+	@echo "Check xml code-block finished."
+	mkdir -p build/code
+	cd build/code && cmake -G Ninja ../../code
+	cmake --build build/code
+	@echo
+	@echo "Source code build finished."
+	cd build/code && ctest -V
+	@echo
+	@echo "Source code checking finished."
 
 .PHONY: dirhtml
 dirhtml:

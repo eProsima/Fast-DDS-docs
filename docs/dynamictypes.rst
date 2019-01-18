@@ -84,10 +84,9 @@ values and making the code harder to debug.
 
 **Dynamic PubSubType**
 
-A class that inherits from ``TopicDataType`` and works as an intermediator between RTPS
-Domain and the Dynamic Types. It implements the methods needed to create, serialize,
-deserialize and delete ``DynamicData`` instances when the participants need to convert the
-received information from any transport to the registered dynamic type.
+A class that inherits from ``TopicDataType`` and works as an intermediary between RTPS Domain and the Dynamic Types.
+It implements the methods needed to create, serialize, deserialize and delete ``DynamicData`` instances when the
+participants need to convert the received information from any transport to the registered dynamic type.
 
 
 Supported Types
@@ -121,18 +120,10 @@ ways to create dynamic data of a primitive type.
 The ``DynamicData`` class has a specific ``Get`` and ``Set`` Methods for each primitive
 type of the list.
 
-.. code-block:: c++
-
-    // Using Builders
-    DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();
-    DynamicType_ptr created_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(created_builder.get());
-    DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(created_type);
-    data->SetInt32Value(1);
-
-    // Creating directly the Dynamic Type
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pType);
-    data2->SetInt32Value(1);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_PRIMITIVES
+   :end-before: //!--
 
 String and WString
 ^^^^^^^^^^^^^^^^^^
@@ -142,19 +133,10 @@ of the ``buffer`` that they can manage.
 To do that, ``DynamicTypeBuilderFactory`` exposes the methods ``CreateStringType`` and ``CreateWstringType``.
 By default, its size is set to 255 characters.
 
-.. code-block:: c++
-
-    // Using Builders
-    DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStringBuilder(100);
-    DynamicType_ptr created_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(created_builder.get());
-    DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(created_type);
-    data->SetStringValue("Dynamic String");
-
-    // Creating directly the Dynamic Type
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateStringType(100);
-    DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pType);
-    data2->SetStringValue("Dynamic String");
-
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_STRINGS
+   :end-before: //!--
 
 Alias
 ^^^^^
@@ -166,48 +148,29 @@ taking the base type and the new name that the alias is going to set.
 After the creation of the ``DynamicData``, users can access its information like
 they were working with the base type.
 
-.. code-block:: c++
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_ALIAS
+   :end-before: //!--
 
-    // Using Builders
-    DynamicTypeBuilder_ptr base_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStringBuilder(100);
-    DynamicType_ptr created_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(base_builder.get());
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(created_type.get(), "alias");
-    DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(builder.get());
-    data->SetStringValue("Dynamic Alias String");
-
-    // Creating directly the Dynamic Type
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateStringType(100);
-    DynamicType_ptr pAliasType = DynamicTypeBuilderFactory::GetInstance()->CreateAliasType(pType, "alias");
-    DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pAliasType);
-    data2->SetStringValue("Dynamic Alias String");
-
-Enum
-^^^^
+Enumeration
+^^^^^^^^^^^
 
 The enum type is managed as complex in Dynamic Types because it allows adding members
 to set the different values that the enum is going to manage.
 Internally, it works with a ``UINT32`` to store what value is selected.
 
-To use enums users must create a Dynamic Type builder calling to ``CreateEnumType``
+To use enumerations users must create a Dynamic Type builder calling to ``CreateEnumType``
 and after that, they can call to ``AddMember`` given the index and the name of the
 different values that the enum is going to support.
 
 The `DynamicData` class has got methods ``GetEnumValue`` and ``SetEnumValue`` to work
 with ``UINT32`` or with strings using the names of the members added to the builder.
 
-.. code-block:: c++
-
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateEnumBuilder();
-    builder->AddEmptyMember(0, "DEFAULT");
-    builder->AddEmptyMember(1, "FIRST");
-    builder->AddEmptyMember(2, "SECOND");
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateType(builder.get());
-    DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(pType);
-
-    std::string sValue = "SECOND";
-    data->SetEnumValue(sValue);
-    uint32_t uValue = 2;
-    data->SetEnumValue(uValue);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_ENUMERATIONS
+   :end-before: //!--
 
 Bitset
 ^^^^^^
@@ -220,24 +183,10 @@ They work like a ``boolean`` type with the only difference that the ``GetBoolVal
 ``DynamicTypeBuilderFactory`` offers the possibility to set the maximum value that the bitset
 is going to manage, but it should be less or equal to 64 bits.
 
-.. code-block:: c++
-
-    uint32_t limit = 5;
-
-    // Using Builders
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateBitsetBuilder(limit);
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateType(builder.get());
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(pType);
-    data->SetBoolValue(true, 2);
-    bool bValue;
-    data->GetBoolValue(bValue, 0);
-
-    // Creating directly the Dynamic Type
-    DynamicType_ptr pType2 = DynamicTypeBuilderFactory::GetInstance()->CreateBitsetType(limit);
-    DynamicData_ptr data2 = DynamicDataFactory::GetInstance()->CreateData(pType);
-    data2->SetBoolValue(true, 2);
-    bool bValue2;
-    data2->GetBoolValue(bValue2, 0);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_BITSETS
+   :end-before: //!--
 
 Bitmask
 ^^^^^^^
@@ -247,20 +196,10 @@ add members and access to each boolean value with the name of the member.
 ``DynamicData`` has the special methods ``GetBitmaskValue`` and ``SetBitmaskValue``
 using the name of the member, but they can be used like bitsets too.
 
-.. code-block:: c++
-
-    uint32_t limit = 5;
-
-    // Using Builders
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateBitmaskBuilder(limit);
-    builder->AddEmptyMember(0, "FIRST");
-    builder->AddEmptyMember(1, "SECOND");
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateType(builder.get());
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(pType);
-    data->SetBoolValue(true, 2);
-    bool bValue;
-    data->GetBoolValue(bValue, 0);
-    bValue = data->GetBitmaskValue("FIRST");
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_BITMASKS
+   :end-before: //!--
 
 Structure
 ^^^^^^^^^
@@ -281,17 +220,10 @@ If two members have the same Id, after adding the second one, the previous
 will change its id to the next value.
 To get the id of a member by name, ``DynamicData`` exposes the method ``GetMemberIdByName``.
 
-.. code-block:: c++
-
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
-    builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
-    builder->AddMember(1, "other", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
-
-    DynamicType_ptr struct_type = builder->Build();
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(struct_type);
-
-    data->SetInt32Value(5, 0);
-    data->SetUint64Value(13, 1);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_STRUCTS
+   :end-before: //!--
 
 Union
 ^^^^^
@@ -304,20 +236,10 @@ After the creation of the Dynamic Type, every member that is going to be added
 needs at least one ``UnionCaseIndex`` to set how it is going to be selected and
 optionally if it is the default value of the union.
 
-.. code-block:: c++
-
-    DynamicType_ptr discriminator = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateUnionBuilder(discriminator.get());
-
-    builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type(), "", { 0 }, true);
-    builder->AddMember(0, "second", DynamicTypeBuilderFactory::GetInstance()->CreateInt64Type(), "", { 1 }, false);
-    DynamicType_ptr union_type = builder->Build();
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(union_type);
-
-    data->SetInt32Value(9, 0);
-    data->SetInt64Value(13, 1);
-    uint64_t unionLabel;
-    data->GetUnionLabel(unionLabel);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_UNIONS
+   :end-before: //!--
 
 Sequence
 ^^^^^^^^
@@ -333,19 +255,10 @@ the ``id`` of the new element.
 to keep the consistency of the list.
 - ``ClearData``: Removes all the elements of the list.
 
-.. code-block:: c++
-
-    uint32_t length = 2;
-
-    DynamicType_ptr base_type = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateSequenceBuilder(base_type.get(), length);
-    DynamicType_ptr sequence_type = builder->Build();
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(sequence_type);
-
-    MemberId newId, newId2;
-    data->InsertInt32Value(10, newId);
-    data->InsertInt32Value(12, newId2);
-    data->RemoveSequenceData(newId);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_SEQUENCES
+   :end-before: //!--
 
 Array
 ^^^^^
@@ -364,19 +277,10 @@ Additionally, there is a special method ``GetArrayIndex`` that returns the posit
 giving a vector of indexes on every dimension that the arrays support, that is
 useful in multidimensional arrays.
 
-.. code-block:: c++
-
-    std::vector<uint32_t> lengths = { 2, 2 };
-
-    DynamicType_ptr base_type = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateArrayBuilder(base_type.get(), lengths);
-    DynamicType_ptr array_type = builder->Build();
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(array_type);
-
-    MemberId pos = data->GetArrayIndex({1, 0});
-    data->SetInt32Value(11, pos);
-    data->SetInt32Value(27, pos + 1);
-    data->ClearArrayData(pos);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_ARRAYS
+   :end-before: //!--
 
 Map
 ^^^
@@ -394,60 +298,30 @@ To remove an element of the map there is the method ``RemoveMapData`` that uses 
 given id to find the key element and removes the key and the value elements from the map.
 The method ``ClearData`` removes all the elements from the map.
 
-.. code-block:: c++
-
-    uint32_t length = 2;
-
-    DynamicType_ptr base = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateMapBuilder(base.get(), base.get(), length);
-    DynamicType_ptr map_type = builder->Build();
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(map_type);
-
-    DynamicData_ptr key = DynamicDataFactory::GetInstance()->CreateData(base);
-    MemberId keyId;
-    MemberId valueId;
-    data->InsertMapData(key.get(), keyId, valueId);
-    MemberId keyId2;
-    MemberId valueId2;
-    key->SetInt32Value(2);
-    data->InsertMapData(key.get(), keyId2, valueId2);
-
-    data->SetInt32Value(53, valueId2);
-
-    data->RemoveMapData(keyId);
-    data->RemoveMapData(keyId2);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_MAPS
+   :end-before: //!--
 
 Complex examples
 ----------------
 
-Structs with Structs
-^^^^^^^^^^^^^^^^^^^^
+Nested structures
+^^^^^^^^^^^^^^^^^
 
-Structures allow to add other structs inside them, but users must take care that
+Structures allow to add other structures inside them, but users must take care that
 to access to these members they need to call ``LoanValue`` to get a pointer to the
 data and release it calling ``ReturnLoanedValue``.
 ``DynamicDatas`` manages the counter of loaned values and users can't loan a value that
 has been loaned previously without calling ``ReturnLoanedValue`` before.
 
-.. code-block:: c++
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_NESTED_STRUCTS
+   :end-before: //!--
 
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
-    builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
-    builder->AddMember(1, "other", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
-    DynamicType_ptr struct_type = builder->Build();
-
-    DynamicTypeBuilder_ptr parent_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
-    parent_builder->AddMember(0, "child_struct", struct_type);
-    parent_builder->AddMember(1, "second", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(parent_builder.get());
-
-    DynamicData* child_data = data->LoanValue(0);
-    child_data->SetInt32Value(5, 0);
-    child_data->SetUint64Value(13, 1);
-    data->ReturnLoanedValue(child_data);
-
-Structs inheritance
-^^^^^^^^^^^^^^^^^^^
+Structures inheritance
+^^^^^^^^^^^^^^^^^^^^^^
 
 Structures can inherit from other structures. To do that ``DynamicTypeBuilderFactory``
 has the method ``CreateChildStructType`` that relates the given struct type with
@@ -457,44 +331,21 @@ that users have added to it.
 Structures support several levels of inheritance, creating recursively the members
 of all the types in the hierarchy of the struct.
 
-.. code-block:: c++
-
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
-    builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
-    builder->AddMember(1, "other", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
-
-    DynamicTypeBuilder_ptr child_builder = DynamicTypeBuilderFactory::GetInstance()->CreateChildStructBuilder(builder.get());
-    builder->AddMember(2, "third", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
-
-    DynamicType_ptr struct_type = child_builder->Build();
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(struct_type);
-
-    data->SetInt32Value(5, 0);
-    data->SetUint64Value(13, 1);
-    data->SetUint64Value(47, 2);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_INHERITANCE_STRUCTS
+   :end-before: //!--
 
 Alias of an alias
 ^^^^^^^^^^^^^^^^^
 
-Alias types support recursivity, so if users need to create an alias of another alias,
+Alias types support recursion, so if users need to create an alias of another alias,
 it can be done calling ``CreateAliasType`` method giving the alias as a base type.
 
-.. code-block:: c++
-
-    // Using Builders
-    DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStringBuilder(100);
-    DynamicType_ptr created_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(created_builder.get());
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(created_builder.get(), "alias");
-    DynamicTypeBuilder_ptr builder2 = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(builder.get(), "alias2");
-    DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(builder2.get());
-    data->SetStringValue("Dynamic Alias 2 String");
-
-    // Creating directly the Dynamic Type
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateStringType(100);
-    DynamicType_ptr pAliasType = DynamicTypeBuilderFactory::GetInstance()->CreateAliasType(pType, "alias");
-    DynamicType_ptr pAliasType2 = DynamicTypeBuilderFactory::GetInstance()->CreateAliasType(pAliasType, "alias2");
-    DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pAliasType);
-    data2->SetStringValue("Dynamic Alias 2 String");
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_NESTED_ALIAS
+   :end-before: //!--
 
 Unions with complex types
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -503,24 +354,10 @@ Unions support complex types, the available interface to access to them is calli
 ``LoanValue`` to get a pointer to the data and set this field as the active one and
 release it calling ``ReturnLoanedValue``.
 
-.. code-block:: c++
-
-    DynamicType_ptr discriminator = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateUnionBuilder(discriminator.get());
-    builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type(), "", { 0 }, true);
-
-    DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
-    struct_builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
-    struct_builder->AddMember(1, "other", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
-    builder->AddMember(1, "first", struct_builder.get(), "", { 1 }, false);
-
-    DynamicType_ptr union_type = builder->Build();
-    DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(union_type);
-
-    DynamicData* child_data = data->LoanValue(1);
-    child_data->SetInt32Value(9, 0);
-    child_data->SetInt64Value(13, 1);
-    data->ReturnLoanedValue(child_data);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_NESTED_UNIONS
+   :end-before: //!--
 
 Serialization
 -------------
@@ -528,20 +365,10 @@ Serialization
 Dynamic Types have their own :class:`pubsub` type like any class generated with an IDL, and
 their management is pretty similar to them.
 
-.. code-block:: c++
-
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicPubSubType pubsubType(pType);
-
-    // SERIALIZATION EXAMPLE
-    DynamicData* pData = DynamicDataFactory::GetInstance()->CreateData(pType);
-    uint32_t payloadSize = static_cast<uint32_t>(pubsubType.getSerializedSizeProvider(data)());
-    SerializedPayload_t payload(payloadSize);
-    pubsubType.serialize(data, &payload);
-
-    // DESERIALIZATION EXAMPLE
-    types::DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pType);
-    pubsubType.deserialize(&payload, data2);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_SERIALIZATION
+   :end-before: //!--
 
 Important Notes
 ---------------
@@ -552,14 +379,10 @@ inside of other dynamic object is managed by its owner, so users only must take 
 of the objects that they have created calling to the factories.
 These two factories in charge to manage these objects, and they must create and delete every object.
 
-.. code-block:: c++
-
-    DynamicTypeBuilder* pBuilder = DynamicTypeBuilderFactory::GetInstance()->CreateUint32Builder();
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicData* pData = DynamicDataFactory::GetInstance()->CreateData(pType);
-
-    DynamicTypeBuilderFactory::GetInstance()->DeleteBuilder(pBuilder);
-    DynamicDataFactory::GetInstance()->DeleteData(pData);
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_NOTES_1
+   :end-before: //!--
 
 To ease this management, the library incorporates a special kind of shared pointers to call
 to the factories to delete the object directly ( ``DynamicTypeBuilder_ptr`` and  ``DynamicData_ptr``).
@@ -569,12 +392,10 @@ to an object that is already managed by the library and using a ``DynamicData_pt
 with them will cause a crash.
 ``DynamicType`` will always be returned as ``DynamicType_ptr`` because there is no internal management of its memory.
 
-.. code-block:: c++
-
-    DynamicTypeBuilder_ptr pBuilder = DynamicTypeBuilderFactory::GetInstance()->CreateUint32Builder();
-    DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
-    DynamicData_ptr pData = DynamicDataFactory::GetInstance()->CreateData(pType);
-
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_NOTES_2
+   :end-before: //!--
 
 Dynamic Types Discovery and Endpoint Matching
 ---------------------------------------------

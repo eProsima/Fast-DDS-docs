@@ -1,16 +1,98 @@
 #include <fastrtps/Domain.h>
+#include <fastrtps/rtps/RTPSDomain.h>
+#include <fastrtps/publisher/Publisher.h>
+#include <fastrtps/subscriber/Subscriber.h>
 #include <fastrtps/participant/ParticipantListener.h>
+#include <fastrtps/publisher/PublisherListener.h>
+#include <fastrtps/subscriber/SubscriberListener.h>
+#include <fastrtps/rtps/writer/RTPSWriter.h>
+#include <fastrtps/rtps/reader/RTPSReader.h>
+#include <fastrtps/rtps/reader/ReaderListener.h>
+#include <fastrtps/rtps/history/WriterHistory.h>
+#include <fastrtps/rtps/history/ReaderHistory.h>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
+#include <fastrtps/xmlparser/XMLEndpointParser.h>
 #include <fastrtps/transport/UDPv4TransportDescriptor.h>
 #include <fastrtps/transport/TCPv4TransportDescriptor.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastrtps/utils/IPLocator.h>
 #include <fastrtps/log/Log.h>
 #include <fastrtps/log/FileConsumer.h>
+#include <fastrtps/subscriber/SampleInfo.h>
+#include <cpp/security/accesscontrol/GovernanceParser.h>
+#include <cpp/security/accesscontrol/PermissionsParser.h>
+
+#include <fstream>
 
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
 using namespace ::xmlparser;
+using namespace ::security;
+
+class HelloWorld
+{
+    public:
+
+        void msg(const std::string&) {}
+
+        std::string msg() { return ""; }
+};
+
+class HelloWorldPubSubType : public TopicDataType
+{
+    bool serialize(void* data, rtps::SerializedPayload_t* payload) override { return false; }
+
+    bool deserialize(rtps::SerializedPayload_t* payload, void* data) override { return false; }
+
+    std::function<uint32_t()> getSerializedSizeProvider(void* data) override { return []{ return 0; }; }
+
+    void * createData() override { return nullptr; }
+
+    void deleteData(void * data) override {}
+
+    bool getKey(void* data, rtps::InstanceHandle_t* ihandle, bool force_md5 = false) override { return false; }
+};
+
+//PUBSUB_API_PUBLISHER_LISTENER
+class PubListener : public PublisherListener
+{
+    public:
+
+        PubListener() {}
+        ~PubListener() {}
+
+        void onPublicationmatched(Publisher* pub, MatchingInfo& info)
+        {
+            //Callback implementation. This is called each time the Publisher finds a Subscriber on the network that listens to the same topic.
+        }
+};
+//!--
+
+//PUBSUB_API_SUBSCRIBER_LISTENER
+class SubListener: public SubscriberListener
+{
+    public:
+
+        SubListener() {}
+
+        ~SubListener() {}
+
+        void onNewDataMessage(Subscriber * sub)
+        {
+            if(sub->takeNextData((void*)&sample, &sample_info))
+            {
+                if(sample_info.sampleKind == ALIVE)
+                {
+                    std::cout << "New message: " << sample.msg() << std::endl;
+                }
+            }
+        }
+
+        HelloWorld sample; //Storage for incoming messages
+
+        SampleInfo_t sample_info; //Auxiliary structure with meta-data on the message
+};
+//!--
 
 void configuration_compilation_check()
 {
@@ -46,13 +128,13 @@ participant_attr.rtps.userTransports.push_back(custom_transport);
 //CONF-TCP-TRANSPORT-SETTING
 //Create a descriptor for the new transport.
 auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
-tcp_transport->add_listener_port(5100);                           
+tcp_transport->add_listener_port(5100);
 
 //Disable the built-in Transport Layer.
 participant_attr.rtps.useBuiltinTransports = false;
 
 //Link the Transport Layer to the Participant.
-participant_attr.rtps.userTransports.push_back(tcp_transport);           
+participant_attr.rtps.userTransports.push_back(tcp_transport);
 //!--
 
 //CONF-TCP2-TRANSPORT-SETTING
@@ -164,10 +246,22 @@ ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000};
 publisher_attr.throughputController = slowPublisherThroughputController;
 //!--
 
+//CONF_QOS_RTPS_FLOWCONTROLLER
+WriterAttributes writer_attr;
+writer_attr.throughputController.bytesPerPeriod = 300000; //300kb
+writer_attr.throughputController.periodMillisecs = 1000; //1000ms
+
 //CONF-QOS-PUBLISHMODE
 // Allows fragmentation.
 publisher_attr.qos.m_publishMode.kind = ASYNCHRONOUS_PUBLISH_MODE;
 //!--
+
+{
+//CONF_QOS_RTPS_PUBLISHMODE
+WriterAttributes write_attr;
+write_attr.mode = ASYNCHRONOUS_WRITER;    // Allows fragmentation
+//!--
+}
 
 //CONF-QOS-DISABLE-DISCOVERY
 participant_attr.rtps.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;
@@ -183,6 +277,41 @@ UDPv4TransportDescriptor descriptor;
 descriptor.interfaceWhiteList.emplace_back("127.0.0.1");
 //!--
 
+//LOG_USAGE_PRINT
+logInfo(INFO_MSG, "This is an info message");
+logWarning(WARN_MSG, "This is a warning message");
+logError(ERROR_MSG, "This is an error message");
+//!--
+
+//LOG_USAGE_INFO
+logInfo(NEW_CATEGORY, "This log message belong to NEW_CATEGORY category.");
+//!--
+
+//LOG_USAGE_VERBOSITY
+Log::SetVerbosity(Log::Kind::Warning);
+std::regex my_regex("NEW_CATEGORY");
+Log::SetCategoryFilter(my_regex);
+//!--
+
+/*
+//LOG_USAGE_API
+//! Enables the reporting of filenames in log entries. Disabled by default.
+RTPS_DllAPI static void ReportFilenames(bool);
+//! Enables the reporting of function names in log entries. Enabled by default when supported.
+RTPS_DllAPI static void ReportFunctions(bool);
+//! Sets the verbosity level, allowing for messages equal or under that priority to be logged.
+RTPS_DllAPI static void SetVerbosity(Log::Kind);
+//! Returns the current verbosity level.
+RTPS_DllAPI static Log::Kind GetVerbosity();
+//! Sets a filter that will pattern-match against log categories, dropping any unmatched categories.
+RTPS_DllAPI static void SetCategoryFilter    (const std::regex&);
+//! Sets a filter that will pattern-match against filenames, dropping any unmatched categories.
+RTPS_DllAPI static void SetFilenameFilter    (const std::regex&);
+//! Sets a filter that will pattern-match against the provided error string, dropping any unmatched categories.
+RTPS_DllAPI static void SetErrorStringFilter (const std::regex&);
+//!--
+*/
+
 //LOG-CONFIG
 Log::ClearConsumers(); // Deactivate StdoutConsumer
 
@@ -192,6 +321,25 @@ Log::RegisterConsumer(std::move(fileConsumer));
 
 // Back to its defaults: StdoutConsumer will be enable and FileConsumer removed.
 Log::Reset();
+//!--
+
+//CONF_QOS_STATIC_DISCOVERY_CODE
+participant_attr.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
+participant_attr.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
+//!--
+
+//CONF_QOS_STATIC_DISCOVERY_XML
+participant_attr.rtps.builtin.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
+//!--
+
+//CONF_QOS_TUNING_RELIABLE_PUBLISHER
+publisher_attr.times.heartbeatPeriod.seconds = 0;
+publisher_attr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
+//!--
+
+//CONF_QOS_TUNING_RELIABLE_WRITER
+writer_attr.times.heartbeatPeriod.seconds = 0;
+writer_attr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
 //!--
 
 }
@@ -242,6 +390,244 @@ class CustomParticipantListener : public eprosima::fastrtps::ParticipantListener
     }
 };
 //!--
+
+//RTPS_API_READER_LISTENER
+class MyReaderListener: public ReaderListener
+{
+    public:
+
+        MyReaderListener(){}
+
+        ~MyReaderListener(){}
+
+        void onNewCacheChangeAdded(RTPSReader* reader,const CacheChange_t* const change)
+        {
+            // The incoming message is enclosed within the `change` in the function parameters
+            printf("%s\n",change->serializedPayload.data);
+            // Once done, remove the change
+            reader->getHistory()->remove_change((CacheChange_t*)change);
+        }
+};
+//!--
+
+void rtps_api_example_create_entities()
+{
+//RTPS_API_CREATE_PARTICIPANT
+RTPSParticipantAttributes participant_attr;
+participant_attr.setName("participant");
+RTPSParticipant* participant = RTPSDomain::createParticipant(participant_attr);
+//!--
+
+{
+//RTPS_API_CONF_PARTICIPANT
+RTPSParticipantAttributes participant_attr;
+participant_attr.setName("my_participant");
+//etc.
+//!--
+}
+
+//RTPS_API_WRITER_CONF_HISTORY
+HistoryAttributes history_attr;
+WriterHistory* history = new WriterHistory(history_attr);
+WriterAttributes writer_attr;
+RTPSWriter* writer = RTPSDomain::createRTPSWriter(participant, writer_attr, history);
+//!--
+
+{
+//RTPS_API_READER_CONF_HISTORY
+class MyReaderListener : public ReaderListener{};
+MyReaderListener listener;
+HistoryAttributes history_attr;
+ReaderHistory* history = new ReaderHistory(history_attr);
+ReaderAttributes reader_attr;
+RTPSReader* reader = RTPSDomain::createRTPSReader(participant, reader_attr, history, &listener);
+//!--
+}
+
+//RTPS_API_WRITE_SAMPLE
+//Request a change from the history
+CacheChange_t* change = writer->new_change([]() -> uint32_t { return 255;}, ALIVE);
+//Write serialized data into the change
+change->serializedPayload.length = sprintf((char*) change->serializedPayload.data, "My example string %d", 2)+1;
+//Insert change back into the history. The Writer takes care of the rest.
+history->add_change(change);
+//!--
+
+}
+
+void rtps_api_example_conf()
+{
+WriterAttributes writer_attr;
+HistoryAttributes history_attr;
+
+//RTPS_API_WRITER_CONF_RELIABILITY
+writer_attr.endpoint.reliabilityKind = BEST_EFFORT;
+//!--
+
+//RTPS_API_WRITER_CONF_DURABILITY
+writer_attr.endpoint.durabilityKind = TRANSIENT_LOCAL;
+//!--
+
+//RTPS_API_HISTORY_CONF_PAYLOADMAXSIZE
+history_attr.payloadMaxSize  = 250; //Defaults to 500 bytes
+//!--
+
+//RTPS_API_HISTORY_CONF_RESOURCES
+history_attr.initialReservedCaches = 250; //Defaults to 500
+history_attr.maximumReservedCaches = 500; //Defaults to 0 = Unlimited Changes
+//!--
+}
+
+void pubsub_api_example_create_entities()
+{
+//PUBSUB_API_CREATE_PARTICIPANT
+ParticipantAttributes participant_attr; //Configuration structure
+Participant *participant = Domain::createParticipant(participant_attr);
+//!--
+
+//PUBSUB_API_REGISTER_TYPE
+HelloWorldPubSubType m_type; //Auto-generated type from FastRTPSGen
+Domain::registerType(participant, &m_type);
+//!--
+
+//PUBSUB_API_CREATE_PUBLISHER
+PublisherAttributes publisher_attr; //Configuration structure
+PubListener publisher_listener; //Class that implements callbacks from the publisher
+Publisher *publisher = Domain::createPublisher(participant, publisher_attr, &publisher_listener);
+//!--
+
+//PUBSUB_API_WRITE_SAMPLE
+HelloWorld sample; //Auto-generated container class for topic data from FastRTPSGen
+sample.msg("Hello there!"); // Add contents to the message
+publisher->write(&sample); //Publish
+//!--
+
+//PUBSUB_API_CREATE_SUBSCRIBER
+SubscriberAttributes subscriber_attr; //Configuration structure
+SubListener subscriber_listener; //Class that implements callbacks from the Subscriber
+Subscriber *subscriber = Domain::createSubscriber(participant, subscriber_attr, &subscriber_listener);
+//!--
+}
+
+void pubsub_api_example_participant_configuration()
+{
+//PUBSUB_API_CONF_PARTICIPANT
+ParticipantAttributes participant_attr;
+
+participant_attr.rtps.setName("my_participant");
+participant_attr.rtps.builtin.domainId = 80;
+
+Participant *participant = Domain::createParticipant(participant_attr);
+//!--
+
+{
+//PUBSUB_API_CONF_PARTICIPANT_XML
+Participant *participant = Domain::createParticipant("participant_xml_profile");
+//!--
+}
+
+//PUBSUB_API_CONF_PARTICIPANT_NAME
+participant_attr.rtps.setName("my_participant");
+//!--
+
+//PUBSUB_API_CONF_PARTICIPANT_DOMAIN
+participant_attr.rtps.builtin.domainId = 80;
+//!--
+
+//PUBSUB_API_CONF_CREATE_PUBSUB
+PublisherAttributes publisher_attr;
+Publisher *publisher = Domain::createPublisher(participant, publisher_attr);
+
+SubscriberAttributes subscriber_attr;
+Subscriber *subscriber = Domain::createSubscriber(participant, subscriber_attr);
+//!--
+
+{
+//PUBSUB_API_CONF_CREATE_PUBSUB_XML
+Publisher *publisher = Domain::createPublisher(participant, "publisher_xml_profile");
+Subscriber *subscriber = Domain::createSubscriber(participant, "subscriber_xml_profile");
+//!--
+}
+
+//PUBSUB_API_CONF_PUBSUB_TOPIC
+publisher_attr.topic.topicDataType = "HelloWorldType";
+publisher_attr.topic.topicName = "HelloWorldTopic";
+
+subscriber_attr.topic.topicDataType = "HelloWorldType";
+subscriber_attr.topic.topicName = "HelloWorldTopic";
+//!--
+
+//PUBSUB_API_CONF_PUBSUB_RELIABILITY
+publisher_attr.qos.m_reliability.kind = RELIABLE_RELIABILITY_QOS;
+
+subscriber_attr.qos.m_reliability.kind = BEST_EFFORT_RELIABILITY_QOS;
+//!--
+
+//PUBSUB_API_CONF_PUBSUB_HISTORY
+publisher_attr.topic.historyQos.kind = KEEP_ALL_HISTORY_QOS;
+
+subscriber_attr.topic.historyQos.kind =   KEEP_LAST_HISTORY_QOS;
+subscriber_attr.topic.historyQos.depth = 5;
+//!--
+
+//PUBSUB_API_CONF_PUBSUB_DURABILITY
+publisher_attr.qos.m_durability.kind = TRANSIENT_LOCAL_DURABILITY_QOS;
+
+subscriber_attr.qos.m_durability.kind = VOLATILE_DURABILITY_QOS;
+//!--
+
+//PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS
+publisher_attr.topic.resourceLimitsQos.max_samples = 200;
+
+subscriber_attr.topic.resourceLimitsQos.max_samples = 200;
+//!--
+
+//PUBSUB_API_CONF_PUBSUB_UNICAST_LOCATORS
+Locator_t new_locator;
+new_locator.port = 7800;
+
+subscriber_attr.unicastLocatorList.push_back(new_locator);
+
+publisher_attr.unicastLocatorList.push_back(new_locator); 
+//!--
+
+{
+//PUBSUB_API_CONF_PUBSUB_MULTICAST_LOCATORS
+Locator_t new_locator;
+
+IPLocator::setIPv4(new_locator, "239.255.0.4");
+new_locator.port = 7900;
+
+subscriber_attr.multicastLocatorList.push_back(new_locator);
+
+publisher_attr.multicastLocatorList.push_back(new_locator);
+//!--
+}
+
+//PUBSUB_API_CONF_PUBSUB_STATIC_SAMPLEINFO
+HelloWorld sample;
+SampleInfo_t sample_info;
+subscriber->takeNextData((void*)&sample, &sample_info);
+//!--
+
+{
+DynamicPubSubType* input_type = nullptr;
+//PUBSUB_API_CONF_PUBSUB_DYNAMIC_SAMPLEINFO
+// input_type is an instance of DynamicPubSubType of out current dynamic type
+DynamicPubSubType *pst = dynamic_cast<DynamicPubSubType*>(input_type);
+DynamicData *sample = DynamicDataFactory::GetInstance()->CreateData(pst->GetDynamicType());
+subscriber->takeNextData(sample, &sample_info);
+//!--
+}
+
+//PUBSUB_API_CONF_PUBSUB_SAMPLEINFO_USAGE
+if( (sample_info.sampleKind == ALIVE) & (sample_info.ownershipStrength > 25) )
+{
+    //Process data
+}
+//!--
+
+}
 
 void discovery_topic_api_compilation_check()
 {
@@ -375,6 +761,412 @@ DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(pbType->GetDyn
 }
 }
 
+void security_configuration()
+{
+//SECURITY_CONF_ALL_PLUGINS
+eprosima::fastrtps::ParticipantAttributes part_attr;
+
+// Activate Auth:PKI-DH plugin
+part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
+
+// Configure Auth:PKI-DH plugin
+part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca", "file://maincacert.pem");
+part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate", "file://appcert.pem");
+part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key", "file://appkey.pem");
+
+// Activate Access:Permissions plugin
+part_attr.rtps.properties.properties().emplace_back("dds.sec.access.plugin", "builtin.Access-Permissions");
+
+// Configure Access:Permissions plugin
+part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.permissions_ca",
+    "file://maincacet.pem");
+part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.governance",
+    "file://governance.smime");
+part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.permissions",
+    "file://permissions.smime");
+
+// Activate Crypto:AES-GCM-GMAC plugin
+part_attr.rtps.properties.properties().emplace_back("dds.sec.crypto.plugin", "builtin.AES-GCM-GMAC");
+//!--
+
+{
+//SECURITY_CONF_AUTH_AND_CRYPT_PLUGINS
+eprosima::fastrtps::ParticipantAttributes part_attr;
+
+// Activate Auth:PKI-DH plugin
+part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
+
+// Configure Auth:PKI-DH plugin
+part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca", "file://maincacert.pem");
+part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate", "file://appcert.pem");
+part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key", "file://appkey.pem");
+
+// Activate Crypto:AES-GCM-GMAC plugin
+part_attr.rtps.properties.properties().emplace_back("dds.sec.crypto.plugin", "builtin.AES-GCM-GMAC");
+
+// Encrypt all RTPS submessages
+part_attr.rtps.properties.properties().emplace_back("rtps.participant.rtps_protection_kind", "ENCRYPT");
+//!--
+
+//SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS
+eprosima::fastrtps::PublisherAttributes pub_attr;
+
+// Encrypt RTPS submessages
+pub_attr.properties.properties().emplace_back("rtps.endpoint.submessage_protection_kind", "ENCRYPT");
+
+// Encrypt payload
+pub_attr.properties.properties().emplace_back("rtps.endpoint.payload_protection_kind", "ENCRYPT");
+//!--
+
+//SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS
+eprosima::fastrtps::SubscriberAttributes sub_attr;
+
+// Encrypt RTPS submessages
+sub_attr.properties.properties().emplace_back("rtps.endpoint.submessage_protection_kind", "ENCRYPT");
+//!--
+}
+
+}
+
+void persistence_configuration()
+{
+//PERSISTENCE_CONF_PARTICIPANT
+eprosima::fastrtps::rtps::RTPSParticipantAttributes part_attr;
+
+// Activate Persistence:SQLITE3 plugin
+part_attr.properties.properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
+
+// Configure Persistence:SQLITE3 plugin
+part_attr.properties.properties().emplace_back("dds.persistence.sqlite3.filename", "example.db");
+//!--
+
+//PERSISTENCE_CONF_WRITER
+eprosima::fastrtps::rtps::WriterAttributes writer_attr;
+
+// Set durability to TRANSIENT
+writer_attr.endpoint.durabilityKind = TRANSIENT;
+
+// Set persistence_guid
+writer_attr.endpoint.persistence_guid.guidPrefix.value[11] = 1;
+writer_attr.endpoint.persistence_guid.entityId = 0x12345678;
+//!--
+
+//PERSISTENCE_CONF_READER
+eprosima::fastrtps::rtps::ReaderAttributes reader_attr;
+
+// Set durability to TRANSIENT
+reader_attr.endpoint.durabilityKind = TRANSIENT;
+
+// Set persistence_guid
+reader_attr.endpoint.persistence_guid.guidPrefix.value[11] = 1;
+reader_attr.endpoint.persistence_guid.entityId = 0x3456789A;
+//!--
+}
+
+void dynamictypes_configuration()
+{
+//DYNAMIC_TYPES_CREATE_PRIMITIVES
+// Using Builders
+DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Builder();
+DynamicType_ptr created_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(created_builder.get());
+DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(created_type);
+data->SetInt32Value(1);
+
+// Creating directly the Dynamic Type
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pType);
+data2->SetInt32Value(1);
+//!--
+
+{
+//DYNAMIC_TYPES_CREATE_STRINGS
+// Using Builders
+DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStringBuilder(100);
+DynamicType_ptr created_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(created_builder.get());
+DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(created_type);
+data->SetStringValue("Dynamic String");
+
+// Creating directly the Dynamic Type
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateStringType(100);
+DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pType);
+data2->SetStringValue("Dynamic String");
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_ALIAS
+// Using Builders
+DynamicTypeBuilder_ptr base_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStringBuilder(100);
+DynamicType_ptr created_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(base_builder.get());
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(created_type.get(), "alias");
+DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(builder.get());
+data->SetStringValue("Dynamic Alias String");
+
+// Creating directly the Dynamic Type
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateStringType(100);
+DynamicType_ptr pAliasType = DynamicTypeBuilderFactory::GetInstance()->CreateAliasType(pType, "alias");
+DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pAliasType);
+data2->SetStringValue("Dynamic Alias String");
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_ENUMERATIONS
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateEnumBuilder();
+builder->AddEmptyMember(0, "DEFAULT");
+builder->AddEmptyMember(1, "FIRST");
+builder->AddEmptyMember(2, "SECOND");
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateType(builder.get());
+DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(pType);
+
+std::string sValue = "SECOND";
+data->SetEnumValue(sValue);
+uint32_t uValue = 2;
+data->SetEnumValue(uValue);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_BITSETS
+uint32_t limit = 5;
+
+// Using Builders
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateBitsetBuilder(limit);
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateType(builder.get());
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(pType);
+data->SetBoolValue(true, 2);
+bool bValue;
+data->GetBoolValue(bValue, 0);
+
+// Creating directly the Dynamic Type
+DynamicType_ptr pType2 = DynamicTypeBuilderFactory::GetInstance()->CreateBitsetType(limit);
+DynamicData_ptr data2 = DynamicDataFactory::GetInstance()->CreateData(pType);
+data2->SetBoolValue(true, 2);
+bool bValue2;
+data2->GetBoolValue(bValue2, 0);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_BITMASKS
+uint32_t limit = 5;
+
+// Using Builders
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateBitmaskBuilder(limit);
+builder->AddEmptyMember(0, "FIRST");
+builder->AddEmptyMember(1, "SECOND");
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateType(builder.get());
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(pType);
+data->SetBoolValue(true, 2);
+bool bValue;
+data->GetBoolValue(bValue, 0);
+bValue = data->GetBitmaskValue("FIRST");
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_STRUCTS
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
+builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
+builder->AddMember(1, "other", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
+
+DynamicType_ptr struct_type = builder->Build();
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(struct_type);
+
+data->SetInt32Value(5, 0);
+data->SetUint64Value(13, 1);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_UNIONS
+DynamicType_ptr discriminator = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateUnionBuilder(discriminator.get());
+
+builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type(), "", { 0 }, true);
+builder->AddMember(0, "second", DynamicTypeBuilderFactory::GetInstance()->CreateInt64Type(), "", { 1 }, false);
+DynamicType_ptr union_type = builder->Build();
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(union_type);
+
+data->SetInt32Value(9, 0);
+data->SetInt64Value(13, 1);
+uint64_t unionLabel;
+data->GetUnionLabel(unionLabel);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_SEQUENCES
+uint32_t length = 2;
+
+DynamicType_ptr base_type = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateSequenceBuilder(base_type.get(), length);
+DynamicType_ptr sequence_type = builder->Build();
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(sequence_type);
+
+MemberId newId, newId2;
+data->InsertInt32Value(10, newId);
+data->InsertInt32Value(12, newId2);
+data->RemoveSequenceData(newId);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_ARRAYS
+std::vector<uint32_t> lengths = { 2, 2 };
+
+DynamicType_ptr base_type = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateArrayBuilder(base_type.get(), lengths);
+DynamicType_ptr array_type = builder->Build();
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(array_type);
+
+MemberId pos = data->GetArrayIndex({1, 0});
+data->SetInt32Value(11, pos);
+data->SetInt32Value(27, pos + 1);
+data->ClearArrayData(pos);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_MAPS
+uint32_t length = 2;
+
+DynamicType_ptr base = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateMapBuilder(base.get(), base.get(), length);
+DynamicType_ptr map_type = builder->Build();
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(map_type);
+
+DynamicData_ptr key = DynamicDataFactory::GetInstance()->CreateData(base);
+MemberId keyId;
+MemberId valueId;
+data->InsertMapData(key.get(), keyId, valueId);
+MemberId keyId2;
+MemberId valueId2;
+key->SetInt32Value(2);
+data->InsertMapData(key.get(), keyId2, valueId2);
+
+data->SetInt32Value(53, valueId2);
+
+data->RemoveMapData(keyId);
+data->RemoveMapData(keyId2);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_NESTED_STRUCTS
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
+builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
+builder->AddMember(1, "other", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
+DynamicType_ptr struct_type = builder->Build();
+
+DynamicTypeBuilder_ptr parent_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
+parent_builder->AddMember(0, "child_struct", struct_type);
+parent_builder->AddMember(1, "second", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(parent_builder.get());
+
+DynamicData* child_data = data->LoanValue(0);
+child_data->SetInt32Value(5, 0);
+child_data->SetUint64Value(13, 1);
+data->ReturnLoanedValue(child_data);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_INHERITANCE_STRUCTS
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
+builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
+builder->AddMember(1, "other", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
+
+DynamicTypeBuilder_ptr child_builder = DynamicTypeBuilderFactory::GetInstance()->CreateChildStructBuilder(builder.get());
+builder->AddMember(2, "third", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
+
+DynamicType_ptr struct_type = child_builder->Build();
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(struct_type);
+
+data->SetInt32Value(5, 0);
+data->SetUint64Value(13, 1);
+data->SetUint64Value(47, 2);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_NESTED_ALIAS
+// Using Builders
+DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStringBuilder(100);
+DynamicType_ptr created_type = DynamicTypeBuilderFactory::GetInstance()->CreateType(created_builder.get());
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(created_builder.get(), "alias");
+DynamicTypeBuilder_ptr builder2 = DynamicTypeBuilderFactory::GetInstance()->CreateAliasBuilder(builder.get(), "alias2");
+DynamicData* data = DynamicDataFactory::GetInstance()->CreateData(builder2.get());
+data->SetStringValue("Dynamic Alias 2 String");
+
+// Creating directly the Dynamic Type
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateStringType(100);
+DynamicType_ptr pAliasType = DynamicTypeBuilderFactory::GetInstance()->CreateAliasType(pType, "alias");
+DynamicType_ptr pAliasType2 = DynamicTypeBuilderFactory::GetInstance()->CreateAliasType(pAliasType, "alias2");
+DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pAliasType);
+data2->SetStringValue("Dynamic Alias 2 String");
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_NESTED_UNIONS
+DynamicType_ptr discriminator = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::GetInstance()->CreateUnionBuilder(discriminator.get());
+builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type(), "", { 0 }, true);
+
+DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::GetInstance()->CreateStructBuilder();
+struct_builder->AddMember(0, "first", DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type());
+struct_builder->AddMember(1, "other", DynamicTypeBuilderFactory::GetInstance()->CreateUint64Type());
+builder->AddMember(1, "first", struct_builder.get(), "", { 1 }, false);
+
+DynamicType_ptr union_type = builder->Build();
+DynamicData_ptr data = DynamicDataFactory::GetInstance()->CreateData(union_type);
+
+DynamicData* child_data = data->LoanValue(1);
+child_data->SetInt32Value(9, 0);
+child_data->SetInt64Value(13, 1);
+data->ReturnLoanedValue(child_data);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_SERIALIZATION
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicPubSubType pubsubType(pType);
+
+// SERIALIZATION EXAMPLE
+DynamicData* pData = DynamicDataFactory::GetInstance()->CreateData(pType);
+uint32_t payloadSize = static_cast<uint32_t>(pubsubType.getSerializedSizeProvider(data)());
+SerializedPayload_t payload(payloadSize);
+pubsubType.serialize(data, &payload);
+
+// DESERIALIZATION EXAMPLE
+types::DynamicData* data2 = DynamicDataFactory::GetInstance()->CreateData(pType);
+pubsubType.deserialize(&payload, data2);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_NOTES_1
+DynamicTypeBuilder* pBuilder = DynamicTypeBuilderFactory::GetInstance()->CreateUint32Builder();
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicData* pData = DynamicDataFactory::GetInstance()->CreateData(pType);
+
+DynamicTypeBuilderFactory::GetInstance()->DeleteBuilder(pBuilder);
+DynamicDataFactory::GetInstance()->DeleteData(pData);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_NOTES_2
+DynamicTypeBuilder_ptr pBuilder = DynamicTypeBuilderFactory::GetInstance()->CreateUint32Builder();
+DynamicType_ptr pType = DynamicTypeBuilderFactory::GetInstance()->CreateInt32Type();
+DynamicData_ptr pData = DynamicDataFactory::GetInstance()->CreateData(pType);
+//!--
+}
+
+}
+
 int main(int argc, const char** argv)
 {
     if(argc != 2)
@@ -383,12 +1175,56 @@ int main(int argc, const char** argv)
         exit(-1);
     }
 
-    XMLProfileManager parser;
-
-    if(parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
+    if(strncmp(argv[1], "Governance", 10) == 0)
     {
-        printf("Error parsing xml file %s\n", argv[1]);
-        exit(-1);
+        std::ifstream file;
+        file.open(argv[1]);
+        std::string content((std::istreambuf_iterator<char>(file)),
+                (std::istreambuf_iterator<char>()));
+
+        GovernanceParser parser;
+
+        if(!parser.parse_stream(content.c_str(), content.length()))
+        {
+            printf("Error parsing xml file %s\n", argv[1]);
+            exit(-1);
+        }
+    }
+    else if(strncmp(argv[1], "Permissions", 11) == 0)
+    {
+        std::ifstream file;
+        file.open(argv[1]);
+        std::string content((std::istreambuf_iterator<char>(file)),
+                (std::istreambuf_iterator<char>()));
+
+        PermissionsParser parser;
+
+        if(!parser.parse_stream(content.c_str(), content.length()))
+        {
+            printf("Error parsing xml file %s\n", argv[1]);
+            exit(-1);
+        }
+    }
+    else if(strncmp(argv[1], "Static", 6) == 0)
+    {
+        XMLEndpointParser parser;
+        std::string file = argv[1];
+
+        if(parser.loadXMLFile(file) != XMLP_ret::XML_OK)
+        {
+            printf("Error parsing xml file %s\n", argv[1]);
+            exit(-1);
+        }
+    }
+    else
+    {
+        XMLProfileManager parser;
+
+        if(parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
+        {
+            printf("Error parsing xml file %s\n", argv[1]);
+            exit(-1);
+        }
     }
 
     exit(0);

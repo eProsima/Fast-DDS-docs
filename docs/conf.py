@@ -29,7 +29,18 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+]
+try:
+    import sphinxcontrib.spelling  # noqa: F401
+    extensions.append('sphinxcontrib.spelling')
+
+    from sphinxcontrib.spelling.filters import ContractionFilter
+    spelling_filters = [ContractionFilter]
+except ImportError:
+    pass
+
+spelling_word_list_filename = 'spelling_wordlist.txt'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

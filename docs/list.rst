@@ -2,12 +2,16 @@ Objects and Data Structures
 ===========================
 
 
-In order to make the most of *eProsima Fast RTPS* it is important to have a grasp of the objects and data structures included in the library. *eProsima Fast RTPS* objects are classified by modules, which are briefly listed and described in this section. For full coverage take a look at the API Reference document that comes with the distribution.
+In order to make the most of *eProsima Fast RTPS* it is important to have a grasp of the objects and data structures
+included in the library.
+*eProsima Fast RTPS* objects are classified by modules, which are briefly listed and described in this section.
+For full coverage take a look at the API Reference document that comes with the distribution.
 
 Publisher-Subscriber Module
 ---------------------------
 
-This module composes the Publisher-Subscriber abstraction we saw in the Library Overview. The concepts here are higher level than the RTPS standard. 
+This module composes the Publisher-Subscriber abstraction we saw in the Library Overview.
+The concepts here are higher level than the RTPS standard.
 
 * :class:`Domain` Used to create, manage and destroy high-level Participants.
 * :class:`Participant` Contains Publishers and Subscribers, and manages their configuration.
@@ -28,7 +32,9 @@ This module composes the Publisher-Subscriber abstraction we saw in the Library 
 RTPS Module
 -----------
 
-This module directly maps to the ideas defined in the RTPS standard and allows you to interact with RTPS entities directly. It consists of a few sub-modules:
+This module directly maps to the ideas defined in the RTPS standard and allows you to interact with RTPS entities
+directly.
+It consists of a few sub-modules:
 
 RTPS Common
 ^^^^^^^^^^^
@@ -36,8 +42,10 @@ RTPS Common
 * :class:`CacheChange_t` Represents a change to a topic, to be stored in a history cache.
 * :class:`Data` Payload associated with a cache change. It may be empty depending on the message and change type.
 * :class:`Message` Defines the organization of an RTPS Message.
-* :class:`Header` Standard header that identifies a message as belonging to the RTPS protocol, and includes the vendor id.
-* :class:`Sub-Message Header` Identifier for an RTPS sub-message. An RTPS Message can be composed of several sub-messages.
+* :class:`Header` Standard header that identifies a message as belonging to the RTPS protocol, and includes the vendor
+  id.
+* :class:`Sub-Message Header` Identifier for an RTPS sub-message. An RTPS Message can be composed of several
+  sub-messages.
 * :class:`MessageReceiver` Deserializes and processes received RTPS messages.
 * :class:`RTPSMessageCreator` Composes RTPS messages.
 
@@ -48,15 +56,17 @@ RTPS Domain
 * :class:`RTPSParticipant` Contains RTPS Writers and Readers, and manages their configuration.
 
     * :class:`RTPSParticipantAttributes` Configuration parameters used in the creation of an RTPS Participant.
-    * :class:`PDPSimple` Allows the participant to become aware of the other participants within the Network, through the Participant Discovery Protocol.
-    * :class:`EDPSimple` Allows the Participant to become aware of the endpoints (RTPS Writers and Readers) present in the other Participants within the network, through the Endpoint Discovery Protocol.
+    * :class:`PDPSimple` Allows the participant to become aware of the other participants within the Network, through
+      the Participant Discovery Protocol.
+    * :class:`EDPSimple` Allows the Participant to become aware of the endpoints (RTPS Writers and Readers) present in
+      the other Participants within the network, through the Endpoint Discovery Protocol.
     * :class:`EDPStatic` Reads information about remote endpoints from a user file.
     * :class:`TimedEvent`  Base class for periodic or timed events.
 
 RTPS Reader
 ^^^^^^^^^^^
 
-* :class:`RTPSReader` Base class for the reader endpoint. 
+* :class:`RTPSReader` Base class for the reader endpoint.
 
     * :class:`ReaderAttributes` Configuration parameters used in the creation of an RTPS Reader.
     * :class:`ReaderHistory` History data structure. Stores recent topic changes.

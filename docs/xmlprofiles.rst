@@ -4,7 +4,8 @@ XML profiles
 ============
 
 The :ref:`configuration` section shows how to configure entity attributes using XML profiles,
-but this section goes deeper on it, explaining each field with its available values and how to compound the complete XML files.
+but this section goes deeper on it, explaining each field with its available values and how to compound the complete XML
+files.
 
 *eProsima Fast RTPS* permits to load several XML files, each one containing XML profiles.
 In addition to the API functions to load user XML files, at initialization *eProsima Fast RTPS* tries to locate and load
@@ -29,8 +30,8 @@ An XML file can contain several XML profiles. The available profile types are :r
     :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS<-->
     :lines: 1-6, 13-33
 
-The Fast-RTPS XML format uses some structs along several profiles types.
-For readability, the :ref:`commonxml` section groups these common structs.
+The Fast-RTPS XML format uses some structures along several profiles types.
+For readability, the :ref:`commonxml` section groups these common structures.
 
 Finally, The :ref:`examplexml` section shows an XML file that uses all the possibilities.
 This example is useful as a quick reference to look for a particular property and how to use it.
@@ -72,53 +73,85 @@ The following XML code shows the complete list of configurable parameters:
 
 The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| Name                         | Description                                                                     | Values                           | Default        |
-+==============================+=================================================================================+==================================+================+
-| ``<transport_id>``           | Unique name to identify each transport descriptor.                              | ``string``                       |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<type>``                   | Type of the transport descriptor.                                               | :class:`UDPv4`, :class:`UDPv6`,  | :class:`UDPv4` |
-|                              |                                                                                 | :class:`TCPv4`, :class:`TCPv6`   |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<sendBufferSize>``         | | Size in bytes of the socket send buffer.                                      | ``uint32``                       | 0              |
-|                              | | If the value is zero then FastRTPS will use the default size from             |                                  |                |
-|                              | | the configuration of the sockets, using a minimum size of 65536 bytes.        |                                  |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<receiveBufferSize>``      | | Size in bytes of the socket receive buffer.                                   | ``uint32``                       | 0              |
-|                              | | If the value is zero then FastRTPS will use the default size from             |                                  |                |
-|                              | | the configuration of the sockets, using a minimum size of 65536 bytes.        |                                  |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<TTL>``                    | *Time To Live*, **only** for UDP transports.                                    | ``uint8``                        | 1              |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<maxMessageSize>``         | The maximum size in bytes of the transport's message buffer.                    | ``uint32``                       | 65500          |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<maxInitialPeersRange>``   | The maximum number of guessed initial peers to try to connect.                  | ``uint32``                       | 4              |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<interfaceWhiteList>``     | Allows defining :ref:`whitelist-interfaces`.                                    | :ref:`whitelist-interfaces`      |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<wan_addr>``               | | Public WAN address when using **TCPv4 transports**.                           | | ``string`` with IPv4 Format    |                |
-|                              | | This field is optional if the transport doesn't need to define a WAN address. | | :class:`XXX.XXX.XXX.XXX`.      |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<output_port>``            | | Port used for output bound.                                                   | ``uint16``                       | 0              |
-|                              | | If this field isn't defined, the output port will be random.                  |                                  |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<keep_alive_frequency_ms>``| Frequency in milliseconds for sending RTCP keepalive requests (TCP **only**).   | ``uint32``                       | 50000          |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<keep_alive_timeout_ms>``  | | Time in milliseconds since sending the last keepalive request                 | ``uint32``                       | 10000          |
-|                              | | to consider a connection as broken. (TCP **only**).                           |                                  |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<max_logical_port>``       | | The maximum number of logical ports to try during RTCP negotiation.           | ``uint16``                       | 100            |
-|                              | | (TCP **only**)                                                                |                                  |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<logical_port_range>``     | | The maximum number of logical ports per request to try                        | ``uint16``                       | 20             |
-|                              | | during RTCP negotiation (TCP **only**).                                       |                                  |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<logical_port_increment>`` | | Increment between logical ports to try during RTCP negotiation.               | ``uint16``                       | 2              |
-|                              | | (TCP **only**).                                                               |                                  |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
-| ``<ListeningPorts>``         | | Local port to work as TCP acceptor for input connections.                     | ``List <uint16>``                |                |
-|                              | | If not set, the transport will work as TCP client only (TCP **only**).        |                                  |                |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+----------------+
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| Name                          | Description                       | Values                          | Default        |
++===============================+===================================+=================================+================+
+| ``<transport_id>``            | Unique name to identify each      | ``string``                      |                |
+|                               | transport descriptor.             |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<type>``                    | Type of the transport descriptor. | :class:`UDPv4`, :class:`UDPv6`, | :class:`UDPv4` |
+|                               |                                   | :class:`TCPv4`, :class:`TCPv6`  |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<sendBufferSize>``          | Size in bytes of the socket       | ``uint32``                      | 0              |
+|                               | send buffer.                      |                                 |                |
+|                               | If the value is zero then         |                                 |                |
+|                               | FastRTPS will use the default     |                                 |                |
+|                               | size from the configuration of    |                                 |                |
+|                               | the sockets, using a minimum      |                                 |                |
+|                               | size of 65536 bytes.              |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<receiveBufferSize>``       | Size in bytes of the socket       | ``uint32``                      | 0              |
+|                               | receive buffer.                   |                                 |                |
+|                               | If the value is zero then         |                                 |                |
+|                               | FastRTPS will use the default     |                                 |                |
+|                               | size from the configuration of    |                                 |                |
+|                               | the sockets, using a minimum      |                                 |                |
+|                               | size of 65536 bytes.              |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<TTL>``                     | *Time To Live*, **only**          | ``uint8``                       | 1              |
+|                               | for UDP transports .              |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<maxMessageSize>``          | The maximum size in bytes         | ``uint32``                      | 65500          |
+|                               | of the transport's message        |                                 |                |
+|                               | buffer.                           |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<maxInitialPeersRange>``    | The maximum number of             | ``uint32``                      | 4              |
+|                               | guessed initial peers             |                                 |                |
+|                               | to try to connect.                |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<interfaceWhiteList>``      | Allows defining                   | :ref:`whitelist-interfaces`     |                |
+|                               | :ref:`whitelist-interfaces`.      |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<wan_addr>``                | Public WAN address when           |  ``string`` with IPv4 Format    |                |
+|                               | using **TCPv4 transports**.       |                                 |                |
+|                               | This field is optional if         |  :class:`XXX.XXX.XXX.XXX`.      |                |
+|                               | the transport doesn't need        |                                 |                |
+|                               | to define a WAN address.          |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<output_port>``             | Port used for output bound.       | ``uint16``                      | 0              |
+|                               | If this field isn't defined,      |                                 |                |
+|                               | the output port will be random.   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<keep_alive_frequency_ms>`` | Frequency in milliseconds         | ``uint32``                      | 50000          |
+|                               | for sending RTCP keep-alive       |                                 |                |
+|                               | requests (TCP **only**).          |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<keep_alive_timeout_ms>``   | Time in milliseconds since        | ``uint32``                      | 10000          |
+|                               | sending the last keep-alive       |                                 |                |
+|                               | request to consider a connection  |                                 |                |
+|                               | as broken. (TCP **only**).        |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<max_logical_port>``        | The maximum number of logical     | ``uint16``                      | 100            |
+|                               | ports to try during RTCP          |                                 |                |
+|                               | negotiations.                     |                                 |                |
+|                               | (TCP **only**)                    |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<logical_port_range>``      | The maximum number of logical     | ``uint16``                      | 20             |
+|                               | ports per request to try          |                                 |                |
+|                               | during RTCP negotiation           |                                 |                |
+|                               | (TCP **only**).                   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<logical_port_increment>``  | Increment between logical         | ``uint16``                      |  2             |
+|                               | ports to try during RTCP          |                                 |                |
+|                               | negotiation.                      |                                 |                |
+|                               | (TCP **only**).                   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<ListeningPorts>``          | Local port to work as TCP         | ``List <uint16>``               |                |
+|                               | acceptor for input connections.   |                                 |                |
+|                               | If not set, the transport will    |                                 |                |
+|                               | work as TCP client only           |                                 |                |
+|                               | (TCP **only**).                   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
 
 There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
 
@@ -179,7 +212,7 @@ Example:
 **Typedef**
 
 The ``<typedef>`` type is defined by its ``name`` and its ``value`` or an inner element for complex types.
-Typedefs correspond to :class:`Alias` in Dynamic Types glossary.
+``<typedef>`` corresponds to :class:`Alias` in Dynamic Types glossary.
 
 Example:
 
@@ -302,7 +335,7 @@ Example:
 
 It's IDL analog would be:
 
-.. code-block:: c++
+.. code-block:: c
 
     long long_array[2][3][4];
 
@@ -326,7 +359,7 @@ Example:
 The example shows a sequence with ``length`` ``3`` of sequences with ``length`` ``2`` with ``<long>`` contents.
 As IDL would be:
 
-.. code-block:: c++
+.. code-block:: c
 
     sequence<sequence<long,2>,3> my_sequence_sequence;
 
@@ -356,7 +389,7 @@ Example:
 
 Is equivalent to the IDL:
 
-.. code-block:: c++
+.. code-block:: c
 
     map<long,map<long,long,2>,2> my_map_map;
 
@@ -412,67 +445,98 @@ as shown in :ref:`loadingapplyingprofiles`.
 
 List with the possible configuration parameter:
 
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| Name                              | Description                                                                   | Values                           | Default |
-+===================================+===============================================================================+==================================+=========+
-| ``<name>``                        | Participant's name. It's not the same field that ``profile_name``.            | ``string``                       |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<defaultUnicastLocatorList>``   | List of default input unicast locators. It expects a :ref:`LocatorListType`.  | ``LocatorListType``              |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<defaultMulticastLocatorList>`` | List of default input multicast locators. It expects a :ref:`LocatorListType`.| ``LocatorListType``              |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<sendSocketBufferSize>``        | | Size in bytes of the output socket buffer.                                  | ``uint32``                       | 0       |
-|                                   | | If the value is zero then FastRTPS will use the default size from           |                                  |         |
-|                                   | | the configuration of the sockets, using a minimum size of 65536 bytes.      |                                  |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<listenSocketBufferSize>``      | | Size in bytes of the input socket buffer.                                   | ``uint32``                       | 0       |
-|                                   | | If the value is zero then FastRTPS will use the default size from           |                                  |         |
-|                                   | | the configuration of the sockets, using a minimum size of 65536 bytes.      |                                  |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<builtin>``                     | Built-in parameters. Explained in the :ref:`builtin` section.                 | :ref:`builtin`                   |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<port>``                        | | Allows defining the port parameters and gains related to the RTPS protocol. | `Port`_                          |         |
-|                                   | | Explained in the `Port`_ section.                                           |                                  |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<participantID>``               | | Participant's identifier.                                                   | ``int32``                        | 0       |
-|                                   | | Typically it will be autogenerated by the ``Domain``.                       |                                  |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<throughputController>``        | | Allows defining a maximum throughput.                                       | `Throughput`_                    |         |
-|                                   | | Explained in the `Throughput`_ section.                                     |                                  |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<userTransports>``              | Transport descriptors to be used by the participant.                          | ``List <string>``                |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<useBuiltinTransports>``        | | Boolean field to indicate to the system that the participant will use       | ``bool``                         | true    |
-|                                   | | the default builtin transport independently of its ``<userTransports>``.    |                                  |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<propertiesPolicy>``            | | Additional configuration properties.                                        | :ref:`PropertiesPolicyType`      |         |
-|                                   | | It expects a :ref:`PropertiesPolicyType`.                                   |                                  |         |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| Name                              | Description                       | Values                      | Default |
++===================================+===================================+=============================+=========+
+| ``<name>``                        | Participant's name.               | ``string``                  |         |
+|                                   | It's not the same                 |                             |         |
+|                                   | field that ``profile_name``.      |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<defaultUnicastLocatorList>``   | List of default input             | ``LocatorListType``         |         |
+|                                   | unicast locators.                 |                             |         |
+|                                   | It expects a                      |                             |         |
+|                                   | :ref:`LocatorListType`.           |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<defaultMulticastLocatorList>`` | List of default input             | ``LocatorListType``         |         |
+|                                   | multicast locators.               |                             |         |
+|                                   | It expects                        |                             |         |
+|                                   | a :ref:`LocatorListType`.         |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<sendSocketBufferSize>``        | Size in bytes of the output       | ``uint32``                  | 0       |
+|                                   | socket buffer.                    |                             |         |
+|                                   | If the value is zero then         |                             |         |
+|                                   | FastRTPS will use the default     |                             |         |
+|                                   | size from  the configuration      |                             |         |
+|                                   | of the sockets, using a           |                             |         |
+|                                   | minimum size of 65536 bytes.      |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<listenSocketBufferSize>``      | Size in bytes of the input        | ``uint32``                  | 0       |
+|                                   | socket buffer.                    |                             |         |
+|                                   | If the value is zero then         |                             |         |
+|                                   | FastRTPS will use the default     |                             |         |
+|                                   | size from  the configuration      |                             |         |
+|                                   | of the sockets, using a           |                             |         |
+|                                   | minimum size of 65536 bytes.      |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<builtin>``                     | Built-in parameters.              | :ref:`builtin`              |         |
+|                                   | Explained in the                  |                             |         |
+|                                   | :ref:`builtin` section.           |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<port>``                        | Allows defining the port          | `Port`_                     |         |
+|                                   | parameters and gains related      |                             |         |
+|                                   | to the RTPS protocol.             |                             |         |
+|                                   | Explained in the `Port`_ section. |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<participantID>``               | Participant's identifier.         | ``int32``                   | 0       |
+|                                   | Typically it will be              |                             |         |
+|                                   | automatically generated           |                             |         |
+|                                   | by the ``Domain``.                |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<throughputController>``        | Allows defining a maximum         | `Throughput`_               |         |
+|                                   | throughput.                       |                             |         |
+|                                   | Explained in the                  |                             |         |
+|                                   | `Throughput`_ section.            |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<userTransports>``              | Transport descriptors             | ``List <string>``           |         |
+|                                   | to be used by the                 |                             |         |
+|                                   | participant.                      |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<useBuiltinTransports>``        | Boolean field to indicate to      | ``bool``                    | true    |
+|                                   | the system that the participant   |                             |         |
+|                                   | will use  the default builtin     |                             |         |
+|                                   | transport independently of its    |                             |         |
+|                                   | ``<userTransports>``.             |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
+| ``<propertiesPolicy>``            | Additional configuration          | :ref:`PropertiesPolicyType` |         |
+|                                   | properties.                       |                             |         |
+|                                   | It expects a                      |                             |         |
+|                                   | :ref:`PropertiesPolicyType`.      |                             |         |
++-----------------------------------+-----------------------------------+-----------------------------+---------+
 
-.. | ``<userData>``                    | Allows adding custom information.                                             | ``string``                       |         |
-.. +-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
+.. | ``<userData>``    | Allows adding custom information.  | ``string``  |         |
+.. +-------------------+------------------------------------+-------------+---------+
 
 .. _Port:
 
 **Port Configuration**
 
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| Name                              | Description                                                                   | Values                           | Default |
-+===================================+===============================================================================+==================================+=========+
-| ``<portBase>``                    | Base ``port``.                                                                | ``uint16``                       | 7400    |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<domainIDGain>``                | Gain in ``domainId``.                                                         | ``uint16``                       | 250     |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<participantIDGain>``           | Gain in ``participantId``.                                                    | ``uint16``                       | 2       |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<offsetd0>``                    | Multicast metadata offset.                                                    | ``uint16``                       | 0       |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<offsetd1>``                    | Unicast metadata offset.                                                      | ``uint16``                       | 10      |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<offsetd2>``                    | Multicast user data offset.                                                   | ``uint16``                       | 1       |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
-| ``<offsetd3>``                    | Unicast user data offset.                                                     | ``uint16``                       | 11      |
-+-----------------------------------+-------------------------------------------------------------------------------+----------------------------------+---------+
++-------------------------+-----------------------------+------------+---------+
+| Name                    | Description                 | Values     | Default |
++=========================+=============================+============+=========+
+| ``<portBase>``          | Base ``port``.              | ``uint16`` | 7400    |
++-------------------------+-----------------------------+------------+---------+
+| ``<domainIDGain>``      | Gain in ``domainId``.       | ``uint16`` | 250     |
++-------------------------+-----------------------------+------------+---------+
+| ``<participantIDGain>`` | Gain in ``participantId``.  | ``uint16`` | 2       |
++-------------------------+-----------------------------+------------+---------+
+| ``<offsetd0>``          | Multicast metadata offset.  | ``uint16`` | 0       |
++-------------------------+-----------------------------+------------+---------+
+| ``<offsetd1>``          | Unicast metadata offset.    | ``uint16`` | 10      |
++-------------------------+-----------------------------+------------+---------+
+| ``<offsetd2>``          | Multicast user data offset. | ``uint16`` | 1       |
++-------------------------+-----------------------------+------------+---------+
+| ``<offsetd3>``          | Unicast user data offset.   | ``uint16`` | 11      |
++-------------------------+-----------------------------+------------+---------+
 
 .. _builtin:
 
@@ -486,56 +550,85 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
     :start-after: <!-->XML-BUILTIN<-->
     :end-before: <!--><-->
 
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| Name                                   | Description                                                                | Values                              | Default               |
-+========================================+============================================================================+=====================================+=======================+
-| ``<use_SIMPLE_RTPS_PDP>``              | Indicates if the Participant must use the Simple RTPS Discovery Protocol.  | ``Boolean``                         | :class:`true`         |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<use_WriterLivelinessProtocol>``     | Indicates to use the WriterLiveliness protocol.                            | ``Boolean``                         | :class:`true`         |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<EDP>``                              | | - If set to :class:`SIMPLE`, ``<simpleEDP>`` would be used.              | :class:`SIMPLE`, :class:`STATIC`    | :class:`SIMPLE`       |
-|                                        | | - If set to :class:`STATIC`, StaticEDP based on an XML file would be used|                                     |                       |
-|                                        | |       with the contents of ``<staticEndpointXMLFilename>``.              |                                     |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<domainId>``                         | DomainId to be used by the RTPSParticipant.                                | ``UInt32``                          | 0                     |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<leaseDuration>``                    | | Indicates how much time remote RTPSParticipants should consider this     | :ref:`DurationType`                 | 130 s                 |
-|                                        | | RTPSParticipant alive.                                                   |                                     |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<leaseAnnouncement>``                | | The period for the RTPSParticipant to send its Discovery Message to all  | :ref:`DurationType`                 | 40 s                  |
-|                                        | | other discovered RTPSParticipants as well as to all Multicast ports.     |                                     |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<simpleEDP>``                        | Attributes of the SimpleEDP protocol                                       | :ref:`simpleEDP <sedp>`             |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<metatrafficUnicastLocatorList>``    | Metatraffic Unicast Locator List                                           | List of :ref:`LocatorListType`      |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<metatrafficMulticastLocatorList>``  | Metatraffic Multicast Locator List.                                        | List of :ref:`LocatorListType`      |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<initialPeersList>``                 | Initial peers.                                                             | List of :ref:`LocatorListType`      |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<staticEndpointXMLFilename>``        | | StaticEDP XML filename.                                                  | ``string``                          |                       |
-|                                        | | Only necessary if ``<EDP>`` is set to :class:`STATIC`                    |                                     |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<readerHistoryMemoryPolicy>``        | Memory policy for builtin readers.                                         | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
-|                                        |                                                                            | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
-|                                        |                                                                            | :class:`DYNAMIC`                    |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<writerHistoryMemoryPolicy>``        | Memory policy for builtin writers.                                         | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
-|                                        |                                                                            | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
-|                                        |                                                                            | :class:`DYNAMIC`                    |                       |
-+----------------------------------------+----------------------------------------------------------------------------+-------------------------------------+-----------------------+
+.. Some large words outside of table. Then table fit maximum line length
+.. |usewriliv| replace:: ``<use_WriterLivelinessProtocol>``
+.. |metuniloc| replace:: ``<metatrafficUnicastLocatorList>``
+.. |metmulloc| replace:: ``<metatrafficMulticastLocatorList>``
+.. |loclist| replace:: List of :ref:`LocatorListType`
+.. |mempol| replace:: :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC`, :class:`DYNAMIC`
+.. |staendxml| replace:: ``<staticEndpointXMLFilename>``
+.. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
+.. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
+
+
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| Name                      | Description                           | Values                  | Default               |
++===========================+=======================================+=========================+=======================+
+| ``<use_SIMPLE_RTPS_PDP>`` | Indicates if the Participant          | ``Boolean``             | :class:`true`         |
+|                           | must use the Simple RTPS Discovery    |                         |                       |
+|                           | Protocol.                             |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |usewriliv|               | Indicates to use the                  | ``Boolean``             | :class:`true`         |
+|                           | WriterLiveliness protocol.            |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| ``<EDP>``                 | - If set to :class:`SIMPLE`,          | :class:`SIMPLE`,        |  :class:`SIMPLE`      |
+|                           |   ``<simpleEDP>`` would be used.      | :class:`STATIC`         |                       |
+|                           |                                       |                         |                       |
+|                           | - If set to :class:`STATIC`,          |                         |                       |
+|                           |   StaticEDP based on an XML           |                         |                       |
+|                           |   file would be used with the         |                         |                       |
+|                           |   contents of                         |                         |                       |
+|                           |   ``<staticEndpointXMLFilename>``.    |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| ``<domainId>``            | DomainId to be used by                | ``UInt32``              | 0                     |
+|                           | the RTPSParticipant.                  |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| ``<leaseDuration>``       | Indicates how much time remote        |  :ref:`DurationType`    | 130 s                 |
+|                           | RTPSParticipants should consider this |                         |                       |
+|                           | RTPSParticipant alive.                |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| ``<leaseAnnouncement>``   | The period for the RTPSParticipant    |  :ref:`DurationType`    | 40 s                  |
+|                           | to send its Discovery Message to all  |                         |                       |
+|                           | other discovered RTPSParticipants     |                         |                       |
+|                           | as well as to all Multicast ports.    |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| ``<simpleEDP>``           | Attributes of the SimpleEDP           | :ref:`simpleEDP <sedp>` |                       |
+|                           | protocol                              |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |metuniloc|               | Metatraffic Unicast Locator           | |loclist|               |                       |
+|                           | List                                  |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |metmulloc|               | Metatraffic Multicast Locator         | |loclist|               |                       |
+|                           | List                                  |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| ``<initialPeersList>``    | Initial peers.                        | |loclist|               |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |staendxml|               | StaticEDP XML filename.               | ``string``              |                       |
+|                           | Only necessary if ``<EDP>``           |                         |                       |
+|                           | is set to :class:`STATIC`             |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |readhistmem|             | Memory policy for builtin             | |mempol|                | :class:`PREALLOCATED` |
+|                           | readers.                              |                         |                       |
+|                           |                                       |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |writhistmem|             | Memory policy for builtin             | |mempol|                | :class:`PREALLOCATED` |
+|                           | writers.                              |                         |                       |
+|                           |                                       |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
 
 .. _sedp:
 
 **simpleEDP**
 
-+------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
-| Name                         | Description                                                                      | Values              | Default            |
-+==============================+==================================================================================+=====================+====================+
-| ``<PUBWRITER_SUBREADER>``    | Indicates if the participant must use Publication Writer and Subcription Reader. | ``Boolean``         | :class:`true`      |
-+------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
-| ``<PUBREADER_SUBWRITER>``    | Indicates if the participant must use Publication Reader and Subcription Writer. | ``Boolean``         | :class:`true`      |
-+------------------------------+----------------------------------------------------------------------------------+---------------------+--------------------+
++---------------------------+---------------------------------------------+-------------+---------------+
+| Name                      | Description                                 | Values      | Default       |
++===========================+=============================================+=============+===============+
+| ``<PUBWRITER_SUBREADER>`` | Indicates if the participant must use       | ``Boolean`` | :class:`true` |
+|                           | Publication Writer and Subscription Reader. |             |               |
++---------------------------+---------------------------------------------+-------------+---------------+
+| ``<PUBREADER_SUBWRITER>`` | Indicates if the participant must use       | ``Boolean`` | :class:`true` |
+|                           | Publication Reader and Subscription Writer. |             |               |
++---------------------------+---------------------------------------------+-------------+---------------+
 
 
 .. _publisherprofiles:
@@ -564,48 +657,69 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| Name                              | Description                                                             | Values                              | Default               |
-+===================================+=========================================================================+=====================================+=======================+
-| ``<topic>``                       | :ref:`TopicType` configuration of the pubsliher.                        | :ref:`TopicType`                    |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<qos>``                         | Publisher :ref:`CommonQOS` configuration.                               | :ref:`CommonQOS`                    |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<times>``                       | It allows configuring some time related parameters of the publisher .   | :ref:`Times <pubtimes>`             |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<unicastLocatorList>``          | List of input unicast locators. It expects a :ref:`LocatorListType`.    | List of :ref:`LocatorListType`      |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<multicastLocatorList>``        | List of input multicast locators. It expects a :ref:`LocatorListType`.  | List of :ref:`LocatorListType`      |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<throughputController>``        | Limits the output bandwidth of the publisher.                           | `Throughput`_                       |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<historyMemoryPolicy>``         | Memory allocation kind for pubsliher's history.                         | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
-|                                   |                                                                         | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
-|                                   |                                                                         | :class:`DYNAMIC`                    |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<propertiesPolicy>``            | Additional configuration properties.                                    | :ref:`PropertiesPolicyType`         |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<userDefinedID>``               | Used for StaticEndpointDiscovery.                                       | ``Int16``                           | -1                    |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<entityID>``                    | EntityId of the *endpoint*.                                             | ``Int16``                           | -1                    |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| Name                       | Description               | Values                              | Default               |
++============================+===========================+=====================================+=======================+
+| ``<topic>``                | :ref:`TopicType`          | :ref:`TopicType`                    |                       |
+|                            | configuration of the      |                                     |                       |
+|                            | publisher.                |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<qos>``                  | Publisher                 | :ref:`CommonQOS`                    |                       |
+|                            | :ref:`CommonQOS`          |                                     |                       |
+|                            | configuration.            |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<times>``                | It allows configuring     | :ref:`Times <pubtimes>`             |                       |
+|                            | some time related         |                                     |                       |
+|                            | parameters of the         |                                     |                       |
+|                            | publisher.                |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<unicastLocatorList>``   | List of input unicast     | List of :ref:`LocatorListType`      |                       |
+|                            | locators. It expects      |                                     |                       |
+|                            | a :ref:`LocatorListType`. |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<multicastLocatorList>`` | List of input multicast   | List of :ref:`LocatorListType`      |                       |
+|                            | locators. It expects      |                                     |                       |
+|                            | a :ref:`LocatorListType`. |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<throughputController>`` | Limits the output         | `Throughput`_                       |                       |
+|                            | bandwidth of              |                                     |                       |
+|                            | the publisher.            |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<historyMemoryPolicy>``  | Memory allocation kind    | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
+|                            | for publisher's history.  | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
+|                            |                           | :class:`DYNAMIC`                    |                       |
+|                            |                           |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<propertiesPolicy>``     | Additional configuration  | :ref:`PropertiesPolicyType`         |                       |
+|                            | properties.               |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<userDefinedID>``        | Used for                  | ``Int16``                           | -1                    |
+|                            | StaticEndpointDiscovery.  |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<entityID>``             | EntityId of the           | ``Int16``                           | -1                    |
+|                            | *endpoint*.               |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
 
 .. _pubtimes:
 
 **Times**
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<initialHeartbeatDelay>``  | Initial heartbeat delay.                                                      | :ref:`DurationType`              | ~45 ms             |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<heartbeatPeriod>``        | Periodic HB period.                                                           | :ref:`DurationType`              | 3 s                |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<nackResponseDelay>``      | Delay to apply to the response of a ACKNACK message.                          | :ref:`DurationType`              | ~45 ms             |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<nackSupressionDuration>`` | | This time allows the RTPSWriter to ignore nack messages                     | :ref:`DurationType`              | 0 ms               |
-|                              | | too soon after the data has been sent.                                      |                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++------------------------------+-------------------------------+---------------------+---------+
+| Name                         | Description                   | Values              | Default |
++==============================+===============================+=====================+=========+
+| ``<initialHeartbeatDelay>``  | Initial heartbeat delay.      | :ref:`DurationType` | ~45 ms  |
++------------------------------+-------------------------------+---------------------+---------+
+| ``<heartbeatPeriod>``        | Periodic HB period.           | :ref:`DurationType` | 3 s     |
++------------------------------+-------------------------------+---------------------+---------+
+| ``<nackResponseDelay>``      | Delay to apply to the         | :ref:`DurationType` | ~45 ms  |
+|                              | response of a ACKNACK         |                     |         |
+|                              | message.                      |                     |         |
++------------------------------+-------------------------------+---------------------+---------+
+| ``<nackSupressionDuration>`` | This time allows the          | :ref:`DurationType` | 0 ms    |
+|                              | RTPSWriter to ignore          |                     |         |
+|                              | nack messages too soon        |                     |         |
+|                              | after the data has been sent. |                     |         |
++------------------------------+-------------------------------+---------------------+---------+
 
 .. _subscriberprofiles:
 
@@ -633,43 +747,59 @@ as shown in :ref:`loadingapplyingprofiles`.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| Name                              | Description                                                             | Values                              | Default               |
-+===================================+=========================================================================+=====================================+=======================+
-| ``<topic>``                       | :ref:`TopicType` configuration of the subscriber.                       | :ref:`TopicType`                    |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<qos>``                         | Subscriber :ref:`CommonQOS` configuration.                              | :ref:`CommonQOS`                    |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<times>``                       | It allows configuring some time related parameters of the subscriber.   | :ref:`Times <subtimes>`             |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<unicastLocatorList>``          | List of input unicast locators. It expects a :ref:`LocatorListType`.    | List of :ref:`LocatorListType`      |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<multicastLocatorList>``        | List of input multicast locators. It expects a :ref:`LocatorListType`.  | List of :ref:`LocatorListType`      |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<expectsInlineQos>``            | It indicates if QOS is expected inline.                                 | ``Boolean``                         | :class:`false`        |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<historyMemoryPolicy>``         | Memory allocation kind for subscriber's history.                        | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
-|                                   |                                                                         | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
-|                                   |                                                                         | :class:`DYNAMIC`                    |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<propertiesPolicy>``            | Additional configuration properties.                                    | :ref:`PropertiesPolicyType`         |                       |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<userDefinedID>``               | Used for StaticEndpointDiscovery.                                       | ``Int16``                           | -1                    |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
-| ``<entityID>``                    | EntityId of the *endpoint*.                                             | ``Int16``                           | -1                    |
-+-----------------------------------+-------------------------------------------------------------------------+-------------------------------------+-----------------------+
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| Name                       | Description               | Values                              | Default               |
++============================+===========================+=====================================+=======================+
+| ``<topic>``                | :ref:`TopicType`          | :ref:`TopicType`                    |                       |
+|                            | configuration of the      |                                     |                       |
+|                            | subscriber.               |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<qos>``                  | Subscriber                | :ref:`CommonQOS`                    |                       |
+|                            | :ref:`CommonQOS`          |                                     |                       |
+|                            | configuration.            |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<times>``                | It allows configuring     | :ref:`Times <subtimes>`             |                       |
+|                            | some time related         |                                     |                       |
+|                            | parameters of the         |                                     |                       |
+|                            | subscriber.               |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<unicastLocatorList>``   | List of input unicast     | List of :ref:`LocatorListType`      |                       |
+|                            | locators. It expects a    |                                     |                       |
+|                            | :ref:`LocatorListType`.   |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<multicastLocatorList>`` | List of input multicast   | List of :ref:`LocatorListType`      |                       |
+|                            | locators. It expects a    |                                     |                       |
+|                            | :ref:`LocatorListType`.   |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<expectsInlineQos>``     | It indicates if QOS is    | ``Boolean``                         | :class:`false`        |
+|                            | expected inline.          |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<historyMemoryPolicy>``  | Memory allocation kind    | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
+|                            | for subscriber's history. | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
+|                            |                           | :class:`DYNAMIC`                    |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<propertiesPolicy>``     | Additional configuration  | :ref:`PropertiesPolicyType`         |                       |
+|                            | properties.               |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<userDefinedID>``        | Used for                  | ``Int16``                           | -1                    |
+|                            | StaticEndpointDiscovery.  |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
+| ``<entityID>``             | EntityId of the           | ``Int16``                           | -1                    |
+|                            | *endpoint*.               |                                     |                       |
++----------------------------+---------------------------+-------------------------------------+-----------------------+
 
 .. _subtimes:
 
 **Times**
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<initialAcknackDelay>``    | Initial AckNack delay.                                                        | :ref:`DurationType`              | ~45 ms             |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<heartbeatResponseDelay>`` | Delay to be applied when a hearbeat message is received.                      | :ref:`DurationType`              | ~4.5 ms            |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++------------------------------+----------------------------------+---------------------+---------+
+| Name                         | Description                      | Values              | Default |
++==============================+==================================+=====================+=========+
+| ``<initialAcknackDelay>``    | Initial AckNack delay.           | :ref:`DurationType` | ~45 ms  |
++------------------------------+----------------------------------+---------------------+---------+
+| ``<heartbeatResponseDelay>`` | Delay to be applied when         | :ref:`DurationType` | ~4.5 ms |
+|                              | a heartbeat message is received. |                     |         |
++------------------------------+----------------------------------+---------------------+---------+
 
 .. _commonxml:
 
@@ -698,50 +828,58 @@ In this example, there are three different locators in ``<defaultUnicastLocatorL
 
 Let's see each Locator's fields in detail:
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<kind>``                   | Locator's kind.                                                               | :class:`UDPv4`, :class:`UDPv6`,  | :class:`UDPv4`     |
-|                              |                                                                               | :class:`TCPv4`, :class:`TCPv6`   |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<port>``                   | Physical port number of the locator.                                          | ``Uint32``                       | 0                  |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<port_>``                  | | It allows to access low-level TCP port details.                             | :ref:`TCP Ports <tcpports>`      |                    |
-|                              | | It is detailed in :ref:`TCP Ports <tcpports>`                               |                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<address>``                | IPv4 address of the locator                                                   | ``string`` with IPv4 Format      | :class:`0.0.0.0`   |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<addresses_>``             | | It allows managing low-level details in address of TCPv4 locators.          | :ref:`TCP Addresses <tcpaddrs>`  |                    |
-|                              | | It is detailed in :ref:`TCP Addresses <tcpaddrs>`                           |                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<ipv6_address>``           | IPv6 address of the locator                                                   | ``string`` with IPv6 Format      | :class:`::`        |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++--------------------+--------------------------------------+---------------------------------+------------------+
+| Name               | Description                          | Values                          | Default          |
++====================+======================================+=================================+==================+
+| ``<kind>``         | Locator's kind.                      | :class:`UDPv4`, :class:`UDPv6`, | :class:`UDPv4`   |
+|                    |                                      | :class:`TCPv4`, :class:`TCPv6`  |                  |
++--------------------+--------------------------------------+---------------------------------+------------------+
+| ``<port>``         | Physical port number                 | ``Uint32``                      | 0                |
+|                    | of the locator.                      |                                 |                  |
++--------------------+--------------------------------------+---------------------------------+------------------+
+| ``<port_>``        | It allows to access low-level        | :ref:`TCP Ports <tcpports>`     |                  |
+|                    | TCP port details.                    |                                 |                  |
+|                    | It is detailed in                    |                                 |                  |
+|                    | :ref:`TCP Ports <tcpports>`          |                                 |                  |
++--------------------+--------------------------------------+---------------------------------+------------------+
+| ``<address>``      | IPv4 address of the                  | ``string`` with IPv4 Format     | :class:`0.0.0.0` |
+|                    | locator                              |                                 |                  |
++--------------------+--------------------------------------+---------------------------------+------------------+
+| ``<addresses_>``   | It allows managing low-level details | :ref:`TCP Addresses <tcpaddrs>` |                  |
+|                    | in address of TCPv4 locators.        |                                 |                  |
+|                    | It is detailed in                    |                                 |                  |
+|                    | :ref:`TCP Addresses <tcpaddrs>`      |                                 |                  |
++--------------------+--------------------------------------+---------------------------------+------------------+
+| ``<ipv6_address>`` | IPv6 address of the                  | ``string`` with IPv6 Format     | :class:`::`      |
+|                    | locator                              |                                 |                  |
++--------------------+--------------------------------------+---------------------------------+------------------+
 
 .. _tcpports:
 
 **TCP Ports**
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<physical_port>``          | TCP port.                                                                     | ``UInt16``                       | 0                  |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<logical_port>``           | RTPS logical port.                                                            | ``UInt16``                       | 0                  |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++---------------------+--------------------+------------+---------+
+| Name                | Description        | Values     | Default |
++=====================+====================+============+=========+
+| ``<physical_port>`` | TCP port.          | ``UInt16`` | 0       |
++---------------------+--------------------+------------+---------+
+| ``<logical_port>``  | RTPS logical port. | ``UInt16`` | 0       |
++---------------------+--------------------+------------+---------+
 
 .. _tcpaddrs:
 
 **TCP Addresses**
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<unique_lan_id>``          | The LAN ID uniquely identifies the LAN the locator belongs to.                | ``string`` (16 bytes)            |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<wan_address>``            | WAN IPv4 address.                                                             | ``string`` with IPv4 Format      | :class:`0.0.0.0`   |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<ip_address>``             | WAN IPv4 address.                                                             | ``string`` with IPv4 Format      | :class:`0.0.0.0`   |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++---------------------+---------------------------------+-----------------------------+------------------+
+| Name                | Description                     | Values                      | Default          |
++=====================+=================================+=============================+==================+
+| ``<unique_lan_id>`` | The LAN ID uniquely identifies  | ``string`` (16 bytes)       |                  |
+|                     | the LAN the locator belongs to. |                             |                  |
++---------------------+---------------------------------+-----------------------------+------------------+
+| ``<wan_address>``   | WAN IPv4 address.               | ``string`` with IPv4 Format | :class:`0.0.0.0` |
++---------------------+---------------------------------+-----------------------------+------------------+
+| ``<ip_address>``    | WAN IPv4 address.               | ``string`` with IPv4 Format | :class:`0.0.0.0` |
++---------------------+---------------------------------+-----------------------------+------------------+
 
 
 .. _PropertiesPolicyType:
@@ -757,15 +895,16 @@ It's useful at defining extended or custom configuration parameters.
     :start-after: <!-->XML-PROPERTIES-POLICY<-->
     :end-before: <!--><-->
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<name>``                   | Name to identify the property.                                                | ``string``                       |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<value>``                  | Property's value.                                                             | ``string``                       |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<propagate>``              | Indicates if it is going to be serialized along with the object it belongs to.| ``Boolean``                      | :class:`false`     |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++-----------------+-------------------------------------------+-------------+----------------+
+| Name            | Description                               | Values      | Default        |
++=================+===========================================+=============+================+
+| ``<name>``      | Name to identify the property.            | ``string``  |                |
++-----------------+-------------------------------------------+-------------+----------------+
+| ``<value>``     | Property's value.                         | ``string``  |                |
++-----------------+-------------------------------------------+-------------+----------------+
+| ``<propagate>`` | Indicates if it is going to be serialized | ``Boolean`` | :class:`false` |
+|                 | along with the object it belongs to.      |             |                |
++-----------------+-------------------------------------------+-------------+----------------+
 
 .. _DurationType:
 
@@ -773,7 +912,8 @@ DurationType
 ^^^^^^^^^^^^
 
 DurationType expresses a period of time and it's commonly used as an anonymous type, this is, it hasn't its own label.
-Instead, it is used inside other configuration parameter labels that give it sense, like ``<leaseAnnouncement>`` or ``<leaseDuration>``.
+Instead, it is used inside other configuration parameter labels that give it sense, like ``<leaseAnnouncement>`` or
+``<leaseDuration>``.
 
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
@@ -789,20 +929,21 @@ or by ``<seconds>`` plus ``<fraction>`` labels:
 
 - :class:`INVALID`: Constant value, represents an invalid period of time.
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<seconds>``                | Number of seconds.                                                            | ``Int32``                        | 0                  |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<fraction>``               | Fractions of a second. A fraction is :class:`1/(2^32)` seconds.               | ``UInt32``                       | 0                  |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++----------------+-----------------------------------------------------------------+------------+---------+
+| Name           | Description                                                     | Values     | Default |
++================+=================================================================+============+=========+
+| ``<seconds>``  | Number of seconds.                                              | ``Int32``  | 0       |
++----------------+-----------------------------------------------------------------+------------+---------+
+| ``<fraction>`` | Fractions of a second. A fraction is :class:`1/(2^32)` seconds. | ``UInt32`` | 0       |
++----------------+-----------------------------------------------------------------+------------+---------+
 
 .. _TopicType:
 
 Topic Type
 ^^^^^^^^^^
 
-The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange messages.
+The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange
+messages.
 There is a deeper explanation of the "topic" field here: :ref:`Topic_information`.
 
 .. literalinclude:: ../code/XMLTester.xml
@@ -810,22 +951,32 @@ There is a deeper explanation of the "topic" field here: :ref:`Topic_information
     :start-after: <!-->XML-TOPIC<-->
     :end-before: <!--><-->
 
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                     | Values                           | Default            |
-+==============================+=================================================================================+==================================+====================+
-| ``<kind>``                   | It defines the Topic's kind                                                     | :class:`NO_KEY`,                 | :class:`NO_KEY`    |
-|                              |                                                                                 | :class:`WITH_KEY`                |                    |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<name>``                   | It defines the Topic's name. Must be unique.                                    | ``string``                       |                    |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<dataType>``               | It references the Topic's data type.                                            | ``string``                       |                    |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<historyQos>``             | | It controls the behavior of *Fast RTPS* when the value of an instance changes | :ref:`HistoryQos <hQos>`         |                    |
-|                              | | before it is finally communicated to some of its existing DataReader entities.|                                  |                    |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<resourceLimitsQos>``      | | It controls the resources that *Fast RTPS* can use in order to meet the       | :ref:`ResourceLimitsQos <rLsQos>`|                    |
-|                              | | requirements imposed by the application and other QoS settings.               |                                  |                    |
-+------------------------------+---------------------------------------------------------------------------------+----------------------------------+--------------------+
++-------------------------+-------------------------------+-----------------------------------+-----------------+
+| Name                    | Description                   | Values                            | Default         |
++=========================+===============================+===================================+=================+
+| ``<kind>``              | It defines the Topic's        | :class:`NO_KEY`,                  | :class:`NO_KEY` |
+|                         | kind                          | :class:`WITH_KEY`                 |                 |
++-------------------------+-------------------------------+-----------------------------------+-----------------+
+| ``<name>``              | It defines the Topic's        | ``string``                        |                 |
+|                         | name. Must be unique.         |                                   |                 |
++-------------------------+-------------------------------+-----------------------------------+-----------------+
+| ``<dataType>``          | It references the             | ``string``                        |                 |
+|                         | Topic's data type.            |                                   |                 |
++-------------------------+-------------------------------+-----------------------------------+-----------------+
+| ``<historyQos>``        | It controls the behavior      | :ref:`HistoryQos <hQos>`          |                 |
+|                         | of *Fast RTPS* when the value |                                   |                 |
+|                         | of an instance changes before |                                   |                 |
+|                         | it is finally communicated to |                                   |                 |
+|                         | some of its existing          |                                   |                 |
+|                         | DataReader entities.          |                                   |                 |
++-------------------------+-------------------------------+-----------------------------------+-----------------+
+| ``<resourceLimitsQos>`` | It controls the resources     | :ref:`ResourceLimitsQos <rLsQos>` |                 |
+|                         | that *Fast RTPS* can use      |                                   |                 |
+|                         | in order to meet the          |                                   |                 |
+|                         | requirements imposed          |                                   |                 |
+|                         | by the application            |                                   |                 |
+|                         | and other QoS settings.       |                                   |                 |
++-------------------------+-------------------------------+-----------------------------------+-----------------+
 
 .. _hQos:
 
@@ -834,18 +985,22 @@ There is a deeper explanation of the "topic" field here: :ref:`Topic_information
 It controls the behavior of *Fast RTPS* when the value of an instance changes before it is finally
 communicated to some of its existing DataReader entities.
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<kind>``                   | See description below.                                                        | :class:`KEEP_LAST`,              | :class:`KEEP_LAST` |
-|                              |                                                                               | :class:`KEEP_ALL`                |                    |
-+------------------------------+                                                                               +----------------------------------+--------------------+
-| ``<depth>``                  |                                                                               | ``UInt32``                       | 1000               |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++-------------+------------------------+---------------------+--------------------+
+| Name        | Description            | Values              | Default            |
++=============+========================+=====================+====================+
+| ``<kind>``  | See description below. | :class:`KEEP_LAST`, | :class:`KEEP_LAST` |
+|             |                        | :class:`KEEP_ALL`   |                    |
++-------------+------------------------+---------------------+--------------------+
+| ``<depth>`` |                        | ``UInt32``          | 1000               |
++-------------+------------------------+---------------------+--------------------+
 
-| If the ``<kind>`` is set to :class:`KEEP_LAST`, then *Fast RTPS* will only attempt to keep the latest values of the instance and discard the older ones.
-| If the ``<kind>`` is set to :class:`KEEP_ALL`, then *Fast RTPS* will attempt to maintain and deliver all the values of the instance to existing subscribers.
-| The setting of ``<depth>`` must be consistent with the :ref:`ResourceLimitsQos <rLsQos>` ``<max_samples_per_instance>``. For these two QoS to be consistent, they must verify that ``depth <= max_samples_per_instance``.
+| If the ``<kind>`` is set to :class:`KEEP_LAST`, then *Fast RTPS* will only attempt to keep the latest values of the
+  instance and discard the older ones.
+| If the ``<kind>`` is set to :class:`KEEP_ALL`, then *Fast RTPS* will attempt to maintain and deliver all the values
+  of the instance to existing subscribers.
+| The setting of ``<depth>`` must be consistent with the :ref:`ResourceLimitsQos <rLsQos>`
+  ``<max_samples_per_instance>``.
+  For these two QoS to be consistent, they must verify that ``depth <= max_samples_per_instance``.
 
 .. _rLsQos:
 
@@ -854,18 +1009,19 @@ communicated to some of its existing DataReader entities.
 It controls the resources that *Fast RTPS* can use in order to meet the requirements imposed by the
 application and other QoS settings.
 
-+-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                          | Description                                                                   | Values                           | Default            |
-+===============================+===============================================================================+==================================+====================+
-| ``<max_samples>``             | It must verify that ``max_samples >= max_samples_per_instance``.              | ``UInt32``                       | 5000               |
-+-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<max_instances>``           | It defines the maximum number of instances.                                   | ``UInt32``                       | 10                 |
-+-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<max_samples_per_instance>``| It must verify that :ref:`HistoryQos <hQos>`                                  | ``UInt32``                       | 400                |
-|                               | ``depth <= max_samples_per_instance``.                                        |                                  |                    |
-+-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<allocated_samples>``       | It controls the maximum number of samples to be stored.                       | ``UInt32``                       | 100                |
-+-------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++--------------------------------+---------------------------------------------------------+------------+---------+
+| Name                           | Description                                             | Values     | Default |
++================================+=========================================================+============+=========+
+| ``<max_samples>``              | It must verify that                                     | ``UInt32`` | 5000    |
+|                                | ``max_samples >= max_samples_per_instance``.            |            |         |
++--------------------------------+---------------------------------------------------------+------------+---------+
+| ``<max_instances>``            | It defines the maximum number of instances.             | ``UInt32`` | 10      |
++--------------------------------+---------------------------------------------------------+------------+---------+
+| ``<max_samples_per_instance>`` | It must verify that :ref:`HistoryQos <hQos>`            | ``UInt32`` | 400     |
+|                                | ``depth <= max_samples_per_instance``.                  |            |         |
++--------------------------------+---------------------------------------------------------+------------+---------+
+| ``<allocated_samples>``        | It controls the maximum number of samples to be stored. | ``UInt32`` | 100     |
++--------------------------------+---------------------------------------------------------+------------+---------+
 
 .. _CommonQOS:
 
@@ -884,22 +1040,27 @@ The quality of service (QoS) handles the restrictions applied to the application
     :start-after: <!-->XML-QOS<-->
     :end-before: <!--><-->
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<durability>``             | It is defined on :ref:`SettingDataDurability` section.                        | :class:`VOLATILE`,               | :class:`VOLATILE`  |
-|                              |                                                                               | :class:`TRANSIENT_LOCAL`,        |                    |
-|                              |                                                                               | :class:`TRANSIENT`               |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<liveliness>``             | Defines the liveliness of the participant.                                    | :ref:`LivelinessType`            |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<reliability>``            | It is defined on :ref:`reliability` section.                                  | :class:`RELIABLE`,               | :class:`RELIABLE`  |
-|                              |                                                                               | :class:`BEST_EFFORT`             |                    |
-|                              |                                                                               |                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<partition>``              | | It allows the introduction of a logical partition concept                   | ``List <string>``                |                    |
-|                              | | inside the ‘physical’ partition induced by a domain.                        |                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++-------------------+---------------------------------------+---------------------------------+-------------------+
+| Name              | Description                           | Values                          | Default           |
++===================+=======================================+=================================+===================+
+| ``<durability>``  | It is defined on                      | :class:`VOLATILE`,              | :class:`VOLATILE` |
+|                   | :ref:`SettingDataDurability` section. | :class:`TRANSIENT_LOCAL`,       |                   |
+|                   |                                       | :class:`TRANSIENT`              |                   |
+|                   |                                       |                                 |                   |
++-------------------+---------------------------------------+---------------------------------+-------------------+
+| ``<liveliness>``  | Defines the liveliness of the         | :ref:`LivelinessType`           |                   |
+|                   | participant.                          |                                 |                   |
++-------------------+---------------------------------------+---------------------------------+-------------------+
+| ``<reliability>`` | It is defined on :ref:`reliability`   | :class:`RELIABLE`,              | :class:`RELIABLE` |
+|                   | section.                              | :class:`BEST_EFFORT`            |                   |
+|                   |                                       |                                 |                   |
+|                   |                                       |                                 |                   |
++-------------------+---------------------------------------+---------------------------------+-------------------+
+| ``<partition>``   |                                       | It allows the introduction of   | ``List <string>`` |
+|                   |                                       | a logical partition concept     |                   |
+|                   |                                       | inside the ‘physical’ partition |                   |
+|                   |                                       | induced by a domain.            |                   |
++-------------------+---------------------------------------+---------------------------------+-------------------+
 
 ..
     .. note::
@@ -946,18 +1107,10 @@ The quality of service (QoS) handles the restrictions applied to the application
 
     Durability defines the behavior regarding samples that existed on the topic before a subscriber joins.
 
-    .. code-block:: xml
-
-        <durabilityService>
-            <service_cleanup_delay>
-                <!-- DURATION -->
-            </service_cleanup_delay>
-            <history_kind>KEEP_LAST</history_kind> <!-- string -->
-            <history_depth></history_depth> <!-- unint32 -->
-            <max_samples></max_samples> <!-- unint32 -->
-            <max_instances></max_instances> <!-- unint32 -->
-            <max_samples_per_instance></max_samples_per_instance> <!-- unint32 -->
-        </durabilityService>
+    .. literalinclude:: ../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->XML_DURABILITYSERVICE<-->
+       :end-before: <!--><-->
 
     - ``<history_kind>``: History handling kind. It accepts :class:`KEEP_LAST` and :class:`KEEP_ALL` values.
 
@@ -982,19 +1135,23 @@ This parameter defines who is responsible for issues of liveliness packets.
     :end-before: <!--><-->
 
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<kind>``                   | Specifies how to manage liveliness.                                           | :class:`AUTOMATIC`,              | :class:`AUTOMATIC` |
-|                              |                                                                               | :class:`MANUAL_BY_TOPIC`,        |                    |
-|                              |                                                                               | :class:`MANUAL_BY_TOPIC`         |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<leaseDuration>``          | | Amount of time that the remote RTPSParticipants should consider this        | :ref:`DurationType`              | 130 s              |
-|                              | | RTPSParticipant to be alive since the last message.                         |                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<announcement_period>``    | | The period to send its Discovery Message to all other                       | :ref:`DurationType`              | 40 s               |
-|                              | | discovered RTPSParticipants as well as to all Multicast ports.              |                                  |                    |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++---------------------------+----------------------------------+---------------------------+--------------------+
+| Name                      | Description                      | Values                    | Default            |
++===========================+==================================+===========================+====================+
+| ``<kind>``                | Specifies how                    | :class:`AUTOMATIC`,       | :class:`AUTOMATIC` |
+|                           | to manage liveliness.            | :class:`MANUAL_BY_TOPIC`, |                    |
+|                           |                                  | :class:`MANUAL_BY_TOPIC`  |                    |
++---------------------------+----------------------------------+---------------------------+--------------------+
+| ``<leaseDuration>``       | Amount of time that the remote   | :ref:`DurationType`       | 130 s              |
+|                           | RTPSParticipants should consider |                           |                    |
+|                           | this RTPSParticipant to be alive |                           |                    |
+|                           | since the last message.          |                           |                    |
++---------------------------+----------------------------------+---------------------------+--------------------+
+| ``<announcement_period>`` | The period to send its Discovery | :ref:`DurationType`       | 40 s               |
+|                           | Message to all other             |                           |                    |
+|                           | discovered RTPSParticipants as   |                           |                    |
+|                           | well as to all Multicast ports.  |                           |                    |
++---------------------------+----------------------------------+---------------------------+--------------------+
 
 .. _Throughput:
 
@@ -1003,13 +1160,15 @@ Throughput Configuration
 
 Throughput Configuration allows to limit the output bandwidth.
 
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| Name                         | Description                                                                   | Values                           | Default            |
-+==============================+===============================================================================+==================================+====================+
-| ``<bytesPerPeriod>``         | Packet size in bytes that this controller will allow in a given period.       | ``UInt32``                       | 4294967295         |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
-| ``<periodMillisecs>``        | Window of time in which no more than ``<bytesPerPeriod>`` bytes are allowed.  | ``UInt32``                       | 0                  |
-+------------------------------+-------------------------------------------------------------------------------+----------------------------------+--------------------+
++-----------------------+-----------------------------------------------------------+------------+------------+
+| Name                  | Description                                               | Values     | Default    |
++=======================+===========================================================+============+============+
+| ``<bytesPerPeriod>``  | Packet size in bytes that this controller will allow in   | ``UInt32`` | 4294967295 |
+|                       | a given period.                                           |            |            |
++-----------------------+-----------------------------------------------------------+------------+------------+
+| ``<periodMillisecs>`` | Window of time in which no more than ``<bytesPerPeriod>`` | ``UInt32`` | 0          |
+|                       | bytes are allowed.                                        |            |            |
++-----------------------+-----------------------------------------------------------+------------+------------+
 
 .. _examplexml:
 

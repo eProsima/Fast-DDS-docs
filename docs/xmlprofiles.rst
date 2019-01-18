@@ -147,7 +147,7 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | negotiation.                      |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<listening_ports>``         | Local port to work as TCP        | ``List <uint16>``               |                |
+| ``<listening_ports>``         | Local port to work as TCP         | ``List <uint16>``               |                |
 |                               | acceptor for input connections.   |                                 |                |
 |                               | If not set, the transport will    |                                 |                |
 |                               | work as TCP client only           |                                 |                |

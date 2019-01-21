@@ -28,7 +28,7 @@ An XML file can contain several XML profiles. The available profile types are :r
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS<-->
-    :lines: 1-6, 13-33
+    :lines: 1-6, 11-32
 
 The Fast-RTPS XML format uses some structures along several profiles types.
 For readability, the :ref:`commonxml` section groups these common structures.
@@ -120,7 +120,8 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<output_port>``             | Port used for output bound.       | ``uint16``                      | 0              |
 |                               | If this field isn't defined,      |                                 |                |
-|                               | the output port will be random.   |                                 |                |
+|                               | the output port will be random    |                                 |                |
+|                               | (UDP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<keep_alive_frequency_ms>`` | Frequency in milliseconds         | ``uint32``                      | 50000          |
 |                               | for sending RTCP keep-alive       |                                 |                |
@@ -146,7 +147,7 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | negotiation.                      |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<ListeningPorts>``          | Local port to work as TCP         | ``List <uint16>``               |                |
+| ``<listening_ports>``         | Local port to work as TCP         | ``List <uint16>``               |                |
 |                               | acceptor for input connections.   |                                 |                |
 |                               | If not set, the transport will    |                                 |                |
 |                               | work as TCP client only           |                                 |                |
@@ -179,7 +180,7 @@ Stand-Alone:
 
 Rooted:
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: ../code/XMLTesterAux.xml
     :language: xml
     :start-after: <!-- ROOTED TYPES START -->
     :end-before: <!-- ROOTED TYPES END -->
@@ -194,7 +195,7 @@ Type definition
 
 **Enum**
 
-The ``<enum>`` type is defined by its ``name`` and a set of ``literals``,
+The ``<enum>`` type is defined by its ``name`` and a set of ``enumerators``,
 each of them with its ``name`` and its (optional) ``value``.
 
 Example:
@@ -246,7 +247,7 @@ Example:
 **Union**
 
 The ``<union>`` type is defined by its ``name``, a ``discriminator`` and a set of ``cases``.
-Each ``case`` has one or more ``caseValue`` and a *member*.
+Each ``case`` has one or more ``caseDiscriminator`` and a ``member``.
 
 
 Example:
@@ -267,26 +268,23 @@ Member types
 
 Member types are any type that can belong to a ``<struct>`` or a ``<union>``, or be aliased by a ``<typedef>``.
 
-When used as ``<sequence>``'s elements, ``key`` or ``value`` types of a map, as an aliased type, etc.,
-its ``name`` attribute is ignored and can be omitted.
-
 **Basic types**
 
-The tags of the available basic types are:
+The identifiers of the available basic types are:
 
-+--------------------------+--------------------------+--------------------------+
-| ``<boolean>``            | ``<longlong>``           | ``<longdouble>``         |
-+--------------------------+--------------------------+--------------------------+
-| ``<octet>``              | ``<unsignedshort>``      | ``<string>``             |
-+--------------------------+--------------------------+--------------------------+
-| ``<char>``               | ``<unsignedlong>``       | ``<wstring>``            |
-+--------------------------+--------------------------+--------------------------+
-| ``<wchar>``              | ``<unsignedlonglong>``   | ``<boundedString>``      |
-+--------------------------+--------------------------+--------------------------+
-| ``<short>``              | ``<float>``              | ``<boundedWString>``     |
-+--------------------------+--------------------------+--------------------------+
-| ``<long>``               | ``<double>``             |                          |
-+--------------------------+--------------------------+--------------------------+
++------------------------+------------------------+------------------------+
+| ``boolean``            | ``int64``              | ``float128``           |
++------------------------+------------------------+------------------------+
+| ``byte``               | ``uint16``             | ``string``             |
++------------------------+------------------------+------------------------+
+| ``char``               | ``uint32``             | ``wstring``            |
++------------------------+------------------------+------------------------+
+| ``wchar``              | ``uint64``             |                        |
++------------------------+------------------------+------------------------+
+| ``int16``              | ``float32``            |                        |
++------------------------+------------------------+------------------------+
+| ``int32``              | ``float64``            |                        |
++------------------------+------------------------+------------------------+
 
 
 All of them are defined as follows:
@@ -301,22 +299,9 @@ All of them are defined as follows:
 |                                               |                                                     |
 +-----------------------------------------------+-----------------------------------------------------+
 
-Except for ``<boundedString>`` and ``<boundedWString>`` that should include an inner element :class:`maxLength`
-whose value indicates the maximum length of the string.
-
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-BOUNDEDSTRINGS<-->   |     :start-after: //XML-BOUNDEDSTRINGS              |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
-
 **Arrays**
 
-Arrays are defined in the same way as any other member type but add the attribute :class:`dimensions`.
+Arrays are defined in the same way as any other member type but add the attribute ``arrayDimensions``.
 The format of this dimensions attribute is the size of each dimension separated by commas.
 
 Example:
@@ -341,8 +326,8 @@ It's IDL analog would be:
 
 **Sequences**
 
-Sequences are defined by its :class:`name`, its content :class:`type`, and optionally its :class:`length`.
-The type of its content can be defined by its :class:`type` attribute or by a member type.
+Sequences are defined by its ``name``, its content ``type``, and its ``sequenceMaxLength``.
+The type of its content should be defined by its ``type`` attribute.
 
 Example:
 
@@ -356,24 +341,22 @@ Example:
 |                                               |                                                     |
 +-----------------------------------------------+-----------------------------------------------------+
 
-The example shows a sequence with ``length`` ``3`` of sequences with ``length`` ``2`` with ``<long>`` contents.
+The example shows a sequence with ``sequenceMaxLength`` ``3`` of sequences with ``sequenceMaxLength`` ``2``
+with ``<int32>`` contents.
 As IDL would be:
 
 .. code-block:: c
 
     sequence<sequence<long,2>,3> my_sequence_sequence;
 
-Note that the inner (or content) sequence has no ``name``, as it would be ignored by the parser.
+Note that the inner sequence has been defined before.
 
 **Maps**
 
 Maps are similar to sequences, but they need to define two types instead of one.
-One type defines its :class:`key_type`, and the other type defines its :class:`value_type`.
+One type defines its ``key_type``, and the other type defines its elements types.
 Again, both types can be defined as attributes or as members, but when defined
-as members, they should be contained in another XML element (``<key_type>`` and ``<value_type>`` respectively).
-
-The definition kind of each type can be mixed, this is, one type can be defined as an attribute and the
-other as a member.
+as members, they should be contained in another XML element (``<key_type>`` and ``<type>`` respectively).
 
 Example:
 
@@ -817,69 +800,37 @@ LocatorListType
 It represents a list of :class:`Locator_t`.
 LocatorListType is normally used as an anonymous type, this is, it hasn't its own label.
 Instead, it is used inside other configuration parameter labels that expect a list of locators and give it sense,
-for example, in ``<defaultUnicastLocatorList>``:
+for example, in ``<defaultUnicastLocatorList>``.
+The locator kind is defined by its own tag and can take the values ``<udpv4>``, ``<tcpv4>``, ``<udpv6>``, and
+``<tcpv6>``:
 
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-LOCATOR-LIST<-->
     :end-before: <!--><-->
 
-In this example, there are three different locators in ``<defaultUnicastLocatorList>``.
+In this example, there are one locator of each kind in ``<defaultUnicastLocatorList>``.
 
-Let's see each Locator's fields in detail:
+Let's see each possible Locator's field in detail:
 
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| Name               | Description                          | Values                          | Default          |
-+====================+======================================+=================================+==================+
-| ``<kind>``         | Locator's kind.                      | :class:`UDPv4`, :class:`UDPv6`, | :class:`UDPv4`   |
-|                    |                                      | :class:`TCPv4`, :class:`TCPv6`  |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<port>``         | Physical port number                 | ``Uint32``                      | 0                |
-|                    | of the locator.                      |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<port_>``        | It allows to access low-level        | :ref:`TCP Ports <tcpports>`     |                  |
-|                    | TCP port details.                    |                                 |                  |
-|                    | It is detailed in                    |                                 |                  |
-|                    | :ref:`TCP Ports <tcpports>`          |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<address>``      | IPv4 address of the                  | ``string`` with IPv4 Format     | :class:`0.0.0.0` |
-|                    | locator                              |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<addresses_>``   | It allows managing low-level details | :ref:`TCP Addresses <tcpaddrs>` |                  |
-|                    | in address of TCPv4 locators.        |                                 |                  |
-|                    | It is detailed in                    |                                 |                  |
-|                    | :ref:`TCP Addresses <tcpaddrs>`      |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-| ``<ipv6_address>`` | IPv6 address of the                  | ``string`` with IPv6 Format     | :class:`::`      |
-|                    | locator                              |                                 |                  |
-+--------------------+--------------------------------------+---------------------------------+------------------+
-
-.. _tcpports:
-
-**TCP Ports**
-
-+---------------------+--------------------+------------+---------+
-| Name                | Description        | Values     | Default |
-+=====================+====================+============+=========+
-| ``<physical_port>`` | TCP port.          | ``UInt16`` | 0       |
-+---------------------+--------------------+------------+---------+
-| ``<logical_port>``  | RTPS logical port. | ``UInt16`` | 0       |
-+---------------------+--------------------+------------+---------+
-
-.. _tcpaddrs:
-
-**TCP Addresses**
-
-+---------------------+---------------------------------+-----------------------------+------------------+
-| Name                | Description                     | Values                      | Default          |
-+=====================+=================================+=============================+==================+
-| ``<unique_lan_id>`` | The LAN ID uniquely identifies  | ``string`` (16 bytes)       |                  |
-|                     | the LAN the locator belongs to. |                             |                  |
-+---------------------+---------------------------------+-----------------------------+------------------+
-| ``<wan_address>``   | WAN IPv4 address.               | ``string`` with IPv4 Format | :class:`0.0.0.0` |
-+---------------------+---------------------------------+-----------------------------+------------------+
-| ``<ip_address>``    | WAN IPv4 address.               | ``string`` with IPv4 Format | :class:`0.0.0.0` |
-+---------------------+---------------------------------+-----------------------------+------------------+
++---------------------+----------------------------------+----------------------------------+------------------+
+| Name                | Description                      | Values                           | Default          |
++=====================+==================================+==================================+==================+
+| ``<port>``          | RTPS port number of the locator. | ``Uint32``                       | 0                |
+|                     | *Physical port* in UDP,          |                                  |                  |
+|                     | *logical port* in TCP.           |                                  |                  |
++---------------------+----------------------------------+----------------------------------+------------------+
+| ``<physical_port>`` | TCP's *physical port*.           | ``Uint32``                       | 0                |
++---------------------+----------------------------------+----------------------------------+------------------+
+| ``<address>``       | IP address of the locator.       | ``string`` with expected format  | ""               |
++---------------------+----------------------------------+----------------------------------+------------------+
+| ``<unique_lan_id>`` | The LAN ID uniquely identifies   | ``string`` (16 bytes)            |                  |
+|                     | the LAN the locator belongs to   |                                  |                  |
+|                     | (**TCPv4 only**).                |                                  |                  |
++---------------------+----------------------------------+----------------------------------+------------------+
+| ``<wan_address>``   | WAN IPv4 address                 | ``string`` with IPv4 Format      | :class:`0.0.0.0` |
+|                     | (**TCPv4 only**).                |                                  |                  |
++---------------------+----------------------------------+----------------------------------+------------------+
 
 
 .. _PropertiesPolicyType:

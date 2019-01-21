@@ -92,11 +92,11 @@ TCP Transport
 =============
 
 Unlike UDP, TCP transport is connection oriented and for that Fast-RTPS must establish a TCP connection
-before sending the RTPS messages. 
+before sending the RTPS messages.
 To do that there are two entities to know, **TCP Server** and **TCP Client**.
 The first one opens a TCP port listening for incoming connections and the second one tries to connect
-to the server. They don't have any relationship with RTPS concepts like **Publisher**, **Subscriber**, 
-**Writer**, and **Reader**. Any of them can work as a **TCP Server** or a **TCP Client** because 
+to the server. They don't have any relationship with RTPS concepts like **Publisher**, **Subscriber**,
+**Writer**, and **Reader**. Any of them can work as a **TCP Server** or a **TCP Client** because
 these entities are used only to establish the TCP connection and the RTPS protocol works over it.
 
 To use TCP transports you need to define some more configurations:

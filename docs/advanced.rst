@@ -84,16 +84,24 @@ You can add custom transports using the attribute ``rtps.userTransports``.
 |    :end-before: <!--><-->                           |
 +-----------------------------------------------------+
 
-For full Transport configuration options see section :ref:`transportdescriptors`.
+All Transport configuration options can be found in the section :ref:`transportdescriptors`.
 
 .. _comm-transports-tcp:
 
 TCP Transport
 =============
 
+Unlike UDP, TCP transport is connection oriented and for that Fast-RTPS must establish a TCP connection
+before sending the RTPS messages. 
+To do that there are two entities to know, **TCP Server** and **TCP Client**.
+The first one opens a TCP port listening for incoming connections and the second one tries to connect
+to the server. They don't have any relationship with RTPS concepts like **Publisher**, **Subscriber**, 
+**Writer**, and **Reader**. Any of them can work as a **TCP Server** or a **TCP Client** because 
+these entities are used only to establish the TCP connection and the RTPS protocol works over it.
+
 To use TCP transports you need to define some more configurations:
 
-You must create a new TCP transport descriptor, for example, TCPv4.
+You must create a new TCP transport descriptor, for example TCPv4.
 This transport descriptor has a field named ``listening_ports`` that indicates to Fast-RTPS
 in which physical TCP ports our participant will listen for input connections.
 If omitted, the participant will not be able to receive incoming connections but will be able
@@ -197,11 +205,6 @@ the represented by the following image.
 
 .. image:: TCP_WAN.png
     :align: center
-
-Finally, the concepts **TCP Server** and **TCP Client** only refer to how the TCP communication is established and
-doesn't have any relationship with Fast-RTPS or RTPS concepts or **Publisher**, **Subscriber**, **Writer**, and
-**Reader**. Any of them can work as a **TCP Server** or a **TCP Client** because these entities are used
-only to establish the TCP connection and the RTPS protocol works over it.
 
 **IPLocator**
 
@@ -583,7 +586,7 @@ The XML that configures the participant on the other side (in this case, a subsc
 
 You can find an example that uses `Static Endpoint Discovery <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_.
 
-The full list of fields for readers and writers includes the following parameters:
+The complete list of fields for readers and writers includes the following parameters:
 
 * **userId**: numeric value.
 * **entityID**: numeric value.

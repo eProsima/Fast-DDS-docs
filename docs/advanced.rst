@@ -95,8 +95,10 @@ Unlike UDP, TCP transport is connection oriented and for that Fast-RTPS must est
 before sending the RTPS messages.
 Therefore TCP transport can have two behaviors, acting as a server (**TCP Server**) or as a client (**TCP Client**).
 The server opens a TCP port listening for incoming connections and the client tries to connect
-to the server. The server and the client concepts are independent from the RTPS concepts: **Publisher**,
-**Subscriber**, **Writer**, and **Reader**. Any of them can operate as a **TCP Server** or a **TCP Client** because
+to the server.
+The server and the client concepts are independent from the RTPS concepts: **Publisher**,
+**Subscriber**, **Writer**, and **Reader**.
+Any of them can operate as a **TCP Server** or a **TCP Client** because
 these entities are used only to establish the TCP connection and the RTPS protocol works over it.
 
 To use TCP transports you need to define some more configurations:

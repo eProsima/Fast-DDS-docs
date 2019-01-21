@@ -69,7 +69,7 @@ The following XML code shows the complete list of configurable parameters:
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS<-->
-    :lines: 1, 11-39, 48
+    :lines: 1, 11-43, 52
 
 The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
@@ -153,6 +153,22 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | work as TCP client only           |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<calculate_crc>``           | Disables the calculation of the   | ``Boolean``                     | ``true``       |
+|                               | CRC defined by the RTCP protocol  |                                 |                |
+|                               | (TCP **only**).                   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<check_crc>``               | Disables the checking of the      | ``Boolean``                     | ``true``       |
+|                               | CRC defined by the RTCP protocol  |                                 |                |
+|                               | (TCP **only**).                   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<enable_tcp_nodelay>``      | Disables the application of the   | ``Boolean``                     | ``false``      |
+|                               | `Nagle's algorithm`_ in TCP.      |                                 |                |
+|                               | Nagle's algorithm increases       |                                 |                |
+|                               | throughput but increases latency  |                                 |                |
+|                               | (TCP **only**).                   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+
+.. _Nagle's Algorithm: https://en.wikipedia.org/wiki/Nagle%27s_algorithm
 
 There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
 

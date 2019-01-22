@@ -129,6 +129,7 @@ participant_attr.rtps.userTransports.push_back(custom_transport);
 //Create a descriptor for the new transport.
 auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
 tcp_transport->add_listener_port(5100);
+tcp_transport->set_WAN_address("80.80.99.45");
 
 //Disable the built-in Transport Layer.
 participant_attr.rtps.useBuiltinTransports = false;
@@ -146,7 +147,7 @@ participant_attr.rtps.useBuiltinTransports = false;
 //Set initial peers.
 Locator_t initial_peer_locator;
 initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
-IPLocator::setIPv4(initial_peer_locator, "192.168.1.55");
+IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
 initial_peer_locator.port = 5100;
 participant_attr.rtps.builtin.initialPeersList.push_back(initial_peer_locator);
 

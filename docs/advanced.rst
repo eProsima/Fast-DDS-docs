@@ -110,7 +110,8 @@ If omitted, the participant will not be able to receive incoming connections but
 to connect to other participants that have configured their listening ports.
 The transport must be added to the ``userTransports`` list of the participant attributes.
 The field ``wan_addr`` can be used to allow incoming connections using the public IP in a WAN environment or the
-Internet. See `WAN or Internet Communication over TCP/IPv4`_ for more information about how to configure a TCP Transport
+Internet.
+See `WAN or Internet Communication over TCP/IPv4`_ for more information about how to configure a TCP Transport
 to allow or connect to WAN connections.
 
 +--------------------------------------------------+
@@ -155,12 +156,13 @@ A TCP version of helloworld example can be found in this
 WAN or Internet Communication over TCP/IPv4
 -------------------------------------------
 
-Fast-RTPS is able to connect through the Internet or other WAN networks when configured properly. To achieve this kind
-of scenarios, the involved network devices such as routers and firewalls should add the rules to allow the
-communication.
+Fast-RTPS is able to connect through the Internet or other WAN networks when configured properly.
+To achieve this kind of scenarios, the involved network devices such as routers and firewalls
+should add the rules to allow the communication.
 
 For example, to allow incoming connections through our NAT, Fast-RTPS must be configured as a **TCP Server** listening
-to incoming TCP connections. To allow incoming connections through a WAN, the TCP descriptor associated must indicate
+to incoming TCP connections.
+To allow incoming connections through a WAN, the TCP descriptor associated must indicate
 its public IP through its field ``wan_addr``.
 
 +--------------------------------------------------+
@@ -180,7 +182,8 @@ its public IP through its field ``wan_addr``.
 +--------------------------------------------------+
 
 In this case, configuring the router (which public IP is ``80.80.99.45``) is mandatory to allow the incoming traffic to
-reach the **TCP Server**. Typically a NAT routing with the ``listening_port`` ``5100`` to our machine is enough.
+reach the **TCP Server**.
+Typically a NAT routing with the ``listening_port`` ``5100`` to our machine is enough.
 Any existing firewall should be configured as well.
 
 In the client side, it is needed to specify the public IP of the **TCP Server** with its ``listening_port`` as

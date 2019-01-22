@@ -69,7 +69,7 @@ The following XML code shows the complete list of configurable parameters:
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS<-->
-    :lines: 1, 11-43, 52
+    :lines: 1, 11-39, 48
 
 The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
@@ -124,7 +124,9 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | (UDP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<keep_alive_frequency_ms>`` | Frequency in milliseconds         | ``uint32``                      | 50000          |
-|                               | for sending RTCP keep-alive       |                                 |                |
+|                               | for sending                       |                                 |                |
+|                               | :ref:`RTCP<rtcpdefinition>`       |                                 |                |
+|                               | keep-alive                        |                                 |                |
 |                               | requests (TCP **only**).          |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<keep_alive_timeout_ms>``   | Time in milliseconds since        | ``uint32``                      | 10000          |
@@ -133,19 +135,19 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | as broken. (TCP **only**).        |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<max_logical_port>``        | The maximum number of logical     | ``uint16``                      | 100            |
-|                               | ports to try during RTCP          |                                 |                |
-|                               | negotiations.                     |                                 |                |
-|                               | (TCP **only**)                    |                                 |                |
+|                               | ports to try during               |                                 |                |
+|                               | :ref:`RTCP<rtcpdefinition>`       |                                 |                |
+|                               | negotiations. (TCP **only**)      |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<logical_port_range>``      | The maximum number of logical     | ``uint16``                      | 20             |
 |                               | ports per request to try          |                                 |                |
-|                               | during RTCP negotiation           |                                 |                |
-|                               | (TCP **only**).                   |                                 |                |
+|                               | during :ref:`RTCP<rtcpdefinition>`|                                 |                |
+|                               | negotiations. (TCP **only**)      |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<logical_port_increment>``  | Increment between logical         | ``uint16``                      |  2             |
-|                               | ports to try during RTCP          |                                 |                |
-|                               | negotiation.                      |                                 |                |
-|                               | (TCP **only**).                   |                                 |                |
+|                               | ports to try during               |                                 |                |
+|                               | :ref:`RTCP<rtcpdefinition>`       |                                 |                |
+|                               | negotiation. (TCP **only**)       |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<listening_ports>``         | Local port to work as TCP         | ``List <uint16>``               |                |
 |                               | acceptor for input connections.   |                                 |                |
@@ -153,22 +155,10 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | work as TCP client only           |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<calculate_crc>``           | Disables the calculation of the   | ``Boolean``                     | ``true``       |
-|                               | CRC defined by the RTCP protocol  |                                 |                |
-|                               | (TCP **only**).                   |                                 |                |
-+-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<check_crc>``               | Disables the checking of the      | ``Boolean``                     | ``true``       |
-|                               | CRC defined by the RTCP protocol  |                                 |                |
-|                               | (TCP **only**).                   |                                 |                |
-+-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<enable_tcp_nodelay>``      | Disables the application of the   | ``Boolean``                     | ``false``      |
-|                               | `Nagle's algorithm`_ in TCP.      |                                 |                |
-|                               | Nagle's algorithm increases       |                                 |                |
-|                               | throughput but increases latency  |                                 |                |
-|                               | (TCP **only**).                   |                                 |                |
-+-------------------------------+-----------------------------------+---------------------------------+----------------+
 
-.. _Nagle's Algorithm: https://en.wikipedia.org/wiki/Nagle%27s_algorithm
+.. _rtcpdefinition:
+
+RTCP is the control protocol for communications with RTPS over TCP/IP connections.
 
 There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
 

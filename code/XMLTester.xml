@@ -204,6 +204,7 @@
         <listening_ports>
             <port>5100</port>
         </listening_ports>
+        <wan_addr>80.80.99.45</wan_addr>
     </transport_descriptor>
 </transport_descriptors>
 
@@ -234,7 +235,7 @@
             <initialPeersList>
                 <locator>
                     <kind>TCPv4</kind>
-                    <address>192.168.1.55</address>
+                    <address>80.80.99.45</address>
                     <ports_>
                         <physical_port>5100</physical_port>
                     </ports_>

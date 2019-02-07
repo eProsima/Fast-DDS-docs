@@ -1159,7 +1159,7 @@ For instance, there are collections inside a publisher which depend on the numbe
      - Values
      - Default
    * - ``<initial>``
-     - Number of elements for which space is pre-allocated.
+     - Number of elements for which space is initially allocated.
      - ``UInt32``
      - 0
    * - ``<maximum>``

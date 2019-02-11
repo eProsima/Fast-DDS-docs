@@ -156,6 +156,37 @@ participant_attr.rtps.userTransports.push_back(tcp2_transport);
 //!--
 
 {
+//CONF-TCP-TLS-SERVER
+auto tls_transport = std::make_shared<TCPv4TransportDescriptor>();
+
+using TLSOptions = TCPTransportDescriptor::TLSConfig::TLSOptions;
+tls_transport->apply_security = true;
+tls_transport->tls_config.password = "test";
+tls_transport->tls_config.cert_chain_file = "server.pem";
+tls_transport->tls_config.private_key_file = "serverkey.pem";
+tls_transport->tls_config.tmp_dh_file = "dh2048.pem";
+tls_transport->tls_config.add_option(TLSOptions::DEFAULT_WORKAROUNDS);
+tls_transport->tls_config.add_option(TLSOptions::SINGLE_DH_USE);
+tls_transport->tls_config.add_option(TLSOptions::NO_SSLV2);
+//!--
+}
+
+{
+//CONF-TCP-TLS-CLIENT
+auto tls_transport = std::make_shared<TCPv4TransportDescriptor>();
+
+using TLSOptions = TCPTransportDescriptor::TLSConfig::TLSOptions;
+using TLSVerifyMode = TCPTransportDescriptor::TLSConfig::TLSVerifyMode;
+tls_transport->apply_security = true;
+tls_transport->tls_config.verify_file = "ca.pem";
+tls_transport->tls_config.verify_mode = TLSVerifyMode::VERIFY_PEER;
+tls_transport->tls_config.add_option(TLSOptions::DEFAULT_WORKAROUNDS);
+tls_transport->tls_config.add_option(TLSOptions::SINGLE_DH_USE);
+tls_transport->tls_config.add_option(TLSOptions::NO_SSLV2);
+//!--
+}
+
+{
 //CONF-IPLOCATOR-USAGE
 Locator_t locator;
 // Get & Set Physical Port
@@ -589,7 +620,7 @@ new_locator.port = 7800;
 
 subscriber_attr.unicastLocatorList.push_back(new_locator);
 
-publisher_attr.unicastLocatorList.push_back(new_locator); 
+publisher_attr.unicastLocatorList.push_back(new_locator);
 //!--
 
 {

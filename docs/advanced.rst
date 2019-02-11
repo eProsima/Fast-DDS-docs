@@ -230,6 +230,51 @@ example.
 
 TCP doesn't support multicast scenarios, so you must plan carefully your network architecture.
 
+
+Using TLS (Transport Layer Security) over TCP
+---------------------------------------------
+
+Fast-RTPS allows configuring a TCP Transport to use TLS. We must configure both **TCP Server** and **TCP Client**
+to use TLS.
+
+ **TCP Server**
+
++---------------------------------------------------+
+| **C++**                                           |
++---------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp        |
+|    :language: c++                                 |
+|    :start-after: //CONF-TCP-TLS-SERVER            |
+|    :end-before: //!--                             |
++---------------------------------------------------+
+| **XML**                                           |
++---------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml         |
+|    :language: xml                                 |
+|    :start-after: <!-->CONF-TCP-TLS-SERVER         |
+|    :end-before: <!--><-->                         |
++---------------------------------------------------+
+
+ **TCP Client**
+
++---------------------------------------------------+
+| **C++**                                           |
++---------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp        |
+|    :language: c++                                 |
+|    :start-after: //CONF-TCP-TLS-CLIENT            |
+|    :end-before: //!--                             |
++---------------------------------------------------+
+| **XML**                                           |
++---------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml         |
+|    :language: xml                                 |
+|    :start-after: <!-->CONF-TCP-TLS-CLIENT         |
+|    :end-before: <!--><-->                         |
++---------------------------------------------------+
+
+More TLS related options can be found in the section :ref:`transportdescriptors`.
+
 Listening locators
 ==================
 

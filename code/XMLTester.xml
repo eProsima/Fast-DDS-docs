@@ -255,6 +255,46 @@
 </participant>
 <!--><-->
 
+<!-->CONF-TCP-TLS-SERVER<-->
+<transport_descriptors>
+    <transport_descriptor>
+        <transport_id>tls_transport_server</transport_id>
+        <type>TCPv4</type>
+        <tls>
+            <password>test</password>
+            <private_key_file>serverkey.pem</private_key_file>
+            <cert_chain_file>server.pem</cert_chain_file>
+            <tmp_dh_file>dh2048.pem</tmp_dh_file>
+            <options>
+                <option>DEFAULT_WORKAROUNDS</option>
+                <option>SINGLE_DH_USE</option>
+                <option>NO_SSLV2</option>
+            </options>
+        </tls>
+    </transport_descriptor>
+</transport_descriptors>
+<!--><-->
+
+<!-->CONF-TCP-TLS-CLIENT<-->
+<transport_descriptors>
+    <transport_descriptor>
+        <transport_id>tls_transport_client</transport_id>
+        <type>TCPv4</type>
+        <tls>
+            <verify_file>ca.pem</verify_file>
+            <verify_mode>
+                <verify>VERIFY_PEER</verify>
+            </verify_mode>
+            <options>
+                <option>DEFAULT_WORKAROUNDS</option>
+                <option>SINGLE_DH_USE</option>
+                <option>NO_SSLV2</option>
+            </options>
+        </tls>
+    </transport_descriptor>
+</transport_descriptors>
+<!--><-->
+
 <!-->CONF-DISABLE-MULTICAST<-->
 <participant profile_name="disable_multicast" is_default_profile="true">
     <rtps>
@@ -481,6 +521,7 @@
         <calculate_crc>false</calculate_crc> <!-- boolean -->
         <check_crc>false</check_crc> <!-- boolean -->
         <enable_tcp_nodelay>false</enable_tcp_nodelay> <!-- boolean -->
+        <tls><!-- TLS Section --></tls>
     </transport_descriptor>
 
     <transport_descriptor>
@@ -496,6 +537,38 @@
     <!-- ... -->
 </transport_descriptor>
 
+</transport_descriptors>
+<!--><-->
+
+<!-->XML-TCP-TLS<-->
+<transport_descriptors>
+    <transport_descriptor>
+        <transport_id>Test</transport_id>
+        <type>TCPv4</type>
+        <tls>
+            <password>Password</password>
+            <private_key_file>Key_file.pem</private_key_file>
+            <rsa_private_key_file>RSA_file.pem</rsa_private_key_file>
+            <cert_chain_file>Chain.pem</cert_chain_file>
+            <tmp_dh_file>DH.pem</tmp_dh_file>
+            <verify_file>verify.pem</verify_file>
+            <verify_mode>
+                <verify>VERIFY_PEER</verify>
+            </verify_mode>
+            <options>
+                <option>NO_TLSV1</option>
+                <option>NO_TLSV1_1</option>
+            </options>
+            <verify_paths>
+                <verify_path>Path1</verify_path>
+                <verify_path>Path2</verify_path>
+                <verify_path>Path3</verify_path>
+            </verify_paths>
+            <verify_depth>55</verify_depth>
+            <default_verify_path>true</default_verify_path>
+            <handshake_role>SERVER</handshake_role>
+        </tls>
+    </transport_descriptor>
 </transport_descriptors>
 <!--><-->
 

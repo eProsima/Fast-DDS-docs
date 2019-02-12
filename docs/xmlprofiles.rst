@@ -1144,7 +1144,7 @@ Allocation Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Allocation Configuration allows to control the allocation behavior of internal collections for which the number
-of elements depend on the number of entities in the system.
+of elements depends on the number of entities in the system.
 
 For instance, there are collections inside a publisher which depend on the number of subscribers matching with it.
 

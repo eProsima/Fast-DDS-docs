@@ -646,48 +646,59 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| Name                       | Description               | Values                              | Default               |
-+============================+===========================+=====================================+=======================+
-| ``<topic>``                | :ref:`TopicType`          | :ref:`TopicType`                    |                       |
-|                            | configuration of the      |                                     |                       |
-|                            | publisher.                |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<qos>``                  | Publisher                 | :ref:`CommonQOS`                    |                       |
-|                            | :ref:`CommonQOS`          |                                     |                       |
-|                            | configuration.            |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<times>``                | It allows configuring     | :ref:`Times <pubtimes>`             |                       |
-|                            | some time related         |                                     |                       |
-|                            | parameters of the         |                                     |                       |
-|                            | publisher.                |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<unicastLocatorList>``   | List of input unicast     | List of :ref:`LocatorListType`      |                       |
-|                            | locators. It expects      |                                     |                       |
-|                            | a :ref:`LocatorListType`. |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<multicastLocatorList>`` | List of input multicast   | List of :ref:`LocatorListType`      |                       |
-|                            | locators. It expects      |                                     |                       |
-|                            | a :ref:`LocatorListType`. |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<throughputController>`` | Limits the output         | `Throughput`_                       |                       |
-|                            | bandwidth of              |                                     |                       |
-|                            | the publisher.            |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<historyMemoryPolicy>``  | Memory allocation kind    | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
-|                            | for publisher's history.  | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
-|                            |                           | :class:`DYNAMIC`                    |                       |
-|                            |                           |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<propertiesPolicy>``     | Additional configuration  | :ref:`PropertiesPolicyType`         |                       |
-|                            | properties.               |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<userDefinedID>``        | Used for                  | ``Int16``                           | -1                    |
-|                            | StaticEndpointDiscovery.  |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<entityID>``             | EntityId of the           | ``Int16``                           | -1                    |
-|                            | *endpoint*.               |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<topic>``
+     - :ref:`TopicType` configuration of the publisher.
+     - :ref:`TopicType`
+     -
+   * - ``<qos>``
+     - Publisher :ref:`CommonQOS` configuration.
+     - :ref:`CommonQOS`
+     -
+   * - ``<times>``
+     - It allows configuring some time related parameters of the publisher.
+     - :ref:`Times <pubtimes>`
+     -
+   * - ``<unicastLocatorList>``
+     - List of input unicast locators. It expects a :ref:`LocatorListType`.
+     - List of :ref:`LocatorListType`
+     -
+   * - ``<multicastLocatorList>``
+     - List of input multicast locators. It expects a :ref:`LocatorListType`.
+     - List of :ref:`LocatorListType`
+     -
+   * - ``<throughputController>``
+     - Limits the output bandwidth of the publisher.
+     - `Throughput`_
+     -
+   * - ``<historyMemoryPolicy>``
+     - Memory allocation kind for publisher's history.
+     - :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC`, :class:`DYNAMIC`
+     - :class:`PREALLOCATED`
+   * - ``<propertiesPolicy>``
+     - Additional configuration properties.
+     - :ref:`PropertiesPolicyType`
+     -
+   * - ``<userDefinedID>``
+     - Used for StaticEndpointDiscovery.
+     - ``Int16``
+     - -1
+   * - ``<entityID>``
+     - EntityId of the *endpoint*.
+     - ``Int16``
+     - -1
+   * - ``<matchedSubscribersAllocation>``
+     - Publisher :ref:`CommonAlloc` related to the number of matched subscribers.
+     - :ref:`CommonAlloc`
+     -
 
 .. _pubtimes:
 
@@ -1126,6 +1137,39 @@ Throughput Configuration allows to limit the output bandwidth.
 | ``<periodMillisecs>`` | Window of time in which no more than ``<bytesPerPeriod>`` | ``UInt32`` | 0          |
 |                       | bytes are allowed.                                        |            |            |
 +-----------------------+-----------------------------------------------------------+------------+------------+
+
+.. _CommonAlloc:
+
+Allocation Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Allocation Configuration allows to control the allocation behavior of internal collections for which the number
+of elements depends on the number of entities in the system.
+
+For instance, there are collections inside a publisher which depend on the number of subscribers matching with it.
+
+.. TODO: Add reference to allocation tuning section
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<initial>``
+     - Number of elements for which space is initially allocated.
+     - ``UInt32``
+     - 0
+   * - ``<maximum>``
+     - Maximum number of elements for which space will be allocated.
+     - ``UInt32``
+     - 0 (means no limit)
+   * - ``<increment>``
+     - Number of new elements that will be allocated when more space is necessary.
+     - ``UInt32``
+     - 1
 
 .. _examplexml:
 

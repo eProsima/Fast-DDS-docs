@@ -1,7 +1,31 @@
-Version 1.7.0
+Version 1.7.1
 =============
 
 This release includes the following features:
+
+* LogFileConsumer added to the logging system
+* Handle FASTRTPS_DEFAULT_PROFILES_FILE environment variable indicating the default profiles XML file
+* XML parser made more restrictive and with better error messages
+
+It also fixes some important bugs:
+* Fixed discovery issues related to the selected network interfaces on Windows
+* Improved discovery times
+* Workaround ASIO issue with multicast on QNX systems
+* Improved TCP transport performance
+* Improved handling of key-only data submessages
+
+Some other minor bugs and performance improvements.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*
+
+Previous versions
+-----------------
+
+Version 1.7.0
+^^^^^^^^^^^^^
+
+This release included the following features:
 
 * :ref:`comm-transports-tcp`
 * :ref:`dynamic-types`
@@ -11,9 +35,6 @@ Also bug fixing, allocation and performance improvements.
 
 **Note:** If you are upgrading from an older version, it is **required** to regenerate generated source from IDL files
 using *fastrtpsgen*
-
-Previous versions
------------------
 
 Version 1.6.0
 ^^^^^^^^^^^^^

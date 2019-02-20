@@ -16,6 +16,8 @@
 #include <fastrtps/transport/TCPv4TransportDescriptor.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastrtps/utils/IPLocator.h>
+#include <fastrtps/log/Log.h>
+#include <fastrtps/log/FileConsumer.h>
 #include <fastrtps/subscriber/SampleInfo.h>
 #include <cpp/security/accesscontrol/GovernanceParser.h>
 #include <cpp/security/accesscontrol/PermissionsParser.h>
@@ -274,6 +276,52 @@ participant_attr.rtps.listenSocketBufferSize = 4194304;
 //CONF-TRANSPORT-DESCRIPTORS
 UDPv4TransportDescriptor descriptor;
 descriptor.interfaceWhiteList.emplace_back("127.0.0.1");
+//!--
+
+//LOG_USAGE_PRINT
+logInfo(INFO_MSG, "This is an info message");
+logWarning(WARN_MSG, "This is a warning message");
+logError(ERROR_MSG, "This is an error message");
+//!--
+
+//LOG_USAGE_INFO
+logInfo(NEW_CATEGORY, "This log message belong to NEW_CATEGORY category.");
+//!--
+
+//LOG_USAGE_VERBOSITY
+Log::SetVerbosity(Log::Kind::Warning);
+std::regex my_regex("NEW_CATEGORY");
+Log::SetCategoryFilter(my_regex);
+//!--
+
+/*
+//LOG_USAGE_API
+//! Enables the reporting of filenames in log entries. Disabled by default.
+RTPS_DllAPI static void ReportFilenames(bool);
+//! Enables the reporting of function names in log entries. Enabled by default when supported.
+RTPS_DllAPI static void ReportFunctions(bool);
+//! Sets the verbosity level, allowing for messages equal or under that priority to be logged.
+RTPS_DllAPI static void SetVerbosity(Log::Kind);
+//! Returns the current verbosity level.
+RTPS_DllAPI static Log::Kind GetVerbosity();
+//! Sets a filter that will pattern-match against log categories, dropping any unmatched categories.
+RTPS_DllAPI static void SetCategoryFilter    (const std::regex&);
+//! Sets a filter that will pattern-match against filenames, dropping any unmatched categories.
+RTPS_DllAPI static void SetFilenameFilter    (const std::regex&);
+//! Sets a filter that will pattern-match against the provided error string, dropping any unmatched categories.
+RTPS_DllAPI static void SetErrorStringFilter (const std::regex&);
+//!--
+*/
+
+//LOG-CONFIG
+Log::ClearConsumers(); // Deactivate StdoutConsumer
+
+// Add FileConsumer consumer
+std::unique_ptr<FileConsumer> fileConsumer(new FileConsumer("append.log", true));
+Log::RegisterConsumer(std::move(fileConsumer));
+
+// Back to its defaults: StdoutConsumer will be enable and FileConsumer removed.
+Log::Reset();
 //!--
 
 //CONF_QOS_STATIC_DISCOVERY_CODE

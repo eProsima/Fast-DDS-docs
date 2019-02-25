@@ -900,46 +900,58 @@ as shown in :ref:`loadingapplyingprofiles`.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| Name                       | Description               | Values                              | Default               |
-+============================+===========================+=====================================+=======================+
-| ``<topic>``                | :ref:`TopicType`          | :ref:`TopicType`                    |                       |
-|                            | configuration of the      |                                     |                       |
-|                            | subscriber.               |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<qos>``                  | Subscriber                | :ref:`CommonQOS`                    |                       |
-|                            | :ref:`CommonQOS`          |                                     |                       |
-|                            | configuration.            |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<times>``                | It allows configuring     | :ref:`Times <subtimes>`             |                       |
-|                            | some time related         |                                     |                       |
-|                            | parameters of the         |                                     |                       |
-|                            | subscriber.               |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<unicastLocatorList>``   | List of input unicast     | List of :ref:`LocatorListType`      |                       |
-|                            | locators. It expects a    |                                     |                       |
-|                            | :ref:`LocatorListType`.   |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<multicastLocatorList>`` | List of input multicast   | List of :ref:`LocatorListType`      |                       |
-|                            | locators. It expects a    |                                     |                       |
-|                            | :ref:`LocatorListType`.   |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<expectsInlineQos>``     | It indicates if QOS is    | ``Boolean``                         | :class:`false`        |
-|                            | expected inline.          |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<historyMemoryPolicy>``  | Memory allocation kind    | :class:`PREALLOCATED`,              | :class:`PREALLOCATED` |
-|                            | for subscriber's history. | :class:`PREALLOCATED_WITH_REALLOC`, |                       |
-|                            |                           | :class:`DYNAMIC`                    |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<propertiesPolicy>``     | Additional configuration  | :ref:`PropertiesPolicyType`         |                       |
-|                            | properties.               |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<userDefinedID>``        | Used for                  | ``Int16``                           | -1                    |
-|                            | StaticEndpointDiscovery.  |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
-| ``<entityID>``             | EntityId of the           | ``Int16``                           | -1                    |
-|                            | *endpoint*.               |                                     |                       |
-+----------------------------+---------------------------+-------------------------------------+-----------------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<topic>``
+     - :ref:`TopicType` configuration of the subscriber.
+     - :ref:`TopicType`
+     -
+   * - ``<qos>``
+     - Subscriber :ref:`CommonQOS` configuration.
+     - :ref:`CommonQOS`
+     -
+   * - ``<times>``
+     - It allows configuring some time related parameters of the subscriber.
+     - :ref:`Times <subtimes>`
+     -
+   * - ``<unicastLocatorList>``
+     - List of input unicast locators. It expects a :ref:`LocatorListType`.
+     - List of :ref:`LocatorListType`
+     -
+   * - ``<multicastLocatorList>``
+     - List of input multicast locators. It expects a :ref:`LocatorListType`.
+     - List of :ref:`LocatorListType`
+     -
+   * - ``<expectsInlineQos>``
+     - It indicates if QOS is expected inline.
+     - ``Boolean``
+     - :class:`false`
+   * - ``<historyMemoryPolicy>``
+     - Memory allocation kind for subscriber's history.
+     - :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC`, :class:`DYNAMIC`
+     - :class:`PREALLOCATED`
+   * - ``<propertiesPolicy>``
+     - Additional configuration properties.
+     - :ref:`PropertiesPolicyType`
+     -
+   * - ``<userDefinedID>``
+     - Used for StaticEndpointDiscovery.
+     - ``Int16``
+     - -1
+   * - ``<entityID>``
+     - EntityId of the *endpoint*.
+     - ``Int16``
+     - -1
+   * - ``<matchedPublishersAllocation>``
+     - Subscriber :ref:`CommonAlloc` related to the number of matched publishers.
+     - :ref:`CommonAlloc`
+     -
 
 .. _subtimes:
 

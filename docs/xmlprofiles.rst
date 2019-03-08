@@ -155,7 +155,7 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | work as TCP client only           |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<tls>``                     | Allow to define TLS related       | :ref:`tcp-tls`                  |                |
+| ``<tls>``                     | Allows to define TLS related      | :ref:`tcp-tls`                  |                |
 |                               | parameters and options            |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
@@ -171,7 +171,7 @@ There are more examples of transports descriptors in :ref:`comm-transports-confi
 TLS Configuration
 ^^^^^^^^^^^^^^^^^
 
-Fast-RTPS allows configure TLS parameters through the ``<tls>`` tag of its Transport Descriptor.
+Fast-RTPS allows configuring TLS parameters through the ``<tls>`` tag of its Transport Descriptor.
 The full list of options is listed here:
 
 .. literalinclude:: ../code/XMLTester.xml

@@ -69,7 +69,7 @@ The following XML code shows the complete list of configurable parameters:
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS<-->
-    :lines: 1, 11-39, 48
+    :lines: 1, 11-39, 53
 
 The XML label ``<transport_descriptors>`` can hold any number of ``<transport_descriptor>``.
 
@@ -155,12 +155,81 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | work as TCP client only           |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<tls>``                     | Allows to define TLS related      | :ref:`tcp-tls`                  |                |
+|                               | parameters and options            |                                 |                |
+|                               | (TCP **only**).                   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
 
 .. _rtcpdefinition:
 
 RTCP is the control protocol for communications with RTPS over TCP/IP connections.
 
 There are more examples of transports descriptors in :ref:`comm-transports-configuration`.
+
+.. _tcp-tls:
+
+TLS Configuration
+^^^^^^^^^^^^^^^^^
+
+Fast-RTPS allows configuring TLS parameters through the ``<tls>`` tag of its Transport Descriptor.
+The full list of options is listed here:
+
+.. literalinclude:: ../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-TCP-TLS<-->
+    :end-before: <!--><-->
+
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| Name                          | Description                       | Values                          | Default        |
++===============================+===================================+=================================+================+
+| ``<password>``                | Password of the private_key_file  | ``string``                      |                |
+|                               | if provided (or RSA).             |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<private_key_file>``        | Path to the private key           | ``string``                      |                |
+|                               | certificate file.                 |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<rsa_private_key_file>``    | Path to the private key           | ``string``                      |                |
+|                               | RSA certificate file.             |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<cert_chain_file>``         | Path to the public certificate    | ``string``                      |                |
+|                               | chain file.                       |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<tmp_dh_file>``             | Path to the Diffie-Hellman        | ``string``                      |                |
+|                               | parameters file                   |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<verify_file>``             | Path to the CA (Certification-    | ``string``                      |                |
+|                               | Authority) file.                  |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<verify_mode>``             | Establishes the verification      | ``VERIFY_NONE``,                |                |
+|                               | mode mask.                        | ``VERIFY_PEER``,                |                |
+|                               |                                   | ``VERIFY_FAIL_IF_NO_PEER_CERT``,|                |
+|                               |                                   | ``VERIFY_CLIENT_ONCE``          |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<options>``                 | Establishes the SSL Context       | ``DEFAULT_WORKAROUNDS``,        |                |
+|                               | options mask                      | ``NO_COMPRESSION``,             |                |
+|                               |                                   | ``NO_SSLV2``,                   |                |
+|                               |                                   | ``NO_SSLV3``,                   |                |
+|                               |                                   | ``NO_TLSV1``,                   |                |
+|                               |                                   | ``NO_TLSV1_1``,                 |                |
+|                               |                                   | ``NO_TLSV1_2``,                 |                |
+|                               |                                   | ``NO_TLSV1_3``,                 |                |
+|                               |                                   | ``SINGLE_DH_USE``               |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<verify_paths>``            | Paths where the system will       |  ``string``                     |                |
+|                               | look for verification files.      |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<verify_depth>``            | Maximum allowed depth for         | ``uint32``                      |                |
+|                               | verify intermediate certificates. |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<default_verify_path>``     | Default paths where the system    |  ``boolean``                    | ``false``      |
+|                               | will look for verification files. |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<handshake_role>``          | Role that the transport will      | ``DEFAULT``,                    | ``DEFAULT``    |
+|                               | take on handshaking.              | ``SERVER``,                     |                |
+|                               | On default, the acceptors act as  | ``CLIENT``                      |                |
+|                               | ``SERVER`` and the connectors as  |                                 |                |
+|                               | ``CLIENT``.                       |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
 
 .. _xmldynamictypes:
 

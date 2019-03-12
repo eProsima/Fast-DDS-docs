@@ -1,7 +1,26 @@
-Version 1.7.1
+Version 1.7.2
 =============
 
-This release includes the following features:
+This release fixes an important bug:
+* Allocation limits on subscribers with a KEEP_LAST QoS was taken from resource limits configuration
+  and didn't take history depth into account.
+
+It also has the following improvements:
+* Vendor FindThreads.cmake from CMake 3.14-rc2 to help with sanitizers.
+* Fixed format of gradle file.
+
+Some other minor bugs and performance improvements.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*
+
+Previous versions
+-----------------
+
+Version 1.7.1
+^^^^^^^^^^^^^
+
+This release included the following features:
 
 * LogFileConsumer added to the logging system
 * Handle FASTRTPS_DEFAULT_PROFILES_FILE environment variable indicating the default profiles XML file
@@ -16,11 +35,13 @@ It also fixes some important bugs:
 
 Some other minor bugs and performance improvements.
 
+**KNOWN ISSUES**
+
+* Allocation limits on subscribers with a KEEP_LAST QoS is taken from resource limits configuration
+  and doesn't take history depth into account.
+
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*
-
-Previous versions
------------------
 
 Version 1.7.0
 ^^^^^^^^^^^^^

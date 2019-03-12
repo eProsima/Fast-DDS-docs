@@ -7,7 +7,7 @@ This release fixes an important bug:
   and didn't take history depth into account.
 
 It also has the following improvements:
-* Vendor FindThreads.cmake from CMake 3.14-rc2 to help with sanitizers.
+* Vendor FindThreads.cmake from CMake 3.14 release candidate to help with sanitizers.
 * Fixed format of gradle file.
 
 Some other minor bugs and performance improvements.

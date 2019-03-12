@@ -3,7 +3,7 @@ Version 1.7.2
 
 This release fixes an important bug:
 * Allocation limits on subscribers with a KEEP_LAST QoS was taken from resource limits configuration
-  and didn't take history depth into account.
+and didn't take history depth into account.
 
 It also has the following improvements:
 * Vendor FindThreads.cmake from CMake 3.14-rc2 to help with sanitizers.
@@ -38,7 +38,7 @@ Some other minor bugs and performance improvements.
 **KNOWN ISSUES**
 
 * Allocation limits on subscribers with a KEEP_LAST QoS is taken from resource limits configuration
-  and doesn't take history depth into account.
+and doesn't take history depth into account.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*

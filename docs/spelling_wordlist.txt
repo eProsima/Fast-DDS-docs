@@ -6,6 +6,7 @@ auth
 benchmarking
 bitset
 bitsets
+bitfield
 bitmask
 bitmasks
 boolean

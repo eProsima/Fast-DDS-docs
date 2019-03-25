@@ -413,7 +413,7 @@ Participant profiles
 --------------------
 
 Participant profiles allow declaring :ref:`participantconfiguration` from an XML file.
-All the configuration options for the participant belongs to the ``<rtps>`` label.
+All the configuration options for the participant belong to the ``<rtps>`` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -432,75 +432,82 @@ as shown in :ref:`loadingapplyingprofiles`.
 
     - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
 
+    - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
+
 List with the possible configuration parameter:
 
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| Name                              | Description                       | Values                      | Default |
-+===================================+===================================+=============================+=========+
-| ``<name>``                        | Participant's name.               | ``string``                  |         |
-|                                   | It's not the same                 |                             |         |
-|                                   | field that ``profile_name``.      |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<defaultUnicastLocatorList>``   | List of default input             | ``LocatorListType``         |         |
-|                                   | unicast locators.                 |                             |         |
-|                                   | It expects a                      |                             |         |
-|                                   | :ref:`LocatorListType`.           |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<defaultMulticastLocatorList>`` | List of default input             | ``LocatorListType``         |         |
-|                                   | multicast locators.               |                             |         |
-|                                   | It expects                        |                             |         |
-|                                   | a :ref:`LocatorListType`.         |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<sendSocketBufferSize>``        | Size in bytes of the output       | ``uint32``                  | 0       |
-|                                   | socket buffer.                    |                             |         |
-|                                   | If the value is zero then         |                             |         |
-|                                   | FastRTPS will use the default     |                             |         |
-|                                   | size from  the configuration      |                             |         |
-|                                   | of the sockets, using a           |                             |         |
-|                                   | minimum size of 65536 bytes.      |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<listenSocketBufferSize>``      | Size in bytes of the input        | ``uint32``                  | 0       |
-|                                   | socket buffer.                    |                             |         |
-|                                   | If the value is zero then         |                             |         |
-|                                   | FastRTPS will use the default     |                             |         |
-|                                   | size from  the configuration      |                             |         |
-|                                   | of the sockets, using a           |                             |         |
-|                                   | minimum size of 65536 bytes.      |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<builtin>``                     | Built-in parameters.              | :ref:`builtin`              |         |
-|                                   | Explained in the                  |                             |         |
-|                                   | :ref:`builtin` section.           |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<port>``                        | Allows defining the port          | `Port`_                     |         |
-|                                   | parameters and gains related      |                             |         |
-|                                   | to the RTPS protocol.             |                             |         |
-|                                   | Explained in the `Port`_ section. |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<participantID>``               | Participant's identifier.         | ``int32``                   | 0       |
-|                                   | Typically it will be              |                             |         |
-|                                   | automatically generated           |                             |         |
-|                                   | by the ``Domain``.                |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<throughputController>``        | Allows defining a maximum         | `Throughput`_               |         |
-|                                   | throughput.                       |                             |         |
-|                                   | Explained in the                  |                             |         |
-|                                   | `Throughput`_ section.            |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<userTransports>``              | Transport descriptors             | ``List <string>``           |         |
-|                                   | to be used by the                 |                             |         |
-|                                   | participant.                      |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<useBuiltinTransports>``        | Boolean field to indicate to      | ``bool``                    | true    |
-|                                   | the system that the participant   |                             |         |
-|                                   | will use  the default builtin     |                             |         |
-|                                   | transport independently of its    |                             |         |
-|                                   | ``<userTransports>``.             |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
-| ``<propertiesPolicy>``            | Additional configuration          | :ref:`PropertiesPolicyType` |         |
-|                                   | properties.                       |                             |         |
-|                                   | It expects a                      |                             |         |
-|                                   | :ref:`PropertiesPolicyType`.      |                             |         |
-+-----------------------------------+-----------------------------------+-----------------------------+---------+
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| Name                              | Description                       | Values                           | Default |
++===================================+===================================+==================================+=========+
+| ``<name>``                        | Participant's name.               | ``string``                       |         |
+|                                   | It's not the same                 |                                  |         |
+|                                   | field that ``profile_name``.      |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<defaultUnicastLocatorList>``   | List of default input             | ``LocatorListType``              |         |
+|                                   | unicast locators.                 |                                  |         |
+|                                   | It expects a                      |                                  |         |
+|                                   | :ref:`LocatorListType`.           |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<defaultMulticastLocatorList>`` | List of default input             | ``LocatorListType``              |         |
+|                                   | multicast locators.               |                                  |         |
+|                                   | It expects                        |                                  |         |
+|                                   | a :ref:`LocatorListType`.         |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<sendSocketBufferSize>``        | Size in bytes of the output       | ``uint32``                       | 0       |
+|                                   | socket buffer.                    |                                  |         |
+|                                   | If the value is zero then         |                                  |         |
+|                                   | FastRTPS will use the default     |                                  |         |
+|                                   | size from  the configuration      |                                  |         |
+|                                   | of the sockets, using a           |                                  |         |
+|                                   | minimum size of 65536 bytes.      |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<listenSocketBufferSize>``      | Size in bytes of the input        | ``uint32``                       | 0       |
+|                                   | socket buffer.                    |                                  |         |
+|                                   | If the value is zero then         |                                  |         |
+|                                   | FastRTPS will use the default     |                                  |         |
+|                                   | size from  the configuration      |                                  |         |
+|                                   | of the sockets, using a           |                                  |         |
+|                                   | minimum size of 65536 bytes.      |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<builtin>``                     | Built-in parameters.              | :ref:`builtin`                   |         |
+|                                   | Explained in the                  |                                  |         |
+|                                   | :ref:`builtin` section.           |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<port>``                        | Allows defining the port          | `Port`_                          |         |
+|                                   | parameters and gains related      |                                  |         |
+|                                   | to the RTPS protocol.             |                                  |         |
+|                                   | Explained in the `Port`_ section. |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<participantID>``               | Participant's identifier.         | ``int32``                        | 0       |
+|                                   | Typically it will be              |                                  |         |
+|                                   | automatically generated           |                                  |         |
+|                                   | by the ``Domain``.                |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<throughputController>``        | Allows defining a maximum         | `Throughput`_                    |         |
+|                                   | throughput.                       |                                  |         |
+|                                   | Explained in the                  |                                  |         |
+|                                   | `Throughput`_ section.            |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<userTransports>``              | Transport descriptors             | ``List <string>``                |         |
+|                                   | to be used by the                 |                                  |         |
+|                                   | participant.                      |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<useBuiltinTransports>``        | Boolean field to indicate to      | ``bool``                         | true    |
+|                                   | the system that the participant   |                                  |         |
+|                                   | will use  the default builtin     |                                  |         |
+|                                   | transport independently of its    |                                  |         |
+|                                   | ``<userTransports>``.             |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<propertiesPolicy>``            | Additional configuration          | :ref:`PropertiesPolicyType`      |         |
+|                                   | properties.                       |                                  |         |
+|                                   | It expects a                      |                                  |         |
+|                                   | :ref:`PropertiesPolicyType`.      |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<allocation>``                  | Configuration regarding           | :ref:`ParticipantAllocationType` |         |
+|                                   | allocation behavior.              |                                  |         |
+|                                   | It expects a                      |                                  |         |
+|                                   | :ref:`ParticipantAllocationType`  |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
 
 .. | ``<userData>``    | Allows adding custom information.  | ``string``  |         |
 .. +-------------------+------------------------------------+-------------+---------+
@@ -526,6 +533,39 @@ List with the possible configuration parameter:
 +-------------------------+-----------------------------+------------+---------+
 | ``<offsetd3>``          | Unicast user data offset.   | ``uint16`` | 11      |
 +-------------------------+-----------------------------+------------+---------+
+
+.. _ParticipantAllocationType:
+
+Participant allocation parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This section of the :class:`Participant's rtps` configuration allows defining parameters related with allocation
+behavior on the participant.
+
+.. literalinclude:: ../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-PARTICIPANT-ALLOCATION<-->
+    :end-before: <!--><-->
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<max_unicast_locators>``
+     - Maximum number of unicast locators expected on a remote entity.
+       It is recommended to use the maximum number of network interfaces found on any machine the
+       participant will connect to.
+     - ``UInt32``
+     - 4
+   * - ``<max_multicast_locators>``
+     - Maximum number of multicast locators expected on a remote entity.
+       May be set to zero to disable multicast traffic.
+     - ``UInt32``
+     - 1
 
 .. _builtin:
 
@@ -560,7 +600,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | |usewriliv|               | Indicates to use the                  | ``Boolean``             | :class:`true`         |
 |                           | WriterLiveliness protocol.            |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
-| ``<EDP>``                 | - If set to :class:`SIMPLE`,          | :class:`SIMPLE`,        |  :class:`SIMPLE`      |
+| ``<EDP>``                 | - If set to :class:`SIMPLE`,          | :class:`SIMPLE`,        | :class:`SIMPLE`       |
 |                           |   ``<simpleEDP>`` would be used.      | :class:`STATIC`         |                       |
 |                           |                                       |                         |                       |
 |                           | - If set to :class:`STATIC`,          |                         |                       |

@@ -959,11 +959,29 @@
         <propertiesPolicy>
             <!-- PROPERTIES_POLICY -->
         </propertiesPolicy>
+        
+        <allocation>
+            <!-- ALLOCATION -->
+        </allocation>
+        
     </rtps>
 </participant>
 <!--><-->
     <!-- Not Used at the moment -->
     <!-- <userData>148875 </userData> -->
+
+<participant profile_name="part_allocation_example">
+<rtps>
+<!-->XML-PARTICIPANT-ALLOCATION<-->
+<allocation>
+    <remote_locators>
+        <max_unicast_locators>4</max_unicast_locators> <!-- uint32 -->
+        <max_multicast_locators>1</max_multicast_locators> <!-- uint32 -->
+    </remote_locators>
+</allocation>
+<!--><-->
+</rtps>
+</participant>
 
 <participant profile_name="part_builtin_example">
 <rtps>

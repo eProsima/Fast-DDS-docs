@@ -318,6 +318,19 @@ Example:
 |                                               |                                                     |
 +-----------------------------------------------+-----------------------------------------------------+
 
+Structs can inherit from another structs:
+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-STRUCT-INHERIT<-->   |     :start-after: //XML-STRUCT-INHERIT              |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
+
+
 
 **Union**
 
@@ -336,6 +349,57 @@ Example:
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
 |                                               |                                                     |
 +-----------------------------------------------+-----------------------------------------------------+
+
+**Bitset**
+
+The ``<bitset>`` type is defined by its ``name`` and inner *bitfields*.
+
+Example:
+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-BITSET<-->           |     :start-after: //XML-BITSET                      |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
+
+A bitfield without name is an inaccessible set of bits. Bitfields can specify their management type to ease their
+modification and access. The bitfield's bit_bound is mandatory and cannot be bigger than 64.
+
+Bitsets can inherit from another bitsets:
+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-BITSET-INHERIT<-->   |     :start-after: //XML-BITSET-INHERIT              |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
+
+**Bitmask**
+
+The ``<bitmask>`` type is defined by its ``name`` and inner *bit_values*.
+
+Example:
+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-BITMASK<-->          |     :start-after: //XML-BITMASK                     |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
+
+The bitmask can specify its bit_bound, this is, the number of bits that the type will manage. Internally will be
+converted to the minimum type that allows to store them. The maximum allowed bit_bound is 64.
+Bit_values can define their position inside the bitmask.
 
 
 Member types

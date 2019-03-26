@@ -206,6 +206,16 @@ bitsets).
    :start-after: //DYNAMIC_TYPES_CREATE_BITSETS
    :end-before: //!--
 
+Bitsets allows inheritance, exactly with the same OOP meaning. To inherit from another bitset, we must create the
+bitset calling the ``create_child_struct_builder`` of the factory. This method is shared with structures and will
+deduce our type depending on the parent's type.
+
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_BITSETS-INHERIT
+   :end-before: //!--
+
+
 Bitmask
 ^^^^^^^
 
@@ -232,7 +242,7 @@ according to the kind of the type inside the structure using their ``ids``.
 If the structure contains a complex value, it should be used with ``loan_value`` to
 access to it and ``return_loaned_value`` to release that pointer.
 ``DynamicData`` manages the counter of loaned values and users can't loan a value that
-has been loaned previously without calling ``ReturnLoanedValue`` before.
+has been loaned previously without calling ``return_loaned_value`` before.
 
 The ``Ids`` must be consecutive starting by zero, and the ``DynamicType`` will change that
 Id if it doesn't match with the next value.
@@ -243,6 +253,15 @@ To get the id of a member by name, ``DynamicData`` exposes the method ``get_memb
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
    :start-after: //DYNAMIC_TYPES_CREATE_STRUCTS
+   :end-before: //!--
+
+Structures allows inheritance, exactly with the same OOP meaning. To inherit from another structure, we must create the
+structure calling the ``create_child_struct_builder`` of the factory. This method is shared with bitsets and will
+deduce our type depending on the parent's type.
+
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_STRUCTS-INHERIT
    :end-before: //!--
 
 Union

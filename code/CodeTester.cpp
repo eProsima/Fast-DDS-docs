@@ -726,6 +726,7 @@ DynamicTypeBuilder_ptr array_builder = DynamicTypeBuilderFactory::get_instance()
 DynamicTypeBuilder_ptr alias2_builder = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(array_builder.get(), "MyAlias2");
 DynamicType_ptr alias2_type = DynamicTypeBuilderFactory::get_instance()->create_type(alias2_builder.get());
 //!--
+{
 //XML-STRUCT
 DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
 DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
@@ -736,6 +737,27 @@ struct_builder->add_member(0, "first", long_builder.get());
 struct_builder->add_member(1, "second", long_long_builder.get());
 DynamicType_ptr struct_type = DynamicTypeBuilderFactory::get_instance()->create_type(struct_builder.get());
 //!--
+}
+{
+//XML-STRUCT-INHERIT
+DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
+DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+
+struct_builder->set_name("ParentStruct");
+struct_builder->add_member(0, "first", long_builder.get());
+struct_builder->add_member(1, "second", long_long_builder.get());
+DynamicType_ptr struct_type = DynamicTypeBuilderFactory::get_instance()->create_type(struct_builder.get());
+
+DynamicTypeBuilder_ptr child_builder =
+    DynamicTypeBuilderFactory::get_instance()->create_child_struct_builder(struct_builder.get());
+
+child_builder->set_name("ChildStruct");
+child_builder->add_member(0, "third", long_builder.get());
+child_builder->add_member(1, "fourth", long_long_builder.get());
+DynamicType_ptr child_struct_type = DynamicTypeBuilderFactory::get_instance()->create_type(child_builder.get());
+//!--
+}
 {
 //XML-UNION
 DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
@@ -802,6 +824,58 @@ DynamicTypeBuilder_ptr map_map_builder = DynamicTypeBuilderFactory::get_instance
     map_builder.get(), length);
 map_map_builder->set_name("my_map_map");
 DynamicType_ptr map_type = DynamicTypeBuilderFactory::get_instance()->create_type(map_map_builder.get());
+//!--
+}
+{
+//XML-BITSET
+DynamicTypeBuilderFactory* m_factory = DynamicTypeBuilderFactory::get_instance();
+DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitset_builder();
+builder_ptr->add_member(0, "a", m_factory->create_byte_builder()->build());
+builder_ptr->add_member(1, "b", m_factory->create_bool_builder()->build());
+builder_ptr->add_member(3, "c", m_factory->create_uint16_builder()->build());
+builder_ptr->add_member(4, "d", m_factory->create_int16_builder()->build());
+builder_ptr->apply_annotation_to_member(0, ANNOTATION_BIT_BOUND_ID, "value", "3");
+builder_ptr->apply_annotation_to_member(0, ANNOTATION_POSITION_ID, "value", "0");
+builder_ptr->apply_annotation_to_member(1, ANNOTATION_BIT_BOUND_ID, "value", "1");
+builder_ptr->apply_annotation_to_member(1, ANNOTATION_POSITION_ID, "value", "3");
+builder_ptr->apply_annotation_to_member(3, ANNOTATION_BIT_BOUND_ID, "value", "10");
+builder_ptr->apply_annotation_to_member(3, ANNOTATION_POSITION_ID, "value", "8"); // 4 empty
+builder_ptr->apply_annotation_to_member(4, ANNOTATION_BIT_BOUND_ID, "value", "12");
+builder_ptr->apply_annotation_to_member(4, ANNOTATION_POSITION_ID, "value", "18");
+builder_ptr->set_name("MyBitSet");
+//!--
+}
+{
+//XML-BITMASK
+DynamicTypeBuilderFactory* m_factory = DynamicTypeBuilderFactory::get_instance();
+DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitmask_builder(8);
+builder_ptr->add_empty_member(0, "flag0");
+builder_ptr->add_empty_member(1, "flag1");
+builder_ptr->add_empty_member(2, "flag2");
+builder_ptr->add_empty_member(5, "flag5");
+builder_ptr->set_name("MyBitMask");
+//!--
+}
+{
+//XML-BITSET-INHERIT
+DynamicTypeBuilderFactory* m_factory = DynamicTypeBuilderFactory::get_instance();
+DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitset_builder();
+builder_ptr->add_member(0, "a", m_factory->create_byte_builder()->build());
+builder_ptr->add_member(1, "b", m_factory->create_bool_builder()->build());
+builder_ptr->apply_annotation_to_member(0, ANNOTATION_BIT_BOUND_ID, "value", "3");
+builder_ptr->apply_annotation_to_member(0, ANNOTATION_POSITION_ID, "value", "0");
+builder_ptr->apply_annotation_to_member(1, ANNOTATION_BIT_BOUND_ID, "value", "1");
+builder_ptr->apply_annotation_to_member(1, ANNOTATION_POSITION_ID, "value", "3");
+builder_ptr->set_name("ParentBitSet");
+
+DynamicTypeBuilder_ptr child_ptr = m_factory->create_child_struct_builder(builder_ptr.get());
+child_ptr->add_member(3, "c", m_factory->create_uint16_builder()->build());
+child_ptr->add_member(4, "d", m_factory->create_int16_builder()->build());
+child_ptr->apply_annotation_to_member(3, ANNOTATION_BIT_BOUND_ID, "value", "10");
+child_ptr->apply_annotation_to_member(3, ANNOTATION_POSITION_ID, "value", "8"); // 4 empty
+child_ptr->apply_annotation_to_member(4, ANNOTATION_BIT_BOUND_ID, "value", "12");
+child_ptr->apply_annotation_to_member(4, ANNOTATION_POSITION_ID, "value", "18");
+child_ptr->set_name("ChildBitSet");
 //!--
 }
 {
@@ -1007,6 +1081,10 @@ uint32_t uValue;
 data->get_byte_value(bValue, 0);
 data->get_uint32_value(uValue, 1);
 //!--
+//DYNAMIC_TYPES_CREATE_BITSETS-INHERIT
+DynamicTypeBuilder_ptr child_builder =
+    DynamicTypeBuilderFactory::get_instance()->create_child_struct_builder(builder.get());
+//!--
 }
 
 {
@@ -1038,6 +1116,10 @@ DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(struct_ty
 
 data->set_int32_value(5, 0);
 data->set_uint64_value(13, 1);
+//!--
+//DYNAMIC_TYPES_CREATE_STRUCTS-INHERIT
+DynamicTypeBuilder_ptr child_builder =
+    DynamicTypeBuilderFactory::get_instance()->create_child_struct_builder(builder.get());
 //!--
 }
 

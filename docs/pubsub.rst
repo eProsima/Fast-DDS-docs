@@ -149,6 +149,26 @@ We will now go over the most common configuration options.
   |    :end-before: <!--><-->                                |
   +----------------------------------------------------------+
 
+* **Mutation Tries:** The reader's physical port could be already bound. In that case,
+  the Participant uses its `mutation_tries` attribute to determine how many different ports must try before failing.
+  These *mutated* ports will modify the locator's information. By default, its value is `100`.
+
+  +------------------------------------------------------------------+
+  | **C++**                                                          |
+  +------------------------------------------------------------------+
+  | .. literalinclude:: ../code/CodeTester.cpp                       |
+  |    :language: c++                                                |
+  |    :start-after: //PUBSUB_API_CONF_PARTICIPANT_MUTATION_TRIES    |
+  |    :end-before: //!--                                            |
+  +------------------------------------------------------------------+
+  | **XML**                                                          |
+  +------------------------------------------------------------------+
+  | .. literalinclude:: ../code/XMLTester.xml                        |
+  |    :language: xml                                                |
+  |    :start-after: <!-->PUBSUB_API_CONF_PARTICIPANT_MUTATION_TRIES |
+  |    :end-before: <!--><-->                                        |
+  +------------------------------------------------------------------+
+
 .. _pubsubconfiguration:
 
 Publisher and Subscriber configuration

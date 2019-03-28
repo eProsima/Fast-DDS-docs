@@ -566,6 +566,10 @@ participant_attr.rtps.setName("my_participant");
 participant_attr.rtps.builtin.domainId = 80;
 //!--
 
+//PUBSUB_API_CONF_PARTICIPANT_MUTATION_TRIES
+participant_attr.rtps.builtin.mutation_tries = 55;
+//!--
+
 //PUBSUB_API_CONF_CREATE_PUBSUB
 PublisherAttributes publisher_attr;
 Publisher *publisher = Domain::createPublisher(participant, publisher_attr);

@@ -808,6 +808,8 @@
     <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
 
     <writerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</writerHistoryMemoryPolicy>
+
+    <mutation_tries>55</mutation_tries>
 </builtin>
 <!--><-->
 </rtps>

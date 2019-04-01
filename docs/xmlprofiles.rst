@@ -702,6 +702,18 @@ behavior on the participant.
        May be set to zero to disable multicast traffic.
      - ``UInt32``
      - 1
+   * - ``<total_participants>``
+     - Publisher :ref:`CommonAlloc` related to the total number of participants in the domain (local and remote).
+     - :ref:`CommonAlloc`
+     -
+   * - ``<total_readers>``
+     - Publisher :ref:`CommonAlloc` related to the total number of readers in the domain (local and remote).
+     - :ref:`CommonAlloc`
+     -
+   * - ``<total_writers>``
+     - Publisher :ref:`CommonAlloc` related to the total number of writers in the domain (local and remote).
+     - :ref:`CommonAlloc`
+     -
 
 .. _builtin:
 

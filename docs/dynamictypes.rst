@@ -174,7 +174,7 @@ with ``UINT32`` or with strings using the names of the members added to the buil
 Bitset
 ^^^^^^
 
-Bitset types are similar to `structure` types but its members are only `bitfields`, which are stored optimally.
+Bitset types are similar to `structure` types but their members are only `bitfields`, which are stored optimally.
 In the static version of bitsets, each bit uses just one bit in memory (with platform limitations) without alignment
 considerations. A bitfield can be anonymous (cannot be addressed) to skip unused bits within a bitset.
 Each bitfield in a bitset can be modified through their minimal needed primitive representation.
@@ -255,7 +255,7 @@ To get the id of a member by name, ``DynamicData`` exposes the method ``get_memb
    :start-after: //DYNAMIC_TYPES_CREATE_STRUCTS
    :end-before: //!--
 
-Structures allows inheritance, exactly with the same OOP meaning. To inherit from another structure, we must create the
+Structures allow inheritance, exactly with the same OOP meaning. To inherit from another structure, we must create the
 structure calling the ``create_child_struct_builder`` of the factory. This method is shared with bitsets and will
 deduce our type depending on the parent's type.
 

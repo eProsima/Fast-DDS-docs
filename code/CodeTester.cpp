@@ -608,6 +608,12 @@ publisher_attr.qos.m_durability.kind = TRANSIENT_LOCAL_DURABILITY_QOS;
 subscriber_attr.qos.m_durability.kind = VOLATILE_DURABILITY_QOS;
 //!--
 
+//PUBSUB_API_CONF_PUBSUB_DEADLINE
+publisher_attr.qos.m_deadline.period = 1;
+
+subscriber_attr.qos.m_deadline.period = 1;
+//!--
+
 //PUBSUB_API_CONF_PUBSUB_LIFESPAN
 publisher_attr.qos.m_lifespan.duration = 1;
 

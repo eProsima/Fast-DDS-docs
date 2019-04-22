@@ -1087,6 +1087,10 @@ The quality of service (QoS) handles the restrictions applied to the application
 |                   |                                 | inside the ‘physical’ partition |                         |
 |                   |                                 | induced by a domain.            |                         |
 +-------------------+---------------------------------+---------------------------------+-------------------------+
+| ``<deadline>``    | It is defined in                |                                 |                         |
+|                   | :ref:`deadline-qos`             | Deadline period as a            | :class:`c_TimeInfinite` |
+|                   | section.                        | :ref:`DurationType`             |                         |
++-------------------+---------------------------------+---------------------------------+-------------------------+
 | ``<lifespan>``    | It is defined in                | Lifespan duration as a          | :class:`c_TimeInfinite` |
 |                   | :ref:`lifespan-qos` section.    | :ref:`DurationType`             |                         |
 +-------------------+---------------------------------+---------------------------------+-------------------------+
@@ -1102,8 +1106,6 @@ The quality of service (QoS) handles the restrictions applied to the application
 
 
     .. NOT YET SUPPORTED
-        - ``<deadline>``: Period of the samples deadline as :ref:`DurationType` within a ``<period>`` tag.
-
         - ``<latencyBudget>``: Latency budget os the samples as :ref:`DurationType` within a ``<duration>`` tag.
 
         - ``<userData>``: Allows adding custom information.

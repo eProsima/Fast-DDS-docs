@@ -124,6 +124,28 @@
 </subscriber>
 <!--><-->
 
+<!-->PUBSUB_API_CONF_PUBSUB_DEADLINE<-->
+<publisher profile_name="publisher_xml_conf_deadline_profile">
+    <qos>
+        <deadline>
+            <period>
+	        <sec>1</sec>
+	    </period>
+        </deadline>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_deadline_profile">
+    <qos>
+        <deadline>
+            <period>
+	        <sec>1</sec>
+	    </period>
+        </deadline>
+    </qos>
+</subscriber>
+<!--><-->
+
 <!-->PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS<-->
 <publisher profile_name="publisher_xml_conf_resource_limits_profile">
     <topic>
@@ -1049,6 +1071,10 @@
         </names>
     </partition>
 
+    <deadline>
+        <period>1</period>
+    </deadline>
+    
     <lifespan>
         <duration>
             <sec>1</sec>

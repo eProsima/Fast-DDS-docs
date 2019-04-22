@@ -807,7 +807,6 @@ Additional Quality of Service options
 As a user, you can implement your own quality of service (QoS) restrictions in your application. *eProsima Fast RTPS*
 comes bundled with a set of examples of how to implement common client-wise QoS settings:
 
-* Deadline: Rise an alarm when the frequency of message arrival for a topic falls below a certain threshold.
 * Ownership Strength: When multiple data sources come online, filter duplicates by focusing on the higher priority
   sources.
 * Filtering: Filter incoming messages based on content, time, or both.

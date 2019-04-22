@@ -1063,8 +1063,8 @@ The quality of service (QoS) handles the restrictions applied to the application
 
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
-    | :start-after: <!-->XML-QOS<-->
-    | :end-before: <!--><-->
+    :start-after: <!-->XML-QOS<-->
+    :end-before: <!--><-->
 
 +-------------------+---------------------------------+---------------------------------+-------------------------+
 | Name              | Description                     | Values                          | Default                 |

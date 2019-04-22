@@ -307,7 +307,8 @@ it requires that each instance is updated periodically.
 On the publishing side, the deadline QoS defines the maximum period in which the application is
 expected to supply a new sample. On the subscribing side, it defines the maximum period in which
 new samples should be received. For publishers and subscribers to match, the offered deadline
-period must be less than or equal to the requested deadline period, otherwise the entities are considered to be incompatible.
+period must be less than or equal to the requested deadline period, otherwise the entities are
+considered to be incompatible.
 
 +--------------------------------------------------------------+
 | **C++**                                                      |

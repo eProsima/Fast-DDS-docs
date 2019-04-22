@@ -301,8 +301,8 @@ Deadline
 ********
 
 The deadline QoS raises an alarm when the frequency of new samples falls below a certain threshold.
-It is useful for cases where data is expected to be updated periodically, and for topics with key
-it requires that each instance is updated periodically.
+It is useful for cases where data is expected to be updated periodically, requiring that each
+instance is updated periodically for topics with key.
 
 On the publishing side, the deadline QoS defines the maximum period in which the application is
 expected to supply a new sample. On the subscribing side, it defines the maximum period in which

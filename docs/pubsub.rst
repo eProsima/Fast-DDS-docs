@@ -295,6 +295,30 @@ subscriber joins
 |    :end-before: <!--><-->                               |
 +---------------------------------------------------------+
 
+.. _lifespan-qos:
+
+Lifespan
+********
+
+Specifies the maximum duration of validity of the data written by the publisher.
+When the lifespan period expires, data is removed from the history.
+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp              |
+|    :language: c++                                       |
+|    :start-after: //PUBSUB_API_CONF_PUBSUB_LIFESPAN      |
+|    :end-before: //!--                                   |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml               |
+|    :language: xml                                       |
+|    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_LIFESPAN   |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
+
 .. _resourceLimits-qos:
 
 Resource limits

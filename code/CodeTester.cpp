@@ -608,6 +608,12 @@ publisher_attr.qos.m_durability.kind = TRANSIENT_LOCAL_DURABILITY_QOS;
 subscriber_attr.qos.m_durability.kind = VOLATILE_DURABILITY_QOS;
 //!--
 
+//PUBSUB_API_CONF_PUBSUB_LIFESPAN
+publisher_attr.qos.m_lifespan.duration = 1;
+
+subscriber_attr.qos.m_lifespan.duration = 1;
+//!--
+
 //PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS
 publisher_attr.topic.resourceLimitsQos.max_samples = 200;
 

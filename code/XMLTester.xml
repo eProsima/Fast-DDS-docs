@@ -102,6 +102,28 @@
 </subscriber>
 <!--><-->
 
+<!-->PUBSUB_API_CONF_PUBSUB_LIFESPAN<-->
+<publisher profile_name="publisher_xml_conf_lifespan_profile">
+    <qos>
+        <lifespan>
+            <duration>
+	        <sec>1</sec>
+            </duration>
+        </lifespan>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_lifespan_profile">
+    <qos>
+        <lifespan>
+            <duration>
+	        <sec>1</sec>
+            </duration>
+        </lifespan>
+    </qos>
+</subscriber>
+<!--><-->
+
 <!-->PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS<-->
 <publisher profile_name="publisher_xml_conf_resource_limits_profile">
     <topic>
@@ -1026,6 +1048,12 @@
             <name>part2</name> <!-- string -->
         </names>
     </partition>
+
+    <lifespan>
+        <duration>
+            <sec>1</sec>
+        </duration>
+    </lifespan>
 </qos>
 <!--><-->
 </subscriber>

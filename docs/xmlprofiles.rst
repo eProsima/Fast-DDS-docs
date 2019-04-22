@@ -1066,27 +1066,30 @@ The quality of service (QoS) handles the restrictions applied to the application
     :start-after: <!-->XML-QOS<-->
     :end-before: <!--><-->
 
-+-------------------+---------------------------------------+---------------------------------+-------------------+
-| Name              | Description                           | Values                          | Default           |
-+===================+=======================================+=================================+===================+
-| ``<durability>``  | It is defined on                      | :class:`VOLATILE`,              | :class:`VOLATILE` |
-|                   | :ref:`SettingDataDurability` section. | :class:`TRANSIENT_LOCAL`,       |                   |
-|                   |                                       | :class:`TRANSIENT`              |                   |
-|                   |                                       |                                 |                   |
-+-------------------+---------------------------------------+---------------------------------+-------------------+
-| ``<liveliness>``  | Defines the liveliness of the         | :ref:`LivelinessType`           |                   |
-|                   | participant.                          |                                 |                   |
-+-------------------+---------------------------------------+---------------------------------+-------------------+
-| ``<reliability>`` | It is defined on :ref:`reliability`   | :class:`RELIABLE`,              | :class:`RELIABLE` |
-|                   | section.                              | :class:`BEST_EFFORT`            |                   |
-|                   |                                       |                                 |                   |
-|                   |                                       |                                 |                   |
-+-------------------+---------------------------------------+---------------------------------+-------------------+
-| ``<partition>``   |                                       | It allows the introduction of   | ``List <string>`` |
-|                   |                                       | a logical partition concept     |                   |
-|                   |                                       | inside the ‘physical’ partition |                   |
-|                   |                                       | induced by a domain.            |                   |
-+-------------------+---------------------------------------+---------------------------------+-------------------+
++-------------------+---------------------------------+---------------------------------+-------------------------+
+| Name              | Description                     | Values                          | Default                 |
++===================+=================================+=================================+=========================+
+| ``<durability>``  | It is defined in                | :class:`VOLATILE`,              | :class:`VOLATILE`       |
+|                   | :ref:`SettingDataDurability`    | :class:`TRANSIENT_LOCAL`,       |                         |
+|                   | section.                        | :class:`TRANSIENT`              |                         |
+|                   |                                 |                                 |                         |
++-------------------+---------------------------------+---------------------------------+-------------------------+
+| ``<liveliness>``  | Defines the liveliness of the   | :ref:`LivelinessType`           |                         |
+|                   | participant.                    |                                 |                         |
++-------------------+---------------------------------+---------------------------------+-------------------------+
+| ``<reliability>`` | It is defined in                | :class:`RELIABLE`,              | :class:`RELIABLE`       |
+|                   | :ref:`reliability` section.     | :class:`BEST_EFFORT`            |                         |
+|                   |                                 |                                 |                         |
+|                   |                                 |                                 |                         |
++-------------------+---------------------------------+---------------------------------+-------------------------+
+| ``<partition>``   |                                 | It allows the introduction of   | ``List <string>``       |
+|                   |                                 | a logical partition concept     |                         |
+|                   |                                 | inside the ‘physical’ partition |                         |
+|                   |                                 | induced by a domain.            |                         |
++-------------------+---------------------------------+---------------------------------+-------------------------+
+| ``<lifespan>``    | It is defined in                | Lifespan duration as a          | :class:`c_TimeInfinite` |
+|                   | :ref:`lifespan-qos` section.    | :ref:`DurationType`             |                         |
++-------------------+---------------------------------+---------------------------------+-------------------------+
 
 ..
     .. note::
@@ -1102,8 +1105,6 @@ The quality of service (QoS) handles the restrictions applied to the application
         - ``<deadline>``: Period of the samples deadline as :ref:`DurationType` within a ``<period>`` tag.
 
         - ``<latencyBudget>``: Latency budget os the samples as :ref:`DurationType` within a ``<duration>`` tag.
-
-        - ``<lifespan>``: lifespan as :ref:`DurationType`
 
         - ``<userData>``: Allows adding custom information.
 

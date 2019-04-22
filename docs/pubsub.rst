@@ -295,6 +295,36 @@ subscriber joins
 |    :end-before: <!--><-->                               |
 +---------------------------------------------------------+
 
+.. _deadline-qos:
+
+Deadline
+********
+
+The deadline QoS raises an alarm when the frequency of new samples falls below a certain threshold.
+It is useful for cases where data is expected to be updated periodically, and for topics with key
+it requires that each instance is updated periodically.
+
+On the publishing side, the deadline QoS defines the maximum period in which the application is
+expected to supply a new sample. On the subscribing side, it defines the maximum period in which
+new samples should be received. For publishers and subscribers to match, the offered deadline
+period must be less than or equal to the requested deadline period, otherwise the entities are considered to be incompatible.
+
++--------------------------------------------------------------+
+| **C++**                                                      |
++--------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                   |
+|    :language: c++                                            |
+|    :start-after: //PUBSUB_API_CONF_PUBSUB_DEADLINE           |
+|    :end-before: //!--                                        |
++--------------------------------------------------------------+
+| **XML**                                                      |
++--------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                    |
+|    :language: xml                                            |
+|    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DEADLINE        |
+|    :end-before: <!--><-->                                    |
++--------------------------------------------------------------+
+
 .. _lifespan-qos:
 
 Lifespan
@@ -440,12 +470,18 @@ in your application. These callbacks are to be implemented within classes that d
 :class:`SubscriberListener` or :class:`PublisherListener`. The following table gathers information about
 the possible callbacks that can be implemented in both cases:
 
-+-------------------------+-----------+------------+
-|      Callback           | Publisher | Subscriber |
-+=========================+===========+============+
-|   `onNewDataMessage`    |     N     |      Y     |
-+-------------------------+-----------+------------+
-| `onSubscriptionMatched` |     N     |      Y     |
-+-------------------------+-----------+------------+
-| `onPublicationMatched`  |     Y     |      N     |
-+-------------------------+-----------+------------+
++---------------------------------+-----------+------------+
+|      Callback                   | Publisher | Subscriber |
++=================================+===========+============+
+|   `onNewDataMessage`            |     N     |      Y     |
++---------------------------------+-----------+------------+
+| `onSubscriptionMatched`         |     N     |      Y     |
++---------------------------------+-----------+------------+
+| `onPublicationMatched`          |     Y     |      N     |
++---------------------------------+-----------+------------+
+| `on_offered_deadline_missed`    |     Y     |      N     |
++---------------------------------+-----------+------------+
+| `on_requested_deadline_missed`  |     N     |      Y     |
++---------------------------------+-----------+------------+
+
+

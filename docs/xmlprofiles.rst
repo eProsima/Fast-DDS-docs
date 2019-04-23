@@ -617,6 +617,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |staendxml| replace:: ``<staticEndpointXMLFilename>``
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
+.. |mutTries| replace:: ``<mutation_tries>``
 
 
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
@@ -672,6 +673,10 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | |writhistmem|             | Memory policy for builtin             | |mempol|                | :class:`PREALLOCATED` |
 |                           | writers.                              |                         |                       |
 |                           |                                       |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |mutTries|                | Number of different ports             | ``UInt32``              | 100                   |
+|                           | to try if reader's physical port      |                         |                       |
+|                           | is already in use.                    |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 
 .. _sedp:

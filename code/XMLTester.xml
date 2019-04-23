@@ -31,6 +31,16 @@
 </participant>
 <!--><-->
 
+<!-->PUBSUB_API_CONF_PARTICIPANT_MUTATION_TRIES<-->
+<participant profile_name="participant_xml_conf_mutation_tries_profile">
+    <rtps>
+        <builtin>
+            <mutation_tries>55</mutation_tries>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->PUBSUB_API_CONF_PUBSUB_TOPIC<-->
 <publisher profile_name="publisher_xml_conf_topic_profile">
     <topic>
@@ -842,6 +852,8 @@
     <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
 
     <writerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</writerHistoryMemoryPolicy>
+
+    <mutation_tries>55</mutation_tries>
 </builtin>
 <!--><-->
 </rtps>

@@ -575,7 +575,7 @@ List with the possible configuration parameter:
 +-----------------------------------+-----------------------------------+----------------------------------+---------+
 | Name                              | Description                       | Values                           | Default |
 +===================================+===================================+==================================+=========+
-| ``<name>``                        | Participant's name.               | ``string``                       |         |
+| ``<name>``                        | Participant's name.               | ``string_255``                   |         |
 |                                   | It's not the same                 |                                  |         |
 |                                   | field that ``profile_name``.      |                                  |         |
 +-----------------------------------+-----------------------------------+----------------------------------+---------+
@@ -703,15 +703,15 @@ behavior on the participant.
      - ``UInt32``
      - 1
    * - ``<total_participants>``
-     - Publisher :ref:`CommonAlloc` related to the total number of participants in the domain (local and remote).
+     - Participant :ref:`CommonAlloc` related to the total number of participants in the domain (local and remote).
      - :ref:`CommonAlloc`
      -
    * - ``<total_readers>``
-     - Publisher :ref:`CommonAlloc` related to the total number of readers in the domain (local and remote).
+     - Participant :ref:`CommonAlloc` related to the total number of readers on each participant (local and remote).
      - :ref:`CommonAlloc`
      -
    * - ``<total_writers>``
-     - Publisher :ref:`CommonAlloc` related to the total number of writers in the domain (local and remote).
+     - Participant :ref:`CommonAlloc` related to the total number of writers on each participant (local and remote).
      - :ref:`CommonAlloc`
      -
 
@@ -1137,10 +1137,10 @@ There is a deeper explanation of the "topic" field here: :ref:`Topic_information
 | ``<kind>``              | It defines the Topic's        | :class:`NO_KEY`,                  | :class:`NO_KEY` |
 |                         | kind                          | :class:`WITH_KEY`                 |                 |
 +-------------------------+-------------------------------+-----------------------------------+-----------------+
-| ``<name>``              | It defines the Topic's        | ``string``                        |                 |
+| ``<name>``              | It defines the Topic's        | ``string_255``                    |                 |
 |                         | name. Must be unique.         |                                   |                 |
 +-------------------------+-------------------------------+-----------------------------------+-----------------+
-| ``<dataType>``          | It references the             | ``string``                        |                 |
+| ``<dataType>``          | It references the             | ``string_255``                    |                 |
 |                         | Topic's data type.            |                                   |                 |
 +-------------------------+-------------------------------+-----------------------------------+-----------------+
 | ``<historyQos>``        | It controls the behavior      | :ref:`HistoryQos <hQos>`          |                 |

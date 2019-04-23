@@ -124,6 +124,27 @@
 </subscriber>
 <!--><-->
 
+<!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS<-->
+<publisher profile_name="publisher_xml_conf_disable_positive_acks_profile">
+    <qos>
+        <disablePositiveAcks>
+	    <enabled>true</enabled>
+            <keep_duration>
+	        <sec>1</sec>
+            </keep_duration>
+        </disablePositiveAcks>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_disable_positive_acks_profile">
+    <qos>
+        <disablePositiveAcks>
+	    <enabled>true</enabled>
+        </disablePositiveAcks>
+    </qos>
+</subscriber>
+<!--><-->
+
 <!-->PUBSUB_API_CONF_PUBSUB_DEADLINE<-->
 <publisher profile_name="publisher_xml_conf_deadline_profile">
     <qos>
@@ -1080,6 +1101,10 @@
             <sec>1</sec>
         </duration>
     </lifespan>
+
+    <disablePositiveAcks>
+        <enabled>true</enabled>
+    </disablePositiveAcks>
 </qos>
 <!--><-->
 </subscriber>
@@ -1488,6 +1513,12 @@
             <publishMode>
                 <kind>ASYNCHRONOUS</kind>
             </publishMode>
+	    <disablePositiveAcks>
+	        <enabled>true</enabled>
+	        <keep_duration>
+		    <sec>1</sec>
+		</keep_duration>
+	    </disablePositiveAcks>
         </qos>
 
         <times>

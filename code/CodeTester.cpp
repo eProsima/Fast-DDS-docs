@@ -620,6 +620,13 @@ publisher_attr.qos.m_lifespan.duration = 1;
 subscriber_attr.qos.m_lifespan.duration = 1;
 //!--
 
+//PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
+publisher_attr.qos.m_disablePositiveACKs.enabled = true;
+publisher_attr.qos.m_disablePositiveACKs.keep_duration = 1;
+
+subscriber_attr.qos.m_disablePositiveACKs.enabled = true;
+//!--
+
 //PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS
 publisher_attr.topic.resourceLimitsQos.max_samples = 200;
 

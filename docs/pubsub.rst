@@ -373,6 +373,36 @@ Allow controlling the maximum size of the History and other resources.
 |    :end-before: <!--><-->                                    |
 +--------------------------------------------------------------+
 
+.. _disable-positive-acks-qos:
+
+Disable positive acks
+*********************
+
+This is an additional QoS that allows reducing network traffic when strict
+reliable communication is not required and bandwith is limited. It consists
+in changing the default behaviour by which positive acks are sent from
+readers to writers. Instead, only negative akcs will be sent
+when a reader is missing a sample, but writers will keep data for a
+sufficient *keep duration* before considering it as acknowledged. A writer
+and a reader are incompatible (i.e. they will not match) if the latter is
+using this QoS but the former is not.
+
++----------------------------------------------------------------------+
+| **C++**                                                              |
++----------------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                           |
+|    :language: c++                                                    |
+|    :start-after: //PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS      |
+|    :end-before: //!--                                                |
++----------------------------------------------------------------------+
+| **XML**                                                              |
++----------------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                            |
+|    :language: xml                                                    |
+|    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS   |
+|    :end-before: <!--><-->                                            |
++----------------------------------------------------------------------+
+
 Unicast locators
 ****************
 

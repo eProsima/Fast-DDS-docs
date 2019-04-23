@@ -379,9 +379,9 @@ Disable positive acks
 *********************
 
 This is an additional QoS that allows reducing network traffic when strict
-reliable communication is not required and bandwith is limited. It consists
+reliable communication is not required and bandwidth is limited. It consists
 in changing the default behavior by which positive acks are sent from
-readers to writers. Instead, only negative akcs will be sent
+readers to writers. Instead, only negative acks will be sent
 when a reader is missing a sample, but writers will keep data for a
 sufficient *keep duration* before considering it as acknowledged. A writer
 and a reader are incompatible (i.e. they will not match) if the latter is

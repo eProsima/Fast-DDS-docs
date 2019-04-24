@@ -1096,7 +1096,7 @@ The quality of service (QoS) handles the restrictions applied to the application
 +--------------------------+----------------------------------+-------------------------+-------------------------+
 | ``<disablePositiveAcks>``| It is defined in                 |                         | It is disabled by       |
 |                          | section                          |                         | default and             |
-|                          | :ref:`disable-positive-acks-qos` |                         | ``keep_duration`` is set|
+|                          | :ref:`disable-positive-acks-qos` |                         | ``duration`` is set     |
 |                          |                                  |                         | to                      |
 |                          |                                  |                         | :class:`c_TimeInfinite` |
 +--------------------------+----------------------------------+-------------------------+-------------------------+

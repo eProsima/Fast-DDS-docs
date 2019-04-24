@@ -129,9 +129,9 @@
     <qos>
         <disablePositiveAcks>
 	    <enabled>true</enabled>
-            <keep_duration>
+            <duration>
 	        <sec>1</sec>
-            </keep_duration>
+            </duration>
         </disablePositiveAcks>
     </qos>
 </publisher>
@@ -1515,9 +1515,9 @@
             </publishMode>
 	    <disablePositiveAcks>
 	        <enabled>true</enabled>
-	        <keep_duration>
+	        <duration>
 		    <sec>1</sec>
-		</keep_duration>
+		</duration>
 	    </disablePositiveAcks>
         </qos>
 

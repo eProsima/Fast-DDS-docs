@@ -28,6 +28,7 @@ using namespace eprosima::fastrtps;
 using namespace ::rtps;
 using namespace ::xmlparser;
 using namespace ::security;
+using namespace ::types;
 
 class HelloWorld
 {
@@ -366,12 +367,12 @@ participant_attr.rtps.builtin.setStaticEndpointXMLFilename("ParticipantWithASubs
 
 //CONF_QOS_TUNING_RELIABLE_PUBLISHER
 publisher_attr.times.heartbeatPeriod.seconds = 0;
-publisher_attr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
+publisher_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 //!--
 
 //CONF_QOS_TUNING_RELIABLE_WRITER
 writer_attr.times.heartbeatPeriod.seconds = 0;
-writer_attr.times.heartbeatPeriod.fraction = 4294967 * 500; //500 ms
+writer_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 //!--
 
 }

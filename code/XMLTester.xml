@@ -1089,12 +1089,12 @@
 
 <leaseDuration>
     <sec>500</sec> <!-- int32 -->
-    <fraction>0</fraction> <!-- uint32 -->
+    <nanosec>0</nanosec> <!-- uint32 -->
 </leaseDuration>
 
 <leaseAnnouncement>
     <sec>1</sec> <!-- int32 -->
-    <fraction>856000</fraction> <!-- uint32 -->
+    <nanosec>856000</nanosec> <!-- uint32 -->
 </leaseAnnouncement>
 <!--><-->
 </builtin>
@@ -1144,7 +1144,7 @@
     <deadline>
         <period>1</period>
     </deadline>
-    
+
     <lifespan>
         <duration>
             <sec>1</sec>
@@ -1380,7 +1380,7 @@
 
                 <leaseAnnouncement>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </leaseAnnouncement>
 
                 <simpleEDP>
@@ -1539,18 +1539,18 @@
                 <kind>AUTOMATIC</kind>
                 <lease_duration>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </lease_duration>
                 <announcement_period>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </announcement_period>
             </liveliness>
             <reliability>
                 <kind>BEST_EFFORT</kind>
                 <max_blocking_time>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </max_blocking_time>
             </reliability>
             <partition>
@@ -1573,19 +1573,19 @@
         <times>
             <initialHeartbeatDelay>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </initialHeartbeatDelay>
             <heartbeatPeriod>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </heartbeatPeriod>
             <nackResponseDelay>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </nackResponseDelay>
             <nackSupressionDuration>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </nackSupressionDuration>
         </times>
 
@@ -1693,18 +1693,18 @@
                 <kind>MANUAL_BY_PARTICIPANT</kind>
                 <lease_duration>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </lease_duration>
                 <announcement_period>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </announcement_period>
             </liveliness>
             <reliability>
                 <kind>BEST_EFFORT</kind>
                 <max_blocking_time>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </max_blocking_time>
             </reliability>
             <partition>
@@ -1718,11 +1718,11 @@
         <times>
             <initialAcknackDelay>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </initialAcknackDelay>
             <heartbeatResponseDelay>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </heartbeatResponseDelay>
         </times>
 

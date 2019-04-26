@@ -1016,7 +1016,7 @@ Instead, it is used inside other configuration parameter labels that give it sen
     :end-before: <!--><-->
 
 Duration time can be defined through a constant value directly (:class:`INFINITE`, :class:`ZERO`, or :class:`INVALID`),
-or by ``<seconds>`` plus ``<fraction>`` labels:
+or by ``<seconds>`` plus ``<nanosec>`` labels:
 
 - :class:`INFINITE`: Constant value, represents an infinite period of time.
 
@@ -1029,7 +1029,7 @@ or by ``<seconds>`` plus ``<fraction>`` labels:
 +================+=================================================================+============+=========+
 | ``<seconds>``  | Number of seconds.                                              | ``Int32``  | 0       |
 +----------------+-----------------------------------------------------------------+------------+---------+
-| ``<fraction>`` | Fractions of a second. A fraction is :class:`1/(2^32)` seconds. | ``UInt32`` | 0       |
+| ``<nanosec>``  | Number of nanoseconds.                                          | ``UInt32`` | 0       |
 +----------------+-----------------------------------------------------------------+------------+---------+
 
 .. _TopicType:
@@ -1288,7 +1288,7 @@ Don't take it as a working example.
      <durabilityService>
         <service_cleanup_delay>
             <seconds>10</seconds>
-            <fraction>0</fraction>
+            <nanosec>0</nanosec>
         </service_cleanup_delay>
         <history_kind>KEEP_LAST</history_kind>
         <history_depth>20</history_depth>

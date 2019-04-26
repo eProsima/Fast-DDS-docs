@@ -40,7 +40,7 @@ Union types have special fields to identify each member by labels.
 ``DynamicTypes`` and ``DynamicTypeBuilders``.
 It declares methods to create each kind of supported types, making easier the
 management of the descriptors.
-Every object created by the factory must be deleted calling the ``DeleteType`` method.
+Every object created by the factory must be deleted calling the ``delete_type`` method.
 
 **Dynamic Type Builder**
 
@@ -49,7 +49,7 @@ By design Dynamic types can't be modified, so the previous step to create a new 
 the settings that the user needs.
 Users can create several types using the same builder, but the changes applied
 to the builder don't affect to the types created previously.
-Every object created by a builder must be deleted calling the ``DeleteType`` method
+Every object created by a builder must be deleted calling the ``delete_type`` method
 of the Dynamic Type builder Factory.
 
 **Dynamic Type**
@@ -68,9 +68,8 @@ Dynamic Types have a one Dynamic type member for every child member added to it.
 *Singleton* class that is in charge of the creation and the management of every
 ``DynamicData``.
 It creates them using the given ``DynamicType`` with its settings.
-Every data object created by the factory must be deleted calling the ``DeleteType`` method.
-Allows creating a ``TypeIdentifier`` and a (Minimal)``TypeObject`` from a ``TypeDescriptor``.
-``CompleteTypeObject`` support is planned to be added in the future.
+Every data object created by the factory must be deleted calling the ``delete_type`` method.
+Allows creating a ``TypeIdentifier`` and a (Minimal and Complete) ``TypeObject`` from a ``TypeDescriptor``.
 
 **Dynamic Data**
 
@@ -117,7 +116,7 @@ Primitive types don't need a specific configuration to create the type. Because 
 ``DynamicTypeBuilderFactory`` has got exposed several methods to allow users to create
 the Dynamic Types avoiding the ``DynamicTypeBuilder`` step. The example below shows the two
 ways to create dynamic data of a primitive type.
-The ``DynamicData`` class has a specific ``Get`` and ``Set`` Methods for each primitive
+The ``DynamicData`` class has a specific ``get`` and ``set`` Methods for each primitive
 type of the list.
 
 .. literalinclude:: ../code/CodeTester.cpp
@@ -130,7 +129,7 @@ String and WString
 
 Strings are pretty similar to primitive types with one exception, they need to set the size
 of the ``buffer`` that they can manage.
-To do that, ``DynamicTypeBuilderFactory`` exposes the methods ``CreateStringType`` and ``CreateWstringType``.
+To do that, ``DynamicTypeBuilderFactory`` exposes the methods ``create_string_type`` and ``create_wstring_type``.
 By default, its size is set to 255 characters.
 
 .. literalinclude:: ../code/CodeTester.cpp
@@ -143,7 +142,7 @@ Alias
 
 Alias types have been implemented to rename an existing type, keeping the rest of properties
 of the given type.
-``DynamicTypeBuilderFactory`` exposes the method ``CreateAliasType`` to create alias types
+``DynamicTypeBuilderFactory`` exposes the method ``create_alias_type`` to create alias types
 taking the base type and the new name that the alias is going to set.
 After the creation of the ``DynamicData``, users can access its information like
 they were working with the base type.
@@ -160,11 +159,11 @@ The enum type is managed as complex in Dynamic Types because it allows adding me
 to set the different values that the enum is going to manage.
 Internally, it works with a ``UINT32`` to store what value is selected.
 
-To use enumerations users must create a Dynamic Type builder calling to ``CreateEnumType``
-and after that, they can call to ``AddMember`` given the index and the name of the
+To use enumerations users must create a Dynamic Type builder calling to ``create_enum_type``
+and after that, they can call to ``add_member`` given the index and the name of the
 different values that the enum is going to support.
 
-The `DynamicData` class has got methods ``GetEnumValue`` and ``SetEnumValue`` to work
+The `DynamicData` class has got methods ``get_enum_value`` and ``set_enum_value`` to work
 with ``UINT32`` or with strings using the names of the members added to the builder.
 
 .. literalinclude:: ../code/CodeTester.cpp
@@ -175,26 +174,57 @@ with ``UINT32`` or with strings using the names of the members added to the buil
 Bitset
 ^^^^^^
 
-Bitset types emulate a list of boolean values but optimized for space allocation
-using each bit for a different value.
-They work like a ``boolean`` type with the only difference that the ``GetBoolValue`` and
-``SetBoolValue`` need the index of the bit that users want to read or write.
+Bitset types are similar to `structure` types but their members are only `bitfields`, which are stored optimally.
+In the static version of bitsets, each bit uses just one bit in memory (with platform limitations) without alignment
+considerations. A bitfield can be anonymous (cannot be addressed) to skip unused bits within a bitset.
+Each bitfield in a bitset can be modified through their minimal needed primitive representation.
 
-``DynamicTypeBuilderFactory`` offers the possibility to set the maximum value that the bitset
-is going to manage, but it should be less or equal to 64 bits.
+
++--------------------------+--------------------------+
+| Number of bits           | Primitive                |
++--------------------------+--------------------------+
+| ``1``                    | ``BOOLEAN``              |
++--------------------------+--------------------------+
+| ``2-8``                  | ``UINT8``                |
++--------------------------+--------------------------+
+| ``9-16``                 | ``UINT16``               |
++--------------------------+--------------------------+
+| ``17-32``                | ``UINT32``               |
++--------------------------+--------------------------+
+| ``33-64``                | ``UINT64``               |
++--------------------------+--------------------------+
+
+
+Each bitfield (or member) works like its primitive type with the only difference that the internal storage only
+modifies the involved bits instead of the full primitive value.
+
+Bit_bound and position of the bitfield can be set using annotations (useful when converting between static and dynamic
+bitsets).
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
    :start-after: //DYNAMIC_TYPES_CREATE_BITSETS
    :end-before: //!--
 
+Bitsets allows inheritance, exactly with the same OOP meaning. To inherit from another bitset, we must create the
+bitset calling the ``create_child_struct_builder`` of the factory. This method is shared with structures and will
+deduce our type depending on the parent's type.
+
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_BITSETS-INHERIT
+   :end-before: //!--
+
+
 Bitmask
 ^^^^^^^
 
-Bitmasks are the complex way to work with bitsets because they open the option to
-add members and access to each boolean value with the name of the member.
-``DynamicData`` has the special methods ``GetBitmaskValue`` and ``SetBitmaskValue``
-using the name of the member, but they can be used like bitsets too.
+Bitmasks are similar to `enumeration` types, but their members work as bit flags that can be individually turned on and
+off. Bit operations can be applied when testing or setting a bitmask value.
+``DynamicData`` has the special methods ``get_bitmask_value`` and ``set_bitmask_value`` which allow to retrieve or
+modify the full value instead of accessing each bit.
+
+Bitmasks can be bound to any number of bits up to 64.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
@@ -207,22 +237,31 @@ Structure
 Structures are the common complex types, they allow to add any kind of members inside them.
 They don't have any value, they are only used to contain other types.
 
-To manage the types inside the structure, users can call the ``Get`` and ``Set`` methods
+To manage the types inside the structure, users can call the ``get`` and ``set`` methods
 according to the kind of the type inside the structure using their ``ids``.
-If the structure contains a complex value, it should be used with ``LoanValue`` to
-access to it and ``ReturnLoanedValue`` to release that pointer.
+If the structure contains a complex value, it should be used with ``loan_value`` to
+access to it and ``return_loaned_value`` to release that pointer.
 ``DynamicData`` manages the counter of loaned values and users can't loan a value that
-has been loaned previously without calling ``ReturnLoanedValue`` before.
+has been loaned previously without calling ``return_loaned_value`` before.
 
 The ``Ids`` must be consecutive starting by zero, and the ``DynamicType`` will change that
 Id if it doesn't match with the next value.
 If two members have the same Id, after adding the second one, the previous
 will change its id to the next value.
-To get the id of a member by name, ``DynamicData`` exposes the method ``GetMemberIdByName``.
+To get the id of a member by name, ``DynamicData`` exposes the method ``get_member_id_by_name``.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
    :start-after: //DYNAMIC_TYPES_CREATE_STRUCTS
+   :end-before: //!--
+
+Structures allow inheritance, exactly with the same OOP meaning. To inherit from another structure, we must create the
+structure calling the ``create_child_struct_builder`` of the factory. This method is shared with bitsets and will
+deduce our type depending on the parent's type.
+
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_STRUCTS-INHERIT
    :end-before: //!--
 
 Union
@@ -231,9 +270,9 @@ Union
 Unions are a special kind of structures where only one of the members is active
 at the same time.
 To control these members, users must set the :class:`discriminator` type that is going to be used
-to select the current member calling the ``CreateUnionType`` method.
+to select the current member calling the ``create_union_type`` method.
 After the creation of the Dynamic Type, every member that is going to be added
-needs at least one ``UnionCaseIndex`` to set how it is going to be selected and
+needs at least one ``union_case_index`` to set how it is going to be selected and
 optionally if it is the default value of the union.
 
 .. literalinclude:: ../code/CodeTester.cpp
@@ -249,11 +288,11 @@ insert, remove or access to a member of the list. To create this type users
 need to specify the type that it is going to store and optionally the size
 limit of the list.
 To ease the memory management of this type, ``DynamicData`` has these methods:
-- ``InsertSequenceData``: Creates a new element at the end of the list and returns
+- ``insert_sequence_data``: Creates a new element at the end of the list and returns
 the ``id`` of the new element.
-- ``RemoveSequenceData``: Removes the element of the given index and refresh the ids
+- ``remove_sequence_data``: Removes the element of the given index and refresh the ids
 to keep the consistency of the list.
-- ``ClearData``: Removes all the elements of the list.
+- ``clear_data``: Removes all the elements of the list.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
@@ -269,11 +308,11 @@ that the elements are stored consecutively.
 The method to create arrays needs a vector of sizes to set how many dimensions are
 going to be managed, if users don't want to set a limit can set the value as zero
 on each dimension and it applies the default value ( :class:`100` ).
-To ease the management of arrays every ``Set`` method in ``DynamicData`` class creates
+To ease the management of arrays every ``set`` method in ``DynamicData`` class creates
 the item if there isn't any in the given ``Id``.
 Arrays also have methods to handle the creation and deletion of elements like
-sequences, they are ``InsertArrayData``, ``RemoveArrayData`` and ``ClearData``.
-Additionally, there is a special method ``GetArrayIndex`` that returns the position id
+sequences, they are ``insert_array_data``, ``remove_array_data`` and ``clear_data``.
+Additionally, there is a special method ``get_array_index`` that returns the position id
 giving a vector of indexes on every dimension that the arrays support, that is
 useful in multidimensional arrays.
 
@@ -292,11 +331,11 @@ to these elements.
 
 To create a map, users must set the types of the key and the value elements and
 optionally the size limit of the map. To add a new element to the map, ``DynamicData``
-has the method ``InsertMapData`` that returns the ids of the key and the value
+has the method ``insert_map_data`` that returns the ids of the key and the value
 elements inside the map.
-To remove an element of the map there is the method ``RemoveMapData`` that uses the
+To remove an element of the map there is the method ``remove_map_data`` that uses the
 given id to find the key element and removes the key and the value elements from the map.
-The method ``ClearData`` removes all the elements from the map.
+The method ``clear_data`` removes all the elements from the map.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
@@ -310,10 +349,10 @@ Nested structures
 ^^^^^^^^^^^^^^^^^
 
 Structures allow to add other structures inside them, but users must take care that
-to access to these members they need to call ``LoanValue`` to get a pointer to the
-data and release it calling ``ReturnLoanedValue``.
+to access to these members they need to call ``loan_value`` to get a pointer to the
+data and release it calling ``return_loaned_value``.
 ``DynamicDatas`` manages the counter of loaned values and users can't loan a value that
-has been loaned previously without calling ``ReturnLoanedValue`` before.
+has been loaned previously without calling ``return_loaned_value`` before.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
@@ -324,7 +363,7 @@ Structures inheritance
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Structures can inherit from other structures. To do that ``DynamicTypeBuilderFactory``
-has the method ``CreateChildStructType`` that relates the given struct type with
+has the method ``create_child_struct_type`` that relates the given struct type with
 the new one. The resultant type contains the members of the base class and the ones
 that users have added to it.
 
@@ -340,7 +379,7 @@ Alias of an alias
 ^^^^^^^^^^^^^^^^^
 
 Alias types support recursion, so if users need to create an alias of another alias,
-it can be done calling ``CreateAliasType`` method giving the alias as a base type.
+it can be done calling ``create_alias_type`` method giving the alias as a base type.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
@@ -351,8 +390,8 @@ Unions with complex types
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Unions support complex types, the available interface to access to them is calling
-``LoanValue`` to get a pointer to the data and set this field as the active one and
-release it calling ``ReturnLoanedValue``.
+``loan_value`` to get a pointer to the data and set this field as the active one and
+release it calling ``return_loaned_value``.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
@@ -387,7 +426,7 @@ These two factories in charge to manage these objects, and they must create and 
 To ease this management, the library incorporates a special kind of shared pointers to call
 to the factories to delete the object directly ( ``DynamicTypeBuilder_ptr`` and  ``DynamicData_ptr``).
 The only restriction on using this kind of pointers are
-the methods ``LoanValue`` and ``ReturnLoanedValue``, because they return a pointer
+the methods ``loan_value`` and ``return_loaned_value``, because they return a pointer
 to an object that is already managed by the library and using a ``DynamicData_ptr``
 with them will cause a crash.
 ``DynamicType`` will always be returned as ``DynamicType_ptr`` because there is no internal management of its memory.

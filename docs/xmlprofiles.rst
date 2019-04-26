@@ -318,6 +318,19 @@ Example:
 |                                               |                                                     |
 +-----------------------------------------------+-----------------------------------------------------+
 
+Structs can inherit from another structs:
+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-STRUCT-INHERIT<-->   |     :start-after: //XML-STRUCT-INHERIT              |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
+
+
 
 **Union**
 
@@ -336,6 +349,57 @@ Example:
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
 |                                               |                                                     |
 +-----------------------------------------------+-----------------------------------------------------+
+
+**Bitset**
+
+The ``<bitset>`` type is defined by its ``name`` and inner *bitfields*.
+
+Example:
+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-BITSET<-->           |     :start-after: //XML-BITSET                      |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
+
+A bitfield without name is an inaccessible set of bits. Bitfields can specify their management type to ease their
+modification and access. The bitfield's bit_bound is mandatory and cannot be bigger than 64.
+
+Bitsets can inherit from another bitsets:
+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-BITSET-INHERIT<-->   |     :start-after: //XML-BITSET-INHERIT              |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
+
+**Bitmask**
+
+The ``<bitmask>`` type is defined by its ``name`` and inner *bit_values*.
+
+Example:
+
++-----------------------------------------------+-----------------------------------------------------+
+| XML                                           | C++                                                 |
++===============================================+=====================================================+
+| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+|   :language: xml                              |     :language: cpp                                  |
+|   :start-after: <!-->XML-BITMASK<-->          |     :start-after: //XML-BITMASK                     |
+|   :end-before: <!--><-->                      |     :end-before: //!--                              |
+|                                               |                                                     |
++-----------------------------------------------+-----------------------------------------------------+
+
+The bitmask can specify its bit_bound, this is, the number of bits that the type will manage. Internally will be
+converted to the minimum type that allows to store them. The maximum allowed bit_bound is 64.
+Bit_values can define their position inside the bitmask.
 
 
 Member types
@@ -952,7 +1016,7 @@ Instead, it is used inside other configuration parameter labels that give it sen
     :end-before: <!--><-->
 
 Duration time can be defined through a constant value directly (:class:`INFINITE`, :class:`ZERO`, or :class:`INVALID`),
-or by ``<seconds>`` plus ``<fraction>`` labels:
+or by ``<seconds>`` plus ``<nanosec>`` labels:
 
 - :class:`INFINITE`: Constant value, represents an infinite period of time.
 
@@ -965,7 +1029,7 @@ or by ``<seconds>`` plus ``<fraction>`` labels:
 +================+=================================================================+============+=========+
 | ``<seconds>``  | Number of seconds.                                              | ``Int32``  | 0       |
 +----------------+-----------------------------------------------------------------+------------+---------+
-| ``<fraction>`` | Fractions of a second. A fraction is :class:`1/(2^32)` seconds. | ``UInt32`` | 0       |
+| ``<nanosec>``  | Number of nanoseconds.                                          | ``UInt32`` | 0       |
 +----------------+-----------------------------------------------------------------+------------+---------+
 
 .. _TopicType:
@@ -1224,7 +1288,7 @@ Don't take it as a working example.
      <durabilityService>
         <service_cleanup_delay>
             <seconds>10</seconds>
-            <fraction>0</fraction>
+            <nanosec>0</nanosec>
         </service_cleanup_delay>
         <history_kind>KEEP_LAST</history_kind>
         <history_depth>20</history_depth>

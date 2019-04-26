@@ -159,18 +159,18 @@
 
                 <leaseDuration>
                     <sec>DURATION_INFINITY</sec><!-- string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* -->
-                </leaseDuration> 
+                </leaseDuration>
 
                 <!-- OR -->
                 <!--
                 <leaseDuration>
                     <sec>500</sec> <!- - string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* - ->
-                    <fraction>0</fraction> <!- - string DURATION_INFINITY|DURATION_INFINITE_NSEC|([0-9])* - ->
+                    <nanosec>0</nanosec> <!- - string DURATION_INFINITY|DURATION_INFINITE_NSEC|([0-9])* - ->
                 </leaseDuration>
                 -->
                 <leaseAnnouncement>
                     <sec>1</sec> <!-- int32 -->
-                    <fraction>856000</fraction> <!-- uint32 -->
+                    <nanosec>856000</nanosec> <!-- uint32 -->
                 </leaseAnnouncement>
 
                 <simpleEDP>
@@ -267,7 +267,7 @@
             <durabilityService>
                 <service_cleanup_delay>
                     <sec>10</sec> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <nanosec>0</nanosec> <!-- uint32 -->
                 </service_cleanup_delay>
                 <history_kind>KEEP_LAST</history_kind> <!-- string KEEP_LAST | KEEP_ALL -->
                 <history_depth>1</history_depth> <!-- unint32 -->
@@ -289,7 +289,7 @@
                 <kind>AUTOMATIC</kind> <!-- string AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC -->
                 <leaseDuration>
                     <sec>500</sec> <!-- int32 -->
-                    <fraction>0</fraction> <!-- uint32 -->
+                    <nanosec>0</nanosec> <!-- uint32 -->
                 </leaseDuration>
                 <announcement_period>
                     <sec>DURATION_INFINITY</sec>
@@ -417,7 +417,7 @@
                 <kind>AUTOMATIC</kind> <!-- string AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC-->
                 <leaseDuration>
                     <sec>500</sec> <!-- string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* -->
-                    <fraction>0</fraction> <!-- string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* -->
+                    <nanosec>0</nanosec> <!-- string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* -->
                 </leaseDuration>
                 <announcement_period>
                     <sec>DURATION_INFINITY</sec>

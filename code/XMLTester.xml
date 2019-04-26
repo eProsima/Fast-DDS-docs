@@ -758,7 +758,44 @@
     <member name="my_struct" type="nonBasic" nonBasicTypeName="MyStruct" arrayDimensions="5"/>
 </struct>
 <!--><-->
+<!-->XML-BITSET<-->
+<bitset name="MyBitSet">
+    <bitfield name="a" bit_bound="3"/>
+    <bitfield name="b" bit_bound="1"/>
+    <bitfield bit_bound="4"/>
+    <bitfield name="c" bit_bound="10"/>
+    <bitfield name="d" bit_bound="12" type="int16"/>
+</bitset>
+<!--><-->
+<!-->XML-BITMASK<-->
+<bitmask name="MyBitMask" bit_bound="8">
+    <bit_value name="flag0" position="0"/>
+    <bit_value name="flag1"/>
+    <bit_value name="flag2" position="2"/>
+    <bit_value name="flag5" position="5"/>
+</bitmask>
+<!--><-->
+<!-->XML-BITSET-INHERIT<-->
+<bitset name="ParentBitSet">
+    <bitfield name="a" bit_bound="3"/>
+    <bitfield name="b" bit_bound="1"/>
+</bitset>
 
+<bitset name="ChildBitSet" baseType="ParentBitSet">
+    <bitfield name="c" bit_bound="30"/>
+    <bitfield name="d" bit_bound="13"/>
+</bitset>
+<!--><-->
+<!-->XML-STRUCT-INHERIT<-->
+<struct name="ParentStruct">
+    <member name="first" type="int32"/>
+    <member name="second" type="int64"/>
+</struct>
+<struct name="ChildStruct" baseType="ParentStruct">
+    <member name="third" type="int32"/>
+    <member name="fourth" type="int64"/>
+</struct>
+<!--><-->
 </type>
 </types>
 
@@ -1052,12 +1089,12 @@
 
 <leaseDuration>
     <sec>500</sec> <!-- int32 -->
-    <fraction>0</fraction> <!-- uint32 -->
+    <nanosec>0</nanosec> <!-- uint32 -->
 </leaseDuration>
 
 <leaseAnnouncement>
     <sec>1</sec> <!-- int32 -->
-    <fraction>856000</fraction> <!-- uint32 -->
+    <nanosec>856000</nanosec> <!-- uint32 -->
 </leaseAnnouncement>
 <!--><-->
 </builtin>
@@ -1107,7 +1144,7 @@
     <deadline>
         <period>1</period>
     </deadline>
-    
+
     <lifespan>
         <duration>
             <sec>1</sec>
@@ -1343,7 +1380,7 @@
 
                 <leaseAnnouncement>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </leaseAnnouncement>
 
                 <simpleEDP>
@@ -1502,18 +1539,18 @@
                 <kind>AUTOMATIC</kind>
                 <lease_duration>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </lease_duration>
                 <announcement_period>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </announcement_period>
             </liveliness>
             <reliability>
                 <kind>BEST_EFFORT</kind>
                 <max_blocking_time>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </max_blocking_time>
             </reliability>
             <partition>
@@ -1536,19 +1573,19 @@
         <times>
             <initialHeartbeatDelay>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </initialHeartbeatDelay>
             <heartbeatPeriod>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </heartbeatPeriod>
             <nackResponseDelay>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </nackResponseDelay>
             <nackSupressionDuration>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </nackSupressionDuration>
         </times>
 
@@ -1656,18 +1693,18 @@
                 <kind>MANUAL_BY_PARTICIPANT</kind>
                 <lease_duration>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </lease_duration>
                 <announcement_period>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </announcement_period>
             </liveliness>
             <reliability>
                 <kind>BEST_EFFORT</kind>
                 <max_blocking_time>
                     <sec>1</sec>
-                    <fraction>856000</fraction>
+                    <nanosec>856000</nanosec>
                 </max_blocking_time>
             </reliability>
             <partition>
@@ -1681,11 +1718,11 @@
         <times>
             <initialAcknackDelay>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </initialAcknackDelay>
             <heartbeatResponseDelay>
                 <sec>1</sec>
-                <fraction>856000</fraction>
+                <nanosec>856000</nanosec>
             </heartbeatResponseDelay>
         </times>
 

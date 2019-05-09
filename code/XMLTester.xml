@@ -970,6 +970,13 @@
     <userDefinedID>55</userDefinedID> <!-- Int16 -->
 
     <entityID>66</entityID> <!-- Int16 -->
+
+    <matchedSubscribersAllocation>
+        <initial>0</initial> <!-- uint32 -->
+        <maximum>0</maximum> <!-- uint32 -->
+        <increment>1</increment> <!-- uint32 -->
+    </matchedSubscribersAllocation>
+
 </publisher>
 <!--><-->
 <!-->XML-SUBSCRIBER<-->

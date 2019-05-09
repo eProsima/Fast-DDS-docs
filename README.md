@@ -24,8 +24,15 @@ system input/output channel combination for each deployment.
 * Two API Layers: a high-level Publisher-Subscriber one focused on usability and a lower-level Writer-Reader one that provides finer access to the inner workings of the RTPS protocol.
 
 *eProsima Fast RTPS* has been adopted by multiple organizations in many sectors including these important cases:
+
 * Robotics: ROS (Robotic Operating System) as their default middleware for ROS2.
 * EU R&D: FIWARE Incubated GE.
+
+## Supported platforms
+
+* Linux [![Linux Build Status](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Linux/badge/icon)](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Linux)
+* Windows [![Windows Build Status](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Windows/badge/icon)](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Windows)
+* Mac [![Mac Build Status](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Mac/badge/icon)](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Mac)
 
 ## Installation Guide
 You can get either a binary distribution of *eprosima Fast RTPS* or compile the library yourself from source.
@@ -38,21 +45,24 @@ To compile *eprosima Fast RTPS* from source, at least Cmake version 2.8.12 and B
 Clone the project from GitHub:
 
     $ git clone https://github.com/eProsima/Fast-RTPS
+    $ cd Fast-RTPS
+    $ mkdir build
+    $ cd build
 
 If you are on Linux, execute:
 
-    $ cmake ../ -DEPROSIMA_BUILD=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install
+    $ cmake ../ -DTHIRDPARTY=ON -DEPROSIMA_BUILD=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install
     $ make
-    $ make install 
+    $ make install
 
 If you are on Windows, choose your version of Visual Studio:
 
-    > cmake ../  -G"Visual Studio 14 2015 Win64" -DEPROSIMA_BUILD=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=installationpath
+    > cmake ../  -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON -DEPROSIMA_BUILD=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=installationpath
     > cmake --build . --target install
 	
 If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling Cmake.
 
-## Documentation 
+## Documentation
 
 You can access the documentation online, which is hosted on [Read the Docs](http://eprosima-fast-rtps.readthedocs.io).
 
@@ -65,5 +75,3 @@ You can access the documentation online, which is hosted on [Read the Docs](http
 ## Getting Help
 
 If you need support you can reach us by mail at `support@eProsima.com` or by phone at `+34 91 804 34 48`.
-
-

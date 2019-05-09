@@ -230,11 +230,12 @@ example.
 
 TCP doesn't support multicast scenarios, so you must plan carefully your network architecture.
 
+.. _TLS:
 
-Using TLS (Transport Layer Security) over TCP
+TLS over TCP
 ---------------------------------------------
 
-Fast-RTPS allows configuring a TCP Transport to use TLS by setting up **TCP Server** and **TCP Client** properly.
+Fast-RTPS allows configuring a TCP Transport to use TLS (Transport Layer Security) by setting up **TCP Server** and **TCP Client** properly.
 
  **TCP Server**
 

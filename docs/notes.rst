@@ -1,5 +1,37 @@
-Version 1.7.2
+Version 1.8.0
 =============
+
+This release includes the following features:
+
+* Implementation of IDL 4.2
+* Implementation of :ref:`deadline-qos` QoS
+* Implementation of :ref:`lifespan-qos` QoS
+* Implementation of :ref:`disable-positive-acks-qos` QoS
+* Secure sockets on TCP transport (:ref:`TLS`)
+
+It also adds the following improvements and bug fixes:
+
+* Real-time improvements: non-blocking write calls for best-effort writers, addition of fixed size strings, fixed size bitmaps, resource limited vectors, etc
+* Duration parameters now use nanoseconds
+* Configuration of participant mutation tries (see :ref:`participantconfiguration`)
+* Automatic calculation of the port when a value of 0 is received on the endpoint custom locators
+* Non-local addresses are now filtered from whitelists
+* Optimization of check for acked status for stateful writers
+* Linked libs are now not exposed when the target is a shared lib
+* Limitation on the domain ID has been added
+* Fix for non-deterministic tests
+* Fix for ReaderProxy history being reloaded incorrectly in some cases
+* Fix for RTPS domain hostid being potentially not unique
+* Fix for participants with different lease expiration times failing to reconnect
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*
+
+Previous versions
+-----------------
+
+Version 1.7.2
+^^^^^^^^^^^^^
 
 This release fixes an important bug:
 
@@ -7,6 +39,7 @@ This release fixes an important bug:
   and didn't take history depth into account.
 
 It also has the following improvements:
+
 * Vendor FindThreads.cmake from CMake 3.14 release candidate to help with sanitizers.
 * Fixed format of gradle file.
 
@@ -14,9 +47,6 @@ Some other minor bugs and performance improvements.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*
-
-Previous versions
------------------
 
 Version 1.7.1
 ^^^^^^^^^^^^^

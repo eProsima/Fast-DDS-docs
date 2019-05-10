@@ -11,7 +11,8 @@ This release includes the following features:
 
 It also adds the following improvements and bug fixes:
 
-* Real-time improvements: non-blocking write calls for best-effort writers, addition of fixed size strings, fixed size bitmaps, resource limited vectors, etc
+* Real-time improvements: non-blocking write calls for best-effort writers, addition of fixed size strings,
+  fixed size bitmaps, resource limited vectors, etc
 * Duration parameters now use nanoseconds
 * Configuration of participant mutation tries (see :ref:`participantconfiguration`)
 * Automatic calculation of the port when a value of 0 is received on the endpoint custom locators

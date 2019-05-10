@@ -235,7 +235,8 @@ TCP doesn't support multicast scenarios, so you must plan carefully your network
 TLS over TCP
 ---------------------------------------------
 
-Fast-RTPS allows configuring a TCP Transport to use TLS (Transport Layer Security) by setting up **TCP Server** and **TCP Client** properly.
+Fast-RTPS allows configuring a TCP Transport to use TLS (Transport Layer Security)
+by setting up **TCP Server** and **TCP Client** properly.
 
  **TCP Server**
 

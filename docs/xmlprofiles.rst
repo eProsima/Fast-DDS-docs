@@ -101,6 +101,9 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 | ``<TTL>``                     | *Time To Live*, **only**          | ``uint8``                       | 1              |
 |                               | for UDP transports .              |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<non_blocking_send>``       | Whether to set the non-blocking   | ``bool``                        | false          |
+|                               | send mode on the socket           |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<maxMessageSize>``          | The maximum size in bytes         | ``uint32``                      | 65500          |
 |                               | of the transport's message        |                                 |                |
 |                               | buffer.                           |                                 |                |

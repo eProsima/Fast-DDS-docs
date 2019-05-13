@@ -389,6 +389,25 @@
 </participant>
 <!--><-->
 
+<!-->CONF-NON-BLOCKING-WRITE<-->
+<transport_descriptors>
+    <transport_descriptor>
+        <transport_id>my_transport</transport_id>
+        <type>UDPv4</type>
+        <non_blocking_send>false</non_blocking_send>
+    </transport_descriptor>
+</transport_descriptors>
+
+<participant profile_name="my_transport">
+    <rtps>
+        <userTransports>
+            <transport_id>my_transport</transport_id>
+        </userTransports>
+        <useBuiltinTransports>false</useBuiltinTransports>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->CONF-QOS-FLOWCONTROLLER<-->
 <publisher profile_name="publisher_profile_qos_flowcontroller">
     <throughputController>
@@ -576,6 +595,7 @@
         <sendBufferSize>8192</sendBufferSize> <!-- uint32 -->
         <receiveBufferSize>8192</receiveBufferSize> <!-- uint32 -->
         <TTL>250</TTL> <!-- uint8 -->
+        <non_blocking_send>false</non_blocking_send> <!-- boolean -->
         <maxMessageSize>16384</maxMessageSize> <!-- uint32 -->
         <maxInitialPeersRange>100</maxInitialPeersRange> <!-- uint32 -->
         <interfaceWhiteList>
@@ -1214,6 +1234,7 @@
             <sendBufferSize>8192</sendBufferSize>
             <receiveBufferSize>8192</receiveBufferSize>
             <TTL>250</TTL>
+	    <non_blocking_send>false</non_blocking_send>
             <maxMessageSize>16384</maxMessageSize>
             <maxInitialPeersRange>100</maxInitialPeersRange>
             <interfaceWhiteList>

@@ -20,6 +20,7 @@ It also adds the following improvements and bug fixes:
 * Optimization of check for acked status for stateful writers
 * Linked libs are now not exposed when the target is a shared lib
 * Limitation on the domain ID has been added
+* UDP non-blocking send is now optional and configurable via XML
 * Fix for non-deterministic tests
 * Fix for ReaderProxy history being reloaded incorrectly in some cases
 * Fix for RTPS domain hostid being potentially not unique

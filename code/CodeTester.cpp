@@ -275,14 +275,14 @@ participant_attr.rtps.builtin.initialPeersList.push_back(initial_peer);
 
 //CONF-NON-BLOCKING-WRITE
 //Create a descriptor for the new transport.
-auto custom_transport = std::make_shared<UDPv4TransportDescriptor>();
-custom_transport->non_blocking_send = false;
+auto non_blocking_UDP_transport = std::make_shared<UDPv4TransportDescriptor>();
+non_blocking_UDP_transport->non_blocking_send = false;
 
 //Disable the built-in Transport Layer.
 participant_attr.rtps.useBuiltinTransports = false;
 
 //Link the Transport Layer to the Participant.
-participant_attr.rtps.userTransports.push_back(custom_transport);
+participant_attr.rtps.userTransports.push_back(non_blocking_UDP_transport);
 //!--
 
 //CONF-QOS-FLOWCONTROLLER

@@ -27,7 +27,7 @@ It also adds the following improvements and bug fixes:
 
 **Known issues**
 
-* When using TPC transport, sometimes callbacks are not invoked when removing a participant due to a bug in asio.
+* When using TPC transport, sometimes callbacks are not invoked when removing a participant due to a bug in ASIO.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*

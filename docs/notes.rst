@@ -25,6 +25,10 @@ It also adds the following improvements and bug fixes:
 * Fix for RTPS domain hostid being potentially not unique
 * Fix for participants with different lease expiration times failing to reconnect
 
+**Known issues**
+
+* When using TPC transport, sometimes callbacks are not invoked when removing a participant due to a bug in asio.
+
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*
 

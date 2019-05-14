@@ -117,7 +117,7 @@
     <qos>
         <lifespan>
             <duration>
-	        <sec>1</sec>
+            <sec>1</sec>
             </duration>
         </lifespan>
     </qos>
@@ -127,7 +127,7 @@
     <qos>
         <lifespan>
             <duration>
-	        <sec>1</sec>
+            <sec>1</sec>
             </duration>
         </lifespan>
     </qos>
@@ -138,9 +138,9 @@
 <publisher profile_name="publisher_xml_conf_disable_positive_acks_profile">
     <qos>
         <disablePositiveAcks>
-	    <enabled>true</enabled>
+        <enabled>true</enabled>
             <duration>
-	        <sec>1</sec>
+            <sec>1</sec>
             </duration>
         </disablePositiveAcks>
     </qos>
@@ -149,7 +149,7 @@
 <subscriber profile_name="subscriber_xml_conf_disable_positive_acks_profile">
     <qos>
         <disablePositiveAcks>
-	    <enabled>true</enabled>
+        <enabled>true</enabled>
         </disablePositiveAcks>
     </qos>
 </subscriber>
@@ -160,8 +160,8 @@
     <qos>
         <deadline>
             <period>
-	        <sec>1</sec>
-	    </period>
+            <sec>1</sec>
+        </period>
         </deadline>
     </qos>
 </publisher>
@@ -170,8 +170,8 @@
     <qos>
         <deadline>
             <period>
-	        <sec>1</sec>
-	    </period>
+            <sec>1</sec>
+        </period>
         </deadline>
     </qos>
 </subscriber>
@@ -579,8 +579,8 @@
         <maxMessageSize>16384</maxMessageSize> <!-- uint32 -->
         <maxInitialPeersRange>100</maxInitialPeersRange> <!-- uint32 -->
         <interfaceWhiteList>
-            <id>192.168.1.41</id> <!-- string -->
-            <id>127.0.0.1</id> <!-- string -->
+            <address>192.168.1.41</address> <!-- string -->
+            <address>127.0.0.1</address> <!-- string -->
         </interfaceWhiteList>
         <wan_addr>80.80.55.44</wan_addr> <!-- string -->
         <output_port>5101</output_port> <!-- uint16 -->
@@ -856,8 +856,8 @@
     </rtps>
 </participant>
 <!--><-->
-	<!-- Not Used at the moment -->
-	<!-- <userData>148875 </userData> -->
+    <!-- Not Used at the moment -->
+    <!-- <userData>148875 </userData> -->
 
 <participant profile_name="part_builtin_example">
 <rtps>
@@ -1217,8 +1217,8 @@
             <maxMessageSize>16384</maxMessageSize>
             <maxInitialPeersRange>100</maxInitialPeersRange>
             <interfaceWhiteList>
-                <id>192.168.1.41</id>
-                <id>127.0.0.1</id>
+                <address>192.168.1.41</address>
+                <address>127.0.0.1</address>
             </interfaceWhiteList>
             <wan_addr>80.80.55.44</wan_addr>
             <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
@@ -1569,12 +1569,12 @@
             <publishMode>
                 <kind>ASYNCHRONOUS</kind>
             </publishMode>
-	    <disablePositiveAcks>
-	        <enabled>true</enabled>
-	        <duration>
-		    <sec>1</sec>
-		</duration>
-	    </disablePositiveAcks>
+        <disablePositiveAcks>
+            <enabled>true</enabled>
+            <duration>
+            <sec>1</sec>
+        </duration>
+        </disablePositiveAcks>
         </qos>
 
         <times>

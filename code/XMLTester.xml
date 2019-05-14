@@ -117,7 +117,7 @@
     <qos>
         <lifespan>
             <duration>
-            <sec>1</sec>
+                <sec>1</sec>
             </duration>
         </lifespan>
     </qos>
@@ -127,7 +127,7 @@
     <qos>
         <lifespan>
             <duration>
-            <sec>1</sec>
+                <sec>1</sec>
             </duration>
         </lifespan>
     </qos>
@@ -140,7 +140,7 @@
         <disablePositiveAcks>
         <enabled>true</enabled>
             <duration>
-            <sec>1</sec>
+                <sec>1</sec>
             </duration>
         </disablePositiveAcks>
     </qos>
@@ -149,7 +149,7 @@
 <subscriber profile_name="subscriber_xml_conf_disable_positive_acks_profile">
     <qos>
         <disablePositiveAcks>
-        <enabled>true</enabled>
+            <enabled>true</enabled>
         </disablePositiveAcks>
     </qos>
 </subscriber>
@@ -160,8 +160,8 @@
     <qos>
         <deadline>
             <period>
-            <sec>1</sec>
-        </period>
+                <sec>1</sec>
+            </period>
         </deadline>
     </qos>
 </publisher>
@@ -170,8 +170,8 @@
     <qos>
         <deadline>
             <period>
-            <sec>1</sec>
-        </period>
+                <sec>1</sec>
+            </period>
         </deadline>
     </qos>
 </subscriber>
@@ -712,7 +712,7 @@
     <case>
         <caseDiscriminator value="0"/>
         <caseDiscriminator value="1"/>
-         <member name="first" type="int32"/>
+        <member name="first" type="int32"/>
     </case>
     <case>
         <caseDiscriminator value="2"/>

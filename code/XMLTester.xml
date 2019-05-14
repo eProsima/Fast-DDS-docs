@@ -138,7 +138,7 @@
 <publisher profile_name="publisher_xml_conf_disable_positive_acks_profile">
     <qos>
         <disablePositiveAcks>
-        <enabled>true</enabled>
+            <enabled>true</enabled>
             <duration>
                 <sec>1</sec>
             </duration>

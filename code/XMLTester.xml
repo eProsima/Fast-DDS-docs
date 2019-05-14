@@ -1234,7 +1234,6 @@
             <sendBufferSize>8192</sendBufferSize>
             <receiveBufferSize>8192</receiveBufferSize>
             <TTL>250</TTL>
-	    <non_blocking_send>false</non_blocking_send>
             <maxMessageSize>16384</maxMessageSize>
             <maxInitialPeersRange>100</maxInitialPeersRange>
             <interfaceWhiteList>

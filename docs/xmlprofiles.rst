@@ -28,7 +28,7 @@ An XML file can contain several XML profiles. The available profile types are :r
 .. literalinclude:: ../code/XMLTester.xml
     :language: xml
     :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS<-->
-    :lines: 1-6, 11-32
+    :lines: 1-6, 43-63
 
 The Fast-RTPS XML format uses some structures along several profiles types.
 For readability, the :ref:`commonxml` section groups these common structures.

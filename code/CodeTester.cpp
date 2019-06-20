@@ -644,6 +644,15 @@ publisher_attr.qos.m_disablePositiveACKs.duration = 1;
 subscriber_attr.qos.m_disablePositiveACKs.enabled = true;
 //!--
 
+//PUBSUB_API_CONF_PUBSUB_LIVELINESS
+publisher_attr.qos.m_liveliness.announcement_period = 0.5;
+publisher_attr.qos.m_liveliness.lease_duration = 1;
+publisher_attr.qos.m_liveliness.kind = AUTOMATIC;
+
+subscriber_attr.qos.m_liveliness.lease_duration = 1;
+subscriber_attr.qos.m_liveliness.kind = AUTOMATIC;
+//!--
+
 //PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS
 publisher_attr.topic.resourceLimitsQos.max_samples = 200;
 

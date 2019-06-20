@@ -709,9 +709,9 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | ``<domainId>``            | DomainId to be used by                | ``UInt32``              | 0                     |
 |                           | the RTPSParticipant.                  |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
-| ``<leaseDuration>``       | Indicates how much time remote        |  :ref:`DurationType`    | 130 s                 |
-|                           | RTPSParticipants should consider this |                         |                       |
-|                           | RTPSParticipant alive.                |                         |                       |
+| ``<leaseDuration>``       | Indicates how long this               |  :ref:`DurationType`    | 130 s                 |
+|                           | RTPSParticipant should consider       |                         |                       |
+|                           | remote RTPSParticipants alive.        |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 | ``<leaseAnnouncement>``   | The period for the RTPSParticipant    |  :ref:`DurationType`    | 40 s                  |
 |                           | to send its Discovery Message to all  |                         |                       |
@@ -1149,40 +1149,40 @@ The quality of service (QoS) handles the restrictions applied to the application
     :start-after: <!-->XML-QOS<-->
     :end-before: <!--><-->
 
-+--------------------------+----------------------------------+-------------------------+-------------------------+
-| Name                     | Description                      | Values                  | Default                 |
-+==========================+==================================+=========================+=========================+
-| ``<durability>``         | It is defined in                 |:class:`VOLATILE`,       | :class:`VOLATILE`       |
-|                          | :ref:`SettingDataDurability`     |:class:`TRANSIENT_LOCAL` |                         |
-|                          | section.                         |:class:`TRANSIENT`       |                         |
-|                          |                                  |                         |                         |
-+--------------------------+----------------------------------+-------------------------+-------------------------+
-| ``<liveliness>``         | Defines the liveliness of the    | :ref:`LivelinessType`   |                         |
-|                          | participant.                     |                         |                         |
-+--------------------------+----------------------------------+-------------------------+-------------------------+
-| ``<reliability>``        | It is defined in                 | :class:`RELIABLE`,      | :class:`RELIABLE`       |
-|                          | :ref:`reliability` section.      | :class:`BEST_EFFORT`    |                         |
-|                          |                                  |                         |                         |
-|                          |                                  |                         |                         |
-+--------------------------+----------------------------------+-------------------------+-------------------------+
-| ``<partition>``          | It allows the introduction of    |                         | ``List <string>``       |
-|                          | a logical partition concept      |                         |                         |
-|                          | inside the `physical` partition  |                         |                         |
-|                          | induced by a domain.             |                         |                         |
-+--------------------------+----------------------------------+-------------------------+-------------------------+
-| ``<deadline>``           | It is defined in                 |                         |                         |
-|                          | :ref:`deadline-qos`              | Deadline period as a    | :class:`c_TimeInfinite` |
-|                          | section.                         | :ref:`DurationType`     |                         |
-+--------------------------+----------------------------------+-------------------------+-------------------------+
-| ``<lifespan>``           | It is defined in                 | Lifespan duration as a  | :class:`c_TimeInfinite` |
-|                          | :ref:`lifespan-qos` section.     | :ref:`DurationType`     |                         |
-+--------------------------+----------------------------------+-------------------------+-------------------------+
-| ``<disablePositiveAcks>``| It is defined in                 |                         | It is disabled by       |
-|                          | section                          |                         | default and             |
-|                          | :ref:`disable-positive-acks-qos` |                         | ``duration`` is set     |
-|                          |                                  |                         | to                      |
-|                          |                                  |                         | :class:`c_TimeInfinite` |
-+--------------------------+----------------------------------+-------------------------+-------------------------+
++--------------------------+----------------------------------+-------------------------------+-------------------------+
+| Name                     | Description                      | Values                        | Default                 |
++==========================+==================================+===============================+=========================+
+| ``<durability>``         | It is defined in                 |:class:`VOLATILE`,             | :class:`VOLATILE`       |
+|                          | :ref:`SettingDataDurability`     |:class:`TRANSIENT_LOCAL`       |                         |
+|                          | section.                         |:class:`TRANSIENT`             |                         |
+|                          |                                  |                               |                         |
++--------------------------+----------------------------------+-------------------------------+-------------------------+
+| ``<liveliness>``         | Defines the liveliness of the    | :class:`AUTOMATIC`            | :class:`AUTOMATIC`      |
+|                          | writer.                          | :class:`MANUAL_BY_PARTICIPANT`|                         |
+|                          |                                  | :class:`MANUAL_BY_TOPIC`      |                         |
++--------------------------+----------------------------------+-------------------------------+-------------------------+
+| ``<reliability>``        | It is defined in                 | :class:`RELIABLE`,            | :class:`RELIABLE`       |
+|                          | :ref:`reliability` section.      | :class:`BEST_EFFORT`          |                         |
+|                          |                                  |                               |                         |
++--------------------------+----------------------------------+-------------------------------+-------------------------+
+| ``<partition>``          | It allows the introduction of    |                               | ``List <string>``       |
+|                          | a logical partition concept      |                               |                         |
+|                          | inside the `physical` partition  |                               |                         |
+|                          | induced by a domain.             |                               |                         |
++--------------------------+----------------------------------+-------------------------------+-------------------------+
+| ``<deadline>``           | It is defined in                 |                               |                         |
+|                          | :ref:`deadline-qos`              | Deadline period as a          | :class:`c_TimeInfinite` |
+|                          | section.                         | :ref:`DurationType`           |                         |
++--------------------------+----------------------------------+-------------------------------+-------------------------+
+| ``<lifespan>``           | It is defined in                 | Lifespan duration as a        | :class:`c_TimeInfinite` |
+|                          | :ref:`lifespan-qos` section.     | :ref:`DurationType`           |                         |
++--------------------------+----------------------------------+-------------------------------+-------------------------+
+| ``<disablePositiveAcks>``| It is defined in                 |                               | It is disabled by       |
+|                          | section                          |                               | default and             |
+|                          | :ref:`disable-positive-acks-qos` |                               | ``duration`` is set     |
+|                          |                                  |                               | to                      |
+|                          |                                  |                               | :class:`c_TimeInfinite` |
++--------------------------+----------------------------------+-------------------------------+-------------------------+
 
 ..
     .. note::
@@ -1239,37 +1239,6 @@ The quality of service (QoS) handles the restrictions applied to the application
     - ``<max_instances>``: The maximum number of history instances.
 
     - ``<max_samples_per_instance>``: Allows establishing the maximum number of samples per history instance.
-
-.. _LivelinessType:
-
-LivelinessType
-^^^^^^^^^^^^^^
-
-This parameter defines who is responsible for issues of liveliness packets.
-
-.. literalinclude:: ../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML-LIVELINESS<-->
-    :end-before: <!--><-->
-
-
-+---------------------------+----------------------------------+---------------------------+--------------------+
-| Name                      | Description                      | Values                    | Default            |
-+===========================+==================================+===========================+====================+
-| ``<kind>``                | Specifies how                    | :class:`AUTOMATIC`,       | :class:`AUTOMATIC` |
-|                           | to manage liveliness.            | :class:`MANUAL_BY_TOPIC`, |                    |
-|                           |                                  | :class:`MANUAL_BY_TOPIC`  |                    |
-+---------------------------+----------------------------------+---------------------------+--------------------+
-| ``<leaseDuration>``       | Amount of time that the remote   | :ref:`DurationType`       | 130 s              |
-|                           | RTPSParticipants should consider |                           |                    |
-|                           | this RTPSParticipant to be alive |                           |                    |
-|                           | since the last message.          |                           |                    |
-+---------------------------+----------------------------------+---------------------------+--------------------+
-| ``<announcement_period>`` | The period to send its Discovery | :ref:`DurationType`       | 40 s               |
-|                           | Message to all other             |                           |                    |
-|                           | discovered RTPSParticipants as   |                           |                    |
-|                           | well as to all Multicast ports.  |                           |                    |
-+---------------------------+----------------------------------+---------------------------+--------------------+
 
 .. _Throughput:
 

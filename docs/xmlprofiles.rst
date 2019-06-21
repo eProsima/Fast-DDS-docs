@@ -1149,40 +1149,40 @@ The quality of service (QoS) handles the restrictions applied to the application
     :start-after: <!-->XML-QOS<-->
     :end-before: <!--><-->
 
-+--------------------------+----------------------------------+-------------------------------+-------------------------+
-| Name                     | Description                      | Values                        | Default                 |
-+==========================+==================================+===============================+=========================+
-| ``<durability>``         | It is defined in                 |:class:`VOLATILE`,             | :class:`VOLATILE`       |
-|                          | :ref:`SettingDataDurability`     |:class:`TRANSIENT_LOCAL`       |                         |
-|                          | section.                         |:class:`TRANSIENT`             |                         |
-|                          |                                  |                               |                         |
-+--------------------------+----------------------------------+-------------------------------+-------------------------+
-| ``<liveliness>``         | Defines the liveliness of the    | :class:`AUTOMATIC`            | :class:`AUTOMATIC`      |
-|                          | writer.                          | :class:`MANUAL_BY_PARTICIPANT`|                         |
-|                          |                                  | :class:`MANUAL_BY_TOPIC`      |                         |
-+--------------------------+----------------------------------+-------------------------------+-------------------------+
-| ``<reliability>``        | It is defined in                 | :class:`RELIABLE`,            | :class:`RELIABLE`       |
-|                          | :ref:`reliability` section.      | :class:`BEST_EFFORT`          |                         |
-|                          |                                  |                               |                         |
-+--------------------------+----------------------------------+-------------------------------+-------------------------+
-| ``<partition>``          | It allows the introduction of    |                               | ``List <string>``       |
-|                          | a logical partition concept      |                               |                         |
-|                          | inside the `physical` partition  |                               |                         |
-|                          | induced by a domain.             |                               |                         |
-+--------------------------+----------------------------------+-------------------------------+-------------------------+
-| ``<deadline>``           | It is defined in                 |                               |                         |
-|                          | :ref:`deadline-qos`              | Deadline period as a          | :class:`c_TimeInfinite` |
-|                          | section.                         | :ref:`DurationType`           |                         |
-+--------------------------+----------------------------------+-------------------------------+-------------------------+
-| ``<lifespan>``           | It is defined in                 | Lifespan duration as a        | :class:`c_TimeInfinite` |
-|                          | :ref:`lifespan-qos` section.     | :ref:`DurationType`           |                         |
-+--------------------------+----------------------------------+-------------------------------+-------------------------+
-| ``<disablePositiveAcks>``| It is defined in                 |                               | It is disabled by       |
-|                          | section                          |                               | default and             |
-|                          | :ref:`disable-positive-acks-qos` |                               | ``duration`` is set     |
-|                          |                                  |                               | to                      |
-|                          |                                  |                               | :class:`c_TimeInfinite` |
-+--------------------------+----------------------------------+-------------------------------+-------------------------+
++--------------------------+----------------------------------+-------------------------------+------------------------+
+| Name                     | Description                      | Values                        | Default                |
++==========================+==================================+===============================+========================+
+| ``<durability>``         | It is defined in                 |:class:`VOLATILE`,             | :class:`VOLATILE`      |
+|                          | :ref:`SettingDataDurability`     |:class:`TRANSIENT_LOCAL`       |                        |
+|                          | section.                         |:class:`TRANSIENT`             |                        |
+|                          |                                  |                               |                        |
++--------------------------+----------------------------------+-------------------------------+------------------------+
+| ``<liveliness>``         | Defines the liveliness of the    | :class:`AUTOMATIC`            | :class:`AUTOMATIC`     |
+|                          | writer.                          | :class:`MANUAL_BY_PARTICIPANT`|                        |
+|                          |                                  | :class:`MANUAL_BY_TOPIC`      |                        |
++--------------------------+----------------------------------+-------------------------------+------------------------+
+| ``<reliability>``        | It is defined in                 | :class:`RELIABLE`,            | :class:`RELIABLE`      |
+|                          | :ref:`reliability` section.      | :class:`BEST_EFFORT`          |                        |
+|                          |                                  |                               |                        |
++--------------------------+----------------------------------+-------------------------------+------------------------+
+| ``<partition>``          | It allows the introduction of    |                               | ``List <string>``      |
+|                          | a logical partition concept      |                               |                        |
+|                          | inside the `physical` partition  |                               |                        |
+|                          | induced by a domain.             |                               |                        |
++--------------------------+----------------------------------+-------------------------------+------------------------+
+| ``<deadline>``           | It is defined in                 |                               |                        |
+|                          | :ref:`deadline-qos`              | Deadline period as a          | :class:`c_TimeInfinite`|
+|                          | section.                         | :ref:`DurationType`           |                        |
++--------------------------+----------------------------------+-------------------------------+------------------------+
+| ``<lifespan>``           | It is defined in                 | Lifespan duration as a        | :class:`c_TimeInfinite`|
+|                          | :ref:`lifespan-qos` section.     | :ref:`DurationType`           |                        |
++--------------------------+----------------------------------+-------------------------------+------------------------+
+| ``<disablePositiveAcks>``| It is defined in                 |                               | It is disabled by      |
+|                          | section                          |                               | default and            |
+|                          | :ref:`disable-positive-acks-qos` |                               | ``duration`` is set    |
+|                          |                                  |                               | to                     |
+|                          |                                  |                               | :class:`c_TimeInfinite`|
++--------------------------+----------------------------------+-------------------------------+------------------------+
 
 ..
     .. note::

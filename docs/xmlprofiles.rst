@@ -1157,13 +1157,11 @@ The quality of service (QoS) handles the restrictions applied to the application
 |                          | section.                         |:class:`TRANSIENT`             |                        |
 |                          |                                  |                               |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
-| ``<liveliness>``         | Defines the liveliness of the    | :class:`AUTOMATIC`            | :class:`AUTOMATIC`     |
-|                          | writer.                          | :class:`MANUAL_BY_PARTICIPANT`|                        |
-|                          |                                  | :class:`MANUAL_BY_TOPIC`      |                        |
+| ``<liveliness>``         | Defines the liveliness of the    | :ref:`liveliness-qos`         |                        |
+|                          | publisher.                       |                               |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
 | ``<reliability>``        | It is defined in                 | :class:`RELIABLE`,            | :class:`RELIABLE`      |
 |                          | :ref:`reliability` section.      | :class:`BEST_EFFORT`          |                        |
-|                          |                                  |                               |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
 | ``<partition>``          | It allows the introduction of    |                               | ``List <string>``      |
 |                          | a logical partition concept      |                               |                        |

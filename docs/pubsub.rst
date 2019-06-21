@@ -391,7 +391,7 @@ publishing side asserts liveliness to deduce that all other entities within that
 MANUAL_BY_TOPIC mode is more restrictive and requires that at least one instance within the publisher is asserted to
 consider that the publisher is alive.
 
-Besides the liveliness kind, two additional parameters allow to define the application behavior. They are all listed
+Besides the liveliness kind, two additional parameters allow defining the application behavior. They are all listed
 in the table below.
 
 +---------------------------+----------------------------------+---------------------------+-------------------------+

@@ -377,7 +377,7 @@ Liveliness
 
 Liveliness is a quality of service that can be used to ensure that particular entities on the network are "alive".
 There are different settings that allow distinguishing between applications where data is updated periodically and
-applications where data is changed sporadically. It also allows to customize the application regarding the kind of
+applications where data is changed sporadically. It also allows customizing the application regarding the kind of
 failures that should be detected by the liveliness mechanism.
 
 The AUTOMATIC liveliness kind is suitable for applications that only need to detect whether a remote application

@@ -370,6 +370,66 @@ When the lifespan period expires, data is removed from the history.
 |    :end-before: <!--><-->                               |
 +---------------------------------------------------------+
 
+.. _liveliness-qos:
+
+Liveliness
+**********
+
+Liveliness is a quality of service that can be used to ensure that particular entities on the network are "alive".
+There are different settings that allow distinguishing between applications where data is updated periodically and
+applications where data is changed sporadically. It also allows customizing the application regarding the kind of
+failures that should be detected by the liveliness mechanism.
+
+The AUTOMATIC liveliness kind is suitable for applications that only need to detect whether a remote application
+is still running. Therefore, as long as the local process where the participant is running and the link connecting
+it to remote participants exists, the entities within the remote participant will be considered alive.
+
+The two manual settings require that liveliness is asserted periodically on the publishing side to consider that remote
+entities are alive. Liveliness can be asserted explicitly by calling the *assert_liveliness* operations on the
+publisher, or implicitly by writing data. The MANUAL_BY_PARTICIPANT setting only requires that one entity in the
+publishing side asserts liveliness to deduce that all other entities within that participant are also alive. The
+MANUAL_BY_TOPIC mode is more restrictive and requires that at least one instance within the publisher is asserted to
+consider that the publisher is alive.
+
+Besides the liveliness kind, two additional parameters allow defining the application behavior. They are all listed
+in the table below.
+
++---------------------------+----------------------------------+---------------------------+-------------------------+
+| Name                      | Description                      | Values                    | Default                 |
++===========================+==================================+===========================+=========================+
+| ``<kind>``                | Specifies how                    | :class:`AUTOMATIC`,       | :class:`AUTOMATIC`      |
+|                           | to manage liveliness.            | :class:`MANUAL_BY_TOPIC`, |                         |
+|                           |                                  | :class:`MANUAL_BY_TOPIC`  |                         |
++---------------------------+----------------------------------+---------------------------+-------------------------+
+| ``<lease_duration>``      | Amount of time to wait since the | :ref:`DurationType`       | :class:`c_TimeInfinite` |
+|                           | last message from a writer to    |                           |                         |
+|                           | consider that it is no longer    |                           |                         |
+|                           | alive.                           |                           |                         |
++---------------------------+----------------------------------+---------------------------+-------------------------+
+| ``<announcement_period>`` | Amount of time between           | :ref:`DurationType`       | :class:`c_TimeInfinite` |
+|                           | consecutive liveliness messages  |                           |                         |
+|                           | sent by the publisher. Only used |                           |                         |
+|                           | for AUTOMATIC and                |                           |                         |
+|                           | MANUAL_BY_PARTICIPANT liveliness |                           |                         |
+|                           | kinds.                           |                           |                         |
++---------------------------+----------------------------------+---------------------------+-------------------------+
+
++--------------------------------------------------------------+
+| **C++**                                                      |
++--------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                   |
+|    :language: c++                                            |
+|    :start-after: //PUBSUB_API_CONF_PUBSUB_LIVELINESS         |
+|    :end-before: //!--                                        |
++--------------------------------------------------------------+
+| **XML**                                                      |
++--------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                    |
+|    :language: xml                                            |
+|    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_LIVELINESS      |
+|    :end-before: <!--><-->                                    |
++--------------------------------------------------------------+
+
 .. _resourceLimits-qos:
 
 Resource limits
@@ -534,5 +594,7 @@ the possible callbacks that can be implemented in both cases:
 +---------------------------------+-----------+------------+
 | `on_requested_deadline_missed`  |     N     |      Y     |
 +---------------------------------+-----------+------------+
-
-
+| `on_liveliness_lost`            |     Y     |      N     |
++---------------------------------+-----------+------------+
+| `on_liveliness_changed`         |     N     |      Y     |
++---------------------------------+-----------+------------+

@@ -287,10 +287,10 @@
             </latencyBudget>
             <liveliness>
                 <kind>AUTOMATIC</kind> <!-- string AUTOMATIC | MANUAL_BY_PARTICIPANT | MANUAL_BY_TOPIC -->
-                <leaseDuration>
+                <lease_duration>
                     <sec>500</sec> <!-- int32 -->
                     <nanosec>0</nanosec> <!-- uint32 -->
-                </leaseDuration>
+                </lease_duration>
                 <announcement_period>
                     <sec>DURATION_INFINITY</sec>
                 </announcement_period>

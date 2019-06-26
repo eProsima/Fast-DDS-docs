@@ -1029,19 +1029,14 @@ Instead, it is used inside other configuration parameter labels that give it sen
     :start-after: <!-->XML-DURATION<-->
     :end-before: <!--><-->
 
-Duration time can be defined through a constant value directly (:class:`INFINITE`, :class:`ZERO`, or :class:`INVALID`),
-or by ``<seconds>`` plus ``<nanosec>`` labels:
-
-- :class:`INFINITE`: Constant value, represents an infinite period of time.
-
-- :class:`ZERO`: Constant value, represents 0.0 seconds.
-
-- :class:`INVALID`: Constant value, represents an invalid period of time.
+Duration time can be defined through ``<sec>`` plus ``<nanosec>`` labels (see table below). An infinite value can be
+specified by using the values :class:`DURATION_INFINITY`, :class:`DURATION_INFINITE_SEC` and
+:class:`DURATION_INFINITE_NSEC`.
 
 +----------------+-----------------------------------------------------------------+------------+---------+
 | Name           | Description                                                     | Values     | Default |
 +================+=================================================================+============+=========+
-| ``<seconds>``  | Number of seconds.                                              | ``Int32``  | 0       |
+| ``<sec>``      | Number of seconds.                                              | ``Int32``  | 0       |
 +----------------+-----------------------------------------------------------------+------------+---------+
 | ``<nanosec>``  | Number of nanoseconds.                                          | ``UInt32`` | 0       |
 +----------------+-----------------------------------------------------------------+------------+---------+

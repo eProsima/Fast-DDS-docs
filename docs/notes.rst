@@ -1,7 +1,30 @@
-Version 1.8.0
+Version 1.8.1
 =============
 
 This release includes the following features:
+
+* Implementation of :ref:`liveliness-qos` QoS
+
+It also adds the following bug fixes and improvements:
+
+* Fix for get_change on history, which was causing issues during discovery
+* Fix for announcement of participant state, which was sending ParticipantBuiltinData twice
+* Fix for closing multicast UDP channel
+* Fix for race conditions in SubscriberHistory, UDPTransportInterface and StatefulReader
+* Fix for lroundl error on Windows in Time_t
+* CDR & IDL submodules update
+* Use of java 1.8 or greater for fastrtpsgen.jar generation
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*
+
+Previous versions
+-----------------
+
+Version 1.8.0
+^^^^^^^^^^^^^
+
+This release included the following features:
 
 * Implementation of IDL 4.2
 * Implementation of :ref:`deadline-qos` QoS
@@ -32,9 +55,6 @@ It also adds the following improvements and bug fixes:
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*
-
-Previous versions
------------------
 
 Version 1.7.2
 ^^^^^^^^^^^^^

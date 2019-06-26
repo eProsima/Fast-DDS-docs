@@ -9,8 +9,8 @@ It also adds the following bug fixes and improvements:
 
 * Fix for get_change on history, which was causing issues during discovery
 * Fix for announcement of participant state, which was sending ParticipantBuiltinData twice
-* Fix for closing multicast UDP channel with whitelist
-* Fix for a race condition on stateful writer destruction
+* Fix for closing multicast UDP channel
+* Fix for race conditions in SubscriberHistory, UDPTransportInterface and StatefulReader
 * Fix for lroundl error on Windows in Time_t
 * CDR & IDL submodules update
 * Use of java 1.8 or greater for fastrtpsgen.jar generation

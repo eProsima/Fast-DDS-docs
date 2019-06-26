@@ -24,7 +24,7 @@ Previous versions
 Version 1.8.0
 ^^^^^^^^^^^^^
 
-This release includes the following features:
+This release included the following features:
 
 * Implementation of IDL 4.2
 * Implementation of :ref:`deadline-qos` QoS

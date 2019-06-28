@@ -177,6 +177,34 @@
 </subscriber>
 <!--><-->
 
+<!-->PUBSUB_API_CONF_PUBSUB_LIVELINESS<-->
+<publisher profile_name="publisher_xml_conf_liveliness_profile">
+    <qos>
+      <liveliness>
+	<announcement_period>
+	  <sec>0</sec>
+	  <nanosec>1000000</nanosec>
+	</announcement_period>
+        <lease_duration>
+          <sec>1</sec>
+        </lease_duration>
+	<kind>AUTOMATIC</kind>
+      </liveliness>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_liveliness_profile">
+    <qos>
+        <liveliness>
+            <lease_duration>
+                <sec>1</sec>
+            </lease_duration>
+	    <kind>AUTOMATIC</kind>
+        </liveliness>
+    </qos>
+</subscriber>
+<!--><-->
+
 <!-->PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS<-->
 <publisher profile_name="publisher_xml_conf_resource_limits_profile">
     <topic>
@@ -1153,8 +1181,13 @@
     </durability>
 
     <liveliness>
-        <!-- LIVELINESS -->
         <kind>AUTOMATIC</kind> <!-- string -->
+	<lease_duration>
+	  <sec>1</sec>
+	</lease_duration>
+	<announcement_period>
+	  <sec>1</sec>
+	</announcement_period>
     </liveliness>
 
     <reliability>

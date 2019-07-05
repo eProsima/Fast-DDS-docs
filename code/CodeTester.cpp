@@ -309,7 +309,7 @@ write_attr.mode = ASYNCHRONOUS_WRITER;    // Allows fragmentation
 }
 
 //CONF-QOS-DISABLE-DISCOVERY
-participant_attr.rtps.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::NONE;
 //!--
 
 //CONF-QOS-INCREASE-SOCKETBUFFERS
@@ -369,12 +369,12 @@ Log::Reset();
 //!--
 
 //CONF_QOS_STATIC_DISCOVERY_CODE
-participant_attr.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
-participant_attr.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
+participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
 //!--
 
 //CONF_QOS_STATIC_DISCOVERY_XML
-participant_attr.rtps.builtin.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
 //!--
 
 //CONF_QOS_TUNING_RELIABLE_PUBLISHER

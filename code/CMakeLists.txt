@@ -102,7 +102,7 @@ execute_process(COMMAND ${CMAKE_COMMAND} --build .
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/external
     )
 
-set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROJECT_BINARY_DIR}/external/eprosima/install)
+set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${PROJECT_BINARY_DIR}/external/eprosima/install")
 
 find_package(fastrtps REQUIRED)
 

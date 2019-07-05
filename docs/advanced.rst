@@ -592,6 +592,17 @@ The discovery mechanism is divided into two phases: Participant Discovery Phase 
     This phase is responsible for sending entities information to the remote participant.
     Also, it has to process the entities information of the remote participant and check which entities can match
     between them.
+	
+There are several possible choices for the PDP strategy comprised into the :code:`enum DiscoveryProtocol_t`:
+
+- **SIMPLE** generates a standard participant with complete backward compatibility with any other RTPS implementation.
+	
+- **CLIENT** generates a *client* participant, which relies on a server to be notified of other *clients* presence. This participant can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do.
+
+- **SERVER** generates a *server* participant, which receives, manages and spreads its linked *clients* metatraffic assuring any single one is aware of the others. This participant can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do. Servers can link to other servers in order to share its clients information.
+
+- **BACKUP** generates a *server* participant with additional functionality over **SERVER**. Specifically, it uses a database to backup its client information, so that if for whatever reason it disappears, it can be automatically restored and continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to collect client information again, introducing a recovery delay.
+
 
 By default, the discovery mechanism is enabled, but you can disable it through participant attributes.
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
-<profiles>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
 
 <!-->PUBSUB_API_CONF_PARTICIPANT<-->
 <participant profile_name="participant_xml_conf_profile">
@@ -459,7 +458,9 @@
 <participant profile_name="participant_profile_qos_disable_discovery">
     <rtps>
         <builtin>
-            <use_SIMPLE_RTPS_PDP>false</use_SIMPLE_RTPS_PDP>
+            <discovery_config>
+                <discoveryProtocol>NONE</discoveryProtocol>
+            </discovery_config>
         </builtin>
     </rtps>
 </participant>
@@ -911,26 +912,32 @@
 <rtps>
 <!-->XML-BUILTIN<-->
 <builtin>
-    <use_SIMPLE_RTPS_PDP>false</use_SIMPLE_RTPS_PDP> <!-- boolean -->
+    <discovery_config>
+
+        <discoveryProtocol>NONE</discoveryProtocol> <!-- DiscoveryProtocol enum -->
+
+        <EDP>SIMPLE</EDP>  <!-- string -->
+
+        <leaseDuration>  
+            <!-- DURATION -->
+        </leaseDuration>
+
+        <leaseAnnouncement>  
+            <!-- DURATION -->
+        </leaseAnnouncement>
+
+        <simpleEDP>
+            <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>  <!-- boolean -->
+            <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>  <!-- boolean -->
+        </simpleEDP>
+
+        <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>  <!-- string -->
+
+    </discovery_config>
 
     <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>  <!-- boolean -->
 
-    <EDP>SIMPLE</EDP> <!-- string -->
-
     <domainId>4</domainId> <!-- uint32 -->
-
-    <leaseDuration>
-        <!-- DURATION -->
-    </leaseDuration>
-
-    <leaseAnnouncement>
-        <!-- DURATION -->
-    </leaseAnnouncement>
-
-    <simpleEDP>
-        <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER> <!-- boolean -->
-        <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER> <!-- boolean -->
-    </simpleEDP>
 
     <metatrafficUnicastLocatorList>
         <!-- LOCATOR_LIST -->
@@ -952,8 +959,6 @@
             <udpv4/>
         </locator>
     </initialPeersList>
-
-    <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename> <!-- string -->
 
     <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
 
@@ -1140,17 +1145,19 @@
 <rtps>
 <builtin>
 <!-->XML-DURATION<-->
-<leaseDuration>INFINITE</leaseDuration> <!-- string -->
+<discovery_config>
+    <leaseDuration>INFINITE</leaseDuration> <!-- string -->
 
-<leaseDuration>
-    <sec>500</sec> <!-- int32 -->
-    <nanosec>0</nanosec> <!-- uint32 -->
-</leaseDuration>
+    <leaseDuration>
+        <sec>500</sec> <!-- int32 -->
+        <nanosec>0</nanosec> <!-- uint32 -->
+    </leaseDuration>
 
-<leaseAnnouncement>
-    <sec>1</sec> <!-- int32 -->
-    <nanosec>856000</nanosec> <!-- uint32 -->
-</leaseAnnouncement>
+    <leaseAnnouncement>
+        <sec>1</sec> <!-- int32 -->
+        <nanosec>856000</nanosec> <!-- uint32 -->
+    </leaseAnnouncement>
+</discovery_config>
 <!--><-->
 </builtin>
 </rtps>
@@ -1428,26 +1435,32 @@
             <listenSocketBufferSize>8192</listenSocketBufferSize>
 
             <builtin>
-                <use_SIMPLE_RTPS_PDP>false</use_SIMPLE_RTPS_PDP>
+                <discovery_config>
+                    
+                    <discoveryProtocol>NONE</discoveryProtocol>
+
+                    <EDP>SIMPLE</EDP>
+
+                    <leaseDuration>INFINITE</leaseDuration>
+
+                    <leaseAnnouncement>
+                        <sec>1</sec>
+                        <nanosec>856000</nanosec>
+                    </leaseAnnouncement>
+
+                    <simpleEDP>
+                        <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
+                        <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
+                    </simpleEDP>
+
+                    <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
+
+                </discovery_config>
 
                 <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>
 
-                <EDP>SIMPLE</EDP>
-
                 <domainId>4</domainId>
-
-                <leaseDuration>INFINITE</leaseDuration>
-
-                <leaseAnnouncement>
-                    <sec>1</sec>
-                    <nanosec>856000</nanosec>
-                </leaseAnnouncement>
-
-                <simpleEDP>
-                    <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
-                    <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
-                </simpleEDP>
-
+                
                 <metatrafficUnicastLocatorList>
                     <locator>
                         <udpv4>
@@ -1525,9 +1538,7 @@
                         </udpv6>
                     </locator>
                 </initialPeersList>
-
-                <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
-
+                
                 <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
 
                 <writerHistoryMemoryPolicy>PREALLOCATED</writerHistoryMemoryPolicy>

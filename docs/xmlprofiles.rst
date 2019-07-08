@@ -690,9 +690,8 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 | Name                      | Description                           | Values                  | Default               |
 +===========================+=======================================+=========================+=======================+
-| ``<use_SIMPLE_RTPS_PDP>`` | Indicates if the Participant          | ``Boolean``             | :class:`true`         |
-|                           | must use the Simple RTPS Discovery    |                         |                       |
-|                           | Protocol.                             |                         |                       |
+| ``<discoveryProtocol>``   | Indicates which kind of PDP protocol  | ``Boolean``             | :class:`true`         |
+|                           | the participant must use.             |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 | |usewriliv|               | Indicates to use the                  | ``Boolean``             | :class:`true`         |
 |                           | WriterLiveliness protocol.            |                         |                       |

@@ -466,6 +466,63 @@
 </participant>
 <!--><-->
 
+<!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES<-->
+<participant profile_name="participant_profile_qos_discovery_edp">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <EDP>SIMPLE</EDP>
+                <simpleEDP>
+                    <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
+                    <PUBREADER_SUBWRITER>false</PUBREADER_SUBWRITER>
+                </simpleEDP>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-QOS-DISCOVERY-SERVERLIST<-->
+<participant profile_name="participant_profile_qos_discovery_serverlist">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>CLIENT</discoveryProtocol>
+                <discoveryServersList>
+                    <RemoteServer prefix="4D.49.47.55.45.4c.5f.42.41.52.52.4f">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.2.65</address>
+                                    <port>5574</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+    
+<!-->CONF-QOS-DISCOVERY-LEASEDURATION<-->
+<participant profile_name="participant_profile_qos_discovery_lease">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <leaseDuration>
+                    <sec>5</sec>
+                </leaseDuration>
+                <leaseAnnouncement>
+                    <sec>2</sec>
+                </leaseAnnouncement>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->CONF-QOS-INCREASE-SOCKETBUFFERS<-->
 <participant profile_name="participant_xml_profile_qos_socketbuffers">
     <rtps>

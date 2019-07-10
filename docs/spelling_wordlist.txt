@@ -4,8 +4,11 @@ ack
 acked
 acks
 AES
+ami
+appendable
 ASIO
 auth
+autoid
 benchmarking
 bitset
 bitsets
@@ -20,6 +23,7 @@ cryptographic
 datagram
 datarate
 decrypt
+dependant
 deserialization
 deserialize
 deserializes
@@ -27,8 +31,11 @@ diffie
 doxygen
 endian
 eProsima
+extensibility
 fastrtpsgen
+fastdds
 GCM
+getter
 Github
 GMAC
 gradle
@@ -38,12 +45,14 @@ IDL
 interoperability
 IPv
 libs
+lroundl
 middleware
 metatraffic
 modularity
 multicast
 nack
 offsetd
+oneway
 PKI
 pluggable
 ppDisable
@@ -58,6 +67,7 @@ sqlite
 stateful
 subfolder
 submessages
+submodules
 typeobject
 TypeObject
 uint

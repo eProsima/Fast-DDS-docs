@@ -5,6 +5,8 @@ Advanced Functionalities
 This section covers slightly more advanced, but useful features that enrich your implementation.
 
 
+.. _topics-and-keys:
+
 Topics and Keys
 ***************
 

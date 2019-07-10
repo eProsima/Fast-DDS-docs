@@ -6,8 +6,11 @@ acks
 AES
 asio
 Asio
+ami
+appendable
 ASIO
 auth
+autoid
 benchmarking
 Bitfields
 bitset
@@ -27,6 +30,7 @@ datagram
 datarate
 deallocating
 decrypt
+dependant
 deserialization
 deserialize
 deserializes
@@ -34,8 +38,11 @@ diffie
 doxygen
 endian
 eProsima
+extensibility
 fastrtpsgen
+fastdds
 GCM
+getter
 Github
 GMAC
 gradle
@@ -56,6 +63,7 @@ nack
 Nagle
 nupkg
 offsetd
+oneway
 PKI
 pluggable
 ppDisable

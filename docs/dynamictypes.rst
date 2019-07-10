@@ -398,6 +398,66 @@ release it calling ``return_loaned_value``.
    :start-after: //DYNAMIC_TYPES_CREATE_NESTED_UNIONS
    :end-before: //!--
 
+Annotations
+^^^^^^^^^^^
+
+DynamicTypeBuilder allows applying annotation to both current type and inner members with the methods:
+
+- ``apply_annotation``
+
+- ``apply_annotation_to_member``
+
+``apply_annotation_to_member`` receives the ``MemberId`` to apply plus the same parameters than ``apply_annotation``.
+The common parameters are the name of the annotation, the key and the value.
+
+For example, if we define an annotation like:
+
+.. code-block:: idl
+
+    @annotation MyAnnotation
+    {
+        long value;
+        string name;
+    };
+
+And then we apply it through IDL to a struct:
+
+.. code-block:: idl
+
+    @MyAnnotation(5, "length")
+    struct MyStruct
+    {
+    ...
+
+The equivalent code using DynamicTypes will be:
+
+.. code-block:: cpp
+
+    // Create the annotation
+
+
+    // Apply the annotation
+    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+    ...
+    builder->apply_annotation("MyAnnotation", "value", "5");
+    builder->apply_annotation("MyAnnotation", "name", "length");
+
+Builtin annotations
+~~~~~~~~~~~~~~~~~~~
+
+The following annotations modifies the behavior of DynamicTypes:
+
+- | ``@position``: When applied to Bitmask_, sets the position of the flag, as expected in the IDL annotation.
+  | If applied to Bitset_, sets the base position of the bitfield, useful to identify unnasigned bits.
+
+- | ``@bit_bound``: Applies to Bitset_. Sets the size in bits of the bitfield.
+
+- | ``@key``: Alias for ``@Key``. See :ref:`topics-and-keys` section for more details.
+
+- | ``@default``: Sets a default value for the member.
+
+- | ``@non_serialized``: Excludes a member from being serialization.
+
 Serialization
 -------------
 
@@ -408,6 +468,8 @@ their management is pretty similar to them.
    :language: c++
    :start-after: //DYNAMIC_TYPES_SERIALIZATION
    :end-before: //!--
+
+A member can be marked to be ignored by serialization with the annotation ``@non_serialized``.
 
 Important Notes
 ---------------
@@ -495,3 +557,20 @@ XML Dynamic Types
 
 :ref:`XMLDynamicTypes` allows *eProsima Fast RTPS* to create Dynamic Types directly defining them through XML.
 This allows any application to change ``TopicDataTypes`` without the need to change its source code.
+
+
+Dynamic HelloWorld Example
+--------------------------
+
+Using some of the functionality described in this document, there exists an example at
+the ``examples/C++/DynamicHelloWorldExample`` folder named
+:class:`DynamicHelloWorldExample` that uses DynamicType generation to provide the TopicDataType.
+
+This example is compatible with classic HelloWorldExample.
+
+As a quick reference, it is shown how the HelloWorld type is created using DynamicTypes:
+
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_HELLO_WORLD_API
+   :end-before: //!--

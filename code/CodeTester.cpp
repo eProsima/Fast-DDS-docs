@@ -1379,6 +1379,30 @@ DynamicData_ptr pData = DynamicDataFactory::get_instance()->create_data(pType);
 //!--
 }
 
+{
+//DYNAMIC_HELLO_WORLD_API
+// In HelloWorldPublisher.h
+// Dynamic Types
+eprosima::fastrtps::types::DynamicData* m_DynHello;
+eprosima::fastrtps::types::DynamicPubSubType m_DynType;
+
+// In HelloWorldPublisher.cpp
+// Create basic builders
+DynamicTypeBuilder_ptr struct_type_builder(DynamicTypeBuilderFactory::get_instance()->create_struct_builder());
+
+// Add members to the struct.
+struct_type_builder->add_member(0, "index", DynamicTypeBuilderFactory::get_instance()->create_uint32_type());
+struct_type_builder->add_member(1, "message", DynamicTypeBuilderFactory::get_instance()->create_string_type());
+struct_type_builder->set_name("HelloWorld");
+
+DynamicType_ptr dynType = struct_type_builder->build();
+m_DynType.SetDynamicType(dynType);
+m_DynHello = DynamicDataFactory::get_instance()->create_data(dynType);
+m_DynHello->set_uint32_value(0, 0);
+m_DynHello->set_string_value("HelloWorld", 1);
+//!--
+}
+
 }
 
 int main(int argc, const char** argv)

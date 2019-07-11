@@ -615,7 +615,7 @@ There are several possible choices for the PDP strategy comprised into the :code
   restored and continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to collect
   client information again, introducing a recovery delay.
 
-For an extensive explanation of **CLIENT**, **SERVER** and **BACKUP** discovery strategies please refere to 
+For an extensive explanation of **CLIENT**, **SERVER** and **BACKUP** discovery strategies please refer to 
 `Discovery Server documentation <https://discovery-server.readthedocs.io/en/latest/>`_. The non-**SIMPLE** PDP 
 strategies were devised to cope with several scenarios where the standard PDP was unsuitable or plainly cannot be 
 applied:
@@ -625,7 +625,7 @@ applied:
 + a network without multicasting capabilities.
 
 Lack of multicast discovery mechanism is covered by providing one or several servers whose addresses are known 
-beforehand by any other participant (clients). This servers centralize the distribution of meta-information
+beforehand by any other participant (clients). These servers centralize the distribution of meta-information
 (participant discovery information); thus, there is no longer need of participants exchanging discovery messages
 among them. 
 
@@ -636,18 +636,18 @@ The basic mechanisms mimic to some extent the standard ones:
   acknowledges a client announcement, there is a reliable PDP connection established, and the client becomes a mere 
   recipient of server's discovery data.
 
-+ as in the standard, clients make periodical participant liveliness announcements (*lease duration*). But this 
++ as in the standard, clients make periodical participant liveliness announcements (*lease duration*). But these 
   messages are only exchanged between a client and its servers. Thus:
 
- - another participants (clients or servers) demise by *lease duration* would be reported by the linked servers.
+ - other participants (clients or servers) demise by *lease duration* would be reported by the linked servers.
 
- - server demises by *lease duration* would automatically trigger client's announcement until the server communication 
+ - server demises by *lease duration* would automatically trigger the client's announcement until the server communication 
    is restored and acknowledges again client's announcements.
  
 Discovery related attributes
 ============================
  
-Discovery is managed from the RTPSDomain layer, thus all related attributes are constrain to this layer:
+Discovery is managed from the RTPSDomain layer, thus all related attributes are constrained to this layer:
  
 RTPSParticipantAttributes
 -------------------------
@@ -668,7 +668,7 @@ BuiltinAttributes
 DiscoverySettings
 -----------------
 
-+ a **DiscoveryProtocol_t discoveryProtocol** member specifies participant's discovery kind. Already described `in
++ a **DiscoveryProtocol_t discoveryProtocol** member specifies the participant's discovery kind. Already described `in
   discovery introduction <discovery_protocol_enum_>`_.
 
  By default, the discovery mechanism is enabled, but you can disable it through participant attributes.
@@ -692,10 +692,10 @@ DiscoverySettings
 + **use_XXX_EndpointDiscoveryProtocol** flags. There is a specific section dealing with them 
   (see `Static Endpoints Discovery`_). 
  
-+ **SimpleEDPAttributes m_simpleEDP**. Gathers all attributes related with EDPSimple behavior. A participant may create 
++ **SimpleEDPAttributes m_simpleEDP**. Gathers all attributes related to EDPSimple behavior. A participant may create 
   publishers, subscribers, both or neither. This class allows us to save the number of builtin endpoints to those 
   strictly necessary. For PDP **SERVER** the only possible choice is the default value that creates all builtin 
-  endpoints, because it must relay all clients EDP info.
+  endpoints because it must relay all clients EDP info.
 
   +---------------------------------------------------------+
   | **C++**                                                 |
@@ -714,8 +714,8 @@ DiscoverySettings
   +---------------------------------------------------------+
 
 + a **RemoteServerList_t  m_DiscoveryServers** lists the servers linked to the participant. This member has only 
-  significance if **discoveryProtocol** is **CLIENT**, **SERVER** or **BACKUP**. This member elements are 
-  *RemoteServerAttributes* objects that identify each server and report where to reach it:
+  significance if **discoveryProtocol** is **CLIENT**, **SERVER** or **BACKUP**. These member elements are 
+  *RemoteServerAttributes* objects that identify each server and report where the servers can be reached:
 
  - **GuidPrefix_t guidPrefix** is the RTPS unique identifier of the server participant we want to link to. There is a 
    `ReadguidPrefix` method to easily fill in this member from a string formatted like 
@@ -747,10 +747,10 @@ DiscoverySettings
 + **Duration_t leaseDuration_announcementperiod**. Linked either with participant *liveliness and announcement 
   mechanisms*. It specifies how often a participant should send its discovery data in order to notify new participants and refresh old ones *liveliness*:
  
- - For liveliness sake it should be smaller that the *leaseDuration* in order to avoid other participants to kill this 
+ - For liveliness sake it should be smaller than the *leaseDuration* in order to avoid other participants to kill this 
    one.
   
- - There is a trade off involved with the announcement. Too frequent announcement will bloat the network with 
+ - There is a trade-off involved with the announcement. Too frequent announcement will bloat the network with 
    metatraffic but too scarce ones will delay the discovery of late joiners.
   
   +--------------------------------------------------------+

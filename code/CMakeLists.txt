@@ -34,22 +34,34 @@ project(fastrtps-doc-checker VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 set(ENV_FASTRTPS_BRANCH $ENV{FASTRTPS_BRANCH})
 set(FASTRTPS_BRANCH "" CACHE STRING "Fast RTPS repository branch against which test the source code.")
 
+find_package(Git REQUIRED)
+
 if(NOT "${ENV_FASTRTPS_BRANCH}" STREQUAL "")
     set(REPO_TAG "${ENV_FASTRTPS_BRANCH}")
 elseif(NOT "${FASTRTPS_BRANCH}" STREQUAL "")
     set(REPO_TAG "${FASTRTPS_BRANCH}")
 else()
-    find_package(Git REQUIRED)
-
     execute_process(
         COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
         RESULT_VARIABLE RESULT
         OUTPUT_VARIABLE REPO_TAG)
 endif()
 
+message("Checking fastrtps branch ${REPO_TAG}...")
+execute_process(
+    COMMAND ${GIT_EXECUTABLE} ls-remote https://github.com/eProsima/Fast-RTPS.git ${REPO_TAG}
+    RESULT_VARIABLE RESULT_LS_REMOTE
+    OUTPUT_VARIABLE OUTPUT_LS_REMOTE)
+
+if("${OUTPUT_LS_REMOTE}" STREQUAL "")
+    message("fastrtps branch ${REPO_TAG} not found. Changing to master branch.")
+    set(REPO_TAG "master")
+endif()
+
 ########################################################################################################################
 # Download and compile product
 ########################################################################################################################
+
 file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/external)
 
 set(PRODUCT_CMAKELIST_CONTENT "
@@ -57,11 +69,25 @@ set(PRODUCT_CMAKELIST_CONTENT "
 
     include(ExternalProject)
     ExternalProject_Add(fastrtps
-        PREFIX product
+        PREFIX eprosima
         GIT_REPOSITORY https://github.com/eProsima/Fast-RTPS.git
         GIT_TAG  origin/${REPO_TAG}
         GIT_SHALLOW TRUE
-        CMAKE_ARGS -DBUILD_SHARED_LIBS=OFF -DTHIRDPARTY=ON -DSECURITY=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \"-DCMAKE_INSTALL_PREFIX=${PROJECT_BINARY_DIR}/install\"
+        CONFIGURE_COMMAND \"\"
+        BUILD_COMMAND \"\"
+        INSTALL_COMMAND \"\"
+        UPDATE_COMMAND \"\"
+        )
+    ExternalProject_Add(buildcop
+        PREFIX eprosima
+        DOWNLOAD_DIR \"eprosima\"
+        URL https://gitlab.intranet.eprosima.com/eProsima/infrastructure/raw/master/jenkins/buildcop/buildcop.py
+        DOWNLOAD_NO_EXTRACT 1
+        TLS_VERIFY FALSE
+        CONFIGURE_COMMAND \"\"
+        BINARY_DIR \".\"
+        BUILD_COMMAND cd eprosima && python3 buildcop.py --ci-repo https://gitlab.intranet.eprosima.com/eProsima/fastrtps-ci.git --source-branch ${REPO_TAG} --build-args --build-base build --mixin release --packages-up-to fastrtps --metas ../../.. --cmake-args -DSECURITY=ON --- --no-test
+        INSTALL_COMMAND \"\"
         UPDATE_COMMAND \"\"
         )
     ")
@@ -76,7 +102,7 @@ execute_process(COMMAND ${CMAKE_COMMAND} --build .
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/external
     )
 
-set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROJECT_BINARY_DIR}/install)
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROJECT_BINARY_DIR}/external/eprosima/install)
 
 find_package(fastrtps REQUIRED)
 
@@ -85,8 +111,8 @@ find_package(fastrtps REQUIRED)
 # Compile example
 ########################################################################################################################
 add_executable(doctest CodeTester.cpp)
-target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/product/src/fastrtps/src
-    ${PROJECT_BINARY_DIR}/external/product/src/fastrtps/thirdparty/tinyxml2)
+target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/src
+    ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/thirdparty/tinyxml2)
 target_link_libraries(doctest fastrtps)
 
 ########################################################################################################################

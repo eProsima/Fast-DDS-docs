@@ -685,12 +685,17 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
 .. |mutTries| replace:: ``<mutation_tries>``
+.. |protocol| replace:: :class:`SIMPLE`, :class:`CLIENT`, :class:`SERVER`, :class:`BACKUP`
 
 
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 | Name                      | Description                           | Values                  | Default               |
 +===========================+=======================================+=========================+=======================+
-| ``<discoveryProtocol>``   | Indicates which kind of PDP protocol  | ``Boolean``             | :class:`true`         |
+| ``<discovery_config>``    | This is the main tag where            |                         |                       |
+|                           | discovery-related settings can be     |                         |                       |
+|                           | configured.                           |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| ``<discoveryProtocol>``   | Indicates which kind of PDP protocol  | |protocol|              | :class:`SIMPLE`       |
 |                           | the participant must use.             |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 | |usewriliv|               | Indicates to use the                  | ``Boolean``             | :class:`true`         |

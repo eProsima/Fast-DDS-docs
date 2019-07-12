@@ -309,7 +309,30 @@ write_attr.mode = ASYNCHRONOUS_WRITER;    // Allows fragmentation
 }
 
 //CONF-QOS-DISABLE-DISCOVERY
-participant_attr.rtps.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::NONE;
+//!--
+
+//CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
+participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = true;
+participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = true;
+participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = false;
+//!--
+
+//CONF-QOS-DISCOVERY-SERVERLIST
+Locator_t server_address(LOCATOR_KIND_UDPv4, 5574);
+IPLocator::setIPv4(server_address, 192, 168, 2, 65);
+
+RemoteServerAttributes ratt;
+ratt.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+ratt.metatrafficUnicastLocatorList.push_back(server_address);
+
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(ratt);
+//!--
+
+//CONF-QOS-DISCOVERY-LEASEDURATION
+participant_attr.rtps.builtin.discovery_config.leaseDuration = Duration_t(5, 0);
+participant_attr.rtps.builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(2, 0);
 //!--
 
 //CONF-QOS-INCREASE-SOCKETBUFFERS
@@ -369,12 +392,12 @@ Log::Reset();
 //!--
 
 //CONF_QOS_STATIC_DISCOVERY_CODE
-participant_attr.rtps.builtin.use_SIMPLE_EndpointDiscoveryProtocol = false;
-participant_attr.rtps.builtin.use_STATIC_EndpointDiscoveryProtocol = true;
+participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
 //!--
 
 //CONF_QOS_STATIC_DISCOVERY_XML
-participant_attr.rtps.builtin.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
 //!--
 
 //CONF_QOS_TUNING_RELIABLE_PUBLISHER

@@ -86,7 +86,7 @@ set(PRODUCT_CMAKELIST_CONTENT "
         TLS_VERIFY FALSE
         CONFIGURE_COMMAND \"\"
         BINARY_DIR \".\"
-        BUILD_COMMAND cd eprosima && python3 buildcop.py --ci-repo https://gitlab.intranet.eprosima.com/eProsima/fastrtps-ci.git --source-branch ${REPO_TAG} --build-args --build-base build --mixin release --packages-up-to fastrtps --metas ../../.. --cmake-args -DSECURITY=ON --- --no-test
+        BUILD_COMMAND cd eprosima && python3 buildcop.py --ci-repo https://gitlab.intranet.eprosima.com/eProsima/fastrtps-ci.git --source-branch ${REPO_TAG} --build-args --build-base build --merge-install --mixin release --packages-up-to fastrtps --metas ../../.. --cmake-args -DSECURITY=ON --- --no-test
         INSTALL_COMMAND \"\"
         UPDATE_COMMAND \"\"
         )
@@ -104,7 +104,6 @@ execute_process(COMMAND ${CMAKE_COMMAND} --build .
 
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${PROJECT_BINARY_DIR}/external/eprosima/install")
 
-find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
 
 
@@ -114,7 +113,7 @@ find_package(fastrtps REQUIRED)
 add_executable(doctest CodeTester.cpp)
 target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/src
     ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/thirdparty/tinyxml2)
-target_link_libraries(doctest fastrtps fastcdr)
+target_link_libraries(doctest fastrtps)
 
 ########################################################################################################################
 # Execute example
@@ -132,6 +131,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/StaticTester.xml
     ${CMAKE_CURRENT_BINARY_DIR}/StaticTester.xml COPYONLY)
 
 add_test(NAME xmltest COMMAND doctest XMLTester.xml)
+set_property(TEST xmltest APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
 add_test(NAME governancetest COMMAND doctest GovernanceTester.xml)
+set_property(TEST governancetest APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
 add_test(NAME permissionstest COMMAND doctest PermissionsTester.xml)
+set_property(TEST permissionstest APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
 add_test(NAME statictest COMMAND doctest StaticTester.xml)
+set_property(TEST statictest APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")

@@ -720,7 +720,7 @@ DiscoverySettings
 
  - **GuidPrefix_t guidPrefix** is the RTPS unique identifier of the server participant we want to link to. There is a
    `ReadguidPrefix` method to easily fill in this member from a string formatted like
-   *"4D.49.47.55.45.4c.5f.42.41.52.52.4f"* (note that each octec must be a valid hexadecimal figure).
+   *"4D.49.47.55.45.4c.5f.42.41.52.52.4f"* (note that each octet must be a valid hexadecimal figure).
  - **metatrafficUnicastLocatorList** and `metatrafficMulticastLocatorList` are ordinary `LocatorList_t` (see fast-RTPS
    documentation) where server's locators must be specified. At least one of them should be populated.
  - **Duration_t discoveryServer_client_syncperiod** specifies the time span between PDP metatraffic exchange, and has
@@ -776,7 +776,7 @@ DiscoverySettings
   that this announcement will be shut down the very moment the server acknowledges the client, its frequency will not
   be a concern for network traffic outside network initialization stage.
 
- Note that servers act like clients whenever they reference other servers, thus, discoveryServer_client_syncperiod
+ Note that servers act like clients whenever they reference other servers, thus, *discoveryServer_client_syncperiod*
  applies to them also in this scenario.
 
 

@@ -38,10 +38,12 @@ IDL
 interoperability
 IPv
 libs
+lroundl
 middleware
 metatraffic
 modularity
 multicast
+multicasting
 nack
 offsetd
 PKI
@@ -58,11 +60,13 @@ sqlite
 stateful
 subfolder
 submessages
+submodules
 typeobject
 TypeObject
 uint
 unicast
 unidimensional
+unmatch
 XTypes
 whitelist
 whitelists

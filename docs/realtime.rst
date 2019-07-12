@@ -7,8 +7,6 @@
 Real-time
 #########
 
-**Note:** Currently only supported on Linux systems.
-
 Fast RTPS can be configured to offer real-time features.
 These features will guarantee Fast RTPS responses within specified time constrains.
 To maintain this compromise Fast RTPS is able to have next behaviour:
@@ -31,6 +29,8 @@ Allocations
 
 Non-blocking calls
 ******************
+
+**Note:** This feature is not supported on OSX. This system doesn't support necessary POSIX Realtime features.
 
 It is important a method isn't blocked for indeterminate time to achieve real-time.
 A method has only to be blocked for a maximum period of time.

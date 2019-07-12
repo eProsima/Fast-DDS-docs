@@ -34,17 +34,28 @@ project(fastrtps-doc-checker VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 set(ENV_FASTRTPS_BRANCH $ENV{FASTRTPS_BRANCH})
 set(FASTRTPS_BRANCH "" CACHE STRING "Fast RTPS repository branch against which test the source code.")
 
+find_package(Git REQUIRED)
+
 if(NOT "${ENV_FASTRTPS_BRANCH}" STREQUAL "")
     set(REPO_TAG "${ENV_FASTRTPS_BRANCH}")
 elseif(NOT "${FASTRTPS_BRANCH}" STREQUAL "")
     set(REPO_TAG "${FASTRTPS_BRANCH}")
 else()
-    find_package(Git REQUIRED)
-
     execute_process(
         COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
         RESULT_VARIABLE RESULT
         OUTPUT_VARIABLE REPO_TAG)
+endif()
+
+message("Checking fastrtps branch ${REPO_TAG}...")
+execute_process(
+    COMMAND ${GIT_EXECUTABLE} ls-remote https://github.com/eProsima/Fast-RTPS.git ${REPO_TAG}
+    RESULT_VARIABLE RESULT_LS_REMOTE
+    OUTPUT_VARIABLE OUTPUT_LS_REMOTE)
+
+if("${OUTPUT_LS_REMOTE}" STREQUAL "")
+    message("fastrtps branch ${REPO_TAG} not found. Changing to master branch.")
+    set(REPO_TAG "master")
 endif()
 
 ########################################################################################################################

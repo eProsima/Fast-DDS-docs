@@ -501,21 +501,14 @@ with them will cause a crash.
 Dynamic Types Discovery and Endpoint Matching
 ---------------------------------------------
 
-When using Dynamic Types support, *Fast RTPS* make use of an optional *TopicDiscoveryKind QoS Policy* and ``TypeIdV1``.
+When using Dynamic Types support, *Fast RTPS* make use of an optional ``TypeObjectV1`` and ``TypeIdV1``.
 At its current state, the matching will only verify that both endpoints are using the same topic type,
 but will not negotiate about it.
 
-This verification is done through ``MinimalTypeObject``.
+This verification is done through in order by ``TypeIdentifier``, then ``MinimalTypeObject``, and finally
+``CompleteTypeObject``.
 
-TopicDiscoveryKind
-^^^^^^^^^^^^^^^^^^
-
-``TopicAttribute`` to indicate which kind of Dynamic discovery we are using.
-Can take 3 different values:
-
-- :class:`NO_CHECK`: Default value. Will not perform any check for dynamic types.
-- :class:`MINIMAL`: Will check only at ``TypeInformation`` level (and ``MinimalTypeObject`` if needed).
-- :class:`COMPLETE`: Will perform a full check with ``CompleteTypeObject``.
+If one endpoints uses a ``CompleteTypeObject`` instead, it makes possible :ref:`discovery-time-data-typing`.
 
 TypeObject (TypeObjectV1)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -551,6 +544,15 @@ taking :class:`XXX` as our IDL type. These files provide a small Type Factory fo
 Generally, these files are not used directly, as now the type :class:`XXX` will register itself through its factory to
 ``TypeObjectFactory`` in its constructor, making very easy the use of static types with dynamic types.
 
+.. _discovery-time-data-typing:
+
+Discovery-Time Data Typing
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When using fastdds API, if a participant discovers an endpoint which sends a complete TypeObject or a simple
+TypeIdentifier describing a type that the participant doesn't knows, it will be called to its listener's
+method ``on_type_discovery`` with the TypeInformation provided, and a ``DynamicType_ptr`` ready to be used.
+
 
 XML Dynamic Types
 -----------------
@@ -559,8 +561,11 @@ XML Dynamic Types
 This allows any application to change ``TopicDataTypes`` without the need to change its source code.
 
 
-Dynamic HelloWorld Example
---------------------------
+Dynamic HelloWorld Examples
+---------------------------
+
+DynamicHelloWorldExample
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using some of the functionality described in this document, there exists an example at
 the ``examples/C++/DynamicHelloWorldExample`` folder named
@@ -574,3 +579,11 @@ As a quick reference, it is shown how the HelloWorld type is created using Dynam
    :language: c++
    :start-after: //DYNAMIC_HELLO_WORLD_API
    :end-before: //!--
+
+
+DDSDynamicHelloWorldExample
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Another example located in the ``examples/C++/DDS/DynamicHelloWorldExample`` folder shows a publisher that shares
+a type loaded from an XML file, and a subscriber that discovers the type using discovery-time-data-typing_, showing
+the received data after introspecting it.

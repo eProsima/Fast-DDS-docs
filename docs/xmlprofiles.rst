@@ -1336,7 +1336,7 @@ of elements depends on the number of entities in the system.
 
 For instance, there are collections inside a publisher which depend on the number of subscribers matching with it.
 
-.. TODO: Add reference to allocation tuning section
+See :ref:`realtime-allocations` for detailed information on how to tune allocation related parameters.
 
 .. list-table::
    :header-rows: 1

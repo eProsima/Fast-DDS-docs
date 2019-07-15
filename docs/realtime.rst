@@ -4,8 +4,8 @@
 
 .. _realtime:
 
-Real-time
-#########
+Real-time behavior
+##################
 
 Fast RTPS can be configured to offer real-time features.
 These features will guarantee Fast RTPS responses within specified time constrains.
@@ -17,13 +17,13 @@ To maintain this compromise Fast RTPS is able to have the following behavior:
 This section explains how to configure Fast RTPS to achieve this behavior.
 For easier understanding it was divided in two subsections:
 
-- :ref:`allocations`: configuration to avoid memory allocation after initialization.
+- :ref:`realtime-allocations`: configuration to avoid memory allocation after initialization.
 - :ref:`non-blocking-calls`: usage of non-blocking methods for real-time behavior.
 
-.. _allocations:
+.. _realtime-allocations:
 
-Allocations
-***********
+Tuning allocations
+******************
 
 .. _non-blocking-calls:
 

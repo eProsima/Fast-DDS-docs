@@ -17,7 +17,7 @@ It also adds the following bug fixes and improvements:
 * Fix for v1.8.1 not building with -DBUILD_JAVA=ON
 * Fix for GAP messages not being sent in some cases
 * `fastrtps.repos` file was updated
-* Documentation for building with colcon was added
+* Documentation for building with Colcon was added
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*

@@ -38,7 +38,7 @@ Parameters on the participant
 =============================
 
 All the allocation related parameters on the participant are grouped into the :class:`rtps.allocation` field of the
-:class:`ParticipantAttributes` struct. 
+:class:`ParticipantAttributes` struct.
 
 Limiting the number of discovered participants
 ----------------------------------------------

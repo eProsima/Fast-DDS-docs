@@ -1357,6 +1357,61 @@
 </qos>
 </subscriber>
 
+<!-->CONF-ALLOCATION-QOS-EXAMPLE<-->
+<participant profile_name="participant_alloc_qos_example">
+    <rtps>
+        <allocation>
+            <!-- We know we have 3 participants on the domain -->
+            <total_participants>
+                <initial>3</initial>
+                <maximum>3</maximum>
+                <increment>0</increment>
+            </total_participants>
+            <!-- We know we have at most 2 readers on each participant -->
+            <total_readers>
+                <initial>2</initial>
+                <maximum>2</maximum>
+                <increment>0</increment>
+            </total_readers>
+            <!-- We know we have at most 1 writer on each participant -->
+            <total_writers>
+                <initial>1</initial>
+                <maximum>1</maximum>
+                <increment>0</increment>
+            </total_writers>
+        </allocation>
+    </rtps>
+</participant>
+
+<publisher profile_name="alloc_qos_example_pub_for_topic_1">
+    <!-- we know we will have three matching subscribers -->
+    <matchedSubscribersAllocation>
+        <initial>3</initial>
+        <maximum>3</maximum>
+        <increment>0</increment>
+    </matchedSubscribersAllocation>
+</publisher>
+
+<publisher profile_name="alloc_qos_example_pub_for_topic_2">
+    <!-- we know we will have two matching subscribers -->
+    <matchedSubscribersAllocation>
+        <initial>2</initial>
+        <maximum>2</maximum>
+        <increment>0</increment>
+    </matchedSubscribersAllocation>
+</publisher>
+
+<subscriber profile_name="alloc_qos_example_sub">
+    <!-- we know we will only have one matching publisher -->
+    <matchedPublishersAllocation>
+        <initial>1</initial>
+        <maximum>1</maximum>
+        <increment>0</increment>
+    </matchedPublishersAllocation>
+</publisher>
+<!--><-->
+
+
 <!-->
 </profiles>
 <-->

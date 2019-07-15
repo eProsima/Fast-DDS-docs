@@ -156,6 +156,29 @@ participant_attr.rtps.builtin.initialPeersList.push_back(initial_peer_locator);
 participant_attr.rtps.userTransports.push_back(tcp2_transport);
 //!--
 
+
+//CONF-ALLOCATION-QOS-EXAMPLE
+// Before creating a participant:
+// We know we have 3 participants on the domain
+participant_attr.rtps.allocation.participants = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+// We know we have at most 2 readers on each participant
+participant_attr.rtps.allocation.readers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+// We know we have at most 1 writer on each participant
+participant_attr.rtps.allocation.writers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+
+// Before creating the publisher for topic 1:
+// we know we will only have three matching subscribers
+publisher_attr.matched_subscriber_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+
+// Before creating the publisher for topic 2:
+// we know we will only have two matching subscribers
+publisher_attr.matched_subscriber_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+
+// Before creating a subscriber:
+// we know we will only have one matching publisher
+subscriber_attr.matched_publisher_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+//!--
+
 {
 //CONF-TCP-TLS-SERVER
 auto tls_transport = std::make_shared<TCPv4TransportDescriptor>();

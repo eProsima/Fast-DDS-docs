@@ -83,6 +83,7 @@ uint
 unicast
 unidimensional
 unmatch
+vcstool
 whitelist
 whitelists
 WString

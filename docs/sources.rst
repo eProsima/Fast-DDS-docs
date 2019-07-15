@@ -40,7 +40,7 @@ First install ROS2 development tools (colcon_ and vcstool):
 
 .. code-block:: bash
 
-    $ pip install -U colcon-common-extensions vcstool
+    pip install -U colcon-common-extensions vcstool
 
 Download the repos file that will be used to download Fast RTPS and its dependencies:
 

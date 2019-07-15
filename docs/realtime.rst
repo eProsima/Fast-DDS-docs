@@ -9,16 +9,16 @@ Real-time
 
 Fast RTPS can be configured to offer real-time features.
 These features will guarantee Fast RTPS responses within specified time constrains.
-To maintain this compromise Fast RTPS is able to have next behaviour:
+To maintain this compromise Fast RTPS is able to have next behavior:
 
 - Not allocate memory after the initialization of Fast RTPS entities.
 - Several methods are blocked for a maximum period of time.
 
-This section explains how to configure Fast RTPS to achieve this behaviour.
+This section explains how to configure Fast RTPS to achieve this behavior.
 For easier understanding it was divided in two subsections:
 
 - :ref:`allocations`: configuration to avoid memory allocation after initialization.
-- :ref:`non-blocking-calls`: usage of non-blocking methods for real-time behaviour.
+- :ref:`non-blocking-calls`: usage of non-blocking methods for real-time behavior.
 
 .. _allocations:
 
@@ -31,7 +31,7 @@ Non-blocking calls
 ******************
 
 **Note:** This feature is not fully supported on OSX.
-It doesn't support necessary POSIX Realtime features.
+It doesn't support necessary POSIX Real-time features.
 The feature is limited by the implementation of `std::timed_mutex` and `std::condition_variable_any`.
 
 It is important that  a method isn't blocked for indeterminate time to achieve real-time.

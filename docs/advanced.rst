@@ -616,7 +616,7 @@ There are several possible choices for the PDP strategy comprised into the :code
   client information again, introducing a recovery delay.
 
 For an extensive explanation of **CLIENT**, **SERVER** and **BACKUP** discovery strategies please refer to
-`Discovery Server documentation <https://discovery-server.readthedocs.io/en/latest/>`_. The non-**SIMPLE** PDP
+`Discovery Server documentation <https://eprosima-discovery-server.readthedocs.io/en/latest/>`_. The non-**SIMPLE** PDP
 strategies were devised to cope with several scenarios where the standard PDP was unsuitable or plainly cannot be
 applied:
 

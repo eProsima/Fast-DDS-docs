@@ -30,9 +30,12 @@ Allocations
 Non-blocking calls
 ******************
 
-**Note:** This feature is not fully supported on OSX.
-It doesn't support necessary POSIX Real-time features.
-The feature is limited by the implementation of `std::timed_mutex` and `std::condition_variable_any`.
+**Note:** This feature is not fully supported in this version yet.
+Asynchronous writing and UDP socket `send()` function are still blocking calls.
+
+.. **Note:** This feature is not fully supported on OSX.
+.. It doesn't support necessary POSIX Real-time features.
+.. The feature is limited by the implementation of `std::timed_mutex` and `std::condition_variable_any`.
 
 It is important that  a method isn't blocked for indeterminate time to achieve real-time.
 A method must only be blocked for a maximum period of time.

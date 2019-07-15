@@ -17,7 +17,7 @@ To maintain this compromise Fast RTPS is able to have next behaviour:
 This section explains how to configure Fast RTPS to achieve this behaviour.
 For easier understanding it was divided in two subsections:
 
-- :ref:`allocations`: configure to avoid memory allocation after initialization.
+- :ref:`allocations`: configuration to avoid memory allocation after initialization.
 - :ref:`non-blocking-calls`: usage of non-blocking methods for real-time behaviour.
 
 .. _allocations:
@@ -34,8 +34,8 @@ Non-blocking calls
 It doesn't support necessary POSIX Realtime features.
 The feature is limited by the implementation of `std::timed_mutex` and `std::condition_variable_any`.
 
-It is important a method isn't blocked for indeterminate time to achieve real-time.
-A method has only to be blocked for a maximum period of time.
+It is important that  a method isn't blocked for indeterminate time to achieve real-time.
+A method must only be blocked for a maximum period of time.
 In Fast-RTPS API there are several methods that permit to set this.
 
 .. list-table:: **Fast RTPS non-blocking API**
@@ -57,4 +57,4 @@ In Fast-RTPS API there are several methods that permit to set this.
        *ReliabilityQosPolicy.max_blocking_time* on *SubscriberAttributes* defines this period of time.
        Default value is 100 milliseconds.
    * - Subscriber::wait_for_unread_samples()
-     - Accepts an argument specifying how much maximum time has to be blocked.
+     - Accepts an argument specifying how long the method can be blocked.

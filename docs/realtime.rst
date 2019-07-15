@@ -30,7 +30,9 @@ Allocations
 Non-blocking calls
 ******************
 
-**Note:** This feature is not supported on OSX. This system doesn't support necessary POSIX Realtime features.
+**Note:** This feature is not fully supported on OSX.
+It doesn't support necessary POSIX Realtime features.
+The feature is limited by the implementation of `std::timed_mutex` and `std::condition_variable_any`.
 
 It is important a method isn't blocked for indeterminate time to achieve real-time.
 A method has only to be blocked for a maximum period of time.

@@ -9,7 +9,7 @@ Real-time
 
 Fast RTPS can be configured to offer real-time features.
 These features will guarantee Fast RTPS responses within specified time constrains.
-To maintain this compromise Fast RTPS is able to have next behavior:
+To maintain this compromise Fast RTPS is able to have the following behavior:
 
 - Not allocate memory after the initialization of Fast RTPS entities.
 - Several methods are blocked for a maximum period of time.

@@ -1,5 +1,32 @@
-Version 1.8.1
+Version 1.9.0
 =============
+
+This release includes the following features:
+
+* Partial implementation of allocation QoS
+* Implementation of Discovery Server
+
+It also adds the following bug fixes and improvements:
+
+* A `Flush()` method was added to the logger to ensure all info is logged
+* A test for loading `Duration_t` from XML was added
+* Some liveliness tests were updated so that they are more stable on Windows
+* A fix was added to `CMakeLists.txt` for installing static libraries
+* A fix was added to performance tests so that they can run on the RT kernel
+* Fix for setting *nullptr* in a *fixed_string*
+* Fix for v1.8.1 not building with -DBUILD_JAVA=ON
+* Fix for GAP messages not being sent in some cases
+* `fastrtps.repos` file was updated
+* Documentation for building with Colcon was added
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*
+
+Previous versions
+-----------------
+
+Version 1.8.1
+^^^^^^^^^^^^^
 
 This release includes the following features:
 
@@ -17,9 +44,6 @@ It also adds the following bug fixes and improvements:
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*
-
-Previous versions
------------------
 
 Version 1.8.0
 ^^^^^^^^^^^^^

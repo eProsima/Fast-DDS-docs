@@ -10,7 +10,7 @@ Asio and TinyXML2 libraries
 ===========================
 
 On Linux, you can install these libraries using the package manager of your Linux distribution.
-For example, on Ubuntu you can install them using its package manager with the next command.
+For example, on Ubuntu you can install them by using its package manager with the next command.
 
 .. code-block:: bash
 

@@ -11,7 +11,7 @@ It also adds the following bug fixes and improvements:
 * A `Flush()` method was added to the logger to ensure all info is logged
 * A test for loading `Duration_t` from XML was added
 * Some liveliness tests were updated so that they are more stable on Windows
-* A fix was added to cmake for installing static libraries
+* A fix was added to `CMakeLists.txt` for installing static libraries
 * A fix was added to performance tests so that they can run on the RT kernel
 * Fix for setting *nullptr* in a *fixed_string*
 * Fix for v1.8.1 not building with -DBUILD_JAVA=ON

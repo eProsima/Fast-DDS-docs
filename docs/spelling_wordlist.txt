@@ -4,6 +4,8 @@ ack
 acked
 acks
 AES
+asio
+Asio
 ASIO
 auth
 benchmarking
@@ -14,7 +16,9 @@ bitfield
 bitmask
 bitmasks
 boolean
+chocolatey
 CMake
+Colcon
 crl
 crypto
 cryptographic
@@ -48,6 +52,7 @@ multicast
 multicasting
 nack
 Nagle
+nupkg
 offsetd
 PKI
 pluggable
@@ -57,6 +62,7 @@ preprocessor
 QoS
 readNextData
 redistributable
+repos
 retransmission
 rtps
 sanitizers
@@ -70,12 +76,14 @@ submessages
 submodules
 takeNextData
 TCP
+tinyxml
 typeobject
 TypeObject
 uint
 unicast
 unidimensional
 unmatch
+vcstool
 whitelist
 whitelists
 WString

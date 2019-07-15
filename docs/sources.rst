@@ -35,7 +35,7 @@ Colcon installation
 *******************
 
 colcon_ is a command line tool to build sets of software packages.
-We show you how to use it to compile easily Fast-RTPS and its dependencies.
+This section explains to use it to compile easily Fast-RTPS and its dependencies.
 First install ROS2 development tools (colcon_ and vcstool):
 
 .. code-block:: bash

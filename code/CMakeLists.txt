@@ -86,7 +86,7 @@ set(PRODUCT_CMAKELIST_CONTENT "
         TLS_VERIFY FALSE
         CONFIGURE_COMMAND \"\"
         BINARY_DIR \".\"
-        BUILD_COMMAND cd eprosima && python3 buildcop.py --ci-repo https://gitlab.intranet.eprosima.com/eProsima/fastrtps-ci.git --source-branch ${REPO_TAG} --build-args --build-base build --merge-install --mixin release --packages-up-to fastrtps --metas ../../.. --cmake-args -DSECURITY=ON --- --no-test
+        BUILD_COMMAND cd eprosima && python3 buildcop.py --ci-repo https://gitlab.intranet.eprosima.com/eProsima/fastrtps-ci.git --source-branch ${REPO_TAG} --build-args --build-base build --merge-install --mixin rel-with-deb-info --packages-up-to fastrtps --metas ../../.. --cmake-args -DSECURITY=ON --- --no-test
         INSTALL_COMMAND \"\"
         UPDATE_COMMAND \"\"
         )

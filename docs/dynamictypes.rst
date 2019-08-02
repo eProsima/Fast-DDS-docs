@@ -550,8 +550,59 @@ Discovery-Time Data Typing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When using fastdds API, if a participant discovers an endpoint which sends a complete TypeObject or a simple
-TypeIdentifier describing a type that the participant doesn't know, it will be called by its listener's
-method ``on_type_discovery`` with the TypeInformation provided, and a ``DynamicType_ptr`` ready to be used.
+TypeIdentifier describing a type that the participant doesn't know, it will be called to its listener's
+method ``on_type_discovery`` with the TypeObject and TypeIdentifier provided,
+and, when possible, a ``DynamicType_ptr`` ready to be used.
+Discovery-Time Data Typing allows the discovering of simple DynamicTypes. A TypeObject that depends on other
+TypeObjects, cannot be built locally using Discovery-Time Data Typing and should use :ref:`TypeLookup-Service` instead.
+
+To ease the sharing of the TypeObject and TypeIdentifier used by Discovery-Time Data Typing, there exists
+an attribute in ``TopicAttributes`` named ``auto_fill_type_object``. If set to true, on discovery time,
+the local participant will try to fill ``type`` and ``type_id`` fields in the correspond ``ReaderProxyData``
+or ``WriterProxyData`` to be sent to the remote endpoint.
+
+
+.. _typelookup-service:
+
+TypeLookup Service
+^^^^^^^^^^^^^^^^^^
+
+When using fastdds API, if a participant discovers an endpoint which sends a TypeInformation
+describing a type that the participant doesn't know, it will be called to its listener's
+method ``on_type_information_received`` with the TypeInformation provided.
+Then the user can try to retrieve the full TypeObject hierarchy to build the remote type locally, using the
+TypeLookup Service.
+
+To enable this builtin TypeLookup Service, the user must enable it in the Participant's RTPS builtin attributes:
+
+.. code-block:: cpp
+
+    ParticipantAttributes PParam;
+    PParam.rtps.builtin.typelookup_config.use_client = true;
+    PParam.rtps.builtin.typelookup_config.use_server = true;
+
+A participant can be enabled to act as a TypeLookup server, client, or both.
+
+To ease the recovery and registration of a remote type when received its TypeInformation from the remote endpoint, the
+DomainParticipant provides the ``register_remote_type`` function that internally uses the TypeLookup Service.
+
+On success, this function will call a function received as parameter with the signature:
+
+.. code-block:: cpp
+
+    void(std::string& type_name, const DynamicType_ptr type)
+
+- | type_name: Is the given type name to the ``register_remote_type`` function, to allow multiple calls using the same
+  | function.
+
+- | type: When possible, the function will be called with an already build DynamicType. If wasn't possible, it will be
+  | ``nullptr``. In that case, the user can try to build the type by himself using the factories, but it is very
+  | likely that the build process will fail.
+
+To ease the sharing of the TypeInformation used by the TypeLookup Service, there exists
+an attribute in ``TopicAttributes`` named ``auto_fill_type_information``. If set to true, on discovery time,
+the local participant will try to fill ``type_information`` field in the correspond ``ReaderProxyData``
+or ``WriterProxyData`` to be sent to the remote endpoint.
 
 
 XML Dynamic Types
@@ -587,3 +638,10 @@ DDSDynamicHelloWorldExample
 Another example located in the ``examples/C++/DDS/DynamicHelloWorldExample`` folder shows a publisher that shares
 a type loaded from an XML file, and a subscriber that discovers the type using discovery-time-data-typing_, showing
 the received data after introspecting it.
+
+TypeLookupService
+^^^^^^^^^^^^^^^^^
+
+Finally, an example making use of TypeLookup Service can be found int he ``examples/C++/DDS/TypeLookupService`` folder.
+It's very similar to DDSDynamicHelloWorldExample, but the shared type is complex enough to make require the usage of the
+TypeLookup Service due to the dependency of inner struct types.

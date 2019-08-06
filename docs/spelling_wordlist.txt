@@ -19,6 +19,7 @@ boolean
 chocolatey
 CMake
 Colcon
+coverity
 crl
 crypto
 cryptographic

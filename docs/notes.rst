@@ -5,28 +5,28 @@ This release includes the following features:
 
 * Partial implementation of allocation QoS
 * Implementation of Discovery Server
-* Modified default behavior for unknown writers.
-* Added timeout when sending through UDP
-* Asynchronous thread with non-blocking API
-* IDL sub-module updated to current version.
+* Implementation of non-blocking calls.
 
 It also adds the following bug fixes and improvements:
 
 * Added sliding window to BitmapRange and improvements
+* Modified default behavior for unknown writers.
 * A `Flush()` method was added to the logger to ensure all info is logged
 * A test for loading `Duration_t` from XML was added
+* Optimized WLP when removing local writers.
 * Some liveliness tests were updated so that they are more stable on Windows
 * A fix was added to `CMakeLists.txt` for installing static libraries
 * A fix was added to performance tests so that they can run on the RT kernel
+* Fix for race condition on built-in protocols creation.
 * Fix for setting *nullptr* in a *fixed_string*
 * Fix for v1.8.1 not building with -DBUILD_JAVA=ON
 * Fix for GAP messages not being sent in some cases
-* Fix for local/remote locators management
 * Fix for coverity report
 * Several memory issues fixes
 * `fastrtps.repos` file was updated
 * Documentation for building with Colcon was added
 * Change CMake configuration directory if INSTALLER_PLATFORM is set.
+* IDL sub-module updated to current version.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*

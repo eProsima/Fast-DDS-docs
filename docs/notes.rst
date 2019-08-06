@@ -3,33 +3,33 @@ Version 1.9.0
 
 This release includes the following features:
 
-* Partial implementation of allocation QoS
-* Implementation of Discovery Server
+* Partial implementation of allocation QoS.
+* Implementation of Discovery Server.
 * Implementation of non-blocking calls.
 
 It also adds the following bug fixes and improvements:
 
-* Added sliding window to BitmapRange
+* Added sliding window to BitmapRange.
 * Modified default behavior for unknown writers.
-* A `Flush()` method was added to the logger to ensure all info is logged
-* A test for loading `Duration_t` from XML was added
+* A `Flush()` method was added to the logger to ensure all info is logged.
+* A test for loading `Duration_t` from XML was added.
 * Optimized WLP when removing local writers.
-* Some liveliness tests were updated so that they are more stable on Windows
-* A fix was added to `CMakeLists.txt` for installing static libraries
-* A fix was added to performance tests so that they can run on the RT kernel
+* Some liveliness tests were updated so that they are more stable on Windows.
+* A fix was added to `CMakeLists.txt` for installing static libraries.
+* A fix was added to performance tests so that they can run on the RT kernel.
 * Fix for race condition on built-in protocols creation.
-* Fix for setting *nullptr* in a *fixed_string*
-* Fix for v1.8.1 not building with -DBUILD_JAVA=ON
-* Fix for GAP messages not being sent in some cases
-* Fix for coverity report
-* Several memory issues fixes
-* `fastrtps.repos` file was updated
-* Documentation for building with Colcon was added
+* Fix for setting *nullptr* in a *fixed_string*.
+* Fix for v1.8.1 not building with -DBUILD_JAVA=ON.
+* Fix for GAP messages not being sent in some cases.
+* Fix for coverity report.
+* Several memory issues fixes.
+* `fastrtps.repos` file was updated.
+* Documentation for building with Colcon was added.
 * Change CMake configuration directory if INSTALLER_PLATFORM is set.
 * IDL sub-module updated to current version.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
-from IDL files using *fastrtpsgen*
+from IDL files using *fastrtpsgen*.
 
 Previous versions
 -----------------
@@ -39,55 +39,55 @@ Version 1.8.1
 
 This release includes the following features:
 
-* Implementation of :ref:`liveliness-qos` QoS
+* Implementation of :ref:`liveliness-qos` QoS.
 
 It also adds the following bug fixes and improvements:
 
-* Fix for get_change on history, which was causing issues during discovery
-* Fix for announcement of participant state, which was sending ParticipantBuiltinData twice
-* Fix for closing multicast UDP channel
-* Fix for race conditions in SubscriberHistory, UDPTransportInterface and StatefulReader
-* Fix for lroundl error on Windows in Time_t
-* CDR & IDL submodules update
-* Use of java 1.8 or greater for fastrtpsgen.jar generation
+* Fix for get_change on history, which was causing issues during discovery.
+* Fix for announcement of participant state, which was sending ParticipantBuiltinData twice.
+* Fix for closing multicast UDP channel.
+* Fix for race conditions in SubscriberHistory, UDPTransportInterface and StatefulReader.
+* Fix for lroundl error on Windows in Time_t.
+* CDR & IDL submodules update.
+* Use of java 1.8 or greater for fastrtpsgen.jar generation.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
-from IDL files using *fastrtpsgen*
+from IDL files using *fastrtpsgen*.
 
 Version 1.8.0
 ^^^^^^^^^^^^^
 
 This release included the following features:
 
-* Implementation of IDL 4.2
-* Implementation of :ref:`deadline-qos` QoS
-* Implementation of :ref:`lifespan-qos` QoS
-* Implementation of :ref:`disable-positive-acks-qos` QoS
-* Secure sockets on TCP transport (:ref:`TLS`)
+* Implementation of IDL 4.2.
+* Implementation of :ref:`deadline-qos` QoS.
+* Implementation of :ref:`lifespan-qos` QoS.
+* Implementation of :ref:`disable-positive-acks-qos` QoS.
+* Secure sockets on TCP transport (:ref:`TLS`).
 
 It also adds the following improvements and bug fixes:
 
 * Real-time improvements: non-blocking write calls for best-effort writers, addition of fixed size strings,
-  fixed size bitmaps, resource limited vectors, etc
-* Duration parameters now use nanoseconds
-* Configuration of participant mutation tries (see :ref:`participantconfiguration`)
-* Automatic calculation of the port when a value of 0 is received on the endpoint custom locators
-* Non-local addresses are now filtered from whitelists
-* Optimization of check for acked status for stateful writers
-* Linked libs are now not exposed when the target is a shared lib
-* Limitation on the domain ID has been added
-* UDP non-blocking send is now optional and configurable via XML
-* Fix for non-deterministic tests
-* Fix for ReaderProxy history being reloaded incorrectly in some cases
-* Fix for RTPS domain hostid being potentially not unique
-* Fix for participants with different lease expiration times failing to reconnect
+  fixed size bitmaps, resource limited vectors, etc.
+* Duration parameters now use nanoseconds.
+* Configuration of participant mutation tries (see :ref:`participantconfiguration`).
+* Automatic calculation of the port when a value of 0 is received on the endpoint custom locators.
+* Non-local addresses are now filtered from whitelists.
+* Optimization of check for acked status for stateful writers.
+* Linked libs are now not exposed when the target is a shared lib.
+* Limitation on the domain ID has been added.
+* UDP non-blocking send is now optional and configurable via XML.
+* Fix for non-deterministic tests.
+* Fix for ReaderProxy history being reloaded incorrectly in some cases.
+* Fix for RTPS domain hostid being potentially not unique.
+* Fix for participants with different lease expiration times failing to reconnect.
 
 **Known issues**
 
 * When using TPC transport, sometimes callbacks are not invoked when removing a participant due to a bug in ASIO.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
-from IDL files using *fastrtpsgen*
+from IDL files using *fastrtpsgen*.
 
 Version 1.7.2
 ^^^^^^^^^^^^^
@@ -105,23 +105,23 @@ It also has the following improvements:
 Some other minor bugs and performance improvements.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
-from IDL files using *fastrtpsgen*
+from IDL files using *fastrtpsgen*.
 
 Version 1.7.1
 ^^^^^^^^^^^^^
 
 This release included the following features:
 
-* LogFileConsumer added to the logging system
-* Handle FASTRTPS_DEFAULT_PROFILES_FILE environment variable indicating the default profiles XML file
-* XML parser made more restrictive and with better error messages
+* LogFileConsumer added to the logging system.
+* Handle FASTRTPS_DEFAULT_PROFILES_FILE environment variable indicating the default profiles XML file.
+* XML parser made more restrictive and with better error messages.
 
 It also fixes some important bugs:
-* Fixed discovery issues related to the selected network interfaces on Windows
-* Improved discovery times
-* Workaround ASIO issue with multicast on QNX systems
-* Improved TCP transport performance
-* Improved handling of key-only data submessages
+* Fixed discovery issues related to the selected network interfaces on Windows.
+* Improved discovery times.
+* Workaround ASIO issue with multicast on QNX systems.
+* Improved TCP transport performance.
+* Improved handling of key-only data submessages.
 
 Some other minor bugs and performance improvements.
 
@@ -131,34 +131,34 @@ Some other minor bugs and performance improvements.
   and doesn't take history depth into account.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
-from IDL files using *fastrtpsgen*
+from IDL files using *fastrtpsgen*.
 
 Version 1.7.0
 ^^^^^^^^^^^^^
 
 This release included the following features:
 
-* :ref:`comm-transports-tcp`
-* :ref:`dynamic-types`
-* Security 1.1 compliance
+* :ref:`comm-transports-tcp`.
+* :ref:`dynamic-types`.
+* Security 1.1 compliance.
 
 Also bug fixing, allocation and performance improvements.
 
 **Note:** If you are upgrading from an older version, it is **required** to regenerate generated source from IDL files
-using *fastrtpsgen*
+using *fastrtpsgen*.
 
 Version 1.6.0
 ^^^^^^^^^^^^^
 
 This release included the following features:
 
-* :ref:`persistence`
+* :ref:`persistence`.
 * Security access control plugin API and builtin :ref:`access-permissions` plugin.
 
 Also bug fixing.
 
 **Note:** If you are upgrading from an older version than 1.4.0, it is advisable to regenerate generated source from IDL
-files using *fastrtpsgen*
+files using *fastrtpsgen*.
 
 Version 1.5.0
 ^^^^^^^^^^^^^
@@ -171,7 +171,7 @@ This release included the following features:
 Also bug fixing.
 
 **Note:** If you are upgrading from an older version than 1.4.0, it is advisable to regenerate generated source from IDL
-files using *fastrtpsgen*
+files using *fastrtpsgen*.
 
 Version 1.4.0
 ^^^^^^^^^^^^^
@@ -184,7 +184,7 @@ This release included the following:
 * Bug fixing.
 
 **Note:** After upgrading to this release, it is advisable to regenerate generated source from IDL files using
-*fastrtpsgen*
+*fastrtpsgen*.
 
 Version 1.3.1
 ^^^^^^^^^^^^^

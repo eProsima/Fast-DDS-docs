@@ -9,7 +9,7 @@ This release includes the following features:
 
 It also adds the following bug fixes and improvements:
 
-* Added sliding window to BitmapRange and improvements
+* Added sliding window to BitmapRange
 * Modified default behavior for unknown writers.
 * A `Flush()` method was added to the logger to ensure all info is logged
 * A test for loading `Duration_t` from XML was added

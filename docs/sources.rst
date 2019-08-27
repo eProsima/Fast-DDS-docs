@@ -74,9 +74,8 @@ Before compiling manually Fast RTPS you need to clone the following dependencies
 
     .. code-block:: bash
 
-        $ git clone https://github.com/foonathan/memory.git
-        $ cd memory
-        $ git submodule update --init --recursive
+        $ git clone https://github.com/eProsima/foonathan_memory_vendor.git
+        $ cd foonathan_memory_vendor
         $ mkdir build && cd build
         $ cmake ..
         $ cmake --build . --target install

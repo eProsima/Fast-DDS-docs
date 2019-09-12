@@ -25,7 +25,7 @@ Previous versions
 -----------------
 
 Version 1.9.0
-=============
+^^^^^^^^^^^^^
 
 This release includes the following features:
 

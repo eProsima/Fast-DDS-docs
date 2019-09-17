@@ -35,7 +35,7 @@ In order to compile *fastrtpsgen* you first need to have `gradle <https://gradle
 `java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ installed
 (please, check the JDK recommended version for the gradle version you have installed).
 
-If you want to compile *fastrtpsgen* java application, you will need to download its source code from
+To compile *fastrtpsgen* java application, you will need to download its source code from
 the `Fast-RPTS-Gen <https://github.com/eProsima/Fast-RTPS-Gen>`_ repository and with ``--recursive`` option and
 compile it calling ``gradle assemble``. For more details see :ref:`compile-fastrtpsgen`.
 

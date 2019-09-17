@@ -5,10 +5,13 @@ Building publisher/subscriber code
 ----------------------------------
 This section guides you through the usage of this Java application and briefly describes the generated files.
 
-The Java application can be executed using the following scripts depending on if you are on Windows or Linux: ::
+Once you added ``scripts`` folder to your ``PATH``,
+the Java application can be executed using the following scripts depending on if you are on Windows or Linux: ::
 
     > fastrtpsgen.bat
     $ fastrtpsgen
+
+In case you didn't modified your ``PATH`` you can find these scripts in your ``<fastrtpsgen_directory>/scripts`` folder.
 
 The expected argument list of the application is: ::
 

@@ -31,6 +31,20 @@ It also provides an initial implementation of a publisher and a subscriber using
 Compile
 -------
 
-In order to compile *fastrtpsgen* you first need to have `gradle <https://gradle.org/install>`_ and `java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ installed (please, check the JDK recommended version for the gradle version you have installed).
+In order to compile *fastrtpsgen* you first need to have `gradle <https://gradle.org/install>`_ and
+`java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ installed
+(please, check the JDK recommended version for the gradle version you have installed).
 
-To generate *fastrtpsgen* you will need to add the argument ``-DBUILD_JAVA=ON`` when calling CMake.
+If you want to compile *fastrtpsgen* java application, you will need to download its source code from
+the `Fast-RPTS-Gen <https://github.com/eProsima/Fast-RTPS-Gen>`_ repository and with ``--recursive`` option and
+compile it calling ``gradle assemble``. For more details see :ref:`compile-fastrtpsgen`.
+
+.. code-block:: bash
+
+    > git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git
+    > cd Fast-RTPS-Gen
+    > gradle assemble
+
+The generated java application can be found at ``share/fastrtps`` and more user friendly scripts at ``scripts`` folders.
+If you want to make these scripts available from anywhere you can add the ``scripts`` folder path to your ``PATH``
+environment variable.

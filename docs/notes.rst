@@ -18,7 +18,7 @@ It also adds the following bug fixes and improvements:
 * Fixed potential race conditions and deadlocks.
 * Eliminating use of *acceptMsgDirectTo*.
 * Discovery Server framework reconnect/recreate strategy.
-* Removed old subdirectories.
+* Removed unused folders.
 * Restored subscriber API.
 * SequenceNumber_t improvements.
 

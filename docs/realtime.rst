@@ -137,9 +137,10 @@ Non-blocking calls
 It doesn't support necessary POSIX Real-time features.
 The feature is limited by the implementation of `std::timed_mutex` and `std::condition_variable_any`.
 
-It is important that  a method isn't blocked for indeterminate time to achieve real-time.
+It is important that a method isn't blocked for indeterminate time to achieve real-time.
 A method must only be blocked for a maximum period of time.
-In Fast-RTPS API there are several methods that permit to set this.
+In Fast-RTPS API there are several methods that permit to set this. But first Fast-RTPS should be configured with the
+CMake option ``-DSTRICT_REALTIME=ON``. The list of these functions is displayed in the table below.
 
 .. list-table:: **Fast RTPS non-blocking API**
    :header-rows: 1

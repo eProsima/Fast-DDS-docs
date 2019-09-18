@@ -89,15 +89,20 @@ Once all dependencies are installed, you will be able to compile and install Fas
    $ cmake ..
    $ cmake --build . --target install
 
-If you want to compile *fastrtpsgen* java application, you will need to add the argument ``-DBUILD_JAVA=ON`` when
-calling CMake (see :ref:`compile-fastrtpsgen`).
-
 If you want to compile the examples, you will need to add the argument ``-DCOMPILE_EXAMPLES=ON`` when calling CMake.
 
 If you want to compile the performance tests, you will need to add the argument ``-DPERFORMANCE_TESTS=ON`` when calling
 CMake.
 
 For generate *fastrtpsgen* please see :ref:`compile-fastrtpsgen`.
+
+Fast-RTPS-gen
+*************
+
+If you want to compile *fastrtpsgen* java application, you will need to download its source code from
+the `Fast-RPTS-Gen <https://github.com/eProsima/Fast-RTPS-Gen>`_ repository and with ``--recursive`` option and
+compile it calling ``gradle assemble``. For more details see :ref:`compile-fastrtpsgen`.
+
 
 Security
 ********

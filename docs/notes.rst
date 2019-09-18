@@ -17,6 +17,10 @@ It also adds the following bug fixes and improvements:
 * Multicast is sent through *localhost* too.
 * Fixed potential race conditions and deadlocks.
 * Eliminating use of *acceptMsgDirectTo*.
+* Discovery Server framework reconnect/recreate strategy.
+* Removed old subdirectories.
+* Restored subscriber API.
+* SequenceNumber_t improvements.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.

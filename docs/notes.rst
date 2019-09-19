@@ -1,5 +1,38 @@
-Version 1.9.0
+Version 1.9.1
 =============
+
+This release includes the following features:
+
+* Fast-RTPS-Gen is now an independent project.
+* Header **eClock.h** is now marked as deprecated.
+
+It also adds the following bug fixes and improvements:
+
+* Bump to FastCDR v1.0.11.
+* Installation from sources documentation fixed.
+* Fixed assertion on WriterProxy.
+* Fixed potential fall through while parsing Parameters.
+* Removed deprecated guards causing compilation errors in some 32 bits platforms.
+* *addTOCDRMessage* method is now exported in the DLL, fixing issues related with Parameters' constructors.
+* Improve windows performance by avoiding usage of *_Cnd_timedwait* method.
+* Fixed reported communication issues by sending multicast through *localhost* too.
+* Fixed potential race conditions and deadlocks.
+* Eliminating use of *acceptMsgDirectTo*.
+* Discovery Server framework reconnect/recreate strategy.
+* Removed unused folders.
+* Restored subscriber API.
+* SequenceNumber_t improvements.
+* Added STRICT_REALTIME *cmake* option.
+* SubscriberHistory improvements.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.
+
+Previous versions
+-----------------
+
+Version 1.9.0
+^^^^^^^^^^^^^
 
 This release includes the following features:
 
@@ -30,9 +63,6 @@ It also adds the following bug fixes and improvements:
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.
-
-Previous versions
------------------
 
 Version 1.8.1
 ^^^^^^^^^^^^^

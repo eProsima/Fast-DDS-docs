@@ -4,7 +4,7 @@ Version 1.9.1
 This release includes the following features:
 
 * Fast-RTPS-Gen is now an independent project.
-* Header **eClock.h** marked is now deprecated.
+* Header **eClock.h** is now marked as deprecated.
 
 It also adds the following bug fixes and improvements:
 

@@ -13,6 +13,7 @@ It also adds the following bug fixes and improvements:
 * Fixed assertion on WriterProxy.
 * Fixed potential fall through while parsing Parameters.
 * Removed deprecated guards causing compilation errors in some 32 bits platforms.
+* *addTOCDRMessage* method is now exported in the DLL, fixing issues related with Parameters' constructors.
 * Improve windows performance by avoiding usage of *_Cnd_timedwait* method.
 * Fixed reported communication issues by sending multicast through *localhost* too.
 * Fixed potential race conditions and deadlocks.
@@ -21,7 +22,7 @@ It also adds the following bug fixes and improvements:
 * Removed unused folders.
 * Restored subscriber API.
 * SequenceNumber_t improvements.
-* Added STRICT_REALTIME cmake option.
+* Added STRICT_REALTIME *cmake* option.
 * SubscriberHistory improvements.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source

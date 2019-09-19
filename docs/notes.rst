@@ -21,6 +21,8 @@ It also adds the following bug fixes and improvements:
 * Removed unused folders.
 * Restored subscriber API.
 * SequenceNumber_t improvements.
+* Added STRICT_REALTIME cmake option.
+* SubscriberHistory improvements.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.

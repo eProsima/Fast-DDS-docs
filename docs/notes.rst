@@ -14,7 +14,7 @@ It also adds the following bug fixes and improvements:
 * Fixed potential fall through while parsing Parameters.
 * Removed deprecated guards causing compilation errors in some 32 bits platforms.
 * Improve windows performance by avoiding usage of *_Cnd_timedwait* method.
-* Multicast is sent through *localhost* too.
+* Fixed reported communication issues by sending multicast through *localhost* too.
 * Fixed potential race conditions and deadlocks.
 * Eliminating use of *acceptMsgDirectTo*.
 * Discovery Server framework reconnect/recreate strategy.

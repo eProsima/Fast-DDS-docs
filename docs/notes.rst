@@ -24,6 +24,8 @@ It also adds the following bug fixes and improvements:
 * SequenceNumber_t improvements.
 * Added STRICT_REALTIME *cmake* option.
 * SubscriberHistory improvements.
+* Assertion of participant liveliness by receiving RTPS messages from the remote participant.
+* Fixed error while setting next deadline event in *create_new_change_with_params*.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.

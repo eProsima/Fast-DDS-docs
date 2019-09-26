@@ -505,7 +505,7 @@
     </rtps>
 </participant>
 <!--><-->
-    
+
 <!-->CONF-QOS-DISCOVERY-LEASEDURATION<-->
 <participant profile_name="participant_profile_qos_discovery_lease">
     <rtps>
@@ -959,11 +959,11 @@
         <propertiesPolicy>
             <!-- PROPERTIES_POLICY -->
         </propertiesPolicy>
-        
+
         <allocation>
             <!-- ALLOCATION -->
         </allocation>
-        
+
     </rtps>
 </participant>
 <!--><-->
@@ -1008,13 +1008,17 @@
 
         <EDP>SIMPLE</EDP>  <!-- string -->
 
-        <leaseDuration>  
+        <leaseDuration>
             <!-- DURATION -->
         </leaseDuration>
 
-        <leaseAnnouncement>  
+        <leaseAnnouncement>
             <!-- DURATION -->
         </leaseAnnouncement>
+
+        <initialAnnouncements>
+            <!-- DURATION -->
+        </initialAnnouncements>
 
         <simpleEDP>
             <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>  <!-- boolean -->
@@ -1588,7 +1592,7 @@
 
             <builtin>
                 <discovery_config>
-                    
+
                     <discoveryProtocol>NONE</discoveryProtocol>
 
                     <EDP>SIMPLE</EDP>
@@ -1612,7 +1616,7 @@
                 <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>
 
                 <domainId>4</domainId>
-                
+
                 <metatrafficUnicastLocatorList>
                     <locator>
                         <udpv4>
@@ -1690,7 +1694,7 @@
                         </udpv6>
                     </locator>
                 </initialPeersList>
-                
+
                 <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
 
                 <writerHistoryMemoryPolicy>PREALLOCATED</writerHistoryMemoryPolicy>

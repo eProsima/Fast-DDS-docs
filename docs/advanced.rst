@@ -586,6 +586,7 @@ The discovery mechanism is divided into two phases: Participant Discovery Phase 
     Before discovering any entity of a remote participant, both participants have to meet between them.
     Participant Discovery Phase provides this step and is responsible for sending periodic information about itself.
     To know how to configure where to send this periodic information, see :ref:`initial-peers`.
+    To know how to configure these announcements period and count, see :ref:`Discovery Configuration <dconf>`.
     When both participants are met, is the turn of Endpoints Discovery Phase.
 
 * Endpoints Discovery Phase (EDP)

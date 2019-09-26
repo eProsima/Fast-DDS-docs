@@ -744,7 +744,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 |                                | discovery-related settings can   | :ref:`discovery_config  |                       |
 |                                | be configured.                   | <dconf>`                |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
-| ``<avoid_builtin_multicast> `` | Ignores the multicast locators   | ``Boolean``             | :class:`true`         |
+| ``<avoid_builtin_multicast>``  | Ignores the multicast locators   | ``Boolean``             | :class:`true`         |
 |                                | received from the remote         |                         |                       |
 |                                | participants.                    |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+

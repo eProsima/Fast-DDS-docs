@@ -1017,7 +1017,7 @@
         </leaseAnnouncement>
 
         <initialAnnouncements>
-            <!-- DURATION -->
+            <!-- INITIAL_ANNOUNCEMENTS -->
         </initialAnnouncements>
 
         <simpleEDP>

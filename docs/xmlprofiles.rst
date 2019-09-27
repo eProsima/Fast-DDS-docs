@@ -685,6 +685,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
 .. |mutTries| replace:: ``<mutation_tries>``
+.. |avoidmc| replace:: ``<avoid_builtin_multicast>``
 
 
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
@@ -717,6 +718,9 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 |                           | to send its Discovery Message to all  |                         |                       |
 |                           | other discovered RTPSParticipants     |                         |                       |
 |                           | as well as to all Multicast ports.    |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |avoidmc|                 | Restricts metatraffic multicast       | ``Boolean``             | :class:`true`         |
+|                           | traffic to PDP only.                  |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 | ``<simpleEDP>``           | Attributes of the SimpleEDP           | :ref:`simpleEDP <sedp>` |                       |
 |                           | protocol                              |                         |                       |

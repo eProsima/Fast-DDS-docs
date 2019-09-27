@@ -927,6 +927,8 @@
         <!-- DURATION -->
     </leaseAnnouncement>
 
+    <avoid_builtin_multicast>true</avoid_builtin_multicast>
+
     <simpleEDP>
         <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER> <!-- boolean -->
         <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER> <!-- boolean -->

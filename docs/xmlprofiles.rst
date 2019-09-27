@@ -744,9 +744,8 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 |                                | discovery-related settings can   | :ref:`discovery_config  |                       |
 |                                | be configured.                   | <dconf>`                |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
-| ``<avoid_builtin_multicast>``  | Ignores the multicast locators   | ``Boolean``             | :class:`true`         |
-|                                | received from the remote         |                         |                       |
-|                                | participants.                    |                         |                       |
+| ``<avoid_builtin_multicast>``  | Restricts metatraffic multicast  | ``Boolean``             | :class:`true`         |
+|                                | traffic to PDP only.             |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | |usewriliv|                    | Indicates to use the             | ``Boolean``             | :class:`true`         |
 |                                | WriterLiveliness protocol.       |                         |                       |

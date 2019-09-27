@@ -38,6 +38,7 @@ IDL
 interoperability
 IPv
 libs
+lroundl
 middleware
 metatraffic
 modularity
@@ -58,6 +59,7 @@ sqlite
 stateful
 subfolder
 submessages
+submodules
 typeobject
 TypeObject
 uint

@@ -685,7 +685,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
 .. |mutTries| replace:: ``<mutation_tries>``
-.. |avoidmc| replace:: ``<avoid_builtin_multicast> ``
+.. |avoidmc| replace:: ``<avoid_builtin_multicast>``
 
 
 +---------------------------+---------------------------------------+-------------------------+-----------------------+

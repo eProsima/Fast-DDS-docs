@@ -19,7 +19,7 @@ It also adds the following bug fixes and improvements:
 * Multicast is now sent through *localhost* too.
 * *BitmapRange* now implements sliding window.
 * Improve *SequenceNumber_t* struct.
-* Participant's liveliness is now asserted when receive any RTPS message.
+* Participant's liveliness is now asserted when receiving any RTPS message.
 * Fix leak on RemoteParticipantLeaseDuration.
 * Modified default values to improve behavior in *Wi-Fi* scenarios.
 * *SubscriberHistory* improvements.

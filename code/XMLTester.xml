@@ -927,6 +927,10 @@
         <!-- DURATION -->
     </leaseAnnouncement>
 
+    <initialAnnouncements>
+        <!-- INITIAL_ANNOUNCEMENTS -->
+    </initialAnnouncements>
+    
     <avoid_builtin_multicast>true</avoid_builtin_multicast>
 
     <simpleEDP>

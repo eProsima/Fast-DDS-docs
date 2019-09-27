@@ -686,6 +686,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
 .. |mutTries| replace:: ``<mutation_tries>``
 .. |avoidmc| replace:: ``<avoid_builtin_multicast>``
+.. |initannoun| replace:: ``<initialAnnouncements>``
 
 
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
@@ -718,6 +719,10 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 |                           | to send its Discovery Message to all  |                         |                       |
 |                           | other discovered RTPSParticipants     |                         |                       |
 |                           | as well as to all Multicast ports.    |                         |                       |
++---------------------------+---------------------------------------+-------------------------+-----------------------+
+| |initannoun|              | Allows the user to configure          |  :ref:`Initial          |                       |
+|                           | the number and period of the initial  |  Announcements          |                       |
+|                           | RTPSparticipant's Discovery messages. |  <InitAnnounce>`        |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 | |avoidmc|                 | Restricts metatraffic multicast       | ``Boolean``             | :class:`true`         |
 |                           | traffic to PDP only.                  |                         |                       |
@@ -763,6 +768,24 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | ``<PUBREADER_SUBWRITER>`` | Indicates if the participant must use       | ``Boolean`` | :class:`true` |
 |                           | Publication Reader and Subscription Writer. |             |               |
 +---------------------------+---------------------------------------------+-------------+---------------+
+
+.. _InitAnnounce:
+
+**Initial Announcements**
+
++---------------------------+---------------------------------------------+---------------------+---------------+
+| Name                      | Description                                 | Values              | Default       |
++===========================+=============================================+=====================+===============+
+| ``<count>``               | Number of Discovery Messages to send at the | ``Uint32``          | 0             |
+|                           | period specified by ``<period>``.           |                     |               |
+|                           | After these announcements, the              |                     |               |
+|                           | RTPSParticipant will continue sending its   |                     |               |
+|                           | Discovery Messages at the                   |                     |               |
+|                           | ``<leaseAnnouncement>`` rate.               |                     |               |
++---------------------------+---------------------------------------------+---------------------+---------------+
+| ``<period>``              | The period for the RTPSParticipant to send  | :ref:`DurationType` | 500 ms        |
+|                           | its first ``<count>`` Discovery Messages.   |                     |               |
++---------------------------+---------------------------------------------+---------------------+---------------+
 
 
 .. _publisherprofiles:

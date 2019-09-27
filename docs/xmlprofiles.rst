@@ -719,9 +719,8 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 |                           | other discovered RTPSParticipants     |                         |                       |
 |                           | as well as to all Multicast ports.    |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
-| |avoidmc|                 | Ignores the multicast locators        | ``Boolean``             | :class:`true`         |
-|                           | received from the remote              |                         |                       |
-|                           | participants.                         |                         |                       |
+| |avoidmc|                 | Restricts metatraffic multicast       | ``Boolean``             | :class:`true`         |
+|                           | traffic to PDP only.                  |                         |                       |
 +---------------------------+---------------------------------------+-------------------------+-----------------------+
 | ``<simpleEDP>``           | Attributes of the SimpleEDP           | :ref:`simpleEDP <sedp>` |                       |
 |                           | protocol                              |                         |                       |

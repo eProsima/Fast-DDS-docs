@@ -111,7 +111,7 @@ find_package(fastrtps REQUIRED)
 # Compile example
 ########################################################################################################################
 add_executable(doctest CodeTester.cpp)
-target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/src
+target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/src/cpp
     ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/thirdparty/tinyxml2)
 target_link_libraries(doctest fastrtps)
 

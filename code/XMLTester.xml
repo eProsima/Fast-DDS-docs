@@ -1029,6 +1029,8 @@
 
     </discovery_config>
 
+    <avoid_builtin_multicast>true</avoid_builtin_multicast>
+
     <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>  <!-- boolean -->
 
     <domainId>4</domainId> <!-- uint32 -->

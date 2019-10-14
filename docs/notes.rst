@@ -1,5 +1,25 @@
-Version 1.9.1
+Version 1.9.2
 =============
+
+This release includes the following feature:
+
+* Multiple initial PDP announcements.
+* Flag to avoid builtin multicast.
+
+It also adds the following bug fixes and improvements:
+
+* Bump to Fast-RTPS-Gen v1.0.1.
+* Bump to IDL-Parser v1.0.1.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.
+
+
+Previous versions
+-----------------
+
+Version 1.9.1
+^^^^^^^^^^^^^
 
 This release includes the following features:
 
@@ -30,8 +50,6 @@ It also adds the following bug fixes and improvements:
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.
 
-Previous versions
------------------
 
 Version 1.9.0
 ^^^^^^^^^^^^^

@@ -401,7 +401,7 @@ release it calling ``return_loaned_value``.
 Annotations
 ^^^^^^^^^^^
 
-DynamicTypeBuilder allows applying annotation to both current type and inner members with the methods:
+DynamicTypeBuilder allows applying an annotation to both current type and inner members with the methods:
 
 - ``apply_annotation``
 
@@ -448,7 +448,7 @@ Builtin annotations
 The following annotations modifies the behavior of DynamicTypes:
 
 - | ``@position``: When applied to Bitmask_, sets the position of the flag, as expected in the IDL annotation.
-  | If applied to Bitset_, sets the base position of the bitfield, useful to identify unnasigned bits.
+  | If applied to Bitset_, sets the base position of the bitfield, useful to identify unassigned bits.
 
 - | ``@bit_bound``: Applies to Bitset_. Sets the size in bits of the bitfield.
 
@@ -456,7 +456,7 @@ The following annotations modifies the behavior of DynamicTypes:
 
 - | ``@default``: Sets a default value for the member.
 
-- | ``@non_serialized``: Excludes a member from being serialization.
+- | ``@non_serialized``: Excludes a member from being serialized.
 
 Serialization
 -------------
@@ -505,7 +505,7 @@ When using Dynamic Types support, *Fast RTPS* make use of an optional ``TypeObje
 At its current state, the matching will only verify that both endpoints are using the same topic type,
 but will not negotiate about it.
 
-This verification is done through in order by ``TypeIdentifier``, then ``MinimalTypeObject``, and finally
+This verification is done by ``TypeIdentifier``, then ``MinimalTypeObject``, and finally
 ``CompleteTypeObject``.
 
 If one endpoints uses a ``CompleteTypeObject`` instead, it makes possible :ref:`discovery-time-data-typing`.
@@ -550,7 +550,7 @@ Discovery-Time Data Typing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When using fastdds API, if a participant discovers an endpoint which sends a complete TypeObject or a simple
-TypeIdentifier describing a type that the participant doesn't knows, it will be called to its listener's
+TypeIdentifier describing a type that the participant doesn't know, it will be called by its listener's
 method ``on_type_discovery`` with the TypeInformation provided, and a ``DynamicType_ptr`` ready to be used.
 
 

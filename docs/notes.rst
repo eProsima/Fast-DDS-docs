@@ -1,5 +1,21 @@
-Version 1.8.2
+Version 1.8.3
 =============
+
+This release adds the following bug fixes and improvements:
+
+* Bump to Fast-RTPS-Gen v1.0.2.
+* Bump to IDL-Parser v1.0.1.
+* Fix serialization of TypeConsistencyEnforcementQosPolicy.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*
+
+
+Previous versions
+-----------------
+
+Version 1.8.2
+^^^^^^^^^^^^^
 
 This release includes the following features:
 
@@ -28,9 +44,6 @@ It also adds the following bug fixes and improvements:
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*
-
-Previous versions
------------------
 
 Version 1.8.1
 ^^^^^^^^^^^^^

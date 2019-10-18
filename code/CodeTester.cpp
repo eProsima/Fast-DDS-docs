@@ -1096,7 +1096,7 @@ data2->set_string_value("Dynamic String");
 // Using Builders
 DynamicTypeBuilder_ptr base_builder = DynamicTypeBuilderFactory::get_instance()->create_string_builder(100);
 DynamicType_ptr created_type = DynamicTypeBuilderFactory::get_instance()->create_type(base_builder.get());
-DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(created_type.get(), "alias");
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(created_type, "alias");
 DynamicData* data = DynamicDataFactory::get_instance()->create_data(builder.get());
 data->set_string_value("Dynamic Alias String");
 
@@ -1141,8 +1141,8 @@ builder->apply_annotation_to_member(0, ANNOTATION_BIT_BOUND_ID, "value", "2");
 builder->apply_annotation_to_member(0, ANNOTATION_POSITION_ID, "value", "0");
 builder->apply_annotation_to_member(1, ANNOTATION_BIT_BOUND_ID, "value", "20");
 builder->apply_annotation_to_member(1, ANNOTATION_POSITION_ID, "value", "10"); // 8 bits empty
-DynamicType_ptr pType = DynamicTypeBuilderFactory::get_instance()->create_type(builder.get());
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(pType);
+DynamicType_ptr pType(DynamicTypeBuilderFactory::get_instance()->create_type(builder.get()));
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(pType));
 data->set_byte_value(234, 0);
 data->set_uint32_value(2340, 1);
 octet bValue;
@@ -1164,8 +1164,8 @@ uint32_t limit = 5; // Stores as "octet"
 DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_bitmask_builder(limit);
 builder->add_empty_member(0, "FIRST");
 builder->add_empty_member(1, "SECOND");
-DynamicType_ptr pType = DynamicTypeBuilderFactory::get_instance()->create_type(builder.get());
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(pType);
+DynamicType_ptr pType(DynamicTypeBuilderFactory::get_instance()->create_type(builder.get()));
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(pType));
 data->set_bool_value(true, 2);
 bool bValue;
 data->get_bool_value(bValue, 0);
@@ -1180,8 +1180,8 @@ DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->crea
 builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type());
 builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance()->create_uint64_type());
 
-DynamicType_ptr struct_type = builder->build();
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(struct_type);
+DynamicType_ptr struct_type(builder->build());
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(struct_type));
 
 data->set_int32_value(5, 0);
 data->set_uint64_value(13, 1);
@@ -1195,12 +1195,12 @@ DynamicTypeBuilder_ptr child_builder =
 {
 //DYNAMIC_TYPES_CREATE_UNIONS
 DynamicType_ptr discriminator = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_union_builder(discriminator.get());
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_union_builder(discriminator);
 
 builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type(), "", { 0 }, true);
 builder->add_member(0, "second", DynamicTypeBuilderFactory::get_instance()->create_int64_type(), "", { 1 }, false);
 DynamicType_ptr union_type = builder->build();
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(union_type);
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(union_type));
 
 data->set_int32_value(9, 0);
 data->set_int64_value(13, 1);
@@ -1214,9 +1214,9 @@ data->get_union_label(unionLabel);
 uint32_t length = 2;
 
 DynamicType_ptr base_type = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_sequence_builder(base_type.get(), length);
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_sequence_builder(base_type, length);
 DynamicType_ptr sequence_type = builder->build();
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(sequence_type);
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(sequence_type));
 
 MemberId newId, newId2;
 data->insert_int32_value(10, newId);
@@ -1230,9 +1230,9 @@ data->remove_sequence_data(newId);
 std::vector<uint32_t> lengths = { 2, 2 };
 
 DynamicType_ptr base_type = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_array_builder(base_type.get(), lengths);
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_array_builder(base_type, lengths);
 DynamicType_ptr array_type = builder->build();
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(array_type);
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(array_type));
 
 MemberId pos = data->get_array_index({1, 0});
 data->set_int32_value(11, pos);
@@ -1246,11 +1246,11 @@ data->clear_array_data(pos);
 uint32_t length = 2;
 
 DynamicType_ptr base = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_map_builder(base.get(), base.get(), length);
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_map_builder(base, base, length);
 DynamicType_ptr map_type = builder->build();
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(map_type);
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(map_type));
 
-DynamicData_ptr key = DynamicDataFactory::get_instance()->create_data(base);
+DynamicData_ptr key(DynamicDataFactory::get_instance()->create_data(base));
 MemberId keyId;
 MemberId valueId;
 data->insert_map_data(key.get(), keyId, valueId);
@@ -1276,7 +1276,7 @@ DynamicType_ptr struct_type = builder->build();
 DynamicTypeBuilder_ptr parent_builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
 parent_builder->add_member(0, "child_struct", struct_type);
 parent_builder->add_member(1, "second", DynamicTypeBuilderFactory::get_instance()->create_int32_type());
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(parent_builder.get());
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(parent_builder.get()));
 
 DynamicData* child_data = data->loan_value(0);
 child_data->set_int32_value(5, 0);
@@ -1295,7 +1295,7 @@ DynamicTypeBuilder_ptr child_builder = DynamicTypeBuilderFactory::get_instance()
 builder->add_member(2, "third", DynamicTypeBuilderFactory::get_instance()->create_uint64_type());
 
 DynamicType_ptr struct_type = child_builder->build();
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(struct_type);
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(struct_type));
 
 data->set_int32_value(5, 0);
 data->set_uint64_value(13, 1);
@@ -1310,14 +1310,14 @@ DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::get_instance
 DynamicType_ptr created_type = DynamicTypeBuilderFactory::get_instance()->create_type(created_builder.get());
 DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(created_builder.get(), "alias");
 DynamicTypeBuilder_ptr builder2 = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(builder.get(), "alias2");
-DynamicData* data = DynamicDataFactory::get_instance()->create_data(builder2.get());
+DynamicData* data(DynamicDataFactory::get_instance()->create_data(builder2->build()));
 data->set_string_value("Dynamic Alias 2 String");
 
 // Creating directly the Dynamic Type
 DynamicType_ptr pType = DynamicTypeBuilderFactory::get_instance()->create_string_type(100);
 DynamicType_ptr pAliasType = DynamicTypeBuilderFactory::get_instance()->create_alias_type(pType, "alias");
 DynamicType_ptr pAliasType2 = DynamicTypeBuilderFactory::get_instance()->create_alias_type(pAliasType, "alias2");
-DynamicData* data2 = DynamicDataFactory::get_instance()->create_data(pAliasType);
+DynamicData* data2(DynamicDataFactory::get_instance()->create_data(pAliasType));
 data2->set_string_value("Dynamic Alias 2 String");
 //!--
 }
@@ -1325,7 +1325,7 @@ data2->set_string_value("Dynamic Alias 2 String");
 {
 //DYNAMIC_TYPES_CREATE_NESTED_UNIONS
 DynamicType_ptr discriminator = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_union_builder(discriminator.get());
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_union_builder(discriminator);
 builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type(), "", { 0 }, true);
 
 DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
@@ -1334,7 +1334,7 @@ struct_builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance()
 builder->add_member(1, "first", struct_builder.get(), "", { 1 }, false);
 
 DynamicType_ptr union_type = builder->build();
-DynamicData_ptr data = DynamicDataFactory::get_instance()->create_data(union_type);
+DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(union_type));
 
 DynamicData* child_data = data->loan_value(1);
 child_data->set_int32_value(9, 0);
@@ -1375,7 +1375,7 @@ DynamicDataFactory::get_instance()->delete_data(pData);
 //DYNAMIC_TYPES_NOTES_2
 DynamicTypeBuilder_ptr pBuilder = DynamicTypeBuilderFactory::get_instance()->create_uint32_builder();
 DynamicType_ptr pType = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-DynamicData_ptr pData = DynamicDataFactory::get_instance()->create_data(pType);
+DynamicData_ptr pData(DynamicDataFactory::get_instance()->create_data(pType));
 //!--
 }
 

@@ -398,6 +398,66 @@ release it calling ``return_loaned_value``.
    :start-after: //DYNAMIC_TYPES_CREATE_NESTED_UNIONS
    :end-before: //!--
 
+Annotations
+^^^^^^^^^^^
+
+DynamicTypeBuilder allows applying an annotation to both current type and inner members with the methods:
+
+- ``apply_annotation``
+
+- ``apply_annotation_to_member``
+
+``apply_annotation_to_member`` receives the ``MemberId`` to apply plus the same parameters than ``apply_annotation``.
+The common parameters are the name of the annotation, the key and the value.
+
+For example, if we define an annotation like:
+
+.. code-block:: idl
+
+    @annotation MyAnnotation
+    {
+        long value;
+        string name;
+    };
+
+And then we apply it through IDL to a struct:
+
+.. code-block:: idl
+
+    @MyAnnotation(5, "length")
+    struct MyStruct
+    {
+    ...
+
+The equivalent code using DynamicTypes will be:
+
+.. code-block:: cpp
+
+    // Create the annotation
+
+
+    // Apply the annotation
+    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+    ...
+    builder->apply_annotation("MyAnnotation", "value", "5");
+    builder->apply_annotation("MyAnnotation", "name", "length");
+
+Builtin annotations
+~~~~~~~~~~~~~~~~~~~
+
+The following annotations modifies the behavior of DynamicTypes:
+
+- | ``@position``: When applied to Bitmask_, sets the position of the flag, as expected in the IDL annotation.
+  | If applied to Bitset_, sets the base position of the bitfield, useful to identify unassigned bits.
+
+- | ``@bit_bound``: Applies to Bitset_. Sets the size in bits of the bitfield.
+
+- | ``@key``: Alias for ``@Key``. See :ref:`topics-and-keys` section for more details.
+
+- | ``@default``: Sets a default value for the member.
+
+- | ``@non_serialized``: Excludes a member from being serialized.
+
 Serialization
 -------------
 
@@ -408,6 +468,8 @@ their management is pretty similar to them.
    :language: c++
    :start-after: //DYNAMIC_TYPES_SERIALIZATION
    :end-before: //!--
+
+A member can be marked to be ignored by serialization with the annotation ``@non_serialized``.
 
 Important Notes
 ---------------
@@ -439,21 +501,14 @@ with them will cause a crash.
 Dynamic Types Discovery and Endpoint Matching
 ---------------------------------------------
 
-When using Dynamic Types support, *Fast RTPS* make use of an optional *TopicDiscoveryKind QoS Policy* and ``TypeIdV1``.
+When using Dynamic Types support, *Fast RTPS* make use of an optional ``TypeObjectV1`` and ``TypeIdV1``.
 At its current state, the matching will only verify that both endpoints are using the same topic type,
 but will not negotiate about it.
 
-This verification is done through ``MinimalTypeObject``.
+This verification is done by ``TypeIdentifier``, then ``MinimalTypeObject``, and finally
+``CompleteTypeObject``.
 
-TopicDiscoveryKind
-^^^^^^^^^^^^^^^^^^
-
-``TopicAttribute`` to indicate which kind of Dynamic discovery we are using.
-Can take 3 different values:
-
-- :class:`NO_CHECK`: Default value. Will not perform any check for dynamic types.
-- :class:`MINIMAL`: Will check only at ``TypeInformation`` level (and ``MinimalTypeObject`` if needed).
-- :class:`COMPLETE`: Will perform a full check with ``CompleteTypeObject``.
+If one endpoints uses a ``CompleteTypeObject`` instead, it makes possible :ref:`discovery-time-data-typing`.
 
 TypeObject (TypeObjectV1)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -489,9 +544,46 @@ taking :class:`XXX` as our IDL type. These files provide a small Type Factory fo
 Generally, these files are not used directly, as now the type :class:`XXX` will register itself through its factory to
 ``TypeObjectFactory`` in its constructor, making very easy the use of static types with dynamic types.
 
+.. _discovery-time-data-typing:
+
+Discovery-Time Data Typing
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When using fastdds API, if a participant discovers an endpoint which sends a complete TypeObject or a simple
+TypeIdentifier describing a type that the participant doesn't know, it will be called by its listener's
+method ``on_type_discovery`` with the TypeInformation provided, and a ``DynamicType_ptr`` ready to be used.
+
 
 XML Dynamic Types
 -----------------
 
 :ref:`XMLDynamicTypes` allows *eProsima Fast RTPS* to create Dynamic Types directly defining them through XML.
 This allows any application to change ``TopicDataTypes`` without the need to change its source code.
+
+
+Dynamic HelloWorld Examples
+---------------------------
+
+DynamicHelloWorldExample
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Using some of the functionality described in this document, there exists an example at
+the ``examples/C++/DynamicHelloWorldExample`` folder named
+:class:`DynamicHelloWorldExample` that uses DynamicType generation to provide the TopicDataType.
+
+This example is compatible with classic HelloWorldExample.
+
+As a quick reference, it is shown how the HelloWorld type is created using DynamicTypes:
+
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_HELLO_WORLD_API
+   :end-before: //!--
+
+
+DDSDynamicHelloWorldExample
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Another example located in the ``examples/C++/DDS/DynamicHelloWorldExample`` folder shows a publisher that shares
+a type loaded from an XML file, and a subscriber that discovers the type using discovery-time-data-typing_, showing
+the received data after introspecting it.

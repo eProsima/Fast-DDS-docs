@@ -1016,6 +1016,10 @@
             <!-- DURATION -->
         </leaseAnnouncement>
 
+        <initialAnnouncements>
+            <!-- INITIAL_ANNOUNCEMENTS -->
+        </initialAnnouncements>
+
         <simpleEDP>
             <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>  <!-- boolean -->
             <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>  <!-- boolean -->

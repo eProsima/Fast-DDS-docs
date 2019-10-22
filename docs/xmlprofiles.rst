@@ -782,36 +782,40 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |staendxml| replace:: ``<staticEndpointXMLFilename>``
 .. |protocol| replace:: :class:`SIMPLE`, :class:`CLIENT`, :class:`SERVER`, :class:`BACKUP`
 
-+---------------------------+---------------------------------------+-------------------------+-----------------------+
-| Name                      | Description                           | Values                  | Default               |
-+===========================+=======================================+=========================+=======================+
-| ``<discoveryProtocol>``   | Indicates which kind of PDP protocol  | |protocol|              | :class:`SIMPLE`       |
-|                           | the participant must use.             |                         |                       |
-+---------------------------+---------------------------------------+-------------------------+-----------------------+
-| ``<EDP>``                 | - If set to :class:`SIMPLE`,          | :class:`SIMPLE`,        | :class:`SIMPLE`       |
-|                           |   ``<simpleEDP>`` would be used.      | :class:`STATIC`         |                       |
-|                           | - If set to :class:`STATIC`,          |                         |                       |
-|                           |   StaticEDP based on an XML           |                         |                       |
-|                           |   file would be used with the         |                         |                       |
-|                           |   contents of                         |                         |                       |
-|                           |   ``<staticEndpointXMLFilename>``.    |                         |                       |
-+---------------------------+---------------------------------------+-------------------------+-----------------------+
-| ``<simpleEDP>``           | Attributes of the SimpleEDP           | :ref:`simpleEDP <sedp>` |                       |
-|                           | protocol                              |                         |                       |
-+---------------------------+---------------------------------------+-------------------------+-----------------------+
-| ``<leaseDuration>``       | Indicates how long this               |  :ref:`DurationType`    | 130 s                 |
-|                           | RTPSParticipant should consider       |                         |                       |
-|                           | remote RTPSParticipants alive.        |                         |                       |
-+---------------------------+---------------------------------------+-------------------------+-----------------------+
-| ``<leaseAnnouncement>``   | The period for the RTPSParticipant    |  :ref:`DurationType`    | 40 s                  |
-|                           | to send its Discovery Message to all  |                         |                       |
-|                           | other discovered RTPSParticipants     |                         |                       |
-|                           | as well as to all Multicast ports.    |                         |                       |
-+---------------------------+---------------------------------------+-------------------------+-----------------------+
-| |staendxml|               | StaticEDP XML filename.               | ``string``              |                       |
-|                           | Only necessary if ``<EDP>``           |                         |                       |
-|                           | is set to :class:`STATIC`             |                         |                       |
-+---------------------------+---------------------------------------+-------------------------+-----------------------+
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| Name                       | Description                           | Values                  | Default              |
++============================+=======================================+=========================+======================+
+| ``<discoveryProtocol>``    | Indicates which kind of PDP protocol  | |protocol|              | :class:`SIMPLE`      |
+|                            | the participant must use.             |                         |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| ``<EDP>``                  | - If set to :class:`SIMPLE`,          | :class:`SIMPLE`,        | :class:`SIMPLE`      |
+|                            |   ``<simpleEDP>`` would be used.      | :class:`STATIC`         |                      |
+|                            | - If set to :class:`STATIC`,          |                         |                      |
+|                            |   StaticEDP based on an XML           |                         |                      |
+|                            |   file would be used with the         |                         |                      |
+|                            |   contents of                         |                         |                      |
+|                            |   ``<staticEndpointXMLFilename>``.    |                         |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| ``<simpleEDP>``            | Attributes of the SimpleEDP           | :ref:`simpleEDP <sedp>` |                      |
+|                            | protocol                              |                         |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| ``<leaseDuration>``        | Indicates how long this               |  :ref:`DurationType`    |  20 s                |
+|                            | RTPSParticipant should consider       |                         |                      |
+|                            | remote RTPSParticipants alive.        |                         |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| ``<leaseAnnouncement>``    | The period for the RTPSParticipant    |  :ref:`DurationType`    |  3 s                 |
+|                            | to send its Discovery Message to all  |                         |                      |
+|                            | other discovered RTPSParticipants     |                         |                      |
+|                            | as well as to all Multicast ports.    |                         |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| ``<initialAnnouncements>`` | Allows the user to configure          |  :ref:`Initial          |                      |
+|                            | the number and period of the initial  |  Announcements          |                      |
+|                            | RTPSparticipant's Discovery messages. |  <InitAnnounce>`        |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| |staendxml|                | StaticEDP XML filename.               | ``string``              |                      |
+|                            | Only necessary if ``<EDP>``           |                         |                      |
+|                            | is set to :class:`STATIC`             |                         |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
 
 .. _sedp:
 
@@ -826,6 +830,24 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | ``<PUBREADER_SUBWRITER>`` | Indicates if the participant must use       | ``Boolean`` | :class:`true` |
 |                           | Publication Reader and Subscription Writer. |             |               |
 +---------------------------+---------------------------------------------+-------------+---------------+
+
+.. _InitAnnounce:
+
+**Initial Announcements**
+
++---------------------------+---------------------------------------------+---------------------+---------------+
+| Name                      | Description                                 | Values              | Default       |
++===========================+=============================================+=====================+===============+
+| ``<count>``               | Number of Discovery Messages to send at the | ``Uint32``          | 5             |
+|                           | period specified by ``<period>``.           |                     |               |
+|                           | After these announcements, the              |                     |               |
+|                           | RTPSParticipant will continue sending its   |                     |               |
+|                           | Discovery Messages at the                   |                     |               |
+|                           | ``<leaseAnnouncement>`` rate.               |                     |               |
++---------------------------+---------------------------------------------+---------------------+---------------+
+| ``<period>``              | The period for the RTPSParticipant to send  | :ref:`DurationType` | 100 ms        |
+|                           | its first ``<count>`` Discovery Messages.   |                     |               |
++---------------------------+---------------------------------------------+---------------------+---------------+
 
 
 .. _publisherprofiles:

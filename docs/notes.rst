@@ -1,5 +1,29 @@
-Version 1.9.2
+Version 1.9.3
 =============
+
+This release adds the following bug fixes and improvements:
+
+* Bump to Fast-RTPS-Gen v1.0.2.
+* Bring back compatibility with XTypes 1.1 on PID_TYPE_CONSISTENCY.
+* Ensure correct alignment when reading a parameter list.
+* Add CHECK_DOCUMENTATION *cmake* option.
+* EntityId_t and GuidPrefix_t have now their own header files.
+* Fix potential race conditions and deadlocks.
+* Improve the case where *check_acked_status* is called between reader matching process and its acknack message reception.
+* RTPSMessageGroup_t instances now use the thread-local storage.
+* Avoid the the usage of FragmentedChangePitStop from StatelessReader.
+* Remove the dataFragments_ vector on CacheChange_t.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.
+
+
+Previous versions
+-----------------
+
+
+Version 1.9.2
+^^^^^^^^^^^^^
 
 This release includes the following feature:
 
@@ -14,9 +38,6 @@ It also adds the following bug fixes and improvements:
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.
 
-
-Previous versions
------------------
 
 Version 1.9.1
 ^^^^^^^^^^^^^

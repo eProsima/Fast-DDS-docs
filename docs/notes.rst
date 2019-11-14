@@ -1,7 +1,12 @@
 Version 1.9.3
 =============
 
-This release adds the following bug fixes and improvements:
+This release adds the following features:
+
+* Participant discovery filtering flags.
+* Intra-process delivery mechanism opt-in.
+
+It also includes the following bug fixes and improvements:
 
 * Bump to Fast-RTPS-Gen v1.0.2.
 * Bring back compatibility with XTypes 1.1 on PID_TYPE_CONSISTENCY.
@@ -9,10 +14,13 @@ This release adds the following bug fixes and improvements:
 * Add CHECK_DOCUMENTATION *cmake* option.
 * EntityId_t and GuidPrefix_t have now their own header files.
 * Fix potential race conditions and deadlocks.
-* Improve the case where *check_acked_status* is called between reader matching process and its acknack message reception.
+* Improve the case where *check_acked_status* is called between reader matching process and its acknack reception.
 * RTPSMessageGroup_t instances now use the thread-local storage.
-* Avoid the the usage of FragmentedChangePitStop from StatelessReader.
-* Remove the dataFragments_ vector on CacheChange_t.
+* FragmentedChangePitStop manager removed.
+* Remove the data fragments vector on CacheChange_t.
+* Only call find_package for TinyXML2 if thirdparty options are off
+* Allow XMLProfileManager methods to not show logError messages if a profile is not found.
+
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.

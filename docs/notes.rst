@@ -18,8 +18,8 @@ It also includes the following bug fixes and improvements:
 * RTPSMessageGroup_t instances now use the thread-local storage.
 * FragmentedChangePitStop manager removed.
 * Remove the data fragments vector on CacheChange_t.
-* Only call find_package for TinyXML2 if thirdparty options are off
-* Allow XMLProfileManager methods to not show logError messages if a profile is not found.
+* Only call find_package for TinyXML2 if third-party options are off
+* Allow XMLProfileManager methods to not show error log messages if a profile is not found.
 
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source

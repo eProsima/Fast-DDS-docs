@@ -1006,7 +1006,7 @@
 
         <discoveryProtocol>NONE</discoveryProtocol> <!-- DiscoveryProtocol enum -->
 
-        <ignoreParticipantFlags></ignoreParticipantFlags> <!-- ParticipantFlags enum -->
+        <ignoreParticipantFlags>FILTER_DIFFERENT_HOST</ignoreParticipantFlags> <!-- ParticipantFlags enum -->
 
         <EDP>SIMPLE</EDP>  <!-- string -->
 
@@ -2035,9 +2035,8 @@
 
 <!-->CONF-LIBRARY-SETTINGS<-->
     <library_settings>
-        <intraprocess_delivery>FULL</intraprocess_deliveray> <!-- OFF | USER_DATA_ONLY | FULL -->
+        <intraprocess_delivery>FULL</intraprocess_delivery> <!-- OFF | USER_DATA_ONLY | FULL -->
     </library_settings>
-</profiles>
 <!--><-->
 
 <!-->LOG-CONFIG<-->
@@ -2058,4 +2057,4 @@
 <!--><-->
 
 
-
+</profiles>

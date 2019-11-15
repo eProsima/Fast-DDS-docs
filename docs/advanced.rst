@@ -58,13 +58,13 @@ This consist of defining a maximum number of data sinks and a maximum size for e
 Note that your History must be big enough to accommodate the maximum number of samples for each key.
 eProsima Fast RTPS will notify you if your History is too small.
 
-.. _intraprocess-delivery
+.. _intraprocess-delivery:
 
 Intraprocess delivery
 *********************
 
 *eProsima Fast RTPS* allows to speed up intraprocess communications by avoiding any copy operation involved with
-the transport layer. This feature is disable by default and must be enable using :ref:`xml-profiles`. Currently the
+the transport layer. This feature is disabled by default and must be enable using :ref:`xml-profiles`. Currently the
 following options are available:
 
 **INTRAPROCESS_OFF**. Default value, the feature is disabled.
@@ -704,9 +704,10 @@ DiscoverySettings
  |    :end-before: <!--><-->                        |
  +--------------------------------------------------+
 
-+ a **ignoreParticipantFlags** member specifies participant filtering criteria to optimize discovery stage speed and memory usage. This feature is only available for the `SIMPLE` discovery protocol. There are several options:
++ a **ignoreParticipantFlags** member specifies participant filtering criteria to optimize discovery stage speed
+and memory usage. This feature is only available for the `SIMPLE` discovery protocol. There are several options:
 
- * **FILTER_DIFFERENT_HOST** all metadata from another host, implying a different local network address, would be discarded.
+ * **FILTER_DIFFERENT_HOST** all metadata from another host would be discarded.
  * **FILTER_DIFFERENT_PROCESS** all metadata from another process on the same host would be discarded.
  * **FILTER_SAME_PROCESS** all metadata from our own process would be discarded.
  * **FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS** all metada from our own host would be discarded.

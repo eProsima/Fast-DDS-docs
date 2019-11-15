@@ -753,7 +753,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
 .. |mutTries| replace:: ``<mutation_tries>``
 .. |igpartf| replace:: ``<ignoreParticipantFlags>``
-.. |filterlist| replace:: Enum of :ref:`Participantfiltering`
+.. |filterlist| replace:: :ref:`ignoreParticipantFlags <Participantfiltering>`
 
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | Name                           | Description                      | Values                  | Default               |
@@ -842,10 +842,10 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 
 **ignoreParticipantFlags**
 
-**FILTER_DIFFERENT_HOST** all metadata from another host would be discarded.
-**FILTER_DIFFERENT_PROCESS** all metadata from another process on the same host would be discarded.
-**FILTER_SAME_PROCESS** all metadata from our own process would be discarded.
-**FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS** all metada from our own host would be discarded.
+* **FILTER_DIFFERENT_HOST** all metadata from another host would be discarded.
+* **FILTER_DIFFERENT_PROCESS** all metadata from another process on the same host would be discarded.
+* **FILTER_SAME_PROCESS** all metadata from our own process would be discarded.
+* **FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS** all metadata from our own host would be discarded.
 
 .. _sedp:
 

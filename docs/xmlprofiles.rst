@@ -55,6 +55,22 @@ this profile name and applies the XML profile to the entity.
 
 To load dynamic types from its declaration through XML see the :ref:`Usage` section of :ref:`xmldynamictypes`.
 
+.. _librarySettingsAttributes:
+
+Library settings
+-----------------
+
+This section is devoted to general settings that are not constraint to specific entities
+ (like participants, subscribers, publishers) or functionality (like transports or types). All of them
+are gathered under the ``library_settings`` profile.
+
+.. literalinclude:: ../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->CONF-LIBRARY-SETTINGS<-->
+    :end-before: <!--><-->
+
+Currently only the :ref:`intraprocess-delivery` feature is comprised here.
+
 .. _transportdescriptors:
 
 Transport descriptors
@@ -736,6 +752,8 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
 .. |mutTries| replace:: ``<mutation_tries>``
+.. |igpartf| replace:: ``<ignoreParticipantFlags>``
+.. |filterlist| replace:: Enum of :ref:`Participantfiltering`
 
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | Name                           | Description                      | Values                  | Default               |
@@ -743,6 +761,9 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | ``<discovery_config>``         | This is the main tag where       |                         |                       |
 |                                | discovery-related settings can   | :ref:`discovery_config  |                       |
 |                                | be configured.                   | <dconf>`                |                       |
++--------------------------------+----------------------------------+-------------------------+-----------------------+
+| |igpartf|                      | Restricts metatraffic using      | |filterlist|            | No filtering.         |
+|                                | several filtering criteria.      |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | ``<avoid_builtin_multicast>``  | Restricts metatraffic multicast  | ``Boolean``             | :class:`true`         |
 |                                | traffic to PDP only.             |                         |                       |
@@ -816,6 +837,15 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 |                            | Only necessary if ``<EDP>``           |                         |                      |
 |                            | is set to :class:`STATIC`             |                         |                      |
 +----------------------------+---------------------------------------+-------------------------+----------------------+
+
+.. _Participantfiltering:
+
+**ignoreParticipantFlags**
+
+**FILTER_DIFFERENT_HOST** all metadata from another host, implying a different local network address, would be discarded.
+**FILTER_DIFFERENT_PROCESS** all metadata from another process on the same host would be discarded.
+**FILTER_SAME_PROCESS** all metadata from our own process would be discarded.
+**FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS** all metada from our own host would be discarded.
 
 .. _sedp:
 

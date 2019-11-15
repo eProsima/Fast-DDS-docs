@@ -1006,6 +1006,8 @@
 
         <discoveryProtocol>NONE</discoveryProtocol> <!-- DiscoveryProtocol enum -->
 
+        <ignoreParticipantFlags></ignoreParticipantFlags> <!-- ParticipantFlags enum -->
+
         <EDP>SIMPLE</EDP>  <!-- string -->
 
         <leaseDuration>
@@ -2030,6 +2032,11 @@
 
         <entityID>66</entityID>
     </subscriber>
+
+<!-->CONF-LIBRARY-SETTINGS<-->
+    <library_settings>
+        <intraprocess_delivery>FULL</intraprocess_deliveray> <!-- OFF | USER_DATA_ONLY | FULL -->
+    </library_settings>
 </profiles>
 <!--><-->
 
@@ -2049,3 +2056,6 @@
     </consumer>
 </log>
 <!--><-->
+
+
+

@@ -180,6 +180,11 @@ publisher_attr.matched_subscriber_allocation = eprosima::fastrtps::ResourceLimit
 subscriber_attr.matched_publisher_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
 //!--
 
+//TYPELOOKUP_SERVICE_ENABLING
+participant_attr.rtps.builtin.typelookup_config.use_client = true;
+participant_attr.rtps.builtin.typelookup_config.use_server = true;
+//!--
+
 {
 //CONF-TCP-TLS-SERVER
 auto tls_transport = std::make_shared<TCPv4TransportDescriptor>();
@@ -1344,6 +1349,16 @@ data->return_loaned_value(child_data);
 }
 
 {
+//DYNAMIC_TYPES_CREATE_ANNOTATION
+// Apply the annotation
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+//...
+builder->apply_annotation("MyAnnotation", "value", "5");
+builder->apply_annotation("MyAnnotation", "name", "length");
+//!--
+}
+
+{
 //DYNAMIC_TYPES_SERIALIZATION
 DynamicType_ptr pType = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
 DynamicPubSubType pubsubType(pType);
@@ -1376,6 +1391,30 @@ DynamicDataFactory::get_instance()->delete_data(pData);
 DynamicTypeBuilder_ptr pBuilder = DynamicTypeBuilderFactory::get_instance()->create_uint32_builder();
 DynamicType_ptr pType = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
 DynamicData_ptr pData(DynamicDataFactory::get_instance()->create_data(pType));
+//!--
+}
+
+{
+//DYNAMIC_HELLO_WORLD_API
+// In HelloWorldPublisher.h
+// Dynamic Types
+eprosima::fastrtps::types::DynamicData* m_DynHello;
+eprosima::fastrtps::types::DynamicPubSubType m_DynType;
+
+// In HelloWorldPublisher.cpp
+// Create basic builders
+DynamicTypeBuilder_ptr struct_type_builder(DynamicTypeBuilderFactory::get_instance()->create_struct_builder());
+
+// Add members to the struct.
+struct_type_builder->add_member(0, "index", DynamicTypeBuilderFactory::get_instance()->create_uint32_type());
+struct_type_builder->add_member(1, "message", DynamicTypeBuilderFactory::get_instance()->create_string_type());
+struct_type_builder->set_name("HelloWorld");
+
+DynamicType_ptr dynType = struct_type_builder->build();
+m_DynType.SetDynamicType(dynType);
+m_DynHello = DynamicDataFactory::get_instance()->create_data(dynType);
+m_DynHello->set_uint32_value(0, 0);
+m_DynHello->set_string_value("HelloWorld", 1);
 //!--
 }
 

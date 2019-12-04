@@ -431,16 +431,10 @@ And then we apply it through IDL to a struct:
 
 The equivalent code using DynamicTypes will be:
 
-.. code-block:: cpp
-
-    // Create the annotation
-
-
-    // Apply the annotation
-    DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
-    ...
-    builder->apply_annotation("MyAnnotation", "value", "5");
-    builder->apply_annotation("MyAnnotation", "name", "length");
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_CREATE_ANNOTATION
+   :end-before: //!--
 
 Builtin annotations
 ~~~~~~~~~~~~~~~~~~~
@@ -550,9 +544,9 @@ Discovery-Time Data Typing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When using fastdds API, if a participant discovers an endpoint which sends a complete TypeObject or a simple
-TypeIdentifier describing a type that the participant doesn't know, it will be called to its listener's
-method ``on_type_discovery`` with the TypeObject and TypeIdentifier provided,
-and, when possible, a ``DynamicType_ptr`` ready to be used.
+TypeIdentifier describing a type that the participant doesn't know, *Fast RTPS* will call to the participant listener's
+method ``on_type_discovery`` with the TypeObject and TypeIdentifier provided, and, when possible, a ``DynamicType_ptr``
+ready to be used.
 Discovery-Time Data Typing allows the discovering of simple DynamicTypes. A TypeObject that depends on other
 TypeObjects, cannot be built locally using Discovery-Time Data Typing and should use :ref:`TypeLookup-Service` instead.
 
@@ -568,18 +562,17 @@ TypeLookup Service
 ^^^^^^^^^^^^^^^^^^
 
 When using fastdds API, if a participant discovers an endpoint which sends a TypeInformation
-describing a type that the participant doesn't know, it will be called to its listener's
+describing a type that the participant doesn't know, *Fast RTPS* will call to the participant listener's
 method ``on_type_information_received`` with the TypeInformation provided.
 Then the user can try to retrieve the full TypeObject hierarchy to build the remote type locally, using the
 TypeLookup Service.
 
 To enable this builtin TypeLookup Service, the user must enable it in the Participant's RTPS builtin attributes:
 
-.. code-block:: cpp
-
-    ParticipantAttributes PParam;
-    PParam.rtps.builtin.typelookup_config.use_client = true;
-    PParam.rtps.builtin.typelookup_config.use_server = true;
+.. literalinclude:: ../code/CodeTester.cpp
+   :language: c++
+   :start-after: //TYPELOOKUP_SERVICE_ENABLING
+   :end-before: //!--
 
 A participant can be enabled to act as a TypeLookup server, client, or both.
 
@@ -588,14 +581,14 @@ DomainParticipant provides the ``register_remote_type`` function that internally
 
 On success, this function will call a function received as parameter with the signature:
 
-.. code-block:: cpp
+.. code-block:: c
 
     void(std::string& type_name, const DynamicType_ptr type)
 
-- | type_name: Is the given type name to the ``register_remote_type`` function, to allow multiple calls using the same
+- | type_name: Is the given type's name to the ``register_remote_type`` function, to allow multiple calls using the same
   | function.
 
-- | type: When possible, the function will be called with an already build DynamicType. If wasn't possible, it will be
+- | type: When possible, the function will be called with an already built DynamicType. If wasn't possible, it will be
   | ``nullptr``. In that case, the user can try to build the type by himself using the factories, but it is very
   | likely that the build process will fail.
 

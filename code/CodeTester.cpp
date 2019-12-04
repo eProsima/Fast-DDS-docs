@@ -180,6 +180,11 @@ publisher_attr.matched_subscriber_allocation = eprosima::fastrtps::ResourceLimit
 subscriber_attr.matched_publisher_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
 //!--
 
+//TYPELOOKUP_SERVICE_ENABLING
+participant_attr.rtps.builtin.typelookup_config.use_client = true;
+participant_attr.rtps.builtin.typelookup_config.use_server = true;
+//!--
+
 {
 //CONF-TCP-TLS-SERVER
 auto tls_transport = std::make_shared<TCPv4TransportDescriptor>();
@@ -1340,6 +1345,16 @@ DynamicData* child_data = data->loan_value(1);
 child_data->set_int32_value(9, 0);
 child_data->set_int64_value(13, 1);
 data->return_loaned_value(child_data);
+//!--
+}
+
+{
+//DYNAMIC_TYPES_CREATE_ANNOTATION
+// Apply the annotation
+DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+//...
+builder->apply_annotation("MyAnnotation", "value", "5");
+builder->apply_annotation("MyAnnotation", "name", "length");
 //!--
 }
 

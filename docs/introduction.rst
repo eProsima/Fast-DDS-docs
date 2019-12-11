@@ -85,13 +85,13 @@ The application build can be used to spawn any number of publishers and subscrib
 
 On Linux: ::
 
-    ./HelloWorldPublisherSubscriber publisher
-    ./HelloWorldPublisherSubscriber subscriber
+    ./HelloWorld publisher
+    ./HelloWorld subscriber
 
 On Windows: ::
 
-    HelloWorldPublisherSubscriber.exe publisher
-    HelloWorldPublisherSubscriber.exe subscriber
+    HelloWorld.exe publisher
+    HelloWorld.exe subscriber
 
 You may need to set up a special rule in your Firewall for *eprosima Fast RTPS* to work correctly on Windows.
 

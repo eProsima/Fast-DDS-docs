@@ -67,9 +67,9 @@ Intra-process delivery
 the transport layer. This feature is disabled by default and must be enable using :ref:`xml-profiles`. Currently the
 following options are available:
 
-* **INTRAPROCESS_OFF**. Default value, the feature is disabled.
+* **INTRAPROCESS_OFF**. The feature is disabled.
 * **INTRAPROCESS_USER_DATA_ONLY**. Discovery metadata keeps using ordinary transport.
-* **INTRAPROCESS_FULL**. Both user data and discovery metadata using Intra-process delivery.
+* **INTRAPROCESS_FULL**. Default value. Both user data and discovery metadata using Intra-process delivery.
 
 .. _comm-transports-configuration:
 

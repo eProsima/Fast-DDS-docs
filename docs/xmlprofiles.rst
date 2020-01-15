@@ -1394,10 +1394,10 @@ Controls the allocation behavior of the change histories.
 * **PREALLOCATED**: As the history gets larger, memory is allocated in chunks. Each chunk accommodates
   a number of changes, and no more allocations are done until that chunk is full. Provides minimum
   number of dynamic allocations at the cost of increased memory footprint. Maximum payload size of
-  changes must be approrpiately configured, as history will not be able to accommodate changes
+  changes must be appropriately configured, as history will not be able to accommodate changes
   with larger payload after the allocation.
 * **PREALLOCATED_WITH_REALLOC**: Like PREALLOCATED, but preallocated memory can be reallocated
-  to accomodate changes with larged payloads than the defined maximum.
+  to accommodate changes with larger payloads than the defined maximum.
 * **DYNAMIC**: Every change gets a fresh new allocated memory of the correct size.
   It minimizes the memory footprint, at the cost of increased number of dynamic allocations.
 * **DYNAMIC_REUSABLE**: Like DYNAMIC, but instead of deallocating the memory when the change is removed

@@ -2039,6 +2039,8 @@
     </library_settings>
 <!--><-->
 
+</profiles>
+
 <!-->LOG-CONFIG<-->
 <log>
     <use_default>FALSE</use_default>
@@ -2057,4 +2059,3 @@
 <!--><-->
 
 
-</profiles>

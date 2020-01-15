@@ -10,15 +10,15 @@ This release adds the following features:
 
 It also includes the following bug fixes and improvements:
 
-* Bump to Fast-CDR v1.0.12.
+* Bump to FastCDR v1.0.12.
 * Bump to Fast-RTPS-Gen v1.0.3.
 * Fixed deadlock between PDP and StatefulReader.
 * Improved CPU usage and allocations on timed events management.
 * Performance improvements on reliable writers.
-* Fixing bugs when intra-process delivery is activated.
+* Fixing bugs when Intra-process delivery is activated.
 * Reducing dynamic allocations and memory footprint.
 * Improvements and fixes on performance tests.
-* Other minor bugfixes and improvements.
+* Other minor bug fixes and improvements.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.

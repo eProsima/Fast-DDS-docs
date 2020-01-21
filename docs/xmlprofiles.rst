@@ -730,6 +730,18 @@ behavior on the participant.
      - Participant :ref:`CommonAlloc` related to the total number of writers on each participant (local and remote).
      - :ref:`CommonAlloc`
      -
+   * - ``<max_partitions>``
+     - Maximum size of the partitions submessage or zero for no limit. See :ref:`MessageMaxSize`.
+     - ``UInt32``
+     -
+   * - ``<max_user_data>``
+     - Maximum size of the user data submessage or zero for no limit. See :ref:`MessageMaxSize`.
+     - ``UInt32``
+     -
+   * - ``<max_properties>``
+     - Maximum size of the properties submessage or zero for no limit. See :ref:`MessageMaxSize`.
+     - ``UInt32``
+     -
 
 .. _builtin:
 
@@ -1414,7 +1426,27 @@ See :ref:`realtime-allocations` for detailed information on how to tune allocati
      - ``UInt32``
      - 1
 
+.. _MessageMaxSize:
+
+Submessage Size Limit
+^^^^^^^^^^^^^^^^^^^^^
+
+While some submessages have a fixed size (for example, SequenceNumber), others have a variable size depending
+on the data they contain.
+
+Processing a submessage requires having a memory chunk large enough to contain a copy of its data.
+That's easy with fixed variable submessages, as size is known and memory can be allocated beforehand.
+For variable size submessages we can use two strategies:
+
+    - Set a maximum size for the data container, that will be allocated beforehand during the setup of
+      the participant. This avoids dynamic allocations during message communication, but any submessage
+      with a larger payload than the defined maximum will not fit in, and will be discarded.
+    - So not set any maximum and allocate the required memory dinamically upon submessage arrival,
+      according to the size declared on the header. This allows any size of submessages at the cost of
+      dynamic allocations during message decoding.
+
 .. _mempol:
+
 
 History Memory Policy Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

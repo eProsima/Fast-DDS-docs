@@ -1441,7 +1441,7 @@ For variable size submessages we can use two strategies:
     - Set a maximum size for the data container, that will be allocated beforehand during the setup of
       the participant. This avoids dynamic allocations during message communication, but any submessage
       with a larger payload than the defined maximum will not fit in, and will be discarded.
-    - So not set any maximum and allocate the required memory dinamically upon submessage arrival,
+    - Do not set any maximum and allocate the required memory dynamically upon submessage arrival,
       according to the size declared on the header. This allows any size of submessages at the cost of
       dynamic allocations during message decoding.
 

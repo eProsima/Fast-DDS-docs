@@ -732,7 +732,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |metuniloc| replace:: ``<metatrafficUnicastLocatorList>``
 .. |metmulloc| replace:: ``<metatrafficMulticastLocatorList>``
 .. |loclist| replace:: List of :ref:`LocatorListType`
-.. |mempol| replace:: :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC`, :class:`DYNAMIC`
+.. |mempol| replace:: :ref:`historyMemoryPolicy <mempol>`
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
 .. |mutTries| replace:: ``<mutation_tries>``
@@ -911,7 +911,7 @@ as shown in the :ref:`loadingapplyingprofiles` section.
      -
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for publisher's history.
-     - :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC`, :class:`DYNAMIC`
+     - :ref:`historyMemoryPolicy <mempol>`
      - :class:`PREALLOCATED`
    * - ``<propertiesPolicy>``
      - Additional configuration properties.
@@ -1011,7 +1011,7 @@ as shown in :ref:`loadingapplyingprofiles`.
      - :class:`false`
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for subscriber's history.
-     - :class:`PREALLOCATED`, :class:`PREALLOCATED_WITH_REALLOC`, :class:`DYNAMIC`
+     - :ref:`historyMemoryPolicy <mempol>`
      - :class:`PREALLOCATED`
    * - ``<propertiesPolicy>``
      - Additional configuration properties.
@@ -1383,6 +1383,26 @@ See :ref:`realtime-allocations` for detailed information on how to tune allocati
      - Number of new elements that will be allocated when more space is necessary.
      - ``UInt32``
      - 1
+
+.. _mempol:
+
+History Memory Policy Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Controls the allocation behavior of the change histories.
+
+* **PREALLOCATED**: As the history gets larger, memory is allocated in chunks. Each chunk accommodates
+  a number of changes, and no more allocations are done until that chunk is full. Provides minimum
+  number of dynamic allocations at the cost of increased memory footprint. Maximum payload size of
+  changes must be appropriately configured, as history will not be able to accommodate changes
+  with larger payload after the allocation.
+* **PREALLOCATED_WITH_REALLOC**: Like PREALLOCATED, but preallocated memory can be reallocated
+  to accommodate changes with larger payloads than the defined maximum.
+* **DYNAMIC**: Every change gets a fresh new allocated memory of the correct size.
+  It minimizes the memory footprint, at the cost of increased number of dynamic allocations.
+* **DYNAMIC_REUSABLE**: Like DYNAMIC, but instead of deallocating the memory when the change is removed
+  from the history, it is reused for a future change, reducing the amount of dynamic allocations.
+  If the new change has larger payload, it will be reallocated to accommodate the new size.
 
 .. _examplexml:
 

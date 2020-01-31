@@ -420,7 +420,8 @@ participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProto
 //!--
 
 //CONF_QOS_STATIC_DISCOVERY_XML
-participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
 //!--
 
 //CONF_QOS_TUNING_RELIABLE_PUBLISHER

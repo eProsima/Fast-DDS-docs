@@ -763,6 +763,8 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |mempol| replace:: :ref:`historyMemoryPolicy <mempol>`
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
+.. |readpaysize| replace:: ``<readerPayloadSize>``
+.. |writpaysize| replace:: ``<writerPayloadSize>``
 .. |mutTries| replace:: ``<mutation_tries>``
 .. |igpartf| replace:: ``<ignoreParticipantFlags>``
 .. |filterlist| replace:: :ref:`ignoreParticipantFlags <Participantfiltering>`
@@ -800,6 +802,14 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | |writhistmem|                  | Memory policy for builtin        | |mempol|                | :class:`PREALLOCATED` |
 |                                | writers.                         |                         |                       |
+|                                |                                  |                         |                       |
++--------------------------------+----------------------------------+-------------------------+-----------------------+
+| |readpaysize|                  | Maximum payload size for         | ``UInt32``              | 5000                  |
+|                                | builtin readers.                 |                         |                       |
+|                                |                                  |                         |                       |
++--------------------------------+----------------------------------+-------------------------+-----------------------+
+| |writpaysize|                  | Maximum payload size for         | ``UInt32``              | 5000                  |
+|                                | builtin writers.                 |                         |                       |
 |                                |                                  |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | |mutTries|                     | Number of different ports        | ``UInt32``              | 100                   |

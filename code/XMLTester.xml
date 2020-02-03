@@ -454,8 +454,20 @@
 </publisher>
 <!--><-->
 
-<!-->CONF-QOS-DISABLE-DISCOVERY<-->
-<participant profile_name="participant_profile_qos_disable_discovery">
+<!-->CONF-DISCOVERY-BASE<-->
+<participant profile_name="participant_profile_discovery_configuration">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <!-- Discovery related configuration -->
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-DISABLE-DISCOVERY<-->
+<participant profile_name="participant_profile_disable_discovery">
     <rtps>
         <builtin>
             <discovery_config>
@@ -466,12 +478,23 @@
 </participant>
 <!--><-->
 
-<!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES<-->
-<participant profile_name="participant_profile_qos_discovery_edp">
+<!-->CONF-DISCOVERY-PARTICIPANT_FILTER<-->
+<participant profile_name="participant_profile_filter_participants">
     <rtps>
         <builtin>
             <discovery_config>
-                <EDP>SIMPLE</EDP>
+                <ignoreParticipantFlags>FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS</ignoreParticipantFlags>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-DISCOVERY-EDP-ATTRIBUTES<-->
+<participant profile_name="participant_profile_discovery_edp">
+    <rtps>
+        <builtin>
+            <discovery_config>
                 <simpleEDP>
                     <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
                     <PUBREADER_SUBWRITER>false</PUBREADER_SUBWRITER>
@@ -482,8 +505,8 @@
 </participant>
 <!--><-->
 
-<!-->CONF-QOS-DISCOVERY-SERVERLIST<-->
-<participant profile_name="participant_profile_qos_discovery_serverlist">
+<!-->CONF-DISCOVERY-SERVERLIST<-->
+<participant profile_name="participant_profile_discovery_serverlist">
     <rtps>
         <builtin>
             <discovery_config>
@@ -500,24 +523,64 @@
                         </metatrafficUnicastLocatorList>
                     </RemoteServer>
                 </discoveryServersList>
+                <clientAnnouncementPeriod>
+                    <sec>2</sec>
+                </clientAnnouncementPeriod>
             </discovery_config>
         </builtin>
     </rtps>
 </participant>
 <!--><-->
 
-<!-->CONF-QOS-DISCOVERY-LEASEDURATION<-->
-<participant profile_name="participant_profile_qos_discovery_lease">
+<!-->CONF-DISCOVERY-LEASEDURATION<-->
+<participant profile_name="participant_profile_discovery_lease">
     <rtps>
         <builtin>
             <discovery_config>
                 <leaseDuration>
-                    <sec>5</sec>
+                    <sec>10</sec>
                 </leaseDuration>
                 <leaseAnnouncement>
-                    <sec>2</sec>
+                    <sec>5</sec>
                 </leaseAnnouncement>
+                <initialAnnouncements>
+                    <count>5</count>
+                    <period>
+                        <sec>1</sec>
+                    </period>
+                </initialAnnouncements>
             </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-DISCOVERY-SERVER-PREFIX<-->
+<participant profile_name="participant_profile_discovery_server-prefix">
+    <rtps>
+        <prefix>
+          4D.49.47.55.45.4c.5f.42.41.52.52.4f
+        </prefix>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-DISCOVERY-SERVER-MTRAFFIC<-->
+<participant profile_name="participant_profile_discovery_server-metatraffic">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <!-- placeholder server UDP address -->
+                        <address>192.168.1.113</address>
+                        <port>64863</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
         </builtin>
     </rtps>
 </participant>

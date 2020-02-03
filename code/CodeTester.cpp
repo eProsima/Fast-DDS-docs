@@ -331,17 +331,21 @@ write_attr.mode = ASYNCHRONOUS_WRITER;    // Allows fragmentation
 //!--
 }
 
-//CONF-QOS-DISABLE-DISCOVERY
+//CONF-DISABLE-DISCOVERY
 participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::NONE;
 //!--
 
-//CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
-participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = true;
-participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = true;
-participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = false;
+//CONF-DISCOVERY-PARTICIPANT_FILTER
+participant_attr.rtps.builtin.discovery_config.ignoreParticipantFlags =
+        ParticipantFilteringFlags_t::FILTER_DIFFERENT_PROCESS | ParticipantFilteringFlags_t::FILTER_SAME_PROCESS;
 //!--
 
-//CONF-QOS-DISCOVERY-SERVERLIST
+//CONF-DISCOVERY-EDP-ATTRIBUTES
+participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = true;
+participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter = false;
+//!--
+
+//CONF-DISCOVERY-SERVERLIST
 Locator_t server_address(LOCATOR_KIND_UDPv4, 5574);
 IPLocator::setIPv4(server_address, 192, 168, 2, 65);
 
@@ -351,14 +355,27 @@ ratt.metatrafficUnicastLocatorList.push_back(server_address);
 
 participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
 participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(ratt);
+participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(2,0);
 //!--
 
-//CONF-QOS-DISCOVERY-LEASEDURATION
-participant_attr.rtps.builtin.discovery_config.leaseDuration = Duration_t(5, 0);
-participant_attr.rtps.builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(2, 0);
+//CONF-DISCOVERY-LEASEDURATION
+participant_attr.rtps.builtin.discovery_config.leaseDuration = Duration_t(10, 0);
+participant_attr.rtps.builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(5, 0);
+participant_attr.rtps.builtin.discovery_config.initial_announcements.count = 5;
+participant_attr.rtps.builtin.discovery_config.initial_announcements.period = Duration_t(1, 0);
 //!--
 
-//CONF-QOS-INCREASE-SOCKETBUFFERS
+//CONF-DISCOVERY-SERVER-PREFIX
+participant_attr.rtps.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+//!--
+
+//CONF-DISCOVERY-SERVER-MTRAFFIC
+// placeholder values for the server address
+Locator_t server_address(LOCATOR_KIND_UDPv4, 64863);
+IPLocator::setIPv4(server_address, 192, 168, 1, 113);
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_address);//!--
+
+//CONF-INCREASE-SOCKETBUFFERS
 participant_attr.rtps.sendSocketBufferSize = 1048576;
 participant_attr.rtps.listenSocketBufferSize = 4194304;
 //!--
@@ -414,12 +431,12 @@ Log::RegisterConsumer(std::move(fileConsumer));
 Log::Reset();
 //!--
 
-//CONF_QOS_STATIC_DISCOVERY_CODE
+//CONF_STATIC_DISCOVERY_CODE
 participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
 participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
 //!--
 
-//CONF_QOS_STATIC_DISCOVERY_XML
+//CONF_STATIC_DISCOVERY_XML
 participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
 //!--
 

@@ -993,6 +993,9 @@
         <maximum>0</maximum>
         <increment>1</increment>
     </total_writers>
+    <max_partitions>256</max_partitions>
+    <max_user_data>256</max_user_data>
+    <max_properties>512</max_properties>
 </allocation>
 <!--><-->
 </rtps>
@@ -1387,6 +1390,9 @@
                 <maximum>1</maximum>
                 <increment>0</increment>
             </total_writers>
+            <max_partitions>256</max_partitions>
+            <max_user_data>256</max_user_data>
+            <max_properties>512</max_properties>
         </allocation>
     </rtps>
 </participant>

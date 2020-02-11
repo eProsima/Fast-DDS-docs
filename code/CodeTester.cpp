@@ -165,7 +165,7 @@ participant_attr.rtps.allocation.participants = eprosima::fastrtps::ResourceLimi
 participant_attr.rtps.allocation.readers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
 // We know we have at most 1 writer on each participant
 participant_attr.rtps.allocation.writers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
-// We know the maximum size of partitiondata
+// We know the maximum size of partition data
 participant_attr.rtps.allocation.data_limits.max_partitions = 256u;
 // We know the maximum size of user data
 participant_attr.rtps.allocation.data_limits.max_user_data = 256u;

@@ -62,6 +62,22 @@ The user can specify the :class:`initial` number of elements preallocated, the :
 allowed, and the allocation :class:`increment`.
 By default, a full dynamic behavior is used.
 
+Limiting the size of parameters
+-------------------------------
+
+Most of the information held for participants and endpoints have a defined size limit, so the amount of memory to
+allocate for each local and remote peer is known. But some of the parameters have no limit on size, and depend on
+the configuration. :class:`RTPSParticipantAllocationAttributes` has a field :class:`data_limits` to set maximum
+sizes to these parameters:
+
+* :class:`max_partitions` limits the size of partition data to the given number in octets.
+* :class:`max_user_data` limits the size of user data to the given number in octets.
+* :class:`max_properties` limits the size of participant properties data to the given number in octets.
+
+A value of zero implies no size limitation. If these sizes are configured and not zero, enough memory
+will be allocated for them for each participant and endpoint. If these sizes are not limited, memory
+will be dynamically allocated as needed. By default, a full dynamic behavior is used.
+
 Parameters on the publisher
 ===========================
 
@@ -108,6 +124,12 @@ Given a system with the following topology:
 * The publisher for topic 1 matches with 3 subscribers, and the publisher for topic 2 matches with 2 subscribers.
 * The maximum number of publishers per participant is 1, and the maximum number of subscribers per participant is 2.
 * The total number of participants is 3.
+
+We will also limit the size of the parameters:
+
+* Maximum partition data size: 256
+* Maximum user data size: 256
+* Maximum properties data size: 512
 
 The following piece of code shows the set of parameters needed for the use case depicted in this example.
 

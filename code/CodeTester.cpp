@@ -165,6 +165,12 @@ participant_attr.rtps.allocation.participants = eprosima::fastrtps::ResourceLimi
 participant_attr.rtps.allocation.readers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
 // We know we have at most 1 writer on each participant
 participant_attr.rtps.allocation.writers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+// We know the maximum size of partitiondata
+participant_attr.rtps.allocation.data_limits.max_partitions = 256u;
+// We know the maximum size of user data
+participant_attr.rtps.allocation.data_limits.max_user_data = 256u;
+// We know the maximum size of properties data
+participant_attr.rtps.allocation.data_limits.max_properties = 512u;
 
 // Before creating the publisher for topic 1:
 // we know we will only have three matching subscribers

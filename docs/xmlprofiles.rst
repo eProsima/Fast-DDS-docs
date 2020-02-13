@@ -763,9 +763,12 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |mempol| replace:: :ref:`historyMemoryPolicy <mempol>`
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
+.. |readpaysize| replace:: ``<readerPayloadSize>``
+.. |writpaysize| replace:: ``<writerPayloadSize>``
 .. |mutTries| replace:: ``<mutation_tries>``
 .. |igpartf| replace:: ``<ignoreParticipantFlags>``
 .. |filterlist| replace:: :ref:`ignoreParticipantFlags <Participantfiltering>`
+.. |mempoldefault| replace:: :class:`PREALLOCATED_WITH_REALLOC`
 
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | Name                           | Description                      | Values                  | Default               |
@@ -794,12 +797,20 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | ``<initialPeersList>``         | Initial peers.                   | |loclist|               |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
-| |readhistmem|                  | Memory policy for builtin        | |mempol|                | :class:`PREALLOCATED` |
+| |readhistmem|                  | Memory policy for builtin        | |mempol|                | |mempoldefault|       |
 |                                | readers.                         |                         |                       |
 |                                |                                  |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
-| |writhistmem|                  | Memory policy for builtin        | |mempol|                | :class:`PREALLOCATED` |
+| |writhistmem|                  | Memory policy for builtin        | |mempol|                | |mempoldefault|       |
 |                                | writers.                         |                         |                       |
+|                                |                                  |                         |                       |
++--------------------------------+----------------------------------+-------------------------+-----------------------+
+| |readpaysize|                  | Maximum payload size for         | ``UInt32``              | 512                   |
+|                                | builtin readers.                 |                         |                       |
+|                                |                                  |                         |                       |
++--------------------------------+----------------------------------+-------------------------+-----------------------+
+| |writpaysize|                  | Maximum payload size for         | ``UInt32``              | 512                   |
+|                                | builtin writers.                 |                         |                       |
 |                                |                                  |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | |mutTries|                     | Number of different ports        | ``UInt32``              | 100                   |

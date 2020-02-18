@@ -113,6 +113,35 @@ subscriber_attr.topic.resourceLimitsQos.max_instances = 3;
 subscriber_attr.topic.resourceLimitsQos.max_samples_per_instance = 20;
 //!--
 
+{
+//CONF-QOS-PARTITIONS
+PublisherAttributes pub_11_attr;
+pub_11_attr.qos.m_partition.push_back("Partition_1");
+pub_11_attr.qos.m_partition.push_back("Partition_2");
+
+PublisherAttributes pub_12_attr;
+pub_12_attr.qos.m_partition.push_back("*");
+
+PublisherAttributes pub_21_attr;
+//No partitions defined for pub_21
+
+PublisherAttributes pub_22_attr;
+pub_22_attr.qos.m_partition.push_back("Partition*");
+
+SubscriberAttributes subs_31_attr;
+subs_31_attr.qos.m_partition.push_back("Partition_1");
+
+SubscriberAttributes subs_32_attr;
+subs_32_attr.qos.m_partition.push_back("Partition_2");
+
+SubscriberAttributes subs_33_attr;
+subs_33_attr.qos.m_partition.push_back("Partition_3");
+
+SubscriberAttributes subs_34_attr;
+//No partitions defined for subs_34
+//!--
+}
+
 //CONF-COMMON-TRANSPORT-SETTING
 //Create a descriptor for the new transport.
 auto custom_transport = std::make_shared<UDPv4TransportDescriptor>();

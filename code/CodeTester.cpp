@@ -424,6 +424,16 @@ participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("Rem
 participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
 //!--
 
+{
+//CONF_QOS_STATIC_DISCOVERY_USERID
+SubscriberAttributes sub_attr;
+sub_attr.setUserDefinedID(3);
+
+PublisherAttributes pub_attr;
+pub_attr.setUserDefinedID(5);
+//!--
+}
+
 //CONF_QOS_TUNING_RELIABLE_PUBLISHER
 publisher_attr.times.heartbeatPeriod.seconds = 0;
 publisher_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms

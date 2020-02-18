@@ -829,9 +829,31 @@ use a different file for each remote participant and load them one after another
    :start-after: //CONF_QOS_STATIC_DISCOVERY_XML
    :end-before: //!
 
+Endpoints that are going to be statically discovered **must** define a unique *userID* on their profile,
+and their values **must** agree with the ones specified on the discovery configuration XML.
+Otherwise, the discovery will fail.
+
+   +--------------------------------------------------------+
+   | **C++**                                                |
+   +--------------------------------------------------------+
+   | .. literalinclude:: ../code/CodeTester.cpp             |
+   |    :language: c++                                      |
+   |    :start-after: //CONF_QOS_STATIC_DISCOVERY_USERID    |
+   |    :end-before: //!                                    |
+   +--------------------------------------------------------+
+   | **XML**                                                |
+   +--------------------------------------------------------+
+   | .. literalinclude:: ../code/XMLTester.xml              |
+   |    :language: xml                                      |
+   |    :start-after: <!-->CONF_QOS_STATIC_DISCOVERY_USERID |
+   |    :end-before: <!-->                                  |
+   +--------------------------------------------------------+
+
 The following is a complete example of a configuration XML file for two remote participants,
-a publisher and a subscriber. Note that not all elements must be present,
-and missing elements will have default values.
+a publisher and a subscriber. This configuration **must** agree with the configuration used
+to create the remote endpoint. Otherwise, communication between endpoints may be affected.
+If any non-mandatory element is missing, it will take the default value. As a rule of thumb,
+you should configure all elements that were specified on the remote endpoint creation.
 
 .. literalinclude:: ../code/StaticTester.xml
    :language: xml

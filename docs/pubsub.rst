@@ -394,25 +394,27 @@ consider that the publisher is alive.
 Besides the liveliness kind, two additional parameters allow defining the application behavior. They are all listed
 in the table below.
 
-+---------------------------+----------------------------------+---------------------------------+-------------------------+
-| Name                      | Description                      | Values                          | Default                 |
-+===========================+==================================+=================================+=========================+
-| ``<kind>``                | Specifies how                    | :class:`AUTOMATIC`,             | :class:`AUTOMATIC`      |
-|                           | to manage liveliness.            | :class:`MANUAL_BY_PARTICIPANT`, |                         |
-|                           |                                  | :class:`MANUAL_BY_TOPIC`        |                         |
-+---------------------------+----------------------------------+---------------------------------+-------------------------+
-| ``<lease_duration>``      | Amount of time to wait since the | :ref:`DurationType`             | :class:`c_TimeInfinite` |
-|                           | last message from a writer to    |                                 |                         |
-|                           | consider that it is no longer    |                                 |                         |
-|                           | alive.                           |                                 |                         |
-+---------------------------+----------------------------------+---------------------------------+-------------------------+
-| ``<announcement_period>`` | Amount of time between           | :ref:`DurationType`             | :class:`c_TimeInfinite` |
-|                           | consecutive liveliness messages  |                                 |                         |
-|                           | sent by the publisher. Only used |                                 |                         |
-|                           | for AUTOMATIC and                |                                 |                         |
-|                           | MANUAL_BY_PARTICIPANT liveliness |                                 |                         |
-|                           | kinds.                           |                                 |                         |
-+---------------------------+----------------------------------+---------------------------------+-------------------------+
+.. Some replacement tags for the table to fit maximum line length
+.. |livekindvalues| replace:: :class:`AUTOMATIC`, :class:`MANUAL_BY_PARTICIPANT`, :class:`MANUAL_BY_TOPIC`
+
++---------------------------+----------------------------------+---------------------+-------------------------+
+| Name                      | Description                      | Values              | Default                 |
++===========================+==================================+=====================+=========================+
+| ``<kind>``                | Specifies how                    | |livekindvalues|    | :class:`AUTOMATIC`      |
+|                           | to manage liveliness.            |                     |                         |
++---------------------------+----------------------------------+---------------------+-------------------------+
+| ``<lease_duration>``      | Amount of time to wait since the | :ref:`DurationType` | :class:`c_TimeInfinite` |
+|                           | last message from a writer to    |                     |                         |
+|                           | consider that it is no longer    |                     |                         |
+|                           | alive.                           |                     |                         |
++---------------------------+----------------------------------+---------------------+-------------------------+
+| ``<announcement_period>`` | Amount of time between           | :ref:`DurationType` | :class:`c_TimeInfinite` |
+|                           | consecutive liveliness messages  |                     |                         |
+|                           | sent by the publisher. Only used |                     |                         |
+|                           | for AUTOMATIC and                |                     |                         |
+|                           | MANUAL_BY_PARTICIPANT liveliness |                     |                         |
+|                           | kinds.                           |                     |                         |
++---------------------------+----------------------------------+---------------------+-------------------------+
 
 +--------------------------------------------------------------+
 | **C++**                                                      |

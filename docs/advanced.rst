@@ -929,6 +929,7 @@ Locator definition
 
 Locators for remote peers are configured using ``<unicastLocator>`` and ``<multicastLocator>`` tags.
 These take no value, and the locators are defined using tag attributes:
+
 * :class:`address`: a mandatory ``string`` representing the locator address.
 * :class:`port`: an optional ``UInt16`` representing a port on that address.
 

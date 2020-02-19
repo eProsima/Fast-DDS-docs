@@ -297,6 +297,107 @@
 </subscriber>
 <!--><-->
 
+<!-->CONF-QOS-PARTITIONS<-->
+<publisher profile_name="pub_11">
+    <topic>
+        <name>TopicName</name>
+        <dataType>TopicDataTypeName</dataType>
+    </topic>
+    <qos>
+        <partition>
+            <names>
+                <name>Partition_1</name>
+                <name>Partition_2</name>
+            </names>
+        </partition>
+    </qos>
+</publisher>
+
+<publisher profile_name="pub_12">
+    <topic>
+        <name>TopicName</name>
+        <dataType>TopicDataTypeName</dataType>
+    </topic>
+    <qos>
+        <partition>
+            <names>
+                <name>*</name>
+            </names>
+        </partition>
+    </qos>
+</publisher>
+
+<publisher profile_name="pub_21">
+    <topic>
+        <name>TopicName</name>
+        <dataType>TopicDataTypeName</dataType>
+    </topic>
+</publisher>
+
+<publisher profile_name="pub_22">
+    <topic>
+        <name>TopicName</name>
+        <dataType>TopicDataTypeName</dataType>
+    </topic>
+    <qos>
+        <partition>
+            <names>
+                <name>Partition*</name>
+            </names>
+        </partition>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subs_31">
+    <topic>
+        <name>TopicName</name>
+        <dataType>TopicDataTypeName</dataType>
+    </topic>
+    <qos>
+        <partition>
+            <names>
+                <name>Partition_1</name>
+            </names>
+        </partition>
+    </qos>
+</subscriber>
+
+<subscriber profile_name="subs_32">
+    <topic>
+        <name>TopicName</name>
+        <dataType>TopicDataTypeName</dataType>
+    </topic>
+    <qos>
+        <partition>
+            <names>
+                <name>Partition_2</name>
+            </names>
+        </partition>
+    </qos>
+</subscriber>
+
+<subscriber profile_name="subs_33">
+    <topic>
+        <name>TopicName</name>
+        <dataType>TopicDataTypeName</dataType>
+    </topic>
+    <qos>
+        <partition>
+            <names>
+                <name>Partition_3</name>
+            </names>
+        </partition>
+    </qos>
+</subscriber>
+
+<subscriber profile_name="subs_34">
+    <topic>
+        <name>TopicName</name>
+        <dataType>TopicDataTypeName</dataType>
+    </topic>
+</subscriber>
+<!--><-->
+    
 <!-->CONF-COMMON-TRANSPORT-SETTING<-->
 <transport_descriptors>
     <transport_descriptor>

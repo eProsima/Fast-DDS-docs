@@ -90,6 +90,10 @@ Next table shows you the properties used by this persistence plugin.
      - Name of the file used for persistent storage. |br|
        Default value: *persistence.db*
 
+**Note:** Currently this plugin doesn't support two processes accessing the same SQLite3 file.
+It could end up in inconsistency and a failure.
+Be sure each process uses a different SQLite3 file.
+
 Example
 ^^^^^^^
 

@@ -585,6 +585,108 @@ Discovery
 .. END INTRODUCTION
 
 .. START SIMPLE DISCOVERY
+
+
+SIMPLE Discovery Settings
+=========================
+
+The SIMPLE discovery protocol resolve the establishment of the end-to-end connection between various
+RTPS entities communicating via the RTPS protocol. Fast-RTPS implements the SIMPLE discovery protocol to
+provide compatibility with the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/>`_.
+The specification splits up the SIMPLE discovery protocol into two independent protocols:
+
+- **Simple Participant Discovery Protocol (SPDP):** specifies how Participants discover each other in the network; it
+  announces and detects the presence of participants in a domain.
+
+- **Simple Endpoint Discovery Protocol (SEDP):** defines the protocol adopted by the discovered participants for the
+  exchange of information in order to discover the RTPS entities contained in each of them, i.e. the Writers and
+  Readers Endpoints.
+
+
+.. SIMPLE Discovery Attributes
+.. ===========================
+
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+| Name                                     | Description                                                                                   | Type              | Default |
++==========================================+===============================================================================================+===================+=========+
+| `Initial Announcements`_                 | It defines the behavior of the RTPSParticipant initial announcements.                         | ``uint32``        | 5       |
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+| `Simple EDP Attributes`_                 | It defines the use of the SIMPLE protocol as a discovery protocol.                            | ``bool``          | true    |
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+
+
+.. _`Initial Announcements`:
+
+Initial Announcements
+---------------------
+
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+| Name                                     | Description                                                                                   | Type              | Default |
++==========================================+===============================================================================================+===================+=========+
+| count                                    | It defines number of initial announcements with specific period in the PDP phase.             | ``uint32``        | 5       |
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+| period                                   | It defines the specific period for initial announcements.                                     | ``Duration_t``    | 100ms   |
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+
++-----------------------------------------------------------------+
+| **C++**                                                         |
++-----------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                      |
+|    :language: c++                                               |
+|    :start-after: //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT        |
+|    :end-before: //!--                                           |
++-----------------------------------------------------------------+
+| **XML**                                                         |
++-----------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                       |
+|    :language: xml                                               |
+|    :start-after: <!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<--> |
+|    :end-before: <!--><-->                                       |
++-----------------------------------------------------------------+
+
+
+.. _`Simple EDP Attributes`:
+
+Simple EDP Attributes
+---------------------
+
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+| Name                                     | Description                                                                                   | Type              | Default |
++==========================================+===============================================================================================+===================+=========+
+| useSimpleEDP                             | It defines the use of the SIMPLE protocol as a discovery protocol. A participant may create   | ``bool``          | true    |
+|                                          | publishers, subscribers, both or neither. This class allows creates                           |                   |         |
+|                                          | the number of builtin endpoints to those strictly necessary.                                  |                   |         |
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+| PublicationWriterANDSubscriptionReader   | It is intended for participants that                                                          | ``bool``          | true    |
+|                                          | implement only one or more publishers, i.e. do not                                            |                   |         |
+|                                          | implement subscribers. It allows the creation of                                              |                   |         |
+|                                          | only subscriber EDP endpoints.                                                                |                   |         |
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+| PublicationWriterANDSubscriptionReader   | It is intended for participants that                                                          | ``bool``          | true    |
+|                                          | implement only one or more subscribers, i.e. do not                                           |                   |         |
+|                                          | implement publishers. It allows the creation of                                               |                   |         |
+|                                          | only publisher EDP endpoints.                                                                 |                   |         |
++------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp              |
+|    :language: c++                                       |
+|    :start-after: //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES    |
+|    :end-before: //!--                                   |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml               |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
+
+
+
+
 .. END SIMPLE DISCOVERY
 
 .. START STATIC DISCOVERY

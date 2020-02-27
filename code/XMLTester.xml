@@ -1429,8 +1429,8 @@
                 <initialAnnouncements>
                     <count>5</count>
                     <period>
-                        <sec>10</sec>
-                        <nanosec>10</nanosec>
+                        <sec>0</sec>
+                        <nanosec>100000000</nanosec>
                     </period>
                 </initialAnnouncements>
             </discovery_config>

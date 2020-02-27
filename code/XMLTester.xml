@@ -1584,7 +1584,7 @@
         <builtin>
             <discovery_config>
                 <leaseDuration>
-                    <seconds>10</seconds>
+                    <sec>10</sec>
                     <nanosec>20</nanosec>
                 </leaseDuration>
             </discovery_config>
@@ -1599,7 +1599,7 @@
         <builtin>
             <discovery_config>
                 <leaseAnnouncement>
-                    <seconds>1</seconds>
+                    <sec>1</sec>
                     <nanosec>2</nanosec>
                 </leaseAnnouncement>
             </discovery_config>

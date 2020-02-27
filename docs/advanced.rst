@@ -770,7 +770,7 @@ Discovery phases
    subscriber have matched, they are ready for sending/receiving user data
    traffic.
 
-.. _discovery_mechanisms:
+.. _disc_mechanisms:
 
 Discovery mechanisms
 ====================
@@ -804,32 +804,32 @@ General discovery settings
 Some discovery settings are shared across the different discovery mechanisms.
 Those are:
 
-+----------------------------------------------+-----------------------------------+---------------------------------+---------------+
-| Name                                         | Description                       | Type                            |     Default   |
-+==============================================+===================================+=================================+===============+
-| :ref:`discovery_general_protocol`            | The discovery protocol to use     | ``DiscoveryProtocol_t``         | ``SIMPLE``    |
-|                                              | (see :ref:`discovery_mechanisms`) |                                 |               |
-+----------------------------------------------+-----------------------------------+---------------------------------+---------------+
-| :ref:`discovery_general_ignore_flags`        | Filter discovery traffic for      | ``ParticipantFilteringFlags_t`` | ``NO_FILTER`` |
-|                                              | participants in the same process, |                                 |               |
-|                                              | in different processes,           |                                 |               |
-|                                              | or in different hosts             |                                 |               |
-+----------------------------------------------+-----------------------------------+---------------------------------+---------------+
-| :ref:`discovery_general_lease_duration`      | Indicates for how much time       | ``Duration_t``                  |     20 s      |
-|                                              | should a remote participant       |                                 |               |
-|                                              | consider the local participant    |                                 |               |
-|                                              | to be alive                       |                                 |               |
-+----------------------------------------------+-----------------------------------+---------------------------------+---------------+
-| :ref:`discovery_general_lease_announcement`  | The period for the participant    | ``Duration_t``                  |     3 s       |
-|                                              | to send PDP announcements.        |                                 |               |
-+----------------------------------------------+-----------------------------------+---------------------------------+---------------+
++-------------------------------+-----------------------------------+---------------------------------+---------------+
+| Name                          | Description                       | Type                            |     Default   |
++===============================+===================================+=================================+===============+
+| :ref:`discovery_protocol`     | The discovery protocol to use     | ``DiscoveryProtocol_t``         | ``SIMPLE``    |
+|                               | (see :ref:`disc_mechanisms`)      |                                 |               |
++-------------------------------+-----------------------------------+---------------------------------+---------------+
+| :ref:`discovery_ignore_flags` | Filter discovery traffic for      | ``ParticipantFilteringFlags_t`` | ``NO_FILTER`` |
+|                               | participants in the same process, |                                 |               |
+|                               | in different processes,           |                                 |               |
+|                               | or in different hosts             |                                 |               |
++-------------------------------+-----------------------------------+---------------------------------+---------------+
+| :ref:`discovery_lease_dur`    | Indicates for how much time       | ``Duration_t``                  |     20 s      |
+|                               | should a remote participant       |                                 |               |
+|                               | consider the local participant    |                                 |               |
+|                               | to be alive                       |                                 |               |
++-------------------------------+-----------------------------------+---------------------------------+---------------+
+| :ref:`discovery_lease_announ` | The period for the participant    | ``Duration_t``                  |     3 s       |
+|                               | to send PDP announcements.        |                                 |               |
++-------------------------------+-----------------------------------+---------------------------------+---------------+
 
-.. _discovery_general_protocol:
+.. _discovery_protocol:
 
 Discovery Protocol
 ------------------
 
-Specifies the discovery protocol to use (see :ref:`discovery_mechanisms`). The
+Specifies the discovery protocol to use (see :ref:`disc_mechanisms`). The
 possible values are:
 
 +---------------------+---------------------+-------------------------------------------------------------------------+
@@ -877,7 +877,7 @@ possible values are:
 |    :end-before: <!--><-->                           |
 +-----------------------------------------------------+
 
-.. _discovery_general_ignore_flags:
+.. _discovery_ignore_flags:
 
 Ignore Participant flags
 ------------------------
@@ -924,7 +924,7 @@ useful to add an extra level of participant isolation. The possible values are:
 |    :end-before: <!--><-->                           |
 +-----------------------------------------------------+
 
-.. _discovery_general_lease_duration:
+.. _discovery_lease_dur:
 
 Lease Duration
 --------------
@@ -959,7 +959,7 @@ is 20 seconds.
 |    :end-before: <!--><-->                           |
 +-----------------------------------------------------+
 
-.. _discovery_general_lease_announcement:
+.. _discovery_lease_announ:
 
 Announcement Period
 -------------------

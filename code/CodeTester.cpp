@@ -486,6 +486,26 @@ writer_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 //!--
 
 //CONF-DISCOVERY-INTRO-EXAMPLE
+
+//CONF-DISCOVERY-PROTOCOL
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SIMPLE;
+//!--
+
+//CONF-DISCOVERY-IGNORE-FLAGS
+participant_attr.rtps.builtin.discovery_config.ignoreParticipantFlags =
+    static_cast<ParticipantFilteringFlags_t>(
+        ParticipantFilteringFlags_t::FILTER_DIFFERENT_PROCESS |
+        ParticipantFilteringFlags_t::FILTER_SAME_PROCESS);
+//!--
+
+//CONF-DISCOVERY-LEASE-DURATION
+participant_attr.rtps.builtin.discovery_config.leaseDuration = Duration_t(10, 20);
+//!--
+
+//CONF-DISCOVERY-LEASE-ANNOUNCEMENT
+participant_attr.rtps.builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(1, 2);
+//!--
+
 //!--
 
 //CONF-SIMPLE-DISCOVERY-EXAMPLE

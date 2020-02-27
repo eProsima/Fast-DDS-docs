@@ -509,6 +509,10 @@ participant_attr.rtps.builtin.discovery_config.leaseDuration_announcementperiod 
 //!--
 
 //CONF-SIMPLE-DISCOVERY-EXAMPLE
+//DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT
+participant_attr.rtps.builtin.discovery_config.initial_announcements.count = 5;
+participant_attr.rtps.builtin.discovery_config.initial_announcements.period = { 0, 100000000u };
+//!--
 //!--
 
 //CONF-STATIC-DISCOVERY-EXAMPLE

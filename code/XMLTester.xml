@@ -1611,6 +1611,23 @@
 <!--><-->
 
 <!-->CONF-SIMPLE-DISCOVERY-EXAMPLE<-->
+<!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<-->
+<participant profile_name="participant_profile_simple_discovery">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <initialAnnouncements>
+                    <count>5</count>
+                    <period>
+                        <seconds>10</seconds>
+                        <nanosec>10</nanosec>
+                    </period>
+                </initialAnnouncements>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
 <!--><-->
 
 <!-->CONF-STATIC-DISCOVERY-EXAMPLE<-->

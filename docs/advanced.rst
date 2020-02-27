@@ -1015,13 +1015,14 @@ The specification splits up the SIMPLE discovery protocol into two independent p
 .. SIMPLE Discovery Attributes
 .. ===========================
 
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
-| Name                                     | Description                                                                                   | Type              | Default |
-+==========================================+===============================================================================================+===================+=========+
-| `Initial Announcements`_                 | It defines the behavior of the RTPSParticipant initial announcements.                         | ``uint32``        | 5       |
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
-| `Simple EDP Attributes`_                 | It defines the use of the SIMPLE protocol as a discovery protocol.                            | ``bool``          | true    |
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
++-------------------------+--------------------------------------------------------------------+------------+---------+
+| Name                    | Description                                                        | Type       | Default |
++=========================+====================================================================+============+=========+
+| `Initial Announcements`_| It defines the behavior of the RTPSParticipant                     | ``uint32`` | 5       |
+|                         | initial announcements.                                             |            |         |
++-------------------------+--------------------------------------------------------------------+------------+---------+
+| `Simple EDP Attributes`_| It defines the use of the SIMPLE protocol as a discovery protocol. | ``bool``   | true    |
++-------------------------+--------------------------------------------------------------------+------------+---------+
 
 
 .. _`Initial Announcements`:
@@ -1029,13 +1030,14 @@ The specification splits up the SIMPLE discovery protocol into two independent p
 Initial Announcements
 ---------------------
 
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
-| Name                                     | Description                                                                                   | Type              | Default |
-+==========================================+===============================================================================================+===================+=========+
-| count                                    | It defines number of initial announcements with specific period in the PDP phase.             | ``uint32``        | 5       |
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
-| period                                   | It defines the specific period for initial announcements.                                     | ``Duration_t``    | 100ms   |
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
++---------+--------------------------------------------------------------------+--------------- +---------+
+| Name    | Description                                                        | Type           | Default |
++=========+====================================================================+=============== +=========+
+| count   | It defines the number of initial announcements                     | ``uint32``     | 5       |
+|         | with specific period in the PDP phase.                             | ``Duration_t`` | 100ms   |
++---------+--------------------------------------------------------------------+--------------- +---------+
+| period  | It defines the specific period for initial announcements.          | ``Duration_t`` | 100ms   |
++---------+--------------------------------------------------------------------+--------------- +---------+
 
 +-----------------------------------------------------------------+
 | **C++**                                                         |
@@ -1059,23 +1061,25 @@ Initial Announcements
 Simple EDP Attributes
 ---------------------
 
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
-| Name                                     | Description                                                                                   | Type              | Default |
-+==========================================+===============================================================================================+===================+=========+
-| useSimpleEDP                             | It defines the use of the SIMPLE protocol as a discovery protocol. A participant may create   | ``bool``          | true    |
-|                                          | publishers, subscribers, both or neither. This class allows creates                           |                   |         |
-|                                          | the number of builtin endpoints to those strictly necessary.                                  |                   |         |
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
-| PublicationWriterANDSubscriptionReader   | It is intended for participants that                                                          | ``bool``          | true    |
-|                                          | implement only one or more publishers, i.e. do not                                            |                   |         |
-|                                          | implement subscribers. It allows the creation of                                              |                   |         |
-|                                          | only subscriber EDP endpoints.                                                                |                   |         |
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
-| PublicationWriterANDSubscriptionReader   | It is intended for participants that                                                          | ``bool``          | true    |
-|                                          | implement only one or more subscribers, i.e. do not                                           |                   |         |
-|                                          | implement publishers. It allows the creation of                                               |                   |         |
-|                                          | only publisher EDP endpoints.                                                                 |                   |         |
-+------------------------------------------+-----------------------------------------------------------------------------------------------+-------------------+---------+
++========================================+========================================================+=========+=========+
+| Name                                   | Description                                            | Type    | Default |
++========================================+========================================================+=========+=========+
+| SIMPLE EDP                             | It defines the use of the SIMPLE protocol as a         | ``bool`` | true   |
+|                                        | discovery protocol. A participant may create           |          |        |
+|                                        | publishers, subscribers, both or neither. This allows  |          |        |
+|                                        | the creation builtin endpoints to                      |          |        |
+|                                        | those strictly necessary.                              |          |        |
++----------------------------------------+--------------------------------------------------------+----------+--------+
+| Publication writer and                 | It is intended for participants that                   | ``bool`` | true   |
+| Subscription reader                    | implement only one or more publishers, i.e. do not     |          |        |
+|                                        | implement subscribers. It allows the creation of       |          |        |
+|                                        | only subscriber EDP endpoints.                         |          |        |
++----------------------------------------+--------------------------------------------------------+----------+--------+
+| Publication writer and                 | It is intended for participants that                   | ``bool`` | true   |
+| Subscription reader                    | implement only one or more subscribers, i.e. do not    |          |        |
+|                                        | implement publishers. It allows the creation of        |          |        |
+|                                        | only publisher EDP endpoints.                          |          |        |
++----------------------------------------+--------------------------------------------------------+----------+--------+
 
 +---------------------------------------------------------+
 | **C++**                                                 |

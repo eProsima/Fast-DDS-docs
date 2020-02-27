@@ -1619,7 +1619,7 @@
                 <initialAnnouncements>
                     <count>5</count>
                     <period>
-                        <seconds>10</seconds>
+                        <sec>10</sec>
                         <nanosec>10</nanosec>
                     </period>
                 </initialAnnouncements>

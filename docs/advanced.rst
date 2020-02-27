@@ -582,6 +582,186 @@ Discovery
 *********
 
 .. START INTRODUCTION
+
+Fast-RTPS, as a DDS implementation, provides a discovery mechanisms that allow
+for automatically finding and matching publishers and subscribers across
+participants. This discovery is performed, for all the mechanisms, in two
+phases.
+
+Discovery phases
+================
+
+#. **Participant Discovery Phase (PDP)**: During this phase the participants
+   acknowledge each other's existence. To do that, each participant sends
+   periodic announcement messages, which specify, among other things, unicast
+   addresses (IP and port) where the participant is listening for incoming meta
+   and user data traffic. Two given participants will match when they exist in
+   the same domain. By default, the announcement messages are sent using
+   well-known multicast addresses and ports (calculated from using the domain).
+   Furthermore, it is possible to specify a list of addresses to send
+   announcements using unicast (see in :ref:`initial-peers`). Moreover, is is
+   also possible to configure the periodicity of such announcements (see
+   :ref:`Discovery Configuration <dconf>`).
+
+#. **Endpoint Discovery Phase (EDP)**: During this phase, the publishers and
+   subscribers acknowledge each other. To do that, the participants share
+   information about their publishers and subscribers with each other, using
+   the communication channels established during the PDP. This information
+   contains, among other things, the topic and data type. For two endpoints to
+   match, their topic and data type must coincide. Once publisher and
+   subscriber have matched, they are ready for sending/receiving user data
+   traffic.
+
+.. _discovery_mechanisms:
+
+Discovery mechanisms
+====================
+
+Fast-RTPS provides the following discovery mechanisms:
+
+- **Simple Discovery**: This is the default mechanism. It upholds the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_
+  for both PDP and EDP phases, and therefore provides compatibility with any
+  other DDS and RTPS implementations.
+
+- **Static Discovery**: This mechanisms uses the Simple Participant Discovery
+  Protocol (SPDP) for the PDP phase (as specified by the RTPS standard), but
+  allows for skipping the Simple Participant Discovery Protocol (SEDP) phase
+  when all the publishers' and subscribers' addresses and ports, data types,
+  and topics are known beforehand.
+
+- **Server-Client Discovery**: This discovery mechanism uses a centralized
+  discovery architecture, where servers act as a hubs for discovery meta
+  traffic.
+
+- **Manual Discovery**: This mechanism is only compatible with the
+  ``RTPSDomain`` layer. It disables the PDP discovery phase, letting the user
+  to manually match and unmatch RTPS participants, readers, and writers using
+  whatever, external meta-information channel of its choice.
+
+.. _discovery_general_settings:
+
+General discovery settings
+==========================
+
+Some discovery settings are shared across the different discovery mechanisms.
+Those are:
+
++--------------+-----------------------------------+-----------------------------+-----------+
+| Name         | Description                       | Type                        | Default   |
++==============+===================================+=============================+===========+
+| Discovery    | The discovery protocol to use     | DiscoveryProtocol_t         | SIMPLE    |
+| protocol     | (see :ref:`discovery_mechanisms`) |                             |           |
++--------------+-----------------------------------+-----------------------------+-----------+
+| Ignore       | Filter discovery traffic for      | ParticipantFilteringFlags_t | NO_FILTER |
+| participant  | participants in the same process, |                             |           |
+| flags        | in different processes,           |                             |           |
+|              | or in different hosts             |                             |           |
++--------------+-----------------------------------+-----------------------------+-----------+
+| Lease        | Indicates for how much time       | Duration_t                  | 20 s      |
+| duration     | should a remote participant       |                             |           |
+|              | consider the local participant    |                             |           |
+|              | to be alive                       |                             |           |
++--------------+-----------------------------------+-----------------------------+-----------+
+| Announcement | The period for the participant    | Duration_t                  | 3 s       |
+| period       | to send PDP announcements.        |                             |           |
++--------------+-----------------------------------+-----------------------------+-----------+
+
+Discovery Protocol
+------------------
+
+Specifies the discovery protocol to use (see :ref:`discovery_mechanisms`). The
+possible values are:
+
++---------------------+-----------------+--------------------------------------------------------------------------+
+| Discovery Mechanism | Possible values | Description                                                              |
++---------------------+-----------------+--------------------------------------------------------------------------+
+| Simple              | SIMPLE          | Simple discovery protocol as                                             |
+|                     |                 | specified `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_  |
++---------------------+-----------------+--------------------------------------------------------------------------+
+| Static              | STATIC          | SPDP with manual EDP specified in XML files                              |
++---------------------+-----------------+--------------------------------------------------------------------------+
+| Server-Client       | SERVER          | The participant acts as a hub for discovery                              |
+|                     |                 | traffic, receiving and distributing discovery                            |
+|                     |                 | information.                                                             |
+|                     +-----------------+--------------------------------------------------------------------------+
+|                     | CLIENT          | The participant acts as a client for discovery                           |
+|                     |                 | traffic. It send its discovery information to                            |
+|                     |                 | the server, and receives all other discovery                             |
+|                     |                 | information from the server.                                             |
+|                     +-----------------+--------------------------------------------------------------------------+
+|                     | BACKUP          | Creates a SERVER participant which has a                                 |
+|                     |                 | persistent `sqlite` database. A BACKUP                                   |
+|                     |                 | server can load the a database on start.                                 |
+|                     |                 | This type of sever makes the Server-Client                               |
+|                     |                 | architecture resilient to server destruction.                            |
++---------------------+-----------------+--------------------------------------------------------------------------+
+| Manual              | NONE            | Disables PDP phase, therefore the is no EDP                              |
+|                     |                 | phase. All matching must be done manually                                |
+|                     |                 | through the ``addReaderLocator``,                                        |
+|                     |                 | ``addReaderProxy``, ``addWriterProxy`` methods.                          |
++---------------------+-----------------+--------------------------------------------------------------------------+
+
+
+Ignore Participant flags
+------------------------
+
+Defines a filter so some discovery traffic is ignored when received. This is
+useful to add an extra level of participant isolation. The possible values are:
+
++------------------------------------------------+------------------------+
+| Possible values                                | Description            |
++------------------------------------------------+------------------------+
+| NO_FILTER                                      | All Discovery traffic  |
+|                                                | is processed           |
++------------------------------------------------+------------------------+
+| FILTER_DIFFERENT_HOST                          | Discovery traffic from |
+|                                                | another host is        |
+|                                                | discarded              |
++------------------------------------------------+------------------------+
+| FILTER_DIFFERENT_PROCESS                       | Discovery traffic from |
+|                                                | another process on the |
+|                                                | same host is discarded |
++------------------------------------------------+------------------------+
+| FILTER_SAME_PROCESS                            | Discovery traffic from |
+|                                                | participant's own      |
+|                                                | process is discarded.  |
++------------------------------------------------+------------------------+
+| FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS | Discovery traffic from |
+|                                                | participant's own host |
+|                                                | is discarded.          |
++------------------------------------------------+------------------------+
+
+Lease Duration
+--------------
+
+Indicates for how much time should a remote participant consider the local
+participant to be alive. If the liveliness of the local participant has not
+being asserted within this time, the remote participant considers the local
+participant dead and destroys all the information regarding the local
+participant and all its endpoints.
+
+The local participant's liveliness can is asserted on the remote participant
+any time the remote participant receives any kind of traffic from the local
+participant.
+
+The lease duration is specified as a time
+expressed in seconds and nanosecond using a ``Duration_t``. Its default value
+is 20 seconds.
+
+Announcement Period
+-------------------
+
+It specifies the periodicity of the participant's PDP announcements. For
+liveliness shake it is recommend to be shorter than the lease duration, so
+that the participant's liveliness is asserted even when there is no data
+traffic. It is important to note that there is a trade-off involved in the
+setting of the announcement period, i.e. too frequent announcement will bloat
+the network with meta traffic, but too scarce ones will delay the discovery
+of late joiners.
+
+Participant's announcement period is specified as a time expressed in seconds
+and nanosecond using a ``Duration_t``. Its default value is 3 seconds.
+
 .. END INTRODUCTION
 
 .. START SIMPLE DISCOVERY

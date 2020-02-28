@@ -1040,28 +1040,28 @@ file can be found in :ref:`static_xml_example`.
 +------------------------+-----------------------------------+-------------------+---------------+
 | ``<unicastLocator>``   | Unicast locator of the            |                   |               |
 |                        | participant.                      |                   |               |
-|                        | see :ref:`staticLocators`.        |                   |               |
+|                        | See :ref:`staticLocators`.        |                   |               |
 +------------------------+-----------------------------------+-------------------+---------------+
 | ``<multicastLocator>`` | Multicast locator of the          |                   |               |
 |                        | participant.                      |                   |               |
-|                        | see :ref:`staticLocators`.        |                   |               |
+|                        | See :ref:`staticLocators`.        |                   |               |
 +------------------------+-----------------------------------+-------------------+---------------+
 | ``<reliabilityQos>``   | See the :ref:`reliability`        | |besteffort|      | |besteffort|  |
 |                        | section.                          +-------------------+               |
-|                        | section.                          | |reliable|        |               |
+|                        |                                   | |reliable|        |               |
 +------------------------+-----------------------------------+-------------------+---------------+
 | ``<durabilityQos>``    | See the                           | |volatile|        | |volatile|    |
 |                        | :ref:`SettingDataDurability`      +-------------------+               |
-|                        | :ref:`SettingDataDurability`      | |transientlocal|  |               |
-|                        | section.                          +-------------------+               |
-|                        | section.                          | |transient|       |               |
+|                        | section.                          | |transientlocal|  |               |
+|                        |                                   +-------------------+               |
+|                        |                                   | |transient|       |               |
 +------------------------+-----------------------------------+-------------------+---------------+
 | ``<ownershipQos>``     | See                               |                   |               |
 |                        | :ref:`ownershipQos`.              |                   |               |
 +------------------------+-----------------------------------+-------------------+---------------+
 | ``<livelinessQos>``    | Defines the liveliness of the     |                   |               |
 |                        | remote peer.                      |                   |               |
-|                        | see :ref:`livelinessQos`.         |                   |               |
+|                        | See :ref:`livelinessQos`.         |                   |               |
 +------------------------+-----------------------------------+-------------------+---------------+
 
 .. _staticLocators:

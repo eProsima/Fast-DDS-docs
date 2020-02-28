@@ -516,6 +516,27 @@ participant_attr.rtps.builtin.discovery_config.initial_announcements.period = Du
 //!--
 
 //CONF-STATIC-DISCOVERY-EXAMPLE
+
+//CONF_STATIC_DISCOVERY_CODE
+participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+//!--
+
+//CONF_STATIC_DISCOVERY_XML
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
+//!--
+
+{
+//CONF_QOS_STATIC_DISCOVERY_USERID
+SubscriberAttributes sub_attr;
+sub_attr.setUserDefinedID(3);
+
+PublisherAttributes pub_attr;
+pub_attr.setUserDefinedID(5);
+//!--
+}
+
 //!--
 
 //CONF-SERVER-DISCOVERY-EXAMPLE

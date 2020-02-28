@@ -1631,6 +1631,42 @@
 <!--><-->
 
 <!-->CONF-STATIC-DISCOVERY-EXAMPLE<-->
+
+<!-->CONF_STATIC_DISCOVERY_CODE<-->
+<participant profile_name="participant_profile_static_edp">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <EDP>STATIC</EDP>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_QOS_STATIC_DISCOVERY_USERID<-->
+<publisher profile_name="publisher_xml_conf_static_discovery">
+    <userDefinedID>3</userDefinedID>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_static_discovery">
+    <userDefinedID>5</userDefinedID>
+</subscriber>
+<!--><-->
+
+<!-->CONF_STATIC_DISCOVERY_XML<-->
+<participant profile_name="participant_profile_static_load_xml">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <staticEndpointXMLFilename>RemotePublisher.xml</staticEndpointXMLFilename>
+                <staticEndpointXMLFilename>RemoteSubscriber.xml</staticEndpointXMLFilename>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
 <!--><-->
 
 <!-->CONF-SERVER-CLIENT-DISCOVERY-EXAMPLE<-->

@@ -1011,15 +1011,15 @@ The specification splits up the SIMPLE discovery protocol into two independent p
   exchange of information in order to discover the RTPS entities contained in each of them, i.e. the writers and
   readers Endpoints.
 
-+--------------------------+----------------------------------------------------------+------------+---------+
-| Name                     | Description                                              | Type       | Default |
-+==========================+==========================================================+============+=========+
-| `Initial Announcements`_ | It defines the behavior of the RTPSParticipant           | ``uint32`` | 5       |
-|                          | initial announcements.                                   |            |         |
-+--------------------------+----------------------------------------------------------+------------+---------+
-| `Simple EDP Attributes`_ | It defines the use of the SIMPLE protocol as a discovery | ``bool``   | true    |
-|                          | protocol.                                                |            |         |
-+--------------------------+----------------------------------------------------------+------------+---------+
++--------------------------+----------------------------------------------------------+
+| Name                     | Description                                              |
++==========================+==========================================================+
+| `Initial Announcements`_ | It defines the behavior of the RTPSParticipant           |
+|                          | initial announcements.                                   |
++--------------------------+----------------------------------------------------------+
+| `Simple EDP Attributes`_ | It defines the use of the SIMPLE protocol as a discovery |
+|                          | protocol.                                                |
++--------------------------+----------------------------------------------------------+
 
 
 .. _`Initial Announcements`:
@@ -1069,8 +1069,8 @@ Simple EDP Attributes
 |                                        | implement subscribers. It allows the creation of     |          |         |
 |                                        | only subscriber discovery related EDP endpoints.     |          |         |
 +----------------------------------------+------------------------------------------------------+----------+---------+
-| Publication writer and                 | It is intended for participants that                 | ``bool`` | true    |
-| Subscription reader                    | implement only one or more subscribers, i.e. do not  |          |         |
+| Publication reader and                 | It is intended for participants that                 | ``bool`` | true    |
+| Subscription writer                    | implement only one or more subscribers, i.e. do not  |          |         |
 |                                        | implement publishers. It allows the creation of      |          |         |
 |                                        | only publisher discovery related EDP endpoints.      |          |         |
 +----------------------------------------+------------------------------------------------------+----------+---------+

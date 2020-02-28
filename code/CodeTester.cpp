@@ -379,7 +379,7 @@ participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProt
 //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
 participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = true;
 participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = true;
-participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = false;
+participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter = false;
 //!--
 
 //CONF-QOS-DISCOVERY-SERVERLIST

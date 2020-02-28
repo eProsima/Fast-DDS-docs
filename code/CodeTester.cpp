@@ -485,6 +485,24 @@ writer_attr.times.heartbeatPeriod.seconds = 0;
 writer_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 //!--
 
+//CONF_INITIAL_PEERS
+
+//!--
+
+//CONF_DISCOVERY_SERVER
+
+//!--
+
+//CONF_STATIC_DISCOVERY
+
+//!--
+
+//CONF_FAST_RTPS_IN_ROS2
+
+//!--
+
+
+
 }
 
 //API-DISCOVERY-TOPICS-LISTENER

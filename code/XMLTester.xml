@@ -1418,6 +1418,22 @@
 <!--><-->
 
 
+<!-->CONF_INITIAL_PEERS<-->
+
+<!-->!<-->
+
+<!-->CONF_DISCOVERY_SERVER<-->
+
+<!--><-->
+
+<!-->CONF_STATIC_DISCOVERY<-->
+
+<!--><-->
+
+<!-->CONF_FAST_RTPS_IN_ROS2<-->
+
+<!-->
+
 <!-->
 </profiles>
 <-->

@@ -347,18 +347,6 @@ participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriter
 participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = false;
 //!--
 
-//CONF-QOS-DISCOVERY-SERVERLIST
-Locator_t server_address(LOCATOR_KIND_UDPv4, 5574);
-IPLocator::setIPv4(server_address, 192, 168, 2, 65);
-
-RemoteServerAttributes ratt;
-ratt.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
-ratt.metatrafficUnicastLocatorList.push_back(server_address);
-
-participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
-participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(ratt);
-//!--
-
 //CONF-QOS-DISCOVERY-LEASEDURATION
 participant_attr.rtps.builtin.discovery_config.leaseDuration = Duration_t(5, 0);
 participant_attr.rtps.builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(2, 0);
@@ -449,8 +437,39 @@ writer_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 //!--
 
 //CONF-SERVER-DISCOVERY-EXAMPLE
+
+//CONF_SERVER_PREFIX_EXAMPLE
+participant_attr.rtps.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
 //!--
 
+{
+//CONF_SERVER_METATRAFFICUNICAST
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, 192, 168, 1 , 133);
+locator.port = 64863;
+
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(locator);
+//!--
+}
+
+{
+//CONF_SERVER_PING
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, 192, 168, 1 , 133);
+locator.port = 64863;
+
+RemoteServerAttributes server;
+server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+server.metatrafficUnicastLocatorList.push_back(locator);
+
+DiscoverySettings & ds = participant_attr.rtps.builtin.discovery_config;
+ds.discoveryProtocol =  DiscoveryProtocol_t::CLIENT;
+ds.m_DiscoveryServers.push_back(server);
+ds.discoveryServer_client_syncperiod = Duration_t(0,250000000);
+//!--
+}
+
+//!--
 }
 
 //API-DISCOVERY-TOPICS-LISTENER

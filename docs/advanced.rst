@@ -582,6 +582,12 @@ Discovery
 *********
 
 .. START INTRODUCTION
+
+.. _discovery_protocol:
+
+Discovery Protocol
+------------------
+
 .. END INTRODUCTION
 
 .. START SIMPLE DISCOVERY
@@ -591,6 +597,160 @@ Discovery
 .. END STATIC DISCOVERY
 
 .. START SERVER-CLIENT DISCOVERY
+
+.. _discovery_server:
+
+Server-Client Discovery
+=======================
+
+This is based on a client-server discovery paradigm, the metatraffic (message exchange among participants to identify each
+other) is centralized in one or several server participants (right figure), as opposed to simple discovery (left
+figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast protocol.
+
+.. image:: ds_uml.png
+    :align: center
+
+Clients must be aware of how to reach the server, usually by specifying an IP address and a transport protocol like UDP
+or TCP. Servers don't need any beforehand knowledge of their clients but, we must specify where they may be reached by
+them, usually by specifying a listening IP address and transport protocol.
+
+One of the design goals of the current implementation was to keep both the discovery messages structure and standard
+RTPS writer and reader behavior unchanged. In order to do so, clients must be aware of their server's GuidPrefix.
+GuidPrefix is the RTPS standard participant unique identifier (basically 12 bytes) which allows clients to assess
+whether they are receiving messages from the right server, as each standard RTPS message contains this piece of
+information. Note that the server's IP address may not be a reliable server's identifier because several can be
+specified and multicast addresses are acceptable. In future implementations, any other more convenient and non-standard
+identifier may substitute the GuidPrefix at the expense of adding non-standard members to the RTPS discovery messages
+structure.
+
+The settings related with client-server discovery are:
+
++----------------------------------+-----------------------------------------------------------------------------------+
+| Name                             | Description                                                                       |
++==================================+===================================================================================+
+| `DS_RTPSParticipantAttributes`_  | Specifies general participant settings. Some of them must be modified in order to |  
+|                                  | properly configure a Server like the guid prefix.                                 | 
++----------------------------------+-----------------------------------------------------------------------------------+
+| `BuiltinAttributes`_             | It's a member of the above `DS_RTPSParticipantAttributes`_ structure. Allows to   |  
+|                                  | specify some mandatory server discovery settings like the addresses were it       |
+|                                  | listens for clients discovery info.                                               |
++----------------------------------+-----------------------------------------------------------------------------------+                        
+| `DS_DiscoverySettings`_          | It's a member of the above `BuiltinAttributes`_ structure. Allows to specify some |
+|                                  | mandatory client an optional server settings like the: if it's a client or a      |
+|                                  | server or the list of servers it is linked to or the discovery ping frequency.    |
++----------------------------------+-----------------------------------------------------------------------------------+
+
+
+.. _DS_RTPSParticipantAttributes:
+
+RTPSParticipantAttributes
+-------------------------
+
+A ``GuidPrefix_t guidPrefix`` member specifies the server's identity. This member has only significance if
+discovery_config.discoveryProtocol is **SERVER** or **BACKUP**. There is a ``ReadguidPrefix`` method to easily fill in
+this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"`` (note that each byte must be a valid
+hexadecimal figure).
+
++-----------------------------------------------------+
+| **C++**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp          |
+|    :language: c++                                   |
+|    :start-after: //CONF_SERVER_PREFIX_EXAMPLE       |
+|    :end-before: //!--                               |
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX     |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
+
+.. _DS_BuiltinAttributes:
+
+BuiltinAttributes
+-----------------
+
+All discovery related info is gathered in a DiscoverySettings_ ``discovery_config`` member.
+
+In order to receive client metatraffic, ``metatrafficUnicastLocatorList`` or
+``metatrafficMulticastLocatorList`` must be populated with the addresses that were given to
+the clients.
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_METATRAFFICUNICAST          |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-METATRAFFICUNICASTLOCATOR| 
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+.. _DS_DiscoverySettings:
+
+DiscoverySettings
+-----------------
+
+A discovery_protocol_ ``discoveryProtocol`` member specifies the participant's discovery kind. As was explained before
+to setup a server-client discovery it may be: 
+
+CLIENT 
+    generates a client participant, which relies on a server (or servers) to be notified of other clients presence. This
+    participant can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do.
+
+SERVER 
+    generates a server participant, which receives, manages and spreads its linked client's metatraffic assuring any
+    single one is aware of the others. This participant can create publishers and subscribers of any topic (static or
+    dynamic) as ordinary participants do. Servers can link to other servers in order to share its clients information.
+
+BACKUP
+    generates a server participant with additional functionality over **SERVER**. Specifically, it uses a database to
+    backup its client information, so that if for whatever reason it disappears, it can be automatically restored and
+    continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to collect client information again,
+    introducing a recovery delay.
+
+A ``RemoteServerList_t m_DiscoveryServers`` lists the servers linked to a client participant. This member has only
+significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. These member elements are
+``RemoteServerAttributes`` objects that identify each server and report where the servers can be reached:
+
+``GuidPrefix_t guidPrefix``
+    is the RTPS unique identifier of the server participant we want to link to. There is a
+    ``ReadguidPrefix`` method to easily fill in this member from a string formatted like
+    ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"`` (note that each octec must be a valid hexadecimal figure).
+
+``metatrafficUnicastLocatorList`` and ``metatrafficMulticastLocatorList``
+    are ordinary ``LocatorList_t`` (see Fast-RTPS documentation) where the server's locators must be specified.
+    At least one of them should be populated.
+
+``Duration_t discoveryServer_client_syncperiod``
+    has only significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. When a client has not yet
+    stablish a reliable connection with the server it *pings* until the server notices him and establishes the connection.
+    The default value is half a second.
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_PING                        |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-PING                     |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
 .. END SERVER-CLIENT DISCOVERY
 
 Subscribing to Discovery Topics

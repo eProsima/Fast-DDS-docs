@@ -482,29 +482,6 @@
 </participant>
 <!--><-->
 
-<!-->CONF-QOS-DISCOVERY-SERVERLIST<-->
-<participant profile_name="participant_profile_qos_discovery_serverlist">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>CLIENT</discoveryProtocol>
-                <discoveryServersList>
-                    <RemoteServer prefix="4D.49.47.55.45.4c.5f.42.41.52.52.4f">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.2.65</address>
-                                    <port>5574</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                </discoveryServersList>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
 
 <!-->CONF-QOS-DISCOVERY-LEASEDURATION<-->
 <participant profile_name="participant_profile_qos_discovery_lease">
@@ -1427,8 +1404,68 @@
 <!--><-->
 
 <!-->CONF-SERVER-CLIENT-DISCOVERY-EXAMPLE<-->
+
+<!-->CONF-SERVER-CLIENT-PREFIX<-->
+<participant profile_name="participant_profile_discovery_server_prefix">
+    <rtps>
+        <prefix>
+            4D.49.47.55.45.4c.5f.42.41.52.52.4f
+        </prefix>
+    </rtps>
+</participant>
 <!--><-->
 
+<!-->CONF-SERVER-METATRAFFICUNICASTLOCATOR<-->
+<participant profile_name="participant_profile_discovery_server_metatraffic">
+       <rtps>
+        <builtin>
+            <discovery_config>
+              <discoveryProtocol>SERVER</discoveryProtocol>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                    <!-- placeholder server UDP address -->
+                        <address>192.168.1.113</address>
+                        <port>64863</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+        </builtin>        
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-SERVER-PING<-->
+<participant profile_name="participant_profile_client" >
+  <rtps>
+    <builtin>
+        <discovery_config>
+          <discoveryProtocol>CLIENT</discoveryProtocol>
+          <discoveryServersList>
+            <RemoteServer prefix="4D.49.47.55.45.4c.5f.42.41.52.52.4f">
+              <metatrafficUnicastLocatorList>
+                <locator>
+                  <udpv4>
+                  <!-- placeholder server UDP address -->
+                    <address>192.168.1.113</address>
+                    <port>64863</port>
+                  </udpv4>
+                </locator>
+              </metatrafficUnicastLocatorList>
+            </RemoteServer>
+          </discoveryServersList>
+          <clientAnnouncementPeriod>
+            <!-- change default to 250 ms -->
+            <nanosec>250000000</nanosec>
+          </clientAnnouncementPeriod>
+        </discovery_config>
+    </builtin>
+  </rtps>
+</participant>
+<!--><-->
+
+<!--><-->
 
 <!-->
 </profiles>

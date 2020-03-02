@@ -628,13 +628,13 @@ The settings related with client-server discovery are:
 +----------------------------------+-----------------------------------------------------------------------------------+
 | Name                             | Description                                                                       |
 +==================================+===================================================================================+
-| `DS_RTPSParticipantAttributes`_  | Specifies general participant settings. Some of them must be modified in order to |  
-|                                  | properly configure a Server like the guid prefix.                                 | 
+| `DS_RTPSParticipantAttributes`_  | Specifies general participant settings. Some of them must be modified in order to |
+|                                  | properly configure a Server like the guid prefix.                                 |
 +----------------------------------+-----------------------------------------------------------------------------------+
-| `BuiltinAttributes`_             | It's a member of the above `DS_RTPSParticipantAttributes`_ structure. Allows to   |  
+| `BuiltinAttributes`_             | It's a member of the above `DS_RTPSParticipantAttributes`_ structure. Allows to   |
 |                                  | specify some mandatory server discovery settings like the addresses were it       |
 |                                  | listens for clients discovery info.                                               |
-+----------------------------------+-----------------------------------------------------------------------------------+                        
++----------------------------------+-----------------------------------------------------------------------------------+
 | `DS_DiscoverySettings`_          | It's a member of the above `BuiltinAttributes`_ structure. Allows to specify some |
 |                                  | mandatory client an optional server settings like the: if it's a client or a      |
 |                                  | server or the list of servers it is linked to or the discovery ping frequency.    |
@@ -690,7 +690,7 @@ the clients.
 +------------------------------------------------------------+
 | .. literalinclude:: ../code/XMLTester.xml                  |
 |    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-METATRAFFICUNICASTLOCATOR| 
+|    :start-after: <!-->CONF-SERVER-METATRAFFICUNICASTLOCATOR|
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
 
@@ -700,13 +700,13 @@ DiscoverySettings
 -----------------
 
 A discovery_protocol_ ``discoveryProtocol`` member specifies the participant's discovery kind. As was explained before
-to setup a server-client discovery it may be: 
+to setup a server-client discovery it may be:
 
-CLIENT 
+CLIENT
     generates a client participant, which relies on a server (or servers) to be notified of other clients presence. This
     participant can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do.
 
-SERVER 
+SERVER
     generates a server participant, which receives, manages and spreads its linked client's metatraffic assuring any
     single one is aware of the others. This participant can create publishers and subscribers of any topic (static or
     dynamic) as ordinary participants do. Servers can link to other servers in order to share its clients information.
@@ -714,8 +714,8 @@ SERVER
 BACKUP
     generates a server participant with additional functionality over **SERVER**. Specifically, it uses a database to
     backup its client information, so that if for whatever reason it disappears, it can be automatically restored and
-    continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to collect client information again,
-    introducing a recovery delay.
+    continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to collect client
+    information again, introducing a recovery delay.
 
 A ``RemoteServerList_t m_DiscoveryServers`` lists the servers linked to a client participant. This member has only
 significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. These member elements are
@@ -732,8 +732,8 @@ significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. The
 
 ``Duration_t discoveryServer_client_syncperiod``
     has only significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. When a client has not yet
-    stablish a reliable connection with the server it *pings* until the server notices him and establishes the connection.
-    The default value is half a second.
+    stablish a reliable connection with the server it *pings* until the server notices him and establishes the
+    connection. The default value is half a second.
 
 +------------------------------------------------------------+
 | **C++**                                                    |

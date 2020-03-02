@@ -103,13 +103,120 @@ listed in the publisher participant Initial Peers list.
 
 .. START SEC:FAST-RTPS-WIDE-DEPLOYMENTS
 
+.. _wide_deployments:
+
+Wide Deployments
+================
 
 .. START SUBSEC:DISCOVERY-SERVER
+
+Systems with large amounts of communication nodes might pose a challenge to
+`Data Distribution Service (DDS) <https://www.omg.org/spec/DDS/1.4/PDF>`_ based middleware implementations in terms of
+setup times, memory consumption, and network load. This is because, as explained in :ref:`discovery`, the Participant
+Discovery Phase (PDP) relies on meta traffic announcements send to multicast addresses so that all the participants in
+the network can acknowledge each other. This phase is followed by a Endpoint Discovery Phase (EDP) where all the
+participants exchange information (using unicast addresses) about their publisher and subscriber entities with the rest
+of the participants, so that matching between publishers and subscribers in the same topic can occur. As the number of
+participants, publishers, and subscribers increases, the meta-traffic, as well as the number of connections, increases
+exponentially, severely affecting the setup time and memory consumption. Fast-RTPS provides extra features that expand
+the DDS standard to adapt it to wide deployment scenarios.
+
++-----------------------------------+---------------------------------------------------------------------------------+
+| Feature                           | Purpose                                                                         |
++===================================+=================================================================================+
+| Server-Client Discovery Mechanism | This feature is intended to substitute the standard SEDP and SPDP protocol with |
+|                                   | a discovery based on a server-client architecture, where all the meta-traffic   |
+|                                   | goes through a hub (server) to be distributed throughout the network            |
+|                                   | communication nodes.                                                            |
++-----------------------------------+---------------------------------------------------------------------------------+
+| Static Discovery                  | With this feature, the user can manually specify which participant should       |
+|                                   | communicate with which one and through which address and port. Furthermore, the |
+|                                   | the user can specify which publisher/subscriber matches with which one, thus    |
+|                                   | eliminating all EDP meta traffic.                                               |
++-----------------------------------+---------------------------------------------------------------------------------+
 
 .. END SUBSEC:DISCOVERY-SERVER
 
 
 .. START SUBSEC:STATIC-DISCOVERY
+
+.. _wide_deployments_static:
+
+Well Known Network Topologies
+-----------------------------
+
+It is often the case in industrial deployments, such as productions lines, that the entire network topology (hosts, IP
+addresses, etc.) is known beforehand. Such scenarios are perfect candidates for Fast-RTPS STATIC discovery mechanism,
+which drastically reduces the middleware setup time (time until all the entities are ready for information exchange),
+while at the same time limits the connections to those strictly necessary. As explained in the :ref:`discovery` section,
+all Fast-RTPS discovery mechanisms consist of two steps: Participant Discovery Phase (PDP), and Endpoint Discovery Phase
+(EDP).
+
+.. _wide_deployments_static_pdp:
+
+Peer-to-Peer Participant Discovery Phase
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, Fast-RTPS uses Simple Participant Discovery Protocol (SPDP) for PDP phase. This entails the participants
+sending periodic PDP announcements over a well known multicast addresses, using IP ports calculated from the domain. For
+large deployments, this can result in quite some meta traffic, since whenever a participant receives a PDP message via
+multicast, it replays to the remote participant using an address and port specified in the message. In this scenario the
+number of PDP connections is *N * (N - 1)*, with *N* being the number of participants in the network.
+
+However, it is often the case that not all the participants need to be aware of all the rest of the remote participants
+present in the network. For limiting all this PDP meta traffic, Fast-RTPS participants can be configured to send their
+PDP announcements only to the remote participants to which they are required to connect. This is done by specifying a
+list of peers as a set of IP address-port pairs, and by disabling the participant multicast announcements. Use-case
+:ref:`use-case-fast-rtps-over-wifi` provides a detailed explanation on how to configure Fast-RTPS for such case.
+
+.. _wide_deployments_static_edp:
+
+STATIC Endpoint Discovery Phase
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As explained in :ref:`discovery_static`, the EDP meta traffic can be completely avoided by specifying the EDP discovery
+using XML files. This way, the user can manually configure which publisher/subscriber matches with which one, so they
+can start sharing user data right away. To do that, a STATIC discovery XML file must be supplied to the local entity
+describing the configuration of the remote entity. In this example, a publisher in topic ``HelloWorldTopic`` from
+participant ``HelloWorldPublisher`` is matched with a subscriber from participant ``HelloWorldSubscriber``. A fully
+functional example implementing STATIC EDP is
+`STATIC EDP example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_.
+
+Create STATIC discovery XML files
+"""""""""""""""""""""""""""""""""
+
+   +-----------------------------------------------------+-----------------------------------------------------+
+   | **HelloWorldPublisher.xml**                         | **HelloWorldSubscriber.xml**                        |
+   +-----------------------------------------------------+-----------------------------------------------------+
+   | .. literalinclude:: ../code/StaticTester.xml        | .. literalinclude:: ../code/StaticTester.xml        |
+   |    :language: xml                                   |    :language: xml                                   |
+   |    :start-after: <!-->STATIC_DISCOVERY_USE_CASE_PUB |    :start-after: <!-->STATIC_DISCOVERY_USE_CASE_SUB |
+   |    :end-before: <!--><-->                           |    :end-before: <!--><-->                           |
+   +-----------------------------------------------------+-----------------------------------------------------+
+
+Create entities and load STATIC discovery XML files
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+When creating the entities, the local publisher/subscriber attributes must match those defined in the STATIC discovery
+XML file loaded by the remote entity.
+
+   +-----------------------------------------------------+-----------------------------------------------------+
+   | **PUBLISHER**                                       | **SUBSCRIBER**                                      |
+   +-----------------------------------------------------+-----------------------------------------------------+
+   | **C++**                                             | **C++**                                             |
+   +-----------------------------------------------------+-----------------------------------------------------+
+   | .. literalinclude:: ../code/CodeTester.cpp          | .. literalinclude:: ../code/CodeTester.cpp          |
+   |    :language: c++                                   |    :language: c++                                   |
+   |    :start-after: //STATIC_DISCOVERY_USE_CASE_PUB    |    :start-after: //STATIC_DISCOVERY_USE_CASE_SUB    |
+   |    :end-before: //!--                               |    :end-before: //!--                               |
+   +-----------------------------------------------------+-----------------------------------------------------+
+   | **XML**                                             | **XML**                                             |
+   +-----------------------------------------------------+-----------------------------------------------------+
+   | .. literalinclude:: ../code/XMLTester.xml           | .. literalinclude:: ../code/XMLTester.xml           |
+   |    :language: xml                                   |    :language: xml                                   |
+   |    :start-after: <!-->STATIC_DISCOVERY_USE_CASE_PUB |    :start-after: <!-->STATIC_DISCOVERY_USE_CASE_SUB |
+   |    :end-before: <!--><-->                           |    :end-before: <!--><-->                           |
+   +-----------------------------------------------------+-----------------------------------------------------+
 
 .. END SUBSEC:STATIC-DISCOVERY
 

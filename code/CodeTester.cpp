@@ -443,7 +443,7 @@ writer_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 
 //CONF_INITIAL_PEERS_BASIC
 Locator_t initial_peers_locator;
-IPLocator::setIPv4(initial_peers_locator, "192.168.10.1");
+IPLocator::setIPv4(initial_peers_locator, "192.168.10.13");
 initial_peers_locator.port = 7412;
 participant_attr.rtps.builtin.initialPeersList.push_back(initial_peers_locator);
 //!--
@@ -451,7 +451,7 @@ participant_attr.rtps.builtin.initialPeersList.push_back(initial_peers_locator);
 
 //CONF_INITIAL_PEERS_METAUNICAST
 Locator_t meta_unicast_locator;
-IPLocator::setIPv4(meta_unicast_locator, "192.168.10.1");
+IPLocator::setIPv4(meta_unicast_locator, "192.168.10.13");
 meta_unicast_locator.port = 7412;
 participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(meta_unicast_locator);
 //!--

@@ -12,23 +12,46 @@ Typical Use-Cases
 
 .. START SUBSEC:INITIAL-PEERS
 
-Initial Peers Use Case
-======================
+.. _use-case-fast-rtps-over-wifi:
 
-This section defines the use-case resulting from the application of the :ref:`initial-peers` functionality provided
-by Fast-RTPS.
+Fast-RTPS over WIFI
+===================
 
-An initial peers list is
-created for each participant, in which the unicast locators of the other participants with which it will communicate
-are defined, that is, a list of addresses is defined to be used in the discovery mechanism that is used together or
-as an alternative to multicast discovery. Therefore, this applies to those scenarios in which multicast
+The `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ defines the SIMPLE discovery as the default
+mechanism for discovering participants in the network.
+One of the main features of this mechanism is the use of multicast communication in the PDP (Participant Discovery
+Phase). This could be a problem in case the communication is not wired, i.e. WiFi communication is used. The solution
+to this challenge is to define the participants with which a unicast communication is to be set. This is the initial
+peers list.
+
+
+.. _use-case-initial-peers:
+
+Initial Peers
+-------------
+
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), each participant must
+listen for incoming
+PDP discovery metatraffic in two different ports, one linked with a multicast address, and another one linked to a
+unicast address.
+Fast-RTPS allows for the configuration of an initial peers list which contains one or much such address-port pairs
+corresponding to remote participants PDP discovery listening resources, so that the local participant will not only
+sent its PDP traffic to the default multicast address-port specified by its domain, but also to all the address-port
+pairs specified in the :ref:`initial-peers` list.
+
+A participant's initial peers list contains the list of unicast address-port pairs of all other participants with
+which it will communicate. It is a list of addresses that a participant will use in the unicast discovery mechanism,
+together or as an alternative to multicast discovery. Therefore, this applies to those scenarios in which multicast
 functionality is not available.
 
-The definition of the unicast ports of each participants is made according to the following equation:
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the participants'
+discovery traffic
+unicast listening ports of is calculated using the following equation:
 7400 + 250 * `domainID` + 10 + 2 * `participantID`. Thus, if a participant operates in Domain 0 (default domain) and
-its ID is 1, its port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
+its ID is 1, its discovery traffic unicast listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
 
-An example of the implementation of Initial Peers in the participant profile is presented below.
+The following constitutes an example configuring an Initial Peers list with one peer on host 192.168.10.13 with
+participant ID 1 in domain 0.
 
 +---------------------------------------------------------+
 | **C++**                                                 |
@@ -51,13 +74,19 @@ An example of the implementation of Initial Peers in the participant profile is 
 
 .. START SUBSEC:DISABLE-MULTICAST
 
+.. _use-case-disabling-multicast-discovery:
+
 Disabling multicast discovery
 -----------------------------
 
-Another possible use case is the definition of initial peers for the participant to discover these only. This is done
+If all the peers are known beforehand, it is possible to disable the multicast meta traffic completely. This is done
 using the configuration attribute `metatrafficUnicastLocatorList`. By defining a custom
 `metatrafficUnicastLocatorList`, the default metatraffic multicast and unicast locators to be employed by the
-participant is prevented; this prevents the participant from listening any discovery data from multicast.
+participant is avoided; this prevents the participant from listening any discovery data from multicast.
+
+You should be careful with the assignment of the address-port pair in the `metatrafficUnicastLocatorList`,
+avoiding the assignment of ports that are not available or do not match the address-port
+listed in the publisher participant Initial Peers list.
 
 +------------------------------------------------------------+
 | **C++**                                                    |

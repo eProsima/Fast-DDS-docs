@@ -1427,7 +1427,7 @@
         <initialPeersList>
         <locator>
             <udpv4>
-            <address>192.168.10.1</address>
+            <address>192.168.10.13</address>
             <port>7412</port>
             </udpv4>
         </locator>
@@ -1445,7 +1445,7 @@
             <metatrafficUnicastLocatorList>
                 <locator>
                     <udpv4>
-                        <address>192.168.10.1</address>
+                        <address>192.168.10.13</address>
                         <port>7412</port>
                     </udpv4>
                 </locator>

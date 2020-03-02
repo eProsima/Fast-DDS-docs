@@ -71,6 +71,7 @@ pluggable
 ppDisable
 ppPath
 preallocated
+preallocates
 preprocessor
 QoS
 readNextData

@@ -1567,6 +1567,37 @@
 
 <!-->CONF_FAST_RTPS_IN_ROS2<-->
 
+<!-->CONF_ROS2_DEFAULT_PROFILE<-->
+<participant profile_name="participant_profile_ros2" is_default_profile="true">
+    <rtps>
+        <name>profile_for_ros2_node</name>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->
+</profiles>
+<-->
+<!-->
+<profiles>
+<-->
+<!-->CONF_ROS2_EXAMPLE<-->
+<profiles>
+    <publisher profile_name="ros2_publisher_profile" is_default_profile="true">
+        <qos>
+            <publishMode>
+                <kind>SYNCHRONOUS</kind>
+            </publishMode>
+        </qos>
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </publisher>
+
+    <subscriber profile_name="ros2_subscription_profile" is_default_profile="true">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </subscriber>
+</profiles>
+<!--><-->
+
 <!--><-->
 
 <!-->

@@ -54,29 +54,25 @@ advantage for Fast-RTPS wide set of capabilities in a ROS 2 project.
 
 The interface between the ROS2 stack and Fast-RTPS is provided by a ROS 2 package
 `rmw_fastrtps <https://raw.githubusercontent.com/ros2/rmw_fastrtps/>`_. This packages is available in all ROS 2
-distributions, both from binaries and from sources. Event thought Fast-RTPS is the default ROS 2 middleware, it is still
-possible to explicitly specify it in two different ways:
+distributions, both from binaries and from sources. ``rmw_fastrtps`` actually provides not one but two different ROS 2
+middleware implementations, both of them using Fast-RTPS as middleware layer: ``rmw_fastrtps_cpp`` and
+``rmw_fastrtps_dynamic_cpp``. The main difference between the two is that ``rmw_fastrtps_dynamic_cpp`` uses
+introspection type support at run time to decide on the serialization/deserialization mechanism, while
+``rmw_fastrtps_cpp`` uses its own type support, which generates the mapping for each message type at build time. The
+default ROS 2 RMW implementation is ``rmw_fastrtps_cpp``. However, it is still possible to select
+``rmw_fastrtps_dynamic_cpp`` using the environment variable ``RMW_IMPLEMENTATION``:
 
 #. Exporting ``RMW_IMPLEMENTATION`` environment variable:
 
    ::
 
-       export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+       export RMW_IMPLEMENTATION=rmw_fastrtps_dynamic_cpp
 
 #. When launching your ROS 2 application:
 
    ::
 
-       RMW_IMPLEMENTATION=rmw_fastrtps_cpp ros2 run <package> <application>
-
-``rmw_fastrtps`` actually provides not one but two different ROS 2 middleware implementations, both of them using
-Fast-RTPS as middleware layer: ``rmw_fastrtps_cpp`` and ``rmw_fastrtps_dynamic_cpp``. The main difference between the
-two is that ``rmw_fastrtps_dynamic_cpp`` uses introspection type support at run time to decide on the
-serialization/deserialization mechanism. On the other hand, ``rmw_fastrtps_cpp`` uses its own type support, which
-generates the mapping for each message type at build time.
-
-The default ROS 2 RMW implementation is ``rmw_fastrtps_cpp``. However, it is possible to select
-``rmw_fastrtps_dynamic_cpp`` using the environment variable ``RMW_IMPLEMENTATION`` as described above.
+       RMW_IMPLEMENTATION=rmw_fastrtps_dynamic_cpp ros2 run <package> <application>
 
 .. _ros2_use_xml:
 
@@ -163,7 +159,7 @@ Example
 -------
 
 The following example uses the ROS 2 talker/listener demo, configuring Fast-RTPS to publish synchronously, and to have a
-dynamically allocated history.
+dynamically allocated publisher and subscriber histories.
 
 #. Create a XML file `ros_example.xml` and save it in `path/to/xml/`
 

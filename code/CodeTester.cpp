@@ -454,12 +454,12 @@ participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(locator);
 
 {
 //CONF_SERVER_PING
+RemoteServerAttributes server;
+server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+
 eprosima::fastrtps::rtps::Locator_t locator;
 IPLocator::setIPv4(locator, 192, 168, 1 , 133);
 locator.port = 64863;
-
-RemoteServerAttributes server;
-server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
 server.metatrafficUnicastLocatorList.push_back(locator);
 
 DiscoverySettings & ds = participant_attr.rtps.builtin.discovery_config;

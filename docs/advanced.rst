@@ -603,25 +603,19 @@ Discovery Protocol
 Server-Client Discovery
 =======================
 
-This is based on a client-server discovery paradigm, the metatraffic (message exchange among participants to identify each
+This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among participants to identify each
 other) is centralized in one or several server participants (right figure), as opposed to simple discovery (left
 figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast protocol.
 
 .. image:: ds_uml.png
     :align: center
 
-Clients must be aware of how to reach the server, usually by specifying an IP address and a transport protocol like UDP
-or TCP. Servers don't need any beforehand knowledge of their clients but, we must specify where they may be reached by
-them, usually by specifying a listening IP address and transport protocol.
+In this architecture, discovery server participants do not require any beforehand knowledge of their clients. They only need to specify a transport protocol (UDP or TCP), and IP address and port where they listen to client's meta traffic. On the other hand, clients require the server's listening address and port (and its transport protocol), where they send their discovery announcement messages.
 
-One of the design goals of the current implementation was to keep both the discovery messages structure and standard
-RTPS writer and reader behavior unchanged. In order to do so, clients must be aware of their server's GuidPrefix.
-GuidPrefix is the RTPS standard participant unique identifier (basically 12 bytes) which allows clients to assess
+The Server-Client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard
+RTPS writers and readers. Because of this, clients must be aware of their server's ``GuidPrefix``. The ``GuidPrefix`` is the RTPS standard participant unique identifier,  a 12-byte chain. This identifier allows clients to assess
 whether they are receiving messages from the right server, as each standard RTPS message contains this piece of
-information. Note that the server's IP address may not be a reliable server's identifier because several can be
-specified and multicast addresses are acceptable. In future implementations, any other more convenient and non-standard
-identifier may substitute the GuidPrefix at the expense of adding non-standard members to the RTPS discovery messages
-structure.
+information. The ``GuidPrefix`` is used because the server's IP address may not be a reliable enough server identifier, since several servers can be hosted in the same machine, thus having the same IP, and also because multicast addresses are acceptable addresses.
 
 The settings related with client-server discovery are:
 

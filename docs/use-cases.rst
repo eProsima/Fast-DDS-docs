@@ -124,10 +124,10 @@ the DDS standard to adapt it to wide deployment scenarios.
 +-----------------------------------+---------------------------------------------------------------------------------+
 | Feature                           | Purpose                                                                         |
 +===================================+=================================================================================+
-| Server-Client Discovery Mechanism | This feature is intended to substitute the standard SEDP and SPDP protocol with |
-|                                   | a discovery based on a server-client architecture, where all the meta-traffic   |
-|                                   | goes through a hub (server) to be distributed throughout the network            |
-|                                   | communication nodes.                                                            |
+| Server-Client Discovery Mechanism | This feature is intended to substitute the standard SPDP and SEDP protocols     |
+|                                   | with a discovery based on a server-client architecture, where all the           |
+|                                   | meta-traffic goes through a hub (server) to be distributed throughout the       |
+|                                   | network communication nodes.                                                    |
 +-----------------------------------+---------------------------------------------------------------------------------+
 | Static Discovery                  | With this feature, the user can manually specify which participant should       |
 |                                   | communicate with which one and through which address and port. Furthermore, the |
@@ -149,19 +149,18 @@ It is often the case in industrial deployments, such as productions lines, that 
 addresses, etc.) is known beforehand. Such scenarios are perfect candidates for Fast-RTPS STATIC discovery mechanism,
 which drastically reduces the middleware setup time (time until all the entities are ready for information exchange),
 while at the same time limits the connections to those strictly necessary. As explained in the :ref:`discovery` section,
-all Fast-RTPS discovery mechanisms consist of two steps: Participant Discovery Phase (PDP), and Endpoint Discovery Phase
-(EDP).
+all Fast-RTPS discovery mechanisms consist of two steps: PDP and EDP.
 
 .. _wide_deployments_static_pdp:
 
 Peer-to-Peer Participant Discovery Phase
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Fast-RTPS uses Simple Participant Discovery Protocol (SPDP) for PDP phase. This entails the participants
-sending periodic PDP announcements over a well known multicast addresses, using IP ports calculated from the domain. For
-large deployments, this can result in quite some meta traffic, since whenever a participant receives a PDP message via
-multicast, it replays to the remote participant using an address and port specified in the message. In this scenario the
-number of PDP connections is *N * (N - 1)*, with *N* being the number of participants in the network.
+By default, Fast-RTPS uses SPDP protocol for the PDP phase. This entails the participants sending periodic PDP
+announcements over a well known multicast addresses, using IP ports calculated from the domain. For large deployments,
+this can result in quite some meta traffic, since whenever a participant receives a PDP message via multicast, it
+replays to the remote participant using an address and port specified in the message. In this scenario the number of PDP
+connections is *N * (N - 1)*, with *N* being the number of participants in the network.
 
 However, it is often the case that not all the participants need to be aware of all the rest of the remote participants
 present in the network. For limiting all this PDP meta traffic, Fast-RTPS participants can be configured to send their

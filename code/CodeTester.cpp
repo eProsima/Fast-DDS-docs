@@ -463,27 +463,24 @@ Locator_t server_locator;
 IPLocator::setIPv4(server_locator, "192.168.10.57");
 server_locator.port = 56542;
 
-RemoteServerAttributes server_attr;
-server_attr.ReadguidPrefix("72.61.73.70.66.61.72.6d.74.65.73.74");
-server_attr.metatrafficUnicastLocatorList.push_back(server_locator);
-
 participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
-participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(server_attr);
-participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0,250000000);
+participant_attr.rtps.ReadguidPrefix("72.61.73.70.66.61.72.6d.74.65.73.74");
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
 //!--
 
 //CONF_DS_MAIN_SCENARIO_CLIENT
-Locator_t server_locator;
-IPLocator::setIPv4(server_locator, "192.168.10.57");
-server_locator.port = 56542;
+Locator_t remote_server_locator;
+IPLocator::setIPv4(remote_server_locator, "192.168.10.57");
+remote_server_locator.port = 56542;
 
 RemoteServerAttributes remote_server_attr;
 remote_server_attr.ReadguidPrefix("72.61.73.70.66.61.72.6d.74.65.73.74");
-remote_server_attr.metatrafficUnicastLocatorList.push_back(server_locator);
+remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator);
 
 participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
 participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
-participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0,250000000);
+participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
 //!--
 
 //!--

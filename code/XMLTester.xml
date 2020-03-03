@@ -1466,6 +1466,10 @@
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>
+                <clientAnnouncementPeriod>
+                    <sec>0</sec>
+                    <nanosec>250000000</nanosec>
+                </clientAnnouncementPeriod>
             </discovery_config>
             <metatrafficUnicastLocatorList>
                 <locator>
@@ -1485,6 +1489,10 @@
         <builtin>
             <discovery_config>
                 <discoveryProtocol>CLIENT</discoveryProtocol>
+                <clientAnnouncementPeriod>
+                    <sec>0</sec>
+                    <nanosec>250000000</nanosec>
+                </clientAnnouncementPeriod>
                 <discoveryServersList>
                     <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
                         <metatrafficUnicastLocatorList>

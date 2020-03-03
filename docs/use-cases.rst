@@ -142,17 +142,17 @@ Server-Client Discovery
 -----------------------
 
 Considering a scenario in which a large number of communication agents, called participants in this case, are deployed,
-an alternative to the default SIMPLE discovery mechanism of the RTPS standard may be used. For this purpose, Fast RTPS
-provides for the client-server discovery mechanism, in which a server participant operates as the central point of
-communication; the server collects and processes the metatraffic sent by the client participants and used in the
-discovery phases, and distributes the appropriate information to the previous participants.
+an alternative to the default RTPS standard SIMPLE discovery mechanism may be used. For this purpose, Fast-RTPS
+provides a client-server discovery mechanism, in which a server participant operates as the central point of
+communication; the server collects and processes the metatraffic sent by the client participants, and distributes the
+appropriate information to the previous participants.
 
 Various discovery server use cases are presented below.
 
 .. _discovery_server_major_scenario_setup:
 
-Discovery-Server major scenario setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discovery-Server UDPv4 example setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To configure the client-server discovery scenario, two types of participants are created: the server participant and
 the client participant. Two parameters to be configured in this type of implementation are outlined:

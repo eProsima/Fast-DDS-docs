@@ -108,7 +108,6 @@ listed in the publisher participant Initial Peers list.
 Wide Deployments
 ================
 
-.. START SUBSEC:DISCOVERY-SERVER
 
 Systems with large amounts of communication nodes might pose a challenge to
 `Data Distribution Service (DDS) <https://www.omg.org/spec/DDS/1.4/PDF>`_ based middleware implementations in terms of
@@ -134,6 +133,56 @@ the DDS standard to adapt it to wide deployment scenarios.
 |                                   | the user can specify which publisher/subscriber matches with which one, thus    |
 |                                   | eliminating all EDP meta traffic.                                               |
 +-----------------------------------+---------------------------------------------------------------------------------+
+
+.. START SUBSEC:DISCOVERY-SERVER
+
+.. _server-client-discovery-use-case:
+
+Server-Client Discovery
+-----------------------
+
+Considering a scenario in which a large number of communication agents, called participants in this case, are deployed,
+an alternative to the default SIMPLE discovery mechanism of the RTPS standard may be used. For this purpose, Fast RTPS
+provides for the client-server discovery mechanism, in which a server participant operates as the central point of
+communication; the server collects and processes the metatraffic sent by the client participants and used in the
+discovery phases, and distributes the appropriate information to the previous participants.
+
+Various discovery server use cases are presented below.
+
+.. _discovery_server_major_scenario_setup:
+
+Discovery-Server major scenario setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To configure the client-server discovery scenario, two types of participants are created: the server participant and
+the client participant. Two parameters to be configured in this type of implementation are outlined:
+
++ **Prefix**: This is the unique identifier of the server.
++ **Address-port pair**: Specifies the IP address and port of the machine that implements the server. The port is a
+  random number that can be replaced with any other value. Consideration should be given to the assignment of the
+  address-port pair in the ``metatrafficUnicastLocatorList``, avoiding the assignment of ports that are not available.
+  Thus using RTPS standard ports is discouraged.
+
++--------------------------------------------------------+--------------------------------------------------------+
+| **SERVER**                                             | **CLIENT**                                             |
++--------------------------------------------------------+--------------------------------------------------------+
+| **C++**                                                | **C++**                                                |
++--------------------------------------------------------+--------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp             | .. literalinclude:: ../code/CodeTester.cpp             |
+|    :language: c++                                      |    :language: c++                                      |
+|    :start-after: //CONF_DS_MAIN_SCENARIO_SERVER        |    :start-after: //CONF_DS_MAIN_SCENARIO_CLIENT        |
+|    :end-before: //!--                                  |    :end-before: //!--                                  |
++--------------------------------------------------------+--------------------------------------------------------+
+| **XML**                                                | **XML**                                                |
++--------------------------------------------------------+--------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml              | .. literalinclude:: ../code/XMLTester.xml              |
+|    :language: xml                                      |    :language: xml                                      |
+|    :start-after: <!-->CONF_DS_MAIN_SCENARIO_SERVER<--> |    :start-after: <!-->CONF_DS_MAIN_SCENARIO_CLIENT<--> |
+|    :end-before: <!--><-->                              |    :end-before: <!--><-->                              |
++--------------------------------------------------------+--------------------------------------------------------+
+
+
+
 
 .. END SUBSEC:DISCOVERY-SERVER
 

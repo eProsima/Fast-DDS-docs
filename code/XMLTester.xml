@@ -1423,16 +1423,16 @@
 <!-->CONF_INITIAL_PEERS_BASIC<-->
 <participant profile_name="initial_peers_example_profile" is_default_profile="true">
     <rtps>
-    <builtin>
-        <initialPeersList>
-        <locator>
-            <udpv4>
-            <address>192.168.10.13</address>
-            <port>7412</port>
-            </udpv4>
-        </locator>
-        </initialPeersList>
-    </builtin>
+        <builtin>
+            <initialPeersList>
+            <locator>
+                <udpv4>
+                <address>192.168.10.13</address>
+                <port>7412</port>
+                </udpv4>
+            </locator>
+            </initialPeersList>
+        </builtin>
     </rtps>
 </participant>
 <!--><-->

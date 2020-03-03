@@ -9,9 +9,6 @@ Typical Use-Cases
 
 .. START SEC:FAST-RTPS-OVER-WIFI
 
-
-.. START SUBSEC:INITIAL-PEERS
-
 .. _use-case-fast-rtps-over-wifi:
 
 Fast-RTPS over WIFI
@@ -20,10 +17,9 @@ Fast-RTPS over WIFI
 The `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ defines the SIMPLE discovery as the default
 mechanism for discovering participants in the network.
 One of the main features of this mechanism is the use of multicast communication in the PDP (Participant Discovery
-Phase). This could be a problem in case the communication is not wired, i.e. WiFi communication is used. The solution
-to this challenge is to define the participants with which a unicast communication is to be set. This is the initial
-peers list.
-
+Phase). This could be a problem in case the communication is not wired, i.e. WiFi communication. Fast-RTPS' solution
+to this challenge is to define the participants with which a unicast communication is to be set, i.e an
+initial list of remote peers.
 
 .. _use-case-initial-peers:
 
@@ -41,12 +37,12 @@ pairs specified in the :ref:`initial-peers` list.
 
 A participant's initial peers list contains the list of unicast address-port pairs of all other participants with
 which it will communicate. It is a list of addresses that a participant will use in the unicast discovery mechanism,
-together or as an alternative to multicast discovery. Therefore, this applies to those scenarios in which multicast
-functionality is not available.
+together or as an alternative to multicast discovery. Therefore, this approach also applies to those scenarios in which
+multicast functionality is not available.
 
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the participants'
 discovery traffic
-unicast listening ports of is calculated using the following equation:
+unicast listening ports is calculated using the following equation:
 7400 + 250 * `domainID` + 10 + 2 * `participantID`. Thus, if a participant operates in Domain 0 (default domain) and
 its ID is 1, its discovery traffic unicast listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
 
@@ -69,22 +65,19 @@ participant ID 1 in domain 0.
 |    :end-before: <!--><-->                               |
 +---------------------------------------------------------+
 
-.. END SUBSEC:INITIAL-PEERS
-
-
-.. START SUBSEC:DISABLE-MULTICAST
-
 .. _use-case-disabling-multicast-discovery:
 
 Disabling multicast discovery
 -----------------------------
 
 If all the peers are known beforehand, it is possible to disable the multicast meta traffic completely. This is done
-using the configuration attribute `metatrafficUnicastLocatorList`. By defining a custom
-`metatrafficUnicastLocatorList`, the default metatraffic multicast and unicast locators to be employed by the
-participant is avoided; this prevents the participant from listening any discovery data from multicast.
+using the configuration attribute ``metatrafficUnicastLocatorList``. By defining a custom
+``metatrafficUnicastLocatorList``, the default metatraffic multicast and unicast locators to be employed by the
+participant are avoided, which prevents the participant from listening to any discovery data from multicast sources.
+The local participant creates a meta traffic receiving resource per address-port pair specified in the
+``metatrafficUnicastLocatorList``.
 
-You should be careful with the assignment of the address-port pair in the `metatrafficUnicastLocatorList`,
+Consideration should be given to the assignment of the address-port pair in the ``metatrafficUnicastLocatorList``,
 avoiding the assignment of ports that are not available or do not match the address-port
 listed in the publisher participant Initial Peers list.
 
@@ -103,11 +96,6 @@ listed in the publisher participant Initial Peers list.
 |    :start-after: <!-->CONF_INITIAL_PEERS_METAUNICAST<-->   |
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
-
-
-
-.. END SUBSEC:DISABLE-MULTICAST
-
 
 .. END SEC:FAST-RTPS-OVER-WIFI
 

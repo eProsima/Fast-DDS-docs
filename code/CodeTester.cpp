@@ -453,6 +453,69 @@ participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(locator);
 }
 
 {
+//CONF_SERVER_DISCOVERY_PROTOCOL 
+DiscoverySettings & ds = participant_attr.rtps.builtin.discovery_config;
+ds.discoveryProtocol =  DiscoveryProtocol_t::CLIENT;
+ds.discoveryProtocol =  DiscoveryProtocol_t::SERVER;
+ds.discoveryProtocol =  DiscoveryProtocol_t::BACKUP;
+//!--
+}
+
+{
+//CONF_SERVER_CLIENT_GUIDPREFIX
+RemoteServerAttributes server;
+server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+
+DiscoverySettings & ds = participant_attr.rtps.builtin.discovery_config;
+ds.m_DiscoveryServers.push_back(server);
+//!--
+}
+
+{
+//CONF_SERVER_SERVER_GUIDPREFIX
+participant_attr.rtps.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+//!--
+}
+
+{
+//CONF_SERVER_CLIENT_LOCATORS
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, 192, 168, 1 , 133);
+locator.port = 64863;
+RemoteServerAttributes server;
+server.metatrafficUnicastLocatorList.push_back(locator);
+
+DiscoverySettings & ds = participant_attr.rtps.builtin.discovery_config;
+ds.m_DiscoveryServers.push_back(server);
+//!--
+}
+
+{
+//CONF_SERVER_SERVER_LOCATORS
+eprosima::fastrtps::rtps::Locator_t locator;
+IPLocator::setIPv4(locator, 192, 168, 1 , 133);
+locator.port = 64863;
+
+LocatorList_t & ull = participant_attr.rtps.builtin.metatrafficUnicastLocatorList;
+ull.push_back(locator);
+//!--
+}
+
+{
+//CONF_SERVER_CLIENT_PING
+DiscoverySettings & ds = participant_attr.rtps.builtin.discovery_config;
+ds.discoveryServer_client_syncperiod = Duration_t(0,250000000);
+//!--
+}
+
+{
+//CONF_SERVER_SERVER_PING
+DiscoverySettings & ds = participant_attr.rtps.builtin.discovery_config;
+ds.discoveryServer_client_syncperiod = Duration_t(0,250000000);
+//!--
+}
+
+{
 //CONF_SERVER_PING
 RemoteServerAttributes server;
 server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");

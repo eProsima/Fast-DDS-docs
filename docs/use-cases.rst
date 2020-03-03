@@ -144,8 +144,8 @@ Server-Client Discovery
 Considering a scenario in which a large number of communication agents, called participants in this case, are deployed,
 an alternative to the default RTPS standard SIMPLE discovery mechanism may be used. For this purpose, Fast-RTPS
 provides a client-server discovery mechanism, in which a server participant operates as the central point of
-communication; the server collects and processes the metatraffic sent by the client participants, and distributes the
-appropriate information to the previous participants.
+communication, that is the server collects and processes the metatraffic sent by the client participants, and
+distributes the appropriate information among the rest of the clients.
 
 Various discovery server use cases are presented below.
 

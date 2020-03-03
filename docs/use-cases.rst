@@ -1,8 +1,6 @@
 Typical Use-Cases
 #################
 
-.. START Introduction
-
 The use of Fast-RTPS is highly varied, allowing a large number of configurations depending on the scenario in which
 the library is applied. This section provides configuration examples for the typical use cases aroused when dealing
 with distributed systems.
@@ -20,11 +18,6 @@ with distributed systems.
   `OSRF <https://www.openrobotics.org/>`_ `Robot Operation System 2 (ROS 2) <https://index.ros.org/doc/ros2/>`_,
   this tutorial is an explanation of how to take full advantage for Fast-RTPS wide set of capabilities in a ROS 2
   project.
-
-.. END Introduction
-
-
-.. START SEC:FAST-RTPS-OVER-WIFI
 
 .. _use-case-fast-rtps-over-wifi:
 
@@ -114,17 +107,10 @@ listed in the publisher participant Initial Peers list.
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
 
-.. END SEC:FAST-RTPS-OVER-WIFI
-
-
-
-.. START SEC:FAST-RTPS-WIDE-DEPLOYMENTS
-
 .. _wide_deployments:
 
 Wide Deployments
 ================
-
 
 Systems with large amounts of communication nodes might pose a challenge to
 `Data Distribution Service (DDS) <https://www.omg.org/spec/DDS/1.4/PDF>`_ based middleware implementations in terms of
@@ -150,8 +136,6 @@ the DDS standard to adapt it to wide deployment scenarios.
 |                                   | the user can specify which publisher/subscriber matches with which one, thus    |
 |                                   | eliminating all EDP meta traffic.                                               |
 +-----------------------------------+---------------------------------------------------------------------------------+
-
-.. START SUBSEC:DISCOVERY-SERVER
 
 .. _server-client-discovery-use-case:
 
@@ -197,14 +181,6 @@ the client participant. Two parameters to be configured in this type of implemen
 |    :start-after: <!-->CONF_DS_MAIN_SCENARIO_SERVER<--> |    :start-after: <!-->CONF_DS_MAIN_SCENARIO_CLIENT<--> |
 |    :end-before: <!--><-->                              |    :end-before: <!--><-->                              |
 +--------------------------------------------------------+--------------------------------------------------------+
-
-
-
-
-.. END SUBSEC:DISCOVERY-SERVER
-
-
-.. START SUBSEC:STATIC-DISCOVERY
 
 .. _wide_deployments_static:
 
@@ -282,15 +258,6 @@ XML file loaded by the remote entity.
    |    :start-after: <!-->STATIC_DISCOVERY_USE_CASE_PUB |    :start-after: <!-->STATIC_DISCOVERY_USE_CASE_SUB |
    |    :end-before: <!--><-->                           |    :end-before: <!--><-->                           |
    +-----------------------------------------------------+-----------------------------------------------------+
-
-.. END SUBSEC:STATIC-DISCOVERY
-
-
-.. END SEC:FAST-RTPS-WIDE-DEPLOYMENTS
-
-
-
-.. START SEC:FAST-RTPS-IN-ROS2
 
 .. _fastrtps_ros2:
 
@@ -438,5 +405,3 @@ dynamically allocated publisher and subscriber histories.
        export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/xml/ros_example.xml
        export RMW_FASTRTPS_USE_QOS_FROM_XML=1
        ros2 run demo_nodes_cpp listener
-
-.. END SEC:FAST-RTPS-IN-ROS2

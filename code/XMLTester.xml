@@ -1552,9 +1552,6 @@
 </subscriber>
 <!--><-->
 
-
-<!-->CONF_INITIAL_PEERS<-->
-
 <!-->CONF_INITIAL_PEERS_BASIC<-->
 <participant profile_name="initial_peers_example_profile" is_default_profile="true">
     <rtps>
@@ -1590,10 +1587,6 @@
 </participant>
 <!--><-->
 
-<!--><-->
-
-<!-->CONF_DISCOVERY_SERVER_MAIN_SCENARIO<-->
-
 <!-->CONF_DS_MAIN_SCENARIO_SERVER<-->
 <participant profile_name="UDP SERVER" is_default_profile="true">
     <rtps>
@@ -1618,6 +1611,7 @@
     </rtps>
 </participant>
 <!--><-->
+
 <!-->CONF_DS_MAIN_SCENARIO_CLIENT<-->
 <participant profile_name="UDP CLIENT" is_default_profile="true">
     <rtps>
@@ -1646,25 +1640,11 @@
 </participant>
 <!--><-->
 
-
-<!--><-->
-
-<!-->CONF_DISCOVERY_SERVER_OTHER_SCENARIOS<-->
-
-
-
-
-<!--><-->
-
-
-
-<!-->CONF_STATIC_DISCOVERY<-->
-
 <!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
 <participant profile_name="participant_profile_static_pub">
     <rtps>
+        <name>HelloWorldPublisher</name>
         <builtin>
-            <name>HelloWorldPublisher</name>
             <discovery_config>
                 <EDP>STATIC</EDP>
                 <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
@@ -1686,8 +1666,8 @@
 <!-->STATIC_DISCOVERY_USE_CASE_SUB<-->
 <participant profile_name="participant_profile_static_sub">
     <rtps>
+        <name>HelloWorldSubscriber</name>
         <builtin>
-            <name>HelloWorldSubscriber</name>
             <discovery_config>
                 <staticEndpointXMLFilename>HelloWorldPublisher.xml</staticEndpointXMLFilename>
             </discovery_config>
@@ -1704,10 +1684,6 @@
     <entityID>4</entityID>
 </subscriber>
 <!--><-->
-
-<!--><-->
-
-<!-->CONF_FAST_RTPS_IN_ROS2<-->
 
 <!-->CONF_ROS2_DEFAULT_PROFILE<-->
 <participant profile_name="participant_profile_ros2" is_default_profile="true">

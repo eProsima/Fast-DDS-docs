@@ -485,8 +485,6 @@ writer_attr.times.heartbeatPeriod.seconds = 0;
 writer_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 //!--
 
-//CONF_INITIAL_PEERS
-
 //CONF_INITIAL_PEERS_BASIC
 Locator_t initial_peers_locator;
 IPLocator::setIPv4(initial_peers_locator, "192.168.10.13");
@@ -494,15 +492,12 @@ initial_peers_locator.port = 7412;
 participant_attr.rtps.builtin.initialPeersList.push_back(initial_peers_locator);
 //!--
 
-
 //CONF_INITIAL_PEERS_METAUNICAST
 Locator_t meta_unicast_locator;
 IPLocator::setIPv4(meta_unicast_locator, "192.168.10.13");
 meta_unicast_locator.port = 7412;
 participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(meta_unicast_locator);
 //!--
-
-//CONF_DISCOVERY_SERVER_MAIN_SCENARIO
 
 //CONF_DS_MAIN_SCENARIO_SERVER
 Locator_t server_locator;
@@ -528,14 +523,6 @@ participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProt
 participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
 participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
 //!--
-
-//!--
-
-//CONF_DISCOVERY_SERVER_OTHER_SCENARIOS
-
-//!--
-
-//CONF_STATIC_DISCOVERY
 
 {
 //STATIC_DISCOVERY_USE_CASE_PUB
@@ -568,14 +555,6 @@ subscriber_attr.setUserDefinedID(3);
 subscriber_attr.setEntityID(4);
 //!--
 }
-
-//!--
-
-//CONF_FAST_RTPS_IN_ROS2
-
-//!--
-
-
 
 }
 

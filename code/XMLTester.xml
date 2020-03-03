@@ -1425,12 +1425,12 @@
     <rtps>
         <builtin>
             <initialPeersList>
-            <locator>
-                <udpv4>
-                <address>192.168.10.13</address>
-                <port>7412</port>
-                </udpv4>
-            </locator>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.13</address>
+                        <port>7412</port>
+                    </udpv4>
+                </locator>
             </initialPeersList>
         </builtin>
     </rtps>

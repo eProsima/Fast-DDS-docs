@@ -1598,6 +1598,51 @@
 
 <!-->CONF_STATIC_DISCOVERY<-->
 
+<!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
+<participant profile_name="participant_profile_static_pub">
+    <rtps>
+        <builtin>
+            <name>HelloWorldPublisher</name>
+            <discovery_config>
+                <EDP>STATIC</EDP>
+                <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+
+<publisher profile_name="publisher_xml_conf_static_discovery">
+    <topic>
+        <name>HelloWorldTopic</name>
+        <dataType>HelloWorld</dataType>
+    </topic>
+    <userDefinedID>1</userDefinedID>
+    <entityID>2</entityID>
+</publisher>
+<!--><-->
+
+<!-->STATIC_DISCOVERY_USE_CASE_SUB<-->
+<participant profile_name="participant_profile_static_sub">
+    <rtps>
+        <builtin>
+            <name>HelloWorldSubscriber</name>
+            <discovery_config>
+                <staticEndpointXMLFilename>HelloWorldPublisher.xml</staticEndpointXMLFilename>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+
+<subscriber profile_name="subscriber_xml_conf_static_discovery">
+    <topic>
+        <name>HelloWorldTopic</name>
+        <dataType>HelloWorld</dataType>
+    </topic>
+    <userDefinedID>3</userDefinedID>
+    <entityID>4</entityID>
+</subscriber>
+<!--><-->
+
 <!--><-->
 
 <!-->CONF_FAST_RTPS_IN_ROS2<-->

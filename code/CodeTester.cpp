@@ -508,6 +508,38 @@ participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(meta_unica
 
 //CONF_STATIC_DISCOVERY
 
+{
+//STATIC_DISCOVERY_USE_CASE_PUB
+// Participant attributes
+participant_attr.rtps.setName("HelloWorldPublisher");
+participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldSubscriber.xml");
+
+// Publisher attributes
+publisher_attr.topic.topicName = "HelloWorldTopic";
+publisher_attr.topic.topicDataType = "HelloWorld";
+publisher_attr.setUserDefinedID(1);
+publisher_attr.setEntityID(2);
+//!--
+}
+
+{
+//STATIC_DISCOVERY_USE_CASE_SUB
+// Participant attributes
+participant_attr.rtps.setName("HelloWorldSubscriber");
+participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldPublisher.xml");
+
+// Subscriber attributes
+subscriber_attr.topic.topicName = "HelloWorldTopic";
+subscriber_attr.topic.topicDataType = "HelloWorld";
+subscriber_attr.setUserDefinedID(3);
+subscriber_attr.setEntityID(4);
+//!--
+}
+
 //!--
 
 //CONF_FAST_RTPS_IN_ROS2

@@ -1592,9 +1592,71 @@
 
 <!--><-->
 
-<!-->CONF_DISCOVERY_SERVER<-->
+<!-->CONF_DISCOVERY_SERVER_MAIN_SCENARIO<-->
+
+<!-->CONF_DS_MAIN_SCENARIO_SERVER<-->
+<participant profile_name="UDP SERVER" is_default_profile="true">
+    <rtps>
+        <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+                <clientAnnouncementPeriod>
+                    <sec>0</sec>
+                    <nanosec>250000000</nanosec>
+                </clientAnnouncementPeriod>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.57</address>
+                        <port>56542</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+<!-->CONF_DS_MAIN_SCENARIO_CLIENT<-->
+<participant profile_name="UDP CLIENT" is_default_profile="true">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>CLIENT</discoveryProtocol>
+                <clientAnnouncementPeriod>
+                    <sec>0</sec>
+                    <nanosec>250000000</nanosec>
+                </clientAnnouncementPeriod>
+                <discoveryServersList>
+                    <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>56542</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
 
 <!--><-->
+
+<!-->CONF_DISCOVERY_SERVER_OTHER_SCENARIOS<-->
+
+
+
+
+<!--><-->
+
+
 
 <!-->CONF_STATIC_DISCOVERY<-->
 

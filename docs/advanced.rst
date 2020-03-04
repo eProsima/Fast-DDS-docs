@@ -581,14 +581,6 @@ Thus, for a higher performance, it can be appropriate to configure the reliabili
 Discovery
 *********
 
-.. _discovery_protocol:
-
-random title to avoid warning
-=============================
-
-Discovery Protocol
-------------------
-
 .. START INTRODUCTION
 .. END INTRODUCTION
 

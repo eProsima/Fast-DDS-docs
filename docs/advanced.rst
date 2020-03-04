@@ -607,7 +607,7 @@ protocol.
 
 .. image:: ds_uml.png
     :align: center
-    :width: 50% 
+    :width: 50%
 
 .. _DS_key_concepts:
 

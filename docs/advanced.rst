@@ -666,7 +666,7 @@ Server-client setup by concept
     :ref:`Discovery protocol <DS_discovery_protocol>`, how to make a participant a *client* or a *server*.
     :ref:`Server unique id <DS_guidPrefx>`, how to link a *clients* to *servers*.
     :ref:`Seting up transport <DS_locators>`, how to specify which transport to use and make *servers* reachable.
-    :ref:`Pinging period <DS_ping_period>`, how to fine tune server-client handsake.
+    :ref:`Pinging period <DS_ping_period>`, how to fine tune server-client handshake.
     :ref:`Matching period <DS_match_period>`, how to fine tune server deliver efficiency.
 
 .. _DS_discovery_protocol:
@@ -786,7 +786,7 @@ is and its elements are simultaneously specified. Note that ``prefix`` is an att
 The server locator list
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each *server* must specify how to be reach by specifing valid locators. Any *client* must be given proper locators to
+Each *server* must specify how to be reach by specifying valid locators. Any *client* must be given proper locators to
 reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>` here there is a *server* and a *client* side
 setup.
 
@@ -1047,7 +1047,7 @@ significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. The
        :raw-html:`<br />`
        method to easily fill in this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"``
        :raw-html:`<br />`
-       (note that each octec must be a valid hexadecimal figure).
+       (note that each octet must be a valid hexadecimal figure).
    * - ``metatrafficUnicastLocatorList`` and ``metatrafficMulticastLocatorList``
      - Are ordinary ``LocatorList_t`` (see Fast-RTPS documentation) where the server's locators must be specified.
        :raw-html:`<br />` At least one of them should be populated.

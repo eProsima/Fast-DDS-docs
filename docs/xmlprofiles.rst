@@ -731,15 +731,15 @@ behavior on the participant.
      - :ref:`CommonAlloc`
      -
    * - ``<max_partitions>``
-     - Maximum size of the partitions submessage or zero for no limit. See :ref:`MessageMaxSize`.
+     - Maximum size of the partitions submessage. Zero for no limit. See :ref:`MessageMaxSize`.
      - ``UInt32``
      -
    * - ``<max_user_data>``
-     - Maximum size of the user data submessage or zero for no limit. See :ref:`MessageMaxSize`.
+     - Maximum size of the user data submessage. Zero for no limit. See :ref:`MessageMaxSize`.
      - ``UInt32``
      -
    * - ``<max_properties>``
-     - Maximum size of the properties submessage or zero for no limit. See :ref:`MessageMaxSize`.
+     - Maximum size of the properties submessage. Zero for no limit. See :ref:`MessageMaxSize`.
      - ``UInt32``
      -
 
@@ -1457,7 +1457,6 @@ For variable size submessages we can use two strategies:
       dynamic allocations during message decoding.
 
 .. _mempol:
-
 
 History Memory Policy Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

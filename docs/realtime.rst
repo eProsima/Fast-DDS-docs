@@ -66,15 +66,14 @@ Limiting the size of parameters
 -------------------------------
 
 Most of the information held for participants and endpoints have a defined size limit, so the amount of memory to
-allocate for each local and remote peer is known. But some of the parameters have no limit on size, and depend on
-the configuration. :class:`RTPSParticipantAllocationAttributes` has a field :class:`data_limits` to set maximum
-sizes to these parameters:
+allocate for each local and remote peer is known. For the parameters which size is not limited, a maximum size can be
+configured with :class:`RTPSParticipantAllocationAttributes::data_limits`, which has the following attributes:
 
-* :class:`max_partitions` limits the size of partition data to the given number in octets.
-* :class:`max_user_data` limits the size of user data to the given number in octets.
-* :class:`max_properties` limits the size of participant properties data to the given number in octets.
+* :class:`max_partitions` limits the size of partition data to the given number of octets.
+* :class:`max_user_data` limits the size of user data to the given number of octets.
+* :class:`max_properties` limits the size of participant properties data to the given number of octets.
 
-A value of zero implies no size limitation. If these sizes are configured and not zero, enough memory
+A value of zero implies no size limitation. If these sizes are configured to something different than zero, enough memory
 will be allocated for them for each participant and endpoint. If these sizes are not limited, memory
 will be dynamically allocated as needed. By default, a full dynamic behavior is used.
 

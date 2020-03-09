@@ -60,6 +60,164 @@ This consist of defining a maximum number of data sinks and a maximum size for e
 Note that your History must be big enough to accommodate the maximum number of samples for each key.
 eProsima Fast RTPS will notify you if your History is too small.
 
+.. _partitions:
+
+Partitions
+**********
+
+Partitions introduce a logical entity isolation level concept inside the physical isolation induced by a Domain.
+They represent another level to separate Publishers and Subscribers beyond Domain and Topic.
+For a Publisher to communicate with a Subscriber, they have to belong at least to a common partition.
+In this sense, partitions represent a light mechanism to provide data separation among Endpoints:
+
+ * Unlike Domain and Topic, Partitions can be changed dynamically during the life cycle of the
+   Endpoint with little cost.
+   Specifically, no new threads are launched, no new memory is allocated, and the change history is not affected.
+   Beware that modifying the Partition membership of endpoints will trigger the announcement
+   of the new QoS configuration, and as a result, new Endpoint matching may occur,
+   depending on the new Partition configuration.
+   Changes on the memory allocation and running threads may occur due to the matching of remote Endpoints.
+
+ * Unlike Domain and Topic, an Endpoint can belong to several Partitions at the same time.
+   For certain data to be shared over different Topics, there must be a different Publisher for each Topic,
+   each of them sharing its own history of changes.
+   On the other hand, a single Publisher can share the same data over different Partitions using a single topic change,
+   thus reducing network overload.
+
+The Partition membership of an Endpoint can be configured on the :class:`qos.m_partitions` attribute of
+the :class:`PublisherAttributes` or :class:`SubscriberAttributes` objects.
+This attribute holds a list of Partition name strings.
+If no Partition is defined for an Entity, it will be automatically included in the default nameless Partition.
+Therefore, a Publisher and a Subscriber that specify no Partition will still be able to communicate through
+the default Partition.
+
+.. note::
+
+   Partitions are linked to the Endpoint and not to the changes.
+   This means that the Endpoint history is oblivious to modifications in the Partitions.
+   For example, if a Publisher switches Partitions and afterwards needs to resend some older change again,
+   it will deliver it to the new Partition set, regardless of which Partitions were defined
+   when the change was created.
+   This means that a late joiner Subscriber may receive changes that were created when another
+   set of Partitions was active.
+
+Wildcards in Partitions
+=======================
+
+Partition name entries can have wildcards following the naming conventions defined by the
+POSIX ``fnmatch`` API (1003.2-1992 section B.6).
+Entries with wildcards can match several names, allowing an Endpoint to easily be included in several Partitions.
+Two Partition names with wildcards will match if either of them matches the other one according to ``fnmatch``.
+That is, the matching is checked both ways.
+For example, consider the following configuration:
+
+ - A publisher with Partition ``part*``
+ - A subscriber with Partition ``partition*``
+
+Even though ``partition*`` does not match ``part*``, these publisher and subscriber will communicate
+between them because ``part*`` matches ``partition*``.
+
+Note that a Partition with name ``*`` will match any other partition **except the default Partition**.
+
+Full example
+============
+
+Given a system with the following Partition configuration:
+
++----------------+---------+--------------------------------+
+| Participant_1  | Pub_11  | {"Partition_1", "Partition_2"} |
++                +---------+--------------------------------+
+|                | Pub_12  | {"*"}                          |
++----------------+---------+--------------------------------+
+| Participant_2  | Pub_21  | {}                             |
++                +---------+--------------------------------+
+|                | Pub_22  | {"Partition*"}                 |
++----------------+---------+--------------------------------+
+| Participant_3  | Subs_31 | {"Partition_1"}                |
++                +---------+--------------------------------+
+|                | Subs_32 | {"Partition_2"}                |
++                +---------+--------------------------------+
+|                | Subs_33 | {"Partition_3"}                |
++                +---------+--------------------------------+
+|                | Subs_34 | {}                             |
++----------------+---------+--------------------------------+
+
+The endpoints will finally match the Partitions depicted on the following table.
+Note that ``Pub_12`` does not match the default Partition.
+
++--------------+-------------------+-------------------+---------------------------------------+
+|              | Participant_1     | Participant_2     | Participant_3                         |
+|              +---------+---------+---------+---------+---------+---------+---------+---------+
+|              | Pub_11  | Pub_12  | Pub_21  | Pub_22  | Subs_31 | Subs_32 | Subs_33 | Subs_34 |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+| Partition_1  |    ✓    |    ✓    |    ✕    |    ✓    |    ✓    |    ✕    |    ✕    |    ✕    |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+| Partition_2  |    ✓    |    ✓    |    ✕    |    ✓    |    ✕    |    ✓    |    ✕    |    ✕    |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+| Partition_3  |    ✕    |    ✓    |    ✕    |    ✓    |    ✕    |    ✕    |    ✓    |    ✕    |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+| {default}    |    ✕    |    ✕    |    ✓    |    ✕    |    ✕    |    ✕    |    ✕    |    ✓    |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+
+The following table provides the communication matrix for the given example:
+
++--------------------------+-------------------+-------------------+
+|                          | Participant_1     | Participant_2     |
+|                          +---------+---------+---------+---------+
+|                          | Pub_11  | Pub_12  | Pub_21  | Pub_22  |
++----------------+---------+---------+---------+---------+---------+
+| Participant_3  | Subs_31 |    ✓    |    ✓    |    ✕    |    ✓    |
++                +---------+---------+---------+---------+---------+
+|                | Subs_32 |    ✓    |    ✓    |    ✕    |    ✓    |
++                +---------+---------+---------+---------+---------+
+|                | Subs_33 |    ✕    |    ✓    |    ✕    |    ✓    |
++                +---------+---------+---------+---------+---------+
+|                | Subs_34 |    ✕    |    ✕    |    ✓    |    ✕    |
++----------------+---------+---------+---------+---------+---------+
+
+The following piece of code shows the set of parameters needed for the use case depicted in this example.
+
+
++-----------------------------------------------------+
+| **C++**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp          |
+|    :language: c++                                   |
+|    :start-after: //CONF-QOS-PARTITIONS              |
+|    :end-before: //!--                               |
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-QOS-PARTITIONS           |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
+
+
+.. _intraprocess-delivery:
+
+Intra-process delivery
+**********************
+
+*eProsima Fast RTPS* allows to speed up communications between entities within the same process by avoiding any of the
+copy or send operations involved in the transport layer (either UDP or TCP).
+This feature is enabled by default, and can be configured using :ref:`xml-profiles`.
+Currently the following options are available:
+
+* **INTRAPROCESS_OFF**: The feature is disabled.
+* **INTRAPROCESS_USER_DATA_ONLY**: Discovery metadata keeps using ordinary transport.
+* **INTRAPROCESS_FULL**: Default value. Both user data and discovery metadata using Intra-process delivery.
+
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-LIBRARY-SETTINGS         |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
+
 .. _comm-transports-configuration:
 
 Transports
@@ -235,46 +393,46 @@ TCP doesn't support multicast scenarios, so you must plan carefully your network
 .. _TLS:
 
 TLS over TCP
----------------------------------------------
+------------
 
 Fast-RTPS allows configuring a TCP Transport to use TLS (Transport Layer Security)
 by setting up **TCP Server** and **TCP Client** properly.
 
  **TCP Server**
 
-+---------------------------------------------------+
-| **C++**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp        |
-|    :language: c++                                 |
-|    :start-after: //CONF-TCP-TLS-SERVER            |
-|    :end-before: //!--                             |
-+---------------------------------------------------+
-| **XML**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml         |
-|    :language: xml                                 |
-|    :start-after: <!-->CONF-TCP-TLS-SERVER         |
-|    :end-before: <!--><-->                         |
-+---------------------------------------------------+
++--------------------------------------------+
+| **C++**                                    |
++--------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp |
+|    :language: c++                          |
+|    :start-after: //CONF-TCP-TLS-SERVER     |
+|    :end-before: //!--                      |
++--------------------------------------------+
+| **XML**                                    |
++--------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml  |
+|    :language: xml                          |
+|    :start-after: <!-->CONF-TCP-TLS-SERVER  |
+|    :end-before: <!--><-->                  |
++--------------------------------------------+
 
  **TCP Client**
 
-+---------------------------------------------------+
-| **C++**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp        |
-|    :language: c++                                 |
-|    :start-after: //CONF-TCP-TLS-CLIENT            |
-|    :end-before: //!--                             |
-+---------------------------------------------------+
-| **XML**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml         |
-|    :language: xml                                 |
-|    :start-after: <!-->CONF-TCP-TLS-CLIENT         |
-|    :end-before: <!--><-->                         |
-+---------------------------------------------------+
++--------------------------------------------+
+| **C++**                                    |
++--------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp |
+|    :language: c++                          |
+|    :start-after: //CONF-TCP-TLS-CLIENT     |
+|    :end-before: //!--                      |
++--------------------------------------------+
+| **XML**                                    |
++--------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml  |
+|    :language: xml                          |
+|    :start-after: <!-->CONF-TCP-TLS-CLIENT  |
+|    :end-before: <!--><-->                  |
++--------------------------------------------+
 
 More TLS related options can be found in the section :ref:`transportdescriptors`.
 
@@ -399,41 +557,41 @@ Tips
 
 **Disabling all multicast traffic**
 
-+----------------------------------------------+
-| **C++**                                      |
-+----------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp   |
-|    :language: c++                            |
-|    :start-after: //CONF-DISABLE-MULTICAST    |
-|    :end-before: //!--                        |
-+----------------------------------------------+
-| **XML**                                      |
-+----------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml    |
-|    :language: xml                            |
-|    :start-after: <!-->CONF-DISABLE-MULTICAST |
-|    :end-before: <!--><-->                    |
-+----------------------------------------------+
++-----------------------------------------------+
+| **C++**                                       |
++-----------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp    |
+|    :language: c++                             |
+|    :start-after: //CONF-DISABLE-MULTICAST     |
+|    :end-before: //!--                         |
++-----------------------------------------------+
+| **XML**                                       |
++-----------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml     |
+|    :language: xml                             |
+|    :start-after: <!-->CONF-DISABLE-MULTICAST  |
+|    :end-before: <!--><-->                     |
++-----------------------------------------------+
 
 **Non-blocking write on sockets**
 
 For UDP transport, it is possible to configure whether to use non-blocking write calls on the sockets.
 
-+----------------------------------------------+
-| **C++**                                      |
-+----------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp   |
-|    :language: c++                            |
-|    :start-after: //CONF-NON-BLOCKING-WRITE   |
-|    :end-before: //!--                        |
-+----------------------------------------------+
-| **XML**                                      |
-+----------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml    |
-|    :language: xml                            |
-|    :start-after: <!-->CONF-NON-BLOCKING-WRITE|
-|    :end-before: <!--><-->                    |
-+----------------------------------------------+
++-----------------------------------------------+
+| **C++**                                       |
++-----------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp    |
+|    :language: c++                             |
+|    :start-after: //CONF-NON-BLOCKING-WRITE    |
+|    :end-before: //!--                         |
++-----------------------------------------------+
+| **XML**                                       |
++-----------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml     |
+|    :language: xml                             |
+|    :start-after: <!-->CONF-NON-BLOCKING-WRITE |
+|    :end-before: <!--><-->                     |
++-----------------------------------------------+
 
 **XML Configuration**
 
@@ -693,6 +851,15 @@ DiscoverySettings
  |    :end-before: <!--><-->                        |
  +--------------------------------------------------+
 
++ a **ignoreParticipantFlags** member specifies participant filtering criteria to optimize discovery stage speed
+  and memory usage. This feature is only available for the `SIMPLE` discovery protocol with disable security (all secure
+  participants are considered created by a different host). There are several options:
+
+ * **FILTER_DIFFERENT_HOST** all metadata from another host would be discarded.
+ * **FILTER_DIFFERENT_PROCESS** all metadata from another process on the same host would be discarded.
+ * **FILTER_SAME_PROCESS** all metadata from our own process would be discarded.
+ * **FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS** all metadata from our own host would be discarded.
+
 + **use_XXX_EndpointDiscoveryProtocol** flags. There is a specific section dealing with them
   (see `Static Endpoints Discovery`_).
 
@@ -786,76 +953,169 @@ DiscoverySettings
 Static Endpoints Discovery
 ==========================
 
-Endpoints Discovery Phase can be replaced by a static version that doesn't send any information.
-It is useful when you have a limited network bandwidth and a well-known schema of publishers and subscribers.
-Instead of receiving entities information for matching, this information is loaded from an XML file.
+If all publishers and subscribers and their topics are known beforehand, the Endpoints Discovery
+is not needed and can be replaced by a static configuration of peers. Beware that by doing this,
+no discovery metatraffic will be generated, and only those peers defined in the configuration will
+be able to communicate. This is useful when you have a limited network bandwidth
+and a well-known schema of publishers and subscribers.
 
-First of all, you have to disable the Endpoints Discovery Phase and enable the Static Endpoints Discovery.
-This can be done from the participant attributes.
+To activate the Static Discovery, you must first disable the Endpoints Discovery Phase
+and enable the Static Endpoints Discovery on the participant attributes.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
    :start-after: //CONF_QOS_STATIC_DISCOVERY_CODE
    :end-before: //!
 
-Then, you will need to load the XML file containing the configuration of the remote participant.
-So, for example, if there is a remote participant with a subscriber which is waiting to receive samples from your
-publisher, you will need to load the configuration of this remote participant.
+Then, load the XML file with the configuration of the remote participants. Note that you can load
+several XML files. So you can combine the configuration of all participants on a single file or
+use a different file for each remote participant and load them one after another.
 
 .. literalinclude:: ../code/CodeTester.cpp
    :language: c++
    :start-after: //CONF_QOS_STATIC_DISCOVERY_XML
    :end-before: //!
 
-A basic XML configuration file for this remote participant would contain information like the name of the remote
-participant, the topic name and data type of the subscriber, and its entity and user-defined ID.
-All these values have to exactly match the parameter values used to configure the remote participant (through the
-class :class:`ParticipantAttributes`) and its subscriber (through the class :class:`SubscriberAttributes`).
-Missing elements will acquire default values. For example:
+Endpoints that are going to be statically discovered **must** define a unique *userID* on their profile,
+and their values **must** agree with the ones specified on the discovery configuration XML.
+Otherwise, the discovery will fail.
+
+   +--------------------------------------------------------+
+   | **C++**                                                |
+   +--------------------------------------------------------+
+   | .. literalinclude:: ../code/CodeTester.cpp             |
+   |    :language: c++                                      |
+   |    :start-after: //CONF_QOS_STATIC_DISCOVERY_USERID    |
+   |    :end-before: //!                                    |
+   +--------------------------------------------------------+
+   | **XML**                                                |
+   +--------------------------------------------------------+
+   | .. literalinclude:: ../code/XMLTester.xml              |
+   |    :language: xml                                      |
+   |    :start-after: <!-->CONF_QOS_STATIC_DISCOVERY_USERID |
+   |    :end-before: <!-->                                  |
+   +--------------------------------------------------------+
+
+The following is a complete example of a configuration XML file for two remote participants,
+a publisher and a subscriber. This configuration **must** agree with the configuration used
+to create the remote endpoint. Otherwise, communication between endpoints may be affected.
+If any non-mandatory element is missing, it will take the default value. As a rule of thumb,
+you should configure all elements that were specified on the remote endpoint creation.
 
 .. literalinclude:: ../code/StaticTester.xml
    :language: xml
    :start-after: <!-->STATIC_DISCOVERY_CONF<-->
    :end-before: <!--><-->
-   :lines: 1-10,20
 
-The XML that configures the participant on the other side (in this case, a subscriber) could look like this:
+You can explore the
+`Static Endpoint Discovery example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_
+to learn more about the use of this feature.
 
-.. literalinclude:: ../code/StaticTester.xml
-   :language: xml
-   :start-after: <!-->STATIC_DISCOVERY_CONF<-->
-   :end-before: <!--><-->
-   :lines: 1,11-20
+.. Some large words outside of table. Then table fit maximum line length
+.. |besteffort| replace:: :class:`BEST_EFFORT_RELIABILITY_QOS`
+.. |reliable| replace:: :class:`RELIABLE_RELIABILITY_QOS`
+.. |volatile| replace:: :class:`VOLATILE_DURABILITY_QOS`
+.. |transientlocal| replace:: :class:`TRANSIENT_LOCAL_DURABILITY_QOS`
+.. |transient| replace:: :class:`TRANSIENT_DURABILITY_QOS`
 
-You can find an example that uses
-`Static Endpoint Discovery <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_.
++------------------------+-----------------------------------+-------------------+--------------+
+| Name                   | Description                       | Values            | Default      |
++========================+===================================+===================+==============+
+| ``<userId>``           | Mandatory.                        | ``UInt16``        | 0            |
+|                        | Uniquely identifies the endpoint. |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<entityID>``         | EntityId of the endpoint.         | ``UInt16``        | 0            |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<expectsInlineQos>`` | It indicates if QOS is            | ``Boolean``       | ``false``    |
+|                        | expected inline.                  |                   |              |
+|                        | (reader **only**)                 |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<topicName>``        | Mandatory.                        | ``string_255``    |              |
+|                        | The topic of the remote endpoint. |                   |              |
+|                        | Should match with one of the      |                   |              |
+|                        | topics of the local participant.  |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<topicDataType>``    | Mandatory.                        | ``string_255``    |              |
+|                        | The data type of the topic.       |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<topicKind>``        | The kind of topic.                | :class:`NO_KEY`,  | :class:_KEY` |
+|                        |                                   | :class:`WITH_KEY` |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<partitionQos>``     | The name of a partition of the    | ``string``        |              |
+|                        | remote peer. Repeat to configure  |                   |              |
+|                        | several partitions.               |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<unicastLocator>``   | Unicast locator of the            |                   |              |
+|                        | participant.                      |                   |              |
+|                        | see :ref:`staticLocators`.        |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<multicastLocator>`` | Multicast locator of the          |                   |              |
+|                        | participant.                      |                   |              |
+|                        | see :ref:`staticLocators`.        |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<reliabilityQos>``   | See the :ref:`reliability`        | |besteffort|,     | |besteffort| |
+|                        | section.                          | |reliable|        |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<durabilityQos>``    | See the                           | |volatile|,       | |volatile|   |
+|                        | :ref:`SettingDataDurability`      | |transientlocal|, |              |
+|                        | section.                          | |transient|       |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<ownershipQos>``     | See                               |                   |              |
+|                        | :ref:`ownershipQos`.              |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
+| ``<livelinessQos>``    | Defines the liveliness of the     |                   |              |
+|                        | remote peer.                      |                   |              |
+|                        | see :ref:`livelinessQos`.         |                   |              |
++------------------------+-----------------------------------+-------------------+--------------+
 
-The complete list of fields for readers and writers includes the following parameters:
 
-* **userId**: numeric value.
-* **entityID**: numeric value.
-* **expectsInlineQos**: *true* or *false*. **(only valid for readers)**
-* **topicName**: text value.
-* **topicDataType**: text value.
-* **topicKind**: *NO_KEY* or *WITH_KEY*.
-* **reliabilityQos**: *BEST_EFFORT_RELIABILITY_QOS* or *RELIABLE_RELIABILITY_QOS*.
-* **unicastLocator**
-    - `address`: text value.
-    - `port`: numeric value.
-* **multicastLocator**
-    - `address`: text value.
-    - `port`: numeric value.
-* **topic**
-    - `name`: text value.
-    - `data type`: text value.
-    - `kind`: text value.
-* **durabilityQos**: *VOLATILE_DURABILITY_QOS*, *TRANSIENT_LOCAL_DURABILITY_QOS* or *TRANSIENT_DURABILITY_QOS*.
-* **ownershipQos**
-    - `kind`: *SHARED_OWNERSHIP_QOS* or *EXCLUSIVE_OWNERSHIP_QOS*.
-* **partitionQos**: text value.
-* **livelinessQos**
-    - `kind`: *AUTOMATIC_LIVELINESS_QOS*, *MANUAL_BY_PARTICIPANT_LIVELINESS_QOS* or *MANUAL_BY_TOPIC_LIVELINESS_QOS*.
-    - `leaseDuration_ms`: numeric value.
+.. _staticLocators:
+
+Locator definition
+------------------
+
+Locators for remote peers are configured using ``<unicastLocator>`` and ``<multicastLocator>`` tags.
+These take no value, and the locators are defined using tag attributes:
+
+* :class:`address`: a mandatory ``string`` representing the locator address.
+* :class:`port`: an optional ``UInt16`` representing a port on that address.
+
+Locators defined with ``<unicastLocator>`` and ``<multicastLocator>`` are accumulative,
+so they can be repeated to assign several locators to the peer.
+
+
+.. _ownershipQos:
+
+Ownership QoS
+-------------
+
+The ownership of the topic can be configured using ``<ownershipQos>`` tag.
+It takes no value, and the configuration is done using tag attributes:
+
+* :class:`kind`: can be one of :class:`SHARED_OWNERSHIP_QOS` or :class:`EXCLUSIVE_OWNERSHIP_QOS`.
+  This attribute is mandatory withing the tag.
+
+* :class:`strength`: an optional ``UInt32`` specifying how strongly the remote participant
+  owns the topic. This attribute can be set on writers **only**.
+  If not specified, default value is zero.
+
+
+.. _livelinessQos:
+
+Liveliness QoS
+--------------
+
+The liveliness of the remote peer is configured using ``<livelinessQos>`` tag.
+It takes no value, and the configuration is done using tag attributes:
+
+* :class:`kind`: can be any of :class:`AUTOMATIC_LIVELINESS_QOS`, :class:`MANUAL_BY_PARTICIPANT_LIVELINESS_QOS`
+  or :class:`MANUAL_BY_TOPIC_LIVELINESS_QOS`. This attribute is mandatory withing the tag.
+
+* :class:`leaseDuration_ms`: an optional ``UInt32`` specifying the lease duration for the remote peer.
+  The special value :class:`INF` can be used to indicate infinite lease duration. If not specified,
+  default value is :class:`INF`
+
+See section :ref:`liveliness-qos` for a more detailed explanation on liveliness functionality.
 
 
 Subscribing to Discovery Topics
@@ -995,6 +1255,8 @@ Slow down sample rate
 Sometimes publishers could send data in a too high rate for subscribers.
 This can end dropping samples.
 To avoid this you can slow down the rate using :ref:`flow-controllers`.
+
+.. _additionalQos:
 
 Additional Quality of Service options
 *************************************

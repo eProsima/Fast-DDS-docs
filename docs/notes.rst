@@ -1,5 +1,80 @@
-Version 1.9.1
+Version 1.9.4
 =============
+
+This release adds the following features:
+
+* Intra-process delivery mechanism is now active by default.
+* Synchronous writers are now allowed to send fragments.
+* New memory mode DYNAMIC_RESERVE on history pool.
+* Performance tests can now be run on Windows and Mac.
+
+It also includes the following bug fixes and improvements:
+
+* Bump to FastCDR v1.0.12.
+* Bump to Fast-RTPS-Gen v1.0.3.
+* Fixed deadlock between PDP and StatefulReader.
+* Improved CPU usage and allocations on timed events management.
+* Performance improvements on reliable writers.
+* Fixing bugs when Intra-process delivery is activated.
+* Reducing dynamic allocations and memory footprint.
+* Improvements and fixes on performance tests.
+* Other minor bug fixes and improvements.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.
+
+
+Previous versions
+-----------------
+
+
+Version 1.9.3
+^^^^^^^^^^^^^
+
+This release adds the following features:
+
+* Participant discovery filtering flags.
+* Intra-process delivery mechanism opt-in.
+
+It also includes the following bug fixes and improvements:
+
+* Bump to Fast-RTPS-Gen v1.0.2.
+* Bring back compatibility with XTypes 1.1 on PID_TYPE_CONSISTENCY.
+* Ensure correct alignment when reading a parameter list.
+* Add CHECK_DOCUMENTATION *cmake* option.
+* EntityId_t and GuidPrefix_t have now their own header files.
+* Fix potential race conditions and deadlocks.
+* Improve the case where *check_acked_status* is called between reader matching process and its acknack reception.
+* RTPSMessageGroup_t instances now use the thread-local storage.
+* FragmentedChangePitStop manager removed.
+* Remove the data fragments vector on CacheChange_t.
+* Only call find_package for TinyXML2 if third-party options are off
+* Allow XMLProfileManager methods to not show error log messages if a profile is not found.
+
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.
+
+
+Version 1.9.2
+^^^^^^^^^^^^^
+
+This release includes the following feature:
+
+* Multiple initial PDP announcements.
+* Flag to avoid builtin multicast.
+
+It also adds the following bug fixes and improvements:
+
+* Bump to Fast-RTPS-Gen v1.0.1.
+* Bump to IDL-Parser v1.0.1.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.
+
+
+Version 1.9.1
+^^^^^^^^^^^^^
 
 This release includes the following features:
 
@@ -30,8 +105,6 @@ It also adds the following bug fixes and improvements:
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.
 
-Previous versions
------------------
 
 Version 1.9.0
 ^^^^^^^^^^^^^
@@ -65,6 +138,49 @@ It also adds the following bug fixes and improvements:
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.
+
+Version 1.8.3
+^^^^^^^^^^^^^
+
+This release adds the following bug fixes and improvements:
+
+* Fix serialization of TypeConsistencyEnforcementQosPolicy.
+* Bump to Fast-RTPS-Gen v1.0.2.
+* Bump to IDL-Parser v1.0.1.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*
+
+Version 1.8.2
+^^^^^^^^^^^^^
+
+This release includes the following features:
+
+* Modified unknown writers default behavior.
+* Multiple initial PDP announcements.
+* Flag to avoid builtin multicast.
+* *STRICT_REALTIME* compilation flag.
+
+It also adds the following bug fixes and improvements:
+
+* Fix for setting `nullptr` in a fixed string.
+* Fix for not sending GAP in several cases.
+* Solve *Coverity* report issues.
+* Fix issue of *fastrtpsgen* failing to open *IDL.g4* file.
+* Fix unnamed lock in *AESGCMGMAC_KeyFactory.cpp*.
+* Improve *XMLProfiles* example.
+* Multicast is now sent through *localhost* too.
+* *BitmapRange* now implements sliding window.
+* Improve *SequenceNumber_t* struct.
+* Participant's liveliness is now asserted when receiving any RTPS message.
+* Fix leak on RemoteParticipantLeaseDuration.
+* Modified default values to improve behavior in *Wi-Fi* scenarios.
+* *SubscriberHistory* improvements.
+* Removed use of *acceptMsgDirectTo*.
+* *WLP* improvements.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*
 
 Version 1.8.1
 ^^^^^^^^^^^^^

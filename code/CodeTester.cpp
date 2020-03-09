@@ -114,6 +114,35 @@ subscriber_attr.topic.resourceLimitsQos.max_instances = 3;
 subscriber_attr.topic.resourceLimitsQos.max_samples_per_instance = 20;
 //!--
 
+{
+//CONF-QOS-PARTITIONS
+PublisherAttributes pub_11_attr;
+pub_11_attr.qos.m_partition.push_back("Partition_1");
+pub_11_attr.qos.m_partition.push_back("Partition_2");
+
+PublisherAttributes pub_12_attr;
+pub_12_attr.qos.m_partition.push_back("*");
+
+PublisherAttributes pub_21_attr;
+//No partitions defined for pub_21
+
+PublisherAttributes pub_22_attr;
+pub_22_attr.qos.m_partition.push_back("Partition*");
+
+SubscriberAttributes subs_31_attr;
+subs_31_attr.qos.m_partition.push_back("Partition_1");
+
+SubscriberAttributes subs_32_attr;
+subs_32_attr.qos.m_partition.push_back("Partition_2");
+
+SubscriberAttributes subs_33_attr;
+subs_33_attr.qos.m_partition.push_back("Partition_3");
+
+SubscriberAttributes subs_34_attr;
+//No partitions defined for subs_34
+//!--
+}
+
 //CONF-COMMON-TRANSPORT-SETTING
 //Create a descriptor for the new transport.
 auto custom_transport = std::make_shared<UDPv4TransportDescriptor>();
@@ -166,6 +195,12 @@ participant_attr.rtps.allocation.participants = eprosima::fastrtps::ResourceLimi
 participant_attr.rtps.allocation.readers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
 // We know we have at most 1 writer on each participant
 participant_attr.rtps.allocation.writers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+// We know the maximum size of partition data
+participant_attr.rtps.allocation.data_limits.max_partitions = 256u;
+// We know the maximum size of user data
+participant_attr.rtps.allocation.data_limits.max_user_data = 256u;
+// We know the maximum size of properties data
+participant_attr.rtps.allocation.data_limits.max_properties = 512u;
 
 // Before creating the publisher for topic 1:
 // we know we will only have three matching subscribers
@@ -426,8 +461,19 @@ participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProto
 //!--
 
 //CONF_QOS_STATIC_DISCOVERY_XML
-participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("ParticipantWithASubscriber.xml");
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
 //!--
+
+{
+//CONF_QOS_STATIC_DISCOVERY_USERID
+SubscriberAttributes sub_attr;
+sub_attr.setUserDefinedID(3);
+
+PublisherAttributes pub_attr;
+pub_attr.setUserDefinedID(5);
+//!--
+}
 
 //CONF_QOS_TUNING_RELIABLE_PUBLISHER
 publisher_attr.times.heartbeatPeriod.seconds = 0;

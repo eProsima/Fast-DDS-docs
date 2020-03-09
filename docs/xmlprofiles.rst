@@ -55,6 +55,22 @@ this profile name and applies the XML profile to the entity.
 
 To load dynamic types from its declaration through XML see the :ref:`Usage` section of :ref:`xmldynamictypes`.
 
+.. _librarySettingsAttributes:
+
+Library settings
+-----------------
+
+This section is devoted to general settings that are not constraint to specific entities
+(like participants, subscribers, publishers) or functionality (like transports or types).
+All of them are gathered under the ``library_settings`` profile.
+
+.. literalinclude:: ../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->CONF-LIBRARY-SETTINGS<-->
+    :end-before: <!--><-->
+
+Currently only the :ref:`intraprocess-delivery` feature is comprised here.
+
 .. _transportdescriptors:
 
 Transport descriptors
@@ -714,6 +730,18 @@ behavior on the participant.
      - Participant :ref:`CommonAlloc` related to the total number of writers on each participant (local and remote).
      - :ref:`CommonAlloc`
      -
+   * - ``<max_partitions>``
+     - Maximum size of the partitions submessage. Zero for no limit. See :ref:`MessageMaxSize`.
+     - ``UInt32``
+     -
+   * - ``<max_user_data>``
+     - Maximum size of the user data submessage. Zero for no limit. See :ref:`MessageMaxSize`.
+     - ``UInt32``
+     -
+   * - ``<max_properties>``
+     - Maximum size of the properties submessage. Zero for no limit. See :ref:`MessageMaxSize`.
+     - ``UInt32``
+     -
 
 .. _builtin:
 
@@ -735,7 +763,10 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |mempol| replace:: :ref:`historyMemoryPolicy <mempol>`
 .. |readhistmem| replace:: ``<readerHistoryMemoryPolicy>``
 .. |writhistmem| replace:: ``<writerHistoryMemoryPolicy>``
+.. |readpaysize| replace:: ``<readerPayloadSize>``
+.. |writpaysize| replace:: ``<writerPayloadSize>``
 .. |mutTries| replace:: ``<mutation_tries>``
+.. |mempoldefault| replace:: :class:`PREALLOCATED_WITH_REALLOC`
 
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | Name                           | Description                      | Values                  | Default               |
@@ -761,12 +792,20 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | ``<initialPeersList>``         | Initial peers.                   | |loclist|               |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
-| |readhistmem|                  | Memory policy for builtin        | |mempol|                | :class:`PREALLOCATED` |
+| |readhistmem|                  | Memory policy for builtin        | |mempol|                | |mempoldefault|       |
 |                                | readers.                         |                         |                       |
 |                                |                                  |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
-| |writhistmem|                  | Memory policy for builtin        | |mempol|                | :class:`PREALLOCATED` |
+| |writhistmem|                  | Memory policy for builtin        | |mempol|                | |mempoldefault|       |
 |                                | writers.                         |                         |                       |
+|                                |                                  |                         |                       |
++--------------------------------+----------------------------------+-------------------------+-----------------------+
+| |readpaysize|                  | Maximum payload size for         | ``UInt32``              | 512                   |
+|                                | builtin readers.                 |                         |                       |
+|                                |                                  |                         |                       |
++--------------------------------+----------------------------------+-------------------------+-----------------------+
+| |writpaysize|                  | Maximum payload size for         | ``UInt32``              | 512                   |
+|                                | builtin writers.                 |                         |                       |
 |                                |                                  |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | |mutTries|                     | Number of different ports        | ``UInt32``              | 100                   |
@@ -781,12 +820,17 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. More large words outside of table. Then table fit maximum line length
 .. |staendxml| replace:: ``<staticEndpointXMLFilename>``
 .. |protocol| replace:: :class:`SIMPLE`, :class:`CLIENT`, :class:`SERVER`, :class:`BACKUP`
+.. |igpartf| replace:: ``<ignoreParticipantFlags>``
+.. |filterlist| replace:: :ref:`ignoreParticipantFlags <Participantfiltering>`
 
 +----------------------------+---------------------------------------+-------------------------+----------------------+
 | Name                       | Description                           | Values                  | Default              |
 +============================+=======================================+=========================+======================+
 | ``<discoveryProtocol>``    | Indicates which kind of PDP protocol  | |protocol|              | :class:`SIMPLE`      |
 |                            | the participant must use.             |                         |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| |igpartf|                  | Restricts metatraffic using           | |filterlist|            | :class:`NO_FILTER`   |
+|                            | several filtering criteria.           |                         |                      |
 +----------------------------+---------------------------------------+-------------------------+----------------------+
 | ``<EDP>``                  | - If set to :class:`SIMPLE`,          | :class:`SIMPLE`,        | :class:`SIMPLE`      |
 |                            |   ``<simpleEDP>`` would be used.      | :class:`STATIC`         |                      |
@@ -816,6 +860,33 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 |                            | Only necessary if ``<EDP>``           |                         |                      |
 |                            | is set to :class:`STATIC`             |                         |                      |
 +----------------------------+---------------------------------------+-------------------------+----------------------+
+
+.. _Participantfiltering:
+
+**ignoreParticipantFlags**
+
++-----------------------------------------------------------+------------------------+
+| Possible values                                           | Description            |
++===========================================================+========================+
+| :class:`NO_FILTER`                                        | All Discovery traffic  |
+|                                                           | is processed           |
++-----------------------------------------------------------+------------------------+
+| :class:`FILTER_DIFFERENT_HOST`                            | Discovery traffic from |
+|                                                           | another host is        |
+|                                                           | discarded              |
++-----------------------------------------------------------+------------------------+
+| :class:`FILTER_DIFFERENT_PROCESS`                         | Discovery traffic from |
+|                                                           | another process on the |
+|                                                           | same host is discarded |
++-----------------------------------------------------------+------------------------+
+| :class:`FILTER_SAME_PROCESS`                              | Discovery traffic from |
+|                                                           | participant's own      |
+|                                                           | process is discarded.  |
++-----------------------------------------------------------+------------------------+
+| :class:`FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS`   | Discovery traffic from |
+|                                                           | participant's own host |
+|                                                           | is discarded.          |
++-----------------------------------------------------------+------------------------+
 
 .. _sedp:
 
@@ -1383,6 +1454,26 @@ See :ref:`realtime-allocations` for detailed information on how to tune allocati
      - Number of new elements that will be allocated when more space is necessary.
      - ``UInt32``
      - 1
+
+.. _MessageMaxSize:
+
+Submessage Size Limit
+^^^^^^^^^^^^^^^^^^^^^
+
+While some submessages have a fixed size (for example, SequenceNumber), others have a variable size depending on the
+data they contain.
+Processing a submessage requires having a memory chunk large enough to contain a copy of the submessage data.
+That is easy to handle when dealing with fixed variable submessages, as size is known and memory can be allocated
+beforehand.
+For variable size submessages on the other hand, two different strategies can be used:
+
+    - Set a maximum size for the data container, which will be allocated beforehand during the participant's setup.
+      This avoids dynamic allocations during message communication.
+      However, any submessages with a larger payload than the
+      defined maximum will not fit in, and will therefore be discarded.
+    - Do not set any maximum size for the data container, and instead allocate the required memory dynamically upon
+      submessage arrival (according to the size declared on the submessage header).
+      This allows for any size of submessages, at the cost of dynamic allocations during message decoding.
 
 .. _mempol:
 

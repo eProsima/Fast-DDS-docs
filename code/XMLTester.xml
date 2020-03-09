@@ -1259,7 +1259,9 @@
 <builtin>
 <!-->XML-DURATION<-->
 <discovery_config>
-    <leaseDuration><sec>DURATION_INFINITY</sec></leaseDuration> <!-- string -->
+    <leaseDuration>
+        <sec>DURATION_INFINITY</sec> <!-- string -->
+    </leaseDuration>
 
     <leaseDuration>
         <sec>500</sec> <!-- int32 -->

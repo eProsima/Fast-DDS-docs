@@ -65,28 +65,27 @@ eProsima Fast RTPS will notify you if your History is too small.
 Partitions
 **********
 
-Partitions introduce a logical partition concept inside the physical partition induced by a Domain.
+Partitions introduce a logical entity isolation level concept inside the physical isolation induced by a Domain.
 They represent another level to separate Publishers and Subscribers beyond Domain and Topic.
 For a Publisher to communicate with a Subscriber, they have to belong at least to a common partition.
-
-Partitions is a light mechanism to provide data separation among Endpoints:
+In this sense, partitions represent a light mechanism to provide data separation among Endpoints:
 
  * Unlike Domain and Topic, Partitions can be changed dynamically during the life cycle of the
    Endpoint with little cost.
-   Specifically, no new threads are launched, no new memory is allocated and the change history is not affected.
+   Specifically, no new threads are launched, no new memory is allocated, and the change history is not affected.
    Beware that modifying the Partition membership of endpoints will trigger the announcement
    of the new QoS configuration, and as a result, new Endpoint matching may occur,
    depending on the new Partition configuration.
    Changes on the memory allocation and running threads may occur due to the matching of remote Endpoints.
 
  * Unlike Domain and Topic, an Endpoint can belong to several Partitions at the same time.
-   For certain data to be shared over different Topics, we must use a different Publisher for each Topic,
-   each Publisher sharing its own history of changes.
-   A single Publisher can share the same data over different Partitions, using a single topic change,
-   reducing network overload.
+   For certain data to be shared over different Topics, there must be a different Publisher for each Topic,
+   each of them sharing its own history of changes.
+   On the other hand, a single Publisher can share the same data over different Partitions using a single topic change,
+   thus reducing network overload.
 
-The Partition membership of an Endpoint can be configured on the :class:``qos.m_partitions`` attribute of
-the :class:``PublisherAttributes`` or :class:``SubscriberAttributes`` objects.
+The Partition membership of an Endpoint can be configured on the :class:`qos.m_partitions` attribute of
+the :class:`PublisherAttributes` or :class:`SubscriberAttributes` objects.
 This attribute holds a list of Partition name strings.
 If no Partition is defined for an Entity, it will be automatically included in the default nameless Partition.
 Therefore, a Publisher and a Subscriber that specify no Partition will still be able to communicate through
@@ -107,9 +106,7 @@ Wildcards in Partitions
 
 Partition name entries can have wildcards following the naming conventions defined by the
 POSIX ``fnmatch`` API (1003.2-1992 section B.6).
-Entries with wildcards can match several names, allowing us to include an Endpoint
-in several Partitions easily.
-
+Entries with wildcards can match several names, allowing an Endpoint to easily be included in several Partitions.
 Two Partition names with wildcards will match if either of them matches the other one according to ``fnmatch``.
 That is, the matching is checked both ways.
 For example, consider the following configuration:
@@ -203,13 +200,14 @@ The following piece of code shows the set of parameters needed for the use case 
 Intra-process delivery
 **********************
 
-*eProsima Fast RTPS* allows to speed up Intra-process communications by avoiding any copy operation involved with
-the transport layer. This feature is disabled by default and must be enable using :ref:`xml-profiles`. Currently the
-following options are available:
+*eProsima Fast RTPS* allows to speed up communications between entities within the same process by avoiding any of the
+copy or send operations involved in the transport layer (either UDP or TCP).
+This feature is enabled by default, and can be configured using :ref:`xml-profiles`.
+Currently the following options are available:
 
-* **INTRAPROCESS_OFF**. The feature is disabled.
-* **INTRAPROCESS_USER_DATA_ONLY**. Discovery metadata keeps using ordinary transport.
-* **INTRAPROCESS_FULL**. Default value. Both user data and discovery metadata using Intra-process delivery.
+* **INTRAPROCESS_OFF**: The feature is disabled.
+* **INTRAPROCESS_USER_DATA_ONLY**: Discovery metadata keeps using ordinary transport.
+* **INTRAPROCESS_FULL**: Default value. Both user data and discovery metadata using Intra-process delivery.
 
 .. _comm-transports-configuration:
 

@@ -209,6 +209,15 @@ Currently the following options are available:
 * **INTRAPROCESS_USER_DATA_ONLY**: Discovery metadata keeps using ordinary transport.
 * **INTRAPROCESS_FULL**: Default value. Both user data and discovery metadata using Intra-process delivery.
 
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-LIBRARY-SETTINGS         |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
+
 .. _comm-transports-configuration:
 
 Transports

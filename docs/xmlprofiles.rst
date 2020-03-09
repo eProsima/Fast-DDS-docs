@@ -829,7 +829,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | ``<discoveryProtocol>``    | Indicates which kind of PDP protocol  | |protocol|              | :class:`SIMPLE`      |
 |                            | the participant must use.             |                         |                      |
 +----------------------------+---------------------------------------+-------------------------+----------------------+
-| |igpartf|                  | Restricts metatraffic using           | |filterlist|            | No filtering.        |
+| |igpartf|                  | Restricts metatraffic using           | |filterlist|            | :class:`NO_FILTER`   |
 |                            | several filtering criteria.           |                         |                      |
 +----------------------------+---------------------------------------+-------------------------+----------------------+
 | ``<EDP>``                  | - If set to :class:`SIMPLE`,          | :class:`SIMPLE`,        | :class:`SIMPLE`      |
@@ -865,10 +865,28 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 
 **ignoreParticipantFlags**
 
-* **FILTER_DIFFERENT_HOST** all metadata from another host would be discarded.
-* **FILTER_DIFFERENT_PROCESS** all metadata from another process on the same host would be discarded.
-* **FILTER_SAME_PROCESS** all metadata from our own process would be discarded.
-* **FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS** all metadata from our own host would be discarded.
++-----------------------------------------------------------+------------------------+
+| Possible values                                           | Description            |
++===========================================================+========================+
+| :class:`NO_FILTER`                                        | All Discovery traffic  |
+|                                                           | is processed           |
++-----------------------------------------------------------+------------------------+
+| :class:`FILTER_DIFFERENT_HOST`                            | Discovery traffic from |
+|                                                           | another host is        |
+|                                                           | discarded              |
++-----------------------------------------------------------+------------------------+
+| :class:`FILTER_DIFFERENT_PROCESS`                         | Discovery traffic from |
+|                                                           | another process on the |
+|                                                           | same host is discarded |
++-----------------------------------------------------------+------------------------+
+| :class:`FILTER_SAME_PROCESS`                              | Discovery traffic from |
+|                                                           | participant's own      |
+|                                                           | process is discarded.  |
++-----------------------------------------------------------+------------------------+
+| :class:`FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS`   | Discovery traffic from |
+|                                                           | participant's own host |
+|                                                           | is discarded.          |
++-----------------------------------------------------------+------------------------+
 
 .. _sedp:
 

@@ -1010,10 +1010,14 @@
 
         <leaseDuration>
             <!-- DURATION -->
+            <sec>20</sec>
+            <nanosec>0</nanosec>
         </leaseDuration>
 
         <leaseAnnouncement>
             <!-- DURATION -->
+            <sec>3</sec>
+            <nanosec>0</nanosec>
         </leaseAnnouncement>
 
         <initialAnnouncements>
@@ -1077,17 +1081,21 @@
     </qos>
 
     <times> <!-- writerTimesType -->
-        <initialHeartbeatDelay>
-            <!-- DURATION -->
+        <initialHeartbeatDelay> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>12</nanosec>
         </initialHeartbeatDelay>
-        <heartbeatPeriod>
-            <!-- DURATION -->
+        <heartbeatPeriod> <!-- DURATION -->
+            <sec>3</sec>
+            <nanosec>0</nanosec>
         </heartbeatPeriod>
-        <nackResponseDelay>
-            <!-- DURATION -->
+        <nackResponseDelay> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>5</nanosec>
         </nackResponseDelay>
-        <nackSupressionDuration>
-            <!-- DURATION -->
+        <nackSupressionDuration> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>0</nanosec>
         </nackSupressionDuration>
     </times>
 
@@ -1139,11 +1147,13 @@
     </qos>
 
     <times> <!-- readerTimesType -->
-        <initialAcknackDelay>
-            <!-- DURATION -->
+        <initialAcknackDelay> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>70</nanosec>
         </initialAcknackDelay>
-        <heartbeatResponseDelay>
-            <!-- DURATION -->
+        <heartbeatResponseDelay> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>5</nanosec>
         </heartbeatResponseDelay>
     </times>
 
@@ -1249,7 +1259,9 @@
 <builtin>
 <!-->XML-DURATION<-->
 <discovery_config>
-    <leaseDuration>INFINITE</leaseDuration> <!-- string -->
+    <leaseDuration>
+        <sec>DURATION_INFINITY</sec> <!-- string -->
+    </leaseDuration>
 
     <leaseDuration>
         <sec>500</sec> <!-- int32 -->
@@ -1312,7 +1324,9 @@
     </partition>
 
     <deadline>
-        <period>1</period>
+        <period>
+            <sec>1</sec>
+        </period>
     </deadline>
 
     <lifespan>
@@ -1352,11 +1366,11 @@
 <!-->XML-LIVELINESS<-->
 <liveliness>
     <kind>AUTOMATIC</kind> <!-- string -->
-    <lease_duration>
-        <!-- DURATION -->
+    <lease_duration> <!-- DURATION -->
+        <sec>DURATION_INFINITY</sec>
     </lease_duration>
-    <announcement_period>
-        <!-- DURATION -->
+    <announcement_period> <!-- DURATION -->
+        <sec>DURATION_INFINITY</sec>
     </announcement_period>
 </liveliness>
 <!--><-->
@@ -1599,7 +1613,9 @@
 
                     <EDP>SIMPLE</EDP>
 
-                    <leaseDuration>INFINITE</leaseDuration>
+                    <leaseDuration>
+                        <sec>DURATION_INFINITY</sec>
+                    </leaseDuration>
 
                     <leaseAnnouncement>
                         <sec>1</sec>

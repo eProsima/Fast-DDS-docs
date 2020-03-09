@@ -73,9 +73,10 @@ configured with :class:`RTPSParticipantAllocationAttributes::data_limits`, which
 * :class:`max_user_data` limits the size of user data to the given number of octets.
 * :class:`max_properties` limits the size of participant properties data to the given number of octets.
 
-A value of zero implies no size limitation. If these sizes are configured to something different than zero, enough memory
-will be allocated for them for each participant and endpoint. If these sizes are not limited, memory
-will be dynamically allocated as needed. By default, a full dynamic behavior is used.
+A value of zero implies no size limitation. If these sizes are configured to something different than zero, enough
+memory will be allocated for them for each participant and endpoint.
+If these sizes are not limited, memory will be dynamically allocated as needed.
+By default, a full dynamic behavior is used.
 
 Parameters on the publisher
 ===========================

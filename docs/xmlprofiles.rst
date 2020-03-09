@@ -766,8 +766,6 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. |readpaysize| replace:: ``<readerPayloadSize>``
 .. |writpaysize| replace:: ``<writerPayloadSize>``
 .. |mutTries| replace:: ``<mutation_tries>``
-.. |igpartf| replace:: ``<ignoreParticipantFlags>``
-.. |filterlist| replace:: :ref:`ignoreParticipantFlags <Participantfiltering>`
 .. |mempoldefault| replace:: :class:`PREALLOCATED_WITH_REALLOC`
 
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
@@ -776,9 +774,6 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | ``<discovery_config>``         | This is the main tag where       |                         |                       |
 |                                | discovery-related settings can   | :ref:`discovery_config  |                       |
 |                                | be configured.                   | <dconf>`                |                       |
-+--------------------------------+----------------------------------+-------------------------+-----------------------+
-| |igpartf|                      | Restricts metatraffic using      | |filterlist|            | No filtering.         |
-|                                | several filtering criteria.      |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | ``<avoid_builtin_multicast>``  | Restricts metatraffic multicast  | ``Boolean``             | :class:`true`         |
 |                                | traffic to PDP only.             |                         |                       |
@@ -825,12 +820,17 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 .. More large words outside of table. Then table fit maximum line length
 .. |staendxml| replace:: ``<staticEndpointXMLFilename>``
 .. |protocol| replace:: :class:`SIMPLE`, :class:`CLIENT`, :class:`SERVER`, :class:`BACKUP`
+.. |igpartf| replace:: ``<ignoreParticipantFlags>``
+.. |filterlist| replace:: :ref:`ignoreParticipantFlags <Participantfiltering>`
 
 +----------------------------+---------------------------------------+-------------------------+----------------------+
 | Name                       | Description                           | Values                  | Default              |
 +============================+=======================================+=========================+======================+
 | ``<discoveryProtocol>``    | Indicates which kind of PDP protocol  | |protocol|              | :class:`SIMPLE`      |
 |                            | the participant must use.             |                         |                      |
++----------------------------+---------------------------------------+-------------------------+----------------------+
+| |igpartf|                  | Restricts metatraffic using           | |filterlist|            | No filtering.        |
+|                            | several filtering criteria.           |                         |                      |
 +----------------------------+---------------------------------------+-------------------------+----------------------+
 | ``<EDP>``                  | - If set to :class:`SIMPLE`,          | :class:`SIMPLE`,        | :class:`SIMPLE`      |
 |                            |   ``<simpleEDP>`` would be used.      | :class:`STATIC`         |                      |

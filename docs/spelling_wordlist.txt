@@ -39,6 +39,7 @@ diffie
 doxygen
 endian
 eProsima
+ethernet
 extensibility
 fastrtpsgen
 fastdds

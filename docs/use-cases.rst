@@ -1,9 +1,11 @@
+.. _typical_use_cases:
+
 Typical Use-Cases
 #################
 
 The use of Fast-RTPS is highly varied, allowing a large number of configurations depending on the scenario in which
-the library is applied. This section provides configuration examples for the typical use cases aroused when dealing
-with distributed systems.
+the library is applied. This section provides configuration examples for the typical use cases arousing when dealing
+with distributed systems. It is organized as follows:
 
 + :ref:`use-case-fast-rtps-over-wifi`. Presents the case of using Fast-RTPS in scenarios where discovery through
   multicast communication is a challenge. To address this problem, the use of an initial peers list by which the
@@ -16,7 +18,7 @@ with distributed systems.
   topologies (See :ref:`wide_deployments_static`).
 + :ref:`fastrtps_ros2`. Since Fast-RTPS is the default middleware implementation in the
   `OSRF <https://www.openrobotics.org/>`_ `Robot Operation System 2 (ROS 2) <https://index.ros.org/doc/ros2/>`_,
-  this tutorial is an explanation of how to take full advantage for Fast-RTPS wide set of capabilities in a ROS 2
+  this tutorial is an explanation of how to take full advantage of Fast-RTPS wide set of capabilities in a ROS 2
   project.
 
 .. _use-case-fast-rtps-over-wifi:
@@ -27,9 +29,9 @@ Fast-RTPS over WIFI
 The `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ defines the SIMPLE discovery as the default
 mechanism for discovering participants in the network.
 One of the main features of this mechanism is the use of multicast communication in the Participant Discovery
-Phase (PDP). This could be a problem in case the communication is not wired, i.e. WiFi communication. Fast-RTPS'
-solution to this challenge is to define the participants with which a unicast communication is to be set, i.e an
-initial list of remote peers.
+Phase (PDP). This could be a problem in case the communication is not wired, i.e. WiFi communication, since multicast is
+not as reliable over WiFi as it is over ethernet. Fast-RTPS' solution to this challenge is to define the participants
+with which a unicast communication is to be set, i.e an initial list of remote peers.
 
 .. _use-case-initial-peers:
 
@@ -40,9 +42,9 @@ According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (
 listen for incoming
 PDP discovery metatraffic in two different ports, one linked with a multicast address, and another one linked to a
 unicast address.
-Fast-RTPS allows for the configuration of an initial peers list which contains one or much such address-port pairs
+Fast-RTPS allows for the configuration of an initial peers list which contains one or more such address-port pairs
 corresponding to remote participants PDP discovery listening resources, so that the local participant will not only
-sent its PDP traffic to the default multicast address-port specified by its domain, but also to all the address-port
+send its PDP traffic to the default multicast address-port specified by its domain, but also to all the address-port
 pairs specified in the :ref:`initial-peers` list.
 
 A participant's initial peers list contains the list of address-port pairs of all other participants with
@@ -53,8 +55,8 @@ multicast functionality is not available.
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the participants'
 discovery traffic
 unicast listening ports are calculated using the following equation:
-7400 + 250 * `domainID` + 10 + 2 * `participantID`. Thus, if a participant operates in Domain 0 (default domain) and
-its ID is 1, its discovery traffic unicast listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
+7400 + 250 * `domainID` + 10 + 2 * `participantID`. Thus, if for example a participant operates in Domain 0 (default
+domain) and its ID is 1, its discovery traffic unicast listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
 
 The following constitutes an example configuring an Initial Peers list with one peer on host 192.168.10.13 with
 participant ID 1 in domain 0.
@@ -115,13 +117,13 @@ Wide Deployments
 Systems with large amounts of communication nodes might pose a challenge to
 `Data Distribution Service (DDS) <https://www.omg.org/spec/DDS/1.4/PDF>`_ based middleware implementations in terms of
 setup times, memory consumption, and network load. This is because, as explained in :ref:`discovery`, the Participant
-Discovery Phase (PDP) relies on meta traffic announcements send to multicast addresses so that all the participants in
+Discovery Phase (PDP) relies on meta traffic announcements sent to multicast addresses so that all the participants in
 the network can acknowledge each other. This phase is followed by a Endpoint Discovery Phase (EDP) where all the
 participants exchange information (using unicast addresses) about their publisher and subscriber entities with the rest
-of the participants, so that matching between publishers and subscribers in the same topic can occur. As the number of
-participants, publishers, and subscribers increases, the meta-traffic, as well as the number of connections, increases
-exponentially, severely affecting the setup time and memory consumption. Fast-RTPS provides extra features that expand
-the DDS standard to adapt it to wide deployment scenarios.
+of the participants, so that matching between publishers and subscribers using the same topic can occur. As the number
+of participants, publishers, and subscribers increases, the meta-traffic, as well as the number of connections,
+increases exponentially, severely affecting the setup time and memory consumption. Fast-RTPS provides extra features
+that expand the DDS standard to adapt it to wide deployment scenarios.
 
 +-----------------------------------+---------------------------------------------------------------------------------+
 | Feature                           | Purpose                                                                         |
@@ -201,7 +203,7 @@ Peer-to-Peer Participant Discovery Phase
 By default, Fast-RTPS uses SPDP protocol for the PDP phase. This entails the participants sending periodic PDP
 announcements over a well known multicast addresses, using IP ports calculated from the domain. For large deployments,
 this can result in quite some meta traffic, since whenever a participant receives a PDP message via multicast, it
-replays to the remote participant using an address and port specified in the message. In this scenario the number of PDP
+replies to the remote participant using an address and port specified in the message. In this scenario the number of PDP
 connections is *N * (N - 1)*, with *N* being the number of participants in the network.
 
 However, it is often the case that not all the participants need to be aware of all the rest of the remote participants
@@ -266,12 +268,12 @@ Fast-RTPS in ROS 2
 
 Fast-RTPS is the default middleware implementation in the `Open Source Robotic Fundation (OSRF) <https://www.openrobotics.org/>`_
 `Robot Operating System ROS 2 <https://index.ros.org/doc/ros2/>`_. This tutorial is an explanation of how to take full
-advantage for Fast-RTPS wide set of capabilities in a ROS 2 project.
+advantage of Fast-RTPS wide set of capabilities in a ROS 2 project.
 
 The interface between the ROS2 stack and Fast-RTPS is provided by a ROS 2 package
-`rmw_fastrtps <https://raw.githubusercontent.com/ros2/rmw_fastrtps/>`_. This packages is available in all ROS 2
-distributions, both from binaries and from sources. ``rmw_fastrtps`` actually provides not one but two different ROS 2
-middleware implementations, both of them using Fast-RTPS as middleware layer: ``rmw_fastrtps_cpp`` and
+`rmw_fastrtps <https://github.com/ros2/rmw_fastrtps>`_. This package is available in all ROS 2 distributions, both from
+binaries and from sources. ``rmw_fastrtps`` actually provides not one but two different ROS 2 middleware
+implementations, both of them using Fast-RTPS as middleware layer: ``rmw_fastrtps_cpp`` and
 ``rmw_fastrtps_dynamic_cpp``. The main difference between the two is that ``rmw_fastrtps_dynamic_cpp`` uses
 introspection type support at run time to decide on the serialization/deserialization mechanism, while
 ``rmw_fastrtps_cpp`` uses its own type support, which generates the mapping for each message type at build time. The

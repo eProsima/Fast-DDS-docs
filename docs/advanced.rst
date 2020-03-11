@@ -746,7 +746,7 @@ and xml tag:
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
 
-Note that a *server* can act as a *client* of other *servers*, thus, the following section may also apply.
+Note that a *server* can act as a *client* of other *servers*. Thus, the following section may also apply.
 
 Client side setup
 """"""""""""""""""

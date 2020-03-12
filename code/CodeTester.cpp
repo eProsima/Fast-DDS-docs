@@ -473,8 +473,6 @@ writer_attr.times.heartbeatPeriod.seconds = 0;
 writer_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 //!--
 
-//CONF-DISCOVERY-INTRO-EXAMPLE
-
 //CONF-DISCOVERY-PROTOCOL
 participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SIMPLE;
 //!--
@@ -494,16 +492,10 @@ participant_attr.rtps.builtin.discovery_config.leaseDuration = Duration_t(10, 20
 participant_attr.rtps.builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(1, 2);
 //!--
 
-//!--
-
-//CONF-SIMPLE-DISCOVERY-EXAMPLE
 //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT
 participant_attr.rtps.builtin.discovery_config.initial_announcements.count = 5;
 participant_attr.rtps.builtin.discovery_config.initial_announcements.period = Duration_t(0,100000000u);
 //!--
-//!--
-
-//CONF-STATIC-DISCOVERY-EXAMPLE
 
 //CONF_STATIC_DISCOVERY_CODE
 participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
@@ -525,10 +517,6 @@ pub_attr.setUserDefinedID(5);
 //!--
 }
 
-//!--
-
-//CONF-SERVER-DISCOVERY-EXAMPLE
-
 //CONF_SERVER_PREFIX_EXAMPLE
 participant_attr.rtps.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
 //!--
@@ -544,7 +532,7 @@ participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(locator);
 }
 
 {
-//CONF_SERVER_DISCOVERY_PROTOCOL 
+//CONF_SERVER_DISCOVERY_PROTOCOL
 DiscoverySettings & ds = participant_attr.rtps.builtin.discovery_config;
 ds.discoveryProtocol =  DiscoveryProtocol_t::CLIENT;
 ds.discoveryProtocol =  DiscoveryProtocol_t::SERVER;
@@ -623,7 +611,6 @@ ds.discoveryServer_client_syncperiod = Duration_t(0,250000000);
 //!--
 }
 
-//!--
 }
 
 //API-DISCOVERY-TOPICS-LISTENER

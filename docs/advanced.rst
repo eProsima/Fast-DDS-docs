@@ -739,8 +739,6 @@ Thus, for a higher performance, it can be appropriate to configure the reliabili
 Discovery
 *********
 
-.. START INTRODUCTION
-
 Fast-RTPS, as a DDS implementation, provides discovery mechanisms that allow
 for automatically finding and matching publishers and subscribers across
 participants so they can start sharing data. This discovery is performed, for
@@ -991,10 +989,7 @@ and nanosecond using a ``Duration_t``. Its default value is 3 seconds.
 |    :end-before: <!--><-->                               |
 +---------------------------------------------------------+
 
-.. END INTRODUCTION
-
-.. START SIMPLE DISCOVERY
-
+.. _simple_disc_settings:
 
 SIMPLE Discovery Settings
 =========================
@@ -1051,7 +1046,6 @@ Initial Announcements
 |    :end-before: <!--><-->                                       |
 +-----------------------------------------------------------------+
 
-
 .. _`Simple EDP Attributes`:
 
 Simple EDP Attributes
@@ -1090,13 +1084,6 @@ Simple EDP Attributes
 |    :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES |
 |    :end-before: <!--><-->                               |
 +---------------------------------------------------------+
-
-
-
-
-.. END SIMPLE DISCOVERY
-
-.. START STATIC DISCOVERY
 
 .. _discovery_static:
 
@@ -1327,10 +1314,6 @@ On the local participant, loading STATIC EDP configuration files is done by:
 |    :start-after: <!-->CONF_STATIC_DISCOVERY_XML         |
 |    :end-before: <!-->                                   |
 +---------------------------------------------------------+
-
-.. END STATIC DISCOVERY
-
-.. START SERVER-CLIENT DISCOVERY
 
 .. role:: raw-html(raw)
     :format: html
@@ -1670,7 +1653,6 @@ or the xml tag:
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
 
-
 .. _DS_setup_attributes:
 
 Server-client setup by attribute
@@ -1822,8 +1804,6 @@ significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. The
 |    :start-after: <!-->CONF-SERVER-PING                     |
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
-
-.. END SERVER-CLIENT DISCOVERY
 
 Subscribing to Discovery Topics
 *******************************

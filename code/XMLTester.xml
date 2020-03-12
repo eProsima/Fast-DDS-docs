@@ -397,7 +397,7 @@
     </topic>
 </subscriber>
 <!--><-->
-    
+
 <!-->CONF-COMMON-TRANSPORT-SETTING<-->
 <transport_descriptors>
     <transport_descriptor>
@@ -1529,8 +1529,6 @@
 </subscriber>
 <!--><-->
 
-<!-->CONF-DISCOVERY-INTRO-EXAMPLE<-->
-
 <!-->CONF-DISCOVERY-PROTOCOL<-->
 <participant profile_name="participant_discovery_protocol">
     <rtps>
@@ -1585,9 +1583,6 @@
 </participant>
 <!--><-->
 
-<!--><-->
-
-<!-->CONF-SIMPLE-DISCOVERY-EXAMPLE<-->
 <!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<-->
 <participant profile_name="participant_profile_simple_discovery">
     <rtps>
@@ -1605,9 +1600,6 @@
     </rtps>
 </participant>
 <!--><-->
-<!--><-->
-
-<!-->CONF-STATIC-DISCOVERY-EXAMPLE<-->
 
 <!-->CONF_STATIC_DISCOVERY_CODE<-->
 <participant profile_name="participant_profile_static_edp">
@@ -1643,10 +1635,6 @@
     </rtps>
 </participant>
 <!--><-->
-
-<!--><-->
-
-<!-->CONF-SERVER-CLIENT-DISCOVERY-EXAMPLE<-->
 
 <!-->CONF-SERVER-CLIENT-PREFIX<-->
 <participant profile_name="participant_profile_discovery_client_prefix">
@@ -1689,7 +1677,7 @@
                     </udpv4>
                 </locator>
             </metatrafficUnicastLocatorList>
-        </builtin>        
+        </builtin>
     </rtps>
 </participant>
 <!--><-->
@@ -1713,7 +1701,7 @@
                     </RemoteServer>
                 </discoveryServersList>
             </discovery_config>
-        </builtin>        
+        </builtin>
     </rtps>
 </participant>
 <!--><-->
@@ -1734,7 +1722,7 @@
                     </udpv4>
                 </locator>
             </metatrafficUnicastLocatorList>
-        </builtin>        
+        </builtin>
     </rtps>
 </participant>
 <!--><-->
@@ -1745,7 +1733,7 @@
     <builtin>
         <discovery_config>
           <discoveryProtocol>CLIENT</discoveryProtocol>
-          <!-- alternatives  
+          <!-- alternatives
           <discoveryProtocol>SERVER</discoveryProtocol>
           <discoveryProtocol>BACKUP</discoveryProtocol>
           -->
@@ -1812,8 +1800,6 @@
     </builtin>
   </rtps>
 </participant>
-<!--><-->
-
 <!--><-->
 
 <!-->

@@ -1324,26 +1324,25 @@ In this architecture there are several key concepts to understand:
 - The Server-client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard RTPS
   writers and readers.
 
-- Discovery server participants may be *clients* or *servers*.
-  The only difference between them is on how the meta-traffic is handled.
-  The user traffic, that is, the traffic among the publishers and subscribers they create is role-independent.
+- Discovery server participants may be *clients* or *servers*. The only difference between them is on how the
+  meta-traffic is handled. The user traffic, that is, the traffic among the publishers and subscribers they create is
+  role-independent.
 
 - All *server* discovery info will be shared with their linked *clients* and likewise the own *clients* discovery info
-  will be shared with the *server* or *servers* linked to it.
-  Note that a *server* may act as a *client* for other *servers*.
+  will be shared with the *server* or *servers* linked to it. Note that a *server* may act as a *client* for other
+  *servers*.
 
-- *Clients* require a beforehand knowledge of the *servers* they want to link to.
-  Basically it's reduced to the *server* identity (henceforth called ``GuidPrefix``) and a list of locators where the
-  *server* is listening.
-  This locators define also the transport protocol (UDP or TCP) the client will use to contact the *server*.
+- *Clients* require a beforehand knowledge of the *servers* they want to link to. Basically it's reduced to the *server*
+  identity (henceforth called ``GuidPrefix``) and a list of locators where the *server* is listening. This locators
+  define also the transport protocol (UDP or TCP) the client will use to contact the *server*.
 
-    - The ``GuidPrefix`` is the RTPS standard participant unique identifier, a 12-byte chain.
-      This identifier allows clients to assess whether they are receiving messages from the right server, as each
-      standard RTPS message contains this piece of information.
+    - The ``GuidPrefix`` is the RTPS standard participant unique identifier,  a 12-byte chain. This identifier
+      allows clients to assess whether they are receiving messages from the right server, as each standard RTPS
+      message contains this piece of information.
 
-    - The ``GuidPrefix`` is used because the server's IP address may not be a reliable enough server identifier, since
-      several servers can be hosted in the same machine, thus having the same IP, and also because multicast addresses
-      are acceptable addresses.
+    - The ``GuidPrefix`` is used because the server's IP address may not be a reliable enough server identifier,
+      since several servers can be hosted in the same machine, thus having the same IP, and also because multicast
+      addresses are acceptable addresses.
 
 - *Servers* do not require any beforehand knowledge of their *clients*, but their ``GuidPrefix`` and locator list (where
   they are listening) must match the one provided to the *clients*.
@@ -1354,9 +1353,8 @@ In this architecture there are several key concepts to understand:
        reception acknowledgement.
 
      - *Servers* received the hailing messages but they don't start at once to share publishers or subscribers info with
-       the newcomers.
-       They only trigger this process at regular intervals (match period).
-       Tuning this period is possible to bundle the discovery info and deliver it more efficiently.
+       the newcomers. They only trigger this process at regular intervals (match period). Tuning this period is possible
+       to bundle the discovery info and deliver it more efficiently.
 
 In order to clarify this discovery setup either on compile time (sources) or runtime (xml files) we are going to split
 it in two sections: one focus on the main concepts () and other into the main attribute structures and xml tags
@@ -1381,12 +1379,10 @@ Server-client setup by concept
 Choosing between client and server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-It is set by the :ref:`Discovery Protocol <discovery_protocol>` general attribute.
-A participant can only play a role (despite the fact that a *server* may act as a *client* of other server).
-It is mandatory to fill this value because it defaults to *simple*.
-The values associated with the Server-client discovery are specified in :ref:`discovery settings
-section <DS_DiscoverySettings>`.
-In the examples bellow is shown how to manage the corresponding enum attribute:
+It's set by the :ref:`Discovery Protocol <discovery_protocol>` general attribute. A participant can only play a role
+(despite the fact that a *server* may act as a *client* of other server). It's mandatory to fill this value because it
+defaults to *simple*.  The values associated with the Server-client discovery are specified in :ref:`discovery settings
+section <DS_DiscoverySettings>`. In the examples bellow is shown how to manage the corresponding enum attribute:
 
 .. code-block:: bash
 
@@ -1420,8 +1416,7 @@ The server unique identifier ``GuidPrefix``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This belongs to the RTPS specification and univocally identifies each DDS participant. It consist on 12 bytes and is
-basically a key in the DDS domain.
-In the server-client discovery has the purpose to link a *server* to its *clients*.
+basically a key in the DDS domain. In the server-client discovery has the purpose to link a *server* to its *clients*.
 Note that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.
 It must be mandatorily specified in:
 
@@ -1456,23 +1451,20 @@ and xml tag:
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
 
-Note that a *server* can act as a *client* of other *servers*.
-Thus, the following section may also apply.
+Note that a *server* can act as a *client* of other *servers*. Thus, the following section may also apply.
 
 Client side setup
 """"""""""""""""""
 
-Each *client* must keep a list of the *servers* it wants to link to.
-Each single element represents an individual server and a ``GuidPrefix`` must be provided.
-The *server* list is the attribute:
+Each *client* must keep a list of the *servers* it wants to link to. Each single element represents an individual server
+and a ``GuidPrefix`` must be provided. The *server* list is the attribute:
 
 .. code-block:: bash
 
     ParticipantAttributes.rtps.builtin.discovery_config.m_DiscoveryServers
 
-and must be populated with ``RemoteServerAttributes`` objects with a valid ``guidPrefix`` member.
-In xml the server list is and its elements are simultaneously specified.
-Note that ``prefix`` is an attribute of the ``RemoteServer`` tag.
+and must be populated with ``RemoteServerAttributes`` objects with a valid ``guidPrefix`` member. In xml the server list
+is and its elements are simultaneously specified. Note that ``prefix`` is an attribute of the ``RemoteServer`` tag.
 
 .. code-block:: bash
 
@@ -1499,9 +1491,9 @@ Note that ``prefix`` is an attribute of the ``RemoteServer`` tag.
 The server locator list
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each *server* must specify how to be reach by specifying valid locators.
-Any *client* must be given proper locators to reach each of its *servers*.
-As in the :ref:`above section <DS_guidPrefx>` here there is a *server* and a *client* side setup.
+Each *server* must specify how to be reach by specifying valid locators. Any *client* must be given proper locators to
+reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>` here there is a *server* and a *client* side
+setup.
 
 Server side setup
 """""""""""""""""
@@ -1540,9 +1532,8 @@ Note that a *server* can act as a client of other *servers*, thus, the following
 Client side setup
 """"""""""""""""""
 
-Each *client* must keep a list of locators associated to the *servers* it wants to link to.
-Each *server* specifies its own locators.
-The locator list is the attribute:
+Each *client* must keep a list of locators associated to the *servers* it wants to link to. Each *server* specifies its
+own locators. The locator list is the attribute:
 
 .. code-block:: bash
 
@@ -1579,9 +1570,8 @@ tag.
 Client ping period
 ^^^^^^^^^^^^^^^^^^
 
-As explained :ref:`above <DS_key_concepts>` the *clients* send hailing messages to the *servers* at regular intervals
-(ping period) until they received message reception acknowledgement.
-This period is specified in the member:
+As explained :ref:`above <DS_key_concepts>` the *clients* send hailing messages to the *servers* at regular
+intervals (ping period) until they received message reception acknowledgement. This period is specified in the member:
 
 .. code-block:: bash
 
@@ -1615,16 +1605,15 @@ Server match period
 ^^^^^^^^^^^^^^^^^^^
 
 As explained :ref:`above <DS_key_concepts>` the *Servers* received the hailing messages but they don't start at once to
-share publishers or subscribers info with the newcomers.
-They only trigger this process at regular intervals (match period).
-Note that this member is shared with the *client* setup but its name references solely the *client* functionality.
-This period is specified in the member:
+share publishers or subscribers info with the newcomers. They only trigger this process at regular intervals (match
+period). Note that this member is shared with the *client* setup but its name references solely the *client*
+functionality. This period is specified in the member:
 
 .. code-block:: bash
 
     ParticipantAttributes.rtps.builtin.discovery_config.discoveryServer_client_syncperiod
 
-or the xml tag:
+or the XML tag:
 
 .. code-block:: bash
 
@@ -1646,6 +1635,7 @@ or the xml tag:
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
 
+
 .. _DS_setup_attributes:
 
 Server-client setup by attribute
@@ -1657,24 +1647,24 @@ The settings related with server-client discovery are:
     :header: "Name", "Description"
     :widths: 20,100
 
-    :ref:`RTPSParticipantAttributes <DS_RTPSParticipantAttributes>`, "Specifies general participant settings.
-    Some of them must be modified in order to properly configure a Server like the ``GuidPrefix``."
+    :ref:`RTPSParticipantAttributes <DS_RTPSParticipantAttributes>`, "Specifies general participant settings. Some of
+    them must be modified in order to properly configure a Server like the ``GuidPrefix``."
     :ref:`BuiltinAttributes <DS_BuiltinAttributes>`, "It's a member of the above *RTPSParticipantAttributes* structure.
     Allows to specify some mandatory server discovery settings like the :raw-html:`<br />` addresses were it listens for
     clients discovery info."
-    :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure.
-    Allows to specify some mandatory client an optional server settings like the: :raw-html:`<br />` if it's a client or
-    a server or the list of servers it is linked to or the client-ping, server-match frequencies."
+    :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure. Allows
+    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` if it's a client or a
+    server or the list of servers it is linked to or the client-ping, server-match frequencies."
 
 .. _DS_RTPSParticipantAttributes:
 
 RTPSParticipantAttributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A ``GuidPrefix_t guidPrefix`` member specifies the server's identity.
-This member has only significance if ``discovery_config.discoveryProtocol`` is **SERVER** or **BACKUP**.
-There is a ``ReadguidPrefix`` method to easily fill in this member from a string formatted like
-``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"`` (note that each byte must be a valid hexadecimal figure).
+A ``GuidPrefix_t guidPrefix`` member specifies the server's identity. This member has only significance if
+discovery_config.discoveryProtocol is **SERVER** or **BACKUP**. There is a ``ReadguidPrefix`` method to easily fill in
+this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"`` (note that each byte must be a valid
+hexadecimal figure).
 
 +-----------------------------------------------------+
 | **C++**                                             |
@@ -1699,8 +1689,9 @@ BuiltinAttributes
 
 All discovery related info is gathered in a DiscoverySettings_ ``discovery_config`` member.
 
-In order to receive client metatraffic, ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``
-must be populated with the addresses that were given to the clients.
+In order to receive client metatraffic, ``metatrafficUnicastLocatorList`` or
+``metatrafficMulticastLocatorList`` must be populated with the addresses that were given to
+the clients.
 
 +------------------------------------------------------------+
 | **C++**                                                    |
@@ -1723,32 +1714,33 @@ must be populated with the addresses that were given to the clients.
 DiscoverySettings
 ^^^^^^^^^^^^^^^^^
 
-A discovery_protocol_ ``discoveryProtocol`` member specifies the participant's discovery kind.
-As was explained before to setup a server-client discovery it may be:
+A discovery_protocol_ ``discoveryProtocol`` member specifies the participant's discovery kind. As was explained before
+to setup a server-client discovery it may be:
 
 .. csv-table::
     :header: "enum value", "Description"
     :widths: 15, 100
 
     CLIENT, "Generates a client participant, which relies on a server (or servers) to be notified of other clients
-    presence. :raw-html:`<br />`
-    This participant can create publishers and subscribers of any topic (static or dynamic) as ordinary participants
-    do."
-    SERVER, "Generates a server participant, which receives, manages and spreads its linked client's metatraffic
-    assuring any single one is aware of the others. :raw-html:`<br />` This participant can create publishers and
-    subscribers of any topic (static or dynamic) as ordinary participants do. :raw-html:`<br />`
+    presence.
+    :raw-html:`<br />`
+    This participant can create publishers and subscribers of any topic (static or
+    dynamic) as ordinary participants do."
+    SERVER, "Generates a server participant, which receives, manages and spreads
+    its linked client's metatraffic assuring any single one is aware of the others. :raw-html:`<br />` This participant
+    can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do.
+    :raw-html:`<br />`
     Servers can link to other servers in order to share its clients information."
     BACKUP, "Generates a server
     participant with additional functionality over **SERVER**. :raw-html:`<br />`
-    Specifically, it uses a database to backup its client information, so that if for whatever reason it disappears, it
-    can be automatically restored and :raw-html:`<br />`
-    continue spreading metatraffic to late joiners.
-    A **SERVER** in the same scenario ought to collect client information again, introducing a recovery delay."
+    Specifically, it uses a database to
+    backup its client information, so that if for whatever reason it disappears, it can be automatically restored and
+    :raw-html:`<br />` continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to
+    collect client information again, introducing a recovery delay."
 
-A ``RemoteServerList_t m_DiscoveryServers`` that lists the servers linked to a client participant.
-This member has only significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**.
-These member elements are ``RemoteServerAttributes`` objects that identify each server and report where the servers can
-be reached:
+A ``RemoteServerList_t m_DiscoveryServers`` that lists the servers linked to a client participant. This member has only
+significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. These member elements are
+``RemoteServerAttributes`` objects that identify each server and report where the servers can be reached:
 
 .. list-table::
    :header-rows: 1
@@ -1762,16 +1754,16 @@ be reached:
        :raw-html:`<br />`
        (note that each octet must be a valid hexadecimal figure).
    * - ``metatrafficUnicastLocatorList`` and ``metatrafficMulticastLocatorList``
-     - Are ordinary ``LocatorList_t`` (see :ref:`Listening locators <listening_locators>`) where the server's locators
-       must be specified. :raw-html:`<br />`
-       At least one of them should be populated.
+     - Are ordinary ``LocatorList_t`` (see :ref:`LocatorListType`) where the server's locators must be specified.
+       :raw-html:`<br />` At least one of them should be populated.
    * - ``Duration_t discoveryServer_client_syncperiod``
      - Has only significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**.
        :raw-html:`<br />`
        For a *client* it specifies the pinging period as explained in :ref:`key concepts <DS_key_concepts>`.
        :raw-html:`<br />`
-       When a client has not yet established a reliable connection to a server it *pings* until the server notices
-       :raw-html:`<br />` him and establishes the connection. :raw-html:`<br />`
+       When a client has not yet established a reliable connection to a server it *pings* until
+       the server notices :raw-html:`<br />` him and establishes the connection.
+       :raw-html:`<br />`
        For a *server* it specifies the match period as explained in :ref:`key concepts <DS_key_concepts>`.
        :raw-html:`<br />`
        When a *server* discovers new *clients* it only starts exchanging info with them at regular
@@ -1795,6 +1787,7 @@ be reached:
 |    :start-after: <!-->CONF-SERVER-PING                     |
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
+
 
 Subscribing to Discovery Topics
 *******************************

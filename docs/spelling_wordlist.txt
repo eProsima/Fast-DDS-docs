@@ -9,6 +9,7 @@ GMAC
 Github
 IDL
 IPv
+Intra
 Nagle
 PKI
 QoS
@@ -37,7 +38,6 @@ bitset
 bitsets
 boolean
 chocolatey
-config
 coverity
 crl
 crypto
@@ -51,7 +51,6 @@ deserialization
 deserialize
 deserializes
 diffie
-discoveryProtocol
 doxygen
 eProsima
 endian
@@ -63,8 +62,6 @@ gradle
 gtest
 helloworld
 hostid
-IDL
-Intra
 interoperability
 libs
 lroundl

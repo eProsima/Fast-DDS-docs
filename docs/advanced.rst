@@ -1357,8 +1357,8 @@ In this architecture there are several key concepts to understand:
        to bundle the discovery info and deliver it more efficiently.
 
 In order to clarify this discovery setup either on compile time (sources) or runtime (xml files) we are going to split
-it in two sections: one focus on the main concepts () and other into the main attribute structures and xml tags
-(DS_setup_attributes_).
+it in two sections: one focus on the main concepts (:ref:`setup by concept <DS_setup_concepts>`) and other into the main attribute structures and xml tags
+(:ref:`setup by attribute<DS_setup_attributes>`).
 
 .. _DS_setup_concepts:
 
@@ -1662,7 +1662,7 @@ RTPSParticipantAttributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A ``GuidPrefix_t guidPrefix`` member specifies the server's identity. This member has only significance if
-discovery_config.discoveryProtocol is **SERVER** or **BACKUP**. There is a ``ReadguidPrefix`` method to easily fill in
+``discovery_config.discoveryProtocol`` is **SERVER** or **BACKUP**. There is a ``ReadguidPrefix`` method to easily fill in
 this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"`` (note that each byte must be a valid
 hexadecimal figure).
 

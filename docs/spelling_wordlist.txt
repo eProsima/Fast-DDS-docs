@@ -39,6 +39,7 @@ diffie
 doxygen
 endian
 eProsima
+ethernet
 extensibility
 fastrtpsgen
 fastdds
@@ -71,6 +72,7 @@ pluggable
 ppDisable
 ppPath
 preallocated
+preallocates
 preprocessor
 QoS
 readNextData
@@ -91,6 +93,8 @@ submodules
 takeNextData
 TCP
 tinyxml
+Topologies
+topologies
 typeobject
 TypeObject
 uint

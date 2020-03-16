@@ -68,6 +68,7 @@ This documentation is organized into the following sections:
    persistence
    xmlprofiles
    fastrtpsgen
+   use-cases
 
 
 .. _gen:

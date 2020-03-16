@@ -949,6 +949,7 @@ DiscoverySettings
  Note that servers act like clients whenever they reference other servers, thus, *discoveryServer_client_syncperiod*
  applies to them also in this scenario.
 
+.. _discovery_static:
 
 Static Endpoints Discovery
 ==========================

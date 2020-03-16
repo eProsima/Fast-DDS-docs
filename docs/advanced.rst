@@ -611,8 +611,8 @@ controllers can be used to limit the amount of data to be sent under certain con
 kind of controller implemented.
 
 The current release implement throughput controllers, which can be used to limit the total message throughput to be sent
-over the network per time measurement unit. In order to use them, a descriptor must be passed into the Participant or
-Publisher Attributes.
+over the network per time measurement unit. In order to use them, a descriptor must be passed into the Participant
+or Publisher Attributes.
 
 +-----------------------------------------------+
 | **C++**                                       |
@@ -1787,6 +1787,7 @@ significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. The
 |    :start-after: <!-->CONF-SERVER-PING                     |
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
+
 
 
 Subscribing to Discovery Topics

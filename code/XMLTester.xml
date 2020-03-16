@@ -593,6 +593,29 @@
 </participant>
 <!--><-->
 
+<!-->CONF-QOS-DISCOVERY-SERVERLIST<-->
+<participant profile_name="participant_profile_qos_discovery_serverlist">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>CLIENT</discoveryProtocol>
+                <discoveryServersList>
+                    <RemoteServer prefix="4D.49.47.55.45.4c.5f.42.41.52.52.4f">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.2.65</address>
+                                    <port>5574</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
 
 <!-->CONF-QOS-DISCOVERY-LEASEDURATION<-->
 <participant profile_name="participant_profile_qos_discovery_lease">
@@ -1527,6 +1550,164 @@
         <increment>0</increment>
     </matchedPublishersAllocation>
 </subscriber>
+<!--><-->
+
+<!-->CONF_INITIAL_PEERS_BASIC<-->
+<participant profile_name="initial_peers_example_profile" is_default_profile="true">
+    <rtps>
+        <builtin>
+            <initialPeersList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.13</address>
+                        <port>7412</port>
+                    </udpv4>
+                </locator>
+            </initialPeersList>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_INITIAL_PEERS_METAUNICAST<-->
+<participant profile_name="initial_peers_multicast_avoidance" is_default_profile="true" >
+    <rtps>
+        <builtin>
+            <!-- Choosing a specific unicast address -->
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.13</address>
+                        <port>7412</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_DS_MAIN_SCENARIO_SERVER<-->
+<participant profile_name="UDP SERVER" is_default_profile="true">
+    <rtps>
+        <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+                <clientAnnouncementPeriod>
+                    <sec>0</sec>
+                    <nanosec>250000000</nanosec>
+                </clientAnnouncementPeriod>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.57</address>
+                        <port>56542</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_DS_MAIN_SCENARIO_CLIENT<-->
+<participant profile_name="UDP CLIENT" is_default_profile="true">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>CLIENT</discoveryProtocol>
+                <clientAnnouncementPeriod>
+                    <sec>0</sec>
+                    <nanosec>250000000</nanosec>
+                </clientAnnouncementPeriod>
+                <discoveryServersList>
+                    <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>56542</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
+<participant profile_name="participant_profile_static_pub">
+    <rtps>
+        <name>HelloWorldPublisher</name>
+        <builtin>
+            <discovery_config>
+                <EDP>STATIC</EDP>
+                <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+
+<publisher profile_name="publisher_xml_conf_static_discovery">
+    <topic>
+        <name>HelloWorldTopic</name>
+        <dataType>HelloWorld</dataType>
+    </topic>
+    <userDefinedID>1</userDefinedID>
+    <entityID>2</entityID>
+</publisher>
+<!--><-->
+
+<!-->STATIC_DISCOVERY_USE_CASE_SUB<-->
+<participant profile_name="participant_profile_static_sub">
+    <rtps>
+        <name>HelloWorldSubscriber</name>
+        <builtin>
+            <discovery_config>
+                <staticEndpointXMLFilename>HelloWorldPublisher.xml</staticEndpointXMLFilename>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+
+<subscriber profile_name="subscriber_xml_conf_static_discovery">
+    <topic>
+        <name>HelloWorldTopic</name>
+        <dataType>HelloWorld</dataType>
+    </topic>
+    <userDefinedID>3</userDefinedID>
+    <entityID>4</entityID>
+</subscriber>
+<!--><-->
+
+<!-->CONF_ROS2_DEFAULT_PROFILE<-->
+<participant profile_name="participant_profile_ros2" is_default_profile="true">
+    <rtps>
+        <name>profile_for_ros2_node</name>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_ROS2_EXAMPLE<-->
+<profiles>
+    <publisher profile_name="ros2_publisher_profile" is_default_profile="true">
+        <qos>
+            <publishMode>
+                <kind>SYNCHRONOUS</kind>
+            </publishMode>
+        </qos>
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </publisher>
+
+    <subscriber profile_name="ros2_subscription_profile" is_default_profile="true">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </subscriber>
+</profiles>
 <!--><-->
 
 <!-->CONF-DISCOVERY-PROTOCOL<-->

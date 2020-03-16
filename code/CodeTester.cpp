@@ -382,6 +382,18 @@ participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationWriter
 participant_attr.rtps.builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter = false;
 //!--
 
+//CONF-QOS-DISCOVERY-SERVERLIST
+Locator_t server_address(LOCATOR_KIND_UDPv4, 5574);
+IPLocator::setIPv4(server_address, 192, 168, 2, 65);
+
+RemoteServerAttributes ratt;
+ratt.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+ratt.metatrafficUnicastLocatorList.push_back(server_address);
+
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(ratt);
+//!--
+
 //CONF-QOS-DISCOVERY-LEASEDURATION
 participant_attr.rtps.builtin.discovery_config.leaseDuration = Duration_t(5, 0);
 participant_attr.rtps.builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(2, 0);
@@ -472,6 +484,77 @@ publisher_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 writer_attr.times.heartbeatPeriod.seconds = 0;
 writer_attr.times.heartbeatPeriod.nanosec = 500000000; //500 ms
 //!--
+
+//CONF_INITIAL_PEERS_BASIC
+Locator_t initial_peers_locator;
+IPLocator::setIPv4(initial_peers_locator, "192.168.10.13");
+initial_peers_locator.port = 7412;
+participant_attr.rtps.builtin.initialPeersList.push_back(initial_peers_locator);
+//!--
+
+//CONF_INITIAL_PEERS_METAUNICAST
+Locator_t meta_unicast_locator;
+IPLocator::setIPv4(meta_unicast_locator, "192.168.10.13");
+meta_unicast_locator.port = 7412;
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(meta_unicast_locator);
+//!--
+
+//CONF_DS_MAIN_SCENARIO_SERVER
+Locator_t server_locator;
+IPLocator::setIPv4(server_locator, "192.168.10.57");
+server_locator.port = 56542;
+
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+participant_attr.rtps.ReadguidPrefix("72.61.73.70.66.61.72.6d.74.65.73.74");
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
+//!--
+
+//CONF_DS_MAIN_SCENARIO_CLIENT
+Locator_t remote_server_locator;
+IPLocator::setIPv4(remote_server_locator, "192.168.10.57");
+remote_server_locator.port = 56542;
+
+RemoteServerAttributes remote_server_attr;
+remote_server_attr.ReadguidPrefix("72.61.73.70.66.61.72.6d.74.65.73.74");
+remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator);
+
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
+participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
+//!--
+
+{
+//STATIC_DISCOVERY_USE_CASE_PUB
+// Participant attributes
+participant_attr.rtps.setName("HelloWorldPublisher");
+participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldSubscriber.xml");
+
+// Publisher attributes
+publisher_attr.topic.topicName = "HelloWorldTopic";
+publisher_attr.topic.topicDataType = "HelloWorld";
+publisher_attr.setUserDefinedID(1);
+publisher_attr.setEntityID(2);
+//!--
+}
+
+{
+//STATIC_DISCOVERY_USE_CASE_SUB
+// Participant attributes
+participant_attr.rtps.setName("HelloWorldSubscriber");
+participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldPublisher.xml");
+
+// Subscriber attributes
+subscriber_attr.topic.topicName = "HelloWorldTopic";
+subscriber_attr.topic.topicDataType = "HelloWorld";
+subscriber_attr.setUserDefinedID(3);
+subscriber_attr.setEntityID(4);
+//!--
+}
 
 //CONF-DISCOVERY-PROTOCOL
 participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SIMPLE;

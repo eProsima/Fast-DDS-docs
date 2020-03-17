@@ -1657,7 +1657,7 @@ The settings related with server-client discovery are:
     Allows to specify some mandatory server discovery settings like the :raw-html:`<br />` addresses were it listens for
     clients discovery info."
     :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure. Allows
-    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` wheter it is a client or a
+    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` whether it is a client or a
     server or the list of servers it is linked to or the client-ping, server-match frequencies."
 
 .. _DS_RTPSParticipantAttributes:

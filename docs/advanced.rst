@@ -497,7 +497,6 @@ well-known ports. These well-known ports are calculated using the following pred
 These predefined rules use some values explained here:
 
 * DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``.
-  The default value is ``250``.
 * PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``.
   The default value is ``2``.
 * PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``.
@@ -773,15 +772,16 @@ Discovery mechanisms
 
 Fast-RTPS provides the following discovery mechanisms:
 
-- **Simple Discovery**: This is the default mechanism.
-  It upholds the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ for both PDP and EDP phases, and
-  therefore provides compatibility with any other DDS and RTPS implementations.
+- :ref:`Simple Discovery <simple_disc_settings>`: This is the default mechanism.
+  It upholds the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_
+  for both PDP and EDP phases, and therefore provides compatibility with any
+  other DDS and RTPS implementations.
 
-- **Static Discovery**: This mechanisms uses the Simple Participant Discovery Protocol (SPDP) for the PDP phase (as
+- :ref:`Static Discovery <static_edp>`: This mechanisms uses the Simple Participant Discovery Protocol (SPDP) for the PDP phase (as
   specified by the RTPS standard), but allows for skipping the Simple Participant Discovery Protocol (SEDP) phase when
   all the publishers' and subscribers' addresses and ports, data types, and topics are known beforehand.
 
-- **Server-Client Discovery**: This discovery mechanism uses a centralized discovery architecture, where servers act as
+- :ref:`Server-Client Discovery <discovery_server>`: This discovery mechanism uses a centralized discovery architecture, where servers act as
   a hubs for discovery meta traffic.
 
 - **Manual Discovery**: This mechanism is only compatible with the ``RTPSDomain`` layer.
@@ -918,7 +918,6 @@ The local participant's liveliness is asserted on the remote participant any tim
 kind of traffic from the local participant.
 
 The lease duration is specified as a time expressed in seconds and nanosecond using a ``Duration_t``.
-Its default value is 20 seconds.
 
 +-----------------------------------------------------+
 | **C++**                                             |
@@ -948,7 +947,6 @@ It is important to note that there is a trade-off involved in the setting of the
 announcements will bloat the network with meta traffic, but too scarce ones will delay the discovery of late joiners.
 
 Participant's announcement period is specified as a time expressed in seconds and nanosecond using a ``Duration_t``.
-Its default value is 3 seconds.
 
 +---------------------------------------------------------+
 | **C++**                                                 |
@@ -997,6 +995,11 @@ The specification splits up the SIMPLE discovery protocol into two independent p
 
 Initial Announcements
 ---------------------
+
+`RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ simple discovery mechanism requires the participant to
+send constant announcements. This announcements are not deliver in a reliable fashion and can be dispose of by the
+network. In order to avoid the discovery delay induced by message disposal, the initial announcement can be set up to
+make several shots to increase proper reception chances.  
 
 +---------+--------------------------------------------------------------------+----------------+---------+
 | Name    | Description                                                        | Type           | Default |
@@ -1349,7 +1352,7 @@ In this architecture there are several key concepts to understand:
 
   In order to gather *client* discovery info the following handshake strategy is followed:
 
-     - *Clients* send hailing messages to the *servers* at regular intervals (ping period) until they received message
+     - *Clients* send hailing messages to the *servers* at regular intervals (ping period) until they receive message
        reception acknowledgement.
 
      - *Servers* received the hailing messages but they don't start at once to share publishers or subscribers info with
@@ -1415,10 +1418,10 @@ and xml tag:
 The server unique identifier ``GuidPrefix``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This belongs to the RTPS specification and univocally identifies each DDS participant. It consists on 12 bytes and is
-basically a key in the DDS domain. In the server-client discovery has the purpose to link a *server* to its *clients*.
-Note that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.
-It must be mandatorily specified in:
+This belongs to the RTPS specification and univocally identifies each DDS participant. It consist on 12 bytes and is
+basically a key in the DDS domain. In the server-client discovery it has the purpose to link a *server* to its
+*clients*.  Note that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.
+It must be mandatorily specified in: *server side* and *client side* setups.
 
 Server side setup
 """""""""""""""""
@@ -1491,7 +1494,7 @@ and its elements are simultaneously specified. Note that ``prefix`` is an attrib
 The server locator list
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each *server* must specify how to be reach by specifying valid locators. Any *client* must be given proper locators to
+Each *server* must specify valid locators where it can be reached. Any *client* must be given proper locators to
 reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>` here there is a *server* and a *client* side
 setup.
 
@@ -1540,7 +1543,7 @@ own locators. The locator list is the attribute:
     ParticipantAttributes.rtps.builtin.discovery_config.m_DiscoveryServers
 
 and must be populated with ``RemoteServerAttributes`` objects with a valid ``metatrafficUnicastLocatorList`` or
-``metatrafficMulticastLocatorList`` member. In xml the server list is and its elements are simultaneously specified.
+``metatrafficMulticastLocatorList`` member. In xml the server list and its elements are simultaneously specified.
 Note the ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList`` attributes of the ``RemoteServer``
 tag.
 
@@ -1653,7 +1656,7 @@ The settings related with server-client discovery are:
     Allows to specify some mandatory server discovery settings like the :raw-html:`<br />` addresses were it listens for
     clients discovery info."
     :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure. Allows
-    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` if it's a client or a
+    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` wheter it is a client or a
     server or the list of servers it is linked to or the client-ping, server-match frequencies."
 
 .. _DS_RTPSParticipantAttributes:

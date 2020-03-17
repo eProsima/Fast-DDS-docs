@@ -1653,7 +1653,7 @@
     </rtps>
 </participant>
 
-<publisher profile_name="publisher_xml_conf_static_discovery">
+<publisher profile_name="uc_publisher_xml_conf_static_discovery">
     <topic>
         <name>HelloWorldTopic</name>
         <dataType>HelloWorld</dataType>
@@ -1675,7 +1675,7 @@
     </rtps>
 </participant>
 
-<subscriber profile_name="subscriber_xml_conf_static_discovery">
+<subscriber profile_name="uc_subscriber_xml_conf_static_discovery">
     <topic>
         <name>HelloWorldTopic</name>
         <dataType>HelloWorld</dataType>
@@ -1694,7 +1694,6 @@
 <!--><-->
 
 <!-->CONF_ROS2_EXAMPLE<-->
-<profiles>
     <publisher profile_name="ros2_publisher_profile" is_default_profile="true">
         <qos>
             <publishMode>
@@ -1707,7 +1706,6 @@
     <subscriber profile_name="ros2_subscription_profile" is_default_profile="true">
         <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
     </subscriber>
-</profiles>
 <!--><-->
 
 <!-->CONF-DISCOVERY-PROTOCOL<-->
@@ -1792,16 +1790,6 @@
         </builtin>
     </rtps>
 </participant>
-<!--><-->
-
-<!-->CONF_QOS_STATIC_DISCOVERY_USERID<-->
-<publisher profile_name="publisher_xml_conf_static_discovery">
-    <userDefinedID>3</userDefinedID>
-</publisher>
-
-<subscriber profile_name="subscriber_xml_conf_static_discovery">
-    <userDefinedID>5</userDefinedID>
-</subscriber>
 <!--><-->
 
 <!-->CONF_STATIC_DISCOVERY_XML<-->
@@ -1909,7 +1897,7 @@
 <!--><-->
 
 <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->
-<participant profile_name="participant_discovery_protocol" >
+<participant profile_name="participant_discovery_protocol_alt" >
   <rtps>
     <builtin>
         <discovery_config>
@@ -2597,6 +2585,7 @@
 
         <entityID>66</entityID>
     </subscriber>
+<!--><-->
 
 <!-->CONF-LIBRARY-SETTINGS<-->
     <library_settings>

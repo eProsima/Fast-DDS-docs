@@ -998,9 +998,12 @@ Initial Announcements
 ---------------------
 
 `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ simple discovery mechanism requires the participant to
-send constant announcements. This announcements are not deliver in a reliable fashion and can be dispose of by the
-network. In order to avoid the discovery delay induced by message disposal, the initial announcement can be set up to
-make several shots to increase proper reception chances.
+send announcements. These announcements are not deliver in a reliable fashion, and can be disposed of by the network. In
+order to avoid the discovery delay induced by message disposal, the initial announcement can be set up to make several
+shots, in order to increase proper reception chances.
+
+Initial announcements only take place on participant creation. Once done, the only announcements enforced are the
+standard ones based on the ``leaseDuration_announcementperiod`` period (not the ``initial_announcements.period``).
 
 +---------+--------------------------------------------------------------------+----------------+---------+
 | Name    | Description                                                        | Type           | Default |
@@ -1360,9 +1363,9 @@ In this architecture there are several key concepts to understand:
        the newcomers. They only trigger this process at regular intervals (match period). Tuning this period is possible
        to bundle the discovery info and deliver it more efficiently.
 
-In order to clarify this discovery setup either on compile time (sources) or runtime (xml files) we are going to split
+In order to clarify this discovery setup either on compile time (sources) or runtime (XML files) we are going to split
 it in two sections: one focus on the main concepts (:ref:`setup by concept <DS_setup_concepts>`) and other into the main
-attribute structures and xml tags (:ref:`setup by attribute<DS_setup_attributes>`).
+attribute structures and XML tags (:ref:`setup by attribute<DS_setup_attributes>`).
 
 .. _DS_setup_concepts:
 
@@ -1386,13 +1389,11 @@ Choosing between client and server
 It's set by the :ref:`Discovery Protocol <discovery_protocol>` general attribute. A participant can only play a role
 (despite the fact that a *server* may act as a *client* of other server). It's mandatory to fill this value because it
 defaults to *simple*.  The values associated with the Server-client discovery are specified in :ref:`discovery settings
-section <DS_DiscoverySettings>`. In the examples bellow is shown how to manage the corresponding enum attribute:
+section <DS_DiscoverySettings>`. The examples below shown how to manage the corresponding enum attribute and XML tag:
 
 .. code-block:: bash
 
     ParticipantAttributes.rtps.builtin.discovery_config.discoveryProtocol
-
-and xml tag:
 
 .. code-block:: bash
 
@@ -1426,14 +1427,11 @@ It must be mandatorily specified in: *server side* and *client side* setups.
 
 Server side setup
 """""""""""""""""
-
-In the examples below we show how to setup the attribute:
+The examples below shown how to manage the corresponding enum attribute and XML tag:
 
 .. code-block:: bash
 
     ParticipantAttributes.rtps.prefix
-
-and xml tag:
 
 .. code-block:: bash
 
@@ -1467,7 +1465,7 @@ and a ``GuidPrefix`` must be provided. The *server* list is the attribute:
 
     ParticipantAttributes.rtps.builtin.discovery_config.m_DiscoveryServers
 
-and must be populated with ``RemoteServerAttributes`` objects with a valid ``guidPrefix`` member. In xml the server list
+and must be populated with ``RemoteServerAttributes`` objects with a valid ``guidPrefix`` member. In XML the server list
 and its elements are simultaneously specified. Note that ``prefix`` is an attribute of the ``RemoteServer`` tag.
 
 .. code-block:: bash
@@ -1502,14 +1500,12 @@ setup.
 Server side setup
 """""""""""""""""
 
-In the examples below its shown how to setup the locator list attribute (note that discovery strategy only deals with
-metatraffic attributes):
+The examples below shown how to setup the locator list attribute (note that discovery strategy only deals with
+metatraffic attributes) and XML tag:
 
 .. code-block:: bash
 
     ParticipantAttributes.rtps.builtin.(metatrafficMulticastLocatorList|metatrafficUnicastLocatorList)
-
-and xml tag:
 
 .. code-block:: bash
 
@@ -1544,7 +1540,7 @@ own locators. The locator list is the attribute:
     ParticipantAttributes.rtps.builtin.discovery_config.m_DiscoveryServers
 
 and must be populated with ``RemoteServerAttributes`` objects with a valid ``metatrafficUnicastLocatorList`` or
-``metatrafficMulticastLocatorList`` member. In xml the server list and its elements are simultaneously specified.
+``metatrafficMulticastLocatorList`` member. In XML the server list and its elements are simultaneously specified.
 Note the ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList`` attributes of the ``RemoteServer``
 tag.
 
@@ -1581,7 +1577,7 @@ intervals (ping period) until they received message reception acknowledgement. T
 
     ParticipantAttributes.rtps.builtin.discovery_config.discoveryServer_client_syncperiod
 
-or the xml tag:
+or the XML tag:
 
 .. code-block:: bash
 

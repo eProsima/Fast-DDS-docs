@@ -257,8 +257,8 @@ may be interested in speed up this process when the *server* restarts.
 Keep the discovery information in a file synchronize with the *server*'s record fulfills the goal. In order to enable
 this we must just specify the :ref:`discovery protocol <discovery_protocol>` as **BACKUP**.
 
-Once the *server* is created it generates a server-<GUIDPREFIX>.db (exempli gratia
-*server-73-65-72-76-65-72-63-6C-69-65-6E-74.db*) on its process working directory.
+Once the *server* is created it generates a *server-<GUIDPREFIX>.db* (*exempli gratia
+server-73-65-72-76-65-72-63-6C-69-65-6E-74.db*) on its process working directory.
 
 If we want to start anew we must remove the file in order to prevent old discovery info from being loaded.
 

@@ -321,14 +321,17 @@ Deadline
 ********
 
 The deadline QoS raises an alarm when the frequency of new samples falls below a certain threshold.
-It is useful for cases where data is expected to be updated periodically, requiring that each
-instance is updated periodically for topics with key.
+It is useful for cases where data is expected to be updated periodically. 
 
 On the publishing side, the deadline QoS defines the maximum period in which the application is
 expected to supply a new sample. On the subscribing side, it defines the maximum period in which
 new samples should be received. For publishers and subscribers to match, the offered deadline
 period must be less than or equal to the requested deadline period, otherwise the entities are
 considered to be incompatible.
+
+For topics with keys, this QoS is applied by key. Imagine for example we are publishing vehicle 
+positions, and we want to enforce a position of each vehicle is published periodically, 
+in that case, we can set the ID of the vehicle as the key of the topic, and use the deadline QoS.
 
 +--------------------------------------------------------------+
 | **C++**                                                      |

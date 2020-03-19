@@ -255,7 +255,7 @@ Given that *servers* used to have many *clients* associated, this is a lengthy p
 may be interested in speed up this process when the *server* restarts.
 
 Keep the discovery information in a file synchronize with the *server*'s record fulfills the goal. In order to enable
-this we must just specify the :ref:`discovery protocol <discovery_protocol>` as **BACKUP**. 
+this we must just specify the :ref:`discovery protocol <discovery_protocol>` as **BACKUP**.
 
 Once the *server* is created it generates a server-<GUIDPREFIX>.db (exempli gratia
 *server-73-65-72-76-65-72-63-6C-69-65-6E-74.db*) on its process working directory.
@@ -268,8 +268,8 @@ UDPv4 partitioning using servers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *Server* association can be seen as another isolation mechanism besides :ref:`domains <listening_locators>` and
-:ref:`partitions <partitions>`. *Clients* that do not share a *server* cannot see each other and belong to isolated networks. In order to
-connect server isolated networks we can:
+:ref:`partitions <partitions>`. *Clients* that do not share a *server* cannot see each other and belong to isolated
+networks. In order to connect server isolated networks we can:
 
     1. Connect each *client* to both *servers*.
     2. Connect one *server* to the other.
@@ -295,7 +295,7 @@ setup time (time until all the entities are ready for information exchange), whi
 connections to those strictly necessary.
 As explained in the :ref:`discovery` section, all Fast-RTPS discovery mechanisms consist of two steps: PDP and EDP.
 
-   
+
 
 .. _wide_deployments_static_pdp:
 

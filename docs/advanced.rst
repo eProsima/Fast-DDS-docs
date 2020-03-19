@@ -941,11 +941,11 @@ The lease duration is specified as a time expressed in seconds and nanosecond us
 Announcement Period
 -------------------
 
-It specifies the periodicity of the participant's PDP announcements.
-For liveliness shake it is recommend to be shorter than the lease duration, so that the participant's liveliness is
-asserted even when there is no data traffic.
-It is important to note that there is a trade-off involved in the setting of the announcement period, i.e. too frequent
-announcements will bloat the network with meta traffic, but too scarce ones will delay the discovery of late joiners.
+It specifies the periodicity of the participant's PDP announcements.  For liveliness' sake it is recommend that the
+announcement period is shorter than the lease duration, so that the participant's liveliness is asserted even when there
+is no data traffic.  It is important to note that there is a trade-off involved in the setting of the announcement
+period, i.e. too frequent announcements will bloat the network with meta traffic, but too scarce ones will delay the
+discovery of late joiners.
 
 Participant's announcement period is specified as a time expressed in seconds and nanosecond using a ``Duration_t``.
 
@@ -998,12 +998,13 @@ Initial Announcements
 ---------------------
 
 `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ simple discovery mechanism requires the participant to
-send announcements. These announcements are not deliver in a reliable fashion, and can be disposed of by the network. In
-order to avoid the discovery delay induced by message disposal, the initial announcement can be set up to make several
-shots, in order to increase proper reception chances.
+send announcements. These announcements are not delivered in a reliable fashion, and can be disposed of by the network.
+In order to avoid the discovery delay induced by message disposal, the initial announcement can be set up to make
+several shots, in order to increase proper reception chances.
 
-Initial announcements only take place on participant creation. Once done, the only announcements enforced are the
-standard ones based on the ``leaseDuration_announcementperiod`` period (not the ``initial_announcements.period``).
+Initial announcements only take place upon participant creation. Once this phase is over, the only announcements
+enforced are the standard ones based on the ``leaseDuration_announcementperiod`` period (not the
+``initial_announcements.period``).
 
 +---------+--------------------------------------------------------------------+----------------+---------+
 | Name    | Description                                                        | Type           | Default |
@@ -1128,7 +1129,7 @@ STATIC EDP XML Files Specification
 Since activating STATIC EDP suppresses all EDP meta traffic, the information about the remote entities (publishers and
 subscribers) must be statically specified, which is done using dedicated XML files.
 A participant may load several of such configuration files so that the information about different endpoints can be
-contained in one file, or split in different files to keep it more organized.
+contained in one file, or split into different files to keep it more organized.
 Fast-RTPS  provides a
 `Static Endpoint Discovery example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_
 that implements this EDP discovery protocol.
@@ -1266,8 +1267,8 @@ As a rule of thumb, all the elements that were specified on the remote endpoint 
 Loading STATIC EDP XML Files
 ----------------------------
 
-Statically discovered remote endpoints **must** define a unique *userID* on their profile, which value **must** agree
-with the one specified on the discovery configuration XML.
+Statically discovered remote endpoints **must** define a unique *userID* on their profile, whose value **must** agree
+with the one specified in the discovery configuration XML.
 This is done by setting the user ID on the entity attributes:
 
 +--------------------------------------------------------+
@@ -1313,7 +1314,7 @@ Server-Client Discovery
 =======================
 
 This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among participants
-to identify each other) is centralized in one or several server participants (left figure), as opposed to simple
+to identify each other) is managed by one or several server participants (left figure), as opposed to simple
 discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast
 protocol.
 
@@ -1331,8 +1332,8 @@ In this architecture there are several key concepts to understand:
 - The Server-client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard RTPS
   writers and readers.
 
-- Discovery server participants may be *clients* or *servers*. The only difference between them is on how the
-  meta-traffic is handled. The user traffic, that is, the traffic among the publishers and subscribers they create is
+- Discovery server participants may be *clients* or *servers*. The only difference between them is how they handle
+  meta-traffic. The user traffic, that is, the traffic among the publishers and subscribers they create is
   role-independent.
 
 - All *server* discovery info will be shared with their linked *clients* and likewise the own *clients* discovery info
@@ -1359,13 +1360,13 @@ In this architecture there are several key concepts to understand:
      - *Clients* send hailing messages to the *servers* at regular intervals (ping period) until they receive message
        reception acknowledgement.
 
-     - *Servers* received the hailing messages but they don't start at once to share publishers or subscribers info with
+     - *Servers* receive the hailing messages but they don't start at once to share publishers or subscribers info with
        the newcomers. They only trigger this process at regular intervals (match period). Tuning this period is possible
        to bundle the discovery info and deliver it more efficiently.
 
 In order to clarify this discovery setup either on compile time (sources) or runtime (XML files) we are going to split
-it in two sections: one focus on the main concepts (:ref:`setup by concept <DS_setup_concepts>`) and other into the main
-attribute structures and XML tags (:ref:`setup by attribute<DS_setup_attributes>`).
+it into two sections: one focusing on the main concepts (:ref:`setup by concept <DS_setup_concepts>`) and the other on
+the main attribute structures and XML tags (:ref:`setup by attribute<DS_setup_attributes>`).
 
 .. _DS_setup_concepts:
 
@@ -1389,7 +1390,7 @@ Choosing between client and server
 It's set by the :ref:`Discovery Protocol <discovery_protocol>` general attribute. A participant can only play a role
 (despite the fact that a *server* may act as a *client* of other server). It's mandatory to fill this value because it
 defaults to *simple*.  The values associated with the Server-client discovery are specified in :ref:`discovery settings
-section <DS_DiscoverySettings>`. The examples below shown how to manage the corresponding enum attribute and XML tag:
+section <DS_DiscoverySettings>`. The examples below show how to manage the corresponding enum attribute and XML tag:
 
 .. code-block:: bash
 
@@ -1420,14 +1421,14 @@ section <DS_DiscoverySettings>`. The examples below shown how to manage the corr
 The server unique identifier ``GuidPrefix``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This belongs to the RTPS specification and univocally identifies each DDS participant. It consist on 12 bytes and is
-basically a key in the DDS domain. In the server-client discovery it has the purpose to link a *server* to its
-*clients*.  Note that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.
-It must be mandatorily specified in: *server side* and *client side* setups.
+This belongs to the RTPS specification and univocally identifies each DDS participant. It consists on 12 bytes and is a
+key in the DDS domain. In the server-client discovery, it has the purpose to link a *server* to its *clients*.  Note
+that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.  It must be
+mandatorily specified in: *server side* and *client side* setups.
 
 Server side setup
 """""""""""""""""
-The examples below shown how to manage the corresponding enum attribute and XML tag:
+The examples below show how to manage the corresponding enum attribute and XML tag:
 
 .. code-block:: bash
 
@@ -1494,13 +1495,13 @@ The server locator list
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each *server* must specify valid locators where it can be reached. Any *client* must be given proper locators to
-reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>` here there is a *server* and a *client* side
+reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>`, here there is a *server* and a *client* side
 setup.
 
 Server side setup
 """""""""""""""""
 
-The examples below shown how to setup the locator list attribute (note that discovery strategy only deals with
+The examples below show how to setup the locator list attribute (note that discovery strategy only deals with
 metatraffic attributes) and XML tag:
 
 .. code-block:: bash
@@ -1571,7 +1572,7 @@ Client ping period
 ^^^^^^^^^^^^^^^^^^
 
 As explained :ref:`above <DS_key_concepts>` the *clients* send hailing messages to the *servers* at regular
-intervals (ping period) until they received message reception acknowledgement. This period is specified in the member:
+intervals (ping period) until they receive message reception acknowledgement. This period is specified in the member:
 
 .. code-block:: bash
 
@@ -1653,8 +1654,8 @@ The settings related with server-client discovery are:
     Allows to specify some mandatory server discovery settings like the :raw-html:`<br />` addresses were it listens for
     clients discovery info."
     :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure. Allows
-    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` whether it is a client or a
-    server or the list of servers it is linked to or the client-ping, server-match frequencies."
+    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` whether it is a client or
+    a server or the list of servers it is linked to or the client-ping, server-match frequencies."
 
 .. _DS_RTPSParticipantAttributes:
 

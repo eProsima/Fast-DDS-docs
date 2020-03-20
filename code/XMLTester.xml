@@ -1673,7 +1673,7 @@
 <!--><-->
 
 <!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->
-<participant profile_name="UDP CLIENT"> 
+<participant profile_name="UDP CLIENT">
     <rtps>
         <builtin>
             <discovery_config>
@@ -1705,6 +1705,95 @@
     </rtps>
 </participant>
 <!--><-->
+
+<!-->CONF_DS_PARTITION_2<-->
+<participant profile_name="UDP SERVER A">
+    <rtps>
+        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+                <discoveryServersList>
+                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>56542</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.60</address>
+                        <port>56543</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+    </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_DS_PARTITION_3<-->
+<participant profile_name="UDP SERVER C">
+    <rtps>
+        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.33</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+                <discoveryServersList>
+                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>56542</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.60</address>
+                                    <port>56543</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.54</address>
+                        <port>56541</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+    </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
+<participant profile_name="participant_profile_static_pub">
+    <rtps>
+        <name>HelloWorldPublisher</name>
+        <builtin>
+            <discovery_config>
+                <EDP>STATIC</EDP>
+                <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
 <!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
 <participant profile_name="participant_profile_static_pub">
     <rtps>

@@ -521,8 +521,50 @@ remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator
 
 participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
 participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
-participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
 //!--
+
+{
+//CONF_DS_REDUNDANCY_SCENARIO_SERVER
+Locator_t server_locator_1, server_locator_2;
+
+IPLocator::setIPv4(server_locator_1, "192.168.10.57");
+server_locator_1.port = 56542;
+IPLocator::setIPv4(server_locator_2, "192.168.10.60");
+server_locator_2.port = 56543;
+
+ParticipantAttributes participant_attr_1, participant_attr_2;
+
+participant_attr_1.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+participant_attr_1.rtps.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
+participant_attr_1.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_locator_1);
+
+participant_attr_2.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+participant_attr_2.rtps.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+participant_attr_2.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_locator_2);
+//!--
+}
+
+{
+//CONF_DS_REDUNDANCY_SCENARIO_CLIENT
+Locator_t remote_server_locator_1, remote_server_locator_2;
+
+IPLocator::setIPv4(remote_server_locator_1, "192.168.10.57");
+remote_server_locator.port = 56542;
+IPLocator::setIPv4(remote_server_locator_2, "192.168.10.60");
+server_locator.port = 56543;
+
+RemoteServerAttributes remote_server_attr_1, remote_server_attr_2;
+
+remote_server_attr_1.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
+remote_server_attr_1.metatrafficUnicastLocatorList.push_back(remote_server_locator_1);
+remote_server_attr_2.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+remote_server_attr_2.metatrafficUnicastLocatorList.push_back(remote_server_locator_2);
+
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_1);
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_2);
+//!--
+}
 
 {
 //STATIC_DISCOVERY_USE_CASE_PUB

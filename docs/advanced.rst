@@ -1336,7 +1336,7 @@ In this architecture there are several key concepts to understand:
   meta-traffic. The user traffic, that is, the traffic among the publishers and subscribers they create is
   role-independent.
 
-- All *server* discovery info will be shared with their linked *clients* and likewise the own *clients* discovery info
+- All *server* and *client* discovery info will be shared with linked *clients*.
   will be shared with the *server* or *servers* linked to it. Note that a *server* may act as a *client* for other
   *servers*.
 

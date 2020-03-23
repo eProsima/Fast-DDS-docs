@@ -436,6 +436,8 @@ by setting up **TCP Server** and **TCP Client** properly.
 
 More TLS related options can be found in the section :ref:`transportdescriptors`.
 
+.. _listening_locators:
+
 Listening locators
 ==================
 
@@ -495,7 +497,6 @@ well-known ports. These well-known ports are calculated using the following pred
 These predefined rules use some values explained here:
 
 * DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``.
-  The default value is ``250``.
 * PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``.
   The default value is ``2``.
 * PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``.
@@ -739,278 +740,402 @@ Thus, for a higher performance, it can be appropriate to configure the reliabili
 Discovery
 *********
 
-Fast RTPS provides a discovery mechanism that allows matching automatically publishers and subscribers.
-The discovery mechanism is divided into two phases: Participant Discovery Phase and Endpoints Discovery Phase.
+Fast-RTPS, as a DDS implementation, provides discovery mechanisms that allow for automatically finding and matching
+publishers and subscribers across participants so they can start sharing data.
+This discovery is performed, for all the mechanisms, in two phases.
 
-* Participant Discovery Phase (PDP)
-    Before discovering any entity of a remote participant, both participants have to meet between them.
-    Participant Discovery Phase provides this step and is responsible for sending periodic information about itself.
-    To know how to configure where to send this periodic information, see :ref:`initial-peers`.
-    To know how to configure the announcement period and count, see :ref:`Discovery Configuration <dconf>`.
-    When both participants are met, is the turn of Endpoints Discovery Phase.
+Discovery phases
+================
 
-* Endpoints Discovery Phase (EDP)
-    This phase is responsible for sending entities information to the remote participant.
-    Also, it has to process the entities information of the remote participant and check which entities can match
-    between them.
+#. **Participant Discovery Phase (PDP)**: During this phase the participants acknowledge each other's existence.
+   To do that, each participant sends periodic announcement messages, which specify, among other things, unicast
+   addresses (IP and port) where the participant is listening for incoming meta and user data traffic.
+   Two given participants will match when they exist in the same domain.
+   By default, the announcement messages are sent using well-known multicast addresses and ports (calculated using the
+   domain).
+   Furthermore, it is possible to specify a list of addresses to send
+   announcements using unicast (see in :ref:`initial-peers`).
+   Moreover, is is also possible to configure the periodicity of such announcements (see
+   :ref:`Discovery Configuration <dconf>`).
 
-.. _discovery_protocol_enum:
+#. **Endpoint Discovery Phase (EDP)**: During this phase, the publishers and subscribers acknowledge each other.
+   To do that, the participants share information about their publishers and subscribers with each other, using the
+   communication channels established during the PDP.
+   This information contains, among other things, the topic and data type.
+   For two endpoints to match, their topic and data type must coincide.
+   Once publisher and subscriber have matched, they are ready for sending/receiving user data traffic.
 
-There are several possible choices for the PDP strategy comprised into the :code:`enum DiscoveryProtocol_t`:
+.. _disc_mechanisms:
 
-- **NONE** which disables the PDP discovery. This setting is only compatible with the RTPSDomain layer. User must
-  manually match and unmatch RTPS endpoints using whatever external meta-information channel of its choice.
+Discovery mechanisms
+====================
 
-- **SIMPLE** generates a standard participant with complete backward compatibility with any other RTPS implementation.
+Fast-RTPS provides the following discovery mechanisms:
 
-- **CLIENT** generates a *client* participant, which relies on a server to be notified of other *clients* presence.
-  This participant can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do.
+- :ref:`Simple Discovery <simple_disc_settings>`: This is the default mechanism.
+  It upholds the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_
+  for both PDP and EDP phases, and therefore provides compatibility with any
+  other DDS and RTPS implementations.
 
-- **SERVER** generates a *server* participant, which receives, manages and spreads its linked *clients* metatraffic
-  assuring any single one is aware of the others. This participant can create publishers and subscribers of any topic
-  (static or dynamic) as ordinary participants do. Servers can link to other servers in order to share its clients
-  information.
+- :ref:`Static Discovery <static_edp>`: This mechanisms uses the Simple Participant Discovery Protocol (SPDP) for the
+  PDP phase (as specified by the RTPS standard), but allows for skipping the Simple Participant Discovery Protocol
+  (SEDP) phase when all the publishers' and subscribers' addresses and ports, data types, and topics are known
+  beforehand.
 
-- **BACKUP** generates a *server* participant with additional functionality over **SERVER**. Specifically, it uses a
-  database to backup its client information, so that if for whatever reason it disappears, it can be automatically
-  restored and continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to collect
-  client information again, introducing a recovery delay.
+- :ref:`Server-Client Discovery <discovery_server>`: This discovery mechanism uses a centralized discovery architecture,
+  where servers act as a hubs for discovery meta traffic.
 
-For an extensive explanation of **CLIENT**, **SERVER** and **BACKUP** discovery strategies please refer to
-`Discovery Server documentation <https://eprosima-discovery-server.readthedocs.io/en/latest/>`_. The non-**SIMPLE** PDP
-strategies were devised to cope with several scenarios where the standard PDP was unsuitable or plainly cannot be
-applied:
+- **Manual Discovery**: This mechanism is only compatible with the ``RTPSDomain`` layer.
+  It disables the PDP discovery phase, letting the user to manually match and unmatch RTPS participants, readers, and
+  writers using whatever, external meta-information channel of its choice.
 
-+ a high number of endpoint entities which are continuously entering and exiting a large network.
+.. _discovery_general_settings:
 
-+ a network without multicasting capabilities.
+General discovery settings
+==========================
 
-Lack of multicast discovery mechanism is covered by providing one or several servers whose addresses are known
-beforehand by any other participant (clients). These servers centralize the distribution of meta-information
-(participant discovery information); thus, there is no longer need of participants exchanging discovery messages
-among them.
+Some discovery settings are shared across the different discovery mechanisms.
+Those are:
 
-The basic mechanisms mimic to some extent the standard ones:
++-------------------------------+-----------------------------------+---------------------------------+---------------+
+| Name                          | Description                       | Type                            |     Default   |
++===============================+===================================+=================================+===============+
+| :ref:`discovery_protocol`     | The discovery protocol to use     | ``DiscoveryProtocol_t``         | ``SIMPLE``    |
+|                               | (see :ref:`disc_mechanisms`)      |                                 |               |
++-------------------------------+-----------------------------------+---------------------------------+---------------+
+| :ref:`discovery_ignore_flags` | Filter discovery traffic for      | ``ParticipantFilteringFlags_t`` | ``NO_FILTER`` |
+|                               | participants in the same process, |                                 |               |
+|                               | in different processes,           |                                 |               |
+|                               | or in different hosts             |                                 |               |
++-------------------------------+-----------------------------------+---------------------------------+---------------+
+| :ref:`discovery_lease_dur`    | Indicates for how much time       | ``Duration_t``                  |     20 s      |
+|                               | should a remote participant       |                                 |               |
+|                               | consider the local participant    |                                 |               |
+|                               | to be alive.                      |                                 |               |
++-------------------------------+-----------------------------------+---------------------------------+---------------+
+| :ref:`discovery_lease_announ` | The period for the participant    | ``Duration_t``                  |     3 s       |
+|                               | to send PDP announcements.        |                                 |               |
++-------------------------------+-----------------------------------+---------------------------------+---------------+
 
-+ as in the standard, clients send periodically announcements of its own discovery data. But the recipients of these
-  messages are only its servers, and only until servers don't acknowledge clients announcements. Once a server
-  acknowledges a client announcement, there is a reliable PDP connection established, and the client becomes a mere
-  recipient of server's discovery data.
+.. _discovery_protocol:
 
-+ as in the standard, clients make periodical participant liveliness announcements (*lease duration*). But these
-  messages are only exchanged between a client and its servers. Thus:
+Discovery Protocol
+------------------
 
- - other participants (clients or servers) demise by *lease duration* would be reported by the linked servers.
+Specifies the discovery protocol to use (see :ref:`disc_mechanisms`).
+The possible values are:
 
- - server demises by *lease duration* would automatically trigger the client's announcement until the server
-   communication
-   is restored and acknowledges again client's announcements.
++---------------------+---------------------+-------------------------------------------------------------------------+
+| Discovery Mechanism | Possible values     | Description                                                             |
++=====================+=====================+=========================================================================+
+| Simple              | ``SIMPLE``          | Simple discovery protocol as specified in                               |
+|                     |                     | `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_           |
++---------------------+---------------------+-------------------------------------------------------------------------+
+| Static              | ``STATIC``          | SPDP with manual EDP specified in XML files                             |
++---------------------+---------------------+-------------------------------------------------------------------------+
+| Server-Client       | ``SERVER``          | The participant acts as a hub for discovery traffic, receiving and      |
+|                     |                     | distributing discovery information.                                     |
+|                     +---------------------+-------------------------------------------------------------------------+
+|                     | ``CLIENT``          | The participant acts as a client for discovery traffic.                 |
+|                     |                     | It send its discovery information to the server, and receives all other |
+|                     |                     | discovery information from the server.                                  |
+|                     +---------------------+-------------------------------------------------------------------------+
+|                     | ``BACKUP``          | Creates a SERVER participant which has a persistent ``sqlite`` database.|
+|                     |                     | A BACKUP server can load the a database on start.                       |
+|                     |                     | This type of sever makes the Server-Client architecture resilient to    |
+|                     |                     | server destruction.                                                     |
++---------------------+---------------------+-------------------------------------------------------------------------+
+| Manual              | ``NONE``            | Disables PDP phase, therefore the is no EDP phase.                      |
+|                     |                     | All matching must be done manually through the ``addReaderLocator``,    |
+|                     |                     | ``addReaderProxy``, ``addWriterProxy`` methods.                         |
++---------------------+---------------------+-------------------------------------------------------------------------+
 
-Discovery related attributes
-============================
++-----------------------------------------------------+
+| **C++**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp          |
+|    :language: c++                                   |
+|    :start-after: //CONF-DISCOVERY-PROTOCOL          |
+|    :end-before: //!--                               |
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-DISCOVERY-PROTOCOL       |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
 
-Discovery is managed from the RTPSDomain layer, thus all related attributes are constrained to this layer:
+.. _discovery_ignore_flags:
 
-RTPSParticipantAttributes
--------------------------
+Ignore Participant flags
+------------------------
 
-+ a `GuidPrefix_t guidPrefix` member specifies server's identity.  This member has only significance if
-  `discovery_config.discoveryProtocol` is **SERVER** or **BACKUP**. There is a `ReadguidPrefix` method to easily fill in
-  this member from a string formatted like `"4D.49.47.55.45.4c.5f.42.41.52.52.4f"` (note that each byte must be a valid
-  hexadecimal figure).
+Defines a filter to ignore some discovery traffic when received.
+This is useful to add an extra level of participant isolation.
+The possible values are:
 
-BuiltinAttributes
------------------
++----------------------------------------------------+----------------------------------------------------------------+
+| Possible values                                    | Description                                                    |
++====================================================+================================================================+
+| ``NO_FILTER``                                      | All Discovery traffic is processed.                            |
++----------------------------------------------------+----------------------------------------------------------------+
+| ``FILTER_DIFFERENT_HOST``                          | Discovery traffic from another host is discarded.              |
++----------------------------------------------------+----------------------------------------------------------------+
+| ``FILTER_DIFFERENT_PROCESS``                       | Discovery traffic from another process on the same host is     |
+|                                                    | discarded,                                                     |
++----------------------------------------------------+----------------------------------------------------------------+
+| ``FILTER_SAME_PROCESS``                            | Discovery traffic from participant's own process is discarded. |
++----------------------------------------------------+----------------------------------------------------------------+
+| ``FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS`` | Discovery traffic from participant's own host is discarded.    |
++----------------------------------------------------+----------------------------------------------------------------+
 
-+ All discovery related info is gathered in a `DiscoverySettings discovery_config` member.
++-----------------------------------------------------+
+| **C++**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp          |
+|    :language: c++                                   |
+|    :start-after: //CONF-DISCOVERY-IGNORE-FLAGS      |
+|    :end-before: //!--                               |
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-DISCOVERY-IGNORE-FLAGS   |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
 
-+ In order to receive client metatraffic, `metatrafficUnicastLocatorList` or `metatrafficMulticastLocatorList` must be
-  populated with the addresses that were given to the clients.
+.. _discovery_lease_dur:
 
-DiscoverySettings
------------------
+Lease Duration
+--------------
 
-+ a **DiscoveryProtocol_t discoveryProtocol** member specifies the participant's discovery kind. Already described `in
-  discovery introduction <discovery_protocol_enum_>`_.
+Indicates for how much time should a remote participant consider the local participant to be alive.
+If the liveliness of the local participant has not being asserted within this time, the remote participant considers the
+local participant dead and destroys all the information regarding the local participant and all its endpoints.
 
- By default, the discovery mechanism is enabled, but you can disable it through participant attributes.
+The local participant's liveliness is asserted on the remote participant any time the remote participant receives any
+kind of traffic from the local participant.
 
- +--------------------------------------------------+
- | **C++**                                          |
- +--------------------------------------------------+
- | .. literalinclude:: ../code/CodeTester.cpp       |
- |    :language: c++                                |
- |    :start-after: //CONF-QOS-DISABLE-DISCOVERY    |
- |    :end-before: //!--                            |
- +--------------------------------------------------+
- | **XML**                                          |
- +--------------------------------------------------+
- | .. literalinclude:: ../code/XMLTester.xml        |
- |    :language: xml                                |
- |    :start-after: <!-->CONF-QOS-DISABLE-DISCOVERY |
- |    :end-before: <!--><-->                        |
- +--------------------------------------------------+
+The lease duration is specified as a time expressed in seconds and nanosecond using a ``Duration_t``.
 
-+ a **ignoreParticipantFlags** member specifies participant filtering criteria to optimize discovery stage speed
-  and memory usage. This feature is only available for the `SIMPLE` discovery protocol with disable security (all secure
-  participants are considered created by a different host). There are several options:
++-----------------------------------------------------+
+| **C++**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp          |
+|    :language: c++                                   |
+|    :start-after: //CONF-DISCOVERY-LEASE-DURATION    |
+|    :end-before: //!--                               |
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-DISCOVERY-LEASE-DURATION |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
 
- * **FILTER_DIFFERENT_HOST** all metadata from another host would be discarded.
- * **FILTER_DIFFERENT_PROCESS** all metadata from another process on the same host would be discarded.
- * **FILTER_SAME_PROCESS** all metadata from our own process would be discarded.
- * **FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS** all metadata from our own host would be discarded.
+.. _discovery_lease_announ:
 
-+ **use_XXX_EndpointDiscoveryProtocol** flags. There is a specific section dealing with them
-  (see `Static Endpoints Discovery`_).
+Announcement Period
+-------------------
 
-+ **SimpleEDPAttributes m_simpleEDP**. Gathers all attributes related to EDPSimple behavior. A participant may create
-  publishers, subscribers, both or neither. This class allows us to save the number of builtin endpoints to those
-  strictly necessary. For PDP **SERVER** the only possible choice is the default value that creates all builtin
-  endpoints because it must relay all clients EDP info.
+It specifies the periodicity of the participant's PDP announcements.  For liveliness' sake it is recommend that the
+announcement period is shorter than the lease duration, so that the participant's liveliness is asserted even when there
+is no data traffic.  It is important to note that there is a trade-off involved in the setting of the announcement
+period, i.e. too frequent announcements will bloat the network with meta traffic, but too scarce ones will delay the
+discovery of late joiners.
 
-  +---------------------------------------------------------+
-  | **C++**                                                 |
-  +---------------------------------------------------------+
-  | .. literalinclude:: ../code/CodeTester.cpp              |
-  |    :language: c++                                       |
-  |    :start-after: //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES    |
-  |    :end-before: //!--                                   |
-  +---------------------------------------------------------+
-  | **XML**                                                 |
-  +---------------------------------------------------------+
-  | .. literalinclude:: ../code/XMLTester.xml               |
-  |    :language: xml                                       |
-  |    :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES |
-  |    :end-before: <!--><-->                               |
-  +---------------------------------------------------------+
+Participant's announcement period is specified as a time expressed in seconds and nanosecond using a ``Duration_t``.
 
-+ a **RemoteServerList_t  m_DiscoveryServers** lists the servers linked to the participant. This member has only
-  significance if **discoveryProtocol** is **CLIENT**, **SERVER** or **BACKUP**. These member elements are
-  *RemoteServerAttributes* objects that identify each server and report where the servers can be reached:
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp              |
+|    :language: c++                                       |
+|    :start-after: //CONF-DISCOVERY-LEASE-ANNOUNCEMENT    |
+|    :end-before: //!--                                   |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml               |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF-DISCOVERY-LEASE-ANNOUNCEMENT |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
 
- - **GuidPrefix_t guidPrefix** is the RTPS unique identifier of the server participant we want to link to. There is a
-   `ReadguidPrefix` method to easily fill in this member from a string formatted like
-   *"4D.49.47.55.45.4c.5f.42.41.52.52.4f"* (note that each octet must be a valid hexadecimal figure).
- - **metatrafficUnicastLocatorList** and `metatrafficMulticastLocatorList` are ordinary `LocatorList_t` (see fast-RTPS
-   documentation) where server's locators must be specified. At least one of them should be populated.
- - **Duration_t discoveryServer_client_syncperiod** specifies the time span between PDP metatraffic exchange, and has
-   only significance if `discoveryProtocol` is **CLIENT**, **SERVER** or **BACKUP**. The default value is half a second.
+.. _simple_disc_settings:
 
-  +-----------------------------------------------------+
-  | **C++**                                             |
-  +-----------------------------------------------------+
-  | .. literalinclude:: ../code/CodeTester.cpp          |
-  |    :language: c++                                   |
-  |    :start-after: //CONF-QOS-DISCOVERY-SERVERLIST    |
-  |    :end-before: //!--                               |
-  +-----------------------------------------------------+
-  | **XML**                                             |
-  +-----------------------------------------------------+
-  | .. literalinclude:: ../code/XMLTester.xml           |
-  |    :language: xml                                   |
-  |    :start-after: <!-->CONF-QOS-DISCOVERY-SERVERLIST |
-  |    :end-before: <!--><-->                           |
-  +-----------------------------------------------------+
+SIMPLE Discovery Settings
+=========================
 
-+ **Duration_t leaseDuration**. Linked with the participant *liveliness mechanism* it specifies how much time other
-  remote participants should consider this one alive.
+The SIMPLE discovery protocol resolves the establishment of the end-to-end connection between various RTPS entities
+communicating via the RTPS protocol.
+Fast-RTPS implements the SIMPLE discovery protocol to provide compatibility with the
+`RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_.
+The specification splits up the SIMPLE discovery protocol into two independent protocols:
 
-+ **Duration_t leaseDuration_announcementperiod**. Linked either with participant *liveliness and announcement
-  mechanisms*. It specifies how often a participant should send its discovery data in order to notify new participants
-  and refresh old ones *liveliness*:
+- **Simple Participant Discovery Protocol (SPDP):** specifies how Participants discover each other in the network; it
+  announces and detects the presence of participants in a domain.
 
- - For liveliness sake it should be smaller than the *leaseDuration* in order to avoid other participants to kill this
-   one.
+- **Simple Endpoint Discovery Protocol (SEDP):** defines the protocol adopted by the discovered participants for the
+  exchange of information in order to discover the RTPS entities contained in each of them, i.e. the writer and
+  reader Endpoints.
 
- - There is a trade-off involved with the announcement. Too frequent announcement will bloat the network with
-   metatraffic but too scarce ones will delay the discovery of late joiners.
++--------------------------+-----------------------------------------------------------------------+
+| Name                     | Description                                                           |
++==========================+=======================================================================+
+| `Initial Announcements`_ | It defines the behavior of the RTPSParticipant initial announcements. |
++--------------------------+-----------------------------------------------------------------------+
+| `Simple EDP Attributes`_ | It defines the use of the SIMPLE protocol as a discovery protocol.    |
++--------------------------+-----------------------------------------------------------------------+
 
-  +--------------------------------------------------------+
-  | **C++**                                                |
-  +--------------------------------------------------------+
-  | .. literalinclude:: ../code/CodeTester.cpp             |
-  |    :language: c++                                      |
-  |    :start-after: //CONF-QOS-DISCOVERY-LEASEDURATION    |
-  |    :end-before: //!--                                  |
-  +--------------------------------------------------------+
-  | **XML**                                                |
-  +--------------------------------------------------------+
-  | .. literalinclude:: ../code/XMLTester.xml              |
-  |    :language: xml                                      |
-  |    :start-after: <!-->CONF-QOS-DISCOVERY-LEASEDURATION |
-  |    :end-before: <!--><-->                              |
-  +--------------------------------------------------------+
 
-+ **Duration_t discoveryServer_client_syncperiod**. Linked either with client's *announcement mechanism*. It specifies
-  how often a client should send its discovery data to a server that is not yet aware of its presence. Given the fact
-  that this announcement will be shut down the very moment the server acknowledges the client, its frequency will not
-  be a concern for network traffic outside network initialization stage.
+.. _`Initial Announcements`:
 
- Note that servers act like clients whenever they reference other servers, thus, *discoveryServer_client_syncperiod*
- applies to them also in this scenario.
+Initial Announcements
+---------------------
+
+`RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ simple discovery mechanism requires the participant to
+send announcements. These announcements are not delivered in a reliable fashion, and can be disposed of by the network.
+In order to avoid the discovery delay induced by message disposal, the initial announcement can be set up to make
+several shots, in order to increase proper reception chances.
+
+Initial announcements only take place upon participant creation. Once this phase is over, the only announcements
+enforced are the standard ones based on the ``leaseDuration_announcementperiod`` period (not the
+``initial_announcements.period``).
+
++---------+--------------------------------------------------------------------+----------------+---------+
+| Name    | Description                                                        | Type           | Default |
++=========+====================================================================+================+=========+
+| count   | It defines the number of announcements to send at start-up.        | ``uint32``     | 5       |
++---------+--------------------------------------------------------------------+----------------+---------+
+| period  | It defines the specific period for initial announcements.          | ``Duration_t`` | 100ms   |
++---------+--------------------------------------------------------------------+----------------+---------+
+
++-----------------------------------------------------------------+
+| **C++**                                                         |
++-----------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                      |
+|    :language: c++                                               |
+|    :start-after: //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT        |
+|    :end-before: //!--                                           |
++-----------------------------------------------------------------+
+| **XML**                                                         |
++-----------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                       |
+|    :language: xml                                               |
+|    :start-after: <!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<--> |
+|    :end-before: <!--><-->                                       |
++-----------------------------------------------------------------+
+
+.. _`Simple EDP Attributes`:
+
+Simple EDP Attributes
+---------------------
+
++----------------------------------------+------------------------------------------------------+----------+---------+
+| Name                                   | Description                                          | Type     | Default |
++========================================+======================================================+==========+=========+
+| SIMPLE EDP                             | It defines the use of the SIMPLE protocol as a       | ``bool`` | true    |
+|                                        | discovery protocol for EDP phase.                    |          |         |
+|                                        | A participant may create publishers, subscribers,    |          |         |
+|                                        | both or neither.                                     |          |         |
++----------------------------------------+------------------------------------------------------+----------+---------+
+| Publication writer and                 | It is intended for participants that                 | ``bool`` | true    |
+| Subscription reader                    | implement only one or more publishers, i.e. do not   |          |         |
+|                                        | implement subscribers.                               |          |         |
+|                                        | It allows the creation of only subscriber discovery  |          |         |
+|                                        | related EDP endpoints                                |          |         |
++----------------------------------------+------------------------------------------------------+----------+---------+
+| Publication reader and                 | It is intended for participants that implement only  | ``bool`` | true    |
+| Subscription writer                    | one or more subscribers, i.e. do not implement       |          |         |
+|                                        | publishers.                                          |          |         |
+|                                        | It allows the creation of only publisher discovery   |          |         |
+|                                        | related EDP endpoints.                               |          |         |
++----------------------------------------+------------------------------------------------------+----------+---------+
+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp              |
+|    :language: c++                                       |
+|    :start-after: //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES    |
+|    :end-before: //!--                                   |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml               |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
 
 .. _discovery_static:
 
-Static Endpoints Discovery
-==========================
+STATIC Endpoints Discovery Settings
+===================================
 
-If all publishers and subscribers and their topics are known beforehand, the Endpoints Discovery
-is not needed and can be replaced by a static configuration of peers. Beware that by doing this,
-no discovery metatraffic will be generated, and only those peers defined in the configuration will
-be able to communicate. This is useful when you have a limited network bandwidth
-and a well-known schema of publishers and subscribers.
+Fast-RTPS allows for the substitution of the SEDP protocol for the EDP phase with a static version that completely
+eliminates EDP meta traffic.
+This can become useful when dealing with limited network bandwidth and a well-known schema of publishers and
+subscribers.
+If all publishers and subscribers, and their topics and data types, are known beforehand, the EDP phase can be replaced
+with a static configuration of peers.
+It is important to note that by doing this, no EDP discovery meta traffic will be generated, and only those peers
+defined in the configuration will be able to communicate.
+The STATIC endpoint discovery related settings are:
 
-To activate the Static Discovery, you must first disable the Endpoints Discovery Phase
-and enable the Static Endpoints Discovery on the participant attributes.
++--------------------------+-----------------------------------------------------------------------------------+
+| Name                     | Description                                                                       |
++==========================+===================================================================================+
+| :ref:`static_edp`        | It activates the STATIC endpoint discovery protocol                               |
++--------------------------+-----------------------------------------------------------------------------------+
+| :ref:`static_xml`        | Specifies an XML file containing a description of the remote endpoints.           |
++--------------------------+-----------------------------------------------------------------------------------+
+| `Initial Announcements`_ | It defines the behavior of the RTPSParticipant initial announcements (PDP phase). |
++--------------------------+-----------------------------------------------------------------------------------+
 
-.. literalinclude:: ../code/CodeTester.cpp
-   :language: c++
-   :start-after: //CONF_QOS_STATIC_DISCOVERY_CODE
-   :end-before: //!
+.. _static_edp:
 
-Then, load the XML file with the configuration of the remote participants. Note that you can load
-several XML files. So you can combine the configuration of all participants on a single file or
-use a different file for each remote participant and load them one after another.
+STATIC EDP
+----------
 
-.. literalinclude:: ../code/CodeTester.cpp
-   :language: c++
-   :start-after: //CONF_QOS_STATIC_DISCOVERY_XML
-   :end-before: //!
+To activate the STATIC EDP, the SEDP must be disabled on the participant attributes.
+This can be done either by code or using an XML configuration file:
 
-Endpoints that are going to be statically discovered **must** define a unique *userID* on their profile,
-and their values **must** agree with the ones specified on the discovery configuration XML.
-Otherwise, the discovery will fail.
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp              |
+|    :language: c++                                       |
+|    :start-after: //CONF_STATIC_DISCOVERY_CODE           |
+|    :end-before: //!                                     |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml               |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF_STATIC_DISCOVERY_CODE        |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
 
-   +--------------------------------------------------------+
-   | **C++**                                                |
-   +--------------------------------------------------------+
-   | .. literalinclude:: ../code/CodeTester.cpp             |
-   |    :language: c++                                      |
-   |    :start-after: //CONF_QOS_STATIC_DISCOVERY_USERID    |
-   |    :end-before: //!                                    |
-   +--------------------------------------------------------+
-   | **XML**                                                |
-   +--------------------------------------------------------+
-   | .. literalinclude:: ../code/XMLTester.xml              |
-   |    :language: xml                                      |
-   |    :start-after: <!-->CONF_QOS_STATIC_DISCOVERY_USERID |
-   |    :end-before: <!-->                                  |
-   +--------------------------------------------------------+
+.. _`static_xml`:
 
-The following is a complete example of a configuration XML file for two remote participants,
-a publisher and a subscriber. This configuration **must** agree with the configuration used
-to create the remote endpoint. Otherwise, communication between endpoints may be affected.
-If any non-mandatory element is missing, it will take the default value. As a rule of thumb,
-you should configure all elements that were specified on the remote endpoint creation.
+STATIC EDP XML Files Specification
+----------------------------------
 
-.. literalinclude:: ../code/StaticTester.xml
-   :language: xml
-   :start-after: <!-->STATIC_DISCOVERY_CONF<-->
-   :end-before: <!--><-->
-
-You can explore the
+Since activating STATIC EDP suppresses all EDP meta traffic, the information about the remote entities (publishers and
+subscribers) must be statically specified, which is done using dedicated XML files.
+A participant may load several of such configuration files so that the information about different endpoints can be
+contained in one file, or split into different files to keep it more organized.
+Fast-RTPS  provides a
 `Static Endpoint Discovery example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_
-to learn more about the use of this feature.
+that implements this EDP discovery protocol.
+
+The following table describes all the possible attributes of a STATIC EDP XML configuration file.
+A full example of such file can be found in :ref:`static_xml_example`.
 
 .. Some large words outside of table. Then table fit maximum line length
 .. |besteffort| replace:: :class:`BEST_EFFORT_RELIABILITY_QOS`
@@ -1019,76 +1144,77 @@ to learn more about the use of this feature.
 .. |transientlocal| replace:: :class:`TRANSIENT_LOCAL_DURABILITY_QOS`
 .. |transient| replace:: :class:`TRANSIENT_DURABILITY_QOS`
 
-+------------------------+-----------------------------------+-------------------+--------------+
-| Name                   | Description                       | Values            | Default      |
-+========================+===================================+===================+==============+
-| ``<userId>``           | Mandatory.                        | ``UInt16``        | 0            |
-|                        | Uniquely identifies the endpoint. |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<entityID>``         | EntityId of the endpoint.         | ``UInt16``        | 0            |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<expectsInlineQos>`` | It indicates if QOS is            | ``Boolean``       | ``false``    |
-|                        | expected inline.                  |                   |              |
-|                        | (reader **only**)                 |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<topicName>``        | Mandatory.                        | ``string_255``    |              |
-|                        | The topic of the remote endpoint. |                   |              |
-|                        | Should match with one of the      |                   |              |
-|                        | topics of the local participant.  |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<topicDataType>``    | Mandatory.                        | ``string_255``    |              |
-|                        | The data type of the topic.       |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<topicKind>``        | The kind of topic.                | :class:`NO_KEY`,  | :class:_KEY` |
-|                        |                                   | :class:`WITH_KEY` |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<partitionQos>``     | The name of a partition of the    | ``string``        |              |
-|                        | remote peer. Repeat to configure  |                   |              |
-|                        | several partitions.               |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<unicastLocator>``   | Unicast locator of the            |                   |              |
-|                        | participant.                      |                   |              |
-|                        | see :ref:`staticLocators`.        |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<multicastLocator>`` | Multicast locator of the          |                   |              |
-|                        | participant.                      |                   |              |
-|                        | see :ref:`staticLocators`.        |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<reliabilityQos>``   | See the :ref:`reliability`        | |besteffort|,     | |besteffort| |
-|                        | section.                          | |reliable|        |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<durabilityQos>``    | See the                           | |volatile|,       | |volatile|   |
-|                        | :ref:`SettingDataDurability`      | |transientlocal|, |              |
-|                        | section.                          | |transient|       |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<ownershipQos>``     | See                               |                   |              |
-|                        | :ref:`ownershipQos`.              |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-| ``<livelinessQos>``    | Defines the liveliness of the     |                   |              |
-|                        | remote peer.                      |                   |              |
-|                        | see :ref:`livelinessQos`.         |                   |              |
-+------------------------+-----------------------------------+-------------------+--------------+
-
++------------------------+-----------------------------------+-------------------+-----------------+
+| Name                   | Description                       | Values            | Default         |
++========================+===================================+===================+=================+
+| ``<userId>``           | Mandatory.                        | ``uint16_t``      | 0               |
+|                        | Uniquely identifies the endpoint. |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<entityID>``         | EntityId of the endpoint.         | ``uint16_t``      | 0               |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<expectsInlineQos>`` | It indicates if QOS is            | ``bool``          | ``false``       |
+|                        | expected inline.                  |                   |                 |
+|                        | (reader **only**)                 |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<topicName>``        | Mandatory.                        | ``string_255``    |                 |
+|                        | The topic of the remote endpoint. |                   |                 |
+|                        | Should match with one of the      |                   |                 |
+|                        | topics of the local participant.  |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<topicDataType>``    | Mandatory.                        | ``string_255``    |                 |
+|                        | The data type of the topic.       |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<topicKind>``        | The kind of topic.                | :class:`NO_KEY`   | :class:`NO_KEY` |
+|                        |                                   +-------------------+                 |
+|                        |                                   | :class:`WITH_KEY` |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<partitionQos>``     | The name of a partition of the    | ``string``        |                 |
+|                        | remote peer. Repeat to configure  |                   |                 |
+|                        | several partitions.               |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<unicastLocator>``   | Unicast locator of the            |                   |                 |
+|                        | participant.                      |                   |                 |
+|                        | See :ref:`staticLocators`.        |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<multicastLocator>`` | Multicast locator of the          |                   |                 |
+|                        | participant.                      |                   |                 |
+|                        | See :ref:`staticLocators`.        |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<reliabilityQos>``   | See the :ref:`reliability`        | |besteffort|      | |besteffort|    |
+|                        | section.                          +-------------------+                 |
+|                        |                                   | |reliable|        |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<durabilityQos>``    | See the                           | |volatile|        | |volatile|      |
+|                        | :ref:`SettingDataDurability`      +-------------------+                 |
+|                        | section.                          | |transientlocal|  |                 |
+|                        |                                   +-------------------+                 |
+|                        |                                   | |transient|       |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<ownershipQos>``     | See                               |                   |                 |
+|                        | :ref:`ownershipQos`.              |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
+| ``<livelinessQos>``    | Defines the liveliness of the     |                   |                 |
+|                        | remote peer.                      |                   |                 |
+|                        | See :ref:`livelinessQos`.         |                   |                 |
++------------------------+-----------------------------------+-------------------+-----------------+
 
 .. _staticLocators:
 
-Locator definition
-------------------
+Locators definition
+^^^^^^^^^^^^^^^^^^^
 
 Locators for remote peers are configured using ``<unicastLocator>`` and ``<multicastLocator>`` tags.
-These take no value, and the locators are defined using tag attributes:
+These take no value, and the locators are defined using tag attributes.
+Locators defined with ``<unicastLocator>`` and ``<multicastLocator>`` are accumulative, so they can be repeated to
+assign several remote endpoints locators to the same peer.
 
 * :class:`address`: a mandatory ``string`` representing the locator address.
-* :class:`port`: an optional ``UInt16`` representing a port on that address.
-
-Locators defined with ``<unicastLocator>`` and ``<multicastLocator>`` are accumulative,
-so they can be repeated to assign several locators to the peer.
-
+* :class:`port`: an optional ``uint16_t`` representing a port on that address.
 
 .. _ownershipQos:
 
 Ownership QoS
--------------
+^^^^^^^^^^^^^
 
 The ownership of the topic can be configured using ``<ownershipQos>`` tag.
 It takes no value, and the configuration is done using tag attributes:
@@ -1096,27 +1222,573 @@ It takes no value, and the configuration is done using tag attributes:
 * :class:`kind`: can be one of :class:`SHARED_OWNERSHIP_QOS` or :class:`EXCLUSIVE_OWNERSHIP_QOS`.
   This attribute is mandatory withing the tag.
 
-* :class:`strength`: an optional ``UInt32`` specifying how strongly the remote participant
-  owns the topic. This attribute can be set on writers **only**.
+* :class:`strength`: an optional ``uint32_t`` specifying how strongly the remote participant owns the topic.
+  This attribute can be set on writers **only**.
   If not specified, default value is zero.
-
 
 .. _livelinessQos:
 
 Liveliness QoS
---------------
+^^^^^^^^^^^^^^
 
-The liveliness of the remote peer is configured using ``<livelinessQos>`` tag.
+The :ref:`liveliness-qos` of the remote peer is configured using ``<livelinessQos>`` tag.
 It takes no value, and the configuration is done using tag attributes:
 
-* :class:`kind`: can be any of :class:`AUTOMATIC_LIVELINESS_QOS`, :class:`MANUAL_BY_PARTICIPANT_LIVELINESS_QOS`
-  or :class:`MANUAL_BY_TOPIC_LIVELINESS_QOS`. This attribute is mandatory withing the tag.
+* :class:`kind`: can be any of :class:`AUTOMATIC_LIVELINESS_QOS`, :class:`MANUAL_BY_PARTICIPANT_LIVELINESS_QOS` or
+  :class:`MANUAL_BY_TOPIC_LIVELINESS_QOS`. This attribute is mandatory withing the tag.
 
 * :class:`leaseDuration_ms`: an optional ``UInt32`` specifying the lease duration for the remote peer.
-  The special value :class:`INF` can be used to indicate infinite lease duration. If not specified,
-  default value is :class:`INF`
+  The special value :class:`INF` can be used to indicate infinite lease duration.
+  If not specified, default value is :class:`INF`
 
-See section :ref:`liveliness-qos` for a more detailed explanation on liveliness functionality.
+.. _static_xml_example:
+
+STATIC EDP XML Example
+^^^^^^^^^^^^^^^^^^^^^^
+
+The following is a complete example of a configuration XML file for two remote participants, a publisher and a
+subscriber.
+This configuration **must** agree with the configuration used to create the remote endpoint.
+Otherwise, communication between endpoints may be affected.
+If any non-mandatory element is missing, it will take the default value.
+As a rule of thumb, all the elements that were specified on the remote endpoint creation should be configured.
+
++-------------------------------------------------+
+| **XML**                                         |
++-------------------------------------------------+
+| .. literalinclude:: ../code/StaticTester.xml    |
+|    :language: xml                               |
+|    :start-after: <!-->STATIC_DISCOVERY_CONF<--> |
+|    :end-before: <!--><-->                       |
++-------------------------------------------------+
+
+.. _`static_xml_load`:
+
+Loading STATIC EDP XML Files
+----------------------------
+
+Statically discovered remote endpoints **must** define a unique *userID* on their profile, whose value **must** agree
+with the one specified in the discovery configuration XML.
+This is done by setting the user ID on the entity attributes:
+
++--------------------------------------------------------+
+| **C++**                                                |
++--------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp             |
+|    :language: c++                                      |
+|    :start-after: //CONF_QOS_STATIC_DISCOVERY_USERID    |
+|    :end-before: //!                                    |
++--------------------------------------------------------+
+| **XML**                                                |
++--------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml              |
+|    :language: xml                                      |
+|    :start-after: <!-->CONF_QOS_STATIC_DISCOVERY_USERID |
+|    :end-before: <!-->                                  |
++--------------------------------------------------------+
+
+On the local participant, loading STATIC EDP configuration files is done by:
+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp              |
+|    :language: c++                                       |
+|    :start-after: //CONF_STATIC_DISCOVERY_XML            |
+|    :end-before: //!                                     |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml               |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF_STATIC_DISCOVERY_XML         |
+|    :end-before: <!-->                                   |
++---------------------------------------------------------+
+
+.. role:: raw-html(raw)
+    :format: html
+
+.. _discovery_server:
+
+Server-Client Discovery
+=======================
+
+This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among participants
+to identify each other) is managed by one or several server participants (left figure), as opposed to simple
+discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast
+protocol.
+
+.. image:: ds_uml.png
+    :align: center
+    :width: 50%
+
+.. _DS_key_concepts:
+
+Key concepts
+------------
+
+In this architecture there are several key concepts to understand:
+
+- The Server-client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard RTPS
+  writers and readers.
+
+- Discovery server participants may be *clients* or *servers*. The only difference between them is how they handle
+  meta-traffic. The user traffic, that is, the traffic among the publishers and subscribers they create is
+  role-independent.
+
+- All *server* and *client* discovery info will be shared with linked *clients*.
+  will be shared with the *server* or *servers* linked to it. Note that a *server* may act as a *client* for other
+  *servers*.
+
+- *Clients* require a beforehand knowledge of the *servers* they want to link to. Basically it's reduced to the *server*
+  identity (henceforth called ``GuidPrefix``) and a list of locators where the *server* is listening. This locators
+  define also the transport protocol (UDP or TCP) the client will use to contact the *server*.
+
+    - The ``GuidPrefix`` is the RTPS standard participant unique identifier,  a 12-byte chain. This identifier
+      allows clients to assess whether they are receiving messages from the right server, as each standard RTPS
+      message contains this piece of information.
+
+    - The ``GuidPrefix`` is used because the server's IP address may not be a reliable enough server identifier,
+      since several servers can be hosted in the same machine, thus having the same IP, and also because multicast
+      addresses are acceptable addresses.
+
+- *Servers* do not require any beforehand knowledge of their *clients*, but their ``GuidPrefix`` and locator list (where
+  they are listening) must match the one provided to the *clients*.
+
+  In order to gather *client* discovery info the following handshake strategy is followed:
+
+     - *Clients* send hailing messages to the *servers* at regular intervals (ping period) until they receive message
+       reception acknowledgement.
+
+     - *Servers* receive the hailing messages but they don't start at once to share publishers or subscribers info with
+       the newcomers. They only trigger this process at regular intervals (match period). Tuning this period is possible
+       to bundle the discovery info and deliver it more efficiently.
+
+In order to clarify this discovery setup either on compile time (sources) or runtime (XML files) we are going to split
+it into two sections: one focusing on the main concepts (:ref:`setup by concept <DS_setup_concepts>`) and the other on
+the main attribute structures and XML tags (:ref:`setup by attribute<DS_setup_attributes>`).
+
+.. _DS_setup_concepts:
+
+Server-client setup by concept
+------------------------------
+
+.. csv-table::
+    :header: "Concept", "Description"
+
+    :ref:`Discovery protocol <DS_discovery_protocol>`, how to make a participant a *client* or a *server*.
+    :ref:`Server unique id <DS_guidPrefx>`, how to link a *clients* to *servers*.
+    :ref:`Seting up transport <DS_locators>`, how to specify which transport to use and make *servers* reachable.
+    :ref:`Pinging period <DS_ping_period>`, how to fine tune server-client handshake.
+    :ref:`Matching period <DS_match_period>`, how to fine tune server deliver efficiency.
+
+.. _DS_discovery_protocol:
+
+Choosing between client and server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It's set by the :ref:`Discovery Protocol <discovery_protocol>` general attribute. A participant can only play a role
+(despite the fact that a *server* may act as a *client* of other server). It's mandatory to fill this value because it
+defaults to *simple*.  The values associated with the Server-client discovery are specified in :ref:`discovery settings
+section <DS_DiscoverySettings>`. The examples below show how to manage the corresponding enum attribute and XML tag:
+
+.. code-block:: bash
+
+    ParticipantAttributes.rtps.builtin.discovery_config.discoveryProtocol
+
+.. code-block:: bash
+
+    dds>profiles>participant>rtps>builtin>discovery_config>discoveryProtocol
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL          |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->   |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+.. _DS_guidPrefx:
+
+The server unique identifier ``GuidPrefix``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This belongs to the RTPS specification and univocally identifies each DDS participant. It consists on 12 bytes and is a
+key in the DDS domain. In the server-client discovery, it has the purpose to link a *server* to its *clients*.  Note
+that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.  It must be
+mandatorily specified in: *server side* and *client side* setups.
+
+Server side setup
+"""""""""""""""""
+The examples below show how to manage the corresponding enum attribute and XML tag:
+
+.. code-block:: bash
+
+    ParticipantAttributes.rtps.prefix
+
+.. code-block:: bash
+
+    dds>profiles>participant>rtps>prefix
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX           |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->        |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+Note that a *server* can act as a *client* of other *servers*. Thus, the following section may also apply.
+
+Client side setup
+""""""""""""""""""
+
+Each *client* must keep a list of the *servers* it wants to link to. Each single element represents an individual server
+and a ``GuidPrefix`` must be provided. The *server* list is the attribute:
+
+.. code-block:: bash
+
+    ParticipantAttributes.rtps.builtin.discovery_config.m_DiscoveryServers
+
+and must be populated with ``RemoteServerAttributes`` objects with a valid ``guidPrefix`` member. In XML the server list
+and its elements are simultaneously specified. Note that ``prefix`` is an attribute of the ``RemoteServer`` tag.
+
+.. code-block:: bash
+
+    dds>profiles>participant>rtps>builtin>discovery_config>discoveryServerList>RemoteServer@prefix
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_CLIENT_GUIDPREFIX           |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX<-->        |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+.. _DS_locators:
+
+The server locator list
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each *server* must specify valid locators where it can be reached. Any *client* must be given proper locators to
+reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>`, here there is a *server* and a *client* side
+setup.
+
+Server side setup
+"""""""""""""""""
+
+The examples below show how to setup the locator list attribute (note that discovery strategy only deals with
+metatraffic attributes) and XML tag:
+
+.. code-block:: bash
+
+    ParticipantAttributes.rtps.builtin.(metatrafficMulticastLocatorList|metatrafficUnicastLocatorList)
+
+.. code-block:: bash
+
+    dds>profiles>participant>rtps>builtin>(metatrafficMulticastLocatorList|metatrafficUnicastLocatorList)
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_SERVER_LOCATORS             |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->      |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+Note that a *server* can act as a client of other *servers*, thus, the following section may also apply.
+
+Client side setup
+""""""""""""""""""
+
+Each *client* must keep a list of locators associated to the *servers* it wants to link to. Each *server* specifies its
+own locators. The locator list is the attribute:
+
+.. code-block:: bash
+
+    ParticipantAttributes.rtps.builtin.discovery_config.m_DiscoveryServers
+
+and must be populated with ``RemoteServerAttributes`` objects with a valid ``metatrafficUnicastLocatorList`` or
+``metatrafficMulticastLocatorList`` member. In XML the server list and its elements are simultaneously specified.
+Note the ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList`` attributes of the ``RemoteServer``
+tag.
+
+.. code-block:: bash
+
+    dds>profiles>participant>rtps>builtin>discovery_config>discoveryServerList>RemoteServer@metatrafficUnicastLocatorList
+    dds>profiles>participant>rtps>builtin>discovery_config>discoveryServerList>RemoteServer@metatrafficMulticastLocatorList
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_CLIENT_LOCATORS             |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->      |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+.. _DS_ping_period:
+
+Client ping period
+^^^^^^^^^^^^^^^^^^
+
+As explained :ref:`above <DS_key_concepts>` the *clients* send hailing messages to the *servers* at regular
+intervals (ping period) until they receive message reception acknowledgement. This period is specified in the member:
+
+.. code-block:: bash
+
+    ParticipantAttributes.rtps.builtin.discovery_config.discoveryServer_client_syncperiod
+
+or the XML tag:
+
+.. code-block:: bash
+
+    dds>profiles>participant>rtps>builtin>discovery_config>clientAnnouncementPeriod
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_CLIENT_PING                 |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-CLIENT-PING<-->          |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+.. _DS_match_period:
+
+Server match period
+^^^^^^^^^^^^^^^^^^^
+
+As explained :ref:`above <DS_key_concepts>` the *Servers* received the hailing messages but they don't start at once to
+share publishers or subscribers info with the newcomers. They only trigger this process at regular intervals (match
+period). Note that this member is shared with the *client* setup but its name references solely the *client*
+functionality. This period is specified in the member:
+
+.. code-block:: bash
+
+    ParticipantAttributes.rtps.builtin.discovery_config.discoveryServer_client_syncperiod
+
+or the XML tag:
+
+.. code-block:: bash
+
+    dds>profiles>participant>rtps>builtin>discovery_config>clientAnnouncementPeriod
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_SERVER_PING                 |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-SERVER-PING<-->          |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+
+.. _DS_setup_attributes:
+
+Server-client setup by attribute
+--------------------------------
+
+The settings related with server-client discovery are:
+
+.. csv-table::
+    :header: "Name", "Description"
+    :widths: 20,100
+
+    :ref:`RTPSParticipantAttributes <DS_RTPSParticipantAttributes>`, "Specifies general participant settings. Some of
+    them must be modified in order to properly configure a Server like the ``GuidPrefix``."
+    :ref:`BuiltinAttributes <DS_BuiltinAttributes>`, "It's a member of the above *RTPSParticipantAttributes* structure.
+    Allows to specify some mandatory server discovery settings like the :raw-html:`<br />` addresses were it listens for
+    clients discovery info."
+    :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure. Allows
+    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` whether it is a client or
+    a server or the list of servers it is linked to or the client-ping, server-match frequencies."
+
+.. _DS_RTPSParticipantAttributes:
+
+RTPSParticipantAttributes
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A ``GuidPrefix_t guidPrefix`` member specifies the server's identity. This member has only significance if
+``discovery_config.discoveryProtocol`` is **SERVER** or **BACKUP**. There is a ``ReadguidPrefix`` method to easily fill
+in this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"`` (note that each byte must be a
+valid hexadecimal figure).
+
++-----------------------------------------------------+
+| **C++**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp          |
+|    :language: c++                                   |
+|    :start-after: //CONF_SERVER_PREFIX_EXAMPLE       |
+|    :end-before: //!--                               |
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml           |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX     |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
+
+.. _DS_BuiltinAttributes:
+
+BuiltinAttributes
+^^^^^^^^^^^^^^^^^
+
+All discovery related info is gathered in a DiscoverySettings_ ``discovery_config`` member.
+
+In order to receive client metatraffic, ``metatrafficUnicastLocatorList`` or
+``metatrafficMulticastLocatorList`` must be populated with the addresses that were given to
+the clients.
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_METATRAFFICUNICAST          |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-METATRAFFICUNICASTLOCATOR|
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
+.. _DS_DiscoverySettings:
+
+DiscoverySettings
+^^^^^^^^^^^^^^^^^
+
+A discovery_protocol_ ``discoveryProtocol`` member specifies the participant's discovery kind. As was explained before
+to setup a server-client discovery it may be:
+
+.. csv-table::
+    :header: "enum value", "Description"
+    :widths: 15, 100
+
+    CLIENT, "Generates a client participant, which relies on a server (or servers) to be notified of other clients
+    presence.
+    :raw-html:`<br />`
+    This participant can create publishers and subscribers of any topic (static or
+    dynamic) as ordinary participants do."
+    SERVER, "Generates a server participant, which receives, manages and spreads
+    its linked client's metatraffic assuring any single one is aware of the others. :raw-html:`<br />` This participant
+    can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do.
+    :raw-html:`<br />`
+    Servers can link to other servers in order to share its clients information."
+    BACKUP, "Generates a server
+    participant with additional functionality over **SERVER**. :raw-html:`<br />`
+    Specifically, it uses a database to
+    backup its client information, so that if for whatever reason it disappears, it can be automatically restored and
+    :raw-html:`<br />` continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to
+    collect client information again, introducing a recovery delay."
+
+A ``RemoteServerList_t m_DiscoveryServers`` that lists the servers linked to a client participant. This member has only
+significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. These member elements are
+``RemoteServerAttributes`` objects that identify each server and report where the servers can be reached:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Attribute
+     - Description
+   * - ``GuidPrefix_t guidPrefix``
+     - Is the RTPS unique identifier of the server participant we want to link to. There is a ``ReadguidPrefix``
+       :raw-html:`<br />`
+       method to easily fill in this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"``
+       :raw-html:`<br />`
+       (note that each octet must be a valid hexadecimal figure).
+   * - ``metatrafficUnicastLocatorList`` and ``metatrafficMulticastLocatorList``
+     - Are ordinary ``LocatorList_t`` (see :ref:`LocatorListType`) where the server's locators must be specified.
+       :raw-html:`<br />` At least one of them should be populated.
+   * - ``Duration_t discoveryServer_client_syncperiod``
+     - Has only significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**.
+       :raw-html:`<br />`
+       For a *client* it specifies the pinging period as explained in :ref:`key concepts <DS_key_concepts>`.
+       :raw-html:`<br />`
+       When a client has not yet established a reliable connection to a server it *pings* until
+       the server notices :raw-html:`<br />` him and establishes the connection.
+       :raw-html:`<br />`
+       For a *server* it specifies the match period as explained in :ref:`key concepts <DS_key_concepts>`.
+       :raw-html:`<br />`
+       When a *server* discovers new *clients* it only starts exchanging info with them at regular
+       :raw-html:`<br />`
+       intervals as a mechanism to bundle discovery info and optimize delivery.
+       :raw-html:`<br />`
+       The default value is half a second.
+
++------------------------------------------------------------+
+| **C++**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp                 |
+|    :language: c++                                          |
+|    :start-after: //CONF_SERVER_PING                        |
+|    :end-before: //!--                                      |
++------------------------------------------------------------+
+| **XML**                                                    |
++------------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml                  |
+|    :language: xml                                          |
+|    :start-after: <!-->CONF-SERVER-PING                     |
+|    :end-before: <!--><-->                                  |
++------------------------------------------------------------+
+
 
 
 Subscribing to Discovery Topics

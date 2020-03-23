@@ -1,4 +1,5 @@
 <!-->STATIC_DISCOVERY_CONF<-->
+
 <staticdiscovery>
     <participant>
         <name>HelloWorldSubscriber</name>

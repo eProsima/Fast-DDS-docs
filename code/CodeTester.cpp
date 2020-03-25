@@ -172,13 +172,13 @@ participant_attr.rtps.userTransports.push_back(tcp_transport);
 //!--
 
 //CONF-SHM-TRANSPORT-SETTING
-//Create a descriptor for the new transport.
-auto shm_transport = std::make_shared<SharedMemTransportDescriptor>();
+// Create a descriptor for the new transport.
+std::shared_ptr<SharedMemTransportDescriptor> shm_transport = std::make_shared<SharedMemTransportDescriptor>();
 
-//Disable the built-in Transport Layer.
+// Disable the built-in Transport Layer.
 participant_attr.rtps.useBuiltinTransports = false;
 
-//Link the Transport Layer to the Participant.
+// Link the Transport Layer to the Participant.
 participant_attr.rtps.userTransports.push_back(shm_transport);
 //!--
 

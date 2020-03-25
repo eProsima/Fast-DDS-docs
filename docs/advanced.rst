@@ -599,10 +599,11 @@ For UDP transport, it is possible to configure whether to use non-blocking write
 Shared memory Transport (SHM)
 =============================
 
-The shared memory transport enables fast communications between entities running in the same processing unit/machine, relying on the shared memory mechanisms provided by the host operating system.
+The shared memory transport enables fast communications between entities running in the same processing unit/machine,
+relying on the shared memory mechanisms provided by the host operating system.
 
-SHM transport provides better performance than other transports like UDP / TCP, even when these transports use loopback interface.
-This is mainly due to the following reasons:
+SHM transport provides better performance than other transports like UDP / TCP, even when these transports use loopback
+interface. This is mainly due to the following reasons:
 
  * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
    network stacks requirements.

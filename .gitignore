@@ -19,3 +19,4 @@ tags
 # End of https://www.gitignore.io/api/vim
 
 compile_commands.json
+.vscode

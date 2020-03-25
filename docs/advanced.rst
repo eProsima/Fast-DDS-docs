@@ -224,7 +224,7 @@ Transports
 **********
 
 *eProsima Fast RTPS* implements an architecture of pluggable transports.
-Current version implements four transports: UDPv4, UDPv6, TCPv4 and TCPv6.
+Current version implements five transports: UDPv4, UDPv6, TCPv4, TCPv6 and SHM.
 By default, when a :class:`Participant` is created, one built-in UDPv4 transport is configured.
 You can add custom transports using the attribute ``rtps.userTransports``.
 
@@ -593,6 +593,53 @@ For UDP transport, it is possible to configure whether to use non-blocking write
 |    :start-after: <!-->CONF-NON-BLOCKING-WRITE |
 |    :end-before: <!--><-->                     |
 +-----------------------------------------------+
+
+.. _comm-transports-shm:
+
+Shared memory Transport (SHM)
+=============
+
+Shared memory transport enables fast communications between entities running in the same processing unit / machine, 
+these communications are based on the shared memory mechanisms provided by the host operating system.
+
+SHM transport provides better performance compared with other transports like UDP / TCP, even when these transports use 
+loopback interface. This is mainly due to the following reasons:
+
+    * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and 
+    network stacks requirements. SHM transport allows the copy of full messages where the only size limit is the 
+    machine's memory capacity.
+
+    * Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can 
+    directly share the same memory buffer with all the destination endpoints. Other protocols require to perform a copy 
+    of the message per every endpoint. 
+
+    * Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system 
+    calls than the other protocols. Therefore there is a performance / time consume gain by using SHM.
+
+When two participants has SHM transport enabled and belongs to the same machine, all communications between them are 
+automatically performed only by SHM transport, the rest of the enabled transports are not used between those two 
+participants.
+
+To enable SHM transport in a Participant, you need to add the SharedMemTransportDescriptor to the 
+``rtps.userTransports`` attribute (C++ code) or define a transport_descriptor of type SHM in the 
+XML file (see below examples).
+
++--------------------------------------------------+
+| **C++**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp       |
+|    :language: c++                                |
+|    :start-after: //CONF-SHM-TRANSPORT-SETTING    |
+|    :end-before: //!--                            |
++--------------------------------------------------+
+| **XML**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml        |
+|    :language: xml                                |
+|    :start-after: <!-->CONF-SHM-TRANSPORT-SETTING |
+|    :end-before: <!--><-->                        |
++--------------------------------------------------+
+
 
 **XML Configuration**
 

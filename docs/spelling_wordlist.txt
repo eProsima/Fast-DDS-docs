@@ -67,6 +67,7 @@ hostid
 interoperability
 libs
 lroundl
+loopback
 mandatorily
 metatraffic
 middleware

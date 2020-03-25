@@ -31,6 +31,7 @@ using namespace ::rtps;
 using namespace ::xmlparser;
 using namespace ::security;
 using namespace ::types;
+using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
 
 class HelloWorld
 {
@@ -172,7 +173,7 @@ participant_attr.rtps.userTransports.push_back(tcp_transport);
 
 //CONF-SHM-TRANSPORT-SETTING
 //Create a descriptor for the new transport.
-auto shm_transport = std::make_shared<SharedMemTransportDescriptor>()
+auto shm_transport = std::make_shared<SharedMemTransportDescriptor>();
 
 //Disable the built-in Transport Layer.
 participant_attr.rtps.useBuiltinTransports = false;

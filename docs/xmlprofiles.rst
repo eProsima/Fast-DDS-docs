@@ -201,7 +201,7 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<rtps_dump_file>``          | Complete path (including file)    | ``string``                      | empty          |
 |                               | where RTPS messages will be       |                                 |                |
-|                               | stored for debugging pourposes.   |                                 |                |
+|                               | stored for debugging purposes.    |                                 |                |
 |                               | An empty string indicates no      |                                 |                |
 |                               | trace will be performed           |                                 |                |
 |                               | (OPTIONAL, SHM **only**).         |                                 |                |

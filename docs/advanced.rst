@@ -597,31 +597,31 @@ For UDP transport, it is possible to configure whether to use non-blocking write
 .. _comm-transports-shm:
 
 Shared memory Transport (SHM)
-=============
+=============================
 
-Shared memory transport enables fast communications between entities running in the same processing unit / machine, 
+Shared memory transport enables fast communications between entities running in the same processing unit / machine,
 these communications are based on the shared memory mechanisms provided by the host operating system.
 
-SHM transport provides better performance compared with other transports like UDP / TCP, even when these transports use 
+SHM transport provides better performance compared with other transports like UDP / TCP, even when these transports use
 loopback interface. This is mainly due to the following reasons:
 
-    * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and 
-    network stacks requirements. SHM transport allows the copy of full messages where the only size limit is the 
-    machine's memory capacity.
+ * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
+   network stacks requirements. SHM transport allows the copy of full messages where the only size limit is the
+   machine's memory capacity.
 
-    * Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can 
-    directly share the same memory buffer with all the destination endpoints. Other protocols require to perform a copy 
-    of the message per every endpoint. 
+ * Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can
+   directly share the same memory buffer with all the destination endpoints. Other protocols require to perform a
+   copy of the message per every endpoint.
 
-    * Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system 
-    calls than the other protocols. Therefore there is a performance / time consume gain by using SHM.
+ * Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system
+   calls than the other protocols. Therefore there is a performance / time consume gain by using SHM.
 
-When two participants has SHM transport enabled and belongs to the same machine, all communications between them are 
-automatically performed only by SHM transport, the rest of the enabled transports are not used between those two 
+When two participants has SHM transport enabled and belongs to the same machine, all communications between them are
+automatically performed only by SHM transport, the rest of the enabled transports are not used between those two
 participants.
 
-To enable SHM transport in a Participant, you need to add the SharedMemTransportDescriptor to the 
-``rtps.userTransports`` attribute (C++ code) or define a transport_descriptor of type SHM in the 
+To enable SHM transport in a Participant, you need to add the SharedMemTransportDescriptor to the
+``rtps.userTransports`` attribute (C++ code) or define a transport_descriptor of type SHM in the
 XML file (see below examples).
 
 +--------------------------------------------------+

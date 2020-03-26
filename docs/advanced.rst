@@ -641,6 +641,30 @@ XML file (see below examples).
 |    :end-before: <!--><-->                        |
 +--------------------------------------------------+
 
+SHM configuration parameters:
+
+ * <segment_size>: The size of the shared memory segment in bytes. A shared memory segment is created by each
+   participant. Participant writers copy their messages in the segment and send a message reference to the destination
+   readers.
+
+ * <port_queue_capacity>: Each participant with SHM transport enabled Listen on a queue (port) for incoming SHM messages
+   references. This parameter specifies the queue size (in messages).
+
+ * <port_overflow_policy>: Values either DISCARD or FAIL. Indicates what to do when the Listener queue is full. DISCARD
+   drop the message without notifying any error, FAIL drop the message but throws an error.
+
+ * <segment_overflow_policy>: Values either DISCARD or FAIL. Indicates what to do when there is no available space
+   for messages in the shared memory segment.
+
+ * <healthy_check_timeout_ms>: Readers and writers use a queue in shared memory to pass the messages (called Port). If
+   one of the processes involved crashes while using the port, the structure can be left inoperative. So every time
+   a port is opened a healthy check is performed, if the attached processes doesn't respond in
+   <healthy_check_timeout_ms> milliseconds, the port is destroyed and created again.
+
+ * <rtps_dump_file>: Full path, including the file name, of the protocol dump_file. When this string parameter is not
+   empty, all the participant SHM traffic (sent and received) is traced to a file. The file format is tcpdump test hex,
+   and can be read with protocol analyzer applications.
+
 
 **XML Configuration**
 

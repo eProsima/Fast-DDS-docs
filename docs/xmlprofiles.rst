@@ -195,8 +195,9 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | shared-memory segment overflows   |                                 |                |
 |                               | (OPTIONAL, SHM **only**).         |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<healthy_check_timeout_ms>``| Maximum time-out when checking    | ``uint32``                      | 1000           |
-|                               | whether a Listener is alive & OK  |                                 |                |
+| ``<healthy_check_timeout_ms>``| Maximum time-out (in milliseconds)| ``uint32``                      | 1000           |
+|                               | used when checking whether a      |                                 |                |
+|                               | Listener is alive & OK            |                                 |                |
 |                               | (OPTIONAL, SHM **only**).         |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<rtps_dump_file>``          | Complete path (including file)    | ``string``                      | empty          |

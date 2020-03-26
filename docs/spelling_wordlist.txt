@@ -67,6 +67,7 @@ hostid
 interoperability
 libs
 lroundl
+loopback
 mandatorily
 metatraffic
 middleware
@@ -100,6 +101,7 @@ submessage
 submessages
 submodules
 takeNextData
+tcpdump
 tinyxml
 topologies
 typeobject
@@ -111,3 +113,4 @@ unmatch
 vcstool
 whitelist
 whitelists
+Wireshark

@@ -14,6 +14,7 @@
 #include <fastrtps/xmlparser/XMLEndpointParser.h>
 #include <fastrtps/transport/UDPv4TransportDescriptor.h>
 #include <fastrtps/transport/TCPv4TransportDescriptor.h>
+#include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastrtps/utils/IPLocator.h>
 #include <fastrtps/log/Log.h>
@@ -30,6 +31,7 @@ using namespace ::rtps;
 using namespace ::xmlparser;
 using namespace ::security;
 using namespace ::types;
+using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
 
 class HelloWorld
 {
@@ -167,6 +169,17 @@ participant_attr.rtps.useBuiltinTransports = false;
 
 //Link the Transport Layer to the Participant.
 participant_attr.rtps.userTransports.push_back(tcp_transport);
+//!--
+
+//CONF-SHM-TRANSPORT-SETTING
+// Create a descriptor for the new transport.
+std::shared_ptr<SharedMemTransportDescriptor> shm_transport = std::make_shared<SharedMemTransportDescriptor>();
+
+// Disable the built-in Transport Layer.
+participant_attr.rtps.useBuiltinTransports = false;
+
+// Link the Transport Layer to the Participant.
+participant_attr.rtps.userTransports.push_back(shm_transport);
 //!--
 
 //CONF-TCP2-TRANSPORT-SETTING

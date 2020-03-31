@@ -187,14 +187,6 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | available to every Listener       |                                 |                |
 |                               | (OPTIONAL, SHM **only**).         |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<port_overflow_policy>``    | Error policy when a messages      | :class:`OverflowPolicy`         | DISCARD        |
-|                               | Listener overflows                |                                 |                |
-|                               | (OPTIONAL, SHM **only**).         |                                 |                |
-+-------------------------------+-----------------------------------+---------------------------------+----------------+
-| ``<segment_overflow_policy>`` | Error policy when the             | :class:`OverflowPolicy`         | DISCARD        |
-|                               | shared-memory segment overflows   |                                 |                |
-|                               | (OPTIONAL, SHM **only**).         |                                 |                |
-+-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<healthy_check_timeout_ms>``| Maximum time-out (in milliseconds)| ``uint32``                      | 1000           |
 |                               | used when checking whether a      |                                 |                |
 |                               | Listener is alive & OK            |                                 |                |

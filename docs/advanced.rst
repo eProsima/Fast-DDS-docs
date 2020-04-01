@@ -229,6 +229,7 @@ By default, when a :class:`Participant` is created, two built-in transports are 
 
 * SHM transport will be used for all communications between participants in the same machine.
 * UDPv4 will be used for inter machine communications.
+
 You can add custom transports using the attribute ``rtps.userTransports``.
 
 +-----------------------------------------------------+
@@ -277,9 +278,9 @@ When two participants on the same machine have SHM transport enabled, all commun
 performed by SHM transport only.
 The rest of the enabled transports are not used between those two participants.
 
-To enable SHM transport in a Participant, you need to add the SharedMemTransportDescriptor to the
+In order to change the default parameters of SHM transport, you need to add the SharedMemTransportDescriptor to the
 ``rtps.userTransports`` attribute (C++ code) or define a transport_descriptor of type SHM in the
-XML file (see below examples).
+XML file. In both cases ``rtps.useBuiltinTransports`` must be disabled (see below examples).
 
 +--------------------------------------------------+
 | **C++**                                          |
@@ -310,7 +311,7 @@ SHM configuration parameters:
  * ``healthy_check_timeout_ms``: With SHM, Readers and writers use a queue to exchange messages (called Port).
    If one of the processes involved crashes while using the port, the structure can be left inoperative.
    For this reason, every time a port is opened, a healthy check is performed.
-   If the attached processes doesn't respond in ``healthy_check_timeout_ms`` milliseconds, the port is destroyed and
+   If the attached listeners don't respond in ``healthy_check_timeout_ms`` milliseconds, the port is destroyed and
    created again.
 
  * ``rtps_dump_file``: Full path, including the file name, of the protocol dump_file.

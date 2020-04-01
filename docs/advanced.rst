@@ -517,7 +517,7 @@ Initial peers
 =============
 
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), each participant must
-listen for incoming participant discovery protocol (PDP) discovery metatraffic in two different ports, one linked with a
+listen for incoming Participant Discovery Protocol (PDP) discovery metatraffic in two different ports, one linked with a
 multicast address, and another one linked to a unicast address (see :ref:`discovery`).
 Fast-RTPS allows for the configuration of an initial peers list which contains one or more such address-port pairs
 corresponding to remote participants PDP discovery listening resources, so that the local participant will not only

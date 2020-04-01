@@ -516,14 +516,49 @@ In that case, *eProsima Fast RTPS* understands to calculate well-known port for 
 Initial peers
 =============
 
-These locators are used to know where to send initial discovery network messages. You can set your own locators using
-attribute ``rtps.builtin.initialPeersList``. By default *eProsima Fast RTPS* uses as initial peers the Metatraffic
-Multicast Locators.
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), each participant must
+listen for incoming participant discovery protocol (PDP) discovery metatraffic in two different ports, one linked with a
+multicast address, and another one linked to a unicast address (see :ref:`discovery`).
+Fast-RTPS allows for the configuration of an initial peers list which contains one or more such address-port pairs
+corresponding to remote participants PDP discovery listening resources, so that the local participant will not only
+send its PDP traffic to the default multicast address-port specified by its domain, but also to all the address-port
+pairs specified in the initial-peers list.
 
-.. literalinclude:: ../code/CodeTester.cpp
-    :language: c++
-    :start-after: //CONF-INITIALPEERS
-    :end-before: //!--
+A participant's initial peers list contains the list of address-port pairs of all other participants with
+which it will communicate.
+It is a list of addresses that a participant will use in the unicast discovery mechanism, together or as an alternative
+to multicast discovery.
+Therefore, this approach also applies to those scenarios in which multicast functionality is not available.
+
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the participants'
+discovery traffic unicast listening ports are calculated using the following equation:
+7400 + 250 * `domainID` + 10 + 2 * `participantID`.
+Thus, if for example a participant operates in Domain 0 (default
+domain) and its ID is 1, its discovery traffic unicast listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
+By default *eProsima Fast RTPS* uses as initial peers the Metatraffic Multicast Locators.
+
+The following constitutes an example configuring an Initial Peers list with one peer on host 192.168.10.13 with
+participant ID 1 in domain 0.
+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp              |
+|    :language: c++                                       |
+|    :start-after: //CONF_INITIAL_PEERS_BASIC             |
+|    :end-before: //!--                                   |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml               |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->      |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
+
+.. These locators are used to know where to send initial discovery network messages. You can set your own locators using
+.. attribute ``rtps.builtin.initialPeersList``.
+
 
 .. _whitelist-interfaces:
 
@@ -1058,14 +1093,15 @@ The specification splits up the SIMPLE discovery protocol into two independent p
   exchange of information in order to discover the RTPS entities contained in each of them, i.e. the writer and
   reader Endpoints.
 
-+--------------------------+-----------------------------------------------------------------------+
-| Name                     | Description                                                           |
-+==========================+=======================================================================+
-| `Initial Announcements`_ | It defines the behavior of the RTPSParticipant initial announcements. |
-+--------------------------+-----------------------------------------------------------------------+
-| `Simple EDP Attributes`_ | It defines the use of the SIMPLE protocol as a discovery protocol.    |
-+--------------------------+-----------------------------------------------------------------------+
-
++------------------------------+-----------------------------------------------------------------------+
+| Name                         | Description                                                           |
++==============================+=======================================================================+
+| `Initial Announcements`_     | It defines the behavior of the RTPSParticipant initial announcements. |
++------------------------------+-----------------------------------------------------------------------+
+| `Simple EDP Attributes`_     | It defines the use of the SIMPLE protocol as a discovery protocol.    |
++------------------------------+-----------------------------------------------------------------------+
+| :ref:`Simple Initial Peers`  | A list of endpoints to which the SPDP announcements are sent.         |
++------------------------------+-----------------------------------------------------------------------+
 
 .. _`Initial Announcements`:
 
@@ -1146,6 +1182,15 @@ Simple EDP Attributes
 |    :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES |
 |    :end-before: <!--><-->                               |
 +---------------------------------------------------------+
+
+.. _`Simple Initial Peers`:
+
+Initial Peers
+-------------
+
+By default, the SPDP protocol uses a well known multicast address for the participant discovery phase.
+With Fast-RTPS, it is possible to expand the list of endpoints to which the participant announcements are sent by
+configuring a list of initial peers, as explained in :ref:`initial-peers`.
 
 .. _discovery_static:
 

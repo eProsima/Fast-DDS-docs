@@ -224,10 +224,11 @@ Transports
 **********
 
 *eProsima Fast RTPS* implements an architecture of pluggable transports.
-Current version implements five transports: UDPv4, UDPv6, TCPv4, TCPv6 and SHM.
-By default, when a :class:`Participant` is created, two built-in transports are
-configured SHM and UDPv4. SHM transport will be used for all communications between
-participants in the same machine, and UDPv4 for external communications.
+Current version implements five transports: UDPv4, UDPv6, TCPv4, TCPv6 and SHM (shared memory).
+By default, when a :class:`Participant` is created, two built-in transports are configured:
+
+* SHM transport will be used for all communications between participants in the same machine.
+* UDPv4 will be used for inter machine communications.
 You can add custom transports using the attribute ``rtps.userTransports``.
 
 +-----------------------------------------------------+
@@ -257,7 +258,8 @@ The shared memory transport enables fast communications between entities running
 relying on the shared memory mechanisms provided by the host operating system.
 
 SHM transport provides better performance than other transports like UDP / TCP, even when these transports use loopback
-interface. This is mainly due to the following reasons:
+interface.
+This is mainly due to the following reasons:
 
  * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
    network stacks requirements.

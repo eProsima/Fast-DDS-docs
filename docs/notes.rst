@@ -5,7 +5,7 @@ This release adds the following features:
 
 * New built-in :ref:`comm-transports-shm`
 * Transport API refactored to support locator iterators
-* Added subscriber API to retrieve info of first untaken sample
+* Added subscriber API to retrieve info of first non-taken sample
 * Added parameters to fully avoid dynamic allocations
 * History of built-in endpoints can be configured
 * Bump to FastCDR v1.0.13.
@@ -31,9 +31,9 @@ It also includes the following bug fixes and improvements:
 * Reduced flakyness of liveliness tests.
 * Allow for more use cases on performance tests.
 
-Several bugfixes on discovery server:
+Several bug fixes on discovery server:
 
-* Fixed localhost communications.
+* Fixed local host communications.
 * Correctly trimming server history.
 * Fixed backup server operation.
 * Fixed timing issues.

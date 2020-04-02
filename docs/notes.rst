@@ -19,8 +19,9 @@ It also includes the following bug fixes and improvements:
 * Fix handling of STRICT_REALTIME.
 * Fixed submessage_size calculation on last data_frag.
 * Solved an issue when recreating a publishing participant with the same GUID.
-* Solved issue where a publisher could block on write for a long time when, after a
-  large number of samples have been sent, a new subscriber is matched.
+* Solved an issue where a publisher could block on write for a long time when a new
+  subscriber (late joiner) is matched, if the publisher had already sent a large number
+  of messages.
 * Correctly handling the case where lifespan expires at the same time on several samples.
 * Solved some issues regarding liveliness on writers with no readers.
 * Correctly removing changes from histories on keyed topics.
@@ -28,7 +29,7 @@ It also includes the following bug fixes and improvements:
 * Fixed custom wait_until methods when time is in the past.
 * Several data races and ABBA locks fixed.
 * Reduced CPU and memory usage.
-* Reduced flakyness of liveliness tests.
+* Reduced flakiness of liveliness tests.
 * Allow for more use cases on performance tests.
 
 Several bug fixes on discovery server:

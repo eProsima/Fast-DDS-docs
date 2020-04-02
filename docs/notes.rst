@@ -1,5 +1,54 @@
+Version 1.10.0
+==============
+
+This release adds the following features:
+
+* New built-in :ref:`comm-transports-shm`
+* Transport API refactored to support locator iterators
+* Added subscriber API to retrieve info of first untaken sample
+* Added parameters to fully avoid dynamic allocations
+* History of built-in endpoints can be configured
+* Bump to FastCDR v1.0.13.
+* Bump to Fast-RTPS-Gen v1.0.4.
+* Require CMake 3.5 but use policies from 3.13
+
+It also includes the following bug fixes and improvements:
+
+* Fixed alignment on parameter lists
+* Fixed error sending more than 256 fragments.
+* Fix handling of STRICT_REALTIME.
+* Fixed submessage_size calculation on last data_frag.
+* Solved an issue when recreating a publishing participant with the same GUID.
+* Solved issue where a publisher could block on write for a long time when, after a
+  large number of samples have been sent, a new subscriber is matched.
+* Correctly handling the case where lifespan expires at the same time on several samples.
+* Solved some issues regarding liveliness on writers with no readers.
+* Correctly removing changes from histories on keyed topics.
+* Not reusing cache change when sample does not fit.
+* Fixed custom wait_until methods when time is in the past.
+* Several data races and ABBA locks fixed.
+* Reduced CPU and memory usage.
+* Reduced flakyness of liveliness tests.
+* Allow for more use cases on performance tests.
+
+Several bugfixes on discovery server:
+
+* Fixed localhost communications.
+* Correctly trimming server history.
+* Fixed backup server operation.
+* Fixed timing issues.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.
+If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.
+
+
+Previous versions
+-----------------
+
+
 Version 1.9.4
-=============
+^^^^^^^^^^^^^
 
 This release adds the following features:
 
@@ -7,6 +56,7 @@ This release adds the following features:
 * Synchronous writers are now allowed to send fragments.
 * New memory mode DYNAMIC_RESERVE on history pool.
 * Performance tests can now be run on Windows and Mac.
+* XML profiles for requester and replier.
 
 It also includes the following bug fixes and improvements:
 
@@ -22,10 +72,6 @@ It also includes the following bug fixes and improvements:
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.
-
-
-Previous versions
------------------
 
 
 Version 1.9.3

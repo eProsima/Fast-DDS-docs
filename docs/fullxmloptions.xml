@@ -32,8 +32,6 @@
                 <maxMessageSize>524288</maxMessageSize> <!-- OPTIONAL uint32 valid of all transports-->
                 <segment_size>1048576</segment_size> <!-- OPTIONAL uint32 SHM only-->
                 <port_queue_capacity>1024</port_queue_capacity> <!-- OPTIONAL uint32 SHM only-->
-                <port_overflow_policy>DISCARD</port_overflow_policy> <!-- OPTIONAL OverflowPolicy (FAIL | DISCARD) -->
-                <segment_overflow_policy>FAIL</segment_overflow_policy> <!-- OPTIONAL OverflowPolicy (FAIL | DISCARD)-->
                 <healthy_check_timeout_ms>250</healthy_check_timeout_ms> <!-- OPTIONAL uint32 SHM only-->
                 <rtps_dump_file>test_file.dump</rtps_dump_file> <!-- OPTIONAL string SHM only-->
         </transport_descriptor>

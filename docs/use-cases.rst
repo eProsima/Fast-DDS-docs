@@ -164,8 +164,8 @@ Various discovery server use cases are presented below.
 
 .. _discovery_server_major_scenario_setup:
 
-Discovery-Server UDPv4 example setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UDPv4 example setup
+^^^^^^^^^^^^^^^^^^^
 
 To configure the client-server discovery scenario, two types of participants are created: the server participant and
 the client participant.
@@ -195,6 +195,257 @@ Two parameters to be configured in this type of implementation are outlined:
 |    :start-after: <!-->CONF_DS_MAIN_SCENARIO_SERVER<--> |    :start-after: <!-->CONF_DS_MAIN_SCENARIO_CLIENT<--> |
 |    :end-before: <!--><-->                              |    :end-before: <!--><-->                              |
 +--------------------------------------------------------+--------------------------------------------------------+
+
+.. _discovery_server_redundancy_scenario_setup:
+
+UDPv4 redundancy example
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The :ref:`above example <discovery_server_major_scenario_setup>` presents a *single point of failure*, that is, if the
+*server* fails there is no discovery. In order to prevent this, several servers could be linked to a *client*. By doing
+this, a discovery failure only takes place if *all servers* fail, which is a more unlikely event.
+
+The following values have been chosen in order to assure each server has a unique **Prefix** and *unicast address*:
+
+.. csv-table::
+    :header: "Prefix", "UDPv4 address"
+    :widths: 20,100
+
+    75.63.2D.73.76.72.63.6C.6E.74.2D.31, "192.168.10.57:56542"
+    75.63.2D.73.76.72.63.6C.6E.74.2D.32, "192.168.10.60:56543"
+
+.. image:: ds_redundancy.png
+    :align: center
+    :width: 75%
+
+.. | @startuml
+.. |
+.. | package "Servers" {
+.. |
+.. | interface "\n192.168.10.57\n56542" as P1
+.. | interface "\n192.168.10.60\n56543" as P2
+.. |
+.. | P1 -left- [75.63.2D.73.76.72.63.6C.6E.74.2D.31]
+.. | P2 -left- [75.63.2D.73.76.72.63.6C.6E.74.2D.32]
+.. |
+.. | [75.63.2D.73.76.72.63.6C.6E.74.2D.31] -[hidden]up- [75.63.2D.73.76.72.63.6C.6E.74.2D.32]
+.. | P1 -[hidden]up- P2
+.. | }
+.. |
+.. | node "Clients" {
+.. | (client\n1) as ps1
+.. | (client\n2) as ps2
+.. | (client\n3) as ps3
+.. | (client\nX) as psX
+.. | }
+.. |
+.. | ps1 -> P1
+.. | ps1 .> P2
+.. |
+.. | ps2 -> P1
+.. | ps2 .left.> P2
+.. |
+.. | ps3 -> P1
+.. | ps3 .> P2
+.. |
+.. | psX -> P1
+.. | psX .left.> P2
+.. |
+.. | ps1 -[hidden]down- ps2
+.. | ps2 -[hidden]right- psX
+.. | ps3 -[hidden]down- psX
+.. |
+.. | @enduml
+
+Note that several *servers* can share the same *IP address* but their port numbers should be different. Likewise,
+several *servers* can share the same port if their *IP addresses* are different.
+
++--------------------------------------------------------+--------------------------------------------------------+
+| **SERVER**                                             | **CLIENT**                                             |
++--------------------------------------------------------+--------------------------------------------------------+
+| **C++**                                                | **C++**                                                |
++--------------------------------------------------------+--------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp             | .. literalinclude:: ../code/CodeTester.cpp             |
+|    :language: c++                                      |    :language: c++                                      |
+|    :start-after: //CONF_DS_REDUNDANCY_SCENARIO_SERVER  |    :start-after: //CONF_DS_REDUNDANCY_SCENARIO_CLIENT  |
+|    :end-before: //!--                                  |    :end-before: //!--                                  |
++--------------------------------------------------------+--------------------------------------------------------+
+| **XML**                                                | **XML**                                                |
++--------------------------------------------------------+--------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml              | .. literalinclude:: ../code/XMLTester.xml              |
+|    :language: xml                                      |    :language: xml                                      |
+|    :start-after: <!-->CONF_DS_RDNCY_SCENARIO_SERVER<-->|    :start-after: <!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->|
+|    :end-before: <!--><-->                              |    :end-before: <!--><-->                              |
++--------------------------------------------------------+--------------------------------------------------------+
+
+.. _discovery_server_persistency_scenario_setup:
+
+UDPv4 persistency example
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All participants keeps record of all endpoints discovered (other participants, subscribers or publishers). Different
+kind of participants populate this record with different procedures:
+
+- *clients* receive this information from its *servers*.
+- *servers* receive this information from its *clients*.
+
+Given that *servers* used to have many *clients* associated, this is a lengthy process. In case of *server* failure we
+may be interested in speed up this process when the *server* restarts.
+
+Keep the discovery information in a file synchronize with the *server*'s record fulfills the goal. In order to enable
+this we must just specify the :ref:`discovery protocol <discovery_protocol>` as **BACKUP**.
+
+Once the *server* is created it generates a *server-<GUIDPREFIX>.db* (*exempli gratia
+server-73-65-72-76-65-72-63-6C-69-65-6E-74.db*) on its process working directory.
+
+In order to start afresh, that is without deserialize any discovery info, the old backup file must be removed or renamed
+before launching the server.
+
+.. _discovery_server_partitioning_setup:
+
+UDPv4 partitioning using servers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*Server* association can be seen as another isolation mechanism besides :ref:`domains <listening_locators>` and
+:ref:`partitions <partitions>`. *Clients* that do not share a *server* cannot see each other and belong to isolated
+server networks. In order to connect server isolated networks we can:
+
+    1. Connect each *client* to both *servers*.
+    2. Connect one *server* to the other.
+    3. Create a new *server* linked to the *servers* to which the clients are connected.
+
+Options 1 and 2 can only be implemented by modifying attributes or XML configuration files beforehand. In this regard
+they match the domain and partition strategy. Option 3 can be implemented at runtime, that is, when the isolated
+networks are already up and running.
+
+.. image:: ds_partition.png
+    :align: center
+    :width: 75%
+
+.. | @startuml
+.. |
+.. | package "Option 1 | Static" {
+.. |
+.. | component [Server 1] as 1_s1
+.. | component [Server 2] as 1_s2
+.. | (client 1) as 1_c1
+.. | (client 2) as 1_c2
+.. |
+.. | 1_s2 -[hidden]up- 1_s1
+.. | 1_c2 -[hidden]up- 1_c1
+.. |
+.. | }
+.. |
+.. | 1_s1 <- 1_c1
+.. | 1_s2 <- 1_c2
+.. |
+.. | 1_s1 <- 1_c2
+.. | 1_s2 <-left- 1_c1
+.. |
+.. | package "Option 2 | Static" {
+.. |
+.. | component [Server 1] as 2_s1
+.. | component [Server 2] as 2_s2
+.. | (client 1) as 2_c1
+.. | (client 2) as 2_c2
+.. |
+.. | 2_s2 -up- 2_s1
+.. | 2_c2 -[hidden]up- 2_c1
+.. |
+.. | }
+.. |
+.. | 2_s1 <- 2_c1
+.. |
+.. | 2_s2 <- 2_c2
+.. |
+.. | package "Option 3 | Dynamic" {
+.. |
+.. | component [Server 1] as 3_s1
+.. | component [Server 2] as 3_s2
+.. | component [Aux Server] as aux
+.. |
+.. | (client 1) as 3_c1
+.. | (client 2) as 3_c2
+.. |
+.. | 3_s2 <-up- aux
+.. | aux -up-> 3_s1
+.. | 3_c2 -[hidden]up- aux
+.. | aux -[hidden]up- 3_c1
+.. | }
+.. |
+.. | 3_s1 <-right- 3_c1
+.. |
+.. | 3_s2 <-right- 3_c2
+.. |
+.. | @enduml
+
+Option 1
+""""""""
+
+Connect each *client* to both *servers*. This case matches the :ref:`redundancy use case
+<discovery_server_redundancy_scenario_setup>` already introduced.
+
+Option 2
+""""""""
+
+Connect one *server* to the other. In this case we consider two servers, each one managing an isolated network:
+
+.. csv-table::
+    :header: "Network", "Prefix", "UDPv4 address"
+    :widths: 4,20,100
+
+    A, 75.63.2D.73.76.72.63.6C.6E.74.2D.31, "192.168.10.60:56543"
+    B, 75.63.2D.73.76.72.63.6C.6E.74.2D.32, "192.168.10.57:56542"
+
+In order to communicate both networks we can setup server A to act as client of server B as follows:
+
++--------------------------------------------------------+
+| **C++**                                                |
++--------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp             |
+|    :language: c++                                      |
+|    :start-after: //CONF_DS_PARTITION_2                 |
+|    :end-before: //!--                                  |
++--------------------------------------------------------+
+| **XML**                                                |
++--------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml              |
+|    :language: xml                                      |
+|    :start-after: <!-->CONF_DS_PARTITION_2<-->          |
+|    :end-before: <!--><-->                              |
++--------------------------------------------------------+
+
+Option 3
+""""""""
+
+Create a new *server* linked to the *servers* to which the clients are connected. In this case we have two isolated
+networks A and B, which may be up and running, and join them with a server C.
+
+.. csv-table::
+    :header: "Server", "Prefix", "UDPv4 address"
+    :widths: 4,20,100
+
+    A, 75.63.2D.73.76.72.63.6C.6E.74.2D.31, "192.168.10.60:56543"
+    B, 75.63.2D.73.76.72.63.6C.6E.74.2D.32, "192.168.10.57:56542"
+    C, 75.63.2D.73.76.72.63.6C.6E.74.2D.33, "192.168.10.54:56541"
+
+In order to communicate both networks we can setup server C to act as client of servers A and B as follows:
+
++--------------------------------------------------------+
+| **C++**                                                |
++--------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp             |
+|    :language: c++                                      |
+|    :start-after: //CONF_DS_PARTITION_3                 |
+|    :end-before: //!--                                  |
++--------------------------------------------------------+
+| **XML**                                                |
++--------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml              |
+|    :language: xml                                      |
+|    :start-after: <!-->CONF_DS_PARTITION_3<-->          |
+|    :end-before: <!--><-->                              |
++--------------------------------------------------------+
 
 .. _wide_deployments_static:
 

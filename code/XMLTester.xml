@@ -440,6 +440,27 @@
 </participant>
 <!--><-->
 
+<!-->CONF-SHM-TRANSPORT-SETTING<-->
+<transport_descriptors>
+    <!-- Create a descriptor for the new transport -->
+    <transport_descriptor>
+        <transport_id>shm_transport</transport_id>
+        <type>SHM</type>
+    </transport_descriptor>
+</transport_descriptors>
+
+<participant profile_name="SHMParticipant">
+    <rtps>
+        <!-- Link the Transport Layer to the Participant -->
+        <userTransports>
+            <transport_id>shm_transport</transport_id>
+        </userTransports>
+        <!-- Disable the built-in Transport Layer -->
+        <useBuiltinTransports>false</useBuiltinTransports>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->CONF-TCP2-TRANSPORT-SETTING<-->
 <transport_descriptors>
     <transport_descriptor>
@@ -1594,10 +1615,6 @@
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>
-                <clientAnnouncementPeriod>
-                    <sec>0</sec>
-                    <nanosec>250000000</nanosec>
-                </clientAnnouncementPeriod>
             </discovery_config>
             <metatrafficUnicastLocatorList>
                 <locator>
@@ -1618,10 +1635,6 @@
         <builtin>
             <discovery_config>
                 <discoveryProtocol>CLIENT</discoveryProtocol>
-                <clientAnnouncementPeriod>
-                    <sec>0</sec>
-                    <nanosec>250000000</nanosec>
-                </clientAnnouncementPeriod>
                 <discoveryServersList>
                     <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
                         <metatrafficUnicastLocatorList>
@@ -1640,6 +1653,168 @@
 </participant>
 <!--><-->
 
+<!-->CONF_DS_RDNCY_SCENARIO_SERVER<-->
+<participant profile_name="UDP SERVER 1">
+    <rtps>
+        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.57</address>
+                        <port>56542</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+        </builtin>
+    </rtps>
+</participant>
+
+<participant profile_name="UDP SERVER 2">
+    <rtps>
+        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.32</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.60</address>
+                        <port>56543</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->
+<participant profile_name="UDP CLIENT">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>CLIENT</discoveryProtocol>
+                <discoveryServersList>
+                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>56542</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.60</address>
+                                    <port>56543</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_DS_PARTITION_2<-->
+<participant profile_name="UDP SERVER A">
+    <rtps>
+        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+                <discoveryServersList>
+                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>56542</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.60</address>
+                        <port>56543</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+    </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF_DS_PARTITION_3<-->
+<participant profile_name="UDP SERVER C">
+    <rtps>
+        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.33</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+                <discoveryServersList>
+                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>56542</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.60</address>
+                                    <port>56543</port>
+                                </udpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.54</address>
+                        <port>56541</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+    </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
+<participant profile_name="participant_profile_static_pub">
+    <rtps>
+        <name>HelloWorldPublisher</name>
+        <builtin>
+            <discovery_config>
+                <EDP>STATIC</EDP>
+                <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
 <!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
 <participant profile_name="participant_profile_static_pub">
     <rtps>
@@ -2005,6 +2180,16 @@
         <transport_descriptor>
             <transport_id>ExampleTransportId2</transport_id>
             <type>UDPv6</type>
+        </transport_descriptor>
+        <!-- SHM sample transport descriptor -->
+        <transport_descriptor>
+            <transport_id>SHM_SAMPLE_DESCRIPTOR</transport_id>
+                <type>SHM</type> <!-- REQUIRED -->
+                <maxMessageSize>524288</maxMessageSize> <!-- OPTIONAL uint32 valid of all transports-->
+                <segment_size>1048576</segment_size> <!-- OPTIONAL uint32 SHM only-->
+                <port_queue_capacity>1024</port_queue_capacity> <!-- OPTIONAL uint32 SHM only-->
+                <healthy_check_timeout_ms>250</healthy_check_timeout_ms> <!-- OPTIONAL uint32 SHM only-->
+                <rtps_dump_file>test_file.dump</rtps_dump_file> <!-- OPTIONAL string SHM only-->
         </transport_descriptor>
     </transport_descriptors>
 

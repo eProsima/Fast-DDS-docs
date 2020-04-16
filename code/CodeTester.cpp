@@ -14,6 +14,7 @@
 #include <fastrtps/xmlparser/XMLEndpointParser.h>
 #include <fastrtps/transport/UDPv4TransportDescriptor.h>
 #include <fastrtps/transport/TCPv4TransportDescriptor.h>
+#include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastrtps/utils/IPLocator.h>
 #include <fastrtps/log/Log.h>
@@ -30,6 +31,7 @@ using namespace ::rtps;
 using namespace ::xmlparser;
 using namespace ::security;
 using namespace ::types;
+using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
 
 class HelloWorld
 {
@@ -167,6 +169,17 @@ participant_attr.rtps.useBuiltinTransports = false;
 
 //Link the Transport Layer to the Participant.
 participant_attr.rtps.userTransports.push_back(tcp_transport);
+//!--
+
+//CONF-SHM-TRANSPORT-SETTING
+// Create a descriptor for the new transport.
+std::shared_ptr<SharedMemTransportDescriptor> shm_transport = std::make_shared<SharedMemTransportDescriptor>();
+
+// Disable the built-in Transport Layer.
+participant_attr.rtps.useBuiltinTransports = false;
+
+// Link the Transport Layer to the Participant.
+participant_attr.rtps.userTransports.push_back(shm_transport);
 //!--
 
 //CONF-TCP2-TRANSPORT-SETTING
@@ -521,8 +534,97 @@ remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator
 
 participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
 participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
-participant_attr.rtps.builtin.discovery_config.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
 //!--
+
+{
+//CONF_DS_REDUNDANCY_SCENARIO_SERVER
+Locator_t server_locator_1, server_locator_2;
+
+IPLocator::setIPv4(server_locator_1, "192.168.10.57");
+server_locator_1.port = 56542;
+IPLocator::setIPv4(server_locator_2, "192.168.10.60");
+server_locator_2.port = 56543;
+
+ParticipantAttributes participant_attr_1, participant_attr_2;
+
+participant_attr_1.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+participant_attr_1.rtps.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
+participant_attr_1.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_locator_1);
+
+participant_attr_2.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+participant_attr_2.rtps.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+participant_attr_2.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_locator_2);
+//!--
+}
+
+{
+//CONF_DS_REDUNDANCY_SCENARIO_CLIENT
+Locator_t remote_server_locator_1, remote_server_locator_2;
+
+IPLocator::setIPv4(remote_server_locator_1, "192.168.10.57");
+remote_server_locator.port = 56542;
+IPLocator::setIPv4(remote_server_locator_2, "192.168.10.60");
+server_locator.port = 56543;
+
+RemoteServerAttributes remote_server_attr_1, remote_server_attr_2;
+
+remote_server_attr_1.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
+remote_server_attr_1.metatrafficUnicastLocatorList.push_back(remote_server_locator_1);
+remote_server_attr_2.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+remote_server_attr_2.metatrafficUnicastLocatorList.push_back(remote_server_locator_2);
+
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_1);
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_2);
+//!--
+}
+
+{
+//CONF_DS_PARTITION_2
+Locator_t server_locator, remote_server_locator;
+
+IPLocator::setIPv4(server_locator, "192.168.10.60");
+server_locator.port = 56543;
+IPLocator::setIPv4(remote_server_locator, "192.168.10.57");
+remote_server_locator.port = 56542;
+
+RemoteServerAttributes remote_server_attr;
+remote_server_attr.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator);
+
+participant_attr.rtps.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
+//!--
+}
+
+{
+//CONF_DS_PARTITION_3
+Locator_t server_locator, remote_server_locator_A, remote_server_locator_B;
+
+IPLocator::setIPv4(server_locator, "192.168.10.54");
+server_locator.port = 56541;
+IPLocator::setIPv4(remote_server_locator_A, "192.168.10.60");
+remote_server_locator_A.port = 56543;
+IPLocator::setIPv4(remote_server_locator_B, "192.168.10.57");
+remote_server_locator_B.port = 56542;
+
+RemoteServerAttributes remote_server_attr_A, remote_server_attr_B;
+remote_server_attr_A.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
+remote_server_attr_A.metatrafficUnicastLocatorList.push_back(remote_server_locator_A);
+remote_server_attr_B.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+remote_server_attr_B.metatrafficUnicastLocatorList.push_back(remote_server_locator_B);
+
+participant_attr.rtps.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.33");
+participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+
+participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_A);
+participant_attr.rtps.builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_B);
+//!--
+}
 
 {
 //STATIC_DISCOVERY_USE_CASE_PUB

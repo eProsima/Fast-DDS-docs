@@ -67,6 +67,7 @@ hostid
 interoperability
 libs
 lroundl
+loopback
 mandatorily
 metatraffic
 middleware
@@ -77,6 +78,7 @@ nack
 nupkg
 offsetd
 oneway
+persistency
 pluggable
 ppDisable
 ppPath
@@ -85,6 +87,7 @@ preallocates
 preprocessor
 readNextData
 redistributable
+replier
 repos
 retransmission
 rtps
@@ -99,6 +102,7 @@ submessage
 submessages
 submodules
 takeNextData
+tcpdump
 tinyxml
 topologies
 typeobject
@@ -110,3 +114,4 @@ unmatch
 vcstool
 whitelist
 whitelists
+Wireshark

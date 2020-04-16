@@ -24,6 +24,18 @@
                 <port>5200</port> <!-- uint16 -->
             </listening_ports>
         </transport_descriptor>
+
+        <!-- SHM sample transport descriptor -->
+        <transport_descriptor>
+            <transport_id>SHM_SAMPLE_DESCRIPTOR</transport_id>
+                <type>SHM</type> <!-- REQUIRED -->
+                <maxMessageSize>524288</maxMessageSize> <!-- OPTIONAL uint32 valid of all transports-->
+                <segment_size>1048576</segment_size> <!-- OPTIONAL uint32 SHM only-->
+                <port_queue_capacity>1024</port_queue_capacity> <!-- OPTIONAL uint32 SHM only-->
+                <healthy_check_timeout_ms>250</healthy_check_timeout_ms> <!-- OPTIONAL uint32 SHM only-->
+                <rtps_dump_file>test_file.dump</rtps_dump_file> <!-- OPTIONAL string SHM only-->
+        </transport_descriptor>
+
     </transport_descriptors>
 
     <types>

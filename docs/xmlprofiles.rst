@@ -96,7 +96,8 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | transport descriptor.             |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<type>``                    | Type of the transport descriptor. | :class:`UDPv4`, :class:`UDPv6`, | :class:`UDPv4` |
-|                               |                                   | :class:`TCPv4`, :class:`TCPv6`  |                |
+|                               |                                   | :class:`TCPv4`, :class:`TCPv6`, |                |
+|                               |                                   | :class:`SHM`                    |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
 | ``<sendBufferSize>``          | Size in bytes of the socket       | ``uint32``                      | 0              |
 |                               | send buffer.                      |                                 |                |
@@ -178,6 +179,28 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 |                               | parameters and options            |                                 |                |
 |                               | (TCP **only**).                   |                                 |                |
 +-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<segment_size>``            | Size (in bytes) of the            | ``uint32``                      | 262144         |
+|                               | shared-memory segment.            |                                 |                |
+|                               | (OPTIONAL, SHM **only**).         |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<port_queue_capacity>``     | Capacity (in number of messages)  | ``uint32``                      | 512            |
+|                               | available to every Listener       |                                 |                |
+|                               | (OPTIONAL, SHM **only**).         |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<healthy_check_timeout_ms>``| Maximum time-out (in milliseconds)| ``uint32``                      | 1000           |
+|                               | used when checking whether a      |                                 |                |
+|                               | Listener is alive & OK            |                                 |                |
+|                               | (OPTIONAL, SHM **only**).         |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+| ``<rtps_dump_file>``          | Complete path (including file)    | ``string``                      | empty          |
+|                               | where RTPS messages will be       |                                 |                |
+|                               | stored for debugging purposes.    |                                 |                |
+|                               | An empty string indicates no      |                                 |                |
+|                               | trace will be performed           |                                 |                |
+|                               | (OPTIONAL, SHM **only**).         |                                 |                |
++-------------------------------+-----------------------------------+---------------------------------+----------------+
+
+
 
 .. _rtcpdefinition:
 

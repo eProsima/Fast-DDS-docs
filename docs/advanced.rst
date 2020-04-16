@@ -224,8 +224,12 @@ Transports
 **********
 
 *eProsima Fast RTPS* implements an architecture of pluggable transports.
-Current version implements four transports: UDPv4, UDPv6, TCPv4 and TCPv6.
-By default, when a :class:`Participant` is created, one built-in UDPv4 transport is configured.
+Current version implements five transports: UDPv4, UDPv6, TCPv4, TCPv6 and SHM (shared memory).
+By default, when a :class:`Participant` is created, two built-in transports are configured:
+
+* SHM transport will be used for all communications between participants in the same machine.
+* UDPv4 will be used for inter machine communications.
+
 You can add custom transports using the attribute ``rtps.userTransports``.
 
 +-----------------------------------------------------+
@@ -245,6 +249,74 @@ You can add custom transports using the attribute ``rtps.userTransports``.
 +-----------------------------------------------------+
 
 All Transport configuration options can be found in the section :ref:`transportdescriptors`.
+
+.. _comm-transports-shm:
+
+Shared memory Transport (SHM)
+=============================
+
+The shared memory transport enables fast communications between entities running in the same processing unit/machine,
+relying on the shared memory mechanisms provided by the host operating system.
+
+SHM transport provides better performance than other transports like UDP / TCP, even when these transports use loopback
+interface.
+This is mainly due to the following reasons:
+
+ * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
+   network stacks requirements.
+   SHM transport allows the copy of full messages where the only size limit is the machine's memory capacity.
+
+ * Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can
+   directly share the same memory buffer with all the destination endpoints.
+   Other protocols require to perform one copy of the message per endpoint.
+
+ * Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system
+   calls than the other protocols.
+   Therefore there is a performance/time consume gain by using SHM.
+
+When two participants on the same machine have SHM transport enabled, all communications between them are automatically
+performed by SHM transport only.
+The rest of the enabled transports are not used between those two participants.
+
+In order to change the default parameters of SHM transport, you need to add the SharedMemTransportDescriptor to the
+``rtps.userTransports`` attribute (C++ code) or define a transport_descriptor of type SHM in the
+XML file. In both cases ``rtps.useBuiltinTransports`` must be disabled (see below examples).
+
++--------------------------------------------------+
+| **C++**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp       |
+|    :language: c++                                |
+|    :start-after: //CONF-SHM-TRANSPORT-SETTING    |
+|    :end-before: //!--                            |
++--------------------------------------------------+
+| **XML**                                          |
++--------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml        |
+|    :language: xml                                |
+|    :start-after: <!-->CONF-SHM-TRANSPORT-SETTING |
+|    :end-before: <!--><-->                        |
++--------------------------------------------------+
+
+SHM configuration parameters:
+
+ * ``segment_size``: The size of the shared memory segment in bytes.
+   A shared memory segment is created by each participant.
+   Participant's writers copy their messages into the segment and send a message reference to the destination readers.
+
+ * ``port_queue_capacity``: Each participant with SHM transport enabled listens on a queue (port) for incoming SHM
+   message references.
+   This parameter specifies the queue size (in messages).
+
+ * ``healthy_check_timeout_ms``: With SHM, Readers and writers use a queue to exchange messages (called Port).
+   If one of the processes involved crashes while using the port, the structure can be left inoperative.
+   For this reason, every time a port is opened, a healthy check is performed.
+   If the attached listeners don't respond in ``healthy_check_timeout_ms`` milliseconds, the port is destroyed and
+   created again.
+
+ * ``rtps_dump_file``: Full path, including the file name, of the protocol dump_file.
+   When this string parameter is not empty, all the participant's SHM traffic (sent and received) is traced to a file.
+   The output file format is *tcpdump* text hex, and can be read with protocol analyzer applications such as Wireshark.
 
 .. _comm-transports-tcp:
 
@@ -516,14 +588,49 @@ In that case, *eProsima Fast RTPS* understands to calculate well-known port for 
 Initial peers
 =============
 
-These locators are used to know where to send initial discovery network messages. You can set your own locators using
-attribute ``rtps.builtin.initialPeersList``. By default *eProsima Fast RTPS* uses as initial peers the Metatraffic
-Multicast Locators.
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), each participant must
+listen for incoming Participant Discovery Protocol (PDP) discovery metatraffic in two different ports, one linked with a
+multicast address, and another one linked to a unicast address (see :ref:`discovery`).
+Fast-RTPS allows for the configuration of an initial peers list which contains one or more such address-port pairs
+corresponding to remote participants PDP discovery listening resources, so that the local participant will not only
+send its PDP traffic to the default multicast address-port specified by its domain, but also to all the address-port
+pairs specified in the initial-peers list.
 
-.. literalinclude:: ../code/CodeTester.cpp
-    :language: c++
-    :start-after: //CONF-INITIALPEERS
-    :end-before: //!--
+A participant's initial peers list contains the list of address-port pairs of all other participants with
+which it will communicate.
+It is a list of addresses that a participant will use in the unicast discovery mechanism, together or as an alternative
+to multicast discovery.
+Therefore, this approach also applies to those scenarios in which multicast functionality is not available.
+
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the participants'
+discovery traffic unicast listening ports are calculated using the following equation:
+7400 + 250 * `domainID` + 10 + 2 * `participantID`.
+Thus, if for example a participant operates in Domain 0 (default
+domain) and its ID is 1, its discovery traffic unicast listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
+By default *eProsima Fast RTPS* uses as initial peers the Metatraffic Multicast Locators.
+
+The following constitutes an example configuring an Initial Peers list with one peer on host 192.168.10.13 with
+participant ID 1 in domain 0.
+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/CodeTester.cpp              |
+|    :language: c++                                       |
+|    :start-after: //CONF_INITIAL_PEERS_BASIC             |
+|    :end-before: //!--                                   |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: ../code/XMLTester.xml               |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->      |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
+
+.. These locators are used to know where to send initial discovery network messages. You can set your own locators using
+.. attribute ``rtps.builtin.initialPeersList``.
+
 
 .. _whitelist-interfaces:
 
@@ -941,11 +1048,11 @@ The lease duration is specified as a time expressed in seconds and nanosecond us
 Announcement Period
 -------------------
 
-It specifies the periodicity of the participant's PDP announcements.
-For liveliness shake it is recommend to be shorter than the lease duration, so that the participant's liveliness is
-asserted even when there is no data traffic.
-It is important to note that there is a trade-off involved in the setting of the announcement period, i.e. too frequent
-announcements will bloat the network with meta traffic, but too scarce ones will delay the discovery of late joiners.
+It specifies the periodicity of the participant's PDP announcements.  For liveliness' sake it is recommend that the
+announcement period is shorter than the lease duration, so that the participant's liveliness is asserted even when there
+is no data traffic.  It is important to note that there is a trade-off involved in the setting of the announcement
+period, i.e. too frequent announcements will bloat the network with meta traffic, but too scarce ones will delay the
+discovery of late joiners.
 
 Participant's announcement period is specified as a time expressed in seconds and nanosecond using a ``Duration_t``.
 
@@ -983,14 +1090,15 @@ The specification splits up the SIMPLE discovery protocol into two independent p
   exchange of information in order to discover the RTPS entities contained in each of them, i.e. the writer and
   reader Endpoints.
 
-+--------------------------+-----------------------------------------------------------------------+
-| Name                     | Description                                                           |
-+==========================+=======================================================================+
-| `Initial Announcements`_ | It defines the behavior of the RTPSParticipant initial announcements. |
-+--------------------------+-----------------------------------------------------------------------+
-| `Simple EDP Attributes`_ | It defines the use of the SIMPLE protocol as a discovery protocol.    |
-+--------------------------+-----------------------------------------------------------------------+
-
++------------------------------+-----------------------------------------------------------------------+
+| Name                         | Description                                                           |
++==============================+=======================================================================+
+| `Initial Announcements`_     | It defines the behavior of the RTPSParticipant initial announcements. |
++------------------------------+-----------------------------------------------------------------------+
+| `Simple EDP Attributes`_     | It defines the use of the SIMPLE protocol as a discovery protocol.    |
++------------------------------+-----------------------------------------------------------------------+
+| :ref:`Simple Initial Peers`  | A list of endpoints to which the SPDP announcements are sent.         |
++------------------------------+-----------------------------------------------------------------------+
 
 .. _`Initial Announcements`:
 
@@ -998,12 +1106,13 @@ Initial Announcements
 ---------------------
 
 `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ simple discovery mechanism requires the participant to
-send announcements. These announcements are not deliver in a reliable fashion, and can be disposed of by the network. In
-order to avoid the discovery delay induced by message disposal, the initial announcement can be set up to make several
-shots, in order to increase proper reception chances.
+send announcements. These announcements are not delivered in a reliable fashion, and can be disposed of by the network.
+In order to avoid the discovery delay induced by message disposal, the initial announcement can be set up to make
+several shots, in order to increase proper reception chances.
 
-Initial announcements only take place on participant creation. Once done, the only announcements enforced are the
-standard ones based on the ``leaseDuration_announcementperiod`` period (not the ``initial_announcements.period``).
+Initial announcements only take place upon participant creation. Once this phase is over, the only announcements
+enforced are the standard ones based on the ``leaseDuration_announcementperiod`` period (not the
+``initial_announcements.period``).
 
 +---------+--------------------------------------------------------------------+----------------+---------+
 | Name    | Description                                                        | Type           | Default |
@@ -1071,6 +1180,15 @@ Simple EDP Attributes
 |    :end-before: <!--><-->                               |
 +---------------------------------------------------------+
 
+.. _`Simple Initial Peers`:
+
+Initial Peers
+-------------
+
+By default, the SPDP protocol uses a well known multicast address for the participant discovery phase.
+With Fast-RTPS, it is possible to expand the list of endpoints to which the participant announcements are sent by
+configuring a list of initial peers, as explained in :ref:`initial-peers`.
+
 .. _discovery_static:
 
 STATIC Endpoints Discovery Settings
@@ -1128,7 +1246,7 @@ STATIC EDP XML Files Specification
 Since activating STATIC EDP suppresses all EDP meta traffic, the information about the remote entities (publishers and
 subscribers) must be statically specified, which is done using dedicated XML files.
 A participant may load several of such configuration files so that the information about different endpoints can be
-contained in one file, or split in different files to keep it more organized.
+contained in one file, or split into different files to keep it more organized.
 Fast-RTPS  provides a
 `Static Endpoint Discovery example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_
 that implements this EDP discovery protocol.
@@ -1266,8 +1384,8 @@ As a rule of thumb, all the elements that were specified on the remote endpoint 
 Loading STATIC EDP XML Files
 ----------------------------
 
-Statically discovered remote endpoints **must** define a unique *userID* on their profile, which value **must** agree
-with the one specified on the discovery configuration XML.
+Statically discovered remote endpoints **must** define a unique *userID* on their profile, whose value **must** agree
+with the one specified in the discovery configuration XML.
 This is done by setting the user ID on the entity attributes:
 
 +--------------------------------------------------------+
@@ -1313,7 +1431,7 @@ Server-Client Discovery
 =======================
 
 This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among participants
-to identify each other) is centralized in one or several server participants (left figure), as opposed to simple
+to identify each other) is managed by one or several server participants (left figure), as opposed to simple
 discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast
 protocol.
 
@@ -1331,11 +1449,11 @@ In this architecture there are several key concepts to understand:
 - The Server-client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard RTPS
   writers and readers.
 
-- Discovery server participants may be *clients* or *servers*. The only difference between them is on how the
-  meta-traffic is handled. The user traffic, that is, the traffic among the publishers and subscribers they create is
+- Discovery server participants may be *clients* or *servers*. The only difference between them is how they handle
+  meta-traffic. The user traffic, that is, the traffic among the publishers and subscribers they create is
   role-independent.
 
-- All *server* discovery info will be shared with their linked *clients* and likewise the own *clients* discovery info
+- All *server* and *client* discovery info will be shared with linked *clients*.
   will be shared with the *server* or *servers* linked to it. Note that a *server* may act as a *client* for other
   *servers*.
 
@@ -1359,13 +1477,13 @@ In this architecture there are several key concepts to understand:
      - *Clients* send hailing messages to the *servers* at regular intervals (ping period) until they receive message
        reception acknowledgement.
 
-     - *Servers* received the hailing messages but they don't start at once to share publishers or subscribers info with
+     - *Servers* receive the hailing messages but they don't start at once to share publishers or subscribers info with
        the newcomers. They only trigger this process at regular intervals (match period). Tuning this period is possible
        to bundle the discovery info and deliver it more efficiently.
 
 In order to clarify this discovery setup either on compile time (sources) or runtime (XML files) we are going to split
-it in two sections: one focus on the main concepts (:ref:`setup by concept <DS_setup_concepts>`) and other into the main
-attribute structures and XML tags (:ref:`setup by attribute<DS_setup_attributes>`).
+it into two sections: one focusing on the main concepts (:ref:`setup by concept <DS_setup_concepts>`) and the other on
+the main attribute structures and XML tags (:ref:`setup by attribute<DS_setup_attributes>`).
 
 .. _DS_setup_concepts:
 
@@ -1389,7 +1507,7 @@ Choosing between client and server
 It's set by the :ref:`Discovery Protocol <discovery_protocol>` general attribute. A participant can only play a role
 (despite the fact that a *server* may act as a *client* of other server). It's mandatory to fill this value because it
 defaults to *simple*.  The values associated with the Server-client discovery are specified in :ref:`discovery settings
-section <DS_DiscoverySettings>`. The examples below shown how to manage the corresponding enum attribute and XML tag:
+section <DS_DiscoverySettings>`. The examples below show how to manage the corresponding enum attribute and XML tag:
 
 .. code-block:: bash
 
@@ -1420,14 +1538,14 @@ section <DS_DiscoverySettings>`. The examples below shown how to manage the corr
 The server unique identifier ``GuidPrefix``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This belongs to the RTPS specification and univocally identifies each DDS participant. It consist on 12 bytes and is
-basically a key in the DDS domain. In the server-client discovery it has the purpose to link a *server* to its
-*clients*.  Note that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.
-It must be mandatorily specified in: *server side* and *client side* setups.
+This belongs to the RTPS specification and univocally identifies each DDS participant. It consists on 12 bytes and is a
+key in the DDS domain. In the server-client discovery, it has the purpose to link a *server* to its *clients*.  Note
+that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.  It must be
+mandatorily specified in: *server side* and *client side* setups.
 
 Server side setup
 """""""""""""""""
-The examples below shown how to manage the corresponding enum attribute and XML tag:
+The examples below show how to manage the corresponding enum attribute and XML tag:
 
 .. code-block:: bash
 
@@ -1494,13 +1612,13 @@ The server locator list
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each *server* must specify valid locators where it can be reached. Any *client* must be given proper locators to
-reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>` here there is a *server* and a *client* side
+reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>`, here there is a *server* and a *client* side
 setup.
 
 Server side setup
 """""""""""""""""
 
-The examples below shown how to setup the locator list attribute (note that discovery strategy only deals with
+The examples below show how to setup the locator list attribute (note that discovery strategy only deals with
 metatraffic attributes) and XML tag:
 
 .. code-block:: bash
@@ -1571,7 +1689,7 @@ Client ping period
 ^^^^^^^^^^^^^^^^^^
 
 As explained :ref:`above <DS_key_concepts>` the *clients* send hailing messages to the *servers* at regular
-intervals (ping period) until they received message reception acknowledgement. This period is specified in the member:
+intervals (ping period) until they receive message reception acknowledgement. This period is specified in the member:
 
 .. code-block:: bash
 
@@ -1653,8 +1771,8 @@ The settings related with server-client discovery are:
     Allows to specify some mandatory server discovery settings like the :raw-html:`<br />` addresses were it listens for
     clients discovery info."
     :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure. Allows
-    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` whether it is a client or a
-    server or the list of servers it is linked to or the client-ping, server-match frequencies."
+    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` whether it is a client or
+    a server or the list of servers it is linked to or the client-ping, server-match frequencies."
 
 .. _DS_RTPSParticipantAttributes:
 

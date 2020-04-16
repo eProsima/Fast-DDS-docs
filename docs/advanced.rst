@@ -1441,6 +1441,8 @@ protocol.
 
 .. _DS_key_concepts:
 
+A `Discovery-Server <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ tool is available to ease client-server setup and testing.
+
 Key concepts
 ------------
 

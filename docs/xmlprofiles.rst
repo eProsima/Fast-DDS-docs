@@ -588,7 +588,7 @@ Participant profiles
 --------------------
 
 Participant profiles allow declaring :ref:`participantconfiguration` from an XML file.
-All the configuration options for the participant except from ``domainId``, belong to the ``<rtps>`` label.
+All the configuration options for the participant, except from ``domainId``, belong to the ``<rtps>`` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -596,18 +596,6 @@ as shown in :ref:`loadingapplyingprofiles`.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-
-.. note::
-
-    - :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
-
-    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
-
-    - :class:`DURATION` means it expects a :ref:`DurationType`.
-
-    - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
-
-    - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
 
 List with the configuration tags:
 
@@ -623,7 +611,8 @@ List with the configuration tags:
 
 .. _RTPS:
 
-**RTPS Configuration**
+RTPS Configuration
+^^^^^^^^^^^^^^^^^^
 
 
 List with the possible configuration parameter:
@@ -703,6 +692,18 @@ List with the possible configuration parameter:
 
 .. | ``<userData>``    | Allows adding custom information.  | ``string``  |         |
 .. +-------------------+------------------------------------+-------------+---------+
+
+.. note::
+
+    - :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
+
+    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
+
+    - :class:`DURATION` means it expects a :ref:`DurationType`.
+
+    - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
+
+    - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
 
 .. _Port:
 

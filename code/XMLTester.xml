@@ -1035,6 +1035,7 @@
 
 <!-->XML-PARTICIPANT<-->
 <participant profile_name="part_profile_name">
+    <domainId>80</domainId>
     <rtps>
         <name>Participant Name</name> <!-- String -->
 

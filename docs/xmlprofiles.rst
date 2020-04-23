@@ -609,7 +609,7 @@ as shown in :ref:`loadingapplyingprofiles`.
 
     - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
 
-List with the possible configuration parameter:
+List with the configuration tags:
 
 +-----------------------------------+-----------------------------------+----------------------------------+---------+
 | Name                              | Description                       | Values                           | Default |
@@ -617,6 +617,20 @@ List with the possible configuration parameter:
 | ``<domainId>``                    | DomainId to be used by            | ``UInt32``                       | 0       |
 |                                   | the RTPSParticipant.              |                                  |         |
 +-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<rtps>``                        | RTPS parameters. Explained        |  `RTPS`_                         |         |
+|                                   | in `RTPS`_.                       |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+
+.. _RTPS:
+
+**RTPS Configuration**
+
+
+List with the possible configuration parameter:
+
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| Name                              | Description                       | Values                           | Default |
++===================================+===================================+==================================+=========+
 | ``<name>``                        | Participant's name.               | ``string_255``                   |         |
 |                                   | It's not the same                 |                                  |         |
 |                                   | field that ``profile_name``.      |                                  |         |

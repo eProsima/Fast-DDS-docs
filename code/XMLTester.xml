@@ -21,6 +21,8 @@
 <!-->PUBSUB_API_CONF_PARTICIPANT_DOMAIN<-->
 <participant profile_name="participant_xml_conf_domain_profile">
     <domainId>80</domainId>
+    <rtps>
+    </rtps>
 </participant>
 <!--><-->
 

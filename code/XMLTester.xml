@@ -3,11 +3,9 @@
 
 <!-->PUBSUB_API_CONF_PARTICIPANT<-->
 <participant profile_name="participant_xml_conf_profile">
+    <domainId>80</domainId>
     <rtps>
         <name>my_participant</name>
-        <builtin>
-            <domainId>80</domainId>
-        </builtin>
     </rtps>
 </participant>
 <!--><-->
@@ -22,11 +20,7 @@
 
 <!-->PUBSUB_API_CONF_PARTICIPANT_DOMAIN<-->
 <participant profile_name="participant_xml_conf_domain_profile">
-    <rtps>
-        <builtin>
-            <domainId>80</domainId>
-        </builtin>
-    </rtps>
+    <domainId>80</domainId>
 </participant>
 <!--><-->
 
@@ -1134,6 +1128,7 @@
 </participant>
 
 <participant profile_name="part_builtin_example">
+<domainId>4</domainId> <!-- uint32 -->
 <rtps>
 <!-->XML-BUILTIN<-->
 <builtin>
@@ -1173,8 +1168,6 @@
     <avoid_builtin_multicast>true</avoid_builtin_multicast>
 
     <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>  <!-- boolean -->
-
-    <domainId>4</domainId> <!-- uint32 -->
 
     <metatrafficUnicastLocatorList>
         <!-- LOCATOR_LIST -->
@@ -2271,6 +2264,7 @@
     </types>
 
     <participant profile_name="part_profile_example">
+        <domainId>4</domainId>
         <rtps>
             <name>Participant Name</name> <!-- String -->
 
@@ -2356,8 +2350,6 @@
                 </discovery_config>
 
                 <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>
-
-                <domainId>4</domainId>
 
                 <metatrafficUnicastLocatorList>
                     <locator>

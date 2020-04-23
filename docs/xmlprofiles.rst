@@ -804,9 +804,6 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 | |usewriliv|                    | Indicates to use the             | ``Boolean``             | :class:`true`         |
 |                                | WriterLiveliness protocol.       |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
-| ``<domainId>``                 | DomainId to be used by           | ``UInt32``              | 0                     |
-|                                | the RTPSParticipant.             |                         |                       |
-+--------------------------------+----------------------------------+-------------------------+-----------------------+
 | |metuniloc|                    | Metatraffic Unicast Locator      | |loclist|               |                       |
 |                                | List                             |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+

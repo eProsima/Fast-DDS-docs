@@ -125,6 +125,7 @@
     </types>
 
     <participant profile_name="part_profile_name">
+        <domainId>4</domainId> <!-- uint32 -->
         <rtps>
             <name>Participant Name</name> <!-- String -->
 
@@ -166,8 +167,6 @@
                 <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>  <!-- boolean -->
 
                 <EDP>SIMPLE</EDP> <!-- string SIMPLE | STATIC-->
-
-                <domainId>4</domainId> <!-- uint32 -->
 
                 <leaseDuration>
                     <sec>DURATION_INFINITY</sec><!-- string DURATION_INFINITY|DURATION_INFINITE_SEC|([0-9])* -->

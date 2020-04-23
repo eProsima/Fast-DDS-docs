@@ -588,7 +588,7 @@ Participant profiles
 --------------------
 
 Participant profiles allow declaring :ref:`participantconfiguration` from an XML file.
-All the configuration options for the participant belong to the ``<rtps>`` label.
+All the configuration options for the participant, except from ``domainId``, belong to the ``<rtps>`` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -597,17 +597,23 @@ as shown in :ref:`loadingapplyingprofiles`.
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
 
-.. note::
+List with the configuration tags:
 
-    - :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| Name                              | Description                       | Values                           | Default |
++===================================+===================================+==================================+=========+
+| ``<domainId>``                    | DomainId to be used by            | ``UInt32``                       | 0       |
+|                                   | the RTPSParticipant.              |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
+| ``<rtps>``                        | RTPS parameters. Explained        |  `RTPS`_                         |         |
+|                                   | in `RTPS`_.                       |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
 
-    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
+.. _RTPS:
 
-    - :class:`DURATION` means it expects a :ref:`DurationType`.
+RTPS Configuration
+^^^^^^^^^^^^^^^^^^
 
-    - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
-
-    - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
 
 List with the possible configuration parameter:
 
@@ -687,9 +693,22 @@ List with the possible configuration parameter:
 .. | ``<userData>``    | Allows adding custom information.  | ``string``  |         |
 .. +-------------------+------------------------------------+-------------+---------+
 
+.. note::
+
+    - :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
+
+    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
+
+    - :class:`DURATION` means it expects a :ref:`DurationType`.
+
+    - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
+
+    - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
+
 .. _Port:
 
-**Port Configuration**
+Port Configuration
+""""""""""""""""""
 
 +-------------------------+-----------------------------+------------+---------+
 | Name                    | Description                 | Values     | Default |
@@ -712,7 +731,7 @@ List with the possible configuration parameter:
 .. _ParticipantAllocationType:
 
 Participant allocation parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""
 
 This section of the :class:`Participant's rtps` configuration allows defining parameters related with allocation
 behavior on the participant.
@@ -769,7 +788,7 @@ behavior on the participant.
 .. _builtin:
 
 Built-in parameters
-^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""
 
 This section of the :class:`Participant's rtps` configuration allows defining built-in parameters.
 
@@ -803,9 +822,6 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | |usewriliv|                    | Indicates to use the             | ``Boolean``             | :class:`true`         |
 |                                | WriterLiveliness protocol.       |                         |                       |
-+--------------------------------+----------------------------------+-------------------------+-----------------------+
-| ``<domainId>``                 | DomainId to be used by           | ``UInt32``              | 0                     |
-|                                | the RTPSParticipant.             |                         |                       |
 +--------------------------------+----------------------------------+-------------------------+-----------------------+
 | |metuniloc|                    | Metatraffic Unicast Locator      | |loclist|               |                       |
 |                                | List                             |                         |                       |

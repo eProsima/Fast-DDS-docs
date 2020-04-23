@@ -936,7 +936,7 @@ void rtps_api_example_create_entities()
     //RTPS_API_CREATE_PARTICIPANT
     RTPSParticipantAttributes participant_attr;
     participant_attr.setName("participant");
-    RTPSParticipant* participant = RTPSDomain::createParticipant(participant_attr);
+    RTPSParticipant* participant = RTPSDomain::createParticipant(0, participant_attr);
     //!--
 
     {

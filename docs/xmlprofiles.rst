@@ -707,7 +707,8 @@ List with the possible configuration parameter:
 
 .. _Port:
 
-**Port Configuration**
+Port Configuration
+""""""""""""""""""
 
 +-------------------------+-----------------------------+------------+---------+
 | Name                    | Description                 | Values     | Default |
@@ -730,7 +731,7 @@ List with the possible configuration parameter:
 .. _ParticipantAllocationType:
 
 Participant allocation parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""
 
 This section of the :class:`Participant's rtps` configuration allows defining parameters related with allocation
 behavior on the participant.
@@ -787,7 +788,7 @@ behavior on the participant.
 .. _builtin:
 
 Built-in parameters
-^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""
 
 This section of the :class:`Participant's rtps` configuration allows defining built-in parameters.
 

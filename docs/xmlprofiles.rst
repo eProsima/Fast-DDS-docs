@@ -588,7 +588,7 @@ Participant profiles
 --------------------
 
 Participant profiles allow declaring :ref:`participantconfiguration` from an XML file.
-All the configuration options for the participant belong to the ``<rtps>`` label.
+All the configuration options for the participant except from ``domainId``, belong to the ``<rtps>`` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -614,6 +614,9 @@ List with the possible configuration parameter:
 +-----------------------------------+-----------------------------------+----------------------------------+---------+
 | Name                              | Description                       | Values                           | Default |
 +===================================+===================================+==================================+=========+
+| ``<domainId>``                    | DomainId to be used by            | ``UInt32``                       | 0       |
+|                                   | the RTPSParticipant.              |                                  |         |
++-----------------------------------+-----------------------------------+----------------------------------+---------+
 | ``<name>``                        | Participant's name.               | ``string_255``                   |         |
 |                                   | It's not the same                 |                                  |         |
 |                                   | field that ``profile_name``.      |                                  |         |

@@ -1,3 +1,5 @@
+.. _library_overview:
+
 Library Overview
 ================
 
@@ -7,7 +9,7 @@ You can interact with Fast RTPS at two different levels:
 * Publisher-Subscriber: Simplified abstraction over RTPS.
 * Writer-Reader: Direct control over RTPS endpoints.
 
-.. image:: architecture.png
+.. image:: /01-figures/architecture.png
 
 In red, the Publisher-Subscriber layer offers a convenient abstraction for most use cases.
 It allows you to define Publishers and Subscribers associated with a topic, and a simple way to transmit topic data.

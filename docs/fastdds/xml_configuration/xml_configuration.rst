@@ -1,4 +1,4 @@
-.. _xml-profiles:
+.. _xml_profiles:
 
 XML profiles
 ============
@@ -25,7 +25,7 @@ Making an XML
 An XML file can contain several XML profiles. The available profile types are :ref:`transportdescriptors`,
 :ref:`xmldynamictypes`, :ref:`participantprofiles`, :ref:`publisherprofiles`, and :ref:`subscriberprofiles`.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS<-->
     :lines: 1-6, 43-63
@@ -48,7 +48,7 @@ Before creating any entity, it's required to load XML files using ``Domain::load
 that expects the profile name as an argument. *eProsima Fast RTPS* searches the XML profile using
 this profile name and applies the XML profile to the entity.
 
-.. literalinclude:: ../code/CodeTester.cpp
+.. literalinclude:: /../code/CodeTester.cpp
     :language: cpp
     :start-after: //XML-LOAD-APPLY-PROFILES
     :end-before: //!--
@@ -58,13 +58,13 @@ To load dynamic types from its declaration through XML see the :ref:`Usage` sect
 .. _librarySettingsAttributes:
 
 Library settings
------------------
+----------------
 
 This section is devoted to general settings that are not constraint to specific entities
 (like participants, subscribers, publishers) or functionality (like transports or types).
 All of them are gathered under the ``library_settings`` profile.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->CONF-LIBRARY-SETTINGS<-->
     :end-before: <!--><-->
@@ -82,7 +82,7 @@ is instantiated it will use or create the related transport.
 
 The following XML code shows the complete list of configurable parameters:
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS<-->
     :lines: 1, 11-39, 53
@@ -216,7 +216,7 @@ TLS Configuration
 Fast-RTPS allows configuring TLS parameters through the ``<tls>`` tag of its Transport Descriptor.
 The full list of options is listed here:
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-TCP-TLS<-->
     :end-before: <!--><-->
@@ -290,14 +290,14 @@ Inside the types tag, there must be one or more type tags (``<type>``).
 
 Stand-Alone:
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-- STAND ALONE TYPES START -->
     :end-before: <!-- STAND ALONE TYPES END -->
 
 Rooted:
 
-.. literalinclude:: ../code/XMLTesterAux.xml
+.. literalinclude:: /../code/XMLTesterAux.xml
     :language: xml
     :start-after: <!-- ROOTED TYPES START -->
     :end-before: <!-- ROOTED TYPES END -->
@@ -320,7 +320,7 @@ Example:
 +-----------------------------------------------+-------------------------------------------------------+
 | XML                                           | C++                                                   |
 +===============================================+=======================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp            |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp           |
 |   :language: xml                              |     :language: cpp                                    |
 |   :start-after: <!-->XML-DYN-ENUM<-->         |     :start-after: //XML-DYN-ENUM                      |
 |   :end-before: <!--><-->                      |     :end-before: //!--                                |
@@ -337,7 +337,7 @@ Example:
 +-----------------------------------------------+------------------------------------------------------+
 | XML                                           | C++                                                  |
 +===============================================+======================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp           |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp          |
 |   :language: xml                              |     :language: cpp                                   |
 |   :start-after: <!-->XML-TYPEDEF<-->          |     :start-after: //XML-TYPEDEF                      |
 |   :end-before: <!--><-->                      |     :end-before: //!--                               |
@@ -353,7 +353,7 @@ Example:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-STRUCT<-->           |     :start-after: //XML-STRUCT                      |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -365,7 +365,7 @@ Structs can inherit from another structs:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-STRUCT-INHERIT<-->   |     :start-after: //XML-STRUCT-INHERIT              |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -385,7 +385,7 @@ Example:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-UNION<-->            |     :start-after: //XML-UNION                       |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -401,7 +401,7 @@ Example:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-BITSET<-->           |     :start-after: //XML-BITSET                      |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -416,7 +416,7 @@ Bitsets can inherit from another bitsets:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-BITSET-INHERIT<-->   |     :start-after: //XML-BITSET-INHERIT              |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -432,7 +432,7 @@ Example:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-BITMASK<-->          |     :start-after: //XML-BITMASK                     |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -473,7 +473,7 @@ All of them are defined as follows:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-GENERIC<-->          |     :start-after: //XML-GENERIC                     |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -491,7 +491,7 @@ Example:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-ARRAYS<-->           |     :start-after: //XML-ARRAYS                      |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -515,7 +515,7 @@ Example:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-SEQUENCES<-->        |     :start-after: //XML-SEQUENCES                   |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -544,7 +544,7 @@ Example:
 +-----------------------------------------------+-----------------------------------------------------+
 | XML                                           | C++                                                 |
 +===============================================+=====================================================+
-| .. literalinclude:: ../code/XMLTester.xml     | .. literalinclude:: ../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
 |   :language: xml                              |     :language: cpp                                  |
 |   :start-after: <!-->XML-MAPS<-->             |     :start-after: //XML-MAPS                        |
 |   :end-before: <!--><-->                      |     :end-before: //!--                              |
@@ -563,7 +563,7 @@ Once defined, complex types can be used as members in the same way a basic or ar
 
 Example:
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-COMPLEX<-->
     :end-before: <!--><-->
@@ -577,7 +577,7 @@ In the application that will make use of *XML Types*, it's mandatory to load the
 the types before trying to instantiate *DynamicPubSubTypes* of these types.
 It's important to remark that only ``<struct>`` types generate usable *DynamicPubSubType* instances.
 
-.. literalinclude:: ../code/CodeTester.cpp
+.. literalinclude:: /../code/CodeTester.cpp
     :language: cpp
     :start-after: //XML-USAGE
     :end-before: //!--
@@ -592,7 +592,7 @@ All the configuration options for the participant, except from ``domainId``, bel
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
@@ -736,7 +736,7 @@ Participant allocation parameters
 This section of the :class:`Participant's rtps` configuration allows defining parameters related with allocation
 behavior on the participant.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-PARTICIPANT-ALLOCATION<-->
     :end-before: <!--><-->
@@ -792,7 +792,7 @@ Built-in parameters
 
 This section of the :class:`Participant's rtps` configuration allows defining built-in parameters.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-BUILTIN<-->
     :end-before: <!--><-->
@@ -969,7 +969,7 @@ Publisher profiles allow declaring :ref:`Publisher configuration <pubsubconfigur
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in the :ref:`loadingapplyingprofiles` section.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-PUBLISHER<-->
     :end-before: <!--><-->
@@ -1070,7 +1070,7 @@ Subscriber profiles allow declaring :ref:`Subscriber configuration <pubsubconfig
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-SUBSCRIBER<-->
     :end-before: <!--><-->
@@ -1173,7 +1173,7 @@ for example, in ``<defaultUnicastLocatorList>``.
 The locator kind is defined by its own tag and can take the values ``<udpv4>``, ``<tcpv4>``, ``<udpv6>``, and
 ``<tcpv6>``:
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-LOCATOR-LIST<-->
     :end-before: <!--><-->
@@ -1210,7 +1210,7 @@ PropertiesPolicyType
 PropertiesPolicyType (XML label ``<propertiesPolicy>``) allows defining a set of generic properties.
 It's useful at defining extended or custom configuration parameters.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-PROPERTIES-POLICY<-->
     :end-before: <!--><-->
@@ -1235,7 +1235,7 @@ DurationType expresses a period of time and it's commonly used as an anonymous t
 Instead, it is used inside other configuration parameter labels that give it sense, like ``<leaseAnnouncement>`` or
 ``<leaseDuration>``.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-DURATION<-->
     :end-before: <!--><-->
@@ -1261,7 +1261,7 @@ The topic name and data type are used as meta-data to determine whether Publishe
 messages.
 There is a deeper explanation of the "topic" field here: :ref:`Topic_information`.
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-TOPIC<-->
     :end-before: <!--><-->
@@ -1350,7 +1350,7 @@ The quality of service (QoS) handles the restrictions applied to the application
         <!-- DURABILITY_SERVICE -->
     </durabilityService>
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-QOS<-->
     :end-before: <!--><-->
@@ -1429,7 +1429,7 @@ The quality of service (QoS) handles the restrictions applied to the application
 
     Durability defines the behavior regarding samples that existed on the topic before a subscriber joins.
 
-    .. literalinclude:: ../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
        :language: xml
        :start-after: <!-->XML_DURABILITYSERVICE<-->
        :end-before: <!--><-->
@@ -1569,7 +1569,7 @@ Don't take it as a working example.
         <max_samples_per_instance>5</max_samples_per_instance>
     </durabilityService>
 
-.. literalinclude:: ../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-EXAMPLE<-->
     :end-before: <!--><-->

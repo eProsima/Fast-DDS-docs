@@ -119,6 +119,33 @@ execute_process(COMMAND ${CMAKE_COMMAND} --build .
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/external
     )
 
+#########################################################################################################################
+# Build Doxygen documentation
+#########################################################################################################################
+
+find_package(Doxygen REQUIRED)
+# Create doxygen directories
+add_custom_target(doc-dirs
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_BINARY_DIR}/doxygen
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_BINARY_DIR}/html
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_BINARY_DIR}/html/doxygen
+    COMMENT "Creating documentation directories" VERBATIM)
+
+# Get header files from repo instead of from installation. This way Fast RTPS does not need to be compiled
+file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/**/*.h*")
+
+# Configure doxygen
+configure_file(doxygen-config.in ${PROJECT_BINARY_DIR}/doxygen-config @ONLY IMMEDIATE)
+add_custom_command(OUTPUT "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml"
+    COMMAND "${DOXYGEN_EXECUTABLE}" "${PROJECT_BINARY_DIR}/doxygen-config"
+    DEPENDS ${HPP_FILES}
+    )
+# Generate API reference
+add_custom_target(doxygen ALL
+    DEPENDS "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml"
+    COMMENT "Generated API documentation with doxygen" VERBATIM)
+add_dependencies(doxygen doc-dirs)
+
 ########################################################################################################################
 # Build example and tests
 ########################################################################################################################

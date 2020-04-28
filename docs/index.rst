@@ -10,6 +10,7 @@ eProsima Fast RTPS Documentation
 .. toctree::
    :caption: Installation manual
    :maxdepth: 2
+   :numbered: 3
 
    /installation/requirements/requirements
    /installation/binaries/binaries
@@ -36,6 +37,7 @@ eProsima Fast RTPS Documentation
    dynamictypes
    persistence
    /fastdds/xml_configuration/xml_configuration
+   /fastdds/env_vars/env_vars
    fastrtpsgen
    /use_cases/use_cases
 
@@ -45,6 +47,7 @@ eProsima Fast RTPS Documentation
 .. toctree::
    :caption: FastRTPSGen Manual
    :maxdepth: 2
+   :numbered: 3
 
    geninfo
    genuse

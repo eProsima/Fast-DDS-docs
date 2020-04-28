@@ -1,2 +1,0 @@
-Domain Participant
-------------------

@@ -1,13 +1,13 @@
 .. _installation-from-sources:
 
 Installation from Sources
-#########################
+=========================
 
 Dependencies
-************
+------------
 
 Asio and TinyXML2 libraries
-===========================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On Linux, you can install these libraries using the package manager of your Linux distribution.
 For example, on Ubuntu you can install them by using its package manager with the next command.
@@ -32,7 +32,7 @@ Once these packages are downloaded, open an administrative shell and execute the
 Please replace ``<PATH\TO\DOWNLOADS>`` with the folder you downloaded the packages to.
 
 Colcon installation
-*******************
+-------------------
 
 colcon_ is a command line tool to build sets of software packages.
 This section explains to use it to compile easily Fast-RTPS and its dependencies.
@@ -57,7 +57,7 @@ Finally, use colcon_ to compile all software:
     $ colcon build
 
 Manual installation
-*******************
+-------------------
 
 Before compiling manually Fast RTPS you need to clone the following dependencies and compile them using CMake_.
 
@@ -97,7 +97,7 @@ CMake.
 For generate *fastrtpsgen* please see :ref:`compile-fastrtpsgen`.
 
 Fast-RTPS-gen
-*************
+-------------
 
 If you want to compile *fastrtpsgen* java application, you will need to download its source code from
 the `Fast-RPTS-Gen <https://github.com/eProsima/Fast-RTPS-Gen>`_ repository and with ``--recursive`` option and
@@ -105,7 +105,7 @@ compile it calling ``gradle assemble``. For more details see :ref:`compile-fastr
 
 
 Security
-********
+--------
 
 By default, Fast RTPS doesn't compile security support.
 You can activate it adding ``-DSECURITY=ON`` at CMake configuration step.
@@ -115,7 +115,7 @@ When security is activated on compilation Fast RTPS builds several built-in secu
 Some of them have the dependency of OpenSSL library.
 
 OpenSSL installation on Linux
-=============================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Surely you can install OpenSSL using the package manager of your Linux distribution.
 For example, on Ubuntu you can install OpenSSL using its package manager with next command.
@@ -125,7 +125,7 @@ For example, on Ubuntu you can install OpenSSL using its package manager with ne
    sudo apt install libssl-dev
 
 OpenSSL installation on Windows
-===============================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _webpage: https://slproweb.com/products/Win32OpenSSL.html
 

@@ -30,6 +30,7 @@
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'breathe'
 ]
 try:
     import sphinxcontrib.spelling  # noqa: F401
@@ -358,3 +359,6 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
 # texinfo_no_detailmenu = False
+
+breathe_projects = { "Fast RTPS": "../build/code/doxygen/xml/" }
+breathe_default_project = "Fast RTPS"

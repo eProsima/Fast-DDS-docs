@@ -91,7 +91,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = []
+exclude_patterns = ['*/includes/*.rst', '*/*/includes/*.rst']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -156,7 +156,7 @@ html_theme = 'sphinx_rtd_theme'
 # html_logo = None
 
 # The name of an image file (relative to this directory) to use as a favicon of
-# the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
+# the docs. This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #
 # html_favicon = None
@@ -168,7 +168,7 @@ html_static_path = ['_static']
 
 html_context = {
         'css_files': [
-            '_static/css/fiware_readthedocs.css', #logo
+            '_static/css/fiware_readthedocs.css',  # logo
             ],
         }
 
@@ -284,7 +284,7 @@ latex_documents = [
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 #
-# latex_logo = logo.png
+# latex_logo = 01-figures/logo.png
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

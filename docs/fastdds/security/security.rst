@@ -330,14 +330,14 @@ The value in this element identifies the collection of Domains values to which t
 
 The ``<domains>`` element can contain a single domain identifier, for example:
 
-.. literalinclude:: ../code/GovernanceTester.xml
+.. literalinclude:: /../code/GovernanceTester.xml
    :language: xml
    :start-after: <!-->GOVERNANCE_DOMAIN_ID
    :end-before: <!--><-->
 
 Or it can contain a range of domain identifiers, for example:
 
-.. literalinclude:: ../code/GovernanceTester.xml
+.. literalinclude:: /../code/GovernanceTester.xml
    :language: xml
    :start-after: <!-->GOVERNANCE_RANGE_DOMAINS
    :end-before: <!--><-->
@@ -561,7 +561,7 @@ element.
 The Topic name expression syntax and matching shall use the syntax and rules of the POSIX ``fnmatch()`` function as
 specified in *POSIX 1003.1-1992, Section B.6*.
 
-.. literalinclude:: ../code/PermissionsTester.xml
+.. literalinclude:: /../code/PermissionsTester.xml
    :language: xml
    :start-after: <!-->PERMISSIONS_TOPIC_CONDITION
    :end-before: <!--><-->
@@ -576,7 +576,7 @@ Partition names expression syntax and matching shall use the syntax and rules of
 specified in *POSIX 1003.2-1992, Section B.6*.
 If there is no ``<partitions>`` section within a rule, then the default "empty string" partition is assumed.
 
-.. literalinclude:: ../code/PermissionsTester.xml
+.. literalinclude:: /../code/PermissionsTester.xml
    :language: xml
    :start-after: <!-->PERMISSIONS_PARTITION_CONDITION
    :end-before: <!--><-->
@@ -622,21 +622,21 @@ This example show you how to configure a Participant to activate and configure :
 
 **Participant attributes**
 
-+-------------------------------------------------+
-| **C++**                                         |
-+-------------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp      |
-|    :language: c++                               |
-|    :start-after: //SECURITY_CONF_ALL_PLUGINS    |
-|    :end-before: //!--                           |
-+-------------------------------------------------+
-| **XML**                                         |
-+-------------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml       |
-|    :language: xml                               |
-|    :start-after: <!-->SECURITY_CONF_ALL_PLUGINS |
-|    :end-before: <!--><-->                       |
-+-------------------------------------------------+
++--------------------------------------------------+
+| **C++**                                          |
++--------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp      |
+|    :language: c++                                |
+|    :start-after: //SECURITY_CONF_ALL_PLUGINS     |
+|    :end-before: //!--                            |
++--------------------------------------------------+
+| **XML**                                          |
++--------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml       |
+|    :language: xml                                |
+|    :start-after: <!-->SECURITY_CONF_ALL_PLUGINS  |
+|    :end-before: <!--><-->                        |
++--------------------------------------------------+
 
 This example shows you how to configure a Participant to activate and configure :ref:`auth-pki-dh` and
 :ref:`crypto-aes-gcm-gmac` plugins, without and Access control plugin.
@@ -648,14 +648,14 @@ a writer to encrypt the payload (user data).
 +------------------------------------------------------------+
 | **C++**                                                    |
 +------------------------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp                 |
+| .. literalinclude:: /../code/CodeTester.cpp                |
 |    :language: c++                                          |
 |    :start-after: //SECURITY_CONF_AUTH_AND_CRYPT_PLUGINS    |
 |    :end-before: //!--                                      |
 +------------------------------------------------------------+
 | **XML**                                                    |
 +------------------------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml                  |
+| .. literalinclude:: /../code/XMLTester.xml                 |
 |    :language: xml                                          |
 |    :start-after: <!-->SECURITY_CONF_AUTH_AND_CRYPT_PLUGINS |
 |    :end-before: <!--><-->                                  |
@@ -666,14 +666,14 @@ a writer to encrypt the payload (user data).
 +----------------------------------------------------------------------+
 | **C++**                                                              |
 +----------------------------------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp                           |
+| .. literalinclude:: /../code/CodeTester.cpp                          |
 |    :language: c++                                                    |
 |    :start-after: //SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS    |
 |    :end-before: //!--                                                |
 +----------------------------------------------------------------------+
 | **XML**                                                              |
 +----------------------------------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml                            |
+| .. literalinclude:: /../code/XMLTester.xml                           |
 |    :language: xml                                                    |
 |    :start-after: <!-->SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS |
 |    :end-before: <!--><-->                                            |
@@ -684,14 +684,14 @@ a writer to encrypt the payload (user data).
 +-----------------------------------------------------------------------+
 | **C++**                                                               |
 +-----------------------------------------------------------------------+
-| .. literalinclude:: ../code/CodeTester.cpp                            |
+| .. literalinclude:: /../code/CodeTester.cpp                           |
 |    :language: c++                                                     |
 |    :start-after: //SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS    |
 |    :end-before: //!--                                                 |
 +-----------------------------------------------------------------------+
 | **XML**                                                               |
 +-----------------------------------------------------------------------+
-| .. literalinclude:: ../code/XMLTester.xml                             |
+| .. literalinclude:: /../code/XMLTester.xml                            |
 |    :language: xml                                                     |
 |    :start-after: <!-->SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS |
 |    :end-before: <!--><-->                                             |

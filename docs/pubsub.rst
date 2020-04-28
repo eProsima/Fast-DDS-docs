@@ -102,7 +102,7 @@ Also, it can be configured through an XML profile.
     :start-after: //PUBSUB_API_CONF_PARTICIPANT_XML
     :end-before: //!--
 
-About XML profiles you can learn more in :ref:`xml-profiles`.
+About XML profiles you can learn more in :ref:`xml_profiles`.
 This is an example of a participant XML profile.
 
 .. literalinclude:: ../code/XMLTester.xml

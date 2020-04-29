@@ -50,3 +50,17 @@ TypeObjectV
 xtypes
 TypeInformation
 Pid
+TimeInifinite
+TimeInfinite
+serialised
+TimeZero
+const
+TimeZero
+TimeInfinite
+TimeInfinite
+TimeInfinite
+TypeConsistencyQos
+enpoint
+TimeZero
+Enum
+synchronism

@@ -1,6 +1,8 @@
 DDS DCPS PIM
 ============
 
+Data Distribution Service (DDS) Data-Centric Publish-Subscribe (DCPS) Platform Independent Model (PIM) API
+
 .. toctree::
 
    /fastdds/api_reference/includes/dds_pim/core/core.rst

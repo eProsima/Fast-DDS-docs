@@ -1,0 +1,26 @@
+Version 1.9.4
+^^^^^^^^^^^^^
+
+This release adds the following features:
+
+* Intra-process delivery mechanism is now active by default.
+* Synchronous writers are now allowed to send fragments.
+* New memory mode DYNAMIC_RESERVE on history pool.
+* Performance tests can now be run on Windows and Mac.
+* XML profiles for requester and replier.
+
+It also includes the following bug fixes and improvements:
+
+* Bump to FastCDR v1.0.12.
+* Bump to Fast-RTPS-Gen v1.0.3.
+* Fixed deadlock between PDP and StatefulReader.
+* Improved CPU usage and allocations on timed events management.
+* Performance improvements on reliable writers.
+* Fixing bugs when Intra-process delivery is activated.
+* Reducing dynamic allocations and memory footprint.
+* Improvements and fixes on performance tests.
+* Other minor bug fixes and improvements.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.
+

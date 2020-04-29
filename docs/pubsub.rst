@@ -25,7 +25,7 @@ The default configuration provides a basic working set of options with predefine
 During this tutorial, you will learn to tune *eProsima Fast RTPS*.
 
 In order to use our topic, we have to register it within the :class:`Participant` using the code generated with
-*fastrtpsgen* (see :ref:`fastrtpsgen-intro`.
+*fastrtpsgen* (see :ref:`fastrtpsgen_intro`.
 Once again, this is done by using the :class:`Domain` class:
 
 .. literalinclude:: ../code/CodeTester.cpp

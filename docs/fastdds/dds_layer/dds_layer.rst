@@ -1,3 +1,5 @@
+.. _dds_layer:
+
 DDS Layer
 =========
 

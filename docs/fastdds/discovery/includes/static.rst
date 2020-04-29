@@ -13,15 +13,15 @@ It is important to note that by doing this, no EDP discovery meta traffic will b
 defined in the configuration will be able to communicate.
 The STATIC endpoint discovery related settings are:
 
-+--------------------------+-----------------------------------------------------------------------------------+
-| Name                     | Description                                                                       |
-+==========================+===================================================================================+
-| :ref:`static_edp`        | It activates the STATIC endpoint discovery protocol                               |
-+--------------------------+-----------------------------------------------------------------------------------+
-| :ref:`static_xml`        | Specifies an XML file containing a description of the remote endpoints.           |
-+--------------------------+-----------------------------------------------------------------------------------+
-| `Initial Announcements`_ | It defines the behavior of the RTPSParticipant initial announcements (PDP phase). |
-+--------------------------+-----------------------------------------------------------------------------------+
++------------------------------+-----------------------------------------------------------------------------------+
+| Name                         | Description                                                                       |
++==============================+===================================================================================+
+| :ref:`static_edp`            | It activates the STATIC endpoint discovery protocol                               |
++------------------------------+-----------------------------------------------------------------------------------+
+| :ref:`static_xml`            | Specifies an XML file containing a description of the remote endpoints.           |
++------------------------------+-----------------------------------------------------------------------------------+
+| :ref:`Initial Announcements` | It defines the behavior of the RTPSParticipant initial announcements (PDP phase). |
++------------------------------+-----------------------------------------------------------------------------------+
 
 .. _static_edp:
 
@@ -233,3 +233,4 @@ On the local participant, loading STATIC EDP configuration files is done by:
 
 .. role:: raw-html(raw)
     :format: html
+

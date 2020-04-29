@@ -408,8 +408,8 @@ the clients.
 DiscoverySettings
 """""""""""""""""
 
-A discovery_protocol_ ``discoveryProtocol`` member specifies the participant's discovery kind. As was explained before
-to setup a server-client discovery it may be:
+A ``discoveryProtocol`` member (:ref:`discovery_protocol`) specifies the participant's discovery kind. As was explained
+before to setup a server-client discovery it may be:
 
 .. csv-table::
     :header: "enum value", "Description"
@@ -433,7 +433,7 @@ to setup a server-client discovery it may be:
     collect client information again, introducing a recovery delay."
 
 A ``RemoteServerList_t m_DiscoveryServers`` that lists the servers linked to a client participant. This member has only
-significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. These member elements are
+significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP**. These member elements are
 ``RemoteServerAttributes`` objects that identify each server and report where the servers can be reached:
 
 .. list-table::
@@ -451,7 +451,7 @@ significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. The
      - Are ordinary ``LocatorList_t`` (see :ref:`LocatorListType`) where the server's locators must be specified.
        :raw-html:`<br />` At least one of them should be populated.
    * - ``Duration_t discoveryServer_client_syncperiod``
-     - Has only significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**.
+     - Has only significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP**.
        :raw-html:`<br />`
        For a *client* it specifies the pinging period as explained in :ref:`key concepts <DS_key_concepts>`.
        :raw-html:`<br />`
@@ -481,3 +481,5 @@ significance if discovery_protocol_ is **CLIENT**, **SERVER** or **BACKUP**. The
 |    :start-after: <!-->CONF-SERVER-PING                     |
 |    :end-before: <!--><-->                                  |
 +------------------------------------------------------------+
+
+

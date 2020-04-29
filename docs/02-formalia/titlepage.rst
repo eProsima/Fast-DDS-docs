@@ -31,7 +31,7 @@ eProsima Fast RTPS has been adopted by multiple organizations in many sectors in
 
 This documentation is organized into the following sections:
 
-* :ref:`installation`
-* :ref:`user`
-* :ref:`gen`
-* :ref:`notes`
+* :ref:`index_installation`
+* :ref:`index_fast_dds`
+* :ref:`index_gen`
+* :ref:`index_notes`

@@ -7,14 +7,14 @@
 Security
 ========
 
-.. include:: /fastdds/security/includes/intro.rst
+.. include:: includes/intro.rst
 
-.. include:: /fastdds/security/includes/auth_plugins.rst
+.. include:: includes/auth_plugins.rst
 
-.. include:: /fastdds/security/includes/access_control_plugins.rst
+.. include:: includes/access_control_plugins.rst
 
-.. include:: /fastdds/security/includes/crypto_plugins.rst
+.. include:: includes/crypto_plugins.rst
 
-.. include:: /fastdds/security/includes/builtin_plugins.rst
+.. include:: includes/builtin_plugins.rst
 
-.. include:: /fastdds/security/includes/example.rst
+.. include:: includes/example.rst

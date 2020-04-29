@@ -60,653 +60,6 @@ This consist of defining a maximum number of data sinks and a maximum size for e
 Note that your History must be big enough to accommodate the maximum number of samples for each key.
 eProsima Fast RTPS will notify you if your History is too small.
 
-.. _partitions:
-
-Partitions
-**********
-
-Partitions introduce a logical entity isolation level concept inside the physical isolation induced by a Domain.
-They represent another level to separate Publishers and Subscribers beyond Domain and Topic.
-For a Publisher to communicate with a Subscriber, they have to belong at least to a common partition.
-In this sense, partitions represent a light mechanism to provide data separation among Endpoints:
-
- * Unlike Domain and Topic, Partitions can be changed dynamically during the life cycle of the
-   Endpoint with little cost.
-   Specifically, no new threads are launched, no new memory is allocated, and the change history is not affected.
-   Beware that modifying the Partition membership of endpoints will trigger the announcement
-   of the new QoS configuration, and as a result, new Endpoint matching may occur,
-   depending on the new Partition configuration.
-   Changes on the memory allocation and running threads may occur due to the matching of remote Endpoints.
-
- * Unlike Domain and Topic, an Endpoint can belong to several Partitions at the same time.
-   For certain data to be shared over different Topics, there must be a different Publisher for each Topic,
-   each of them sharing its own history of changes.
-   On the other hand, a single Publisher can share the same data over different Partitions using a single topic change,
-   thus reducing network overload.
-
-The Partition membership of an Endpoint can be configured on the :class:`qos.m_partitions` attribute of
-the :class:`PublisherAttributes` or :class:`SubscriberAttributes` objects.
-This attribute holds a list of Partition name strings.
-If no Partition is defined for an Entity, it will be automatically included in the default nameless Partition.
-Therefore, a Publisher and a Subscriber that specify no Partition will still be able to communicate through
-the default Partition.
-
-.. note::
-
-   Partitions are linked to the Endpoint and not to the changes.
-   This means that the Endpoint history is oblivious to modifications in the Partitions.
-   For example, if a Publisher switches Partitions and afterwards needs to resend some older change again,
-   it will deliver it to the new Partition set, regardless of which Partitions were defined
-   when the change was created.
-   This means that a late joiner Subscriber may receive changes that were created when another
-   set of Partitions was active.
-
-Wildcards in Partitions
-=======================
-
-Partition name entries can have wildcards following the naming conventions defined by the
-POSIX ``fnmatch`` API (1003.2-1992 section B.6).
-Entries with wildcards can match several names, allowing an Endpoint to easily be included in several Partitions.
-Two Partition names with wildcards will match if either of them matches the other one according to ``fnmatch``.
-That is, the matching is checked both ways.
-For example, consider the following configuration:
-
- - A publisher with Partition ``part*``
- - A subscriber with Partition ``partition*``
-
-Even though ``partition*`` does not match ``part*``, these publisher and subscriber will communicate
-between them because ``part*`` matches ``partition*``.
-
-Note that a Partition with name ``*`` will match any other partition **except the default Partition**.
-
-Full example
-============
-
-Given a system with the following Partition configuration:
-
-+----------------+---------+--------------------------------+
-| Participant_1  | Pub_11  | {"Partition_1", "Partition_2"} |
-+                +---------+--------------------------------+
-|                | Pub_12  | {"*"}                          |
-+----------------+---------+--------------------------------+
-| Participant_2  | Pub_21  | {}                             |
-+                +---------+--------------------------------+
-|                | Pub_22  | {"Partition*"}                 |
-+----------------+---------+--------------------------------+
-| Participant_3  | Subs_31 | {"Partition_1"}                |
-+                +---------+--------------------------------+
-|                | Subs_32 | {"Partition_2"}                |
-+                +---------+--------------------------------+
-|                | Subs_33 | {"Partition_3"}                |
-+                +---------+--------------------------------+
-|                | Subs_34 | {}                             |
-+----------------+---------+--------------------------------+
-
-The endpoints will finally match the Partitions depicted on the following table.
-Note that ``Pub_12`` does not match the default Partition.
-
-+--------------+-------------------+-------------------+---------------------------------------+
-|              | Participant_1     | Participant_2     | Participant_3                         |
-|              +---------+---------+---------+---------+---------+---------+---------+---------+
-|              | Pub_11  | Pub_12  | Pub_21  | Pub_22  | Subs_31 | Subs_32 | Subs_33 | Subs_34 |
-+--------------+---------+---------+---------+---------+---------+---------+---------+---------+
-| Partition_1  |    ✓    |    ✓    |    ✕    |    ✓    |    ✓    |    ✕    |    ✕    |    ✕    |
-+--------------+---------+---------+---------+---------+---------+---------+---------+---------+
-| Partition_2  |    ✓    |    ✓    |    ✕    |    ✓    |    ✕    |    ✓    |    ✕    |    ✕    |
-+--------------+---------+---------+---------+---------+---------+---------+---------+---------+
-| Partition_3  |    ✕    |    ✓    |    ✕    |    ✓    |    ✕    |    ✕    |    ✓    |    ✕    |
-+--------------+---------+---------+---------+---------+---------+---------+---------+---------+
-| {default}    |    ✕    |    ✕    |    ✓    |    ✕    |    ✕    |    ✕    |    ✕    |    ✓    |
-+--------------+---------+---------+---------+---------+---------+---------+---------+---------+
-
-The following table provides the communication matrix for the given example:
-
-+--------------------------+-------------------+-------------------+
-|                          | Participant_1     | Participant_2     |
-|                          +---------+---------+---------+---------+
-|                          | Pub_11  | Pub_12  | Pub_21  | Pub_22  |
-+----------------+---------+---------+---------+---------+---------+
-| Participant_3  | Subs_31 |    ✓    |    ✓    |    ✕    |    ✓    |
-+                +---------+---------+---------+---------+---------+
-|                | Subs_32 |    ✓    |    ✓    |    ✕    |    ✓    |
-+                +---------+---------+---------+---------+---------+
-|                | Subs_33 |    ✕    |    ✓    |    ✕    |    ✓    |
-+                +---------+---------+---------+---------+---------+
-|                | Subs_34 |    ✕    |    ✕    |    ✓    |    ✕    |
-+----------------+---------+---------+---------+---------+---------+
-
-The following piece of code shows the set of parameters needed for the use case depicted in this example.
-
-
-+-----------------------------------------------------+
-| **C++**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp         |
-|    :language: c++                                   |
-|    :start-after: //CONF-QOS-PARTITIONS              |
-|    :end-before: //!--                               |
-+-----------------------------------------------------+
-| **XML**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml          |
-|    :language: xml                                   |
-|    :start-after: <!-->CONF-QOS-PARTITIONS           |
-|    :end-before: <!--><-->                           |
-+-----------------------------------------------------+
-
-
-.. _intraprocess-delivery:
-
-Intra-process delivery
-**********************
-
-*eProsima Fast RTPS* allows to speed up communications between entities within the same process by avoiding any of the
-copy or send operations involved in the transport layer (either UDP or TCP).
-This feature is enabled by default, and can be configured using :ref:`xml_profiles`.
-Currently the following options are available:
-
-* **INTRAPROCESS_OFF**: The feature is disabled.
-* **INTRAPROCESS_USER_DATA_ONLY**: Discovery metadata keeps using ordinary transport.
-* **INTRAPROCESS_FULL**: Default value. Both user data and discovery metadata using Intra-process delivery.
-
-+-----------------------------------------------------+
-| **XML**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml          |
-|    :language: xml                                   |
-|    :start-after: <!-->CONF-LIBRARY-SETTINGS         |
-|    :end-before: <!--><-->                           |
-+-----------------------------------------------------+
-
-.. _comm-transports-configuration:
-
-Transports
-**********
-
-*eProsima Fast RTPS* implements an architecture of pluggable transports.
-Current version implements five transports: UDPv4, UDPv6, TCPv4, TCPv6 and SHM (shared memory).
-By default, when a :class:`Participant` is created, two built-in transports are configured:
-
-* SHM transport will be used for all communications between participants in the same machine.
-* UDPv4 will be used for inter machine communications.
-
-You can add custom transports using the attribute ``rtps.userTransports``.
-
-+-----------------------------------------------------+
-| **C++**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp         |
-|    :language: c++                                   |
-|    :start-after: //CONF-COMMON-TRANSPORT-SETTING    |
-|    :end-before: //!--                               |
-+-----------------------------------------------------+
-| **XML**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml          |
-|    :language: xml                                   |
-|    :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                           |
-+-----------------------------------------------------+
-
-All Transport configuration options can be found in the section :ref:`transportdescriptors`.
-
-.. _comm-transports-shm:
-
-Shared memory Transport (SHM)
-=============================
-
-The shared memory transport enables fast communications between entities running in the same processing unit/machine,
-relying on the shared memory mechanisms provided by the host operating system.
-
-SHM transport provides better performance than other transports like UDP / TCP, even when these transports use loopback
-interface.
-This is mainly due to the following reasons:
-
- * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
-   network stacks requirements.
-   SHM transport allows the copy of full messages where the only size limit is the machine's memory capacity.
-
- * Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can
-   directly share the same memory buffer with all the destination endpoints.
-   Other protocols require to perform one copy of the message per endpoint.
-
- * Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system
-   calls than the other protocols.
-   Therefore there is a performance/time consume gain by using SHM.
-
-When two participants on the same machine have SHM transport enabled, all communications between them are automatically
-performed by SHM transport only.
-The rest of the enabled transports are not used between those two participants.
-
-In order to change the default parameters of SHM transport, you need to add the SharedMemTransportDescriptor to the
-``rtps.userTransports`` attribute (C++ code) or define a transport_descriptor of type SHM in the
-XML file. In both cases ``rtps.useBuiltinTransports`` must be disabled (see below examples).
-
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
-|    :language: c++                                |
-|    :start-after: //CONF-SHM-TRANSPORT-SETTING    |
-|    :end-before: //!--                            |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml       |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-SHM-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                        |
-+--------------------------------------------------+
-
-SHM configuration parameters:
-
- * ``segment_size``: The size of the shared memory segment in bytes.
-   A shared memory segment is created by each participant.
-   Participant's writers copy their messages into the segment and send a message reference to the destination readers.
-
- * ``port_queue_capacity``: Each participant with SHM transport enabled listens on a queue (port) for incoming SHM
-   message references.
-   This parameter specifies the queue size (in messages).
-
- * ``healthy_check_timeout_ms``: With SHM, Readers and writers use a queue to exchange messages (called Port).
-   If one of the processes involved crashes while using the port, the structure can be left inoperative.
-   For this reason, every time a port is opened, a healthy check is performed.
-   If the attached listeners don't respond in ``healthy_check_timeout_ms`` milliseconds, the port is destroyed and
-   created again.
-
- * ``rtps_dump_file``: Full path, including the file name, of the protocol dump_file.
-   When this string parameter is not empty, all the participant's SHM traffic (sent and received) is traced to a file.
-   The output file format is *tcpdump* text hex, and can be read with protocol analyzer applications such as Wireshark.
-
-.. _comm-transports-tcp:
-
-TCP Transport
-=============
-
-Unlike UDP, TCP transport is connection oriented and for that Fast-RTPS must establish a TCP connection
-before sending the RTPS messages.
-Therefore TCP transport can have two behaviors, acting as a server (**TCP Server**) or as a client (**TCP Client**).
-The server opens a TCP port listening for incoming connections and the client tries to connect
-to the server.
-The server and the client concepts are independent from the RTPS concepts: **Publisher**,
-**Subscriber**, **Writer**, and **Reader**.
-Any of them can operate as a **TCP Server** or a **TCP Client** because
-these entities are used only to establish the TCP connection and the RTPS protocol works over it.
-
-To use TCP transports you need to define some more configurations:
-
-You must create a new TCP transport descriptor, for example TCPv4.
-This transport descriptor has a field named ``listening_ports`` that indicates to Fast-RTPS
-in which physical TCP ports our participant will listen for input connections.
-If omitted, the participant will not be able to receive incoming connections but will be able
-to connect to other participants that have configured their listening ports.
-The transport must be added to the ``userTransports`` list of the participant attributes.
-The field ``wan_addr`` can be used to allow incoming connections using the public IP in a WAN environment or the
-Internet.
-See `WAN or Internet Communication over TCP/IPv4`_ for more information about how to configure a TCP Transport
-to allow or connect to WAN connections.
-
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
-|    :language: c++                                |
-|    :start-after: //CONF-TCP-TRANSPORT-SETTING    |
-|    :end-before: //!--                            |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml       |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                        |
-+--------------------------------------------------+
-
-To configure the participant to connect to another node through TCP, you must configure and add a Locator to its
-``initialPeersList`` that points to the remote *listening port*.
-
-+---------------------------------------------------+
-| **C++**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp       |
-|    :language: c++                                 |
-|    :start-after: //CONF-TCP2-TRANSPORT-SETTING    |
-|    :end-before: //!--                             |
-+---------------------------------------------------+
-| **XML**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml        |
-|    :language: xml                                 |
-|    :start-after: <!-->CONF-TCP2-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                         |
-+---------------------------------------------------+
-
-A TCP version of helloworld example can be found in this
-`link <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
-
-
-WAN or Internet Communication over TCP/IPv4
--------------------------------------------
-
-Fast-RTPS is able to connect through the Internet or other WAN networks when configured properly.
-To achieve this kind of scenarios, the involved network devices such as routers and firewalls
-should add the rules to allow the communication.
-
-For example, to allow incoming connections through our NAT, Fast-RTPS must be configured as a **TCP Server** listening
-to incoming TCP connections.
-To allow incoming connections through a WAN, the TCP descriptor associated must indicate
-its public IP through its field ``wan_addr``.
-
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
-|    :language: c++                                |
-|    :start-after: //CONF-TCP-TRANSPORT-SETTING    |
-|    :end-before: //!--                            |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml       |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                        |
-+--------------------------------------------------+
-
-In this case, configuring the router (which public IP is ``80.80.99.45``) is mandatory to allow the incoming traffic to
-reach the **TCP Server**.
-Typically a NAT routing with the ``listening_port`` ``5100`` to our machine is enough.
-Any existing firewall should be configured as well.
-
-In the client side, it is needed to specify the public IP of the **TCP Server** with its ``listening_port`` as
-``initial_peer``.
-
-+---------------------------------------------------+
-| **C++**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp       |
-|    :language: c++                                 |
-|    :start-after: //CONF-TCP2-TRANSPORT-SETTING    |
-|    :end-before: //!--                             |
-+---------------------------------------------------+
-| **XML**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml        |
-|    :language: xml                                 |
-|    :start-after: <!-->CONF-TCP2-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                         |
-+---------------------------------------------------+
-
-The combination of the above configurations in both **TCP Server** and **TCP Client** allows a scenario similar to
-the represented by the following image.
-
-.. image:: 01-figures/TCP_WAN.png
-    :align: center
-
-**IPLocator**
-
-IPLocator is an auxiliary static class that offers methods to ease the management of IP based locators, as UDP or TCP.
-In TCP, the port field of the locator is divided into physical and logical port.
-The physical port is the port used by the network device, the real port that the operating system understands.
-The logical port can be seen as RTPS port, or UDP's equivalent port (physical ports of UDP, are logical ports in TCP).
-Logical ports normally are not necessary to manage explicitly, but you can do it through IPLocator class.
-Physical ports instead, must be set to explicitly use certain ports, to allow the communication through a NAT, for
-example.
-
-.. literalinclude:: /../code/CodeTester.cpp
-    :language: c++
-    :start-after: //CONF-IPLOCATOR-USAGE
-    :end-before: //!--
-
-**NOTE**
-
-TCP doesn't support multicast scenarios, so you must plan carefully your network architecture.
-
-.. _TLS:
-
-TLS over TCP
-------------
-
-Fast-RTPS allows configuring a TCP Transport to use TLS (Transport Layer Security)
-by setting up **TCP Server** and **TCP Client** properly.
-
- **TCP Server**
-
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
-|    :language: c++                                |
-|    :start-after: //CONF-TCP-TLS-SERVER           |
-|    :end-before: //!--                            |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml       |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-TCP-TLS-SERVER        |
-|    :end-before: <!--><-->                        |
-+--------------------------------------------------+
-
- **TCP Client**
-
-+------------------------------------------------------+
-| **C++**                                              |
-+------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp          |
-|    :language: c++                                    |
-|    :start-after: //CONF-TCP-TLS-CLIENT               |
-|    :end-before: //!--                                |
-+------------------------------------------------------+
-| **XML**                                              |
-+------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml           |
-|    :language: xml                                    |
-|    :start-after: <!-->CONF-TCP-TLS-CLIENT            |
-|    :end-before: <!--><-->                            |
-+------------------------------------------------------+
-
-More TLS related options can be found in the section :ref:`transportdescriptors`.
-
-.. _listening_locators:
-
-Listening locators
-==================
-
-*eProsima Fast RTPS* divides listening locators into four categories:
-
-* Metatraffic Multicast Locators: these locators are used to receive metatraffic information using multicast.
-  They usually are used by built-in endpoints, like the discovery of built-in endpoints. You can set your own locators
-  using attribute ``rtps.builtin.metatrafficMulticastLocatorList``.
-
-  .. literalinclude:: /../code/CodeTester.cpp
-      :language: c++
-      :start-after: //CONF-METAMULTICASTLOCATOR
-      :end-before: //!--
-
-* Metatraffic Unicast Locators: these locators are used to receive metatraffic information using unicast.
-  They usually are used by built-in endpoints, like the discovery of built-in endpoints.
-  You can set your own locators using attribute ``rtps.builtin.metatrafficUnicastLocatorList``.
-
-  .. literalinclude:: /../code/CodeTester.cpp
-      :language: c++
-      :start-after: //CONF-METAUNICASTLOCATOR
-      :end-before: //!--
-
-* User Multicast Locators: these locators are used to receive user information using multicast. They are used by user
-  endpoints. You can set your own locators using attribute ``rtps.defaultMulticastLocatorList``.
-
-  .. literalinclude:: /../code/CodeTester.cpp
-      :language: c++
-      :start-after: //CONF-USERMULTICASTLOCATOR
-      :end-before: //!--
-
-* User Unicast Locators: these locators are used to receive user information using unicast. They are used by user
-  endpoints. You can set your own locators using attributes ``rtps.defaultUnicastLocatorList``.
-
-  .. literalinclude:: /../code/CodeTester.cpp
-      :language: c++
-      :start-after: //CONF-USERUNICASTLOCATOR
-      :end-before: //!--
-
-By default *eProsima Fast RTPS* calculates the listening locators for the built-in UDPv4 network transport using
-well-known ports. These well-known ports are calculated using the following predefined rules:
-
-.. list-table:: Ports used
-   :header-rows: 1
-
-   * - Traffic type
-     - Well-known port expression
-   * - Metatraffic multicast
-     - PB + DG * *domainId* + offsetd0
-   * - Metatraffic unicast
-     - PB + DG * *domainId* + offsetd1 + PG * *participantId*
-   * - User multicast
-     - PB + DG * *domainId* + offsetd2
-   * - User unicast
-     - PB + DG * *domainId* + offsetd3 + PG * *participantId*
-
-These predefined rules use some values explained here:
-
-* DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``.
-* PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``.
-  The default value is ``2``.
-* PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``.
-  The default value is ``7400``.
-* offsetd0, offsetd1, offsetd2, offsetd3: Additional offsets.
-  You can set these values using attributes
-  ``rtps.port.offsetdN``. Default values are: ``offsetd0 = 0``, ``offsetd1 = 10``, ``offsetd2 = 1``, ``offsetd3 = 11``.
-
-Both UDP and TCP unicast locators support to have a null address.
-In that case, *eProsima Fast RTPS* understands to get local network addresses and use them.
-
-Both UDP and TCP locators support to have a zero port.
-In that case, *eProsima Fast RTPS* understands to calculate well-known port for that type of traffic.
-
-.. _initial-peers:
-
-Initial peers
-=============
-
-According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), each participant must
-listen for incoming Participant Discovery Protocol (PDP) discovery metatraffic in two different ports, one linked with a
-multicast address, and another one linked to a unicast address (see :ref:`discovery`).
-Fast-RTPS allows for the configuration of an initial peers list which contains one or more such address-port pairs
-corresponding to remote participants PDP discovery listening resources, so that the local participant will not only
-send its PDP traffic to the default multicast address-port specified by its domain, but also to all the address-port
-pairs specified in the initial-peers list.
-
-A participant's initial peers list contains the list of address-port pairs of all other participants with
-which it will communicate.
-It is a list of addresses that a participant will use in the unicast discovery mechanism, together or as an alternative
-to multicast discovery.
-Therefore, this approach also applies to those scenarios in which multicast functionality is not available.
-
-According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the participants'
-discovery traffic unicast listening ports are calculated using the following equation:
-7400 + 250 * `domainID` + 10 + 2 * `participantID`.
-Thus, if for example a participant operates in Domain 0 (default
-domain) and its ID is 1, its discovery traffic unicast listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
-By default *eProsima Fast RTPS* uses as initial peers the Metatraffic Multicast Locators.
-
-The following constitutes an example configuring an Initial Peers list with one peer on host 192.168.10.13 with
-participant ID 1 in domain 0.
-
-+---------------------------------------------------------+
-| **C++**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp             |
-|    :language: c++                                       |
-|    :start-after: //CONF_INITIAL_PEERS_BASIC             |
-|    :end-before: //!--                                   |
-+---------------------------------------------------------+
-| **XML**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml              |
-|    :language: xml                                       |
-|    :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->      |
-|    :end-before: <!--><-->                               |
-+---------------------------------------------------------+
-
-.. These locators are used to know where to send initial discovery network messages. You can set your own locators using
-.. attribute ``rtps.builtin.initialPeersList``.
-
-
-.. _whitelist-interfaces:
-
-Whitelist Interfaces
-====================
-
-There could be situations where you want to block some network interfaces to avoid connections or sending data through
-them.
-This can be managed using the field *interface whitelist* in the transport descriptors, and with them, you can set the
-interfaces you want to use to send or receive packets.
-The values on this list should match the IPs of your machine in that networks.
-For example:
-
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
-|    :language: c++                                |
-|    :start-after: //CONF-TRANSPORT-DESCRIPTORS    |
-|    :end-before: //!--                            |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml       |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-TRANSPORT-DESCRIPTORS |
-|    :lines: 1-8,48                                |
-+--------------------------------------------------+
-
-Tips
-====
-
-**Disabling all multicast traffic**
-
-+-----------------------------------------------+
-| **C++**                                       |
-+-----------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp   |
-|    :language: c++                             |
-|    :start-after: //CONF-DISABLE-MULTICAST     |
-|    :end-before: //!--                         |
-+-----------------------------------------------+
-| **XML**                                       |
-+-----------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml    |
-|    :language: xml                             |
-|    :start-after: <!-->CONF-DISABLE-MULTICAST  |
-|    :end-before: <!--><-->                     |
-+-----------------------------------------------+
-
-**Non-blocking write on sockets**
-
-For UDP transport, it is possible to configure whether to use non-blocking write calls on the sockets.
-
-+-----------------------------------------------+
-| **C++**                                       |
-+-----------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp   |
-|    :language: c++                             |
-|    :start-after: //CONF-NON-BLOCKING-WRITE    |
-|    :end-before: //!--                         |
-+-----------------------------------------------+
-| **XML**                                       |
-+-----------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml    |
-|    :language: xml                             |
-|    :start-after: <!-->CONF-NON-BLOCKING-WRITE |
-|    :end-before: <!--><-->                     |
-+-----------------------------------------------+
-
-**XML Configuration**
-
-The :ref:`xml_profiles` section contains the full information about how to setup *Fast RTPS* through an
-*XML file*.
-
-
 .. _flow-controllers:
 
 Flow Controllers
@@ -870,6 +223,164 @@ This allows you to create your own network analysis tools.
 The callbacks defined in the ReaderListener you attach to the EDP will execute for each data message after
 the built-in protocols have processed it.
 
+.. _partitions:
+
+Partitions
+**********
+
+Partitions introduce a logical entity isolation level concept inside the physical isolation induced by a Domain.
+They represent another level to separate Publishers and Subscribers beyond Domain and Topic.
+For a Publisher to communicate with a Subscriber, they have to belong at least to a common partition.
+In this sense, partitions represent a light mechanism to provide data separation among Endpoints:
+
+ * Unlike Domain and Topic, Partitions can be changed dynamically during the life cycle of the
+   Endpoint with little cost.
+   Specifically, no new threads are launched, no new memory is allocated, and the change history is not affected.
+   Beware that modifying the Partition membership of endpoints will trigger the announcement
+   of the new QoS configuration, and as a result, new Endpoint matching may occur,
+   depending on the new Partition configuration.
+   Changes on the memory allocation and running threads may occur due to the matching of remote Endpoints.
+
+ * Unlike Domain and Topic, an Endpoint can belong to several Partitions at the same time.
+   For certain data to be shared over different Topics, there must be a different Publisher for each Topic,
+   each of them sharing its own history of changes.
+   On the other hand, a single Publisher can share the same data over different Partitions using a single topic change,
+   thus reducing network overload.
+
+The Partition membership of an Endpoint can be configured on the :class:`qos.m_partitions` attribute of
+the :class:`PublisherAttributes` or :class:`SubscriberAttributes` objects.
+This attribute holds a list of Partition name strings.
+If no Partition is defined for an Entity, it will be automatically included in the default nameless Partition.
+Therefore, a Publisher and a Subscriber that specify no Partition will still be able to communicate through
+the default Partition.
+
+.. note::
+
+   Partitions are linked to the Endpoint and not to the changes.
+   This means that the Endpoint history is oblivious to modifications in the Partitions.
+   For example, if a Publisher switches Partitions and afterwards needs to resend some older change again,
+   it will deliver it to the new Partition set, regardless of which Partitions were defined
+   when the change was created.
+   This means that a late joiner Subscriber may receive changes that were created when another
+   set of Partitions was active.
+
+Wildcards in Partitions
+=======================
+
+Partition name entries can have wildcards following the naming conventions defined by the
+POSIX ``fnmatch`` API (1003.2-1992 section B.6).
+Entries with wildcards can match several names, allowing an Endpoint to easily be included in several Partitions.
+Two Partition names with wildcards will match if either of them matches the other one according to ``fnmatch``.
+That is, the matching is checked both ways.
+For example, consider the following configuration:
+
+ - A publisher with Partition ``part*``
+ - A subscriber with Partition ``partition*``
+
+Even though ``partition*`` does not match ``part*``, these publisher and subscriber will communicate
+between them because ``part*`` matches ``partition*``.
+
+Note that a Partition with name ``*`` will match any other partition **except the default Partition**.
+
+Full example
+============
+
+Given a system with the following Partition configuration:
+
++----------------+---------+--------------------------------+
+| Participant_1  | Pub_11  | {"Partition_1", "Partition_2"} |
++                +---------+--------------------------------+
+|                | Pub_12  | {"*"}                          |
++----------------+---------+--------------------------------+
+| Participant_2  | Pub_21  | {}                             |
++                +---------+--------------------------------+
+|                | Pub_22  | {"Partition*"}                 |
++----------------+---------+--------------------------------+
+| Participant_3  | Subs_31 | {"Partition_1"}                |
++                +---------+--------------------------------+
+|                | Subs_32 | {"Partition_2"}                |
++                +---------+--------------------------------+
+|                | Subs_33 | {"Partition_3"}                |
++                +---------+--------------------------------+
+|                | Subs_34 | {}                             |
++----------------+---------+--------------------------------+
+
+The endpoints will finally match the Partitions depicted on the following table.
+Note that ``Pub_12`` does not match the default Partition.
+
++--------------+-------------------+-------------------+---------------------------------------+
+|              | Participant_1     | Participant_2     | Participant_3                         |
+|              +---------+---------+---------+---------+---------+---------+---------+---------+
+|              | Pub_11  | Pub_12  | Pub_21  | Pub_22  | Subs_31 | Subs_32 | Subs_33 | Subs_34 |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+| Partition_1  |    ✓    |    ✓    |    ✕    |    ✓    |    ✓    |    ✕    |    ✕    |    ✕    |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+| Partition_2  |    ✓    |    ✓    |    ✕    |    ✓    |    ✕    |    ✓    |    ✕    |    ✕    |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+| Partition_3  |    ✕    |    ✓    |    ✕    |    ✓    |    ✕    |    ✕    |    ✓    |    ✕    |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+| {default}    |    ✕    |    ✕    |    ✓    |    ✕    |    ✕    |    ✕    |    ✕    |    ✓    |
++--------------+---------+---------+---------+---------+---------+---------+---------+---------+
+
+The following table provides the communication matrix for the given example:
+
++--------------------------+-------------------+-------------------+
+|                          | Participant_1     | Participant_2     |
+|                          +---------+---------+---------+---------+
+|                          | Pub_11  | Pub_12  | Pub_21  | Pub_22  |
++----------------+---------+---------+---------+---------+---------+
+| Participant_3  | Subs_31 |    ✓    |    ✓    |    ✕    |    ✓    |
++                +---------+---------+---------+---------+---------+
+|                | Subs_32 |    ✓    |    ✓    |    ✕    |    ✓    |
++                +---------+---------+---------+---------+---------+
+|                | Subs_33 |    ✕    |    ✓    |    ✕    |    ✓    |
++                +---------+---------+---------+---------+---------+
+|                | Subs_34 |    ✕    |    ✕    |    ✓    |    ✕    |
++----------------+---------+---------+---------+---------+---------+
+
+The following piece of code shows the set of parameters needed for the use case depicted in this example.
+
+
++-----------------------------------------------------+
+| **C++**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp         |
+|    :language: c++                                   |
+|    :start-after: //CONF-QOS-PARTITIONS              |
+|    :end-before: //!--                               |
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml          |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-QOS-PARTITIONS           |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
+
+
+.. _intraprocess-delivery:
+
+Intra-process delivery
+**********************
+
+*eProsima Fast RTPS* allows to speed up communications between entities within the same process by avoiding any of the
+copy or send operations involved in the transport layer (either UDP or TCP).
+This feature is enabled by default, and can be configured using :ref:`xml_profiles`.
+Currently the following options are available:
+
+* **INTRAPROCESS_OFF**: The feature is disabled.
+* **INTRAPROCESS_USER_DATA_ONLY**: Discovery metadata keeps using ordinary transport.
+* **INTRAPROCESS_FULL**: Default value. Both user data and discovery metadata using Intra-process delivery.
+
++-----------------------------------------------------+
+| **XML**                                             |
++-----------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml          |
+|    :language: xml                                   |
+|    :start-after: <!-->CONF-LIBRARY-SETTINGS         |
+|    :end-before: <!--><-->                           |
++-----------------------------------------------------+
+
 Tuning
 ******
 
@@ -993,108 +504,3 @@ comes bundled with a set of examples of how to implement common client-wise QoS 
 * Filtering: Filter incoming messages based on content, time, or both.
 
 These examples come with their own `Readme.txt` that explains how the implementations work.
-
-Logging
-*******
-
-Fast RTPS includes an extensible logging system with the following class hierarchy:
-
-.. image:: 01-figures/logging.png
-   :align: center
-
-:class:`Log` is the entry point of the Logging system.
-It exposes three macro definitions to ease its usage:
-
-.. literalinclude:: /../code/CodeTester.cpp
-    :language: c++
-    :start-after: //LOG_USAGE_PRINT
-    :end-before: //!--
-
-In all cases, :class:`INFO_MSG`, :class:`WARN_MSG` and :class:`ERROR_MSG` will be used as category for the log entry as
-a preprocessor string, so you can use define any category inline.
-
-.. literalinclude:: /../code/CodeTester.cpp
-    :language: c++
-    :start-after: //LOG_USAGE_INFO
-    :end-before: //!--
-
-You can control the verbosity of the log system and filter it by category:
-
-.. literalinclude:: /../code/CodeTester.cpp
-    :language: c++
-    :start-after: //LOG_USAGE_VERBOSITY
-    :end-before: //!--
-
-The possible verbosity levels are :class:`Log::Kind::Info`, :class:`Log::Kind::Warning` and :class:`Log::Kind::Error`.
-
-When selecting one of them, you also select the ones with more priority.
-
-* Selecting :class:`Log::Kind::Error`, you will only receive error messages.
-* Selecting :class:`Log::Kind::Warning` you select :class:`Log::Kind::Error` too.
-* Selecting :class:`Log::Kind::Info` will select all of them
-
-To filter by category, you must provide a valid :class:`std::regex` expression that will be applied to the category.
-The categories that matches the expression, will be logged.
-
-By default, the verbosity is set to :class:`Log::Kind::Error` and without category filtering.
-
-There are some others configurable parameters:
-
-.. literalinclude:: /../code/CodeTester.cpp
-    :language: c++
-    :start-after: //LOG_USAGE_API
-    :end-before: //!--
-
-LogConsumers
-============
-
-LogConsumers are classes that implement how to manage the log information.
-They must be registered into the Log system to be called with the log messages (after filtering).
-
-Currently there are two LogConsumer implementations:
-
-- :class:`StdoutConsumer`:
-    Default consumer, it prints the logging messages to the standard output.
-    It has no configuration available.
-
-- :class:`FileConsumer`:
-    It prints the logging messages to a file. It has two configuration parameters:
-
-      * :class:`filename` that defines the file where the consumer will write the log messages.
-      * :class:`append` that indicates to the consumer if the output file must be opened to append new content.
-
-    By default, :class:`filename` is **output.log** and :class:`append` is equals to **false**.
-
-If you want to add a consumer to manage the logs, you must call the :class:`RegisterConsumer` method of the Log.
-To remove all consumers, including the default one, you should call the :class:`ClearConsumers` method.
-If you want to reset the Log configuration to its defaults, including recovering the default consumer, you can call to
-its :class:`Reset` method.
-
-.. literalinclude:: /../code/CodeTester.cpp
-    :language: c++
-    :start-after: //LOG-CONFIG
-    :end-before: //!--
-
-XML Log configuration
-=====================
-
-You can configure the logging system through xml with the tag :class:`<log>` under the :class:`<dds>` tag, or as an
-standalone file (without the :class:`<dds>` tag, just :class:`<log>` as root).
-You can set :class:`<use_default>` and a set of :class:`<consumer>`.
-Each :class:`<consumer>` is defined by its :class:`<class>` and a set of :class:`<property>`.
-
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->LOG-CONFIG<-->
-    :end-before: <!--><-->
-
-:class:`<use_default>` indicates if we want to use the default consumer :class:`StdoutConsumer`.
-
-Each :class:`<consumer>` defines a consumer that will be added to the consumers list of the Log.
-:class:`<class>` indicates which consumer class to instantiate and the set of :class:`<property>` configures it.
-:class:`StdoutConsumer` has no properties to be configured, but :class:`FileConsumer` has :class:`filename`
-and :class:`append`.
-
-This marks the end of this document.
-We recommend you to take a look at the Doxygen API reference and the embedded examples that come with the distribution.
-If you need more help, send us an email to `support@eprosima.com`.

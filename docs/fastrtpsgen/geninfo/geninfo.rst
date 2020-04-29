@@ -1,4 +1,4 @@
-.. _fastrtpsgen-intro:
+.. _fastrtpsgen_intro:
 
 Introduction
 ============

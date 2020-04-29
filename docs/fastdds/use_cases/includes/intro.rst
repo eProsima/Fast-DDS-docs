@@ -20,3 +20,4 @@ It is organized as follows:
   `OSRF <https://www.openrobotics.org/>`_ `Robot Operation System 2 (ROS 2) <https://index.ros.org/doc/ros2/>`_,
   this tutorial is an explanation of how to take full advantage of Fast-RTPS wide set of capabilities in a ROS 2
   project.
+

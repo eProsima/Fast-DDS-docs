@@ -29,3 +29,5 @@ When you publish a change through a writer endpoint, the following steps happen 
 
 By choosing Quality of Service policies, you can affect how these history caches are managed in several ways, but the
 communication loop remains the same. You can read more information in :ref:`configuration`.
+
+

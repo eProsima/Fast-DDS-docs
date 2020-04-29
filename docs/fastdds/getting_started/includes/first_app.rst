@@ -6,7 +6,7 @@ Building your first application
 To build a minimal application, you must first define the topic. To define the data type of the topic Fast-RTPS offers
 two different approaches, dynamically through :ref:`dynamic-types` and statically through
 Interface Definition Language (IDL). In this example, we will define the data type statically with IDL,
-you have more information about IDL in :ref:`fastrtpsgen-intro`.
+you have more information about IDL in :ref:`fastrtpsgen_intro`.
 
 Write an IDL file containing the specification you want. In this case, a single string is sufficient.
 
@@ -19,7 +19,7 @@ Write an IDL file containing the specification you want. In this case, a single 
     };
 
 Now we need to translate this file to something Fast RTPS understands. For this we have a code generation tool called
-fastrtpsgen (see :ref:`fastrtpsgen-intro`), which can do two different things:
+fastrtpsgen (see :ref:`fastrtpsgen_intro`), which can do two different things:
 
 * Generate C++ definitions for your custom topic.
 * Optionally, generate a working example that uses your topic data.

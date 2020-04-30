@@ -1,0 +1,8 @@
+.. _api_pim_samplerejectedstatus:
+
+SampleRejectedStatus
+--------------------
+
+.. doxygenstruct:: eprosima::fastdds::dds::SampleRejectedStatus
+    :project: Fast RTPS
+    :members:

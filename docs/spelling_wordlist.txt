@@ -2,6 +2,7 @@ AES
 ASIO
 Asio
 Bitfields
+CDR
 Centric
 CMake
 Colcon
@@ -39,6 +40,7 @@ bitmasks
 bitset
 bitsets
 boolean
+centric
 chocolatey
 coverity
 crl
@@ -52,6 +54,7 @@ dependant
 deserialization
 deserialize
 deserializes
+destructor
 diffie
 doxygen
 eProsima
@@ -76,6 +79,7 @@ modularity
 multicast
 multicasting
 nack
+namespace
 nupkg
 offsetd
 oneway

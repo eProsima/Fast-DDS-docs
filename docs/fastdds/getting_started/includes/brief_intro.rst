@@ -1,25 +1,34 @@
 .. _getting_started_brief_intro:
 
-A brief introduction to the RTPS protocol
------------------------------------------
+What is RTPS?
+-------------
 
-At the top of RTPS, we find the Domain, which defines a separate plane of communication.
+The `Real-Time Publish Subscribe (RTPS) <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ protocol, developed to
+support DDS applications, is a publication-subscription communications protocol
+over best-effort transports such as UDP/IP. It is designed to support both unicast and multicast communications.
+
+At the top of RTPS, inherited from DDS, the **Domain** can be found, which defines a separate plane of communication.
 Several domains can coexist at the same time independently.
-A domain contains any number of Participants, elements capable of sending and receiving data.
-To do this, the participants use their Endpoints:
+A domain contains any number of **RTPSParticipants**, elements capable of sending and receiving data.
+To do this, the participants use their **Endpoints**:
 
-* Reader: Endpoint able to receive data.
-* Writer: Endpoint able to send data.
+* **RTPSWriter**: Endpoint able to send data.
+* **RTPSReader**: Endpoint able to receive data.
 
-A Participant can have any number of writer and reader endpoints.
+A RTPSParticipant can have any number of writer and reader endpoints.
 
-.. image:: /01-figures/RTPS-structure.png
+.. figure:: /01-figures/RTPS-structure.png
+    :align: center
 
-Communication revolves around Topics, which define the data being exchanged.
-Topics don’t belong to any participant in particular; instead, all interested participants keep track of changes to the
-topic data and make sure to keep each other up to date.
-The unit of communication is called a Change, which represents an update to a topic.
-Endpoints register these changes on their History, a data structure that serves as a cache for recent changes.
+    RTPS high-level architecture
+
+Communication revolves around **Topics**, which define the data being exchanged.
+The topics do not belong to any particular participant; all participants follow the changes in the data *written* under
+a topic, that is, the data published under a topic, so that they keep the day of the published data.
+The communication unit is called **Change**, which represents an update in the data that is written under a Topic.
+**RTPSReaders/RTPSWriters** register these changes on their **History**, a data structure that serves as a cache for
+recent changes.
+
 When you publish a change through a writer endpoint, the following steps happen behind the scenes:
 
 * The change is added to the writer’s history cache.
@@ -27,7 +36,7 @@ When you publish a change through a writer endpoint, the following steps happen 
 * Any interested (subscribed) readers request the change.
 * After receiving data, readers update their history cache with the new change.
 
-By choosing Quality of Service policies, you can affect how these history caches are managed in several ways, but the
-communication loop remains the same. You can read more information in :ref:`configuration`.
+By choosing Quality of Service (QoS) policies, you can affect how these history caches are managed in several ways,
+but the communication loop remains the same. You can read :ref:`configuration` for further details.
 
 

@@ -30,8 +30,8 @@ You can find all the library's source code on our [GitHub repository](https://gi
         python3 \
         python3-pip \
         python3-venv \
-        python-sphinxcontrib.spelling=4.0.1-1 \
-        imagemagick=8:6.9.7.4+dfsg-16ubuntu6.8
+        python3-sphinxcontrib.spelling \
+        imagemagick
     ```
 
 1. Clone the repository
@@ -57,7 +57,17 @@ To generate the documentation in a HTML format for a specific branch of Fast-RTP
 ```bash
 cd ~/fastrtps-docs
 source fastrtps-docs-venv/bin/activate
-FASTRTPS_BRANCH=<branch> make html
+make html
+```
+
+### Selecting Fast-RTPS branch
+
+It is possible to specify the Fast-RTPS branch for which the documentation is generated via the environment variable `FASTRTPS_BRANCH`.
+
+```bash
+cd ~/fastrtps-docs
+source fastrtps-docs-venv/bin/activate
+FASTRTPS_BRANCH=<branch> make help
 ```
 
 ## Generating documentation in other formats
@@ -84,7 +94,7 @@ DISCLAIMER: In order to run documentation tests, access to eProsima's intranet i
 This repository provides a set of tests that verify that:
 
 1. The RST follows the style guidelines
-1. The HTML is build correctly
+1. The HTML is built correctly
 1. The C++ snippets compile against the library's version
 1. The XML snippets define valid configurations
 

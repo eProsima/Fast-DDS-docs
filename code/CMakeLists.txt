@@ -135,7 +135,7 @@ add_custom_target(doc-dirs
 file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/**/*.h*")
 
 # Configure doxygen
-configure_file(doxygen-config.in ${PROJECT_BINARY_DIR}/doxygen-config @ONLY IMMEDIATE)
+configure_file(doxygen-config.in ${PROJECT_BINARY_DIR}/doxygen-config @ONLY)
 add_custom_command(OUTPUT "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml"
     COMMAND "${DOXYGEN_EXECUTABLE}" "${PROJECT_BINARY_DIR}/doxygen-config"
     DEPENDS ${HPP_FILES}

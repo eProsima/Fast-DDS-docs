@@ -45,6 +45,15 @@ Optional parameters include:
  * A :class:`StatusMask` that activates or deactivates triggering of individual callbacks on the Listener.
    By default all events are enabled.
 
+:func:`create_participant()` will return a null pointer if there was an error during the operation.
+For example, if the provided QoS is not compatible or is not supported.
+It is advisable to check that the returned value is a valid pointer.
+
+.. literalinclude:: /../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DDS_CREATE_DOMAINPARTICIPANT
+   :end-before: //!
+
 
 .. _dds_layer_domainParticiant_creation_profile:
 
@@ -62,6 +71,14 @@ This method takes two mandatory parameters:
 
 Optional parameters include a Listener and a StatusMask (see :ref:`dds_layer_domainParticiant_creation_qos`).
 
+:func:`create_participant_with_profile()` will return a null pointer if there was an error during the operation.
+For example, if the provided QoS is not compatible or is not supported.
+It is advisable to check that the returned value is a valid pointer.
+
+.. note::
+
+   CML profiles must have been loaded previously. See :ref:`dds_layer_domainParticiantFactory_load_profiles`.
+
 
 .. _dds_layer_domainParticiant_deletion:
 
@@ -75,31 +92,10 @@ A DomainParticipant can only be deleted if all domain Entities belonging to the 
 (Publisher, Subscriber or Entity) have already been deleted.
 Otherwise, the method will issue an error and the DomainParticipant will not be deleted.
 
-
-.. _dds_layer_defaultDomainParticiantQos:
-
-Default DomainParticipantQos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The default DomainParticipantQos is the QoS definition that will be used when no other
-:ref:`dds_layer_defaultDomainParticiantQos` is provided to the DomainParticipant, either during
-creation of through the :func:`set_participant_qos()` method.
-
-The current default DomainParticipantQos can be retrieved using the :func:`get_default_participant_qos()` method
-on the :ref:`dds_layer_domainParticiantFactory` singleton.
-It can also be modified at any time using the :func:`set_default_participant_qos()` method
-on the :ref:`dds_layer_domainParticiantFactory` singleton.
-Once modified, all new instances of DomainParticipant created without specifying a
-:ref:`dds_layer_defaultDomainParticiantQos` value will use the new default value.
-DomainParticipant instances created before the modification will not be affected.
-
-The special symbol :class:`PARTICIPANT_QOS_DEFAULT` can be used as QoS parameter on :func:`create_participant()`
-or :func:`set_participant_qos()` methods to indicate that the current default DomainParticipantQos should be used.
-
-:func:`set_default_participant_qos()` method also accepts the symbol :class:`PARTICIPANT_QOS_DEFAULT`
-as input parameter.
-This will reset the current default DomainParticipantQos to default constructed values.
-
+.. literalinclude:: /../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DDS_DELETE_DOMAINPARTICIPANT
+   :end-before: //!
 
 .. _dds_layer_domainParticiantQos:
 
@@ -125,12 +121,46 @@ Internally it contains the following QosPolicy objects:
 | ``transport_``           | TransportConfigQos           | no       |
 +--------------------------+------------------------------+----------+
 
-The symbol :class:`PARTICIPANT_QOS_DEFAULT` represents a default constructed DomainParticipantQos,
-where all its QosPolicy values have their default value.
-
 The QoS value of a previously created DomainParticipant can be modified using the :func:`set_participant_qos()` method.
 Trying to modify an immutable QosPolicy on an already enabled DomainParticipant will result on an error.
 In such case, no changes will be applied and the DomainParticipant will keep its previous DomainParticipantQos.
 
+.. literalinclude:: /../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DDS_CHANGE_DOMAINPARTICIPANTQOS
+   :end-before: //!
 
+.. _dds_layer_defaultDomainParticiantQos:
+
+Default DomainParticipantQos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The default DomainParticipantQos is the QoS definition that will be used when no other
+:ref:`dds_layer_defaultDomainParticiantQos` is provided to the DomainParticipant, either during
+creation of through the :func:`set_participant_qos()` method.
+
+The current default DomainParticipantQos can be retrieved using the :func:`get_default_participant_qos()` method
+on the :ref:`dds_layer_domainParticiantFactory` singleton.
+It can also be modified at any time using the :func:`set_default_participant_qos()` method
+on the :ref:`dds_layer_domainParticiantFactory` singleton.
+Once modified, all new instances of DomainParticipant created without specifying a
+:ref:`dds_layer_defaultDomainParticiantQos` value will use the new default value.
+DomainParticipant instances created before the modification will not be affected.
+
+The special symbol :class:`PARTICIPANT_QOS_DEFAULT` can be used as QoS parameter on :func:`create_participant()`
+or :func:`set_participant_qos()` methods to indicate that the current default DomainParticipantQos should be used.
+
+.. literalinclude:: /../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DDS_CHANGE_DEFAULT_DOMAINPARTICIPANTQOS
+   :end-before: //!
+
+:func:`set_default_participant_qos()` method also accepts the symbol :class:`PARTICIPANT_QOS_DEFAULT`
+as input parameter.
+This will reset the current default DomainParticipantQos to default constructed values.
+
+.. literalinclude:: /../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DDS_CHANGE_DOMAINPARTICIPANTQOS_TO_DEFAULT
+   :end-before: //!
 

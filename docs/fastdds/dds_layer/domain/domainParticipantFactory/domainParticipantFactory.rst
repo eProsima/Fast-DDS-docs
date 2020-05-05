@@ -15,6 +15,9 @@ DomainParticipantFactory does not accept any Listener, since it is not an Entity
 
 .. _dds_layer_domainParticiantFactoryQos:
 
+
+.. _dds_layer_domainParticiantFactoryQos:
+
 DomainParticipantFactoryQos
 ---------------------------
 
@@ -32,6 +35,9 @@ Since the DomainParticipantFactory is a singleton, its QoS can only be modified 
 
 
 .. _dds_layer_domainParticiantFactory_profiles:
+
+
+.. _dds_layer_domainParticiantFactory_load_profiles:
 
 Loading profiles from an XML file
 ---------------------------------

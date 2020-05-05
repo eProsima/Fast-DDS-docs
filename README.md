@@ -1,4 +1,4 @@
-# eProsima Fast RTPS
+# eProsima Fast RTPS Documentation
 
 [![Releases](https://img.shields.io/github/release/eProsima/Fast-RTPS.svg)](https://github.com/eProsima/Fast-RTPS/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -6,154 +6,92 @@
 
 <a href="http://www.eprosima.com"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSd0PDlVz1U_7MgdTe0FRIWD0Jc9_YH-gGi0ZpLkr-qgCI6ZEoJZ5GBqQ" align="left" hspace="8" vspace="2" width="100" height="100" ></a>
 
-*eprosima Fast RTPS* is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP,
-as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution
-Service (DDS) standard, again by the OMG. *eProsima Fast RTPS* holds the benefit of being standalone and up-to-date, as most vendor solutions either implement RTPS as a tool to implement
-DDS or use past versions of the specification.
+eprosima Fast RTPS is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG. eProsima Fast RTPS holds the benefit of being standalone and up-to-date, as most vendor solutions either implement RTPS as a tool to implement DDS or use past versions of the specification.
 
-Some of the main features of this library are:
-
-* Configurable best-effort and reliable publish-subscribe communication policies for real-time
-applications.
-* Plug and play connectivity so that any new applications are automatically discovered by any other
-members of the network.
-* Modularity and scalability to allow continuous growth with complex and simple devices in the
-network.
-* Configurable network behavior and interchangeable transport layer: Choose the best protocol and
-system input/output channel combination for each deployment.
-* Two API Layers: a high-level Publisher-Subscriber one focused on usability and a lower-level Writer-Reader one that provides finer access to the inner workings of the RTPS protocol.
-
-*eProsima Fast RTPS* has been adopted by multiple organizations in many sectors including these important cases:
-
-* Robotics: ROS (Robotic Operating System) as their default middleware for ROS2.
-* EU R&D: FIWARE Incubated GE.
-
-## Supported platforms
-
-* Linux [![Linux Build Status](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Linux/badge/icon)](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Linux)
-* Windows [![Windows Build Status](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Windows/badge/icon)](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Windows)
-* Mac [![Mac Build Status](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Mac/badge/icon)](http://jenkins.eprosima.com:8080/job/FastRTPS%20Nightly%20Master%20Security%20Mac)
+For more information about the library, check out the [Fast-RTPS documentation](https://fast-rtps.docs.eprosima.com/en/latest/).
+You can find all the library's source code on our [GitHub repository](https://github.com/eProsima/Fast-RTPS).
 
 ## Installation Guide
-You can get either a binary distribution of *eprosima Fast RTPS* or compile the library yourself from source.
 
-### Installation from binaries
-The latest, up to date binary release of *eprosima Fast RTPS* can be obtained from the <a href='http://www.eprosima.com'>company website</a>.
-
-### Installation from Source
-
-#### Dependencies
-
-##### Asio and TinyXML2 libraries
-
-On Linux, you can install these libraries using the package manager of your Linux distribution.
-For example, on Ubuntu you can install them by using its package manager with the next command.
-
-```bash
-sudo apt install libasio-dev libtinyxml2-dev
-```
-
-On Windows, you can install these libraries using [Chocolatey](https://chocolatey.org).
-First, download the following chocolatey packages from this
-[ROS2 Github repository](https://github.com/ros2/choco-packages/releases/latest).
-
-* asio.1.12.1.nupkg
-* tinyxml2.6.0.0.nupkg
-
-Once these packages are downloaded, open an administrative shell and execute the following command:
-
-```batch
-choco install -y -s <PATH\TO\DOWNLOADS\> asio tinyxml2
-```
-
-Please replace `<PATH\TO\DOWNLOADS>` with the folder you downloaded the packages to.
-
-#### Colcon installation
-*******************
-[colcon](https://colcon.readthedocs.io) is a command line tool to build sets of software packages.
-This section explains to use it to compile easily Fast-RTPS and its dependencies.
-First install ROS2 development tools (colcon and vcstool):
-
-```bash
-pip install -U colcon-common-extensions vcstool
-```
-
-Download the repos file that will be used to download Fast RTPS and its dependencies:
-
-```bash
-$ wget https://raw.githubusercontent.com/eProsima/Fast-RTPS/master/fastrtps.repos
-$ mkdir src
-$ vcs import src < fastrtps.repos
-```
-
-Finally, use colcon to compile all software:
-
-```bash
-$ colcon build
-```
-
-#### Manual installation
-*******************
-Before compiling manually Fast RTPS you need to clone the following dependencies and compile them using
-[CMake](https://cmake.org).
-
-* [Fast CDR](https://github.com/eProsima/Fast-CDR.git)
+1. In order to build and test the documentation, some dependencies must be installed beforehand:
 
     ```bash
-    $ git clone https://github.com/eProsima/Fast-CDR.git
-    $ mkdir Fast-CDR/build && cd Fast-CDR/build
-    $ cmake ..
-    $ cmake --build . --target install
+    sudo apt update
+    sudo apt install -y \
+        git \
+        gcc \
+        g++ \
+        cmake \
+        curl \
+        wget \
+        libasio-dev \
+        libtinyxml2-dev \
+        doxygen \
+        python3 \
+        python3-pip \
+        python3-venv \
+        python-sphinxcontrib.spelling=4.0.1-1 \
+        imagemagick=8:6.9.7.4+dfsg-16ubuntu6.8
     ```
 
-* [Foonathan memory](https://github.com/foonathan/memory)
+1. Clone the repository
 
     ```bash
-    $ git clone https://github.com/foonathan/memory.git
-    $ cd memory
-    $ git submodule update --init --recursive
-    $ mkdir build && cd build
-    $ cmake ..
-    $ cmake --build . --target install
+    cd ~
+    git clone https://github.com/eProsima/Fast-RTPS-docs fastrtps-docs
     ```
 
-Once all dependencies are installed, you will be able to compile and install Fast RTPS.
+1. Create a virtual environment and install python3 dependencies
+
+    ```bash
+    cd ~/fastrtps-docs
+    python3 -m venv fastrtps-docs-venv
+    source fastrtps-docs-venv/bin/activate
+    pip3 install -r docs/requirements.txt
+    ```
+
+## Getting Started
+
+To generate the documentation in a HTML format for a specific branch of Fast-RTPS run:
 
 ```bash
-$ git clone https://github.com/eProsima/Fast-RTPS.git
-$ mkdir Fast-RTPS/build && cd Fast-RTPS/build
-$ cmake ..
-$ cmake --build . --target install
+cd ~/fastrtps-docs
+source fastrtps-docs-venv/bin/activate
+FASTRTPS_BRANCH=<branch> make html
 ```
 
+## Generating documentation in other formats
 
-## Documentation
+The documentation can be generated in several formats such as HTML, PDF, LaTex, etc. For a complete list of targets run:
 
-You can access the documentation online, which is hosted on [Read the Docs](http://eprosima-fast-rtps.readthedocs.io).
+```bash
+cd ~/fastrtps-docs
+make help
+```
 
-* [Start Page](http://eprosima-fast-rtps.readthedocs.io)
-* [Installation manual](http://eprosima-fast-rtps.readthedocs.io/en/latest/requirements.html)
-* [User manual](http://eprosima-fast-rtps.readthedocs.io/en/latest/introduction.html)
-* [FastRTPSGen manual](http://eprosima-fast-rtps.readthedocs.io/en/latest/geninfo.html)
-* [Release notes](http://eprosima-fast-rtps.readthedocs.io/en/latest/notes.html)
+Once you have selected a format, generate the documentation with:
 
-## Quick Demo
+```bash
+cd ~/fastrtps-docs
+source fastrtps-docs-venv/bin/activate
+FASTRTPS_BRANCH=<branch> make <output_format>
+```
 
-For those who want to try a quick demonstration of Fast-RTPS libraries on Ubuntu, here is a way to launch an example application.
+## Running documentation tests
 
-First, download and install **docker** application. Open a terminal and type the following command
+DISCLAIMER: In order to run documentation tests, access to eProsima's intranet is required.
 
-	$ sudo apt-get install docker.io
+This repository provides a set of tests that verify that:
 
-Then, download the docker image file from https://eprosima.com/index.php/downloads-all
+1. The RST follows the style guidelines
+1. The HTML is build correctly
+1. The C++ snippets compile against the library's version
+1. The XML snippets define valid configurations
 
-Load the image and run it:
+Run the tests by:
 
-	$ docker load -i ubuntu-fast-rtps.tar
-	$ docker run -it ubuntu-fast-rtps
-
-You can run as many images as you want and check the communication between them.
-
-## Getting Help
-
-If you need support you can reach us by mail at `support@eProsima.com` or by phone at `+34 91 804 34 48`.
+```bash
+cd ~/fastrtps-docs
+source fastrtps-docs-venv/bin/activate
+FASTRTPS_BRANCH=<branch> make test
+```

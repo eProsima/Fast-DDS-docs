@@ -71,7 +71,7 @@ file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/external)
 # CMakeLists.txt for downloading and compiling Fast RTPS
 set(PRODUCT_CMAKELIST_CONTENT "
     cmake_minimum_required(VERSION 3.0)
-
+    project(fastrtps-doc-external)
     include(ExternalProject)
     option(BUILDCOP \"Download buildcop.py\" OFF)
     set(BUILDCOP ${BUILDCOP})
@@ -134,7 +134,7 @@ add_custom_target(doc-dirs
 file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/**/*.h*")
 
 # Configure doxygen
-configure_file(doxygen-config.in ${PROJECT_BINARY_DIR}/doxygen-config @ONLY IMMEDIATE)
+configure_file(doxygen-config.in ${PROJECT_BINARY_DIR}/doxygen-config @ONLY)
 add_custom_command(OUTPUT "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml"
     COMMAND "${DOXYGEN_EXECUTABLE}" "${PROJECT_BINARY_DIR}/doxygen-config"
     DEPENDS ${HPP_FILES}

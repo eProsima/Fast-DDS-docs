@@ -326,8 +326,8 @@ EXPAND_ONLY_PREDEF     = YES
 SEARCH_INCLUDES        = YES
 INCLUDE_PATH           =
 INCLUDE_FILE_PATTERNS  =
-PREDEFINED             = RTPS_DllAPI= \
-                         "HAVE_SECURITY=1" \
+PREDEFINED             = "HAVE_SECURITY=1" \
+                          RTPS_DllAPI=
 EXPAND_AS_DEFINED      = YES
 SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------

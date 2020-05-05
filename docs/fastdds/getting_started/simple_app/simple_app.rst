@@ -387,14 +387,14 @@ the subscriber, the topic, the data reader, and the data type.
 As for the private fields of the class, it is worth mentioning the implementation of the DataReader listener.
 As it was the case with the DataWriter, the listener implements the callbacks to be executed in case an event
 occurs.
-The first overriden callback of the SubListener is the ``on_subscrition_matched``, which is the analog of the
+The first overridden callback of the SubListener is the ``on_subscrition_matched``, which is the analog of the
 ``on_publication_matched`` callback of the DataWriter.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
     :lines: 140-157
 
-The second overriden callback is ``on_data_available``.
+The second overridden callback is ``on_data_available``.
 In this, the next received sample that the DataReader can access is taken and processed to display its content.
 It is here that the object of the SampleInfo class is defined, which determines whether a sample has already been read
 or taken.

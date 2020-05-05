@@ -1,4 +1,4 @@
-.. _dds_layer_domainParticiantListener:
+.. _dds_layer_domainParticipantListener:
 
 DomainParticipantListener
 =========================
@@ -28,8 +28,8 @@ Additionally, DomainParticipantListener add the following callbacks:
 
  * **on_type_discovery**: A new data Type is discovered in the same domain.
 
- * **on_type_dependencies_reply**: The typelookup client has received a replay to a :fun:`getTypeDependencies` request.
-   This callback can be used to retrieve the new type using the :fun:`getTypes` request and create a new
+ * **on_type_dependencies_reply**: The typelookup client has received a replay to a :func:`getTypeDependencies` request.
+   This callback can be used to retrieve the new type using the :func:`getTypes` request and create a new
    :class:`DynamicType` using the retrieved :class:`TypeObject`.
 
  * **on_type_information_received**: A new :class:`TypeInformation` has been received from a newly discovered

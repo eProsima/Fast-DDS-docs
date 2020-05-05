@@ -1,4 +1,4 @@
-.. _dds_layer_domainParticiantFactory:
+.. _dds_layer_domainParticipantFactory:
 
 DomainParticipantFactory
 ========================
@@ -8,20 +8,18 @@ DomainParticipantFactory itself has no factory, it is a pre-existing singleton o
 through the :func:`get_instance()` static method on the DomainParticipantFactory class.
 
 The behavior of the DomainParticipantFactory can be modified with the QoS values
-specified on :ref:`dds_layer_domainParticiantFactoryQos`.
+specified on :ref:`dds_layer_domainParticipantFactoryQos`.
 Since the DomainParticipantFactory is a singleton, its QoS can only be modified with the :func:`set_qos()` method.
 
 DomainParticipantFactory does not accept any Listener, since it is not an Entity.
 
-.. _dds_layer_domainParticiantFactoryQos:
 
-
-.. _dds_layer_domainParticiantFactoryQos:
+.. _dds_layer_domainParticipantFactoryQos:
 
 DomainParticipantFactoryQos
 ---------------------------
 
-DomainParticipantFactoryQos controls the behavior of the :ref:`dds_layer_domainParticiantFactory`.
+DomainParticipantFactoryQos controls the behavior of the :ref:`dds_layer_domainParticipantFactory`.
 Internally it contains the following QosPolicy objects:
 
 +-------------------------------+------------------------+----------+
@@ -34,10 +32,10 @@ Since the DomainParticipantFactory is a singleton, its QoS can only be modified 
 :func:`set_qos()` method.
 
 
-.. _dds_layer_domainParticiantFactory_profiles:
+.. _dds_layer_domainParticipantFactory_profiles:
 
 
-.. _dds_layer_domainParticiantFactory_load_profiles:
+.. _dds_layer_domainParticipantFactory_load_profiles:
 
 Loading profiles from an XML file
 ---------------------------------

@@ -20,6 +20,6 @@ Every domain has a unique identifier, called domainId, that is implemented as a 
 Applications that share this domainId belong to the same domain and will be able to communicate.
 
 For an application to be added to a domain, it mush create an instance of
-:ref:`dds_layer_domainParticiant` with the appropriate domainId.
-Instances of :ref:`dds_layer_domainParticiant` are created through the
-:ref:`_dds_layer_domainParticiantFactory` singleton.
+:ref:`dds_layer_domainParticipant` with the appropriate domainId.
+Instances of :ref:`dds_layer_domainParticipant` are created through the
+:ref:`dds_layer_domainParticipantFactory` singleton.

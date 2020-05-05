@@ -865,7 +865,7 @@ class CustomParticipantListener : public eprosima::fastrtps::ParticipantListener
         switch (info.status){
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
                 /* Process the case when a new subscriber was found in the domain */
-                cout << "New subscriber for topic '" << info.info.topicName() << "' of type '" <<
+                std::cout << "New subscriber for topic '" << info.info.topicName() << "' of type '" <<
                     info.info.typeName() << "' discovered";
                 break;
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
@@ -873,7 +873,7 @@ class CustomParticipantListener : public eprosima::fastrtps::ParticipantListener
                 break;
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
                 /* Process the case when a subscriber was removed from the domain */
-                cout << "Subscriber for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
+                std::cout << "Subscriber for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
                     "' left the domain.";
                 break;
         }
@@ -888,7 +888,7 @@ class CustomParticipantListener : public eprosima::fastrtps::ParticipantListener
         switch (info.status){
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::DISCOVERED_WRITER:
                 /* Process the case when a new publisher was found in the domain */
-                cout << "New publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
+                std::cout << "New publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
                     "' discovered";
                 break;
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::CHANGED_QOS_WRITER:
@@ -896,7 +896,7 @@ class CustomParticipantListener : public eprosima::fastrtps::ParticipantListener
                 break;
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::REMOVED_WRITER:
                 /* Process the case when a publisher was removed from the domain */
-                cout << "publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
+                std::cout << "publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
                     "' left the domain.";
                 break;
         }

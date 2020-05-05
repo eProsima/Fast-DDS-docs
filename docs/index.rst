@@ -11,7 +11,7 @@ eProsima Fast RTPS Documentation
 .. toctree::
    :caption: Installation Manual
    :maxdepth: 2
-   :numbered: 3
+   :numbered: 5
 
    /installation/requirements/requirements
    /installation/binaries/binaries
@@ -23,7 +23,7 @@ eProsima Fast RTPS Documentation
 .. toctree::
    :caption: Fast DDS
    :maxdepth: 2
-   :numbered: 3
+   :numbered: 5
 
    /fastdds/getting_started/getting_started
    /fastdds/library_overview/library_overview

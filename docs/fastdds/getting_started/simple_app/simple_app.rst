@@ -9,23 +9,25 @@ step by step.
 .. contents::
     :local:
     :backlinks: none
-    :depth: 3
+    :depth: 2
 
 Background
 ^^^^^^^^^^
 
-DDS is a data-centric communications middleware that implements the DCPS model. This model is based on the development
-of a publisher, a data generating element, and a subscriber, a data consuming element. These entities communicate by
-means of the topic, an element that binds both DDS entities. Publishers generate information under a topic
-and subscribers subscribe to this same topic to receive information.
+DDS is a data-centric communications middleware that implements the DCPS model.
+This model is based on the development of a publisher, a data generating element, and a subscriber, a
+data consuming element.
+These entities communicate by means of the topic, an element that binds both DDS entities.
+Publishers generate information under a topic and subscribers subscribe to this same topic to receive information.
 
 Prerequisites
 ^^^^^^^^^^^^^
 
 First of all you need to follow the steps outlined in :ref:`installation_requirements`
 for the installation of required packages, and in :ref:`installation-from-sources` for the installation of
-*eprosima Fast DDS* and all its dependencies. You also need to have completed the steps outlined in
-:ref:`compile-fastrtpsgen` for the installation of the *eProsima FASTRTPSGEN* tool.
+*eprosima Fast DDS* and all its dependencies.
+You also need to have completed the steps outlined in :ref:`compile-fastrtpsgen` for the installation of the
+*eProsima FASTRTPSGEN* tool.
 
 Tasks
 ^^^^^
@@ -33,9 +35,9 @@ Tasks
 Create the application workspace
 """"""""""""""""""""""""""""""""
 
-The application workspace will have the following structure at the end of the project. Files
-``build/DDSHelloWorldPublisher`` and ``build/DDSHelloWorldSubscriber`` are the Publisher
-application and Subscriber application respectively.
+The application workspace will have the following structure at the end of the project.
+Files ``build/DDSHelloWorldPublisher`` and ``build/DDSHelloWorldSubscriber`` are the Publisher application and
+Subscriber application respectively.
 
 .. code-block:: shell-session
 
@@ -68,7 +70,8 @@ Let's create the directory tree first.
 Import linked libraries and its dependencies
 """"""""""""""""""""""""""""""""""""""""""""
 
-The DDS application requires the Fast-RTPS and Fast-CDR libraries. The way we will make these accessible from the
+The DDS application requires the Fast-RTPS and Fast-CDR libraries.
+The way we will make these accessible from the
 workspace depends on the installation procedure we have followed in :ref:`installation-from-sources`.
 
 Manual installation
@@ -82,8 +85,8 @@ the directory `/usr/local/lib/`.
 Colcon installation
 *******************
 
-If you have followed the Colcon installation there are several ways to import the libraries. If you want these to be
-accessible only from the current shell session, run one of the following two commands.
+If you have followed the Colcon installation there are several ways to import the libraries.
+If you want these to be accessible only from the current shell session, run one of the following two commands.
 
 .. code-block:: bash
 
@@ -105,9 +108,10 @@ variable in the shell configuration files running the following command.
 Configure the CMake project
 """""""""""""""""""""""""""""
 
-We will use the CMake tool to manage the building of the project. With your preferred text editor create a new file
-called CMakeLists.txt and copy and paste the following code snippet. Save this file in the root directory of your
-workspace. If you have followed these steps, it should be `workspace_DDSHelloWorld`.
+We will use the CMake tool to manage the building of the project.
+With your preferred text editor create a new file called CMakeLists.txt and copy and paste the following code snippet.
+Save this file in the root directory of your workspace. If you have followed these steps, it should
+be `workspace_DDSHelloWorld`.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
     :language: bash
@@ -119,7 +123,8 @@ Build the topic data type
 """""""""""""""""""""""""
 
 Briefly, *eProsima FASTRTPSGEN* is a Java application that generates source code using the data types defined in an
-IDL file. See :ref:`fastrtpsgen_intro` for further details.
+IDL file.
+See :ref:`fastrtpsgen_intro` for further details.
 
 For this project, we will use the FASTRTPSGEN application to define the data type of the messages that will be sent
 by the publishers and received by the subscribers.
@@ -130,8 +135,8 @@ In the workspace directory, execute the following commands:
 
     cd src && touch HelloWorld.idl
 
-This creates the HelloWorld.idl file in the ``src`` directory. Open the file in your favorite text editor and copy and
-paste the following snippet of code.
+This creates the HelloWorld.idl file in the ``src`` directory.
+Open the file in your favorite text editor and copy and paste the following snippet of code.
 
 .. code-block:: idl
 
@@ -141,8 +146,8 @@ paste the following snippet of code.
         string message;
     };
 
-With this we have defined the ``HelloWorld`` data type. This has two elements, an *index* of type ``uint32_t`` and a
-*message* of type ``std::string``.
+With this we have defined the ``HelloWorld`` data type.
+This has two elements, an *index* of type ``uint32_t`` and a *message* of type ``std::string``.
 
 All that remains is to generate the source code that implements this data type in C++11. To do this, run the following
 command from the ``src`` directory.
@@ -161,8 +166,8 @@ This must have generated the following files:
 CMakeLists.txt
 **************
 
-Include at the end of the CMakeList.txt file you created earlier the following code snippet. This includes the files
-we have just created.
+Include at the end of the CMakeList.txt file you created earlier the following code snippet.
+This includes the files we have just created.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
     :language: bash
@@ -178,23 +183,25 @@ From the ``src`` directory in the workspace, run the following command to downlo
     wget -O HelloWorldPublisher.cpp \
         https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
 
-Now you have the publisher's source code.
+Now you have the publisher's source code. The publisher is going to send 10 publications under the topic HelloWorld.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
   :language: C++
+  :linenos:
 
 Examine the code
 ****************
 
-At the beginning of the file we have a Doxygen style comment block with the @file field that tells us the name of the
-file.
+At the beginning of the file we have a Doxygen style comment block with the ``@file`` field that tells us the name of
+the file.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
     :lines: 15-18
 
-Below are the includes of the C++ headers. The first one includes the HelloWorldPubSubTypes.h file with the
-serialization and deserialization functions of the data type that we have defined in the previous section.
+Below are the includes of the C++ headers.
+The first one includes the HelloWorldPubSubTypes.h file with the serialization and deserialization functions of the
+data type that we have defined in the previous section.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
@@ -229,30 +236,36 @@ The next line creates the HelloWorldPublisher class that implements a publisher.
     :lines: 31
 
 The public constructor and destructor of the class is defined below. The fields of the class will be the participant,
-publisher, topic, the data writer, and the data type. The constructor initializes the private fields of the class to
-``nullptr`` except the TypeSupport object, that initializes an object of the HelloWorldPubSubType class. The class
-destructor removes these fields and thus cleans the system memory.
+the publisher, the topic, the data writer, and the data type.
+The constructor initializes the private fields of the class to ``nullptr`` except the TypeSupport object, that
+initializes an object of the HelloWorldPubSubType class.
+The class destructor removes these fields and thus cleans the system memory.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
     :lines: 35-59
 
 We will now explain the private fields of the class that will be necessary to understand in order to discuss the
-remaining public methods of the class. First, the ``hello_`` field is defined as an object of the HelloWorld class that
-defines the data type we created with the IDL file. Then the fields participant, publisher, topic and data writer are
-defined. Finally the ``type_`` object of the TypeSupport class is defined. This object will be used to register the
-topic data type in the DomainParticipant.
+remaining public methods of the class.
+First, the ``hello_`` field is defined as an object of the HelloWorld class that defines the data type we created
+with the IDL file.
+Then the fields participant, publisher, topic and data writer are defined.
+Finally the ``type_`` object of the TypeSupport class is defined.
+This object will be used to register the topic data type in the DomainParticipant.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
     :lines: 134-146
 
 Finally, it is defined the PubListener class by inheriting from the DataWriterListener class, to override the data
-writer listener methods. These allow us to execute routines in case of an event. The overridden method
-``on_publication_matched`` allows you to define a series of actions when a new subscriber is detected listening to the
-topic the publisher is using. The ``info.current_count_change`` field allows us to detect these changes of subscribers
-that are matched to the publisher. This is a field in the MachedStatus structure that allows you to track changes
-in the status of subscriptions. Finally, the ``listener_`` object of the class is defined.
+writer listener callbacks.
+These allow us to execute routines in case of an event.
+The overridden callback ``on_publication_matched`` allows you to define a series of actions when a new subscriber
+is detected listening to the topic the publisher is using.
+The ``info.current_count_change`` field allows us to detect these changes of subscribers that are matched to the
+publisher.
+This is a field in the MachedStatus structure that allows you to track changes in the status of subscriptions.
+Finally, the ``listener_`` object of the class is defined.
 
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
@@ -270,8 +283,11 @@ This method performs several actions:
 # Create the publisher.
 # Creates the DataWriter with the listener previously created.
 
-As you can see, the QoS value for all entities, except for the participant's name, is the default value.
-This can be checked in the `DDS standard <https://www.omg.org/spec/DDS/About-DDS/>`_.
+As you can see, the QoS value for all entities, except for the participant's name, is the default value
+(``PARTICIPANT_QOS_DEFAULT``, ``PUBLISHER_QOS_DEFAULT``, ``SUBSCRIBER_QOS_DEFAULT``, ``TOPIC_QOS_DEFAULT``,
+``DATAWRITER_QOS_DEFAULT``, ``DATAREADER_QOS_DEFAULT``).
+The default value of the QoS of each DDS Entity can be checked in the
+`DDS standard <https://www.omg.org/spec/DDS/About-DDS/>`_.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
@@ -291,7 +307,6 @@ The public run method executes the action of publishing a given number of times.
     :lines: 117-132
 
 Finally, the participant that implements a publisher is initialized and run in main.
-
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
@@ -319,38 +334,115 @@ the following commands.
 Write the Fast DDS subscriber
 """""""""""""""""""""""""""""
 
-From the ``src`` directory in the workspace, execute the following command to download the HelloWorldPublisher.cpp file.
+From the `src` directory in the workspace, execute the following command to download the HelloWorldPublisher.cpp file.
 
 .. code-block:: bash
 
-    wget -O HelloWorldPublisher.cpp \
+    wget -O HelloWorldSubscriber.cpp \
         https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
 
-Now you have the publisher's source code.
+Now you have the subscriber's source code. The application runs a subscriber until it receives 10 samples under the
+topic HelloWorldTopic. At this point the subscriber stops.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
-  :language: C++
+    :language: C++
+    :linenos:
 
 Examine the code
 ****************
 
 As you have noticed, the source code to implement the subscriber is practically identical to the source code implemented
-by the publisher. Therefore, we will focus on the main differences between them, without explaining all the code again.
+by the publisher.
+Therefore, we will focus on the main differences between them, without explaining all the code again.
+
+Following the same structure as in the publisher explanation, we start with the includes of the C++ header files.
+In these, the files that include the publisher class are replaced by the subscriber class and the data writer class by
+the data reader class.
+
+*   Subscriber. Is the object responsible for the actual reception of the data.
+*   DataReader. It registers in the application the topic (TopicDescription) that identifies the data to be read and
+    accesses the data received by the subscriber.
+*   DataReaderListener. This is the listener assigned to the data reader.
+*   DataReaderQoS. Structure that defines the QoS of the DataReader.
+*   SampleInfo. Is the information that accompanies each sample that is ‘read’ or ‘taken.’
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 22,29
+
+The next line defines the HelloWorldSubscriber class that implements a subscriber.
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 33
+
+The public constructor and destructor of the class is defined below. The fields of the class will be the participant,
+the subscriber, the topic, the data reader, and the data type.
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 37-61
 
 
+As for the private fields of the class, it is worth mentioning the implementation of the DataReader listener.
+As it was the case with the DataWriter, the listener implements the callbacks to be executed in case an event
+occurs.
+The first overriden callback of the SubListener is the ``on_subscrition_matched``, which is the analog of the
+``on_publication_matched`` callback of the DataWriter.
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 140-157
+
+The second overriden callback is ``on_data_available``.
+In this, the next received sample that the DataReader can access is taken and processed to display its content.
+It is here that the object of the SampleInfo class is defined, which determines whether a sample has already been read
+or taken.
+Each time a sample is read, the counter of samples received is increased.
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 159-172
+
+Back to the public methods of the HelloWorldSubscriber class, we have the subscriber initialization method.
+This is the same as the initialization method defined for the publisher.
+However, in this one the DataReader QoS values are modified.
+First the reliability of the DataReader is modified to be Reliable, namely RELIABLE_RELIABILITY_QOS.
+This allows the reader to request the samples that have been lost in the transmission.
+Also, we modify the durability of the DataReader which is labeled as Transient-Local, namely
+TRANSIENT_LOCAL_DURABILITY_QOS.
+The DataReader will request all the samples that the publisher has sent before the subscriber has been matched
+with the publisher.
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 94-98
+
+Finally, the public method ``run()`` ensures that the subscriber runs until all the samples have been received.
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 108-113
+
+Finally, the participant that implements a subscriber is initialized and run in main.
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 181-196
 
 CMakeLists.txt
 **************
 
-Include at the end of the CMakeList.txt file you created earlier the following code snippet. This adds all the source
+Include at the end of the CMakeList.txt file you created earlier the following code snippet.
+This adds all the source
 files needed to build the executable and links the executable and the library together.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
     :language: bash
     :lines: 51, 53
 
-At this point you can build, compile and run the subscriber application. From the build directory in the workspace, run
-the following commands.
+At this point you can build, compile and run the subscriber application.
+From the build directory in the workspace, run the following commands.
 
 .. code-block:: bash
 
@@ -377,6 +469,10 @@ Finally, from the build directory, run the publisher and subscriber applications
 
 Summary
 ^^^^^^^
+
+In this tutorial you have built a publisher and a subscriber DDS application.
+You have also learned how to build the CMake file for source code compilation, and how to include and use the Fast-RTPS
+and Fast-CDR libraries in your project.
 
 Next steps
 ^^^^^^^^^^

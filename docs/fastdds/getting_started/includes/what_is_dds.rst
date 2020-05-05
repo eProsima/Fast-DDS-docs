@@ -40,8 +40,8 @@ In the DCPS model, four basis elements are defined for the development of a syst
 
 These elements are shown in the figure below.
 
-.. figure:: /01-figures/fast_dds/getting_started/dds_domain.png
-    :scale: 30
+.. figure:: /01-figures/fast_dds/getting_started/dds_domain.svg
+    :width: 50%
     :align: center
 
     DCPS model entities in the DDS Domain.

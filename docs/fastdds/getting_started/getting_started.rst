@@ -8,6 +8,7 @@ using the FASTRTPSGEN tool is shown. Finally it is described how to write a simp
 step by step.
 
 .. toctree::
+    :maxdepth: 3
 
     definitions
     fastrtpsgen_app/fastrtpsgen_app

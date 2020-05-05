@@ -1,10 +1,10 @@
 Generating a minimal functional example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The FASTRTPSGEN tool is used to build the publication/subscription application. This is a Java application for building
-a fully functional publication/subscription application from an Interface Definition Language (IDL)
-file that defines the Topic under which messages
-are published and received. The application generated allows the creation of as many publishers and subscribers as
+The FASTRTPSGEN tool is used to build the publication/subscription application.
+This is a Java application for building a fully functional publication/subscription application from an Interface
+Definition Language (IDL) file that defines the Topic under which messages are published and received.
+The application generated allows the creation of as many publishers and subscribers as
 desired, all belonging to the same Domain and communicating using the same Topic.
 
 First, locate the installation directories of Fast-RTPS, Fast-CDR and add these directories to your PATH.
@@ -17,8 +17,8 @@ First, locate the installation directories of Fast-RTPS, Fast-CDR and add these 
 
     - However, if you have followed the **manual installation** the libraries are already accessible.
 
-The application files are generated using the following command. The `-example` option creates an example application,
-and the CMake files needed to build it.
+The application files are generated using the following command.
+The `-example` option creates an example application, and the CMake files needed to build it.
 
     * On Linux:
 
@@ -79,9 +79,9 @@ The application build can be used to spawn any number of publishers and subscrib
         HelloWorld.exe subscriber
 
 
-Each time you press <Enter\> on the Publisher, a new datagram is generated, sent over the network
-and receiver by Subscribers currently online. If more than one subscriber is available, it can be seen that the
-message is equally received on all listening nodes.
+Each time you press <Enter\> on the Publisher, a new datagram is generated, sent over the network and receiver by
+Subscribers currently online.
+If more than one subscriber is available, it can be seen that the message is equally received on all listening nodes.
 
 You can also modify any values on your custom, IDL-generated data type.
 

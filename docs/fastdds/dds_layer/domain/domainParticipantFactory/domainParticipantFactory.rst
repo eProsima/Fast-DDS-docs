@@ -4,7 +4,7 @@ DomainParticipantFactory
 ========================
 
 The sole purpose of this class is to allow the creation and destruction of DomainParticipant objects.
-DomainParticipantFactory itself has no factory, it is a pre-existing singleton object that can be accessed
+DomainParticipantFactory itself has no factory, it is a singleton object that can be accessed
 through the :func:`get_instance()` static method on the DomainParticipantFactory class.
 
 The behavior of the DomainParticipantFactory can be modified with the QoS values

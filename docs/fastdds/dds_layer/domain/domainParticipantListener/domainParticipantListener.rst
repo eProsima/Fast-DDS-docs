@@ -8,7 +8,7 @@ in response to state changes on the DomainParticipant.
 By default, all these callbacks are empty and do nothing.
 The client should implement a specialization of this class overriding the callbacks
 that are needed on the application.
-Callbacks that are not overriden will maintain their empty implementation.
+Callbacks that are not overridden will maintain their empty implementation.
 
 DomainParticipantListener inherits from :class:`TopicListener`, :class:`PublisherListener`, and
 :class:`SubscriberListener`.
@@ -28,13 +28,13 @@ Additionally, DomainParticipantListener add the following callbacks:
 
  * **on_type_discovery**: A new data Type is discovered in the same domain.
 
- * **on_type_dependencies_reply**: The typelookup client has received a replay to a :func:`getTypeDependencies` request.
+ * **on_type_dependencies_reply**: The Type lookup client received a replay to a :func:`getTypeDependencies` request.
    This callback can be used to retrieve the new type using the :func:`getTypes` request and create a new
    :class:`DynamicType` using the retrieved :class:`TypeObject`.
 
  * **on_type_information_received**: A new :class:`TypeInformation` has been received from a newly discovered
    DomainParticipant
-   
+
  * **onParticipantAuthentication**: Informs about the result of the authentication process
    of a remote DomainParticipant (either on failure or success).
 

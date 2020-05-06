@@ -49,7 +49,7 @@ Optional parameters include:
 For example, if the provided QoS is not compatible or is not supported.
 It is advisable to check that the returned value is a valid pointer.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_CREATE_DOMAINPARTICIPANT
    :end-before: //!
@@ -66,7 +66,7 @@ method on the :ref:`dds_layer_domainParticipantFactory` singleton.
 This method takes two mandatory parameters:
 
  * The DomainId that identifies the domain where the DomainParticipant will be created.
- 
+
  * The name of the profile to be applied to the DomainParticipant.
 
 Optional parameters include a Listener and a StatusMask (see :ref:`dds_layer_domainParticipant_creation_qos`).
@@ -92,7 +92,7 @@ A DomainParticipant can only be deleted if all domain Entities belonging to the 
 (Publisher, Subscriber or Entity) have already been deleted.
 Otherwise, the method will issue an error and the DomainParticipant will not be deleted.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_DELETE_DOMAINPARTICIPANT
    :end-before: //!
@@ -125,7 +125,7 @@ The QoS value of a previously created DomainParticipant can be modified using th
 Trying to modify an immutable QosPolicy on an already enabled DomainParticipant will result on an error.
 In such case, no changes will be applied and the DomainParticipant will keep its previous DomainParticipantQos.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_CHANGE_DOMAINPARTICIPANTQOS
    :end-before: //!
@@ -151,7 +151,7 @@ DomainParticipant instances created before the modification will not be affected
 The special symbol :class:`PARTICIPANT_QOS_DEFAULT` can be used as QoS parameter on :func:`create_participant()`
 or :func:`set_participant_qos()` methods to indicate that the current default DomainParticipantQos should be used.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_CHANGE_DEFAULT_DOMAINPARTICIPANTQOS
    :end-before: //!
@@ -160,7 +160,7 @@ or :func:`set_participant_qos()` methods to indicate that the current default Do
 as input parameter.
 This will reset the current default DomainParticipantQos to default constructed values.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_CHANGE_DOMAINPARTICIPANTQOS_TO_DEFAULT
    :end-before: //!

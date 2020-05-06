@@ -155,6 +155,10 @@ if(BUILDCOP)
     set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${PROJECT_BINARY_DIR}/external/eprosima/install")
     find_package(fastrtps REQUIRED)
 
+    ####################################################################################################################
+    # Compile getting started tutorial
+    ####################################################################################################################
+    add_subdirectory(Examples/C++/DDSHelloWorld)
 
     ####################################################################################################################
     # Compile example
@@ -182,6 +186,9 @@ if(BUILDCOP)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/StaticTester.xml
         ${CMAKE_CURRENT_BINARY_DIR}/StaticTester.xml COPYONLY)
 
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
+        ${CMAKE_CURRENT_BINARY_DIR}/helloworld_test.py COPYONLY)
+
     add_test(NAME xmltest COMMAND doctest XMLTester.xml)
     set_property(TEST xmltest
         APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
@@ -196,5 +203,10 @@ if(BUILDCOP)
 
     add_test(NAME statictest COMMAND doctest StaticTester.xml)
     set_property(TEST statictest
+        APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
+
+    find_package(PythonInterp 3 REQUIRED)
+    add_test(NAME helloworld COMMAND ${PYTHON_EXECUTABLE} helloworld_test.py)
+    set_property(TEST helloworld
         APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
 endif()

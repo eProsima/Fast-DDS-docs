@@ -145,7 +145,7 @@ files needed to build the executable and links the executable and the library to
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
     :language: bash
-    :lines: 47, 49
+    :lines: 47-48
 
 At this point you can build, compile and run the publisher application. From the build directory in the workspace, run
 the following commands.

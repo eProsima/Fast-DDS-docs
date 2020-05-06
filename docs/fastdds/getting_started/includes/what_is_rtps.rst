@@ -1,4 +1,4 @@
-.. _getting_started_brief_intro:
+.. _what_is_rtps:
 
 What is RTPS?
 -------------
@@ -18,7 +18,7 @@ To do this, the participants use their **Endpoints**:
 
 A RTPSParticipant can have any number of writer and reader endpoints.
 
-.. figure:: /01-figures/RTPS-structure.png
+.. figure:: /01-figures/fast_dds/getting_started/rtps_arch.svg
     :align: center
 
     RTPS high-level architecture

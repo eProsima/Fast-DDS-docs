@@ -132,7 +132,8 @@ add_custom_target(doc-dirs
     COMMENT "Creating documentation directories" VERBATIM)
 
 # Get header files from repo instead of from installation. This way Fast RTPS does not need to be compiled
-file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/**/*.h*")
+file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds/**/*.h*")
+set(INCLUDE_FILE "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds")
 
 # Configure doxygen
 configure_file(doxygen-config.in ${PROJECT_BINARY_DIR}/doxygen-config @ONLY)

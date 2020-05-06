@@ -33,7 +33,6 @@ Policy
    /fastdds/api_reference/includes/dds_pim/core/policy/parameterid_t.rst
    /fastdds/api_reference/includes/dds_pim/core/policy/parameterip4address_t.rst
    /fastdds/api_reference/includes/dds_pim/core/policy/parameterkey_t.rst
-   /fastdds/api_reference/includes/dds_pim/core/policy/parameterlist.rst
    /fastdds/api_reference/includes/dds_pim/core/policy/parameterlocator_t.rst
    /fastdds/api_reference/includes/dds_pim/core/policy/parameterparticipantsecurityinfo_t.rst
    /fastdds/api_reference/includes/dds_pim/core/policy/parameterport_t.rst

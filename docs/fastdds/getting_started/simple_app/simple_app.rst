@@ -3,7 +3,7 @@
 Writing a simple publisher and subscriber application
 ------------------------------------------------------
 
-This section explains in detail how to create an simple Fast DDS application with a publisher and a subscriber
+This section details how to create an simple Fast DDS application with a publisher and a subscriber
 step by step.
 
 .. contents::
@@ -16,20 +16,18 @@ step by step.
 
 .. include:: includes/prerequisites.rst
 
-.. include:: includes/tasks.rst
+.. include:: includes/workspace.rst
 
-.. include:: includes/task_workspace.rst
+.. include:: includes/dependencies.rst
 
-.. include:: includes/task_dependencies.rst
+.. include:: includes/cmake.rst
 
-.. include:: includes/task_cmake.rst
+.. include:: includes/dataType.rst
 
-.. include:: includes/task_dataType.rst
+.. include:: includes/publisher.rst
 
-.. include:: includes/task_publisher.rst
+.. include:: includes/subscriber.rst
 
-.. include:: includes/task_subscriber.rst
-
-.. include:: includes/task_run.rst
+.. include:: includes/run.rst
 
 .. include:: includes/sum_and_next_steps.rst

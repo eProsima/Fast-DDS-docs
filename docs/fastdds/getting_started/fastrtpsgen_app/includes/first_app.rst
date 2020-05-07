@@ -9,7 +9,7 @@ desired, all belonging to the same Domain and communicating using the same Topic
 
 First, locate the installation directories of Fast-RTPS, Fast-CDR and add these directories to your PATH.
 
-    - If you have followed the **colcon installation**, execute the following commands:
+    - If you have followed the **colcon installation**, run the following command:
 
     .. code:: bash
 

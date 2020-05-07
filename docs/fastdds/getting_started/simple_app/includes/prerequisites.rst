@@ -1,7 +1,7 @@
 Prerequisites
 ^^^^^^^^^^^^^
 
-First of all you need to follow the steps outlined in :ref:`installation_requirements`
+First of all, you need to follow the steps outlined in :ref:`installation_requirements`
 for the installation of required packages, and in :ref:`installation-from-sources` for the installation of
 *eprosima Fast DDS* and all its dependencies.
 You also need to have completed the steps outlined in :ref:`compile-fastrtpsgen` for the installation of the

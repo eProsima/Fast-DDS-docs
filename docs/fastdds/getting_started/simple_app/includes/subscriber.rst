@@ -1,5 +1,5 @@
 Write the Fast DDS subscriber
-"""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 From the `src` directory in the workspace, execute the following command to download the HelloWorldPublisher.cpp file.
 
@@ -16,7 +16,7 @@ topic HelloWorldTopic. At this point the subscriber stops.
     :linenos:
 
 Examine the code
-****************
+""""""""""""""""
 
 As you have noticed, the source code to implement the subscriber is practically identical to the source code implemented
 by the publisher.
@@ -26,12 +26,18 @@ Following the same structure as in the publisher explanation, we start with the 
 In these, the files that include the publisher class are replaced by the subscriber class and the data writer class by
 the data reader class.
 
-*   Subscriber. Is the object responsible for the actual reception of the data.
-*   DataReader. It registers in the application the topic (TopicDescription) that identifies the data to be read and
+*   Subscriber.
+    Is the object responsible for the creation and configuration of DataReaders.
+*   DataReader.
+    Is the object responsible for the actual reception of the data.
+    It registers in the application the topic (TopicDescription) that identifies the data to be read and
     accesses the data received by the subscriber.
-*   DataReaderListener. This is the listener assigned to the data reader.
-*   DataReaderQoS. Structure that defines the QoS of the DataReader.
-*   SampleInfo. Is the information that accompanies each sample that is ‘read’ or ‘taken.’
+*   DataReaderListener.
+    This is the listener assigned to the data reader.
+*   DataReaderQoS.
+    Structure that defines the QoS of the DataReader.
+*   SampleInfo.
+    Is the information that accompanies each sample that is ‘read’ or ‘taken.’
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
@@ -43,23 +49,18 @@ The next line defines the HelloWorldSubscriber class that implements a subscribe
     :language: C++
     :lines: 33
 
-The public constructor and destructor of the class is defined below. The fields of the class will be the participant,
-the subscriber, the topic, the data reader, and the data type.
-
-.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
-    :language: C++
-    :lines: 37-61
-
-
-As for the private fields of the class, it is worth mentioning the implementation of the DataReader listener.
-As it was the case with the DataWriter, the listener implements the callbacks to be executed in case an event
+Starting with the private data members of the class, it is worth mentioning the implementation of the data reader
+listener.
+The private data members of the class will be the participant, the subscriber, the topic, the data reader, and the
+data type.
+As it was the case with the data writer, the listener implements the callbacks to be executed in case an event
 occurs.
 The first overridden callback of the SubListener is the ``on_subscrition_matched``, which is the analog of the
 ``on_publication_matched`` callback of the DataWriter.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 140-157
+    :lines: 60-77
 
 The second overridden callback is ``on_data_available``.
 In this, the next received sample that the DataReader can access is taken and processed to display its content.
@@ -69,40 +70,43 @@ Each time a sample is read, the counter of samples received is increased.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 159-172
+    :lines: 79-92
 
-Back to the public methods of the HelloWorldSubscriber class, we have the subscriber initialization method.
-This is the same as the initialization method defined for the publisher.
-However, in this one the DataReader QoS values are modified.
-First the reliability of the DataReader is modified to be Reliable, namely RELIABLE_RELIABILITY_QOS.
-This allows the reader to request the samples that have been lost in the transmission.
-Also, we modify the durability of the DataReader which is labeled as Transient-Local, namely
-TRANSIENT_LOCAL_DURABILITY_QOS.
-The DataReader will request all the samples that the publisher has sent before the subscriber has been matched
-with the publisher.
+The public constructor and destructor of the class is defined below.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 94-98
+    :lines: 102-126
 
-Finally, the public method ``run()`` ensures that the subscriber runs until all the samples have been received.
+Then we have the subscriber initialization public member function.
+This is the same as the initialization public member function defined for the HelloWorldPublisher.
+The QoS configuration for all entities, except for the participant's name, is the default QoS
+(``PARTICIPANT_QOS_DEFAULT``, ``SUBSCRIBER_QOS_DEFAULT``, ``TOPIC_QOS_DEFAULT``, ``DATAREADER_QOS_DEFAULT``).
+The default value of the QoS of each DDS Entity can be checked in the
+`DDS standard <https://www.omg.org/spec/DDS/About-DDS/>`_.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 108-113
+    :lines: 128-168
+
+The public member function ``run()`` ensures that the subscriber runs until all the samples have been received.
+
+.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+    :language: C++
+    :lines: 170-175
 
 Finally, the participant that implements a subscriber is initialized and run in main.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 181-196
+    :lines: 178-193
 
 CMakeLists.txt
-**************
+"""""""""""""""
 
 Include at the end of the CMakeList.txt file you created earlier the following code snippet.
 This adds all the source
-files needed to build the executable and links the executable and the library together.
+files needed to build the executable, and links the executable and the library together.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
     :language: bash

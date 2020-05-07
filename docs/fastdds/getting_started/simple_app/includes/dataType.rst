@@ -1,8 +1,8 @@
 Build the topic data type
-"""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Briefly, *eProsima FASTRTPSGEN* is a Java application that generates source code using the data types defined in an
-IDL file.
+Interface Description Language (IDL) file.
 See :ref:`fastrtpsgen_intro` for further details.
 
 For this project, we will use the FASTRTPSGEN application to define the data type of the messages that will be sent
@@ -43,7 +43,7 @@ This must have generated the following files:
     * HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
 
 CMakeLists.txt
-**************
+""""""""""""""
 
 Include at the end of the CMakeList.txt file you created earlier the following code snippet.
 This includes the files we have just created.

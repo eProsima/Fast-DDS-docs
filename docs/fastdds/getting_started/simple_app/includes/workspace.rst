@@ -1,5 +1,5 @@
 Create the application workspace
-""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The application workspace will have the following structure at the end of the project.
 Files ``build/DDSHelloWorldPublisher`` and ``build/DDSHelloWorldSubscriber`` are the Publisher application and

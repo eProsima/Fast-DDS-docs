@@ -8,7 +8,7 @@ In addition, how to build a publication/subscription application using the FASTR
 Finally it is described how to write a simple publication/subscription application step by step.
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
 
     definitions
     fastrtpsgen_app/fastrtpsgen_app

@@ -5,12 +5,14 @@ What is RTPS?
 
 The `Real-Time Publish Subscribe (RTPS) <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ protocol, developed to
 support DDS applications, is a publication-subscription communications protocol
-over best-effort transports such as UDP/IP.
+over best-effort transports such as UDP/IP. Furthermore, Fast RTPS provides support for TCP and
+Shared Memory (SHM) transports.
+
 It is designed to support both unicast and multicast communications.
 
 At the top of RTPS, inherited from DDS, the **Domain** can be found, which defines a separate plane of communication.
 Several domains can coexist at the same time independently.
-A domain contains any number of **RTPSParticipants**, elements capable of sending and receiving data.
+A domain contains any number of **RTPSParticipants**, that is, elements capable of sending and receiving data.
 To do this, the participants use their **Endpoints**:
 
 * **RTPSWriter**: Endpoint able to send data.
@@ -18,7 +20,8 @@ To do this, the participants use their **Endpoints**:
 
 A RTPSParticipant can have any number of writer and reader endpoints.
 
-.. figure:: /01-figures/fast_dds/getting_started/rtps_arch.svg
+.. figure:: /01-figures/fast_dds/getting_started/rtps_domain.svg
+    :scale: 100 %
     :align: center
 
     RTPS high-level architecture

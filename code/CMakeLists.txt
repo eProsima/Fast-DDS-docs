@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.12)
 
 file(STRINGS
     ${CMAKE_SOURCE_DIR}/../docs/conf.py
@@ -205,8 +205,14 @@ if(BUILDCOP)
     set_property(TEST statictest
         APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
 
-    find_package(PythonInterp 3 REQUIRED)
-    add_test(NAME helloworld COMMAND ${PYTHON_EXECUTABLE} helloworld_test.py)
-    set_property(TEST helloworld
-        APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
+    find_package(Python COMPONENTS Interpreter Development)
+    if(${Python_FOUND} AND (${Python_VERSION} VERSION_GREATER "3.6"))
+        add_test(NAME helloworld COMMAND ${PYTHON_EXECUTABLE} helloworld_test.py)
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "HELLOWORLD_PUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldPublisher>")
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "HELLOWORLD_SUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldSubscriber>")
+    endif()
 endif()

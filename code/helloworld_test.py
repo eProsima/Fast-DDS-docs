@@ -20,6 +20,7 @@ successful completion, that is, if the publisher sends all the samples and the
 subscriber receives all of them. If the timeout occurs, both applications are
 forced to end with a return code other than 0.
 """
+import os
 import subprocess
 
 
@@ -29,12 +30,15 @@ def run_test():
 
     :return: The command return code.
     """
-    dds_example_path = './Examples/C++/DDSHelloWorld'
-    command = 'timeout 15 {}/DDSHelloWorldPublisher & \
-        timeout 15 {}/DDSHelloWorldSubscriber'.format(
-            dds_example_path, dds_example_path)
-    returncode = subprocess.run(command, shell=True).returncode
-    return returncode
+    helloworld_pub = os.environ.get('HELLOWORLD_PUB_TEST_BIN')
+    helloworld_sub = os.environ.get('HELLOWORLD_SUB_TEST_BIN')
+    try:
+        subprocess_pub = subprocess.Popen(helloworld_pub)
+        subprocess.run(helloworld_sub, timeout=15)
+    except subprocess.TimeoutExpired:
+        subprocess_pub.kill()
+        return 1
+    return 0
 
 
 if __name__ == '__main__':

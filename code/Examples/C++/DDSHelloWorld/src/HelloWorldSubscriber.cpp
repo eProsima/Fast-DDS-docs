@@ -32,6 +32,71 @@ using namespace eprosima::fastdds::dds;
 
 class HelloWorldSubscriber
 {
+private:
+
+    DomainParticipant* participant_;
+
+    Subscriber* subscriber_;
+
+    DataReader* reader_;
+
+    Topic* topic_;
+
+    TypeSupport type_;
+
+    class SubListener : public DataReaderListener
+    {
+    public:
+
+        SubListener()
+            : samples_(0)
+        {
+        }
+
+        ~SubListener() override
+        {
+        }
+
+        void on_subscription_matched(
+                DataReader*,
+                const SubscriptionMatchedStatus& info) override
+        {
+            if (info.current_count_change == 1)
+            {
+                std::cout << "Subscriber matched." << std::endl;
+            }
+            else if (info.current_count_change == -1)
+            {
+                std::cout << "Subscriber unmatched." << std::endl;
+            }
+            else
+            {
+                std::cout << info.current_count_change
+                        << " is not a valid value for SubscriptionMatchedStatus current count change" << std::endl;
+            }
+        }
+
+        void on_data_available(
+                DataReader* reader) override
+        {
+            SampleInfo info;
+            if (reader->take_next_sample(&hello_, &info) == ReturnCode_t::RETCODE_OK)
+            {
+                if (info.instance_state == ALIVE)
+                {
+                    samples_++;
+                    std::cout << "Message: " << hello_.message() << " with index: " << hello_.index()
+                                << " RECEIVED." << std::endl;
+                }
+            }
+        }
+
+        HelloWorld hello_;
+
+        std::atomic_int samples_;
+
+    } listener_;
+
 public:
 
     HelloWorldSubscriber()
@@ -92,10 +157,7 @@ public:
         }
 
         // Create the DataReader
-        DataReaderQos readerQos = DATAREADER_QOS_DEFAULT;
-        readerQos.reliability().kind = RELIABLE_RELIABILITY_QOS;
-        readerQos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;
-        reader_ = subscriber_->create_datareader(topic_, readerQos, &listener_);
+        reader_ = subscriber_->create_datareader(topic_, DATAREADER_QOS_DEFAULT, &listener_);
 
         if (reader_ == nullptr)
         {
@@ -111,71 +173,6 @@ public:
     {
         while(listener_.samples_ < samples);
     }
-
-private:
-
-    DomainParticipant* participant_;
-
-    Subscriber* subscriber_;
-
-    DataReader* reader_;
-
-    Topic* topic_;
-
-    TypeSupport type_;
-
-    class SubListener : public DataReaderListener
-    {
-public:
-
-        SubListener()
-            : samples_(0)
-        {
-        }
-
-        ~SubListener() override
-        {
-        }
-
-        void on_subscription_matched(
-                DataReader*,
-                const SubscriptionMatchedStatus& info) override
-        {
-            if (info.current_count_change == 1)
-            {
-                std::cout << "Subscriber matched." << std::endl;
-            }
-            else if (info.current_count_change == -1)
-            {
-                std::cout << "Subscriber unmatched." << std::endl;
-            }
-            else
-            {
-                std::cout << info.current_count_change
-                        << " is not a valid value for SubscriptionMatchedStatus current count change" << std::endl;
-            }
-        }
-
-        void on_data_available(
-                DataReader* reader) override
-        {
-            SampleInfo info;
-            if (reader->take_next_sample(&hello_, &info) == ReturnCode_t::RETCODE_OK)
-            {
-                if (info.instance_state == ALIVE)
-                {
-                    samples_++;
-                    std::cout << "Message: " << hello_.message() << " with index: " << hello_.index()
-                                << " RECEIVED." << std::endl;
-                }
-            }
-        }
-
-        HelloWorld hello_;
-
-        int samples_;
-
-    } listener_;
 };
 
 int main(

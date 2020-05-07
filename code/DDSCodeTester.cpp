@@ -1,30 +1,3 @@
-/*
-#include <fastrtps/Domain.h>
-#include <fastrtps/rtps/RTPSDomain.h>
-#include <fastrtps/publisher/Publisher.h>
-#include <fastrtps/subscriber/Subscriber.h>
-#include <fastrtps/participant/ParticipantListener.h>
-#include <fastrtps/publisher/PublisherListener.h>
-#include <fastrtps/subscriber/SubscriberListener.h>
-#include <fastrtps/rtps/writer/RTPSWriter.h>
-#include <fastrtps/rtps/reader/RTPSReader.h>
-#include <fastrtps/rtps/reader/ReaderListener.h>
-#include <fastrtps/rtps/history/WriterHistory.h>
-#include <fastrtps/rtps/history/ReaderHistory.h>
-#include <fastrtps/xmlparser/XMLProfileManager.h>
-#include <fastrtps/xmlparser/XMLEndpointParser.h>
-#include <fastrtps/transport/UDPv4TransportDescriptor.h>
-#include <fastrtps/transport/TCPv4TransportDescriptor.h>
-#include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
-#include <fastrtps/types/DynamicDataFactory.h>
-#include <fastrtps/utils/IPLocator.h>
-#include <fastrtps/log/Log.h>
-#include <fastrtps/log/FileConsumer.h>
-#include <fastrtps/subscriber/SampleInfo.h>
-#include <fastrtps/TopicDataType.h>
-#include <fastrtps_deprecated/security/accesscontrol/GovernanceParser.h>
-#include <fastrtps_deprecated/security/accesscontrol/PermissionsParser.h>
-*/
 
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
@@ -37,41 +10,47 @@
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
 
-//using namespace eprosima::fastrtps;
 using namespace eprosima::fastdds::dds;
-//using namespace ::rtps;
-//using namespace ::xmlparser;
-//using namespace ::security;
-//using namespace ::types;
-//using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
 
+
+class CustomDomainParticipantListener : public DomainParticipantListener
+{
+};
 
 void dds_domain_examples()
 {
     {
         //DDS_CREATE_DOMAINPARTICIPANT
-        DomainParticipant* participant_with_default_attributes = DomainParticipantFactory::get_instance()->create_participant(0);
-        if (!participant_with_default_attributes)
+        // Create a DomainParticipant with default DomainParticipantQos and no Listener
+        // The symbol PARTICIPANT_QOS_DEFAULT is used to denote the default QoS.
+        DomainParticipant* participant_with_default_attributes =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant_with_default_attributes)
         {
-            //error
+            // Error
             return;
         }
 
+        // A custom DomainParticipantQos can be provided to the creation method
         DomainParticipantQos qos;
         qos.entity_factory().autoenable_created_entities = false;
-        DomainParticipant* participant_with_non_default_qos = DomainParticipantFactory::get_instance()->create_participant(0, qos);
-        if (!participant_with_non_default_qos)
+        DomainParticipant* participant_with_non_default_qos =
+                DomainParticipantFactory::get_instance()->create_participant(0, qos);
+        if (nullptr != participant_with_non_default_qos)
         {
-            //error
+            // Error
             return;
         }
 
-        DomainParticipantListener listener;
+        // Create a DomainParticipant with default QoS and a custom Listener.
+        // CustomDomainParticipantListener inherits from DomainParticipantListener.
+        // The symbol PARTICIPANT_QOS_DEFAULT is used to denote the default QoS.
+        CustomDomainParticipantListener listener;
         DomainParticipant* participant_with_default_qos_and_listener =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT, &listener);
-        if (!participant_with_default_qos_and_listener)
+        if (nullptr != participant_with_default_qos_and_listener)
         {
-            //error
+            // Error
             return;
         }
         //!--
@@ -79,45 +58,48 @@ void dds_domain_examples()
 
     {
         //DDS_CHANGE_DOMAINPARTICIPANTQOS
-        DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0);
-        if (!participant)
+        // Create a DomainParticipant with default DomainParticipantQos
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
         {
-            //error
+            // Error
             return;
         }
 
-        //get the current QoS, and change desired values or create a completely one from scratch
+        // Get the current QoS, and change desired values or create a completely one from scratch
         DomainParticipantQos qos = participant->get_qos();
         qos.entity_factory().autoenable_created_entities = false;
 
-        //Assign the new Qos to the object
+        // Assign the new Qos to the object
         participant->set_qos(qos);
         //!--
     }
 
     {
         //DDS_CHANGE_DOMAINPARTICIPANTQOS_TO_DEFAULT
-        //Create a participant with non-default QoS
+        // Create a participant with non-default QoS
         DomainParticipantQos qos;
         qos.entity_factory().autoenable_created_entities = false;
         DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, qos);
-        if (!participant)
+        if (nullptr != participant)
         {
-            //error
+            // Error
             return;
         }
 
-        //Set the QoS on the participant to the default
+        // Set the QoS on the participant to the default
         if (participant->set_qos(PARTICIPANT_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
         {
-            //error
+            // Error
             return;
         }
 
-        //The previous instruction is equivalent to the following:
-        if(participant->set_qos(DomainParticipantFactory::get_instance()->get_default_participant_qos()) != ReturnCode_t::RETCODE_OK)
+        // The previous instruction is equivalent to the following:
+        if(participant->set_qos(DomainParticipantFactory::get_instance()->get_default_participant_qos())
+                != ReturnCode_t::RETCODE_OK)
         {
-            //error
+            // Error
             return;
         }
         //!--
@@ -125,18 +107,22 @@ void dds_domain_examples()
 
     {
         //DDS_DELETE_DOMAINPARTICIPANT
-        DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0);
-        if (!participant)
+        // Create a DomainParticipant
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
         {
-            //error
+            // Error
             return;
         }
 
+        // Use the DomainParticipant to communicate
         // (...)
 
+        // Delete the DomainParticipant
         if (DomainParticipantFactory::get_instance()->delete_participant(participant) != ReturnCode_t::RETCODE_OK)
         {
-            //error
+            // Error
             return;
         }
         //!--
@@ -144,38 +130,108 @@ void dds_domain_examples()
 
     {
         //DDS_CHANGE_DEFAULT_DOMAINPARTICIPANTQOS
+        // Get the current default DomainParticipantQos, and change desired values or create a completely one from scratch
         DomainParticipantQos qos = DomainParticipantFactory::get_instance()->get_default_participant_qos();
 
+        // Setting autoenable_created_entities to true makes the Entities created on the DomainParticipant
+        // to be enabled upon creation
         qos.entity_factory().autoenable_created_entities = true;
         if(DomainParticipantFactory::get_instance()->set_default_participant_qos(qos) != ReturnCode_t::RETCODE_OK)
         {
-            //error
+            // Error
             return;
         }
 
-        DomainParticipant* enabled_participant = DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (!enabled_participant)
+        // Create a DomainParticipant with the new default DomainParticipantQos.
+        // Entities created on this DomainParticipant will be enabled during their creation
+        DomainParticipant* auto_enabling_participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != auto_enabling_participant)
         {
-            //error
+            // Error
             return;
         }
 
+        // Setting autoenable_created_entities to false makes the Entities created on the DomainParticipant
+        // to be disabled upon creation
         qos.entity_factory().autoenable_created_entities = false;
         if(DomainParticipantFactory::get_instance()->set_default_participant_qos(qos) != ReturnCode_t::RETCODE_OK)
         {
-            //error
+            // Error
             return;
         }
 
-        DomainParticipant* disabled_participant = DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (!disabled_participant)
+        // Create a DomainParticipant with the new default DomainParticipantQos.
+        // Entities created on this DomainParticipant will need to be enabled after their creation
+        DomainParticipant* non_auto_enabling_participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != non_auto_enabling_participant)
         {
-            //error
+            // Error
+            return;
+        }
+
+        // Resetting the default DomainParticipantQos to the original default constructed values
+        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(PARTICIPANT_QOS_DEFAULT)
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following
+        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(DomainParticipantQos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
             return;
         }
         //!--
     }
 
+    {
+        //DDS_CHANGE_DOMAINPARTICIPANTFACTORYQOS
+        DomainParticipantFactoryQos qos;
+
+        // Setting autoenable_created_entities to true makes the created DomainParticipants
+        // to be enabled upon creation
+        qos.entity_factory().autoenable_created_entities = true;
+        if(DomainParticipantFactory::get_instance()->set_qos(qos) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DomainParticipant with the new DomainParticipantFactoryQos.
+        // The returned DomainParticipant is already enabled
+        DomainParticipant* enabled_participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != enabled_participant)
+        {
+            // Error
+            return;
+        }
+
+        // Setting autoenable_created_entities to false makes the created DomainParticipants
+        // to be disabled upon creation
+        qos.entity_factory().autoenable_created_entities = false;
+        if(DomainParticipantFactory::get_instance()->set_qos(qos) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DomainParticipant with the new DomainParticipantFactoryQos.
+        // The returned DomainParticipant is disabled and will need to be enabled explicitly
+        DomainParticipant* disabled_participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != disabled_participant)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
 }
 
 

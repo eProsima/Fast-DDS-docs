@@ -4,38 +4,41 @@ DomainParticipantListener
 =========================
 
 DomainParticipantListener is an abstract class defining the callbacks that will be triggered
-in response to state changes on the DomainParticipant.
+in response to state changes on the :ref:`dds_layer_domainParticipant`.
 By default, all these callbacks are empty and do nothing.
-The client should implement a specialization of this class overriding the callbacks
+The user should implement a specialization of this class overriding the callbacks
 that are needed on the application.
 Callbacks that are not overridden will maintain their empty implementation.
 
-DomainParticipantListener inherits from :class:`TopicListener`, :class:`PublisherListener`, and
-:class:`SubscriberListener`.
+DomainParticipantListener inherits from :ref:`dds_layer_topic_topicListener`,
+:ref:`dds_layer_publisher_publisherListener`, and :ref:`dds_layer_subscriber_subscriberListener`.
 Therefore, it has the ability to react to every kind of event that is
 reported to the client application.
 
 Additionally, DomainParticipantListener add the following callbacks:
 
- * **on_participant_discovery**: A new DomainParticipant is discovered in the same domain, a previously known
-   DomainParticipant has been removed, or some DomainParticipant has changed its QoS.
+ * **on_participant_discovery**: A new :ref:`dds_layer_domainParticipant` is discovered in the same domain,
+   a previously known :ref:`dds_layer_domainParticipant` has been removed, or some :ref:`dds_layer_domainParticipant`
+   has changed its QoS.
 
- * **on_subscriber_discovery**: A new Subscriber is discovered in the same domain, a previously known
-   Subscriber has been removed, or some Subscriber has changed its QoS.
+ * **on_subscriber_discovery**: A new :ref:`dds_layer_subscriber_subscriber` is discovered in the same domain,
+   a previously known :ref:`dds_layer_subscriber_subscriber` has been removed,
+   or some :ref:`dds_layer_subscriber_subscriber` has changed its QoS.
 
- * **on_publisher_discovery**: A new Publisher is discovered in the same domain, a previously known
-   Publisher has been removed, or some Publisher has changed its QoS.
+ * **on_publisher_discovery**: A new :ref:`dds_layer_publisher_publisher` is discovered in the same domain,
+   a previously known :ref:`dds_layer_publisher_publisher` has been removed,
+   or some :ref:`dds_layer_publisher_publisher` has changed its QoS.
 
  * **on_type_discovery**: A new data Type is discovered in the same domain.
 
  * **on_type_dependencies_reply**: The Type lookup client received a replay to a :func:`getTypeDependencies` request.
    This callback can be used to retrieve the new type using the :func:`getTypes` request and create a new
-   :class:`DynamicType` using the retrieved :class:`TypeObject`.
+   DynamicType using the retrieved TypeObject.
 
- * **on_type_information_received**: A new :class:`TypeInformation` has been received from a newly discovered
-   DomainParticipant
+ * **on_type_information_received**: A new TypeInformation has been received from a newly discovered
+   :ref:`dds_layer_domainParticipant`.
 
  * **onParticipantAuthentication**: Informs about the result of the authentication process
-   of a remote DomainParticipant (either on failure or success).
+   of a remote :ref:`dds_layer_domainParticipant` (either on failure or success).
 
 

@@ -1,7 +1,7 @@
 Putting all together
 ^^^^^^^^^^^^^^^^^^^^
 
-Finally, from the build directory, run the publisher and subscriber applications from various terminals.
+Finally, from the build directory, run the publisher and subscriber applications from two terminals.
 
 .. code-block:: bash
 
@@ -10,7 +10,7 @@ Finally, from the build directory, run the publisher and subscriber applications
 
 .. raw:: html
 
-    <video width="1040" height="563" autoplay loop>
+    <video autoplay loop>
         <source src="../../../_static/simple_pubsub.mp4">
         Your browser does not support the video tag.
     </video>

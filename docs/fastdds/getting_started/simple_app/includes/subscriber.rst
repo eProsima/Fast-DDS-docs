@@ -26,24 +26,24 @@ Following the same structure as in the publisher explanation, we start with the 
 In these, the files that include the publisher class are replaced by the subscriber class and the data writer class by
 the data reader class.
 
-*   Subscriber.
+*   :class:`Subscriber`.
     Is the object responsible for the creation and configuration of DataReaders.
-*   DataReader.
+*   :class:`DataReader`.
     Is the object responsible for the actual reception of the data.
     It registers in the application the topic (TopicDescription) that identifies the data to be read and
     accesses the data received by the subscriber.
-*   DataReaderListener.
+*   :class:`DataReaderListener`.
     This is the listener assigned to the data reader.
-*   DataReaderQoS.
+*   :class:`DataReaderQoS`.
     Structure that defines the QoS of the DataReader.
-*   SampleInfo.
+*   :class:`SampleInfo`.
     Is the information that accompanies each sample that is ‘read’ or ‘taken.’
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
     :lines: 22,29
 
-The next line defines the HelloWorldSubscriber class that implements a subscriber.
+The next line defines the :class:`HelloWorldSubscriber` class that implements a subscriber.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
@@ -63,9 +63,9 @@ The first overridden callback of the SubListener is the ``on_subscrition_matched
     :lines: 60-77
 
 The second overridden callback is ``on_data_available``.
-In this, the next received sample that the DataReader can access is taken and processed to display its content.
-It is here that the object of the SampleInfo class is defined, which determines whether a sample has already been read
-or taken.
+In this, the next received sample that the data reader can access is taken and processed to display its content.
+It is here that the object of the :class:`SampleInfo` class is defined, which determines whether a sample has already
+been read or taken.
 Each time a sample is read, the counter of samples received is increased.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
@@ -79,7 +79,7 @@ The public constructor and destructor of the class is defined below.
     :lines: 102-126
 
 Then we have the subscriber initialization public member function.
-This is the same as the initialization public member function defined for the HelloWorldPublisher.
+This is the same as the initialization public member function defined for the :class:`HelloWorldPublisher`.
 The QoS configuration for all entities, except for the participant's name, is the default QoS
 (``PARTICIPANT_QOS_DEFAULT``, ``SUBSCRIBER_QOS_DEFAULT``, ``TOPIC_QOS_DEFAULT``, ``DATAREADER_QOS_DEFAULT``).
 The default value of the QoS of each DDS Entity can be checked in the

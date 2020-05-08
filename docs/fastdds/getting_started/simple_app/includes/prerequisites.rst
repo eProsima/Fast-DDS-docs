@@ -5,4 +5,4 @@ First of all, you need to follow the steps outlined in :ref:`installation_requir
 for the installation of required packages, and in :ref:`installation-from-sources` for the installation of
 *eprosima Fast DDS* and all its dependencies.
 You also need to have completed the steps outlined in :ref:`compile-fastrtpsgen` for the installation of the
-*eProsima FASTRTPSGEN* tool.
+*eProsima FASTRTPSGEN* tool. Moreover, all the commands provided in this tutorial are for a Linux environment.

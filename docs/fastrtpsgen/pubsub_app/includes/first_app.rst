@@ -68,12 +68,16 @@ Finally, we compile the generated code.
 
 The application build can be used to spawn any number of publishers and subscribers associated with your topic.
 
-    On Linux: ::
+    * On Linux:
+
+    .. code:: bash
 
         ./HelloWorld publisher
         ./HelloWorld subscriber
 
-    On Windows: ::
+    * On Windows:
+
+    .. code:: bash
 
         HelloWorld.exe publisher
         HelloWorld.exe subscriber

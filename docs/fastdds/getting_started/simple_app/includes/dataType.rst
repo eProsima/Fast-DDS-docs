@@ -1,8 +1,14 @@
 Build the topic data type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Briefly, *eProsima FASTRTPSGEN* is a Java application that generates source code using the data types defined in an
-Interface Description Language (IDL) file.
+*eProsima FASTRTPSGEN* is a Java application that generates source code using the data types defined in an
+Interface Description Language (IDL) file. This application can do two different things:
+
+1. Generate a functional example that uses your topic data.
+2. Generate C++ definitions for your custom topic.
+
+It will be the latter that will be followed in this tutorial.
+To see an example of application of the first one you can check this other :ref:`example <fastrtpsgen_pubsub_app>`.
 See :ref:`fastrtpsgen_intro` for further details.
 
 For this project, we will use the FASTRTPSGEN application to define the data type of the messages that will be sent

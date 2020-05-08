@@ -66,7 +66,6 @@ a{
 
 a:hover{
   color:#00d3de !important;
-  text-decoration: underline !important;
 }
 
 .wy-nav-content{
@@ -86,10 +85,9 @@ a:hover{
   color:#fff !important;
 }
 
-p, ul, ol{
+p {
   font-size:14px !important;
   line-height:auto !important;
-  text-align:justify !important;
 }
 
 .btn-neutral{
@@ -207,8 +205,24 @@ a.icon-home{
 
 
 /* Custom width read the docs */
+
 .wy-nav-content {
   max-width: 1050px !important;
+}
+
+.wy-nav-content a:hover{
+  color:#00d3de !important;
+  text-decoration: underline !important;
+}
+
+.wy-nav-content  p, .wy-nav-content ul, .wy-nav-content ol{
+  font-size:14px !important;
+  line-height:auto !important;
+  text-align:justify !important;
+}
+
+rst-content .section ol p, .rst-content .section ul p {
+  margin-bottom: 0px;
 }
 
 table {
@@ -248,7 +262,7 @@ video {
 
 div.highlight-bash pre, div.highlight-shell-session pre  {
   background-color: whitesmoke !important;
-  border-left: 5px solid black;
+  border-left: 5px solid black !important;
 }
 
 .api-ref p {

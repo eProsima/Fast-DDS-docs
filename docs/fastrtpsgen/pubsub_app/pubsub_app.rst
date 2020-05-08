@@ -1,3 +1,5 @@
+.. _fastrtpsgen_pubsub_app:
+
 Building a publish/subscribe application
 -----------------------------------------------
 

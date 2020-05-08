@@ -27,9 +27,9 @@ Now we need to translate this file to something Fast RTPS understands.
 For this we have a code generation tool called fastrtpsgen (see :ref:`fastrtpsgen_intro`), which can do two different
 things:
 
-# Generate a functional example that uses your topic data.
-# Generate C++ definitions for your custom topic.
+1. Generate a functional example that uses your topic data.
+2. Generate C++ definitions for your custom topic.
 
-The first option is used to create this publish/subscribe application, while the second option will be used to
-explain how to write a simple publish/subscribe application.
+The first option is used to create this publish/subscribe application, while the second option is applied in this
+other tutorial: :ref:`writing_pubsub_app`.
 

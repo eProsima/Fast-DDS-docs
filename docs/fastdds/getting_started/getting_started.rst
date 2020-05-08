@@ -11,5 +11,4 @@ Finally it is described how to write a simple publication/subscription applicati
     :maxdepth: 2
 
     definitions
-    fastrtpsgen_app/fastrtpsgen_app
     simple_app/simple_app

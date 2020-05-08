@@ -445,6 +445,237 @@ public:
     }
 };
 
+void dds_topic_examples()
+{
+    {
+        //DDS_CREATE_TOPIC
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with default TopicQos and no Listener
+        // The symbol TOPIC_QOS_DEFAULT is used to denote the default QoS.
+        Topic* topic_with_default_qos =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic_with_default_attributes)
+        {
+            // Error
+            return;
+        }
+
+        // A custom TopicQos can be provided to the creation method
+        TopicQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        Topic* topic_with_custom_qos =
+                participant->create_topic("TopicName", "DataTypeName", custom_qos);
+        if (nullptr != topic_with_custom_qos)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with default QoS and a custom Listener.
+        // CustomTopicListener inherits from TopicListener.
+        // The symbol TOPIC_QOS_DEFAULT is used to denote the default QoS.
+        CustomTopicListener custom_listener;
+        Topic* topic_with_default_qos_and_custom_listener =
+                TopicFactory::get_instance()->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT, &custom_listener);
+        if (nullptr != topic_with_default_qos_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TOPICQOS
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with default TopicQos
+        Topic* topic =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        TopicQos qos = topic->get_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Assign the new Qos to the object
+        topic->set_qos(qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TOPICQOS_TO_DEFAULT
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a custom TopicQos
+        TopicQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Create a topic with a custom TopicQos
+        Topic* topic = TopicFactory::get_instance()->create_topic("TopicName", "DataTypeName", custom_qos);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Set the QoS on the topic to the default
+        if (topic->set_qos(TOPIC_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following:
+        if(topic->set_qos(participant->get_default_topic_qos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DELETE_TOPIC
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic
+        Topic* topic =
+                TopicFactory::get_instance()->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Use the Topic to communicate
+        // (...)
+
+        // Delete the Topic
+        if (TopicFactory::get_instance()->delete_topic(topic) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DEFAULT_TOPICQOS
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        TopicQos qos_type1 = participant->get_default_topic_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default TopicQos
+        if(participant->set_default_topic_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with the new default TopicQos.
+        Topic* topic_with_qos_type1 =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic_with_qos_type1)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        TopicQos qos_type2;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default TopicQos
+        if(participant->set_default_topic_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with the new default TopicQos.
+        Topic* topic_with_qos_type2 =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic_with_qos_type2)
+        {
+            // Error
+            return;
+        }
+
+        // Resetting the default TopicQos to the original default constructed values
+        if(TopicFactory::get_instance()->set_default_topic_qos(TOPIC_QOS_DEFAULT)
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following
+        if(TopicFactory::get_instance()->set_default_topic_qos(TopicQos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+}
+
+
 class CustomPublisherListener : public PublisherListener
 {
 };

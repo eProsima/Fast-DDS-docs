@@ -20,6 +20,22 @@ class CustomDomainParticipantListener : public DomainParticipantListener
 void dds_domain_examples()
 {
     {
+        //DDS_LOAD_XML_PROFILE
+        // Load the XML with the profiles
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("profiles.xml");
+
+        // Profiles can now be used to create Entities
+        DomainParticipant* participant_with_profile =
+                DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile");
+        if (nullptr != participant_with_profile)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
         //DDS_CREATE_DOMAINPARTICIPANT
         // Create a DomainParticipant with default DomainParticipantQos and no Listener
         // The symbol PARTICIPANT_QOS_DEFAULT is used to denote the default QoS.
@@ -49,6 +65,33 @@ void dds_domain_examples()
         DomainParticipant* participant_with_default_qos_and_listener =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT, &listener);
         if (nullptr != participant_with_default_qos_and_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CREATE_PROFILE_DOMAINPARTICIPANT
+        // First load the XML with the profiles
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("profiles.xml");
+
+        // Create a DomainParticipant using a profile and no Listener
+        DomainParticipant* participant_with_profile =
+                DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile");
+        if (nullptr != participant_with_profile)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DomainParticipant using a profile and a custom Listener.
+        // CustomDomainParticipantListener inherits from DomainParticipantListener.
+        CustomDomainParticipantListener listener;
+        DomainParticipant* participant_with_profile_and_listener =
+                DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile", &listener);
+        if (nullptr != participant_with_profile_and_listener)
         {
             // Error
             return;

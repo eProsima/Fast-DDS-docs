@@ -157,6 +157,10 @@ It is advisable to check that the returned value is a valid pointer.
 
    XML profiles must have been loaded previously. See :ref:`dds_layer_domainParticipantFactory_load_profiles`.
 
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_CREATE_PROFILE_DOMAINPARTICIPANT
+   :end-before: //!
 
 .. _dds_layer_domainParticipant_deletion:
 

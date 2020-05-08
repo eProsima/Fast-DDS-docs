@@ -53,5 +53,11 @@ See section :ref:`xml_profiles` for more information regarding XML profile forma
 Once loaded, the name of the profiles can be used to create Entities that will have QoS settings according to
 the profile specifications.
 
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_LOAD_XML_PROFILE
+   :end-before: //!
+
+
 
 

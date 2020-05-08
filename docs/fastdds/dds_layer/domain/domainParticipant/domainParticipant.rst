@@ -68,6 +68,8 @@ The default :ref:`dds_layer_domainParticipantQos` refers to the value returned b
 The special symbol :class:`PARTICIPANT_QOS_DEFAULT` can be used as QoS parameter on :func:`create_participant()`
 or :func:`set_qos()` methods to indicate that the current default :ref:`dds_layer_domainParticipantQos` should be used.
 
+When the system starts, the default :ref:`dds_layer_domainParticipantQos` is equivalent to the default constructed
+value :func:`DomainParticipantQos()`.
 The default :ref:`dds_layer_domainParticipantQos` can be modified at any time using the
 :func:`set_default_participant_qos()` method on the :ref:`dds_layer_domainParticipantFactory` singleton.
 Modifying the default :ref:`dds_layer_domainParticipantQos` will not affect already existing
@@ -81,7 +83,8 @@ Modifying the default :ref:`dds_layer_domainParticipantQos` will not affect alre
 
 :func:`set_default_participant_qos()` method also accepts the symbol :class:`PARTICIPANT_QOS_DEFAULT`
 as input parameter.
-This will reset the current default :ref:`dds_layer_domainParticipantQos` to default constructed values.
+This will reset the current default :ref:`dds_layer_domainParticipantQos` to the default constructed value
+:func:`DomainParticipantQos()`.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

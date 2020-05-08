@@ -48,11 +48,14 @@ void dds_domain_examples()
         }
 
         // A custom DomainParticipantQos can be provided to the creation method
-        DomainParticipantQos qos;
-        qos.entity_factory().autoenable_created_entities = false;
-        DomainParticipant* participant_with_non_default_qos =
-                DomainParticipantFactory::get_instance()->create_participant(0, qos);
-        if (nullptr != participant_with_non_default_qos)
+        DomainParticipantQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        DomainParticipant* participant_with_custom_qos =
+                DomainParticipantFactory::get_instance()->create_participant(0, custom_qos);
+        if (nullptr != participant_with_custom_qos)
         {
             // Error
             return;
@@ -61,10 +64,10 @@ void dds_domain_examples()
         // Create a DomainParticipant with default QoS and a custom Listener.
         // CustomDomainParticipantListener inherits from DomainParticipantListener.
         // The symbol PARTICIPANT_QOS_DEFAULT is used to denote the default QoS.
-        CustomDomainParticipantListener listener;
-        DomainParticipant* participant_with_default_qos_and_listener =
-                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT, &listener);
-        if (nullptr != participant_with_default_qos_and_listener)
+        CustomDomainParticipantListener custom_listener;
+        DomainParticipant* participant_with_default_qos_and_custom_listener =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT, &custom_listener);
+        if (nullptr != participant_with_default_qos_and_custom_listener)
         {
             // Error
             return;
@@ -110,9 +113,11 @@ void dds_domain_examples()
             return;
         }
 
-        // Get the current QoS, and change desired values or create a completely one from scratch
+        // Get the current QoS or create a new one from scratch
         DomainParticipantQos qos = participant->get_qos();
-        qos.entity_factory().autoenable_created_entities = false;
+
+        // Modify QoS attributes
+        // (...)
 
         // Assign the new Qos to the object
         participant->set_qos(qos);
@@ -121,10 +126,15 @@ void dds_domain_examples()
 
     {
         //DDS_CHANGE_DOMAINPARTICIPANTQOS_TO_DEFAULT
-        // Create a participant with non-default QoS
-        DomainParticipantQos qos;
-        qos.entity_factory().autoenable_created_entities = false;
-        DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, qos);
+        // Create a custom DomainParticipantQos
+        DomainParticipantQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Create a DomainParticipant with a custom DomainParticipantQos
+
+        DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, custom_qos);
         if (nullptr != participant)
         {
             // Error
@@ -173,42 +183,45 @@ void dds_domain_examples()
 
     {
         //DDS_CHANGE_DEFAULT_DOMAINPARTICIPANTQOS
-        // Get the current default DomainParticipantQos, and change desired values or create a completely one from scratch
-        DomainParticipantQos qos = DomainParticipantFactory::get_instance()->get_default_participant_qos();
+        // Get the current QoS or create a new one from scratch
+        DomainParticipantQos qos_type1 = DomainParticipantFactory::get_instance()->get_default_participant_qos();
 
-        // Setting autoenable_created_entities to true makes the Entities created on the DomainParticipant
-        // to be enabled upon creation
-        qos.entity_factory().autoenable_created_entities = true;
-        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(qos) != ReturnCode_t::RETCODE_OK)
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default TopicQos
+        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
         }
 
         // Create a DomainParticipant with the new default DomainParticipantQos.
-        // Entities created on this DomainParticipant will be enabled during their creation
-        DomainParticipant* auto_enabling_participant =
+        DomainParticipant* participant_with_qos_type1 =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != auto_enabling_participant)
+        if (nullptr != participant_with_qos_type1)
         {
             // Error
             return;
         }
 
-        // Setting autoenable_created_entities to false makes the Entities created on the DomainParticipant
-        // to be disabled upon creation
-        qos.entity_factory().autoenable_created_entities = false;
-        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(qos) != ReturnCode_t::RETCODE_OK)
+        // Get the current QoS or create a new one from scratch
+        DomainParticipantQos qos_type2;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default TopicQos
+        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
         }
 
-        // Create a DomainParticipant with the new default DomainParticipantQos.
-        // Entities created on this DomainParticipant will need to be enabled after their creation
-        DomainParticipant* non_auto_enabling_participant =
+        // Create a Topic with the new default TopicQos.
+        DomainParticipant* participant_with_qos_type2 =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != non_auto_enabling_participant)
+        if (nullptr != participant_with_qos_type2)
         {
             // Error
             return;
@@ -276,5 +289,6 @@ void dds_domain_examples()
         //!--
     }
 }
+
 
 

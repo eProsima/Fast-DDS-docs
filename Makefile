@@ -68,7 +68,7 @@ compile:
 	@echo "Source code build finished."
 
 .PHONY: test
-test: compile
+test: html compile
 	doc8 --max-line-length 120 docs
 	@echo
 	@echo "RST checking finished."

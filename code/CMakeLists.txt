@@ -102,6 +102,7 @@ set(PRODUCT_CMAKELIST_CONTENT "
             BUILD_COMMAND cd eprosima && python3 buildcop.py --ci-repo https://gitlab.intranet.eprosima.com/eProsima/fastrtps-ci.git --source-branch ${REPO_TAG} --build-args --build-base build --merge-install --mixin rel-with-deb-info --packages-up-to fastrtps --metas ../../.. --cmake-args -DSECURITY=ON --- --no-test
             INSTALL_COMMAND \"\"
             UPDATE_COMMAND \"\"
+            DEPENDS fastrtps
             )
     endif()
     ")
@@ -131,7 +132,8 @@ add_custom_target(doc-dirs
     COMMENT "Creating documentation directories" VERBATIM)
 
 # Get header files from repo instead of from installation. This way Fast RTPS does not need to be compiled
-file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/**/*.h*")
+file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds/**/*.h*")
+set(INCLUDE_FILE "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds")
 
 # Configure doxygen
 configure_file(doxygen-config.in ${PROJECT_BINARY_DIR}/doxygen-config @ONLY)

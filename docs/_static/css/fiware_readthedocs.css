@@ -64,3 +64,7 @@ src:url("Fonts/742885/39974d8a-38de-4853-a4d1-778234a08061.eot?#iefix") format("
 .wy-nav-content {
   max-width: 800px !important;
 }
+
+.api-ref p {
+  text-align: left !important;
+}

@@ -3,6 +3,9 @@
 Core
 ====
 
+This module defines the infrastructure classes and types that will be used by the other ones. It contains the
+definition of Statuses, QoS policies, and Entity class.
+
 .. toctree::
 
     /fastdds/dds_layer/core/entity/entity

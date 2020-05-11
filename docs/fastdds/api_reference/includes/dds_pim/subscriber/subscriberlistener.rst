@@ -1,5 +1,7 @@
 .. _api_pim_subscriberlistener:
 
+.. rst-class:: api-ref
+
 SubscriberListener
 ------------------
 

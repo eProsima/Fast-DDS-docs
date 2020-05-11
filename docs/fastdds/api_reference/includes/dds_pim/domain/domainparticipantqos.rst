@@ -1,5 +1,7 @@
 .. _api_pim_domainparticipantqos:
 
+.. rst-class:: api-ref
+
 DomainParticipantQos
 --------------------
 

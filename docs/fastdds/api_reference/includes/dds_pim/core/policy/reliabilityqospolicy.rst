@@ -1,5 +1,7 @@
 .. _api_pim_reliabilityqospolicy:
 
+.. rst-class:: api-ref
+
 ReliabilityQosPolicy
 --------------------
 

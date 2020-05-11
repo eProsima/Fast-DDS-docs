@@ -1,5 +1,7 @@
 .. _api_pim_domainparticipantfactory:
 
+.. rst-class:: api-ref
+
 DomainParticipantFactory
 ------------------------
 

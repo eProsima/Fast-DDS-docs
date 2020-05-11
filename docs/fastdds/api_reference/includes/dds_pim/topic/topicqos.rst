@@ -1,5 +1,7 @@
 .. _api_pim_topicqos:
 
+.. rst-class:: api-ref
+
 TopicQos
 --------
 

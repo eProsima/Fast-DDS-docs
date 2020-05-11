@@ -1,5 +1,7 @@
 .. _api_pim_publisherlistener:
 
+.. rst-class:: api-ref
+
 PublisherListener
 -----------------
 

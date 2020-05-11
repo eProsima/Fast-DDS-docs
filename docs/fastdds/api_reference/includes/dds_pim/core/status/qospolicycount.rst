@@ -1,5 +1,7 @@
 .. _api_pim_qospolicycount:
 
+.. rst-class:: api-ref
+
 QosPolicyCount
 --------------
 

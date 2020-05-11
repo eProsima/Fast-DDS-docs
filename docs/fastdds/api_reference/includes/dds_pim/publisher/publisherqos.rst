@@ -1,5 +1,7 @@
 .. _api_pim_publisherqos:
 
+.. rst-class:: api-ref
+
 PublisherQos
 ------------
 

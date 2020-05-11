@@ -1,5 +1,7 @@
 .. _api_pim_transportpriorityqospolicy:
 
+.. rst-class:: api-ref
+
 TransportPriorityQosPolicy
 --------------------------
 

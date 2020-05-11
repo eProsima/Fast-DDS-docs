@@ -1,5 +1,7 @@
 .. _api_pim_livelinessqospolicykind:
 
+.. rst-class:: api-ref
+
 LivelinessQosPolicyKind
 -----------------------
 

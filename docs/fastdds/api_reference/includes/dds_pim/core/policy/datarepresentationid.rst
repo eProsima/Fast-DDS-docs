@@ -1,5 +1,7 @@
 .. _api_pim_datarepresentationid:
 
+.. rst-class:: api-ref
+
 DataRepresentationId
 --------------------
 

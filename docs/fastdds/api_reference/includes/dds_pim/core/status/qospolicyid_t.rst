@@ -1,5 +1,7 @@
 .. _api_pim_qospolicyid_t:
 
+.. rst-class:: api-ref
+
 QosPolicyId_t
 -------------
 

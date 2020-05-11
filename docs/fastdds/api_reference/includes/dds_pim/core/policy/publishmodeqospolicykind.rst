@@ -1,5 +1,7 @@
 .. _api_pim_publishmodeqospolicykind:
 
+.. rst-class:: api-ref
+
 PublishModeQosPolicyKind
 ------------------------
 

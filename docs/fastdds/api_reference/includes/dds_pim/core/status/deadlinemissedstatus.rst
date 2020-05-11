@@ -1,5 +1,7 @@
 .. _api_pim_deadlinemissedstatus:
 
+.. rst-class:: api-ref
+
 DeadlineMissedStatus
 --------------------
 

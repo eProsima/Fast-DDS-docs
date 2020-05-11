@@ -1,5 +1,7 @@
 .. _api_pim_datawriterqos:
 
+.. rst-class:: api-ref
+
 DataWriterQos
 -------------
 

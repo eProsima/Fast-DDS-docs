@@ -1,5 +1,7 @@
 .. _api_pim_typeconsistencyqos:
 
+.. rst-class:: api-ref
+
 TypeConsistencyQos
 ------------------
 

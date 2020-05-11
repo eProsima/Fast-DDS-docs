@@ -1,5 +1,7 @@
 .. _api_pim_statusmask:
 
+.. rst-class:: api-ref
+
 StatusMask
 ----------
 

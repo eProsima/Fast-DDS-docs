@@ -1,5 +1,7 @@
 .. _api_pim_typesupport:
 
+.. rst-class:: api-ref
+
 TypeSupport
 -----------
 

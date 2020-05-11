@@ -1,5 +1,7 @@
 .. _api_pim_requestedincompatibleqosstatus:
 
+.. rst-class:: api-ref
+
 RequestedIncompatibleQosStatus
 ------------------------------
 

@@ -1,5 +1,7 @@
 .. _api_pim_publicationmatchedstatus:
 
+.. rst-class:: api-ref
+
 PublicationMatchedStatus
 ------------------------
 

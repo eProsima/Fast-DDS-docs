@@ -1,5 +1,7 @@
 .. _api_pim_durabilityqospolicykind:
 
+.. rst-class:: api-ref
+
 DurabilityQosPolicyKind
 -----------------------
 

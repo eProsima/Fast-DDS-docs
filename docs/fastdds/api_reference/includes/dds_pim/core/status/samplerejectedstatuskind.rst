@@ -1,5 +1,7 @@
 .. _api_pim_samplerejectedstatuskind:
 
+.. rst-class:: api-ref
+
 SampleRejectedStatusKind
 ------------------------
 

@@ -1,5 +1,7 @@
 .. _api_pim_datareaderqos:
 
+.. rst-class:: api-ref
+
 DataReaderQos
 -------------
 

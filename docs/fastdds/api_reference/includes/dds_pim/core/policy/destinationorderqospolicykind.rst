@@ -1,5 +1,7 @@
 .. _api_pim_destinationorderqospolicykind:
 
+.. rst-class:: api-ref
+
 DestinationOrderQosPolicyKind
 -----------------------------
 

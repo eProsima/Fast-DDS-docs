@@ -1,5 +1,7 @@
 .. _api_pim_subscriberqos:
 
+.. rst-class:: api-ref
+
 SubscriberQos
 -------------
 

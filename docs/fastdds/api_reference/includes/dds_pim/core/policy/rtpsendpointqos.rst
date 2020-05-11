@@ -1,5 +1,7 @@
 .. _api_pim_rtpsendpointqos:
 
+.. rst-class:: api-ref
+
 RTPSEndpointQos
 ---------------
 

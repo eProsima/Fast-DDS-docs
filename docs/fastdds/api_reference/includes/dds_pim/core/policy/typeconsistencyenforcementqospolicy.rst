@@ -1,5 +1,7 @@
 .. _api_pim_typeconsistencyenforcementqospolicy:
 
+.. rst-class:: api-ref
+
 TypeConsistencyEnforcementQosPolicy
 -----------------------------------
 

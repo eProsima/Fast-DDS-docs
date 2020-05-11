@@ -8,7 +8,6 @@ Status
    /fastdds/api_reference/includes/dds_pim/core/status/incompatibleqosstatus.rst
    /fastdds/api_reference/includes/dds_pim/core/status/inconsistenttopicstatus.rst
    /fastdds/api_reference/includes/dds_pim/core/status/livelinesschangedstatus.rst
-   /fastdds/api_reference/includes/dds_pim/core/status/livelinessloststatus.rst
    /fastdds/api_reference/includes/dds_pim/core/status/matchedstatus.rst
    /fastdds/api_reference/includes/dds_pim/core/status/offereddeadlinemissedstatus.rst
    /fastdds/api_reference/includes/dds_pim/core/status/offeredicompatibleqosstatus.rst

@@ -1,5 +1,7 @@
 .. _api_pim_historyqospolicykind:
 
+.. rst-class:: api-ref
+
 HistoryQosPolicyKind
 --------------------
 

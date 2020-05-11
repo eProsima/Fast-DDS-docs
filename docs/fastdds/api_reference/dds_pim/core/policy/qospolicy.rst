@@ -8,4 +8,3 @@ QosPolicy
 .. doxygenclass:: eprosima::fastdds::dds::QosPolicy
     :project: Fast RTPS
     :members:
-

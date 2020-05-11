@@ -29,6 +29,10 @@ boolean
 booleans
 CDR
 centric
+<<<<<<< HEAD
+=======
+booleans
+>>>>>>> Refs #8299: Add User, Topic, and GroupDataQosPolicy
 Centric
 chocolatey
 CMake
@@ -71,6 +75,11 @@ Intra
 IPv
 libs
 lifecycle
+<<<<<<< HEAD
+=======
+lifecycle
+lifecycle
+>>>>>>> Refs #8299: Add User, Topic, and GroupDataQosPolicy
 loopback
 lroundl
 mandatorily
@@ -87,6 +96,7 @@ mutators
 nack
 Nagle
 namespace
+Nagle
 nupkg
 offsetd
 oneway

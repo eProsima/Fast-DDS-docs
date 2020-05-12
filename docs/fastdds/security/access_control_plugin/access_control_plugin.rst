@@ -1,176 +1,24 @@
-Built-in plugins
-----------------
+.. _dds_layer_security_access_control_plugin:
 
-The current version comes out with three security built-in plugins:
+Access control plugin
+----------------------
 
-* :ref:`auth-pki-dh`: this plugin provides authentication using a trusted *Certificate Authority* (CA).
-* :ref:`access-permissions`: this plugin provides access control to Participants at the Domain and Topic level.
-* :ref:`crypto-aes-gcm-gmac`: this plugin provides authenticated encryption using Advanced Encryption Standard (AES) in
-  Galois Counter Mode (AES-GCM).
+They provide validation of entities' permissions.
+After a remote participant is authenticated, its permissions need to be validated and enforced.
 
-.. _auth-pki-dh:
+Access rights that each entity has over a resource are described.
+Main entity is the Participant and it is used to access or produce information on a Domain;
+hence the Participant has to be allowed to run in a certain Domain.
+Also, a Participant is responsible for creating Publishers and Subscribers that communicate over a certain Topic.
+Hence, a Participant has to have the permissions needed to create a Topic, to publish
+through its Publishers certain Topics, and to subscribe via its Subscribers to certain Topics.
+Access control plugin can configure the Cryptographic plugin because its usage is based on the Participant's
+permissions.
 
-Auth:PKI-DH
-^^^^^^^^^^^
+You can activate an Access control plugin using Participant property ``dds.sec.access.plugin``.
+Fast RTPS provides a built-in Access control plugin.
+More information on :ref:`access-permissions`.
 
-This built-in plugin provides authentication between discovered participants.
-It is supplied by a trusted *Certificate Authority* (CA) and uses ECDSA Digital Signature Algorithms to perform the
-mutual authentication.
-It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement Methods.
-This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm-gmac`.
-
-You can activate this plugin using Participant property ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.
-Next tables show you the Participant properties used by this security plugin.
-
-.. list-table:: **Properties to configure Auth:PKI-DH**
-   :header-rows: 1
-   :align: left
-
-   * - Property name |br|
-       (all properties have "dds.sec.auth.builtin.PKI-DH." prefix)
-     - Property value
-   * - identity_ca
-     - URI to the X509 certificate of the Identity CA. |br|
-       Supported URI schemes: file. |br|
-       The **file** schema shall refer to a X.509 v3 certificate in PEM format.
-   * - identity_certificate
-     - URI to an X509 certificate signed by the Identity CA in PEM format containing the signed public key for the
-       Participant. |br|
-       Supported URI schemes: file.
-   * - identity_crl *(optional)*
-     - URI to a X509 Certificate Revocation List (CRL). |br|
-       Supported URI schemes: file.
-   * - private_key
-     - URI to access the private Private Key for the Participant. |br|
-       Supported URI schemes: file.
-   * - password *(optional)*
-     - A password used to decrypt the private_key.
-
-.. _generate_x509:
-
-Generation of x509 certificates
-"""""""""""""""""""""""""""""""
-
-You can generate your own x509 certificates using OpenSSL application. This section teaches you how to do this.
-
-**Generate a certificate for the CA**
-
-When you want to create your own CA certificate, you first have to write a configuration file with your CA
-information.
-
-.. code-block:: ini
-
-    # File: maincaconf.cnf
-    # OpenSSL example Certificate Authority configuration file
-
-    ####################################################################
-    [ ca ]
-    default_ca = CA_default # The default ca section
-
-    ####################################################################
-    [ CA_default ]
-
-    dir = . # Where everything is kept
-    certs = $dir/certs # Where the issued certs are kept
-    crl_dir = $dir/crl # Where the issued crl are kept
-    database = $dir/index.txt # database index file.
-    unique_subject = no # Set to 'no' to allow creation of
-                        # several ctificates with same subject.
-    new_certs_dir = $dir
-
-    certificate = $dir/maincacert.pem # The CA certificate
-    serial = $dir/serial # The current serial number
-    crlnumber = $dir/crlnumber # the current crl number
-                               # must be commented out to leave a V1 CRL
-    crl = $dir/crl.pem # The current CRL
-    private_key = $dir/maincakey.pem # The private key
-    RANDFILE = $dir/private/.rand # private random number file
-
-    name_opt = ca_default # Subject Name options
-    cert_opt = ca_default # Certificate field options
-
-    default_days= 1825 # how long to certify for
-    default_crl_days = 30 # how long before next CRL
-    default_md = sha256 # which md to use.
-    preserve = no # keep passed DN ordering
-
-    policy = policy_match
-
-    # For the CA policy
-    [ policy_match ]
-    countryName = match
-    stateOrProvinceName = match
-    organizationName = match
-    organizationalUnitName = optional
-    commonName = supplied
-    emailAddress = optional
-
-    # For the 'anything' policy
-    # At this point in time, you must list all acceptable 'object'
-    # types.
-    [ policy_anything ]
-    countryName = optional
-    stateOrProvinceName = optional
-    localityName = optional
-    organizationName = optional
-    organizationalUnitName = optional
-    commonName = supplied
-    emailAddress = optional
-
-    [ req ]
-    prompt = no
-    #default_bits = 1024
-    #default_keyfile = privkey.pem
-    distinguished_name= req_distinguished_name
-    #attributes = req_attributes
-    #x509_extensions = v3_ca # The extentions to add to the self signed cert
-    string_mask = utf8only
-
-    [ req_distinguished_name ]
-    countryName = ES
-    stateOrProvinceName = MA
-    localityName = Tres Cantos
-    0.organizationName = eProsima
-    commonName = eProsima Main Test CA
-    emailAddress = mainca@eprosima.com
-
-After writing the configuration file, next commands generate the certificate using ECDSA.
-
-.. code-block:: bash
-
-    openssl ecparam -name prime256v1 > ecdsaparam
-
-    openssl req -nodes -x509 -days 3650 -newkey ec:ecdsaparam -keyout maincakey.pem -out maincacert.pem -config maincaconf.cnf
-
-**Generate a certificate for the Participant**
-
-When you want to create your own certificate for your Participant, you first have to write a configuration file.
-
-.. code-block:: ini
-
-    # File: appconf.cnf
-
-    prompt = no
-    string_mask = utf8only
-    distinguished_name = req_distinguished_name
-
-    [ req_distinguished_name ]
-    countryName = ES
-    stateOrProvinceName = MA
-    localityName = Tres Cantos
-    organizationName = eProsima
-    emailAddress = example@eprosima.com
-    commonName = AppName
-
-After writing the configuration file, next commands generate the certificate, using ECDSA, for your Participant.
-
-.. code-block:: bash
-
-    openssl ecparam -name prime256v1 > ecdsaparam
-
-    openssl req -nodes -new -newkey ec:ecdsaparam -config appconf.cnf -keyout appkey.pem -out appreq.pem
-
-    openssl ca -batch -create_serial -config maincaconf.cnf -days 3650 -in appreq.pem -out appcert.pem
 
 .. _access-permissions:
 
@@ -188,18 +36,18 @@ Next table shows the Participant properties used by this security plugin.
    :header-rows: 1
    :align: left
 
-   * - Property name |br|
+   * - Property name :raw-html:`<br />`
        (all properties have "dds.sec.access.builtin.Access-Permissions." prefix)
      - Property value
    * - permissions_ca
-     - URI to the X509 certificate of the Permissions CA. |br|
-       Supported URI schemes: file. |br|
+     - URI to the X509 certificate of the Permissions CA. :raw-html:`<br />`
+       Supported URI schemes: file. :raw-html:`<br />`
        The **file** schema shall refer to an X.509 v3 certificate in PEM format.
    * - governance
-     - URI to shared Governance Document signed by the Permissions CA in S/MIME format. |br|
+     - URI to shared Governance Document signed by the Permissions CA in S/MIME format. :raw-html:`<br />`
        Supported URI schemes: file.
    * - permissions
-     - URI to the Participant permissions document signed by the Permissions CA in S/MIME format. |br|
+     - URI to the Participant permissions document signed by the Permissions CA in S/MIME format. :raw-html:`<br />`
        Supported URI schemes: file.
 
 Permissions CA Certificate
@@ -517,15 +365,3 @@ Next commands sign the necessary documents for Access:Permissions plugin.
    openssl smime -sign -in permissions.xml -text -out permissions.smime -signer maincacert.pem -inkey maincakey.pem
 
 
-
-.. _crypto-aes-gcm-gmac:
-
-Crypto:AES-GCM-GMAC
-^^^^^^^^^^^^^^^^^^^
-
-This built-in plugin provides authenticated encryption using AES in Galois Counter Mode (AES-GCM).
-It also provides additional reader-specific message authentication codes (MACs) using Galois MAC (AES-GMAC).
-This plugin needs the activation of the security plugin :ref:`auth-pki-dh`.
-
-You can activate this plugin using Participant property ``dds.sec.crypto.plugin`` with the value
-``builtin.AES-GCM-GMAC``.

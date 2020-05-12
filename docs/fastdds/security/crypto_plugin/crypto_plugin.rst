@@ -1,4 +1,6 @@
-Cryptographic plugins
+.. _dds_layer_security_crypto_plugin:
+
+Cryptographic plugin
 ---------------------
 
 They provide encryption support. Encryption can be applied over three different levels of RTPS protocol. Cryptographic
@@ -25,3 +27,16 @@ You can configure an entity (Writer or Reader) to encrypt its RTPS submessages u
 
 You can configure a Writer to encrypt its payload using Writer property ``rtps.endpoint.payload_protection_kind`` with
 the value ``ENCRYPT``.
+
+.. _crypto-aes-gcm-gmac:
+
+Crypto:AES-GCM-GMAC
+^^^^^^^^^^^^^^^^^^^
+
+This built-in plugin provides authenticated encryption using AES in Galois Counter Mode (AES-GCM).
+It also provides additional reader-specific message authentication codes (MACs) using Galois MAC (AES-GMAC).
+This plugin needs the activation of the security plugin :ref:`auth-pki-dh`.
+
+You can activate this plugin using Participant property ``dds.sec.crypto.plugin`` with the value
+``builtin.AES-GCM-GMAC``.
+

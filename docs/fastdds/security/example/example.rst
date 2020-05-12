@@ -2,7 +2,7 @@
 
 .. _security-configuration-examples:
 
-Example: configuring the :class:`Participant`
+Example: configuring the DomainParticipant
 ---------------------------------------------
 
 This example show you how to configure a Participant to activate and configure :ref:`auth-pki-dh`,

@@ -4,8 +4,8 @@ Library Overview
 ================
 
 Fast DDS is an efficient and high-performance implementation of the DDS specification, a data-centric communications
-midddleware (DCPS) for distributed application software.
-This section reviews the architecture, operation and key concepts of Fast DDS.
+middleware (DCPS) for distributed application software.
+This section reviews the architecture, operation and key features of Fast DDS.
 
 Architecture
 ------------
@@ -30,7 +30,7 @@ be seen.
 .. figure:: /01-figures/fast_dds/library_overview/library_overview.svg
   :align: center
 
-  Fast DDS model layer architecture
+  Fast DDS layer model architecture
 
 The elements that comprise each of the layers shown in the figure above are explained below.
 
@@ -44,11 +44,13 @@ Fast DDS, following the DDS specification, defines these elements involved in co
 
 * **DomainId_t**.
   uint32_t data type which identifies the DDS domain.
-  Each DomainParticipant will have an assigned DDS domain, so that DomainParticipants in the same domain can communicate, as well as isolate communications between DDS domains.
+  Each DomainParticipant will have an assigned DDS domain, so that DomainParticipants in the same domain can
+  communicate, as well as isolate communications between DDS domains.
   This value must be given by the application developer when creating the DomainParticipants.
 * **DomainParticipants**.
   Object containing other DDS entities such as publishers, subscribers, topics and multitopics.
-  It is the entity that allows the creation of the previous entities it contains, as well as the configuration of their behavior.
+  It is the entity that allows the creation of the previous entities it contains, as well as the configuration of their
+  behavior.
 * **Publisher**.
   It is the entity that creates and configures the DataWriter entities it contains.
   It may contain one or more DataWriter entities.
@@ -80,6 +82,8 @@ The aforementioned **Entities** represent any object that supports QoS, and a li
 * **Listener**.
   The mechanism by which the entities are notified of the possible events that arise during the application's execution.
 
+This is all covered in more detail in the :ref:`dds_layer` section.
+
 RTPS layer
 ^^^^^^^^^^
 
@@ -97,6 +101,8 @@ According to the graph shown above, the RTPS layer has four main **Entities**.
 * **RTPSReader**.
   Receiving entity of the messages. It writes the changes reported by the RTPSWriter in the DataReaderHistory.
 
+This is all covered in more detail in the :ref:`rtps_layer` section.
+
 Transport layer
 ^^^^^^^^^^^^^^^
 
@@ -105,6 +111,8 @@ Shared Memory Transport (SHM). By default, a DomainParticipant implements two tr
 
 * **SHM**: for communications between DomainParticipants in the same machine.
 * **UDPv4**: for inter machine communications.
+
+The configuration of all supported transport protocols is detailed in the :ref:`comm-transports-configuration` section.
 
 Programming and execution model
 -------------------------------
@@ -138,5 +146,99 @@ Event-driven architecture
 There is a time-event system that enables Fast DDS to respond to certain conditions, as well as schedule periodic
 operations.
 Few of them are visible to the user since most are related to DDS and RTPS metadata.
-However, the user can define in his/her application periodic time-events by inheriting from the :class:TimedEvent class.
+However, the user can define in his/her application periodic time-events by inheriting from the :class:`TimedEvent`
+class.
 
+
+Functionalities
+---------------
+
+Fast DDS has some added features that can be implemented and configured by the user in his/her application.
+These are outlined below.
+
+Discovery Protocols
+^^^^^^^^^^^^^^^^^^^
+
+The discovery protocols define the mechanisms by which DataWriters publishing under a given Topic, and DataReaders
+subscribing to that same Topic are matched, so that they can start sharing data.
+This applies at any point in the communication process.
+Fast DDS provides the following discovery mechanisms:
+
+* **Simple Discovery**.
+  This is the default mechanism.
+  Here the DomainParticipants are discovered individually at an early stage to subsequently match the DataWriter and
+  DataReader they implement.
+* **Static Discovery**.
+  This implements the discovery of DomainParticipants to each other but it is possible to skip the discovery of the
+  entities contained in each DomainParticipant if they are known in advance.
+* **Server-Client Discovery**.
+  This discovery mechanism uses a centralized discovery architecture, where servers act as a hubs for discovery meta
+  traffic.
+* **Manual Discovery**.
+  This mechanism is only compatible with the RTPS layer.
+  It allows the user to manually match and unmatch DomainParticipants, DataWriters, and DataReaders using whatever,
+  external meta-information channel of its choice.
+
+The detailed explanation and configuration of all the discovery protocols implemented in Fast DDS can be seen in
+the :ref:`discovery` section.
+
+Security
+^^^^^^^^
+
+Fast DDS can be configured to provide secure communications by implementing pluggable security at three levels:
+
+* Authentication of remote DomainParticipants.
+  The **DDS:Auth:PKI-DH** plugin provides authentication using a trusted Certificate
+  Authority (CA) and ECDSA Digital Signature Algorithms to perform the mutual authentication.
+  It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement protocol.
+* Access control of entities.
+  The **DDS:Access:Permissions** plugin provides access control to DomainParticipants at the DDS Domain and Topic level.
+* Encryption of data.
+  The **DDS:Crypto:AES-GCM-GMAC** plugin provides authenticated encryption using Advanced Encryption Standard (AES) in
+  Galois Counter Mode (AES-GCM).
+
+You can continue reading the :ref:`security` section for more information.
+
+Logging
+^^^^^^^
+
+Fast DDS provides an extensible Logging system.
+:class:`Log` class is the entry point of the Logging system.
+It exposes three macro definitions to ease its usage: ``logInfo``, ``logWarning`` and ``logError``.
+Moreover, it allows the definition of new categories, in addition to those already available
+(:class:`INFO_MSG`, :class:`WARN_MSG` and :class:`ERROR_MSG`).
+It provides filtering by category using regular expressions, as well as control of the verbosity of the Logging system.
+Details of the possible Logging system configurations can be found in the :ref:`here <dds_layer_core_logging>` section.
+
+
+XML profiles configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Fast DDS offers the possibility to make changes in its default settings by using XML profile configuration files.
+Thus, the behavior of the DDS Entities can be modified without the need for the user to implement any program source
+code.
+
+The user has XML tags for each of the API functionalities.
+Therefore, it is possible to build and configure DomainParticipant profiles through the ``<participant>`` tag, or
+the DataWriter and DataReader profiles associated to the ``<data_writer>`` and ``<data_reader>`` tags respectively.
+
+For a better understanding of how to develop these XML profiles configuration files you can continue reading
+the :ref:`xml_profiles` section.
+
+Environment variables
+^^^^^^^^^^^^^^^^^^^^^
+
+Environment variables are those variables that are defined outside the scope of the program, through operating system
+functionalities.
+Fast DDS relies on two environment variables so that the user can easily customize the default settings of DDS
+applications.
+These two environment variables are as follows:
+
+* ``FASTRTPS_DEFAULT_PROFILES_FILE``.
+  Defines the location of the profile configuration XML files.
+
+* ``ROS_DISCOVERY_SERVER``.
+  Sets as the default discovery protocol the Server-Client Discovery.
+  It lists the UDP addresses of the DomainParticipant that perform the server function.
+
+You can see more information about Fast DDS environment variables in the :ref:`env_vars` section.

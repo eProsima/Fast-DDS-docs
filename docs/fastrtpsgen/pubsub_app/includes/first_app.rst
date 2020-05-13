@@ -7,13 +7,13 @@ Definition Language (IDL) file that defines the Topic under which messages are p
 The application generated allows the creation of as many publishers and subscribers as
 desired, all belonging to the same Domain and communicating using the same Topic.
 
-First, locate the installation directories of Fast-RTPS, Fast-CDR and add these directories to your PATH.
+First, locate the installation directories of Fast DDS, Fast CDR and add these directories to your PATH.
 
     - If you have followed the **colcon installation**, run the following command:
 
     .. code:: bash
 
-        source <path-to-Fast-RTPS-workspace>/install/setup.bash
+        source <path-to-Fast-DDS-workspace>/install/setup.bash
 
     - However, if you have followed the **manual installation** the libraries are already accessible.
 
@@ -26,7 +26,7 @@ The `-example` option creates an example application, and the CMake files needed
 
         .. code:: bash
 
-            <path-to-Fast-RTPS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen -example CMake HelloWorld.idl
+            <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen -example CMake HelloWorld.idl
 
         - However, if you have followed the **manual installation**, run:
 
@@ -40,7 +40,7 @@ The `-example` option creates an example application, and the CMake files needed
 
         .. code:: bash
 
-            <path-to-Fast-RTPS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+            <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
 
         - However, if you have followed the **manual installation**, run:
 
@@ -96,6 +96,6 @@ You can also modify any values on your custom, IDL-generated data type.
 
 Take a look at the `eProsima Fast RTPS examples on github <https://github.com/eProsima/Fast-RTPS/tree/master/examples>`_
 for ideas on how to improve this basic application through different configuration
-options, and for examples of advanced Fast RTPS features.
+options, and for examples of advanced Fast DDS features.
 
-You may need to set up a special rule in your Firewall for *eprosima Fast RTPS* to work correctly on Windows.
+You may need to set up a special rule in your Firewall for *eprosima Fast DDS* to work correctly on Windows.

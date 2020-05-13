@@ -2,8 +2,8 @@ Summary
 ^^^^^^^
 
 In this tutorial you have built a publisher and a subscriber DDS application.
-You have also learned how to build the CMake file for source code compilation, and how to include and use the Fast-RTPS
-and Fast-CDR libraries in your project.
+You have also learned how to build the CMake file for source code compilation, and how to include and use the Fast DDS
+and Fast CDR libraries in your project.
 
 Next steps
 ^^^^^^^^^^

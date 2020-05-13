@@ -1,7 +1,7 @@
 Import linked libraries and its dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The DDS application requires the Fast-RTPS and Fast-CDR libraries.
+The DDS application requires the Fast DDS and Fast CDR libraries.
 The way we will make these accessible from the
 workspace depends on the installation procedure we have followed in :ref:`installation_binaries` or in
 :ref:`installation-from-sources`.
@@ -23,11 +23,11 @@ If you want these to be accessible only from the current shell session, run one 
 
 .. code-block:: bash
 
-    source <path/to/Fast-RTPS/workspace>/install/setup.bash
+    source <path/to/Fast-DDS/workspace>/install/setup.bash
 
-If you want these to be accessible from any session, you can add the Fast-RTPS installation directory to your ``$PATH``
+If you want these to be accessible from any session, you can add the Fast DDS installation directory to your ``$PATH``
 variable in the shell configuration files running the following command.
 
 .. code-block:: bash
 
-    echo 'source <path/to/Fast-RTPS/workspace>/install/setup.bash' >> ~/.bashrc
+    echo 'source <path/to/Fast-DDS/workspace>/install/setup.bash' >> ~/.bashrc

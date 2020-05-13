@@ -2,6 +2,7 @@ AES
 ASIO
 Asio
 Bitfields
+CDR
 Centric
 CMake
 Colcon

@@ -402,9 +402,30 @@ void dds_domain_examples()
     }
 }
 
+//DDS_TOPIC_LISTENER_SPECIALIZATION
 class CustomTopicListener : public TopicListener
 {
+
+public:
+
+    CustomTopicListener()
+    : TopicListener()
+    {
+    }
+
+    virtual ~CustomTopicListener()
+    {
+    }
+
+    virtual void on_inconsistent_topic(
+            Topic* topic,
+            InconsistentTopicStatus status)
+    {
+        (void)topic, (void)status;
+        std::cout << "Inconsistent topic received discovered" << std::endl;
+    }
 };
+//!--
 
 class CustomDataType : public TopicDataType
 {

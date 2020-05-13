@@ -3,20 +3,20 @@
 Topic
 =====
 
-A Topic is a specialization of the broader concept of :ref:`dds_layer_topic_topicDescription`.
-A Topic represents a single data flow between :ref:`dds_layer_publisher_publisher`
+A :class:`Topic` is a specialization of the broader concept of :ref:`dds_layer_topic_topicDescription`.
+A :class:`Topic` represents a single data flow between :ref:`dds_layer_publisher_publisher`
 and :ref:`dds_layer_subscriber_subscriber`, providing:
 
  * The name to identify the data flow.
  * The data type that is transmitted on that flow.
  * The QoS values related to the data itself.
 
-The behavior of the Topic can be modified with the QoS values
+The behavior of the :class:`Topic` can be modified with the QoS values
 specified on :ref:`dds_layer_topic_topicQos`.
-The QoS values can be set at the creation of the Topic,
-or modified later with the :func:`set_qos()` method.
+The QoS values can be set at the creation of the :class:`Topic`,
+or modified later with the :func:`set_qos()` member function.
 
-Like other Entities, Topic accepts a Listener that will be notified of
+Like other Entities, :class:`Topic` accepts a Listener that will be notified of
 status changes on the Topic.
 
 
@@ -25,46 +25,46 @@ status changes on the Topic.
 TopicQos
 --------
 
-TopicQos controls the behavior of the :ref:`dds_layer_topic_topic`.
-Internally it contains the following QosPolicy objects:
+:class:`TopicQos` controls the behavior of the :ref:`dds_layer_topic_topic`.
+Internally it contains the following :class:`QosPolicy` objects:
 
-+--------------------------+------------------------------+----------+
-| Name                     | QosPolicy class              | Mutable  |
-+==========================+==============================+==========+
-| ``topic_data_``          | TopicDataQosPolicy           | yes      |
-+--------------------------+------------------------------+----------+
-| ``durability_``          | DurabilityQosPolicy          | yes      |
-+--------------------------+------------------------------+----------+
-| ``durability_service_``  | DurabilityServiceQosPolicy   | yes      |
-+--------------------------+------------------------------+----------+
-| ``deadline_``            | DeadlineQosPolicy            | yes      |
-+--------------------------+------------------------------+----------+
-| ``latency_budget_``      | LatencyBudgetQosPolicy       | yes      |
-+--------------------------+------------------------------+----------+
-| ``liveliness_``          | LivelinessQosPolicy          | yes      |
-+--------------------------+------------------------------+----------+
-| ``reliability_``         | ReliabilityQosPolicy         | yes      |
-+--------------------------+------------------------------+----------+
-| ``destination_order_``   | DestinationOrderQosPolicy    | yes      |
-+--------------------------+------------------------------+----------+
-| ``history_``             | HistoryQosPolicy             | yes      |
-+--------------------------+------------------------------+----------+
-| ``resource_limits_``     | ResourceLimitsQosPolicy      | yes      |
-+--------------------------+------------------------------+----------+
-| ``transport_priority_``  | TransportPriorityQosPolicy   | yes      |
-+--------------------------+------------------------------+----------+
-| ``lifespan_``            | LifespanQosPolicy            | yes      |
-+--------------------------+------------------------------+----------+
-| ``ownership_``           | OwnershipQosPolicy           | yes      |
-+--------------------------+------------------------------+----------+
-| ``representation_``      | DataRepresentationQosPolicy  | yes      |
-+--------------------------+------------------------------+----------+
++------------------------------+----------------------------+----------+
+| QosPolicy class              | Accessor                   | Mutable  |
++==============================+============================+==========+
+| TopicDataQosPolicy           | :func:`topic_data`         | Yes      |
++------------------------------+----------------------------+----------+
+| DurabilityQosPolicy          | :func:`durability`         | Yes      |
++------------------------------+----------------------------+----------+
+| DurabilityServiceQosPolicy   | :func:`durability_service` | Yes      |
++------------------------------+----------------------------+----------+
+| DeadlineQosPolicy            | :func:`deadline`           | Yes      |
++------------------------------+----------------------------+----------+
+| LatencyBudgetQosPolicy       | :func:`latency_budget`     | Yes      |
++------------------------------+----------------------------+----------+
+| LivelinessQosPolicy          | :func:`liveliness`         | Yes      |
++------------------------------+----------------------------+----------+
+| ReliabilityQosPolicy         | :func:`reliability`        | Yes      |
++------------------------------+----------------------------+----------+
+| DestinationOrderQosPolicy    | :func:`destination_order`  | Yes      |
++------------------------------+----------------------------+----------+
+| HistoryQosPolicy             | :func:`history`            | Yes      |
++------------------------------+----------------------------+----------+
+| ResourceLimitsQosPolicy      | :func:`resource_limits`    | Yes      |
++------------------------------+----------------------------+----------+
+| TransportPriorityQosPolicy   | :func:`transport_priority` | Yes      |
++------------------------------+----------------------------+----------+
+| LifespanQosPolicy            | :func:`lifespan`           | Yes      |
++------------------------------+----------------------------+----------+
+| OwnershipQosPolicy           | :func:`ownership`          | Yes      |
++------------------------------+----------------------------+----------+
+| DataRepresentationQosPolicy  | :func:`representation`     | Yes      |
++------------------------------+----------------------------+----------+
 
-Refer to the detailed description of each QosPolicy class for more information about their usage and
+Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
 default values.
 
 The QoS value of a previously created :ref:`dds_layer_topic_topic` can be modified using the
-:func:`set_qos()` method.
+:func:`set_qos()` member function.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -78,14 +78,15 @@ Default TopicQos
 ^^^^^^^^^^^^^^^^
 
 The default :ref:`dds_layer_topic_topicQos` refers to the value returned by the
-:func:`get_default_topic_qos()` method on the :ref:`dds_layer_domainParticipant` instance.
-The special symbol :class:`TOPIC_QOS_DEFAULT` can be used as QoS parameter on :func:`create_topic()`
-or :func:`set_qos()` methods to indicate that the current default :ref:`dds_layer_topic_topicQos` should be used.
+:func:`get_default_topic_qos()` member function on the :ref:`dds_layer_domainParticipant` instance.
+The special symbol :class:`TOPIC_QOS_DEFAULT` can be used as QoS argument on :func:`create_topic()`
+or :func:`set_qos()` member functions to indicate that the current default :ref:`dds_layer_topic_topicQos`
+should be used.
 
 When the system starts, the default :ref:`dds_layer_topic_topicQos` is equivalent to the default constructed
 value :func:`TopicQos()`.
 The default :ref:`dds_layer_topic_topicQos` can be modified at any time using the
-:func:`set_default_topict_qos()` method on the :ref:`dds_layer_domainParticipant` instance.
+:func:`set_default_topict_qos()` member function on the :ref:`dds_layer_domainParticipant` instance.
 Modifying the default :ref:`dds_layer_topic_topicQos` will not affect already existing :ref:`dds_layer_topic_topic`
 instances unless their QoS is modified with :func:`set_qos(TOPIC_QOS_DEFAULT)`.
 
@@ -94,8 +95,8 @@ instances unless their QoS is modified with :func:`set_qos(TOPIC_QOS_DEFAULT)`.
    :start-after: //DDS_CHANGE_DEFAULT_TOPICQOS
    :end-before: //!
 
-:func:`set_default_topic_qos()` method also accepts the symbol :class:`TOPIC_QOS_DEFAULT`
-as input parameter.
+:func:`set_default_topic_qos()` member function also accepts the symbol :class:`TOPIC_QOS_DEFAULT`
+as input argument.
 This will reset the current default :ref:`dds_layer_topic_topicQos` to default constructed
 value :func:`TopicQos()`.
 
@@ -111,10 +112,10 @@ Creating a Topic
 ================
 
 A :ref:`dds_layer_topic_topic` always belongs to a :ref:`dds_layer_domainParticipant`.
-Creation of a :ref:`dds_layer_topic_topic` is done with the :func:`create_topic()` method on the
+Creation of a :ref:`dds_layer_topic_topic` is done with the :func:`create_topic()` member function on the
 :ref:`dds_layer_domainParticipant` instance, that acts as a factory for the :class:`Topic`.
 
-Mandatory parameters are:
+Mandatory arguments are:
 
  * A string with the name that identifies the :ref:`dds_layer_topic_topic`.
 
@@ -124,7 +125,7 @@ Mandatory parameters are:
    If the provided value is :class:`TOPIC_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultTopicQos` is used.
 
-Optional parameters are:
+Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_topic_topicListener`, implementing the callbacks
    that will be triggered in response to events and state changes on the :ref:`dds_layer_topic_topic`.
@@ -151,9 +152,9 @@ Profile based creation of a Topic
 
 Instead of using a :ref:`dds_layer_topic_topicQos`, the name of a profile
 can be used to create a :ref:`dds_layer_topic_topic` with the :func:`create_topic_with_profile()`
-method on the :ref:`dds_layer_domainParticipant` instance.
+member function on the :ref:`dds_layer_domainParticipant` instance.
 
-Mandatory parameters are:
+Mandatory arguments are:
 
  * A string with the name that identifies the :ref:`dds_layer_topic_topic`.
 
@@ -161,7 +162,7 @@ Mandatory parameters are:
 
  * The name of the profile to be applied to the :ref:`dds_layer_topic_topic`.
 
-Optional parameters are:
+Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_topic_topicListener`, implementing the callbacks
    that will be triggered in response to events and state changes on the :ref:`dds_layer_topic_topic`.
@@ -190,7 +191,7 @@ It is advisable to check that the returned value is a valid pointer.
 Deleting a Topic
 ----------------
 
-A :ref:`dds_layer_topic_topic` can be deleted with the :func:`delete_topic()` method on the
+A :ref:`dds_layer_topic_topic` can be deleted with the :func:`delete_topic()` member function on the
 :ref:`dds_layer_domainParticipant` instance where the :ref:`dds_layer_topic_topic` was created.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp

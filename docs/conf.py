@@ -65,7 +65,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Fast RTPS'
+project = u'Fast DDS'
 copyright = u'2019, eProsima'
 author = u'eProsima'
 

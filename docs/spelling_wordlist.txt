@@ -39,6 +39,7 @@ bitmasks
 bitset
 bitsets
 boolean
+centric
 chocolatey
 coverity
 crl
@@ -75,6 +76,8 @@ middleware
 modularity
 multicast
 multicasting
+multithreading
+multitopics
 nack
 nupkg
 offsetd

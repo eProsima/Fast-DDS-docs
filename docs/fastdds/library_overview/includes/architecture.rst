@@ -52,9 +52,9 @@ section.
   It is the entity that allows the creation of the previous entities it contains, as well as the configuration of their
   behavior.
 * **Publisher**.
-  The Publisher publish data under a topic using a DataWriter, which read the data from the transport.
+  The Publisher publishes data under a topic using a DataWriter, which reads the data from the transport.
   It is the entity that creates and configures the DataWriter entities it contains, and may contain one or more
-  DataWriter entities.
+  of them.
 * **DataWriter**.
   It is the entity in charge of publishing messages.
   The user must provide a Topic when creating this entity which will be the Topic under which the data will be
@@ -66,7 +66,7 @@ section.
   It is this `change` that is registered in the History.
   These `changes` are then sent to the DataReader that subscribes to that specific topic.
 * **Subscriber**.
-  The Subscriber subscribes to a topic using a DataReader, which read the data from the transport.
+  The Subscriber subscribes to a topic using a DataReader, which reads the data from the transport.
   It is the entity that creates and configures the DataReader entities it contains, and may contain one or more
   DataReader entities.
 * **DataReader**.

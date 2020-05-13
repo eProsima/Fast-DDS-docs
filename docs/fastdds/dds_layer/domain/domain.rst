@@ -3,8 +3,6 @@
 Domain
 ======
 
-.. image:: /01-figures/domain_class_diagram.svg
-
 A domain represents a separate communication plane.
 It creates a logical separation among the Entities that share a common communication infrastructure.
 Conceptually, it can be seen as a *virtual network* linking all applications running on the same domain
@@ -19,6 +17,8 @@ For an application to be added to a domain, it must create an instance of
 :ref:`dds_layer_domainParticipant` with the appropriate domainId.
 Instances of :ref:`dds_layer_domainParticipant` are created through the
 :ref:`dds_layer_domainParticipantFactory` singleton.
+
+.. image:: /01-figures/domain_class_diagram.svg
 
 .. toctree::
 

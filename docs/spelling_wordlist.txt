@@ -23,6 +23,8 @@ WString
 XTypes
 acceptor
 acceptors
+accessor
+accessors
 ack
 acked
 acknack

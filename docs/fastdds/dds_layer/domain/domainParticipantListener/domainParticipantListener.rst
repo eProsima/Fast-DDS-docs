@@ -41,4 +41,9 @@ Additionally, DomainParticipantListener add the following callbacks:
  * **onParticipantAuthentication**: Informs about the result of the authentication process
    of a remote :ref:`dds_layer_domainParticipant` (either on failure or success).
 
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_DOMAINPARTICIPANT_LISTENER_SPECIALIZATION
+   :end-before: //!
+
 

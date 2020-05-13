@@ -1,7 +1,7 @@
 Functionalities
 ---------------
 
-Fast DDS has some added features that can be implemented and configured by the user in his/her application.
+Fast DDS has some added features that can be implemented and configured by the user in their application.
 These are outlined below.
 
 Discovery Protocols
@@ -13,18 +13,20 @@ This applies at any point in the communication process.
 Fast DDS provides the following discovery mechanisms:
 
 * **Simple Discovery**.
-  This is the default mechanism.
+  This is the default discovery mechanism, which is defined in the
+  `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2>`_ and provides compatibility with other DDS implementations
   Here the DomainParticipants are discovered individually at an early stage to subsequently match the DataWriter and
   DataReader they implement.
-* **Static Discovery**.
-  This implements the discovery of DomainParticipants to each other but it is possible to skip the discovery of the
-  entities contained in each DomainParticipant if they are known in advance.
 * **Server-Client Discovery**.
   This discovery mechanism uses a centralized discovery architecture, where servers act as a hubs for discovery meta
   traffic.
+* **Static Discovery**.
+  This implements the discovery of DomainParticipants to each other but it is possible to skip the discovery of the
+  entities contained in each DomainParticipant (DataReader/DataWriter) if these entities are known in advance by the
+  remote DomainParticipants.
 * **Manual Discovery**.
   This mechanism is only compatible with the RTPS layer.
-  It allows the user to manually match and unmatch DomainParticipants, DataWriters, and DataReaders using whatever,
+  It allows the user to manually match and unmatch RTPSParticipants, RTPSWriters, and RTPSReaders using whatever
   external meta-information channel of its choice.
 
 The detailed explanation and configuration of all the discovery protocols implemented in Fast DDS can be seen in
@@ -45,7 +47,7 @@ Fast DDS can be configured to provide secure communications by implementing plug
   The **DDS:Crypto:AES-GCM-GMAC** plugin provides authenticated encryption using Advanced Encryption Standard (AES) in
   Galois Counter Mode (AES-GCM).
 
-You can continue reading the :ref:`security` section for more information.
+More information about security configuration in Fast DDS is available in the :ref:`security` section.
 
 Logging
 ^^^^^^^
@@ -56,7 +58,7 @@ It exposes three macro definitions to ease its usage: ``logInfo``, ``logWarning`
 Moreover, it allows the definition of new categories, in addition to those already available
 (:class:`INFO_MSG`, :class:`WARN_MSG` and :class:`ERROR_MSG`).
 It provides filtering by category using regular expressions, as well as control of the verbosity of the Logging system.
-Details of the possible Logging system configurations can be found in the :ref:`here <dds_layer_core_logging>` section.
+Details of the possible Logging system configurations can be found in the :ref:`dds_layer_core_logging` section.
 
 
 XML profiles configuration
@@ -64,13 +66,13 @@ XML profiles configuration
 
 Fast DDS offers the possibility to make changes in its default settings by using XML profile configuration files.
 Thus, the behavior of the DDS Entities can be modified without the need for the user to implement any program source
-code.
+code or re-build an existing application.
 
 The user has XML tags for each of the API functionalities.
 Therefore, it is possible to build and configure DomainParticipant profiles through the ``<participant>`` tag, or
-the DataWriter and DataReader profiles associated to the ``<data_writer>`` and ``<data_reader>`` tags respectively.
+the DataWriter and DataReader profiles with the ``<data_writer>`` and ``<data_reader>`` tags respectively.
 
-For a better understanding of how to develop these XML profiles configuration files you can continue reading
+For a better understanding of how to write and use these XML profiles configuration files you can continue reading
 the :ref:`xml_profiles` section.
 
 Environment variables
@@ -87,6 +89,9 @@ These two environment variables are as follows:
 
 * ``ROS_DISCOVERY_SERVER``.
   Sets as the default discovery protocol the Server-Client Discovery.
-  It lists the UDP addresses of the DomainParticipant that perform the server function.
+  Through this environment variable, the user can provide a list of locators (IP-port pairs) that specify the addresses
+  of the servers.
+  In this case, the server can be a user configured DomainParticipant, or one created by a binary provided by Fast DDS.
+  In this sense, the variable configures the DomainParticipants as clients to the servers in the list.
 
-You can see more information about Fast DDS environment variables in the :ref:`env_vars` section.
+More information about Fast DDS environment variables can be found in the :ref:`env_vars` section.

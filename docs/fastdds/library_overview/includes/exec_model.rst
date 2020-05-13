@@ -30,5 +30,5 @@ Event-driven architecture
 There is a time-event system that enables Fast DDS to respond to certain conditions, as well as schedule periodic
 operations.
 Few of them are visible to the user since most are related to DDS and RTPS metadata.
-However, the user can define in his/her application periodic time-events by inheriting from the :class:`TimedEvent`
+However, the user can define in their application periodic time-events by inheriting from the :class:`TimedEvent`
 class.

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.12)
 
 file(STRINGS
     ${CMAKE_SOURCE_DIR}/../docs/conf.py
@@ -155,6 +155,10 @@ if(BUILDCOP)
     set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${PROJECT_BINARY_DIR}/external/eprosima/install")
     find_package(fastrtps REQUIRED)
 
+    ####################################################################################################################
+    # Compile getting started tutorial
+    ####################################################################################################################
+    add_subdirectory(Examples/C++/DDSHelloWorld)
 
     ####################################################################################################################
     # Compile example
@@ -182,6 +186,9 @@ if(BUILDCOP)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/StaticTester.xml
         ${CMAKE_CURRENT_BINARY_DIR}/StaticTester.xml COPYONLY)
 
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
+        ${CMAKE_CURRENT_BINARY_DIR}/helloworld_test.py COPYONLY)
+
     add_test(NAME xmltest COMMAND doctest XMLTester.xml)
     set_property(TEST xmltest
         APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
@@ -197,4 +204,15 @@ if(BUILDCOP)
     add_test(NAME statictest COMMAND doctest StaticTester.xml)
     set_property(TEST statictest
         APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
+
+    find_package(Python COMPONENTS Interpreter Development)
+    if(${Python_FOUND} AND (${Python_VERSION} VERSION_GREATER "3.6"))
+        add_test(NAME helloworld COMMAND ${Python_EXECUTABLE} helloworld_test.py)
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "HELLOWORLD_PUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldPublisher>")
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "HELLOWORLD_SUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldSubscriber>")
+    endif()
 endif()

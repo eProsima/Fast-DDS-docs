@@ -3,6 +3,12 @@
 Getting Started
 ================
 
-.. include:: includes/brief_intro.rst
+This section defines the concepts of DDS and RTPS.
+It also provides a step-by-step tutorial on how to write a simple Fast DDS (formerly Fast RTPS) publish/subscribe
+application.
 
-.. include:: includes/first_app.rst
+.. toctree::
+    :maxdepth: 2
+
+    definitions
+    simple_app/simple_app

@@ -207,7 +207,7 @@ if(BUILDCOP)
 
     find_package(Python COMPONENTS Interpreter Development)
     if(${Python_FOUND} AND (${Python_VERSION} VERSION_GREATER "3.6"))
-        add_test(NAME helloworld COMMAND ${PYTHON_EXECUTABLE} helloworld_test.py)
+        add_test(NAME helloworld COMMAND ${Python_EXECUTABLE} helloworld_test.py)
         set_property(TEST helloworld
             APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
         set_property(TEST helloworld

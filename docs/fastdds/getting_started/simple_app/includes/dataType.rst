@@ -4,13 +4,12 @@ Build the topic data type
 *eProsima FASTRTPSGEN* is a Java application that generates source code using the data types defined in an
 Interface Description Language (IDL) file. This application can do two different things:
 
-1. Generate a functional example that uses your topic data.
-2. Generate C++ definitions for your custom topic.
+1. Generate C++ definitions for your custom topic.
+2. Generate a functional example that uses your topic data.
 
-It will be the latter that will be followed in this tutorial.
-To see an example of application of the first one you can check this other :ref:`example <fastrtpsgen_pubsub_app>`.
+It will be the former that will be followed in this tutorial.
+To see an example of application of the latter you can check this other :ref:`example <fastrtpsgen_pubsub_app>`.
 See :ref:`fastrtpsgen_intro` for further details.
-
 For this project, we will use the FASTRTPSGEN application to define the data type of the messages that will be sent
 by the publishers and received by the subscribers.
 
@@ -31,11 +30,10 @@ Open the file in your favorite text editor and copy and paste the following snip
         string message;
     };
 
-With this we have defined the ``HelloWorld`` data type.
-This has two elements, an *index* of type ``uint32_t`` and a *message* of type ``std::string``.
-
-All that remains is to generate the source code that implements this data type in C++11. To do this, run the following
-command from the ``src`` directory.
+By doing this we have defined the ``HelloWorld`` data type, which has two elements: an *index* of type ``uint32_t``
+and a *message* of type ``std::string``.
+All that remains is to generate the source code that implements this data type in C++11.
+To do this, run the following command from the ``src`` directory.
 
 .. code-block:: bash
 
@@ -51,7 +49,7 @@ This must have generated the following files:
 CMakeLists.txt
 """"""""""""""
 
-Include at the end of the CMakeList.txt file you created earlier the following code snippet.
+Include the following code snippet at the end of the CMakeList.txt file you created earlier.
 This includes the files we have just created.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt

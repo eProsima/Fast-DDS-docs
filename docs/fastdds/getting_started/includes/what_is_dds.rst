@@ -4,7 +4,7 @@ What is DDS?
 ------------
 
 The `Data Distribution Service (DDS) <https://www.omg.org/spec/DDS/About-DDS/>`_
-is a data-centric communications middleware protocol used for distributed software
+is a data-centric communication protocol used for distributed software
 application communications.
 It describes the communications Application Programming Interfaces (APIs) and Communication Semantics that enable
 communication between data providers and data consumers.
@@ -22,22 +22,25 @@ DDS uses QoS to define the behavioral characteristics of DDS Entities. QoS are c
 The DCPS conceptual model
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the DCPS model, four basis elements are defined for the development of a system of communicating applications.
+In the DCPS model, four basic elements are defined for the development of a system of communicating applications.
 
-*   **Publisher** is the DCPS entity in charge of the creation and configuration of the **DataWriters** it implements
-    and acts according to the commands given by these **DataWriters**.
+*   **Publisher**.
+    It is the DCPS entity in charge of the creation and configuration of the **DataWriters** it implements.
     The **DataWriter** is the entity in charge of the actual publication of the messages.
     Each one will have an assigned **Topic** under which the messages are published.
     See :ref:`dds_layer_publisher` for further details.
-*   **Subscriber** is the DCPS Entity in charge of receiving the data published under the topics to which it subscribes.
+*   **Subscriber**.
+    It is the DCPS Entity in charge of receiving the data published under the topics to which it subscribes.
     It serves one or more **DataReader** objects, which are responsible for communicating the availability of new data
     to the application.
     See :ref:`dds_layer_subscriber` for further details.
-*   **Topic**. It is the entity that binds publications and subscriptions.
+*   **Topic**.
+    It is the entity that binds publications and subscriptions.
     It is unique within a DDS domain.
-    Through the **TopicDescription** it allows the uniformity of data types of publications and subscriptions.
+    Through the **TopicDescription**, it allows the uniformity of data types of publications and subscriptions.
     See :ref:`dds_layer_topic` for further details.
-*   **Domain**. This is the concept used to link all publishers and subscribers, belonging to one or more applications,
+*   **Domain**.
+    This is the concept used to link all publishers and subscribers, belonging to one or more applications,
     which exchange data under different topics.
     These individual applications that participate in a domain are called **DomainParticipant**.
     The DDS Domain is identified by a domain ID.

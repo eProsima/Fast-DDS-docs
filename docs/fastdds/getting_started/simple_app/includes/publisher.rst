@@ -14,8 +14,8 @@ Now you have the publisher's source code. The publisher is going to send 10 publ
   :language: C++
   :linenos:
 
-Examine the code
-"""""""""""""""""
+Examining the code
+""""""""""""""""""
 
 At the beginning of the file we have a Doxygen style comment block with the ``@file`` field that tells us the name of
 the file.
@@ -66,11 +66,10 @@ The next line creates the :class:`HelloWorldPublisher` class that implements a p
     :language: C++
     :lines: 31
 
-It is now explained the private data members of the class that will be necessary to understand in order to discuss the
-public member functions of the class.
-First, the ``hello_`` data member is defined as an object of the :class:`HelloWorld` class that defines the data type
+Continuing with the private data members of the class, the ``hello_`` data member is defined as an object of the
+:class:`HelloWorld` class that defines the data type
 we created with the IDL file.
-Next, the private data members corresponding to the participant, publisher, topic, data writer and data type are
+Next, the private data members corresponding to the participant, publisher, topic, DataWriter and data type are
 defined.
 The ``type_`` object of the :class:`TypeSupport` class is the object that will be used to register the topic data type
 in the DomainParticipant.
@@ -79,24 +78,23 @@ in the DomainParticipant.
     :language: C++
     :lines: 33-45
 
-Then, it is defined the :class:`PubListener` class by inheriting from the :class:`DataWriterListener` class.
-This class override the default data writer listener callbacks.
-These allow us to execute routines in case of an event.
-The overridden callback ``on_publication_matched`` allows you to define a series of actions when a new data writer
-is detected listening to the topic under the data writer is publishing.
-The ``info.current_count_change`` detects these changes of data readers that are matched to the
-data writer.
+Then, the :class:`PubListener` class is defined by inheriting from the :class:`DataWriterListener` class.
+This class overrides the default DataWriter listener callbacks, which allow us to execute routines in case of an event.
+The overridden callback :func:`on_publication_matched` allows you to define a series of actions when a new DataReader
+is detected listening to the topic under which the DataWriter is publishing.
+The :func:`info.current_count_change` detects these changes of DataReaders that are matched to the
+DataWriter.
 This is a member in the :class:`MachedStatus` structure that allows you to track changes in the status of subscriptions.
-Finally, the ``listener_`` object of the class is defined.
+Finally, the ``listener_`` object of the class is defined as an instance of :class:`PubListener`.
 
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
     :lines: 47-83
 
-The public constructor and destructor of the :class:`HelloWorldPublisher` class is defined below.
-The constructor initializes the private data members of the class to ``nullptr`` except the TypeSupport object, that
-initializes an object of the :class:`HelloWorldPubSubType` class.
+The public constructor and destructor of the :class:`HelloWorldPublisher` class are defined below.
+The constructor initializes the private data members of the class to ``nullptr``, with the exception of the TypeSupport
+object, that is initialized as an instance of the :class:`HelloWorldPubSubType` class.
 The class destructor removes these data members and thus cleans the system memory.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
@@ -107,7 +105,7 @@ Continuing with the public member functions of the :class:`HelloWorldPublisher` 
 the public publisher's initialization member function.
 This function performs several actions:
 
-1.  Initializes the content of the HelloWorld type ``hello_`` structure fields.
+1.  Initializes the content of the HelloWorld type ``hello_`` structure members.
 2.  Assigns a name to the participant through the QoS of the DomainParticipant.
 3.  Uses the DomainParticipantFactory to create the participant.
 4.  Registers the data type defined in the IDL.
@@ -125,17 +123,18 @@ The default value of the QoS of each DDS Entity can be checked in the
     :lines: 113-155
 
 To make the publication, the public member function ``publish()`` is implemented.
-In the data writer's listener callback which states that the data writer has matched with a data reader
-that listens to the publication topic, the data member ``matched_`` is updated. It contains the number of data readers
+In the DataWriter's listener callback which states that the DataWriter has matched with a DataReader
+that listens to the publication topic, the data member ``matched_`` is updated. It contains the number of DataReaders
 discovered.
-Therefore, when the first data reader has been discovered, it starts to publish.
-This is actually a `write` of a change of the DataWriter object.
+Therefore, when the first DataReader has been discovered, the application starts to publish.
+This is simply the `writing` of a change by the DataWriter object.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
     :lines: 157-167
 
-The public run function executes the action of publishing a given number of times.
+The public run function executes the action of publishing a given number of times, waiting for 1 second between
+publications.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++

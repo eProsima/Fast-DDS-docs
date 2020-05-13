@@ -1,7 +1,7 @@
 Write the Fast DDS subscriber
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-From the `src` directory in the workspace, execute the following command to download the HelloWorldPublisher.cpp file.
+From the `src` directory in the workspace, execute the following command to download the HelloWorldSubscriber.cpp file.
 
 .. code-block:: bash
 
@@ -15,8 +15,8 @@ topic HelloWorldTopic. At this point the subscriber stops.
     :language: C++
     :linenos:
 
-Examine the code
-""""""""""""""""
+Examining the code
+""""""""""""""""""
 
 As you have noticed, the source code to implement the subscriber is practically identical to the source code implemented
 by the publisher.
@@ -27,9 +27,9 @@ In these, the files that include the publisher class are replaced by the subscri
 the data reader class.
 
 *   :class:`Subscriber`.
-    Is the object responsible for the creation and configuration of DataReaders.
+    It is the object responsible for the creation and configuration of DataReaders.
 *   :class:`DataReader`.
-    Is the object responsible for the actual reception of the data.
+    It is the object responsible for the actual reception of the data.
     It registers in the application the topic (TopicDescription) that identifies the data to be read and
     accesses the data received by the subscriber.
 *   :class:`DataReaderListener`.
@@ -37,7 +37,7 @@ the data reader class.
 *   :class:`DataReaderQoS`.
     Structure that defines the QoS of the DataReader.
 *   :class:`SampleInfo`.
-    Is the information that accompanies each sample that is ‘read’ or ‘taken.’
+    It is the information that accompanies each sample that is ‘read’ or ‘taken.’
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
@@ -89,17 +89,19 @@ The default value of the QoS of each DDS Entity can be checked in the
     :language: C++
     :lines: 128-168
 
-The public member function ``run()`` ensures that the subscriber runs until all the samples have been received.
+The public member function :func:`run` ensures that the subscriber runs until all the samples have been received.
+This member function implements an active wait of the subscriber, with a 100ms sleep interval to ease the CPU.
+
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 170-175
+    :lines: 170-178
 
 Finally, the participant that implements a subscriber is initialized and run in main.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 178-193
+    :lines: 178-196
 
 CMakeLists.txt
 """""""""""""""

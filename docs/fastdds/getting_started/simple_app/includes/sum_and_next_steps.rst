@@ -8,6 +8,6 @@ and Fast-CDR libraries in your project.
 Next steps
 ^^^^^^^^^^
 
-In the *eProsima Fast RTPS* Github repository you will find more complex examples that implement DDS communication for
+In the *eProsima Fast DDS* Github repository you will find more complex examples that implement DDS communication for
 a multitude of use cases and scenarios. You can find them
 `here <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/DDS>`_.

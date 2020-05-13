@@ -23,7 +23,7 @@
 }
 
 .wy-menu-vertical li.current a{
-  color:#00d3de !important;
+  color:#00275a !important;
   background-color:#f5f5f5 !important;
   border-right:0 !important;
 }
@@ -34,6 +34,7 @@
 
 .wy-menu-vertical a:hover{
   background-color:#e2e2e2 !important;
+  color: #00d3de !important;
 }
 
 body{
@@ -61,7 +62,7 @@ h4{
 }
 
 a{
-  color:#00d3de !important;
+  color:#006bde !important;
 }
 
 a:hover{
@@ -88,22 +89,6 @@ a:hover{
 p {
   font-size:14px !important;
   line-height:auto !important;
-}
-
-.btn-neutral{
-  background-color:#00d3de !important;
-  color:#fff !important;
-}
-
-.btn{
-  box-shadow:0 0 0 !important;
-  border:0 !important;
-  border-radius:0 !important;
-}
-
-.btn-neutral:hover{
-  background-color:#00d3de !important;
-  color:#fff !important;
 }
 
 .rst-versions{
@@ -161,8 +146,7 @@ a.icon-home{
   background-color:#00275a !important;
 }
 
-/*End Ogilvy style*/
-
+/*Fonts*/
 @font-face{
   font-family:"Neo Tech W02 Light";
   src:url("Fonts/742891/fda10a2c-b5db-41d3-a8a5-739e00a24795.eot?#iefix");
@@ -204,15 +188,50 @@ a.icon-home{
 }
 
 
-/* Custom width read the docs */
+/* Custom CSS*/
+body{
+  font-family:"Lato" !important;
+}
+
+a.icon-home {
+  color: white !important;;
+}
+
+.wy-nav-side p.caption {
+  border-bottom: 3px solid #00275a;
+}
+
+span.caption-text {
+  font-size: 16px;
+  font-weight:bold !important;
+}
+
+.wy-nav-side span.caption-text {
+  color: #00275a !important;
+}
 
 .wy-nav-content {
   max-width: 1050px !important;
 }
 
 .wy-nav-content a:hover{
-  color:#00d3de !important;
-  text-decoration: underline !important;
+  color:#00d3de;
+}
+
+.btn{
+  box-shadow:0 0 0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+}
+
+.btn-neutral{
+  background-color:#00275a !important;
+  color:#fff !important;
+}
+
+.btn-neutral:hover{
+  background-color:#00d3de !important;
+  color: white !important;
 }
 
 .wy-nav-content  p, .wy-nav-content ul, .wy-nav-content ol{
@@ -251,7 +270,7 @@ table td {
 }
 
 
-th.head p {
+th.head p, table th{
   color: white;
   margin-bottom: 0px;
 }

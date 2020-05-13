@@ -3,15 +3,17 @@ Import linked libraries and its dependencies
 
 The DDS application requires the Fast-RTPS and Fast-CDR libraries.
 The way we will make these accessible from the
-workspace depends on the installation procedure we have followed in :ref:`installation-from-sources`.
+workspace depends on the installation procedure we have followed in :ref:`installation_binaries` or in
+:ref:`installation-from-sources`.
 
-Manual installation
-"""""""""""""""""""
+Installation from binaries and manual installation
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-If we have followed a manual installation, these libraries are already accessible from the workspace.
-On Linux, the header files can be found in directories `/usr/local/include/fastrtps/` and
-`/usr/local/include/fastcdr/` for Fast RTPS and Fast CDR respectively. The compiled libraries of both can be found in
-the directory `/usr/local/lib/`.
+If we have followed the installation from binaries or the manual installation, these libraries are already accessible
+from the workspace.
+On Linux, the header files can be found in directories `/usr/include/fastrtps/` and
+`/usr/include/fastcdr/` for Fast DDS and Fast CDR respectively. The compiled libraries of both can be found in
+the directory `/usr/lib/`.
 
 Colcon installation
 """""""""""""""""""

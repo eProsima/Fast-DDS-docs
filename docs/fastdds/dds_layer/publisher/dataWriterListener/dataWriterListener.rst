@@ -3,14 +3,14 @@
 DataWriterListener
 ==================
 
-DataWriterListener is an abstract class defining the callbacks that will be triggered
+:class:`DataWriterListener` is an abstract class defining the callbacks that will be triggered
 in response to state changes on the :ref:`dds_layer_publisher_dataWriter`.
 By default, all these callbacks are empty and do nothing.
 The user should implement a specialization of this class overriding the callbacks
 that are needed on the application.
 Callbacks that are not overridden will maintain their empty implementation.
 
-DataWriterListener defines the following callbacks:
+:class:`DataWriterListener` defines the following callbacks:
 
  * **on_publication_matched**: The :ref:`dds_layer_publisher_dataWriter` has found a
    :ref:`dds_layer_subscriber_dataReader` that matches the :ref:`dds_layer_topic_topic` and has

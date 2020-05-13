@@ -3,33 +3,34 @@
 Publisher
 =========
 
-The Publisher acts on behalf of one or several :ref:`dds_layer_publisher_dataWriter` objects that belong to it.
+The :class:`Publisher` acts on behalf of one or several :ref:`dds_layer_publisher_dataWriter` objects
+that belong to it.
 When it is informed of a change to the data associated with one of its :ref:`dds_layer_publisher_dataWriter` objects,
 it decides when it is appropriate to actually send the data update message.
 In making this decision, it considers any extra information that goes with the data (e.g. the data timestamp),
-as well as the QoS of the Publisher and the QoS of the :ref:`dds_layer_publisher_dataWriter`.
+as well as the QoS of the :class:`Publisher` and the QoS of the :ref:`dds_layer_publisher_dataWriter`.
 
 .. _dds_layer_publisher_publisherQos:
 
 PublisherQos
 ------------
 
-PublisherQos controls the behavior of the :ref:`dds_layer_publisher_publisher`.
-Internally it contains the following QosPolicy objects:
+:class:`PublisherQos` controls the behavior of the :ref:`dds_layer_publisher_publisher`.
+Internally it contains the following :class:`QosPolicy` objects:
 
-+--------------------------+------------------------------+----------+
-| Name                     | QosPolicy class              | Mutable  |
-+==========================+==============================+==========+
-| ``presentation_``        | PresentationQosPolicy        | yes      |
-+--------------------------+------------------------------+----------+
-| ``partition_``           | PartitionQosPolicy           | yes      |
-+--------------------------+------------------------------+----------+
-| ``group_data_``          | GroupDataQosPolicy           | yes      |
-+--------------------------+------------------------------+----------+
-| ``entity_factory_``      | EntityFactoryQosPolicy       | yes      |
-+--------------------------+------------------------------+----------+
++--------------------------------+------------------------------------+----------+
+| QosPolicy class                | Accessor                           | Mutable  |
++================================+====================================+==========+
+| PresentationQosPolicy          | :func:`presentation`               | Yes      |
++--------------------------------+------------------------------------+----------+
+| PartitionQosPolicy             | :func:`partition`                  | Yes      |
++--------------------------------+------------------------------------+----------+
+| GroupDataQosPolicy             | :func:`group_data`                 | Yes      |
++--------------------------------+------------------------------------+----------+
+| EntityFactoryQosPolicy         | :func:`entity_factory`             | Yes      |
++--------------------------------+------------------------------------+----------+
 
-Refer to the detailed description of each QosPolicy class for more information about their usage and
+Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
 default values.
 
 The QoS value of a previously created :ref:`dds_layer_publisher_publisher` can be modified using the
@@ -48,7 +49,7 @@ Default PublisherQos
 
 The default :ref:`dds_layer_publisher_publisherQos` refers to the value returned by the
 :func:`get_default_publisher_qos` member function on the :ref:`dds_layer_domainParticipant` instance.
-The special value ``PUBLISHER_QOS_DEFAULT`` can be used as QoS parameter on :func:`create_publisher`
+The special value ``PUBLISHER_QOS_DEFAULT`` can be used as QoS argument on :func:`create_publisher`
 or :func:`set_qos` member functions to indicate that the current default :ref:`dds_layer_publisher_publisherQos`
 should be used.
 
@@ -65,7 +66,7 @@ Modifying the default :ref:`dds_layer_publisher_publisherQos` will not affect al
    :end-before: //!
 
 :func:`set_default_publisher_qos` member function also accepts the special value ``PUBLISHER_QOS_DEFAULT``
-as input parameter.
+as input argument.
 This will reset the current default :ref:`dds_layer_publisher_publisherQos` to default constructed
 value :func:`PublisherQos`.
 
@@ -84,13 +85,13 @@ A :ref:`dds_layer_publisher_publisher` always belongs to a :ref:`dds_layer_domai
 Creation of a :ref:`dds_layer_publisher_publisher` is done with the :func:`create_publisher` member function on the
 :ref:`dds_layer_domainParticipant` instance, that acts as a factory for the :ref:`dds_layer_publisher_publisher`.
 
-Mandatory parameters are:
+Mandatory arguments are:
 
  * The :ref:`dds_layer_publisher_publisherQos` describing the behavior of the :ref:`dds_layer_publisher_publisher`.
    If the provided value is :class:`PUBLISHER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultPublisherQos` is used.
 
-Optional parameters are:
+Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_publisher_publisherListener`, implementing the callbacks
    that will be triggered in response to events and state changes on the :ref:`dds_layer_publisher_publisher`.
@@ -119,11 +120,11 @@ Instead of using a :ref:`dds_layer_publisher_publisherQos`, the name of a profil
 can be used to create a :ref:`dds_layer_publisher_publisher` with the :func:`create_publisher_with_profile`
 member function on the :ref:`dds_layer_domainParticipant` instance.
 
-Mandatory parameters are:
+Mandatory arguments are:
 
  * A string with the name that identifies the :ref:`dds_layer_publisher_publisher`.
 
-Optional parameters are:
+Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_publisher_publisherListener`, implementing the callbacks
    that will be triggered in response to events and state changes on the :ref:`dds_layer_publisher_publisher`.

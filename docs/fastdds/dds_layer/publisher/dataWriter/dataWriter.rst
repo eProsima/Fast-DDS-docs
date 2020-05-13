@@ -3,17 +3,17 @@
 DataWriter
 ==========
 
-A DataWriter is attached to exactly one :ref:`dds_layer_publisher_publisher` that acts as a factory for it.
-Additionally, each DataWriter is bound to a single :ref:`dds_layer_topic_topic` since its creation.
-This :ref:`dds_layer_topic_topic` must exist prior to the DataWriter's creation, and must be bound
-to the data type that the DataWriter wants to publish.
+A :class:`DataWriter` is attached to exactly one :ref:`dds_layer_publisher_publisher` that acts as a factory for it.
+Additionally, each :class:`DataWriter` is bound to a single :ref:`dds_layer_topic_topic` since its creation.
+This :ref:`dds_layer_topic_topic` must exist prior to the creation of the :class:`DataWriter` creation,
+and must be bound to the data type that the :class:`DataWriter` wants to publish.
 
-The effect of creating a new DataWriter in a :ref:`dds_layer_publisher_publisher` for a specific
+The effect of creating a new :class:`DataWriter` in a :ref:`dds_layer_publisher_publisher` for a specific
 :ref:`dds_layer_topic_topic` is to initiate a new publication with the name and data type described
 by the :ref:`dds_layer_topic_topic`.
 
-Once the DataWriter is created, the application can inform of changes in the data value using the
-:func:`write` member function on the DataWriter.
+Once the :class:`DataWriter` is created, the application can inform of changes in the data value using the
+:func:`write` member function on the :class:`DataWriter`.
 These changes will be transmitted to all subscriptions matched with this publication.
 
 .. _dds_layer_publisher_dataWriterQos:
@@ -21,58 +21,58 @@ These changes will be transmitted to all subscriptions matched with this publica
 DataWriterQos
 -------------
 
-DataWriterQos controls the behavior of the :ref:`dds_layer_publisher_dataWriter`.
-Internally it contains the following QosPolicy objects:
+:class:`DataWriterQos` controls the behavior of the :ref:`dds_layer_publisher_dataWriter`.
+Internally it contains the following :class:`QosPolicy` objects:
 
-+-----------------------------+--------------------------------+----------+
-| Name                        | QosPolicy class                | Mutable  |
-+=============================+================================+==========+
-| ``durability_``             | DurabilityQosPolicy            | no       |
-+-----------------------------+--------------------------------+----------+
-| ``durability_service_``     | DurabilityServiceQosPolicy     | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``deadline_``               | DeadlineQosPolicy              | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``latency_budget_``         | LatencyBudgetQosPolicy         | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``liveliness_``             | LivelinessQosPolicy            | no       |
-+-----------------------------+--------------------------------+----------+
-| ``reliability_``            | ReliabilityQosPolicy           | no (*)   |
-+-----------------------------+--------------------------------+----------+
-| ``destination_order_``      | DestinationOrderQosPolicy      | no       |
-+-----------------------------+--------------------------------+----------+
-| ``history_``                | HistoryQosPolicy               | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``resource_limits_``        | ResourceLimitsQosPolicy        | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``transport_priority_``     | TransportPriorityQosPolicy     | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``lifespan_``               | LifespanQosPolicy              | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``user_data_``              | UserDataQosPolicy              | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``ownership_``              | OwnershipQosPolicy             | mo       |
-+-----------------------------+--------------------------------+----------+
-| ``ownership_strength_``     | OwnershipStrengthQosPolicy     | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``writer_data_lifecycle_``  | WriterDataLifecycleQosPolicy   | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``publish_mode_``           | PublishModeQosPolicy           | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``representation_``         | DataRepresentationQosPolicy    | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``properties_``             | PropertyPolicyQos              | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``reliable_writer_qos_``    | RTPSReliableWriterQos          | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``endpoint_``               | RTPSEndpointQos                | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``writer_resource_limits_`` | WriterResourceLimitsQos        | yes      |
-+-----------------------------+--------------------------------+----------+
-| ``throughput_controller_``  | ThroughputControllerDescriptor | yes      |
-+-----------------------------+--------------------------------+----------+
++--------------------------------+------------------------------------+----------+
+| QosPolicy class                | Accessor                           | Mutable  |
++================================+====================================+==========+
+| DurabilityQosPolicy            | :func:`durability`                 | No       |
++--------------------------------+------------------------------------+----------+
+| DurabilityServiceQosPolicy     | :func:`durability_service`         | Yes      |
++--------------------------------+------------------------------------+----------+
+| DeadlineQosPolicy              | :func:`deadline`                   | Yes      |
++--------------------------------+------------------------------------+----------+
+| LatencyBudgetQosPolicy         | :func:`latency_budget`             | Yes      |
++--------------------------------+------------------------------------+----------+
+| LivelinessQosPolicy            | :func:`liveliness`                 | No       |
++--------------------------------+------------------------------------+----------+
+| ReliabilityQosPolicy           | :func:`reliability`                | No (*)   |
++--------------------------------+------------------------------------+----------+
+| DestinationOrderQosPolicy      | :func:`destination_order`          | No       |
++--------------------------------+------------------------------------+----------+
+| HistoryQosPolicy               | :func:`history`                    | Yes      |
++--------------------------------+------------------------------------+----------+
+| ResourceLimitsQosPolicy        | :func:`resource_limits`            | Yes      |
++--------------------------------+------------------------------------+----------+
+| TransportPriorityQosPolicy     | :func:`transport_priority`         | Yes      |
++--------------------------------+------------------------------------+----------+
+| LifespanQosPolicy              | :func:`lifespan`                   | Yes      |
++--------------------------------+------------------------------------+----------+
+| UserDataQosPolicy              | :func:`user_data`                  | Yes      |
++--------------------------------+------------------------------------+----------+
+| OwnershipQosPolicy             | :func:`ownership`                  | No       |
++--------------------------------+------------------------------------+----------+
+| OwnershipStrengthQosPolicy     | :func:`ownership_strength`         | Yes      |
++--------------------------------+------------------------------------+----------+
+| WriterDataLifecycleQosPolicy   | :func:`writer_data_lifecycle`      | Yes      |
++--------------------------------+------------------------------------+----------+
+| PublishModeQosPolicy           | :func:`publish_mode`               | Yes      |
++--------------------------------+------------------------------------+----------+
+| DataRepresentationQosPolicy    | :func:`representation`             | Yes      |
++--------------------------------+------------------------------------+----------+
+| PropertyPolicyQos              | :func:`properties`                 | Yes      |
++--------------------------------+------------------------------------+----------+
+| RTPSReliableWriterQos          | :func:`reliable_writer_qos`        | Yes      |
++--------------------------------+------------------------------------+----------+
+| RTPSEndpointQos                | :func:`endpoint`                   | Yes      |
++--------------------------------+------------------------------------+----------+
+| WriterResourceLimitsQos        | :func:`writer_resource_limits`     | Yes      |
++--------------------------------+------------------------------------+----------+
+| ThroughputControllerDescriptor | :func:`throughput_controller`      | Yes      |
++--------------------------------+------------------------------------+----------+
 
-Refer to the detailed description of each QosPolicy class for more information about their usage and
+Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
 default values.
 
 .. note::
@@ -96,7 +96,7 @@ Default DataWriterQos
 
 The default :ref:`dds_layer_publisher_dataWriterQos` refers to the value returned by the
 :func:`get_default_dataWriter_qos` member function on the :ref:`dds_layer_publisher_publisher` instance.
-The special value ``DATAWRITER_QOS_DEFAULT`` can be used as QoS parameter on :func:`create_datawriter`
+The special value ``DATAWRITER_QOS_DEFAULT`` can be used as QoS argument on :func:`create_datawriter`
 or :func:`set_qos` member functions to indicate that the current default :ref:`dds_layer_publisher_dataWriterQos`
 should be used.
 
@@ -113,7 +113,7 @@ Modifying the default :ref:`dds_layer_publisher_dataWriterQos` will not affect a
    :end-before: //!
 
 :func:`set_default_dataWriter_qos` member function also accepts the special value ``DATAWRITER_QOS_DEFAULT``
-as input parameter.
+as input argument.
 This will reset the current default :ref:`dds_layer_publisher_dataWriterQos` to default constructed
 value :func:`DataWriterQos`.
 
@@ -132,7 +132,7 @@ A :ref:`dds_layer_publisher_dataWriter` always belongs to a :ref:`dds_layer_publ
 Creation of a :ref:`dds_layer_publisher_dataWriter` is done with the :func:`create_datawriter` member function on the
 :ref:`dds_layer_publisher_publisher` instance, that acts as a factory for the :ref:`dds_layer_publisher_dataWriter`.
 
-Mandatory parameters are:
+Mandatory arguments are:
 
  * A :ref:`dds_layer_topic_topic` bound to the data type that will be transmitted.
 
@@ -140,7 +140,7 @@ Mandatory parameters are:
    If the provided value is :class:`DATAWRITER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultDataWriterQos` is used.
 
-Optional parameters are:
+Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_publisher_dataWriterListener`, implementing the callbacks
    that will be triggered in response to events and state changes on the :ref:`dds_layer_publisher_dataWriter`.
@@ -169,13 +169,13 @@ Instead of using a :ref:`dds_layer_publisher_dataWriterQos`, the name of a profi
 can be used to create a :ref:`dds_layer_publisher_dataWriter` with the :func:`create_datawriter_with_profile`
 member function on the :ref:`dds_layer_publisher_publisher` instance.
 
-Mandatory parameters are:
+Mandatory arguments are:
 
  * A :ref:`dds_layer_topic_topic` bound to the data type that will be transmitted.
 
  * A string with the name that identifies the :ref:`dds_layer_publisher_dataWriter`.
 
-Optional parameters are:
+Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_publisher_dataWriterListener`, implementing the callbacks
    that will be triggered in response to events and state changes on the :ref:`dds_layer_publisher_dataWriter`.
@@ -229,7 +229,7 @@ The function takes two arguments:
  * A pointer to the data instance with the new values.
  * The handler to the instance.
 
-An empty (i.e., default constructed :func:`InstanceHandle_t`) instance handler can be used for the parameter handle.
+An empty (i.e., default constructed :func:`InstanceHandle_t`) instance handler can be used for the argument handle.
 This indicates that the identity of the instance should be automatically deduced from the key of the
 instance data.
 Alternatively, the member function :func:`write` is overloaded to take only the pointer to the data instance,

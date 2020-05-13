@@ -69,6 +69,7 @@ IDL
 interoperability
 Intra
 IPv
+KIPv
 libs
 lifecycle
 loopback

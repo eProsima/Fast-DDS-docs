@@ -51,9 +51,10 @@ eProsima Fast RTPS Documentation
 .. toctree::
    :caption: FastRTPSGen Manual
    :maxdepth: 2
-   :numbered: 3
+   :numbered: 5
 
    /fastrtpsgen/geninfo/geninfo
+   /fastrtpsgen/pubsub_app/pubsub_app
    /fastrtpsgen/genuse/genuse
 
 .. _index_notes:

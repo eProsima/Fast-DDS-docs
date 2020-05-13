@@ -24,7 +24,7 @@ presented in :ref:`fastrtpsgen_intro`.
     };
 
 Now we need to translate this file to something Fast RTPS understands.
-For this we have a code generation tool called fastrtpsgen (see :ref:`fastrtpsgen_use`), which can do two different
+For this we have a code generation tool called FASTRTPSGEN (see :ref:`fastrtpsgen_use`), which can do two different
 things:
 
 1. Generate C++ definitions for your custom topic.

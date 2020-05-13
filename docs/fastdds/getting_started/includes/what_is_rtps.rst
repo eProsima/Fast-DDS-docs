@@ -29,7 +29,7 @@ A RTPSParticipant can have any number of writer and reader endpoints.
 Communication revolves around **Topics**, which define and label the data being exchanged.
 The topics do not belong to a specific participant.
 The participant, through the RTPSWriters, makes changes in the data published under a topic, and through the RTPSReaders
-receives the data associated with the topics to which they subscribe.
+receives the data associated with the topics to which it subscribes.
 The communication unit is called **Change**, which represents an update in the data that is written under a Topic.
 **RTPSReaders/RTPSWriters** register these changes on their **History**, a data structure that serves as a cache for
 recent changes.

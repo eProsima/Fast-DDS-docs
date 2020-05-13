@@ -13,7 +13,10 @@ Callbacks that are not overridden will maintain their empty implementation.
 DomainParticipantListener inherits from :ref:`dds_layer_topic_topicListener`,
 :ref:`dds_layer_publisher_publisherListener`, and :ref:`dds_layer_subscriber_subscriberListener`.
 Therefore, it has the ability to react to every kind of event that is
-reported to the client application.
+reported to any of its attached Entities.
+Since events are always notified to the most specific Entity Listener that can handle the event,
+callbacks that DomainParticipantListener inherits from other Listeners will only be called
+if no other Listener was able to handle the event.
 
 Additionally, DomainParticipantListener add the following callbacks:
 

@@ -18,11 +18,14 @@ For an application to be added to a domain, it must create an instance of
 Instances of :ref:`dds_layer_domainParticipant` are created through the
 :ref:`dds_layer_domainParticipantFactory` singleton.
 
-.. image:: /01-figures/domain_class_diagram.svg
+.. figure:: /01-figures/domain_class_diagram.svg
+    :align: center
 
+    Domain class diagram
 .. toctree::
 
     /fastdds/dds_layer/domain/domainParticipant/domainParticipant
     /fastdds/dds_layer/domain/domainParticipantListener/domainParticipantListener
     /fastdds/dds_layer/domain/domainParticipantFactory/domainParticipantFactory
+    /fastdds/dds_layer/domain/domainParticipant/createDomainParticipant
 

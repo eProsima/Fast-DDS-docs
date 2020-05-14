@@ -24,9 +24,9 @@ DomainParticipantFactoryQos
 Internally it contains the following :class:`QosPolicy` objects:
 
 +------------------------------+------------------------+----------+
-| QosPolicy class              | accessor               | Mutable  |
+| QosPolicy class              | Accessor/Mutator       | Mutable  |
 +==============================+========================+==========+
-| EntityFactoryQosPolicy       | :func:`entity_factory` | yes      |
+| EntityFactoryQosPolicy       | :func:`entity_factory` | Yes      |
 +------------------------------+------------------------+----------+
 
 Since the :ref:`dds_layer_domainParticipantFactory` is a singleton, its QoS can only be modified with the

@@ -221,7 +221,7 @@ void dds_domain_examples()
         DomainParticipantQos qos = participant->get_qos();
 
         // Modify QoS attributes
-        // (...)
+        qos.entity_factory().autoenable_created_entities = false;
 
         // Assign the new Qos to the object
         participant->set_qos(qos);

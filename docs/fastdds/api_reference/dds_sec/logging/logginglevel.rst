@@ -7,3 +7,4 @@ LoggingLevel
 
 .. doxygenenum:: eprosima::fastrtps::rtps::security::LoggingLevel
     :project: Fast RTPS
+

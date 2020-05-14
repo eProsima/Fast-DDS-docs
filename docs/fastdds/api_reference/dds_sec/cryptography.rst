@@ -24,3 +24,4 @@ Cryptography
     /fastdds/api_reference/dds_sec/cryptography/participantcryptotoken
     /fastdds/api_reference/dds_sec/cryptography/participantcryptotokenseq
     /fastdds/api_reference/dds_sec/cryptography/securesubmessagecategory_t
+

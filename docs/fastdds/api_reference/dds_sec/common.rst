@@ -19,3 +19,4 @@ Common
     /fastdds/api_reference/dds_sec/common/sharedsecrethandle
     /fastdds/api_reference/dds_sec/common/sharedsecrethelper
     /fastdds/api_reference/dds_sec/common/sharedsecret
+

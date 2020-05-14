@@ -10,3 +10,4 @@ Logging
     /fastdds/api_reference/dds_sec/logging/logoptions
     /fastdds/api_reference/dds_sec/logging/namevaluepair
     /fastdds/api_reference/dds_sec/logging/namevaluepairseq
+

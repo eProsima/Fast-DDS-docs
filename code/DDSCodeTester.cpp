@@ -715,9 +715,67 @@ void dds_publisher_examples()
     }
 }
 
+//DDS_DATAWRITER_LISTENER_SPECIALIZATION
 class CustomDataWriterListener : public DataWriterListener
 {
+
+public:
+
+    CustomDataWriterListener()
+    : DataWriterListener()
+    {
+    }
+
+    virtual ~CustomDataWriterListener()
+    {
+    }
+
+    virtual void on_publication_matched(
+            DataWriter* writer,
+            const PublicationMatchedStatus& info)
+    {
+        (void)writer
+        ;
+        if (info.current_count_change == 1)
+        {
+            std::cout << "Matched a remote Subscriber for one of our Topics" << std::endl;
+        }
+        else if (info.current_count_change == -1)
+        {
+            std::cout << "Unmatched a remote Subscriber" << std::endl;
+        }
+    }
+
+    virtual void on_offered_deadline_missed(
+             DataWriter* writer,
+             const OfferedDeadlineMissedStatus& status)
+    {
+         (void)writer, (void)status;
+         std::cout << "Some data could not be delivered on time" << std::endl;
+    }
+
+    virtual void on_offered_incompatible_qos(
+         DataWriter* writer,
+         const OfferedIncompatibleQosStatus& status)
+    {
+        (void)writer, (void)status;
+        std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
+    }
+
+    /**
+    * @brief Method called when the livelivess of a publisher is lost
+    * @param writer The publisher
+    * @param status The liveliness lost status
+    */
+    virtual void on_liveliness_lost(
+         DataWriter* writer,
+         const LivelinessLostStatus& status)
+    {
+        (void)writer, (void)status;
+        std::cout << "Liveliness lost. Matched Subscribers will consider us offline" << std::endl;
+    }
 };
+//!--
 
 void dds_dataWriter_examples()
 {

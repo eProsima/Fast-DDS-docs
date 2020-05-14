@@ -35,4 +35,8 @@ Callbacks that are not overridden will maintain their empty implementation.
    :ref:`dds_layer_subscriber_dataReader` entities will consider the :ref:`dds_layer_publisher_dataWriter`
    as no longer *active*.
 
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_DATAWRITER_LISTENER_SPECIALIZATION
+   :end-before: //!
 

@@ -9,6 +9,7 @@
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/subscriber/Subscriber.hpp>
+#include <fastdds/dds/subscriber/SubscriberListener.hpp>
 #include <fastdds/dds/subscriber/qos/SubscriberQos.hpp>
 #include <fastdds/dds/subscriber/SubscriberListener.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
@@ -1422,7 +1423,7 @@ public:
     {
     }
 
-    RTPS_DllAPI virtual void on_data_on_readers(
+    virtual void on_data_on_readers(
             Subscriber* sub)
     {
         (void)sub;
@@ -1696,3 +1697,89 @@ void dds_subscriber_examples()
         //!--
     }
 }
+
+//DDS_DATAREADER_LISTENER_SPECIALIZATION
+class CustomDataReaderListener : public DataReaderListener
+{
+
+public:
+
+    CustomDataReaderListener()
+    : DataReaderListener()
+    {
+    }
+
+    virtual ~CustomDataReaderListener()
+    {
+    }
+
+    virtual void on_data_available(
+            DataReader* reader)
+    {
+        (void)reader;
+        std::cout << "Received new data message" << std::endl;
+    }
+
+    virtual void on_subscription_matched(
+            DataReader* reader,
+            const fastdds::dds::SubscriptionMatchedStatus& info)
+    {
+        (void)reader;
+        if (info.current_count_change == 1)
+        {
+            std::cout << "Matched a remote DataWriter" << std::endl;
+        }
+        else if (info.current_count_change == -1)
+        {
+            std::cout << "Unmatched a remote DataWriter" << std::endl;
+        }
+    }
+
+    virtual void on_requested_deadline_missed(
+            DataReader* reader,
+            const fastrtps::RequestedDeadlineMissedStatus& status)
+    {
+        (void)reader, (void)status;
+        std::cout << "Some data was not received on time" << std::endl;
+    }
+
+    virtual void on_liveliness_changed(
+            DataReader* reader,
+            const fastrtps::LivelinessChangedStatus& status)
+    {
+        (void)reader;
+        if (info.alive_count_change == 1)
+        {
+            std::cout << "A matched DataWriter has become active" << std::endl;
+        }
+        else if (info.not_alive_count_change == 1)
+        {
+            std::cout << "A matched DataWriter has become inactive" << std::endl;
+        }
+    }
+
+    virtual void on_sample_rejected(
+            DataReader* reader,
+            const fastrtps::SampleRejectedStatus& status)
+    {
+        (void)reader, (void)status;
+        std::cout << "A received data sample was rejected" << std::endl;
+    }
+
+    virtual void on_requested_incompatible_qos(
+            DataReader* reader,
+            const RequestedIncompatibleQosStatus& status)
+    {
+        (void)reader, (void)status;
+        std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
+    }
+
+    virtual void on_sample_lost(
+            DataReader* reader,
+            const SampleLostStatus& status)
+    {
+        (void)reader, (void)status;
+        std::cout << "A data sample was lost and will not be received" << std::endl;
+    }
+};
+//!--

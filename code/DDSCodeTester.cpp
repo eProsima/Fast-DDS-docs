@@ -463,7 +463,7 @@ void dds_publisher_examples()
         }
 
         // Create a Publisher with default PublisherQos and no Listener
-        // The symbol PUBLISHER_QOS_DEFAULT is used to denote the default QoS.
+        // The value PUBLISHER_QOS_DEFAULT is used to denote the default QoS.
         Publisher* publisher_with_default_qos =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT);
         if (nullptr != publisher_with_default_qos)
@@ -488,7 +488,7 @@ void dds_publisher_examples()
 
         // Create a Publisher with default QoS and a custom Listener.
         // CustomPublisherListener inherits from PublisherListener.
-        // The symbol PUBLISHER_QOS_DEFAULT is used to denote the default QoS.
+        // The value PUBLISHER_QOS_DEFAULT is used to denote the default QoS.
         CustomPublisherListener custom_listener;
         Publisher* publisher_with_default_qos_and_custom_listener =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT, &custom_listener);
@@ -762,11 +762,6 @@ public:
         std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
     }
 
-    /**
-    * @brief Method called when the livelivess of a publisher is lost
-    * @param writer The publisher
-    * @param status The liveliness lost status
-    */
     virtual void on_liveliness_lost(
          DataWriter* writer,
          const LivelinessLostStatus& status)
@@ -790,10 +785,10 @@ void dds_dataWriter_examples()
     {
         //DDS_CREATE_DATAWRITER
         // Create a DataWriter with default DataWriterQos and no Listener
-        // The symbol DATAWRITER_QOS_DEFAULT is used to denote the default QoS.
-        DataWriter* dataWriter_with_default_qos =
+        // The value DATAWRITER_QOS_DEFAULT is used to denote the default QoS.
+        DataWriter* data_writer_with_default_qos =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != dataWriter_with_default_qos)
+        if (nullptr != data_writer_with_default_qos)
         {
             // Error
             return;
@@ -805,9 +800,9 @@ void dds_dataWriter_examples()
         // Modify QoS attributes
         // (...)
 
-        DataWriter* dataWriter_with_custom_qos =
+        DataWriter* data_writer_with_custom_qos =
                 publisher->create_datawriter(topic, custom_qos);
-        if (nullptr != dataWriter_with_custom_qos)
+        if (nullptr != data_writer_with_custom_qos)
         {
             // Error
             return;
@@ -815,11 +810,11 @@ void dds_dataWriter_examples()
 
         // Create a DataWriter with default QoS and a custom Listener.
         // CustomDataWriterListener inherits from DataWriterListener.
-        // The symbol DATAWRITER_QOS_DEFAULT is used to denote the default QoS.
+        // The value DATAWRITER_QOS_DEFAULT is used to denote the default QoS.
         CustomDataWriterListener custom_listener;
-        DataWriter* dataWriter_with_default_qos_and_custom_listener =
+        DataWriter* data_writer_with_default_qos_and_custom_listener =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT, &custom_listener);
-        if (nullptr != dataWriter_with_default_qos_and_custom_listener)
+        if (nullptr != data_writer_with_default_qos_and_custom_listener)
         {
             // Error
             return;
@@ -833,9 +828,9 @@ void dds_dataWriter_examples()
         DomainParticipantFactory::get_instance()->load_XML_profiles_file("profiles.xml");
 
         // Create a DataWriter using a profile and no Listener
-        DataWriter* dataWriter_with_profile =
-                publisher->create_datawriter_with_profile(topic, "dataWriter_profile");
-        if (nullptr != dataWriter_with_profile)
+        DataWriter* data_writer_with_profile =
+                publisher->create_datawriter_with_profile(topic, "data_writer_profile");
+        if (nullptr != data_writer_with_profile)
         {
             // Error
             return;
@@ -844,9 +839,9 @@ void dds_dataWriter_examples()
         // Create a DataWriter using a profile and a custom Listener.
         // CustomDataWriterListener inherits from DataWriterListener.
         CustomDataWriterListener custom_listener;
-        DataWriter* dataWriter_with_profile_and_custom_listener =
-                publisher->create_datawriter_with_profile(topic, "dataWriter_profile", &custom_listener);
-        if (nullptr != dataWriter_with_profile_and_custom_listener)
+        DataWriter* data_writer_with_profile_and_custom_listener =
+                publisher->create_datawriter_with_profile(topic, "data_writer_profile", &custom_listener);
+        if (nullptr != data_writer_with_profile_and_custom_listener)
         {
             // Error
             return;
@@ -857,22 +852,22 @@ void dds_dataWriter_examples()
     {
         //DDS_CHANGE_DATAWRITERQOS
         // Create a DataWriter with default DataWriterQos
-        DataWriter* dataWriter =
+        DataWriter* data_writer =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != dataWriter)
+        if (nullptr != data_writer)
         {
             // Error
             return;
         }
 
         // Get the current QoS or create a new one from scratch
-        DataWriterQos qos = dataWriter->get_qos();
+        DataWriterQos qos = data_writer->get_qos();
 
         // Modify QoS attributes
         // (...)
 
         // Assign the new Qos to the object
-        dataWriter->set_qos(qos);
+        data_writer->set_qos(qos);
         //!--
     }
 
@@ -884,23 +879,23 @@ void dds_dataWriter_examples()
         // Modify QoS attributes
         // (...)
 
-        // Create a dataWriter with a custom DataWriterQos
-        DataWriter* dataWriter = publisher->create_datawriter(topic, custom_qos);
-        if (nullptr != dataWriter)
+        // Create a DataWriter with a custom DataWriterQos
+        DataWriter* data_writer = publisher->create_datawriter(topic, custom_qos);
+        if (nullptr != data_writer)
         {
             // Error
             return;
         }
 
-        // Set the QoS on the dataWriter to the default
-        if (dataWriter->set_qos(DATAWRITER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        // Set the QoS on the DataWriter to the default
+        if (data_writer->set_qos(DATAWRITER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
         }
 
         // The previous instruction is equivalent to the following:
-        if(dataWriter->set_qos(publisher->get_default_datawriter_qos())
+        if(data_writer->set_qos(publisher->get_default_datawriter_qos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -912,9 +907,9 @@ void dds_dataWriter_examples()
     {
         //DDS_DELETE_DATAWRITER
         // Create a DataWriter
-        DataWriter* dataWriter =
+        DataWriter* data_writer =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != dataWriter)
+        if (nullptr != data_writer)
         {
             // Error
             return;
@@ -924,7 +919,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Delete the DataWriter
-        if (publisher->delete_datawriter(dataWriter) != ReturnCode_t::RETCODE_OK)
+        if (publisher->delete_datawriter(data_writer) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -948,9 +943,9 @@ void dds_dataWriter_examples()
         }
 
         // Create a DataWriter with the new default DataWriterQos.
-        DataWriter* dataWriter_with_qos_type1 =
+        DataWriter* data_writer_with_qos_type1 =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != dataWriter_with_qos_type1)
+        if (nullptr != data_writer_with_qos_type1)
         {
             // Error
             return;
@@ -970,9 +965,9 @@ void dds_dataWriter_examples()
         }
 
         // Create a DataWriter with the new default DataWriterQos.
-        DataWriter* dataWriter_with_qos_type2 =
+        DataWriter* data_writer_with_qos_type2 =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != dataWriter_with_qos_type2)
+        if (nullptr != data_writer_with_qos_type2)
         {
             // Error
             return;
@@ -1012,9 +1007,9 @@ void dds_dataWriter_examples()
         }
 
         // Create a DataWriter
-        DataWriter* dataWriter =
+        DataWriter* data_writer =
                 publisher->create_datawriter(custom_topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != dataWriter)
+        if (nullptr != data_writer)
         {
             // Error
             return;
@@ -1027,7 +1022,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Publish the new value, deduce the instance handle
-        if (dataWriter->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != ReturnCode_t::RETCODE_OK)
+        if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;

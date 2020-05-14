@@ -12,28 +12,29 @@ Callbacks that are not overridden will maintain their empty implementation.
 
 :class:`DataWriterListener` defines the following callbacks:
 
- * **on_publication_matched**: The :ref:`dds_layer_publisher_dataWriter` has found a
-   :ref:`dds_layer_subscriber_dataReader` that matches the :ref:`dds_layer_topic_topic` and has
-   a common partition and a compatible QoS, or has ceased to be matched with a
-   :ref:`dds_layer_subscriber_dataReader` that was previously considered to be matched.
+* **on_publication_matched**: The :ref:`dds_layer_publisher_dataWriter` has found a
+  :ref:`dds_layer_subscriber_dataReader` that matches the :ref:`dds_layer_topic_topic` and has
+  a common partition and a compatible QoS, or has ceased to be matched with a
+  :ref:`dds_layer_subscriber_dataReader` that was previously considered to be matched.
 
- * **on_offered_deadline_missed**: The :ref:`dds_layer_publisher_dataWriter` failed to provide
-   data within the deadline period configured on its :ref:`dds_layer_publisher_dataWriterQos`.
-   It will be called for each deadline period and data instance for which the
-   :ref:`dds_layer_publisher_dataWriter` failed to provide data.
+* **on_offered_deadline_missed**: The :ref:`dds_layer_publisher_dataWriter` failed to provide
+  data within the deadline period configured on its :ref:`dds_layer_publisher_dataWriterQos`.
+  It will be called for each deadline period and data instance for which the
+  :ref:`dds_layer_publisher_dataWriter` failed to provide data.
 
- * **on_offered_incompatible_qos**: The :ref:`dds_layer_publisher_dataWriter` has found a
-   :ref:`dds_layer_subscriber_dataReader` that matches the :ref:`dds_layer_topic_topic` and has
-   a common partition, but with a requested QoS that is incompatible with the one defined on the
-   :ref:`dds_layer_publisher_dataWriter`.
+* **on_offered_incompatible_qos**: The :ref:`dds_layer_publisher_dataWriter` has found a
+  :ref:`dds_layer_subscriber_dataReader` that matches the :ref:`dds_layer_topic_topic` and has
+  a common partition, but with a requested QoS that is incompatible with the one defined on the
+  :ref:`dds_layer_publisher_dataWriter`.
 
-   Currently this callback is not implemented (it will never be called), and will be implemented
+.. note::
+   Currently *on_offered_incompatible_qos* is not implemented (it will never be called), and will be implemented
    on a future release of *fast DDS*.
 
- * **on_liveliness_lost**: The :ref:`dds_layer_publisher_dataWriter` did not respect the
-   liveliness configuration on its :ref:`dds_layer_publisher_dataWriterQos`, and therefore,
-   :ref:`dds_layer_subscriber_dataReader` entities will consider the :ref:`dds_layer_publisher_dataWriter`
-   as no longer *active*.
+* **on_liveliness_lost**: The :ref:`dds_layer_publisher_dataWriter` did not respect the
+  liveliness configuration on its :ref:`dds_layer_publisher_dataWriterQos`, and therefore,
+  :ref:`dds_layer_subscriber_dataReader` entities will consider the :ref:`dds_layer_publisher_dataWriter`
+  as no longer *active*.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

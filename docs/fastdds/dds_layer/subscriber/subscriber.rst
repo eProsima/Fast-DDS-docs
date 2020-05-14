@@ -29,3 +29,5 @@ Then, the application can use the :ref:`dds_layer_subscriber_dataReader` to get 
     /fastdds/dds_layer/subscriber/dataReaderListener/dataReaderListener
     /fastdds/dds_layer/subscriber/dataReader/createDataReader
     /fastdds/dds_layer/subscriber/sampleInfo/sampleInfo
+    /fastdds/dds_layer/subscriber/dataReader/readingData
+    

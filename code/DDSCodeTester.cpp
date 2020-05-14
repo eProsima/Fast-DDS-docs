@@ -1406,3 +1406,28 @@ void dds_dataWriter_examples()
         //!--
     }
 }
+
+//DDS_SUBSCRIBER_LISTENER_SPECIALIZATION
+class CustomSubscriberListener : public SubscriberListener
+{
+
+public:
+
+    CustomSubscriberListener()
+    : SubscriberListener()
+    {
+    }
+
+    virtual ~CustomSubscriberListener()
+    {
+    }
+
+    RTPS_DllAPI virtual void on_data_on_readers(
+            Subscriber* sub)
+    {
+        (void)sub;
+        std::cout << "New data available" << std::endl;
+    }
+};
+//!--
+

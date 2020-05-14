@@ -22,6 +22,8 @@
 #include <fastrtps/xmlparser/XMLProfileManager.h>
 #include <fastrtps/types/DynamicTypePtr.h>
 
+#include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
+#include <fastrtps/utils/IPLocator.h>
 
 using namespace eprosima::fastdds::dds;
 
@@ -2109,4 +2111,381 @@ public:
 };
 //!--
 
+void dds_qos_examples()
+{
+    {
+        //DDS_CHANGE_DEADLINE_QOS_POLICY
+        DeadlineQosPolicy deadline;
+        //The DeadlineQosPolicy is default constructed with an infinite period.
+        //Change the period to 1 second
+        deadline.period.seconds = 1;
+        deadline.period.nanosec = 0;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DURABILITY_QOS_POLICY
+        DurabilityQosPolicy durability;
+        //The DurabilityQosPolicy is default constructed with kind = VOLATILE_DURABILITY_QOS
+        //Change the kind to TRANSIENT_LOCAL_DURABILITY_QOS
+        durability.kind = TRANSIENT_LOCAL_DURABILITY_QOS;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_ENTITY_FACTORY_QOS_POLICY
+        EntityFactoryQosPolicy entity_factory;
+        //The EntityFactoryQosPolicy is default constructed with autoenable_created_entities = true
+        //Change it to false
+        entity_factory.autoenable_created_entities = false;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_GROUP_DATA_QOS_POLICY
+        GroupDataQosPolicy group_data;
+        //The GroupDataQosPolicy is default constructed with an empty collection
+        //Collection is a private member so you need to use getters and setters to access
+        //Add data to the collection
+        std::vector<eprosima::fastrtps::rtps::octet> vec;
+        vec = group_data.data_vec(); // Getter function
+
+        eprosima::fastrtps::rtps::octet val = 3;
+        vec.push_back(val);
+        group_data.data_vec(vec); //Setter function
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_HISTORY_QOS_POLICY
+        HistoryQosPolicy history;
+        //The HistoryQosPolicy is default constructed with kind = KEEP_LAST and depth = 1.
+        //Change the depth to 20
+        history.depth = 20;
+        //You can also change the kind to KEEP_ALL but after that the depth will not have effect.
+        history.kind = KEEP_ALL_HISTORY_QOS;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_LIFESPAN_QOS_POLICY
+        LifespanQosPolicy lifespan;
+        //The LifespanQosPolicy is default constructed with duration set to infinite.
+        //Change the duration to 5 s
+        lifespan.duration = {5, 0};
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_LIVELINESS_QOS_POLICY
+        LivelinessQosPolicy liveliness;
+        //The LivelinessQosPolicy is default constructed with kind = AUTOMATIC
+        //Change the kind to MANUAL_BY_PARTICIPANT
+        liveliness.kind = MANUAL_BY_PARTICIPANT_LIVELINESS_QOS;
+        //The LivelinessQosPolicy is default constructed with lease_duration set to infinite
+        //Change the lease_duration to 1 second
+        liveliness.lease_duration = {1, 0};
+        //The LivelinessQosPolicy is default constructed with announcement_period set to infinite
+        //Change the announcement_period to 1 ms
+        liveliness.announcement_period = {0, 1000000};
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_OWNERSHIP_QOS_POLICY
+        OwnershipQosPolicy ownership;
+        //The OwnershipQosPolicy is default constructed with kind = SHARED.
+        //Change the kind to EXCLUSIVE
+        ownership.kind = EXCLUSIVE_OWNERSHIP_QOS;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_OWNERSHIP_STRENGTH_QOS_POLICY
+        OwnershipStrengthQosPolicy ownership_strength;
+        //The OwnershipStrengthQosPolicy is default constructed with value 0
+        //Change the strength to 10
+        ownership_strength.value = 10;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PARTITION_QOS_POLICY
+        PartitionQosPolicy partitions;
+        //The PartitionsQosPolicy is default constructed with max_size = 0.
+        //Max_size is a private member so you need to use getters and setters to access
+        //Change the max_size to 20
+        partitions.set_max_size(20); //Setter function
+        //The PartitionsQosPolicy is default constructed with an empty list of partitions
+        //Partitions is a private member so you need to use getters and setters to access
+        //Add new partitions
+        std::vector<std::string> part = partitions.names(); //Getter function
+        part.push_back("part1");
+        part.push_back("part2");
+        partitions.names(part); //Setter function
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_RELIABILITY_QOS_POLICY
+        ReliabilityQosPolicy reliability;
+        //The ReliabilityQosPolicy is default constructed with kind = BEST_EFFORT
+        //Change the kind to RELIABLE
+        reliability.kind = RELIABLE_RELIABILITY_QOS;
+        //The ReliabilityQosPolicy is default constructed with max_blocking_time = 100ms
+        //Change the max_blocking_time to 1s
+        reliability.max_blocking_time = {1, 0};
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
+        ResourceLimitsQosPolicy resource_limits;
+        //The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
+        //Change max_samples to 200
+        resource_limits.max_samples = 200;
+        //The ResourceLimitsQosPolicy is default constructed with max_instances = 10
+        //Change max_instances to 20
+        resource_limits.max_instances = 20;
+        //The ResourceLimitsQosPolicy is default constructed with max_samples_per_instance = 400
+        //Change max_samples_per_instance to 100 as it must be lower than max_samples
+        resource_limits.max_samples_per_instance = 100;
+        //The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
+        //Change allocated_samples to 50
+        resource_limits.allocated_samples = 50;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TOPIC_DATA_QOS_POLICY
+        //The TopicDataQosPolicy is default constructed with an empty vector.
+        TopicDataQosPolicy topic_data;
+        std::vector<eprosima::fastrtps::rtps::octet> vec;
+        vec = topic_data.data_vec(); // Getter Function
+
+        //Add new octet to topic data vector
+        eprosima::fastrtps::rtps::octet val = 3;
+        vec.push_back(val);
+        topic_data.data_vec(vec); //Setter Function
+        //!--
+    }
+
+
+    {
+        //DDS_CHANGE_USER_DATA_QOS_POLICY
+        //The TopicDataQosPolicy is default constructed with an empty vector.
+        UserDataQosPolicy user_data;
+        std::vector<eprosima::fastrtps::rtps::octet> vec;
+        vec = user_data.data_vec(); // Getter Function
+
+        //Add new octet to topic data vector
+        eprosima::fastrtps::rtps::octet val = 3;
+        vec.push_back(val);
+        user_data.data_vec(vec); //Setter Function
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
+        DisablePositiveACKsQosPolicy disable_acks;
+        //The DisablePositiveACKsQosPolicy is default constructed with enabled = false
+        //Change enabled to true
+        disable_acks.enabled = true;
+        //The DisablePositiveACKsQosPolicy is default constructed with infinite duration
+        //Change the duration to 1 second
+        disable_acks.duration = {1, 0};
+
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
+        ParticipantResourceLimitsQos participant_limits;
+        //Set the maximum size of participant resource limits collection to 3 and it allocation configuration to fixed size
+        participant_limits.participants = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        //Set the maximum size of reader's resource limits collection to 2 and its allocation configuration to fixed size
+        participant_limits.readers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+        //Set the maximum size of writer's resource limits collection to 1 and its allocation configuration to fixed size
+        participant_limits.writers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        //Set the maximum size of the partition data to 256
+        participant_limits.data_limits.max_partitions = 256u;
+        //Set the maximum size of the user data to 256
+        participant_limits.data_limits.max_user_data = 256u;
+        //Set the maximum size of the properties data to 512
+        participant_limits.data_limits.max_properties = 512u;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PROPERTY_POLICY_QOS
+        PropertyPolicyQos property_policy;
+        //Add new property for the Auth:PKI-DH plugin
+        property_policy.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
+        //Add new property for the Access:Permissions plugin
+        property_policy.properties().emplace_back(eprosima::fastrtps::rtps::Property("dds.sec.access.plugin", "builtin.Access-Permissions"));
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PUBLISH_MODE_QOS
+        PublishModeQosPolicy publish_mode;
+        //The PublishModeQosPolicy is default constructed with kind = SYNCHRONOUS
+        //Change the kind to ASYNCHRONOUS
+        publish_mode.kind = ASYNCHRONOUS_PUBLISH_MODE;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
+        ReaderResourceLimitsQos reader_limits;
+        //Set the maximum size for writer matched resource limits collection to 1 and its allocation configuration to fixed size
+        reader_limits.matched_publisher_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
+        WriterResourceLimitsQos writer_limits;
+        //Set the maximum size for reader matched resource limits collection to 3 and its allocation configuration to fixed size
+        writer_limits.matched_subscriber_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_RTPS_ENDPOINT_QOS
+        RTPSEndpointQos endpoint;
+        //Add new unicast locator with port 7800
+        eprosima::fastrtps::rtps::Locator_t new_unicast_locator;
+        new_unicast_locator.port = 7800;
+        endpoint.unicast_locator_list.push_back(new_unicast_locator);
+        //Add new multicast locator with IP 239.255.0.4 and port 7900
+        eprosima::fastrtps::rtps::Locator_t new_multicast_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
+        new_multicast_locator.port = 7900;
+        endpoint.multicast_locator_list.push_back(new_multicast_locator);
+        //Set 3 as user defined id
+        endpoint.user_defined_id = 3;
+        //Set 4 as entity id
+        endpoint.entity_id = 4;
+        //The RTPSEndpointQos is default constructed with history_memory_policy = PREALLOCATED
+        //Change the history_memory_policy to DYNAMIC_RESERVE
+        endpoint.history_memory_policy = eprosima::fastrtps::rtps::DYNAMIC_RESERVE_MEMORY_MODE;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
+        RTPSReliableWriterQos reliable_writer_qos;
+        //The RTPSReliableWriterQos is default constructed with initialHeartbeatDelay = 12 ms
+        //Change the initialHeartbeatDelay to 20 nanoseconds
+        reliable_writer_qos.times.initialHeartbeatDelay = {0, 20};
+        //The RTPSReliableWriterQos is default constructed with heartbeatPeriod = 3 s
+        //Change the heartbeatPeriod to 5 seconds
+        reliable_writer_qos.times.heartbeatPeriod = {5, 0};
+        //The RTPSReliableWriterQos is default constructed with nackResponseDelay = 5 ms
+        //Change the nackResponseDelay to 10 nanoseconds
+        reliable_writer_qos.times.nackResponseDelay = {0, 10};
+        //The RTPSReliableWriterQos is default constructed with nackSupressionDuration = 0 s
+        //Change the nackSupressionDuration to 20 nanoseconds
+        reliable_writer_qos.times.nackSupressionDuration = {0, 20};
+        //You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
+        reliable_writer_qos.disable_positive_acks.enabled = true;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_RTPS_RELIABLE_READER_QOS
+        RTPSReliableReaderQos reliable_reader_qos;
+        //The RTPSReliableReaderQos is default constructed with initialAcknackDelay = 70 ms
+        //Change the initialAcknackDelay to 70 nanoseconds
+        reliable_reader_qos.times.initialAcknackDelay = {0, 70};
+        //The RTPSReliableWriterQos is default constructed with heartbeatResponseDelay = 5 ms
+        //Change the heartbeatResponseDelay to 5 nanoseconds
+        reliable_reader_qos.times.heartbeatResponseDelay = {0, 5};
+        //You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
+        reliable_reader_qos.disable_positive_ACKs.enabled = true;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TRANSPORT_CONFIG_QOS
+        TransportConfigQos transport;
+        //Add new transport to the list of user transports
+        std::shared_ptr<eprosima::fastdds::rtps::UDPv4TransportDescriptor> descriptor =
+                std::make_shared<eprosima::fastdds::rtps::UDPv4TransportDescriptor>();
+        descriptor->sendBufferSize = 9126;
+        descriptor->receiveBufferSize = 9126;
+        transport.user_transports.push_back(descriptor);
+        //Set use_builtin_transports to false
+        transport.use_builtin_transports = false;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
+        eprosima::fastdds::dds::WireProtocolConfigQos wire_protocol;
+        //Set the guid prefix
+        std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> wire_protocol.prefix;
+        //Configure Builtin Attributes
+        wire_protocol.builtin.discovery_config.discoveryProtocol = eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+        //Add locator to unicast list
+        eprosima::fastrtps::rtps::Locator_t server_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
+        server_locator.port = 56542;
+        wire_protocol.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+        // Limit to 300kb per second.
+        eprosima::fastrtps::rtps::ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000};
+        wire_protocol.throughput_controller = slowPublisherThroughputController;
+        //Add locator to default unicast locator list
+        eprosima::fastrtps::rtps::Locator_t unicast_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(unicast_locator, 192, 168, 1, 41);
+        unicast_locator.port = 7400;
+        wire_protocol.default_unicast_locator_list.push_back(unicast_locator);
+        //Add locator to default multicast locator list
+        eprosima::fastrtps::rtps::Locator_t multicast_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(multicast_locator, 192, 168, 1, 41);
+        multicast_locator.port = 7400;
+        wire_protocol.default_multicast_locator_list.push_back(multicast_locator);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DATA_REPRESENTATION_QOS
+        DataRepresentationQosPolicy data_representation;
+        //Add XCDR v1 data representation to the list of valid representations
+        data_representation.m_value.push_back(DataRepresentationId_t::XCDR_DATA_REPRESENTATION);
+        //Add XML data representation to the list of valid representations
+        data_representation.m_value.push_back(DataRepresentationId_t::XML_DATA_REPRESENTATION);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TYPE_CONSISTENCY_ENFORCEMENT_QOS
+        TypeConsistencyEnforcementQosPolicy type_enforcement;
+        //The TypeConsistencyEnforcementQosPolicy is default constructed with kind = ALLOW_TYPE_COERCION
+        //Change the kind to DISALLOW_TYPE_COERCION
+        type_enforcement.m_kind = TypeConsistencyKind::DISALLOW_TYPE_COERCION;
+        //Configures the system to ignore the sequence sizes in assignations
+        type_enforcement.m_ignore_sequence_bounds = true;
+        //Configures the system to ignore the string sizes in assignations
+        type_enforcement.m_ignore_string_bounds = true;
+        //Configures the system to ignore the member names. Members with same ID could have different names
+        type_enforcement.m_ignore_member_names = true;
+        //Configures the system to allow type widening
+        type_enforcement.m_prevent_type_widening = false;
+        //Configures the system to not use the complete Type Information in entities match process
+        type_enforcement.m_force_type_validation = false;
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TYPE_CONSISTENCY_QOS
+        TypeConsistencyQos consistency_qos;
+        //You can change the DataRepresentationQosPolicy. For further details see DataRepresentationQosPolicySection section.
+        consistency_qos.representation.m_value.push_back(DataRepresentationId_t::XCDR2_DATA_REPRESENTATION);
+        //You can change the TypeConsistencyEnforcementQosPolicy. For further details see TypeConsistencyEnforcementQosPolicy section.
+        consistency_qos.type_consistency.m_kind = TypeConsistencyKind::ALLOW_TYPE_COERCION;
+        //!--
+    }
+}
 

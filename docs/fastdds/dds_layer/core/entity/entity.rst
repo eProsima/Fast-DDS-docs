@@ -14,7 +14,7 @@ Types of Entities
 
 - **Domain Participant**: This entity is the entry-point of the Service and acts as a factory for Publishers,
   Subscribers, and Topics.
-  See :ref:`dds_layer_domainParticiant` for further details.
+  See :ref:`dds_layer_domainParticipant` for further details.
 
 - **Publisher**: It acts as a factory that can create any number of DataWriters.
   See :ref:`dds_layer_publisher_publisher` for further details.

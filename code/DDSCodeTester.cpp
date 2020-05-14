@@ -12,6 +12,9 @@
 #include <fastdds/dds/subscriber/SubscriberListener.hpp>
 #include <fastdds/dds/subscriber/qos/SubscriberQos.hpp>
 #include <fastdds/dds/subscriber/SubscriberListener.hpp>
+#include <fastdds/dds/subscriber/DataReader.hpp>
+#include <fastdds/dds/subscriber/DataReaderListener.hpp>
+#include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
 #include <fastdds/dds/topic/TopicListener.hpp>
@@ -1446,7 +1449,7 @@ void dds_subscriber_examples()
         }
 
         // Create a Subscriber with default SubscriberQos and no Listener
-        // The symbol SUBSCRIBER_QOS_DEFAULT is used to denote the default QoS.
+        // The value SUBSCRIBER_QOS_DEFAULT is used to denote the default QoS.
         Subscriber* subscriber_with_default_qos =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
         if (nullptr != subscriber_with_default_qos)
@@ -1471,7 +1474,7 @@ void dds_subscriber_examples()
 
         // Create a Subscriber with default QoS and a custom Listener.
         // CustomSubscriberListener inherits from SubscriberListener.
-        // The symbol SUBSCRIBER_QOS_DEFAULT is used to denote the default QoS.
+        // The value SUBSCRIBER_QOS_DEFAULT is used to denote the default QoS.
         CustomSubscriberListener custom_listener;
         Subscriber* subscriber_with_default_qos_and_custom_listener =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT, &custom_listener);
@@ -1722,7 +1725,7 @@ public:
 
     virtual void on_subscription_matched(
             DataReader* reader,
-            const fastdds::dds::SubscriptionMatchedStatus& info)
+            const SubscriptionMatchedStatus& info)
     {
         (void)reader;
         if (info.current_count_change == 1)
@@ -1737,15 +1740,15 @@ public:
 
     virtual void on_requested_deadline_missed(
             DataReader* reader,
-            const fastrtps::RequestedDeadlineMissedStatus& status)
+            const eprosima::fastrtps::RequestedDeadlineMissedStatus& info)
     {
-        (void)reader, (void)status;
+        (void)reader, (void)info;
         std::cout << "Some data was not received on time" << std::endl;
     }
 
     virtual void on_liveliness_changed(
             DataReader* reader,
-            const fastrtps::LivelinessChangedStatus& status)
+            const eprosima::fastrtps::LivelinessChangedStatus& info)
     {
         (void)reader;
         if (info.alive_count_change == 1)
@@ -1760,26 +1763,248 @@ public:
 
     virtual void on_sample_rejected(
             DataReader* reader,
-            const fastrtps::SampleRejectedStatus& status)
+            const eprosima::fastrtps::SampleRejectedStatus& info)
     {
-        (void)reader, (void)status;
+        (void)reader, (void)info;
         std::cout << "A received data sample was rejected" << std::endl;
     }
 
     virtual void on_requested_incompatible_qos(
             DataReader* reader,
-            const RequestedIncompatibleQosStatus& status)
+            const RequestedIncompatibleQosStatus& info)
     {
-        (void)reader, (void)status;
+        (void)reader, (void)info;
         std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
     }
 
     virtual void on_sample_lost(
             DataReader* reader,
-            const SampleLostStatus& status)
+            const SampleLostStatus& info)
     {
-        (void)reader, (void)status;
+        (void)reader, (void)info;
         std::cout << "A data sample was lost and will not be received" << std::endl;
     }
 };
 //!--
+
+void dds_dataReader_examples()
+{
+    // Taken out of the examples to avoid bloating them
+    DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+    Subscriber* subscriber =
+            participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+    Topic* topic =
+            participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+
+    {
+        //DDS_CREATE_DATAREADER
+        // Create a DataReader with default DataReaderQos and no Listener
+        // The value DATAREADER_QOS_DEFAULT is used to denote the default QoS.
+        DataReader* data_reader_with_default_qos =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr != data_reader_with_default_qos)
+        {
+            // Error
+            return;
+        }
+
+        // A custom DataReaderQos can be provided to the creation method
+        DataReaderQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        DataReader* data_reader_with_custom_qos =
+                subscriber->create_datareader(topic, custom_qos);
+        if (nullptr != data_reader_with_custom_qos)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataReader with default QoS and a custom Listener.
+        // CustomDataReaderListener inherits from DataReaderListener.
+        // The value DATAREADER_QOS_DEFAULT is used to denote the default QoS.
+        CustomDataReaderListener custom_listener;
+        DataReader* data_reader_with_default_qos_and_custom_listener =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT, &custom_listener);
+        if (nullptr != data_reader_with_default_qos_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CREATE_PROFILE_DATAREADER
+        // First load the XML with the profiles
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("profiles.xml");
+
+        // Create a DataReader using a profile and no Listener
+        DataReader* data_reader_with_profile =
+                subscriber->create_datareader_with_profile(topic, "data_reader_profile");
+        if (nullptr != data_reader_with_profile)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataReader using a profile and a custom Listener.
+        // CustomDataReaderListener inherits from DataReaderListener.
+        CustomDataReaderListener custom_listener;
+        DataReader* data_reader_with_profile_and_custom_listener =
+                subscriber->create_datareader_with_profile(topic, "data_reader_profile", &custom_listener);
+        if (nullptr != data_reader_with_profile_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DATAREADERQOS
+        // Create a DataReader with default DataReaderQos
+        DataReader* data_reader =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr != data_reader)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        DataReaderQos qos = data_reader->get_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Assign the new Qos to the object
+        data_reader->set_qos(qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DATAREADERQOS_TO_DEFAULT
+        // Create a custom DataReaderQos
+        DataReaderQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Create a DataWriter with a custom DataReaderQos
+        DataReader* data_reader = subscriber->create_datareader(topic, custom_qos);
+        if (nullptr != data_reader)
+        {
+            // Error
+            return;
+        }
+
+        // Set the QoS on the DataWriter to the default
+        if (data_reader->set_qos(DATAREADER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following:
+        if(data_reader->set_qos(subscriber->get_default_datareader_qos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DELETE_DATAREADER
+        // Create a DataReader
+        DataReader* data_reader =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr != data_reader)
+        {
+            // Error
+            return;
+        }
+
+        // Use the DataReader to communicate
+        // (...)
+
+        // Delete the DataReader
+        if (subscriber->delete_datareader(data_reader) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DEFAULT_DATAREADERQOS
+        // Get the current QoS or create a new one from scratch
+        DataReaderQos qos_type1 = subscriber->get_default_datareader_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default DataReaderQos
+        if(subscriber->set_default_datareader_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataReader with the new default DataReaderQos.
+        DataReader* data_reader_with_qos_type1 =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr != data_reader_with_qos_type1)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        DataReaderQos qos_type2;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default DataReaderQos
+        if(subscriber->set_default_datareader_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataReader with the new default DataReaderQos.
+        DataReader* data_reader_with_qos_type2 =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr != data_reader_with_qos_type2)
+        {
+            // Error
+            return;
+        }
+
+        // Resetting the default DataReaderQos to the original default constructed values
+        if(subscriber->set_default_datareader_qos(DATAREADER_QOS_DEFAULT)
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following
+        if(subscriber->set_default_datareader_qos(DataReaderQos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+}
+
+

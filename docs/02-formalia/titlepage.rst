@@ -7,9 +7,8 @@
 
 *eprosima Fast DDS* is a C++ implementation of the DDS (Data Distribution Service) Specification, a protocol
 defined by the Object Management Group (OMG).
-The *eprosima Fast DDS* library provides both an Application Interface (API) and a communication protocol for
-deploying a
-Data-Centric Publisher-Subscriber (DCPS) model, with the purpose of establishing efficient and reliable
+The *eprosima Fast DDS* library provides both an Application Interface (API) and a communication protocol that deploy
+a Data-Centric Publisher-Subscriber (DCPS) model, with the purpose of establishing efficient and reliable
 information distribution among Real-Time Systems.
 *eprosima Fast DDS* is predictable, scalable, flexible, and efficient in resource handling.
 For meeting these requirements, it makes use of typed interfaces and hinges on a many-to-many
@@ -32,17 +31,17 @@ charge of the data exchange.
 As a data-centric model, DDS builds on the concept of a "global data space" accessible to all interested applications.
 Applications that want to contribute information declare their intent to become publishers whereas applications that
 want to access portions of the data space declare their intent to become subscribers.
-Each time a publisher posts new data into this “global data
-space,” the middleware propagates the information to all interested Subscribers.
+Each time a publisher posts new data into this space, the middleware propagates the information to all
+interested subscribers.
 
-The communication happens across domains, insolated abstract planes that link all the distributed applications able to
+The communication happens across domains, isolated abstract planes that link all the distributed applications able to
 communicate with each other.
 Only entities belonging to a same domain can interact, and the matching between entities subscribing to data and
 entities publishing them is mediated by topics. Topics are unambiguous identifiers that associate a
 name, that is unique in the domain, to a data type and a set of attached data-specific QoS.
 
 DDS entities are modeled either as classes or typed interfaces.
-The latter imply a more efficient resource handling. In fact, knowledge of the data
+The latter imply a more efficient resource handling as knowledge of the data
 type prior to the execution allows allocating memory in advance rather than dynamically.
 
 FastRTPSGen
@@ -56,7 +55,7 @@ using the data types defined in an IDL file.
 RTPS Wire Protocol
 ^^^^^^^^^^^^^^^^^^
 
-The protocol to used by *eProsima Fast DDS* to exchange messages over standard networks is the Real-Time
+The protocol used by *eProsima Fast DDS* to exchange messages over standard networks is the Real-Time
 Publish-Subscribe protocol (RTPS), an interoperability wire protocol for DDS defined and maintained by the OMG
 consortium.
 This protocol provides publisher-subscriber communications over transports such as TCP/UDP/IP, and guarantees
@@ -98,10 +97,10 @@ Fast CDR*) and the external ones (such as the *foonathan* library) are free and 
 
 **Easy to use.**
 
-The project comes with an out-of-the-box example, the *DDSHelloWorld* (TODO: add link) that puts into communication a
+The project comes with an out-of-the-box example, the *DDSHelloWorld* (TODO: add ref) that puts into communication a
 publisher and a subscriber, showcasing how *eProsima Fast DDS* is deployed.
 Additionally, the interactive demo *ShapesDemo* is available for the user to dive into the DDS world.
-Both the DDS and the RTPS layer are thoroughly explained in the Fast DDS section (TODO: add link).
+Both the DDS and the RTPS layers are thoroughly explained in the Fast DDS section (TODO: add ref).
 
 **Best effort and reliable communication.**
 
@@ -110,9 +109,9 @@ is needed.
 
 **Built-in Discovery Service.**
 
-*eProsima Fast DDS* is based on the dynamical discover of the existence of publishers and subscribers and vice-versa
+*eProsima Fast DDS* is based on the dynamical discover of the existence of publishers and subscribers
 and performs this task continuously without
-the need to contact any name servers.
+the need to contact any servers.
 
 **Plug-and-play Connectivity**
 
@@ -137,10 +136,14 @@ breaking backwards compatibility and interoperability.
 
 **Configurability and Modularity**
 
-*eProsima Fast DDS* provides an intuitive way to be configured, either through code or XML profiles, allowing balancing
-the requirements for reliability and timeliness for each data delivery.
+*eProsima Fast DDS* provides an intuitive way to be configured, either through code or XML profiles.
 Modularity allows simple devices to implement a subset of the protocol and still participate in
 the network.
+
+**Two API Layers**
+
+*eProsima Fast DDS* comprises a high-level publisher-subscriber layer focused on usability and a lower-level 
+writer-reader layer that provides finer access to the RTPS protocol.
 
 **Commercial support**
 

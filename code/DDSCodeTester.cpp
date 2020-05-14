@@ -1431,3 +1431,268 @@ public:
 };
 //!--
 
+void dds_subscriber_examples()
+{
+    {
+        //DDS_CREATE_SUBSCRIBER
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Subscriber with default SubscriberQos and no Listener
+        // The symbol SUBSCRIBER_QOS_DEFAULT is used to denote the default QoS.
+        Subscriber* subscriber_with_default_qos =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr != subscriber_with_default_qos)
+        {
+            // Error
+            return;
+        }
+
+        // A custom SubscriberQos can be provided to the creation method
+        SubscriberQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        Subscriber* subscriber_with_custom_qos =
+                participant->create_subscriber(custom_qos);
+        if (nullptr != subscriber_with_custom_qos)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Subscriber with default QoS and a custom Listener.
+        // CustomSubscriberListener inherits from SubscriberListener.
+        // The symbol SUBSCRIBER_QOS_DEFAULT is used to denote the default QoS.
+        CustomSubscriberListener custom_listener;
+        Subscriber* subscriber_with_default_qos_and_custom_listener =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT, &custom_listener);
+        if (nullptr != subscriber_with_default_qos_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CREATE_PROFILE_SUBSCRIBER
+        // First load the XML with the profiles
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("profiles.xml");
+
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Subscriber using a profile and no Listener
+        Subscriber* subscriber_with_profile =
+                participant->create_subscriber_with_profile("subscriber_profile");
+        if (nullptr != subscriber_with_profile)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Subscriber using a profile and a custom Listener.
+        // CustomSubscriberListener inherits from SubscriberListener.
+        CustomSubscriberListener custom_listener;
+        Subscriber* subscriber_with_profile_and_custom_listener =
+                participant->create_subscriber_with_profile("subscriber_profile", &custom_listener);
+        if (nullptr != subscriber_with_profile_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_SUBSCRIBERQOS
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Subscriber with default SubscriberQos
+        Subscriber* subscriber =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr != subscriber)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        SubscriberQos qos = subscriber->get_qos();
+
+        // Modify QoS attributes
+        qos.entity_factory().autoenable_created_entities = false;
+
+        // Assign the new Qos to the object
+        subscriber->set_qos(qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_SUBSCRIBERQOS_TO_DEFAULT
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a custom SubscriberQos
+        SubscriberQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Create a subscriber with a custom SubscriberQos
+        Subscriber* subscriber = participant->create_subscriber(custom_qos);
+        if (nullptr != subscriber)
+        {
+            // Error
+            return;
+        }
+
+        // Set the QoS on the subscriber to the default
+        if (subscriber->set_qos(SUBSCRIBER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following:
+        if(subscriber->set_qos(participant->get_default_subscriber_qos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DELETE_SUBSCRIBER
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Subscriber
+        Subscriber* subscriber =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr != subscriber)
+        {
+            // Error
+            return;
+        }
+
+        // Use the Subscriber to communicate
+        // (...)
+
+        // Delete the Subscriber
+        if (participant->delete_subscriber(subscriber) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DEFAULT_SUBSCRIBERQOS
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        SubscriberQos qos_type1 = participant->get_default_subscriber_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default SubscriberQos
+        if(participant->set_default_subscriber_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Subscriber with the new default SubscriberQos.
+        Subscriber* subscriber_with_qos_type1 =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr != subscriber_with_qos_type1)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        SubscriberQos qos_type2;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default SubscriberQos
+        if(participant->set_default_subscriber_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Subscriber with the new default SubscriberQos.
+        Subscriber* subscriber_with_qos_type2 =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr != subscriber_with_qos_type2)
+        {
+            // Error
+            return;
+        }
+
+        // Resetting the default SubscriberQos to the original default constructed values
+        if(participant->set_default_subscriber_qos(SUBSCRIBER_QOS_DEFAULT)
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following
+        if(participant->set_default_subscriber_qos(SubscriberQos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+}

@@ -23,6 +23,8 @@ WString
 XTypes
 acceptor
 acceptors
+accessor
+accessors
 ack
 acked
 acknack
@@ -56,6 +58,7 @@ deserialize
 deserializes
 destructor
 diffie
+domainId
 doxygen
 eProsima
 endian
@@ -80,6 +83,8 @@ multicast
 multicasting
 multithreading
 multitopics
+mutator
+mutators
 nack
 namespace
 nupkg

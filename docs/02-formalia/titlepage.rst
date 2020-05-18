@@ -79,12 +79,12 @@ Main Features
 
 * **High performance.** *eProsima Fast DDS* uses a static low-level serialization library,
   `Fast CDR <https://github.com/eProsima/Fast-CDR>`,
-  a C++ library that serializes either according to the standard CDR serialization mechanism (defined in the `RTPS
-  Specification <https://www.omg.org/spec/DDSI-RTPS/>`__, see Data Encapsulation for cfr).
+  a C++ library that serializes according to the standard CDR serialization mechanism defined in the `RTPS
+  Specification <https://www.omg.org/spec/DDSI-RTPS/>`__ (see the Data Encapsulation chapter as a reference).
 
 * **Low resources consumption.** *eProsima Fast DDS*:
 
-  * Allows to pre-allocate resources, to minimize dynamic resource allocation.
+  * Allows to preallocate resources, to minimize dynamic resource allocation.
   * Avoids the use of unbounded resources.
   * Minimizes the need to copy data.
 
@@ -93,14 +93,14 @@ Main Features
   By default, the project can run over Linux, Windows and MacOS.
 
 * **Free and Open Source.** The Fast DDS library, the underneath RTPS library, the generator tool, the internal
-  dependencies (such as *eProsima
-  Fast CDR*) and the external ones (such as the *foonathan* library) are free and open source.
+  dependencies (such as *eProsima Fast CDR*) and the external ones (such as the *foonathan* library) are free and
+  open source.
 
 * **Easy to use.** The project comes with an out-of-the-box example, the *DDSHelloWorld*
-  (see :ref:`Getting Started <getting started>`) that puts into communication a
+  (see :ref:`getting_started`) that puts into communication a
   publisher and a subscriber, showcasing how *eProsima Fast DDS* is deployed.
   Additionally, the interactive demo *ShapesDemo* is available for the user to dive into the DDS world.
-  Both the DDS and the RTPS layers are thoroughly explained in the :ref:`Fast DDS <Fast DDS>` section.
+  Both the DDS and the RTPS layers are thoroughly explained in the :ref:`index_fast_dds` section.
 
 * **Best effort and reliable communication.** *eProsima Fast DDS* supports an optional reliable communication paradigm
   over *Best Effort* communications protocols
@@ -152,13 +152,15 @@ Main Features
 Contacts and Commercial support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Find more about us at `*eProsima*'s webpage <https://eprosima.com/>`__.
+Find more about us at `eProsima's webpage <https://eprosima.com/>`__.
 
 Support available at:
 
 * Email: support@eprosima.com
-* Phone: +34 91 804 34 48 
+* Phone: +34 91 804 34 48
 
+Structure of the documentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This documentation is organized into the sections below.
 

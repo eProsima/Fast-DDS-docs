@@ -1,3 +1,5 @@
+.. _api_pim_dds_dcps_pim:
+
 DDS DCPS PIM
 ============
 

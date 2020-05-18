@@ -83,4 +83,10 @@ value :func:`PublisherQos`.
    :end-before: //!
    :dedent: 8
 
+.. note::
+   The value ``PUBLISHER_QOS_DEFAULT`` has different meaning depending on where it is used:
+
+   * On :func:`create_publisher` and :func:`set_qos` it refers to the default :ref:`dds_layer_publisher_publisherQos`
+     as returned by :func:`get_default_publisher_qos`.
+   * On :func:`set_default_publisher_qos` it refers to the default constructed :func:`PublisherQos`.
 

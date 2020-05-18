@@ -5,7 +5,7 @@ Publishing data
 
 The user informs of a change in the value of a data instance with the :func:`write` member function on the
 :ref:`dds_layer_publisher_dataWriter`. This change will then be communicated to every
-:ref:`dds_layer_subscriber_subscriber` matched with the :ref:`dds_layer_publisher_dataWriter`.
+:ref:`dds_layer_subscriber_dataReader` matched with the :ref:`dds_layer_publisher_dataWriter`.
 As a side effect, this operation asserts liveliness on the :ref:`dds_layer_publisher_dataWriter` itself,
 the :ref:`dds_layer_publisher_publisher` and the :ref:`dds_layer_domainParticipant`.
 

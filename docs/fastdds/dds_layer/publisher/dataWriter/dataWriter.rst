@@ -125,6 +125,12 @@ value :func:`DataWriterQos`.
    :end-before: //!
    :dedent: 8
 
+.. note::
+   The value ``DATAWRITER_QOS_DEFAULT`` has different meaning depending on where it is used:
+
+   * On :func:`create_datawriter` and :func:`set_qos` it refers to the default :ref:`dds_layer_publisher_dataWriterQos`
+     as returned by :func:`get_default_dataWriter_qos`.
+   * On :func:`set_default_dataWriter_qos` it refers to the default constructed :func:`DataWriterQos`.
 
 
 

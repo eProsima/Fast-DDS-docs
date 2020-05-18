@@ -29,7 +29,7 @@ Callbacks that are not overridden will maintain their empty implementation.
 
 .. note::
    Currently *on_offered_incompatible_qos* is not implemented (it will never be called), and will be implemented
-   on a future release of *fast DDS*.
+   on a future release of Fast DDS.
 
 * **on_liveliness_lost**: The :ref:`dds_layer_publisher_dataWriter` did not respect the
   liveliness configuration on its :ref:`dds_layer_publisher_dataWriterQos`, and therefore,

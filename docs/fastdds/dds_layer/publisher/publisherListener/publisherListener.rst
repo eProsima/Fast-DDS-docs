@@ -19,4 +19,6 @@ will only be called if the triggering :ref:`dds_layer_publisher_dataWriter` has
 no Listener attached.
 
 :class:`PublisherListener` does not add any new callback.
+Please, refer to the :ref:`dds_layer_publisher_dataWriterListener` for the list of inherited callbacks
+and override examples.
 

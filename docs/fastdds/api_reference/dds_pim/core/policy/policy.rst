@@ -14,6 +14,7 @@ Policy
    /fastdds/api_reference/dds_pim/core/policy/durabilityserviceqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/entityfactoryqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/genericdataqospolicy.rst
+   /fastdds/api_reference/dds_pim/core/policy/groupdataqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/historyqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/historyqospolicykind.rst
    /fastdds/api_reference/dds_pim/core/policy/latencybudgetqospolicy.rst
@@ -36,10 +37,12 @@ Policy
    /fastdds/api_reference/dds_pim/core/policy/resourcelimitsqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/rtpsendpointqos.rst
    /fastdds/api_reference/dds_pim/core/policy/timebasedfilterqospolicy.rst
+   /fastdds/api_reference/dds_pim/core/policy/topicdataqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/transportconfigqos.rst
    /fastdds/api_reference/dds_pim/core/policy/transportpriorityqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/typeconsistencyenforcementqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/typeconsistencykind.rst
+   /fastdds/api_reference/dds_pim/core/policy/userdataqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/wireprotocolconfigqos.rst
    /fastdds/api_reference/dds_pim/core/policy/writerdatalifecycleqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/writerresourcelimitsqos.rst

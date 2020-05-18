@@ -22,6 +22,7 @@ Instances of :ref:`dds_layer_domainParticipant` are created through the
     :align: center
 
     Domain class diagram
+
 .. toctree::
 
     /fastdds/dds_layer/domain/domainParticipant/domainParticipant

@@ -5,12 +5,18 @@
 #include <fastdds/dds/domain/DomainParticipantListener.hpp>
 #include <fastdds/dds/publisher/Publisher.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
+#include <fastdds/dds/publisher/PublisherListener.hpp>
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/subscriber/Subscriber.hpp>
 #include <fastdds/dds/subscriber/qos/SubscriberQos.hpp>
+#include <fastdds/dds/subscriber/SubscriberListener.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
+#include <fastdds/dds/topic/TopicListener.hpp>
+#include <fastrtps/xmlparser/XMLProfileManager.h>
+#include <fastrtps/types/DynamicTypePtr.h>
+
 
 using namespace eprosima::fastdds::dds;
 
@@ -197,10 +203,10 @@ void dds_domain_examples()
 
         // Create a DomainParticipant using a profile and a custom Listener.
         // CustomDomainParticipantListener inherits from DomainParticipantListener.
-        CustomDomainParticipantListener listener;
-        DomainParticipant* participant_with_profile_and_listener =
-                DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile", &listener);
-        if (nullptr != participant_with_profile_and_listener)
+        CustomDomainParticipantListener custom_listener;
+        DomainParticipant* participant_with_profile_and_custom_listener =
+                DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile", &custom_listener);
+        if (nullptr != participant_with_profile_and_custom_listener)
         {
             // Error
             return;
@@ -396,6 +402,31 @@ void dds_domain_examples()
     }
 }
 
+//DDS_TOPIC_LISTENER_SPECIALIZATION
+class CustomTopicListener : public TopicListener
+{
+
+public:
+
+    CustomTopicListener()
+    : TopicListener()
+    {
+    }
+
+    virtual ~CustomTopicListener()
+    {
+    }
+
+    virtual void on_inconsistent_topic(
+            Topic* topic,
+            InconsistentTopicStatus status)
+    {
+        (void)topic, (void)status;
+        std::cout << "Inconsistent topic received discovered" << std::endl;
+    }
+};
+//!--
+
 class CustomDataType : public TopicDataType
 {
 public:
@@ -444,6 +475,347 @@ public:
         return true;
     }
 };
+
+void dds_topic_examples()
+{
+    {
+        //DDS_CREATE_TOPIC
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with default TopicQos and no Listener
+        // The symbol TOPIC_QOS_DEFAULT is used to denote the default QoS.
+        Topic* topic_with_default_qos =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic_with_default_qos)
+        {
+            // Error
+            return;
+        }
+
+        // A custom TopicQos can be provided to the creation method
+        TopicQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        Topic* topic_with_custom_qos =
+                participant->create_topic("TopicName", "DataTypeName", custom_qos);
+        if (nullptr != topic_with_custom_qos)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with default QoS and a custom Listener.
+        // CustomTopicListener inherits from TopicListener.
+        // The symbol TOPIC_QOS_DEFAULT is used to denote the default QoS.
+        CustomTopicListener custom_listener;
+        Topic* topic_with_default_qos_and_custom_listener =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT, &custom_listener);
+        if (nullptr != topic_with_default_qos_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CREATE_PROFILE_TOPIC
+        // First load the XML with the profiles
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("profiles.xml");
+
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic using a profile and no Listener
+        Topic* topic_with_profile =
+                participant->create_topic_with_profile("TopicName", "DataTypeName", "topic_profile");
+        if (nullptr != topic_with_profile)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic using a profile and a custom Listener.
+        // CustomTopicListener inherits from TopicListener.
+        CustomTopicListener custom_listener;
+        Topic* topic_with_profile_and_custom_listener =
+                participant->create_topic_with_profile("TopicName", "DataTypeName", "topic_profile", &custom_listener);
+        if (nullptr != topic_with_profile_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TOPICQOS
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with default TopicQos
+        Topic* topic =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        TopicQos qos = topic->get_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Assign the new Qos to the object
+        topic->set_qos(qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TOPICQOS_TO_DEFAULT
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a custom TopicQos
+        TopicQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Create a topic with a custom TopicQos
+        Topic* topic = participant->create_topic("TopicName", "DataTypeName", custom_qos);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Set the QoS on the topic to the default
+        if (topic->set_qos(TOPIC_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following:
+        if(topic->set_qos(participant->get_default_topic_qos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DELETE_TOPIC
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic
+        Topic* topic =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Use the Topic to communicate
+        // (...)
+
+        // Delete the Topic
+        if (participant->delete_topic(topic) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DEFAULT_TOPICQOS
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        TopicQos qos_type1 = participant->get_default_topic_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default TopicQos
+        if(participant->set_default_topic_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with the new default TopicQos.
+        Topic* topic_with_qos_type1 =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic_with_qos_type1)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        TopicQos qos_type2;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default TopicQos
+        if(participant->set_default_topic_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic with the new default TopicQos.
+        Topic* topic_with_qos_type2 =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+        if (nullptr != topic_with_qos_type2)
+        {
+            // Error
+            return;
+        }
+
+        // Resetting the default TopicQos to the original default constructed values
+        if(participant->set_default_topic_qos(TOPIC_QOS_DEFAULT)
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following
+        if(participant->set_default_topic_qos(TopicQos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_TYPE_REGISTER
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Register the data type in the DomainParticipant.
+        // If nullptr is used as name argument, the one returned by the type itself is used
+        TypeSupport custom_type_support(new CustomDataType());
+        custom_type_support.register_type(participant, nullptr);
+
+        // The previous instruction is equivalent to the following one
+        // Even if we are registering the same data type with the same name twice, no error will be issued
+        custom_type_support.register_type(participant, custom_type_support.get_type_name());
+
+        // Create a Topic with the registered type.
+        Topic* topic =
+                participant->create_topic("topic_name", custom_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create an alias for the same data type using a different name.
+        custom_type_support.register_type(participant, "data_type_name");
+
+        // We can now use the aliased name to If no name is given, it uses the name returned by the type itself
+        Topic* another_topic =
+                participant->create_topic("other_topic_name", "data_type_name", TOPIC_QOS_DEFAULT);
+        if (nullptr != another_topic)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DYNAMIC_TYPES
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Load the XML file with the type description
+        eprosima::fastrtps::xmlparser::XMLProfileManager::loadXMLFile("example_type.xml");
+
+        // Retrieve the an instance of the desired type and register it
+        eprosima::fastrtps::types::DynamicType_ptr dyn_type =
+                eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName("DynamicType")->build();
+        TypeSupport dyn_type_support(new eprosima::fastrtps::types::DynamicPubSubType(dyn_type));
+        dyn_type_support.register_type(participant, nullptr);
+
+        // Create a Topic with the registered type.
+        Topic* topic =
+                participant->create_topic("topic_name", dyn_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+}
+
 
 class CustomPublisherListener : public PublisherListener
 {

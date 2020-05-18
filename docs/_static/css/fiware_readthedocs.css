@@ -68,3 +68,10 @@ src:url("Fonts/742885/39974d8a-38de-4853-a4d1-778234a08061.eot?#iefix") format("
 .api-ref p {
   text-align: left !important;
 }
+
+/* Centering figures captions */
+.figure.align-center .caption{
+  text-align: center !important;
+  margin: 0px 80px !important;
+}
+

@@ -27,6 +27,9 @@ instance with additional information that help interpreting the returned data va
 :ref:`dds_layer_publisher_dataWriter` or the publication time stamp.
 Please, refer to the :ref:`dds_layer_subscriber_sampleInfo` section for an extensive description of its contents.
 
-
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_DATAREADER_READ
+   :end-before: //!
 
 

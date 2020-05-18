@@ -15,6 +15,7 @@
 #include <fastdds/dds/subscriber/DataReader.hpp>
 #include <fastdds/dds/subscriber/DataReaderListener.hpp>
 #include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>
+#include <fastdds/dds/subscriber/SampleInfo.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
 #include <fastdds/dds/topic/TopicListener.hpp>
@@ -2006,5 +2007,51 @@ void dds_dataReader_examples()
         //!--
     }
 }
+
+//DDS_DATAREADER_READ
+class CustomizedDataReaderListener : public DataReaderListener
+{
+
+public:
+
+    CustomizedDataReaderListener()
+    : DataReaderListener()
+    {
+    }
+
+    virtual ~CustomizedDataReaderListener()
+    {
+    }
+
+    virtual void on_data_available(
+            DataReader* reader)
+    {
+        // Create a data and SampleInfo instance
+        void* data = reader->type().create_data();
+        SampleInfo info;
+
+        if (reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
+        {
+            if (info.instance_state == ALIVE)
+            {
+                // Do something with the data
+                std::cout << "Received new data value for topic "
+                          << reader->get_topicdescription()->get_name()
+                          << std::endl;
+            }
+            else
+            {
+                std::cout << "Remote writer for topic "
+                          << reader->get_topicdescription()->get_name()
+                          << " is dead" << std::endl;
+            }
+        }
+
+        // The data instance can be reused to retrieve new values,
+        // but delete it at the end to avoid leaks
+        reader->type().delete_data(data);
+    }
+};
+//!--
 
 

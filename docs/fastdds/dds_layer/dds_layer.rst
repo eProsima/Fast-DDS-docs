@@ -17,24 +17,25 @@ in depth explanation of the five modules into which it is divided:
   style with the middleware.
 
 * :ref:`dds_layer_domain`:
-  It contains the :ref:`dds_layer_domainParticipant` class that acts as an entry-point of the Service,
+  It contains the :ref:`api_pim_domainparticipant` class that acts as an entry-point of the Service,
   as well as a factory for many of the classes. The :class:`DomainParticipant` also acts as a container for the other
   objects that make up the Service.
 
 * :ref:`dds_layer_publisher`:
-  It contains the :ref:`dds_layer_publisher_publisher` and :ref:`dds_layer_publisher_dataWriter` classes as well as
-  the :ref:`api_pim_publisherlistener` and :ref:`dds_layer_publisher_dataWriterListener` interfaces, and more
-  generally, all that is needed on the publication side.
+  It describes the classes used on the publication side, including :ref:`api_pim_publisher_class` and
+  :ref:`api_pim_datawriter` classes, as well as the :ref:`api_pim_publisherlistener` and
+  :ref:`api_pim_datawriterlistener` interfaces.
 
 * :ref:`dds_layer_subscriber`:
-  It contains the :ref:`dds_layer_subscriber_subscriber`, an the :ref:`dds_layer_subscriber_dataReader`, as well as the
-  :ref:`dds_layer_subscriber_subscriberListener` and :ref:`dds_layer_subscriber_dataReaderListener` interfaces, and more
-  generally, all that is needed on the subscription side.
+  It describes the classes used on the subscription side, including :ref:`api_pim_subscriber_class` and
+  :ref:`api_pim_datareader` classes, as well as the :ref:`api_pim_subscriberlistener`
+  and :ref:`api_pim_datareaderlistener` interfaces.
 
 * :ref:`dds_layer_topic`:
-  It contains the :ref:`dds_layer_topic_topic` class, the :ref:`dds_layer_topic_topicDescription`, the
-  :ref:`dds_layer_topic_typeSupport`, the :ref:`dds_layer_topic_topicListener` interface, and more generally, all that
-  is needed by the application to define Topic objects and attach QoS policies to them.
+  It describes the classes used to define communication topics and data types, including :ref:`api_pim_topic_class`
+  and :ref:`api_pim_topicdescription` classes, as well as :ref:`api_pim_typesupport`, and the
+  :ref:`api_pim_topiclistener` interface.
+
 
 .. toctree::
 

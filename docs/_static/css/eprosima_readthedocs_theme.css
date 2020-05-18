@@ -248,6 +248,12 @@ div.highlight-bash pre, div.highlight-shell-session pre  {
   border-left: 5px solid black !important;
 }
 
+/* Images */
+.figure.align-center .caption{
+  text-align: center !important;
+  margin: 0px 100px !important;
+}
+
 /* Video */
 video {
   width: 100% !important;

@@ -12,3 +12,7 @@ Subscriber
    /fastdds/api_reference/dds_pim/subscriber/subscriberlistener.rst
    /fastdds/api_reference/dds_pim/subscriber/subscriberqos.rst
    /fastdds/api_reference/dds_pim/subscriber/typeconsistencyqos.rst
+   /fastdds/api_reference/dds_pim/subscriber/sampleinfo.rst
+   /fastdds/api_reference/dds_pim/subscriber/samplestatekind.rst
+   /fastdds/api_reference/dds_pim/subscriber/viewstatekind.rst
+   /fastdds/api_reference/dds_pim/subscriber/instancestatekind.rst

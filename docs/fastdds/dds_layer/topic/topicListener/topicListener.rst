@@ -15,8 +15,9 @@ Callbacks that are not overridden will maintain their empty implementation.
  * **on_inconsistent_topic**: A remote :ref:`dds_layer_topic_topic` is discovered with the same name
    but different characteristics as another locally created :ref:`dds_layer_topic_topic`.
 
-   Currently this callback is not implemented (it will never be called), and will be implemented
-   on a future release of *fast DDS*.
+.. note::
+   Currently *on_inconsistent_topic* is not implemented (it will never be called), and will be implemented
+   on a future release of Fast DDS.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

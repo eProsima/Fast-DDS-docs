@@ -31,6 +31,7 @@ Then the :ref:`dds_layer_topic_topic` can be created with the registered type na
    :language: c++
    :start-after: //DDS_TYPE_REGISTER
    :end-before: //!
+   :dedent: 8
 
 
 .. _dds_layer_topic_dynamic_data_types:
@@ -46,13 +47,14 @@ Data types can also be described on an XML file that is dynamically loaded.
    :language: c++
    :start-after: //DDS_DYNAMIC_TYPES
    :end-before: //!
+   :dedent: 8
 
 A complete description of the dynamic definition of types can be found on the :ref:`dynamic-types` section.
 
 
 .. _dds_layer_topic_keyed_data_types:
 
-data types with a key
+Data types with a key
 ---------------------
 
 Data types that define a set of fields to form a unique key can distinguish different data sets

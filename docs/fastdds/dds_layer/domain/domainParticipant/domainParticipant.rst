@@ -66,7 +66,7 @@ Default DomainParticipantQos
 
 The default :ref:`dds_layer_domainParticipantQos` refers to the value returned by the
 :func:`get_default_participant_qos()` member function on the :ref:`dds_layer_domainParticipantFactory` singleton.
-The special value :class:`PARTICIPANT_QOS_DEFAULT` can be used as QoS argument on :func:`create_participant()`
+The special value ``PARTICIPANT_QOS_DEFAULT`` can be used as QoS argument on :func:`create_participant()`
 or :func:`set_qos()` member functions to indicate that the current default :ref:`dds_layer_domainParticipantQos`
 should be used.
 
@@ -83,7 +83,7 @@ Modifying the default :ref:`dds_layer_domainParticipantQos` will not affect alre
    :end-before: //!
    :dedent: 8
 
-:func:`set_default_participant_qos()` member function also accepts the value :class:`PARTICIPANT_QOS_DEFAULT`
+:func:`set_default_participant_qos()` member function also accepts the value ``PARTICIPANT_QOS_DEFAULT``
 as input argument.
 This will reset the current default :ref:`dds_layer_domainParticipantQos` to the default constructed value
 :func:`DomainParticipantQos()`.
@@ -94,4 +94,10 @@ This will reset the current default :ref:`dds_layer_domainParticipantQos` to the
    :end-before: //!
    :dedent: 8
 
+.. note::
+   The value ``PARTICIPANT_QOS_DEFAULT`` has different meaning depending on where it is used:
+
+   * On :func:`create_participant` and :func:`set_qos` it refers to the default :ref:`dds_layer_domainParticipantQos`
+     as returned by :func:`get_default_participant_qos`.
+   * On :func:`set_default_participant_qos` it refers to the default constructed :func:`DomainParticipantQos`.
 

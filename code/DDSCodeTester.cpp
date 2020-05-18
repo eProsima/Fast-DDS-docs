@@ -5,6 +5,8 @@
 #include <fastdds/dds/domain/DomainParticipantListener.hpp>
 #include <fastdds/dds/publisher/Publisher.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
+#include <fastdds/dds/publisher/DataWriter.hpp>
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/subscriber/Subscriber.hpp>
 #include <fastdds/dds/subscriber/qos/SubscriberQos.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
@@ -394,5 +396,641 @@ void dds_domain_examples()
     }
 }
 
+class CustomDataType : public TopicDataType
+{
+public:
 
+    CustomDataType()
+        : TopicDataType()
+    {
+        setName("footype");
+    }
 
+    bool serialize(
+            void* /*data*/,
+            eprosima::fastrtps::rtps::SerializedPayload_t* /*payload*/) override
+    {
+        return true;
+    }
+
+    bool deserialize(
+            eprosima::fastrtps::rtps::SerializedPayload_t* /*payload*/,
+            void* /*data*/) override
+    {
+        return true;
+    }
+
+    std::function<uint32_t()> getSerializedSizeProvider(
+            void* /*data*/) override
+    {
+        return std::function<uint32_t()>();
+    }
+
+    void* createData() override
+    {
+        return nullptr;
+    }
+
+    void deleteData(
+            void* /*data*/) override
+    {
+    }
+
+    bool getKey(
+            void* /*data*/,
+            eprosima::fastrtps::rtps::InstanceHandle_t* /*ihandle*/,
+            bool /*force_md5*/) override
+    {
+        return true;
+    }
+};
+
+class CustomPublisherListener : public PublisherListener
+{
+};
+
+void dds_publisher_examples()
+{
+    {
+        //DDS_CREATE_PUBLISHER
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Publisher with default PublisherQos and no Listener
+        // The value PUBLISHER_QOS_DEFAULT is used to denote the default QoS.
+        Publisher* publisher_with_default_qos =
+                participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+        if (nullptr != publisher_with_default_qos)
+        {
+            // Error
+            return;
+        }
+
+        // A custom PublisherQos can be provided to the creation method
+        PublisherQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        Publisher* publisher_with_custom_qos =
+                participant->create_publisher(custom_qos);
+        if (nullptr != publisher_with_custom_qos)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Publisher with default QoS and a custom Listener.
+        // CustomPublisherListener inherits from PublisherListener.
+        // The value PUBLISHER_QOS_DEFAULT is used to denote the default QoS.
+        CustomPublisherListener custom_listener;
+        Publisher* publisher_with_default_qos_and_custom_listener =
+                participant->create_publisher(PUBLISHER_QOS_DEFAULT, &custom_listener);
+        if (nullptr != publisher_with_default_qos_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CREATE_PROFILE_PUBLISHER
+        // First load the XML with the profiles
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("profiles.xml");
+
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Publisher using a profile and no Listener
+        Publisher* publisher_with_profile =
+                participant->create_publisher_with_profile("publisher_profile");
+        if (nullptr != publisher_with_profile)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Publisher using a profile and a custom Listener.
+        // CustomPublisherListener inherits from PublisherListener.
+        CustomPublisherListener custom_listener;
+        Publisher* publisher_with_profile_and_custom_listener =
+                participant->create_publisher_with_profile("publisher_profile", &custom_listener);
+        if (nullptr != publisher_with_profile_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PUBLISHERQOS
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Publisher with default PublisherQos
+        Publisher* publisher =
+                participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+        if (nullptr != publisher)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        PublisherQos qos = publisher->get_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Assign the new Qos to the object
+        publisher->set_qos(qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PUBLISHERQOS_TO_DEFAULT
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a custom PublisherQos
+        PublisherQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Create a publisher with a custom PublisherQos
+        Publisher* publisher = participant->create_publisher(custom_qos);
+        if (nullptr != publisher)
+        {
+            // Error
+            return;
+        }
+
+        // Set the QoS on the publisher to the default
+        if (publisher->set_qos(PUBLISHER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following:
+        if(publisher->set_qos(participant->get_default_publisher_qos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DELETE_PUBLISHER
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Publisher
+        Publisher* publisher =
+                participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+        if (nullptr != publisher)
+        {
+            // Error
+            return;
+        }
+
+        // Use the Publisher to communicate
+        // (...)
+
+        // Delete the Publisher
+        if (participant->delete_publisher(publisher) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DEFAULT_PUBLISHERQOS
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        PublisherQos qos_type1 = participant->get_default_publisher_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default PublisherQos
+        if(participant->set_default_publisher_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Publisher with the new default PublisherQos.
+        Publisher* publisher_with_qos_type1 =
+                participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+        if (nullptr != publisher_with_qos_type1)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        PublisherQos qos_type2;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default PublisherQos
+        if(participant->set_default_publisher_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Publisher with the new default PublisherQos.
+        Publisher* publisher_with_qos_type2 =
+                participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+        if (nullptr != publisher_with_qos_type2)
+        {
+            // Error
+            return;
+        }
+
+        // Resetting the default PublisherQos to the original default constructed values
+        if(participant->set_default_publisher_qos(PUBLISHER_QOS_DEFAULT)
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following
+        if(participant->set_default_publisher_qos(PublisherQos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+}
+
+//DDS_DATAWRITER_LISTENER_SPECIALIZATION
+class CustomDataWriterListener : public DataWriterListener
+{
+
+public:
+
+    CustomDataWriterListener()
+    : DataWriterListener()
+    {
+    }
+
+    virtual ~CustomDataWriterListener()
+    {
+    }
+
+    virtual void on_publication_matched(
+            DataWriter* writer,
+            const PublicationMatchedStatus& info)
+    {
+        (void)writer
+        ;
+        if (info.current_count_change == 1)
+        {
+            std::cout << "Matched a remote Subscriber for one of our Topics" << std::endl;
+        }
+        else if (info.current_count_change == -1)
+        {
+            std::cout << "Unmatched a remote Subscriber" << std::endl;
+        }
+    }
+
+    virtual void on_offered_deadline_missed(
+             DataWriter* writer,
+             const OfferedDeadlineMissedStatus& status)
+    {
+         (void)writer, (void)status;
+         std::cout << "Some data could not be delivered on time" << std::endl;
+    }
+
+    virtual void on_offered_incompatible_qos(
+         DataWriter* writer,
+         const OfferedIncompatibleQosStatus& status)
+    {
+        (void)writer, (void)status;
+        std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
+    }
+
+    virtual void on_liveliness_lost(
+         DataWriter* writer,
+         const LivelinessLostStatus& status)
+    {
+        (void)writer, (void)status;
+        std::cout << "Liveliness lost. Matched Subscribers will consider us offline" << std::endl;
+    }
+};
+//!--
+
+void dds_dataWriter_examples()
+{
+    // Taken out of the examples to avoid bloating them
+    DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+    Publisher* publisher =
+            participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+    Topic* topic =
+            participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+
+    {
+        //DDS_CREATE_DATAWRITER
+        // Create a DataWriter with default DataWriterQos and no Listener
+        // The value DATAWRITER_QOS_DEFAULT is used to denote the default QoS.
+        DataWriter* data_writer_with_default_qos =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr != data_writer_with_default_qos)
+        {
+            // Error
+            return;
+        }
+
+        // A custom DataWriterQos can be provided to the creation method
+        DataWriterQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        DataWriter* data_writer_with_custom_qos =
+                publisher->create_datawriter(topic, custom_qos);
+        if (nullptr != data_writer_with_custom_qos)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataWriter with default QoS and a custom Listener.
+        // CustomDataWriterListener inherits from DataWriterListener.
+        // The value DATAWRITER_QOS_DEFAULT is used to denote the default QoS.
+        CustomDataWriterListener custom_listener;
+        DataWriter* data_writer_with_default_qos_and_custom_listener =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT, &custom_listener);
+        if (nullptr != data_writer_with_default_qos_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CREATE_PROFILE_DATAWRITER
+        // First load the XML with the profiles
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("profiles.xml");
+
+        // Create a DataWriter using a profile and no Listener
+        DataWriter* data_writer_with_profile =
+                publisher->create_datawriter_with_profile(topic, "data_writer_profile");
+        if (nullptr != data_writer_with_profile)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataWriter using a profile and a custom Listener.
+        // CustomDataWriterListener inherits from DataWriterListener.
+        CustomDataWriterListener custom_listener;
+        DataWriter* data_writer_with_profile_and_custom_listener =
+                publisher->create_datawriter_with_profile(topic, "data_writer_profile", &custom_listener);
+        if (nullptr != data_writer_with_profile_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DATAWRITERQOS
+        // Create a DataWriter with default DataWriterQos
+        DataWriter* data_writer =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr != data_writer)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        DataWriterQos qos = data_writer->get_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Assign the new Qos to the object
+        data_writer->set_qos(qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DATAWRITERQOS_TO_DEFAULT
+        // Create a custom DataWriterQos
+        DataWriterQos custom_qos;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Create a DataWriter with a custom DataWriterQos
+        DataWriter* data_writer = publisher->create_datawriter(topic, custom_qos);
+        if (nullptr != data_writer)
+        {
+            // Error
+            return;
+        }
+
+        // Set the QoS on the DataWriter to the default
+        if (data_writer->set_qos(DATAWRITER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following:
+        if(data_writer->set_qos(publisher->get_default_datawriter_qos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DELETE_DATAWRITER
+        // Create a DataWriter
+        DataWriter* data_writer =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr != data_writer)
+        {
+            // Error
+            return;
+        }
+
+        // Use the DataWriter to communicate
+        // (...)
+
+        // Delete the DataWriter
+        if (publisher->delete_datawriter(data_writer) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_DEFAULT_DATAWRITERQOS
+        // Get the current QoS or create a new one from scratch
+        DataWriterQos qos_type1 = publisher->get_default_datawriter_qos();
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default DataWriterQos
+        if(publisher->set_default_datawriter_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataWriter with the new default DataWriterQos.
+        DataWriter* data_writer_with_qos_type1 =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr != data_writer_with_qos_type1)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        DataWriterQos qos_type2;
+
+        // Modify QoS attributes
+        // (...)
+
+        // Set as the new default DataWriterQos
+        if(publisher->set_default_datawriter_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataWriter with the new default DataWriterQos.
+        DataWriter* data_writer_with_qos_type2 =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr != data_writer_with_qos_type2)
+        {
+            // Error
+            return;
+        }
+
+        // Resetting the default DataWriterQos to the original default constructed values
+        if(publisher->set_default_datawriter_qos(DATAWRITER_QOS_DEFAULT)
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The previous instruction is equivalent to the following
+        if(publisher->set_default_datawriter_qos(DataWriterQos())
+                != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DATAWRITER_WRITE
+        // Register the data type in the DomainParticipant.
+        TypeSupport custom_type_support(new CustomDataType());
+        custom_type_support.register_type(participant, custom_type_support.get_type_name());
+
+        // Create a Topic with the registered type.
+        Topic* custom_topic =
+                participant->create_topic("topic_name", custom_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
+        if (nullptr != custom_topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataWriter
+        DataWriter* data_writer =
+                publisher->create_datawriter(custom_topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr != data_writer)
+        {
+            // Error
+            return;
+        }
+
+        // Get a data instance
+        void* data = custom_type_support->createData();
+
+        // Fill the data values
+        // (...)
+
+        // Publish the new value, deduce the instance handle
+        if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // The data instance can be reused to publish new values,
+        // but delete it at the end to avoid leaks
+        custom_type_support->deleteData(data);
+        //!--
+    }
+}

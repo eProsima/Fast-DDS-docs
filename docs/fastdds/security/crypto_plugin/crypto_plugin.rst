@@ -30,8 +30,8 @@ the value ``ENCRYPT``.
 
 .. _crypto-aes-gcm-gmac:
 
-Crypto:AES-GCM-GMAC
-^^^^^^^^^^^^^^^^^^^
+DDS\:Crypto\:AES-GCM-GMAC
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This built-in plugin provides authenticated encryption using AES in Galois Counter Mode (AES-GCM).
 It also provides additional reader-specific message authentication codes (MACs) using Galois MAC (AES-GMAC).

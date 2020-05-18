@@ -14,8 +14,8 @@ built-in Authentication plugin. More information on :ref:`auth-pki-dh`.
 
 .. _auth-pki-dh:
 
-Auth:PKI-DH
-^^^^^^^^^^^
+DDS:\Auth\:PKI-DH
+^^^^^^^^^^^^^^^^^
 
 This built-in plugin provides authentication between discovered participants.
 It is supplied by a trusted *Certificate Authority* (CA) and uses ECDSA Digital Signature Algorithms to perform the

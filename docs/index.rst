@@ -44,7 +44,7 @@ eProsima Fast DDS Documentation
    dynamictypes
    persistence
    fastrtpsgen
-.. /fastdds/api_reference/api_reference
+   /fastdds/api_reference/api_reference
 
 .. _index_gen:
 

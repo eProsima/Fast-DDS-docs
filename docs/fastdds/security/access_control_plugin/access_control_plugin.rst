@@ -22,8 +22,8 @@ More information on :ref:`access-permissions`.
 
 .. _access-permissions:
 
-Access:Permissions
-^^^^^^^^^^^^^^^^^^
+DDS\:Access\:Permissions
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 This built-in plugin provides access control using a permissions document signed by a shared  *Certificate
 Authority*. It is configured with three documents:

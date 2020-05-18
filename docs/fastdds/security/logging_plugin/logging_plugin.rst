@@ -2,3 +2,10 @@
 
 Logging plugin
 ---------------
+
+
+
+.. _logging-logtopic:
+
+DDS\:Logging\:DDS_LogTopic
+^^^^^^^^^^^^^^^^^^^^^^^^^^

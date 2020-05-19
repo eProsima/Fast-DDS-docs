@@ -142,7 +142,7 @@ Main Features
   (see :ref:`getting_started`) that puts into communication a
   publisher and a subscriber, showcasing how *eProsima Fast DDS* is deployed.
   Additionally, the interactive demo *ShapesDemo* is available for the user to dive into the DDS world.
-  The DDS and the RTPS layers are thoroughly explained in the :ref:`DDS Layer <dds_layer>` and 
+  The DDS and the RTPS layers are thoroughly explained in the :ref:`DDS Layer <dds_layer>` and
   :ref:`RTPS Layer <rtps_layer>` sections.
 
 * **Low resources consumption.** *eProsima Fast DDS*:

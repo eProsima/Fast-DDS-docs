@@ -1,7 +1,7 @@
 Generating a minimal functional example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The FASTRTPSGEN tool is used to build the publication/subscription application.
+The Fast RTPS-Gen tool is used to build the publication/subscription application.
 This is a Java application for building a fully functional publication/subscription application from an Interface
 Definition Language (IDL) file that defines the Topic under which messages are published and received.
 The application generated allows the creation of as many publishers and subscribers as

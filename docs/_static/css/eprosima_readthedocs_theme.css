@@ -275,3 +275,34 @@ a.btn.btn-neutral:hover{
   background-color:#00d3de !important;
   color: white !important;
 }
+
+/* Footnotes */
+dl.footnote {
+  font-size: 14px !important;
+  border-top: 2px solid #00275a;
+  overflow: hidden;
+  background: white;
+  width: 100%;
+}
+
+dl.footnote dt {
+  border: none !important;
+  float: left;
+  text-align: left;
+  background: none !important;
+  padding: 0;
+  margin: 0;
+  margin-top: 0em !important;
+  font-size: 14px !important;
+}
+
+dl.footnote  dt::after {
+  content: ".";
+}
+
+dl.footnote dd {
+  background: none !important;
+  text-align: left;
+  padding-top: 2px;
+  font-size: 14px !important;
+}

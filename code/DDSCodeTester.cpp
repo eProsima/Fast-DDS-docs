@@ -404,18 +404,46 @@ void dds_domain_examples()
         // DDS_SECURITY_AUTH_PLUGIN
         eprosima::fastdds::dds::DomainParticipantQos pqos;
 
+        // Activate DDS:Auth:PKI-DH plugin
         pqos.properties().properties().emplace_back("dds.sec.auth.plugin",
-                "builtin.PKI-DH");
-        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
-                "file://maincacert.pem");
-        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
-                "file://partcert.pem");
-        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_crl",
-                "file://crl.pem");
-        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
-                "file://partkey.pem");
-        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.password",
-                "domainParticipantPassword");
+            "builtin.PKI-DH");
+
+        // Configure DDS:Auth:PKI-DH plugin
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.identity_ca",
+            "file://maincacert.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.identity_certificate",
+            "file://partcert.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.identity_crl",
+            "file://crl.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.private_key",
+            "file://partkey.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.password",
+            "domainParticipantPassword");
+        //!--
+    }
+    {
+        // DDS_SECURITY_ACCESS_CONTROL_PLUGIN
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        // Activate DDS:Access:Permissions plugin
+        pqos.properties().properties().emplace_back("dds.sec.access.plugin",
+            "builtin.Access-Permissions");
+
+        // Configure DDS:Access:Permissions plugin
+        pqos.properties().properties().emplace_back(
+            "dds.sec.access.builtin.Access-Permissions.permissions_ca",
+            "file://certs/maincacert.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.access.builtin.Access-Permissions.governance",
+            "file://certs/governance.smime");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.access.builtin.Access-Permissions.permissions",
+            "file://certs/permissions.smime");
         //!--
     }
 }

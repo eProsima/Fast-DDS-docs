@@ -2181,6 +2181,36 @@
 </participant>
 <!--><-->
 
+<!-->DDS_SECURITY_ACCESS_CONTROL_PLUGIN<-->
+<participant profile_name="secure_domainparticipant_conf_access_control_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate Access:Permissions plugin -->
+                <property>
+                    <name>dds.sec.access.plugin</name>
+                    <value>builtin.Access-Permissions</value>
+                </property>
+
+                <!-- Configure Access:Permissions plugin -->
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>
+                    <value>file://maincacet.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.governance</name>
+                    <value>file://governance.smime</value>
+                </property>
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
+                    <value>file://permissions.smime</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->
 </profiles>
 <-->

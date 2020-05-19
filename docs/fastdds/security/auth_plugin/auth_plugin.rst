@@ -37,6 +37,7 @@ This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm
 
 The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos| |Property|
 ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.
+The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugin configuration.
 
 .. list-table:: Properties to configure the DDS:Auth:PKI-DH plugin
    :header-rows: 1
@@ -72,6 +73,7 @@ configuration.
 |    :language: c++                                                                                                    |
 |    :start-after: // DDS_SECURITY_AUTH_PLUGIN                                                                         |
 |    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
 +----------------------------------------------------------------------------------------------------------------------+
 | **XML**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+

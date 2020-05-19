@@ -4,14 +4,14 @@ SampleInfo
 ==========
 
 When a sample is *read* or *taken* on the :ref:`dds_layer_subscriber_dataReader`, in addition to the sample data,
-a :class:`SampleInfo` instance is returned.
+a :cpp:struct:`eprosima::fastdds::dds::SampleInfo` instance is returned.
 This object contains additional information that complements the returned data value and helps on it interpretation.
 For example, if the :ref:`dds_layer_subscriber_sampleInfo_validdata` value is ``false``, the
 :ref:`dds_layer_subscriber_dataReader` is not informing the application about a new value in the data instance,
 but a change on its status, and the returned data value must be discarded.
 
-The following sections describe the data members of :class:`SampleInfo` and the meaning of each one in relation
-to the returned sample data.
+The following sections describe the data members of :cpp:struct:`eprosima::fastdds::dds::SampleInfo`
+and the meaning of each one in relation to the returned sample data.
 
 sample_state
 ------------

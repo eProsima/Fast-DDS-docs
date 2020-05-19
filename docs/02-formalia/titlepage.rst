@@ -66,7 +66,7 @@ Relying on interfaces implies the need for a generation tool that translates typ
 implementations that fill the gap between the interfaces and the middleware.
 This task is carried out by a dedicated generation tool, :ref:`Fast DDS-Gen <fastrtpsgen_intro>`, a Java application
 that generates source code using the data types defined in an
-`Interactive Data Language (IDL) <https://www.omg.org/spec/IDL/About-IDL/>`__ file.
+`Interface Definition Language (IDL) <https://www.omg.org/spec/IDL/About-IDL/>`__ file.
 
 RTPS Wire Protocol
 ^^^^^^^^^^^^^^^^^^
@@ -89,8 +89,8 @@ the communication to occur.
 Main Features
 ^^^^^^^^^^^^^
 
-* **Two API Layers.** *eProsima Fast DDS* comprises a high-level publisher-subscriber layer focused on usability and a
-  lower-level RTPS layer that provides finer access to the RTPS protocol.
+* **Two API Layers.** *eProsima Fast DDS* comprises a high-level DDS compliant layer focused on usability and a
+  lower-level RTPS compliant layer that provides finer access to the RTPS protocol.
 
 * **Real-Time behaviour.** *eProsima Fast DDS* can be configured to offer real-time features, guaranteeing responses
   within specified time constrains.
@@ -99,7 +99,7 @@ Main Features
   subscribers, and performs this task continuously without the need to contacting or setting any servers.
   However, a Client-Server discovery as well as other discovery paradigms can also be configured.
 
-* **Sync and Async publication modes.** *eProsima Fast DDS* supports both synchronous and asynchronous data access.
+* **Sync and Async publication modes.** *eProsima Fast DDS* supports both synchronous and asynchronous data publication.
 
 * **Best effort and reliable communication.** *eProsima Fast DDS* supports an optional reliable communication paradigm
   over *Best Effort* communications protocols
@@ -134,7 +134,7 @@ Main Features
   the network.
 
 * **High performance.** *eProsima Fast DDS* uses a static low-level serialization library,
-  `Fast CDR <https://github.com/eProsima/Fast-CDR>`,
+  `Fast CDR <https://github.com/eProsima/Fast-CDR>`__,
   a C++ library that serializes according to the standard CDR serialization mechanism defined in the `RTPS
   Specification <https://www.omg.org/spec/DDSI-RTPS/>`__ (see the Data Encapsulation chapter as a reference).
 

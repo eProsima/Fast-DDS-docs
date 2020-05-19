@@ -2006,9 +2006,64 @@ void dds_dataReader_examples()
         }
         //!--
     }
+    {
+        //DDS_DATAREADER_READ_WAIT
+        // Create a DataReader
+        DataReader* data_reader =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr != data_reader)
+        {
+            // Error
+            return;
+        }
+
+        // Create a data and SampleInfo instance
+        void* data = reader->type().createData();
+        SampleInfo info;
+
+        //Define a timeout of 5 seconds
+        eprosima::fastrtps::Duration_t timeout (5,0);
+
+        // Loop reading data as it arrives
+        // This will make the current threat to be dedicated exclusively to
+        // waiting and reading data until the remote DataWriter dies
+        while (true)
+        {
+            if (data_reader->wait_for_unread_message(timeout))
+            {
+                if (reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
+                {
+                    if (info.instance_state == ALIVE)
+                    {
+                        // Do something with the data
+                        std::cout << "Received new data value for topic "
+                                  << topic->get_name()
+                                  << std::endl;
+                    }
+                    else
+                    {
+                        // If the remote writer is not alive, we exit the reading loop
+                        std::cout << "Remote writer for topic "
+                                  << topic->get_name()
+                                  << " is dead" << std::endl;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                std::cout << "No data this time" << std::endl;
+            }
+        }
+
+        // The data instance can be reused to retrieve new values,
+        // but delete it at the end to avoid leaks
+        reader->type().delete_data(data);
+        //!--
+    }
 }
 
-//DDS_DATAREADER_READ
+//DDS_DATAREADER_READ_LISTENER
 class CustomizedDataReaderListener : public DataReaderListener
 {
 

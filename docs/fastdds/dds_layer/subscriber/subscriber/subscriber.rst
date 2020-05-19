@@ -23,14 +23,14 @@ SubscriberQos
 :ref:`api_pim_subscriberqos` controls the behavior of the :ref:`dds_layer_subscriber_subscriber`.
 Internally it contains the following :class:`QosPolicy` objects:
 
-.. |presentation| replace:: :cpp:func:`eprosima::fastdds::dds::SubscriberQos::presentation`
-.. |partition| replace:: :cpp:func:`eprosima::fastdds::dds::SubscriberQos::partition`
-.. |group_data| replace:: :cpp:func:`eprosima::fastdds::dds::SubscriberQos::group_data`
-.. |entity_factory| replace:: :cpp:func:`eprosima::fastdds::dds::SubscriberQos::entity_factory`
+.. |presentation| replace:: :cpp:func:`presentation<eprosima::fastdds::dds::SubscriberQos::presentation>`
+.. |partition| replace:: :cpp:func:`partition<eprosima::fastdds::dds::SubscriberQos::partition>`
+.. |group_data| replace:: :cpp:func:`group_data<eprosima::fastdds::dds::SubscriberQos::group_data>`
+.. |entity_factory| replace:: :cpp:func:`entity_factory<eprosima::fastdds::dds::SubscriberQos::entity_factory>`
 
 +----------------------------------------+----------------------+----------+
 | QosPolicy class                        | Accessor/Mutator     | Mutable  |
-+================================+==============================+==========+
++========================================+======================+==========+
 | :ref:`api_pim_presentationqospolicy`   | |presentation|       | Yes      |
 +----------------------------------------+----------------------+----------+
 | :ref:`api_pim_partitionqospolicy`      | |partition|          | Yes      |
@@ -59,18 +59,17 @@ Default SubscriberQos
 ^^^^^^^^^^^^^^^^^^^^^
 
 The default :ref:`dds_layer_subscriber_subscriberQos` refers to the value returned by the
-:cpp:func:`eprosima::fastdds::dds::DomainParticipant::get_default_subscriber_qos` member function
+:func:`get_default_subscriber_qos` member function
 on the :ref:`dds_layer_domainParticipant` instance.
 The special value ``SUBSCRIBER_QOS_DEFAULT`` can be used as QoS argument on
-:cpp:func:`eprosima::fastdds::dds::DomainParticipant::create_subscriber`
-or :cpp:func:`eprosima::fastdds::dds::Subscriber::set_qos`
+:func:`create_subscriber` or :func:`set_qos`
 member functions to indicate that the current default :ref:`dds_layer_subscriber_subscriberQos`
 should be used.
 
 When the system starts, the default :ref:`dds_layer_subscriber_subscriberQos` is equivalent to the default constructed
 value :func:`SubscriberQos`.
 The default :ref:`dds_layer_subscriber_subscriberQos` can be modified at any time using the
-:cpp:func:`eprosima::fastdds::dds::DomainParticipant::set_default_subscriber_qos` member function on the
+:func:`set_default_subscriber_qos` member function on the
 :ref:`dds_layer_domainParticipant` instance.
 Modifying the default :ref:`dds_layer_subscriber_subscriberQos` will not affect already existing
 :ref:`dds_layer_subscriber_subscriber` instances.
@@ -81,7 +80,7 @@ Modifying the default :ref:`dds_layer_subscriber_subscriberQos` will not affect 
    :end-before: //!
    :dedent: 8
 
-:cpp:func:`eprosima::fastdds::dds::DomainParticipant::set_default_subscriber_qos` member function also accepts
+:func:`set_default_subscriber_qos` member function also accepts
 the special value ``SUBSCRIBER_QOS_DEFAULT`` as input argument.
 This will reset the current default :ref:`dds_layer_subscriber_subscriberQos` to default constructed
 value :func:`SubscriberQos`.
@@ -94,7 +93,8 @@ value :func:`SubscriberQos`.
 
 .. note::
    The value ``SUBSCRIBER_QOS_DEFAULT`` has different meaning depending on where it is used:
+
    * On :func:`create_subscriber` and :func:`set_qos` it refers to the default
-   :ref:`dds_layer_subscriber_subscriberQos` as returned by :func:`get_default_subscriber_qos`.
+     :ref:`dds_layer_subscriber_subscriberQos` as returned by :func:`get_default_subscriber_qos`.
    * On :func:`set_default_subscriber_qos` it refers to the default constructed :func:`SubscriberQos`.
 

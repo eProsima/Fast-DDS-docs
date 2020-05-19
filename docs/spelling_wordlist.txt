@@ -64,6 +64,7 @@ datagram
 datarate
 deallocating
 decrypt
+decrypted
 dependant
 deserialization
 deserialize

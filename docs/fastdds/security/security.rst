@@ -1,3 +1,10 @@
+.. |DomainParticipantQos| replace:: :cpp:class:`DomainParticipantQos <eprosima::fastdds::dds::DomainParticipantQos>`
+.. |Property| replace:: :cpp:class:`Property <eprosima::fastrtps::rtps::Property>`
+
+.. |br| raw:: html
+
+   <br/>
+
 .. _security:
 
 Security

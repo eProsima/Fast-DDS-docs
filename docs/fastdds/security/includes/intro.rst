@@ -27,8 +27,7 @@ By default, Fast DDS does not compile any security support, but it can be activa
 configuration step.
 For more information about Fast DDS compilation, see :ref:`installation-from-sources`.
 
-Security plugins can be activated through the :class:`DomainParticipantQos`
-properties.
-A :class:`Property` is defined by its name (:class:`std::string`) and its value
-(:class:`std::string`).
+Security plugins can be activated through the |DomainParticipantQos| properties.
+A |Property| is defined by its name (:class:`std::string`)
+and its value (:class:`std::string`).
 This section describes how to configure each of these properties to set up the Fast DDS security plugins.

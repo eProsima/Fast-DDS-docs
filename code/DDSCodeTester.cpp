@@ -400,6 +400,24 @@ void dds_domain_examples()
         }
         //!--
     }
+    {
+        // DDS_SECURITY_AUTH_PLUGIN
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back("dds.sec.auth.plugin",
+                "builtin.PKI-DH");
+        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
+                "file://maincacert.pem");
+        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
+                "file://partcert.pem");
+        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_crl",
+                "file://crl.pem");
+        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
+                "file://partkey.pem");
+        pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.password",
+                "domainParticipantPassword");
+        //!--
+    }
 }
 
 //DDS_TOPIC_LISTENER_SPECIALIZATION

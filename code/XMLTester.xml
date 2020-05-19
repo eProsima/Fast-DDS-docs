@@ -2143,6 +2143,44 @@
 </participant>
 <!--><-->
 
+<!-->DDS_SECURITY_AUTH_PLUGIN<-->
+<participant profile_name="secure_domainparticipant_conf_auth_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.auth.plugin</name>
+                    <value>builtin.PKI-DH</value>
+                </property>
+
+                <!-- Configure DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
+                    <value>file://maincacert.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
+                    <value>file://partcert.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_crl</name>
+                    <value>file://crl.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
+                    <value>file://partkey.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.password</name>
+                    <value>domainParticipantPassword</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->
 </profiles>
 <-->

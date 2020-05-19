@@ -1,6 +1,6 @@
 .. eProsima Fast RTPS documentation master file.
 
-eProsima Fast RTPS Documentation
+eProsima Fast DDS Documentation
 ================================
 
 .. include:: 02-formalia/titlepage.rst

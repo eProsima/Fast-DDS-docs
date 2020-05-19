@@ -13,5 +13,3 @@ This section reviews the architecture, operation and key features of Fast DDS.
 .. include:: includes/exec_model.rst
 
 .. include:: includes/functionalities.rst
-
-

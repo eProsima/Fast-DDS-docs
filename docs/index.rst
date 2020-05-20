@@ -35,13 +35,13 @@ eProsima Fast DDS Documentation
    /fastdds/logging/logging
    /fastdds/xml_configuration/xml_configuration
    /fastdds/env_vars/env_vars
+   /fastdds/dynamic_types/dynamic_types
    /fastdds/use_cases/use_cases
    list
    pubsub
    rtps
    advanced
    realtime
-   dynamictypes
    persistence
    fastrtpsgen
    /fastdds/api_reference/api_reference

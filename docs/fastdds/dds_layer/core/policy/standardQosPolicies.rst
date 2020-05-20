@@ -189,13 +189,13 @@ DurabilityQosPolicyKind
 
 There are four possible values:
 
-* ``VOLATILE_DURABILITY_QOS``: Past samples are ignored and a joining DataReader receives samples generated after the moment it
-  matches.
+* ``VOLATILE_DURABILITY_QOS``: Past samples are ignored and a joining DataReader receives samples generated after the
+  moment it matches.
 * ``TRANSIENT_LOCAL_DURABILITY_QOS``: When a new DataReader joins, its History is filled with past samples.
-* ``TRANSIENT_DURABILITY_QOS``: When a new DataReader joins, its History is filled with past samples, which are stored on persistent
-  storage (see :ref:`persistence`).
-* ``PERSISTENT_DURABILITY_QOS`` (`Not Implemented`): All the sample are stored on a permanent storage, so that they can outlive a
-  system session.
+* ``TRANSIENT_DURABILITY_QOS``: When a new DataReader joins, its History is filled with past samples, which are stored
+  on persistent storage (see :ref:`persistence`).
+* ``PERSISTENT_DURABILITY_QOS`` (`Not Implemented`): All the sample are stored on a permanent storage, so that they can
+  outlive a system session.
 
 .. _durability_compatibilityrule:
 
@@ -426,13 +426,13 @@ HistoryQosPolicyKind
 """"""""""""""""""""
 There are two possible values:
 
-* ``KEEP_LAST_HISTORY_QOS``: The service will only attempt to keep the most recent values of the instance and discard the older
-  ones.
+* ``KEEP_LAST_HISTORY_QOS``: The service will only attempt to keep the most recent values of the instance and discard
+  the older ones.
   The maximum number of samples to keep and deliver is defined by the `depth` of the HistoryQosPolicy, which needs to
   be consistent with the :ref:`resourcelimitsqospolicy` settings.
   If the limit defined by `depth` is reached, the system will discard the oldest sample to make room for a new one.
-* ``KEEP_ALL_HISTORY_QOS``: The service will attempt to keep all the values of the instance until it can be delivered to all the
-  existing Subscribers.
+* ``KEEP_ALL_HISTORY_QOS``: The service will attempt to keep all the values of the instance until it can be delivered
+  to all the existing Subscribers.
   If this option is selected, the depth will not have any effect, so the history is only limited by the values set in
   :ref:`resourcelimitsqospolicy`.
   If the limit is reached, the behavior of the system depends on the :ref:`reliabilityqospolicy`, if its kind is
@@ -592,19 +592,19 @@ LivelinessQosPolicyKind
 
 There are three possible values:
 
-* ``AUTOMATIC_LIVELINESS_QOS``: The service takes the responsibility for renewing the leases at the required rates, as long as the
-  local process where the participant is running and the link connecting it to remote participants exists, the
-  entities within the remote participant will be considered alive.
+* ``AUTOMATIC_LIVELINESS_QOS``: The service takes the responsibility for renewing the leases at the required rates, as
+  long as the local process where the participant is running and the link connecting it to remote participants exists,
+  the entities within the remote participant will be considered alive.
   This kind is suitable for applications that only need to detect whether a remote application is still running.
 * The two `Manual` modes require that the application on the publishing side asserts the liveliness periodically
   before the lease_duration timer expires.
   Publishing any new data value implicitly asserts the DataWriter's liveliness, but it can be done explicitly
   by calling the `assert_liveliness` member function.
 
-  * ``MANUAL_BY_PARTICIPANT_LIVELINESS_QOS``: If one of the entities in the publishing side asserts its liveliness, the service
-    deduces that all other entities within the same DomainParticipant are also alive.
-  * ``MANUAL_BY_TOPIC_LIVELINESS_QOS``: This mode is more restrictive and requires that at least one instance within the DataWriter
-    is asserted to consider that the DataWriter is alive.
+  * ``MANUAL_BY_PARTICIPANT_LIVELINESS_QOS``: If one of the entities in the publishing side asserts its liveliness, the
+    service deduces that all other entities within the same DomainParticipant are also alive.
+  * ``MANUAL_BY_TOPIC_LIVELINESS_QOS``: This mode is more restrictive and requires that at least one instance within
+    the DataWriter is asserted to consider that the DataWriter is alive.
 
 .. _liveliness_compatibilityrule:
 
@@ -698,9 +698,9 @@ There are two possible values:
   available to the existing DataReaders.
   Those updates are also subject to the :ref:`timebasedfilterqospolicy` or :ref:`historyqospolicy` settings, so they
   can be filtered.
-* ``EXCLUSIVE_OWNERSHIP_QOS``: This option indicates that each instance can only be updated by one DataWriter, meaning that at any
-  point in time a single DataWriter owns each instance and is the only one whose modifications will be visible for the
-  existing DataReaders.
+* ``EXCLUSIVE_OWNERSHIP_QOS``: This option indicates that each instance can only be updated by one DataWriter, meaning
+  that at any point in time a single DataWriter owns each instance and is the only one whose modifications will be
+  visible for the existing DataReaders.
   The owner can be changed dynamically according to the highest `strength` between the alive DataWriters, which has not
   violated the deadline contract concerning the data instances.
   That `strength` can be changed using the :ref:`ownershipstrengthqospolicy`.
@@ -876,8 +876,8 @@ PresentationQosPolicyAccessScopeKind
 There are three possible values, which have different behaviors depending on the values of coherent_access and
 ordered_access variables:
 
-* ``INSTANCE_PRESENTATION_QOS``: The changes to a data instance do not need to be coherent nor ordered with respect to the changes to
-  any other instance, which means that the order and coherent changes apply to each instance separately.
+* ``INSTANCE_PRESENTATION_QOS``: The changes to a data instance do not need to be coherent nor ordered with respect to
+  the changes to any other instance, which means that the order and coherent changes apply to each instance separately.
 
   * Enabling the `coherent_access`, in this case, has no effect on how the subscriber can access the data as the scope
     is limited to each instance, changes to separate instances are considered independent and thus cannot be grouped
@@ -1021,14 +1021,14 @@ ReliabilityQosPolicyKind
 
 There are two possible values:
 
-* ``BEST_EFFORT_RELIABILITY_QOS``: It indicates that it is acceptable not to retransmit the missing samples, so the messages are sent
-  without waiting for an arrival confirmation.
+* ``BEST_EFFORT_RELIABILITY_QOS``: It indicates that it is acceptable not to retransmit the missing samples, so the
+  messages are sent without waiting for an arrival confirmation.
   Presumably new values for the samples are generated often enough that it is not necessary to re-send any sample.
   However, the data samples sent by the same DataWriter will be stored in the DataReader history in the same order they
   occur.
   In other words, even if the DataReader misses some data samples, an older value will never be overwrite a newer value.
-* ``RELIABLE_RELIABILITY_QOS``: It indicates that the service will attempt to deliver all samples of the DataWriter's history expecting
-  an arrival confirmation from the DataReader.
+* ``RELIABLE_RELIABILITY_QOS``: It indicates that the service will attempt to deliver all samples of the DataWriter's
+  history expecting an arrival confirmation from the DataReader.
   The data samples sent by the same DataWriter cannot be made available to the DataReader if there are previous samples
   that have not been received yet.
   The service will retransmit the lost data samples in order to reconstruct a correct snapshot of the DataWriter
@@ -1181,7 +1181,7 @@ List of QoS Policy data members:
 TopicDataQosPolicy
 ^^^^^^^^^^^^^^^^^^
 
-Allow the application to attach additional information to a created Topic so that when it is discoverd by a remote
+Allow the application to attach additional information to a created Topic so that when it is discovered by a remote
 application, it can access the data and use it.
 
 List of QoS Policy data members:

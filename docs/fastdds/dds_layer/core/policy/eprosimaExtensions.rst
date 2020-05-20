@@ -33,6 +33,7 @@ List of QoS Policy data members:
 * **Enabled**: Specifies if the QoS is enabled or not. If it is true means that the positive acks are disabled and the
   DataReader only sends negative acks. Otherwise, both positive and negative acks are sent.
 * **Duration**: State the duration that the DataWriters keep the data before considering it as acknowledged.
+  This value does not apply to DataReaders.
 
 .. note::
      This QoS Policy concerns to DataWriter and DataReader entities.
@@ -153,7 +154,7 @@ List of structure members:
 ResourceLimitedContainerConfig
 """"""""""""""""""""""""""""""
 
-This structure holds the limits of a resource limited collection, as well as the allocation configuration that can be
+This structure holds the limits of a resource limited collection, as well as the allocation configuration, which can be
 fixed size or dynamic size.
 
 List of structure members:
@@ -170,15 +171,15 @@ List of structure members:
 
 * **Initial**: Indicates the number of elements to preallocate in the collection.
 * **Maximum**: Specifies the maximum number of elements allowed in the collection.
-* **Increment**: States the number of items to add when the capacity limit is reached. This member has a different
-  default value depending on the allocation configuration chosen.
+* **Increment**: States the number of items to add when the reserved capacity limit is reached. This member has a
+  different default value depending on the allocation configuration chosen.
 
 .. _sendbuffersallocationattributes:
 
 SendBuffersAllocationAttributes
 """""""""""""""""""""""""""""""
 
-This structure holds the limits for the allocations' send buffers.
+This structure holds the limits for the allocations of the send buffers.
 
 List of structure members:
 
@@ -217,7 +218,7 @@ List of structure members:
 
 * **Max properties**: Defines the maximum size, in octets, of the properties data in the local or remote participant.
 * **Max user data**: Establishes the maximum size, in octets, of the user data in the local or remote participant.
-* **Max partitions**: States the maximum size, in octets, of the partitions data.
+* **Max partitions**: States the maximum size, in octets, of the partitions data in the local or remote participant.
 
 Example
 """""""
@@ -270,7 +271,7 @@ XML
 PublishModeQosPolicy
 ^^^^^^^^^^^^^^^^^^^^
 
-This QoS Policy configure how the middleware sends the application data.
+This QoS Policy configures how the DataWriter sends the data.
 
 List of QoS Policy data members:
 
@@ -292,8 +293,9 @@ PublishModeQosPolicyKind
 
 There are two possible values:
 
-* ``SYNCHRONOUS_PUBLISH_MODE``: The data is sent in the context of the user thread, which calls the write operation.
+* ``SYNCHRONOUS_PUBLISH_MODE``: The data is sent in the context of the user thread that calls the write operation.
 * ``ASYNCHRONOUS_PUBLISH_MODE``: An internal thread takes the responsibility of sending the data asynchronously.
+  The write operation returns before the data is actually sent.
 
 Example
 """""""
@@ -358,7 +360,7 @@ XML
 RTPSEndpointQos
 ^^^^^^^^^^^^^^^
 
-This QoS Policy configures the aspects of an RTPS endpoint, such as the list of locators, the identifiers and the
+This QoS Policy configures the aspects of an RTPS endpoint, such as the list of locators, the identifiers, and the
 history memory policy.
 
 List of QoS Policy data members:
@@ -401,15 +403,15 @@ MemoryManagementPolicy
 
 There are four possible values:
 
-* ``PREALLOCATED_MEMORY_MODE``: This option sets the size to the maximum of each data type. It produces the largest memory
-  footprint but the smallest allocation count.
+* ``PREALLOCATED_MEMORY_MODE``: This option sets the size to the maximum of each data type. It produces the largest
+  memory footprint but the smallest allocation count.
 * ``PREALLOCATED_WITH_REALLOC_MEMORY_MODE``: This option set the size to the default for each data type and it requires
   reallocation when a bigger message arrives. It produces a lower memory footprint at the expense of increasing the
   allocation count.
-* ``DYNAMIC_RESERVE_MEMORY_MODE``: This option allocates dynamically the size at the time of message arrival. It produces the least
-  memory footprint but the highest allocation count.
-* ``DYNAMIC_REUSABLE_MEMORY_MODE``: This option is similar to the previous one, but the allocated memory is reused for future
-  messages.
+* ``DYNAMIC_RESERVE_MEMORY_MODE``: This option allocates the size dynamically at the time of message arrival. It
+  produces the least memory footprint but the highest allocation count.
+* ``DYNAMIC_REUSABLE_MEMORY_MODE``: This option is similar to ``DYNAMIC_RESERVE_MEMORY_MODE``, but the allocated memory
+  is reused for future messages.
 
 Example
 """""""
@@ -447,7 +449,7 @@ List of QoS Policy data members:
 +--------------------------+------------------------------------+
 
 * **Times**: Defines the duration of the RTPSReader events. See :ref:`readertimes` for further details.
-* **Disable positive ACKs**: Configure the settings to disable the positive acks.
+* **Disable positive ACKs**: Configures the settings to disable the positive acks.
   See :ref:`disablepositiveacksqospolicy` for further details.
 
 .. note::
@@ -472,7 +474,7 @@ List of structure members:
 | heartbeatResponseDelay             | fastrtps::Duration_t         | 5 milliseconds    |
 +------------------------------------+------------------------------+-------------------+
 
-* **Initial acknack delay**: Defines duration of the initial acknack delay.
+* **Initial acknack delay**: Defines the duration of the initial acknack delay.
 * **Heartbeat response delay**: Establishes the duration of the delay applied when a heartbeat message is received.
 
 Example
@@ -512,7 +514,7 @@ List of QoS Policy data members:
 +--------------------------+------------------------------------+
 
 * **Times**: Defines the duration of the RTPSWriter events. See :ref:`writertimes` for further details.
-* **Disable positive ACKs**: Configure the settings to disable the positive acks.
+* **Disable positive ACKs**: Configures the settings to disable the positive acks.
   See :ref:`disablepositiveacksqospolicy` for further details.
 
 .. note::
@@ -544,7 +546,7 @@ List of structure members:
 * **Initial heartbeat delay**: Defines duration of the initial heartbeat delay.
 * **Heartbeat period**: Specifies the interval between periodic heartbeats.
 * **Nack response delay**: Establishes the duration of the delay applied to the response of an ACKNACK message.
-* **Nack supression duration**: The RTPSWriter ignore the nack messages received after sending the data until the
+* **Nack supression duration**: The RTPSWriter ignores the nack messages received after sending the data until the
   duration time elapses.
 
 Example
@@ -642,7 +644,7 @@ XML
 TypeConsistencyQos
 ^^^^^^^^^^^^^^^^^^
 
-This QoS Policy allow the configuration of the DataReader XTypes extension QoS.
+This QoS Policy allows the configuration of the XTypes extension QoS on the DataReader.
 
 List of QoS Policy data members:
 

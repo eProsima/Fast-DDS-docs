@@ -15,9 +15,9 @@ DataRepresentationQosPolicy
 
 This XTypes QoS Policy states which data representations will be used by the DataWriters and DataReaders.
 
-The DataWriters offered a single data representation that will be used to communicate with the DataReaders matched.
+The DataWriters offer a single data representation that will be used to communicate with the matched DataReaders.
 The DataReaders can request one or more data representations and in order to have communication with the DataWriter,
-the offered data representation need to be contained within the DataReader sequence.
+the offered data representation needs to be contained within the DataReader request.
 
 List of QoS Policy data members:
 
@@ -65,7 +65,7 @@ This QoS Policy cannot be configured using XML by the moment.
 TypeConsistencyEnforcementQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This XTypes QoS Policy extension defines the rules for determining whether the data type used to send the data by the
+This XTypes QoS Policy extension defines the rules for determining whether the data type used in the
 DataWriter is consistent with the one used in the DataReader.
 
 List of QoS Policy data members:
@@ -86,7 +86,7 @@ List of QoS Policy data members:
 | m_force_type_validation        | bool                                  | false                 |
 +--------------------------------+---------------------------------------+-----------------------+
 
-* **Kind**: It determines whether the DataWriter type must be equal to the DataReader type or not.
+* **Kind**: It determines whether the type in the DataWriter type must be equal to the type in the DataReader or not.
   See :ref:`typeconsistencykind` for further details.
 * **Ignore sequence bounds**: This data member controls whether the sequence bounds are taken into account for type
   assignability or not. If its value is true, the sequences maximum lengths are not considered, which means that a
@@ -99,10 +99,10 @@ List of QoS Policy data members:
 * **Ignore member names**: This boolean controls whether the member names are taken into consideration for
   type assignability or not.
   If it is true, apart from the member ID, the member names are considered as part of assignability, which means that
-  the members with the same ID have also the same name. But if the value is false, the member names are ignored.
+  the members with the same ID must also have the same name. But if the value is false, the member names are ignored.
 * **Prevent type widening**: This data member controls whether the type widening is allowed or not.
-  If it is false, the type widening is permitted, but if true, a wider type cannot be assignable to a narrow type.
-* **Force type validation**: It controls if the service need the type information to complete the matching between a
+  If it is false, the type widening is permitted, but if true, a wider type cannot be assignable to a narrower type.
+* **Force type validation**: It controls if the service needs the type information to complete the matching between a
   DataWriter and a DataReader.
   If it is enabled, it must have the Complete Type Information, otherwise it is not necessary.
 

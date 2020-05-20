@@ -484,6 +484,23 @@ void dds_domain_examples()
             "ENCRYPT");
         //!--
     }
+    {
+        // DDS_SECURITY_LOGGING_PLUGIN
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        // Activate DDS:Logging:DDS_LogTopic plugin
+        pqos.properties().properties().emplace_back("dds.sec.log.plugin",
+            "builtin.DDS_LogTopic");
+
+        // Configure DDS:Logging:DDS_LogTopic plugin
+        pqos.properties().properties().emplace_back(
+            "dds.sec.log.builtin.DDS_LogTopic.logging_level",
+            "EMERGENCY_LEVEL");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.log.builtin.DDS_LogTopic.log_file",
+            "myLogFile.log");
+        //!--
+    }
 }
 
 //DDS_TOPIC_LISTENER_SPECIALIZATION

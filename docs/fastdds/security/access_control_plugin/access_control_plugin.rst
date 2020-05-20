@@ -37,7 +37,7 @@ in detail below.
    2. The Domain governance signed by the Permissions CA.
    3. The DomainParticipant permissions signed by the Permissions CA.
 
-The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos| |Property|
+The DDS\:Access\:Permissions authentication plugin, can be activated setting the |DomainParticipantQos| |Property|
 ``dds.sec.auth.plugin`` with the value ``builtin.Access-Permissions``.
 The following table outlines the properties used for the DDS\:Access\:Permissions plugin configuration.
 

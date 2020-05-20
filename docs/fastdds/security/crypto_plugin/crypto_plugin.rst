@@ -25,12 +25,11 @@ DDS\:Crypto\:AES-GCM-GMAC
 
 The DDS\:Crypto\:AES-GCM-GMAC plugin provides authentication encryption using Advanced Encryption Standard (AES) in
 Galois Counter Mode (`AES-GCM <https://csrc.nist.gov/publications/detail/sp/800-38d/final>`_).
-It supports 128 bits and
-256 bits AES key sizes.
+It supports 128 bits and 256 bits AES key sizes.
 It may also provide additional DataReader-specific Message Authentication Codes (MACs) using Galois MAC
 (`AES-GMAC <https://csrc.nist.gov/publications/detail/sp/800-38d/final>`_).
 
-The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos| |Property|
+The DDS\:Crypto\:AES-GCM-GMAC authentication plugin, can be activated setting the |DomainParticipantQos| |Property|
 ``dds.sec.crypto.plugin`` with the value ``builtin.AES-GCM-GMAC``.
 Moreover, this plugin needs the activation of the :ref:`auth-pki-dh` plugin.
 The DDS\:Crypto\:\AES-GCM-GMAC plugin is configured using the :ref:`access-permissions` plugin, i.e the cryptography

@@ -2265,6 +2265,31 @@
 </subscriber>
 <!--><-->
 
+<!-->DDS_SECURITY_LOGGING_PLUGIN<-->
+<participant profile_name="secure_domainparticipant_conf_logging_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.log.plugin</name>
+                    <value>builtin.DDS_LogTopic</value>
+                </property>
+                <!-- Configure DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.log.builtin.DDS_LogTopic.logging_level</name>
+                    <value>EMERGENCY_LEVEL</value>
+                </property>
+                <property>
+                    <name>dds.sec.log.builtin.DDS_LogTopic.log_file</name>
+                    <value>myLogFile.log</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->
 </profiles>
 <-->

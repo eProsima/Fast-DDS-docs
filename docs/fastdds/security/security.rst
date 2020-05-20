@@ -19,4 +19,3 @@ Security
    access_control_plugin/access_control_plugin
    crypto_plugin/crypto_plugin
    logging_plugin/logging_plugin
-   example/example

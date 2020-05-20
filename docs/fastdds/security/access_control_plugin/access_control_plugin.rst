@@ -1,4 +1,4 @@
-.. include:: includes/aliases.rst
+.. include:: ../includes/aliases.rst
 
 .. _dds_layer_security_access_control_plugin:
 
@@ -29,7 +29,7 @@ This plugin is explained in detail below.
 DDS\:Access\:Permissions
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-This built-in plugin provides access control using a permissions document signed by a trusted CA.
+This builtin plugin provides access control using a permissions document signed by a trusted CA.
 The DDS\:Access\:Permissions plugin requires three documents for its configuration which contents are explained
 in detail below.
 

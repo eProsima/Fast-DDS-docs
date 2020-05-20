@@ -2153,7 +2153,6 @@
                     <name>dds.sec.auth.plugin</name>
                     <value>builtin.PKI-DH</value>
                 </property>
-
                 <!-- Configure DDS:Auth:PKI-DH plugin -->
                 <property>
                     <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
@@ -2186,13 +2185,12 @@
     <rtps>
         <propertiesPolicy>
             <properties>
-                <!-- Activate Access:Permissions plugin -->
+                <!-- Activate DDS:Access:Permissions plugin -->
                 <property>
                     <name>dds.sec.access.plugin</name>
                     <value>builtin.Access-Permissions</value>
                 </property>
-
-                <!-- Configure Access:Permissions plugin -->
+                <!-- Configure DDS:Access:Permissions plugin -->
                 <property>
                     <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>
                     <value>file://maincacet.pem</value>
@@ -2209,6 +2207,62 @@
         </propertiesPolicy>
     </rtps>
 </participant>
+<!--><-->
+
+<!-->DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT<-->
+<participant profile_name="secure_domainparticipant_conf_crypto_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate DDS:Crypto:AES-GCM-GMAC plugin -->
+                <property>
+                    <name>dds.sec.crypto.plugin</name>
+                    <value>builtin.AES-GCM-GMAC</value>
+                </property>
+                <!-- Only if DDS:Access:Permissions plugin is not enabled -->
+                <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
+                <property>
+                    <name>rtps.participant.rtps_protection_kind</name>
+                    <value>ENCRYPT</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER<-->
+<publisher profile_name="secure_datawriter_conf_crypto_plugin_xml_profile">
+    <propertiesPolicy>
+        <properties>
+            <!-- Only if DDS:Access:Permissions plugin is not enabled -->
+            <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
+            <property>
+                <name>rtps.endpoint.submessage_protection_kind</name>
+                <value>ENCRYPT</value>
+            </property>
+            <property>
+                <name>rtps.endpoint.payload_protection_kind</name>
+                <value>ENCRYPT</value>
+            </property>
+        </properties>
+    </propertiesPolicy>
+</publisher>
+<!--><-->
+
+<!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER<-->
+<subscriber profile_name="secure_datareader_conf_crypto_plugin_xml_profile">
+    <propertiesPolicy>
+        <properties>
+            <!-- Only if DDS:Access:Permissions plugin is not enabled -->
+            <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
+            <property>
+                <name>rtps.endpoint.submessage_protection_kind</name>
+                <value>ENCRYPT</value>
+            </property>
+        </properties>
+    </propertiesPolicy>
+</subscriber>
 <!--><-->
 
 <!-->

@@ -1,15 +1,4 @@
-.. |DataWriter| replace:: :cpp:class:`DataWriter <eprosima::fastdds::dds::DataWriter>`
-.. |DataWriters| replace:: :cpp:class:`DataWriters <eprosima::fastdds::dds::DataWriter>`
-.. |DataReader| replace:: :cpp:class:`DataReader <eprosima::fastdds::dds::DataReader>`
-.. |DataReaders| replace:: :cpp:class:`DataReaders <eprosima::fastdds::dds::DataReader>`
-.. |Topic| replace:: :cpp:class:`Topic <eprosima::fastdds::dds::Topic>`
-.. |Topics| replace:: :cpp:class:`Topics <eprosima::fastdds::dds::Topic>`
-.. |DomainParticipantQos| replace:: :cpp:class:`DomainParticipantQos <eprosima::fastdds::dds::DomainParticipantQos>`
-.. |Property| replace:: :cpp:class:`Property <eprosima::fastrtps::rtps::Property>`
-
-.. |br| raw:: html
-
-  <br/>
+.. include:: includes/aliases.rst
 
 .. _dds_layer_security_access_control_plugin:
 
@@ -107,11 +96,24 @@ Domain Governance Document
 
 Domain Governance document is an XML document that specifies the mechanisms to secure the DDS Domain.
 It shall be signed by the Permissions CA in S/MIME format.
-The XML scheme of this document is defined in the
-`Governance XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/governance.xsd>`_.
-In the `*eProsima Fast DDS* Github repository <https://github.com/eProsima/Fast-RTPS>`_
-you can also find a
-`Governance XML example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/SecureHelloWorldExample/certs/governance.xml>`_.
+The XML scheme of this document is defined in :ref:`domain_governance_xsd_rst`.
+The following is an example of the Domain Governance XML file contents.
+
+.. literalinclude:: /../code/GovernanceTester.xml
+   :language: xml
+   :start-after: <!-->GOVERNANCE_EXAMPLE<-->
+   :end-before: <!--><-->
+   :linenos:
+
+The `Governance XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/governance.xsd>`_ and
+the
+`Governance XML example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/SecureHelloWorldExample/certs/governance.xml>`_
+can also be downloaded from the `*eProsima Fast DDS* Github repository <https://github.com/eProsima/Fast-RTPS>`_.
+
+.. toctree::
+   :hidden:
+
+   governance.rst
 
 Domain Rules
 ************
@@ -181,6 +183,7 @@ The ``<domains>`` element can contain:
    :language: xml
    :start-after: <!-->GOVERNANCE_DOMAIN_ID
    :end-before: <!--><-->
+   :dedent: 12
 
 * A range of domain identifiers:
 
@@ -188,6 +191,7 @@ The ``<domains>`` element can contain:
    :language: xml
    :start-after: <!-->GOVERNANCE_RANGE_DOMAINS
    :end-before: <!--><-->
+   :dedent: 12
 
 Or a combination of both, a list of domain identifiers and ranges of domain identifiers.
 
@@ -373,17 +377,30 @@ If multiple rules match, the first rule that matches is the only one that applie
 
 .. _domainparticipant_permissions_doc:
 
-DomainParticipant permissions document
+DomainParticipant Permissions Document
 """"""""""""""""""""""""""""""""""""""
 
-The permissions document is an XML file which contais the permissions of a DomainParticipant and binds them to the
+The permissions document is an XML file which contains the permissions of a DomainParticipant and binds them to the
 DomainParticipant distinguished name defined in the DDS\:Auth\:PKI-DH plugin.
 The permissions document shall be signed by the Permissions CA in S/MIME format.
-The XML scheme of this document is defined in the
-`Permissions XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/permissions.xsd>`_.
-In the `*eProsima Fast DDS* Github repository <https://github.com/eProsima/Fast-RTPS>`_
-you can also find a
-`Permissions XML example <https://github.com/eProsima/Fast-RTPS/blob/ma ster/examples/C%2B%2B/SecureHelloWorldExample/certs/permissions.xml>`_.
+The XML scheme of this document is defined in :ref:`domainparticipant_permissions_xsd_rst`.
+The following is an example of the DomainParticipant Permissions XML file contents.
+
+.. literalinclude:: /../code/PermissionsTester.xml
+   :language: xml
+   :start-after: <!-->PERMISSIONS_EXAMPLE<-->
+   :end-before: <!--><-->
+   :linenos:
+
+The `Permissions XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/governance.xsd>`_ and
+the
+`Permissions XML example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/SecureHelloWorldExample/certs/governance.xml>`_
+can also be downloaded from the `*eProsima Fast DDS* Github repository <https://github.com/eProsima/Fast-RTPS>`_.
+
+.. toctree::
+   :hidden:
+
+   permissions.rst
 
 Grant Section
 *************

@@ -35,7 +35,7 @@ two Listener callbacks:
 
 * :cpp:func:`on_data_available<eprosima::fastdds::dds::DataReaderListener::on_data_available>`.
 
-* :cpp:func:`on_data_on_readers<eprosima::fastdds::dds::SubscriberListener::on_data_on_readers>`
+* :cpp:func:`on_data_on_readers<eprosima::fastdds::dds::SubscriberListener::on_data_on_readers>`.
 
 These callbacks can be used to retrieve the newly arrived data, as in the following example.
 

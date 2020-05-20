@@ -16,7 +16,21 @@ data can be accessed on the :ref:`dds_layer_subscriber_dataReader`.
 The following sections describe the data members of :ref:`api_pim_sampleinfo`
 and the meaning of each one in relation to the returned sample data.
 
-.. toctree::
+* :ref:`dds_layer_subscriber_sampleInfo_samplestate`
+* :ref:`dds_layer_subscriber_sampleInfo_viewstate`
+* :ref:`dds_layer_subscriber_sampleInfo_instancestate`
+* :ref:`dds_layer_subscriber_sampleInfo_disposedgenerationcount`
+* :ref:`dds_layer_subscriber_sampleInfo_nowritersgenerationcount`
+* :ref:`dds_layer_subscriber_sampleInfo_samplerank`
+* :ref:`dds_layer_subscriber_sampleInfo_generationrank`
+* :ref:`dds_layer_subscriber_sampleInfo_absolutegenerationrank`
+* :ref:`dds_layer_subscriber_sampleInfo_sourcetimestamp`
+* :ref:`dds_layer_subscriber_sampleInfo_instancehandle`
+* :ref:`dds_layer_subscriber_sampleInfo_publicationhandle`
+* :ref:`dds_layer_subscriber_sampleInfo_validdata`
+* :ref:`dds_layer_subscriber_sampleInfo_sampleidentity`
+* :ref:`dds_layer_subscriber_sampleInfo_relatedsampleidentity`
+
 
 .. _dds_layer_subscriber_sampleInfo_samplestate:
 
@@ -117,7 +131,7 @@ that is still held in the collection was received.
    Currently the ``generation_rank`` is not implemented, and its value is always set to ``0``.
    It will be implemented on a future release of Fast DDS.
 
-.. _dds_layer_subscriber_sampleInfo_absolutegenerationran:
+.. _dds_layer_subscriber_sampleInfo_absolutegenerationrank:
 
 absolute_generation_rank
 ------------------------
@@ -168,16 +182,18 @@ data members of :class:`SampleInfo`.
 sample_identity
 ---------------
 
-The sample identity.
-This is an extension for RPC.
+This is an extension for requester-replier configuration. It contains the :ref:`dds_layer_publisher_dataWriter`
+and the sequence number of the current message, and it is used by the replier to fill the
+:ref:`dds_layer_subscriber_sampleInfo_relatedsampleidentity` when it send the reply.
 
 .. _dds_layer_subscriber_sampleInfo_relatedsampleidentity:
 
 related_sample_identity
 -----------------------
 
-The related sample identity.
-This is an extension for RPC.
+This is an extension for requester-replier configuration. On reply messages it contains the
+:ref:`dds_layer_subscriber_sampleInfo_sampleidentity` of the related request message.
+It is used by the requester to be able to link each reply to the appropriate request.
 
 
 

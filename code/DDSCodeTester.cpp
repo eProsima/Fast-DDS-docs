@@ -2018,7 +2018,7 @@ void dds_dataReader_examples()
         }
 
         // Create a data and SampleInfo instance
-        void* data = reader->type().createData();
+        void* data = data_reader->type().create_data();
         SampleInfo info;
 
         //Define a timeout of 5 seconds
@@ -2031,7 +2031,7 @@ void dds_dataReader_examples()
         {
             if (data_reader->wait_for_unread_message(timeout))
             {
-                if (reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
+                if (data_reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
                 {
                     if (info.instance_state == ALIVE)
                     {
@@ -2058,7 +2058,7 @@ void dds_dataReader_examples()
 
         // The data instance can be reused to retrieve new values,
         // but delete it at the end to avoid leaks
-        reader->type().delete_data(data);
+        data_reader->type().delete_data(data);
         //!--
     }
 }

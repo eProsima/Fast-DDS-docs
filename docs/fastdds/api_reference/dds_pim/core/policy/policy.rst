@@ -28,6 +28,7 @@ Policy
    /fastdds/api_reference/dds_pim/core/policy/partitionqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/presentationqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/presentationqospolicyaccessscopekind.rst
+   /fastdds/api_reference/dds_pim/core/policy/propertypolicyqos.rst
    /fastdds/api_reference/dds_pim/core/policy/publishmodeqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/publishmodeqospolicykind.rst
    /fastdds/api_reference/dds_pim/core/policy/qospolicy.rst

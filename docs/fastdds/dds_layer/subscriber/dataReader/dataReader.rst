@@ -30,27 +30,27 @@ DataReaderQos
 :ref:`api_pim_datareaderqos` controls the behavior of the :ref:`dds_layer_subscriber_dataReader`.
 Internally it contains the following :class:`QosPolicy` objects:
 
-.. |durability| replace:: :cpp:func:`durability<eprosima::fastdds::dds::SubscriberQos::durability>`
-.. |dur_service| replace:: :cpp:func:`durability_service<eprosima::fastdds::dds::SubscriberQos::durability_service>`
-.. |deadline| replace:: :cpp:func:`deadline<eprosima::fastdds::dds::SubscriberQos::deadline>`
-.. |latency_budget| replace:: :cpp:func:`latency_budget<eprosima::fastdds::dds::SubscriberQos::latency_budget>`
-.. |liveliness| replace:: :cpp:func:`liveliness<eprosima::fastdds::dds::SubscriberQos::liveliness>`
-.. |reliability| replace:: :cpp:func:`reliability<eprosima::fastdds::dds::SubscriberQos::reliability>`
-.. |dest_order| replace:: :cpp:func:`destination_order<eprosima::fastdds::dds::SubscriberQos::destination_order>`
-.. |history| replace:: :cpp:func:`history<eprosima::fastdds::dds::SubscriberQos::history>`
-.. |resource_limits| replace:: :cpp:func:`resource_limits<eprosima::fastdds::dds::SubscriberQos::resource_limits>`
-.. |lifespan| replace:: :cpp:func:`lifespan<eprosima::fastdds::dds::SubscriberQos::lifespan>`
-.. |user_data| replace:: :cpp:func:`user_data<eprosima::fastdds::dds::SubscriberQos::user_data>`
-.. |ownership| replace:: :cpp:func:`ownership<eprosima::fastdds::dds::SubscriberQos::ownership>`
-.. |properties| replace:: :cpp:func:`properties<eprosima::fastdds::dds::SubscriberQos::properties>`
-.. |endpoint| replace:: :cpp:func:`endpoint<eprosima::fastdds::dds::SubscriberQos::endpoint>`
-.. |rs_lim| replace:: :cpp:func:`reader_resource_limits<eprosima::fastdds::dds::SubscriberQos::reader_resource_limits>`
-.. |time_based_filt| replace:: :cpp:func:`time_based_filter<eprosima::fastdds::dds::SubscriberQos::time_based_filter>`
-.. |data_lc| replace:: :cpp:func:`reader_data_lifecycle<eprosima::fastdds::dds::SubscriberQos::reader_data_lifecycle>`
-.. |rel_rd_qos| replace:: :cpp:func:`reliable_reader_qos<eprosima::fastdds::dds::SubscriberQos::reliable_reader_qos>`
-.. |user_data_qos| replace:: :cpp:func:`user_data<eprosima::fastdds::dds::SubscriberQos::user_data>`
-.. |type_consistency| replace:: :cpp:func:`type_consistency<eprosima::fastdds::dds::SubscriberQos::type_consistency>`
-.. |exp_in_qos| replace:: :cpp:func:`expects_inline_qos<eprosima::fastdds::dds::SubscriberQos::expects_inline_qos>`
+.. |durability| replace:: :cpp:func:`durability()<eprosima::fastdds::dds::SubscriberQos::durability>`
+.. |dur_service| replace:: :cpp:func:`durability_service()<eprosima::fastdds::dds::SubscriberQos::durability_service>`
+.. |deadline| replace:: :cpp:func:`deadline()<eprosima::fastdds::dds::SubscriberQos::deadline>`
+.. |latency_budget| replace:: :cpp:func:`latency_budget()<eprosima::fastdds::dds::SubscriberQos::latency_budget>`
+.. |liveliness| replace:: :cpp:func:`liveliness()<eprosima::fastdds::dds::SubscriberQos::liveliness>`
+.. |reliability| replace:: :cpp:func:`reliability()<eprosima::fastdds::dds::SubscriberQos::reliability>`
+.. |dest_order| replace:: :cpp:func:`destination_order()<eprosima::fastdds::dds::SubscriberQos::destination_order>`
+.. |history| replace:: :cpp:func:`history()<eprosima::fastdds::dds::SubscriberQos::history>`
+.. |resource_limits| replace:: :cpp:func:`resource_limits()<eprosima::fastdds::dds::SubscriberQos::resource_limits>`
+.. |lifespan| replace:: :cpp:func:`lifespan()<eprosima::fastdds::dds::SubscriberQos::lifespan>`
+.. |user_data| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::SubscriberQos::user_data>`
+.. |ownership| replace:: :cpp:func:`ownership()<eprosima::fastdds::dds::SubscriberQos::ownership>`
+.. |properties| replace:: :cpp:func:`properties()<eprosima::fastdds::dds::SubscriberQos::properties>`
+.. |endpoint| replace:: :cpp:func:`endpoint()<eprosima::fastdds::dds::SubscriberQos::endpoint>`
+.. |rs_lim| replace:: :cpp:func:`reader_resource_limits()<eprosima::fastdds::dds::SubscriberQos::reader_resource_limits>`
+.. |time_based_filt| replace:: :cpp:func:`time_based_filter()<eprosima::fastdds::dds::SubscriberQos::time_based_filter>`
+.. |data_lc| replace:: :cpp:func:`reader_data_lifecycle()<eprosima::fastdds::dds::SubscriberQos::reader_data_lifecycle>`
+.. |rel_rd_qos| replace:: :cpp:func:`reliable_reader_qos()<eprosima::fastdds::dds::SubscriberQos::reliable_reader_qos>`
+.. |user_data_qos| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::SubscriberQos::user_data>`
+.. |type_consistency| replace:: :cpp:func:`type_consistency()<eprosima::fastdds::dds::SubscriberQos::type_consistency>`
+.. |exp_in_qos| replace:: :cpp:func:`expects_inline_qos()<eprosima::fastdds::dds::SubscriberQos::expects_inline_qos>`
 
 +-----------------------------------------------+------------------------------+----------+
 | QosPolicy class                               | Accessor/Mutator             | Mutable  |
@@ -79,7 +79,7 @@ Internally it contains the following :class:`QosPolicy` objects:
 +-----------------------------------------------+------------------------------+----------+
 | :ref:`api_pim_ownershipqospolicy`             | |ownership|                  | No       |
 +-----------------------------------------------+------------------------------+----------+
-| ``PropertyPolicyQos``                         | |properties|                 | Yes      |
+| :ref:`api_pim_propertypolicyqos`              | |properties|                 | Yes      |
 +-----------------------------------------------+------------------------------+----------+
 | :ref:`api_pim_RTPSendpointqos`                | |endpoint|                   | Yes      |
 +-----------------------------------------------+------------------------------+----------+

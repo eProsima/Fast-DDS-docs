@@ -3,12 +3,8 @@
 Accessing received data
 =======================
 
-The :ref:`dds_layer_subscriber_dataReader` informs through the
-:ref:`dds_layer_subscriber_dataReaderListener` when it receives new data values from any matching
-:ref:`dds_layer_publisher_dataWriter`, so that the application knows there is new data to process.
-The application can then access and consume the received data values.
-
-This access can be done by *reading* or *taking*.
+The application can access and consume the data values received on the :ref:`dds_layer_subscriber_dataReader`
+by *reading* or *taking*.
 
  * **Reading** is done with the :func:`read_next_data` member function.
    It reads the next, non-previously accessed data value available on the
@@ -27,13 +23,37 @@ instance with additional information that help interpreting the returned data va
 :ref:`dds_layer_publisher_dataWriter` or the publication time stamp.
 Please, refer to the :ref:`dds_layer_subscriber_sampleInfo` section for an extensive description of its contents.
 
+
+.. _dds_layer_subscriber_accessreceived_listener:
+
+Accessing data on callbacks
+---------------------------
+
+When the :ref:`dds_layer_subscriber_dataReader` new data values from any matching
+:ref:`dds_layer_publisher_dataWriter`, it informs the application through
+two Listener callbacks:
+
+* :cpp:func:`on_data_available<eprosima::fastdds::dds::DataReaderListener::on_data_available>`
+  on the :ref:`dds_layer_subscriber_dataReaderListener`.
+
+* :cpp:func:`on_data_on_readers<eprosima::fastdds::dds::SubscriberListener::on_data_on_readers>`
+  on the :ref:`dds_layer_subscriber_subscriberListener` or the :ref:`dds_layer_domainParticipantListener`
+
+The callback can be used to retrieve the newly arrived data as in this example.
+
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_DATAREADER_READ_LISTENER
    :end-before: //!
 
-Instead of relying on the :ref:`dds_layer_subscriber_dataReaderListener` to try and get new data values,
-the application can also dedicate a thread to wait until any new data is avaliable on the
+
+.. _dds_layer_subscriber_accessreceived_wait:
+
+Accessing data with a waiting thread
+------------------------------------
+
+Instead of relying on the Listener to try and get new data values,
+the application can also dedicate a thread to wait until any new data is available on the
 :ref:`dds_layer_subscriber_dataReader`.
 This can be done with the :func:`wait_for_unread_message` member function,
 that blocks until a new data sample is available or the given timeout expires.
@@ -45,4 +65,5 @@ This function returning with value ``true`` means there is new data available on
    :language: c++
    :start-after: //DDS_DATAREADER_READ_WAIT
    :end-before: //!
+   :dedent: 8
 

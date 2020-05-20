@@ -179,7 +179,7 @@ a.icon-home{
 /***************************************************/
 
 .wy-nav-content a, .wy-nav-content a:visited {
-  color:#006bde !important;
+  color:#0027de !important;
 }
 
 .wy-nav-content a:hover{
@@ -249,6 +249,10 @@ div.highlight-bash pre, div.highlight-shell-session pre  {
 }
 
 /* Images */
+.figure .caption{
+  padding-top: 20px !important;
+}
+
 .figure.align-center .caption{
   text-align: center !important;
   margin: 0px 100px !important;
@@ -278,8 +282,8 @@ a.btn.btn-neutral:hover{
 
 /* Footnotes */
 dl.footnote {
-  font-size: 14px !important;
-  border-top: 2px solid #00275a;
+  font-size: 11px !important;
+  border-top: 1px solid #00275a;
   overflow: hidden;
   background: white;
   width: 100%;
@@ -293,16 +297,17 @@ dl.footnote dt {
   padding: 0;
   margin: 0;
   margin-top: 0em !important;
-  font-size: 14px !important;
+  font-size: 11px !important;
 }
 
 dl.footnote  dt::after {
   content: ".";
 }
 
-dl.footnote dd {
+dl.footnote dd p{
   background: none !important;
   text-align: left;
-  padding-top: 2px;
-  font-size: 14px !important;
+  padding-top: 5px;
+  font-size: 11px !important;
+  line-height : 15px;
 }

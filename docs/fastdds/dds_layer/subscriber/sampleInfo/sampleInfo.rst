@@ -184,14 +184,14 @@ sample_identity
 
 This is an extension for requester-replier configuration. It contains the :ref:`dds_layer_publisher_dataWriter`
 and the sequence number of the current message, and it is used by the replier to fill the
-:ref:`dds_layer_subscriber_sampleInfo_relatedsampleidentity` when it send the reply.
+:ref:`dds_layer_subscriber_sampleInfo_relatedsampleidentity` when it sends the reply.
 
 .. _dds_layer_subscriber_sampleInfo_relatedsampleidentity:
 
 related_sample_identity
 -----------------------
 
-This is an extension for requester-replier configuration. On reply messages it contains the
+This is an extension for requester-replier configuration. On reply messages, it contains the
 :ref:`dds_layer_subscriber_sampleInfo_sampleidentity` of the related request message.
 It is used by the requester to be able to link each reply to the appropriate request.
 

@@ -131,7 +131,7 @@ When the system starts, the default :ref:`dds_layer_subscriber_dataReaderQos` is
 the default constructed value :func:`DataReaderQos`.
 The default :ref:`dds_layer_subscriber_dataReaderQos` can be modified at any time using the
 :func:`set_default_datareader_qos` member function on the
-ref:`dds_layer_subscriber_subscriber` instance.
+:ref:`dds_layer_subscriber_subscriber` instance.
 Modifying the default :ref:`dds_layer_subscriber_dataReaderQos` will not affect already existing
 :ref:`dds_layer_subscriber_dataReader` instances.
 

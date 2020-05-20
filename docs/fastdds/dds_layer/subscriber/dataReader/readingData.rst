@@ -33,13 +33,11 @@ When the :ref:`dds_layer_subscriber_dataReader` new data values from any matchin
 :ref:`dds_layer_publisher_dataWriter`, it informs the application through
 two Listener callbacks:
 
-* :cpp:func:`on_data_available<eprosima::fastdds::dds::DataReaderListener::on_data_available>`
-  on the :ref:`dds_layer_subscriber_dataReaderListener`.
+* :cpp:func:`on_data_available<eprosima::fastdds::dds::DataReaderListener::on_data_available>`.
 
 * :cpp:func:`on_data_on_readers<eprosima::fastdds::dds::SubscriberListener::on_data_on_readers>`
-  on the :ref:`dds_layer_subscriber_subscriberListener` or the :ref:`dds_layer_domainParticipantListener`
 
-The callback can be used to retrieve the newly arrived data as in this example.
+These callbacks can be used to retrieve the newly arrived data, as in the following example.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

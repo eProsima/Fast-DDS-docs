@@ -19,9 +19,7 @@ Types of Entities
 - **Publisher**: It acts as a factory that can create any number of DataWriters.
   See :ref:`dds_layer_publisher_publisher` for further details.
 
-- **Subscriber**: Is responsible for receiving the data distributed and make it available to the receiving
-  application.
-  It also acts as a factory, being able to create any number of DataReaders.
+- **Subscriber**:  It acts as a factory that can create any number of DataReaders.
   See :ref:`dds_layer_subscriber_subscriber` for further details.
 
 - **Topic**: This entity fits between the publication and subscription entities and acts as a channel.
@@ -41,19 +39,18 @@ The following figure shows the hierarchy between all DDS entities:
 Common Entities Characteristics
 -------------------------------
 
-Each entity is identified by a unique ID, which is shared between the DDS entity and its correspondence RTPS entity
+Each entity is identified by a unique ID, which is shared between the DDS entity and its corresponding RTPS entity
 if it exists.
-That ID is stored on an Instance Handle object declared on Entity base class, which can be accessed from
-all subclasses using the getter function.
+That ID is stored on an Instance Handle object declared on Entity base class, which can be accessed using the getter
+function.
 
 All the entities can be created either enable or not enable.
 By default, the factories are configured to create the
 entities enabled, but it can be changed using the :ref:`EntityFactoryQosPolicy <entityfactoryqospolicy>` on enabled
 factories.
-But if a disabled factory creates an entity, it will always be created disabled regardless of its QoS.
+A disabled factory creates disabled entities regardless of its QoS.
 
-A disable entity has its operations limited
-to the following ones:
+A disabled entity has its operations limited to the following ones:
 
 - Set/Get the entity QoS policies
 - Create/Delete subentities

@@ -147,7 +147,6 @@ add_custom_target(doxygen ALL
     COMMENT "Generated API documentation with doxygen" VERBATIM)
 add_dependencies(doxygen doc-dirs)
 
-
 ########################################################################################################################
 # Build example and tests
 ########################################################################################################################

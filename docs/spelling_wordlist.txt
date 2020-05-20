@@ -95,12 +95,15 @@ PKI
 pluggable
 ppDisable
 ppPath
+pre
+preallocate
 preallocated
 preallocates
 preprocessor
 QoS
 QosPolicyCount
 readNextData
+reconfigurations
 redistributable
 replier
 repos
@@ -109,6 +112,7 @@ rtps
 runtime
 sanitizers
 scalability
+scalable
 sqlite
 stateful
 structs

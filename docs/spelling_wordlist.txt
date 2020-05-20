@@ -69,7 +69,6 @@ IDL
 interoperability
 Intra
 IPv
-KIPv
 libs
 lifecycle
 loopback
@@ -96,6 +95,7 @@ PKI
 pluggable
 ppDisable
 ppPath
+pre
 preallocate
 preallocated
 preallocates

@@ -1512,6 +1512,31 @@ void persistence_configuration()
 void dynamictypes_configuration()
 {
     {
+        //DYNAMIC_TYPES_QUICK_EXAMPLE
+        // Create a builder for a specific type
+        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_enum_builder();
+
+        // Use the builder to configure the type
+        builder->add_empty_member(0, "DEFAULT");
+        builder->add_empty_member(1, "FIRST");
+        builder->add_empty_member(2, "SECOND");
+
+        // Create the data type using the builder
+        // The builder will internally use the DynamicTypeBuilderFactory to create the type
+        DynamicType_ptr type = builder->build();
+
+        // Create a new data instance of the create data type
+        DynamicData_ptr data (DynamicDataFactory::get_instance()->create_data(type));
+
+        // Now we can set or read data values
+        data->set_int32_value(1);
+
+        // No need of deleting the objects, since we used the
+        // automanaged smart pointers
+        //!--
+    }
+
+    {
         //DYNAMIC_TYPES_CREATE_PRIMITIVES
         // Using Builders
         DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();

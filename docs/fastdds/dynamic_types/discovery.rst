@@ -95,7 +95,7 @@ To enable this builtin TypeLookup Service, the user must enable it in the Partic
 A participant can be enabled to act as a TypeLookup server, client, or both.
 
 The process of retrieving the remote type from its TypeInformation, and then registering it, can be simplified
-using the  ``register_remote_type`` function on the :ref:`dds_layer_domainParticiant`.
+using the  ``register_remote_type`` function on the :ref:`dds_layer_domainParticipant`.
 This function takes the name of the type, the TypeInformation, and a callback function.
 Internally it uses the TypeLookup Service to retrieve the full TypeObject, and, if successful, it will
 call the callback.

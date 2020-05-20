@@ -1,84 +1,179 @@
-.. _dynamictypes_concepts:
+.. _dynamictypes_overview:
 
-Concepts
-========
+Overview of Dynamic Types
+=========================
 
-This section defines basic concepts related to dynamic types, and that are used through the rest of
-the documentation.
+Involved classes
+----------------
 
-Type Descriptor
----------------
+This section describes the classes related to dynamic types,
+and that are used through the rest of the documentation.
 
-Stores the information about one type with its relationships and restrictions.
-It's the minimum class needed to generate a Dynamic type and in case of the
-complex ones, it stores information about its children or its parent types.
+.. figure:: /01-figures/dynamic_types_class_diagram.svg
+    :align: center
 
-Member Descriptor
------------------
+    Dynamic types class diagram
 
-Several complex types need member descriptors to declare the relationship between types.
-This class stores information about that members like their name, their unique ID,
-the type that is going to be created, and the default value after the creation.
-Union types have special fields to identify each member by labels.
 
-Dynamic Type Builder Factory
-----------------------------
-
-*Singleton* class that is in charge of the creation and the management of every
-``DynamicTypes`` and ``DynamicTypeBuilders``.
-It declares functions to create each kind of supported types, making easier the
-management of the descriptors.
-Every object created by the factory must be deleted calling the ``delete_type`` function.
-
-Dynamic Type Builder
---------------------
-
-Intermediate class used to configure and create ``DynamicTypes``.
-By design Dynamic types can't be modified, so the previous step to create a new one is to create a builder and apply
-the settings that the user needs.
-Users can create several types using the same builder, but the changes applied
-to the builder don't affect to the types created previously.
-Every object created by a builder must be deleted calling the ``delete_type`` function
-of the Dynamic Type builder Factory.
+.. _dynamictypes_overview_dynamictype:
 
 Dynamic Type
-------------
+^^^^^^^^^^^^
 
-Base class in the declaration of Dynamic types, it stores the information about
-its type and every Member that is related to it.
-It creates a copy of the descriptor on its creation and cannot be changed to keep the consistency.
+Base class of all types declared dynamically.
+It represents a dynamic data type that can be used to create
+:ref:`dynamictypes_overview_dynamicdata` values.
+By design, the structure of a dynamic type (its member fields) cannot
+be modified once the type is created.
 
-Dynamic Type Member
--------------------
 
-A class that creates the relationship between a member descriptor with its parent type.
-Dynamic Types have a one Dynamic type member for every child member added to it.
+.. _dynamictypes_overview_dynamictypebuilderfactory:
 
-Dynamic Data Factory
---------------------
+Dynamic Type Builder Factory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *Singleton* class that is in charge of the creation and the management of every
-``DynamicData``.
-It creates them using the given ``DynamicType`` with its settings.
-Every data object created by the factory must be deleted calling the ``delete_type`` function.
-Allows creating a ``TypeIdentifier`` and a (Minimal and Complete) ``TypeObject`` from a ``TypeDescriptor``.
+:ref:`dynamictypes_overview_dynamictype` and :ref:`dynamictypes_overview_dynamictypebuilder`.
+It declares functions to create builders for each kind of supported types.
+Given a builder for a specific type, it can also create the corresponding
+:ref:`dynamictypes_overview_dynamictype`.
+Some simpler types can be created directly, avoiding the step of creating a
+:ref:`dynamictypes_overview_dynamictypebuilder`.
+Please, refer to the :ref:`dynamictypes_supportedtypes` documentation for details about
+which ones support this option.
+
+Every object created by the factory must be deleted to avoid memory leaking.
+Refer to the :ref:`dynamictypes_memorymanagement` section for details.
+
+
+.. _dynamictypes_overview_dynamictypebuilder:
+
+Dynamic Type Builder
+^^^^^^^^^^^^^^^^^^^^
+
+Intermediate class used to configure a :ref:`dynamictypes_overview_dynamictype`
+before it is created.
+By design, the structure of a :ref:`dynamictypes_overview_dynamictype` (its member fields) cannot
+be modified once the object is created.
+Therefore, all its structure must be defined prior to its creation.
+The builder is the object used to set up this structure.
+
+Once defined, the :ref:`dynamictypes_overview_dynamictypebuilderfactory` is used to create
+the :ref:`dynamictypes_overview_dynamictype` from the information contained in the builder.
+As a shortcut, the builder exposes a function ``build`` that internally uses the
+:ref:`dynamictypes_overview_dynamictypebuilderfactory` to return a fully constructed
+:ref:`dynamictypes_overview_dynamictype`.
+The types created with ``build`` are still subject to the :ref:`dynamictypes_memorymanagement`
+restrictions, and must be deleted by the :ref:`dynamictypes_overview_dynamictypebuilderfactory`.
+
+The same builder can be reused to create a different :ref:`dynamictypes_overview_dynamictype`,
+i.e., one of the same type but different inner structure.
+The changes applied to the builder do not affect to types created previously.
+
+
+.. _dynamictypes_overview_typedescriptor:
+
+Type Descriptor
+^^^^^^^^^^^^^^^
+
+Stores the information about one type with its relationships and restrictions.
+This is the class that describes the inner structure of a
+:ref:`dynamictypes_overview_dynamictype`.
+The :ref:`dynamictypes_overview_dynamictypebuilder` has an internal instance of
+:class:`TypeDescriptor` that modifies during the type building process.
+When the :ref:`dynamictypes_overview_dynamictype` is created, the
+:ref:`dynamictypes_overview_dynamictypebuilderfactory` uses the information
+of the :class:`TypeDescriptor` in the builder to create the :ref:`dynamictypes_overview_dynamictype`.
+During the creation, the :class:`TypeDescriptor` is copied to the :ref:`dynamictypes_overview_dynamictype`,
+so that it becomes independent from the :ref:`dynamictypes_overview_dynamictypebuilder`,
+and the builder can be reused for another type.
+
+
+.. _dynamictypes_overview_dynamictypemember:
+
+Dynamic Type Member
+^^^^^^^^^^^^^^^^^^^
+
+Represents a data member of a :ref:`dynamictypes_overview_dynamictype` that is also a
+:ref:`dynamictypes_overview_dynamictype`.
+Compound types (dynamic types that are composed of other dynamic types) have a
+:class:`DynamicTypeMember` for every child :ref:`dynamictypes_overview_dynamictype` added to it.
+
+
+.. _dynamictypes_overview_memberdescriptor:
+
+Member Descriptor
+^^^^^^^^^^^^^^^^^
+
+Just as a :ref:`dynamictypes_overview_typedescriptor` describes the inner structure of a
+:ref:`dynamictypes_overview_dynamictype`,
+a :class:`MemberDescriptor` stores all the information needed to manage a
+:ref:`dynamictypes_overview_dynamictypemember`, like their name, their unique ID, or
+the default value after the creation.
+This information is copied to the :ref:`dynamictypes_overview_dynamicdata` on its creation.
+
+
+.. _dynamictypes_overview_dynamicdata:
 
 Dynamic Data
-------------
+^^^^^^^^^^^^
 
-A class that manages the data of the Dynamic Types. It stores the information that is
-sent and received.
-There are two ways to work with DynamicDatas, the first one is the
-most secured, activating the macro ``DYNAMIC_TYPES_CHECKING``, it creates a variable for
-each primitive kind to help the debug process.
-The second one reduces the size of the ``DynamicData`` class using only the minimum
-values and making the code harder to debug.
+While a :ref:`dynamictypes_overview_dynamictype` *describes* a type,
+:class:`DynamicData` represents a data instance of a :ref:`dynamictypes_overview_dynamictype`.
+It provides functions to access and modify the data values in the instance.
+
+There are two ways to work with :class:`DynamicData`:
+
+* Activating the macro ``DYNAMIC_TYPES_CHECKING``, which creates a variable for
+  each primitive kind to help the debug process.
+* Without this macro, the size of the :class:`DynamicData` is reduced, using only the minimum needed
+  internal values, but it makes the code harder to debug.
+
+
+.. _dynamictypes_overview_dynamicdatafactory:
+
+Dynamic Data Factory
+^^^^^^^^^^^^^^^^^^^^
+
+*Singleton* class that is in charge of the creation and the management of every
+:ref:`dynamictypes_overview_dynamicdata`.
+It can take a :ref:`dynamictypes_overview_dynamictype` and create an instance of a
+corresponding :ref:`dynamictypes_overview_dynamicdata`.
+Every data object created by the factory must be deleted to avoid memory leaking.
+Refer to the :ref:`dynamictypes_memorymanagement` section for details.
+
+It also allows to create a ``TypeIdentifier`` and a (Minimal and Complete) ``TypeObject`` from a ``TypeDescriptor``.
+
+
+.. _dynamictypes_overview_dynamicpubsubtype:
 
 Dynamic PubSubType
-------------------
+^^^^^^^^^^^^^^^^^^
 
-A class that inherits from ``TopicDataType`` and works as an intermediary between RTPS Domain and the Dynamic Types.
-It implements the functions needed to create, serialize, deserialize and delete ``DynamicData`` instances when the
-participants need to convert the received information from any transport to the registered dynamic type.
+This class is an adapter that allows using :ref:`dynamictypes_overview_dynamicdata` on Fast DDS.
+It inherits from ``TopicDataType`` and implements the functions needed to communicate the
+:ref:`dynamictypes_overview_dynamicdata` between Publishers and Subscribers.
+
+
+.. _dynamictypes_overview_example:
+
+Minimum example
+---------------
+
+This is a short example to illustrate the use of the dynamic types and how the classes describe above interact
+with each other.
+While the code snippet can be used as a quick reference for code building, the sequence diagram below provides a
+visual interpretation of the actions.
+
+.. literalinclude:: /../code/CodeTester.cpp
+   :language: c++
+   :start-after: //DYNAMIC_TYPES_QUICK_EXAMPLE
+   :end-before: //!
+   :dedent: 8
+
+.. figure:: /01-figures/dynamic_types_sequence_diagram.svg
+    :align: center
+
+    Sequence diagram of the code above
 
 

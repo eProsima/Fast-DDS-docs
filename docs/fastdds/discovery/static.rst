@@ -231,6 +231,3 @@ On the local participant, loading STATIC EDP configuration files is done by:
 |    :end-before: <!-->                                   |
 +---------------------------------------------------------+
 
-.. role:: raw-html(raw)
-    :format: html
-

@@ -510,6 +510,48 @@ void dds_domain_examples()
     }
 }
 
+void dds_discovery_examples()
+{
+    {
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        //CONF-DISCOVERY-PROTOCOL
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SIMPLE;
+        //!--
+
+        //CONF-DISCOVERY-IGNORE-FLAGS
+        pqos.wire_protocol().builtin.discovery_config.ignoreParticipantFlags =
+                static_cast<eprosima::fastrtps::rtps::ParticipantFilteringFlags_t>(
+            eprosima::fastrtps::rtps::ParticipantFilteringFlags_t::FILTER_DIFFERENT_PROCESS |
+            eprosima::fastrtps::rtps::ParticipantFilteringFlags_t::FILTER_SAME_PROCESS);
+        //!--
+
+        //CONF-DISCOVERY-LEASE-DURATION
+        pqos.wire_protocol().builtin.discovery_config.leaseDuration = Duration_t(10, 20);
+        //!--
+
+        //CONF-DISCOVERY-LEASE-ANNOUNCEMENT
+        pqos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(1, 2);
+        //!--
+
+        //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT
+        pqos.wire_protocol().builtin.discovery_config.initial_announcements.count = 5;
+        pqos.wire_protocol().builtin.discovery_config.initial_announcements.period = Duration_t(0, 100000000u);
+        //!--
+
+        //CONF_STATIC_DISCOVERY_CODE
+        pqos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+        pqos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+        //!--
+
+        //CONF_STATIC_DISCOVERY_XML
+        pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
+        pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
+        //!--
+    }
+}
+
 //DDS_TOPIC_LISTENER_SPECIALIZATION
 class CustomTopicListener : public TopicListener
 {

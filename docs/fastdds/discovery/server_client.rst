@@ -1,3 +1,5 @@
+.. include:: includes/aliases.rst
+
 .. _discovery_server:
 
 Server-Client Discovery
@@ -344,10 +346,10 @@ The settings related with server-client discovery are:
     :ref:`RTPSParticipantAttributes <DS_RTPSParticipantAttributes>`, "Specifies general participant settings. Some of
     them must be modified in order to properly configure a Server like the ``GuidPrefix``."
     :ref:`BuiltinAttributes <DS_BuiltinAttributes>`, "It's a member of the above *RTPSParticipantAttributes* structure.
-    Allows to specify some mandatory server discovery settings like the :raw-html:`<br />` addresses were it listens for
+    Allows to specify some mandatory server discovery settings like the |br| addresses were it listens for
     clients discovery info."
     :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure. Allows
-    to specify some mandatory client an optional server settings like the: :raw-html:`<br />` whether it is a client or
+    to specify some mandatory client an optional server settings like the: |br| whether it is a client or
     a server or the list of servers it is linked to or the client-ping, server-match frequencies."
 
 .. _DS_RTPSParticipantAttributes:
@@ -417,19 +419,19 @@ before to setup a server-client discovery it may be:
 
     CLIENT, "Generates a client participant, which relies on a server (or servers) to be notified of other clients
     presence.
-    :raw-html:`<br />`
+    |br|
     This participant can create publishers and subscribers of any topic (static or
     dynamic) as ordinary participants do."
     SERVER, "Generates a server participant, which receives, manages and spreads
-    its linked client's metatraffic assuring any single one is aware of the others. :raw-html:`<br />` This participant
+    its linked client's metatraffic assuring any single one is aware of the others. |br| This participant
     can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do.
-    :raw-html:`<br />`
+    |br|
     Servers can link to other servers in order to share its clients information."
     BACKUP, "Generates a server
-    participant with additional functionality over **SERVER**. :raw-html:`<br />`
+    participant with additional functionality over **SERVER**. |br|
     Specifically, it uses a database to
     backup its client information, so that if for whatever reason it disappears, it can be automatically restored and
-    :raw-html:`<br />` continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to
+    |br| continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to
     collect client information again, introducing a recovery delay."
 
 A ``RemoteServerList_t m_DiscoveryServers`` that lists the servers linked to a client participant. This member has only
@@ -443,27 +445,27 @@ significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP*
      - Description
    * - ``GuidPrefix_t guidPrefix``
      - Is the RTPS unique identifier of the server participant we want to link to. There is a ``ReadguidPrefix``
-       :raw-html:`<br />`
+       |br|
        method to easily fill in this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"``
-       :raw-html:`<br />`
+       |br|
        (note that each octet must be a valid hexadecimal figure).
    * - ``metatrafficUnicastLocatorList`` and ``metatrafficMulticastLocatorList``
      - Are ordinary ``LocatorList_t`` (see :ref:`LocatorListType`) where the server's locators must be specified.
-       :raw-html:`<br />` At least one of them should be populated.
+       |br| At least one of them should be populated.
    * - ``Duration_t discoveryServer_client_syncperiod``
      - Has only significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP**.
-       :raw-html:`<br />`
+       |br|
        For a *client* it specifies the pinging period as explained in :ref:`key concepts <DS_key_concepts>`.
-       :raw-html:`<br />`
+       |br|
        When a client has not yet established a reliable connection to a server it *pings* until
-       the server notices :raw-html:`<br />` him and establishes the connection.
-       :raw-html:`<br />`
+       the server notices |br| him and establishes the connection.
+       |br|
        For a *server* it specifies the match period as explained in :ref:`key concepts <DS_key_concepts>`.
-       :raw-html:`<br />`
+       |br|
        When a *server* discovers new *clients* it only starts exchanging info with them at regular
-       :raw-html:`<br />`
+       |br|
        intervals as a mechanism to bundle discovery info and optimize delivery.
-       :raw-html:`<br />`
+       |br|
        The default value is half a second.
 
 +------------------------------------------------------------+

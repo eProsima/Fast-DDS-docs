@@ -1,3 +1,5 @@
+.. include:: includes/aliases.rst
+
 .. _discovery:
 
 Discovery
@@ -9,11 +11,4 @@ Discovery
 
 .. include:: includes/disc_mechanisms.rst
 
-.. include:: includes/general_disc_settings.rst
-
-.. include:: includes/simple.rst
-
-.. include:: includes/static.rst
-
-.. include:: includes/server_client.rst
-
+.. include:: includes/disc_settings.rst

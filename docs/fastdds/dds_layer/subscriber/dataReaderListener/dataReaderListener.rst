@@ -29,6 +29,11 @@ Callbacks that are not overridden will maintain their empty implementation.
   It will be called for each deadline period and data instance for which the
   :ref:`dds_layer_subscriber_dataReader` missed data.
 
+.. note::
+   Currently
+   :cpp:func:`on_requested_deadline_missed<eprosima::fastdds::dds::DataReaderListener::on_requested_deadline_missed>`
+   is not implemented (it will never be called), and will be implemented on a future release of Fast DDS.
+
 * :cpp:func:`on_requested_incompatible_qos<eprosima::fastdds::dds::DataReaderListener::on_requested_incompatible_qos>`:
   The :ref:`dds_layer_subscriber_dataReader` has found a
   :ref:`dds_layer_publisher_dataWriter` that matches the :ref:`dds_layer_topic_topic` and has
@@ -48,8 +53,19 @@ Callbacks that are not overridden will maintain their empty implementation.
 * :cpp:func:`on_sample_rejected<eprosima::fastdds::dds::DataReaderListener::on_sample_rejected>`:
   A received data sample was rejected.
 
+.. note::
+   Currently
+   :cpp:func:`on_sample_rejected<eprosima::fastdds::dds::DataReaderListener::on_sample_rejected>`
+   is not implemented (it will never be called), and will be implemented on a future release of Fast DDS.
+
 * :cpp:func:`on_sample_lost<eprosima::fastdds::dds::DataReaderListener::on_sample_lost>`:
   A data sample was lost and will never be received.
+
+.. note::
+   Currently
+   :cpp:func:`on_sample_lost<eprosima::fastdds::dds::DataReaderListener::on_sample_lost>`
+   is not implemented (it will never be called), and will be implemented on a future release of Fast DDS.
+
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
   :language: c++

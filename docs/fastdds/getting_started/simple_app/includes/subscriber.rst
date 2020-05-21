@@ -26,17 +26,17 @@ Following the same structure as in the publisher explanation, we start with the 
 In these, the files that include the publisher class are replaced by the subscriber class and the data writer class by
 the data reader class.
 
-*   :class:`Subscriber`.
+*   |Subscriber|.
     It is the object responsible for the creation and configuration of DataReaders.
-*   :class:`DataReader`.
+*   |DataReader|.
     It is the object responsible for the actual reception of the data.
     It registers in the application the topic (TopicDescription) that identifies the data to be read and
     accesses the data received by the subscriber.
-*   :class:`DataReaderListener`.
+*   |DataReaderListener|.
     This is the listener assigned to the data reader.
-*   :class:`DataReaderQoS`.
+*   |DataReaderQoS|.
     Structure that defines the QoS of the DataReader.
-*   :class:`SampleInfo`.
+*   |SampleInfo|.
     It is the information that accompanies each sample that is ‘read’ or ‘taken.’
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
@@ -55,39 +55,46 @@ The private data members of the class will be the participant, the subscriber, t
 data type.
 As it was the case with the data writer, the listener implements the callbacks to be executed in case an event
 occurs.
-The first overridden callback of the SubListener is the ``on_subscrition_matched``, which is the analog of the
-``on_publication_matched`` callback of the DataWriter.
+The first overridden callback of the SubListener is the
+:cpp:func:`on_subscription_matched <eprosima::fastdds::dds::DataReaderListener::on_subscription_matched>`, which is the
+analog of the :cpp:func:`on_publication_matched <eprosima::fastdds::dds::DataWriterListener::on_publication_matched>`
+callback of the DataWriter.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
     :lines: 60-77
+    :dedent: 8
 
-The second overridden callback is ``on_data_available``.
+The second overridden callback is
+:cpp:func:`on_data_available <eprosima::fastdds::dds::DataReaderListener::on_data_available>`.
 In this, the next received sample that the data reader can access is taken and processed to display its content.
-It is here that the object of the :class:`SampleInfo` class is defined, which determines whether a sample has already
+It is here that the object of the |SampleInfo| class is defined, which determines whether a sample has already
 been read or taken.
 Each time a sample is read, the counter of samples received is increased.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
     :lines: 79-92
+    :dedent: 8
 
 The public constructor and destructor of the class is defined below.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
     :lines: 102-126
+    :dedent: 4
 
 Then we have the subscriber initialization public member function.
 This is the same as the initialization public member function defined for the :class:`HelloWorldPublisher`.
 The QoS configuration for all entities, except for the participant's name, is the default QoS
-(``PARTICIPANT_QOS_DEFAULT``, ``SUBSCRIBER_QOS_DEFAULT``, ``TOPIC_QOS_DEFAULT``, ``DATAREADER_QOS_DEFAULT``).
+(|PARTICIPANT_QOS_DEFAULT|, |SUBSCRIBER_QOS_DEFAULT|, |TOPIC_QOS_DEFAULT|, |DATAREADER_QOS_DEFAULT|).
 The default value of the QoS of each DDS Entity can be checked in the
 `DDS standard <https://www.omg.org/spec/DDS/About-DDS/>`_.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
     :lines: 128-168
+    :dedent: 4
 
 The public member function :func:`run` ensures that the subscriber runs until all the samples have been received.
 This member function implements an active wait of the subscriber, with a 100ms sleep interval to ease the CPU.
@@ -96,12 +103,13 @@ This member function implements an active wait of the subscriber, with a 100ms s
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
     :lines: 170-178
+    :dedent: 4
 
 Finally, the participant that implements a subscriber is initialized and run in main.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 178-196
+    :lines: 181-196
 
 CMakeLists.txt
 """""""""""""""

@@ -1,3 +1,5 @@
+.. include:: aliases.rst
+
 .. _writing_pubsub_app:
 
 Writing a simple publisher and subscriber application

@@ -31,7 +31,6 @@
 # ones.
 extensions = [
     'breathe',
-    'sphinx.ext.imgconverter',
 ]
 try:
     import sphinxcontrib.spelling  # noqa: F401

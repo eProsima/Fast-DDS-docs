@@ -15,7 +15,7 @@
             <unicastLocator address="192.168.0.128" port="5000"/>
             <unicastLocator address="10.47.8.30" port="6000"/>
             <multicastLocator address="239.255.1.1" port="7000"/>
-            <reliabilityQos>BEST_EFFORT_RELIABILITY_QOS </reliabilityQos>
+            <reliabilityQos>BEST_EFFORT_RELIABILITY_QOS</reliabilityQos>
             <durabilityQos>VOLATILE_DURABILITY_QOS</durabilityQos>
             <ownershipQos kind="SHARED_OWNERSHIP_QOS"/>
             <livelinessQos kind="AUTOMATIC_LIVELINESS_QOS" leaseDuration_ms="1000"/>
@@ -34,7 +34,7 @@
             <topicKind>WITH_KEY</topicKind>
             <partitionQos>HelloPartition</partitionQos>
             <partitionQos>WorldPartition</partitionQos>
-            <reliabilityQos>BEST_EFFORT_RELIABILITY_QOS </reliabilityQos>
+            <reliabilityQos>BEST_EFFORT_RELIABILITY_QOS</reliabilityQos>
             <durabilityQos>VOLATILE_DURABILITY_QOS</durabilityQos>
             <ownershipQos kind="SHARED_OWNERSHIP_QOS" strength="50"/>
             <livelinessQos kind="AUTOMATIC_LIVELINESS_QOS" leaseDuration_ms="1000"/>

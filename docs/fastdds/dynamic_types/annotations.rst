@@ -4,7 +4,8 @@ Annotations
 ===========
 
 
-DynamicTypeBuilder allows applying an annotation to both current type and inner members with the functions:
+:ref:`dynamictypes_overview_dynamictypebuilder` allows applying an annotation
+to both current type and inner members with the functions:
 
 - ``apply_annotation``
 

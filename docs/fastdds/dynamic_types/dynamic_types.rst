@@ -13,11 +13,6 @@ The dynamic topic types offer the possibility to work over RTPS without the rest
 Using them, the users can declare the different types that they need and manage the information directly,
 avoiding the additional step of updating the IDL file and the generation of *C++* classes.
 
-The management of dynamic types is split into two main groups.
-The first one manages the declaration of the types, building and
-setting the configuration of every type. The second one is in charge of
-the data instances and their information.
-
 .. toctree::
 
    /fastdds/dynamic_types/concepts.rst

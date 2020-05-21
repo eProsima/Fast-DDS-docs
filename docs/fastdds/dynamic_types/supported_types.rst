@@ -9,6 +9,19 @@ eProsima Fast DDS supports several member types, ranging from simple primitives 
 This section describes the basic (not nested) supported types. For more complex structures and
 examples, please, refer to :ref:`dynamictypes_complextypes`.
 
+
+* :ref:`dynamictypes_supportedtypes_primitive`
+* :ref:`dynamictypes_supportedtypes_string`
+* :ref:`dynamictypes_supportedtypes_alias`
+* :ref:`dynamictypes_supportedtypes_enumeration`
+* :ref:`dynamictypes_supportedtypes_bitmask`
+* :ref:`dynamictypes_supportedtypes_structure`
+* :ref:`dynamictypes_supportedtypes_bitset`
+* :ref:`dynamictypes_supportedtypes_union`
+* :ref:`dynamictypes_supportedtypes_sequence`
+* :ref:`dynamictypes_supportedtypes_array`
+* :ref:`dynamictypes_supportedtypes_map`
+
 .. _dynamictypes_supportedtypes_primitive:
 
 Primitive Types
@@ -257,24 +270,25 @@ Array
 -----
 
 Arrays are pretty similar to sequences with two main differences:
-they can have multiple dimensions and they don't need that the elements
-are stored consecutively.
+they can have multiple dimensions and they do not need their elements
+to be stored consecutively.
 
 An array needs to know the number of dimensions it is managing.
 For that, users must provide a vector with as many elements as dimensions in the array.
 Each element in the vector represents the size of the given dimension.
-If the value of an element is set to zero, the default value applies ( :class:`100` ).
+If the value of an element is set to zero, the default value applies (``100``).
 
 Id values on the ``set`` and ``get`` functions of ``DynamicData`` correspond to the array index.
 To ease the management of array elements, every ``set`` function in ``DynamicData`` class creates
 the item if the given index is empty.
 
 To ease the memory management of this type, ``DynamicData`` has these functions:
- - ``insert_array_data``: Creates a new element at the end of the array and returns
+
+ * ``insert_array_data``: Creates a new element at the end of the array and returns
    the ``id`` of the new element.
- - ``remove_array_data``: Clears the element of the given index.
- - ``clear_data``: Removes all the elements of the array.
- - ``get_array_index``: Returns the position id giving a vector of indexes on every dimension
+ * ``remove_array_data``: Clears the element of the given index.
+ * ``clear_data``: Removes all the elements of the array.
+ * ``get_array_index``: Returns the position id giving a vector of indexes on every dimension
    that the arrays support, which is useful in multidimensional arrays.
 
 .. literalinclude:: /../code/CodeTester.cpp
@@ -288,7 +302,7 @@ To ease the memory management of this type, ``DynamicData`` has these functions:
 Map
 ---
 
-Maps contain a list of pairs 'key-value' types, allowing users to insert, remove or
+Maps contain a list of 'key-value' pair types, allowing users to insert, remove or
 modify the element types of the map.
 The main difference with sequences is that the map works with pairs of elements and
 creates copies of the key element to block the access to these elements.
@@ -297,11 +311,12 @@ To create a map, users must set the types of the key and the value elements, and
 optionally, the size limit of the map.
 
 To ease the memory management of this type, ``DynamicData`` has these functions:
- - ``insert_map_data``: Inserts a new key value pair and returns the ids of the newly
+
+ * ``insert_map_data``: Inserts a new key value pair and returns the ids of the newly
    created key and value elements.
- - ``remove_map_data``: Uses the given id to find the key element and removes the key
+ * ``remove_map_data``: Uses the given id to find the key element and removes the key
    and the value elements from the map.
- - ``clear_data``: Removes all the elements from the map.
+ * ``clear_data``: Removes all the elements from the map.
 
 .. literalinclude:: /../code/CodeTester.cpp
    :language: c++

@@ -9,6 +9,16 @@ including nested composed types (structures within structures within unions).
 Types can also be extended using inheritance, improving the flexibility of the definition
 of the data types to fit the model.
 
+The following subsections describe these *complex types* and their use.
+
+* :ref:`dynamictypes_complextypes_nestedstructures`
+* :ref:`dynamictypes_complextypes_inheritance`
+* :ref:`dynamictypes_complextypes_aliasalias`
+* :ref:`dynamictypes_complextypes_complexunions`
+
+
+.. _dynamictypes_complextypes_nestedstructures:
+
 Nested structures
 -----------------
 
@@ -23,6 +33,8 @@ The loan operation will fail if the member is already loaned and has not been re
    :start-after: //DYNAMIC_TYPES_CREATE_NESTED_STRUCTS
    :end-before: //!--
    :dedent: 8
+
+.. _dynamictypes_complextypes_inheritance:
 
 Structure inheritance
 ---------------------
@@ -39,6 +51,8 @@ Structures support several levels of inheritance, so the base class can be anoth
    :end-before: //!--
    :dedent: 8
 
+.. _dynamictypes_complextypes_aliasalias:
+
 Alias of an alias
 -----------------
 
@@ -49,6 +63,8 @@ Alias types support recursion, simply use an alias name as base type for ``creat
    :start-after: //DYNAMIC_TYPES_CREATE_NESTED_ALIAS
    :end-before: //!--
    :dedent: 8
+
+.. _dynamictypes_complextypes_complexunions:
 
 Unions with complex types
 -------------------------

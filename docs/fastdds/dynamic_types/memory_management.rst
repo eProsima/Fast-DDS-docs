@@ -6,7 +6,7 @@ Memory management
 Memory management is critical for Dynamic Types,  because
 every dynamic type and dynamic data is managed with pointers.
 Every object stored inside of a dynamic object is managed by its owner, and users
-must delete every object they create using the factories
+must delete every object they create using the factories.
 
 .. literalinclude:: /../code/CodeTester.cpp
    :language: c++

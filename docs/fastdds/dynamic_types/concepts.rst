@@ -3,17 +3,30 @@
 Overview of Dynamic Types
 =========================
 
+This section describes the classes related to dynamic types, and that are used through the rest of the documentation.
+At the bottom of the section you can also find a short example using the functionality.
+
 Involved classes
 ----------------
 
-This section describes the classes related to dynamic types,
-and that are used through the rest of the documentation.
+The following class diagram describes the relationship among the classes related to dynamic types.
+Please, refer to the description of each class to find its purpose and the nature of the relationship
+with the rest of the classes.
 
 .. figure:: /01-figures/dynamic_types_class_diagram.svg
     :align: center
 
     Dynamic types class diagram
 
+* :ref:`dynamictypes_overview_dynamictype`
+* :ref:`dynamictypes_overview_dynamictypebuilderfactory`
+* :ref:`dynamictypes_overview_dynamictypebuilder`
+* :ref:`dynamictypes_overview_typedescriptor`
+* :ref:`dynamictypes_overview_dynamictypemember`
+* :ref:`dynamictypes_overview_memberdescriptor`
+* :ref:`dynamictypes_overview_dynamicdata`
+* :ref:`dynamictypes_overview_dynamicdatafactory`
+* :ref:`dynamictypes_overview_dynamicpubsubtype`
 
 .. _dynamictypes_overview_dynamictype:
 
@@ -66,9 +79,8 @@ As a shortcut, the builder exposes a function ``build`` that internally uses the
 The types created with ``build`` are still subject to the :ref:`dynamictypes_memorymanagement`
 restrictions, and must be deleted by the :ref:`dynamictypes_overview_dynamictypebuilderfactory`.
 
-The same builder can be reused to create a different :ref:`dynamictypes_overview_dynamictype`,
-i.e., one of the same type but different inner structure.
-The changes applied to the builder do not affect to types created previously.
+Builders can be reused after the creation of a :ref:`dynamictypes_overview_dynamictype`, as
+the changes applied to the builder do not affect to types created previously.
 
 
 .. _dynamictypes_overview_typedescriptor:

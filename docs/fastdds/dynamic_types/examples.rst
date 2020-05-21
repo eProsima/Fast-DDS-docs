@@ -3,6 +3,10 @@
 Dynamic HelloWorld Examples
 ===========================
 
+These are complete working examples that make use of dynamic types.
+You can explore them to find how this feature connects to the rest of Fast DDS,
+and learn how to integrate it in your own application.
+
 DynamicHelloWorldExample
 ------------------------
 

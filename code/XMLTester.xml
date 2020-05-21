@@ -1691,7 +1691,7 @@
 <!--><-->
 
 <!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->
-<participant profile_name="UDP CLIENT">
+<participant profile_name="UDP CLIENT REDUNDANCY">
     <rtps>
         <builtin>
             <discovery_config>
@@ -1800,18 +1800,6 @@
 </participant>
 <!--><-->
 
-<!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
-<participant profile_name="participant_profile_static_pub">
-    <rtps>
-        <name>HelloWorldPublisher</name>
-        <builtin>
-            <discovery_config>
-                <EDP>STATIC</EDP>
-                <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
 <!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
 <participant profile_name="participant_profile_static_pub">
     <rtps>

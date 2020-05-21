@@ -134,7 +134,7 @@ To enable this builtin TypeLookup Service, the user must enable it in the
    :language: c++
    :start-after: //DDS_TYPELOOKUP_SERVICE_ENABLING
    :end-before: //!--
-   :dedent: 4
+   :dedent: 8
 
 A participant can be enabled to act as a TypeLookup server, client, or both.
 

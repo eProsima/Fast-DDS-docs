@@ -38,7 +38,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataWriter and DataReader entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. warning::
     For DataWriters and DataReaders to match, they must follow the compatibility rule. See :ref:`disableacks_compatibilityrule`
@@ -122,7 +122,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DomainParticipant entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _remotelocatorsallocationattributes:
 
@@ -284,7 +284,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataWriter entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _publishmodeqospolicykind:
 
@@ -335,7 +335,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataReader entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 Example
 """""""
@@ -394,7 +394,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataWriter and DataReader entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _memorymanagementpolicy:
 
@@ -455,7 +455,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataReader entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _readertimes:
 
@@ -520,7 +520,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataWriter entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _writertimes:
 
@@ -599,7 +599,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DomainParticipant entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _transportdescriptorinterface:
 
@@ -664,7 +664,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataReader entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 Example
 """""""
@@ -679,7 +679,7 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.
 
 .. _wireprotocolconfigqos:
 
@@ -721,7 +721,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DomainParticipant entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _throughputcontrollerdescription:
 
@@ -780,7 +780,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataWriter entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 Example
 """""""

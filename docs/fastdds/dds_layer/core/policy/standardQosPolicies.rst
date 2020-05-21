@@ -348,7 +348,7 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.
 
 .. _groupqospolicy:
 
@@ -388,7 +388,7 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.
 
 .. _historyqospolicy:
 
@@ -740,7 +740,7 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.
 
 .. _ownershipstrengthqospolicy:
 
@@ -776,7 +776,7 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.
 
 .. _partitionqospolicy:
 
@@ -979,7 +979,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataReader entities.
      :raw-html:`<br />`
-     It can be changed on enabled entity.
+     It can be changed on enabled entities.
 
 
 .. _reliabilityqospolicy:
@@ -1008,7 +1008,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to Topic, DataWriter and DataReader entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. warning::
     For DataWriters and DataReaders to match, they must follow the compatibility rule. See :ref:`reliability_compatibilityrule`
@@ -1026,7 +1026,7 @@ There are two possible values:
   Presumably new values for the samples are generated often enough that it is not necessary to re-send any sample.
   However, the data samples sent by the same DataWriter will be stored in the DataReader history in the same order they
   occur.
-  In other words, even if the DataReader misses some data samples, an older value will never be overwrite a newer value.
+  In other words, even if the DataReader misses some data samples, an older value will never overwrite a newer value.
 * ``RELIABLE_RELIABILITY_QOS``: It indicates that the service will attempt to deliver all samples of the DataWriter's
   history expecting an arrival confirmation from the DataReader.
   The data samples sent by the same DataWriter cannot be made available to the DataReader if there are previous samples
@@ -1114,7 +1114,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to Topic, DataWriter and DataReader entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _resourcelimits_consistencyrule:
 
@@ -1174,14 +1174,14 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataReader entities.
      :raw-html:`<br />`
-     It can be changed on enabled entity.
+     It can be changed on enabled entities.
 
 .. _topicdataqospolicy:
 
 TopicDataQosPolicy
 ^^^^^^^^^^^^^^^^^^
 
-Allow the application to attach additional information to a created Topic so that when it is discovered by a remote
+Allows the application to attach additional information to a created Topic so that when it is discovered by a remote
 application, it can access the data and use it.
 
 List of QoS Policy data members:
@@ -1211,7 +1211,7 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.
 
 .. _transportpriorityqospolicy:
 
@@ -1237,7 +1237,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to Topic and DataWriter entities.
      :raw-html:`<br />`
-     It can be changed on enabled entity.
+     It can be changed on enabled entities.
 
 
 .. _userdataqospolicy:
@@ -1245,7 +1245,7 @@ List of QoS Policy data members:
 UserDataQosPolicy
 ^^^^^^^^^^^^^^^^^
 
-Allow the application to attach additional information to the Entity object so that when the entity is discovered
+Allows the application to attach additional information to the Entity object so that when the entity is discovered
 the remote application can access the data and use it.
 For example, it can be used to attach the security credentials to authenticate the source from the remote application.
 
@@ -1260,7 +1260,7 @@ List of QoS Policy data members:
 .. note::
     This QoS Policy concerns to all DDS entities.
     :raw-html:`<br />`
-    It can be changed even if they are already created.
+    It can be changed on enabled entities.
 
 Example
 """""""
@@ -1275,7 +1275,7 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.
 
 .. _writerdatalifecycleqospolicy:
 
@@ -1304,5 +1304,5 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataWriter entities.
      :raw-html:`<br />`
-     It can be changed on enabled entity.
+     It can be changed on enabled entities.
 

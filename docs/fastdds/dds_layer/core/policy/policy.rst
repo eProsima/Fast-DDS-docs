@@ -7,7 +7,8 @@ The Quality of Service (QoS) is used to specify the behavior of the Service, all
 entity will behave.
 To increase the flexibility of the system, the QoS is decomposed in several QoS Policies that can be configured
 independently.
-However, there may be cases where several policies conflict.
+However, there may be cases where several policies conflict. Those conflicts are notified to the user through the
+`ReturnCodes` that the QoS setter functions returns.
 
 There are QoS Policies that are immutable, which means that only can be specified either at the entity creation or
 before calling the enable operation.

@@ -44,7 +44,7 @@ if it exists.
 That ID is stored on an Instance Handle object declared on Entity base class, which can be accessed using the getter
 function.
 
-All the entities can be created either enable or not enable.
+All the entities can be created either enabled or not enabled.
 By default, the factories are configured to create the
 entities enabled, but it can be changed using the :ref:`EntityFactoryQosPolicy <entityfactoryqospolicy>` on enabled
 factories.

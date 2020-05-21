@@ -30,7 +30,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to Topic, DataReader and DataWriter entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _datarepresentationid:
 
@@ -58,7 +58,7 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.
 
 .. _typeconsistencyenforcementqospolicy:
 
@@ -109,7 +109,7 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to DataReader entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entity.
+     It cannot be changed on enabled entities.
 
 .. _typeconsistencykind:
 
@@ -136,4 +136,4 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML by the moment.
+This QoS Policy cannot be configured using XML for the moment.

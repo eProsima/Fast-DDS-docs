@@ -107,7 +107,7 @@ You can receive data from within a :class:`ReaderListener` callback method as we
 Configuring Readers and Writers
 -------------------------------
 One of the benefits of using the Writer-Reader layer is that it provides new configuration possibilities while
-maintaining the options from the Publisher-Subscriber layer (see :ref:`configuration`).
+maintaining the options from the DDS layer.
 For example, you can set a Writer or a Reader as a Reliable or Best-Effort endpoint as previously:
 
 .. literalinclude:: ../code/CodeTester.cpp

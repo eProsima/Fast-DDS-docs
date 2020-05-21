@@ -389,7 +389,7 @@ Taking advantage of multicast
 
 For topics with several subscribers, it is recommendable to configure them to use multicast instead of unicast.
 By doing so, only one network package will be sent for each sample.
-This will improve both CPU and network usage. Multicast configuration is explained in :ref:`multicast-locators`.
+This will improve both CPU and network usage. Multicast configuration is explained in :ref:`rtpsendpointqos`.
 
 .. _tuning-socket-buffer:
 
@@ -398,8 +398,9 @@ Increasing socket buffers size
 
 In high rate scenarios or large data scenarios, the bottleneck could be the size of the socket buffers.
 Network packages could be dropped because there is no space in the socket buffer.
-Using Reliable :ref:`reliability` *Fast RTPS* will try to recover lost samples, but with the penalty of retransmission.
-Using Best-Effort :ref:`reliability` samples will be definitely lost.
+Using Reliable :ref:`reliabilityqospolicy` *Fast RTPS* will try to recover lost samples, but with the penalty of
+retransmission.
+Using Best-Effort :ref:`reliabilityqospolicy` samples will be definitely lost.
 
 By default *eProsima Fast RTPS* creates socket buffers with the system default size, but you can modify it.
 ``sendSocketBufferSize`` attribute helps to increase the socket buffer used to send data.
@@ -478,10 +479,10 @@ but speeds up the system response when a piece of data is lost.
 Non-strict reliability
 ----------------------
 
-Using a strict reliability, configuring :ref:`history-qos` kind as ``KEEP_ALL``, determines all samples have to be
-received by all subscribers.
+Using a strict reliability, configuring :ref:`historyqospolicykind` kind as ``KEEP_ALL``, determines all samples have to
+be received by all subscribers.
 This implicates a performance decrease in case a lot of samples are dropped.
-If you don't need this strictness, use a non-strict reliability, i.e. configure :ref:`history-qos` kind as
+If you don't need this strictness, use a non-strict reliability, i.e. configure :ref:`historyqospolicykind` kind as
 ``KEEP_LAST``.
 
 Slow down sample rate

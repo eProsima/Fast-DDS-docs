@@ -40,8 +40,8 @@ The following figure shows the hierarchy between all DDS entities:
 
 .. _dds_layer_core_entity_commonchars:
 
-Common Entities Characteristics
--------------------------------
+Common Entity Characteristics
+-----------------------------
 
 All entity types share some characteristics that are common to the concept of an entity.
 
@@ -91,10 +91,8 @@ for each entity type.
 Status
 ^^^^^^
 Each entity is associated with a set of status objects whose value represents the *communication status* of that entity.
-The changes on these status values are the ones that trigger the invocation of the proper
+The changes on these status values are the ones that trigger the invocation of the appropriate
 :ref:`dds_layer_core_entity_commonchars_listener` listener callback to asynchronously inform the application.
-
-The entities expose functions to access the value of its statuses
 
 See :ref:`dds_layer_core_status` for a list of all the status objects and a description of their content.
 There you can also find which status applies to which entity type.

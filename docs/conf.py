@@ -49,6 +49,7 @@ def configure_doxyfile(
     filedata = filedata.replace('@PROJECT_BINARY_DIR@', project_binary_dir)
     filedata = filedata.replace('@PROJECT_SOURCE_DIR@', project_source_dir)
 
+    os.makedirs(os.path.dirname(doxyfile_out), exist_ok=True)
     with open(doxyfile_out, 'w') as file:
         file.write(filedata)
 

@@ -14,6 +14,10 @@ Callbacks that are not overridden will maintain their empty implementation.
 
 * :cpp:func:`on_data_available<eprosima::fastdds::dds::DataReaderListener::on_data_available>`:
   There is new data available for the application on the :ref:`dds_layer_subscriber_dataReader`.
+  There is no queuing of invocations to this callback, meaning that if several new data changes are received
+  at once, only one callback invocation may be issued for all of them, instead of one per change.
+  If the application is retrieving the received data on this callback, it must keep
+  :ref:`reading data<dds_layer_subscriber_accessreceived>` until no new changes are left.
 
 * :cpp:func:`on_subscription_matched<eprosima::fastdds::dds::DataReaderListener::on_subscription_matched>`:
   The :ref:`dds_layer_subscriber_dataReader` has found a

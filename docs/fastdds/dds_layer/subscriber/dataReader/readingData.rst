@@ -44,6 +44,11 @@ These callbacks can be used to retrieve the newly arrived data, as in the follow
    :start-after: //DDS_DATAREADER_READ_LISTENER
    :end-before: //!
 
+.. note::
+   If several new data changes are received at once, the callbacks may be triggered just once,
+   instead of once per change.
+   The application must keep *reading* or *taking* until no new changes are available.
+
 
 .. _dds_layer_subscriber_accessreceived_wait:
 

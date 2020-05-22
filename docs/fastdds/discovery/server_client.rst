@@ -2,196 +2,206 @@
 
 .. _discovery_server:
 
-Server-Client Discovery
------------------------
+Server-Client Discovery Settings
+--------------------------------
 
-This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among participants
-to identify each other) is managed by one or several server participants (left figure), as opposed to simple
-discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast
-protocol.
+This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among
+DomainParticipants to identify each other) is managed by one or several server DomainParticipants (left figure), as
+opposed to simple discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an
+IP multicast protocol.
+A `Discovery-Server <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ tool is available to
+ease client-server setup and testing.
 
-.. image:: /01-figures/ds_uml.png
+.. figure:: /01-figures/fast_dds/discovery/discovery-server.svg
     :align: center
     :width: 50%
 
+    Comparison of Server-Client discovery and Simple discovery mechanisms
+
 .. _DS_key_concepts:
 
-A `Discovery-Server <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ tool is available to ease client-server setup and testing.
 
 Key concepts
 ^^^^^^^^^^^^
 
 In this architecture there are several key concepts to understand:
 
-- The Server-client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard RTPS
-  writers and readers.
+- The Server-Client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard DDS
+  DataWriters and DataReaders.
 
-- Discovery server participants may be *clients* or *servers*. The only difference between them is how they handle
-  meta-traffic. The user traffic, that is, the traffic among the publishers and subscribers they create is
-  role-independent.
+- Discovery server DomainParticipants may be *clients* or *servers*.
+  The only difference between them is how they handle meta-traffic.
+  The user traffic, that is, the traffic among the DataWriters and DataReaders they create is role-independent.
 
 - All *server* and *client* discovery info will be shared with linked *clients*.
-  will be shared with the *server* or *servers* linked to it. Note that a *server* may act as a *client* for other
-  *servers*.
+  will be shared with the *server* or *servers* linked to it.
+  Note that a *server* may act as a *client* for other *servers*.
 
-- *Clients* require a beforehand knowledge of the *servers* they want to link to. Basically it's reduced to the *server*
-  identity (henceforth called ``GuidPrefix``) and a list of locators where the *server* is listening. This locators
-  define also the transport protocol (UDP or TCP) the client will use to contact the *server*.
+- *Clients* require a beforehand knowledge of the *servers* they want to link to.
+  Basically it's reduced to the *server* identity (henceforth called ``GuidPrefix``) and a list of locators where the
+  *server* is listening.
+  This locators define also the transport protocol (UDP or TCP) the client will use to contact the *server*.
 
-    - The ``GuidPrefix`` is the RTPS standard participant unique identifier,  a 12-byte chain. This identifier
-      allows clients to assess whether they are receiving messages from the right server, as each standard RTPS
-      message contains this piece of information.
+  - The ``GuidPrefix`` is the RTPS standard RTPSParticipant unique identifier, a 12-byte chain.
+    This identifier allows clients to assess whether they are receiving messages from the right server, as each
+    standard RTPS message contains this piece of information.
 
-    - The ``GuidPrefix`` is used because the server's IP address may not be a reliable enough server identifier,
-      since several servers can be hosted in the same machine, thus having the same IP, and also because multicast
-      addresses are acceptable addresses.
+    The ``GuidPrefix`` is used because the server's IP address may not be a reliable enough server identifier,
+    since several servers can be hosted in the same machine, thus having the same IP, and also because multicast
+    addresses are acceptable addresses.
 
 - *Servers* do not require any beforehand knowledge of their *clients*, but their ``GuidPrefix`` and locator list (where
   they are listening) must match the one provided to the *clients*.
-
   In order to gather *client* discovery info the following handshake strategy is followed:
 
-     - *Clients* send hailing messages to the *servers* at regular intervals (ping period) until they receive message
-       reception acknowledgement.
+  - *Clients* send hailing messages to the *servers* at regular intervals (ping period) until they receive message
+    reception acknowledgement.
 
-     - *Servers* receive the hailing messages but they don't start at once to share publishers or subscribers info with
-       the newcomers. They only trigger this process at regular intervals (match period). Tuning this period is possible
-       to bundle the discovery info and deliver it more efficiently.
+  - *Servers* receive the hailing messages but they do not start at once to share DataWriters or DataReaders info
+    with the newcomers.
+    They only trigger this process at regular intervals (match period).
+    Tuning this period is possible to bundle the discovery info and deliver it more efficiently.
 
 In order to clarify this discovery setup either on compile time (sources) or runtime (XML files) we are going to split
-it into two sections: one focusing on the main concepts (:ref:`setup by concept <DS_setup_concepts>`) and the other on
-the main attribute structures and XML tags (:ref:`setup by attribute<DS_setup_attributes>`).
+it into two sections: focusing on the main concepts (:ref:`setup by concept <DS_setup_concepts>`), and on
+the main setting structures and XML tags (:ref:`setup by attribute <DS_setup_attributes>`).
 
 .. _DS_setup_concepts:
 
-Server-client setup by concept
+Server-Client setup by concept
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
     :header: "Concept", "Description"
 
-    :ref:`Discovery protocol <DS_discovery_protocol>`, how to make a participant a *client* or a *server*.
-    :ref:`Server unique id <DS_guidPrefx>`, how to link a *clients* to *servers*.
-    :ref:`Seting up transport <DS_locators>`, how to specify which transport to use and make *servers* reachable.
-    :ref:`Pinging period <DS_ping_period>`, how to fine tune server-client handshake.
-    :ref:`Matching period <DS_match_period>`, how to fine tune server deliver efficiency.
+    :ref:`Discovery protocol <DS_discovery_protocol>`, Make a participant a *client* or a *server*.
+    :ref:`Server unique id <DS_guidPrefx>`, Link a *clients* to *servers*.
+    :ref:`Seting up transport <DS_locators>`, Specify which transport to use and make *servers* reachable.
+    :ref:`Pinging period <DS_ping_period>`, Fine tune server-client handshake.
+    :ref:`Matching period <DS_match_period>`, Fine tune server deliver efficiency.
 
 .. _DS_discovery_protocol:
 
-Choosing between client and server
+Choosing between Client and Server
 """"""""""""""""""""""""""""""""""
 
-It's set by the :ref:`Discovery Protocol <discovery_protocol>` general attribute. A participant can only play a role
+It is set by the :ref:`Discovery Protocol <discovery_protocol>` general setting. A participant can only play a role
 (despite the fact that a *server* may act as a *client* of other server). It's mandatory to fill this value because it
-defaults to *simple*.  The values associated with the Server-client discovery are specified in :ref:`discovery settings
-section <DS_DiscoverySettings>`. The examples below show how to manage the corresponding enum attribute and XML tag:
+defaults to *simple*.  The values associated with the Server-Client discovery are specified in :ref:`discovery settings
+section <DS_DiscoverySettings>`. The examples below show how to manage the corresponding enum and XML tag:
 
 .. code-block:: bash
 
-    ParticipantAttributes.rtps.builtin.discovery_config.discoveryProtocol
+    DomainParticipantQos.wire_protocol().builtin.discovery_config.discoveryProtocol
 
 .. code-block:: bash
 
     dds>profiles>participant>rtps>builtin>discovery_config>discoveryProtocol
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL          |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->   |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL                                                                    |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->                                                             |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_guidPrefx:
 
 The server unique identifier ``GuidPrefix``
 """""""""""""""""""""""""""""""""""""""""""
 
-This belongs to the RTPS specification and univocally identifies each DDS participant. It consists on 12 bytes and is a
-key in the DDS domain. In the server-client discovery, it has the purpose to link a *server* to its *clients*.  Note
-that there is an auxiliary **ReadguidPrefix** method to populate the ``GuidPrefix`` using a ``string``.  It must be
-mandatorily specified in: *server side* and *client side* setups.
+This belongs to the RTPS specification univocally identifies each RTPSParticipant.
+It consists on 12 bytes and in Fast DDS is a key for the DomainParticipant used in the DDS domain.
+In the server-client discovery, it has the purpose to link a *server* to its *clients*.
+It must be mandatorily specified in: *server side* and *client side* setups.
 
 Server side setup
 *****************
 
-The examples below show how to manage the corresponding enum attribute and XML tag:
+The examples below show how to manage the corresponding enum data member and XML tag:
 
 .. code-block:: bash
 
-    ParticipantAttributes.rtps.prefix
+    DomainParticipantQos.wire_protocol().prefix
 
 .. code-block:: bash
 
     dds>profiles>participant>rtps>prefix
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX           |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->        |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX                                                                     |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->                                                                  |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
-Note that a *server* can act as a *client* of other *servers*. Thus, the following section may also apply.
+Note that a *server* can act as a *client* of other *servers*.
+Thus, the following section may also apply.
 
 Client side setup
 *****************
 
-Each *client* must keep a list of the *servers* it wants to link to. Each single element represents an individual server
-and a ``GuidPrefix`` must be provided. The *server* list is the attribute:
+Each *client* must keep a list of the *servers* it wants to link to.
+Each single element represents an individual server and a ``GuidPrefix`` must be provided.
+The *server* list is the data memeber:
 
 .. code-block:: bash
 
-    ParticipantAttributes.rtps.builtin.discovery_config.m_DiscoveryServers
+    DomainParticipantQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers
 
-and must be populated with ``RemoteServerAttributes`` objects with a valid ``guidPrefix`` member. In XML the server list
-and its elements are simultaneously specified. Note that ``prefix`` is an attribute of the ``RemoteServer`` tag.
+and must be populated with ``RemoteServerAttributes`` objects with a valid ``guidPrefix`` member.
+In XML the server list and its elements are simultaneously specified.
+Note that ``prefix`` is an attribute of the ``RemoteServer`` tag.
 
 .. code-block:: bash
 
     dds>profiles>participant>rtps>builtin>discovery_config>discoveryServerList>RemoteServer@prefix
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_CLIENT_GUIDPREFIX           |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX<-->        |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_CLIENT_GUIDPREFIX                                                                     |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX<-->                                                                  |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_locators:
 
 The server locator list
 """""""""""""""""""""""
 
-Each *server* must specify valid locators where it can be reached. Any *client* must be given proper locators to
-reach each of its *servers*. As in the :ref:`above section <DS_guidPrefx>`, here there is a *server* and a *client* side
-setup.
+Each *server* must specify valid locators where it can be reached.
+Any *client* must be given proper locators to reach each of its *servers*.
+As in the :ref:`above section <DS_guidPrefx>`, here there is a *server* and a *client* side setup.
 
 Server side setup
 *****************
@@ -201,42 +211,45 @@ metatraffic attributes) and XML tag:
 
 .. code-block:: bash
 
-    ParticipantAttributes.rtps.builtin.(metatrafficMulticastLocatorList|metatrafficUnicastLocatorList)
+    DomainParticipantQos.wire_protocol().builtin.(metatrafficMulticastLocatorList|metatrafficUnicastLocatorList)
 
 .. code-block:: bash
 
     dds>profiles>participant>rtps>builtin>(metatrafficMulticastLocatorList|metatrafficUnicastLocatorList)
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_SERVER_LOCATORS             |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->      |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_SERVER_LOCATORS                                                                       |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->                                                                |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 Note that a *server* can act as a client of other *servers*, thus, the following section may also apply.
 
 Client side setup
 *****************
 
-Each *client* must keep a list of locators associated to the *servers* it wants to link to. Each *server* specifies its
-own locators. The locator list is the attribute:
+Each *client* must keep a list of locators associated to the *servers* it wants to link to.
+Each *server* specifies its own locators.
+The locator list is the attribute:
 
 .. code-block:: bash
 
-    ParticipantAttributes.rtps.builtin.discovery_config.m_DiscoveryServers
+    DomainParticipantQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers
 
 and must be populated with ``RemoteServerAttributes`` objects with a valid ``metatrafficUnicastLocatorList`` or
-``metatrafficMulticastLocatorList`` member. In XML the server list and its elements are simultaneously specified.
+``metatrafficMulticastLocatorList`` member.
+In XML the server list and its elements are simultaneously specified.
 Note the ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList`` attributes of the ``RemoteServer``
 tag.
 
@@ -245,21 +258,22 @@ tag.
     dds>profiles>participant>rtps>builtin>discovery_config>discoveryServerList>RemoteServer@metatrafficUnicastLocatorList
     dds>profiles>participant>rtps>builtin>discovery_config>discoveryServerList>RemoteServer@metatrafficMulticastLocatorList
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_CLIENT_LOCATORS             |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->      |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_CLIENT_LOCATORS                                                                       |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->                                                                |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_ping_period:
 
@@ -267,11 +281,12 @@ Client ping period
 """"""""""""""""""
 
 As explained :ref:`above <DS_key_concepts>` the *clients* send hailing messages to the *servers* at regular
-intervals (ping period) until they receive message reception acknowledgement. This period is specified in the member:
+intervals (ping period) until they receive message reception acknowledgement.
+This period is specified in the member:
 
 .. code-block:: bash
 
-    ParticipantAttributes.rtps.builtin.discovery_config.discoveryServer_client_syncperiod
+    DomainParticipantQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod
 
 or the XML tag:
 
@@ -279,35 +294,37 @@ or the XML tag:
 
     dds>profiles>participant>rtps>builtin>discovery_config>clientAnnouncementPeriod
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_CLIENT_PING                 |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-CLIENT-PING<-->          |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_CLIENT_PING                                                                           |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-CLIENT-PING<-->                                                                    |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_match_period:
 
 Server match period
 """""""""""""""""""
 
-As explained :ref:`above <DS_key_concepts>` the *Servers* received the hailing messages but they don't start at once to
-share publishers or subscribers info with the newcomers. They only trigger this process at regular intervals (match
-period). Note that this member is shared with the *client* setup but its name references solely the *client*
-functionality. This period is specified in the member:
+As explained :ref:`above <DS_key_concepts>` the *Servers* received the hailing messages but they do not start at once to
+share DataWriters or DataReaders info with the newcomers.
+They only trigger this process at regular intervals (match period).
+Note that this member is shared with the *client* setup but its name references solely the *client* functionality.
+This period is specified in the member:
 
 .. code-block:: bash
 
-    ParticipantAttributes.rtps.builtin.discovery_config.discoveryServer_client_syncperiod
+    DomainParticipantQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod
 
 or the XML tag:
 
@@ -315,128 +332,133 @@ or the XML tag:
 
     dds>profiles>participant>rtps>builtin>discovery_config>clientAnnouncementPeriod
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_SERVER_PING                 |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-SERVER-PING<-->          |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_SERVER_PING                                                                           |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-SERVER-PING<-->                                                                    |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 
 .. _DS_setup_attributes:
 
-Server-client setup by attribute
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Server-Client setup by Qos
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The settings related with server-client discovery are:
 
 .. csv-table::
     :header: "Name", "Description"
-    :widths: 20,100
 
-    :ref:`RTPSParticipantAttributes <DS_RTPSParticipantAttributes>`, "Specifies general participant settings. Some of
-    them must be modified in order to properly configure a Server like the ``GuidPrefix``."
-    :ref:`BuiltinAttributes <DS_BuiltinAttributes>`, "It's a member of the above *RTPSParticipantAttributes* structure.
-    Allows to specify some mandatory server discovery settings like the |br| addresses were it listens for
-    clients discovery info."
-    :ref:`DiscoverySettings <DS_DiscoverySettings>`, "It's a member of the above *BuiltinAttributes* structure. Allows
-    to specify some mandatory client an optional server settings like the: |br| whether it is a client or
-    a server or the list of servers it is linked to or the client-ping, server-match frequencies."
+    :ref:`WireProtocolConfigQos <DS_WireProtocolConfigQos>` |br| (|DomainParticipantQosWireProtocol|), "
+    Specifies wire protocol settings for a DomainParticipant. |br|
+    Some of it data members must be modified in order to properly configure a Server. |br|
+    An example is the |DomainParticipantQosWireProtocolPrefix| data member."
+    :ref:`RTPS BuiltinAttributes <DS_BuiltinAttributes>` |br| (|DomainParticipantQosWireProtocolBuiltin|), "
+    It is a public data member of the above |DomainParticipantQosWireProtocolClass| class. |br|
+    Allows to specify some mandatory server discovery settings like the addresses were it |br|
+    listens for clients discovery info."
+    :ref:`DiscoverySettings <DS_DiscoverySettings>`, "
+    It is a member of the above :class:`BuiltinAttributes` structure. |br|
+    Allows to specify some mandatory and optional Server-Client discovery settings such as |br|
+    whether the DomainParticipant is a client or a server, the list of servers it is linked to, |br|
+    the client-ping, and the server-match frequencies."
 
-.. _DS_RTPSParticipantAttributes:
+.. _DS_WireProtocolConfigQos:
 
-RTPSParticipantAttributes
-"""""""""""""""""""""""""
+WireProtocolConfigQos
+"""""""""""""""""""""
 
-A ``GuidPrefix_t guidPrefix`` member specifies the server's identity. This member has only significance if
-``discovery_config.discoveryProtocol`` is **SERVER** or **BACKUP**. There is a ``ReadguidPrefix`` method to easily fill
-in this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"`` (note that each byte must be a
-valid hexadecimal figure).
+The |DomainParticipantQosWireProtocolPrefix| data member of the |DomainParticipantQosWireProtocol| class
+specifies the server's identity.
+This member has only significance if ``discovery_config.discoveryProtocol`` is **SERVER** or **BACKUP**.
 
-+-----------------------------------------------------+
-| **C++**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp         |
-|    :language: c++                                   |
-|    :start-after: //CONF_SERVER_PREFIX_EXAMPLE       |
-|    :end-before: //!--                               |
-+-----------------------------------------------------+
-| **XML**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml          |
-|    :language: xml                                   |
-|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX     |
-|    :end-before: <!--><-->                           |
-+-----------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX                                                                     |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX                                                                      |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_BuiltinAttributes:
 
-BuiltinAttributes
-"""""""""""""""""
+RTPS BuiltinAttributes
+""""""""""""""""""""""
 
-All discovery related info is gathered in a DiscoverySettings_ ``discovery_config`` member.
+All discovery related info is gathered in the :ref:`DS_DiscoverySettings` ``discovery_config`` data member.
 
 In order to receive client metatraffic, ``metatrafficUnicastLocatorList`` or
-``metatrafficMulticastLocatorList`` must be populated with the addresses that were given to
+``metatrafficMulticastLocatorList`` must be populated with the addresses (IP and port) that were given to
 the clients.
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_METATRAFFICUNICAST          |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-METATRAFFICUNICASTLOCATOR|
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_METATRAFFICUNICAST                                                                    |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-METATRAFFICUNICASTLOCATOR                                                          |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_DiscoverySettings:
 
 DiscoverySettings
 """""""""""""""""
 
-A ``discoveryProtocol`` member (:ref:`discovery_protocol`) specifies the participant's discovery kind. As was explained
-before to setup a server-client discovery it may be:
+The :class:`discoveryProtocol` enum data member (:ref:`discovery_protocol`) specifies the participant's discovery kind.
+As was explained before, to setup the Server-Client discovery it may be:
 
 .. csv-table::
     :header: "enum value", "Description"
     :widths: 15, 100
 
-    CLIENT, "Generates a client participant, which relies on a server (or servers) to be notified of other clients
-    presence.
-    |br|
-    This participant can create publishers and subscribers of any topic (static or
-    dynamic) as ordinary participants do."
-    SERVER, "Generates a server participant, which receives, manages and spreads
-    its linked client's metatraffic assuring any single one is aware of the others. |br| This participant
-    can create publishers and subscribers of any topic (static or dynamic) as ordinary participants do.
-    |br|
+    CLIENT, "
+    Generates a client DomainParticipant, which relies on a server (or servers) to be notified of other clients |br|
+    presence. This DomainParticipant can create DataWriters and DataReaders of any topic (static or dynamic) as |br|
+    ordinary DomainParticipants do."
+    SERVER, "
+    Generates a server DomainParticipant, which receives, manages and spreads its mathed client's metatraffic |br|
+    assuring any single one is aware of the others. This DomainParticipant can create DataWriters and |br|
+    DataReaders of any topic (static or dynamic) as ordinary DomainParticipants do. |br|
     Servers can link to other servers in order to share its clients information."
-    BACKUP, "Generates a server
-    participant with additional functionality over **SERVER**. |br|
-    Specifically, it uses a database to
-    backup its client information, so that if for whatever reason it disappears, it can be automatically restored and
-    |br| continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to
+    BACKUP, "
+    Generates a server DomainParticipant with additional functionality over **SERVER**. Specifically, it uses a |br|
+    database to backup its client information, so that this information can be automatically restored at any |br|
+    moment and continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to |br|
     collect client information again, introducing a recovery delay."
 
-A ``RemoteServerList_t m_DiscoveryServers`` that lists the servers linked to a client participant. This member has only
-significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP**. These member elements are
-``RemoteServerAttributes`` objects that identify each server and report where the servers can be reached:
+A :class:`DiscoveryServers` that lists the servers linked to a client DomainParticipant. This member
+has only significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP**.
+These member elements are :class:`RemoteServerAttributes` objects that identify each server and report where the
+servers can be reached:
 
 .. list-table::
    :header-rows: 1
@@ -444,44 +466,36 @@ significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP*
    * - Attribute
      - Description
    * - ``GuidPrefix_t guidPrefix``
-     - Is the RTPS unique identifier of the server participant we want to link to. There is a ``ReadguidPrefix``
-       |br|
-       method to easily fill in this member from a string formatted like ``"4D.49.47.55.45.4c.5f.42.41.52.52.4f"``
-       |br|
-       (note that each octet must be a valid hexadecimal figure).
-   * - ``metatrafficUnicastLocatorList`` and ``metatrafficMulticastLocatorList``
-     - Are ordinary ``LocatorList_t`` (see :ref:`LocatorListType`) where the server's locators must be specified.
-       |br| At least one of them should be populated.
+     - Is the RTPS unique identifier of the server DomainParticipant we want to link to.
+   * - ``metatrafficUnicastLocatorList`` |br| ``metatrafficMulticastLocatorList``
+     - Are ordinary ``LocatorList_t`` (see :ref:`LocatorListType`) where the server's |br|
+       locators must be specified. At least one of them should be populated.
    * - ``Duration_t discoveryServer_client_syncperiod``
-     - Has only significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP**.
-       |br|
-       For a *client* it specifies the pinging period as explained in :ref:`key concepts <DS_key_concepts>`.
-       |br|
-       When a client has not yet established a reliable connection to a server it *pings* until
-       the server notices |br| him and establishes the connection.
-       |br|
-       For a *server* it specifies the match period as explained in :ref:`key concepts <DS_key_concepts>`.
-       |br|
-       When a *server* discovers new *clients* it only starts exchanging info with them at regular
-       |br|
-       intervals as a mechanism to bundle discovery info and optimize delivery.
-       |br|
+     - Has only significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or |br|
+       **BACKUP**. For a *client* it specifies the pinging period as explained in |br|
+       :ref:`key concepts <DS_key_concepts>`. When a client has not yet established a |br|
+       reliable connection to a server it *pings* until the server notices him and |br|
+       establishes the connection. |br|
+       For a *server* it specifies the match period as explained in :ref:`key concepts <DS_key_concepts>`. |br|
+       When a *server* discovers new *clients* it only starts exchanging info with them |br|
+       at regular intervals as a mechanism to bundle discovery info and optimize delivery. |br|
        The default value is half a second.
 
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
-|    :language: c++                                          |
-|    :start-after: //CONF_SERVER_PING                        |
-|    :end-before: //!--                                      |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF-SERVER-PING                     |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_PING                                                                                  |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-SERVER-PING                                                                               |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 

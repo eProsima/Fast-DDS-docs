@@ -514,7 +514,6 @@ void dds_discovery_examples()
 {
     {
         eprosima::fastdds::dds::DomainParticipantQos pqos;
-
         //CONF-DISCOVERY-PROTOCOL
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 eprosima::fastrtps::rtps::DiscoveryProtocol_t::SIMPLE;
@@ -551,9 +550,130 @@ void dds_discovery_examples()
         pqos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
         //!--
 
+        //CONF_QOS_STATIC_DISCOVERY_USERID
+        // Configure the DataWriter
+        eprosima::fastdds::dds::DataWriterQos wqos;
+        wqos.endpoint().user_defined_id = 1;
+
+        // Configure the DataReader
+        eprosima::fastdds::dds::DataReaderQos rqos;
+        rqos.endpoint().user_defined_id = 3;
+        //!--
+
         //CONF_STATIC_DISCOVERY_XML
         pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
         pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
+        //!--
+    }
+    {
+        //CONF_SERVER_DISCOVERY_PROTOCOL
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::BACKUP;
+        //!--
+    }
+    {
+        //CONF_SERVER_SERVER_GUIDPREFIX
+        using namespace eprosima::fastrtps::rtps;
+
+        GuidPrefix_t serverGuidPrefix;
+        serverGuidPrefix.value[0] = octet(0x77);
+        serverGuidPrefix.value[1] = octet(0x73);
+        serverGuidPrefix.value[2] = octet(0x71);
+        serverGuidPrefix.value[3] = octet(0x85);
+        serverGuidPrefix.value[4] = octet(0x69);
+        serverGuidPrefix.value[5] = octet(0x76);
+        serverGuidPrefix.value[6] = octet(0x95);
+        serverGuidPrefix.value[7] = octet(0x66);
+        serverGuidPrefix.value[8] = octet(0x65);
+        serverGuidPrefix.value[9] = octet(0x82);
+        serverGuidPrefix.value[10] = octet(0x82);
+        serverGuidPrefix.value[11] = octet(0x79);
+
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        serverQos.wire_protocol().prefix = serverGuidPrefix;
+        //!--
+    }
+    {
+        //CONF_SERVER_METATRAFFICUNICAST
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        locator.port = 64863;
+
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        serverQos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
+        //!--
+    }
+    {
+        //CONF_SERVER_CLIENT_GUIDPREFIX
+        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+
+        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
+        //!--
+    }
+    {
+        //CONF_SERVER_CLIENT_LOCATORS
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        locator.port = 64863;
+        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        server.metatrafficUnicastLocatorList.push_back(locator);
+
+        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
+        //!--
+    }
+
+    {
+        //CONF_SERVER_SERVER_LOCATORS
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        locator.port = 64863;
+
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        serverQos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
+        //!--
+    }
+
+    {
+        //CONF_SERVER_CLIENT_PING
+        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        clientQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
+                Duration_t(0, 250000000);
+        //!--
+    }
+
+    {
+        //CONF_SERVER_SERVER_PING
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        serverQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
+                Duration_t(0, 250000000);
+        //!--
+    }
+
+    {
+        //CONF_SERVER_PING
+        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        locator.port = 64863;
+        server.metatrafficUnicastLocatorList.push_back(locator);
+
+        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        clientQos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
+        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
+        clientQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
+                Duration_t(0, 250000000);
         //!--
     }
 }

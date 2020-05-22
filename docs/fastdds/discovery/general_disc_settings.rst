@@ -166,7 +166,8 @@ when there is no data traffic.  It is important to note that there is a trade-of
 announcement period, i.e. too frequent announcements will bloat the network with meta traffic, but too scarce ones will
 delay the discovery of late joiners.
 
-DomainParticipant's announcement period is specified as a time expressed in seconds and nanosecond using a ``Duration_t``.
+DomainParticipant's announcement period is specified as a time expressed in seconds and nanosecond using a
+``Duration_t``.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |

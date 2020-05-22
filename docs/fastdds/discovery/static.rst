@@ -1,3 +1,5 @@
+.. include:: includes/aliases.rst
+
 .. _discovery_static:
 
 STATIC Discovery Settings
@@ -11,17 +13,18 @@ If all DataWriters and DataReaders, and their Topics and data types, are known b
 with a static configuration of peers.
 It is important to note that by doing this, no EDP discovery meta traffic will be generated, and only those peers
 defined in the configuration will be able to communicate.
-The STATIC endpoint discovery related settings are:
+The STATIC discovery related settings are:
 
-+------------------------------+-----------------------------------------------------------------------------------+
-| Name                         | Description                                                                       |
-+==============================+===================================================================================+
-| :ref:`static_edp`            | It activates the STATIC endpoint discovery protocol                               |
-+------------------------------+-----------------------------------------------------------------------------------+
-| :ref:`static_xml`            | Specifies an XML file containing a description of the remote endpoints.           |
-+------------------------------+-----------------------------------------------------------------------------------+
-| :ref:`Initial Announcements` | It defines the behavior of the RTPSParticipant initial announcements (PDP phase). |
-+------------------------------+-----------------------------------------------------------------------------------+
++------------------------------+---------------------------------------------------------------------------------------+
+| Name                         | Description                                                                           |
++==============================+=======================================================================================+
+| :ref:`static_edp`            | It activates the STATIC discovery protocol                                            |
++------------------------------+---------------------------------------------------------------------------------------+
+| :ref:`static_xml`            | Specifies an XML file containing a description of the remote DataWriters and |br|     |
+| :ref:`static_xml`            | DataReaders.                                                                          |
++------------------------------+---------------------------------------------------------------------------------------+
+| :ref:`Initial Announcements` | It defines the behavior of the DomainParticipant initial announcements (PDP phase).   |
++------------------------------+---------------------------------------------------------------------------------------+
 
 .. _static_edp:
 
@@ -34,10 +37,11 @@ This can be done either by code or using an XML configuration file:
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
 |    :language: c++                                                                                                    |
 |    :start-after: //CONF_STATIC_DISCOVERY_CODE                                                                        |
 |    :end-before: //!                                                                                                  |
+|    :dedent: 8                                                                                                        |
 +----------------------------------------------------------------------------------------------------------------------+
 | **XML**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
@@ -52,12 +56,12 @@ This can be done either by code or using an XML configuration file:
 STATIC EDP XML Files Specification
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Since activating STATIC EDP suppresses all EDP meta traffic, the information about the remote entities (publishers and
-subscribers) must be statically specified, which is done using dedicated XML files.
-A participant may load several of such configuration files so that the information about different endpoints can be
+Since activating STATIC EDP suppresses all EDP meta traffic, the information about the remote entities (DataWriters and
+DataReaders) must be statically specified, which is done using dedicated XML files.
+A DomainParticipant may load several of such configuration files so that the information about different entities can be
 contained in one file, or split into different files to keep it more organized.
-Fast-RTPS  provides a
-`Static Endpoint Discovery example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_
+Fast DDS  provides a
+`Static Discovery example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/DDS/StaticHelloWorldExample>`_
 that implements this EDP discovery protocol.
 
 The following table describes all the possible attributes of a STATIC EDP XML configuration file.
@@ -74,54 +78,49 @@ A full example of such file can be found in :ref:`static_xml_example`.
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
 | Name                   | Description                                           | Values            | Default         |
 +========================+=======================================================+===================+=================+
-| ``<userId>``           | Mandatory.                                            | ``uint16_t``      | 0               |
-|                        | Uniquely identifies the endpoint.                     |                   |                 |
+| ``<userId>``           | Mandatory. |br|                                       | ``uint16_t``      | 0               |
+|                        | Uniquely identifies the DataReader/DataWriter.        |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<entityID>``         | EntityId of the endpoint.                             | ``uint16_t``      | 0               |
+| ``<entityID>``         | EntityId of the DataReader/DataWriter.                | ``uint16_t``      | 0               |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<expectsInlineQos>`` | It indicates if QOS is                                | ``bool``          | ``false``       |
-|                        | expected inline.                                      |                   |                 |
-|                        | (reader **only**)                                     |                   |                 |
+| ``<expectsInlineQos>`` | It indicates if QOS is expected inline. |br|          | ``bool``          | ``false``       |
+|                        | (DataReader **only**)                                 |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<topicName>``        | Mandatory.                                            | ``string_255``    |                 |
-|                        | The topic of the remote endpoint.                     |                   |                 |
-|                        | Should match with one of the                          |                   |                 |
-|                        | topics of the local participant.                      |                   |                 |
+| ``<topicName>``        | Mandatory. |br|                                       | ``string_255``    |                 |
+|                        | The topic of the remote DataReader/DataWriter. |br|   |                   |                 |
+|                        | Should match with one of the topics of the local |br| |                   |                 |
+|                        | DataReaders/DataWriters.                              |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<topicDataType>``    | Mandatory.                                            | ``string_255``    |                 |
+| ``<topicDataType>``    | Mandatory. |br|                                       | ``string_255``    |                 |
 |                        | The data type of the topic.                           |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
 | ``<topicKind>``        | The kind of topic.                                    | :class:`NO_KEY`   | :class:`NO_KEY` |
 |                        |                                                       +-------------------+                 |
 |                        |                                                       | :class:`WITH_KEY` |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<partitionQos>``     | The name of a partition of the                        | ``string``        |                 |
-|                        | remote peer. Repeat to configure                      |                   |                 |
-|                        | several partitions.                                   |                   |                 |
+| ``<partitionQos>``     | The name of a partition of the remote peer. |br|      | ``string``        |                 |
+|                        | Repeat to configure several partitions.               |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<unicastLocator>``   | Unicast locator of the                                |                   |                 |
-|                        | participant.                                          |                   |                 |
+| ``<unicastLocator>``   | Unicast locator of the DomainParticipant. |br|        |                   |                 |
 |                        | See :ref:`staticLocators`.                            |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<multicastLocator>`` | Multicast locator of the                              |                   |                 |
-|                        | participant.                                          |                   |                 |
+| ``<multicastLocator>`` | Multicast locator of the DomainParticipant. |br|      |                   |                 |
 |                        | See :ref:`staticLocators`.                            |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<reliabilityQos>``   | See the :ref:`reliability`                            | |besteffort|      | |besteffort|    |
-|                        | section.                                              +-------------------+                 |
+| ``<reliabilityQos>``   | See the :ref:`reliabilityqospolicy` section.          | |besteffort|      | |besteffort|    |
+|                        |                                                       +-------------------+                 |
 |                        |                                                       | |reliable|        |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<durabilityQos>``    | See the                                               | |volatile|        | |volatile|      |
-|                        | :ref:`SettingDataDurability`                          +-------------------+                 |
-|                        | section.                                              | |transientlocal|  |                 |
+| ``<durabilityQos>``    | See the :ref:`durabilityqospolicy` section.           | |volatile|        | |volatile|      |
+|                        |                                                       +-------------------+                 |
+|                        |                                                       | |transientlocal|  |                 |
 |                        |                                                       +-------------------+                 |
 |                        |                                                       | |transient|       |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<ownershipQos>``     | See                                                   |                   |                 |
-|                        | :ref:`ownershipQos`.                                  |                   |                 |
+| ``<ownershipQos>``     | See :ref:`ownershipQos`.                              |                   |                 |
+|                        |                                                       |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<livelinessQos>``    | Defines the liveliness of the                         |                   |                 |
-|                        | remote peer.                                          |                   |                 |
+| ``<livelinessQos>``    | Defines the liveliness of the remote peer. |br|       |                   |                 |
 |                        | See :ref:`livelinessQos`.                             |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
 
@@ -173,12 +172,13 @@ It takes no value, and the configuration is done using tag attributes:
 STATIC EDP XML Example
 """"""""""""""""""""""
 
-The following is a complete example of a configuration XML file for two remote participants, a publisher and a
-subscriber.
-This configuration **must** agree with the configuration used to create the remote endpoint.
-Otherwise, communication between endpoints may be affected.
+The following is a complete example of a configuration XML file for two remote DomainParticipants, a DataWriter and a
+DataReader.
+This configuration **must** agree with the configuration used to create the remote DataReader/DataWriter.
+Otherwise, communication between DataReaders and DataWriters may be affected.
 If any non-mandatory element is missing, it will take the default value.
-As a rule of thumb, all the elements that were specified on the remote endpoint creation should be configured.
+As a rule of thumb, all the elements that were specified on the remote DataReader/DataWriter creation should be
+configured.
 
 +-------------------------------------------------+
 | **XML**                                         |
@@ -194,17 +194,18 @@ As a rule of thumb, all the elements that were specified on the remote endpoint 
 Loading STATIC EDP XML Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Statically discovered remote endpoints **must** define a unique *userID* on their profile, whose value **must** agree
-with the one specified in the discovery configuration XML.
+Statically discovered remote DataReaders/DataWriters **must** define a unique *userID* on their profile, whose value
+**must** agree with the one specified in the discovery configuration XML.
 This is done by setting the user ID on the entity attributes:
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
 |    :language: c++                                                                                                    |
 |    :start-after: //CONF_QOS_STATIC_DISCOVERY_USERID                                                                  |
 |    :end-before: //!                                                                                                  |
+|    :dedent: 8                                                                                                        |
 +----------------------------------------------------------------------------------------------------------------------+
 | **XML**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
@@ -219,10 +220,11 @@ On the local participant, loading STATIC EDP configuration files is done by:
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
 |    :language: c++                                                                                                    |
 |    :start-after: //CONF_STATIC_DISCOVERY_XML                                                                         |
 |    :end-before: //!                                                                                                  |
+|    :dedent: 8                                                                                                        |
 +----------------------------------------------------------------------------------------------------------------------+
 | **XML**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+

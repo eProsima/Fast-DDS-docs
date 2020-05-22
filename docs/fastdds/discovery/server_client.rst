@@ -163,7 +163,7 @@ Client side setup
 
 Each *client* must keep a list of the *servers* it wants to link to.
 Each single element represents an individual server and a ``GuidPrefix`` must be provided.
-The *server* list is the data memeber:
+The *server* list is the data member:
 
 .. code-block:: bash
 
@@ -445,7 +445,7 @@ As was explained before, to setup the Server-Client discovery it may be:
     presence. This DomainParticipant can create DataWriters and DataReaders of any topic (static or dynamic) as |br|
     ordinary DomainParticipants do."
     SERVER, "
-    Generates a server DomainParticipant, which receives, manages and spreads its mathed client's metatraffic |br|
+    Generates a server DomainParticipant, which receives, manages and spreads its matched client's metatraffic |br|
     assuring any single one is aware of the others. This DomainParticipant can create DataWriters and |br|
     DataReaders of any topic (static or dynamic) as ordinary DomainParticipants do. |br|
     Servers can link to other servers in order to share its clients information."

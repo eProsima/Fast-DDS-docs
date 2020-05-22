@@ -6,5 +6,5 @@ DurabilityQosPolicyKind
 -----------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::DurabilityQosPolicyKind
-    :project: Fast RTPS
+    :project: FastDDS
 

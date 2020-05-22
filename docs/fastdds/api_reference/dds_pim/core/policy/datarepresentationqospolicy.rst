@@ -6,6 +6,6 @@ DataRepresentationQosPolicy
 ---------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DataRepresentationQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

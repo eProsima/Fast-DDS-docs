@@ -6,6 +6,6 @@ DeadlineQosPolicy
 -----------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DeadlineQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

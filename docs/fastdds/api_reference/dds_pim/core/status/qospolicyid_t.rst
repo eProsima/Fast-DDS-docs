@@ -6,4 +6,4 @@ QosPolicyId_t
 -------------
 
 .. doxygentypedef:: eprosima::fastdds::dds::QosPolicyId_t
-    :project: Fast RTPS
+    :project: FastDDS

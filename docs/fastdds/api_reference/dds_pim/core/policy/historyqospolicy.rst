@@ -6,6 +6,6 @@ HistoryQosPolicy
 ----------------
 
 .. doxygenclass:: eprosima::fastdds::dds::HistoryQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

@@ -16,9 +16,76 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import os
+import pathlib
+import subprocess
+
+def configure_doxyfile(
+    doxyfile_in,
+    doxyfile_out,
+    input_dir,
+    output_dir,
+    project_binary_dir,
+    project_source_dir
+):
+    """
+    Configure Doxyfile in the CMake style.
+
+    :param doxyfile_in: Path to input Doxygen configuration file
+    :param doxyfile_out: Path to output Doxygen configuration file
+    :param input_dir: CMakeLists.txt value of DOXYGEN_INPUT_DIR
+    :param output_dir: CMakeLists.txt value of DOXYGEN_OUTPUT_DIR
+    :param project_binary_dir: CMakeLists.txt value of PROJECT_BINARY_DIR
+    :param project_source_dir: CMakeLists.txt value of PROJECT_SOURCE_DIR
+    """
+    print('Configuring Doxyfile')
+    with open(doxyfile_in, 'r') as file:
+        filedata = file.read()
+
+    filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
+    filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
+    filedata = filedata.replace('@PROJECT_BINARY_DIR@', project_binary_dir)
+    filedata = filedata.replace('@PROJECT_SOURCE_DIR@', project_source_dir)
+
+    with open(doxyfile_out, 'w') as file:
+        file.write(filedata)
+
+script_path = pathlib.Path(__file__).parent.absolute()
+# Project directories
+project_source_dir = '{}/../code'.format(script_path)
+project_binary_dir = '{}/../build/code'.format(script_path)
+output_dir = '{}/doxygen'.format(project_binary_dir)
+
+# Doxyfile
+doxyfile_in = '{}/doxygen-config.in'.format(project_source_dir)
+doxyfile_out = '{}/doxygen-config'.format(project_binary_dir)
+
+# Header files
+input_dir = '{}/external/eprosima/src/fastrtps/include/fastdds'.format(
+    project_binary_dir
+)
+
+# Check if we're running on Read the Docs' servers
+read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+if read_the_docs_build:
+    # Configure Doxyfile
+    configure_doxyfile(
+        doxyfile_in,
+        doxyfile_out,
+        input_dir,
+        output_dir,
+        project_binary_dir,
+        project_source_dir
+    )
+    # Generate doxygen documentation
+    subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
+
+breathe_projects = {
+    'FastDDS': '{}/xml'.format(output_dir)
+}
+breathe_default_project = 'FastDDS'
 
 # -- General configuration ------------------------------------------------
 
@@ -364,6 +431,3 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
 # texinfo_no_detailmenu = False
-
-breathe_projects = { "Fast RTPS": "../build/code/doxygen/xml/" }
-breathe_default_project = "Fast RTPS"

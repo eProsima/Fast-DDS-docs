@@ -6,4 +6,4 @@ OfferedIncompatibleQosStatus
 ----------------------------
 
 .. doxygentypedef:: eprosima::fastdds::dds::OfferedIncompatibleQosStatus
-    :project: Fast RTPS
+    :project: FastDDS

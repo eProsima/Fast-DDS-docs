@@ -6,6 +6,6 @@ TimeBasedFilterQosPolicy
 ------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TimeBasedFilterQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

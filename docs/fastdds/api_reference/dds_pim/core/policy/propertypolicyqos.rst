@@ -6,5 +6,5 @@ PropertyPolicyQos
 -----------------
 
 .. doxygentypedef:: eprosima::fastdds::dds::PropertyPolicyQos
-    :project: Fast RTPS
+    :project: FastDDS
 

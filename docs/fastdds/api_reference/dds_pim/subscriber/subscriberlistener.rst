@@ -6,5 +6,5 @@ SubscriberListener
 ------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::SubscriberListener
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

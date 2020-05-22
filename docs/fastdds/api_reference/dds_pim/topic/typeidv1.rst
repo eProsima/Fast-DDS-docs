@@ -6,6 +6,6 @@ TypeIdV1
 --------
 
 .. doxygenclass:: eprosima::fastdds::dds::TypeIdV1
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

@@ -6,5 +6,5 @@ LivelinessChangedStatus
 -----------------------
 
 .. doxygenstruct:: eprosima::fastdds::dds::LivelinessChangedStatus
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

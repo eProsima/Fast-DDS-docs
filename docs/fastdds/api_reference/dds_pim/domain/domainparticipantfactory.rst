@@ -6,5 +6,5 @@ DomainParticipantFactory
 ------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DomainParticipantFactory
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

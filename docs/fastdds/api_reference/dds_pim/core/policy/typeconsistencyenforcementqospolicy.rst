@@ -6,6 +6,6 @@ TypeConsistencyEnforcementQosPolicy
 -----------------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TypeConsistencyEnforcementQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

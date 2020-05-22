@@ -6,6 +6,6 @@ ReaderDataLifecycleQosPolicy
 ----------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::ReaderDataLifecycleQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

@@ -6,6 +6,6 @@ RTPSEndpointQos
 ---------------
 
 .. doxygenclass:: eprosima::fastdds::dds::RTPSEndpointQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

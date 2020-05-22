@@ -6,5 +6,5 @@ TypeInformation
 ---------------
 
 .. doxygenclass:: eprosima::fastdds::dds::xtypes::TypeInformation
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

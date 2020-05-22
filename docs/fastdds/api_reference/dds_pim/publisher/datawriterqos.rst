@@ -6,8 +6,8 @@ DataWriterQos
 -------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DataWriterQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 
 .. doxygenvariable:: eprosima::fastdds::dds::DATAWRITER_QOS_DEFAULT
-    :project: Fast RTPS
+    :project: FastDDS

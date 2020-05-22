@@ -6,5 +6,5 @@ DataReaderListener
 ------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DataReaderListener
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

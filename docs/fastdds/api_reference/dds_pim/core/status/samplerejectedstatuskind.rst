@@ -6,4 +6,4 @@ SampleRejectedStatusKind
 ------------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::SampleRejectedStatusKind
-    :project: Fast RTPS
+    :project: FastDDS

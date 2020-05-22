@@ -6,6 +6,6 @@ Partition_t
 -----------
 
 .. doxygenclass:: eprosima::fastdds::dds::Partition_t
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

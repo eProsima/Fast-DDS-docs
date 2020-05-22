@@ -6,5 +6,5 @@ HistoryQosPolicyKind
 --------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::HistoryQosPolicyKind
-    :project: Fast RTPS
+    :project: FastDDS
 

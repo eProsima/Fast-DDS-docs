@@ -6,5 +6,5 @@ SampleInfo
 ----------
 
 .. doxygenstruct:: eprosima::fastdds::dds::SampleInfo
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

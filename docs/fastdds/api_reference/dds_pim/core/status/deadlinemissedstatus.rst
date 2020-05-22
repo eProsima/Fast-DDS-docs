@@ -6,5 +6,5 @@ DeadlineMissedStatus
 --------------------
 
 .. doxygenstruct:: eprosima::fastdds::dds::DeadlineMissedStatus
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

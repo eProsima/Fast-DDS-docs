@@ -6,8 +6,8 @@ DataReaderQos
 -------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DataReaderQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 
 .. doxygenvariable:: eprosima::fastdds::dds::DATAREADER_QOS_DEFAULT
-    :project: Fast RTPS
+    :project: FastDDS

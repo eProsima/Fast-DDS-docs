@@ -6,6 +6,6 @@ PresentationQosPolicy
 ---------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::PresentationQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

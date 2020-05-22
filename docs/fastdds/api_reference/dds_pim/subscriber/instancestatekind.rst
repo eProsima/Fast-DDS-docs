@@ -6,4 +6,4 @@ InstanceStateKind
 -----------------
 
 .. doxygenenum:: eprosima::fastdds::dds::InstanceStateKind
-    :project: Fast RTPS
+    :project: FastDDS

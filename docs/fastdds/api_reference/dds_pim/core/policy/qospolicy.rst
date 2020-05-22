@@ -6,5 +6,5 @@ QosPolicy
 ---------
 
 .. doxygenclass:: eprosima::fastdds::dds::QosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

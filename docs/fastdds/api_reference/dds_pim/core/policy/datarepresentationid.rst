@@ -6,5 +6,5 @@ DataRepresentationId
 --------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::DataRepresentationId
-    :project: Fast RTPS
+    :project: FastDDS
 

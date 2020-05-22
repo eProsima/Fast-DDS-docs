@@ -6,5 +6,5 @@ IncompatibleQosStatus
 ---------------------
 
 .. doxygenstruct:: eprosima::fastdds::dds::IncompatibleQosStatus
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

@@ -6,4 +6,4 @@ InconsistentTopicStatus
 -----------------------
 
 .. doxygentypedef:: eprosima::fastdds::dds::InconsistentTopicStatus
-    :project: Fast RTPS
+    :project: FastDDS

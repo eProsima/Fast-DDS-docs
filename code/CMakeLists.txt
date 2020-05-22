@@ -133,19 +133,48 @@ add_custom_target(doc-dirs
 
 # Get header files from repo instead of from installation. This way Fast RTPS does not need to be compiled
 file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds/**/*.h*")
-set(INCLUDE_FILE "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds")
+
+# Doxygen related variables
+set(DOXYGEN_INPUT_DIR "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds")
+set(DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doxygen")
+set(DOXYGEN_INDEX_FILE "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml")
+set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/doxygen-config.in")
+set(DOXYFILE_OUT ${PROJECT_BINARY_DIR}/doxygen-config)
 
 # Configure doxygen
-configure_file(doxygen-config.in ${PROJECT_BINARY_DIR}/doxygen-config @ONLY)
-add_custom_command(OUTPUT "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml"
-    COMMAND "${DOXYGEN_EXECUTABLE}" "${PROJECT_BINARY_DIR}/doxygen-config"
+configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
+
+# Doxygen command
+add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE}
+    COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
     DEPENDS ${HPP_FILES}
-    )
+    MAIN_DEPENDENCY ${DOXYFILE_OUT} ${DOXYFILE_IN}
+    COMMENT "Generating doxygen documentation")
+
 # Generate API reference
 add_custom_target(doxygen ALL
-    DEPENDS "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml"
+    DEPENDS ${DOXYGEN_INDEX_FILE}
     COMMENT "Generated API documentation with doxygen" VERBATIM)
 add_dependencies(doxygen doc-dirs)
+
+########################################################################################################################
+# Build Sphinx documentation
+########################################################################################################################
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+find_package(Sphinx REQUIRED)
+
+set(SPHINX_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../docs")
+set(SPHINX_BUILD "${PROJECT_BINARY_DIR}/../html")
+
+add_custom_target(Sphinx ALL
+                  COMMAND
+                  ${SPHINX_EXECUTABLE} -b html
+                  # Tell Breathe where to find the Doxygen output
+                  -Dbreathe_projects.FastDDS=${DOXYGEN_OUTPUT_DIR}/xml
+                  -d "${PROJECT_BINARY_DIR}/../doctrees" ${SPHINX_SOURCE} ${SPHINX_BUILD}
+                  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                  DEPENDS doxygen
+                  COMMENT "Generating documentation with Sphinx")
 
 ########################################################################################################################
 # Build example and tests

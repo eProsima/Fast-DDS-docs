@@ -6,6 +6,6 @@ TransportPriorityQosPolicy
 --------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TransportPriorityQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

@@ -6,5 +6,5 @@ PublishModeQosPolicyKind
 ------------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::PublishModeQosPolicyKind
-    :project: Fast RTPS
+    :project: FastDDS
 

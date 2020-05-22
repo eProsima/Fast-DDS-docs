@@ -6,6 +6,6 @@ DestinationOrderQosPolicy
 -------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DestinationOrderQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

@@ -6,4 +6,4 @@ OfferedDeadlineMissedStatus
 ---------------------------
 
 .. doxygentypedef:: eprosima::fastdds::dds::OfferedDeadlineMissedStatus
-    :project: Fast RTPS
+    :project: FastDDS

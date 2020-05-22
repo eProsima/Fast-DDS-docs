@@ -6,8 +6,8 @@ SubscriberQos
 -------------
 
 .. doxygenclass:: eprosima::fastdds::dds::SubscriberQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 
 .. doxygenvariable:: eprosima::fastdds::dds::SUBSCRIBER_QOS_DEFAULT
-    :project: Fast RTPS
+    :project: FastDDS

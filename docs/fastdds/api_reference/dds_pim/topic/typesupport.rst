@@ -6,5 +6,5 @@ TypeSupport
 -----------
 
 .. doxygenclass:: eprosima::fastdds::dds::TypeSupport
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

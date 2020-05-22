@@ -6,5 +6,5 @@ TypeConsistencyKind
 -------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::TypeConsistencyKind
-    :project: Fast RTPS
+    :project: FastDDS
 

@@ -6,8 +6,8 @@ PublisherQos
 ------------
 
 .. doxygenclass:: eprosima::fastdds::dds::PublisherQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 
 .. doxygenvariable:: eprosima::fastdds::dds::PUBLISHER_QOS_DEFAULT
-    :project: Fast RTPS
+    :project: FastDDS

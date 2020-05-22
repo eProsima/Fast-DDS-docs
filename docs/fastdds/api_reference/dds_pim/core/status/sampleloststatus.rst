@@ -6,4 +6,4 @@ SampleLostStatus
 ----------------
 
 .. doxygentypedef:: eprosima::fastdds::dds::SampleLostStatus
-    :project: Fast RTPS
+    :project: FastDDS

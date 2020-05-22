@@ -6,6 +6,6 @@ EntityFactoryQosPolicy
 ----------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::EntityFactoryQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

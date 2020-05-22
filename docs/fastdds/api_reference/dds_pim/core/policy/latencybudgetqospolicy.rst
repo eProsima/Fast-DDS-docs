@@ -6,6 +6,6 @@ LatencyBudgetQosPolicy
 ----------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::LatencyBudgetQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

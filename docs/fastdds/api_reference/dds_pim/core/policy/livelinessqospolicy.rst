@@ -6,6 +6,6 @@ LivelinessQosPolicy
 -------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::LivelinessQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

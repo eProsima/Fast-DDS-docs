@@ -6,6 +6,6 @@ WriterDataLifecycleQosPolicy
 ----------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::WriterDataLifecycleQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

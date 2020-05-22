@@ -6,4 +6,4 @@ LivelinessLostStatus
 --------------------
 
 .. doxygentypedef:: eprosima::fastdds::dds::LivelinessLostStatus
-    :project: Fast RTPS
+    :project: FastDDS

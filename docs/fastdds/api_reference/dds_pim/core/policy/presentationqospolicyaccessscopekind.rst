@@ -6,5 +6,5 @@ PresentationQosPolicyAccessScopeKind
 ------------------------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::PresentationQosPolicyAccessScopeKind
-    :project: Fast RTPS
+    :project: FastDDS
 

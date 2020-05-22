@@ -6,6 +6,6 @@ DisablePositiveACKsQosPolicy
 ----------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DisablePositiveACKsQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

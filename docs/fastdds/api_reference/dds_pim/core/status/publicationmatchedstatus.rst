@@ -6,5 +6,5 @@ PublicationMatchedStatus
 ------------------------
 
 .. doxygenstruct:: eprosima::fastdds::dds::PublicationMatchedStatus
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

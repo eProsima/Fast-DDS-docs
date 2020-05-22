@@ -6,5 +6,5 @@ Subscriber
 ----------
 
 .. doxygenclass:: eprosima::fastdds::dds::Subscriber
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

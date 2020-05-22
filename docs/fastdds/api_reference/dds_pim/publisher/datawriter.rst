@@ -6,5 +6,5 @@ DataWriter
 ----------
 
 .. doxygenclass:: eprosima::fastdds::dds::DataWriter
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

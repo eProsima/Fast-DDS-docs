@@ -6,5 +6,5 @@ ReaderResourceLimitsQos
 -----------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::ReaderResourceLimitsQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

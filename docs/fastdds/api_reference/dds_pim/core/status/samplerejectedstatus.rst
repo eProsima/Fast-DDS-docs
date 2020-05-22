@@ -6,5 +6,5 @@ SampleRejectedStatus
 --------------------
 
 .. doxygenstruct:: eprosima::fastdds::dds::SampleRejectedStatus
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

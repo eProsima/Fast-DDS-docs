@@ -6,5 +6,5 @@ LivelinessQosPolicyKind
 -----------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::LivelinessQosPolicyKind
-    :project: Fast RTPS
+    :project: FastDDS
 

@@ -6,5 +6,5 @@ TopicDescription
 ----------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TopicDescription
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

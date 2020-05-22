@@ -6,5 +6,5 @@ TopicListener
 -------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TopicListener
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

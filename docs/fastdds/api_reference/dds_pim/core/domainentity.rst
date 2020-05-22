@@ -7,5 +7,5 @@ DomainEntity
 ------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DomainEntity
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

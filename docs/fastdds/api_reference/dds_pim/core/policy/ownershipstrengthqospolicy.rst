@@ -6,6 +6,6 @@ OwnershipStrengthQosPolicy
 --------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::OwnershipStrengthQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

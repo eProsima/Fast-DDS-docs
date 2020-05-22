@@ -6,5 +6,5 @@ DomainParticipantListener
 -------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DomainParticipantListener
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

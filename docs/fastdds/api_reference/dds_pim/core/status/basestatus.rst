@@ -6,5 +6,5 @@ BaseStatus
 ----------
 
 .. doxygenstruct:: eprosima::fastdds::dds::BaseStatus
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

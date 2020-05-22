@@ -6,5 +6,5 @@ SubscriptionMatchedStatus
 -------------------------
 
 .. doxygenstruct:: eprosima::fastdds::dds::SubscriptionMatchedStatus
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

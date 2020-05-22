@@ -6,5 +6,5 @@ TypeConsistencyQos
 ------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TypeConsistencyQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

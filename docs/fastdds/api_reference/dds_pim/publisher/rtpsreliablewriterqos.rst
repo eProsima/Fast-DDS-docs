@@ -6,5 +6,5 @@ RTPSReliableWriterQos
 ---------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::RTPSReliableWriterQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

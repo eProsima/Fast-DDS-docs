@@ -6,5 +6,5 @@ DomainParticipantFactoryQos
 ---------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DomainParticipantFactoryQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

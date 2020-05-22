@@ -6,8 +6,8 @@ DomainParticipantQos
 --------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DomainParticipantQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 
 .. doxygenvariable:: eprosima::fastdds::dds::PARTICIPANT_QOS_DEFAULT
-    :project: Fast RTPS
+    :project: FastDDS

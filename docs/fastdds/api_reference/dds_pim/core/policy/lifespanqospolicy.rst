@@ -6,6 +6,6 @@ LifespanQosPolicy
 -----------------
 
 .. doxygenclass:: eprosima::fastdds::dds::LifespanQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

@@ -6,6 +6,6 @@ PartitionQosPolicy
 ------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::PartitionQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

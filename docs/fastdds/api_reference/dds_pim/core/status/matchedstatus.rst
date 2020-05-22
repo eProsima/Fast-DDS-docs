@@ -6,5 +6,5 @@ MatchedStatus
 -------------
 
 .. doxygenstruct:: eprosima::fastdds::dds::MatchedStatus
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

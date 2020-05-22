@@ -6,5 +6,5 @@ TopicDataType
 -------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TopicDataType
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

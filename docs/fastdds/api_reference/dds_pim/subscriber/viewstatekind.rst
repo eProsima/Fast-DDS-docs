@@ -6,4 +6,4 @@ ViewStateKind
 -------------
 
 .. doxygenenum:: eprosima::fastdds::dds::ViewStateKind
-    :project: Fast RTPS
+    :project: FastDDS

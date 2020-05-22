@@ -6,8 +6,8 @@ StatusMask
 ----------
 
 .. doxygenclass:: eprosima::fastdds::dds::StatusMask
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 
 .. doxygendefine:: FASTDDS_STATUS_COUNT
-    :project: Fast RTPS
+    :project: FastDDS

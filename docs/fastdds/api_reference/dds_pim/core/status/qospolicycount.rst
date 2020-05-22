@@ -6,5 +6,5 @@ QosPolicyCount
 --------------
 
 .. doxygenstruct:: eprosima::fastdds::dds::QosPolicyCount
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

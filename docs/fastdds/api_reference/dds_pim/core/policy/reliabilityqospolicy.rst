@@ -6,6 +6,6 @@ ReliabilityQosPolicy
 --------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::ReliabilityQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

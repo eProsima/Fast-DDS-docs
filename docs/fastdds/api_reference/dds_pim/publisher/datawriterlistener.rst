@@ -6,5 +6,5 @@ DataWriterListener
 ------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DataWriterListener
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

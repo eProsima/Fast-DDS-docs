@@ -6,6 +6,6 @@ WriterResourceLimitsQos
 -----------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::WriterResourceLimitsQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

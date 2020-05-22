@@ -6,5 +6,5 @@ OwnershipQosPolicyKind
 ----------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::OwnershipQosPolicyKind
-    :project: Fast RTPS
+    :project: FastDDS
 

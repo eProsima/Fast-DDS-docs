@@ -55,7 +55,6 @@ html:
 	mkdir -p build/code
 	cd build/code && cmake ../../code -DBUILDCOP=OFF
 	cmake --build build/code
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
@@ -68,7 +67,7 @@ compile:
 	@echo "Source code build finished."
 
 .PHONY: test
-test: html compile
+test: compile
 	doc8 --max-line-length 120 docs
 	@echo
 	@echo "RST checking finished."

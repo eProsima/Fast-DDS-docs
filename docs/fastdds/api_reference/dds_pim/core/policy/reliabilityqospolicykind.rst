@@ -6,5 +6,5 @@ ReliabilityQosPolicyKind
 ------------------------
 
 .. doxygenenum:: eprosima::fastdds::dds::ReliabilityQosPolicyKind
-    :project: Fast RTPS
+    :project: FastDDS
 

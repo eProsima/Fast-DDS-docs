@@ -6,5 +6,5 @@ TopicDataQosPolicy
 ------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TopicDataQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

@@ -6,6 +6,6 @@ TransportConfigQos
 ------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::TransportConfigQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

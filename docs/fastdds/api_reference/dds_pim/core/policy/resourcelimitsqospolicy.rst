@@ -6,6 +6,6 @@ ResourceLimitsQosPolicy
 -----------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::ResourceLimitsQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

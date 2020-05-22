@@ -6,4 +6,4 @@ SampleStateKind
 ---------------
 
 .. doxygenenum:: eprosima::fastdds::dds::SampleStateKind
-    :project: Fast RTPS
+    :project: FastDDS

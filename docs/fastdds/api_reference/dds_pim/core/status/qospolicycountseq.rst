@@ -6,4 +6,4 @@ QosPolicyCountSeq
 -----------------
 
 .. doxygentypedef:: eprosima::fastdds::dds::QosPolicyCountSeq
-    :project: Fast RTPS
+    :project: FastDDS

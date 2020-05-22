@@ -6,5 +6,5 @@ Entity
 ------
 
 .. doxygenclass:: eprosima::fastdds::dds::Entity
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

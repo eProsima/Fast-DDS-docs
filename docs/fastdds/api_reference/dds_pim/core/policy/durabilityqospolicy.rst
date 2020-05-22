@@ -6,6 +6,6 @@ DurabilityQosPolicy
 -------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DurabilityQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

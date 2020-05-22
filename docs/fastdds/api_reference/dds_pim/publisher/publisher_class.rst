@@ -6,5 +6,5 @@ Publisher
 ---------
 
 .. doxygenclass:: eprosima::fastdds::dds::Publisher
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

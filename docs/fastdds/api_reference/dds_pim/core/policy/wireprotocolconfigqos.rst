@@ -6,6 +6,6 @@ WireProtocolConfigQos
 ---------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::WireProtocolConfigQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

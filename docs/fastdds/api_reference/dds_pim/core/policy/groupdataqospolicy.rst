@@ -6,5 +6,5 @@ GroupDataQosPolicy
 ------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::GroupDataQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

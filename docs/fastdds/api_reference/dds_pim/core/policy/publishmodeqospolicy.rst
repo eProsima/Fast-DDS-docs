@@ -6,6 +6,6 @@ PublishModeQosPolicy
 --------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::PublishModeQosPolicy
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 

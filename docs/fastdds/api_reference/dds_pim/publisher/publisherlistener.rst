@@ -6,5 +6,5 @@ PublisherListener
 -----------------
 
 .. doxygenclass:: eprosima::fastdds::dds::PublisherListener
-    :project: Fast RTPS
+    :project: FastDDS
     :members:

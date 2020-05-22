@@ -6,8 +6,8 @@ TopicQos
 --------
 
 .. doxygenclass:: eprosima::fastdds::dds::TopicQos
-    :project: Fast RTPS
+    :project: FastDDS
     :members:
 
 .. doxygenvariable:: eprosima::fastdds::dds::TOPIC_QOS_DEFAULT
-    :project: Fast RTPS
+    :project: FastDDS

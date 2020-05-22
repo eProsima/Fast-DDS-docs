@@ -3,7 +3,7 @@
 Overview of Dynamic Types
 =========================
 
-This section describes the classes related to dynamic types, and that are used through the rest of the documentation.
+This section describes the classes related to dynamic types that are used through the rest of the documentation.
 At the bottom of the section you can also find a short example using the functionality.
 
 Involved classes
@@ -187,5 +187,4 @@ visual interpretation of the actions.
     :align: center
 
     Sequence diagram of the code above
-
 

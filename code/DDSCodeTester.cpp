@@ -2489,3 +2489,14 @@ void dds_qos_examples()
     }
 }
 
+void dds_dynamic_types_examples ()
+{
+    {
+        //DDS_TYPELOOKUP_SERVICE_ENABLING
+        DomainParticipantQos qos;
+        qos.wire_protocol().builtin.typelookup_config.use_client = true;
+        qos.wire_protocol().builtin.typelookup_config.use_server = true;
+        //!--
+    }
+}
+

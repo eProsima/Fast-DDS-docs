@@ -9,6 +9,19 @@ eProsima Extensions
 
 The eProsima QoS Policies extensions are those that allow changing the values of the RTPS layer configurable settings.
 
+* :ref:`disablepositiveacksqospolicy`
+* :ref:`participantresourcelimitsqos`
+* :ref:`propertypolicyqos`
+* :ref:`publishmodeqospolicy`
+* :ref:`readerresourcelimitsqos`
+* :ref:`rtpsendpointqos`
+* :ref:`rtpsreliablereaderqos`
+* :ref:`rtpsreliablewriterqos`
+* :ref:`transportconfigqos`
+* :ref:`typeconsistencyqos`
+* :ref:`wireprotocolconfigqos`
+* :ref:`writerresourcelimitsqos`
+
 .. _disablepositiveacksqospolicy:
 
 DisablePositiveACKsQosPolicy

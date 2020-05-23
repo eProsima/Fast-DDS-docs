@@ -20,6 +20,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import os
 import pathlib
+import shutil
 import subprocess
 
 import git
@@ -37,11 +38,7 @@ def get_git_branch():
             cwd=path_to_here
         )
 
-        # Will contain something like "* (HEAD detached at origin/MYBRANCH)"
-        # or something like "* MYBRANCH"
-        branch_output = p.communicate()[0].decode().rstrip()
-        print(branch_output)
-        return branch_output
+        return p.communicate()[0].decode().rstrip()
 
     except Exception:
         print('Could not get the branch')
@@ -107,14 +104,24 @@ input_dir = os.path.abspath(
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
-    # Download Fast DDS
-    print('Cloning Fast DDS')
+    print('Read the Docs environment detected!')
+
     fastdds_repo_name = os.path.abspath(
         '{}/external/eprosima/src/fastrtps'.format(
             project_binary_dir
         )
     )
+
+    # Remove repository if exists
+    if os.path.isdir(fastdds_repo_name):
+        print('Removing existing repository in {}'.format(fastdds_repo_name))
+        shutil.rmtree(fastdds_repo_name)
+
+    # Create necessary directory path
     os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
+
+    # Clone repository
+    print('Cloning Fast DDS')
     fastdds = git.Repo.clone_from(
         'https://github.com/eProsima/Fast-RTPS.git',
         fastdds_repo_name,

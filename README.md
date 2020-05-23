@@ -119,7 +119,7 @@ This means that it does not execute `make` and therefore Fast DDS is not downloa
 This is done by the mean of the environment variable `READTHEDOCS`.
 When this variable is set to `True`, [conf.py](docs/conf.py) will clone Fast DDS in `build/code/external/eprosima/src/` (same place as CMake) and will set it to a branch applying the following criteria:
 
-1. Try to checkout to the branch specified by `${FASTRTPS_BRANCH}`.
+1. Try to checkout to the branch specified by `FASTRTPS_BRANCH`.
 1. If the variable is not set, or the branch does not exist, try to checkout to a branch with the same name as the current branch on this repository.
 1. If the previous fails, fallback to `master`.
 
@@ -130,10 +130,10 @@ cd ~/fastrtps-docs
 rm -rf build
 ```
 
-Then, set `${FASTRTPS_BRANCH}` and run sphinx:
+Then, set `READTHEDOCS`, `FASTRTPS_BRANCH` and run sphinx:
 
 ```bash
-FASTRTPS_BRANCH=<branch> sphinx-build \
+READTHEDOCS=True FASTRTPS_BRANCH=<branch> sphinx-build \
     -b html \
     -Dbreathe_projects.FastDDS=<abs_path_to_docs_repo>/fastrtps-docs/build/code/doxygen/xml \
     -d <abs_path_to_docs_repo>/fastrtps-docs/build/doctrees \

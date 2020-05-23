@@ -243,9 +243,13 @@ th.head p, table th{
 }
 
 /* Code snippets */
-div.highlight-bash pre, div.highlight-shell-session pre  {
-  background-color: whitesmoke !important;
-  border-left: 5px solid black !important;
+[class*='highlight-'] {
+  background-color: #f5f5f5 !important;
+  border-left: 5px solid #383838 !important;
+}
+
+[class*='highlight-'] pre{
+  background-color: #f5f5f5 !important;
 }
 
 /* Images */

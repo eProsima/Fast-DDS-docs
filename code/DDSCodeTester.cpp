@@ -3003,6 +3003,22 @@ void log_examples()
     // Stop the loggin thread and free its resources.
     Log::KillThread();
     //!--
+
+}
+
+void xml_profiles_examples()
+{
+    {
+        //XML-LOAD-APPLY-PROFILES
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml");
+
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant_with_profile(
+                        0, "participant_xml_profile");
+        Publisher* publisher = participant->create_publisher_with_profile("publisher_xml_profile");
+        Subscriber* subscriber = participant->create_subscriber_with_profile("subscriber_xml_profile");
+        //!--
+    }
 }
 
 void dds_transport_examples ()

@@ -545,6 +545,14 @@ void dds_discovery_examples()
         pqos.wire_protocol().builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter = false;
         //!--
 
+        //CONF_INITIAL_PEERS_BASIC
+        eprosima::fastrtps::rtps::Locator_t initial_peers_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peers_locator, "192.168.10.13");
+        initial_peers_locator.port = 7412;
+
+        pqos.wire_protocol().builtin.initialPeersList.push_back(initial_peers_locator);
+        //!--
+
         //CONF_STATIC_DISCOVERY_CODE
         pqos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         pqos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;

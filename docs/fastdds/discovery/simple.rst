@@ -82,7 +82,7 @@ Simple EDP Attributes
 | Publication writer and |br| | It is intended for DomainParticipants that implement only |br|    | ``bool`` | true    |
 | Subscription reader         | one or more DataWriters, i.e. do not implement DataReaders. |br|  |          |         |
 |                             | It allows the creation of only DataReader discovery               |          |         |
-|                             | related EDP endpoints                                             |          |         |
+|                             | related EDP endpoints.                                            |          |         |
 +-----------------------------+-------------------------------------------------------------------+----------+---------+
 | Publication reader and |br| | It is intended for DomainParticipants that implement only |br|    | ``bool`` | true    |
 | Subscription writer         | one or more DataReaders, i.e. do not implement DataWriters. |br|  |          |         |
@@ -107,11 +107,48 @@ Simple EDP Attributes
 |    :end-before: <!--><-->                                                                                            |
 +----------------------------------------------------------------------------------------------------------------------+
 
-.. _`Simple Initial Peers`:
+ .. _`Simple Initial Peers`:
 
-Initial Peers
+Initial peers
 ^^^^^^^^^^^^^
 
-By default, the SPDP protocol uses a well known multicast address for the participant discovery phase.
-With Fast-RTPS, it is possible to expand the list of endpoints to which the participant announcements are sent by
-configuring a list of initial peers, as explained in :ref:`initial-peers`.
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), each RTPSParticipant
+must listen for incoming Participant Discovery Protocol (PDP) discovery metatraffic in two different ports, one linked
+with a multicast address, and another one linked to a unicast address.
+Fast DDS allows for the configuration of an initial peers list which contains one or more such IP-port address
+pairs corresponding to remote DomainParticipants PDP discovery listening resources, so that the local DomainParticipant
+will not only send its PDP traffic to the default multicast address-port specified by its domain, but also to all the
+IP-port address pairs specified in the initial peers list.
+
+A DomainParticipant's initial peers list contains the list of IP-port address pairs of all other DomainParticipants with
+which it will communicate.
+It is a list of addresses that a DomainParticipant will use in the unicast discovery mechanism, together or as an
+alternative to multicast discovery.
+Therefore, this approach also applies to those scenarios in which multicast functionality is not available.
+
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the RTPSParticipants'
+discovery traffic unicast listening ports are calculated using the following equation:
+7400 + 250 * `domainID` + 10 + 2 * `participantID`.
+Thus, if for example a RTPSParticipant operates in Domain 0 (default
+domain) and its ID is 1, its discovery traffic unicast listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
+By default *eProsima Fast DDS* uses as initial peers the Metatraffic Multicast Locators.
+
+The following constitutes an example configuring an Initial Peers list with one peer on host 192.168.10.13 with
+DomainParticipant ID 1 in domain 0.
+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_INITIAL_PEERS_BASIC                                                                          |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->                                                                   |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+

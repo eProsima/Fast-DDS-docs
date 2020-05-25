@@ -18,7 +18,7 @@ The STATIC discovery related settings are:
 +------------------------------+---------------------------------------------------------------------------------------+
 | Name                         | Description                                                                           |
 +==============================+=======================================================================================+
-| :ref:`static_edp`            | It activates the STATIC discovery protocol                                            |
+| :ref:`static_edp`            | It activates the STATIC discovery protocol.                                           |
 +------------------------------+---------------------------------------------------------------------------------------+
 | :ref:`static_xml`            | Specifies an XML file containing a description of the remote DataWriters and |br|     |
 | :ref:`static_xml`            | DataReaders.                                                                          |
@@ -31,7 +31,7 @@ The STATIC discovery related settings are:
 STATIC EDP
 ^^^^^^^^^^
 
-To activate the STATIC EDP, the SEDP must be disabled on the participant attributes.
+To activate the STATIC EDP, the SEDP must be disabled on the |DomainParticipantQosWireProtocolClass|.
 This can be done either by code or using an XML configuration file:
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -64,7 +64,7 @@ Fast DDS  provides a
 `Static Discovery example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/DDS/StaticHelloWorldExample>`_
 that implements this EDP discovery protocol.
 
-The following table describes all the possible attributes of a STATIC EDP XML configuration file.
+The following table describes all the possible elements of a STATIC EDP XML configuration file.
 A full example of such file can be found in :ref:`static_xml_example`.
 
 .. Some large words outside of table. Then table fit maximum line length
@@ -83,8 +83,8 @@ A full example of such file can be found in :ref:`static_xml_example`.
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
 | ``<entityID>``         | EntityId of the DataReader/DataWriter.                | ``uint16_t``      | 0               |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
-| ``<expectsInlineQos>`` | It indicates if QOS is expected inline. |br|          | ``bool``          | ``false``       |
-|                        | (DataReader **only**)                                 |                   |                 |
+| ``<expectsInlineQos>`` | It indicates if QOS is expected inline  |br|          | ``bool``          | ``false``       |
+|                        | (DataReader **only**).                                |                   |                 |
 +------------------------+-------------------------------------------------------+-------------------+-----------------+
 | ``<topicName>``        | Mandatory. |br|                                       | ``string_255``    |                 |
 |                        | The topic of the remote DataReader/DataWriter. |br|   |                   |                 |
@@ -130,7 +130,7 @@ Locators definition
 """""""""""""""""""
 
 Locators for remote peers are configured using ``<unicastLocator>`` and ``<multicastLocator>`` tags.
-These take no value, and the locators are defined using tag attributes.
+These take no value, and the locators are defined using tag elements.
 Locators defined with ``<unicastLocator>`` and ``<multicastLocator>`` are accumulative, so they can be repeated to
 assign several remote endpoints locators to the same peer.
 
@@ -143,13 +143,13 @@ Ownership QoS
 """""""""""""
 
 The ownership of the topic can be configured using ``<ownershipQos>`` tag.
-It takes no value, and the configuration is done using tag attributes:
+It takes no value, and the configuration is done using tag elements:
 
 * :class:`kind`: can be one of :class:`SHARED_OWNERSHIP_QOS` or :class:`EXCLUSIVE_OWNERSHIP_QOS`.
-  This attribute is mandatory withing the tag.
+  This element is mandatory withing the tag.
 
-* :class:`strength`: an optional ``uint32_t`` specifying how strongly the remote participant owns the topic.
-  This attribute can be set on writers **only**.
+* :class:`strength`: an optional ``uint32_t`` specifying how strongly the remote DomainParticipant owns the topic.
+  This QoS can be set on DataWriters **only**.
   If not specified, default value is zero.
 
 .. _livelinessQos:
@@ -158,12 +158,12 @@ Liveliness QoS
 """"""""""""""
 
 The :ref:`livelinessqospolicy` of the remote peer is configured using ``<livelinessQos>`` tag.
-It takes no value, and the configuration is done using tag attributes:
+It takes no value, and the configuration is done using tag elements:
 
 * :class:`kind`: can be any of :class:`AUTOMATIC_LIVELINESS_QOS`, :class:`MANUAL_BY_PARTICIPANT_LIVELINESS_QOS` or
-  :class:`MANUAL_BY_TOPIC_LIVELINESS_QOS`. This attribute is mandatory withing the tag.
+  :class:`MANUAL_BY_TOPIC_LIVELINESS_QOS`. This element is mandatory withing the tag.
 
-* :class:`leaseDuration_ms`: an optional ``UInt32`` specifying the lease duration for the remote peer.
+* :class:`leaseDuration_ms`: an optional ``uint32`` specifying the lease duration for the remote peer.
   The special value :class:`INF` can be used to indicate infinite lease duration.
   If not specified, default value is :class:`INF`
 
@@ -180,14 +180,14 @@ If any non-mandatory element is missing, it will take the default value.
 As a rule of thumb, all the elements that were specified on the remote DataReader/DataWriter creation should be
 configured.
 
-+-------------------------------------------------+
-| **XML**                                         |
-+-------------------------------------------------+
-| .. literalinclude:: /../code/StaticTester.xml   |
-|    :language: xml                               |
-|    :start-after: <!-->STATIC_DISCOVERY_CONF<--> |
-|    :end-before: <!--><-->                       |
-+-------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/StaticTester.xml                                                                        |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->STATIC_DISCOVERY_CONF<-->                                                                      |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
 
 .. _`static_xml_load`:
 
@@ -196,7 +196,7 @@ Loading STATIC EDP XML Files
 
 Statically discovered remote DataReaders/DataWriters **must** define a unique *userID* on their profile, whose value
 **must** agree with the one specified in the discovery configuration XML.
-This is done by setting the user ID on the entity attributes:
+This is done by setting the user ID on the |DataReaderQoS|/|DataWriterQoS|:
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
@@ -215,7 +215,7 @@ This is done by setting the user ID on the entity attributes:
 |    :end-before: <!-->                                                                                                |
 +----------------------------------------------------------------------------------------------------------------------+
 
-On the local participant, loading STATIC EDP configuration files is done by:
+On the local DomainParticipant, loading STATIC EDP configuration files is done by:
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |

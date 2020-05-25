@@ -6,7 +6,9 @@ General Discovery Settings
 --------------------------
 
 Some discovery settings are shared across the different discovery mechanisms.
-Those are:
+These settings are defined under the |DomainParticipantQosWireProtocolBuiltin| public data member of the
+|DomainParticipantQosWireProtocolClass| class.
+These are:
 
 +-------------------------------+------------------------------------+---------------------------------+---------------+
 | Name                          | Description                        | Type                            |     Default   |

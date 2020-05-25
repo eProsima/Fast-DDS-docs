@@ -18,16 +18,16 @@ The `DDS Security <https://www.omg.org/spec/DDS-SECURITY/1.1/>`_ specification i
     tagging; for message prioritization; and to prevent its use by the middleware to be used instead by the
     application or service.
 
+.. note::
+  Currently the  DDS\:Tagging\:DDS_Discovery plugin is not implemented in Fast DDS.
+  Its implementation is expected for future release of Fast DDS.
+
 In compliance with the `DDS Security <https://www.omg.org/spec/DDS-SECURITY/1.1/>`_ specification, Fast DDS provides
 secure communication by implementing pluggable security at three levels: a) |DomainParticipants| authentication
 (DDS\:Auth\:PKI-DH), b) access control of Entities (DDS\:Access\:Permissions), and c) data encryption
 (DDS\:Crypto\:AES-GCM-GMAC).
 Furthermore, for the monitoring of the security plugins and logging relevant events, Fast DDS implements
 the logging plugin (DDS\:Logging\:DDS_LogTopic).
-
-.. note::
-  Currently the  DDS\:Tagging\:DDS_Discovery plugin is not implemented in Fast DDS.
-  Its implementation is expected for future release of Fast DDS.
 
 By default, Fast DDS does not compile any security support, but it can be activated adding ``-DSECURITY=ON`` at CMake
 configuration step.

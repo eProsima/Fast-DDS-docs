@@ -1,9 +1,4 @@
-.. |DomainParticipantQos| replace:: :cpp:class:`DomainParticipantQos <eprosima::fastdds::dds::DomainParticipantQos>`
-.. |Property| replace:: :cpp:class:`Property <eprosima::fastrtps::rtps::Property>`
-
-.. |br| raw:: html
-
-   <br/>
+.. include:: includes/aliases.rst
 
 .. _security:
 

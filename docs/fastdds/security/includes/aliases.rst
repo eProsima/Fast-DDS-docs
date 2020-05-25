@@ -1,3 +1,5 @@
+.. |DomainParticipant| replace:: :cpp:class:`DomainParticipant <eprosima::fastdds::dds::DomainParticipant>`
+.. |DomainParticipants| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
 .. |DataWriter| replace:: :cpp:class:`DataWriter <eprosima::fastdds::dds::DataWriter>`
 .. |DataWriters| replace:: :cpp:class:`DataWriters <eprosima::fastdds::dds::DataWriter>`
 .. |DataReader| replace:: :cpp:class:`DataReader <eprosima::fastdds::dds::DataReader>`

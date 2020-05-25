@@ -1,35 +1,25 @@
-.. |DomainParticipantQos| replace:: :cpp:class:`DomainParticipantQos <eprosima::fastdds::dds::DomainParticipantQos>`
-.. |Property| replace:: :cpp:class:`Property <eprosima::fastrtps::rtps::Property>`
-
-.. |br| raw:: html
-
-  <br/>
-
-.. _dds_layer_security_auth_plugin:
-
-Authentication plugin
-----------------------
-
-This is the starting point for all the security mechanisms.
-The authentication plugin provides the mechanisms and operations required for DomainParticipants authentication at
-discovery.
-When a DomainParticipant is either locally created or discovered, it needs to be authenticated in order to be able to
-communicate in a DDS Domain.
-When a DomainParticipant detects a remote DomainParticipant, both try to authenticate themselves using the activated
-authentication plugin.
-If the authentication process finishes successfully both DomainParticipant match and the discovery mechanism continues.
-On failure, the remote DomainParticipant is rejected.
-
-The authentication plugin implemented in Fast DDS is referred to as "DDS:\Auth\:PKI-DH", in compliance with the
-`DDS Security <https://www.omg.org/spec/DDS-SECURITY/1.1/>`_ specification.
-This plugin is explained in detail below.
-
+.. include:: ../includes/aliases.rst
 
 .. _auth-pki-dh:
 
-DDS:\Auth\:PKI-DH
-^^^^^^^^^^^^^^^^^
 
+Authentication plugin: DDS:\Auth\:PKI-DH
+----------------------------------------
+
+This is the starting point for all the security mechanisms.
+The authentication plugin provides the mechanisms and operations required for |DomainParticipants| authentication at
+discovery.
+If the security module was activated at Fast DDS compilation, when a |DomainParticipant| is either locally created or
+discovered, it needs to be authenticated in order to be able to
+communicate in a DDS Domain.
+Therefore, when a |DomainParticipant| detects a remote |DomainParticipant|, both try to authenticate themselves using
+the activated authentication plugin.
+If the authentication process finishes successfully both |DomainParticipant| match and the discovery mechanism
+continues.
+On failure, the remote |DomainParticipant| is rejected.
+
+The authentication plugin implemented in Fast DDS is referred to as "DDS:\Auth\:PKI-DH", in compliance with the
+`DDS Security <https://www.omg.org/spec/DDS-SECURITY/1.1/>`_ specification.
 The DDS:\Auth\:PKI-DH plugin uses a trusted *Certificate Authority* (CA) and the ECDSA
 Digital Signature Algorithms to perform the mutual authentication.
 It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement Methods.
@@ -39,11 +29,11 @@ The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |Domai
 ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.
 The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugin configuration.
 
-.. list-table:: Properties to configure the DDS:Auth:PKI-DH plugin
+.. list-table::
    :header-rows: 1
    :align: left
 
-   * - Property name |br| (all properties have |br| "dds.sec.auth.builtin.PKI-DH." |br| prefix)
+   * - Property name
      - Property value
    * - identity_ca
      - URI to the X.509 v3 certificate of the Identity CA in PEM format. |br|
@@ -62,6 +52,10 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
      - A password used to decrypt the *private_key*.  |br|
        If the *password* property is not present, then the value supplied in the |br|
        *private_key* property must contain the decrypted private key.
+
+.. note::
+  All listed properties have "dds.sec.auth.builtin.PKI-DH." prefix.
+  For example: ``dds.sec.auth.builtin.PKI-DH.identity_ca``.
 
 The following is an example of how to set the properties of |DomainParticipantQoS| for the DDS:\Auth\:PKI-DH plugin
 configuration.
@@ -87,7 +81,7 @@ configuration.
 .. _generate_x509:
 
 Generation of X.509 certificates
-""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An X.509 digital certificate is a document that has been encrypted and/or digitally signed according to
 `RFC 5280 <https://tools.ietf.org/html/rfc5280>`_.
@@ -97,16 +91,18 @@ formats for public-key certificates and a certification route validation algorit
 A simple way to generate these certificates for a proprietary PKI structure is through the
 `OpenSSL <https://www.openssl.org/>`_ toolkit.
 This section explains how to build a certificate infrastructure from the trusted CA certificate to the end-entity
-certificate, i.e. the DomainParticipant.
+certificate, i.e. the |DomainParticipant|.
 
 Generating the CA certificate for self-signing
-**********************************************
+""""""""""""""""""""""""""""""""""""""""""""""
 
-First, since multiple certificates will need to be issued, one for each of the DomainParticipants, a dedicated CA is
-set up, and the CA's certificate is installed as the root key of all DomainParticipants.
-Thus, the DomainParticipants will accept all certificates issued by our own CA.
+First, since multiple certificates will need to be issued, one for each of the |DomainParticipants|, a dedicated CA is
+set up, and the CA's certificate is installed as the root key of all |DomainParticipants|.
+Thus, the |DomainParticipants| will accept all certificates issued by our own CA.
 To create a proprietary CA certificate, a configuration file must first be written with the CA information.
 An example of the CA configuration file is shown below.
+The OpenSSL commands shown in this example are compatible with both Linux and Windows Operating Systems (OS).
+However, all other commands are only compatible with Linux OS.
 
 .. code-block:: ini
 
@@ -199,9 +195,9 @@ Elliptic Curve Digital Signature Algorithm (ECDSA).
       -config maincaconf.cnf
 
 Generating the DomainParticipant certificate
-********************************************
+""""""""""""""""""""""""""""""""""""""""""""
 
-As was done for the CA, a DomainParticipant certificate configuration file needs to be created first.
+As was done for the CA, a |DomainParticipant| certificate configuration file needs to be created first.
 
 .. code-block:: ini
 
@@ -219,8 +215,8 @@ As was done for the CA, a DomainParticipant certificate configuration file needs
     emailAddress = example@eprosima.com
     commonName = DomainParticipantName
 
-After writing the DomainParticipant certificate configuration file, next commands generate the X.509 certificate,
-using ECDSA, for a DomainParticipant.
+After writing the |DomainParticipant| certificate configuration file, next commands generate the X.509 certificate,
+using ECDSA, for a |DomainParticipant|.
 
 .. code-block:: bash
 
@@ -239,7 +235,7 @@ using ECDSA, for a DomainParticipant.
       -out partcert.pem
 
 Generating the Certificate Revocation List (CRL)
-************************************************
+""""""""""""""""""""""""""""""""""""""""""""""""
 
 Finally, the CRL is created.
 This is a list of the X.509 certificates revoked by the certificate issuing CA before they reach their expiration date.
@@ -256,7 +252,7 @@ To create a CRL using OpenSSL just run the following commands.
     -keyfile maincakey.pem \
     -out crl.pem
 
-As an example, below is shown how to add the X.509 certificate of a DomainParticipant to the CRL.
+As an example, below is shown how to add the X.509 certificate of a |DomainParticipant| to the CRL.
 
 .. code-block:: bash
 

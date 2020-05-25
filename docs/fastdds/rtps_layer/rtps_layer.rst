@@ -3,33 +3,34 @@
 RTPS Layer
 ==========
 
-The lower level Writer-Reader Layer of *eprosima Fast RTPS* provides a raw implementation of the RTPS protocol.
-It provides more control over the internals of the protocol than the Publisher-Subscriber layer.
-Advanced users can make use of this layer directly to gain more control over the functionality of the library.
+The lower level RTPS Layer of *eprosima Fast DDS* serves an implementation of the protocol defined in the
+`RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_.
+This layer provides more control over the internals of the communication protocol than the :ref:`dds_layer`, so advanced
+users have finer control over the library's functionalities.
 
 
-Relation to the Publisher-Subscriber Layer
-------------------------------------------
+Relation to the DDS Layer
+-------------------------
 
-Elements of this layer map one-to-one with elements from the Publisher-Subscriber Layer, with a few additions.
-The following table shows the name correspondence between layers:
+Elements of this layer map one-to-one with elements from the :ref:`dds_layer`, with a few additions.
+This correspondence is shown in the following table:
 
-        +----------------------------+---------------------+
-        | Publisher-Subscriber Layer | Writer-Reader Layer |
-        +============================+=====================+
-        |          Domain            |     RTPSDomain      |
-        +----------------------------+---------------------+
-        |        Participant         |   RTPSParticipant   |
-        +----------------------------+---------------------+
-        |         Publisher          |     RTPSWriter      |
-        +----------------------------+---------------------+
-        |         Subscriber         |     RTPSReader      |
-        +----------------------------+---------------------+
++------------------------------------------+-------------------+
+| :ref:`dds_layer`                         | :ref:`rtps_layer` |
++==========================================+===================+
+| :ref:`dds_layer_domain`                  | RTPSDomain        |
++------------------------------------------+-------------------+
+| :ref:`dds_layer_domainParticipant`       | RTPSParticipant   |
++------------------------------------------+-------------------+
+| :ref:`dds_layer_publisher_dataWriterQos` | RTPSWriter        |
++------------------------------------------+-------------------+
+| :ref:`dds_layer_subscriber_dataReader`   | RTPSReader        |
++------------------------------------------+-------------------+
 
-How to use the Writer-Reader Layer
-----------------------------------
+How to use the RTPS Layer
+-------------------------
 
-We will now go over the use of the Writer-Reader Layer like we did with the Publish-Subscriber one,
+We will now go over the use of the RTPS Layer like we did with the :ref:`dds_layer` one,
 explaining the new features it presents.
 
 We recommend you to look at the two examples of how to use this layer the distribution comes with while reading
@@ -38,49 +39,46 @@ this section. They are located in `examples/RTPSTest_as_socket` and in `examples
 Managing the Participant
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-To create a :class:`RTPSParticipant`, the process is very similar to the one shown in the Publisher-Subscriber layer.
+Creating a :class:`RTPSParticipant` is done with :func:`RTPSDomain::createParticipant`.
+:class:`RTPSParticipantAttributes` structure is used to configure the :class:`RTPSParticipant` upon creation.
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
     :start-after: //RTPS_API_CREATE_PARTICIPANT
     :end-before: //!--
-
-The :class:`RTPSParticipantAttributes` structure is equivalent to the `rtps` member of :class:`ParticipantAttributes`
-field in the Publisher-Subscriber Layer, so you can configure your :class:`RTPSParticipant` the same way as before:
-
-.. literalinclude:: ../../../code/CodeTester.cpp
-    :language: c++
-    :start-after: //RTPS_API_CONF_PARTICIPANT
-    :end-before: //!--
+    :dedent: 4
 
 Managing the Writers and Readers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As the RTPS standard specifies, Writers and Readers are always associated with a History element.
-In the Publisher-Subscriber Layer, its creation and management is hidden,
-but in the Writer-Reader Layer, you have full control over its creation and configuration.
+In the :ref:`dds_layer`, its creation and management is hidden,
+but in the :ref:`rtps_layer`, you have full control over its creation and configuration.
 
-Writers are configured with a :class:`WriterAttributes` structure.
+Writers are created with :func:`RTPSDomain::createRTPSWriter` and configured with a :class:`WriterAttributes` structure.
 They also need a :class:`WriterHistory` which is configured with a :class:`HistoryAttributes` structure.
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
     :start-after: //RTPS_API_WRITER_CONF_HISTORY
     :end-before: //!--
+    :dedent: 4
 
-The creation of a Reader is similar.
-Note that in this case, you can provide a :class:`ReaderListener` instance that implements your callbacks:
+The creation of a Reader is similar to that of the Writers.
+Note that in this case, you can provide a specialization of :class:`ReaderListener` class that implements your
+callbacks:
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
     :start-after: //RTPS_API_READER_CONF_HISTORY
     :end-before: //!--
+    :dedent: 8
 
 Using the History to Send and Receive Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the RTPS Protocol, Readers and Writers save the data about a topic in their associated History.
-Each piece of data is represented by a Change, which *eprosima Fast RTPS* implements as :class:`CacheChange_t`.
+Each piece of data is represented by a Change, which *eprosima Fast DDS* implements as :class:`CacheChange_t`.
 Changes are always managed by the History. As a user, the procedure for interacting with the History is always the same:
 
 1. Request a :class:`CacheChange_t` from the History
@@ -94,12 +92,13 @@ A callback that returns the maximum number of payload bytes is required:
     :language: c++
     :start-after: //RTPS_API_WRITE_SAMPLE
     :end-before: //!--
+    :dedent: 4
 
 If your topic data type has several fields, you will have to provide functions to serialize and deserialize
 your data in and out of the :class:`CacheChange_t`.
-*FastRTPSGen* does this for you.
+*Fast DDS-Gen* does this for you.
 
-You can receive data from within a :class:`ReaderListener` callback method as we did in the Publisher-Subscriber Layer:
+You can receive data from within a :class:`ReaderListener` callback method as we did in the :ref:`dds_layer`:
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
@@ -108,7 +107,7 @@ You can receive data from within a :class:`ReaderListener` callback method as we
 
 Configuring Readers and Writers
 -------------------------------
-One of the benefits of using the Writer-Reader layer is that it provides new configuration possibilities while
+One of the benefits of using the :ref:`rtps_layer` is that it provides new configuration possibilities while
 maintaining the options from the DDS layer.
 For example, you can set a Writer or a Reader as a Reliable or Best-Effort endpoint as previously:
 
@@ -116,6 +115,7 @@ For example, you can set a Writer or a Reader as a Reliable or Best-Effort endpo
     :language: c++
     :start-after: //RTPS_API_WRITER_CONF_RELIABILITY
     :end-before: //!--
+    :dedent: 4
 
 .. _SettingDataDurability:
 
@@ -123,7 +123,7 @@ Setting the data durability kind
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Durability parameter defines the behavior of the Writer regarding samples already sent when a new Reader matches.
-*eProsima Fast RTPS* offers three Durability options:
+*eProsima Fast DDS* offers three Durability options:
 
 * VOLATILE (default): Messages are discarded as they are sent.
   If a new Reader matches after message *n*, it will start received from message *n+1*.
@@ -138,8 +138,9 @@ To choose your preferred option:
     :language: c++
     :start-after: //RTPS_API_WRITER_CONF_DURABILITY
     :end-before: //!--
+    :dedent: 4
 
-Because in the Writer-Reader layer you have control over the History, in TRANSIENT_LOCAL and TRANSIENT modes the Writer
+Because in the :ref:`rtps_layer` you have control over the History, in TRANSIENT_LOCAL and TRANSIENT modes the Writer
 sends all changes you have not explicitly released from the History.
 
 Configuring the History
@@ -157,6 +158,7 @@ Be sure to choose a size that allows it to hold the biggest possible piece of da
     :language: c++
     :start-after: //RTPS_API_HISTORY_CONF_PAYLOADMAXSIZE
     :end-before: //!--
+    :dedent: 4
 
 Changing the size of the History
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -167,6 +169,7 @@ You can specify a maximum amount of changes for the History to hold and an initi
     :language: c++
     :start-after: //RTPS_API_HISTORY_CONF_RESOURCES
     :end-before: //!--
+    :dedent: 4
 
 When the initial amount of reserved changes is lower than the maximum, the History will allocate more changes as they
 are needed until it reaches the maximum size.

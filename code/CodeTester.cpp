@@ -955,6 +955,7 @@ void rtps_api_example_create_entities()
         //RTPS_API_READER_CONF_HISTORY
         class MyReaderListener : public ReaderListener
         {
+            // Callbacks override
         };
         MyReaderListener listener;
         HistoryAttributes history_attr;

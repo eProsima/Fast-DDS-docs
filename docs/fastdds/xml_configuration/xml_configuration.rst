@@ -3,9 +3,8 @@
 XML profiles
 ============
 
-The :ref:`configuration` section shows how to configure entity attributes using XML profiles,
-but this section goes deeper on it, explaining each field with its available values and how to compound the complete XML
-files.
+This section shows how to configure entity attributes using XML profiles, explaining each field with its available
+values and how to compound the complete XML files.
 
 *eProsima Fast RTPS* permits to load several XML files, each one containing XML profiles.
 In addition to the API functions to load user XML files, at initialization *eProsima Fast RTPS* tries to locate and load
@@ -587,7 +586,7 @@ It's important to remark that only ``<struct>`` types generate usable *DynamicPu
 Participant profiles
 --------------------
 
-Participant profiles allow declaring :ref:`participantconfiguration` from an XML file.
+Participant profiles allow declaring :ref:`dds_layer_domainParticipantQos` from an XML file.
 All the configuration options for the participant, except from ``domainId``, belong to the ``<rtps>`` label.
 The attribute ``profile_name`` will be the name that the ``Domain`` will associate to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
@@ -965,7 +964,7 @@ This section of the :class:`Participant's rtps` configuration allows defining bu
 Publisher profiles
 ------------------
 
-Publisher profiles allow declaring :ref:`Publisher configuration <pubsubconfiguration>` from an XML file.
+Publisher profiles allow declaring :ref:`dds_layer_publisher_dataWriterQos` from an XML file.
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in the :ref:`loadingapplyingprofiles` section.
 
@@ -1066,7 +1065,7 @@ as shown in the :ref:`loadingapplyingprofiles` section.
 Subscriber profiles
 -------------------
 
-Subscriber profiles allow declaring :ref:`Subscriber configuration <pubsubconfiguration>` from an XML file.
+Subscriber profiles allow declaring :ref:`dds_layer_subscriber_dataReaderQos` from an XML file.
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 
@@ -1257,9 +1256,8 @@ specified by using the values :class:`DURATION_INFINITY`, :class:`DURATION_INFIN
 Topic Type
 ^^^^^^^^^^
 
-The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange
-messages.
-There is a deeper explanation of the "topic" field here: :ref:`Topic_information`.
+The :ref:`dds_layer_topic` name and data type are used as meta-data to determine whether Publishers and Subscribers can
+exchange messages.
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
@@ -1355,38 +1353,39 @@ The quality of service (QoS) handles the restrictions applied to the application
     :start-after: <!-->XML-QOS<-->
     :end-before: <!--><-->
 
-+--------------------------+----------------------------------+-------------------------------+------------------------+
-| Name                     | Description                      | Values                        | Default                |
-+==========================+==================================+===============================+========================+
-| ``<durability>``         | It is defined in                 |:class:`VOLATILE`,             | :class:`VOLATILE`      |
-|                          | :ref:`SettingDataDurability`     |:class:`TRANSIENT_LOCAL`       |                        |
-|                          | section.                         |:class:`TRANSIENT`             |                        |
-|                          |                                  |                               |                        |
-+--------------------------+----------------------------------+-------------------------------+------------------------+
-| ``<liveliness>``         | Defines the liveliness of the    | :ref:`liveliness-qos`         |                        |
-|                          | publisher.                       |                               |                        |
-+--------------------------+----------------------------------+-------------------------------+------------------------+
-| ``<reliability>``        | It is defined in                 | :class:`RELIABLE`,            | :class:`RELIABLE`      |
-|                          | :ref:`reliability` section.      | :class:`BEST_EFFORT`          |                        |
-+--------------------------+----------------------------------+-------------------------------+------------------------+
-| ``<partition>``          | It allows the introduction of    |                               | ``List <string>``      |
-|                          | a logical partition concept      |                               |                        |
-|                          | inside the `physical` partition  |                               |                        |
-|                          | induced by a domain.             |                               |                        |
-+--------------------------+----------------------------------+-------------------------------+------------------------+
-| ``<deadline>``           | It is defined in                 |                               |                        |
-|                          | :ref:`deadline-qos`              | Deadline period as a          | :class:`c_TimeInfinite`|
-|                          | section.                         | :ref:`DurationType`           |                        |
-+--------------------------+----------------------------------+-------------------------------+------------------------+
-| ``<lifespan>``           | It is defined in                 | Lifespan duration as a        | :class:`c_TimeInfinite`|
-|                          | :ref:`lifespan-qos` section.     | :ref:`DurationType`           |                        |
-+--------------------------+----------------------------------+-------------------------------+------------------------+
-| ``<disablePositiveAcks>``| It is defined in                 |                               | It is disabled by      |
-|                          | section                          |                               | default and            |
-|                          | :ref:`disable-positive-acks-qos` |                               | ``duration`` is set    |
-|                          |                                  |                               | to                     |
-|                          |                                  |                               | :class:`c_TimeInfinite`|
-+--------------------------+----------------------------------+-------------------------------+------------------------+
++--------------------------+-------------------------------------+----------------------------+------------------------+
+| Name                     | Description                         | Values                     | Default                |
++==========================+=====================================+============================+========================+
+| ``<durability>``         | It is defined in                    |:class:`VOLATILE`,          | :class:`VOLATILE`      |
+|                          | :ref:`SettingDataDurability`        |:class:`TRANSIENT_LOCAL`    |                        |
+|                          | section.                            |:class:`TRANSIENT`          |                        |
+|                          |                                     |                            |                        |
++--------------------------+-------------------------------------+----------------------------+------------------------+
+| ``<liveliness>``         | Defines the liveliness of the       | :ref:`livelinessqospolicy` |                        |
+|                          | publisher.                          |                            |                        |
++--------------------------+-------------------------------------+----------------------------+------------------------+
+| ``<reliability>``        | It is defined in                    | :class:`RELIABLE`,         | :class:`RELIABLE`      |
+|                          | :ref:`reliabilityqospolicy`         | :class:`BEST_EFFORT`       |                        |
+|                          | section.                            |                            |                        |
++--------------------------+-------------------------------------+----------------------------+------------------------+
+| ``<partition>``          | It allows the introduction of       |                            | ``List <string>``      |
+|                          | a logical partition concept         |                            |                        |
+|                          | inside the `physical` partition     |                            |                        |
+|                          | induced by a domain.                |                            |                        |
++--------------------------+-------------------------------------+----------------------------+------------------------+
+| ``<deadline>``           | It is defined in                    |                            |                        |
+|                          | :ref:`deadlineqospolicy`            | Deadline period as a       | :class:`c_TimeInfinite`|
+|                          | section.                            | :ref:`DurationType`        |                        |
++--------------------------+-------------------------------------+----------------------------+------------------------+
+| ``<lifespan>``           | It is defined in                    | Lifespan duration as a     | :class:`c_TimeInfinite`|
+|                          | :ref:`lifespanqospolicy` section.   | :ref:`DurationType`        |                        |
++--------------------------+-------------------------------------+----------------------------+------------------------+
+| ``<disablePositiveAcks>``| It is defined in                    |                            | It is disabled by      |
+|                          | section                             |                            | default and            |
+|                          | :ref:`disablepositiveacksqospolicy` |                            | ``duration`` is set    |
+|                          |                                     |                            | to                     |
+|                          |                                     |                            | :class:`c_TimeInfinite`|
++--------------------------+-------------------------------------+----------------------------+------------------------+
 
 ..
     .. note::

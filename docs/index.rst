@@ -37,8 +37,6 @@ eProsima Fast DDS Documentation
    /fastdds/env_vars/env_vars
    /fastdds/dynamic_types/dynamic_types
    /fastdds/use_cases/use_cases
-   list
-   pubsub
    rtps
    advanced
    realtime

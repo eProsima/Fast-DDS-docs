@@ -4,9 +4,9 @@ Version 1.8.0
 This release included the following features:
 
 * Implementation of IDL 4.2.
-* Implementation of :ref:`deadline-qos` QoS.
-* Implementation of :ref:`lifespan-qos` QoS.
-* Implementation of :ref:`disable-positive-acks-qos` QoS.
+* Implementation of :ref:`deadlineqospolicy` QoS.
+* Implementation of :ref:`lifespanqospolicy` QoS.
+* Implementation of :ref:`disablepositiveacksqospolicy` QoS.
 * Secure sockets on TCP transport (:ref:`TLS`).
 
 It also adds the following improvements and bug fixes:
@@ -14,7 +14,7 @@ It also adds the following improvements and bug fixes:
 * Real-time improvements: non-blocking write calls for best-effort writers, addition of fixed size strings,
   fixed size bitmaps, resource limited vectors, etc.
 * Duration parameters now use nanoseconds.
-* Configuration of participant mutation tries (see :ref:`participantconfiguration`).
+* Configuration of participant mutation tries.
 * Automatic calculation of the port when a value of 0 is received on the endpoint custom locators.
 * Non-local addresses are now filtered from whitelists.
 * Optimization of check for acked status for stateful writers.

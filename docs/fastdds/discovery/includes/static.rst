@@ -70,59 +70,59 @@ A full example of such file can be found in :ref:`static_xml_example`.
 .. |transientlocal| replace:: :class:`TRANSIENT_LOCAL_DURABILITY_QOS`
 .. |transient| replace:: :class:`TRANSIENT_DURABILITY_QOS`
 
-+------------------------+-----------------------------------+-------------------+-----------------+
-| Name                   | Description                       | Values            | Default         |
-+========================+===================================+===================+=================+
-| ``<userId>``           | Mandatory.                        | ``uint16_t``      | 0               |
-|                        | Uniquely identifies the endpoint. |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<entityID>``         | EntityId of the endpoint.         | ``uint16_t``      | 0               |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<expectsInlineQos>`` | It indicates if QOS is            | ``bool``          | ``false``       |
-|                        | expected inline.                  |                   |                 |
-|                        | (reader **only**)                 |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<topicName>``        | Mandatory.                        | ``string_255``    |                 |
-|                        | The topic of the remote endpoint. |                   |                 |
-|                        | Should match with one of the      |                   |                 |
-|                        | topics of the local participant.  |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<topicDataType>``    | Mandatory.                        | ``string_255``    |                 |
-|                        | The data type of the topic.       |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<topicKind>``        | The kind of topic.                | :class:`NO_KEY`   | :class:`NO_KEY` |
-|                        |                                   +-------------------+                 |
-|                        |                                   | :class:`WITH_KEY` |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<partitionQos>``     | The name of a partition of the    | ``string``        |                 |
-|                        | remote peer. Repeat to configure  |                   |                 |
-|                        | several partitions.               |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<unicastLocator>``   | Unicast locator of the            |                   |                 |
-|                        | participant.                      |                   |                 |
-|                        | See :ref:`staticLocators`.        |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<multicastLocator>`` | Multicast locator of the          |                   |                 |
-|                        | participant.                      |                   |                 |
-|                        | See :ref:`staticLocators`.        |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<reliabilityQos>``   | See the :ref:`reliability`        | |besteffort|      | |besteffort|    |
-|                        | section.                          +-------------------+                 |
-|                        |                                   | |reliable|        |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<durabilityQos>``    | See the                           | |volatile|        | |volatile|      |
-|                        | :ref:`SettingDataDurability`      +-------------------+                 |
-|                        | section.                          | |transientlocal|  |                 |
-|                        |                                   +-------------------+                 |
-|                        |                                   | |transient|       |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<ownershipQos>``     | See                               |                   |                 |
-|                        | :ref:`ownershipQos`.              |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
-| ``<livelinessQos>``    | Defines the liveliness of the     |                   |                 |
-|                        | remote peer.                      |                   |                 |
-|                        | See :ref:`livelinessQos`.         |                   |                 |
-+------------------------+-----------------------------------+-------------------+-----------------+
++------------------------+------------------------------------+-------------------+-----------------+
+| Name                   | Description                        | Values            | Default         |
++========================+====================================+===================+=================+
+| ``<userId>``           | Mandatory.                         | ``uint16_t``      | 0               |
+|                        | Uniquely identifies the endpoint.  |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<entityID>``         | EntityId of the endpoint.          | ``uint16_t``      | 0               |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<expectsInlineQos>`` | It indicates if QOS is             | ``bool``          | ``false``       |
+|                        | expected inline.                   |                   |                 |
+|                        | (reader **only**)                  |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<topicName>``        | Mandatory.                         | ``string_255``    |                 |
+|                        | The topic of the remote endpoint.  |                   |                 |
+|                        | Should match with one of the       |                   |                 |
+|                        | topics of the local participant.   |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<topicDataType>``    | Mandatory.                         | ``string_255``    |                 |
+|                        | The data type of the topic.        |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<topicKind>``        | The kind of topic.                 | :class:`NO_KEY`   | :class:`NO_KEY` |
+|                        |                                    +-------------------+                 |
+|                        |                                    | :class:`WITH_KEY` |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<partitionQos>``     | The name of a partition of the     | ``string``        |                 |
+|                        | remote peer. Repeat to configure   |                   |                 |
+|                        | several partitions.                |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<unicastLocator>``   | Unicast locator of the             |                   |                 |
+|                        | participant.                       |                   |                 |
+|                        | See :ref:`staticLocators`.         |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<multicastLocator>`` | Multicast locator of the           |                   |                 |
+|                        | participant.                       |                   |                 |
+|                        | See :ref:`staticLocators`.         |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<reliabilityQos>``   | See the :ref:`reliabilityqospolicy`| |besteffort|      | |besteffort|    |
+|                        | section.                           +-------------------+                 |
+|                        |                                    | |reliable|        |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<durabilityQos>``    | See the                            | |volatile|        | |volatile|      |
+|                        | :ref:`SettingDataDurability`       +-------------------+                 |
+|                        | section.                           | |transientlocal|  |                 |
+|                        |                                    +-------------------+                 |
+|                        |                                    | |transient|       |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<ownershipQos>``     | See                                |                   |                 |
+|                        | :ref:`ownershipQos`.               |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
+| ``<livelinessQos>``    | Defines the liveliness of the      |                   |                 |
+|                        | remote peer.                       |                   |                 |
+|                        | See :ref:`livelinessQos`.          |                   |                 |
++------------------------+------------------------------------+-------------------+-----------------+
 
 .. _staticLocators:
 
@@ -157,7 +157,7 @@ It takes no value, and the configuration is done using tag attributes:
 Liveliness QoS
 """"""""""""""
 
-The :ref:`liveliness-qos` of the remote peer is configured using ``<livelinessQos>`` tag.
+The :ref:`livelinessqospolicy` of the remote peer is configured using ``<livelinessQos>`` tag.
 It takes no value, and the configuration is done using tag attributes:
 
 * :class:`kind`: can be any of :class:`AUTOMATIC_LIVELINESS_QOS`, :class:`MANUAL_BY_PARTICIPANT_LIVELINESS_QOS` or

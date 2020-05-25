@@ -1,22 +1,26 @@
+.. include:: includes/aliases.rst
+
 .. _xml_profiles:
 
 XML profiles
 ============
 
-This section shows how to configure entity attributes using XML profiles, explaining each field with its available
-values and how to compound the complete XML files.
+This section explains how to configure DDS |Entities| using XML profiles.
+This includes the description of all the configuration values available for each of the XML profiles, as well as how
+to create complete XML files.
 
-*eProsima Fast DDS* permits to load several XML files, each one containing XML profiles.
-In addition to the API functions to load user XML files, at initialization *eProsima Fast DDS* tries to locate and load
+*eProsima Fast DDS* permits to load several XML files, each one containing one or more XML profiles.
+In addition to the API functions for loading user XML files, at initialization Fast DDS tries to locate and load
 several default XML files.
-*eProsima Fast DDS* offers the following options to use default XML files:
+Fast DDS offers the following options to use default XML files:
 
-* Using an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* and located in the current execution path.
-* Using an XML file which location is defined in the environment variable *FASTRTPS_DEFAULT_PROFILES_FILE*.
+* Load an XML file named *DEFAULT_FASTRTPS_PROFILES.xml* located in the current execution path.
+* Load an XML file which location is defined using the environment variable *FASTRTPS_DEFAULT_PROFILES_FILE*.
 
-An XML profile is defined by a unique name (or ``<transport_id>`` label
-in the :ref:`transportdescriptors` case) that is used to reference the XML profile
-during the creation of a Fast DDS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
+An XML profile is defined by a unique name, or ``<transport_id>`` label
+in the :ref:`transportdescriptors` case, that is used to reference the XML profile
+during the creation of an |Entity|, the :ref:`Trasports <comm-transports-configuration>` configuration, or the
+:ref:`DynamicTypes <dds_layer_topic_dynamic_data_types>` definition.
 
 
 .. toctree::

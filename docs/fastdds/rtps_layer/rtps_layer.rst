@@ -15,17 +15,17 @@ Relation to the DDS Layer
 Elements of this layer map one-to-one with elements from the :ref:`dds_layer`, with a few additions.
 This correspondence is shown in the following table:
 
-+------------------------------------------+-------------------+
-| :ref:`dds_layer`                         | :ref:`rtps_layer` |
-+==========================================+===================+
-| :ref:`dds_layer_domain`                  | RTPSDomain        |
-+------------------------------------------+-------------------+
-| :ref:`dds_layer_domainParticipant`       | RTPSParticipant   |
-+------------------------------------------+-------------------+
-| :ref:`dds_layer_publisher_dataWriterQos` | RTPSWriter        |
-+------------------------------------------+-------------------+
-| :ref:`dds_layer_subscriber_dataReader`   | RTPSReader        |
-+------------------------------------------+-------------------+
++----------------------------------------+-------------------+
+| :ref:`dds_layer`                       | :ref:`rtps_layer` |
++========================================+===================+
+| :ref:`dds_layer_domain`                | RTPSDomain        |
++----------------------------------------+-------------------+
+| :ref:`dds_layer_domainParticipant`     | RTPSParticipant   |
++----------------------------------------+-------------------+
+| :ref:`dds_layer_publisher_dataWriter`  | RTPSWriter        |
++----------------------------------------+-------------------+
+| :ref:`dds_layer_subscriber_dataReader` | RTPSReader        |
++----------------------------------------+-------------------+
 
 How to use the RTPS Layer
 -------------------------

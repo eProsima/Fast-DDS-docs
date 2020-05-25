@@ -1,6 +1,4 @@
-.. |br| raw:: html
-
-   <br />
+.. include:: includes/aliases.rst
 
 .. _security:
 
@@ -9,12 +7,10 @@ Security
 
 .. include:: includes/intro.rst
 
-.. include:: includes/auth_plugins.rst
+.. toctree::
+   :maxdepth: 2
 
-.. include:: includes/access_control_plugins.rst
-
-.. include:: includes/crypto_plugins.rst
-
-.. include:: includes/builtin_plugins.rst
-
-.. include:: includes/example.rst
+   auth_plugin/auth_plugin
+   access_control_plugin/access_control_plugin
+   crypto_plugin/crypto_plugin
+   logging_plugin/logging_plugin

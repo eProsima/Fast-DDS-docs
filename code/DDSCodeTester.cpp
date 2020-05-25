@@ -407,6 +407,107 @@ void dds_domain_examples()
         }
         //!--
     }
+    {
+        // DDS_SECURITY_AUTH_PLUGIN
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        // Activate DDS:Auth:PKI-DH plugin
+        pqos.properties().properties().emplace_back("dds.sec.auth.plugin",
+            "builtin.PKI-DH");
+
+        // Configure DDS:Auth:PKI-DH plugin
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.identity_ca",
+            "file://maincacert.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.identity_certificate",
+            "file://partcert.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.identity_crl",
+            "file://crl.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.private_key",
+            "file://partkey.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.password",
+            "domainParticipantPassword");
+        //!--
+    }
+    {
+        // DDS_SECURITY_ACCESS_CONTROL_PLUGIN
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        // Activate DDS:Access:Permissions plugin
+        pqos.properties().properties().emplace_back("dds.sec.access.plugin",
+            "builtin.Access-Permissions");
+
+        // Configure DDS:Access:Permissions plugin
+        pqos.properties().properties().emplace_back(
+            "dds.sec.access.builtin.Access-Permissions.permissions_ca",
+            "file://certs/maincacert.pem");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.access.builtin.Access-Permissions.governance",
+            "file://certs/governance.smime");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.access.builtin.Access-Permissions.permissions",
+            "file://certs/permissions.smime");
+        //!--
+    }
+    {
+        // DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        // Activate DDS:Crypto:AES-GCM-GMAC plugin
+        pqos.properties().properties().emplace_back("dds.sec.crypto.plugin",
+            "builtin.AES-GCM-GMAC");
+
+        // Only if DDS:Access:Permissions plugin is not enabled
+        // Configure DDS:Crypto:AES-GCM-GMAC plugin
+        pqos.properties().properties().emplace_back(
+            "rtps.participant.rtps_protection_kind",
+            "ENCRYPT");
+        //!--
+
+        // DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER
+        eprosima::fastdds::dds::DataWriterQos wqos;
+
+        // Only if DDS:Access:Permissions plugin is not enabled
+        // Configure DDS:Crypto:AES-GCM-GMAC plugin
+        wqos.properties().properties().emplace_back(
+            "rtps.endpoint.submessage_protection_kind",
+            "ENCRYPT");
+        wqos.properties().properties().emplace_back(
+            "rtps.endpoint.payload_protection_kind",
+            "ENCRYPT");
+        //!--
+
+        // DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER
+        eprosima::fastdds::dds::DataWriterQos rqos;
+
+        // Only if DDS:Access:Permissions plugin is not enabled
+        // Configure DDS:Crypto:AES-GCM-GMAC plugin
+        rqos.properties().properties().emplace_back(
+            "rtps.endpoint.submessage_protection_kind",
+            "ENCRYPT");
+        //!--
+    }
+    {
+        // DDS_SECURITY_LOGGING_PLUGIN
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        // Activate DDS:Logging:DDS_LogTopic plugin
+        pqos.properties().properties().emplace_back("dds.sec.log.plugin",
+            "builtin.DDS_LogTopic");
+
+        // Configure DDS:Logging:DDS_LogTopic plugin
+        pqos.properties().properties().emplace_back(
+            "dds.sec.log.builtin.DDS_LogTopic.logging_level",
+            "EMERGENCY_LEVEL");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.log.builtin.DDS_LogTopic.log_file",
+            "myLogFile.log");
+        //!--
+    }
 }
 
 //DDS_TOPIC_LISTENER_SPECIALIZATION

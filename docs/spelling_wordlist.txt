@@ -31,6 +31,7 @@ CDR
 centric
 Centric
 chocolatey
+ciphertext
 CMake
 Colcon
 coverity
@@ -41,6 +42,7 @@ datagram
 datarate
 deallocating
 decrypt
+decrypted
 dependant
 deserialization
 deserialize
@@ -71,6 +73,7 @@ Intra
 IPv
 libs
 lifecycle
+LogTopic
 loopback
 lroundl
 mandatorily

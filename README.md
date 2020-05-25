@@ -114,9 +114,10 @@ FASTRTPS_BRANCH=<branch> make test
 
 ## Simulating Read the Docs
 
-Read the Docs does generates the documentation using Sphinx and [conf.py](docs/conf.py).
-This means that it does not execute `make` and therefore Fast DDS is not downloaded for API reference documentation generation. [conf.py](docs/conf.py) provides some extra logic to download Fast DDS and generate the Doxygen documentation when running on a Read the Docs environment.
-This is done by the mean of the environment variable `READTHEDOCS`.
+Read the Docs generates the documentation using Sphinx and [conf.py](docs/conf.py).
+This means that it does not execute `make` and therefore Fast DDS is not downloaded for API reference documentation generation.
+[conf.py](docs/conf.py) provides some extra logic to download Fast DDS and generate the Doxygen documentation when running on a Read the Docs environment.
+This is done by means of the environment variable `READTHEDOCS`.
 When this variable is set to `True`, [conf.py](docs/conf.py) will clone Fast DDS in `build/code/external/eprosima/src/` (same place as CMake) and will set it to a branch applying the following criteria:
 
 1. Try to checkout to the branch specified by `FASTRTPS_BRANCH`.

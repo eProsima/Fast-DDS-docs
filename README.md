@@ -11,6 +11,12 @@ eprosima Fast RTPS is a C++ implementation of the RTPS (Real Time Publish Subscr
 For more information about the library, check out the [Fast-RTPS documentation](https://fast-rtps.docs.eprosima.com/en/latest/).
 You can find all the library's source code on our [GitHub repository](https://github.com/eProsima/Fast-RTPS).
 
+1. [Installation Guide](#installation-guide)
+1. [Getting Started](#getting-started)
+1. [Generating documentation in other formats](#generating-documentation-in-other-formats)
+1. [Running documentation tests](#running-documentation-tests)
+1. [Simulating Read the Docs](#simulating-read-the-docs)
+
 ## Installation Guide
 
 1. In order to build and test the documentation, some dependencies must be installed beforehand:
@@ -104,4 +110,33 @@ Run the tests by:
 cd ~/fastrtps-docs
 source fastrtps-docs-venv/bin/activate
 FASTRTPS_BRANCH=<branch> make test
+```
+
+## Simulating Read the Docs
+
+Read the Docs generates the documentation using Sphinx and [conf.py](docs/conf.py).
+This means that it does not execute `make` and therefore Fast DDS is not downloaded for API reference documentation generation.
+[conf.py](docs/conf.py) provides some extra logic to download Fast DDS and generate the Doxygen documentation when running on a Read the Docs environment.
+This is done by means of the environment variable `READTHEDOCS`.
+When this variable is set to `True`, [conf.py](docs/conf.py) will clone Fast DDS in `build/code/external/eprosima/src/` (same place as CMake) and will set it to a branch applying the following criteria:
+
+1. Try to checkout to the branch specified by `FASTRTPS_BRANCH`.
+1. If the variable is not set, or the branch does not exist, try to checkout to a branch with the same name as the current branch on this repository.
+1. If the previous fails, fallback to `master`.
+
+To simulating Read the Docs operation, make sure you do not have a `build` directory.
+
+```bash
+cd ~/fastrtps-docs
+rm -rf build
+```
+
+Then, set `READTHEDOCS`, `FASTRTPS_BRANCH` and run sphinx:
+
+```bash
+READTHEDOCS=True FASTRTPS_BRANCH=<branch> sphinx-build \
+    -b html \
+    -Dbreathe_projects.FastDDS=<abs_path_to_docs_repo>/fastrtps-docs/build/code/doxygen/xml \
+    -d <abs_path_to_docs_repo>/fastrtps-docs/build/doctrees \
+    docs <abs_path_to_docs_repo>/fastrtps-docs/build/html
 ```

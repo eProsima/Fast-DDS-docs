@@ -20,7 +20,32 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import os
 import pathlib
+import shutil
 import subprocess
+
+import git
+
+
+def get_git_branch():
+    """Get the git branch this repository is currently on."""
+    path_to_here = os.path.abspath(os.path.dirname(__file__))
+
+    # Invoke git to get the current branch which we use to get the theme
+    try:
+        p = subprocess.Popen(
+            ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+            stdout=subprocess.PIPE,
+            cwd=path_to_here
+        )
+
+        return p.communicate()[0].decode().rstrip()
+
+    except Exception:
+        print('Could not get the branch')
+
+    # Couldn't figure out the branch probably due to an error
+    return None
+
 
 def configure_doxyfile(
     doxyfile_in,
@@ -49,27 +74,88 @@ def configure_doxyfile(
     filedata = filedata.replace('@PROJECT_BINARY_DIR@', project_binary_dir)
     filedata = filedata.replace('@PROJECT_SOURCE_DIR@', project_source_dir)
 
+    os.makedirs(os.path.dirname(doxyfile_out), exist_ok=True)
     with open(doxyfile_out, 'w') as file:
         file.write(filedata)
 
-script_path = pathlib.Path(__file__).parent.absolute()
+
+script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
-project_source_dir = '{}/../code'.format(script_path)
-project_binary_dir = '{}/../build/code'.format(script_path)
-output_dir = '{}/doxygen'.format(project_binary_dir)
+project_source_dir = os.path.abspath('{}/../code'.format(script_path))
+project_binary_dir = os.path.abspath('{}/../build/code'.format(script_path))
+output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
+doxygen_html = os.path.abspath('{}/html/doxygen'.format(project_binary_dir))
+os.makedirs(os.path.dirname(output_dir), exist_ok=True)
+os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
 
 # Doxyfile
-doxyfile_in = '{}/doxygen-config.in'.format(project_source_dir)
-doxyfile_out = '{}/doxygen-config'.format(project_binary_dir)
+doxyfile_in = os.path.abspath(
+    '{}/doxygen-config.in'.format(project_source_dir)
+)
+doxyfile_out = os.path.abspath('{}/doxygen-config'.format(project_binary_dir))
 
 # Header files
-input_dir = '{}/external/eprosima/src/fastrtps/include/fastdds'.format(
-    project_binary_dir
+input_dir = os.path.abspath(
+    '{}/external/eprosima/src/fastrtps/include/fastdds'.format(
+        project_binary_dir
+    )
 )
 
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
+    print('Read the Docs environment detected!')
+
+    fastdds_repo_name = os.path.abspath(
+        '{}/external/eprosima/src/fastrtps'.format(
+            project_binary_dir
+        )
+    )
+
+    # Remove repository if exists
+    if os.path.isdir(fastdds_repo_name):
+        print('Removing existing repository in {}'.format(fastdds_repo_name))
+        shutil.rmtree(fastdds_repo_name)
+
+    # Create necessary directory path
+    os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
+
+    # Clone repository
+    print('Cloning Fast DDS')
+    fastdds = git.Repo.clone_from(
+        'https://github.com/eProsima/Fast-RTPS.git',
+        fastdds_repo_name,
+    )
+
+    # Documentation repository branch
+    docs_branch = get_git_branch()
+    print('Current documentation branch is "{}"'.format(docs_branch))
+
+    # User specified Fast DDS branch
+    fastdds_branch = os.environ.get('FASTRTPS_BRANCH', None)
+
+    # First try to checkout to ${FASTRTPS_BRANCH}
+    # Else try with current documentation branch
+    # Else checkout to master
+    if (fastdds_branch and
+            fastdds.refs.__contains__('origin/{}'.format(fastdds_branch))):
+        fastdds_branch = 'origin/{}'.format(fastdds_branch)
+    elif (docs_branch and
+            fastdds.refs.__contains__('origin/{}'.format(docs_branch))):
+        fastdds_branch = 'origin/{}'.format(docs_branch)
+    else:
+        print(
+            'Fast DDS does not have either "{}" or "{}" branches'.format(
+                fastdds_branch,
+                docs_branch
+            )
+        )
+        fastdds_branch = 'origin/master'
+
+    # Actual checkout
+    print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
+    fastdds.refs[fastdds_branch].checkout()
+
     # Configure Doxyfile
     configure_doxyfile(
         doxyfile_in,
@@ -83,7 +169,7 @@ if read_the_docs_build:
     subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
 
 breathe_projects = {
-    'FastDDS': '{}/xml'.format(output_dir)
+    'FastDDS': os.path.abspath('{}/xml'.format(output_dir))
 }
 breathe_default_project = 'FastDDS'
 

@@ -23,8 +23,13 @@ no Listener attached.
 Additionally, :ref:`api_pim_subscriberlistener` adds the following callback:
 
  * :cpp:func:`on_data_on_readers<eprosima::fastdds::dds::SubscriberListener::on_data_on_readers>`:
-   A new data value is available on any :ref:`dds_layer_subscriber_dataReader`
+   New data is available on any :ref:`dds_layer_subscriber_dataReader`
    belonging to this :ref:`dds_layer_subscriber_subscriber`.
+   There is no queuing of invocations to this callback, meaning that if several new data changes are received
+   at once, only one callback invocation may be issued for all of them, instead of one per change.
+   If the application is retrieving the received data on this callback, it must keep
+   :ref:`reading data<dds_layer_subscriber_accessreceived>` until no new changes are left.
+
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

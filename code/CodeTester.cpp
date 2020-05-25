@@ -224,9 +224,6 @@ void configuration_compilation_check()
     // Create a descriptor for the new transport.
     std::shared_ptr<SharedMemTransportDescriptor> shm_transport = std::make_shared<SharedMemTransportDescriptor>();
 
-    // Disable the built-in Transport Layer.
-    participant_attr.rtps.useBuiltinTransports = false;
-
     // Link the Transport Layer to the Participant.
     participant_attr.rtps.userTransports.push_back(shm_transport);
     //!--

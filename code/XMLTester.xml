@@ -451,8 +451,6 @@
         <userTransports>
             <transport_id>shm_transport</transport_id>
         </userTransports>
-        <!-- Disable the built-in Transport Layer -->
-        <useBuiltinTransports>false</useBuiltinTransports>
     </rtps>
 </participant>
 <!--><-->

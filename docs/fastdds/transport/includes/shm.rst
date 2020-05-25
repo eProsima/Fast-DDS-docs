@@ -26,9 +26,9 @@ When two participants on the same machine have SHM transport enabled, all commun
 performed by SHM transport only.
 The rest of the enabled transports are not used between those two participants.
 
-In order to change the default parameters of SHM transport, you need to add the SharedMemTransportDescriptor to the
+To enable SHM transport in a Participant, you need to add the SharedMemTransportDescriptor to the
 ``rtps.userTransports`` attribute (C++ code) or define a transport_descriptor of type SHM in the
-XML file. In both cases ``rtps.useBuiltinTransports`` must be disabled (see below examples).
+XML file (see examples below).
 
 +--------------------------------------------------+
 | **C++**                                          |

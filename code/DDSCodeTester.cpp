@@ -2087,7 +2087,7 @@ public:
         void* data = reader->type().create_data();
         SampleInfo info;
 
-        //Keep taking data until there is nothing to take
+        // Keep taking data until there is nothing to take
         while (reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
         {
             if (info.instance_state == ALIVE)

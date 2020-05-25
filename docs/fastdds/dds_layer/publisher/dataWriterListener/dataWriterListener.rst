@@ -22,7 +22,7 @@ Callbacks that are not overridden will maintain their empty implementation.
   It will be called for each deadline period and data instance for which the
   :ref:`dds_layer_publisher_dataWriter` failed to provide data.
 
-.. note::
+.. warning::
    Currently *on_offered_deadline_missed* is not implemented (it will never be called), and will be implemented
    on a future release of Fast DDS.
 
@@ -31,7 +31,7 @@ Callbacks that are not overridden will maintain their empty implementation.
   a common partition, but with a requested QoS that is incompatible with the one defined on the
   :ref:`dds_layer_publisher_dataWriter`.
 
-.. note::
+.. warning::
    Currently *on_offered_incompatible_qos* is not implemented (it will never be called), and will be implemented
    on a future release of Fast DDS.
 

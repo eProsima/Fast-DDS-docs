@@ -3,7 +3,7 @@
 Status
 ======
 
-Each :ref:`dds_layer_core_entity` is associated with a set of :class:`Status` objects whose value represents
+Each :ref:`dds_layer_core_entity` is associated with a set of :class:`Status` objects whose values represent
 the *communication status* of that :ref:`dds_layer_core_entity`.
 Changes on the status values occur due to communication events related to each of the entities,
 e.g., when new data arrives, a new participant is discovered, or a remote endpoint is lost.
@@ -14,7 +14,7 @@ Changes on a status object trigger the corresponding :ref:`dds_layer_core_entity
 that allow the :ref:`dds_layer_core_entity` to inform the application about the event.
 For a given status object with name :class:`fooStatus`, the entity listener interface defines a callback
 function :func:`on_foo` that will be called when the status changes.
-The only exceptions are :ref:`dds_layer_core_status_dataOnReaders` and :ref:`dds_layer_core_status_dataAvailable`
+The only exceptions are :ref:`dds_layer_core_status_dataOnReaders` and :ref:`dds_layer_core_status_dataAvailable`.
 Beware that some statuses have data members that are reset every time the corresponding listener is called.
 The only exception to this rule is when the entity has no listener attached, so the callback cannot be called.
 See the documentation of each status for details.
@@ -22,11 +22,12 @@ See the documentation of each status for details.
 The entities expose functions to access the value of its statuses.
 For a given status with name :class:`fooStatus`, the entity exposes a member function :func:`get_foo` to
 access the data in its :class:`fooStatus`.
-Beware that some statuses have data members that are reset every time the status is read by the application.
+These getter functions return a read-only struct where all data members are public and accessible to the application.
+Beware that some statuses have data members that are reset every time the getter function is called by the application.
 See the documentation of each status for details.
 
-The following subsections describe each of the status objects and to which :ref:`dds_layer_core_entity` type they
-concern.
+The following subsections describe each of the status objects, their data members, and to which
+:ref:`dds_layer_core_entity` type they concern.
 The next table can be used as a quick reference too.
 
 .. |InconsistentTopicStatus| replace:: :ref:`dds_layer_core_status_inconsistentTopicStatus`
@@ -133,7 +134,7 @@ DataOnReaders
 -------------
 
 This status becomes active every time there is new data available for the application on any
-:ref:`dds_layer_subscriber_dataReader` belonging to the current :ref:`dds_layer_subscriber_subscriber`
+:ref:`dds_layer_subscriber_dataReader` belonging to the current :ref:`dds_layer_subscriber_subscriber`.
 There is no getter function to access this status, as it does not keep track of any information related to the
 data itself.
 Its only purpose is to trigger the |on_data_on_readers| callback on the listener attached to the
@@ -180,7 +181,7 @@ List of status data members:
 
 * **alive_count**: Total number of currently active :ref:`DataWriters<dds_layer_publisher_dataWriter>`.
   This count increases every time a newly matched :ref:`dds_layer_publisher_dataWriter` asserts its
-  liveliness of a :ref:`dds_layer_publisher_dataWriter` that was considered not alive reasserts its
+  liveliness or a :ref:`dds_layer_publisher_dataWriter` that was considered not alive reasserts its
   liveliness.
   It decreases every time an active :ref:`dds_layer_publisher_dataWriter` becomes not alive, either
   because it failed to asserts its liveliness or because it was deleted for any reason.
@@ -212,7 +213,7 @@ List of status data members:
 RequestedDeadlineMissedStatus
 -----------------------------
 
-This status changes every time the :ref:`dds_layer_subscriber_dataReader` did not receive
+This status changes every time the :ref:`dds_layer_subscriber_dataReader` does not receive
 data within the deadline period configured on its :ref:`dds_layer_subscriber_dataReaderQos`.
 
 List of status data members:
@@ -254,7 +255,7 @@ RequestedIncompatibleQosStatus
 
 This status changes every time the :ref:`dds_layer_subscriber_dataReader` finds a
 :ref:`dds_layer_publisher_dataWriter` that matches the :ref:`dds_layer_topic_topic` and has
-a common partition, but with a QoS that is incompatible with the one defined on the
+a common partition, but with a QoS configuration incompatible with the one defined on the
 :ref:`dds_layer_subscriber_dataReader`.
 
 List of status data members:
@@ -272,8 +273,8 @@ List of status data members:
 +--------------------------+-----------------------------------------+
 
 * **total_count**: Total cumulative count of :ref:`DataWriters<dds_layer_publisher_dataWriter>` found
-  matching the :ref:`dds_layer_topic_topic` and with a common partition, but with a QoS that is incompatible
-  with the one defined on the :ref:`dds_layer_subscriber_dataReader`.
+  matching the :ref:`dds_layer_topic_topic` and with a common partition, but with a QoS configuration
+  that is incompatible with the one defined on the :ref:`dds_layer_subscriber_dataReader`.
 
 * **total_count_change**: The change in **total_count** since
   the last time |on_requested_incompatible_qos| was called or the status was read.
@@ -293,6 +294,28 @@ List of status data members:
     Currently this status is not supported and will be implemented in future releases.
     As a result, trying to access this status will return ``NOT_SUPPORTED``
     and the corresponding listener will never be called.
+
+
+.. _dds_layer_core_status_qosPolicyCount:
+
+QosPolicyCount
+^^^^^^^^^^^^^^
+
+This structure holds a counter for a policy.
+
+List of data members:
+
++--------------------------+-----------------------------------------+
+| Data Member Name         | Type                                    |
++==========================+=========================================+
+| policy_id                | ``int32_t``                             |
++--------------------------+-----------------------------------------+
+| count                    | ``int32_t``                             |
++--------------------------+-----------------------------------------+
+
+* **policy_id**: The ID of the policy.
+
+* **count**: The counter value for the policy.
 
 
 .. _dds_layer_core_status_sampleLostStatus:
@@ -394,8 +417,6 @@ SubscriptionMatchedStatus
 This status changes every time the :ref:`dds_layer_subscriber_dataReader` finds a :ref:`dds_layer_publisher_dataWriter`
 that matches the :ref:`dds_layer_topic_topic` and has a common partition and a compatible QoS,
 or has ceased to be matched with a :ref:`dds_layer_publisher_dataWriter` that was previously considered to be matched.
-It is also changed when a matched :ref:`dds_layer_publisher_dataWriter` has changed its
-:ref:`dds_layer_publisher_dataWriterQos`.
 
 List of status data members:
 
@@ -432,34 +453,6 @@ List of status data members:
 * **last_publication_handle**: Handle to the last :ref:`dds_layer_publisher_dataWriter`
   that matched the :ref:`dds_layer_subscriber_dataReader`.
   If no matching ever happened, it will have value ``c_InstanceHandle_Unknown``.
-
-
-.. _dds_layer_core_status_qosPolicyCount:
-
-QosPolicyCount
-^^^^^^^^^^^^^^
-
-This structure holds a counter for a policy.
-It is used to keep track of the number of times a remote policy was found to be incompatible with
-the local one.
-
-List of data members:
-
-+--------------------------+-----------------------------------------+
-| Data Member Name         | Type                                    |
-+==========================+=========================================+
-| policy_id                | ``int32_t``                             |
-+--------------------------+-----------------------------------------+
-| count                    | ``int32_t``                             |
-+--------------------------+-----------------------------------------+
-| last_policy_id           | ``uint32_t``                            |
-+--------------------------+-----------------------------------------+
-| policies                 | ``std::vector<QosPolicyCount>``         |
-+--------------------------+-----------------------------------------+
-
-* **policy_id**: The ID of the policy.
-
-* **count**: The counter value for the policy.
 
 
 .. _dds_layer_core_status_livelinessLostStatus:
@@ -540,7 +533,7 @@ OfferedIncompatibleQosStatus
 
 This status changes every time the :ref:`dds_layer_publisher_dataWriter` finds a
 :ref:`dds_layer_subscriber_dataReader` that matches the :ref:`dds_layer_topic_topic` and has
-a common partition, but with a QoS that is incompatible with the one defined on the
+a common partition, but with a QoS configuration that is incompatible with the one defined on the
 :ref:`dds_layer_publisher_dataWriter`.
 
 List of status data members:
@@ -558,8 +551,8 @@ List of status data members:
 +--------------------------+-----------------------------------------+
 
 * **total_count**: Total cumulative count of :ref:`DataReaders<dds_layer_subscriber_dataReader>` found
-  matching the :ref:`dds_layer_topic_topic` and with a common partition, but with a QoS that is incompatible
-  with the one defined on the :ref:`dds_layer_publisher_dataWriter`.
+  matching the :ref:`dds_layer_topic_topic` and with a common partition, but with a QoS configuration
+  that is incompatible with the one defined on the :ref:`dds_layer_publisher_dataWriter`.
 
 * **total_count_change**: The change in **total_count** since
   the last time |on_offered_incompatible_qos| was called or the status was read.
@@ -589,8 +582,6 @@ PublicationMatchedStatus
 This status changes every time the :ref:`dds_layer_publisher_dataWriter` finds a :ref:`dds_layer_subscriber_dataReader`
 that matches the :ref:`dds_layer_topic_topic` and has a common partition and a compatible QoS,
 or has ceased to be matched with a :ref:`dds_layer_subscriber_dataReader` that was previously considered to be matched.
-It is also changed when a matched :ref:`dds_layer_subscriber_dataReader` has changed its
-:ref:`dds_layer_subscriber_dataReaderQos`.
 
 List of status data members:
 

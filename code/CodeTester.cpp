@@ -21,8 +21,8 @@
 #include <fastrtps/log/FileConsumer.h>
 #include <fastrtps/subscriber/SampleInfo.h>
 #include <fastrtps/TopicDataType.h>
-#include <fastrtps_deprecated/security/accesscontrol/GovernanceParser.h>
-#include <fastrtps_deprecated/security/accesscontrol/PermissionsParser.h>
+#include <security/accesscontrol/GovernanceParser.h>
+#include <security/accesscontrol/PermissionsParser.h>
 
 #include <fstream>
 

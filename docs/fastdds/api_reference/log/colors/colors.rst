@@ -1,127 +1,127 @@
-.. _api_log_colors_def:
-
-COLOR DEF
-=========
-
-.. doxygendefine:: C_DEF
-    :project: FastDDS
-
-.. _api_log_colors_red:
-
-COLOR RED
-=========
-
-.. doxygendefine:: C_RED
-    :project: FastDDS
-
-.. _api_log_colors_b_red:
-
-COLOR BRIGHT RED
-================
-
-.. doxygendefine:: C_B_RED
-    :project: FastDDS
-
-.. _api_log_colors_green:
-
-COLOR GREEN
-===========
-
-.. doxygendefine:: C_GREEN
-    :project: FastDDS
-
-.. _api_log_colors_b_green:
-
-COLOR BRIGHT GREEN
-==================
-
-.. doxygendefine:: C_B_GREEN
-    :project: FastDDS
-
-.. _api_log_colors_yellow:
-
-COLOR YELLOW
-============
-
-.. doxygendefine:: C_YELLOW
-    :project: FastDDS
-
-.. _api_log_colors_b_yellow:
-
-COLOR BRIGHT YELLOW
-===================
-
-.. doxygendefine:: C_B_YELLOW
-    :project: FastDDS
-
 .. _api_log_colors_blue:
 
-COLOR BLUE
-==========
+Color Blue
+----------
 
 .. doxygendefine:: C_BLUE
     :project: FastDDS
 
-.. _api_log_colors_b_blue:
+.. _api_log_colors_bright:
 
-COLOR BRIGHT BLUE
-=================
+Color Bright
+------------
+
+.. doxygendefine:: C_BRIGHT
+    :project: FastDDS
+
+.. _api_log_colors_bright_blue:
+
+Color Bright Blue
+-----------------
 
 .. doxygendefine:: C_B_BLUE
     :project: FastDDS
 
-.. _api_log_colors_magenta:
+.. _api_log_colors_bright_cyan:
 
-COLOR MAGENTA
-=============
-
-.. doxygendefine:: C_MAGENTA
-    :project: FastDDS
-
-.. _api_log_colors_b_magenta:
-
-COLOR BRIGHT MAGENTA
-====================
-
-.. doxygendefine:: C_B_MAGENTA
-    :project: FastDDS
-
-.. _api_log_colors_cyan:
-
-COLOR CYAN
-==========
-
-.. doxygendefine:: C_CYAN
-    :project: FastDDS
-
-.. _api_log_colors_b_cyan:
-
-COLOR BRIGHT CYAN
-=================
+Color Bright Cyan
+-----------------
 
 .. doxygendefine:: C_B_CYAN
     :project: FastDDS
 
-.. _api_log_colors_white:
+.. _api_log_colors_bright_green:
 
-COLOR WHITE
-===========
+Color Bright Green
+------------------
 
-.. doxygendefine:: C_WHITE
+.. doxygendefine:: C_B_GREEN
     :project: FastDDS
 
-.. _api_log_colors_b_white:
+.. _api_log_colors_bright_magenta:
 
-COLOR BRIGHT WHITE
-==================
+Color Bright Magenta
+--------------------
+
+.. doxygendefine:: C_B_MAGENTA
+    :project: FastDDS
+
+.. _api_log_colors_bright_red:
+
+Color Bright Red
+----------------
+
+.. doxygendefine:: C_B_RED
+    :project: FastDDS
+
+.. _api_log_colors_bright_white:
+
+Color Bright White
+------------------
 
 .. doxygendefine:: C_B_WHITE
     :project: FastDDS
 
-.. _api_log_colors_bright:
+.. _api_log_colors_bright_yellow:
 
-COLOR BRIGHT
-============
+Color Bright Yellow
+-------------------
 
-.. doxygendefine:: C_BRIGHT
+.. doxygendefine:: C_B_YELLOW
+    :project: FastDDS
+
+.. _api_log_colors_cyan:
+
+Color Cyan
+----------
+
+.. doxygendefine:: C_CYAN
+    :project: FastDDS
+
+.. _api_log_colors_def:
+
+Color Def
+---------
+
+.. doxygendefine:: C_DEF
+    :project: FastDDS
+
+.. _api_log_colors_green:
+
+Color Green
+-----------
+
+.. doxygendefine:: C_GREEN
+    :project: FastDDS
+
+.. _api_log_colors_magenta:
+
+Color Magenta
+-------------
+
+.. doxygendefine:: C_MAGENTA
+    :project: FastDDS
+
+.. _api_log_colors_red:
+
+Color Red
+---------
+
+.. doxygendefine:: C_RED
+    :project: FastDDS
+
+.. _api_log_colors_white:
+
+Color White
+-----------
+
+.. doxygendefine:: C_WHITE
+    :project: FastDDS
+
+.. _api_log_colors_yellow:
+
+Color Yellow
+------------
+
+.. doxygendefine:: C_YELLOW
     :project: FastDDS

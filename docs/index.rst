@@ -32,7 +32,7 @@ eProsima Fast DDS Documentation
    /fastdds/discovery/discovery
    /fastdds/transport/transport
    /fastdds/security/security
-   /fastdds/logging/logging
+   /fastdds/logging/intro
    /fastdds/xml_configuration/xml_configuration
    /fastdds/env_vars/env_vars
    /fastdds/dynamic_types/dynamic_types

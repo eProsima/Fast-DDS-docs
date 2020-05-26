@@ -21,6 +21,7 @@
 #include <fastdds/dds/topic/TopicListener.hpp>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
 #include <fastrtps/types/DynamicTypePtr.h>
+#include <fastrtps/log/Log.h>
 
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
 #include <fastrtps/utils/IPLocator.h>
@@ -2883,3 +2884,35 @@ void dds_dynamic_types_examples ()
     }
 }
 
+void log_examples()
+{
+    //LOG_MESSAGES
+    logInfo(DOCUMENTATION_CATEGORY, "This is an info message");
+    logWarning(DOCUMENTATION_CATEGORY, "This is an warning message");
+    logError(DOCUMENTATION_CATEGORY, "This is an error message");
+    //!--
+
+    //LOG_SET_GET_VERBOSITY
+    // Set log verbosity level to Log::Kind::Info
+    Log::SetVerbosity(Log::Kind::Info);
+
+    // Get log verbosity level
+    Log::Kind verbosity_level = Log::GetVerbosity();
+    //!--
+
+    //LOG_REPORT_FILENAMES
+    // Enable file name and line number reporting
+    Log::ReportFilenames(true);
+
+    // Disable file name and line number reporting
+    Log::ReportFilenames(false);
+    //!--
+
+    //LOG_REPORT_FUNCTIONS
+    // Enable function name reporting
+    Log::ReportFunctions(true);
+
+    // Disable function name reporting
+    Log::ReportFunctions(false);
+    //!--
+}

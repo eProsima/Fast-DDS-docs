@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+    <participant profile_name="participant_xml_conf_profile">
+        <domainId>80</domainId>
+        <rtps>
+            <name>my_participant</name>
+        </rtps>
+    </participant>
+</profiles>
+
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
 
 <!-->PUBSUB_API_CONF_PARTICIPANT<-->
 <participant profile_name="participant_xml_conf_profile">

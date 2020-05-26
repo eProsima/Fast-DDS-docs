@@ -58,7 +58,7 @@ It exposes three macro definitions to ease its usage: ``logInfo``, ``logWarning`
 Moreover, it allows the definition of new categories, in addition to those already available
 (:class:`INFO_MSG`, :class:`WARN_MSG` and :class:`ERROR_MSG`).
 It provides filtering by category using regular expressions, as well as control of the verbosity of the Logging system.
-Details of the possible Logging system configurations can be found in the :ref:`dds_layer_core_logging` section.
+Details of the possible Logging system configurations can be found in the :ref:`dds_layer_log_log` section.
 
 
 XML profiles configuration

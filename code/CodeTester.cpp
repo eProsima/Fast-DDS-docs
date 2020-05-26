@@ -1996,6 +1996,12 @@ int main(
         exit(-1);
     }
 
+    // Also show log warnings to spot potential mistakes
+    Log::SetVerbosity(Log::Kind::Warning);
+    // Report filename and line number for debugging
+    Log::ReportFilenames(true);
+
+    int exit_code = 0;
     if (strncmp(argv[1], "Governance", 10) == 0)
     {
         std::ifstream file;
@@ -2008,7 +2014,7 @@ int main(
         if (!parser.parse_stream(content.c_str(), content.length()))
         {
             printf("Error parsing xml file %s\n", argv[1]);
-            exit(-1);
+            exit_code = -1;
         }
     }
     else if (strncmp(argv[1], "Permissions", 11) == 0)
@@ -2023,7 +2029,7 @@ int main(
         if (!parser.parse_stream(content.c_str(), content.length()))
         {
             printf("Error parsing xml file %s\n", argv[1]);
-            exit(-1);
+            exit_code = -1;
         }
     }
     else if (strncmp(argv[1], "Static", 6) == 0)
@@ -2034,7 +2040,7 @@ int main(
         if (parser.loadXMLFile(file) != XMLP_ret::XML_OK)
         {
             printf("Error parsing xml file %s\n", argv[1]);
-            exit(-1);
+            exit_code = -1;
         }
     }
     else
@@ -2044,9 +2050,12 @@ int main(
         if (parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
         {
             printf("Error parsing xml file %s\n", argv[1]);
-            exit(-1);
+            exit_code = -1;
         }
     }
 
-    exit(0);
+    // Make sure all logs are displayed before exiting
+    Log::Flush();
+
+    exit(exit_code);
 }

@@ -510,10 +510,109 @@ void dds_domain_examples()
     }
 }
 
+//DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS
+class DiscoveryDomainParticipantListener : public DomainParticipantListener
+{
+    /* Custom Callback on_participant_discovery */
+    virtual void on_participant_discovery(
+            DomainParticipant* participant,
+            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info)
+    {
+        (void)participant;
+        switch (info.status){
+            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
+                /* Process the case when a new DomainParticipant was found in the domain */
+                std::cout << "New DomainParticipant '" << info.info.m_participantName <<
+                    "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
+                    info.info.m_guid.guidPrefix << "' discovered." << std::endl;
+                break;
+            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::CHANGED_QOS_PARTICIPANT:
+                /* Process the case when a DomainParticipant changed its QOS */
+                break;
+            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT:
+                /* Process the case when a DomainParticipant was removed from the domain */
+                std::cout << "New DomainParticipant '" << info.info.m_participantName <<
+                    "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
+                    info.info.m_guid.guidPrefix << "' left the domain." << std::endl;
+                break;
+        }
+    }
+
+    /* Custom Callback on_subscriber_discovery */
+    virtual void on_subscriber_discovery(
+            DomainParticipant* participant,
+            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info)
+    {
+        (void)participant;
+        switch (info.status){
+            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
+                /* Process the case when a new subscriber was found in the domain */
+                std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
+                "' of type '" << info.info.typeName() << "' discovered";
+                break;
+            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
+                /* Process the case when a subscriber changed its QOS */
+                break;
+            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
+                /* Process the case when a subscriber was removed from the domain */
+                std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
+                    "' of type '" << info.info.typeName() << "' left the domain.";
+                break;
+        }
+    }
+
+    /* Custom Callback on_publisher_discovery */
+    virtual void on_publisher_discovery(
+            DomainParticipant* participant,
+            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info)
+    {
+        (void)participant;
+        switch (info.status){
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::DISCOVERED_WRITER:
+                /* Process the case when a new publisher was found in the domain */
+                std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
+                    "' of type '" << info.info.typeName() << "' discovered";
+                break;
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::CHANGED_QOS_WRITER:
+                /* Process the case when a publisher changed its QOS */
+                break;
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::REMOVED_WRITER:
+                /* Process the case when a publisher was removed from the domain */
+                std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
+                    "' of type '" << info.info.typeName() << "' left the domain.";
+                break;
+        }
+    }
+
+    /* Custom Callback on_type_discovery */
+    virtual void on_type_discovery(
+            DomainParticipant* participant,
+            const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
+            const eprosima::fastrtps::string_255& topic,
+            const eprosima::fastrtps::types::TypeIdentifier* identifier,
+            const eprosima::fastrtps::types::TypeObject* object,
+            eprosima::fastrtps::types::DynamicType_ptr dyn_type)
+    {
+        (void)participant, (void)request_sample_id, (void)topic, (void)identifier, (void)object, (void)dyn_type;
+        std::cout << "New data type of topic '" << topic << "' discovered." << std::endl;
+    }
+};
+//!--
+
 void dds_discovery_examples()
 {
     {
         eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        //SET-DISCOVERY-CALLBACKS
+        // Create a custom user DomainParticipantListener
+        DiscoveryDomainParticipantListener* plistener = new DiscoveryDomainParticipantListener();
+        // Pass the listener on DomainParticipant creation.
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(
+                        0, PARTICIPANT_QOS_DEFAULT, plistener);
+        //!--
+
         //CONF-DISCOVERY-PROTOCOL
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 eprosima::fastrtps::rtps::DiscoveryProtocol_t::SIMPLE;

@@ -3,7 +3,8 @@
 Discovery settings
 ------------------
 
-The following sections list and describe the settings available for each of the discovery mechanisms previously defined.
+The following sections list and describe the settings available for each of the previously defined discovery mechanisms,
+as well as how to define the DomainParticipantListener discovery callbacks.
 
 .. toctree::
     :maxdepth: 2
@@ -12,3 +13,4 @@ The following sections list and describe the settings available for each of the 
     simple.rst
     static.rst
     server_client.rst
+    disc_callbacks.rst

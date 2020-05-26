@@ -685,7 +685,7 @@ void dds_discovery_examples()
         //!--
     }
     {
-        //CONF_SERVER_SERVER_GUIDPREFIX
+        //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
         using namespace eprosima::fastrtps::rtps;
 
         GuidPrefix_t serverGuidPrefix;
@@ -704,6 +704,12 @@ void dds_discovery_examples()
 
         eprosima::fastdds::dds::DomainParticipantQos serverQos;
         serverQos.wire_protocol().prefix = serverGuidPrefix;
+        //!--
+    }
+    {
+        //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        std::istringstream("4d.49.47.55.45.4c.5f.42.41.52.52.4f") >> serverQos.wire_protocol().prefix;
         //!--
     }
     {

@@ -122,11 +122,19 @@ Server side setup
 The examples below show how to manage the corresponding enum data member and XML tag.
 
 +----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
+| **C++** - Option 1: Manual setting of the ``unsigned char`` in ASCII format.                                         |
 +----------------------------------------------------------------------------------------------------------------------+
 | .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
 |    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX                                                                     |
+|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1                                                            |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **C++** - Option 2: Using the ``>>`` operator and the ``std::ostream`` type.                                         |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2                                                            |
 |    :end-before: //!--                                                                                                |
 |    :dedent: 8                                                                                                        |
 +----------------------------------------------------------------------------------------------------------------------+

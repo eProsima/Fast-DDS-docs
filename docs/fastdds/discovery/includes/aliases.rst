@@ -20,6 +20,12 @@
 .. |Topic| replace:: :cpp:class:`Topic <eprosima::fastdds::dds::Topic>`
 .. |Topics| replace:: :cpp:class:`Topics <eprosima::fastdds::dds::Topic>`
 
+.. |RTPSParticipants| replace:: :cpp:class:`RTPSParticipants <eprosima::fastrtps::rtps::RTPSParticipant>`
+.. |RTPSParticipant| replace:: :cpp:class:`RTPSParticipant <eprosima::fastrtps::rtps::RTPSParticipant>`
+.. |RTPSReaders| replace:: :cpp:class:`RTPSReaders <eprosima::fastrtps::rtps::RTPSReader>`
+.. |RTPSWriters| replace:: :cpp:class:`RTPSWriters <eprosima::fastrtps::rtps::RTPSWriter>`
+
+
 .. |br| raw:: html
 
   <br/>

@@ -4,7 +4,7 @@ Discovery settings
 ------------------
 
 The following sections list and describe the settings available for each of the previously defined discovery mechanisms,
-as well as how to define the DomainParticipantListener discovery callbacks.
+as well as how to define the |DomainParticipantListener| discovery callbacks.
 
 .. toctree::
     :maxdepth: 2

@@ -3,7 +3,7 @@ Version 1.10.0
 
 This release adds the following features:
 
-* New built-in :ref:`comm-transports-shm`
+* New built-in :ref:`transport_sharedMemory_sharedMemory`
 * Transport API refactored to support locator iterators
 * Added subscriber API to retrieve info of first non-taken sample
 * Added parameters to fully avoid dynamic allocations

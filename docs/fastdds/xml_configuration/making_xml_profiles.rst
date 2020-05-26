@@ -39,5 +39,6 @@ Fast DDS searches the XML profile using this profile name and applies the XML pr
     :language: cpp
     :start-after: //XML-LOAD-APPLY-PROFILES
     :end-before: //!--
+    :dedent: 8
 
 To load dynamic types from XML profile files see the :ref:`Usage` subsection of :ref:`xmldynamictypes`.

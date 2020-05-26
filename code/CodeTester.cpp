@@ -1355,11 +1355,20 @@ void xml_dyn_examples_check()
     {
         //XML-USAGE
         // Load the XML File
-        XMLP_ret ret = XMLProfileManager::loadXMLFile("types.xml");
+        if (eprosima::fastrtps::xmlparser::XMLP_ret::XML_OK !=
+                eprosima::fastrtps::xmlparser::XMLProfileManager::loadXMLFile("types.xml"))
+        {
+            std::cout << "Cannot open XML file \"types.xml\". "
+                    << "Please, set the correct path to the XML file"
+                    << std::endl;
+        }
         // Create the "MyStructPubSubType"
-        DynamicPubSubType* pbType = XMLProfileManager::CreateDynamicPubSubType("MyStruct");
+        eprosima::fastrtps::types::DynamicPubSubType* pbType =
+                eprosima::fastrtps::xmlparser::XMLProfileManager::CreateDynamicPubSubType("MyStruct");
         // Create a "MyStruct" instance
-        DynamicData* data = DynamicDataFactory::get_instance()->create_data(pbType->GetDynamicType());
+        eprosima::fastrtps::types::DynamicData* data =
+                eprosima::fastrtps::types::DynamicDataFactory::get_instance()->create_data(
+                        pbType->GetDynamicType());
         //!--
     }
 }

@@ -13,13 +13,15 @@
 .. |DataReaderQos| replace:: :cpp:class:`DataReaderQos <eprosima::fastdds::dds::DataReaderQos>`
 .. |TransportConfigQos| replace:: :cpp:class:`TransportConfigQos <eprosima::fastdds::dds::TransportConfigQos>`
 .. |Property| replace:: :cpp:class:`Property <eprosima::fastrtps::rtps::Property>`
-.. |DynamicType| replace:: :cpp:class:`DynamicType <eprosima::fastrtps::types::DynamicPubSubType>`
-.. |DynamicTypes| replace:: :cpp:class:`DynamicTypes <eprosima::fastrtps::types::DynamicPubSubType>`
+.. |DynamicPubSubType| replace:: :cpp:class:`DynamicPubSubType <eprosima::fastrtps::types::DynamicPubSubType>`
+.. |DynamicPubSubTypes| replace:: :cpp:class:`DynamicPubSubTypes <eprosima::fastrtps::types::DynamicPubSubType>`
 .. |DataTypes| replace:: :cpp:class:`DataTypes <eprosima::fastdds::dds::TopicDataType>`
 .. |load_XML_profiles_file| replace:: :cpp:func:`load_XML_profiles_file <eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_file>`
 .. |create_participant_with_profile| replace:: :cpp:func:`create_participant_with_profile <eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile>`
 .. |create_publisher_with_profile| replace:: :cpp:func:`create_publisher_with_profile <eprosima::fastdds::dds::Publisher::create_publisher_with_profile>`
 .. |create_subscriber_with_profile| replace:: :cpp:func:`create_subscriber_with_profile <eprosima::fastdds::dds::Subscriber::create_subscriber_with_profile>`
+.. |DynamicType| replace:: :cpp:class:`DynamicType <eprosima::fastrtps::types::DynamicType>`
+.. |DynamicTypes| replace:: :cpp:class:`DynamicTypes <eprosima::fastrtps::types::DynamicType>`
 
 .. |br| raw:: html
 

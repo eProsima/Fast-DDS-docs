@@ -1,292 +1,369 @@
+.. include:: includes/aliases.rst
+
 .. _xmldynamictypes:
 
-XML Dynamic Types
------------------
+Dynamic Types profiles
+----------------------
 
-XML Dynamic Types allows creating *eProsima Fast RTPS Dynamic Types* directly defining them through XML.
-It allows any application to change TopicDataTypes without modifying its source code.
+Fast DDS supports the implementation of |DynamicTypes| by defining them through XML profile files.
+Thus the :ref:`Dynamic Types <dynamic-types>` can be modified without the need to modify the source code of the DDS
+application.
 
 XML Structure
 ^^^^^^^^^^^^^
 
-The XML Types definition (``<types>`` tag) can be placed similarly to the profiles tag inside the XML file.
-It can be a stand-alone XML Types file or be a child of the Fast-RTPS XML root tag (``<dds>``).
-Inside the types tag, there must be one or more type tags (``<type>``).
+The definition of type profiles in the XML file is done with the ``<types>`` tag.
+The definition of a type via XML can be done in two manners:
 
-Stand-Alone:
+1.   Stand-Alone XML types files:
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-- STAND ALONE TYPES START -->
     :end-before: <!-- STAND ALONE TYPES END -->
 
-Rooted:
+2.  The ``<type>`` element is a child of the Fast DDS XML root tag refered to as ``<dds>``:
 
 .. literalinclude:: /../code/XMLTesterAux.xml
     :language: xml
     :start-after: <!-- ROOTED TYPES START -->
     :end-before: <!-- ROOTED TYPES END -->
 
-Finally, each ``<type>`` tag can contain one or more :ref:`Type definitions <Type definition>`.
-Defining several types inside a ``<type>`` tag or defining each type in its ``<type>`` tag has the same result.
+Finally, each ``<type>`` element can contain one or more :ref:`Type definitions <Type definition>`.
+Defining several types within a ``<type>`` element or a single type for each ``<type>`` element has the same
+result.
 
 .. _Type definition:
 
 Type definition
 ^^^^^^^^^^^^^^^
+Below are presented the types supported by Fast DDS.
+For further information about the supported |DynamicTypes|, please, refer to :ref:`dynamictypes_supportedtypes`.
+For each of the types detailed below, an example of how to build the type's XML profile is provided, as well as its
+equivalence in C++ source code for further insight.
 
-**Enum**
+Enum
+""""
 
-The ``<enum>`` type is defined by its ``name`` and a set of ``enumerators``,
-each of them with its ``name`` and its (optional) ``value``.
+The ``<enum>`` type is defined by its attribute ``name`` and a set of ``<enumerator>`` child elements.
+Each ``<enumerator>`` is defined by two attributes: a ``name`` and an optional ``value``.
+Please, refer to :ref:`dynamictypes_supportedtypes_enumeration` for more information on the ``<enum>`` type.
 
-Example:
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-DYN-ENUM<-->                                                                                |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-DYN-ENUM                                                                                       |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 4                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-+-----------------------------------------------+-------------------------------------------------------+
-| XML                                           | C++                                                   |
-+===============================================+=======================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp           |
-|   :language: xml                              |     :language: cpp                                    |
-|   :start-after: <!-->XML-DYN-ENUM<-->         |     :start-after: //XML-DYN-ENUM                      |
-|   :end-before: <!--><-->                      |     :end-before: //!--                                |
-|                                               |                                                       |
-+-----------------------------------------------+-------------------------------------------------------+
+Typedef
+"""""""
 
-**Typedef**
+The ``<typedef>`` XML element is defined by a ``name`` and a ``type`` mandatory attributes, and various optional
+attributes for complex types.
+The ``<typedef>`` element corresponds to :ref:`dynamictypes_supportedtypes_alias` in :ref:`dynamictypes_supportedtypes`
+secction.
 
-The ``<typedef>`` type is defined by its ``name`` and its ``value`` or an inner element for complex types.
-``<typedef>`` corresponds to :class:`Alias` in Dynamic Types glossary.
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-TYPEDEF<-->                                                                                 |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-TYPEDEF                                                                                        |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 4                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-Example:
+Struct
+""""""
 
-+-----------------------------------------------+------------------------------------------------------+
-| XML                                           | C++                                                  |
-+===============================================+======================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp          |
-|   :language: xml                              |     :language: cpp                                   |
-|   :start-after: <!-->XML-TYPEDEF<-->          |     :start-after: //XML-TYPEDEF                      |
-|   :end-before: <!--><-->                      |     :end-before: //!--                               |
-|                                               |                                                      |
-+-----------------------------------------------+------------------------------------------------------+
+The ``<struct>`` element is defined by its ``name`` attribute and its ``<member>`` child elements.
+Please, refer to :ref:`dynamictypes_supportedtypes_structure` for more information on the ``<struct>`` type.
 
-**Struct**
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-STRUCT<-->                                                                                  |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-STRUCT                                                                                         |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-The ``<struct>`` type is defined by its ``name`` and inner *members*.
+Structs can inherit from another structs.
+This is implemented by defining as the value of the ``baseType`` attribute, on the child ``<struct>`` element, the value
+of the ``name`` attribute of the parent ``<struct>`` element.
+This is exemplified by the code snippet below.
 
-Example:
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-STRUCT-INHERIT<-->                                                                          |
+|   :end-before: <!--><-->                                                                                             |
+|                                                                                                                      |
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-STRUCT-INHERIT                                                                                 |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-STRUCT<-->           |     :start-after: //XML-STRUCT                      |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
+Union
+"""""
 
-Structs can inherit from another structs:
+The ``<union>`` type is defined by a ``name`` attribute, a ``<discriminator>`` child element and a set of ``<case>``
+child elements.
+Each ``<case>`` element has one or more ``<caseDiscriminator>`` and a ``<member>`` child elements.
+Please, refer to :ref:`dynamictypes_supportedtypes_union` for more information on the ``<struct>`` type.
 
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-STRUCT-INHERIT<-->   |     :start-after: //XML-STRUCT-INHERIT              |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| XML                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-UNION<-->                                                                                   |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| C++                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-UNION                                                                                          |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
+Bitset
+""""""
 
+The ``<bitset>`` element define the :ref:`dynamictypes_supportedtypes_union` type.
+It is comprised by a ``name`` attribute and a set of ``<bitfield>`` child elements.
+In turn, the ``<bitfield>`` element has the mandatory ``bit_bound`` attribute, which can not be higher than 64, and
+two optional attributes:
+``name`` and ``type``.
+A ``<bitfield>`` with a blank ``name`` attribute is an inaccessible set of bits.
+Its management ``type`` can ease the ``<bitfield>`` modification and access.
+Please, refer to :ref:`dynamictypes_supportedtypes_bitset` for more information about the ``<bitset>`` type.
 
-**Union**
++----------------------------------------------------------------------------------------------------------------------+
+| XML                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-BITSET<-->                                                                                  |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| C++                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-BITSET                                                                                         |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-The ``<union>`` type is defined by its ``name``, a ``discriminator`` and a set of ``cases``.
-Each ``case`` has one or more ``caseDiscriminator`` and a ``member``.
+Moreover, bitsets can inherit from another bitsets:
 
++----------------------------------------------------------------------------------------------------------------------+
+| XML                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-BITSET-INHERIT<-->                                                                          |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| C++                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-BITSET-INHERIT                                                                                 |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-Example:
+Bitmask
+"""""""
 
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-UNION<-->            |     :start-after: //XML-UNION                       |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
+The ``<bitmask>`` element, which corresponds to the :ref:`dynamictypes_supportedtypes_bitmask` type, is defined by
+a mandatory ``name`` attribute, an optional ``bit_bound`` attribute, and several ``<bit_value>`` child elements.
+The ``bit_bound`` attribute specifies the number of bits that the type will manage.
+The maximum value allowed for the ``bit_bound`` is 64.
+The ``<bit_value>`` element can define its position in the bitmask setting the ``positition`` attribute.
+Please, refer to :ref:`dynamictypes_supportedtypes_bitmask` for more information on the ``<bitmask>`` type.
 
-**Bitset**
-
-The ``<bitset>`` type is defined by its ``name`` and inner *bitfields*.
-
-Example:
-
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-BITSET<-->           |     :start-after: //XML-BITSET                      |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
-
-A bitfield without name is an inaccessible set of bits. Bitfields can specify their management type to ease their
-modification and access. The bitfield's bit_bound is mandatory and cannot be bigger than 64.
-
-Bitsets can inherit from another bitsets:
-
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-BITSET-INHERIT<-->   |     :start-after: //XML-BITSET-INHERIT              |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
-
-**Bitmask**
-
-The ``<bitmask>`` type is defined by its ``name`` and inner *bit_values*.
-
-Example:
-
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-BITMASK<-->          |     :start-after: //XML-BITMASK                     |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
-
-The bitmask can specify its bit_bound, this is, the number of bits that the type will manage. Internally will be
-converted to the minimum type that allows to store them. The maximum allowed bit_bound is 64.
-Bit_values can define their position inside the bitmask.
-
++----------------------------------------------------------------------------------------------------------------------+
+| XML                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-BITMASK<-->                                                                                 |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| C++                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-BITMASK                                                                                        |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
 Member types
-^^^^^^^^^^^^
+""""""""""""
 
-Member types are any type that can belong to a ``<struct>`` or a ``<union>``, or be aliased by a ``<typedef>``.
+Member types are defined as any type that can belong to a ``<struct>`` or a ``<union>``, or be aliased by a
+``<typedef>``.
+These can be defined by the ``<member>`` XML tag.
 
-**Basic types**
+Primitive types
+***************
 
-The identifiers of the available basic types are:
+The identifiers of the available basic types are listed in the table below.
+Please, refer to :ref:`dynamictypes_supportedtypes_primitive` for more information on the primitive types.
 
-+------------------------+------------------------+------------------------+
-| ``boolean``            | ``int64``              | ``float128``           |
-+------------------------+------------------------+------------------------+
-| ``byte``               | ``uint16``             | ``string``             |
-+------------------------+------------------------+------------------------+
-| ``char``               | ``uint32``             | ``wstring``            |
-+------------------------+------------------------+------------------------+
-| ``wchar``              | ``uint64``             |                        |
-+------------------------+------------------------+------------------------+
-| ``int16``              | ``float32``            |                        |
-+------------------------+------------------------+------------------------+
-| ``int32``              | ``float64``            |                        |
-+------------------------+------------------------+------------------------+
-
++--------------------------------------+---------------------------------------+---------------------------------------+
+| ``boolean``                          | ``int32``                             | ``float32``                           |
++--------------------------------------+---------------------------------------+---------------------------------------+
+| ``byte``                             | ``int64``                             | ``float64``                           |
++--------------------------------------+---------------------------------------+---------------------------------------+
+| ``char``                             | ``uint16``                            | ``float128``                          |
++--------------------------------------+---------------------------------------+---------------------------------------+
+| ``wchar``                            | ``uint32``                            | ``string``                            |
++--------------------------------------+---------------------------------------+---------------------------------------+
+| ``int16``                            | ``uint64``                            | ``wstring``                           |
++--------------------------------------+---------------------------------------+---------------------------------------+
 
 All of them are defined as follows:
 
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-GENERIC<-->          |     :start-after: //XML-GENERIC                     |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+| XML                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-GENERIC<-->                                                                                 |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| C++                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-GENERIC                                                                                        |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-**Arrays**
+Arrays
+******
 
-Arrays are defined in the same way as any other member type but add the attribute ``arrayDimensions``.
-The format of this dimensions attribute is the size of each dimension separated by commas.
+Arrays are defined in the same way as any other member type but it adds the attribute ``arrayDimensions``.
+The format of the ``arrayDimensions`` attribute value is the size of each dimension separated by commas.
+Please, refer to :ref:`dynamictypes_supportedtypes_array` explanation for more information on array type.
 
-Example:
++----------------------------------------------------------------------------------------------------------------------+
+| XML                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-ARRAYS<-->                                                                                  |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| C++                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-ARRAYS                                                                                         |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
+Sequences
+*********
 
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-ARRAYS<-->           |     :start-after: //XML-ARRAYS                      |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
+The sequence type is implemented by setting three attributes: ``name``, the ``type``, and the
+``sequenceMaxLength``.
+The type of its content should be defined by the ``type`` attribute.
+The following example shows the implementation of a sequence of maximum length equal to 3.
+In turn, this is a sequence of sequences of maximum length of 2 and contents of type ``int32``.
+Please, refer to :ref:`dynamictypes_supportedtypes_sequence` section for more information on sequence type.
 
++----------------------------------------------------------------------------------------------------------------------+
+| XML                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-SEQUENCES<-->                                                                               |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| C++                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-SEQUENCES                                                                                      |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-It's IDL analog would be:
+Maps
+****
 
-.. code-block:: c
+Maps are similar to sequences, but they need to define two content types.
+The ``key_type`` defines the type of the map key, while the ``type`` defines the map value type.
+Again, both types can be defined as attributes of a ``<typedef>`` element, or as a ``<member>`` child element of a
+``<struct>`` or ``<union>`` elements.
+See section :ref:`dynamictypes_supportedtypes_map` for more information on map type.
 
-    long long_array[2][3][4];
++----------------------------------------------------------------------------------------------------------------------+
+| XML                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|   :language: xml                                                                                                     |
+|   :start-after: <!-->XML-SEQUENCES<-->                                                                               |
+|   :end-before: <!--><-->                                                                                             |
++----------------------------------------------------------------------------------------------------------------------+
+| C++                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/CodeTester.cpp                                                                          |
+|   :language: c++                                                                                                     |
+|   :start-after: //XML-SEQUENCES                                                                                      |
+|   :end-before: //!--                                                                                                 |
+|   :dedent: 8                                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
 
-**Sequences**
+Complex types
+"""""""""""""
 
-Sequences are defined by its ``name``, its content ``type``, and its ``sequenceMaxLength``.
-The type of its content should be defined by its ``type`` attribute.
-
-Example:
-
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-SEQUENCES<-->        |     :start-after: //XML-SEQUENCES                   |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
-
-The example shows a sequence with ``sequenceMaxLength`` ``3`` of sequences with ``sequenceMaxLength`` ``2``
-with ``<int32>`` contents.
-As IDL would be:
-
-.. code-block:: c
-
-    sequence<sequence<long,2>,3> my_sequence_sequence;
-
-Note that the inner sequence has been defined before.
-
-**Maps**
-
-Maps are similar to sequences, but they need to define two types instead of one.
-One type defines its ``key_type``, and the other type defines its elements types.
-Again, both types can be defined as attributes or as members, but when defined
-as members, they should be contained in another XML element (``<key_type>`` and ``<type>`` respectively).
-
-Example:
-
-+-----------------------------------------------+-----------------------------------------------------+
-| XML                                           | C++                                                 |
-+===============================================+=====================================================+
-| .. literalinclude:: /../code/XMLTester.xml    | .. literalinclude:: /../code/CodeTester.cpp         |
-|   :language: xml                              |     :language: cpp                                  |
-|   :start-after: <!-->XML-MAPS<-->             |     :start-after: //XML-MAPS                        |
-|   :end-before: <!--><-->                      |     :end-before: //!--                              |
-|                                               |                                                     |
-+-----------------------------------------------+-----------------------------------------------------+
-
-Is equivalent to the IDL:
-
-.. code-block:: c
-
-    map<long,map<long,long,2>,2> my_map_map;
-
-**Complex types**
-
-Once defined, complex types can be used as members in the same way a basic or array type would be.
-
-Example:
+The complex types are a combination of the aforementioned types.
+Complex types can be defined using the ``<member>`` element in the same way a basic or an array type would be.
+Please, refer to :ref:`dynamictypes_complextypes` section for more information on complex types.
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
@@ -295,14 +372,15 @@ Example:
 
 .. _Usage:
 
-Usage
-^^^^^
+Loading dynamic types in a Fast DDS application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the application that will make use of *XML Types*, it's mandatory to load the XML file that defines
-the types before trying to instantiate *DynamicPubSubTypes* of these types.
-It's important to remark that only ``<struct>`` types generate usable *DynamicPubSubType* instances.
+In the Fast DDS application that will make use of the *XML Types*, the XML profiles file that
+defines the types must be loaded before trying to instantiate |Dynamimake cPubSubType| objects of these types.
+It is worth mentioning that only ``<struct>`` types generate usable |DynamicPubSubType| instances.
 
 .. literalinclude:: /../code/CodeTester.cpp
-    :language: cpp
+    :language: c++
     :start-after: //XML-USAGE
     :end-before: //!--
+    :dedent: 8

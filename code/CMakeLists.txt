@@ -119,6 +119,63 @@ execute_process(COMMAND ${CMAKE_COMMAND} --build .
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/external
     )
 
+#########################################################################################################################
+# Build Doxygen documentation
+#########################################################################################################################
+
+find_package(Doxygen REQUIRED)
+# Create doxygen directories
+add_custom_target(doc-dirs
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_BINARY_DIR}/doxygen
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_BINARY_DIR}/html
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_BINARY_DIR}/html/doxygen
+    COMMENT "Creating documentation directories" VERBATIM)
+
+# Get header files from repo instead of from installation. This way Fast RTPS does not need to be compiled
+file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds/**/*.h*")
+
+# Doxygen related variables
+set(DOXYGEN_INPUT_DIR "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds")
+set(DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doxygen")
+set(DOXYGEN_INDEX_FILE "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml")
+set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/doxygen-config.in")
+set(DOXYFILE_OUT ${PROJECT_BINARY_DIR}/doxygen-config)
+
+# Configure doxygen
+configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
+
+# Doxygen command
+add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE}
+    COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
+    DEPENDS ${HPP_FILES}
+    MAIN_DEPENDENCY ${DOXYFILE_OUT} ${DOXYFILE_IN}
+    COMMENT "Generating doxygen documentation")
+
+# Generate API reference
+add_custom_target(doxygen ALL
+    DEPENDS ${DOXYGEN_INDEX_FILE}
+    COMMENT "Generated API documentation with doxygen" VERBATIM)
+add_dependencies(doxygen doc-dirs)
+
+########################################################################################################################
+# Build Sphinx documentation
+########################################################################################################################
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+find_package(Sphinx REQUIRED)
+
+set(SPHINX_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../docs")
+set(SPHINX_BUILD "${PROJECT_BINARY_DIR}/../html")
+
+add_custom_target(Sphinx ALL
+                  COMMAND
+                  ${SPHINX_EXECUTABLE} -b html
+                  # Tell Breathe where to find the Doxygen output
+                  -Dbreathe_projects.FastDDS=${DOXYGEN_OUTPUT_DIR}/xml
+                  -d "${PROJECT_BINARY_DIR}/../doctrees" ${SPHINX_SOURCE} ${SPHINX_BUILD}
+                  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                  DEPENDS doxygen
+                  COMMENT "Generating documentation with Sphinx")
+
 ########################################################################################################################
 # Build example and tests
 ########################################################################################################################
@@ -127,9 +184,14 @@ if(BUILDCOP)
     find_package(fastrtps REQUIRED)
 
     ####################################################################################################################
+    # Compile getting started tutorial
+    ####################################################################################################################
+    add_subdirectory(Examples/C++/DDSHelloWorld)
+
+    ####################################################################################################################
     # Compile example
     ####################################################################################################################
-    add_executable(doctest CodeTester.cpp)
+    add_executable(doctest CodeTester.cpp DDSCodeTester.cpp)
     target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/src/cpp
         ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/thirdparty/tinyxml2)
     target_link_libraries(doctest fastrtps)
@@ -152,6 +214,9 @@ if(BUILDCOP)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/StaticTester.xml
         ${CMAKE_CURRENT_BINARY_DIR}/StaticTester.xml COPYONLY)
 
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
+        ${CMAKE_CURRENT_BINARY_DIR}/helloworld_test.py COPYONLY)
+
     add_test(NAME xmltest COMMAND doctest XMLTester.xml)
     set_property(TEST xmltest
         APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
@@ -167,4 +232,15 @@ if(BUILDCOP)
     add_test(NAME statictest COMMAND doctest StaticTester.xml)
     set_property(TEST statictest
         APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
+
+    find_package(Python COMPONENTS Interpreter Development)
+    if(${Python_FOUND} AND (${Python_VERSION} VERSION_GREATER "3.6"))
+        add_test(NAME helloworld COMMAND ${Python_EXECUTABLE} helloworld_test.py)
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "HELLOWORLD_PUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldPublisher>")
+        set_property(TEST helloworld
+            APPEND PROPERTY ENVIRONMENT "HELLOWORLD_SUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldSubscriber>")
+    endif()
 endif()

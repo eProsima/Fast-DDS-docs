@@ -14,13 +14,15 @@ h1{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
 h2{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
 h3{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
 h4{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
+h5{color:#333333 !important;font-family:"Neo Tech W02 Medium" !important}
+h6{color:#666666 !important;font-family:"Neo Tech W02 Medium" !important}
 a{color:#00275a !important}
 a:hover{color:#00d3de !important}
 .wy-nav-content{background-color:#fff !important}
 .wy-nav-content-wrap{background-color:#fff !important}
 .wy-nav-top{background-color:#00275a !important;color:#fff !important}
 .wy-nav-top a{color:#fff !important}
-p{font-size:14px !important;line-height:auto !important}
+p, ul{font-size:14px !important;line-height:auto !important; text-align:justify !important}
 .btn-neutral{background-color:#00d3de !important;color:#fff !important}
 .btn{box-shadow:0 0 0 !important;border:0 !important;border-radius:0 !important}
 .btn-neutral:hover{background-color:#00d3de !important;color:#fff !important}
@@ -62,7 +64,17 @@ src:url("Fonts/742885/39974d8a-38de-4853-a4d1-778234a08061.eot?#iefix") format("
 
 /* Custom width read the docs */
 .wy-nav-content {
-  max-width: none !important;
+  max-width: 1050px !important;
+}
+
+.api-ref p {
+  text-align: left !important;
+}
+
+/* Centering figures captions */
+.figure.align-center .caption{
+  text-align: center !important;
+  margin: 0px 80px !important;
 }
 
 .wy-nav-content a, .wy-nav-content a:visited {

@@ -451,8 +451,6 @@
         <userTransports>
             <transport_id>shm_transport</transport_id>
         </userTransports>
-        <!-- Disable the built-in Transport Layer -->
-        <useBuiltinTransports>false</useBuiltinTransports>
     </rtps>
 </participant>
 <!--><-->
@@ -2131,6 +2129,153 @@
 </participant>
 <!--><-->
 
+<!-->DDS_SECURITY_AUTH_PLUGIN<-->
+<participant profile_name="secure_domainparticipant_conf_auth_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.auth.plugin</name>
+                    <value>builtin.PKI-DH</value>
+                </property>
+                <!-- Configure DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
+                    <value>file://maincacert.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
+                    <value>file://partcert.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_crl</name>
+                    <value>file://crl.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
+                    <value>file://partkey.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.password</name>
+                    <value>domainParticipantPassword</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->DDS_SECURITY_ACCESS_CONTROL_PLUGIN<-->
+<participant profile_name="secure_domainparticipant_conf_access_control_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate DDS:Access:Permissions plugin -->
+                <property>
+                    <name>dds.sec.access.plugin</name>
+                    <value>builtin.Access-Permissions</value>
+                </property>
+                <!-- Configure DDS:Access:Permissions plugin -->
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>
+                    <value>file://maincacet.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.governance</name>
+                    <value>file://governance.smime</value>
+                </property>
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
+                    <value>file://permissions.smime</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT<-->
+<participant profile_name="secure_domainparticipant_conf_crypto_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate DDS:Crypto:AES-GCM-GMAC plugin -->
+                <property>
+                    <name>dds.sec.crypto.plugin</name>
+                    <value>builtin.AES-GCM-GMAC</value>
+                </property>
+                <!-- Only if DDS:Access:Permissions plugin is not enabled -->
+                <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
+                <property>
+                    <name>rtps.participant.rtps_protection_kind</name>
+                    <value>ENCRYPT</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER<-->
+<publisher profile_name="secure_datawriter_conf_crypto_plugin_xml_profile">
+    <propertiesPolicy>
+        <properties>
+            <!-- Only if DDS:Access:Permissions plugin is not enabled -->
+            <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
+            <property>
+                <name>rtps.endpoint.submessage_protection_kind</name>
+                <value>ENCRYPT</value>
+            </property>
+            <property>
+                <name>rtps.endpoint.payload_protection_kind</name>
+                <value>ENCRYPT</value>
+            </property>
+        </properties>
+    </propertiesPolicy>
+</publisher>
+<!--><-->
+
+<!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER<-->
+<subscriber profile_name="secure_datareader_conf_crypto_plugin_xml_profile">
+    <propertiesPolicy>
+        <properties>
+            <!-- Only if DDS:Access:Permissions plugin is not enabled -->
+            <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
+            <property>
+                <name>rtps.endpoint.submessage_protection_kind</name>
+                <value>ENCRYPT</value>
+            </property>
+        </properties>
+    </propertiesPolicy>
+</subscriber>
+<!--><-->
+
+<!-->DDS_SECURITY_LOGGING_PLUGIN<-->
+<participant profile_name="secure_domainparticipant_conf_logging_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.log.plugin</name>
+                    <value>builtin.DDS_LogTopic</value>
+                </property>
+                <!-- Configure DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.log.builtin.DDS_LogTopic.logging_level</name>
+                    <value>EMERGENCY_LEVEL</value>
+                </property>
+                <property>
+                    <name>dds.sec.log.builtin.DDS_LogTopic.log_file</name>
+                    <value>myLogFile.log</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->
 </profiles>
 <-->
@@ -2779,4 +2924,309 @@
         </property>
     </consumer>
 </log>
+<!--><-->
+
+<!-->QoS Examples<-->
+
+<!-->XML_DEADLINE<-->
+<publisher profile_name="publisher_xml_conf_deadline_profile">
+    <qos>
+        <deadline>
+            <period>
+                <sec>1</sec>
+                <nanosec>0</nanosec>
+            </period>
+        </deadline>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_deadline_profile">
+    <qos>
+        <deadline>
+            <period>
+                <sec>1</sec>
+                <nanosec>0</nanosec>
+            </period>
+        </deadline>
+    </qos>
+</subscriber>
+<!--><-->
+
+<!-->XML-HISTORY<-->
+<topic>
+    <historyQos>
+        <kind>KEEP_LAST</kind> <!-- string -->
+        <depth>20</depth> <!-- uint32 -->
+    </historyQos>
+</topic>
+<!--><-->
+
+
+<!-->XML_LIFESPAN<-->
+<publisher profile_name="publisher_xml_conf_lifespan_profile">
+    <qos>
+        <lifespan>
+            <duration>
+                <sec>5</sec>
+                <nanosec>0</nanosec>
+            </duration>
+        </lifespan>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_lifespan_profile">
+    <qos>
+        <lifespan>
+            <duration>
+                <sec>5</sec>
+                <nanosec>0</nanosec>
+            </duration>
+        </lifespan>
+    </qos>
+</subscriber>
+<!--><-->
+
+<!-->XML-PARTITION<-->
+<publisher profile_name="pub_partition_example">
+<qos>
+    <partition>
+        <names>
+            <name>part1</name>
+            <name>part2</name>
+        </names>
+    </partition>
+</qos>
+</publisher>
+
+<subscriber profile_name="sub_partition_example">
+<qos>
+    <partition>
+        <names>
+            <name>part1</name>
+            <name>part2</name>
+        </names>
+    </partition>
+</qos>
+</subscriber>
+<!--><-->
+
+<!-->XML_RELIABILITY<-->
+<publisher profile_name="publisher_xml_conf_reliability_profile">
+    <qos>
+        <reliability>
+            <kind>RELIABLE</kind>
+            <max_blocking_time>
+                <sec>1</sec>
+                <nanosec>0</nanosec>
+            </max_blocking_time>
+        </reliability>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_reliability_profile">
+    <qos>
+        <reliability>
+            <kind>BEST_EFFORT</kind>
+        </reliability>
+    </qos>
+</subscriber>
+<!--><-->
+
+<!-->XML_RESOURCE_LIMITS<-->
+<publisher profile_name="publisher_xml_conf_resource_limits_profile">
+    <topic>
+        <resourceLimitsQos>
+            <max_samples>200</max_samples>
+            <max_instances>20</max_instances>
+            <max_samples_per_instance>100</max_samples_per_instance>
+            <allocated_samples>50</allocated_samples>
+        </resourceLimitsQos>
+    </topic>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_resource_limits_profile">
+    <topic>
+        <resourceLimitsQos>
+            <max_samples>200</max_samples>
+            <max_instances>20</max_instances>
+            <max_samples_per_instance>100</max_samples_per_instance>
+            <allocated_samples>50</allocated_samples>
+        </resourceLimitsQos>
+    </topic>
+</subscriber>
+<!--><-->
+
+<!-->XML_PROPERTY_POLICY<-->
+<participant profile_name="secure_participant_conf_all_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.auth.plugin</name>
+                    <value>builtin.PKI-DH</value>
+                </property>
+
+                <!-- Activate Access:Permissions plugin -->
+                <property>
+                    <name>dds.sec.access.plugin</name>
+                    <value>builtin.Access-Permissions</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->XML_READER_RESOURCE_LIMITS_QOS<-->
+<subscriber profile_name="alloc_qos_example_sub">
+    <!-- we know we will only have one matching publisher -->
+    <matchedPublishersAllocation>
+        <initial>1</initial>
+        <maximum>1</maximum>
+        <increment>0</increment>
+    </matchedPublishersAllocation>
+</subscriber>
+<!--><-->
+
+<!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
+<publisher profile_name="alloc_qos_example_pub_for_topic_1">
+    <!-- we know we will have three matching subscribers -->
+    <matchedSubscribersAllocation>
+        <initial>3</initial>
+        <maximum>3</maximum>
+        <increment>0</increment>
+    </matchedSubscribersAllocation>
+</publisher>
+<!--><-->
+
+<!-->XML_RTPS_ENDPOINT_QOS<-->
+<publisher profile_name="publisher_xml_conf_unicast_locators_profile">
+    <userDefinedID>3</userDefinedID>
+    <entityID>2</entityID> <!-- Int16 -->
+    <unicastLocatorList>
+        <locator>
+            <udpv4>
+                <port>7800</port>
+            </udpv4>
+        </locator>
+    </unicastLocatorList>
+    <multicastLocatorList>
+        <locator>
+            <udpv4>
+                <address>239.255.0.4</address>
+                <port>7900</port>
+            </udpv4>
+        </locator>
+    </multicastLocatorList>
+    <!-- The history memory policy is changed to DYNAMIC_RESERVE -->
+    <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+</publisher>
+
+<subscriber profile_name="subscriber_xml_conf_unicast_locators_profile">
+    <userDefinedID>5</userDefinedID>
+    <entityID>4</entityID> <!-- Int16 -->
+    <unicastLocatorList>
+        <locator>
+            <udpv4>
+                <port>7800</port>
+            </udpv4>
+        </locator>
+    </unicastLocatorList>
+    <multicastLocatorList>
+        <locator>
+            <udpv4>
+                <address>239.255.0.4</address>
+                <port>7900</port>
+            </udpv4>
+        </locator>
+    </multicastLocatorList>
+    <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+</subscriber>
+<!--><-->
+
+<!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
+<publisher profile_name="pub_profile_name">
+    <times> <!-- writerTimesType -->
+        <initialHeartbeatDelay> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>20</nanosec>
+        </initialHeartbeatDelay>
+        <heartbeatPeriod> <!-- DURATION -->
+            <sec>5</sec>
+            <nanosec>0</nanosec>
+        </heartbeatPeriod>
+        <nackResponseDelay> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>10</nanosec>
+        </nackResponseDelay>
+        <nackSupressionDuration> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>20</nanosec>
+        </nackSupressionDuration>
+    </times>
+    <!--You can also change the values of DisablePositiveACKsQosPolicy.-->
+    <!--See DisablePositiveACKsQosPolicy section for further details-->
+</publisher>
+<!--><-->
+
+<!-->XML_RTPS_RELIABLE_READER_QOS<-->
+<subscriber profile_name="sub_profile_name">
+    <times> <!-- readerTimesType -->
+        <initialAcknackDelay> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>70</nanosec>
+        </initialAcknackDelay>
+        <heartbeatResponseDelay> <!-- DURATION -->
+            <sec>0</sec>
+            <nanosec>5</nanosec>
+        </heartbeatResponseDelay>
+    </times>
+    <!--You can also change the values of DisablePositiveACKsQosPolicy.-->
+    <!--See DisablePositiveACKsQosPolicy section for further details-->
+</subscriber>
+<!--><-->
+
+<!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
+<participant profile_name="UDP SERVER" is_default_profile="true">
+    <rtps>
+        <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.10.57</address>
+                        <port>56542</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+        </builtin>
+        <throughputController>
+            <bytesPerPeriod>300000</bytesPerPeriod>
+            <periodMillisecs>1000</periodMillisecs>
+        </throughputController>
+        <defaultUnicastLocatorList>
+            <locator>
+                <udpv4>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </udpv4>
+            </locator>
+        </defaultUnicastLocatorList>
+
+        <defaultMulticastLocatorList>
+            <locator>
+                <udpv4>
+                    <!-- Access as physical, like UDP -->
+                    <port>7400</port>
+                    <address>192.168.1.41</address>
+                </udpv4>
+            </locator>
+        </defaultMulticastLocatorList>
+    </rtps>
+</participant>
 <!--><-->

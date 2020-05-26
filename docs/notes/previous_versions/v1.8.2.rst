@@ -1,0 +1,30 @@
+Version 1.8.2
+^^^^^^^^^^^^^
+
+This release includes the following features:
+
+* Modified unknown writers default behavior.
+* Multiple initial PDP announcements.
+* Flag to avoid builtin multicast.
+* *STRICT_REALTIME* compilation flag.
+
+It also adds the following bug fixes and improvements:
+
+* Fix for setting `nullptr` in a fixed string.
+* Fix for not sending GAP in several cases.
+* Solve *Coverity* report issues.
+* Fix issue of *fastrtpsgen* failing to open *IDL.g4* file.
+* Fix unnamed lock in *AESGCMGMAC_KeyFactory.cpp*.
+* Improve *XMLProfiles* example.
+* Multicast is now sent through *localhost* too.
+* *BitmapRange* now implements sliding window.
+* Improve *SequenceNumber_t* struct.
+* Participant's liveliness is now asserted when receiving any RTPS message.
+* Fix leak on RemoteParticipantLeaseDuration.
+* Modified default values to improve behavior in *Wi-Fi* scenarios.
+* *SubscriberHistory* improvements.
+* Removed use of *acceptMsgDirectTo*.
+* *WLP* improvements.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*

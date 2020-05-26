@@ -16,9 +16,162 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import os
+import pathlib
+import shutil
+import subprocess
+
+import git
+
+
+def get_git_branch():
+    """Get the git branch this repository is currently on."""
+    path_to_here = os.path.abspath(os.path.dirname(__file__))
+
+    # Invoke git to get the current branch which we use to get the theme
+    try:
+        p = subprocess.Popen(
+            ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+            stdout=subprocess.PIPE,
+            cwd=path_to_here
+        )
+
+        return p.communicate()[0].decode().rstrip()
+
+    except Exception:
+        print('Could not get the branch')
+
+    # Couldn't figure out the branch probably due to an error
+    return None
+
+
+def configure_doxyfile(
+    doxyfile_in,
+    doxyfile_out,
+    input_dir,
+    output_dir,
+    project_binary_dir,
+    project_source_dir
+):
+    """
+    Configure Doxyfile in the CMake style.
+
+    :param doxyfile_in: Path to input Doxygen configuration file
+    :param doxyfile_out: Path to output Doxygen configuration file
+    :param input_dir: CMakeLists.txt value of DOXYGEN_INPUT_DIR
+    :param output_dir: CMakeLists.txt value of DOXYGEN_OUTPUT_DIR
+    :param project_binary_dir: CMakeLists.txt value of PROJECT_BINARY_DIR
+    :param project_source_dir: CMakeLists.txt value of PROJECT_SOURCE_DIR
+    """
+    print('Configuring Doxyfile')
+    with open(doxyfile_in, 'r') as file:
+        filedata = file.read()
+
+    filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
+    filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
+    filedata = filedata.replace('@PROJECT_BINARY_DIR@', project_binary_dir)
+    filedata = filedata.replace('@PROJECT_SOURCE_DIR@', project_source_dir)
+
+    os.makedirs(os.path.dirname(doxyfile_out), exist_ok=True)
+    with open(doxyfile_out, 'w') as file:
+        file.write(filedata)
+
+
+script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
+# Project directories
+project_source_dir = os.path.abspath('{}/../code'.format(script_path))
+project_binary_dir = os.path.abspath('{}/../build/code'.format(script_path))
+output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
+doxygen_html = os.path.abspath('{}/html/doxygen'.format(project_binary_dir))
+os.makedirs(os.path.dirname(output_dir), exist_ok=True)
+os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
+
+# Doxyfile
+doxyfile_in = os.path.abspath(
+    '{}/doxygen-config.in'.format(project_source_dir)
+)
+doxyfile_out = os.path.abspath('{}/doxygen-config'.format(project_binary_dir))
+
+# Header files
+input_dir = os.path.abspath(
+    '{}/external/eprosima/src/fastrtps/include/fastdds'.format(
+        project_binary_dir
+    )
+)
+
+# Check if we're running on Read the Docs' servers
+read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+if read_the_docs_build:
+    print('Read the Docs environment detected!')
+
+    fastdds_repo_name = os.path.abspath(
+        '{}/external/eprosima/src/fastrtps'.format(
+            project_binary_dir
+        )
+    )
+
+    # Remove repository if exists
+    if os.path.isdir(fastdds_repo_name):
+        print('Removing existing repository in {}'.format(fastdds_repo_name))
+        shutil.rmtree(fastdds_repo_name)
+
+    # Create necessary directory path
+    os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
+
+    # Clone repository
+    print('Cloning Fast DDS')
+    fastdds = git.Repo.clone_from(
+        'https://github.com/eProsima/Fast-RTPS.git',
+        fastdds_repo_name,
+    )
+
+    # Documentation repository branch
+    docs_branch = get_git_branch()
+    print('Current documentation branch is "{}"'.format(docs_branch))
+
+    # User specified Fast DDS branch
+    fastdds_branch = os.environ.get('FASTRTPS_BRANCH', None)
+
+    # First try to checkout to ${FASTRTPS_BRANCH}
+    # Else try with current documentation branch
+    # Else checkout to master
+    if (fastdds_branch and
+            fastdds.refs.__contains__('origin/{}'.format(fastdds_branch))):
+        fastdds_branch = 'origin/{}'.format(fastdds_branch)
+    elif (docs_branch and
+            fastdds.refs.__contains__('origin/{}'.format(docs_branch))):
+        fastdds_branch = 'origin/{}'.format(docs_branch)
+    else:
+        print(
+            'Fast DDS does not have either "{}" or "{}" branches'.format(
+                fastdds_branch,
+                docs_branch
+            )
+        )
+        fastdds_branch = 'origin/master'
+
+    # Actual checkout
+    print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
+    fastdds.refs[fastdds_branch].checkout()
+
+    # Configure Doxyfile
+    configure_doxyfile(
+        doxyfile_in,
+        doxyfile_out,
+        input_dir,
+        output_dir,
+        project_binary_dir,
+        project_source_dir
+    )
+    # Generate doxygen documentation
+    subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
+
+breathe_projects = {
+    'FastDDS': os.path.abspath('{}/xml'.format(output_dir))
+}
+breathe_default_project = 'FastDDS'
 
 # -- General configuration ------------------------------------------------
 
@@ -30,17 +183,23 @@
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'breathe',
 ]
 try:
     import sphinxcontrib.spelling  # noqa: F401
     extensions.append('sphinxcontrib.spelling')
+
+    # spelling_word_list_filename = 'spelling_wordlist.txt'
+    spelling_word_list_filename = [
+        'spelling_wordlist.txt',
+        'fastdds/api_reference/spelling_wordlist.txt'
+    ]
 
     from sphinxcontrib.spelling.filters import ContractionFilter
     spelling_filters = [ContractionFilter]
 except ImportError:
     pass
 
-spelling_word_list_filename = 'spelling_wordlist.txt'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -59,7 +218,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Fast RTPS'
+project = u'Fast DDS'
 copyright = u'2019, eProsima'
 author = u'eProsima'
 
@@ -68,9 +227,9 @@ author = u'eProsima'
 # built documents.
 #
 # The short X.Y version.
-version = u'1.10.0'
+version = u'2.0.0'
 # The full version, including alpha/beta/rc tags.
-release = u'1.10.0'
+release = u'2.0.0'
 
 # The language for content autogenerated by Sphinx. Refer to documentation
 # for a list of supported languages.
@@ -91,7 +250,11 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = []
+exclude_patterns = [
+    '*/includes/*.rst',
+    '*/*/includes/*.rst',
+    '*/*/*/includes/*.rst'
+]
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -156,7 +319,7 @@ html_theme = 'sphinx_rtd_theme'
 # html_logo = None
 
 # The name of an image file (relative to this directory) to use as a favicon of
-# the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
+# the docs. This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #
 # html_favicon = None
@@ -168,7 +331,7 @@ html_static_path = ['_static']
 
 html_context = {
         'css_files': [
-            '_static/css/fiware_readthedocs.css', #logo
+            '_static/css/fiware_readthedocs.css',  # logo
             ],
         }
 
@@ -284,7 +447,7 @@ latex_documents = [
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 #
-# latex_logo = logo.png
+# latex_logo = 01-figures/logo.png
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

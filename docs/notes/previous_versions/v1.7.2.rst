@@ -1,0 +1,17 @@
+Version 1.7.2
+^^^^^^^^^^^^^
+
+This release fixes an important bug:
+
+* Allocation limits on subscribers with a KEEP_LAST QoS was taken from resource limits configuration
+  and didn't take history depth into account.
+
+It also has the following improvements:
+
+* Vendor FindThreads.cmake from CMake 3.14 release candidate to help with sanitizers.
+* Fixed format of gradle file.
+
+Some other minor bugs and performance improvements.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*.

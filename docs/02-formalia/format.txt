@@ -1,0 +1,39 @@
+Titles:
+
+    Title 1
+    =======
+
+    Title 2
+    -------
+
+    Title 3
+    ^^^^^^^
+
+    Title 4
+    """""""
+
+    Title 5
+    *******
+
+    Title 6
+    #######
+
+------------------------------------------------------------------------------------------------------------
+
+- Paths:
+
+    Absolute paths. The root directory is the diretory containing the 'conf.py' file.
+    Examples: /../code/CodeTester.cpp, /../code/XMLTester.xml, /01-figures/logo.png
+
+------------------------------------------------------------------------------------------------------------
+
+
+Requirements:
+
+
+    sudo apt install python-breathe
+
+    sudo apt-get install doxygen
+
+
+

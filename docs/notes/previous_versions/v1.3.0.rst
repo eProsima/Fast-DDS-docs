@@ -1,0 +1,15 @@
+Version 1.3.0
+^^^^^^^^^^^^^
+
+This release introduced several new features:
+
+* Unbound Arrays support: Now you can send variable size data arrays.
+* Extended Fragmentation Configuration: It allows you to setup a Message/Fragment max size different to the standard
+  64Kb limit.
+* Improved logging system: Get even more introspection about the status of your communications system.
+* Static Discovery: Use XML to map your network and keep discovery traffic to a minimum.
+* Stability and performance improvements: A new iteration of our built-in performance tests will make benchmarking
+  easier for you.
+* ReadTheDocs Support: We improved our documentation format and now our installation and user manuals are available
+  online on ReadTheDocs.
+

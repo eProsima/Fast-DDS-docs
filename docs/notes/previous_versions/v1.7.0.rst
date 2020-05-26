@@ -1,0 +1,13 @@
+Version 1.7.0
+^^^^^^^^^^^^^
+
+This release included the following features:
+
+* :ref:`comm-transports-tcp`.
+* :ref:`dynamic-types`.
+* Security 1.1 compliance.
+
+Also bug fixing, allocation and performance improvements.
+
+**Note:** If you are upgrading from an older version, it is **required** to regenerate generated source from IDL files
+using *fastrtpsgen*.

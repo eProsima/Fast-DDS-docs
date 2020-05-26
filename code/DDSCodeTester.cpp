@@ -510,6 +510,287 @@ void dds_domain_examples()
     }
 }
 
+//DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS
+class DiscoveryDomainParticipantListener : public DomainParticipantListener
+{
+    /* Custom Callback on_participant_discovery */
+    virtual void on_participant_discovery(
+            DomainParticipant* participant,
+            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info)
+    {
+        (void)participant;
+        switch (info.status){
+            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
+                /* Process the case when a new DomainParticipant was found in the domain */
+                std::cout << "New DomainParticipant '" << info.info.m_participantName <<
+                    "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
+                    info.info.m_guid.guidPrefix << "' discovered." << std::endl;
+                break;
+            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::CHANGED_QOS_PARTICIPANT:
+                /* Process the case when a DomainParticipant changed its QOS */
+                break;
+            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT:
+                /* Process the case when a DomainParticipant was removed from the domain */
+                std::cout << "New DomainParticipant '" << info.info.m_participantName <<
+                    "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
+                    info.info.m_guid.guidPrefix << "' left the domain." << std::endl;
+                break;
+        }
+    }
+
+    /* Custom Callback on_subscriber_discovery */
+    virtual void on_subscriber_discovery(
+            DomainParticipant* participant,
+            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info)
+    {
+        (void)participant;
+        switch (info.status){
+            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
+                /* Process the case when a new subscriber was found in the domain */
+                std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
+                "' of type '" << info.info.typeName() << "' discovered";
+                break;
+            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
+                /* Process the case when a subscriber changed its QOS */
+                break;
+            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
+                /* Process the case when a subscriber was removed from the domain */
+                std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
+                    "' of type '" << info.info.typeName() << "' left the domain.";
+                break;
+        }
+    }
+
+    /* Custom Callback on_publisher_discovery */
+    virtual void on_publisher_discovery(
+            DomainParticipant* participant,
+            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info)
+    {
+        (void)participant;
+        switch (info.status){
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
+                /* Process the case when a new publisher was found in the domain */
+                std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
+                    "' of type '" << info.info.typeName() << "' discovered";
+                break;
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::CHANGED_QOS_WRITER:
+                /* Process the case when a publisher changed its QOS */
+                break;
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::REMOVED_WRITER:
+                /* Process the case when a publisher was removed from the domain */
+                std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
+                    "' of type '" << info.info.typeName() << "' left the domain.";
+                break;
+        }
+    }
+
+    /* Custom Callback on_type_discovery */
+    virtual void on_type_discovery(
+            DomainParticipant* participant,
+            const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
+            const eprosima::fastrtps::string_255& topic,
+            const eprosima::fastrtps::types::TypeIdentifier* identifier,
+            const eprosima::fastrtps::types::TypeObject* object,
+            eprosima::fastrtps::types::DynamicType_ptr dyn_type)
+    {
+        (void)participant, (void)request_sample_id, (void)topic, (void)identifier, (void)object, (void)dyn_type;
+        std::cout << "New data type of topic '" << topic << "' discovered." << std::endl;
+    }
+};
+//!--
+
+void dds_discovery_examples()
+{
+    {
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        //SET-DISCOVERY-CALLBACKS
+        // Create a custom user DomainParticipantListener
+        DiscoveryDomainParticipantListener* plistener = new DiscoveryDomainParticipantListener();
+        // Pass the listener on DomainParticipant creation.
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(
+                        0, PARTICIPANT_QOS_DEFAULT, plistener);
+        //!--
+
+        //CONF-DISCOVERY-PROTOCOL
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SIMPLE;
+        //!--
+
+        //CONF-DISCOVERY-IGNORE-FLAGS
+        pqos.wire_protocol().builtin.discovery_config.ignoreParticipantFlags =
+                static_cast<eprosima::fastrtps::rtps::ParticipantFilteringFlags_t>(
+            eprosima::fastrtps::rtps::ParticipantFilteringFlags_t::FILTER_DIFFERENT_PROCESS |
+            eprosima::fastrtps::rtps::ParticipantFilteringFlags_t::FILTER_SAME_PROCESS);
+        //!--
+
+        //CONF-DISCOVERY-LEASE-DURATION
+        pqos.wire_protocol().builtin.discovery_config.leaseDuration = Duration_t(10, 20);
+        //!--
+
+        //CONF-DISCOVERY-LEASE-ANNOUNCEMENT
+        pqos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(1, 2);
+        //!--
+
+        //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT
+        pqos.wire_protocol().builtin.discovery_config.initial_announcements.count = 5;
+        pqos.wire_protocol().builtin.discovery_config.initial_announcements.period = Duration_t(0, 100000000u);
+        //!--
+
+        //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
+        pqos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = true;
+        pqos.wire_protocol().builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = true;
+        pqos.wire_protocol().builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter = false;
+        //!--
+
+        //CONF_INITIAL_PEERS_BASIC
+        eprosima::fastrtps::rtps::Locator_t initial_peers_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peers_locator, "192.168.10.13");
+        initial_peers_locator.port = 7412;
+
+        pqos.wire_protocol().builtin.initialPeersList.push_back(initial_peers_locator);
+        //!--
+
+        //CONF_STATIC_DISCOVERY_CODE
+        pqos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+        pqos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+        //!--
+
+        //CONF_QOS_STATIC_DISCOVERY_USERID
+        // Configure the DataWriter
+        eprosima::fastdds::dds::DataWriterQos wqos;
+        wqos.endpoint().user_defined_id = 1;
+
+        // Configure the DataReader
+        eprosima::fastdds::dds::DataReaderQos rqos;
+        rqos.endpoint().user_defined_id = 3;
+        //!--
+
+        //CONF_STATIC_DISCOVERY_XML
+        pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
+        pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
+        //!--
+    }
+    {
+        //CONF_SERVER_DISCOVERY_PROTOCOL
+        eprosima::fastdds::dds::DomainParticipantQos pqos;
+
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::BACKUP;
+        //!--
+    }
+    {
+        //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
+        using namespace eprosima::fastrtps::rtps;
+
+        GuidPrefix_t serverGuidPrefix;
+        serverGuidPrefix.value[0] = octet(0x77);
+        serverGuidPrefix.value[1] = octet(0x73);
+        serverGuidPrefix.value[2] = octet(0x71);
+        serverGuidPrefix.value[3] = octet(0x85);
+        serverGuidPrefix.value[4] = octet(0x69);
+        serverGuidPrefix.value[5] = octet(0x76);
+        serverGuidPrefix.value[6] = octet(0x95);
+        serverGuidPrefix.value[7] = octet(0x66);
+        serverGuidPrefix.value[8] = octet(0x65);
+        serverGuidPrefix.value[9] = octet(0x82);
+        serverGuidPrefix.value[10] = octet(0x82);
+        serverGuidPrefix.value[11] = octet(0x79);
+
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        serverQos.wire_protocol().prefix = serverGuidPrefix;
+        //!--
+    }
+    {
+        //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        std::istringstream("4d.49.47.55.45.4c.5f.42.41.52.52.4f") >> serverQos.wire_protocol().prefix;
+        //!--
+    }
+    {
+        //CONF_SERVER_METATRAFFICUNICAST
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        locator.port = 64863;
+
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        serverQos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
+        //!--
+    }
+    {
+        //CONF_SERVER_CLIENT_GUIDPREFIX
+        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+
+        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
+        //!--
+    }
+    {
+        //CONF_SERVER_CLIENT_LOCATORS
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        locator.port = 64863;
+        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        server.metatrafficUnicastLocatorList.push_back(locator);
+
+        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
+        //!--
+    }
+
+    {
+        //CONF_SERVER_SERVER_LOCATORS
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        locator.port = 64863;
+
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        serverQos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
+        //!--
+    }
+
+    {
+        //CONF_SERVER_CLIENT_PING
+        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        clientQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
+                Duration_t(0, 250000000);
+        //!--
+    }
+
+    {
+        //CONF_SERVER_SERVER_PING
+        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        serverQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
+                Duration_t(0, 250000000);
+        //!--
+    }
+
+    {
+        //CONF_SERVER_PING
+        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        locator.port = 64863;
+        server.metatrafficUnicastLocatorList.push_back(locator);
+
+        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        clientQos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
+        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
+        clientQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
+                Duration_t(0, 250000000);
+        //!--
+    }
+}
+
 //DDS_TOPIC_LISTENER_SPECIALIZATION
 class CustomTopicListener : public TopicListener
 {

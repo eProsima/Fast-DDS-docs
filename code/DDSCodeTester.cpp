@@ -568,15 +568,15 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     {
         (void)participant;
         switch (info.status){
-            case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::DISCOVERED_WRITER:
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
                 /* Process the case when a new publisher was found in the domain */
                 std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' discovered";
                 break;
-            case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::CHANGED_QOS_WRITER:
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::CHANGED_QOS_WRITER:
                 /* Process the case when a publisher changed its QOS */
                 break;
-            case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::REMOVED_WRITER:
+            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::REMOVED_WRITER:
                 /* Process the case when a publisher was removed from the domain */
                 std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' left the domain.";

@@ -31,7 +31,7 @@ In this architecture there are several key concepts to understand:
 
 - Discovery server |DomainParticipants| may be *clients* or *servers*.
   The only difference between them is how they handle meta-traffic.
-  The user traffic, that is, the traffic among the |DataWriters| and |DataReaders| they create is role-independent.
+  The user traffic, that is, the traffic among the |DataWriters| and |DataReaders| they create, is role-independent.
 
 - All *server* and *client* discovery information will be shared with linked *clients*.
   Note that a *server* may act as a *client* for other *servers*.
@@ -51,7 +51,7 @@ In this architecture there are several key concepts to understand:
 
 - *Servers* do not require any beforehand knowledge of their *clients*, but their ``GuidPrefix`` and locator list (where
   they are listening) must match the one provided to the *clients*.
-  In order to gather *client* discovery information the following handshake strategy is followed:
+  In order to gather *client* discovery information, the following handshake strategy is followed:
 
   - *Clients* send discovery messages to the *servers* at regular intervals (ping period) until they receive message
     reception acknowledgement.
@@ -59,9 +59,9 @@ In this architecture there are several key concepts to understand:
   - *Servers* receive discovery messages from the clients, but they do not start processing them until a time interval
     has elapsed, which starts at the moment the server is instantiated.
 
-In order to clarify this discovery setup, either on compile time (sources) or runtime (XML files), its explanation is
-divided into two sections: focusing on the main concepts (:ref:`setup by concept <DS_setup_concepts>`), and on
-the main setting structures and XML tags (:ref:`setup by QoS <DS_setup_attributes>`).
+In order to clarify this discovery setup, either on compile time (sources) or runtime (XML files), this explanation is
+divided into two sections: on focusing on the main concepts (:ref:`setup by concept <DS_setup_concepts>`), and another
+one focusing on the main setting structures and XML tags (:ref:`setup by QoS <DS_setup_attributes>`).
 
 .. _DS_setup_concepts:
 

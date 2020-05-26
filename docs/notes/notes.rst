@@ -2,15 +2,17 @@ Version 2.0.0
 =============
 
 This release has the following **API breaks**:
+
 * eClock API, which was deprecated on v1.9.1, has been removed
 * `eprosima::fastrtps::rtps::RTPSDomain::createParticipant` methods now have an additional first argument `domain_id`
 * Field `domainId` has been removed from `eprosima::fastrtps::rtps::RTPSParticipantAttributes` and added to
   `eprosima::fastrtps::ParticipantAttributes`
 
 Users should also be aware of the following **deprecation announcement**:
+
 * All classes inside the namespace `eprosima::fastrtps` should be considered deprecated.
   Equivalent functionality is offered through namespace `eprosima::fastdds`.
-* Namespaces beneath `eprosima::fastrtps` are not included in this deprecation (i.e.
+* Namespaces beneath `eprosima::fastrtps` are not included in this deprecation, i.e.
   `eprosima::fastrtps::rtps` can still be used)
 
 This release adds the following **features**:

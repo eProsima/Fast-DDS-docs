@@ -478,7 +478,6 @@
                 </locator>
             </initialPeersList>
         </builtin>
-        <useBuiltinTransports>false</useBuiltinTransports>
     </rtps>
 </participant>
 <!--><-->

@@ -19,8 +19,10 @@ eProsima Fast DDS comes with five transports already implemented:
 - **UDPv6**: UDP Datagram communication over IPv6.
 
 - **TCPv4**: TCP communication over IPv4.
+  See :ref:`transport_tcp_tcp`.
 
 - **TCPv6**: TCP communication over IPv6.
+  See :ref:`transport_tcp_tcp`.
 
 - **SHM**: Shared memory communication among entities running on the same host.
   See :ref:`transport_sharedMemory_sharedMemory`.
@@ -29,7 +31,7 @@ eProsima Fast DDS comes with five transports already implemented:
 
     /fastdds/transport/transport_api.rst
     /fastdds/transport/shared_memory/shared_memory.rst
-    /fastdds/transport/tcp.rst
+    /fastdds/transport/tcp/tcp.rst
     /fastdds/transport/listening_locators.rst
     /fastdds/transport/initial_peers.rst
     /fastdds/transport/whitelist.rst

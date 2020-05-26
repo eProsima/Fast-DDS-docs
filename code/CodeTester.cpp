@@ -213,9 +213,6 @@ void configuration_compilation_check()
     tcp_transport->add_listener_port(5100);
     tcp_transport->set_WAN_address("80.80.99.45");
 
-    //Disable the built-in Transport Layer.
-    participant_attr.rtps.useBuiltinTransports = false;
-
     //Link the Transport Layer to the Participant.
     participant_attr.rtps.userTransports.push_back(tcp_transport);
     //!--

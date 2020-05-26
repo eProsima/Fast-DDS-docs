@@ -18,9 +18,11 @@
 .. |DataTypes| replace:: :cpp:class:`DataTypes <eprosima::fastdds::dds::TopicDataType>`
 .. |load_XML_profiles_file| replace:: :cpp:func:`load_XML_profiles_file <eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_file>`
 .. |create_participant_with_profile| replace:: :cpp:func:`create_participant_with_profile <eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile>`
-.. |create_datawriter_with_profile| replace:: :cpp:func:`create_datawriter_with_profile <eprosima::fastdds::dds::Publisher::create_datawriter_with_profile>`
-.. |create_datareader_with_profile| replace:: :cpp:func:`create_datareader_with_profile <eprosima::fastdds::dds::Subscriber::create_datareader_with_profile>`
+.. |create_publisher_with_profile| replace:: :cpp:func:`create_publisher_with_profile <eprosima::fastdds::dds::Publisher::create_publisher_with_profile>`
+.. |create_subscriber_with_profile| replace:: :cpp:func:`create_subscriber_with_profile <eprosima::fastdds::dds::Subscriber::create_subscriber_with_profile>`
 
 .. |br| raw:: html
 
   <br/>
+
+.. |whitelist| replace:: :ref:`Whitelist <whitelist-interfaces>`

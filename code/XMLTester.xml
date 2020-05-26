@@ -428,7 +428,7 @@
             <non_blocking_send>true</non_blocking_send>
         </transport_descriptor>
     </transport_descriptors>
-    
+
     <participant profile_name="UDPParticipant">
         <rtps>
             <userTransports>
@@ -456,7 +456,7 @@
             <wan_addr>80.80.99.45</wan_addr>
         </transport_descriptor>
     </transport_descriptors>
-    
+
     <participant profile_name="TCPParticipant">
         <rtps>
             <userTransports>
@@ -478,7 +478,7 @@
             <type>TCPv4</type>
         </transport_descriptor>
     </transport_descriptors>
-    
+
     <participant profile_name="TCP2Participant">
         <rtps>
             <userTransports>
@@ -511,7 +511,7 @@
             <type>SHM</type>
         </transport_descriptor>
     </transport_descriptors>
-    
+
     <participant profile_name="SHMParticipant">
         <rtps>
             <!-- Link the Transport Layer to the Participant -->
@@ -583,7 +583,7 @@
             </tls>
         </transport_descriptor>
     </transport_descriptors>
-    
+
     <participant profile_name="TLSClientParticipant">
         <rtps>
             <userTransports>
@@ -888,7 +888,7 @@
             </interfaceWhiteList>
         </transport_descriptor>
     </transport_descriptors>
-    
+
     <participant profile_name="CustomTcpTransportParticipant">
         <rtps>
             <userTransports>
@@ -3446,3 +3446,38 @@
 </participant>
 <!--><-->
 
+<!--XML_PROFILES_SECTION-->
+
+<!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
+<transport_descriptors>
+    <transport_descriptor>
+        <transport_id>TransportId1</transport_id> <!-- string -->
+        <type>UDPv4</type> <!-- string -->
+        <sendBufferSize>8192</sendBufferSize> <!-- uint32 -->
+        <receiveBufferSize>8192</receiveBufferSize> <!-- uint32 -->
+        <TTL>250</TTL> <!-- uint8 -->
+        <non_blocking_send>false</non_blocking_send> <!-- boolean -->
+        <maxMessageSize>16384</maxMessageSize> <!-- uint32 -->
+        <maxInitialPeersRange>100</maxInitialPeersRange> <!-- uint32 -->
+        <interfaceWhiteList>
+            <address>192.168.1.41</address> <!-- string -->
+            <address>127.0.0.1</address> <!-- string -->
+        </interfaceWhiteList>
+        <wan_addr>80.80.55.44</wan_addr> <!-- string -->
+        <output_port>5101</output_port> <!-- uint16 -->
+        <keep_alive_frequency_ms>5000</keep_alive_frequency_ms> <!-- uint32 -->
+        <keep_alive_timeout_ms>25000</keep_alive_timeout_ms> <!-- uint32 -->
+        <max_logical_port>9000</max_logical_port> <!-- uint16 -->
+        <logical_port_range>100</logical_port_range> <!-- uint16 -->
+        <logical_port_increment>2</logical_port_increment> <!-- uint16 -->
+        <listening_ports>
+            <port>5100</port> <!-- uint16 -->
+            <port>5200</port> <!-- uint16 -->
+        </listening_ports>
+        <calculate_crc>false</calculate_crc> <!-- boolean -->
+        <check_crc>false</check_crc> <!-- boolean -->
+        <enable_tcp_nodelay>false</enable_tcp_nodelay> <!-- boolean -->
+        <tls><!-- TLS Section --></tls>
+    </transport_descriptor>
+</transport_descriptors>
+<!--><-->

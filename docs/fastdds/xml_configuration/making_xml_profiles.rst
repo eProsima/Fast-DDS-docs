@@ -1,7 +1,9 @@
+.. include:: includes/aliases.rst
+
 .. _making_xml_profiles:
 
-Making an XML
--------------
+Creating an XML profiles file
+-----------------------------
 
 An XML file can contain several XML profiles.
 The available profile types are: :ref:`transportdescriptors`, :ref:`xmldynamictypes`, :ref:`participantprofiles`,
@@ -29,8 +31,7 @@ Loading and applying profiles
 
 Before creating any |Entity|, it is required to load XML files using the |load_XML_profiles_file| public
 member function.
-Moreover, |create_participant_with_profile|, |create_publisher_with_profile|, |create_subscriber_with_profile|,
-|create_datawriter_with_profile|, |create_datareader_with_profile|
+Moreover, |create_participant_with_profile|, |create_publisher_with_profile|, and |create_subscriber_with_profile|
 member functions expects the profile name as an argument.
 Fast DDS searches the XML profile using this profile name and applies the XML profile to the entity.
 

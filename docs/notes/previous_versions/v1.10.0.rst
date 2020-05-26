@@ -1,5 +1,5 @@
 Version 1.10.0
-==============
+^^^^^^^^^^^^^^
 
 This release adds the following features:
 
@@ -42,27 +42,3 @@ Several bug fixes on discovery server:
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.
 If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.
-
-
-Previous versions
------------------
-
-.. include:: previous_versions/v1.10.0.rst
-.. include:: previous_versions/v1.9.4.rst
-.. include:: previous_versions/v1.9.3.rst
-.. include:: previous_versions/v1.9.2.rst
-.. include:: previous_versions/v1.9.1.rst
-.. include:: previous_versions/v1.9.0.rst
-.. include:: previous_versions/v1.8.3.rst
-.. include:: previous_versions/v1.8.2.rst
-.. include:: previous_versions/v1.8.1.rst
-.. include:: previous_versions/v1.8.0.rst
-.. include:: previous_versions/v1.7.2.rst
-.. include:: previous_versions/v1.7.1.rst
-.. include:: previous_versions/v1.7.0.rst
-.. include:: previous_versions/v1.6.0.rst
-.. include:: previous_versions/v1.5.0.rst
-.. include:: previous_versions/v1.4.0.rst
-.. include:: previous_versions/v1.3.1.rst
-.. include:: previous_versions/v1.3.0.rst
-.. include:: previous_versions/v1.2.0.rst

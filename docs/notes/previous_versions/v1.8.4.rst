@@ -1,0 +1,15 @@
+Version 1.8.4
+^^^^^^^^^^^^^
+
+This release adds the following **feature**:
+
+* XML profiles for `requester` and `replier`
+
+It also has the following **important bug fixes**:
+
+* Solved an issue when recreating a publishing participant with the same GUID (either on purpose or by chance)
+* Solved an issue where a publisher could block on `write` for a long time when, after a large number of samples
+  have been sent, a new subscriber is matched.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastrtpsgen*

@@ -1,43 +1,38 @@
-Version 1.10.0
-==============
+Version 2.0.0
+=============
 
-This release adds the following features:
+This release has the following **API breaks**:
 
-* New built-in :ref:`comm-transports-shm`
-* Transport API refactored to support locator iterators
-* Added subscriber API to retrieve info of first non-taken sample
-* Added parameters to fully avoid dynamic allocations
-* History of built-in endpoints can be configured
-* Bump to FastCDR v1.0.13.
-* Bump to Fast-RTPS-Gen v1.0.4.
-* Require CMake 3.5 but use policies from 3.13
+* eClock API, which was deprecated on v1.9.1, has been removed
+* `eprosima::fastrtps::rtps::RTPSDomain::createParticipant` methods now have an additional first argument `domain_id`
+* Data member `domainId` has been removed from `eprosima::fastrtps::rtps::RTPSParticipantAttributes` and added to
+  `eprosima::fastrtps::ParticipantAttributes`
+
+Users should also be aware of the following **deprecation announcement**:
+
+* All classes inside the namespace `eprosima::fastrtps` should be considered deprecated.
+  Equivalent functionality is offered through namespace `eprosima::fastdds`.
+* Namespaces beneath `eprosima::fastrtps` are not included in this deprecation, i.e.
+  `eprosima::fastrtps::rtps` can still be used)
+
+This release adds the following **features**:
+
+* Added support for register/unregister/dispose instance
+* Added DDS compliant API. This new API exposes all the functionality of the Publisher-Subscriber Fast RTPS API
+  adhering to the `Data Distribution Service (DDS) version 1.4 specification <https://www.omg.org/spec/DDS/1.4>`_
+* Added Security Logging Plugin (contributed by Cannonical Ltd.)
+* Bump to FastCDR v1.0.14
 
 It also includes the following bug fixes and improvements:
 
-* Fixed alignment on parameter lists
-* Fixed error sending more than 256 fragments.
-* Fix handling of STRICT_REALTIME.
-* Fixed submessage_size calculation on last data_frag.
-* Solved an issue when recreating a publishing participant with the same GUID.
-* Solved an issue where a publisher could block on write for a long time when a new
-  subscriber (late joiner) is matched, if the publisher had already sent a large number
-  of messages.
-* Correctly handling the case where lifespan expires at the same time on several samples.
-* Solved some issues regarding liveliness on writers with no readers.
-* Correctly removing changes from histories on keyed topics.
-* Not reusing cache change when sample does not fit.
-* Fixed custom wait_until methods when time is in the past.
-* Several data races and ABBA locks fixed.
-* Reduced CPU and memory usage.
-* Reduced flakiness of liveliness tests.
-* Allow for more use cases on performance tests.
-
-Several bug fixes on discovery server:
-
-* Fixed local host communications.
-* Correctly trimming server history.
-* Fixed backup server operation.
-* Fixed timing issues.
+* Support for OpenSSL 1.1.1d and higher
+* Support for latest versions of gtest
+* Support for FreeBSD
+* Fault tolerance improvements to Shared Memory transport
+* Fixed segfault when no network interfaces are detected
+* Correctly ignoring length of `PID_SENTINEL` on parameter list
+* Improved traffic on PDP simple mode
+* Reduced CPU and memory usage
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
 from IDL files using *fastrtpsgen*.
@@ -45,13 +40,15 @@ If you are upgrading from a version older than 1.10.0, regenerating the code is 
 
 
 Previous versions
------------------
+=================
 
+.. include:: previous_versions/v1.10.0.rst
 .. include:: previous_versions/v1.9.4.rst
 .. include:: previous_versions/v1.9.3.rst
 .. include:: previous_versions/v1.9.2.rst
 .. include:: previous_versions/v1.9.1.rst
 .. include:: previous_versions/v1.9.0.rst
+.. include:: previous_versions/v1.8.4.rst
 .. include:: previous_versions/v1.8.3.rst
 .. include:: previous_versions/v1.8.2.rst
 .. include:: previous_versions/v1.8.1.rst

@@ -136,7 +136,7 @@ Several options can be combined in the same :ref:`transport_tcp_transportDescrip
 +---------------------------------+-----------------------------------------------------------------------------------+
 | ``NO_TLSV1_3``                  | Disable TLS v1.3.                                                                 |
 +---------------------------------+-----------------------------------------------------------------------------------+
-| ``SINGLE_DH_USE``               | Always create a new key when using dh parameters.                                 |
+| ``SINGLE_DH_USE``               | Always create a new key when using *Diffie-Hellman* parameters.                   |
 +---------------------------------+-----------------------------------------------------------------------------------+
 
 

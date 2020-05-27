@@ -77,7 +77,7 @@ The following table describes the common data members for both UDPv4 and UDPv6.
    When set to ``false``, send operations will block until the network buffer has space for the
    datagram.
    This may hinder performance on high-frequency writers.
-   
+
 
 .. _transport_udp_v4transportDescriptor:
 

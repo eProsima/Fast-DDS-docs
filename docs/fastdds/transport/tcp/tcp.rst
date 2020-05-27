@@ -100,9 +100,9 @@ The following table describes the common data members for both TCPv4 and TCPv6.
 +------------------------------+----------------------+---------+------------------------------------------------------+
 | ``listening_ports``          | ``vector<uint16_t>`` | empty   | List of ports to listen as *server*.                 |
 +------------------------------+----------------------+---------+------------------------------------------------------+
-| ``keep_alive_frequency_ms``  | ``uint32_t``         | 5000    | Sending frequency of RTCP keepalive requests (in ms).|
+| ``keep_alive_frequency_ms``  | ``uint32_t``         | 5000    | Frequency of RTCP keep alive requests (in ms).       |
 +------------------------------+----------------------+---------+------------------------------------------------------+
-| ``keep_alive_timeout_ms``    | ``uint32_t``         | 15000   | Time since sending the last keepalive request to     |
+| ``keep_alive_timeout_ms``    | ``uint32_t``         | 15000   | Time since sending the last keep alive request to    |
 |                              |                      |         | consider a connection as broken (in ms).             |
 +------------------------------+----------------------+---------+------------------------------------------------------+
 | ``max_logical_port``         | ``uint16_t``         | 100     | Maximum number of logical ports to try               |
@@ -120,7 +120,7 @@ The following table describes the common data members for both TCPv4 and TCPv6.
 +------------------------------+----------------------+---------+------------------------------------------------------+
 | ``calculate_crc``            | ``bool``             | true    | True to calculate and send CRC on message headers.   |
 +------------------------------+----------------------+---------+------------------------------------------------------+
-| ``check_crc``                | ``bool``             | true    | True to check the CRC of incomming message headers.  |
+| ``check_crc``                | ``bool``             | true    | True to check the CRC of incoming message headers.   |
 +------------------------------+----------------------+---------+------------------------------------------------------+
 | ``apply_security``           | ``bool``             | false   | True to use TLS. See |TLSconfig|.                    |
 +------------------------------+----------------------+---------+------------------------------------------------------+
@@ -166,7 +166,7 @@ Fast DDS is able to connect through the Internet or other WAN networks when conf
 To achieve this kind of scenarios, the involved network devices such as routers and firewalls
 must add the rules to allow the communication.
 
-For example, imagine we have the scenario repesented on the following figure:
+For example, imagine we have the scenario represented on the following figure:
 
 .. image:: /01-figures/TCP_WAN.png
     :align: center
@@ -178,10 +178,10 @@ For example, imagine we have the scenario repesented on the following figure:
   the server's IP address and port in its ``initial_peer`` list.
 
 On the server side, the router must be configured to forward to the *TCP server*
-all traffic incomming to port ``5100``. Typically, a NAT routing of port ``5100`` to our
+all traffic incoming to port ``5100``. Typically, a NAT routing of port ``5100`` to our
 machine is enough. Any existing firewall should be configured as well.
 
-In adition, to allow incoming connections through a WAN,
+In addition, to allow incoming connections through a WAN,
 the :ref:`transport_tcp_v4transportDescriptor` must indicate its **public** IP address
 in the ``wan_addr`` data member. The following examples show how to configure
 the :ref:`dds_layer_domainParticipant` both in C++ and XML.

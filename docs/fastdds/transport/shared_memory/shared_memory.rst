@@ -81,8 +81,8 @@ It contains the *segmentId* and the offset of the :ref:`transport_sharedMemory_c
 When communicating a message to other :ref:`DomainParticipants<dds_layer_domainParticipant>`,
 :ref:`transport_sharedMemory_sharedMemory` only distributes the Buffer Descriptor, avoiding the copy of
 the message from a :ref:`dds_layer_domainParticipant` to another.
-With this descriptor the receiving :ref:`dds_layer_domainParticipant` can access the message written on the buffer,
-as is uniquely identifies the :ref:`transport_sharedMemory_concepts_segment` (through the segmentId)
+With this descriptor, the receiving :ref:`dds_layer_domainParticipant` can access the message written on the buffer,
+as is uniquely identifies the :ref:`transport_sharedMemory_concepts_segment` (through the *segmentId*)
 and the :ref:`transport_sharedMemory_concepts_buffer` (through its offset).
 
 .. _transport_sharedMemory_concepts_port:
@@ -103,8 +103,8 @@ so that they can be notified when a new :ref:`transport_sharedMemory_concepts_bu
 
 .. _transport_sharedMemory_concepts_portHealthCheck:
 
-Port Healthcheck
-^^^^^^^^^^^^^^^^
+Port Health Check
+^^^^^^^^^^^^^^^^^
 Every time a :ref:`dds_layer_domainParticipant` opens a :ref:`transport_sharedMemory_concepts_port`
 (for reading or writing), a health check is performed to assess it is correct.
 The reason is that if one of the processes involved crashes while using the :ref:`transport_sharedMemory_concepts_port`,
@@ -142,8 +142,8 @@ The examples below show this procedure in both C++ code and XML file.
 
 .. note:
 
-  When two participants on the same machine have SHM transport enabled, all communications between them are automatically
-  performed by SHM transport only.
+  When two participants on the same machine have SHM transport enabled, all communications between them are
+  automatically performed by SHM transport only.
   The rest of the enabled transports are not used between those two participants.
 
 
@@ -183,5 +183,6 @@ such as Wireshark.
 HelloWorldExampleSharedMem
 --------------------------
 
-A Shared Memory version of helloworld example can be found in the ``examples/C++/DDS/HelloWorldExampleSharedMem`` folder.
+A Shared Memory version of helloworld example can be found in the ``examples/C++/DDS/HelloWorldExampleSharedMem``
+folder.
 It shows a publisher and a subscriber that communicate through Shared Memory.

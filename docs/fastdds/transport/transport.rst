@@ -8,7 +8,7 @@ being responsible of actually sending and receiving messages over a physical tra
 The DDS layer uses this service for both user data and discovery traffic communication.
 However, the DDS layer itself is transport independent,
 it defines a transport API and can run over any transport plugin that implements this API.
-This way, it is not retricted to a specific transport, and applications
+This way, it is not restricted to a specific transport, and applications
 can choose the one that best suits their requirements, or create their own.
 
 eProsima Fast DDS comes with five transports already implemented:

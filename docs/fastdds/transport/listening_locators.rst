@@ -5,7 +5,7 @@ Listening Locators
 
 Listening :ref:`Locators<transport_transportApi_locator>` are used to receive incoming traffic on the
 :ref:`dds_layer_domainParticipant`.
-These :ref:`Locators<transport_transportApi_locator>` can be classiffied according to the communication type
+These :ref:`Locators<transport_transportApi_locator>` can be classified according to the communication type
 and to the nature of the data.
 
 According to the communication type we have:
@@ -76,7 +76,7 @@ using the field ``wire_protocol().builtin.metatrafficUnicastLocatorList``.
 User Multicast Locators
 ^^^^^^^^^^^^^^^^^^^^^^^
 Users can set their own user multicast locators
-using the field ``wire_protocol().defaultMulticastLocatorList``.
+using the field ``wire_protocol().default_multicast_locator_list``.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
@@ -88,7 +88,7 @@ using the field ``wire_protocol().defaultMulticastLocatorList``.
 User Unicast Locators
 ^^^^^^^^^^^^^^^^^^^^^
 Users can set their own user unicast locators
-using the field ``wire_protocol().defaultUnicastLocatorList``.
+using the field ``wire_protocol().default_unicast_locator_list``.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++

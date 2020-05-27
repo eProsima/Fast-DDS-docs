@@ -35,6 +35,7 @@ chocolatey
 ciphertext
 CMake
 Colcon
+connectionless
 coverity
 crl
 crypto

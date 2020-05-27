@@ -45,7 +45,7 @@ TransportInterface
 ------------------
 
 A :class:`Transport` is any class that implements the :class:`TransportInterface`.
-It is the object that actually performs the message distribition over a physical transport.
+It is the object that actually performs the message distribution over a physical transport.
 
 Each :class:`Transport` class defines its own ``transport_kind``, a unique identifier that is used to
 check the compatibility of a :ref:`transport_transportApi_locator` with a :class:`Transport`, i.e.,
@@ -79,9 +79,9 @@ A :class:`Locator` uniquely identifies a communication channel with a remote pee
 For example, on UDP transports, the :class:`Locator` will contain the information of the IP address and port
 of the remote peer.
 
-The :class:`Locator` class is not abstract, and no specializations are implemented for each trasnport type.
+The :class:`Locator` class is not abstract, and no specializations are implemented for each transport type.
 Instead, transports should map the data members of the :class:`Locator` class to their own channel identification
-concepts. For example, on :ref:`transport_sharedMemory_sharedMemory` the ``address`` contains a uique ID
+concepts. For example, on :ref:`transport_sharedMemory_sharedMemory` the ``address`` contains a unique ID
 for the local host, and the ``port`` represents the shared ring buffer used to communicate buffer descriptors.
 
 On :ref:`listening_locators` you can find more information about how to configure :ref:`dds_layer_domainParticipant`

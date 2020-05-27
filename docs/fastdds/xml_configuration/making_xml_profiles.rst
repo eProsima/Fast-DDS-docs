@@ -6,13 +6,17 @@ Creating an XML profiles file
 -----------------------------
 
 An XML file can contain several XML profiles.
+These XML profiles are defined within the ``<profiles>`` XML element.
 The available profile types are: :ref:`transportdescriptors`, :ref:`xmldynamictypes`, :ref:`participantprofiles`,
 :ref:`publisherprofiles`, and :ref:`subscriberprofiles`.
+The following sections will show implementation examples for each of these profiles.
+Note that these profiles must always be defined as child elements of the ``<profiles>`` element.
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
-    :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS<-->
-    :lines: 1-6, 43-63
+    :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS_v2<-->
+    :end-before: <!--><-->
+    :lines: 2-3, 5-33, 35
 
 The `Fast DDS XSD scheme <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_
 uses some structures common to several profiles types.

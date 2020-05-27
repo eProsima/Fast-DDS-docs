@@ -26,7 +26,6 @@ during the creation of an |Entity|, the :ref:`Trasports <comm-transports-configu
 .. toctree::
 
     /fastdds/xml_configuration/making_xml_profiles
-    /fastdds/xml_configuration/library_settings
     /fastdds/xml_configuration/transports
     /fastdds/xml_configuration/dynamic_types
     /fastdds/xml_configuration/participant

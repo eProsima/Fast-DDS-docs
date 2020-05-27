@@ -1224,11 +1224,11 @@
 </types>
 
 <!-->XML-PARTICIPANT<-->
-<participant profile_name="part_profile_name">
+<participant profile_name="domainparticipant_profile_name">
     <domainId>80</domainId>
 
     <rtps>
-        <name>Participant Name</name> <!-- String -->
+        <name>DomainParticipant Name</name> <!-- String -->
 
         <defaultUnicastLocatorList>
             <!-- LOCATOR_LIST -->
@@ -3481,3 +3481,43 @@
     </transport_descriptor>
 </transport_descriptors>
 <!--><-->
+
+<!-->PROFILES-TRANSPORT-DESCRIPTORS_v2<-->
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<-->
+    <transport_descriptor>
+        <transport_id>TransportProfile</transport_id>
+        <type>UDPv4</type>
+        <!-- ... -->
+    </transport_descriptor>
+
+    </transport_descriptors>
+
+    <types>
+        <type>
+            <struct name="struct_profile">
+                <!-- ... -->
+            </struct>
+        </type>
+    </types>
+
+    <participant profile_name="participant_profile">
+        <rtps>
+        <!-- ... -->
+        </rtps>
+    </participant>
+
+    <publisher profile_name="datawriter_profile">
+        <!-- ... -->
+    </publisher>
+
+    <subscriber profile_name="datareader_profile">
+        <!-- ... -->
+    </subscriber>
+<!-->
+</profiles>
+<-->
+<!--><-->
+

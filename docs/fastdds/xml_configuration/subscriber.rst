@@ -3,7 +3,7 @@
 Subscriber profiles
 -------------------
 
-Subscriber profiles allow declaring :ref:`Subscriber configuration <pubsubconfiguration>` from an XML file.
+Subscriber profiles allow declaring `ref to Publisher configuration <pubsubconfiguration>` from an XML file.
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in :ref:`loadingapplyingprofiles`.
 

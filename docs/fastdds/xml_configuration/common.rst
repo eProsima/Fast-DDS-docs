@@ -104,7 +104,7 @@ Topic Type
 
 The topic name and data type are used as meta-data to determine whether Publishers and Subscribers can exchange
 messages.
-There is a deeper explanation of the "topic" field here: :ref:`Topic_information`.
+There is a deeper explanation of the "topic" field here: :ref:`dds_layer_topic`.
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
@@ -208,11 +208,11 @@ The quality of service (QoS) handles the restrictions applied to the application
 |                          | section.                         |:class:`TRANSIENT`             |                        |
 |                          |                                  |                               |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
-| ``<liveliness>``         | Defines the liveliness of the    | :ref:`liveliness-qos`         |                        |
+| ``<liveliness>``         | Defines the liveliness of the    | `ref to liveliness-qos`       |                        |
 |                          | publisher.                       |                               |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
 | ``<reliability>``        | It is defined in                 | :class:`RELIABLE`,            | :class:`RELIABLE`      |
-|                          | :ref:`reliability` section.      | :class:`BEST_EFFORT`          |                        |
+|                          | `ref to reliability` section.    | :class:`BEST_EFFORT`          |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
 | ``<partition>``          | It allows the introduction of    |                               | ``List <string>``      |
 |                          | a logical partition concept      |                               |                        |
@@ -220,16 +220,16 @@ The quality of service (QoS) handles the restrictions applied to the application
 |                          | induced by a domain.             |                               |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
 | ``<deadline>``           | It is defined in                 |                               |                        |
-|                          | :ref:`deadline-qos`              | Deadline period as a          | :class:`c_TimeInfinite`|
+|                          | `ref to deadline-qos`            | Deadline period as a          | :class:`c_TimeInfinite`|
 |                          | section.                         | :ref:`DurationType`           |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
 | ``<lifespan>``           | It is defined in                 | Lifespan duration as a        | :class:`c_TimeInfinite`|
-|                          | :ref:`lifespan-qos` section.     | :ref:`DurationType`           |                        |
+|                          | `ref to lifespan-qos` section.   | :ref:`DurationType`           |                        |
 +--------------------------+----------------------------------+-------------------------------+------------------------+
 | ``<disablePositiveAcks>``| It is defined in                 |                               | It is disabled by      |
 |                          | section                          |                               | default and            |
-|                          | :ref:`disable-positive-acks-qos` |                               | ``duration`` is set    |
-|                          |                                  |                               | to                     |
+|                          | `ref to`                         |                               | ``duration`` is set    |
+|                          | `disable-positive-acks-qos`      |                               | to                     |
 |                          |                                  |                               | :class:`c_TimeInfinite`|
 +--------------------------+----------------------------------+-------------------------------+------------------------+
 

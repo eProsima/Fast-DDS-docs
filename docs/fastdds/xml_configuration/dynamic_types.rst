@@ -22,7 +22,7 @@ The definition of a type via XML can be done in two manners:
     :start-after: <!-- STAND ALONE TYPES START -->
     :end-before: <!-- STAND ALONE TYPES END -->
 
-2.  The ``<type>`` element is a child of the Fast DDS XML root tag refered to as ``<dds>``:
+2.  The ``<type>`` element is a child of the Fast DDS XML root tag referred to as ``<dds>``:
 
 .. literalinclude:: /../code/XMLTesterAux.xml
     :language: xml
@@ -72,7 +72,7 @@ Typedef
 The ``<typedef>`` XML element is defined by a ``name`` and a ``type`` mandatory attributes, and various optional
 attributes for complex types.
 The ``<typedef>`` element corresponds to :ref:`dynamictypes_supportedtypes_alias` in :ref:`dynamictypes_supportedtypes`
-secction.
+section.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **XML**                                                                                                              |
@@ -376,7 +376,7 @@ Loading dynamic types in a Fast DDS application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Fast DDS application that will make use of the *XML Types*, the XML profiles file that
-defines the types must be loaded before trying to instantiate |Dynamimake cPubSubType| objects of these types.
+defines the types must be loaded before trying to instantiate |DynamicPubSubType| objects of these types.
 It is worth mentioning that only ``<struct>`` types generate usable |DynamicPubSubType| instances.
 
 .. literalinclude:: /../code/CodeTester.cpp

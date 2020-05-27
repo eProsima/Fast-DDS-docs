@@ -17,20 +17,8 @@ into the XML profile of the DomainParticipant using the ``<transport_id>`` XML t
 An example of how to load the ``<transport_descriptor>`` into the XML profile of the DomainParticipant is found in
 the :ref:`participantprofiles` section.
 
-
-The following XML code shows an example of transport protocol configuration using all configurable parameters.
-More examples of transports descriptors can be found in the :ref:`comm-transports-configuration` section.
-
-
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
-    :end-before: <!--><-->
-
 The following table lists all the available XML elements which can be defined within the ``<transport_descriptor>``
 element for the configuration of the transport protocol parameters.
-
-:ref:`whitelist-interfaces`
 
 +-------------------------------+----------------------------------------------------+-----------------------+---------+
 | Name                          | Description                                        | Values                | Default |
@@ -126,7 +114,14 @@ element for the configuration of the transport protocol parameters.
 |                               | will be performed (Optional, SHM **only**).        |                       |         |
 +-------------------------------+----------------------------------------------------+-----------------------+---------+
 
+The following XML code shows an example of transport protocol configuration using all configurable parameters.
+More examples of transports descriptors can be found in the :ref:`comm-transports-configuration` section.
 
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
+    :end-before: <!--><-->
 
 .. _rtcpdefinition:
 
@@ -149,13 +144,6 @@ More information on how to set up secure communication in Fast DDS can be found 
     since terms like SSL/TLS, Certificate Authority (CA), Public Key Infrastructure (PKI), and Diffie-Hellman
     encryption protocol are not explained in detail.
     However, it is possible to configure basic TLS security parameters using the code snippet shown below.
-
-An example of TLS protocol parameter configuration is shown below.
-
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML-TCP-TLS<-->
-    :end-before: <!--><-->
 
 The full list of available XML elements, which can be defined within the ``<tls>`` element to configure the TLS
 protocol, are listed in the following table:
@@ -222,3 +210,10 @@ protocol, are listed in the following table:
 |                           | ``SERVER`` and the |br|                  +---------------------------------+             |
 |                           | connectors as ``CLIENT``.                | ``CLIENT``                      |             |
 +---------------------------+------------------------------------------+---------------------------------+-------------+
+
+An example of TLS protocol parameter configuration is shown below.
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-TCP-TLS<-->
+    :end-before: <!--><-->

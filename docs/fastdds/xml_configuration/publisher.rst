@@ -3,7 +3,7 @@
 Publisher profiles
 ------------------
 
-Publisher profiles allow declaring :ref:`Publisher configuration <pubsubconfiguration>` from an XML file.
+Publisher profiles allow declaring `ref to Publisher configuration <pubsubconfiguration>` from an XML file.
 The attribute ``profile_name`` is the name that the ``Domain`` associates to the profile to load it
 as shown in the :ref:`loadingapplyingprofiles` section.
 

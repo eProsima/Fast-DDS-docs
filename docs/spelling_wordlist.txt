@@ -36,6 +36,7 @@ ciphertext
 CMake
 Colcon
 connectionless
+config
 coverity
 crl
 crypto
@@ -75,6 +76,7 @@ helloworld
 hostid
 IDL
 ifaddrs
+ignoreParticipantFlags
 interoperability
 Intra
 IPv
@@ -124,8 +126,11 @@ runtime
 sanitizers
 scalability
 scalable
+simpleEDP
 sqlite
 stateful
+struct
+Struct
 structs
 Structs
 subfolder

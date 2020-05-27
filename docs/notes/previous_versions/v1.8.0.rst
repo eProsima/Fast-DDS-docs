@@ -7,7 +7,7 @@ This release included the following features:
 * Implementation of :ref:`deadlineqospolicy` QoS.
 * Implementation of :ref:`lifespanqospolicy` QoS.
 * Implementation of :ref:`disablepositiveacksqospolicy` QoS.
-* Secure sockets on TCP transport (:ref:`TLS`).
+* Secure sockets on TCP transport (:ref:`transport_tcp_tls`).
 
 It also adds the following improvements and bug fixes:
 

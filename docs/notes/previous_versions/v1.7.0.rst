@@ -3,7 +3,7 @@ Version 1.7.0
 
 This release included the following features:
 
-* :ref:`comm-transports-tcp`.
+* :ref:`transport_tcp_tcp`.
 * :ref:`dynamic-types`.
 * Security 1.1 compliance.
 

@@ -27,6 +27,7 @@ bitset
 bitsets
 boolean
 booleans
+Cannonical
 CDR
 centric
 Centric
@@ -53,6 +54,7 @@ diffie
 domainId
 doxygen
 DurabilityKind
+eClock
 endian
 eProsima
 ethernet
@@ -90,6 +92,7 @@ mutators
 nack
 Nagle
 namespace
+Namespaces
 nupkg
 offsetd
 oneway

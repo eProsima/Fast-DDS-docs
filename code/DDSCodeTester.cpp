@@ -21,7 +21,8 @@
 #include <fastdds/dds/topic/TopicListener.hpp>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
 #include <fastrtps/types/DynamicTypePtr.h>
-#include <fastrtps/log/Log.h>
+#include <fastdds/dds/log/Log.hpp>
+#include <fastdds/dds/log/FileConsumer.hpp>
 
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
 #include <fastrtps/utils/IPLocator.h>
@@ -2914,5 +2915,55 @@ void log_examples()
 
     // Disable function name reporting
     Log::ReportFunctions(false);
+    //!--
+
+    //LOG_CATEGORY_FILTER
+    // Set filter using regular expression
+    Log::SetCategoryFilter(std::regex("(CATEGORY_1)|(CATEGORY_2)"));
+
+    // Would be consumed
+    logError(CATEGORY_1, "First log entry");
+    // Would be consumed
+    logError(CATEGORY_2, "Second log entry");
+    // Would NOT be consumed
+    logError(CATEGORY_3, "Third log entry");
+    //!--
+
+    //LOG_FILENAME_FILTER
+    // Filename: example.cpp
+
+    // Enable file name and line number reporting
+    Log::ReportFilenames(true);
+
+    // Set filter using regular expression so filename must match "example"
+    Log::SetFilenameFilter(std::regex("example"));
+    // Would be consumed
+    logError(CATEGORY, "First log entry");
+
+    // Set filter using regular expression so filename must match "other"
+    Log::SetFilenameFilter(std::regex("other"));
+    // Would NOT be consumed
+    logError(CATEGORY, "Second log entry");
+    //!--
+
+    //LOG_CONTENT_FILTER
+    // Set filter using regular expression so message component must match "First"
+    Log::SetErrorStringFilter(std::regex("First"));
+    // Would be consumed
+    logError(CATEGORY, "First log entry");
+    // Would NOT be consumed
+    logError(CATEGORY, "Second log entry");
+    //!--
+
+    //LOG_REGISTER_CONSUMER
+    // Create a FileConsumer consumer that log entries in "archive.log"
+    std::unique_ptr<FileConsumer> file_consumer(new FileConsumer("archive.log"));
+    // Register the consumer. Log entries will be logged to STDOUT and "archive.log"
+    Log::RegisterConsumer(std::move(file_consumer));
+    //!--
+
+    //LOG_CLEAR_CONSUMERS
+    // Clear all the consumers. Log entries are discarded upon consumption.
+    Log::ClearConsumers();
     //!--
 }

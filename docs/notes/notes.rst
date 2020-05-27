@@ -5,7 +5,7 @@ This release has the following **API breaks**:
 
 * eClock API, which was deprecated on v1.9.1, has been removed
 * `eprosima::fastrtps::rtps::RTPSDomain::createParticipant` methods now have an additional first argument `domain_id`
-* Field `domainId` has been removed from `eprosima::fastrtps::rtps::RTPSParticipantAttributes` and added to
+* Data member `domainId` has been removed from `eprosima::fastrtps::rtps::RTPSParticipantAttributes` and added to
   `eprosima::fastrtps::ParticipantAttributes`
 
 Users should also be aware of the following **deprecation announcement**:
@@ -18,8 +18,8 @@ Users should also be aware of the following **deprecation announcement**:
 This release adds the following **features**:
 
 * Added support for register/unregister/dispose instance
-* All the functionality offered by the classes in the Fast RTPS API can now be performed
-  by equivalent DDS compliant APIs
+* Added DDS compliant API. This new API exposes all the functionality of the Publisher-Subscriber Fast RTPS API
+  adhering to the `Data Distribution Service (DDS) version 1.4 specification <https://www.omg.org/spec/DDS/1.4>`_
 * Added Security Logging Plugin (contributed by Cannonical Ltd.)
 * Bump to FastCDR v1.0.14
 
@@ -30,7 +30,7 @@ It also includes the following bug fixes and improvements:
 * Support for FreeBSD
 * Fault tolerance improvements to Shared Memory transport
 * Fixed segfault when no network interfaces are detected
-* Correctly ignoring length of PID_SENTINEL on parameter list
+* Correctly ignoring length of `PID_SENTINEL` on parameter list
 * Improved traffic on PDP simple mode
 * Reduced CPU and memory usage
 
@@ -40,7 +40,7 @@ If you are upgrading from a version older than 1.10.0, regenerating the code is 
 
 
 Previous versions
------------------
+=================
 
 .. include:: previous_versions/v1.10.0.rst
 .. include:: previous_versions/v1.9.4.rst

@@ -102,6 +102,25 @@ The :ref:`transport_transportApi_locator` defines the following data members:
 | ``address``  | ``octet[16]``    | The channel *address*.                                                |
 +--------------+------------------+-----------------------------------------------------------------------+
 
+In TCP, the port of the locator is divided into a physical and a logical port.
+The *physical port* is the port used by the network device, the real port that the operating system understands.
+The *logical port* can be seen as RTPS port, or UDP's equivalent port (physical ports of UDP, are logical ports in TCP).
 
+.. _transport_transportApi_ipLocator:
+
+Configuring IP locators with IPLocator
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:class:`IPLocator` is an auxiliary static class that offers methods manipulate IP based locators.
+It is convenient when setting up a new :ref:`transport_udp_udp` or :ref:`transport_tcp_tcp`,
+as it simplifies setting IPv4 and IPv6 addresses, or manipulating ports.
+
+For example, normally users configure the physical port and do not need to worry about logical ports.
+However, :class:`IPLocator` allows to manage them if needed.
+
+.. literalinclude:: /../code/CodeTester.cpp
+    :language: c++
+    :start-after: //CONF-IPLOCATOR-USAGE
+    :end-before: //!--
 
 

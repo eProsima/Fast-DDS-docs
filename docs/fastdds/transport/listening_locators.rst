@@ -43,6 +43,10 @@ is added, it will be treated as a *multicast*, *unicast*, *user* or *metatraffic
    In that case, Fast DDS automatically calculates and uses well-known ports for that type of traffic.
    See :ref:`listening_locators_default` for details about the well-known ports.
 
+.. note::
+
+   TCP does not support multicast scenarios, so the network architecture must be carefully planned.
+
 .. _listening_locators_metaMulticast:
 
 Metatraffic Multicast Locators

@@ -40,5 +40,4 @@ eProsima Fast DDS comes with five transports already implemented:
     /fastdds/transport/initial_peers.rst
     /fastdds/transport/whitelist.rst
     /fastdds/transport/disabling_multicast.rst
-    /fastdds/transport/tips.rst
 

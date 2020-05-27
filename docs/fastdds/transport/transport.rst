@@ -15,8 +15,10 @@ eProsima Fast DDS comes with five transports already implemented:
 
 - **UDPv4**: UDP Datagram communication over IPv4. This is the default transport created on a new
   :ref:`dds_layer_domainParticipant` if no specific transport configuration is given.
+  See :ref:`transport_udp_udp`.
 
 - **UDPv6**: UDP Datagram communication over IPv6.
+  See :ref:`transport_udp_udp`.
 
 - **TCPv4**: TCP communication over IPv4.
   See :ref:`transport_tcp_tcp`.
@@ -30,8 +32,9 @@ eProsima Fast DDS comes with five transports already implemented:
 .. toctree::
 
     /fastdds/transport/transport_api.rst
-    /fastdds/transport/shared_memory/shared_memory.rst
+    /fastdds/transport/udp/udp.rst
     /fastdds/transport/tcp/tcp.rst
+    /fastdds/transport/shared_memory/shared_memory.rst
     /fastdds/transport/listening_locators.rst
     /fastdds/transport/initial_peers.rst
     /fastdds/transport/whitelist.rst

@@ -207,9 +207,22 @@ void configuration_compilation_check()
     participant_attr.rtps.userTransports.push_back(custom_transport);
     //!--
 
+    //CONF-UDP-TRANSPORT-SETTING
+    //Create a descriptor for the new transport.
+    auto udp_transport = std::make_shared<UDPv4TransportDescriptor>();
+    udp_transport->sendBufferSize = 9216;
+    udp_transport->receiveBufferSize = 9216;
+    udp_transport->non_blocking_send = true;
+
+    //Link the Transport Layer to the Participant.
+    participant_attr.rtps.userTransports.push_back(udp_transport);
+    //!--
+
     //CONF-TCP-TRANSPORT-SETTING
     //Create a descriptor for the new transport.
     auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+    tcp_transport->sendBufferSize = 9216;
+    tcp_transport->receiveBufferSize = 9216;
     tcp_transport->add_listener_port(5100);
     tcp_transport->set_WAN_address("80.80.99.45");
 

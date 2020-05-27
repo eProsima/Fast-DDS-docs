@@ -1,48 +1,109 @@
 .. _listening_locators:
 
-Listening locators
-------------------
+Listening Locators
+==================
 
-*eProsima Fast DDS* divides listening locators into four categories:
+Listening :ref:`Locators<transport_transportApi_locator>` are used to receive incoming traffic on the
+:ref:`dds_layer_domainParticipant`.
+These :ref:`Locators<transport_transportApi_locator>` can be classiffied according to the communication type
+and to the nature of the data.
 
-* Metatraffic Multicast Locators: these locators are used to receive metatraffic information using multicast.
-  They usually are used by built-in endpoints, like the discovery of built-in endpoints. You can set your own locators
-  using attribute ``rtps.builtin.metatrafficMulticastLocatorList``.
+According to the communication type we have:
 
-  .. literalinclude:: /../code/CodeTester.cpp
-      :language: c++
-      :start-after: //CONF-METAMULTICASTLOCATOR
-      :end-before: //!--
+ * **Multicast locators**: Listen to multicast communications.
+ * **Unicast locators**: Listen to unicast communications.
 
-* Metatraffic Unicast Locators: these locators are used to receive metatraffic information using unicast.
-  They usually are used by built-in endpoints, like the discovery of built-in endpoints.
-  You can set your own locators using attribute ``rtps.builtin.metatrafficUnicastLocatorList``.
+According to the nature of the data we have:
 
-  .. literalinclude:: /../code/CodeTester.cpp
-      :language: c++
-      :start-after: //CONF-METAUNICASTLOCATOR
-      :end-before: //!--
+ * **Metatraffic locators**: Used to receive metatraffic information, usually used by built-in endpoints to perform
+   discovery.
+ * **User locators**: Used by the endpoints created by the user to receive user :ref:`dds_layer_topic_topic`
+   data changes.
 
-* User Multicast Locators: these locators are used to receive user information using multicast. They are used by user
-  endpoints. You can set your own locators using attribute ``rtps.defaultMulticastLocatorList``.
 
-  .. literalinclude:: /../code/CodeTester.cpp
-      :language: c++
-      :start-after: //CONF-USERMULTICASTLOCATOR
-      :end-before: //!--
+.. _listening_locators_adding:
 
-* User Unicast Locators: these locators are used to receive user information using unicast. They are used by user
-  endpoints. You can set your own locators using attributes ``rtps.defaultUnicastLocatorList``.
+Adding Listening Locators
+-------------------------
 
-  .. literalinclude:: /../code/CodeTester.cpp
-      :language: c++
-      :start-after: //CONF-USERUNICASTLOCATOR
-      :end-before: //!--
+Users can add Listening :ref:`Locators<transport_transportApi_locator>` to the :ref:`dds_layer_domainParticipant`
+using the :ref:`dds_layer_domainParticipantQos`.
+Depending on the field of the :ref:`dds_layer_domainParticipant` where the :ref:`transport_transportApi_locator`
+is added, it will be treated as a *multicast*, *unicast*, *user* or *metatraffic*
+:ref:`transport_transportApi_locator`.
 
-By default *eProsima Fast DDS* calculates the listening locators for the built-in UDPv4 network transport using
-well-known ports. These well-known ports are calculated using the following predefined rules:
+.. note::
 
-.. list-table:: Ports used
+   Both UDP and TCP unicast :ref:`Locators<transport_transportApi_locator>` support to have a null address.
+   In that case, Fast DDS automatically gets and uses local network addresses.
+
+.. note::
+
+   Both UDP and TCP :ref:`Locators<transport_transportApi_locator>` support to have a zero port.
+   In that case, Fast DDS automatically calculates and uses well-known ports for that type of traffic.
+   See :ref:`listening_locators_default` for details about the well-known ports.
+
+.. _listening_locators_metaMulticast:
+
+Metatraffic Multicast Locators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Users can set their own metatraffic multicast locators
+using the field ``wire_protocol().builtin.metatrafficMulticastLocatorList``.
+
+.. literalinclude:: /../code/CodeTester.cpp
+    :language: c++
+    :start-after: //CONF-METAMULTICASTLOCATOR
+    :end-before: //!--
+
+.. _listening_locators_metaUnicast:
+
+Metatraffic Unicast Locators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Users can set their own metatraffic unicast locators
+using the field ``wire_protocol().builtin.metatrafficUnicastLocatorList``.
+
+.. literalinclude:: /../code/CodeTester.cpp
+    :language: c++
+    :start-after: //CONF-METAUNICASTLOCATOR
+    :end-before: //!--
+
+.. _listening_locators_userMulticast:
+
+User Multicast Locators
+^^^^^^^^^^^^^^^^^^^^^^^
+Users can set their own user multicast locators
+using the field ``wire_protocol().defaultMulticastLocatorList``.
+
+.. literalinclude:: /../code/CodeTester.cpp
+    :language: c++
+    :start-after: //CONF-USERMULTICASTLOCATOR
+    :end-before: //!--
+
+.. _listening_locators_userUnicast:
+
+User Unicast Locators
+^^^^^^^^^^^^^^^^^^^^^
+Users can set their own user unicast locators
+using the field ``wire_protocol().defaultUnicastLocatorList``.
+
+.. literalinclude:: /../code/CodeTester.cpp
+    :language: c++
+    :start-after: //CONF-USERUNICASTLOCATOR
+    :end-before: //!--
+
+
+.. _listening_locators_default:
+
+Default Listening Locators
+--------------------------
+
+eProsima Fast DDS enables a set of listening UDPv4 locators by default, using well-known ports.
+This allows out-of-the-box communication in most cases, without the need of configuring the
+:ref:`comm-transports-configuration` layer.
+
+The well-known ports are calculated using the following predefined rules:
+
+.. list-table:: Rules to calculate ports on default listening locators
    :header-rows: 1
 
    * - Traffic type
@@ -56,19 +117,46 @@ well-known ports. These well-known ports are calculated using the following pred
    * - User unicast
      - PB + DG * *domainId* + offsetd3 + PG * *participantId*
 
-These predefined rules use some values explained here:
 
-* DG: DomainId Gain. You can set this value using attribute ``rtps.port.domainIDGain``.
-* PG: ParticipantId Gain. You can set this value using attribute ``rtps.port.participantIDGain``.
-  The default value is ``2``.
-* PB: Port Base number. You can set this value using attribute ``rtps.port.portBase``.
-  The default value is ``7400``.
-* offsetd0, offsetd1, offsetd2, offsetd3: Additional offsets.
-  You can set these values using attributes
-  ``rtps.port.offsetdN``. Default values are: ``offsetd0 = 0``, ``offsetd1 = 10``, ``offsetd2 = 1``, ``offsetd3 = 11``.
+The values used in these rules are explained on the following table.
+The default values can be modified using the corresponding field on the :ref:`dds_layer_domainParticipantQos`.
 
-Both UDP and TCP unicast locators support to have a null address.
-In that case, *eProsima Fast DDS* understands to get local network addresses and use them.
+.. list-table:: Values used in the rules to calculate well-known ports
+   :header-rows: 1
 
-Both UDP and TCP locators support to have a zero port.
-In that case, *eProsima Fast DDS* understands to calculate well-known port for that type of traffic.
+   * - Symbol
+     - Meaning
+     - Default value
+     - QoS field
+   * - ``DG``
+     - DomainID gain
+     - ``250``
+     - ``wire_protocol().port.domainIDGain``
+   * - ``PG``
+     - ParticipantId gain
+     - ``2``
+     - ``wire_protocol().port.participantIDGain``
+   * - ``PB``
+     - Port Base number
+     - ``7400``
+     - ``wire_protocol().port.portBase``
+   * - ``offsetd0``
+     - Additional offset
+     - ``0``
+     - ``wire_protocol().port.offsetd0``
+   * - ``offsetd1``
+     - Additional offset
+     - ``10``
+     - ``wire_protocol().port.offsetd1``
+   * - ``offsetd2``
+     - Additional offset
+     - ``1``
+     - ``wire_protocol().port.offsetd2``
+   * - ``offsetd3``
+     - Additional offset
+     - ``11``
+     - ``wire_protocol().port.offsetd3``
+
+
+
+

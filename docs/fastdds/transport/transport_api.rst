@@ -84,6 +84,9 @@ Instead, transports should map the data members of the :class:`Locator` class to
 concepts. For example, on :ref:`transport_sharedMemory_sharedMemory` the ``address`` contains a uique ID
 for the local host, and the ``port`` represents the shared ring buffer used to communicate buffer descriptors.
 
+On :ref:`listening_locators` you can find more information about how to configure :ref:`dds_layer_domainParticipant`
+to listen to incoming traffic.
+
 Data members
 ^^^^^^^^^^^^
 

@@ -32,42 +32,42 @@ If you provide ``listening_ports`` on the descriptor, the :ref:`dds_layer_domain
 as *TCP server*, listening for incoming remote connections on the given ports.
 The examples below show this procedure in both C++ code and XML file.
 
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
-|    :language: c++                                |
-|    :start-after: //CONF-TCP-TRANSPORT-SETTING    |
-|    :end-before: //!--                            |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml       |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                        |
-+--------------------------------------------------+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp          |
+|    :language: c++                                       |
+|    :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER    |
+|    :end-before: //!--                                   |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml              |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
 
 If you provide ``initialPeersList`` to the :ref:`dds_layer_domainParticipant`, it will act
 as *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
 The examples below show this procedure in both C++ code and XML file.
 See :ref:`initial-peers` for more information about their configuration.
 
-+---------------------------------------------------+
-| **C++**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp       |
-|    :language: c++                                 |
-|    :start-after: //CONF-TCP2-TRANSPORT-SETTING    |
-|    :end-before: //!--                             |
-+---------------------------------------------------+
-| **XML**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml        |
-|    :language: xml                                 |
-|    :start-after: <!-->CONF-TCP2-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                         |
-+---------------------------------------------------+
++----------------------------------------------------------+
+| **C++**                                                  |
++----------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp           |
+|    :language: c++                                        |
+|    :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT     |
+|    :end-before: //!--                                    |
++----------------------------------------------------------+
+| **XML**                                                  |
++----------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml               |
+|    :language: xml                                        |
+|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT  |
+|    :end-before: <!--><-->                                |
++----------------------------------------------------------+
 
 There is an :ref:`example<transport_tcp_example>` that shows the use and configuration of TCP transport.
 
@@ -186,41 +186,41 @@ the :ref:`transport_tcp_v4transportDescriptor` must indicate its **public** IP a
 in the ``wan_addr`` data member. The following examples show how to configure
 the :ref:`dds_layer_domainParticipant` both in C++ and XML.
 
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
-|    :language: c++                                |
-|    :start-after: //CONF-TCP-TRANSPORT-SETTING    |
-|    :end-before: //!--                            |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml       |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                        |
-+--------------------------------------------------+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp          |
+|    :language: c++                                       |
+|    :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER    |
+|    :end-before: //!--                                   |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml              |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER |
+|    :end-before: <!--><-->                               |
++---------------------------------------------------------+
 
 In the client side, the :ref:`dds_layer_domainParticipant` must be configured
 with the **public** IP address and ``listening_port`` of the *TCP server* as
 ``initial_peer``.
 
-+---------------------------------------------------+
-| **C++**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp       |
-|    :language: c++                                 |
-|    :start-after: //CONF-TCP2-TRANSPORT-SETTING    |
-|    :end-before: //!--                             |
-+---------------------------------------------------+
-| **XML**                                           |
-+---------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml        |
-|    :language: xml                                 |
-|    :start-after: <!-->CONF-TCP2-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                         |
-+---------------------------------------------------+
++----------------------------------------------------------+
+| **C++**                                                  |
++----------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp           |
+|    :language: c++                                        |
+|    :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT     |
+|    :end-before: //!--                                    |
++----------------------------------------------------------+
+| **XML**                                                  |
++----------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml               |
+|    :language: xml                                        |
+|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT  |
+|    :end-before: <!--><-->                                |
++----------------------------------------------------------+
 
 
 .. _transport_tcp_tls:

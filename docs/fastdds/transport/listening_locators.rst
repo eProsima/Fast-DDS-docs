@@ -50,9 +50,9 @@ Metatraffic Multicast Locators
 Users can set their own metatraffic multicast locators
 using the field ``wire_protocol().builtin.metatrafficMulticastLocatorList``.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
-    :start-after: //CONF-METAMULTICASTLOCATOR
+    :start-after: //DDS_TRANSPORT_METAMULTICASTLOCATOR
     :end-before: //!--
 
 .. _listening_locators_metaUnicast:
@@ -62,9 +62,9 @@ Metatraffic Unicast Locators
 Users can set their own metatraffic unicast locators
 using the field ``wire_protocol().builtin.metatrafficUnicastLocatorList``.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
-    :start-after: //CONF-METAUNICASTLOCATOR
+    :start-after: //DDS_TRANSPORT_METAUNICASTLOCATOR
     :end-before: //!--
 
 .. _listening_locators_userMulticast:
@@ -74,9 +74,9 @@ User Multicast Locators
 Users can set their own user multicast locators
 using the field ``wire_protocol().defaultMulticastLocatorList``.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
-    :start-after: //CONF-USERMULTICASTLOCATOR
+    :start-after: //DDS_TRANSPORT_USERMULTICASTLOCATOR
     :end-before: //!--
 
 .. _listening_locators_userUnicast:
@@ -86,9 +86,9 @@ User Unicast Locators
 Users can set their own user unicast locators
 using the field ``wire_protocol().defaultUnicastLocatorList``.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
-    :start-after: //CONF-USERUNICASTLOCATOR
+    :start-after: //DDS_TRANSPORT_USERUNICASTLOCATOR
     :end-before: //!--
 
 

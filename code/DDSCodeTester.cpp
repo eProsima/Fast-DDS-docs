@@ -2996,3 +2996,221 @@ void log_examples()
     Log::KillThread();
     //!--
 }
+
+void dds_transport_examples ()
+{
+    {
+        //DDS_TRANSPORT_METAMULTICASTLOCATOR
+        DomainParticipantQos qos;
+
+        // This locator will open a socket to listen network messages
+        // on UDPv4 port 22222 over multicast address 239.255.0.1
+        eprosima::fastrtps::rtps::Locator_t locator;
+        IPLocator::setIPv4(locator, 239, 255, 0, 1);
+        locator.port = 22222;
+
+        // Add the locator to the DomainParticipantQos
+        qos.wire_protocol().builtin.metatrafficMulticastLocatorList.push_back(locator);
+        //!--
+    }
+
+    {
+        //DDS_TRANSPORT_METAUNICASTLOCATOR
+        DomainParticipantQos qos;
+
+        // This locator will open a socket to listen network messages
+        // on UDPv4 port 22223 over address 192.168.0.1
+        eprosima::fastrtps::rtps::Locator_t locator;
+        IPLocator::setIPv4(locator, 192, 168, 0, 1);
+        locator.port = 22223;
+
+        // Add the locator to the DomainParticipantQos
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
+        //!--
+    }
+
+    {
+        //DDS_TRANSPORT_USERMULTICASTLOCATOR
+        DomainParticipantQos qos;
+
+        // This locator will open a socket to listen network messages
+        // on UDPv4 port 22224 over multicast address 239.255.0.1
+        eprosima::fastrtps::rtps::Locator_t locator;
+        IPLocator::setIPv4(locator, 239, 255, 0, 1);
+        locator.port = 22224;
+
+        // Add the locator to the DomainParticipantQos
+        qos.wire_protocol().defaultMulticastLocatorList.push_back(locator);
+        //!--
+    }
+
+    {
+        //DDS_TRANSPORT_USERUNICASTLOCATOR
+        DomainParticipantQos qos;
+
+        // This locator will open a socket to listen network messages
+        // on UDPv4 port 22225 over address 192.168.0.1
+        eprosima::fastrtps::rtps::Locator_t locator;
+        IPLocator::setIPv4(locator, 192, 168, 0, 1);
+        locator.port = 22225;
+
+        // Add the locator to the DomainParticipantQos
+        qos.wire_protocol().defaultUnicastLocatorList.push_back(locator);
+        //!--
+    }
+
+    {
+        //CONF-UDP-TRANSPORT-SETTING
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto udp_transport = std::make_shared<UDPv4TransportDescriptor>();
+        udp_transport->sendBufferSize = 9216;
+        udp_transport->receiveBufferSize = 9216;
+        udp_transport->non_blocking_send = true;
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().userTransports.push_back(udp_transport);
+        //!--
+    }
+
+    {
+        //CONF-TCP-TRANSPORT-SETTING-SERVER
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+        tcp_transport->sendBufferSize = 9216;
+        tcp_transport->receiveBufferSize = 9216;
+        tcp_transport->add_listener_port(5100);
+        tcp_transport->set_WAN_address("80.80.99.45");
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().userTransports.push_back(tcp_transport);
+        //!--
+    }
+
+    {
+        //CONF-TCP-TRANSPORT-SETTING-CLIENT
+        DomainParticipantQos qos;
+
+        // Disable the built-in Transport Layer.
+        qos.transport().useBuiltinTransports = false;
+
+        // Create a descriptor for the new transport.
+        // Do not configure any listener port
+        auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+        qos.transport().userTransports.push_back(tcp_transport);
+
+        // Set initial peers.
+        Locator_t initial_peer_locator;
+        initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
+        IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
+        initial_peer_locator.port = 5100;
+
+        qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
+        //!--
+    }
+
+    {
+        //CONF-SHM-TRANSPORT-SETTING
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        std::shared_ptr<SharedMemTransportDescriptor> shm_transport = std::make_shared<SharedMemTransportDescriptor>();
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().userTransports.push_back(shm_transport);
+        //!--
+    }
+
+    {
+        //CONF-TCP-TLS-SERVER
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto tls_transport = std::make_shared<TCPv4TransportDescriptor>();
+        tcp_transport->sendBufferSize = 9216;
+        tcp_transport->receiveBufferSize = 9216;
+        tcp_transport->add_listener_port(5100);
+        tcp_transport->set_WAN_address("80.80.99.45");
+
+        // Create the TLS configuration
+        using TLSOptions = TCPTransportDescriptor::TLSConfig::TLSOptions;
+        tls_transport->apply_security = true;
+        tls_transport->tls_config.password = "test";
+        tls_transport->tls_config.cert_chain_file = "server.pem";
+        tls_transport->tls_config.private_key_file = "serverkey.pem";
+        tls_transport->tls_config.tmp_dh_file = "dh2048.pem";
+        tls_transport->tls_config.add_option(TLSOptions::DEFAULT_WORKAROUNDS);
+        tls_transport->tls_config.add_option(TLSOptions::SINGLE_DH_USE);
+        tls_transport->tls_config.add_option(TLSOptions::NO_SSLV2);
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().userTransports.push_back(tls_transport);
+        //!--
+    }
+
+    {
+        //CONF-TCP-TLS-CLIENT
+        DomainParticipantQos qos;
+
+        // Set initial peers.
+        Locator_t initial_peer_locator;
+        initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
+        IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
+        initial_peer_locator.port = 5100;
+        qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
+
+        // Create a descriptor for the new transport.
+        auto tls_transport = std::make_shared<TCPv4TransportDescriptor>();
+
+        // Create the TLS configuration
+        using TLSOptions = TCPTransportDescriptor::TLSConfig::TLSOptions;
+        using TLSVerifyMode = TCPTransportDescriptor::TLSConfig::TLSVerifyMode;
+        tls_transport->apply_security = true;
+        tls_transport->tls_config.verify_file = "ca.pem";
+        tls_transport->tls_config.verify_mode = TLSVerifyMode::VERIFY_PEER;
+        tls_transport->tls_config.add_option(TLSOptions::DEFAULT_WORKAROUNDS);
+        tls_transport->tls_config.add_option(TLSOptions::SINGLE_DH_USE);
+        tls_transport->tls_config.add_option(TLSOptions::NO_SSLV2);
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().userTransports.push_back(tls_transport);
+        //!--
+    }
+
+    {
+        //CONF-TRANSPORT-DESCRIPTORS
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+
+        // Add loopback to the whitelist
+        tcp_transport->interfaceWhiteList.emplace_back("127.0.0.1");
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().userTransports.push_back(tcp_transport);
+    }
+
+    {
+        //CONF-DISABLE-MULTICAST
+        DomainParticipantQos qos;
+
+        // Metatraffic Multicast Locator List will be empty.
+        // Metatraffic Unicast Locator List will contain one locator, with null address and null port.
+        // Then Fast DDS will use all network interfaces to receive network messages using a well-known port.
+        Locator_t default_unicast_locator;
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(default_unicast_locator);
+
+        // Initial peer will be UDPv4 address 192.168.0.1. The port will be a well-known port.
+        // Initial discovery network messages will be sent to this UDPv4 address.
+        Locator_t initial_peer;
+        IPLocator::setIPv4(initial_peer, 192, 168, 0, 1);
+        qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer);
+        //!--
+    }
+}
+
+

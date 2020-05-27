@@ -435,7 +435,7 @@
 </participant>
 <!--><-->
 
-<!-->CONF-TCP-TRANSPORT-SETTING<-->
+<!-->CONF-TCP-TRANSPORT-SETTING-SERVER<-->
 <transport_descriptors>
     <transport_descriptor>
         <transport_id>tcp_transport</transport_id>
@@ -454,7 +454,6 @@
         <userTransports>
             <transport_id>tcp_transport</transport_id>
         </userTransports>
-        <useBuiltinTransports>false</useBuiltinTransports>
     </rtps>
 </participant>
 <!--><-->
@@ -478,7 +477,7 @@
 </participant>
 <!--><-->
 
-<!-->CONF-TCP2-TRANSPORT-SETTING<-->
+<!-->CONF-TCP-TRANSPORT-SETTING-CLIENT<-->
 <transport_descriptors>
     <transport_descriptor>
         <transport_id>tcp2_transport</transport_id>
@@ -521,8 +520,22 @@
                 <option>NO_SSLV2</option>
             </options>
         </tls>
+        <sendBufferSize>9216</sendBufferSize>
+        <receiveBufferSize>9216</receiveBufferSize>
+        <listening_ports>
+            <port>5100</port>
+        </listening_ports>
+        <wan_addr>80.80.99.45</wan_addr>
     </transport_descriptor>
 </transport_descriptors>
+
+<participant profile_name="TLSServerParticipant">
+    <rtps>
+        <userTransports>
+            <transport_id>tls_transport_server</transport_id>
+        </userTransports>
+    </rtps>
+</participant>
 <!--><-->
 
 <!-->CONF-TCP-TLS-CLIENT<-->
@@ -543,6 +556,24 @@
         </tls>
     </transport_descriptor>
 </transport_descriptors>
+
+<participant profile_name="TLSClientParticipant">
+    <rtps>
+        <userTransports>
+            <transport_id>tls_transport_client</transport_id>
+        </userTransports>
+        <builtin>
+            <initialPeersList>
+                <locator>
+                    <tcpv4>
+                        <address>80.80.99.45</address>
+                        <physical_port>5100</physical_port>
+                    </tcpv4>
+                </locator>
+            </initialPeersList>
+        </builtin>
+    </rtps>
+</participant>
 <!--><-->
 
 <!-->CONF-DISABLE-MULTICAST<-->

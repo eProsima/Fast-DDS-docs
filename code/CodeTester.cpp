@@ -474,52 +474,6 @@ void configuration_compilation_check()
     descriptor.interfaceWhiteList.emplace_back("127.0.0.1");
     //!--
 
-    //LOG_USAGE_PRINT
-    logInfo(INFO_MSG, "This is an info message");
-    logWarning(WARN_MSG, "This is a warning message");
-    logError(ERROR_MSG, "This is an error message");
-    //!--
-
-    //LOG_USAGE_INFO
-    logInfo(NEW_CATEGORY, "This log message belong to NEW_CATEGORY category.");
-    //!--
-
-    //LOG_USAGE_VERBOSITY
-    Log::SetVerbosity(Log::Kind::Warning);
-    std::regex my_regex("NEW_CATEGORY");
-    Log::SetCategoryFilter(my_regex);
-    //!--
-
-    /*
-       //LOG_USAGE_API
-       //! Enables the reporting of filenames in log entries. Disabled by default.
-       RTPS_DllAPI static void ReportFilenames(bool);
-       //! Enables the reporting of function names in log entries. Enabled by default when supported.
-       RTPS_DllAPI static void ReportFunctions(bool);
-       //! Sets the verbosity level, allowing for messages equal or under that priority to be logged.
-       RTPS_DllAPI static void SetVerbosity(Log::Kind);
-       //! Returns the current verbosity level.
-       RTPS_DllAPI static Log::Kind GetVerbosity();
-       //! Sets a filter that will pattern-match against log categories, dropping any unmatched categories.
-       RTPS_DllAPI static void SetCategoryFilter    (const std::regex&);
-       //! Sets a filter that will pattern-match against filenames, dropping any unmatched categories.
-       RTPS_DllAPI static void SetFilenameFilter    (const std::regex&);
-       //! Sets a filter that will pattern-match against the provided error string, dropping any unmatched categories.
-       RTPS_DllAPI static void SetErrorStringFilter (const std::regex&);
-       //!--
-     */
-
-    //LOG-CONFIG
-    Log::ClearConsumers(); // Deactivate StdoutConsumer
-
-    // Add FileConsumer consumer
-    std::unique_ptr<FileConsumer> fileConsumer(new FileConsumer("append.log", true));
-    Log::RegisterConsumer(std::move(fileConsumer));
-
-    // Back to its defaults: StdoutConsumer will be enable and FileConsumer removed.
-    Log::Reset();
-    //!--
-
     //CONF_QOS_STATIC_DISCOVERY_CODE
     participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
     participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;

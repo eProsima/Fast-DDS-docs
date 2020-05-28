@@ -11,8 +11,6 @@ These profiles are defined within the ``<participant>`` XML tags.
 The ``<participant>`` element has two child elements: ``<domain_id>`` and ``<rtps>``.
 All the |DomainParticipant| configuration options belong to the ``<rtps>`` element, except for the DDS |DomainId| which
 is define by the ``<domain_id>`` element.
-The  attribute will be the name that the ``Domain`` will associate to the profile to load it
-as shown in :ref:`loadingapplyingprofiles`.
 Attribute ``profile_name`` is the name under which the ``<participant>`` profile is registered in the DDS Domain, so
 that it can be loaded later by a |DomainParticipant|, as shown in :ref:`loadingapplyingprofiles`.
 Below a list with the configuration XML elements is presented:
@@ -64,10 +62,10 @@ These elements allows the user to define the DomainParticipant configuration.
 | ``<name>``                        | DomainParticipant's name. It is not the |br|     | ``string_255``      |         |
 |                                   | same field that ``profile_name`` attribute.      |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<defaultUnicastLocatorList>``   | List of default input unicast locators. |br|     | ``LocatorListType`` |         |
+| ``<defaultUnicastLocatorList>``   | List of default input unicast locators. |br|     | ``Locator``         |         |
 |                                   | It expects a :ref:`LocatorListType`.             |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<defaultMulticastLocatorList>`` | List of default input multicast locators. |br|   | ``LocatorListType`` |         |
+| ``<defaultMulticastLocatorList>`` | List of default input multicast locators. |br|   | ``Locator``         |         |
 |                                   | It expects a :ref:`LocatorListType`.             |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
 | ``<sendSocketBufferSize>``        | Size in bytes of the output socket buffer. |br|  | ``uint32``          | 0       |
@@ -253,7 +251,7 @@ This section specifies the available XML members for the configuration of this
 |                                       | See :ref:`historyqospolicykind`.     |                     |                 |
 |                                       |                                      |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<DataWriterHistoryMemoryPolicy>``   | Memory policy for DataReaders. |br|  | |mempol|            | |mempoldefault| |
+| ``<DataWriterHistoryMemoryPolicy>``   | Memory policy for DataWriters. |br|  | |mempol|            | |mempoldefault| |
 |                                       | See :ref:`historyqospolicykind`.     |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
 | ``<DataReaderPayloadSize>``           | Maximum payload size for |br|        | ``UInt32``          | 512             |

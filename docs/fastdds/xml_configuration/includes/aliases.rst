@@ -33,6 +33,10 @@
 .. |RTPSParticipants| replace:: :cpp:class:`RTPSParticipants <eprosima::fastrtps::rtps::RTPSParticipant>`
 
 
+.. |RTPSEndpointQos| replace:: :cpp:class:`RTPSEndpointQos <eprosima::fastdds::dds::RTPSEndpointQos>`
+.. |entity_id| replace:: :cpp:member:`entity_id <eprosima::fastdds::dds::RTPSEndpointQos::entity_id>`
+
+
 .. |DiscoveryProtocol| replace:: :cpp:enum:`DiscoveryProtocol <eprosima::fastrtps::rtps::DiscoveryProtocol>`
 .. |SIMPLE| replace:: :cpp:enumerator:`SIMPLE <eprosima::fastrtps::rtps::DiscoveryProtocol::SIMPLE>`
 .. |CLIENT| replace:: :cpp:enumerator:`CLIENT <eprosima::fastrtps::rtps::DiscoveryProtocol::CLIENT>`

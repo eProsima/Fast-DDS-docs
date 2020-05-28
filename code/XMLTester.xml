@@ -1396,8 +1396,32 @@
 </rtps>
 </participant>
 
-<!-->XML-PUBLISHER<-->
-<publisher profile_name="pub_profile_name">
+<!-->XML-DATAWRITER-COMPARISON<-->
+<data_writer profile_name="my_datawriter_profile">
+    <topic>
+        <!-- TOPIC_TYPE -->
+    </topic>
+    <qos>
+        <!-- QOS -->
+    </qos>
+    <!-- Other elements -->
+</data_writer>
+<!--><-->
+
+<!-->XML-PUBLISHER-COMPARISON<-->
+<publisher profile_name="my_publisher_profile">
+    <topic>
+        <!-- TOPIC_TYPE -->
+    </topic>
+    <qos>
+        <!-- QOS -->
+    </qos>
+    <!-- Other elements -->
+</publisher>
+<!--><-->
+
+<!-->XML-DATAWRITER<-->
+<data_writer profile_name="datawriter_profile_name">
     <topic>
         <!-- TOPIC_TYPE -->
     </topic>
@@ -1460,7 +1484,7 @@
         <increment>1</increment> <!-- uint32 -->
     </matchedSubscribersAllocation>
 
-</publisher>
+</data_writer>
 <!--><-->
 <!-->XML-SUBSCRIBER<-->
 <subscriber profile_name="sub_profile_name">

@@ -28,8 +28,8 @@ during the creation of an |Entity|, the :ref:`Trasports <comm-transports-configu
     /fastdds/xml_configuration/making_xml_profiles
     /fastdds/xml_configuration/transports
     /fastdds/xml_configuration/dynamic_types
-    /fastdds/xml_configuration/participant
-    /fastdds/xml_configuration/publisher
-    /fastdds/xml_configuration/subscriber
+    /fastdds/xml_configuration/domainparticipant
+    /fastdds/xml_configuration/datawriter
+    /fastdds/xml_configuration/datareader
     /fastdds/xml_configuration/common
     /fastdds/xml_configuration/example

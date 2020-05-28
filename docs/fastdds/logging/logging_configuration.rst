@@ -137,6 +137,11 @@ The consumers list can be emptied with member function |Log::ClearConsumers|.
     :end-before: //!--
     :dedent: 4
 
+.. note::
+
+    Registering and configuring consumers can also be done using *Fast DDS* XML configuration files.
+    Please refer to :ref:`dds_layer_log_xml` for details.
+
 .. warning::
 
     |Log::ClearConsumers| empties the consumers lists.
@@ -159,3 +164,46 @@ The logging module's configuration can be reset to default settings with member 
     * Enabling :ref:`dds_layer_log_function_name` component.
     * Clear all :ref:`dds_layer_log_filter`.
     * Clear all consumers and set a STDOUT consumer.
+
+
+.. _dds_layer_log_xml:
+
+XML Configuration
+^^^^^^^^^^^^^^^^^
+
+*eProsima Fast DDS* allows for registering and configuring log consumers using XML configuration files.
+This is done using the profile described in Log profiles.
+Log profiles have the following structure.
+
+- ``<use_default>``: If set to ``FALSE``, a call to |Log::ClearConsumers| is performed (see
+  :ref:`dds_layer_log_register_consumers`).
+- ``<consumer>``: Defines the class and configuration of the consumer to be registered.
+  Multiple consumers can be registered this way.
+  It has the following children elements:
+
+  - ``<class>``: The class of the consumer.
+    Possible values are ``StdoutConsumer`` and ``FileConsumer``.
+  - ``<property>``: This element is used to configured the file consumer and therefore only applies if class is set to
+    ``FileConsumer``. It has the following children elements:
+
+    - ``<name>``: Name of the property to be configured.
+      Possible values are ``filename`` and ``append``.
+    - ``<value>``: The value of the property.
+      Possible values adhere to the following rules:
+
+      - If ``<name>`` is set to ``filename``, then this element contains the name of the log file.
+      - If ``<name>`` is set to ``append``, then this element defined whether the consumer should, upon creation, open
+        the file for appending or overriding.
+
+The following constitutes an example of an XML configuration file that sets the log to use one StdoutConsumer and one
+FileConsumer:
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->LOG-CONFIG<-->
+    :end-before: <!--><-->
+    :lines: 2,3,5-32,34
+
+.. note::
+
+    For further details on writing and loading XML configuration files, please refer to :ref:`xml_profiles`.

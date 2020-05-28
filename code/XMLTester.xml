@@ -2919,20 +2919,41 @@
 </profiles>
 
 <!-->LOG-CONFIG<-->
-<log>
-    <use_default>FALSE</use_default>
-    <consumer>
-        <class>FileConsumer</class>
-        <property>
-            <name>filename</name>
-            <value>test1.log</value>
-        </property>
-        <property>
-            <name>append</name>
-            <value>TRUE</value>
-        </property>
-    </consumer>
-</log>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <log>
+        <!--
+        Clear consumers
+        -->
+        <use_default>FALSE</use_default>
+
+        <!--
+        StdoutConsumer does not have any properties
+        -->
+        <consumer>
+            <class>StdoutConsumer</class>
+        </consumer>
+
+        <!--
+        FileConsumer openning "execution.log" in append mode
+        -->
+        <consumer>
+            <class>FileConsumer</class>
+            <property>
+                <name>filename</name>
+                <value>execution.log</value>
+            </property>
+            <property>
+                <name>append</name>
+                <value>TRUE</value>
+            </property>
+        </consumer>
+    </log>
+<!--
+</profiles>
+-->
 <!--><-->
 
 <!-->QoS Examples<-->

@@ -8,8 +8,10 @@ XTypes Extensions
 
 This section explain those QoS Policy extensions defined in the `XTypes Specification <https://www.omg.org/spec/DDS-XTypes/>`_:
 
-* :ref:`datarepresentationqospolicy`
-* :ref:`typeconsistencyenforcementqospolicy`
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
 
 .. _datarepresentationqospolicy:
 

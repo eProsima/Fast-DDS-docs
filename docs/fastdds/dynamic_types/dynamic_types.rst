@@ -14,6 +14,7 @@ Using them, the users can declare the different types that they need and manage 
 avoiding the additional step of updating the IDL file and the generation of *C++* classes.
 
 .. toctree::
+   :maxdepth: 3
 
    /fastdds/dynamic_types/concepts.rst
    /fastdds/dynamic_types/supported_types.rst

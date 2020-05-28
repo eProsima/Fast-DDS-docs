@@ -18,15 +18,10 @@ with the rest of the classes.
 
     Dynamic types class diagram
 
-* :ref:`dynamictypes_overview_dynamictype`
-* :ref:`dynamictypes_overview_dynamictypebuilderfactory`
-* :ref:`dynamictypes_overview_dynamictypebuilder`
-* :ref:`dynamictypes_overview_typedescriptor`
-* :ref:`dynamictypes_overview_dynamictypemember`
-* :ref:`dynamictypes_overview_memberdescriptor`
-* :ref:`dynamictypes_overview_dynamicdata`
-* :ref:`dynamictypes_overview_dynamicdatafactory`
-* :ref:`dynamictypes_overview_dynamicpubsubtype`
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 2
 
 .. _dynamictypes_overview_dynamictype:
 

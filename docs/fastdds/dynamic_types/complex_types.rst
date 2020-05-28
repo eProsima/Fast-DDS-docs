@@ -11,10 +11,10 @@ of the data types to fit the model.
 
 The following subsections describe these *complex types* and their use.
 
-* :ref:`dynamictypes_complextypes_nestedstructures`
-* :ref:`dynamictypes_complextypes_inheritance`
-* :ref:`dynamictypes_complextypes_aliasalias`
-* :ref:`dynamictypes_complextypes_complexunions`
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 2
 
 
 .. _dynamictypes_complextypes_nestedstructures:

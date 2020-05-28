@@ -9,28 +9,10 @@ Standard QoS Policies
 
 This section explains each of the DDS standard QoS Policies:
 
-* :ref:`deadlineqospolicy`
-* :ref:`destinationorderqospolicy`
-* :ref:`durabilityqospolicy`
-* :ref:`durabilityserviceqospolicy`
-* :ref:`entityfactoryqospolicy`
-* :ref:`groupqospolicy`
-* :ref:`historyqospolicy`
-* :ref:`latencybudgetqospolicy`
-* :ref:`lifespanqospolicy`
-* :ref:`livelinessqospolicy`
-* :ref:`ownershipqospolicy`
-* :ref:`ownershipstrengthqospolicy`
-* :ref:`partitionqospolicy`
-* :ref:`presentationqospolicy`
-* :ref:`readerdatalifecycleqospolicy`
-* :ref:`reliabilityqospolicy`
-* :ref:`resourcelimitsqospolicy`
-* :ref:`timebasedfilterqospolicy`
-* :ref:`topicdataqospolicy`
-* :ref:`transportpriorityqospolicy`
-* :ref:`userdataqospolicy`
-* :ref:`writerdatalifecycleqospolicy`
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
 
 
 .. _deadlineqospolicy:

@@ -1,72 +1,252 @@
-@import url("theme.css");
 
-/*Estilos ogilvy*/
-.wy-side-nav-search{background-color:#00275a !important}
-.wy-side-nav-search a{color:#fff !important}
-.wy-nav-side{background-color:#f5f5f5 !important}
-.wy-menu-vertical a{color:#333 !important}
-.wy-menu-vertical span{color:#00275a !important;font-weight:bold !important}
-.wy-menu-vertical li.current a{color:#00d3de !important;background-color:#f5f5f5 !important;border-right:0 !important}
-.wy-menu-vertical li.on a, .wy-menu-vertical li.current > a{border:0 !important}
-.wy-menu-vertical a:hover{background-color:#e2e2e2 !important}
-body{font-family:verdana !important}
-h1{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
-h2{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
-h3{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
-h4{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
+/* highlight styles */
+@import url('https://fonts.googleapis.com/css?family=Montserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&ver=4.9.6#038;subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url("monokai_sublime_.css");
+@import url("pygments-monokai.css");
+
+/* Estilos ogilvy v2 */
+.wy-nav-content {max-width: none !important}
+
+
+body {
+  font-family: Montserrat,Helvetica,Arial,sans-serif;
+  font-weight: 500; 
+  line-height: 1.42857143 !important; 
+  color: #4c4c4c
+}
+h1, h2, h3, h4 {
+    font-family: Montserrat,Helvetica,Arial,sans-serif !important;
+    color:#000000 !important;     
+    font-weight: 800;
+    text-transform: uppercase;
+}
+h1, h2{
+    padding-top : 20px;
+    padding-bottom : 3px;
+    box-shadow: 0px 7px 0px 0px #000000;
+}
+h3 {
+    box-shadow: 0px 4px 0px 0px #000000;
+}
+h4 {
+  margin-bottom : 5px;
+  color:#233c68 !important;
+  text-transform: none; 
+}
+
+/*
+p, ul{font-size:14px !important;line-height:auto !important; text-align:justify !important}
 h5{color:#333333 !important;font-family:"Neo Tech W02 Medium" !important}
 h6{color:#666666 !important;font-family:"Neo Tech W02 Medium" !important}
-a{color:#00275a !important}
-a:hover{color:#00d3de !important}
-.wy-nav-content{background-color:#fff !important}
-.wy-nav-content-wrap{background-color:#fff !important}
-.wy-nav-top{background-color:#00275a !important;color:#fff !important}
-.wy-nav-top a{color:#fff !important}
-p, ul{font-size:14px !important;line-height:auto !important; text-align:justify !important}
-.btn-neutral{background-color:#00d3de !important;color:#fff !important}
-.btn{box-shadow:0 0 0 !important;border:0 !important;border-radius:0 !important}
-.btn-neutral:hover{background-color:#00d3de !important;color:#fff !important}
-.rst-versions{background:#00275a none !important;border-top:0 !important;font-family:Verdana !important}
-.rst-versions .rst-current-version{background-color:#00275a !important}
-.rst-versions a{color:#fff !important}
-.rst-versions a:hover{color:#00d3de !important}
+*/
+
+code{
+  padding:0px; border-width: 0px;
+  font-family: 'Roboto Mono', monospace;
+  background-color: transparent;font-size: 16px; 
+  color:#ff7059 !important
+}
+pre code{
+  background-color:#2c2c2c !important;
+  color:#ffffff !important
+}
+
+td {
+    border-color:#4c4c4c !important;
+}
+th {
+    background-color:#5dc0cf;
+    color: #fff;
+    border-color:#4c4c4c !important;
+}
+hr {
+  width: 200%;
+  margin-left: -50%;
+   padding-bottom : 6px;
+   box-shadow: 0px 3px 0px 0px #5dc0cf;
+   border-top : none;
+}
+div[role="navigation"] hr {
+    box-shadow: none;
+    border-top: 1px solid #e1e4e5;
+}
+
+
+a{font-weight: 600; color:#233c68 !important}
+a:hover{color:#5dc0cf !important}
+a.icon-home{
+  color:#fff !important;
+  white-space : pre-line !important;
+  font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif !important; 
+  font-weight:normal !important;
+  color:#000 !important; 
+  text-transform:uppercase !important; 
+  margin:0 0 0 0 !important
+}
+.fa-home:before, .icon-home:before{content:None !important}
+.wy-menu-vertical {color: #4c4c4c; background-color:#bec3cc}
+.wy-menu-vertical .current {color: #4c4c4c; background-color:#ffffff;
+border-right: #efefef solid 1px; }
+
+.wy-menu-vertical .current > a  {background:#000000 !important; color : #ffffff  !important}
+.wy-menu-vertical .current > a  {background:#000000 !important; color : #ffffff  !important}
+.wy-menu-vertical li.current a {border-right: none}
+.wy-menu-vertical li.current a:hover{background-color: #000000; color:#ffffff !important}
+.wy-menu-vertical li.current > a:hover{background-color:#000000 !important;border-right:0 !important}
+.wy-menu-vertical a:hover{background-color: #000000; color:#ffffff !important}
+.wy-side-nav-search {background: #fff !important; border-right: #efefef solid 1px;}
+.wy-side-nav-search a{background-color:transparent !important; }
+.wy-menu-vertical span{font-weight: 600 !important; color:#000000 !important;}
+nav > div.wy-menu.wy-menu-vertical > ul > li > a{font-weight:600 !important; color:#000000 !important}
+nav > div.wy-menu.wy-menu-vertical > ul > li.current > a{font-weight:600 !important; color:#ffffff !important}
+
+.wy-side-nav-search{margin-bottom:0 !important; text-align:left !important}
+nav > div.wy-menu.wy-menu-vertical > ul > li > a:hover{color:#ffffff !important}
+.btn-neutral{background-color:#233c68 !important color:#4c4c4c !important}
+.btn-neutral:hover{background-color:#233c68 !important; color:#ffffff !important}
+.btn-neutral:visited{color:#233c68 !important}
+.btn-neutral:visited:hover{color:#ffffff !important}
+.rst-versions {
+  background:#000000 none !important;
+  border-top:0 !important;
+  font-family: Montserrat,Helvetica,Arial,sans-serif !important
+}
+.rst-versions .rst-current-version{background-color:#000000 !important}
+.rst-versions a{color:#fff !important; text-decoration:underline !important}
+.rst-versions a:hover{color:#FFF !important}
 .fa-book,.fa{font-family:verdana !important}
 .rst-versions .rst-other-versions{color:#fff !important}
 .rst-versions .rst-other-versions hr{border-color:#fff !important}
 .fa-home:before, .icon-home:after{content:}
-#rtd-search-form{margin-top:10px !important}
-a.icon-home{color:#fff !important;font-family:"Neo Tech W02 Medium" !important;font-size:25px !important;font-weight:normal !important;color:#aeadb3 !important; text-transform:uppercase !important}
-.fa-home:before, .icon-home:before{content:url('imgs/logo.png') !important}
-.wy-side-nav-search > a:hover, .wy-side-nav-search .wy-dropdown > a:hover{background-color:#00275a !important}
+a.icon-home {color:#000000 !important;
+ font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif !important; 
+ font-size: x-large !important; font-weight: 800 !important; 
+ text-transform:uppercase !important;
+}
 
+
+.wy-side-nav-search{
+ clear:both !important; 
+ padding:40px 10px 16px 10px;
+ background-image: url('https://www.fiware.org/wp-content/uploads/2018/04/logo.png') !important;
+ background-size: 128px 30px !important;
+ background-repeat: no-repeat !important;
+ background-position: 15px 8px !important; 
+ border-bottom-color : #000000;
+ border-bottom-width: 1px;
+ border-style: solid;
+}
+
+
+.rst-versions .rst-other-versions dt{font-weight:bold !important}
+.wy-body-for-nav{background-image:none !important}
+.wy-nav-side{background-color:transparent !important}
 /*Fin estilos ogilvy*/
 
-@font-face{
-font-family:"Neo Tech W02 Light";
-src:url("Fonts/742891/fda10a2c-b5db-41d3-a8a5-739e00a24795.eot?#iefix");
-src:url("Fonts/742891/fda10a2c-b5db-41d3-a8a5-739e00a24795.eot?#iefix") format("eot"),url("Fonts/742891/ad8c23b8-3c32-4776-8d87-ea920efdd7c3.woff2") format("woff2"),url("Fonts/742891/500ecc0b-eac4-485b-88d0-3013b177dda6.woff") format("woff"),url("Fonts/742891/2ad852dd-a933-4668-a90e-15f16b4fa647.ttf") format("truetype"),url("Fonts/742891/ded5966b-f662-4af3-acf7-af2e819cf3bc.svg#ded5966b-f662-4af3-acf7-af2e819cf3bc") format("svg");
-}
-@font-face{
-font-family:"Neo Tech W02";
-src:url("Fonts/742903/9d5d1ae3-e34f-44fd-a57e-dbfacbe0ec4c.eot?#iefix");
-src:url("Fonts/742903/9d5d1ae3-e34f-44fd-a57e-dbfacbe0ec4c.eot?#iefix") format("eot"),url("Fonts/742903/8224aa90-b7ba-47af-8c9c-3b9870b709b6.woff2") format("woff2"),url("Fonts/742903/f62a7192-52d1-4e92-bccb-cb84ed5c753f.woff") format("woff"),url("Fonts/742903/2a9eef49-66bc-4fee-be90-f7fce5bc7404.ttf") format("truetype"),url("Fonts/742903/7ded18ef-b3a6-4803-94a5-13aa49034550.svg#7ded18ef-b3a6-4803-94a5-13aa49034550") format("svg");
-}
-@font-face{
-font-family:"Neo Tech W02 Medium";
-src:url("Fonts/742897/086a5263-141e-4fc1-96a8-c180c98ed609.eot?#iefix");
-src:url("Fonts/742897/086a5263-141e-4fc1-96a8-c180c98ed609.eot?#iefix") format("eot"),url("Fonts/742897/cb5ed948-7e71-4a51-9b94-816094388cd2.woff2") format("woff2"),url("Fonts/742897/e33f1dff-6aee-45fb-9f91-10b04c9f559f.woff") format("woff"),url("Fonts/742897/7d1c0641-f8d4-4a52-a13f-decf2319529d.ttf") format("truetype"),url("Fonts/742897/8f40b40a-9bda-4a13-a00e-cc961cebb971.svg#8f40b40a-9bda-4a13-a00e-cc961cebb971") format("svg");
-}
-@font-face{
-font-family:"Neo Tech W02 Bold";
-src:url("Fonts/742885/39974d8a-38de-4853-a4d1-778234a08061.eot?#iefix");
-src:url("Fonts/742885/39974d8a-38de-4853-a4d1-778234a08061.eot?#iefix") format("eot"),url("Fonts/742885/99982ea6-cc23-4076-85e9-0a0bf3909a31.woff2") format("woff2"),url("Fonts/742885/c647fd16-b021-4fda-88fb-c69967cdb3b4.woff") format("woff"),url("Fonts/742885/a9afb560-1f8d-4920-865c-1325f98d4b82.ttf") format("truetype"),url("Fonts/742885/41720127-f18c-4437-a9eb-543a99d63fea.svg#41720127-f18c-4437-a9eb-543a99d63fea") format("svg");
-}
+
 
 /* Custom width read the docs */
-.wy-nav-content {
-  max-width: 1050px !important;
+.wy-nav-content {max-width: none !important; background-color: #ffffff}
+/* to avoid display version when generated from rst */
+.wy-side-nav-search .version {display:none;}
+/* Allow multiline project names in side navigation bar */
+.wy-side-nav-search a.icon-home {white-space: pre-wrap;}
+.wy-side-nav-search input[type=text]{
+    margin-top : 4px;
+    border-radius: unset;
+    background-color: #f5f5f5;
+    border-color:#000000;
 }
 
+.wy-breadcrumbs {
+    text-transform: uppercase !important;
+    color : #000000;
+    font-weight: 600;
+    font-size: medium;
+}
+
+.wy-nav-top { background-color:#000000;}
+.wy-nav-top > a:hover {color: #ffffff  !important}
+.wy-nav-top > a{ text-transform:uppercase; color: #ffffff  !important; font-size: x-large}
+
+.rst-content img,blockquote {max-width: 94%; background-color: #f5f5f5; border-style: solid;  border-color : #4c4c4c; border-width : 1px; margin-left: 3%;}
+.rst-content a img {background-color: transparent; border-style: none;  margin-left: 0%; margin-right: 0%}
+.rst-content blockquote {padding: 15px;}
+.rst-content pre {border-style: solid;  border-color : #233c68; border-width : 1px; margin-left: 3%; margin-right: 3%;}
+.rst-content pre code { background-color: #2c2c2c !important; margin: 1px}
+
+.rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td {
+    background-color: #f5f5f5;
+}
+.rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td img {
+    background-color: transparent; border-style: none; 
+}
+
+td {
+    border-color:#4c4c4c !important;
+}
+th {
+    background-color:#000000;
+    color: #fff;
+    border-color:#4c4c4c !important;
+}
+
+th code {
+    color: #fff !important;
+}
+
+hr {
+  width: 108%;
+  margin-left: -4%;
+  padding-bottom : 6px;
+  box-shadow: 0px 3px 0px 0px #23d3d3;
+}
+
+div[role="main"]{
+  margin-left:3%; 
+  margin-right:3%;
+}
+
+h1:first-of-type+ul,
+h2:first-of-type+ul{display: none}
+
+.rst-versions.rst-badge {
+    right: 5px !important;
+    bottom: 5px !important;
+}
+
+.rst-versions .rst-current-version {
+  color: #ffffff !important;
+}
+
+hr.core ~ h1{box-shadow: 0px 7px 0px 0px #233c68;}
+hr.core ~ h2{box-shadow: 0px 7px 0px 0px #233c68;}
+hr.core ~ h3 {box-shadow: 0px 4px 0px 0px #233c68;}
+hr.core ~ table thead th {background-color:#233c68}
+
+hr.iotagents ~ h1{box-shadow: 0px 7px 0px 0px #5dc0cf;}
+hr.iotagents ~ h2{box-shadow: 0px 7px 0px 0px #5dc0cf;}
+hr.iotagents ~ h3 {box-shadow: 0px 4px 0px 0px #5dc0cf;}
+hr.iotagents ~ table thead th {background-color:#5dc0cf}
+
+hr.security ~ h1{box-shadow: 0px 7px 0px 0px #ff7059;}
+hr.security ~ h2{box-shadow: 0px 7px 0px 0px #ff7059;}
+hr.security ~ h3 {box-shadow: 0px 4px 0px 0px #ff7059;}
+hr.security ~ table thead th {background-color:#ff7059}
+
+hr.processing ~ h1{box-shadow: 0px 7px 0px 0px #88a1ce;}
+hr.processing ~ h2{box-shadow: 0px 7px 0px 0px #88a1ce;}
+hr.processing ~ h3 {box-shadow: 0px 4px 0px 0px #88a1ce;}
+hr.processing ~ table thead th {background-color:#88a1ce}
+
+hr.data-publication ~ h1{box-shadow: 0px 7px 0px 0px #51b6a3;}
+hr.data-publication ~ h2{box-shadow: 0px 7px 0px 0px #51b6a3;}
+hr.data-publication ~ h3 {box-shadow: 0px 4px 0px 0px #51b6a3;}
+hr.data-publication ~ table thead th {background-color:#51b6a3}
+
+
+/* eProsima */
 .api-ref p {
   text-align: left !important;
 }
@@ -77,10 +257,91 @@ src:url("Fonts/742885/39974d8a-38de-4853-a4d1-778234a08061.eot?#iefix") format("
   margin: 0px 80px !important;
 }
 
-.wy-nav-content a, .wy-nav-content a:visited {
-  color:#0027de !important;
+
+/* IoT agents and Robotics */
+
+body {
+  font-family: Montserrat,Helvetica,Arial,sans-serif;
+  font-weight: 500; 
+  line-height: 1.42857143 !important; 
+  color: #4c4c4c
 }
 
-.wy-nav-content a:hover{
-  color:#00d3de !important;
+.wy-side-nav-search{
+ clear:both !important; 
+ padding:40px 10px 16px 10px;
+ background-image: url('https://www.fiware.org/wp-content/uploads/2018/04/logo.png') !important;
+ background-size: 128px 30px !important;
+ background-repeat: no-repeat !important;
+ background-position: 15px 8px !important; 
+ border-bottom-color : #000000;
+ border-bottom-width: 1px;
+ border-style: solid;
 }
+
+.wy-side-nav-search:before {
+  content: "";
+  display: none
+}
+.wy-side-nav-search:after {
+  content: "";
+  display: none;
+}
+.wy-nav-side {background-color:transparent !important}
+.wy-nav-content {background-color: #fff}
+
+.wy-menu-vertical .current > a {background:#5dc0cf !important}
+.wy-menu-vertical .current > a {background:#5dc0cf !important}
+.wy-menu-vertical li.current a:hover {background-color: #5dc0cf}
+.wy-menu-vertical li.current > a:hover {background-color:#5dc0cf !important}
+.wy-menu-vertical a:hover {background-color: #5dc0cf}
+.wy-menu-vertical span {color:#5dc0cf !important}
+nav > div.wy-menu.wy-menu-vertical > ul > li > a {color:#5dc0cf !important}
+.rst-versions {background:#5dc0cf none !important}
+.rst-versions .rst-current-version {background-color:#5dc0cf !important}
+.wy-side-nav-search {border-bottom-color : #5dc0cf}
+.wy-side-nav-search input[type=text] {border-color:#5dc0cf}
+.wy-nav-top {background-color: #5dc0cf}
+th {background-color:#5dc0cf}
+
+h1, h2, h3, h4 {
+    font-family: Montserrat,Helvetica,Arial,sans-serif !important;
+    color:#000000 !important;     
+    font-weight: 800;
+    text-transform: uppercase;
+}
+h1, h2{
+    padding-top : 20px;
+    padding-bottom : 3px;
+    box-shadow: 0px 7px 0px 0px #5dc0cf;
+}
+h3 {
+    box-shadow: 0px 4px 0px 0px #5dc0cf;
+}
+
+a.icon-home{
+  color:#000 !important;
+  white-space : pre-line !important;
+  font-family:'Montserrat',Helvetica,Arial,Lucida,sans-serif !important; 
+  font-size: x-large !important; font-weight: 800 !important; 
+  text-transform:uppercase !important; 
+  margin:0 0 0 0 !important
+}
+
+.wy-side-nav-search {
+	background: #fff !important; border-right: #efefef solid 1px;
+
+ clear:both !important; 
+ padding:40px 10px 16px 10px;
+ background-image: url('https://www.fiware.org/wp-content/uploads/2018/04/logo.png') !important;
+ background-size: 128px 30px !important;
+ background-repeat: no-repeat !important;
+ background-position: 15px 8px !important; 
+ border-bottom-color : #000000;
+ border-bottom-width: 1px;
+ border-style: solid;
+}
+
+.wy-side-nav-search a{background-color:transparent !important; }
+.wy-body-for-nav{background-image:none !important}
+.wy-nav-side{background-color:transparent !important}

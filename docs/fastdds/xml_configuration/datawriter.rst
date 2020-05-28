@@ -21,13 +21,15 @@ Thus, the following XML codes are equivalent.
 .. Note::
 
     The ``<publisher>`` and ``<data_writer>`` XML tags are equivalent.
-    *Therefore, XML profiles in which the |DataWriters| are defined with the ``<publisher>`` tag are fully compatible
-    with Fast DDS*.
+    **Therefore, XML profiles in which the |DataWriters| are defined with the ``<publisher>`` tag are fully compatible
+    with Fast DDS**.
 
 The ``<data_writer>`` element has two attributes defined: ``profile_name`` and ``is_default_profile``.
-Attribute ``profile_name`` is the name under which the ``<data_writer>`` profile is registered in the DDS Domain, so
-that it can be loaded later by a |DomainParticipant|, as shown in :ref:`loadingapplyingprofiles`.
-The second attribute, ``is_default_profile``, sets the ``<data_writer>`` profile as the default profile.
+Attribute ``profile_name`` is a mandatory attribute and sets the name under which the ``<data_writer>`` profile is
+registered in the DDS Domain, so that it can be loaded later by a |DomainParticipant|, as shown in
+:ref:`loadingapplyingprofiles`.
+The second attribute, ``is_default_profile``, sets the ``<data_writer>`` profile as the default profile. It is an
+attribute.
 
 .. list-table::
    :header-rows: 1
@@ -50,11 +52,11 @@ The second attribute, ``is_default_profile``, sets the ``<data_writer>`` profile
      - :ref:`Times <pubtimes>`
      -
    * - ``<unicastLocatorList>``
-     - List of default input unicast locators. |br| It expects a :ref:`LocatorListType`.
+     - List of input unicast locators. |br| It expects a :ref:`LocatorListType`.
      - ``Locator``
      -
    * - ``<multicastLocatorList>``
-     - List of default input multicast locators. |br| It expects a :ref:`LocatorListType`.
+     - List of input multicast locators. |br| It expects a :ref:`LocatorListType`.
      - ``Locator``
      -
    * - ``<throughputController>``

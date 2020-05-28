@@ -1420,8 +1420,33 @@
 </publisher>
 <!--><-->
 
+<!-->XML-DATAREADER-COMPARISON<-->
+<data_writer profile_name="my_datareader_profile">
+    <topic>
+        <!-- TOPIC_TYPE -->
+    </topic>
+    <qos>
+        <!-- QOS -->
+    </qos>
+    <!-- Other elements -->
+</data_writer>
+<!--><-->
+
+<!-->XML-SUBSCRIBER-COMPARISON<-->
+<publisher profile_name="my_subscriber_profile">
+    <topic>
+        <!-- TOPIC_TYPE -->
+    </topic>
+    <qos>
+        <!-- QOS -->
+    </qos>
+    <!-- Other elements -->
+</publisher>
+<!--><-->
+
 <!-->XML-DATAWRITER<-->
 <data_writer profile_name="datawriter_profile_name">
+
     <topic>
         <!-- TOPIC_TYPE -->
     </topic>
@@ -1487,7 +1512,8 @@
 </data_writer>
 <!--><-->
 <!-->XML-SUBSCRIBER<-->
-<subscriber profile_name="sub_profile_name">
+<data_reader profile_name="sub_profile_name">
+
     <topic>
         <!-- TOPIC_TYPE -->
     </topic>
@@ -1539,7 +1565,7 @@
         <increment>1</increment> <!-- uint32 -->
     </matchedPublishersAllocation>
 
-</subscriber>
+</data_reader>
 <!--><-->
 
 <participant profile_name="part_locator_list">

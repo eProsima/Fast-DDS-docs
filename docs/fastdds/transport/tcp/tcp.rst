@@ -51,7 +51,7 @@ The examples below show this procedure in both C++ code and XML file.
 If you provide ``initialPeersList`` to the :ref:`dds_layer_domainParticipant`, it will act
 as *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
 The examples below show this procedure in both C++ code and XML file.
-See :ref:`initial-peers` for more information about their configuration.
+See :ref:`Simple Initial Peers` for more information about their configuration.
 
 +----------------------------------------------------------+
 | **C++**                                                  |

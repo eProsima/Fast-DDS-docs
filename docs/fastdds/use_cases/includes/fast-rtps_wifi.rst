@@ -23,7 +23,7 @@ one linked to a unicast address.
 Fast DDS allows for the configuration of an initial peers list which contains one or more such address-port pairs
 corresponding to remote participants PDP discovery listening resources, so that the local participant will not only
 send its PDP traffic to the default multicast address-port specified by its domain, but also to all the address-port
-pairs specified in the :ref:`initial-peers` list.
+pairs specified in the :ref:`Simple Initial Peers` list.
 
 A participant's initial peers list contains the list of address-port pairs of all other participants with
 which it will communicate.

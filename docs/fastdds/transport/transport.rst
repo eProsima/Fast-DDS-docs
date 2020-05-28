@@ -38,7 +38,6 @@ eProsima Fast DDS comes with five transports already implemented:
     /fastdds/transport/shared_memory/shared_memory.rst
     /fastdds/transport/tcp/tls.rst
     /fastdds/transport/listening_locators.rst
-    /fastdds/transport/initial_peers.rst
     /fastdds/transport/whitelist.rst
     /fastdds/transport/disabling_multicast.rst
 

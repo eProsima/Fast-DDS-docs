@@ -24,12 +24,14 @@ during the creation of an |Entity|, the :ref:`Trasports <comm-transports-configu
 
 
 .. toctree::
+    :maxdepth: 2
 
     /fastdds/xml_configuration/making_xml_profiles
-    /fastdds/xml_configuration/transports
-    /fastdds/xml_configuration/dynamic_types
     /fastdds/xml_configuration/domainparticipant
     /fastdds/xml_configuration/datawriter
     /fastdds/xml_configuration/datareader
+    /fastdds/xml_configuration/transports
+    /fastdds/xml_configuration/log
+    /fastdds/xml_configuration/dynamic_types
     /fastdds/xml_configuration/common
     /fastdds/xml_configuration/example

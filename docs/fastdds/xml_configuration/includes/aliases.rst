@@ -37,11 +37,15 @@
 .. |c_TimeInfinite| replace:: :cpp:var:`c_TimeInfinite <eprosima::fastrtps::c_TimeInfinite>`
 .. |c_TimeZero| replace:: :cpp:var:`c_TimeZero <eprosima::fastrtps::c_TimeZero>`
 
-
+.. |Log| replace:: :cpp:class:`Log <eprosima::fastdds::dds::Log>`
+.. |LogConsumer| replace:: :cpp:class:`LogConsumer <eprosima::fastdds::dds::LogConsumer>`
+.. |StdoutConsumer| replace:: :cpp:class:`StdoutConsumer <eprosima::fastdds::dds::StdoutConsumer>`
+.. |FileConsumer| replace:: :cpp:class:`FileConsumer <eprosima::fastdds::dds::FileConsumer>`
+.. |Log::Entry| replace:: :cpp:struct:`Log::Entry <eprosima::fastdds::dds::Log::Entry>`
+.. |Log::ClearConsumers| replace:: :cpp:func:`Log::ClearConsumers() <eprosima::fastdds::dds::Log::ClearConsumers>`
 
 .. |RTPSEndpointQos| replace:: :cpp:class:`RTPSEndpointQos <eprosima::fastdds::dds::RTPSEndpointQos>`
 .. |entity_id| replace:: :cpp:member:`entity_id <eprosima::fastdds::dds::RTPSEndpointQos::entity_id>`
-
 
 .. |DiscoveryProtocol| replace:: :cpp:enum:`DiscoveryProtocol <eprosima::fastrtps::rtps::DiscoveryProtocol>`
 .. |SIMPLE| replace:: :cpp:enumerator:`SIMPLE <eprosima::fastrtps::rtps::DiscoveryProtocol::SIMPLE>`
@@ -49,7 +53,6 @@
 .. |SERVER| replace:: :cpp:enumerator:`SERVER <eprosima::fastrtps::rtps::DiscoveryProtocol::SERVER>`
 .. |BACKUP| replace:: :cpp:enumerator:`BACKUP <eprosima::fastrtps::rtps::DiscoveryProtocol::BACKUP>`
 .. |NONE| replace:: :cpp:enumerator:`NONE <eprosima::fastrtps::rtps::DiscoveryProtocol::NONE>`
-
 
 .. |ParticipantFilteringFlags| replace:: :cpp:enum:`ParticipantFilteringFlags <eprosima::fastrtps::rtps::ParticipantFilteringFlags>`
 .. |NO_FILTER| replace:: :cpp:enumerator:`NO_FILTER <eprosima::fastrtps::rtps::ParticipantFilteringFlags::NO_FILTER>`

@@ -3,7 +3,7 @@
 Policy
 ======
 
-The Quality of Service (QoS) is used to specify the behavior of the Service, allowing the user to  to define how each
+The Quality of Service (QoS) is used to specify the behavior of the Service, allowing the user to define how each
 entity will behave.
 To increase the flexibility of the system, the QoS is decomposed in several QoS Policies that can be configured
 independently.

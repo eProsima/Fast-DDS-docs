@@ -10,17 +10,10 @@ This section describes the basic (not nested) supported types. For more complex 
 examples, please, refer to :ref:`dynamictypes_complextypes`.
 
 
-* :ref:`dynamictypes_supportedtypes_primitive`
-* :ref:`dynamictypes_supportedtypes_string`
-* :ref:`dynamictypes_supportedtypes_alias`
-* :ref:`dynamictypes_supportedtypes_enumeration`
-* :ref:`dynamictypes_supportedtypes_bitmask`
-* :ref:`dynamictypes_supportedtypes_structure`
-* :ref:`dynamictypes_supportedtypes_bitset`
-* :ref:`dynamictypes_supportedtypes_union`
-* :ref:`dynamictypes_supportedtypes_sequence`
-* :ref:`dynamictypes_supportedtypes_array`
-* :ref:`dynamictypes_supportedtypes_map`
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 2
 
 .. _dynamictypes_supportedtypes_primitive:
 

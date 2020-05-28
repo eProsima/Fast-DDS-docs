@@ -30,6 +30,7 @@ eProsima Fast DDS comes with five transports already implemented:
   See :ref:`transport_sharedMemory_sharedMemory`.
 
 .. toctree::
+    :maxdepth: 2
 
     /fastdds/transport/transport_api.rst
     /fastdds/transport/udp/udp.rst

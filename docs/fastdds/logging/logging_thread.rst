@@ -11,7 +11,7 @@ When awaken, this thread feeds all the entries in the queue to all the registere
 Once the work is done, the thread falls back into idle state.
 This strategy prevents the module from blocking the application thread when a logging operation is performed.
 However, sometimes applications may want to wait until the logging routine is done to continue their operation.
-The logging module provides this capability via member function |Log::Flush|.
+The logging module provides this capability via the member function |Log::Flush|.
 Furthermore, it is possible to completely eliminate the thread and its resources using member function
 |Log::KillThread|.
 

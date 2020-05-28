@@ -5,7 +5,7 @@
 Logging
 =======
 
-*eProsima Fast DDS* provides an extensible built-in logging module that exposes the following functionalities:
+*eProsima Fast DDS* provides an extensible built-in logging module that exposes the following main functionalities:
 
 * Three different logging levels: |Log::Kind::Info|, |Log::Kind::Warning|, and |Log::Kind::Error| (see
   :ref:`dds_layer_log_logging`).
@@ -25,3 +25,4 @@ This section is devoted to explain the use, configuration, and extensibility of 
     /fastdds/logging/logging_configuration
     /fastdds/logging/logging_filtering
     /fastdds/logging/consumer
+    /fastdds/logging/disable_module

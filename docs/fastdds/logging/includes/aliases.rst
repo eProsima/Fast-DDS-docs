@@ -2,6 +2,10 @@
 .. |logWarning| replace:: :cpp:any:`logWarning <logWarning>`
 .. |logError| replace:: :cpp:any:`logError <logError>`
 
+.. |LOG_NO_INFO| replace:: :cpp:any:`LOG_NO_INFO`
+.. |LOG_NO_WARNING| replace:: :cpp:any:`LOG_NO_WARNING`
+.. |LOG_NO_ERROR| replace:: :cpp:any:`LOG_NO_ERROR`
+
 .. |Log| replace:: :cpp:class:`Log <eprosima::fastdds::dds::Log>`
 .. |LogConsumer| replace:: :cpp:class:`LogConsumer <eprosima::fastdds::dds::LogConsumer>`
 .. |StdoutConsumer| replace:: :cpp:class:`StdoutConsumer <eprosima::fastdds::dds::StdoutConsumer>`

@@ -18,7 +18,7 @@ The logging module provides the following classes:
   as logging filtering at various levels (see :ref:`dds_layer_log_filter`).
   It contains zero or more |LogConsumer|.
   The singleton's consuming thread feeds the log entries added to the logging queue using the macros defined in
-  :ref:`dds_layer_log_logging` to the log consumers sequentially.
+  :ref:`dds_layer_log_logging` to the log consumers sequentially (see :ref:`dds_layer_log_thread`).
 
   .. warning::
 
@@ -28,10 +28,10 @@ The logging module provides the following classes:
 
 * |LogConsumer| is the base class for all the log consumers (see :ref:`dds_layer_log_consumer`).
   Includes the member functions that derived classes should overload to consume log entries.
-* |StdoutConsumer| Class derived from |LogConsumer|.
-  It defines how to consumes log entries for outputting to STDOUT (see :ref:`dds_layer_log_consumer_stdout`).
-* |FileConsumer| Class derived from |LogConsumer|.
-  It defines how to consumes log entries for outputting to a user specified file (see
+* |StdoutConsumer| derives from |LogConsumer|.
+  It defines how to consume log entries for outputting to STDOUT (see :ref:`dds_layer_log_consumer_stdout`).
+* |FileConsumer| derives from |LogConsumer|.
+  It defines how to consume log entries for outputting to a user specified file (see
   :ref:`dds_layer_log_consumer_file`).
 
 The module can be further extended by creating new consumer classes deriving from |LogConsumer|.

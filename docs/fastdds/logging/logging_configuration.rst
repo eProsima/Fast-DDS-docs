@@ -2,8 +2,8 @@
 
 .. _dds_layer_log_config:
 
-Logging module configuration
-----------------------------
+Module configuration
+--------------------
 
 All the different components of a log entry are summarized in the following table (please refer to each component's
 section for further explanation):
@@ -23,6 +23,11 @@ section for further explanation):
 +--------------------------------------+----------+----------+
 | :ref:`dds_layer_log_function_name`   | YES      | ENABLED  |
 +--------------------------------------+----------+----------+
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
 
 
 .. _dds_layer_log_timestamp:
@@ -145,7 +150,7 @@ The consumers list can be emptied with member function |Log::ClearConsumers|.
 .. warning::
 
     |Log::ClearConsumers| empties the consumers lists.
-    All log entries are discarded until a new consumer is register via |Log::RegisterConsumer|, or |Log::Reset| is
+    All log entries are discarded until a new consumer is register via |Log::RegisterConsumer|, or until |Log::Reset| is
     called.
 
 .. _dds_layer_log_reset:

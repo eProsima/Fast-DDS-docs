@@ -22,6 +22,7 @@
 #include <fastrtps/xmlparser/XMLProfileManager.h>
 #include <fastrtps/types/DynamicTypePtr.h>
 #include <fastdds/dds/log/Log.hpp>
+#include <fastdds/dds/log/StdoutConsumer.hpp>
 #include <fastdds/dds/log/FileConsumer.hpp>
 
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
@@ -2956,7 +2957,7 @@ void log_examples()
     //!--
 
     //LOG_REGISTER_CONSUMER
-    // Create a FileConsumer consumer that log entries in "archive.log"
+    // Create a FileConsumer consumer that logs entries in "archive.log"
     std::unique_ptr<FileConsumer> file_consumer(new FileConsumer("archive.log"));
     // Register the consumer. Log entries will be logged to STDOUT and "archive.log"
     Log::RegisterConsumer(std::move(file_consumer));
@@ -2965,5 +2966,33 @@ void log_examples()
     //LOG_CLEAR_CONSUMERS
     // Clear all the consumers. Log entries are discarded upon consumption.
     Log::ClearConsumers();
+    //!--
+
+    //LOG_STDOUT_CONSUMER
+    // Create a StdoutConsumer consumer that logs entries to stdout stream.
+    std::unique_ptr<StdoutConsumer> stdout_consumer(new StdoutConsumer());
+
+    // Register the consumers.
+    Log::RegisterConsumer(std::move(stdout_consumer));
+    //!--
+
+    //LOG_FILE_CONSUMER
+    // Create a FileConsumer consumer that logs entries in "archive_1.log", opening the file in "write" mode.
+    std::unique_ptr<FileConsumer> write_file_consumer(new FileConsumer("archive_1.log", false));
+
+    // Create a FileConsumer consumer that logs entries in "archive_2.log", opening the file in "append" mode.
+    std::unique_ptr<FileConsumer> append_file_consumer(new FileConsumer("archive_2.log", true));
+
+    // Register the consumers.
+    Log::RegisterConsumer(std::move(write_file_consumer));
+    Log::RegisterConsumer(std::move(append_file_consumer));
+    //!--
+
+    //LOG_FLUSH_AND_KILL
+    // Block current thread until the log queue is empty.
+    Log::Flush();
+
+    // Stop the loggin thread and free its resources.
+    Log::KillThread();
     //!--
 }

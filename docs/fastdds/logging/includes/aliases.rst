@@ -3,6 +3,11 @@
 .. |logError| replace:: :cpp:any:`logError <logError>`
 
 .. |Log| replace:: :cpp:class:`Log <eprosima::fastdds::dds::Log>`
+.. |LogConsumer| replace:: :cpp:class:`LogConsumer <eprosima::fastdds::dds::LogConsumer>`
+.. |StdoutConsumer| replace:: :cpp:class:`StdoutConsumer <eprosima::fastdds::dds::StdoutConsumer>`
+.. |FileConsumer| replace:: :cpp:class:`FileConsumer <eprosima::fastdds::dds::FileConsumer>`
+.. |Log::Entry| replace:: :cpp:struct:`Log::Entry <eprosima::fastdds::dds::Log::Entry>`
+
 .. |Log::QueueLog| replace:: :cpp:func:`Log::QueueLog() <eprosima::fastdds::dds::Log::QueueLog>`
 .. |Log::Reset| replace:: :cpp:func:`Log::Reset() <eprosima::fastdds::dds::Log::Reset>`
 .. |Log::RegisterConsumer| replace:: :cpp:func:`Log::RegisterConsumer() <eprosima::fastdds::dds::Log::RegisterConsumer>`
@@ -23,7 +28,11 @@
 .. |Log::SetFilenameFilter| replace:: :cpp:func:`Log::SetFilenameFilter() <eprosima::fastdds::dds::Log::SetFilenameFilter()>`
 .. |Log::SetErrorStringFilter| replace:: :cpp:func:`Log::SetErrorStringFilter() <eprosima::fastdds::dds::Log::SetErrorStringFilter()>`
 
+.. |Log::Flush| replace:: :cpp:func:`Log::Flush() <eprosima::fastdds::dds::Log::Flush()>`
+.. |Log::KillThread| replace:: :cpp:func:`Log::KillThread() <eprosima::fastdds::dds::Log::KillThread()>`
+
 .. |std::regex_search| replace:: :cpp:func:`std::regex_search()`
+.. |std::fstream::open| replace:: :cpp:func:`std::fstream::open()`
 
 .. |br| raw:: html
 

@@ -2,16 +2,17 @@
 
 .. _dds_layer_log_filter:
 
-Logging Filters
----------------
+Filters
+-------
 
 *eProsima Fast DDS* logging module allows for log entry filtering when consuming the logs, so that an application
 execution output can be limited to specific areas of interest.
 Beside the :ref:`dds_layer_log_verbosity_level`, *Fast DDS* provides three different filtering possibilities.
 
-* :ref:`dds_layer_log_filter_category`
-* :ref:`dds_layer_log_filter_filename`
-* :ref:`dds_layer_log_filter_content`
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
 
 Keep in mind that filters are applied in the specific order presented above, meaning that file name filtering is only
 applied to the entries that pattern-match the category filter, and content filtering is only applied to the entries that
@@ -44,7 +45,7 @@ The previous example would produce the following output:
 
 .. _dds_layer_log_filter_filename:
 
-File name Filtering
+File Name Filtering
 ^^^^^^^^^^^^^^^^^^^
 
 Log entries can be filtered upon consumption according to their :ref:`dds_layer_log_file_context` component using

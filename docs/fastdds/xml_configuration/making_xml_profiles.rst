@@ -7,8 +7,8 @@ Creating an XML profiles file
 
 An XML file can contain several XML profiles.
 These XML profiles are defined within the ``<profiles>`` XML element.
-The available profile types are: :ref:`transportdescriptors`, :ref:`xmldynamictypes`, :ref:`participantprofiles`,
-:ref:`publisherprofiles`, and :ref:`subscriberprofiles`.
+The available profile types are: :ref:`participantprofiles`,
+:ref:`publisherprofiles`, :ref:`subscriberprofiles`, :ref:`transportdescriptors`, and :ref:`xmldynamictypes`.
 The following sections will show implementation examples for each of these profiles.
 Note that these profiles must always be defined as child elements of the ``<profiles>`` element.
 

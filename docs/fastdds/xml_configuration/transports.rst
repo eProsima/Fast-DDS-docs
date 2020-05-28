@@ -148,68 +148,74 @@ More information on how to set up secure communication in Fast DDS can be found 
 The full list of available XML elements, which can be defined within the ``<tls>`` element to configure the TLS
 protocol, are listed in the following table:
 
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| Name                      | Description                              | Values                          | Default     |
-+===========================+==========================================+=================================+=============+
-| ``<password>``            | Password of the private_key_file         | ``string``                      |             |
-|                           | if provided |br| (or RSA).               |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<private_key_file>``    | Path to the private key                  | ``string``                      |             |
-|                           | certificate file.                        |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<rsa_private_key_file>``| Path to the private key                  | ``string``                      |             |
-|                           | RSA certificate file.                    |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<cert_chain_file>``     | Path to the public certificate           | ``string``                      |             |
-|                           | chain file.                              |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<tmp_dh_file>``         | Path to the Diffie-Hellman               | ``string``                      |             |
-|                           | parameters file                          |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<verify_file>``         | Path to the Certification-               | ``string``                      |             |
-|                           | Authority (CA) file.                     |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<verify_mode>``         | Establishes the verification mode mask.  | ``VERIFY_NONE``                 |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``VERIFY_PEER``                 |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``VERIFY_FAIL_IF_NO_PEER_CERT`` |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``VERIFY_CLIENT_ONCE``          |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<options>``             | Establishes the SSL Context              | ``DEFAULT_WORKAROUNDS``         |             |
-|                           | options mask.                            +---------------------------------+             |
-|                           |                                          | ``NO_COMPRESSION``              |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``NO_SSLV2``                    |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``NO_SSLV3``                    |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``NO_TLSV1``                    |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``NO_TLSV1_1``                  |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``NO_TLSV1_2``                  |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``NO_TLSV1_3``                  |             |
-|                           |                                          +---------------------------------+             |
-|                           |                                          | ``SINGLE_DH_USE``               |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<verify_paths>``        | Paths where the system will              |  ``string``                     |             |
-|                           | look for verification |br| files.        |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<verify_depth>``        | Maximum allowed depth for                | ``uint32``                      |             |
-|                           | verify intermediate |br| certificates.   |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<default_verify_path>`` | Default paths where the system           |  ``boolean``                    | ``false``   |
-|                           | will look for |br| verification files.   |                                 |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
-| ``<handshake_role>``      | Role that the transport will             | ``DEFAULT``                     | ``DEFAULT`` |
-|                           | take on handshaking. |br|                +---------------------------------+             |
-|                           | On default, the acceptors act as         | ``SERVER``                      |             |
-|                           | ``SERVER`` and the |br|                  +---------------------------------+             |
-|                           | connectors as ``CLIENT``.                | ``CLIENT``                      |             |
-+---------------------------+------------------------------------------+---------------------------------+-------------+
+.. |DEFconc| replace:: :cpp:concept:`DEFAULT`
+.. |VERIFY_FAIL_IF_NO_PEER_CERT| replace:: :cpp:concept:`VERIFY_FAIL_IF_NO_PEER_CERT`
+
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| Name                      | Description                       | Values                                 | Default     |
++===========================+===================================+========================================+=============+
+| ``<password>``            | Password of the private_key_file  | ``string``                             |             |
+|                           | if provided |br| (or RSA).        |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<private_key_file>``    | Path to the private key           | ``string``                             |             |
+|                           | certificate file.                 |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<rsa_private_key_file>``| Path to the private key           | ``string``                             |             |
+|                           | RSA certificate file.             |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<cert_chain_file>``     | Path to the public certificate    | ``string``                             |             |
+|                           | chain file.                       |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<tmp_dh_file>``         | Path to the Diffie-Hellman        | ``string``                             |             |
+|                           | parameters file                   |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<verify_file>``         | Path to the Certification-        | ``string``                             |             |
+|                           | Authority (CA) file.              |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<verify_mode>``         | Establishes the verification      | :cpp:concept:`VERIFY_NONE`             |             |
+|                           | mode mask.                        +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`VERIFY_PEER`             |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | |VERIFY_FAIL_IF_NO_PEER_CERT|          |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`VERIFY_CLIENT_ONCE`      |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<options>``             | Establishes the SSL Context       | :cpp:concept:`DEFAULT_WORKAROUNDS`     |             |
+|                           | options mask.                     +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`NO_COMPRESSION`          |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`NO_SSLV2`                |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`NO_SSLV3`                |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`NO_TLSV1`                |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`NO_TLSV1_1`              |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`NO_TLSV1_2`              |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`NO_TLSV1_3`              |             |
+|                           |                                   +----------------------------------------+             |
+|                           |                                   | :cpp:concept:`SINGLE_DH_USE`           |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<verify_paths>``        | Paths where the system will       |  ``string``                            |             |
+|                           | look for verification |br| files. |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<verify_depth>``        | Maximum allowed depth for         | ``uint32``                             |             |
+|                           | verify intermediate |br|          |                                        |             |
+|                           | certificates.                     |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<default_verify_path>`` | Default paths where the system    |  ``boolean``                           | ``false``   |
+|                           | will look for |br| verification   |                                        |             |
+|                           | files.                            |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<handshake_role>``      | Role that the transport will      | :cpp:concept:`DEFAULT`                 | |DEFconc|   |
+|                           | take on handshaking. |br|         +----------------------------------------+             |
+|                           | On default, the acceptors act     | :cpp:concept:`SERVER`                  |             |
+|                           | as :cpp:concept:`SERVER` and the  +----------------------------------------+             |
+|                           | |br| connectors as                | :cpp:concept:`CLIENT`                  |             |
+|                           | :cpp:concept:`CLIENT`.            |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
 
 An example of TLS protocol parameter configuration is shown below.
 

@@ -65,7 +65,7 @@ attribute.
      -
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for DataWriter's |br| history. See :ref:`historyqospolicykind`.
-     - :ref:`HistoryMemoryPolicy <mempol>`
+     - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
      - :class:`PREALLOCATED`
    * - ``<propertiesPolicy>``
      - Additional configuration properties.

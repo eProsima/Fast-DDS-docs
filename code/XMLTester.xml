@@ -1680,12 +1680,12 @@
 
     <liveliness>
         <kind>AUTOMATIC</kind> <!-- string -->
-	<lease_duration>
-	  <sec>1</sec>
-	</lease_duration>
-	<announcement_period>
-	  <sec>1</sec>
-	</announcement_period>
+        <lease_duration>
+        <sec>1</sec>
+        </lease_duration>
+        <announcement_period>
+        <sec>1</sec>
+        </announcement_period>
     </liveliness>
 
     <reliability>
@@ -1752,6 +1752,17 @@
 <!--><-->
 </qos>
 </subscriber>
+
+<!-->CONF-THROUGHPUT-EXAMPLE<-->
+<participant profile_name="participant_thoughput">
+    <rtps>
+        <throughputController>
+            <bytesPerPeriod>8192</bytesPerPeriod>
+            <periodMillisecs>1000</periodMillisecs>
+        </throughputController>
+    </rtps>
+</participant>
+<!--><-->
 
 <!-->CONF-ALLOCATION-QOS-EXAMPLE<-->
 <participant profile_name="participant_alloc_qos_example">
@@ -2523,7 +2534,8 @@
 <-->
 <!-->XML-EXAMPLE<-->
 <!-->
-<profiles>
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
 <-->
     <transport_descriptors>
         <transport_descriptor>
@@ -2812,6 +2824,31 @@
 
                 <writerHistoryMemoryPolicy>PREALLOCATED</writerHistoryMemoryPolicy>
             </builtin>
+
+            <allocation>
+                <remote_locators>
+                    <max_unicast_locators>4</max_unicast_locators> <!-- uint32 -->
+                    <max_multicast_locators>1</max_multicast_locators> <!-- uint32 -->
+                </remote_locators>
+                <total_participants>
+                    <initial>0</initial>
+                    <maximum>0</maximum>
+                    <increment>1</increment>
+                </total_participants>
+                <total_readers>
+                    <initial>0</initial>
+                    <maximum>0</maximum>
+                    <increment>1</increment>
+                </total_readers>
+                <total_writers>
+                    <initial>0</initial>
+                    <maximum>0</maximum>
+                    <increment>1</increment>
+                </total_writers>
+                <max_partitions>256</max_partitions>
+                <max_user_data>256</max_user_data>
+                <max_properties>512</max_properties>
+            </allocation>
 
             <port>
                 <portBase>7400</portBase>

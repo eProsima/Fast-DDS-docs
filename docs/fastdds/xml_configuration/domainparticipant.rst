@@ -147,6 +147,8 @@ ParticipantAllocationType
 
 The ``ParticipantAllocationType`` defines the ``<allocation>`` element, which allows setting of the parameters
 related with the allocation behavior on the DomainParticipant.
+Please refer to :ref:`participantresourcelimitsqos` for a detailed documentation on DomainParticipants allocation
+configuration.
 
 .. list-table::
    :header-rows: 1
@@ -160,46 +162,53 @@ related with the allocation behavior on the DomainParticipant.
      - Maximum number of unicast locators expected on a |br|
        remote  entity. It is recommended to use the maximum |br|
        number of network interfaces available on the machine |br|
-       on which DomainParticipant is running.
+       on which DomainParticipant is running. |br|
+       See :ref:`remotelocatorsallocationattributes`.
      - :ref:`CommonAlloc`
      - 4
    * - ``<max_multicast_locators>``
      - Maximum number of multicast locators expected on a |br|
        remote entity. May be set to zero to disable multicast |br|
-       traffic.
+       traffic. See :ref:`remotelocatorsallocationattributes`.
      - ``UInt32``
      - 1
    * - ``<total_participants>``
      - DomainParticipant :ref:`CommonAlloc` to specify the |br|
        total number of DomainParticipants in the domain |br|
-       (local and remote).
+       (local and remote). See |br|
+       :ref:`ResourceLimitedContainerConfig`.
      - :ref:`CommonAlloc`
      -
    * - ``<total_readers>``
      - DomainParticipant :ref:`CommonAlloc` to specify the |br|
        total number of DataReader on each DomainParticipant |br|
-       (local and remote).
+       (local and remote). See |br|
+       :ref:`ResourceLimitedContainerConfig`.
      - :ref:`CommonAlloc`
      -
    * - ``<total_writers>``
      - DomainParticipant :ref:`CommonAlloc` related to the |br|
        total number of DataWriters on each DomainParticipant |br|
        (local and remote).
+       See :ref:`resourcelimitedcontainerconfig`.
      - :ref:`CommonAlloc`
      -
    * - ``<max_partitions>``
      - Maximum size of the partitions submessage. |br|
-       Set to zero for no limit. See :ref:`MessageMaxSize`.
+       Set to zero for no limit. |br|
+       See :ref:`sendbuffersallocationattributes`.
      - ``UInt32``
      -
    * - ``<max_user_data>``
      - Maximum size of the user data submessage. |br|
-       Set to zero for no limit. See :ref:`MessageMaxSize`.
+       Set to zero for no limit.
+       See :ref:`sendbuffersallocationattributes`.
      - ``UInt32``
      -
    * - ``<max_properties>``
      - Maximum size of the properties submessage. |br|
-       Set to zero for no limit. See :ref:`MessageMaxSize`.
+       Set to zero for no limit.
+       See :ref:`sendbuffersallocationattributes`.
      - ``UInt32``
      -
 
@@ -212,7 +221,7 @@ related with the allocation behavior on the DomainParticipant.
 
 .. _builtin:
 
-Built-in parameters
+Builtin parameters
 """""""""""""""""""
 
 By calling the |DomainParticipantQosWireProtocol| member function of the |DomainParticipantQos|, it is possible to
@@ -223,8 +232,8 @@ This section specifies the available XML members for the configuration of this
 
 .. Some large words outside of table. Then table fit maximum line length
 
-.. |loclist| replace:: A set of ``<locator>`` members. |br| See :ref:`LocatorListType`
-.. |mempol| replace:: :ref:`HistoryMemoryPolicy <mempol>`
+.. |loclist| replace:: A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
+.. |mempol| replace:: :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
 .. |mempoldefault| replace:: :class:`PREALLOCATED_WITH_REALLOC`
 
 +---------------------------------------+--------------------------------------+---------------------+-----------------+

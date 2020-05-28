@@ -33,6 +33,12 @@
 .. |RTPSParticipants| replace:: :cpp:class:`RTPSParticipants <eprosima::fastrtps::rtps::RTPSParticipant>`
 
 
+.. |Locator_t| replace:: :cpp:class:`Locator_t <eprosima::fastrtps::rtps::Locator_t>`
+.. |c_TimeInfinite| replace:: :cpp:var:`c_TimeInfinite <eprosima::fastrtps::c_TimeInfinite>`
+.. |c_TimeZero| replace:: :cpp:var:`c_TimeZero <eprosima::fastrtps::c_TimeZero>`
+
+
+
 .. |RTPSEndpointQos| replace:: :cpp:class:`RTPSEndpointQos <eprosima::fastdds::dds::RTPSEndpointQos>`
 .. |entity_id| replace:: :cpp:member:`entity_id <eprosima::fastdds::dds::RTPSEndpointQos::entity_id>`
 

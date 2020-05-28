@@ -64,7 +64,7 @@ default profile.
      - :class:`false`
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for subscriber's history.
-     - :ref:`historyMemoryPolicy <mempol>`
+     - :ref:`memorymanagementpolicy`
      - :class:`PREALLOCATED`
    * - ``<propertiesPolicy>``
      - Additional configuration properties.

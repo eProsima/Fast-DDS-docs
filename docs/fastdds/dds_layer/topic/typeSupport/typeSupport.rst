@@ -1,3 +1,5 @@
+.. include:: ../includes/aliases.rst
+
 .. _dds_layer_definition_data_types:
 
 Definition of data types

@@ -253,7 +253,8 @@ language = None
 exclude_patterns = [
     '*/includes/*.rst',
     '*/*/includes/*.rst',
-    '*/*/*/includes/*.rst'
+    '*/*/*/includes/*.rst',
+    '*/*/*/*/includes/*.rst'
 ]
 
 # The reST default role (used for this markup: `text`) to use for all

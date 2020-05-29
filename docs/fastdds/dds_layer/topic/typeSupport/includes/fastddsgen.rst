@@ -1,5 +1,3 @@
-.. include:: ../../includes/aliases.rst
-
 .. _dds_layer_topic_fastddsgen:
 
 Fast DDS-Gen for data types source code generation

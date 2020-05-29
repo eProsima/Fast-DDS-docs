@@ -37,6 +37,7 @@ with distributed systems:
 
     /fastdds/use_cases/wifi/wifi.rst
     /fastdds/use_cases/wide_deployments/wide_deployments.rst
+    /fastdds/use_cases/large_data/large_data.rst
     /fastdds/use_cases/ros2/ros2.rst
 
 

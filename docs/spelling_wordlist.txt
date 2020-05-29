@@ -80,6 +80,7 @@ ignoreParticipantFlags
 interoperability
 Intra
 IPv
+kB
 libs
 lifecycle
 LogTopic

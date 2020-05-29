@@ -39,7 +39,7 @@ the :code:`install.sh` script:
 
         export LD_LIBRARY_PATH=/usr/local/lib/
 
-    in the console you use to run the *eProsima Fast DDS* instance, or permanently link your path with it, by typing:
+    in the console you use to run the *eProsima Fast DDS* instance, or permanently add it to your path, by typing:
 
     .. code-block:: bash
 

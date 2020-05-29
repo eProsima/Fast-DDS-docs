@@ -4,13 +4,13 @@ Linux installation from sources
 ===============================
 
 To install *eProsima Fast DDS* from sources, you first need to meet the required dependencies (see Requirements - REF)
-and then choose whether to follow either the colcon_ (see colcon - REF) or the CMake_ (see cmake -REF)
-installation instructions.
+and then choose whether to follow either the colcon_ (see colcon :ref:`colcon_installation_linux`) or the CMake_
+(see :ref:`cmake_installation_linux`) installation instructions.
 
 Requirements
 ------------
 
-*eProsima Fast RTPS* requires the following dependencies when building from sources in a Linux environment.
+*eProsima Fast DDS* requires the following dependencies when building from sources in a Linux environment.
 
 Asio and TinyXML2 libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -32,12 +32,6 @@ For example, on Ubuntu you can install them with the command:
 
     sudo apt install cmake g++
 
-In addition, you may need to set :code:`LD_LIBRARY_PATH`:
-
-.. code-block:: bash
-
-    export LD_LIBRARY_PATH=/usr/local/lib/
-
 OpenSSL
 ^^^^^^^
 
@@ -55,12 +49,14 @@ Gtest
 
     By default, *eProsima Fast DDS* doesn’t compile tests.
     You can activate them by adding the :code:`-DPERFORMANCE_TESTS=ON` flag when calling colcon_ or CMake_
-    (for details, see below - REF).
+    (for details, see below).
 
 You can find information on how to install Gtest at this `link <https://github.com/google/googletest>`_.
 
-Installation with Colcon
-------------------------
+.. _colcon_installation_linux:
+
+Colcon Installation
+-------------------
 
 colcon_ is a command line tool to build sets of software packages.
 This section explains how to use it to compile easily *eProsima Fast DDS* and its dependencies.
@@ -124,9 +120,10 @@ If you want to compile the performance tests, you will need to add the flag
 :code:`--cmake-args "--DPERFORMANCE_TESTS=ON"` when running :code:`colcon build`.
 For this step, you need Gtest_ as explained in the Requirements section above (REF).
 
+.. _cmake_installation_linux:
 
-Manual Installation
--------------------
+CMake Installation
+------------------
 
 First of all, create a Fast-DDS directory where to download and build *eProsima Fast DDS* and its dependencies:
 

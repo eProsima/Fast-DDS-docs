@@ -15,15 +15,15 @@ In the :code:`src` folder you will find:
 - :code:`fastcdr`
 - :code:`fastrtps`
 - :code:`fastrtpsgen`
-- :code:`foonathan-memory-vendor`
+- :code:`foonathan_memory_vendor`
 
 If you don't want to install any of these components, you can simply remove or rename its folder from the :code:`src`
 directory.
 
-Install and Uninstall
----------------------
+Installing and uninstalling
+---------------------------
 
-To install :code:`fastrtps` and all its dependencies in the system, you have to run (with administrative privileges)
+To install *eProsima Fast DDS* and all its dependencies in the system, you have to run (with administrative privileges)
 the :code:`install.sh` script:
 
 .. code-block:: bash
@@ -56,3 +56,8 @@ To uninstall all installed components, execute the :code:`uninstall.sh` script (
 
     If any of the other components were already installed in some other way in the system, they will be
     removed as well. To avoid it, edit the script before executing it.
+
+.. note::
+
+    By default, *eProsima Fast DDS* doesn’t compile tests.
+    You can activate them by downloading and installing `Gtest <https://github.com/google/googletest>`_.

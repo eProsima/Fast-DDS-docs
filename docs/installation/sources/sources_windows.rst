@@ -3,9 +3,12 @@
 Windows installation from sources
 =================================
 
-To install *eProsima Fast DDS* from sources, you first need to meet the required dependencies (see Requirements - REF)
-and then choose whether to follow either the colcon_ (see colcon - REF) or the CMake_ (see cmake -REF)
-installation instructions.
+To install *eProsima Fast DDS* from sources, you first need to meet the required dependencies
+(see :ref:`requirements_windows_sources`)
+and then choose whether to follow either the colcon_ (see colcon :ref:`colcon_installation_windows`) or the CMake_
+(see :ref:`cmake_installation_windows`) installation instructions.
+
+.. _requirements_windows_sources:
 
 Requirements
 ------------
@@ -44,10 +47,18 @@ After downloading these packages, open an administrative shell and execute the f
 
 where :code:`<PATH\TO\DOWNLOADS>` is the folder you downloaded the packages into.
 
-Cmake
-^^^^^
+Python
+^^^^^^
 
-You can download and install Cmake_ by following the instrucctions on the website.
+Download and install the Python_ version that better fits your requirements.
+
+Cmake, pip, wget and git
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can download and install Cmake_, pip_, wget_ and git_ by following the instrucctions on the respective
+websites.
+Once installed, you need to add the path to these executables to your :code:`PATH` from the
+*Edit the system environment variables* control panel.
 
 OpenSSL
 ^^^^^^^
@@ -69,35 +80,22 @@ Gtest
 
     By default, *eProsima Fast DDS* doesn’t compile tests.
     You can activate them by adding the :code:`-DPERFORMANCE_TESTS=ON` flag when calling colcon_ or CMake_
-    (for details, see below - REF).
+    (for details, see below).
 
 You can find information on how to install Gtest at this `link <https://github.com/google/googletest>`_.
 
-Installation with Colcon
-------------------------
+.. _colcon_installation_windows:
+
+Colcon Installation
+-------------------
 
 colcon_ is a command line tool to build sets of software packages.
 This section explains how to use it to compile easily *eProsima Fast DDS* and its dependencies.
 
 .. important::
 
-    You need to run colcon within a Visual Studio prompt. To do so, launch a "Developer Command Prompt" in the
+    You need to run colcon within a Visual Studio prompt. To do so, launch a *Developer Command Prompt* in the
     search engine/from the Start button.
-
-.. note::
-
-    In order to run the commands below, you need to have the following packages installed in your Windows system:
-
-    * python_
-    * pip_, with the :code:`get-pip.py` command. After installing it, add the environment variable :code:`pip`
-      pointing to the installation directory.
-    * wget_. After installing it, add the environment variable :code:`wget` pointing to the directory where the
-      executable is.
-    * vcs. After installing it, add the environment variable :code:`vcs` pointing to the directory where the
-      executable is.
-
-Once installed, you need to add the path to these executables to your path from the
-'Edit the system environment variables' control panel.
 
 You can then install the ROS2 development tools (colcon_ and vcstool_):
 
@@ -105,11 +103,14 @@ You can then install the ROS2 development tools (colcon_ and vcstool_):
 
     pip install -U colcon-common-extensions vcstool
 
+and add the path to the :code:`vcs` executable to your :code:`PATH` from the
+*Edit the system environment variables* control panel.
+
 .. note::
 
     If this fails due to an Environment Error, add the :code:`--user` flag to your installation.
 
-Now, create a colcon_ workspace, and then download the repos file that will be used to install *eProsima Fast DDS* and
+Now, create a colcon_ workspace and download the repos file that will be used to install *eProsima Fast DDS* and
 its dependencies:
 
 .. code-block:: bash
@@ -125,19 +126,17 @@ Finally, use colcon_ to compile all software:
 
     colcon build --cmake-args -DTHIRDPARTY=ON
 
-To run an *eProsima Fast DDS* instance, you need source the colcon overlay with the command:
+To run an *eProsima Fast DDS* instance, you need to source the colcon overlay with the command:
 
 .. code-block:: bash
 
     setup.bat
 
-.. note::
+.. important::
 
     The sourcing of the local colcon overlay is required every time the colcon workspace is opened in a new shell
     environment to run an *eProsima Fast DDS* instance.
-    As an alternative, you can add it permanently to you path from the 'Edit the system environment variables' control
-    panel.
-
+    As an alternative, you can add it permanently to your :code:`PATH`.
 
 .. note::
 
@@ -145,23 +144,23 @@ To run an *eProsima Fast DDS* instance, you need source the colcon overlay with 
     :code:`--cmake-args "-DCOMPILE_EXAMPLES=ON"` when running :code:`colcon build`.
     If you want to compile the performance tests, you will need to add the flag
     :code:`--cmake-args "--DPERFORMANCE_TESTS=ON"` when running :code:`colcon build`.
-    For this step, you need Gtest_ as explained in the Requirements section above (REF).
+    For this step, you need Gtest_ as explained in the :ref:`requirements_windows_sources` section above.
 
 
-Manual Installation
+.. _cmake_installation_windows:
+
+CMake Installation
 -------------------
 
-To install *eProsima Fast DDS*, you need to have git_ installed. After installing it, add the environment variable
-:code:`git` pointing to the directory where the executable is.
-
-Now open a command prompt, and create a :code:`Fast-DDS` directory where to download and build *eProsima Fast DDS* and
+This section explains how to compile *eProsima Fast DDS* locally with CMake_.
+Open a command prompt, and create a :code:`Fast-DDS` directory where to download and build *eProsima Fast DDS* and
 its dependencies:
 
 .. code-block:: bash
 
     mkdir Fast-DDS && cd Fast-DDS
 
-Now, before compiling *eProsima Fast DDS*, you need to clone the following dependencies and compile them using CMake.
+Now clone the following dependencies and compile them using CMake_.
 
 * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
@@ -201,7 +200,7 @@ Once all dependencies are installed, you will be able to compile and install *eP
     the configuration CMake_.
     If you want to compile the performance tests, you will need to add the argument
     :code:`-DPERFORMANCE_TESTS=ON` when calling the configuration CMake_.
-    For this step, you need Gtest_ as explained in the Requirements section above (REF).
+    For this step, you need Gtest_ as explained in the :ref:`requirements_windows_sources` section above.
 
 
 
@@ -209,11 +208,11 @@ Once all dependencies are installed, you will be able to compile and install *eP
 
 .. _colcon: https://colcon.readthedocs.io/en/released/
 .. _CMake: https://cmake.org
-.. _Gtest: https://github.com/google/googletest
 .. _Chocolatey: https://chocolatey.org
 .. _webpage: https://slproweb.com/products/Win32OpenSSL.html
-.. _python: https://www.python.org/downloads/windows/
-.. _pip: ??
+.. _Python: https://www.python.org/
+.. _pip: https://pypi.org/project/pip/
 .. _wget: https://www.gnu.org/software/wget/
+.. _git: https://git-scm.com/
 .. _vcstool: https://pypi.org/project/vcstool/
-.. _git: https://git-scm.com/download/win
+.. _Gtest: https://github.com/google/googletest

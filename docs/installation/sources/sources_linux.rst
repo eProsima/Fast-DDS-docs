@@ -3,7 +3,8 @@
 Linux installation from sources
 ===============================
 
-To install *eProsima Fast DDS* from sources, you first need to meet the required dependencies (see Requirements - REF)
+To install *eProsima Fast DDS* from sources, you first need to meet the required dependencies
+(see :ref:`requirements_linux_sources`)
 and then choose whether to follow either the colcon_ (see colcon :ref:`colcon_installation_linux`) or the CMake_
 (see :ref:`cmake_installation_linux`) installation instructions.
 
@@ -77,7 +78,7 @@ First, install the ROS2 development tools (colcon_ and vcstool_):
 
     If this fails due to an Environment Error, add the :code:`--user` flag to your installation.
 
-Now, create a colcon_ workspace, and then download the repos file that will be used to install *eProsima Fast DDS* and
+Now, create a colcon_ workspace and download the repos file that will be used to install *eProsima Fast DDS* and
 its dependencies:
 
 .. code-block:: bash
@@ -99,7 +100,7 @@ Once that’s finished building, you can source the new colcon overlay:
 
     source install/setup.bash
 
-.. note::
+.. important::
 
     The sourcing of the local colcon overlay is required every time the colcon workspace is opened in a new shell
     environment to run an *eProsima Fast DDS* instance.
@@ -111,11 +112,14 @@ Once that’s finished building, you can source the new colcon overlay:
 
     Where :code:`PATH_TO_WORKSPACE` is the path to the :code:`Fast-DDS-ws` worskspace.
 
-If you want to compile the examples, you will need to add the flag
-:code:`--cmake-args "-DCOMPILE_EXAMPLES=ON"` when running :code:`colcon build`.
-If you want to compile the performance tests, you will need to add the flag
-:code:`--cmake-args "--DPERFORMANCE_TESTS=ON"` when running :code:`colcon build`.
-For this step, you need Gtest_ as explained in the :ref:`requirements_linux_sources` section above.
+.. note::
+
+    If you want to compile the examples, you will need to add the flag
+    :code:`--cmake-args "-DCOMPILE_EXAMPLES=ON"` when running :code:`colcon build`.
+    If you want to compile the performance tests, you will need to add the flag
+    :code:`--cmake-args "--DPERFORMANCE_TESTS=ON"` when running :code:`colcon build`.
+    For this step, you need Gtest_ as explained in the :ref:`requirements_linux_sources` section above.
+
 
 .. _cmake_installation_linux:
 
@@ -138,7 +142,7 @@ Now clone the following dependencies and compile them using CMake_.
       $ git clone https://github.com/eProsima/foonathan_memory_vendor.git
       $ mkdir foonathan_memory_vendor/build && cd foonathan_memory_vendor/build
       $ cmake .. -DCMAKE_INSTALL_PREFIX=../../install
-      $ cmake --build . --target install
+      $ sudo cmake --build . --target install
       $ cd ../..
 
 * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
@@ -148,7 +152,7 @@ Now clone the following dependencies and compile them using CMake_.
       $ git clone https://github.com/eProsima/Fast-CDR.git
       $ mkdir Fast-CDR/build && cd Fast-CDR/build
       $ cmake .. -DCMAKE_INSTALL_PREFIX=../../install
-      $ cmake --build . --target install
+      $ sudo cmake --build . --target install
       $ cd ../..
 
 Once all dependencies are installed, you will be able to compile and install *eProsima Fast DDS*:
@@ -157,7 +161,7 @@ Once all dependencies are installed, you will be able to compile and install *eP
 
     $ git clone https://github.com/eProsima/Fast-RTPS.git
     $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
-    $ cmake ..  -DCMAKE_INSTALL_PREFIX=../../install -DCMAKE_PREFIX_PATH=../../install
+    $ sudo cmake ..  -DCMAKE_INSTALL_PREFIX=../../install -DCMAKE_PREFIX_PATH=../../install
     $ cmake --build . --target install
 
 
@@ -201,5 +205,6 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 .. _pip: https://pypi.org/project/pip/
 .. _wget: https://www.gnu.org/software/wget/
 .. _git: https://git-scm.com/
+.. _OpenSSL: https://www.openssl.org/
 .. _Gtest: https://github.com/google/googletest
 .. _vcstool: https://pypi.org/project/vcstool/

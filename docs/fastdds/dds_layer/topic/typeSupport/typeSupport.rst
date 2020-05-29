@@ -71,3 +71,5 @@ The middleware keeps these sub-flows separated, but all will be restricted to th
 the :ref:`dds_layer_topic_topic`.
 If no key is provided, the data set associated with the :ref:`dds_layer_topic_topic` is restricted to a single flow.
 
+
+.. include:: includes/fastddsgen.rst

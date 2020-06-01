@@ -2,7 +2,7 @@
 
 .. _logprofiles:
 
-Logging profiles
+Log profiles
 ----------------
 
 *eProsima Fast DDS* allows for registering and configuring :ref:`log consumers <dds_layer_log_consumer>` using XML
@@ -19,7 +19,7 @@ These are described in the following table.
 |                   | performed. See :ref:`dds_layer_log_register_consumers`.       |                       |          |
 +-------------------+---------------------------------------------------------------+-----------------------+----------+
 | ``<consumer>``    | Defines the class and configuration of the consumer to |br|   | :ref:`xmllogconsumer` |          |
-|                   | be registered. Multiple consuments can be registered |br|     |                       |          |
+|                   | be registered. Multiple consumers can be registered |br|      |                       |          |
 |                   | this way. See :ref:`dds_layer_log_consumer`.                  |                       |          |
 +-------------------+---------------------------------------------------------------+-----------------------+----------+
 

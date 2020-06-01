@@ -193,4 +193,4 @@ XML Configuration
 ^^^^^^^^^^^^^^^^^
 
 *eProsima Fast DDS* allows for registering and configuring log consumers using XML configuration files.
-Please refer to Log profile for details.
+Please refer to :ref:`Log profiles <logprofiles>` for details.

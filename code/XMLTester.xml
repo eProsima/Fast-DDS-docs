@@ -3712,3 +3712,15 @@
 </types>
 <!-->STANDALONE_TYPES_END<-->
 
+<!-->DDS_MULTICAST_DELIVERY<-->
+<publisher profile_name="publisher_xml_conf_multicast_locators_profile">
+    <multicastLocatorList>
+        <locator>
+            <udpv4>
+                <address>239.255.0.4</address>
+                <port>7900</port>
+            </udpv4>
+        </locator>
+    </multicastLocatorList>
+</publisher>
+<!--><-->

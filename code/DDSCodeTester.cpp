@@ -3306,4 +3306,17 @@ void dds_transport_examples ()
     }
 }
 
+void dds_usecase_examples()
+{
+    {
+        //DDS_MULTICAST_DELIVERY
+        DataWriterQos qos;
 
+        //Add new multicast locator with IP 239.255.0.4 and port 7900
+        eprosima::fastrtps::rtps::Locator_t new_multicast_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
+        new_multicast_locator.port = 7900;
+        qos.endpoint().multicast_locator_list.push_back(new_multicast_locator);
+        //!--
+    }
+}

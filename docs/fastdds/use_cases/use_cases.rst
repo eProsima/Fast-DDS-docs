@@ -27,6 +27,10 @@ with distributed systems:
 
   - the STATIC :ref:`discovery` mechanism for well known network topologies (see :ref:`wide_deployments_static`).
 
++ :ref:`use-case-manySubscribers`.
+  In cases where there are many :ref:`DataReaders<dds_layer_subscriber_dataReader>` subscribed to the same
+  :ref:`dds_layer_topic_topic`, using multicast delivery can help reducing the overhead in the network and CPU.
+
 + :ref:`fastrtps_ros2`.
   Since Fast DDS is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
   this tutorial is an explanation of how to take full advantage of Fast DDS wide set of capabilities in a ROS 2
@@ -38,6 +42,7 @@ with distributed systems:
     /fastdds/use_cases/wifi/wifi.rst
     /fastdds/use_cases/wide_deployments/wide_deployments.rst
     /fastdds/use_cases/large_data/large_data.rst
+    /fastdds/use_cases/many_subscribers/many_subscribers.rst
     /fastdds/use_cases/ros2/ros2.rst
 
 

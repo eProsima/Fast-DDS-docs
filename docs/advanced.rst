@@ -137,12 +137,6 @@ the built-in protocols have processed it.
 Tuning
 ******
 
-Taking advantage of multicast
-=============================
-
-For topics with several subscribers, it is recommendable to configure them to use multicast instead of unicast.
-By doing so, only one network package will be sent for each sample.
-This will improve both CPU and network usage. Multicast configuration is explained in :ref:`rtpsendpointqos`.
 
 .. _tuning-socket-buffer:
 

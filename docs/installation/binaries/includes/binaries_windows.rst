@@ -9,9 +9,9 @@ prompted.
 Environmental Variables
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-*eProsima Fast RTPS* requires the following environmental variable setup in order to function properly
+*eProsima Fast DDS* requires the following environmental variable setup in order to function properly
 
-* FASTRTPSHOME: Root folder where *eProsima Fast RTPS* is installed.
+* FASTRTPSHOME: Root folder where *eProsima Fast DDS* is installed.
 * Additions to the PATH: the /bin folder and the subfolder for your Visual Studio version of choice should be appended
   to the PATH.
 

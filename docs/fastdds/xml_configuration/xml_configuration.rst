@@ -6,17 +6,17 @@ XML profiles
 This section shows how to configure entity attributes using XML profiles, explaining each field with its available
 values and how to compound the complete XML files.
 
-*eProsima Fast RTPS* permits to load several XML files, each one containing XML profiles.
-In addition to the API functions to load user XML files, at initialization *eProsima Fast RTPS* tries to locate and load
+*eProsima Fast DDS* permits to load several XML files, each one containing XML profiles.
+In addition to the API functions to load user XML files, at initialization *eProsima Fast DDS* tries to locate and load
 several default XML files.
-*eProsima Fast RTPS* offers the following options to use default XML files:
+*eProsima Fast DDS* offers the following options to use default XML files:
 
 * Using an XML file with the name *DEFAULT_FASTRTPS_PROFILES.xml* and located in the current execution path.
 * Using an XML file which location is defined in the environment variable *FASTRTPS_DEFAULT_PROFILES_FILE*.
 
 An XML profile is defined by a unique name (or ``<transport_id>`` label
 in the :ref:`transportdescriptors` case) that is used to reference the XML profile
-during the creation of a Fast RTPS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
+during the creation of a Fast DDS entity, :ref:`comm-transports-configuration`, or :ref:`dynamic-types`.
 
 Making an XML
 -------------
@@ -29,7 +29,7 @@ An XML file can contain several XML profiles. The available profile types are :r
     :start-after: <!-->PROFILES-TRANSPORT-DESCRIPTORS<-->
     :lines: 1-6, 43-63
 
-The Fast-RTPS XML format uses some structures along several profiles types.
+The Fast DDS XML format uses some structures along several profiles types.
 For readability, the :ref:`commonxml` section groups these common structures.
 
 Finally, The :ref:`examplexml` section shows an XML file that uses all the possibilities.
@@ -44,7 +44,7 @@ Loading and applying profiles
 
 Before creating any entity, it's required to load XML files using ``Domain::loadXMLProfilesFile`` function.
 ``createParticipant``, ``createPublisher`` and ``createSubscriber`` have a version
-that expects the profile name as an argument. *eProsima Fast RTPS* searches the XML profile using
+that expects the profile name as an argument. *eProsima Fast DDS* searches the XML profile using
 this profile name and applies the XML profile to the entity.
 
 .. literalinclude:: /../code/CodeTester.cpp
@@ -101,7 +101,7 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 | ``<sendBufferSize>``          | Size in bytes of the socket       | ``uint32``                      | 0              |
 |                               | send buffer.                      |                                 |                |
 |                               | If the value is zero then         |                                 |                |
-|                               | FastRTPS will use the default     |                                 |                |
+|                               | Fast DDS will use the default     |                                 |                |
 |                               | size from the configuration of    |                                 |                |
 |                               | the sockets, using a minimum      |                                 |                |
 |                               | size of 65536 bytes.              |                                 |                |
@@ -109,7 +109,7 @@ The XML label ``<transport_descriptors>`` can hold any number of ``<transport_de
 | ``<receiveBufferSize>``       | Size in bytes of the socket       | ``uint32``                      | 0              |
 |                               | receive buffer.                   |                                 |                |
 |                               | If the value is zero then         |                                 |                |
-|                               | FastRTPS will use the default     |                                 |                |
+|                               | Fast DDS will use the default     |                                 |                |
 |                               | size from the configuration of    |                                 |                |
 |                               | the sockets, using a minimum      |                                 |                |
 |                               | size of 65536 bytes.              |                                 |                |
@@ -212,7 +212,7 @@ There are more examples of transports descriptors in :ref:`comm-transports-confi
 TLS Configuration
 ^^^^^^^^^^^^^^^^^
 
-Fast-RTPS allows configuring TLS parameters through the ``<tls>`` tag of its Transport Descriptor.
+Fast DDS allows configuring TLS parameters through the ``<tls>`` tag of its Transport Descriptor.
 The full list of options is listed here:
 
 .. literalinclude:: /../code/XMLTester.xml
@@ -277,14 +277,14 @@ The full list of options is listed here:
 XML Dynamic Types
 -----------------
 
-XML Dynamic Types allows creating *eProsima Fast RTPS Dynamic Types* directly defining them through XML.
+XML Dynamic Types allows creating *eProsima Fast DDS Dynamic Types* directly defining them through XML.
 It allows any application to change TopicDataTypes without modifying its source code.
 
 XML Structure
 ^^^^^^^^^^^^^
 
 The XML Types definition (``<types>`` tag) can be placed similarly to the profiles tag inside the XML file.
-It can be a stand-alone XML Types file or be a child of the Fast-RTPS XML root tag (``<dds>``).
+It can be a stand-alone XML Types file or be a child of the Fast DDS XML root tag (``<dds>``).
 Inside the types tag, there must be one or more type tags (``<type>``).
 
 Stand-Alone:
@@ -636,7 +636,7 @@ List with the possible configuration parameter:
 | ``<sendSocketBufferSize>``        | Size in bytes of the output       | ``uint32``                       | 0       |
 |                                   | socket buffer.                    |                                  |         |
 |                                   | If the value is zero then         |                                  |         |
-|                                   | FastRTPS will use the default     |                                  |         |
+|                                   | Fast DDS will use the default     |                                  |         |
 |                                   | size from  the configuration      |                                  |         |
 |                                   | of the sockets, using a           |                                  |         |
 |                                   | minimum size of 65536 bytes.      |                                  |         |
@@ -644,7 +644,7 @@ List with the possible configuration parameter:
 | ``<listenSocketBufferSize>``      | Size in bytes of the input        | ``uint32``                       | 0       |
 |                                   | socket buffer.                    |                                  |         |
 |                                   | If the value is zero then         |                                  |         |
-|                                   | FastRTPS will use the default     |                                  |         |
+|                                   | Fast DDS will use the default     |                                  |         |
 |                                   | size from  the configuration      |                                  |         |
 |                                   | of the sockets, using a           |                                  |         |
 |                                   | minimum size of 65536 bytes.      |                                  |         |
@@ -1277,14 +1277,14 @@ exchange messages.
 |                         | Topic's data type.            |                                   |                 |
 +-------------------------+-------------------------------+-----------------------------------+-----------------+
 | ``<historyQos>``        | It controls the behavior      | :ref:`HistoryQos <hQos>`          |                 |
-|                         | of *Fast RTPS* when the value |                                   |                 |
+|                         | of *Fast DDS* when the value  |                                   |                 |
 |                         | of an instance changes before |                                   |                 |
 |                         | it is finally communicated to |                                   |                 |
 |                         | some of its existing          |                                   |                 |
 |                         | DataReader entities.          |                                   |                 |
 +-------------------------+-------------------------------+-----------------------------------+-----------------+
 | ``<resourceLimitsQos>`` | It controls the resources     | :ref:`ResourceLimitsQos <rLsQos>` |                 |
-|                         | that *Fast RTPS* can use      |                                   |                 |
+|                         | that *Fast DDS* can use       |                                   |                 |
 |                         | in order to meet the          |                                   |                 |
 |                         | requirements imposed          |                                   |                 |
 |                         | by the application            |                                   |                 |
@@ -1295,7 +1295,7 @@ exchange messages.
 
 **HistoryQoS**
 
-It controls the behavior of *Fast RTPS* when the value of an instance changes before it is finally
+It controls the behavior of *Fast DDS* when the value of an instance changes before it is finally
 communicated to some of its existing DataReader entities.
 
 +-------------+------------------------+---------------------+--------------------+
@@ -1307,9 +1307,9 @@ communicated to some of its existing DataReader entities.
 | ``<depth>`` |                        | ``UInt32``          | 1000               |
 +-------------+------------------------+---------------------+--------------------+
 
-| If the ``<kind>`` is set to :class:`KEEP_LAST`, then *Fast RTPS* will only attempt to keep the latest values of the
+| If the ``<kind>`` is set to :class:`KEEP_LAST`, then *Fast DDS* will only attempt to keep the latest values of the
   instance and discard the older ones.
-| If the ``<kind>`` is set to :class:`KEEP_ALL`, then *Fast RTPS* will attempt to maintain and deliver all the values
+| If the ``<kind>`` is set to :class:`KEEP_ALL`, then *Fast DDS* will attempt to maintain and deliver all the values
   of the instance to existing subscribers.
 | The setting of ``<depth>`` must be consistent with the :ref:`ResourceLimitsQos <rLsQos>`
   ``<max_samples_per_instance>``.
@@ -1319,7 +1319,7 @@ communicated to some of its existing DataReader entities.
 
 **ResourceLimitsQos**
 
-It controls the resources that *Fast RTPS* can use in order to meet the requirements imposed by the
+It controls the resources that *Fast DDS* can use in order to meet the requirements imposed by the
 application and other QoS settings.
 
 +--------------------------------+---------------------------------------------------------+------------+---------+

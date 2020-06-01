@@ -7,14 +7,14 @@
 Real-time behavior
 ##################
 
-Fast RTPS can be configured to offer real-time features.
-These features will guarantee Fast RTPS responses within specified time constrains.
-To maintain this compromise Fast RTPS is able to have the following behavior:
+Fast DDS can be configured to offer real-time features.
+These features will guarantee Fast DDS responses within specified time constrains.
+To maintain this compromise Fast DDS is able to have the following behavior:
 
-- Not allocate memory after the initialization of Fast RTPS entities.
+- Not allocate memory after the initialization of Fast DDS entities.
 - Several methods are blocked for a maximum period of time.
 
-This section explains how to configure Fast RTPS to achieve this behavior.
+This section explains how to configure Fast DDS to achieve this behavior.
 For easier understanding it was divided in two subsections:
 
 - :ref:`realtime-allocations`: configuration to avoid memory allocation after initialization.
@@ -29,7 +29,7 @@ Some important non-deterministic operating system calls are the ones for allocat
 Most real-time systems have the need to operate in a way that all dynamic memory is allocated on the application
 startup, and avoid calls to memory management APIs on the main loop.
 
-Fast-RTPS provides some configuration parameters to meet these requirements, allowing the items of internal
+Fast DDS provides some configuration parameters to meet these requirements, allowing the items of internal
 data collections to be preallocated.
 In order to choose the correct values for these parameters, the user should be aware of the topology of the whole
 domain, so the number of participants and endpoints should be known when setting them.
@@ -43,7 +43,7 @@ All the allocation related parameters on the participant are grouped into the :c
 Limiting the number of discovered participants
 ----------------------------------------------
 
-Every participant in Fast-RTPS holds an internal collection of :class:`ParticipantProxyData` objects with the
+Every participant in Fast DDS holds an internal collection of :class:`ParticipantProxyData` objects with the
 information of the local and the remote participants.
 Field :class:`participants` inside :class:`RTPSParticipantAllocationAttributes` allows the configuration of
 the allocation behavior of that collection.
@@ -161,10 +161,10 @@ The feature is limited by the implementation of `std::timed_mutex` and `std::con
 
 It is important that a method isn't blocked for indeterminate time to achieve real-time.
 A method must only be blocked for a maximum period of time.
-In Fast-RTPS API there are several methods that permit to set this. But first Fast-RTPS should be configured with the
+In Fast DDS API there are several methods that permit to set this. But first Fast DDS should be configured with the
 CMake option ``-DSTRICT_REALTIME=ON``. The list of these functions is displayed in the table below.
 
-.. list-table:: **Fast RTPS non-blocking API**
+.. list-table:: **Fast DDS non-blocking API**
    :header-rows: 1
    :align: left
 

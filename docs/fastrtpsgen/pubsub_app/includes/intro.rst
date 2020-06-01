@@ -1,8 +1,8 @@
 First of all you need to follow the steps outlined in :ref:`installation_requirements`
 for the installation of required packages, and in :ref:`installation_binaries` or
 :ref:`installation-from-sources` for the installation of
-*eprosima Fast RTPS* and all its dependencies.
-If you have followed the steps, you should have Fast DDS, Fast CDR, and Fast-RTPS-Gen installed.
+*eprosima Fast DDS* and all its dependencies.
+If you have followed the steps, you should have Fast DDS, Fast CDR, and Fast DDS-Gen installed.
 
 To build a minimal application, you must first define the Topic.
 To do this, the data type of the Topic is defined by means of an IDL file.
@@ -23,7 +23,7 @@ presented in :ref:`fastrtpsgen_intro`.
         string message;
     };
 
-Now we need to translate this file to something Fast RTPS understands.
+Now we need to translate this file to something Fast DDS understands.
 For this we have a code generation tool called Fast DDS-Gen (see :ref:`fastrtpsgen_use`), which can do two different
 things:
 

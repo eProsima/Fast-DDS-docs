@@ -3,7 +3,7 @@
 Listening locators
 ------------------
 
-*eProsima Fast RTPS* divides listening locators into four categories:
+*eProsima Fast DDS* divides listening locators into four categories:
 
 * Metatraffic Multicast Locators: these locators are used to receive metatraffic information using multicast.
   They usually are used by built-in endpoints, like the discovery of built-in endpoints. You can set your own locators
@@ -39,7 +39,7 @@ Listening locators
       :start-after: //CONF-USERUNICASTLOCATOR
       :end-before: //!--
 
-By default *eProsima Fast RTPS* calculates the listening locators for the built-in UDPv4 network transport using
+By default *eProsima Fast DDS* calculates the listening locators for the built-in UDPv4 network transport using
 well-known ports. These well-known ports are calculated using the following predefined rules:
 
 .. list-table:: Ports used
@@ -68,7 +68,7 @@ These predefined rules use some values explained here:
   ``rtps.port.offsetdN``. Default values are: ``offsetd0 = 0``, ``offsetd1 = 10``, ``offsetd2 = 1``, ``offsetd3 = 11``.
 
 Both UDP and TCP unicast locators support to have a null address.
-In that case, *eProsima Fast RTPS* understands to get local network addresses and use them.
+In that case, *eProsima Fast DDS* understands to get local network addresses and use them.
 
 Both UDP and TCP locators support to have a zero port.
-In that case, *eProsima Fast RTPS* understands to calculate well-known port for that type of traffic.
+In that case, *eProsima Fast DDS* understands to calculate well-known port for that type of traffic.

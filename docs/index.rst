@@ -1,4 +1,4 @@
-.. eProsima Fast RTPS documentation master file.
+.. eProsima Fast DDS documentation master file.
 
 eProsima Fast DDS Documentation
 ================================

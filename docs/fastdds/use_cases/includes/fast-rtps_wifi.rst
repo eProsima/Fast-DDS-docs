@@ -1,6 +1,6 @@
 .. _use-case-fast-rtps-over-wifi:
 
-Fast-RTPS over WIFI
+Fast DDS over WIFI
 ===================
 
 The `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ defines the SIMPLE discovery as the default
@@ -9,7 +9,7 @@ One of the main features of this mechanism is the use of multicast communication
 Phase (PDP).
 This could be a problem in case the communication is not wired, i.e. WiFi communication, since multicast is
 not as reliable over WiFi as it is over ethernet.
-Fast-RTPS' solution to this challenge is to define the participants with which a unicast communication is to be set, i.e
+Fast DDS' solution to this challenge is to define the participants with which a unicast communication is to be set, i.e
 an initial list of remote peers.
 
 .. _use-case-initial-peers:
@@ -20,7 +20,7 @@ Initial Peers
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), each participant must
 listen for incoming PDP discovery metatraffic in two different ports, one linked with a multicast address, and another
 one linked to a unicast address.
-Fast-RTPS allows for the configuration of an initial peers list which contains one or more such address-port pairs
+Fast DDS allows for the configuration of an initial peers list which contains one or more such address-port pairs
 corresponding to remote participants PDP discovery listening resources, so that the local participant will not only
 send its PDP traffic to the default multicast address-port specified by its domain, but also to all the address-port
 pairs specified in the :ref:`initial-peers` list.

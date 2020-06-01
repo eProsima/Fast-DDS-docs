@@ -3,7 +3,7 @@
 TCP Transport
 -------------
 
-Unlike UDP, TCP transport is connection oriented and for that Fast-RTPS must establish a TCP connection
+Unlike UDP, TCP transport is connection oriented and for that Fast DDS must establish a TCP connection
 before sending the RTPS messages.
 Therefore TCP transport can have two behaviors, acting as a server (**TCP Server**) or as a client (**TCP Client**).
 The server opens a TCP port listening for incoming connections and the client tries to connect
@@ -16,7 +16,7 @@ these entities are used only to establish the TCP connection and the RTPS protoc
 To use TCP transports you need to define some more configurations:
 
 You must create a new TCP transport descriptor, for example TCPv4.
-This transport descriptor has a field named ``listening_ports`` that indicates to Fast-RTPS
+This transport descriptor has a field named ``listening_ports`` that indicates to Fast DDS
 in which physical TCP ports our participant will listen for input connections.
 If omitted, the participant will not be able to receive incoming connections but will be able
 to connect to other participants that have configured their listening ports.
@@ -62,17 +62,17 @@ To configure the participant to connect to another node through TCP, you must co
 +---------------------------------------------------+
 
 A TCP version of helloworld example can be found in this
-`link <https://github.com/eProsima/Fast-RTPS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
+`link <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/HelloWorldExampleTCP>`_.
 
 
 WAN or Internet Communication over TCP/IPv4
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fast-RTPS is able to connect through the Internet or other WAN networks when configured properly.
+Fast DDS is able to connect through the Internet or other WAN networks when configured properly.
 To achieve this kind of scenarios, the involved network devices such as routers and firewalls
 should add the rules to allow the communication.
 
-For example, to allow incoming connections through our NAT, Fast-RTPS must be configured as a **TCP Server** listening
+For example, to allow incoming connections through our NAT, Fast DDS must be configured as a **TCP Server** listening
 to incoming TCP connections.
 To allow incoming connections through a WAN, the TCP descriptor associated must indicate
 its public IP through its field ``wan_addr``.
@@ -147,7 +147,7 @@ TCP doesn't support multicast scenarios, so you must plan carefully your network
 TLS over TCP
 ^^^^^^^^^^^^
 
-Fast-RTPS allows configuring a TCP Transport to use TLS (Transport Layer Security)
+Fast DDS allows configuring a TCP Transport to use TLS (Transport Layer Security)
 by setting up **TCP Server** and **TCP Client** properly.
 
  **TCP Server**

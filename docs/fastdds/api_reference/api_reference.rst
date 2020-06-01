@@ -3,7 +3,7 @@
 API Reference
 =============
 
-Fast RTPS, as a Data Distribution Service (DDS) standard implementation, exposes the DDS Data-Centric Publish-Subscribe
+Fast DDS, as a Data Distribution Service (DDS) standard implementation, exposes the DDS Data-Centric Publish-Subscribe
 (DCPS) Platform Independent Model (PIM) API, as specified in the
 `DDS specification <https://www.omg.org/spec/DDS/1.4/PDF>`_.
 Furthermore, is also gives the user the possibility to directly interact with the underlying Real-time

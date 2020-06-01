@@ -26,22 +26,22 @@ string(REGEX REPLACE "^version = u'([0-9]+.[0-9]+.[0-9]+)'"
     ${LIB_VERSION_TMP}
     )
 
-project(fastrtps-doc-checker VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
+project(fastdds-doc-checker VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 
 ########################################################################################################################
-# Get fastrtps git branch
+# Get fastdds git branch
 ########################################################################################################################
-set(ENV_FASTRTPS_BRANCH $ENV{FASTRTPS_BRANCH})
-set(FASTRTPS_BRANCH "" CACHE STRING "Fast RTPS repository branch against which test the source code.")
+set(ENV_FASTDDS_BRANCH $ENV{FASTDDS_BRANCH})
+set(FASTDDS_BRANCH "" CACHE STRING "Fast DDS repository branch against which test the source code.")
 
 find_package(Git REQUIRED)
 
-if(NOT "${ENV_FASTRTPS_BRANCH}" STREQUAL "")
-    set(REPO_TAG "${ENV_FASTRTPS_BRANCH}")
-elseif(NOT "${FASTRTPS_BRANCH}" STREQUAL "")
-    set(REPO_TAG "${FASTRTPS_BRANCH}")
+if(NOT "${ENV_FASTDDS_BRANCH}" STREQUAL "")
+    set(REPO_TAG "${ENV_FASTDDS_BRANCH}")
+elseif(NOT "${FASTDDS_BRANCH}" STREQUAL "")
+    set(REPO_TAG "${FASTDDS_BRANCH}")
 else()
-    message("-- Environment variable FASTRTPS_BRANCH not set. Setting fastrtps branch to current documentation branch")
+    message("-- Environment variable FASTDDS_BRANCH not set. Setting fastdds branch to current documentation branch")
     execute_process(
         COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
         RESULT_VARIABLE RESULT
@@ -51,19 +51,19 @@ endif()
 # Remove trailing endline if present
 string(REGEX REPLACE "\n$" "" REPO_TAG "${REPO_TAG}")
 
-message("-- Checking whether fastrtps branch ${REPO_TAG} exists...")
+message("-- Checking whether fastdds branch ${REPO_TAG} exists...")
 execute_process(
-    COMMAND ${GIT_EXECUTABLE} ls-remote https://github.com/eProsima/Fast-RTPS.git ${REPO_TAG}
+    COMMAND ${GIT_EXECUTABLE} ls-remote https://github.com/eProsima/Fast-DDS.git ${REPO_TAG}
     RESULT_VARIABLE RESULT_LS_REMOTE
     OUTPUT_VARIABLE OUTPUT_LS_REMOTE)
 
 if("${OUTPUT_LS_REMOTE}" STREQUAL "")
-    message("-- fastrtps branch ${REPO_TAG} not found. Changing to master branch.")
+    message("-- fastdds branch ${REPO_TAG} not found. Changing to master branch.")
     set(REPO_TAG "master")
 endif()
 
 ########################################################################################################################
-# Download and compile fastrtps
+# Download and compile fastdds
 ########################################################################################################################
 
 # Create directory fo external project
@@ -72,16 +72,16 @@ file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/external)
 # CMakeLists.txt for downloading and compiling Fast RTPS
 set(PRODUCT_CMAKELIST_CONTENT "
     cmake_minimum_required(VERSION 3.0)
-    project(fastrtps-doc-external)
+    project(fastdds-doc-external)
     include(ExternalProject)
     option(BUILDCOP \"Download buildcop.py\" OFF)
     set(BUILDCOP ${BUILDCOP})
 
     # Download Fast RTPS in same src directory used by buildcop
-    ExternalProject_Add(fastrtps
+    ExternalProject_Add(fastdds
         PREFIX eprosima
         DOWNLOAD_DIR \"eprosima/src\"
-        GIT_REPOSITORY https://github.com/eProsima/Fast-RTPS.git
+        GIT_REPOSITORY https://github.com/eProsima/Fast-DDS.git
         GIT_TAG origin/${REPO_TAG}
         GIT_SHALLOW TRUE
         CONFIGURE_COMMAND \"\"
@@ -103,13 +103,13 @@ set(PRODUCT_CMAKELIST_CONTENT "
             BUILD_COMMAND cd eprosima && python3 buildcop.py --ci-repo https://gitlab.intranet.eprosima.com/eProsima/fastrtps-ci.git --source-branch ${REPO_TAG} --build-args --build-base build --merge-install --mixin rel-with-deb-info --packages-up-to fastrtps --metas ../../.. --cmake-args -DSECURITY=ON --- --no-test
             INSTALL_COMMAND \"\"
             UPDATE_COMMAND \"\"
-            DEPENDS fastrtps
+            DEPENDS fastdds
             )
     endif()
     ")
 file(WRITE ${PROJECT_BINARY_DIR}/external/CMakeLists.txt "${PRODUCT_CMAKELIST_CONTENT}")
 
-option(BUILDCOP "Activate actual fastrtps building" OFF)
+option(BUILDCOP "Activate actual fastdds building" OFF)
 set(BUILDCOP ${BUILDCOP})
 # Configure external with BUILDCOP option
 execute_process(COMMAND ${CMAKE_COMMAND} . -DBUILDCOP=${BUILDCOP}
@@ -133,10 +133,10 @@ add_custom_target(doc-dirs
     COMMENT "Creating documentation directories" VERBATIM)
 
 # Get header files from repo instead of from installation. This way Fast RTPS does not need to be compiled
-file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds/**/*.h*")
+file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/include/fastdds/**/*.h*")
 
 # Doxygen related variables
-set(DOXYGEN_INPUT_DIR "${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/include/fastdds")
+set(DOXYGEN_INPUT_DIR "${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/include/fastdds")
 set(DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doxygen")
 set(DOXYGEN_INDEX_FILE "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml")
 set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/doxygen-config.in")
@@ -193,8 +193,8 @@ if(BUILDCOP)
     # Compile example
     ####################################################################################################################
     add_executable(doctest CodeTester.cpp DDSCodeTester.cpp)
-    target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/src/cpp
-        ${PROJECT_BINARY_DIR}/external/eprosima/src/fastrtps/thirdparty/tinyxml2)
+    target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/src/cpp
+        ${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/thirdparty/tinyxml2)
     target_link_libraries(doctest fastrtps)
 
     ####################################################################################################################

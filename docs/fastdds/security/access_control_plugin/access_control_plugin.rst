@@ -104,10 +104,10 @@ The following is an example of the Domain Governance XML file contents.
    :end-before: <!--><-->
    :linenos:
 
-The `Governance XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/governance.xsd>`_ and
+The `Governance XSD file <https://github.com/eProsima/Fast-DDS/blob/master/resources/xsd/governance.xsd>`_ and
 the
-`Governance XML example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/SecureHelloWorldExample/certs/governance.xml>`_
-can also be downloaded from the `eProsima Fast DDS Github repository <https://github.com/eProsima/Fast-RTPS>`_.
+`Governance XML example <https://github.com/eProsima/Fast-DDS/blob/master/examples/C%2B%2B/SecureHelloWorldExample/certs/governance.xml>`_
+can also be downloaded from the `eProsima Fast DDS Github repository <https://github.com/eProsima/Fast-DDS>`_.
 
 Domain Rules
 """"""""""""
@@ -424,10 +424,10 @@ The following is an example of the |DomainParticipant| Permissions XML file cont
    :end-before: <!--><-->
    :linenos:
 
-The `Permissions XSD file <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/governance.xsd>`_ and
+The `Permissions XSD file <https://github.com/eProsima/Fast-DDS/blob/master/resources/xsd/governance.xsd>`_ and
 the
-`Permissions XML example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/SecureHelloWorldExample/certs/governance.xml>`_
-can also be downloaded from the `eProsima Fast DDS Github repository <https://github.com/eProsima/Fast-RTPS>`_.
+`Permissions XML example <https://github.com/eProsima/Fast-DDS/blob/master/examples/C%2B%2B/SecureHelloWorldExample/certs/governance.xml>`_
+can also be downloaded from the `eProsima Fast DDS Github repository <https://github.com/eProsima/Fast-DDS>`_.
 
 Grant Section
 """""""""""""

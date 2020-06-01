@@ -1,3 +1,5 @@
+.. include:: ../includes/aliases.rst
+
 .. _dds_layer_topic_fastddsgen:
 
 Fast DDS-Gen for data types source code generation
@@ -7,7 +9,7 @@ Fast DDS-Gen for data types source code generation
 translating an IDL specification of a data type to a functional implementation.
 Thus, this tool automatically generates the source code of a data type defined using IDL.
 A basic use of the tool is described below.
-To learn about all the features that Fast offers, please refer to :ref:`Fast DDS-Gen <fastrtpsgen_intro>` section .
+To learn about all the features that Fast DDS offers, please refer to :ref:`Fast DDS-Gen <fastrtpsgen_intro>` section.
 
 Basic usage
 ^^^^^^^^^^^

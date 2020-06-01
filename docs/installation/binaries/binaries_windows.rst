@@ -36,7 +36,7 @@ Once you have Chocolatey installed, download the following Chocolatey package fr
 
 * tinyxml2.6.0.0.nupkg
 
-After downloading these package, open an administrative shell and execute the following command:
+After downloading these package, open an administrative shell with *PowerShell* and execute the following command:
 
 .. code-block:: bash
 

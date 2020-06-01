@@ -4,9 +4,9 @@ Linux installation from sources
 ===============================
 
 To install *eProsima Fast DDS* from sources, you first need to meet the required dependencies
-(see :ref:`requirements_linux_sources`)
-and then choose whether to follow either the colcon_ (see colcon :ref:`colcon_installation_linux`) or the CMake_
-(see :ref:`cmake_installation_linux`) installation instructions.
+(see requirements_linux_sources_)
+and then choose whether to follow either the colcon_ (see colcon colcon_installation_linux_) or the CMake_
+(see cmake_installation_linux_) installation instructions.
 
 .. _requirements_linux_sources:
 
@@ -118,7 +118,7 @@ Once that’s finished building, you can source the new colcon overlay:
     :code:`--cmake-args "-DCOMPILE_EXAMPLES=ON"` when running :code:`colcon build`.
     If you want to compile the performance tests, you will need to add the flag
     :code:`--cmake-args "--DPERFORMANCE_TESTS=ON"` when running :code:`colcon build`.
-    For this step, you need Gtest_ as explained in the :ref:`requirements_linux_sources` section above.
+    For this step, you need Gtest_ as explained in the requirements_linux_sources_ section above.
 
 
 .. _cmake_installation_linux:
@@ -161,8 +161,8 @@ Once all dependencies are installed, you will be able to compile and install *eP
 
     $ git clone https://github.com/eProsima/Fast-RTPS.git
     $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
-    $ sudo cmake ..  -DCMAKE_INSTALL_PREFIX=../../install -DCMAKE_PREFIX_PATH=../../install
-    $ cmake --build . --target install
+    $ cmake ..  -DCMAKE_INSTALL_PREFIX=../../install -DCMAKE_PREFIX_PATH=../../install
+    $ sudo cmake --build . --target install
 
 
 
@@ -180,7 +180,7 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
     the configuration CMake_.
     If you want to compile the performance tests, you will need to add the argument
     :code:`-DPERFORMANCE_TESTS=ON` when calling the configuration CMake_.
-    For this step, you need Gtest_ as explained in the :ref:`requirements_linux_sources` section above..
+    For this step, you need Gtest_ as explained in the requirements_linux_sources_ section above.
 
 .. important::
 

@@ -4,9 +4,9 @@ Windows installation from sources
 =================================
 
 To install *eProsima Fast DDS* from sources, you first need to meet the required dependencies
-(see :ref:`requirements_windows_sources`)
-and then choose whether to follow either the colcon_ (see colcon :ref:`colcon_installation_windows`) or the CMake_
-(see :ref:`cmake_installation_windows`) installation instructions.
+(see requirements_windows_sources_)
+and then choose whether to follow either the colcon_ (see colcon colcon_installation_windows_) or the CMake_
+(see cmake_installation_windows_) installation instructions.
 
 .. _requirements_windows_sources:
 
@@ -39,13 +39,13 @@ Once you have Chocolatey installed, download the following Chocolatey packages f
 * asio.1.12.1.nupkg
 * tinyxml2.6.0.0.nupkg
 
-After downloading these packages, open an administrative shell and execute the following command:
+After downloading these packages, open an administrative shell with *PowerShell* and execute the following command:
 
 .. code-block:: bash
 
     choco install -y -s <PATH_TO_DOWNLOADS> asio tinyxml2
 
-where :code:`<PATH\TO\DOWNLOADS>` is the folder you downloaded the packages into.
+where :code:`<PATH_TO_DOWNLOADS>` is the folder you downloaded the packages into.
 
 Python
 ^^^^^^
@@ -55,7 +55,7 @@ Download and install the Python_ version that better fits your requirements.
 Cmake, pip, wget and git
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can download and install Cmake_, pip_, wget_ and git_ by following the instrucctions on the respective
+You can download and install CMake_, pip_, wget_ and git_ by following the instrucctions on the respective
 websites.
 Once installed, you need to add the path to these executables to your :code:`PATH` from the
 *Edit the system environment variables* control panel.
@@ -94,8 +94,8 @@ This section explains how to use it to compile easily *eProsima Fast DDS* and it
 
 .. important::
 
-    You need to run colcon within a Visual Studio prompt. To do so, launch a *Developer Command Prompt* in the
-    search engine/from the Start button.
+    You need to run colcon within a Visual Studio prompt. To do so, launch a *Developer Command Prompt* from the
+    search engine.
 
 You can then install the ROS2 development tools (colcon_ and vcstool_):
 
@@ -124,7 +124,7 @@ Finally, use colcon_ to compile all software:
 
 .. code-block:: bash
 
-    colcon build --cmake-args -DTHIRDPARTY=ON
+    colcon build
 
 To run an *eProsima Fast DDS* instance, you need to source the colcon overlay with the command:
 
@@ -144,7 +144,7 @@ To run an *eProsima Fast DDS* instance, you need to source the colcon overlay wi
     :code:`--cmake-args "-DCOMPILE_EXAMPLES=ON"` when running :code:`colcon build`.
     If you want to compile the performance tests, you will need to add the flag
     :code:`--cmake-args "--DPERFORMANCE_TESTS=ON"` when running :code:`colcon build`.
-    For this step, you need Gtest_ as explained in the :ref:`requirements_windows_sources` section above.
+    For this step, you need Gtest_ as explained in the requirements_windows_sources_ section above.
 
 
 .. _cmake_installation_windows:
@@ -162,17 +162,6 @@ its dependencies:
 
 Now clone the following dependencies and compile them using CMake_.
 
-* `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
-
-  .. code-block:: bash
-
-      $ git clone https://github.com/eProsima/Fast-CDR.git
-      $ cd Fast-CDR
-      $ mkdir build && cd build
-      $ cmake -DCMAKE_INSTALL_PREFIX=install ..
-      $ cmake --build . --target install
-      $ cd ../..
-
 * `Foonathan memory <https://github.com/foonathan/memory>`_
 
   .. code-block:: bash
@@ -180,7 +169,18 @@ Now clone the following dependencies and compile them using CMake_.
       $ git clone https://github.com/eProsima/foonathan_memory_vendor.git
       $ cd foonathan_memory_vendor
       $ mkdir build && cd build
-      $ cmake -DCMAKE_INSTALL_PREFIX=install ..
+      $ cmake .. -DCMAKE_INSTALL_PREFIX=../../install
+      $ cmake --build . --target install
+      $ cd ../..
+
+* `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
+
+  .. code-block:: bash
+
+      $ git clone https://github.com/eProsima/Fast-CDR.git
+      $ cd Fast-CDR
+      $ mkdir build && cd build
+      $ cmake .. -DCMAKE_INSTALL_PREFIX=../../install
       $ cmake --build . --target install
       $ cd ../..
 
@@ -191,8 +191,18 @@ Once all dependencies are installed, you will be able to compile and install *eP
     $ git clone https://github.com/eProsima/Fast-RTPS.git
     $ cd Fast-RTPS
     $ mkdir build && cd build
-    $ cmake -DCMAKE_INSTALL_PREFIX=install ..
+    $ cmake ..  -DCMAKE_INSTALL_PREFIX=../../install -DCMAKE_PREFIX_PATH=../../install
     $ cmake --build . --target install
+
+
+If you want to install *eProsima Fast DDS* system-wide instead of locally, you need to remove all the flags that
+appear in the configuration steps of :code:`Fast-CDR` and :code:`Fast-RTPS`, and change the one in the
+configuration step of :code:`foonathan_memory_vendor` to the following:
+
+.. code-block:: bash
+
+    -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
+
 
 .. note::
 
@@ -200,9 +210,20 @@ Once all dependencies are installed, you will be able to compile and install *eP
     the configuration CMake_.
     If you want to compile the performance tests, you will need to add the argument
     :code:`-DPERFORMANCE_TESTS=ON` when calling the configuration CMake_.
-    For this step, you need Gtest_ as explained in the :ref:`requirements_windows_sources` section above.
+    For this step, you need Gtest_ as explained in the requirements_windows_sources_ section above.
 
 
+.. important::
+
+    When running an *eProsima Fast DDS* application, you need to link it with the library :code:`C:\temp\bin`
+    where the pakages have been installed. You can either prepare the environment locally by typing the command:
+
+    .. code-block:: bash
+
+        C:\> set PATH=%PATH%;C:\temp\bin
+
+    in the console you use to run the *eProsima Fast DDS* instance, or permanently add it to your path, by opening the
+    *Edit the system environment variables* control panel, and adding :code:`C:\temp\bin` to the :code:`PATH`.
 
 .. External links
 

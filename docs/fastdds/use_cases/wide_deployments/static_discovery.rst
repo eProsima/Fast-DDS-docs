@@ -80,7 +80,7 @@ Create STATIC discovery XML files
 Create entities and load STATIC discovery XML files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When creating the entities, the local publisher/subscriber attributes must match those defined in the STATIC discovery
+When creating the entities, the local writer/reader attributes must match those defined in the STATIC discovery
 XML file loaded by the remote entity.
 
    +-----------------------------------------------------+
@@ -88,7 +88,7 @@ XML file loaded by the remote entity.
    +=====================================================+
    | **C++**                                             |
    +-----------------------------------------------------+
-   | .. literalinclude:: /../code/CodeTester.cpp         |
+   | .. literalinclude:: /../code/DDSCodeTester.cpp      |
    |    :language: c++                                   |
    |    :start-after: //STATIC_DISCOVERY_USE_CASE_PUB    |
    |    :end-before: //!--                               |
@@ -107,7 +107,7 @@ XML file loaded by the remote entity.
    +=====================================================+
    | **C++**                                             |
    +-----------------------------------------------------+
-   | .. literalinclude:: /../code/CodeTester.cpp         |
+   | .. literalinclude:: /../code/DDSCodeTester.cpp      |
    |    :language: c++                                   |
    |    :start-after: //STATIC_DISCOVERY_USE_CASE_SUB    |
    |    :end-before: //!--                               |

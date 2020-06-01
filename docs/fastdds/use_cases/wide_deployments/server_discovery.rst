@@ -30,11 +30,11 @@ Two parameters to be configured in this type of implementation are outlined:
 +========================================================+
 | **C++**                                                |
 +--------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp            |
+| .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |    :language: c++                                      |
 |    :start-after: //CONF_DS_MAIN_SCENARIO_SERVER        |
 |    :end-before: //!--                                  |
-|    :dedent: 4                                          |
+|    :dedent: 8                                          |
 +--------------------------------------------------------+
 | **XML**                                                |
 +--------------------------------------------------------+
@@ -49,11 +49,11 @@ Two parameters to be configured in this type of implementation are outlined:
 +========================================================+
 | **C++**                                                |
 +--------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp            |
+| .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |    :language: c++                                      |
 |    :start-after: //CONF_DS_MAIN_SCENARIO_CLIENT        |
 |    :end-before: //!--                                  |
-|    :dedent: 4                                          |
+|    :dedent: 8                                          |
 +--------------------------------------------------------+
 | **XML**                                                |
 +--------------------------------------------------------+
@@ -134,7 +134,7 @@ Likewise, several servers can share the same port if their IP addresses are diff
 +========================================================+
 | **C++**                                                |
 +--------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp            |
+| .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |    :language: c++                                      |
 |    :start-after: //CONF_DS_REDUNDANCY_SCENARIO_SERVER  |
 |    :end-before: //!--                                  |
@@ -153,7 +153,7 @@ Likewise, several servers can share the same port if their IP addresses are diff
 +========================================================+
 | **C++**                                                |
 +--------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp            |
+| .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |    :language: c++                                      |
 |    :start-after: //CONF_DS_REDUNDANCY_SCENARIO_CLIENT  |
 |    :end-before: //!--                                  |
@@ -333,7 +333,7 @@ In order to communicate both networks we can set server A to act as client of se
 +--------------------------------------------------------+
 | **C++**                                                |
 +--------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp            |
+| .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |    :language: c++                                      |
 |    :start-after: //CONF_DS_PARTITION_2                 |
 |    :end-before: //!--                                  |
@@ -370,7 +370,7 @@ In order to communicate both networks we can setup server C to act as client of 
 +--------------------------------------------------------+
 | **C++**                                                |
 +--------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp            |
+| .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |    :language: c++                                      |
 |    :start-after: //CONF_DS_PARTITION_3                 |
 |    :end-before: //!--                                  |

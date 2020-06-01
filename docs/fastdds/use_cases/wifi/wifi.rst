@@ -69,11 +69,11 @@ listed in the :ref:`intial peers list<Simple Initial Peers>` of the peer partici
 +------------------------------------------------------------+
 | **C++**                                                    |
 +------------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp                |
+| .. literalinclude:: /../code/DDSCodeTester.cpp             |
 |    :language: c++                                          |
 |    :start-after: //CONF_INITIAL_PEERS_METAUNICAST          |
 |    :end-before: //!--                                      |
-|    :dedent: 4                                              |
+|    :dedent: 8                                              |
 +------------------------------------------------------------+
 | **XML**                                                    |
 +------------------------------------------------------------+

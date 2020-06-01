@@ -57,10 +57,11 @@ as shown in the example below.
    +-------------------------------------------------------+
    | **C++**                                               |
    +-------------------------------------------------------+
-   | .. literalinclude:: /../code/CodeTester.cpp           |
+   | .. literalinclude:: /../code/DDSCodeTester.cpp        |
    |    :language: c++                                     |
    |    :start-after: //CONF-QOS-INCREASE-SOCKETBUFFERS    |
-   |    :lines: 1-2                                        |
+   |    :end-before: //!--                                 |
+   |    :dedent: 8                                         |
    +-------------------------------------------------------+
    | **XML**                                               |
    +-------------------------------------------------------+
@@ -118,21 +119,22 @@ level.
 On the :ref:`dds_layer_domainParticipant` the throughput controller is configured on the ``wire_protocol()`` field,
 while the :ref:`dds_layer_publisher_dataWriterQos` uses the ``throughput_controller()`` field.
 
-+-----------------------------------------------+
-| **C++**                                       |
-+-----------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp   |
-|    :language: c++                             |
-|    :start-after: //CONF-QOS-FLOWCONTROLLER    |
-|    :end-before: //!--                         |
-+-----------------------------------------------+
-| **XML**                                       |
-+-----------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml    |
-|    :language: xml                             |
-|    :start-after: <!-->CONF-QOS-FLOWCONTROLLER |
-|    :end-before: <!--><-->                     |
-+-----------------------------------------------+
++------------------------------------------------+
+| **C++**                                        |
++------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp |
+|    :language: c++                              |
+|    :start-after: //CONF-QOS-FLOWCONTROLLER     |
+|    :end-before: //!--                          |
+|    :dedent: 8                                  |
++------------------------------------------------+
+| **XML**                                        |
++------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml     |
+|    :language: xml                              |
+|    :start-after: <!-->CONF-QOS-FLOWCONTROLLER  |
+|    :end-before: <!--><-->                      |
++------------------------------------------------+
 
 .. Warning::
 
@@ -154,23 +156,13 @@ namely, Heartbeat and Ack/Nack messages.
 A smaller Heartbeat period increases the CPU and network overhead, but speeds up the system response when
 a piece of data is lost.
 Therefore, users can customize the Heartbeat period to match their needs.
-This can be done at the :ref:`dds_layer_domainParticipant` level or at the :ref:`dds_layer_publisher_dataWriter`
-level.
+This can be done with the :ref:`dds_layer_publisher_dataWriterQos`.
 
-In the :ref:`dds_layer_domainParticipant`, the Heartbeat period can be configured on the
-:ref:`dds_layer_domainParticipantQos`, as shown in the example below.
-
-.. literalinclude:: /../code/CodeTester.cpp
-   :language: c++
-   :start-after: //CONF_QOS_TUNING_RELIABLE_PUBLISHER
-   :end-before: //!--
-
-In the :ref:`dds_layer_publisher_dataWriter`, it is done with the :ref:`dds_layer_publisher_dataWriterQos`.
-
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //CONF_QOS_TUNING_RELIABLE_WRITER
    :end-before: //!--
+   :dedent: 8
 
 .. _tuning-nonstrict-reliability:
 

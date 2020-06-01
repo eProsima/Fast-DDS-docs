@@ -31,6 +31,22 @@ with distributed systems:
   In cases where there are many :ref:`DataReaders<dds_layer_subscriber_dataReader>` subscribed to the same
   :ref:`dds_layer_topic_topic`, using multicast delivery can help reducing the overhead in the network and CPU.
 
++ :ref:`use-case-largeData`.
+  Presents configuration options that can improve the performance in scenarios where the amount of data exchanged
+  between a :ref:`dds_layer_publisher` and a :ref:`dds_layer_subscriber` is large, either because of the data size
+  or because the message rate.
+  The examples describe how to:
+
+  - configure the socket buffer size (see :ref:`increase the buffers size<tuning-socket-buffer>`).
+
+  - limit the publication rate (see :ref:`flow-controllers`).
+
+  - tune the size of the socket buffers (see :ref:`tuning-socket-buffer`).
+
+  - tune the Heartbeat period (see :ref:`tuning-heartbeat-period`).
+
+  - configure a non-strict reliable mode (see :ref:`tuning-nonstrict-reliability`).
+
 + :ref:`fastrtps_ros2`.
   Since Fast DDS is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
   this tutorial is an explanation of how to take full advantage of Fast DDS wide set of capabilities in a ROS 2

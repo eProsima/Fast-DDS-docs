@@ -475,7 +475,10 @@ void configuration_compilation_check()
     //!--
 
     //CONF-QOS-INCREASE-SOCKETBUFFERS
+    // Increase the sending buffer size
     participant_attr.rtps.sendSocketBufferSize = 1048576;
+
+    // Increase the receiving buffer size
     participant_attr.rtps.listenSocketBufferSize = 4194304;
     //!--
 

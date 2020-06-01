@@ -29,4 +29,5 @@ Instances of :ref:`dds_layer_domainParticipant` are created through the
     /fastdds/dds_layer/domain/domainParticipantListener/domainParticipantListener
     /fastdds/dds_layer/domain/domainParticipantFactory/domainParticipantFactory
     /fastdds/dds_layer/domain/domainParticipant/createDomainParticipant
+    /fastdds/dds_layer/domain/domainParticipant/partition
 

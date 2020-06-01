@@ -215,15 +215,17 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 
 .. important::
 
-    When running an *eProsima Fast DDS* application, you need to link it with the library :code:`C:\temp\bin`
+    When running an *eProsima Fast DDS* application, you need to link it with the library
     where the pakages have been installed. You can either prepare the environment locally by typing the command:
 
     .. code-block:: bash
 
-        C:\> set PATH=%PATH%;C:\temp\bin
+        C:\> PATH=<PATH_TO_Fast-DDS_INSTALLATION>/Fast-DDS/install/bin
 
     in the console you use to run the *eProsima Fast DDS* instance, or permanently add it to your path, by opening the
-    *Edit the system environment variables* control panel, and adding :code:`C:\temp\bin` to the :code:`PATH`.
+    *Edit the system environment variables* control panel, and adding
+    :code:`<PATH_TO_Fast-DDS_INSTALLATION>/Fast-DDS/install/bin`
+    to the :code:`PATH`.
 
 .. External links
 

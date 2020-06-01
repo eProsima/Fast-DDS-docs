@@ -38,7 +38,6 @@ eProsima Fast DDS Documentation
    /fastdds/env_vars/env_vars
    /fastdds/dynamic_types/dynamic_types
    /fastdds/use_cases/use_cases
-   advanced
    realtime
    /fastdds/api_reference/api_reference
 

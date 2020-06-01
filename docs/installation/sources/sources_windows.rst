@@ -52,10 +52,10 @@ Python
 
 Download and install the Python_ version that better fits your requirements.
 
-Cmake, pip, wget and git
+CMake, pip, wget and git
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can download and install CMake_, pip_, wget_ and git_ by following the instrucctions on the respective
+You can download and install CMake_, pip_, wget_ and git_ by following the instructions on the respective
 websites.
 Once installed, you need to add the path to these executables to your :code:`PATH` from the
 *Edit the system environment variables* control panel.
@@ -78,7 +78,7 @@ Gtest
 
 .. note::
 
-    By default, *eProsima Fast DDS* doesn’t compile tests.
+    By default, *eProsima Fast DDS* does not compile tests.
     You can activate them by adding the :code:`-DPERFORMANCE_TESTS=ON` flag when calling colcon_ or CMake_
     (for details, see below).
 
@@ -216,7 +216,7 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 .. important::
 
     When running an *eProsima Fast DDS* application, you need to link it with the library
-    where the pakages have been installed. You can either prepare the environment locally by typing the command:
+    where the packages have been installed. You can either prepare the environment locally by typing the command:
 
     .. code-block:: bash
 

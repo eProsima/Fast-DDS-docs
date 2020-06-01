@@ -60,6 +60,7 @@ eClock
 endian
 eProsima
 ethernet
+executables
 extensibility
 fastdds
 fastrtpsgen
@@ -149,8 +150,10 @@ unmatch
 unmatching
 Valgrind
 vcstool
+wget
 whitelist
 whitelists
 Wireshark
+worskspace
 WString
 XTypes

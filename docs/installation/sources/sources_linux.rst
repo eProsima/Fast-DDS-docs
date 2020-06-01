@@ -30,10 +30,10 @@ Python
 
 Download and install the Python_ version that better fits your requirements.
 
-Cmake, g++, pip, wget and git
+CMake, g++, pip, wget and git
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can install Cmake_, g++, pip_, wget_ and git_ using the package manager of your Linux distribution.
+You can install CMake_, g++, pip_, wget_ and git_ using the package manager of your Linux distribution.
 For example, on Ubuntu you can install them with the command:
 
 .. code-block:: bash
@@ -55,7 +55,7 @@ Gtest
 
 .. note::
 
-    By default, *eProsima Fast DDS* doesn’t compile tests.
+    By default, *eProsima Fast DDS* does not compile tests.
     You can activate them by adding the :code:`-DPERFORMANCE_TESTS=ON` flag when calling colcon_ or CMake_
     (for details, see below).
 
@@ -185,7 +185,7 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 .. important::
 
     When running an *eProsima Fast DDS* application, you need to link it with the library :code:`/usr/local/lib/`
-    where the pakages have been installed. You can either prepare the environment locally by typing the command:
+    where the packages have been installed. You can either prepare the environment locally by typing the command:
 
     .. code-block:: bash
 

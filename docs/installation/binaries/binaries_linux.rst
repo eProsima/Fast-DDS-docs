@@ -59,5 +59,5 @@ To uninstall all installed components, execute the :code:`uninstall.sh` script (
 
 .. note::
 
-    By default, *eProsima Fast DDS* doesn’t compile tests.
+    By default, *eProsima Fast DDS* does not compile tests.
     You can activate them by downloading and installing `Gtest <https://github.com/google/googletest>`_.

@@ -40,7 +40,6 @@ eProsima Fast DDS Documentation
    advanced
    realtime
    persistence
-   fastrtpsgen
    /fastdds/api_reference/api_reference
 
 .. _index_gen:

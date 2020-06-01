@@ -14,9 +14,9 @@ Beside the :ref:`dds_layer_log_verbosity_level`, *Fast DDS* provides three diffe
     :backlinks: none
     :depth: 1
 
-Keep in mind that filters are applied in the specific order presented above, meaning that file name filtering is only
-applied to the entries that pattern-match the category filter, and content filtering is only applied to the entries that
-pattern-match both category and file name filters.
+It is worth mentioning that filters are applied in the specific order presented above, meaning that file name filtering
+is only applied to the entries that pattern-match the category filter, and content filtering is only applied to the
+entries that pattern-match both category and file name filters.
 
 
 .. _dds_layer_log_filter_category:

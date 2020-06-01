@@ -2,7 +2,7 @@
 
 .. _dds_layer_log_logging:
 
-Logging messages
+Logging Messages
 ----------------
 
 The logging of messages is handled by three dedicated macros, one for each available verbosity level (see
@@ -14,7 +14,7 @@ The logging of messages is handled by three dedicated macros, one for each avail
 
 Said macros take exactly two arguments, a category and a message, and produce a log entry showing the message itself
 plus some meta information depending on the module's configuration (see :ref:`dds_layer_log_logging_spec` and
-:ref:`dds_layer_log_config`).
+:ref:`dds_layer_log_config_entry`).
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
@@ -24,6 +24,6 @@ plus some meta information depending on the module's configuration (see :ref:`dd
 
 .. warning::
 
-    Beware that |logInfo| is deactivated  when compiled with ``CMAKE_BUILD_TYPE`` other than ``Debug``. More more
+    Note that |logInfo| is deactivated  when compiled with ``CMAKE_BUILD_TYPE`` other than ``Debug``. More more
     information about how to enable and disable each individual logging macro, please refer to
     :ref:`dds_layer_log_disable`.

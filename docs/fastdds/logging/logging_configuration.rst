@@ -2,8 +2,28 @@
 
 .. _dds_layer_log_config:
 
-Module configuration
+Module Configuration
 --------------------
+
+The logging module offers a variety of configuration options.
+The different components of a log entry (see :ref:`dds_layer_log_logging_spec`) can be configured as explained in
+:ref:`dds_layer_log_config_entry`.
+Furthermore, the logging module allows for registering several log consumer, allowing applications to direct the logging
+output to different destinations (see :ref:`dds_layer_log_register_consumers`).
+In addition, some of the logging features can be configured using *eProsima Fast DDS* XML configuration files (see
+:ref:`dds_layer_log_xml`).
+
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
+
+
+.. _dds_layer_log_config_entry:
+
+Log Entry
+^^^^^^^^^
 
 All the different components of a log entry are summarized in the following table (please refer to each component's
 section for further explanation):
@@ -24,25 +44,21 @@ section for further explanation):
 | :ref:`dds_layer_log_function_name`   | YES      | ENABLED  |
 +--------------------------------------+----------+----------+
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 
 .. _dds_layer_log_timestamp:
 
 Timestamp
-^^^^^^^^^
+"""""""""
 
-The log timestamp follows the ISO 8601 specification for local timestamps, i.e. *YYYY-MM-DD hh:mm:ss.sss*.
+The log timestamp follows the `ISO 8601 standard <https://www.iso.org/iso-8601-date-and-time-format.html>`_ for local
+timestamps, i.e. *YYYY-MM-DD hh:mm:ss.sss*.
 This component cannot be further configured or disabled.
 
 
 .. _dds_layer_log_category:
 
 Category
-^^^^^^^^
+""""""""
 
 Log entries have a category assigned when producing the log via the macros presented in
 :ref:`dds_layer_log_logging`.
@@ -53,7 +69,7 @@ This component cannot be further configured or disabled.
 .. _dds_layer_log_verbosity_level:
 
 Verbosity Level
-^^^^^^^^^^^^^^^
+"""""""""""""""
 
 *eProsima Fast DDS* logging module provides three verbosity levels defined by the |Log::Kind| enumeration, those are:
 
@@ -76,7 +92,7 @@ respectively.
 .. _dds_layer_log_message:
 
 Message
-^^^^^^^
+"""""""
 
 This component constitutes the body of the log entry.
 It is specified when producing the log via the macros presented in :ref:`dds_layer_log_logging`.
@@ -88,7 +104,7 @@ This component cannot be further configured or disabled.
 .. _dds_layer_log_file_context:
 
 File Context
-^^^^^^^^^^^^
+""""""""""""
 
 This component specifies the origin of the log entry in terms of file name and line number (see
 :ref:`dds_layer_log_logging` for a log entry example featuring this component).
@@ -105,7 +121,7 @@ The file context component can be enabled/disabled using the member function |Lo
 .. _dds_layer_log_function_name:
 
 Function Name
-^^^^^^^^^^^^^
+"""""""""""""
 
 This component specifies the origin of the log entry in terms of the function name (see
 :ref:`dds_layer_log_logging` for a log entry example featuring this component).
@@ -124,7 +140,7 @@ The function name component can be enabled/disabled using the member function |L
 Register Consumers
 ^^^^^^^^^^^^^^^^^^
 
-*eProsima Fast DDS* logging module supports zero or :ref:`consumers <dds_layer_log_consumer>` logging the entries
+*eProsima Fast DDS* logging module supports zero or more :ref:`consumers <dds_layer_log_consumer>` logging the entries
 registered in the logging queue with the methods described in :ref:`dds_layer_log_logging`.
 To register a consumer, the |Log| class exposes member function |Log::RegisterConsumer|
 
@@ -177,38 +193,4 @@ XML Configuration
 ^^^^^^^^^^^^^^^^^
 
 *eProsima Fast DDS* allows for registering and configuring log consumers using XML configuration files.
-This is done using the profile described in Log profiles.
-Log profiles have the following structure.
-
-- ``<use_default>``: If set to ``FALSE``, a call to |Log::ClearConsumers| is performed (see
-  :ref:`dds_layer_log_register_consumers`).
-- ``<consumer>``: Defines the class and configuration of the consumer to be registered.
-  Multiple consumers can be registered this way.
-  It has the following children elements:
-
-  - ``<class>``: The class of the consumer.
-    Possible values are ``StdoutConsumer`` and ``FileConsumer``.
-  - ``<property>``: This element is used to configured the file consumer and therefore only applies if class is set to
-    ``FileConsumer``. It has the following children elements:
-
-    - ``<name>``: Name of the property to be configured.
-      Possible values are ``filename`` and ``append``.
-    - ``<value>``: The value of the property.
-      Possible values adhere to the following rules:
-
-      - If ``<name>`` is set to ``filename``, then this element contains the name of the log file.
-      - If ``<name>`` is set to ``append``, then this element defined whether the consumer should, upon creation, open
-        the file for appending or overriding.
-
-The following constitutes an example of an XML configuration file that sets the log to use one StdoutConsumer and one
-FileConsumer:
-
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->LOG-CONFIG<-->
-    :end-before: <!--><-->
-    :lines: 2,3,5-32,34
-
-.. note::
-
-    For further details on writing and loading XML configuration files, please refer to :ref:`xml_profiles`.
+Please refer to Log profile for details.

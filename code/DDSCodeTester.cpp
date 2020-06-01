@@ -21,6 +21,9 @@
 #include <fastdds/dds/topic/TopicListener.hpp>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
 #include <fastrtps/types/DynamicTypePtr.h>
+#include <fastdds/dds/log/Log.hpp>
+#include <fastdds/dds/log/StdoutConsumer.hpp>
+#include <fastdds/dds/log/FileConsumer.hpp>
 
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
 #include <fastrtps/utils/IPLocator.h>
@@ -2883,3 +2886,113 @@ void dds_dynamic_types_examples ()
     }
 }
 
+void log_examples()
+{
+    //LOG_MESSAGES
+    logInfo(DOCUMENTATION_CATEGORY, "This is an info message");
+    logWarning(DOCUMENTATION_CATEGORY, "This is an warning message");
+    logError(DOCUMENTATION_CATEGORY, "This is an error message");
+    //!--
+
+    //LOG_SET_GET_VERBOSITY
+    // Set log verbosity level to Log::Kind::Info
+    Log::SetVerbosity(Log::Kind::Info);
+
+    // Get log verbosity level
+    Log::Kind verbosity_level = Log::GetVerbosity();
+    //!--
+
+    //LOG_REPORT_FILENAMES
+    // Enable file name and line number reporting
+    Log::ReportFilenames(true);
+
+    // Disable file name and line number reporting
+    Log::ReportFilenames(false);
+    //!--
+
+    //LOG_REPORT_FUNCTIONS
+    // Enable function name reporting
+    Log::ReportFunctions(true);
+
+    // Disable function name reporting
+    Log::ReportFunctions(false);
+    //!--
+
+    //LOG_CATEGORY_FILTER
+    // Set filter using regular expression
+    Log::SetCategoryFilter(std::regex("(CATEGORY_1)|(CATEGORY_2)"));
+
+    // Would be consumed
+    logError(CATEGORY_1, "First log entry");
+    // Would be consumed
+    logError(CATEGORY_2, "Second log entry");
+    // Would NOT be consumed
+    logError(CATEGORY_3, "Third log entry");
+    //!--
+
+    //LOG_FILENAME_FILTER
+    // Filename: example.cpp
+
+    // Enable file name and line number reporting
+    Log::ReportFilenames(true);
+
+    // Set filter using regular expression so filename must match "example"
+    Log::SetFilenameFilter(std::regex("example"));
+    // Would be consumed
+    logError(CATEGORY, "First log entry");
+
+    // Set filter using regular expression so filename must match "other"
+    Log::SetFilenameFilter(std::regex("other"));
+    // Would NOT be consumed
+    logError(CATEGORY, "Second log entry");
+    //!--
+
+    //LOG_CONTENT_FILTER
+    // Set filter using regular expression so message component must match "First"
+    Log::SetErrorStringFilter(std::regex("First"));
+    // Would be consumed
+    logError(CATEGORY, "First log entry");
+    // Would NOT be consumed
+    logError(CATEGORY, "Second log entry");
+    //!--
+
+    //LOG_REGISTER_CONSUMER
+    // Create a FileConsumer consumer that logs entries in "archive.log"
+    std::unique_ptr<FileConsumer> file_consumer(new FileConsumer("archive.log"));
+    // Register the consumer. Log entries will be logged to STDOUT and "archive.log"
+    Log::RegisterConsumer(std::move(file_consumer));
+    //!--
+
+    //LOG_CLEAR_CONSUMERS
+    // Clear all the consumers. Log entries are discarded upon consumption.
+    Log::ClearConsumers();
+    //!--
+
+    //LOG_STDOUT_CONSUMER
+    // Create a StdoutConsumer consumer that logs entries to stdout stream.
+    std::unique_ptr<StdoutConsumer> stdout_consumer(new StdoutConsumer());
+
+    // Register the consumers.
+    Log::RegisterConsumer(std::move(stdout_consumer));
+    //!--
+
+    //LOG_FILE_CONSUMER
+    // Create a FileConsumer consumer that logs entries in "archive_1.log", opening the file in "write" mode.
+    std::unique_ptr<FileConsumer> write_file_consumer(new FileConsumer("archive_1.log", false));
+
+    // Create a FileConsumer consumer that logs entries in "archive_2.log", opening the file in "append" mode.
+    std::unique_ptr<FileConsumer> append_file_consumer(new FileConsumer("archive_2.log", true));
+
+    // Register the consumers.
+    Log::RegisterConsumer(std::move(write_file_consumer));
+    Log::RegisterConsumer(std::move(append_file_consumer));
+    //!--
+
+    //LOG_FLUSH_AND_KILL
+    // Block current thread until the log queue is empty.
+    Log::Flush();
+
+    // Stop the loggin thread and free its resources.
+    Log::KillThread();
+    //!--
+}

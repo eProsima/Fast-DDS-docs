@@ -41,6 +41,7 @@ if(NOT "${ENV_FASTRTPS_BRANCH}" STREQUAL "")
 elseif(NOT "${FASTRTPS_BRANCH}" STREQUAL "")
     set(REPO_TAG "${FASTRTPS_BRANCH}")
 else()
+    message("-- Environment variable FASTRTPS_BRANCH not set. Setting fastrtps branch to current documentation branch")
     execute_process(
         COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
         RESULT_VARIABLE RESULT
@@ -50,14 +51,14 @@ endif()
 # Remove trailing endline if present
 string(REGEX REPLACE "\n$" "" REPO_TAG "${REPO_TAG}")
 
-message("Checking fastrtps branch ${REPO_TAG}...")
+message("-- Checking whether fastrtps branch ${REPO_TAG} exists...")
 execute_process(
     COMMAND ${GIT_EXECUTABLE} ls-remote https://github.com/eProsima/Fast-RTPS.git ${REPO_TAG}
     RESULT_VARIABLE RESULT_LS_REMOTE
     OUTPUT_VARIABLE OUTPUT_LS_REMOTE)
 
 if("${OUTPUT_LS_REMOTE}" STREQUAL "")
-    message("fastrtps branch ${REPO_TAG} not found. Changing to master branch.")
+    message("-- fastrtps branch ${REPO_TAG} not found. Changing to master branch.")
     set(REPO_TAG "master")
 endif()
 

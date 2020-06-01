@@ -474,52 +474,6 @@ void configuration_compilation_check()
     descriptor.interfaceWhiteList.emplace_back("127.0.0.1");
     //!--
 
-    //LOG_USAGE_PRINT
-    logInfo(INFO_MSG, "This is an info message");
-    logWarning(WARN_MSG, "This is a warning message");
-    logError(ERROR_MSG, "This is an error message");
-    //!--
-
-    //LOG_USAGE_INFO
-    logInfo(NEW_CATEGORY, "This log message belong to NEW_CATEGORY category.");
-    //!--
-
-    //LOG_USAGE_VERBOSITY
-    Log::SetVerbosity(Log::Kind::Warning);
-    std::regex my_regex("NEW_CATEGORY");
-    Log::SetCategoryFilter(my_regex);
-    //!--
-
-    /*
-       //LOG_USAGE_API
-       //! Enables the reporting of filenames in log entries. Disabled by default.
-       RTPS_DllAPI static void ReportFilenames(bool);
-       //! Enables the reporting of function names in log entries. Enabled by default when supported.
-       RTPS_DllAPI static void ReportFunctions(bool);
-       //! Sets the verbosity level, allowing for messages equal or under that priority to be logged.
-       RTPS_DllAPI static void SetVerbosity(Log::Kind);
-       //! Returns the current verbosity level.
-       RTPS_DllAPI static Log::Kind GetVerbosity();
-       //! Sets a filter that will pattern-match against log categories, dropping any unmatched categories.
-       RTPS_DllAPI static void SetCategoryFilter    (const std::regex&);
-       //! Sets a filter that will pattern-match against filenames, dropping any unmatched categories.
-       RTPS_DllAPI static void SetFilenameFilter    (const std::regex&);
-       //! Sets a filter that will pattern-match against the provided error string, dropping any unmatched categories.
-       RTPS_DllAPI static void SetErrorStringFilter (const std::regex&);
-       //!--
-     */
-
-    //LOG-CONFIG
-    Log::ClearConsumers(); // Deactivate StdoutConsumer
-
-    // Add FileConsumer consumer
-    std::unique_ptr<FileConsumer> fileConsumer(new FileConsumer("append.log", true));
-    Log::RegisterConsumer(std::move(fileConsumer));
-
-    // Back to its defaults: StdoutConsumer will be enable and FileConsumer removed.
-    Log::Reset();
-    //!--
-
     //CONF_QOS_STATIC_DISCOVERY_CODE
     participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
     participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
@@ -1996,6 +1950,12 @@ int main(
         exit(-1);
     }
 
+    // Also show log warnings to spot potential mistakes
+    Log::SetVerbosity(Log::Kind::Warning);
+    // Report filename and line number for debugging
+    Log::ReportFilenames(true);
+
+    int exit_code = 0;
     if (strncmp(argv[1], "Governance", 10) == 0)
     {
         std::ifstream file;
@@ -2008,7 +1968,7 @@ int main(
         if (!parser.parse_stream(content.c_str(), content.length()))
         {
             printf("Error parsing xml file %s\n", argv[1]);
-            exit(-1);
+            exit_code = -1;
         }
     }
     else if (strncmp(argv[1], "Permissions", 11) == 0)
@@ -2023,7 +1983,7 @@ int main(
         if (!parser.parse_stream(content.c_str(), content.length()))
         {
             printf("Error parsing xml file %s\n", argv[1]);
-            exit(-1);
+            exit_code = -1;
         }
     }
     else if (strncmp(argv[1], "Static", 6) == 0)
@@ -2034,7 +1994,7 @@ int main(
         if (parser.loadXMLFile(file) != XMLP_ret::XML_OK)
         {
             printf("Error parsing xml file %s\n", argv[1]);
-            exit(-1);
+            exit_code = -1;
         }
     }
     else
@@ -2044,9 +2004,12 @@ int main(
         if (parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
         {
             printf("Error parsing xml file %s\n", argv[1]);
-            exit(-1);
+            exit_code = -1;
         }
     }
 
-    exit(0);
+    // Make sure all logs are displayed before exiting
+    Log::Flush();
+
+    exit(exit_code);
 }

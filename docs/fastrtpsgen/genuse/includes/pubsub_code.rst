@@ -21,7 +21,7 @@ Where the option choices are:
     +=====================+=========================================================================================+
     | -help               | Shows the help information.                                                             |
     +---------------------+-----------------------------------------------------------------------------------------+
-    | -version            | Shows the current version of eProsima FASTRTPSGEN.                                      |
+    | -version            | Shows the current version of eProsima Fast DDS-Gen.                                     |
     +---------------------+-----------------------------------------------------------------------------------------+
     | -d <directory>      | Sets the output directory where the generated files are created.                        |
     +---------------------+-----------------------------------------------------------------------------------------+

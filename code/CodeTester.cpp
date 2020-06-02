@@ -963,7 +963,7 @@ void pubsub_api_example_create_entities()
     //!--
 
     //PUBSUB_API_REGISTER_TYPE
-    HelloWorldPubSubType m_type; //Auto-generated type from FastRTPSGen
+    HelloWorldPubSubType m_type; //Auto-generated type from Fast DDS-Gen
     Domain::registerType(participant, &m_type);
     //!--
 
@@ -974,7 +974,7 @@ void pubsub_api_example_create_entities()
     //!--
 
     //PUBSUB_API_WRITE_SAMPLE
-    HelloWorld sample; //Auto-generated container class for topic data from FastRTPSGen
+    HelloWorld sample; //Auto-generated container class for topic data from Fast DDS-Gen
     sample.msg("Hello there!"); // Add contents to the message
     publisher->write(&sample); //Publish
     //!--

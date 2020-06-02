@@ -94,12 +94,12 @@ If you want to compile the examples, you will need to add the argument ``-DCOMPI
 If you want to compile the performance tests, you will need to add the argument ``-DPERFORMANCE_TESTS=ON`` when calling
 CMake.
 
-For generate *fastrtpsgen* please see :ref:`compile-fastrtpsgen`.
+For generate *Fast DDS-Gen* please see :ref:`compile-fastrtpsgen`.
 
 Fast DDS-gen
 -------------
 
-If you want to compile *fastrtpsgen* java application, you will need to download its source code from
+If you want to compile *Fast DDS-Gen* java application, you will need to download its source code from
 the `Fast-RPTS-Gen <https://github.com/eProsima/Fast-DDS-Gen>`_ repository and with ``--recursive`` option and
 compile it calling ``gradle assemble``. For more details see :ref:`compile-fastrtpsgen`.
 

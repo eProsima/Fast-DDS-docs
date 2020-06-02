@@ -47,6 +47,14 @@ with distributed systems:
 
   - configure a non-strict reliable mode (see :ref:`tuning-nonstrict-reliability`).
 
++ :ref:`use-case-realtime`.
+  Describes the configuration options that allows using Fast DDS on a real-time scenario.
+  The examples describe how to:
+
+  - configure memory management to avoid dynamic memory allocation (see :ref:`realtime-allocations`).
+
+  - limit the blocking time of API functions to have a predictable response time (see :ref:`non-blocking-calls`).
+
 + :ref:`fastrtps_ros2`.
   Since Fast DDS is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
   this tutorial is an explanation of how to take full advantage of Fast DDS wide set of capabilities in a ROS 2
@@ -59,6 +67,7 @@ with distributed systems:
     /fastdds/use_cases/wide_deployments/wide_deployments.rst
     /fastdds/use_cases/large_data/large_data.rst
     /fastdds/use_cases/many_subscribers/many_subscribers.rst
+    /fastdds/use_cases/realtime/realtime.rst
     /fastdds/use_cases/ros2/ros2.rst
 
 

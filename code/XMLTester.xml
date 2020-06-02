@@ -1823,6 +1823,69 @@
 </participant>
 <!--><-->
 
+<!-->CONF-ALLOCATION-QOS-PARTICIPANTS<-->
+<participant profile_name="participant_profile_qos_entity_resource_limit">
+    <rtps>
+        <allocation>
+            <!-- Limit to 3 participants -->
+            <total_participants>
+                <initial>3</initial>
+                <maximum>3</maximum>
+                <increment>0</increment>
+            </total_participants>
+
+            <!-- Limit to 3 readers per participant -->
+            <total_readers>
+                <initial>3</initial>
+                <maximum>3</maximum>
+                <increment>0</increment>
+            </total_readers>
+
+            <!-- Limit to 1 writer per participant -->
+            <total_writers>
+                <initial>1</initial>
+                <maximum>1</maximum>
+                <increment>0</increment>
+            </total_writers>
+        </allocation>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-ALLOCATION-QOS-PARAMETERS<-->
+<participant profile_name="participant_profile_qos_parameter_resource_limit">
+    <rtps>
+        <allocation>
+            <max_partitions>256</max_partitions>
+            <max_user_data>256</max_user_data>
+            <max_properties>512</max_properties>
+        </allocation>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->CONF-ALLOCATION-QOS-WRITER<-->
+<publisher profile_name="writer_profile_qos_resource_limit">
+    <!-- Limit to 3 matching readers -->
+    <matchedSubscribersAllocation>
+        <initial>3</initial>
+        <maximum>3</maximum>
+        <increment>0</increment>
+    </matchedSubscribersAllocation>
+</publisher>
+<!--><-->
+
+<!-->CONF-ALLOCATION-QOS-READER<-->
+<subscriber profile_name="reader_profile_qos_resource_limit">
+    <!-- Limit to 1 matching writer -->
+    <matchedPublishersAllocation>
+        <initial>1</initial>
+        <maximum>1</maximum>
+        <increment>0</increment>
+    </matchedPublishersAllocation>
+</subscriber>
+<!--><-->
+
 <!-->CONF-ALLOCATION-QOS-EXAMPLE<-->
 <participant profile_name="participant_alloc_qos_example">
     <rtps>

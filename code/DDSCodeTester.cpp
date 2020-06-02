@@ -3649,5 +3649,109 @@ void dds_usecase_examples()
         //!--
     }
 
+    {
+        //CONF-ALLOCATION-QOS-PARTICIPANTS
+        DomainParticipantQos qos;
+
+        // Fix the size of discovered participants to 3
+        // This will effectively preallocate the memory during initialization
+        qos.allocation().participants =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+
+        // Fix the size of discovered DataWriters to 1 per DomainParticipant
+        // Fix the size of discovered DataReaders to 3 per DomainParticipant
+        // This will effectively preallocate the memory during initialization
+        qos.allocation().writers =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        qos.allocation().readers =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-PARAMETERS
+        DomainParticipantQos qos;
+
+        // Fix the size of the complete user data field to 256 octets
+        qos.allocation().data_limits.max_user_data = 256u;
+        // Fix the size of the complete partitions field to 256 octets
+        qos.allocation().data_limits.max_partitions = 256u;
+        // Fix the size of the complete properties field to 512 octets
+        qos.allocation().data_limits.max_properties = 512u;
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-WRITER
+        DataWriterQos qos;
+
+        // Fix the size of matched DataReaders to 3
+        // This will effectively preallocate the memory during initialization
+        qos.writer_resource_limits().matched_subscriber_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-READER
+        DataReaderQos qos;
+
+        // Fix the size of matched DataWriters to 1
+        // This will effectively preallocate the memory during initialization
+        qos.reader_resource_limits().matched_publisher_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-EXAMPLE
+        // DomainParticipant configuration
+        //////////////////////////////////
+        DomainParticipantQos participant_qos;
+
+        // We know we have 3 participants on the domain
+        participant_qos.allocation().participants =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        // We know we have at most 2 readers on each participant
+        participant_qos.allocation().readers =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+        // We know we have at most 1 writer on each participant
+        participant_qos.allocation().writers =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+
+        // We know the maximum size of partition data
+        participant_qos.allocation().data_limits.max_partitions = 256u;
+        // We know the maximum size of user data
+        participant_qos.allocation().data_limits.max_user_data = 256u;
+        // We know the maximum size of properties data
+        participant_qos.allocation().data_limits.max_properties = 512u;
+
+
+        // DataWriter configuration for Topic 1
+        ///////////////////////////////////////
+        DataWriterQos writer1_qos;
+
+        // we know we will only have three matching subscribers
+        writer1_qos.writer_resource_limits().matched_subscriber_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+
+        // DataWriter configuration for Topic 2
+        ///////////////////////////////////////
+        DataWriterQos writer2_qos;
+
+        // we know we will only have two matching subscribers
+        writer2_qos.writer_resource_limits().matched_subscriber_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+
+
+        // DataReader configuration for both Topics
+        ///////////////////////////////////////////
+        DataReaderQos reader_qos;
+
+        // we know we will only have one matching publisher
+        reader_qos.reader_resource_limits().matched_publisher_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        //!--
+    }
 
 }

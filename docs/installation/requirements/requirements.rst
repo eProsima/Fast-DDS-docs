@@ -3,7 +3,7 @@
 Requirements
 ============
 
-*eProsima Fast RTPS* requires the following packages to work.
+*eProsima Fast DDS* requires the following packages to work.
 
 Common Dependencies
 -------------------
@@ -25,6 +25,6 @@ Windows 7 32-bit and 64-bit
 Visual C++ 2015 or 2017 Redistributable Package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-*eProsima Fast RTPS* requires the Visual C++ Redistributable packages for the Visual Studio version you choose during
+*eProsima Fast DDS* requires the Visual C++ Redistributable packages for the Visual Studio version you choose during
 the installation or compilation.
 The installer gives you the option of downloading and installing them.

@@ -1,4 +1,4 @@
-.. eProsima Fast RTPS documentation master file.
+.. eProsima Fast DDS documentation master file.
 
 eProsima Fast DDS Documentation
 ================================
@@ -44,7 +44,7 @@ eProsima Fast DDS Documentation
 .. _index_gen:
 
 .. toctree::
-   :caption: FastRTPSGen Manual
+   :caption: Fast DDS-Gen
    :maxdepth: 2
    :numbered: 5
 

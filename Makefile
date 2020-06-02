@@ -18,7 +18,7 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) docs
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html       to make standalone HTML files"
-	@echo "  compile    to compile the source code. You can use env variable FASTRTPS_BRANCH."
+	@echo "  compile    to compile the source code. You can use env variable FASTDDS_BRANCH."
 	@echo "  test       to check the spelling, and the source code"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"

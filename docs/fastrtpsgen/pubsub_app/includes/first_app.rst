@@ -32,7 +32,7 @@ The `-example` option creates an example application, and the CMake files needed
 
         .. code:: bash
 
-            <path-to-Fast-RTPS-Gen>/scripts/fastrtpsgen -example CMake HelloWorld.idl
+            <path-to-Fast-DDS-Gen>/scripts/fastrtpsgen -example CMake HelloWorld.idl
 
     * On Windows:
 
@@ -46,7 +46,7 @@ The `-example` option creates an example application, and the CMake files needed
 
         .. code:: bash
 
-            <path-to-Fast-RTPS-Gen>/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+            <path-to-Fast-DDS-Gen>/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
 
 Finally, we compile the generated code.
 
@@ -94,7 +94,7 @@ You can also modify any values on your custom, IDL-generated data type.
    :start-after: //PUBSUB_API_WRITE_SAMPLE
    :end-before: //!
 
-Take a look at the `eProsima Fast RTPS examples on github <https://github.com/eProsima/Fast-RTPS/tree/master/examples>`_
+Take a look at the `eProsima Fast DDS examples on github <https://github.com/eProsima/Fast DDS/tree/master/examples>`_
 for ideas on how to improve this basic application through different configuration
 options, and for examples of advanced Fast DDS features.
 

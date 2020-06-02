@@ -3,7 +3,7 @@
 Defining a data type via IDL
 ----------------------------
 
-The following table shows the basic IDL types supported by *fastrtpsgen* and how they are mapped to C++11.
+The following table shows the basic IDL types supported by *Fast DDS-Gen* and how they are mapped to C++11.
 
     +--------------------+-------------+
     | IDL                | C++11       |
@@ -38,7 +38,7 @@ The following table shows the basic IDL types supported by *fastrtpsgen* and how
 Arrays
 ^^^^^^
 
-*fastrtpsgen* supports unidimensional and multidimensional arrays.
+*Fast DDS-Gen* supports unidimensional and multidimensional arrays.
 Arrays are always mapped to std::array containers.
 The following table shows the array types supported and how they map.
 
@@ -69,7 +69,7 @@ The following table shows the array types supported and how they map.
 Sequences
 ^^^^^^^^^
 
-*fastrtpsgen* supports sequences, which map into the STD vector container.
+*Fast DDS-Gen* supports sequences, which map into the STD vector container.
 The following table represents how the map between IDL and C++11 is handled.
 
     +------------------------------+--------------------------+
@@ -99,7 +99,7 @@ The following table represents how the map between IDL and C++11 is handled.
 Maps
 ^^^^
 
-*fastrtpsgen* supports maps, which are equivalent to the STD map container.
+*Fast DDS-Gen* supports maps, which are equivalent to the STD map container.
 The equivalence between types is handled in the same way as for sequences_.
 
     +-------------------------------+---------------------------------+
@@ -378,14 +378,14 @@ For example in the following IDL file the *id* and *type* field would be the key
         long positionY;
     };
 
-*fastrtpsgen* automatically detects these tags and correctly generates the serialization methods for the key generation
+*Fast DDS-Gen* automatically detects these tags and correctly generates the serialization methods for the key generation
 function in TopicDataType (`getKey`).
 This function will obtain the 128-bit MD5 digest of the big-endian serialization of the Key Members.
 
 Including other IDL files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can include another IDL files in yours in order to use data types defined in them. *fastrtpsgen* uses a C/C++
+You can include another IDL files in yours in order to use data types defined in them. *Fast DDS-Gen* uses a C/C++
 preprocessor for this purpose, and you can use ``#include`` directive to include an IDL file.
 
 .. code-block:: c
@@ -393,7 +393,7 @@ preprocessor for this purpose, and you can use ``#include`` directive to include
     #include "OtherFile.idl"
     #include <AnotherFile.idl>
 
-If *fastrtpsgen* doesn't find a C/C++ preprocessor in default system paths, you could specify the preprocessor path
+If *Fast DDS-Gen* doesn't find a C/C++ preprocessor in default system paths, you could specify the preprocessor path
 using parameter ``-ppPath``.
 If you want to disable the usage of the preprocessor, you could use the parameter ``-ppDisable``.
 

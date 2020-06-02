@@ -35,18 +35,18 @@ Colcon installation
 -------------------
 
 colcon_ is a command line tool to build sets of software packages.
-This section explains to use it to compile easily Fast-RTPS and its dependencies.
+This section explains to use it to compile easily Fast DDS and its dependencies.
 First install ROS2 development tools (colcon_ and vcstool):
 
 .. code-block:: bash
 
     pip install -U colcon-common-extensions vcstool
 
-Download the repos file that will be used to download Fast RTPS and its dependencies:
+Download the repos file that will be used to download Fast DDS and its dependencies:
 
 .. code-block:: bash
 
-    $ wget https://raw.githubusercontent.com/eProsima/Fast-RTPS/master/fastrtps.repos
+    $ wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos
     $ mkdir src
     $ vcs import src < fastrtps.repos
 
@@ -59,7 +59,7 @@ Finally, use colcon_ to compile all software:
 Manual installation
 -------------------
 
-Before compiling manually Fast RTPS you need to clone the following dependencies and compile them using CMake_.
+Before compiling manually Fast DDS you need to clone the following dependencies and compile them using CMake_.
 
 * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
@@ -80,12 +80,12 @@ Before compiling manually Fast RTPS you need to clone the following dependencies
         $ cmake ..
         $ cmake --build . --target install
 
-Once all dependencies are installed, you will be able to compile and install Fast RTPS.
+Once all dependencies are installed, you will be able to compile and install Fast DDS.
 
 .. code-block:: bash
 
-   $ git clone https://github.com/eProsima/Fast-RTPS.git
-   $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
+   $ git clone https://github.com/eProsima/Fast-DDS.git
+   $ mkdir Fast-DDS/build && cd Fast-DDS/build
    $ cmake ..
    $ cmake --build . --target install
 
@@ -94,24 +94,24 @@ If you want to compile the examples, you will need to add the argument ``-DCOMPI
 If you want to compile the performance tests, you will need to add the argument ``-DPERFORMANCE_TESTS=ON`` when calling
 CMake.
 
-For generate *fastrtpsgen* please see :ref:`compile-fastrtpsgen`.
+For generate *Fast DDS-Gen* please see :ref:`compile-fastrtpsgen`.
 
-Fast-RTPS-gen
+Fast DDS-gen
 -------------
 
-If you want to compile *fastrtpsgen* java application, you will need to download its source code from
-the `Fast-RPTS-Gen <https://github.com/eProsima/Fast-RTPS-Gen>`_ repository and with ``--recursive`` option and
+If you want to compile *Fast DDS-Gen* java application, you will need to download its source code from
+the `Fast-RPTS-Gen <https://github.com/eProsima/Fast-DDS-Gen>`_ repository and with ``--recursive`` option and
 compile it calling ``gradle assemble``. For more details see :ref:`compile-fastrtpsgen`.
 
 
 Security
 --------
 
-By default, Fast RTPS doesn't compile security support.
+By default, Fast DDS doesn't compile security support.
 You can activate it adding ``-DSECURITY=ON`` at CMake configuration step.
-More information about security on Fast RTPS, see :ref:`security`.
+More information about security on Fast DDS, see :ref:`security`.
 
-When security is activated on compilation Fast RTPS builds several built-in security plug-ins.
+When security is activated on compilation Fast DDS builds several built-in security plug-ins.
 Some of them have the dependency of OpenSSL library.
 
 OpenSSL installation on Linux

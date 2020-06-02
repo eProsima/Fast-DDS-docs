@@ -96,7 +96,7 @@ doxyfile_out = os.path.abspath('{}/doxygen-config'.format(project_binary_dir))
 
 # Header files
 input_dir = os.path.abspath(
-    '{}/external/eprosima/src/fastrtps/include/fastdds'.format(
+    '{}/external/eprosima/src/fastdds/include/fastdds'.format(
         project_binary_dir
     )
 )
@@ -107,7 +107,7 @@ if read_the_docs_build:
     print('Read the Docs environment detected!')
 
     fastdds_repo_name = os.path.abspath(
-        '{}/external/eprosima/src/fastrtps'.format(
+        '{}/external/eprosima/src/fastdds'.format(
             project_binary_dir
         )
     )
@@ -123,7 +123,7 @@ if read_the_docs_build:
     # Clone repository
     print('Cloning Fast DDS')
     fastdds = git.Repo.clone_from(
-        'https://github.com/eProsima/Fast-RTPS.git',
+        'https://github.com/eProsima/Fast-DDS.git',
         fastdds_repo_name,
     )
 
@@ -132,9 +132,9 @@ if read_the_docs_build:
     print('Current documentation branch is "{}"'.format(docs_branch))
 
     # User specified Fast DDS branch
-    fastdds_branch = os.environ.get('FASTRTPS_BRANCH', None)
+    fastdds_branch = os.environ.get('FASTDDS_BRANCH', None)
 
-    # First try to checkout to ${FASTRTPS_BRANCH}
+    # First try to checkout to ${FASTDDS_BRANCH}
     # Else try with current documentation branch
     # Else checkout to master
     if (fastdds_branch and
@@ -415,7 +415,7 @@ html_context = {
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'FastRTPSManual'
+htmlhelp_basename = 'FastDDSManual'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -441,7 +441,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'FastRTPS.tex', u'FastRTPS Documentation',
+    (master_doc, 'FastDDS.tex', u'Fast DDS Documentation',
      u'eProsima', 'manual'),
 ]
 
@@ -483,7 +483,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'FastRTPS', u'FastRTPS Documentation',
+    (master_doc, 'Fast DDS', u'Fast DDS Documentation',
      [author], 1)
 ]
 
@@ -498,8 +498,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'FastRTPS', u'FastRTPS Documentation',
-     author, 'FastRTPS', 'Documentation of eProsima FastRTPS',
+    (master_doc, 'Fast DDS', u'Fast DDS Documentation',
+     author, 'Fast DDS', 'Documentation of eProsima Fast DDS',
      'Miscellaneous'),
 ]
 

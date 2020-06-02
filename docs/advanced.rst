@@ -14,7 +14,7 @@ The RTPS standard contemplates the use of keys to define multiple data sources/s
 
 There are three ways of implementing keys into your topic:
 
-* Defining a `@Key` field in the IDL file when using FastRTPSGen (see the examples that come with the distribution).
+* Defining a `@Key` field in the IDL file when using Fast DDS-Gen (see the examples that come with the distribution).
 * Manually implementing and using a :func:`getKey()` method.
 * Adding the attribute `Key` to the member and its parents when using dynamic types (see :ref:`dynamic-types`).
 
@@ -58,14 +58,14 @@ This consist of defining a maximum number of data sinks and a maximum size for e
 +--------------------------------------------------------+
 
 Note that your History must be big enough to accommodate the maximum number of samples for each key.
-eProsima Fast RTPS will notify you if your History is too small.
+eProsima Fast DDS will notify you if your History is too small.
 
 .. _flow-controllers:
 
 Flow Controllers
 ****************
 
-*eProsima Fast RTPS* supports user configurable flow controllers on a Publisher and Participant level. These
+*eProsima Fast DDS* supports user configurable flow controllers on a Publisher and Participant level. These
 controllers can be used to limit the amount of data to be sent under certain conditions depending on the
 kind of controller implemented.
 
@@ -104,7 +104,7 @@ sent.
 Sending large data
 ******************
 
-The default message size *eProsima Fast RTPS* uses is a conservative value of 65Kb.
+The default message size *eProsima Fast DDS* uses is a conservative value of 65Kb.
 If your topic data is bigger, it must be fragmented.
 
 Fragmented messages are sent over multiple packets, as understood by the particular transport layer.
@@ -363,7 +363,7 @@ The following piece of code shows the set of parameters needed for the use case 
 Intra-process delivery
 **********************
 
-*eProsima Fast RTPS* allows to speed up communications between entities within the same process by avoiding any of the
+*eProsima Fast DDS* allows to speed up communications between entities within the same process by avoiding any of the
 copy or send operations involved in the transport layer (either UDP or TCP).
 This feature is enabled by default, and can be configured using :ref:`xml_profiles`.
 Currently the following options are available:
@@ -398,11 +398,11 @@ Increasing socket buffers size
 
 In high rate scenarios or large data scenarios, the bottleneck could be the size of the socket buffers.
 Network packages could be dropped because there is no space in the socket buffer.
-Using Reliable :ref:`reliabilityqospolicy` *Fast RTPS* will try to recover lost samples, but with the penalty of
+Using Reliable :ref:`reliabilityqospolicy` *Fast DDS* will try to recover lost samples, but with the penalty of
 retransmission.
 Using Best-Effort :ref:`reliabilityqospolicy` samples will be definitely lost.
 
-By default *eProsima Fast RTPS* creates socket buffers with the system default size, but you can modify it.
+By default *eProsima Fast DDS* creates socket buffers with the system default size, but you can modify it.
 ``sendSocketBufferSize`` attribute helps to increase the socket buffer used to send data.
 ``listenSocketBufferSize`` attribute helps to increase the socket buffer used to read data.
 
@@ -426,7 +426,7 @@ Finding out system maximum values
 ---------------------------------
 
 Linux operating system sets a maximum value for socket buffer sizes.
-When you set in *Fast RTPS* a socket buffer size, your value cannot exceed the maximum value of the system.
+When you set in *Fast DDS* a socket buffer size, your value cannot exceed the maximum value of the system.
 
 To get these values you can use the command ``sysctl``.
 Maximum buffer size value of socket buffers used to send data could be retrieved using this command:
@@ -497,7 +497,7 @@ To avoid this you can slow down the rate using :ref:`flow-controllers`.
 Additional Quality of Service options
 *************************************
 
-As a user, you can implement your own quality of service (QoS) restrictions in your application. *eProsima Fast RTPS*
+As a user, you can implement your own quality of service (QoS) restrictions in your application. *eProsima Fast DDS*
 comes bundled with a set of examples of how to implement common client-wise QoS settings:
 
 * Ownership Strength: When multiple data sources come online, filter duplicates by focusing on the higher priority

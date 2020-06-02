@@ -41,7 +41,7 @@ following steps happen behind the scenes:
 2. The RTPSWriter sends the change to any RTPSReaders it knows about.
 3. After receiving data, RTPSReaders update their history cache with the new change.
 
-However, FastDDS supports numerous configurations that allow you to change the behavior of RTPSWriters/RTPSReaders.
+However, Fast DDS supports numerous configurations that allow you to change the behavior of RTPSWriters/RTPSReaders.
 A modification in the default configuration of the RTPS entities implies a change in the data exchange flow between
 RTPSWriters and RTPSReaders.
 Moreover, by choosing Quality of Service (QoS) policies, you can affect how these history caches are managed in several

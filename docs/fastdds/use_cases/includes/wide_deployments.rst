@@ -13,7 +13,7 @@ unicast addresses) about their publisher and subscriber entities with the rest o
 between publishers and subscribers using the same topic can occur.
 As the number of participants, publishers, and subscribers increases, the meta-traffic, as well as the number of
 connections, increases exponentially, severely affecting the setup time and memory consumption.
-Fast-RTPS provides extra features that expand the DDS standard to adapt it to wide deployment scenarios.
+Fast DDS provides extra features that expand the DDS standard to adapt it to wide deployment scenarios.
 
 +-----------------------------------+---------------------------------------------------------------------------------+
 | Feature                           | Purpose                                                                         |
@@ -36,7 +36,7 @@ Server-Client Discovery
 
 Considering a scenario in which a large number of communication agents, called participants in this case, are deployed,
 an alternative to the default RTPS standard SIMPLE discovery mechanism may be used.
-For this purpose, Fast-RTPS
+For this purpose, Fast DDS
 provides a client-server discovery mechanism, in which a server participant operates as the central point of
 communication, that is the server collects and processes the metatraffic sent by the client participants, and
 distributes the appropriate information among the rest of the clients.
@@ -335,17 +335,17 @@ Well Known Network Topologies
 
 It is often the case in industrial deployments, such as productions lines, that the entire network topology (hosts, IP
 addresses, etc.) is known beforehand.
-Such scenarios are perfect candidates for Fast-RTPS STATIC discovery mechanism, which drastically reduces the middleware
+Such scenarios are perfect candidates for Fast DDS STATIC discovery mechanism, which drastically reduces the middleware
 setup time (time until all the entities are ready for information exchange), while at the same time limits the
 connections to those strictly necessary.
-As explained in the :ref:`discovery` section, all Fast-RTPS discovery mechanisms consist of two steps: PDP and EDP.
+As explained in the :ref:`discovery` section, all Fast DDS discovery mechanisms consist of two steps: PDP and EDP.
 
 .. _wide_deployments_static_pdp:
 
 Peer-to-Peer Participant Discovery Phase
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Fast-RTPS uses SPDP protocol for the PDP phase.
+By default, Fast DDS uses SPDP protocol for the PDP phase.
 This entails the participants sending periodic PDP announcements over a well known multicast addresses, using IP ports
 calculated from the domain.
 For large deployments, this can result in quite some meta traffic, since whenever a participant receives a PDP message
@@ -355,11 +355,11 @@ network.
 
 However, it is often the case that not all the participants need to be aware of all the rest of the remote participants
 present in the network.
-For limiting all this PDP meta traffic, Fast-RTPS participants can be configured to send their PDP announcements only to
+For limiting all this PDP meta traffic, Fast DDS participants can be configured to send their PDP announcements only to
 the remote participants to which they are required to connect.
 This is done by specifying a list of peers as a set of IP address-port pairs, and by disabling the participant multicast
 announcements.
-Use-case :ref:`use-case-fast-rtps-over-wifi` provides a detailed explanation on how to configure Fast-RTPS for such
+Use-case :ref:`use-case-fast-rtps-over-wifi` provides a detailed explanation on how to configure Fast DDS for such
 case.
 
 .. _wide_deployments_static_edp:
@@ -376,7 +376,7 @@ entity.
 In this example, a publisher in topic ``HelloWorldTopic`` from participant ``HelloWorldPublisher`` is matched with a
 subscriber from participant ``HelloWorldSubscriber``.
 A fully functional example implementing STATIC EDP is
-`STATIC EDP example <https://github.com/eProsima/Fast-RTPS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_.
+`STATIC EDP example <https://github.com/eProsima/Fast-DDS/blob/master/examples/C%2B%2B/StaticHelloWorldExample>`_.
 
 Create STATIC discovery XML files
 """""""""""""""""""""""""""""""""

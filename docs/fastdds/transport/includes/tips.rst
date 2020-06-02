@@ -43,5 +43,5 @@ For UDP transport, it is possible to configure whether to use non-blocking write
 
 **XML Configuration**
 
-The :ref:`xml_profiles` section contains the full information about how to setup *Fast RTPS* through an
+The :ref:`xml_profiles` section contains the full information about how to setup *Fast DDS* through an
 *XML file*.

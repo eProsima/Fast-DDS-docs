@@ -35,5 +35,4 @@ for debugging purposes, thus preventing them to impact performance.
 
 .. warning::
 
-    ``INTERNAL_DEBUG`` can be automatically set to ``ON`` if CMake option ``EPROSIMA_BUILD`` is set to ``ON`` and CMake
-    option ``EPROSIMA_INSTALLER_MINION`` is set to ``OFF`` at the same time.
+    ``INTERNAL_DEBUG`` can be automatically set to ``ON`` if CMake option ``EPROSIMA_BUILD`` is set to ``ON``.

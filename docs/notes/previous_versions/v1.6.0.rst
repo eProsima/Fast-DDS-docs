@@ -3,7 +3,7 @@ Version 1.6.0
 
 This release included the following features:
 
-* :ref:`persistence`.
+* Persistence.
 * Security access control plugin API and builtin :ref:`access-permissions` plugin.
 
 Also bug fixing.

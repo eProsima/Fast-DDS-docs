@@ -39,7 +39,6 @@ eProsima Fast DDS Documentation
    /fastdds/use_cases/use_cases
    advanced
    realtime
-   persistence
    /fastdds/api_reference/api_reference
 
 .. _index_gen:

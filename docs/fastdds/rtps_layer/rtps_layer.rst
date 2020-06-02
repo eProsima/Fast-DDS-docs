@@ -130,7 +130,7 @@ The Durability parameter defines the behavior of the Writer regarding samples al
 * TRANSIENT_LOCAL: The Writer saves a record of the last *k* messages it has sent.
   If a new reader matches after message *n*, it will start receiving from message *n-k*
 * TRANSIENT: As TRANSIENT_LOCAL, but the record of messages will be saved to persistent storage, so it will be available
-  if the writer is destroyed and recreated, or in case of an application crash (see :ref:`persistence`)
+  if the writer is destroyed and recreated, or in case of an application crash.
 
 To choose your preferred option:
 

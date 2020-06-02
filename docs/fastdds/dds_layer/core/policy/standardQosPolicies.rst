@@ -199,7 +199,7 @@ There are four possible values:
   moment it matches.
 * ``TRANSIENT_LOCAL_DURABILITY_QOS``: When a new DataReader joins, its History is filled with past samples.
 * ``TRANSIENT_DURABILITY_QOS``: When a new DataReader joins, its History is filled with past samples, which are stored
-  on persistent storage (see :ref:`persistence`).
+  on persistent storage.
 * ``PERSISTENT_DURABILITY_QOS`` (`Not Implemented`): All the sample are stored on a permanent storage, so that they can
   outlive a system session.
 

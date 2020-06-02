@@ -42,7 +42,7 @@ compile it calling ``gradle assemble``. For more details see :ref:`compile-fastr
 .. code-block:: bash
 
     > git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git
-    > cd Fast-DDS-Gen
+    > cd Fast-RTPS-Gen
     > gradle assemble
 
 The generated java application can be found at ``share/fastrtps`` and more user friendly scripts at ``scripts`` folders.

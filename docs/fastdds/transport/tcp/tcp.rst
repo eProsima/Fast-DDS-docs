@@ -114,7 +114,7 @@ TCPv6TransportDescriptor
 
 .. note::
 
-   The *kind* value for a TCPv4TransportDescriptor is given by the value
+   The *kind* value for a TCPv6TransportDescriptor is given by the value
    ``eprosima::fastrtps::rtps::LOCATOR_KIND_TCPv6``
 
 .. _transport_tcp_enabling:

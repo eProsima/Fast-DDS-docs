@@ -56,11 +56,24 @@ Metatraffic Multicast Locators
 Users can set their own metatraffic multicast locators
 using the field ``wire_protocol().builtin.metatrafficMulticastLocatorList``.
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
-    :language: c++
-    :start-after: //DDS_TRANSPORT_METAMULTICASTLOCATOR
-    :end-before: //!--
-    :dedent: 8
++-----------------------------------------------------------+
+| **C++**                                                   |
++-----------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp            |
+|    :language: c++                                         |
+|    :start-after: //CONF-TRANSPORT_METAMULTICASTLOCATOR    |
+|    :end-before: //!--                                     |
+|    :dedent: 8                                             |
++-----------------------------------------------------------+
+| **XML**                                                   |
++-----------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                |
+|    :language: xml                                         |
+|    :start-after: <!-->CONF-TRANSPORT_METAMULTICASTLOCATOR |
+|    :end-before: <!--><-->                                 |
+|    :lines: 2-3,5-                                         |
+|    :append: </profiles>                                   |
++-----------------------------------------------------------+
 
 .. _listening_locators_metaUnicast:
 
@@ -69,11 +82,24 @@ Metatraffic Unicast Locators
 Users can set their own metatraffic unicast locators
 using the field ``wire_protocol().builtin.metatrafficUnicastLocatorList``.
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
-    :language: c++
-    :start-after: //DDS_TRANSPORT_METAUNICASTLOCATOR
-    :end-before: //!--
-    :dedent: 8
++-----------------------------------------------------------+
+| **C++**                                                   |
++-----------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp            |
+|    :language: c++                                         |
+|    :start-after: //CONF-TRANSPORT_METAUNICASTLOCATOR      |
+|    :end-before: //!--                                     |
+|    :dedent: 8                                             |
++-----------------------------------------------------------+
+| **XML**                                                   |
++-----------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                |
+|    :language: xml                                         |
+|    :start-after: <!-->CONF-TRANSPORT_METAUNICASTLOCATOR   |
+|    :end-before: <!--><-->                                 |
+|    :lines: 2-3,5-                                         |
+|    :append: </profiles>                                   |
++-----------------------------------------------------------+
 
 .. _listening_locators_userMulticast:
 
@@ -82,11 +108,25 @@ User-traffic Multicast Locators
 Users can set their own user-traffic multicast locators
 using the field ``wire_protocol().default_multicast_locator_list``.
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
-    :language: c++
-    :start-after: //DDS_TRANSPORT_USERMULTICASTLOCATOR
-    :end-before: //!--
-    :dedent: 8
++-----------------------------------------------------------+
+| **C++**                                                   |
++-----------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp            |
+|    :language: c++                                         |
+|    :start-after: //CONF-TRANSPORT_USERMULTICASTLOCATOR    |
+|    :end-before: //!--                                     |
+|    :dedent: 8                                             |
++-----------------------------------------------------------+
+| **XML**                                                   |
++-----------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                |
+|    :language: xml                                         |
+|    :start-after: <!-->CONF-TRANSPORT_USERMULTICASTLOCATOR |
+|    :end-before: <!--><-->                                 |
+|    :lines: 2-3,5-                                         |
+|    :append: </profiles>                                   |
++-----------------------------------------------------------+
+
 
 .. _listening_locators_userUnicast:
 
@@ -95,11 +135,24 @@ User-traffic Unicast Locators
 Users can set their own user-traffic unicast locators
 using the field ``wire_protocol().default_unicast_locator_list``.
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
-    :language: c++
-    :start-after: //DDS_TRANSPORT_USERUNICASTLOCATOR
-    :end-before: //!--
-    :dedent: 8
++-----------------------------------------------------------+
+| **C++**                                                   |
++-----------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp            |
+|    :language: c++                                         |
+|    :start-after: //CONF-TRANSPORT_USERUNICASTLOCATOR      |
+|    :end-before: //!--                                     |
+|    :dedent: 8                                             |
++-----------------------------------------------------------+
+| **XML**                                                   |
++-----------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                |
+|    :language: xml                                         |
+|    :start-after: <!-->CONF-TRANSPORT_USERUNICASTLOCATOR   |
+|    :end-before: <!--><-->                                 |
+|    :lines: 2-3,5-                                         |
+|    :append: </profiles>                                   |
++-----------------------------------------------------------+
 
 
 .. _listening_locators_default:
@@ -115,7 +168,7 @@ This allows out-of-the-box communication in most cases, without the need of
 further configuring the :ref:`comm-transports-configuration`.
 
  * If the application does not define any *metatraffic* :ref:`transport_transportApi_locator`
-   (either *unicast* or *multicast*), *Fast DDS* enables one *multicast*  :ref:`transport_transportApi_locator`
+   (neither *unicast* nor *multicast*), *Fast DDS* enables one *multicast*  :ref:`transport_transportApi_locator`
    that will be used during :ref:`discovery`, and one *unicast* :ref:`transport_transportApi_locator`
    that will be used for peer-to-peer communication with already discovered
    :ref:`DomainParticipants<dds_layer_domainParticipant>`.

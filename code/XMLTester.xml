@@ -897,6 +897,90 @@
     </participant>
 <!--><-->
 
+<!-->CONF-TRANSPORT_METAMULTICASTLOCATOR<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomMetatrafficMulticastParticipant">
+        <rtps>
+            <builtin>
+                <metatrafficMulticastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                    <locator>
+                        <udpv4>
+                            <address>239.255.0.1</address>
+                            <port>22222</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficMulticastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->CONF-TRANSPORT_METAUNICASTLOCATOR<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomMetatrafficUnicastParticipant">
+        <rtps>
+            <builtin>
+                <metatrafficUnicastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                    <locator>
+                        <udpv4>
+                            <address>192.168.0.1</address>
+                            <port>22223</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->CONF-TRANSPORT_USERMULTICASTLOCATOR<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomUsertrafficMulticastParticipant">
+        <rtps>
+            <defaultMulticastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4>
+                        <address>239.255.0.1</address>
+                        <port>22224</port>
+                    </udpv4>
+                </locator>
+            </defaultMulticastLocatorList>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->CONF-TRANSPORT_USERUNICASTLOCATOR<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomUsertrafficUnicastParticipant">
+        <rtps>
+            <defaultUnicastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                        <port>22225</port>
+                    </udpv4>
+                </locator>
+            </defaultUnicastLocatorList>
+        </rtps>
+    </participant>
+<!--><-->
+
 <!-->CONF-TRANSPORT-DESCRIPTORS<-->
 <transport_descriptors>
     <transport_descriptor>

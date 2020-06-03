@@ -3034,7 +3034,7 @@ void dds_transport_examples ()
     }
 
     {
-        //DDS_TRANSPORT_METAMULTICASTLOCATOR
+        //CONF-TRANSPORT_METAMULTICASTLOCATOR
         DomainParticipantQos qos;
 
         // This locator will open a socket to listen network messages
@@ -3049,7 +3049,7 @@ void dds_transport_examples ()
     }
 
     {
-        //DDS_TRANSPORT_METAUNICASTLOCATOR
+        //CONF-TRANSPORT_METAUNICASTLOCATOR
         DomainParticipantQos qos;
 
         // This locator will open a socket to listen network messages
@@ -3064,7 +3064,7 @@ void dds_transport_examples ()
     }
 
     {
-        //DDS_TRANSPORT_USERMULTICASTLOCATOR
+        //CONF-TRANSPORT_USERMULTICASTLOCATOR
         DomainParticipantQos qos;
 
         // This locator will open a socket to listen network messages
@@ -3079,7 +3079,7 @@ void dds_transport_examples ()
     }
 
     {
-        //DDS_TRANSPORT_USERUNICASTLOCATOR
+        //CONF-TRANSPORT_USERUNICASTLOCATOR
         DomainParticipantQos qos;
 
         // This locator will open a socket to listen network messages

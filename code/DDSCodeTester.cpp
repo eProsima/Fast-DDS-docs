@@ -521,6 +521,35 @@ void dds_domain_examples()
             "myLogFile.log");
         //!--
     }
+
+    {
+        //CONF-QOS-PARTITIONS
+        PublisherQos pub_11_qos;
+        pub_11_qos.partition().push_back("Partition_1");
+        pub_11_qos.partition().push_back("Partition_2");
+
+        PublisherQos pub_12_qos;
+        pub_12_qos.partition().push_back("*");
+
+        PublisherQos pub_21_qos;
+        //No partitions defined for pub_21
+
+        PublisherQos pub_22_qos;
+        pub_22_qos.partition().push_back("Partition*");
+
+        SubscriberQos subs_31_qos;
+        subs_31_qos.partition().push_back("Partition_1");
+
+        SubscriberQos subs_32_qos;
+        subs_32_qos.partition().push_back("Partition_2");
+
+        SubscriberQos subs_33_qos;
+        subs_33_qos.partition().push_back("Partition_3");
+
+        SubscriberQos subs_34_qos;
+        //No partitions defined for subs_34
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

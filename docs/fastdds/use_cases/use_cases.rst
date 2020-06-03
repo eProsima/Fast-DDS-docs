@@ -14,18 +14,18 @@ with distributed systems:
   Presents a case where :ref:`discovery` through multicast communication is a challenge.
   This example shows how to:
 
-  - configure an initial list of peers with the address-port pairs of the remote participants
+  - Configure an initial list of peers with the address-port pairs of the remote participants
     (see :ref:`use-case-initial-peers`).
 
-  - disable the multicast discovery mechanism (see :ref:`use-case-disabling-multicast-discovery`).
+  - Disable the multicast discovery mechanism (see :ref:`use-case-disabling-multicast-discovery`).
 
 + :ref:`wide_deployments`.
   Describes a situation with a high number of deployed communicating agents.
   In these kind of environments, Fast DDS recommends using one of the following configurations:
 
-  - the use of a centralized server for the :ref:`discovery` phases (see :ref:`server-client-discovery-use-case`).
+  - The use of a centralized server for the :ref:`discovery` phases (see :ref:`server-client-discovery-use-case`).
 
-  - the STATIC :ref:`discovery` mechanism for well known network topologies (see :ref:`wide_deployments_static`).
+  - The STATIC :ref:`discovery` mechanism for well known network topologies (see :ref:`wide_deployments_static`).
 
 + :ref:`use-case-manySubscribers`.
   In cases where there are many :ref:`DataReaders<dds_layer_subscriber_dataReader>` subscribed to the same
@@ -37,23 +37,23 @@ with distributed systems:
   or because the message rate.
   The examples describe how to:
 
-  - configure the socket buffer size (see :ref:`increase the buffers size<tuning-socket-buffer>`).
+  - Configure the socket buffer size (see :ref:`increase the buffers size<tuning-socket-buffer>`).
 
-  - limit the publication rate (see :ref:`flow-controllers`).
+  - Limit the publication rate (see :ref:`flow-controllers`).
 
-  - tune the size of the socket buffers (see :ref:`tuning-socket-buffer`).
+  - Tune the size of the socket buffers (see :ref:`tuning-socket-buffer`).
 
-  - tune the Heartbeat period (see :ref:`tuning-heartbeat-period`).
+  - Tune the Heartbeat period (see :ref:`tuning-heartbeat-period`).
 
-  - configure a non-strict reliable mode (see :ref:`tuning-nonstrict-reliability`).
+  - Configure a non-strict reliable mode (see :ref:`tuning-nonstrict-reliability`).
 
 + :ref:`use-case-realtime`.
   Describes the configuration options that allows using Fast DDS on a real-time scenario.
   The examples describe how to:
 
-  - configure memory management to avoid dynamic memory allocation (see :ref:`realtime-allocations`).
+  - Configure memory management to avoid dynamic memory allocation (see :ref:`realtime-allocations`).
 
-  - limit the blocking time of API functions to have a predictable response time (see :ref:`non-blocking-calls`).
+  - Limit the blocking time of API functions to have a predictable response time (see :ref:`non-blocking-calls`).
 
 + :ref:`fastrtps_ros2`.
   Since Fast DDS is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,

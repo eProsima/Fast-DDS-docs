@@ -4,7 +4,7 @@ Partitions
 ==========
 
 Partitions introduce a logical entity isolation level concept inside the physical isolation induced by a
-:ref:`dds_layer_domainParticipant`.
+:ref:`dds_layer_domain`.
 They represent another level to separate :ref:`Publishers<dds_layer_publisher>` and
 :ref:`Subscribers<dds_layer_subscriber>` beyond :ref:`dds_layer_domain` and
 :ref:`dds_layer_topic`.
@@ -35,9 +35,9 @@ data member of the :ref:`dds_layer_publisher_publisherQos` or :ref:`dds_layer_su
 This member holds a list of Partition name strings.
 If no Partition is defined for an entity, it will be automatically included in the default nameless Partition.
 Therefore, a :ref:`dds_layer_publisher` and a :ref:`dds_layer_subscriber` that specify no Partition will still
-be able to communicate through the default Partition.
+be able to communicate through the default nameless Partition.
 
-.. note::
+.. warning::
 
    Partitions are linked to the endpoint and not to the changes.
    This means that the endpoint history is oblivious to modifications in the Partitions.
@@ -50,8 +50,10 @@ be able to communicate through the default Partition.
 Wildcards in Partitions
 -----------------------
 
+.. _POSIX ``fnmatch`` API (1003.2-1992 section B.6): https://standards.ieee.org/standard/1003_2-1992.html
+
 Partition name entries can have wildcards following the naming conventions defined by the
-POSIX ``fnmatch`` API (1003.2-1992 section B.6).
+`POSIX ``fnmatch`` API (1003.2-1992 section B.6)`_.
 Entries with wildcards can match several names, allowing an endpoint to easily be included in several Partitions.
 Two Partition names with wildcards will match if either of them matches the other one according to ``fnmatch``.
 That is, the matching is checked both ways.
@@ -127,10 +129,11 @@ The following piece of code shows the set of parameters needed for the use case 
 +-----------------------------------------------------+
 | **C++**                                             |
 +-----------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp         |
+| .. literalinclude:: /../code/DDSCodeTester.cpp      |
 |    :language: c++                                   |
 |    :start-after: //CONF-QOS-PARTITIONS              |
 |    :end-before: //!--                               |
+|    :dedent: 8                                       |
 +-----------------------------------------------------+
 | **XML**                                             |
 +-----------------------------------------------------+
@@ -138,6 +141,8 @@ The following piece of code shows the set of parameters needed for the use case 
 |    :language: xml                                   |
 |    :start-after: <!-->CONF-QOS-PARTITIONS           |
 |    :end-before: <!--><-->                           |
+|    :lines: 2-3,5-                                   |
+|    :append: </profiles>                             |
 +-----------------------------------------------------+
 
 

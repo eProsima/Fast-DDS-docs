@@ -414,132 +414,215 @@
 </participant>
 <!--><-->
 
-<!-->CONF-TCP-TRANSPORT-SETTING<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>tcp_transport</transport_id>
-        <type>TCPv4</type>
-        <listening_ports>
-            <port>5100</port>
-        </listening_ports>
-        <wan_addr>80.80.99.45</wan_addr>
-    </transport_descriptor>
-</transport_descriptors>
+<!-->CONF-UDP-TRANSPORT-SETTING<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>udp_transport</transport_id>
+            <type>UDPv4</type>
+            <sendBufferSize>9216</sendBufferSize>
+            <receiveBufferSize>9216</receiveBufferSize>
+            <non_blocking_send>true</non_blocking_send>
+        </transport_descriptor>
+    </transport_descriptors>
+    
+    <participant profile_name="UDPParticipant">
+        <rtps>
+            <userTransports>
+                <transport_id>udp_transport</transport_id>
+            </userTransports>
+            <useBuiltinTransports>false</useBuiltinTransports>
+        </rtps>
+    </participant>
+<!--><-->
 
-<participant profile_name="TCPParticipant">
-    <rtps>
-        <userTransports>
+<!-->CONF-TCP-TRANSPORT-SETTING-SERVER<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
             <transport_id>tcp_transport</transport_id>
-        </userTransports>
-        <useBuiltinTransports>false</useBuiltinTransports>
-    </rtps>
-</participant>
+            <type>TCPv4</type>
+            <sendBufferSize>9216</sendBufferSize>
+            <receiveBufferSize>9216</receiveBufferSize>
+            <listening_ports>
+                <port>5100</port>
+            </listening_ports>
+            <wan_addr>80.80.99.45</wan_addr>
+        </transport_descriptor>
+    </transport_descriptors>
+    
+    <participant profile_name="TCPParticipant">
+        <rtps>
+            <userTransports>
+                <transport_id>tcp_transport</transport_id>
+            </userTransports>
+            <useBuiltinTransports>false</useBuiltinTransports>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->CONF-TCP-TRANSPORT-SETTING-CLIENT<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>tcp2_transport</transport_id>
+            <type>TCPv4</type>
+        </transport_descriptor>
+    </transport_descriptors>
+    
+    <participant profile_name="TCP2Participant">
+        <rtps>
+            <userTransports>
+                <transport_id>tcp2_transport</transport_id>
+            </userTransports>
+             <useBuiltinTransports>false</useBuiltinTransports>
+            <builtin>
+                <initialPeersList>
+                    <locator>
+                        <tcpv4>
+                            <address>80.80.99.45</address>
+                            <physical_port>5100</physical_port>
+                        </tcpv4>
+                    </locator>
+                </initialPeersList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-SHM-TRANSPORT-SETTING<-->
-<transport_descriptors>
-    <!-- Create a descriptor for the new transport -->
-    <transport_descriptor>
-        <transport_id>shm_transport</transport_id>
-        <type>SHM</type>
-    </transport_descriptor>
-</transport_descriptors>
-
-<participant profile_name="SHMParticipant">
-    <rtps>
-        <!-- Link the Transport Layer to the Participant -->
-        <userTransports>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <!-- Create a descriptor for the new transport -->
+        <transport_descriptor>
             <transport_id>shm_transport</transport_id>
-        </userTransports>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->CONF-TCP2-TRANSPORT-SETTING<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>tcp2_transport</transport_id>
-        <type>TCPv4</type>
-    </transport_descriptor>
-</transport_descriptors>
-
-<participant profile_name="TCP2Participant">
-    <rtps>
-        <userTransports>
-            <transport_id>tcp2_transport</transport_id>
-        </userTransports>
-        <builtin>
-            <initialPeersList>
-                <locator>
-                    <tcpv4>
-                        <address>80.80.99.45</address>
-                        <physical_port>5100</physical_port>
-                    </tcpv4>
-                </locator>
-            </initialPeersList>
-        </builtin>
-        <useBuiltinTransports>false</useBuiltinTransports>
-    </rtps>
-</participant>
+            <type>SHM</type>
+        </transport_descriptor>
+    </transport_descriptors>
+    
+    <participant profile_name="SHMParticipant">
+        <rtps>
+            <!-- Link the Transport Layer to the Participant -->
+            <userTransports>
+                <transport_id>shm_transport</transport_id>
+            </userTransports>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-TCP-TLS-SERVER<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>tls_transport_server</transport_id>
-        <type>TCPv4</type>
-        <tls>
-            <password>test</password>
-            <private_key_file>serverkey.pem</private_key_file>
-            <cert_chain_file>server.pem</cert_chain_file>
-            <tmp_dh_file>dh2048.pem</tmp_dh_file>
-            <options>
-                <option>DEFAULT_WORKAROUNDS</option>
-                <option>SINGLE_DH_USE</option>
-                <option>NO_SSLV2</option>
-            </options>
-        </tls>
-    </transport_descriptor>
-</transport_descriptors>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>tls_transport_server</transport_id>
+            <type>TCPv4</type>
+            <tls>
+                <password>test</password>
+                <private_key_file>serverkey.pem</private_key_file>
+                <cert_chain_file>server.pem</cert_chain_file>
+                <tmp_dh_file>dh2048.pem</tmp_dh_file>
+                <options>
+                    <option>DEFAULT_WORKAROUNDS</option>
+                    <option>SINGLE_DH_USE</option>
+                    <option>NO_SSLV2</option>
+                </options>
+            </tls>
+            <sendBufferSize>9216</sendBufferSize>
+            <receiveBufferSize>9216</receiveBufferSize>
+            <listening_ports>
+                <port>5100</port>
+            </listening_ports>
+            <wan_addr>80.80.99.45</wan_addr>
+        </transport_descriptor>
+    </transport_descriptors>
+
+    <participant profile_name="TLSServerParticipant">
+        <rtps>
+            <userTransports>
+                <transport_id>tls_transport_server</transport_id>
+            </userTransports>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-TCP-TLS-CLIENT<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>tls_transport_client</transport_id>
-        <type>TCPv4</type>
-        <tls>
-            <verify_file>ca.pem</verify_file>
-            <verify_mode>
-                <verify>VERIFY_PEER</verify>
-            </verify_mode>
-            <options>
-                <option>DEFAULT_WORKAROUNDS</option>
-                <option>SINGLE_DH_USE</option>
-                <option>NO_SSLV2</option>
-            </options>
-        </tls>
-    </transport_descriptor>
-</transport_descriptors>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>tls_transport_client</transport_id>
+            <type>TCPv4</type>
+            <tls>
+                <verify_file>ca.pem</verify_file>
+                <verify_mode>
+                    <verify>VERIFY_PEER</verify>
+                </verify_mode>
+                <options>
+                    <option>DEFAULT_WORKAROUNDS</option>
+                    <option>SINGLE_DH_USE</option>
+                    <option>NO_SSLV2</option>
+                </options>
+            </tls>
+        </transport_descriptor>
+    </transport_descriptors>
+    
+    <participant profile_name="TLSClientParticipant">
+        <rtps>
+            <userTransports>
+                <transport_id>tls_transport_client</transport_id>
+            </userTransports>
+            <builtin>
+                <initialPeersList>
+                    <locator>
+                        <tcpv4>
+                            <address>80.80.99.45</address>
+                            <physical_port>5100</physical_port>
+                        </tcpv4>
+                    </locator>
+                </initialPeersList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-DISABLE-MULTICAST<-->
-<participant profile_name="disable_multicast" is_default_profile="true">
-    <rtps>
-        <builtin>
-            <metatrafficUnicastLocatorList>
-                <locator/>
-            </metatrafficUnicastLocatorList>
-            <initialPeersList>
-                <locator>
-                    <udpv4>
-                        <address>192.168.0.1</address>
-                    </udpv4>
-                </locator>
-            </initialPeersList>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="disable_multicast" is_default_profile="true">
+        <rtps>
+            <builtin>
+                <metatrafficUnicastLocatorList>
+                    <locator/>
+                </metatrafficUnicastLocatorList>
+                <initialPeersList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.0.1</address>
+                        </udpv4>
+                    </locator>
+                </initialPeersList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-NON-BLOCKING-WRITE<-->
@@ -788,6 +871,114 @@
       </properties>
    </propertiesPolicy>
 </subscriber>
+<!--><-->
+
+<!-->TRANSPORT-DESCRIPTORS<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>CustomTcpTransport</transport_id>
+            <type>TCPv4</type>
+            <interfaceWhiteList>
+                <address>127.0.0.1</address>
+            </interfaceWhiteList>
+        </transport_descriptor>
+    </transport_descriptors>
+    
+    <participant profile_name="CustomTcpTransportParticipant">
+        <rtps>
+            <userTransports>
+                <transport_id>CustomTcpTransport</transport_id>
+            </userTransports>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->CONF-TRANSPORT_METAMULTICASTLOCATOR<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomMetatrafficMulticastParticipant">
+        <rtps>
+            <builtin>
+                <metatrafficMulticastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                    <locator>
+                        <udpv4>
+                            <address>239.255.0.1</address>
+                            <port>22222</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficMulticastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->CONF-TRANSPORT_METAUNICASTLOCATOR<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomMetatrafficUnicastParticipant">
+        <rtps>
+            <builtin>
+                <metatrafficUnicastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                    <locator>
+                        <udpv4>
+                            <address>192.168.0.1</address>
+                            <port>22223</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->CONF-TRANSPORT_USERMULTICASTLOCATOR<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomUsertrafficMulticastParticipant">
+        <rtps>
+            <defaultMulticastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4>
+                        <address>239.255.0.1</address>
+                        <port>22224</port>
+                    </udpv4>
+                </locator>
+            </defaultMulticastLocatorList>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->CONF-TRANSPORT_USERUNICASTLOCATOR<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomUsertrafficUnicastParticipant">
+        <rtps>
+            <defaultUnicastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                        <port>22225</port>
+                    </udpv4>
+                </locator>
+            </defaultUnicastLocatorList>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-TRANSPORT-DESCRIPTORS<-->
@@ -2947,6 +3138,8 @@
 -->
 <!--><-->
 
+
+
 <!-->QoS Examples<-->
 
 <!-->XML_DEADLINE<-->
@@ -3251,3 +3444,4 @@
     </rtps>
 </participant>
 <!--><-->
+

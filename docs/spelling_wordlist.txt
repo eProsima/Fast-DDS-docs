@@ -35,10 +35,12 @@ chocolatey
 ciphertext
 CMake
 Colcon
+connectionless
 coverity
 crl
 crypto
 cryptographic
+cryptosystem
 datagram
 datarate
 deallocating

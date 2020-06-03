@@ -79,7 +79,7 @@ UDPv6TransportDescriptor
 
 .. note::
 
-   The *kind* value for a UDPv4TransportDescriptor is given by the value
+   The *kind* value for a UDPv6TransportDescriptor is given by the value
    ``eprosima::fastrtps::rtps::LOCATOR_KIND_UDPv6``
 
 

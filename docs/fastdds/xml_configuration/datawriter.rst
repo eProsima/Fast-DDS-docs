@@ -5,9 +5,9 @@
 DataWriter profiles
 -------------------
 
-The DataWriter profiles allow declaring |DataWriters| from an XML file.
+The DataWriter profiles allow for configuring |DataWriters| from an XML file.
 These profiles are defined within the ``<data_writer>`` or ``<publisher>`` XML tags.
-Thus, the following XML codes are equivalent.
+Thus, the following XML code snippets are equivalent.
 
 +----------------------------------------------------------+-----------------------------------------------------------+
 | **DataWriter profile** - Definition method 1             | **DataWriter profile** - Definition method 2              |
@@ -18,18 +18,37 @@ Thus, the following XML codes are equivalent.
 |   :end-before: <!--><-->                                 |   :end-before: <!--><-->                                  |
 +----------------------------------------------------------+-----------------------------------------------------------+
 
-.. Note::
+.. important::
 
     The ``<publisher>`` and ``<data_writer>`` XML tags are equivalent.
-    **Therefore, XML profiles in which the |DataWriters| are defined with the ``<publisher>`` tag are fully compatible
-    with Fast DDS**.
+    Therefore, XML profiles in which the |DataWriters| are defined with the ``<publisher>``
+    tag are fully compatible with Fast DDS.
+
+DataWriter XML attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``<data_writer>`` element has two attributes defined: ``profile_name`` and ``is_default_profile``.
-Attribute ``profile_name`` is a mandatory attribute and sets the name under which the ``<data_writer>`` profile is
-registered in the DDS Domain, so that it can be loaded later by a |DomainParticipant|, as shown in
-:ref:`loadingapplyingprofiles`.
-The second attribute, ``is_default_profile``, sets the ``<data_writer>`` profile as the default profile. It is an
-attribute.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Use
+   * - ``profile_name``
+     - Sets the name under which the ``<data_writer>`` profile is registered in the DDS Domain, |br|
+       so that it can be loaded later by the |DomainParticipant|, as shown in |br|
+       :ref:`loadingapplyingprofiles`.
+     - Mandatory
+   * - ``is_default_profile``
+     - Sets the ``<data_writer>`` profile as the default profile.
+     - Optional
+
+DataWriter configuration
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The DataWriter configuration is performed through the XML elements listed in the following table.
 
 .. list-table::
    :header-rows: 1
@@ -52,19 +71,23 @@ attribute.
      - :ref:`Times <pubtimes>`
      -
    * - ``<unicastLocatorList>``
-     - List of input unicast locators. |br| It expects a :ref:`LocatorListType`.
+     - List of input unicast locators. |br|
+       It expects a :ref:`LocatorListType`.
      - ``Locator``
      -
    * - ``<multicastLocatorList>``
-     - List of input multicast locators. |br| It expects a :ref:`LocatorListType`.
+     - List of input multicast locators. |br|
+       It expects a :ref:`LocatorListType`.
      - ``Locator``
      -
    * - ``<throughputController>``
-     - Limits the output bandwidth of the |br| DataWriter.
+     - Limits the output bandwidth of the |br|
+       DataWriter.
      - :ref:`Throughput`
      -
    * - ``<historyMemoryPolicy>``
-     - Memory allocation kind for DataWriter's |br| history. See :ref:`historyqospolicykind`.
+     - Memory allocation kind for DataWriter's |br|
+       history. See :ref:`historyqospolicykind`.
      - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
      - :class:`PREALLOCATED`
    * - ``<propertiesPolicy>``
@@ -80,7 +103,10 @@ attribute.
      - ``Int16``
      - -1
    * - ``<matchedSubscribersAllocation>``
-     - DataWriter :ref:`CommonAlloc` |br| related to the number of matched DataReaders.
+     - Sets the limits of a DataReaders limited |br|
+       collection, as well as the DataWriter |br|
+       :ref:`CommonAlloc`. See |br|
+       :ref:`participantresourcelimitsqos`.
      - :ref:`CommonAlloc`
      -
 
@@ -90,14 +116,13 @@ attribute.
     :language: xml
     :start-after: <!-->XML-DATAWRITER<-->
     :end-before: <!--><-->
+    :lines: 2-4, 6-71, 73-74
 
 .. note::
 
-    - :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
+    - :class:`LOCATOR_LIST` means a :ref:`LocatorListType` is expected.
 
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
-
-    - :class:`DURATION` means it expects a :ref:`DurationType`.
 
     - For :class:`QOS` details, please refer to :ref:`CommonQOS`.
 
@@ -106,16 +131,16 @@ attribute.
 .. _pubtimes:
 
 Times
-^^^^^
+""""""
 
 +------------------------------+-------------------------------------------------------+---------------------+---------+
 | Name                         | Description                                           | Values              | Default |
 +==============================+=======================================================+=====================+=========+
-| ``<initialHeartbeatDelay>``  | Initial heartbeat delay.                              | :ref:`DurationType` | ~45 ms  |
+| ``<initialHeartbeatDelay>``  | Initial heartbeat delay.                              | :ref:`DurationType` | 12 ms   |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
 | ``<heartbeatPeriod>``        | Periodic heartbeat period.                            | :ref:`DurationType` | 3 s     |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
-| ``<nackResponseDelay>``      | Delay to apply to the response of a ACKNACK message.  | :ref:`DurationType` | ~45 ms  |
+| ``<nackResponseDelay>``      | Delay to apply to the response of an ACKNACK message. | :ref:`DurationType` | 5 ms    |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
 | ``<nackSupressionDuration>`` | This time allows the DataWriter to ignore NACK |br|   | :ref:`DurationType` | 0 ms    |
 |                              | messages for a given period of time right after |br|  |                     |         |

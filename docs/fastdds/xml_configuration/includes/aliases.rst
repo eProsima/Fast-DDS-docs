@@ -34,7 +34,7 @@
 
 
 .. |Locator_t| replace:: :cpp:class:`Locator_t <eprosima::fastrtps::rtps::Locator_t>`
-.. |c_TimeInfinite| replace:: :cpp:var:`c_TimeInfinite <eprosima::fastrtps::c_TimeInfinite>`
+.. |c_TimeInfinite| replace:: :cpp:concept:`DURATION_INFINITY`
 .. |c_TimeZero| replace:: :cpp:var:`c_TimeZero <eprosima::fastrtps::c_TimeZero>`
 
 .. |Log| replace:: :cpp:class:`Log <eprosima::fastdds::dds::Log>`

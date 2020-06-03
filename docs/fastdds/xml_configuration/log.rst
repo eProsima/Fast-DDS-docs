@@ -30,6 +30,7 @@ one |FileConsumer|:
     :language: xml
     :start-after: <!-->LOG-CONFIG<-->
     :end-before: <!--><-->
+    :lines: 2-3, 5-32, 34
 
 .. _xmllogconsumer:
 
@@ -64,7 +65,7 @@ PropertyType
 |             | * If ``<name>`` is set to ``filename``, then this element contains  |br| | ``string``   | `output.log` |
 |             |   the name of the log file.                                              |              |              |
 |             +--------------------------------------------------------------------------+--------------+--------------+
-|             | * If ``<name>`` is set to ``append``, then this element defined  |br|    | ``Boolean``  | ``false``    |
+|             | * If ``<name>`` is set to ``append``, then this element defines  |br|    | ``Boolean``  | ``false``    |
 |             |   whether the consumer should, upon creation, open the file for  |br|    |              |              |
 |             |   appending or overriding.                                               |              |              |
 +-------------+--------------------------------------------------------------------------+--------------+--------------+

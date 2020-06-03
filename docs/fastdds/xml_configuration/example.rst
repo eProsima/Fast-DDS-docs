@@ -7,8 +7,7 @@ In this section, there is a full XML example with all possible configuration.
 It can be used as a quick reference, but it may not be valid due to incompatibility or exclusive properties.
 Do not take it as a working example.
 
-.. literalinclude:: /../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTesterExample.xml
     :language: xml
-    :start-after: <!-->XML-EXAMPLE<-->
-    :end-before: <!--><-->
-    :lines: 2-3,5-
+    :linenos:
+

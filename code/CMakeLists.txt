@@ -206,6 +206,9 @@ if(BUILDCOP)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTester.xml
         ${CMAKE_CURRENT_BINARY_DIR}/XMLTester.xml COPYONLY)
 
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTesterExample.xml
+        ${CMAKE_CURRENT_BINARY_DIR}/XMLTesterExample.xml COPYONLY)
+
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/GovernanceTester.xml
         ${CMAKE_CURRENT_BINARY_DIR}/GovernanceTester.xml COPYONLY)
 
@@ -221,6 +224,10 @@ if(BUILDCOP)
     add_test(NAME xmltest COMMAND doctest XMLTester.xml)
     set_property(TEST xmltest
         APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
+
+    add_test(NAME xmltestexample COMMAND doctest XMLTesterExample.xml)
+        set_property(TEST xmltestexample
+            APPEND PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_BINARY_DIR}/external/eprosima/install/lib")
 
     add_test(NAME governancetest COMMAND doctest GovernanceTester.xml)
     set_property(TEST governancetest

@@ -8,6 +8,28 @@ Common
 The preceding XML profiles define some XML elements that are common to several profiles.
 This section aims to explain these common elements.
 
+*   :ref:`LocatorListType`
+*   :ref:`PropertiesPolicyType`
+*   :ref:`DurationType`
+*   :ref:`TopicType`
+
+    -   :ref:`hQos`
+    -   :ref:`rLsQos`
+
+*   :ref:`CommonQOS`
+
+    -   :ref:`xml_durability`
+    -   :ref:`xml_liveliness`
+    -   :ref:`xml_partition`
+    -   :ref:`xml_deadline`
+    -   :ref:`xml_lifespan`
+    -   :ref:`xml_disablepositiveacks`
+    -   :ref:`xml_latencybudget`
+
+*   :ref:`Throughput`
+*   :ref:`CommonAlloc`
+
+
 .. _LocatorListType:
 
 LocatorListType
@@ -30,14 +52,14 @@ The table presented below outlines each possible Locator's field.
 +---------------------+--------------------------------------------------------+--------------------+------------------+
 | ``<physical_port>`` | TCP's *physical port*.                                 | ``Uint32``         | 0                |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<address>``       | IP address of the locator.                             | ``string`` |br|    | ""               |
+| ``<address>``       | IP address of the locator.                             | ``string``         | ""               |
 |                     |                                                        | (IPv4/IPv6 format) |                  |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<unique_lan_id>`` | The LAN ID uniquely identifies the LAN the |br|        | ``string`` |br|    |                  |
+| ``<unique_lan_id>`` | The LAN ID uniquely identifies the LAN the |br|        | ``string``         |                  |
 |                     | locator belongs to (**TCPv4 only**).                   | (16 bytes)         |                  |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
 | ``<wan_address>``   | WAN IPv4 address (**TCPv4 only**).                     | ``string``         | ``0.0.0.0``      |
-|                     |                                                        |  (IPv4 format)     |                  |
+|                     |                                                        | (IPv4 format)      |                  |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
 
 **Example**
@@ -84,7 +106,7 @@ DurationType
 
 DurationType expresses a period of time and it is commonly used inside other XML elements, such as in
 ``<leaseAnnouncement>`` or ``<leaseDuration>``.
-A DurationType it is defined by two mandatory elements ``<sec>`` plus ``<nanosec>``.
+A DurationType is defined by two mandatory elements ``<sec>`` plus ``<nanosec>``.
 An infinite value can be specified by using the values :cpp:concept:`DURATION_INFINITY`,
 :cpp:concept:`DURATION_INFINITE_SEC` and :cpp:concept:`DURATION_INFINITE_NSEC`.
 
@@ -195,11 +217,6 @@ The Quality of Service (QoS) is used to specify the behavior of the Service, all
 Entity will behave.
 Please refer to the :ref:`dds_layer_core_policy` section for more information on QoS.
 
-.. AFTER DURABILITY
-    <durabilityService>
-        <!-- DURABILITY_SERVICE -->
-    </durabilityService>
-
 .. |MANUAL_BY_PARTICIPANT| replace:: :class:`MANUAL_BY_PARTICIPANT`
 
 +--------------------------+---------------------------------------------------+---------------------------------------+
@@ -275,7 +292,7 @@ ReliabilityQosPolicy
 | Name                      | Description                      | Values               | Default                        |
 +===========================+==================================+======================+================================+
 | ``<kind>``                | See                              | :class:`BEST_EFFORT` | DataReaders:                   |
-|                           | :ref:`reliabilityqospolicykind`. +----------------------+ :class:`BEST_EFFORT`. |br|     |
+|                           | :ref:`reliabilityqospolicykind`. +----------------------+ :class:`BEST_EFFORT`  |br|     |
 |                           |                                  | :class:`RELIABLE`    | Datawriters: :class:`RELIABLE` |
 +---------------------------+----------------------------------+----------------------+--------------------------------+
 | ``<max_blocking_time>``   | See :ref:`reliabilityqospolicy`. | :ref:`DurationType`  | 100 ms                         |
@@ -323,7 +340,7 @@ DisablePositiveAcks
 +---------------------------+-------------------------------------------------+---------------------+------------------+
 | Name                      | Description                                     | Values              | Default          |
 +===========================+=================================================+=====================+==================+
-| ``<enabled>``             | See :ref:`disablepositiveacksqospolicy`.        | ``Boolean``         | ``false```       |
+| ``<enabled>``             | See :ref:`disablepositiveacksqospolicy`.        | ``Boolean``         | ``false``        |
 +---------------------------+-------------------------------------------------+---------------------+------------------+
 | ``<duration>``            | See :ref:`disablepositiveacksqospolicy`.        | :ref:`DurationType` | |c_TimeInfinite| |
 +---------------------------+-------------------------------------------------+---------------------+------------------+
@@ -336,7 +353,7 @@ LatencyBudget
 +---------------------------+-------------------------------------------------+---------------------+------------------+
 | Name                      | Description                                     | Values              | Default          |
 +===========================+=================================================+=====================+==================+
-| ``<duration>``            | See :ref:`latencybudgetqospolicy`.              | :ref:`DurationType` | |c_TimeZero|     |
+| ``<duration>``            | See :ref:`latencybudgetqospolicy`.              | :ref:`DurationType` | 0                |
 +---------------------------+-------------------------------------------------+---------------------+------------------+
 
 .. _Throughput:
@@ -392,8 +409,8 @@ and to :ref:`realtime-allocations` for detailed information on how to tune alloc
    * - ``<maximum>``
      - Maximum number of elements for which space will be allocated.
      - ``UInt32``
-     - 0 |br| (Means no limit)
+     - 0 (Means no limit)
    * - ``<increment>``
-     - Number of new elements that will be allocated when more space is necessary.
+     - Number of new elements that will be allocated when more space is |br| necessary.
      - ``UInt32``
      - 1

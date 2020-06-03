@@ -24,11 +24,32 @@ Thus, the following XML codes are equivalent.
     Therefore, **XML profiles in which the |DataReaders| are defined with the ``<subscriber>`` tag are fully compatible
     with Fast DDS**.
 
+
+DataReader XML attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The ``<data_reader>`` element has two attributes defined: ``profile_name`` and ``is_default_profile``.
-The mandatory ``profile_name`` attribute is the name under which the ``<data_reader>`` profile is registered in the DDS
-Domain, so that it can be loaded later by a |DomainParticipant|, as shown in :ref:`loadingapplyingprofiles`.
-The second attribute, ``is_default_profile``, is an optional attribute and sets the ``<data_reader>`` profile as the
-default profile.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Use
+   * - ``profile_name``
+     - Sets the name under which the ``<data_reader>`` profile is registered in the DDS Domain, |br|
+       so that it can be loaded later by the |DomainParticipant|, as shown in |br|
+       :ref:`loadingapplyingprofiles`.
+     - Mandatory
+   * - ``is_default_profile``
+     - Sets the ``<data_reader>`` profile as the default profile.
+     - Optional
+
+DataReader configuration
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The DataReader configuration is performed through the XML elements listed in the following table.
 
 .. list-table::
    :header-rows: 1
@@ -47,15 +68,18 @@ default profile.
      - :ref:`CommonQOS`
      -
    * - ``<times>``
-     - It allows configuring some time related parameters |br| of the DataReader.
+     - It allows configuring some time related |br|
+       parameters of the DataReader.
      - :ref:`Times <subtimes>`
      -
    * - ``<unicastLocatorList>``
-     - List of input unicast locators. |br| It expects a :ref:`LocatorListType`.
+     - List of input unicast locators. |br|
+       It expects a :ref:`LocatorListType`.
      - List of :ref:`LocatorListType`
      -
    * - ``<multicastLocatorList>``
-     - List of input multicast locators. |br| It expects a :ref:`LocatorListType`.
+     - List of input multicast locators. |br|
+       It expects a :ref:`LocatorListType`.
      - List of :ref:`LocatorListType`
      -
    * - ``<expectsInlineQos>``
@@ -63,7 +87,7 @@ default profile.
      - ``Boolean``
      - :class:`false`
    * - ``<historyMemoryPolicy>``
-     - Memory allocation kind for subscriber's history.
+     - Memory allocation kind for DataReaders's |br| history.
      - :ref:`memorymanagementpolicy`
      - :class:`PREALLOCATED`
    * - ``<propertiesPolicy>``
@@ -79,7 +103,10 @@ default profile.
      - ``Int16``
      - -1
    * - ``<matchedPublishersAllocation>``
-     - Subscriber :ref:`CommonAlloc` |br| related to the number of matched DataWriters.
+     - Sets the limits of a DataWriters limited |br|
+       collection, as well as the DataReader |br|
+       :ref:`CommonAlloc`. See |br|
+       :ref:`participantresourcelimitsqos`.
      - :ref:`CommonAlloc`
      -
 
@@ -89,6 +116,7 @@ default profile.
     :language: xml
     :start-after: <!-->XML-SUBSCRIBER<-->
     :end-before: <!--><-->
+    :lines: 2-4, 6-58, 60-61
 
 .. note::
 
@@ -105,13 +133,13 @@ default profile.
 .. _subtimes:
 
 Times
-^^^^^
+""""""
 
 +------------------------------+-------------------------------------------------------+---------------------+---------+
 | Name                         | Description                                           | Values              | Default |
 +==============================+=======================================================+=====================+=========+
-| ``<initialAcknackDelay>``    | Initial acknack delay.                                | :ref:`DurationType` | ~45 ms  |
+| ``<initialAcknackDelay>``    | Initial ACKNACK delay.                                | :ref:`DurationType` | 70 ms   |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
-| ``<heartbeatResponseDelay>`` | Heartbeat response time delay when receiving          | :ref:`DurationType` | ~4.5 ms |
+| ``<heartbeatResponseDelay>`` | Heartbeat response time delay when receiving          | :ref:`DurationType` | 5 ms    |
 |                              | an acknack.                                           |                     |         |
 +------------------------------+-------------------------------------------------------+---------------------+---------+

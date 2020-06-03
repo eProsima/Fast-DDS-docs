@@ -994,38 +994,38 @@
 
     <!--XML-CONF-TRANSPORT-DESCRIPTORS-->
     <transport_descriptor>
-        <transport_id>TransportId1</transport_id> <!-- string -->
-        <type>UDPv4</type> <!-- string -->
-        <sendBufferSize>8192</sendBufferSize> <!-- uint32 -->
-        <receiveBufferSize>8192</receiveBufferSize> <!-- uint32 -->
-        <TTL>250</TTL> <!-- uint8 -->
-        <non_blocking_send>false</non_blocking_send> <!-- boolean -->
-        <maxMessageSize>16384</maxMessageSize> <!-- uint32 -->
-        <maxInitialPeersRange>100</maxInitialPeersRange> <!-- uint32 -->
+        <transport_id>TransportId1</transport_id>
+        <type>UDPv4</type>
+        <sendBufferSize>8192</sendBufferSize>
+        <receiveBufferSize>8192</receiveBufferSize>
+        <TTL>250</TTL>
+        <non_blocking_send>false</non_blocking_send>
+        <maxMessageSize>16384</maxMessageSize>
+        <maxInitialPeersRange>100</maxInitialPeersRange>
         <interfaceWhiteList>
-            <address>192.168.1.41</address> <!-- string -->
-            <address>127.0.0.1</address> <!-- string -->
+            <address>192.168.1.41</address>
+            <address>127.0.0.1</address>
         </interfaceWhiteList>
-        <wan_addr>80.80.55.44</wan_addr> <!-- string -->
-        <output_port>5101</output_port> <!-- uint16 -->
-        <keep_alive_frequency_ms>5000</keep_alive_frequency_ms> <!-- uint32 -->
-        <keep_alive_timeout_ms>25000</keep_alive_timeout_ms> <!-- uint32 -->
-        <max_logical_port>9000</max_logical_port> <!-- uint16 -->
-        <logical_port_range>100</logical_port_range> <!-- uint16 -->
-        <logical_port_increment>2</logical_port_increment> <!-- uint16 -->
+        <wan_addr>80.80.55.44</wan_addr>
+        <output_port>5101</output_port>
+        <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
+        <keep_alive_timeout_ms>25000</keep_alive_timeout_ms>
+        <max_logical_port>9000</max_logical_port>
+        <logical_port_range>100</logical_port_range>
+        <logical_port_increment>2</logical_port_increment>
         <listening_ports>
-            <port>5100</port> <!-- uint16 -->
-            <port>5200</port> <!-- uint16 -->
+            <port>5100</port>
+            <port>5200</port>
         </listening_ports>
-        <calculate_crc>false</calculate_crc> <!-- boolean -->
-        <check_crc>false</check_crc> <!-- boolean -->
-        <enable_tcp_nodelay>false</enable_tcp_nodelay> <!-- boolean -->
+        <calculate_crc>false</calculate_crc>
+        <check_crc>false</check_crc>
+        <enable_tcp_nodelay>false</enable_tcp_nodelay>
         <tls><!-- TLS Section --></tls>
     </transport_descriptor>
 
     <transport_descriptor>
         <transport_id>TransportId2</transport_id>
-        <type>TCPv4</type> <!-- string -->
+        <type>TCPv4</type>
         <!-- ... -->
     </transport_descriptor>
 
@@ -1040,35 +1040,44 @@
 <!--><-->
 
 <!-->XML-TCP-TLS<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>Test</transport_id>
-        <type>TCPv4</type>
-        <tls>
-            <password>Password</password>
-            <private_key_file>Key_file.pem</private_key_file>
-            <rsa_private_key_file>RSA_file.pem</rsa_private_key_file>
-            <cert_chain_file>Chain.pem</cert_chain_file>
-            <tmp_dh_file>DH.pem</tmp_dh_file>
-            <verify_file>verify.pem</verify_file>
-            <verify_mode>
-                <verify>VERIFY_PEER</verify>
-            </verify_mode>
-            <options>
-                <option>NO_TLSV1</option>
-                <option>NO_TLSV1_1</option>
-            </options>
-            <verify_paths>
-                <verify_path>Path1</verify_path>
-                <verify_path>Path2</verify_path>
-                <verify_path>Path3</verify_path>
-            </verify_paths>
-            <verify_depth>55</verify_depth>
-            <default_verify_path>true</default_verify_path>
-            <handshake_role>SERVER</handshake_role>
-        </tls>
-    </transport_descriptor>
-</transport_descriptors>
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<-->
+        <transport_descriptors>
+            <transport_descriptor>
+                <transport_id>Test</transport_id>
+                <type>TCPv4</type>
+                <tls>
+                    <password>Password</password>
+                    <private_key_file>Key_file.pem</private_key_file>
+                    <rsa_private_key_file>RSA_file.pem</rsa_private_key_file>
+                    <cert_chain_file>Chain.pem</cert_chain_file>
+                    <tmp_dh_file>DH.pem</tmp_dh_file>
+                    <verify_file>verify.pem</verify_file>
+                    <verify_mode>
+                        <verify>VERIFY_PEER</verify>
+                    </verify_mode>
+                    <options>
+                        <option>NO_TLSV1</option>
+                        <option>NO_TLSV1_1</option>
+                    </options>
+                    <verify_paths>
+                        <verify_path>Path1</verify_path>
+                        <verify_path>Path2</verify_path>
+                        <verify_path>Path3</verify_path>
+                    </verify_paths>
+                    <verify_depth>55</verify_depth>
+                    <default_verify_path>true</default_verify_path>
+                    <handshake_role>SERVER</handshake_role>
+                </tls>
+            </transport_descriptor>
+        </transport_descriptors>
+<!-->
+    </profiles>
+</dds>
+<-->
 <!--><-->
 
 <!--PROFILES-->
@@ -1095,7 +1104,7 @@
 </subscriber>
 <!--><-->
 
-<!-- STAND ALONE TYPES START -->
+<!--STAND_ALONE_TYPES_START-->
 <types>
     <type>
         <!-- Type definition -->
@@ -1105,7 +1114,7 @@
         <!-- Type definition -->
     </type>
 </types>
-<!-- STAND ALONE TYPES END -->
+<!--STAND_ALONE_TYPES_END-->
 
 <types>
 <type>
@@ -1119,7 +1128,6 @@
 
 <!-->XML-TYPEDEF<-->
 <typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-
 <typedef name="MyAliasArray" type="int32" arrayDimension="2,2"/>
 <!--><-->
 
@@ -1149,19 +1157,27 @@
 </union>
 <!--><-->
 
-<struct name="MembersExample">
 <!-->XML-GENERIC<-->
-<member name="my_long" type="int64"/>
+<struct name="primitive_types_example">
+    <!-- Primitive type definitions inside a struct -->
+    <member name="my_long" type="int64"/>
+    <member name="my_bool" type="boolean"/>
+    <member name="my_string" type="string"/>
+</struct>
 <!--><-->
+<struct name="MembersExample">
 <!-->XML-BOUNDEDSTRINGS<-->
 <member name="my_large_string" type="string" stringMaxLength="41925"/>
 
 <member name="my_large_wstring" type="wstring" stringMaxLength="20925"/>
 <!--><-->
-<!-->XML-ARRAYS<-->
-<member name="long_array" type="int32" arrayDimensions="2,3,4"/>
-<!--><-->
 </struct>
+
+<!-->XML-ARRAYS<-->
+<struct name="arrays_example">
+    <member name="long_array" type="int32" arrayDimensions="2,3,4"/>
+</struct>
+<!--><-->
 
 
 <!-->XML-SEQUENCES<-->
@@ -1224,68 +1240,85 @@
 </types>
 
 <!-->XML-PARTICIPANT<-->
-<participant profile_name="domainparticipant_profile_name">
-    <domainId>80</domainId>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="domainparticipant_profile_name">
+        <domainId>80</domainId>
 
-    <rtps>
-        <name>DomainParticipant Name</name> <!-- String -->
+        <rtps>
+            <name>DomainParticipant Name</name>
 
-        <defaultUnicastLocatorList>
-            <!-- LOCATOR_LIST -->
-            <locator>
-                <udpv4/>
-            </locator>
-        </defaultUnicastLocatorList>
+            <defaultUnicastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4>
+                        <port>7400</port>
+                        <address>192.168.1.41</address>
+                    </udpv4>
+                </locator>
+            </defaultUnicastLocatorList>
 
-        <defaultMulticastLocatorList>
-            <!-- LOCATOR_LIST -->
-            <locator>
-                <udpv4/>
-            </locator>
-        </defaultMulticastLocatorList>
+            <defaultMulticastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4>
+                        <port>7400</port>
+                        <address>192.168.2.41</address>
+                    </udpv4>
+                </locator>
+            </defaultMulticastLocatorList>
 
-        <sendSocketBufferSize>8192</sendSocketBufferSize> <!-- uint32 -->
+            <sendSocketBufferSize>8192</sendSocketBufferSize>
 
-        <listenSocketBufferSize>8192</listenSocketBufferSize>  <!-- uint32 -->
+            <listenSocketBufferSize>8192</listenSocketBufferSize>
 
-        <builtin>
-            <!-- BUILTIN -->
-        </builtin>
+            <builtin>
+                <!-- BUILTIN -->
+            </builtin>
 
-        <port>
-            <portBase>7400</portBase> <!-- uint16 -->
-            <domainIDGain>200</domainIDGain> <!-- uint16 -->
-            <participantIDGain>10</participantIDGain> <!-- uint16 -->
-            <offsetd0>0</offsetd0> <!-- uint16 -->
-            <offsetd1>1</offsetd1> <!-- uint16 -->
-            <offsetd2>2</offsetd2> <!-- uint16 -->
-            <offsetd3>3</offsetd3> <!-- uint16 -->
-        </port>
+            <port>
+                <portBase>7400</portBase>
+                <domainIDGain>200</domainIDGain>
+                <participantIDGain>10</participantIDGain>
+                <offsetd0>0</offsetd0>
+                <offsetd1>1</offsetd1>
+                <offsetd2>2</offsetd2>
+                <offsetd3>3</offsetd3>
+            </port>
 
-        <participantID>99</participantID>   <!-- int32 -->
+            <participantID>99</participantID>
 
-        <throughputController>
-            <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
-            <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
-        </throughputController>
+            <throughputController>
+                <bytesPerPeriod>8192</bytesPerPeriod>
+                <periodMillisecs>1000</periodMillisecs>
+            </throughputController>
 
-        <userTransports>
-            <transport_id>TransportId1</transport_id> <!-- string -->
-            <transport_id>TransportId2</transport_id> <!-- string -->
-        </userTransports>
+            <userTransports>
+                <transport_id>TransportId1</transport_id>
+                <transport_id>TransportId2</transport_id>
+            </userTransports>
 
-        <useBuiltinTransports>false</useBuiltinTransports> <!-- boolean -->
+            <useBuiltinTransports>false</useBuiltinTransports>
 
-        <propertiesPolicy>
-            <!-- PROPERTIES_POLICY -->
-        </propertiesPolicy>
+            <propertiesPolicy>
+                <!-- PROPERTIES_POLICY -->
+                <property>
+                    <name>Property1Name</name>
+                    <value>Property1Value</value>
+                    <propagate>false</propagate>
+                </property>
+            </propertiesPolicy>
 
-        <allocation>
-            <!-- ALLOCATION -->
-        </allocation>
-
-    </rtps>
-</participant>
+            <allocation>
+                <!-- ALLOCATION -->
+            </allocation>
+        </rtps>
+    </participant>
+<!--
+</profiles>
+-->
 <!--><-->
     <!-- Not Used at the moment -->
     <!-- <userData>148875 </userData> -->
@@ -1295,26 +1328,32 @@
 <!-->XML-PARTICIPANT-ALLOCATION<-->
 <allocation>
     <remote_locators>
-        <max_unicast_locators>4</max_unicast_locators> <!-- uint32 -->
-        <max_multicast_locators>1</max_multicast_locators> <!-- uint32 -->
+        <max_unicast_locators>4</max_unicast_locators>
+        <max_multicast_locators>1</max_multicast_locators>
     </remote_locators>
+
     <total_participants>
         <initial>0</initial>
         <maximum>0</maximum>
         <increment>1</increment>
     </total_participants>
+
     <total_readers>
         <initial>0</initial>
         <maximum>0</maximum>
         <increment>1</increment>
     </total_readers>
+
     <total_writers>
         <initial>0</initial>
         <maximum>0</maximum>
         <increment>1</increment>
     </total_writers>
+
     <max_partitions>256</max_partitions>
+
     <max_user_data>256</max_user_data>
+
     <max_properties>512</max_properties>
 </allocation>
 <!--><-->
@@ -1328,11 +1367,11 @@
 <builtin>
     <discovery_config>
 
-        <discoveryProtocol>NONE</discoveryProtocol> <!-- DiscoveryProtocol enum -->
+        <discoveryProtocol>NONE</discoveryProtocol>
 
-        <ignoreParticipantFlags>FILTER_DIFFERENT_HOST</ignoreParticipantFlags> <!-- ParticipantFlags enum -->
+        <ignoreParticipantFlags>FILTER_DIFFERENT_HOST</ignoreParticipantFlags>
 
-        <EDP>SIMPLE</EDP>  <!-- string -->
+        <EDP>SIMPLE</EDP>
 
         <leaseDuration>
             <!-- DURATION -->
@@ -1351,8 +1390,8 @@
         </initialAnnouncements>
 
         <simpleEDP>
-            <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>  <!-- boolean -->
-            <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>  <!-- boolean -->
+            <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
+            <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
         </simpleEDP>
 
         <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>  <!-- string -->
@@ -1361,7 +1400,7 @@
 
     <avoid_builtin_multicast>true</avoid_builtin_multicast>
 
-    <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>  <!-- boolean -->
+    <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>
 
     <metatrafficUnicastLocatorList>
         <!-- LOCATOR_LIST -->
@@ -1385,9 +1424,11 @@
     </initialPeersList>
 
     <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
+
     <readerPayloadSize>512</readerPayloadSize>
 
     <writerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</writerHistoryMemoryPolicy>
+
     <writerPayloadSize>512</writerPayloadSize>
 
     <mutation_tries>55</mutation_tries>
@@ -1445,127 +1486,145 @@
 <!--><-->
 
 <!-->XML-DATAWRITER<-->
-<data_writer profile_name="datawriter_profile_name">
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<-->
+        <data_writer profile_name="datawriter_profile_name">
+            <topic>
+                <!-- TOPIC_TYPE -->
+            </topic>
 
-    <topic>
-        <!-- TOPIC_TYPE -->
-    </topic>
+            <qos>
+                <!-- QOS -->
+            </qos>
 
-    <qos>
-        <!-- QOS -->
-    </qos>
+            <times> <!-- writerTimesType -->
+                <initialHeartbeatDelay>
+                    <sec>0</sec>
+                    <nanosec>12</nanosec>
+                </initialHeartbeatDelay>
 
-    <times> <!-- writerTimesType -->
-        <initialHeartbeatDelay> <!-- DURATION -->
-            <sec>0</sec>
-            <nanosec>12</nanosec>
-        </initialHeartbeatDelay>
-        <heartbeatPeriod> <!-- DURATION -->
-            <sec>3</sec>
-            <nanosec>0</nanosec>
-        </heartbeatPeriod>
-        <nackResponseDelay> <!-- DURATION -->
-            <sec>0</sec>
-            <nanosec>5</nanosec>
-        </nackResponseDelay>
-        <nackSupressionDuration> <!-- DURATION -->
-            <sec>0</sec>
-            <nanosec>0</nanosec>
-        </nackSupressionDuration>
-    </times>
+                <heartbeatPeriod>
+                    <sec>3</sec>
+                    <nanosec>0</nanosec>
+                </heartbeatPeriod>
 
-    <unicastLocatorList>
-        <!-- LOCATOR_LIST -->
-        <locator>
-            <udpv4/>
-        </locator>
-    </unicastLocatorList>
+                <nackResponseDelay>
+                    <sec>0</sec>
+                    <nanosec>5</nanosec>
+                </nackResponseDelay>
 
-    <multicastLocatorList>
-        <!-- LOCATOR_LIST -->
-        <locator>
-            <udpv4/>
-        </locator>
-    </multicastLocatorList>
+                <nackSupressionDuration>
+                    <sec>0</sec>
+                    <nanosec>0</nanosec>
+                </nackSupressionDuration>
+            </times>
 
-    <throughputController>
-        <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
-        <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
-    </throughputController>
+            <unicastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4/>
+                </locator>
+            </unicastLocatorList>
 
-    <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+            <multicastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4/>
+                </locator>
+            </multicastLocatorList>
 
-    <propertiesPolicy>
-        <!-- PROPERTIES_POLICY -->
-    </propertiesPolicy>
+            <throughputController>
+                <bytesPerPeriod>8192</bytesPerPeriod>
+                <periodMillisecs>1000</periodMillisecs>
+            </throughputController>
 
-    <userDefinedID>55</userDefinedID> <!-- Int16 -->
+            <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
-    <entityID>66</entityID> <!-- Int16 -->
+            <propertiesPolicy>
+                <!-- PROPERTIES_POLICY -->
+            </propertiesPolicy>
 
-    <matchedSubscribersAllocation>
-        <initial>0</initial> <!-- uint32 -->
-        <maximum>0</maximum> <!-- uint32 -->
-        <increment>1</increment> <!-- uint32 -->
-    </matchedSubscribersAllocation>
+            <userDefinedID>55</userDefinedID>
 
-</data_writer>
+            <entityID>66</entityID>
+
+            <matchedSubscribersAllocation>
+                <initial>0</initial>
+                <maximum>0</maximum>
+                <increment>1</increment>
+            </matchedSubscribersAllocation>
+        </data_writer>
+<!-->
+    </profiles>
+<dds>
+<-->
 <!--><-->
 <!-->XML-SUBSCRIBER<-->
-<data_reader profile_name="sub_profile_name">
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<-->
+        <data_reader profile_name="sub_profile_name">
+            <topic>
+                <!-- TOPIC_TYPE -->
+            </topic>
 
-    <topic>
-        <!-- TOPIC_TYPE -->
-    </topic>
+            <qos>
+                <!-- QOS -->
+            </qos>
 
-    <qos>
-        <!-- QOS -->
-    </qos>
+            <times> <!-- readerTimesType -->
+                <initialAcknackDelay>
+                    <sec>0</sec>
+                    <nanosec>70</nanosec>
+                </initialAcknackDelay>
 
-    <times> <!-- readerTimesType -->
-        <initialAcknackDelay> <!-- DURATION -->
-            <sec>0</sec>
-            <nanosec>70</nanosec>
-        </initialAcknackDelay>
-        <heartbeatResponseDelay> <!-- DURATION -->
-            <sec>0</sec>
-            <nanosec>5</nanosec>
-        </heartbeatResponseDelay>
-    </times>
+                <heartbeatResponseDelay>
+                    <sec>0</sec>
+                    <nanosec>5</nanosec>
+                </heartbeatResponseDelay>
+            </times>
 
-    <unicastLocatorList>
-        <!-- LOCATOR_LIST -->
-        <locator>
-            <udpv4/>
-        </locator>
-    </unicastLocatorList>
+            <unicastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4/>
+                </locator>
+            </unicastLocatorList>
 
-    <multicastLocatorList>
-        <!-- LOCATOR_LIST -->
-        <locator>
-            <udpv4/>
-        </locator>
-    </multicastLocatorList>
+            <multicastLocatorList>
+                <!-- LOCATOR_LIST -->
+                <locator>
+                    <udpv4/>
+                </locator>
+            </multicastLocatorList>
 
-    <expectsInlineQos>true</expectsInlineQos> <!-- boolean -->
+            <expectsInlineQos>true</expectsInlineQos>
 
-    <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+            <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
-    <propertiesPolicy>
-        <!-- PROPERTIES_POLICY -->
-    </propertiesPolicy>
+            <propertiesPolicy>
+                <!-- PROPERTIES_POLICY -->
+            </propertiesPolicy>
 
-    <userDefinedID>55</userDefinedID> <!-- Int16 -->
+            <userDefinedID>55</userDefinedID>
 
-    <entityID>66</entityID> <!-- Int16 -->
+            <entityID>66</entityID>
 
-    <matchedPublishersAllocation>
-        <initial>0</initial> <!-- uint32 -->
-        <maximum>0</maximum> <!-- uint32 -->
-        <increment>1</increment> <!-- uint32 -->
-    </matchedPublishersAllocation>
-
-</data_reader>
+            <matchedPublishersAllocation>
+                <initial>0</initial>
+                <maximum>0</maximum>
+                <increment>1</increment>
+            </matchedPublishersAllocation>
+        </data_reader>
+<!-->
+    </profiles>
+<dds>
+<-->
 <!--><-->
 
 <participant profile_name="part_locator_list">
@@ -1575,15 +1634,15 @@
     <locator>
         <udpv4>
             <!-- Access as physical, typical UDP usage -->
-            <port>7400</port> <!-- uint32 -->
+            <port>7400</port>
             <address>192.168.1.41</address>
         </udpv4>
     </locator>
     <locator>
         <tcpv4>
             <!-- Both physical and logical (port), useful in TCP transports -->
-            <physical_port>5100</physical_port> <!-- uint16 -->
-            <port>7400</port> <!-- uint16 -->
+            <physical_port>5100</physical_port>
+            <port>7400</port>
             <unique_lan_id>192.168.1.1.1.1.2.55</unique_lan_id>
             <wan_address>80.80.99.45</wan_address>
             <address>192.168.1.55</address>
@@ -1598,8 +1657,8 @@
     <locator>
         <tcpv6>
             <!-- Both physical and logical (port), useful in TCP transports -->
-            <physical_port>5100</physical_port> <!-- uint16 -->
-            <port>7400</port> <!-- uint16 -->
+            <physical_port>5100</physical_port>
+            <port>7400</port>
             <address>fe80::55e3:290:165:5af8</address>
         </tcpv6>
     </locator>
@@ -1614,14 +1673,14 @@
 <propertiesPolicy>
     <properties>
         <property>
-            <name>Property1Name</name> <!-- string -->
-            <value>Property1Value</value> <!-- string -->
-            <propagate>false</propagate> <!-- boolean -->
+            <name>Property1Name</name>
+            <value>Property1Value</value>
+            <propagate>false</propagate>
         </property>
         <property>
-            <name>Property2Name</name> <!-- string -->
-            <value>Property2Value</value> <!-- string -->
-            <propagate>true</propagate> <!-- boolean -->
+            <name>Property2Name</name>
+            <value>Property2Value</value>
+            <propagate>true</propagate>
         </property>
     </properties>
 </propertiesPolicy>
@@ -1636,17 +1695,17 @@
 <!-->XML-DURATION<-->
 <discovery_config>
     <leaseDuration>
-        <sec>DURATION_INFINITY</sec> <!-- string -->
+        <sec>DURATION_INFINITY</sec>
     </leaseDuration>
 
     <leaseDuration>
-        <sec>500</sec> <!-- int32 -->
-        <nanosec>0</nanosec> <!-- uint32 -->
+        <sec>500</sec>
+        <nanosec>0</nanosec>
     </leaseDuration>
 
     <leaseAnnouncement>
-        <sec>1</sec> <!-- int32 -->
-        <nanosec>856000</nanosec> <!-- uint32 -->
+        <sec>1</sec>
+        <nanosec>856000</nanosec>
     </leaseAnnouncement>
 </discovery_config>
 <!--><-->
@@ -1657,34 +1716,36 @@
 <subscriber profile_name="sub_topic_qos">
 <!-->XML-TOPIC<-->
 <topic>
-    <kind>NO_KEY</kind> <!-- string -->
-    <name>TopicName</name> <!-- string -->
-    <dataType>TopicDataTypeName</dataType> <!-- string -->
+    <kind>NO_KEY</kind>
+    <name>TopicName</name>
+    <dataType>TopicDataTypeName</dataType>
     <historyQos>
-        <kind>KEEP_LAST</kind> <!-- string -->
-        <depth>20</depth> <!-- uint32 -->
+        <kind>KEEP_LAST</kind>
+        <depth>20</depth>
     </historyQos>
     <resourceLimitsQos>
-        <max_samples>5</max_samples> <!-- unint32 -->
-        <max_instances>2</max_instances> <!-- unint32 -->
-        <max_samples_per_instance>1</max_samples_per_instance> <!-- unint32 -->
-        <allocated_samples>20</allocated_samples> <!-- unint32 -->
+        <max_samples>5</max_samples>
+        <max_instances>2</max_instances>
+        <max_samples_per_instance>1</max_samples_per_instance>
+        <allocated_samples>20</allocated_samples>
     </resourceLimitsQos>
 </topic>
 <!--><-->
 <!-->XML-QOS<-->
 <qos> <!-- readerQosPoliciesType -->
     <durability>
-        <kind>VOLATILE</kind> <!-- string -->
+        <kind>VOLATILE</kind>
     </durability>
 
     <liveliness>
-        <kind>AUTOMATIC</kind> <!-- string -->
+        <kind>AUTOMATIC</kind>
+
         <lease_duration>
-        <sec>1</sec>
+            <sec>1</sec>
         </lease_duration>
+
         <announcement_period>
-        <sec>1</sec>
+            <sec>1</sec>
         </announcement_period>
     </liveliness>
 
@@ -1694,8 +1755,8 @@
 
     <partition>
         <names>
-            <name>part1</name> <!-- string -->
-            <name>part2</name> <!-- string -->
+            <name>part1</name>
+            <name>part2</name>
         </names>
     </partition>
 
@@ -1741,11 +1802,11 @@
 <qos>
 <!-->XML-LIVELINESS<-->
 <liveliness>
-    <kind>AUTOMATIC</kind> <!-- string -->
-    <lease_duration> <!-- DURATION -->
+    <kind>AUTOMATIC</kind>
+    <lease_duration>
         <sec>DURATION_INFINITY</sec>
     </lease_duration>
-    <announcement_period> <!-- DURATION -->
+    <announcement_period>
         <sec>DURATION_INFINITY</sec>
     </announcement_period>
 </liveliness>
@@ -2657,7 +2718,7 @@
     <participant profile_name="part_profile_example">
         <domainId>4</domainId>
         <rtps>
-            <name>Participant Name</name> <!-- String -->
+            <name>Participant Name</name>
 
             <defaultUnicastLocatorList>
                 <locator>
@@ -3191,7 +3252,7 @@
 <!-->LOG-CONFIG<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds>
 -->
     <log>
         <!--
@@ -3222,7 +3283,7 @@
         </consumer>
     </log>
 <!--
-</profiles>
+</dds>
 -->
 <!--><-->
 
@@ -3536,75 +3597,134 @@
 <!--XML_PROFILES_SECTION-->
 
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>TransportId1</transport_id> <!-- string -->
-        <type>UDPv4</type> <!-- string -->
-        <sendBufferSize>8192</sendBufferSize> <!-- uint32 -->
-        <receiveBufferSize>8192</receiveBufferSize> <!-- uint32 -->
-        <TTL>250</TTL> <!-- uint8 -->
-        <non_blocking_send>false</non_blocking_send> <!-- boolean -->
-        <maxMessageSize>16384</maxMessageSize> <!-- uint32 -->
-        <maxInitialPeersRange>100</maxInitialPeersRange> <!-- uint32 -->
-        <interfaceWhiteList>
-            <address>192.168.1.41</address> <!-- string -->
-            <address>127.0.0.1</address> <!-- string -->
-        </interfaceWhiteList>
-        <wan_addr>80.80.55.44</wan_addr> <!-- string -->
-        <output_port>5101</output_port> <!-- uint16 -->
-        <keep_alive_frequency_ms>5000</keep_alive_frequency_ms> <!-- uint32 -->
-        <keep_alive_timeout_ms>25000</keep_alive_timeout_ms> <!-- uint32 -->
-        <max_logical_port>9000</max_logical_port> <!-- uint16 -->
-        <logical_port_range>100</logical_port_range> <!-- uint16 -->
-        <logical_port_increment>2</logical_port_increment> <!-- uint16 -->
-        <listening_ports>
-            <port>5100</port> <!-- uint16 -->
-            <port>5200</port> <!-- uint16 -->
-        </listening_ports>
-        <calculate_crc>false</calculate_crc> <!-- boolean -->
-        <check_crc>false</check_crc> <!-- boolean -->
-        <enable_tcp_nodelay>false</enable_tcp_nodelay> <!-- boolean -->
-        <tls><!-- TLS Section --></tls>
-    </transport_descriptor>
-</transport_descriptors>
-<!--><-->
-
-<!-->PROFILES-TRANSPORT-DESCRIPTORS_v2<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
 <-->
-    <transport_descriptor>
-        <transport_id>TransportProfile</transport_id>
-        <type>UDPv4</type>
-        <!-- ... -->
-    </transport_descriptor>
-
-    </transport_descriptors>
-
-    <types>
-        <type>
-            <struct name="struct_profile">
-                <!-- ... -->
-            </struct>
-        </type>
-    </types>
-
-    <participant profile_name="participant_profile">
-        <rtps>
-        <!-- ... -->
-        </rtps>
-    </participant>
-
-    <publisher profile_name="datawriter_profile">
-        <!-- ... -->
-    </publisher>
-
-    <subscriber profile_name="datareader_profile">
-        <!-- ... -->
-    </subscriber>
+        <transport_descriptors>
+            <transport_descriptor>
+                <transport_id>TransportId1</transport_id>
+                <type>UDPv4</type>
+                <sendBufferSize>8192</sendBufferSize>
+                <receiveBufferSize>8192</receiveBufferSize>
+                <TTL>250</TTL>
+                <non_blocking_send>false</non_blocking_send>
+                <maxMessageSize>16384</maxMessageSize>
+                <maxInitialPeersRange>100</maxInitialPeersRange>
+                <interfaceWhiteList>
+                    <address>192.168.1.41</address>
+                    <address>127.0.0.1</address>
+                </interfaceWhiteList>
+                <wan_addr>80.80.55.44</wan_addr>
+                <output_port>5101</output_port>
+                <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
+                <keep_alive_timeout_ms>25000</keep_alive_timeout_ms>
+                <max_logical_port>9000</max_logical_port>
+                <logical_port_range>100</logical_port_range>
+                <logical_port_increment>2</logical_port_increment>
+                <listening_ports>
+                    <port>5100</port>
+                    <port>5200</port>
+                </listening_ports>
+                <calculate_crc>false</calculate_crc>
+                <check_crc>false</check_crc>
+                <enable_tcp_nodelay>false</enable_tcp_nodelay>
+                <tls><!-- TLS Section --></tls>
+                <segment_size>262144</segment_size>
+                <port_queue_capacity>512</port_queue_capacity>
+                <healthy_check_timeout_ms>1000</healthy_check_timeout_ms>
+                <rtps_dump_file>rtsp_messages.log</rtps_dump_file>
+            </transport_descriptor>
+        </transport_descriptors>
 <!-->
-</profiles>
+    </profiles>
+</dds>
 <-->
 <!--><-->
+
+<!-->CREATING_XML_PROFILES<-->
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<-->
+        <participant profile_name="participant_profile">
+            <domainId>80</domainId>
+
+            <rtps>
+                <!-- ... -->
+            </rtps>
+        </participant>
+
+        <data_writer profile_name="datawriter_profile">
+            <!-- ... -->
+        </data_writer>
+
+        <data_reader profile_name="datareader_profile">
+            <!-- ... -->
+        </data_reader>
+
+        <transport_descriptors>
+            <transport_descriptor>
+                <transport_id>TransportProfile</transport_id>
+
+                <type>UDPv4</type>
+
+                <!-- ... -->
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <log>
+            <!-- ... -->
+        </log>
+
+        <types>
+            <type>
+                <struct name="struct_profile">
+                    <!-- ... -->
+                </struct>
+            </type>
+        </types>
+<!-->
+    </profiles>
+</dds>
+<-->
+<!--><-->
+
+<!-->ROOTED_TYPES_START<-->
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+<-->
+    <types>
+        <type>
+            <!-- Type definition -->
+        </type>
+
+        <type>
+            <!-- Type definition -->
+            <!-- Type definition -->
+        </type>
+    </types>
+<!-->
+</dds>
+<-->
+<!-->ROOTED_TYPES_END<-->
+
+<!-->STANDALONE_TYPES_START<-->
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<-->
+<types>
+    <type>
+        <!-- Type definition -->
+    </type>
+
+    <type>
+        <!-- Type definition -->
+        <!-- Type definition -->
+    </type>
+</types>
+<!-->STANDALONE_TYPES_END<-->
 

@@ -3,19 +3,26 @@
 TLS over TCP
 ============
 
-Fast-RTPS allows configuring a TCP Transport to use TLS (Transport Layer Security).
-In order to set up TLS, the ``apply_security`` must be set to ``true`` and the ``tls_config``
-must be filled with the desired configuration on the :ref:`transport_tcp_transportDescriptor`.
+.. warning::
 
+   This documentation assumes the reader has basic knowledge of TLS concepts
+   since terms like Certificate Authority (CA), Private Key, `Rivest–Shamir–Adleman` (RSA) cryptosystem,
+   and Diffie-Hellman encryption protocol are not explained in detail.
+
+*Fast DDS* allows configuring TCP Transports to use TLS (Transport Layer Security).
+In order to set up TLS, the :ref:`transport_tcp_transportDescriptor` must
+have its ``apply_security`` data member set to ``true``, and its ``tls_config`` data member
+filled with the desired configuration on the :ref:`transport_tcp_transportDescriptor`.
 The following is an example of configuration of TLS on the *TCP server*.
 
 +--------------------------------------------------+
 | **C++**                                          |
 +--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
+| .. literalinclude:: /../code/DDSCodeTester.cpp   |
 |    :language: c++                                |
 |    :start-after: //CONF-TCP-TLS-SERVER           |
 |    :end-before: //!--                            |
+|    :dedent: 8                                    |
 +--------------------------------------------------+
 | **XML**                                          |
 +--------------------------------------------------+
@@ -23,6 +30,8 @@ The following is an example of configuration of TLS on the *TCP server*.
 |    :language: xml                                |
 |    :start-after: <!-->CONF-TCP-TLS-SERVER        |
 |    :end-before: <!--><-->                        |
+|    :lines: 2-3,5-                                |
+|    :append: </profiles>                          |
 +--------------------------------------------------+
 
 The corresponding configuration on the *TCP client* is shown in the following example.
@@ -30,10 +39,11 @@ The corresponding configuration on the *TCP client* is shown in the following ex
 +------------------------------------------------------+
 | **C++**                                              |
 +------------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp          |
+| .. literalinclude:: /../code/DDSCodeTester.cpp       |
 |    :language: c++                                    |
 |    :start-after: //CONF-TCP-TLS-CLIENT               |
 |    :end-before: //!--                                |
+|    :dedent: 8                                        |
 +------------------------------------------------------+
 | **XML**                                              |
 +------------------------------------------------------+
@@ -41,6 +51,8 @@ The corresponding configuration on the *TCP client* is shown in the following ex
 |    :language: xml                                    |
 |    :start-after: <!-->CONF-TCP-TLS-CLIENT            |
 |    :end-before: <!--><-->                            |
+|    :lines: 2-3,5-                                    |
+|    :append: </profiles>                              |
 +------------------------------------------------------+
 
 

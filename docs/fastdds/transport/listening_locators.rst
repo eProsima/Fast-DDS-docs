@@ -21,7 +21,7 @@ According to the nature of the data we have:
    data changes.
 
 Applications can :ref:`provide their own Listening Locators<listening_locators_adding>`,
-or use the :ref:`listening_locators_default` provided by eProsima Fast DDS.
+or use the :ref:`listening_locators_default` provided by *eProsima Fast DDS*.
 
 .. _listening_locators_adding:
 
@@ -37,15 +37,15 @@ it will be treated as a *multicast*, *unicast*, *user* or *metatraffic*
 .. note::
 
    Both UDP and TCP unicast :ref:`Locators<transport_transportApi_locator>` support to have a null address.
-   In that case, Fast DDS automatically gets and uses local network addresses.
+   In that case, *Fast DDS* automatically gets and uses local network addresses.
 
 .. note::
 
    Both UDP and TCP :ref:`Locators<transport_transportApi_locator>` support to have a zero port.
-   In that case, Fast DDS automatically calculates and uses well-known ports for that type of traffic.
+   In that case, *Fast DDS* automatically calculates and uses well-known ports for that type of traffic.
    See :ref:`listening_locators_defaultPorts` for details about the well-known ports.
 
-.. note::
+.. warning::
 
    TCP does not support multicast scenarios, so the network architecture must be carefully planned.
 
@@ -60,6 +60,7 @@ using the field ``wire_protocol().builtin.metatrafficMulticastLocatorList``.
     :language: c++
     :start-after: //DDS_TRANSPORT_METAMULTICASTLOCATOR
     :end-before: //!--
+    :dedent: 8
 
 .. _listening_locators_metaUnicast:
 
@@ -72,30 +73,33 @@ using the field ``wire_protocol().builtin.metatrafficUnicastLocatorList``.
     :language: c++
     :start-after: //DDS_TRANSPORT_METAUNICASTLOCATOR
     :end-before: //!--
+    :dedent: 8
 
 .. _listening_locators_userMulticast:
 
-User Multicast Locators
-^^^^^^^^^^^^^^^^^^^^^^^
-Users can set their own user multicast locators
+User-traffic Multicast Locators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Users can set their own user-traffic multicast locators
 using the field ``wire_protocol().default_multicast_locator_list``.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
     :start-after: //DDS_TRANSPORT_USERMULTICASTLOCATOR
     :end-before: //!--
+    :dedent: 8
 
 .. _listening_locators_userUnicast:
 
-User Unicast Locators
-^^^^^^^^^^^^^^^^^^^^^
-Users can set their own user unicast locators
+User-traffic Unicast Locators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Users can set their own user-traffic unicast locators
 using the field ``wire_protocol().default_unicast_locator_list``.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
     :start-after: //DDS_TRANSPORT_USERUNICASTLOCATOR
     :end-before: //!--
+    :dedent: 8
 
 
 .. _listening_locators_default:
@@ -106,21 +110,21 @@ Default Listening Locators
 .. _DDSI-RTPS V2.2: https://www.omg.org/spec/DDSI-RTPS/2.2/PDF
 
 If the application does not define any :ref:`listening_locators`,
-eProsima Fast DDS automatically enables a set of listening UDPv4 locators by default.
-This allows out-of-the-box communication in most cases, without the need of configuring the
-:ref:`comm-transports-configuration` layer.
+*eProsima Fast DDS* automatically enables a set of listening UDPv4 locators by default.
+This allows out-of-the-box communication in most cases, without the need of
+further configuring the :ref:`comm-transports-configuration`.
 
  * If the application does not define any *metatraffic* :ref:`transport_transportApi_locator`
-   (either *unicast* or *multicast*), Fast DDS enables one *multicast*  :ref:`transport_transportApi_locator`
+   (either *unicast* or *multicast*), *Fast DDS* enables one *multicast*  :ref:`transport_transportApi_locator`
    that will be used during :ref:`discovery`, and one *unicast* :ref:`transport_transportApi_locator`
    that will be used for peer-to-peer communication with already discovered
    :ref:`DomainParticipants<dds_layer_domainParticipant>`.
 
- * If the application does not define any *user* :ref:`transport_transportApi_locator`
-   (either *unicast* or *multicast*), Fast DDS enables one *unicast* :ref:`transport_transportApi_locator`
+ * If the application does not define any *user-traffic* :ref:`transport_transportApi_locator`
+   (neither *unicast* nor *multicast*), *Fast DDS* enables one *unicast* :ref:`transport_transportApi_locator`
    that will be used for peer-to-peer communication of :ref:`dds_layer_topic_topic` data.
 
-For example, it is possible to prevent *multicast* traffic adding a single *user unicast* Locator
+For example, it is possible to prevent *multicast* traffic adding a single *user-traffic unicast* Locator
 as described in :ref:`transport_disableMulticast`.
 
 Default :ref:`listening_locators` always use :ref:`listening_locators_defaultPorts`.
@@ -134,7 +138,7 @@ The `DDSI-RTPS V2.2`_ standard (Section 9.6.1.1) defines a set of rules to calcu
 ports for default :ref:`Locators<transport_transportApi_locator>`, so that
 :ref:`DomainParticipants<dds_layer_domainParticipant>` can communicate with these
 default :ref:`Locators<transport_transportApi_locator>`.
-Well-known ports are also selected automatically by FastDDS when a :ref:`transport_transportApi_locator`
+Well-known ports are also selected automatically by *Fast DDS* when a :ref:`transport_transportApi_locator`
 is configured with port number `0`.
 
 Well-known ports are calculated using the following predefined rules:

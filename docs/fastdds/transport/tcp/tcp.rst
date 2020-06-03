@@ -17,59 +17,12 @@ must connect to this port.
   Any of them can act as a *TCP Server* or *TCP Client* when establishing the connection,
   and the DDS communication will work over this connection.
 
+.. warning::
 
-.. _transport_tcp_enabling:
-
-Enabling TCP Transport
-----------------------
-
-To enable TCP transport in a :ref:`dds_layer_domainParticipant`, you need to
-create an instance of :ref:`transport_tcp_v4transportDescriptor` (for TCPv4) or
-:ref:`transport_tcp_v6transportDescriptor` (for TCPv6), and add it to the user transport list of the
-:ref:`dds_layer_domainParticipant`.
-
-If you provide ``listening_ports`` on the descriptor, the :ref:`dds_layer_domainParticipant` will act
-as *TCP server*, listening for incoming remote connections on the given ports.
-The examples below show this procedure in both C++ code and XML file.
-
-+---------------------------------------------------------+
-| **C++**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp          |
-|    :language: c++                                       |
-|    :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER    |
-|    :end-before: //!--                                   |
-+---------------------------------------------------------+
-| **XML**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml              |
-|    :language: xml                                       |
-|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER |
-|    :end-before: <!--><-->                               |
-+---------------------------------------------------------+
-
-If you provide ``initialPeersList`` to the :ref:`dds_layer_domainParticipant`, it will act
-as *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
-The examples below show this procedure in both C++ code and XML file.
-See :ref:`Simple Initial Peers` for more information about their configuration.
-
-+----------------------------------------------------------+
-| **C++**                                                  |
-+----------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp           |
-|    :language: c++                                        |
-|    :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT     |
-|    :end-before: //!--                                    |
-+----------------------------------------------------------+
-| **XML**                                                  |
-+----------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml               |
-|    :language: xml                                        |
-|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT  |
-|    :end-before: <!--><-->                                |
-+----------------------------------------------------------+
-
-There is an :ref:`example<transport_tcp_example>` that shows the use and configuration of TCP transport.
+   This documentation assumes the reader has basic knowledge of TCP/IP concepts, since terms like
+   Time To Live (TTL), Cyclic Redundancy Check (CRC), Transport Layer Security (TLS),
+   socket buffers, and port numbering are not explained in detail.
+   However, it is possible to configure a basic TCP transport on *Fast DDS* without this knowledge.
 
 
 .. _transport_tcp_transportDescriptor:
@@ -77,7 +30,7 @@ There is an :ref:`example<transport_tcp_example>` that shows the use and configu
 TCPTransportDescriptor
 ----------------------
 
-eProsima Fast DDS implements TCP transport for both TCPv4 and TCPv6.
+*eProsima Fast DDS* implements TCP transport for both TCPv4 and TCPv6.
 Each of these transports is independent from the other, and has its own :class:`TransportDescriptor`.
 However, they share many of their features, and most of the :class:`TransportDescriptor` data members are common.
 
@@ -89,9 +42,9 @@ The following table describes the common data members for both TCPv4 and TCPv6.
 +------------------------------+----------------------+---------+------------------------------------------------------+
 | Member                       | Data type            | Default | Description                                          |
 +==============================+======================+=========+======================================================+
-| ``sendBufferSize``           | ``uint32_t``         | ``0``   | Size of the sending buffer of the socket.            |
+| ``sendBufferSize``           | ``uint32_t``         | ``0``   | Size of the sending buffer of the socket (octets).   |
 +------------------------------+----------------------+---------+------------------------------------------------------+
-| ``receiveBufferSize``        | ``uint32_t``         | ``0``   | Size of the receiving buffer of the socket.          |
+| ``receiveBufferSize``        | ``uint32_t``         | ``0``   | Size of the receiving buffer of the socket (octets). |
 +------------------------------+----------------------+---------+------------------------------------------------------+
 | ``interfaceWhiteList``       | ``vector<string>``   | empty   | List of allowed interfaces.                          |
 |                              |                      |         | See |InterfaceWhitelist|                             |
@@ -113,8 +66,6 @@ The following table describes the common data members for both TCPv4 and TCPv6.
 +------------------------------+----------------------+---------+------------------------------------------------------+
 | ``logical_port_increment``   | ``uint16_t``         | 2       | Increment between logical ports to try               |
 |                              |                      |         | during RTCP negotiation.                             |
-+------------------------------+----------------------+---------+------------------------------------------------------+
-| ``tcp_negotiation_timeout``  | ``uint32_t``         | 5000    | Timeout for the health check of ports.               |
 +------------------------------+----------------------+---------+------------------------------------------------------+
 | ``enable_tcp_nodelay``       | ``bool``             | false   | Enables the TCP_NODELAY socket option.               |
 +------------------------------+----------------------+---------+------------------------------------------------------+
@@ -147,6 +98,11 @@ The following table describes the data members that are exclusive for :class:`TC
 | ``wan_addr``                 | ``octet[4]``         | empty   | Configuration for TLS. See |WANconfig|.              |
 +------------------------------+----------------------+---------+------------------------------------------------------+
 
+.. note::
+
+   The *kind* value for a TCPv4TransportDescriptor is given by the value
+   ``eprosima::fastrtps::rtps::LOCATOR_KIND_TCPv4``
+
 
 .. _transport_tcp_v6transportDescriptor:
 
@@ -156,13 +112,77 @@ TCPv6TransportDescriptor
 :class:`TCPv6TransportDescriptor` has no additional data members from the common ones described in
 :ref:`transport_tcp_transportDescriptor`.
 
+.. note::
+
+   The *kind* value for a TCPv4TransportDescriptor is given by the value
+   ``eprosima::fastrtps::rtps::LOCATOR_KIND_TCPv6``
+
+.. _transport_tcp_enabling:
+
+Enabling TCP Transport
+----------------------
+
+To enable TCP transport in a :ref:`dds_layer_domainParticipant`, you need to
+create an instance of :ref:`transport_tcp_v4transportDescriptor` (for TCPv4) or
+:ref:`transport_tcp_v6transportDescriptor` (for TCPv6), and add it to the user transport list of the
+:ref:`dds_layer_domainParticipant`.
+
+If you provide ``listening_ports`` on the descriptor, the :ref:`dds_layer_domainParticipant` will act
+as *TCP server*, listening for incoming remote connections on the given ports.
+The examples below show this procedure in both C++ code and XML file.
+
++---------------------------------------------------------+
+| **C++**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp          |
+|    :language: c++                                       |
+|    :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER    |
+|    :end-before: //!--                                   |
+|    :dedent: 8                                           |
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml              |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER |
+|    :end-before: <!--><-->                               |
+|    :lines: 2-3,5-                                       |
+|    :append: </profiles>                                 |
++---------------------------------------------------------+
+
+If you provide ``initialPeersList`` to the :ref:`dds_layer_domainParticipant`, it will act
+as *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
+The examples below show this procedure in both C++ code and XML file.
+See :ref:`Simple Initial Peers` for more information about their configuration.
+
++----------------------------------------------------------+
+| **C++**                                                  |
++----------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp           |
+|    :language: c++                                        |
+|    :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT     |
+|    :end-before: //!--                                    |
+|    :dedent: 8                                            |
++----------------------------------------------------------+
+| **XML**                                                  |
++----------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml               |
+|    :language: xml                                        |
+|    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT  |
+|    :end-before: <!--><-->                                |
+|    :lines: 2-3,5-                                        |
+|    :append: </profiles>                                  |
++----------------------------------------------------------+
+
+:ref:`transport_tcp_example` shows how to use and configure a TCP transport.
+
 
 .. _transport_tcp_wan:
 
 WAN or Internet Communication over TCPv4
 ----------------------------------------
 
-Fast DDS is able to connect through the Internet or other WAN networks when configured properly.
+*Fast DDS* is able to connect through the Internet or other WAN networks when configured properly.
 To achieve this kind of scenarios, the involved network devices such as routers and firewalls
 must add the rules to allow the communication.
 
@@ -193,6 +213,7 @@ the :ref:`dds_layer_domainParticipant` both in C++ and XML.
 |    :language: c++                                       |
 |    :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER    |
 |    :end-before: //!--                                   |
+|    :dedent: 8                                           |
 +---------------------------------------------------------+
 | **XML**                                                 |
 +---------------------------------------------------------+
@@ -200,9 +221,11 @@ the :ref:`dds_layer_domainParticipant` both in C++ and XML.
 |    :language: xml                                       |
 |    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER |
 |    :end-before: <!--><-->                               |
+|    :lines: 2-3,5-                                       |
+|    :append: </profiles>                                 |
 +---------------------------------------------------------+
 
-In the client side, the :ref:`dds_layer_domainParticipant` must be configured
+On the client side, the :ref:`dds_layer_domainParticipant` must be configured
 with the **public** IP address and ``listening_port`` of the *TCP server* as
 ``initial_peer``.
 
@@ -213,6 +236,7 @@ with the **public** IP address and ``listening_port`` of the *TCP server* as
 |    :language: c++                                        |
 |    :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT     |
 |    :end-before: //!--                                    |
+|    :dedent: 8                                            |
 +----------------------------------------------------------+
 | **XML**                                                  |
 +----------------------------------------------------------+
@@ -220,6 +244,8 @@ with the **public** IP address and ``listening_port`` of the *TCP server* as
 |    :language: xml                                        |
 |    :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT  |
 |    :end-before: <!--><-->                                |
+|    :lines: 2-3,5-                                        |
+|    :append: </profiles>                                  |
 +----------------------------------------------------------+
 
 

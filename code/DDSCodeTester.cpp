@@ -3014,6 +3014,25 @@ void dds_transport_examples ()
     using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
     using Locator_t = eprosima::fastrtps::rtps::Locator_t;
     using IPLocator = eprosima::fastrtps::rtps::IPLocator;
+
+    {
+        //CONF-IPLOCATOR-USAGE
+        // We will configure a TCP locator with IPLocator
+        Locator_t locator;
+
+        // Get & set the physical port
+        uint16_t physical_port = IPLocator::getPhysicalPort(locator);
+        IPLocator::setPhysicalPort(locator, 5555);
+
+        // On TCP locators, we can get & set the logical port
+        uint16_t logical_port = IPLocator::getLogicalPort(locator);
+        IPLocator::setLogicalPort(locator, 7400);
+
+        // Set WAN address
+        IPLocator::setWan(locator, "80.88.75.55");
+        //!--
+    }
+
     {
         //DDS_TRANSPORT_METAMULTICASTLOCATOR
         DomainParticipantQos qos;
@@ -3086,6 +3105,9 @@ void dds_transport_examples ()
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(udp_transport);
+
+        // Avoid using the default transport
+        qos.transport().use_builtin_transports = false;
         //!--
     }
 
@@ -3102,6 +3124,9 @@ void dds_transport_examples ()
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tcp_transport);
+
+        // Avoid using the default transport
+        qos.transport().use_builtin_transports = false;
         //!--
     }
 
@@ -3124,6 +3149,9 @@ void dds_transport_examples ()
         initial_peer_locator.port = 5100;
 
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
+
+        // Avoid using the default transport
+        qos.transport().use_builtin_transports = false;
         //!--
     }
 
@@ -3196,7 +3224,7 @@ void dds_transport_examples ()
     }
 
     {
-        //CONF-TRANSPORT-DESCRIPTORS
+        //TRANSPORT-DESCRIPTORS
         DomainParticipantQos qos;
 
         // Create a descriptor for the new transport.
@@ -3207,6 +3235,7 @@ void dds_transport_examples ()
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tcp_transport);
+        //!--
     }
 
     {

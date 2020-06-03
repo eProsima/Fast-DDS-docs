@@ -19,21 +19,22 @@ listed in the publisher participant :ref:`intial peers list<Simple Initial Peers
 The following is an example of how to disable all multicast traffic configuring one
 *metatraffic unicast* locator.
 
-+-----------------------------------------------+
-| **C++**                                       |
-+-----------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp   |
-|    :language: c++                             |
-|    :start-after: //CONF-DISABLE-MULTICAST     |
-|    :end-before: //!--                         |
-+-----------------------------------------------+
-| **XML**                                       |
-+-----------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml    |
-|    :language: xml                             |
-|    :start-after: <!-->CONF-DISABLE-MULTICAST  |
-|    :end-before: <!--><-->                     |
-+-----------------------------------------------+
-
-
++------------------------------------------------+
+| **C++**                                        |
++------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp |
+|    :language: c++                              |
+|    :start-after: //CONF-DISABLE-MULTICAST      |
+|    :end-before: //!--                          |
+|    :dedent: 8                                  |
++------------------------------------------------+
+| **XML**                                        |
++------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml     |
+|    :language: xml                              |
+|    :start-after: <!-->CONF-DISABLE-MULTICAST   |
+|    :end-before: <!--><-->                      |
+|    :lines: 2-3,5-                              |
+|    :append: </profiles>                        |
++------------------------------------------------+
 

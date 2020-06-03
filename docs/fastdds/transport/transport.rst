@@ -1,7 +1,7 @@
 .. _comm-transports-configuration:
 
-Transports
-==========
+Transport Layer
+===============
 
 The transport layer provides communication services between DDS entities,
 being responsible of actually sending and receiving messages over a physical transport.
@@ -11,23 +11,23 @@ it defines a transport API and can run over any transport plugin that implements
 This way, it is not restricted to a specific transport, and applications
 can choose the one that best suits their requirements, or create their own.
 
-eProsima Fast DDS comes with five transports already implemented:
+*eProsima Fast DDS* comes with five transports already implemented:
 
 - **UDPv4**: UDP Datagram communication over IPv4. This is the default transport created on a new
-  :ref:`dds_layer_domainParticipant` if no specific transport configuration is given.
-  See :ref:`transport_udp_udp`.
+  :ref:`dds_layer_domainParticipant` if no specific transport configuration is given
+  (see :ref:`transport_udp_udp`).
 
-- **UDPv6**: UDP Datagram communication over IPv6.
-  See :ref:`transport_udp_udp`.
+- **UDPv6**: UDP Datagram communication over IPv6
+  (see :ref:`transport_udp_udp`).
 
-- **TCPv4**: TCP communication over IPv4.
-  See :ref:`transport_tcp_tcp`.
+- **TCPv4**: TCP communication over IPv4
+  (see :ref:`transport_tcp_tcp`).
 
-- **TCPv6**: TCP communication over IPv6.
-  See :ref:`transport_tcp_tcp`.
+- **TCPv6**: TCP communication over IPv6
+  (see :ref:`transport_tcp_tcp`).
 
-- **SHM**: Shared memory communication among entities running on the same host.
-  See :ref:`transport_sharedMemory_sharedMemory`.
+- **SHM**: Shared memory communication among entities running on the same host
+  (see :ref:`transport_sharedMemory_sharedMemory`).
 
 .. toctree::
     :maxdepth: 2

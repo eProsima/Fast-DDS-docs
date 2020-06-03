@@ -11,7 +11,7 @@ even when these transports use loopback interface.
 This is mainly due to the following reasons:
 
  * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
-   network stacks requirements, increasing communication overhead
+   network stacks requirements, increasing communication overhead.
    SHM transport allows the copy of full messages where the only size limit is the machine's memory capacity.
 
  * Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can
@@ -20,7 +20,7 @@ This is mainly due to the following reasons:
 
  * Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system
    calls than the other protocols.
-   Therefore there is a performance/time consume gain by using SHM.
+   Therefore, there is a performance/time consume gain by using SHM.
 
 
 .. _transport_sharedMemory_concepts:
@@ -65,7 +65,7 @@ Segment Buffer
 ^^^^^^^^^^^^^^
 
 A buffer allocated in the shared memory :ref:`transport_sharedMemory_concepts_segment`.
-It works as a container for a DDS message that is places in the :ref:`transport_sharedMemory_concepts_segment`.
+It works as a container for a DDS message that is placed in the :ref:`transport_sharedMemory_concepts_segment`.
 In other words, each message that the :ref:`dds_layer_domainParticipant` writes on the
 :ref:`transport_sharedMemory_concepts_segment` will be placed in a different buffer.
 
@@ -81,7 +81,7 @@ It contains the *segmentId* and the offset of the :ref:`transport_sharedMemory_c
 When communicating a message to other :ref:`DomainParticipants<dds_layer_domainParticipant>`,
 :ref:`transport_sharedMemory_sharedMemory` only distributes the Buffer Descriptor, avoiding the copy of
 the message from a :ref:`dds_layer_domainParticipant` to another.
-With this descriptor, the receiving :ref:`dds_layer_domainParticipant` can access the message written on the buffer,
+With this descriptor, the receiving :ref:`dds_layer_domainParticipant` can access the message written in the buffer,
 as is uniquely identifies the :ref:`transport_sharedMemory_concepts_segment` (through the *segmentId*)
 and the :ref:`transport_sharedMemory_concepts_buffer` (through its offset).
 
@@ -96,7 +96,7 @@ Each port has a unique identifier, a 32 bit number that can be used to refer to 
 Every :ref:`dds_layer_domainParticipant` that has been configured with :ref:`transport_sharedMemory_sharedMemory`
 creates a port to receive :ref:`Buffer Descriptors <transport_sharedMemory_concepts_bufferDescriptor>`.
 The identifier of this port is shared during the :ref:`discovery`, so that remote peers know which port to use
-when they want to communicate with each :ref:`DomainParticipants <dds_layer_domainParticipant>`.
+when they want to communicate with each :ref:`dds_layer_domainParticipant`.
 
 :ref:`DomainParticipants <dds_layer_domainParticipant>` create a listener to their receiving port,
 so that they can be notified when a new :ref:`transport_sharedMemory_concepts_bufferDescriptor` is pushed to the port.
@@ -106,11 +106,46 @@ so that they can be notified when a new :ref:`transport_sharedMemory_concepts_bu
 Port Health Check
 ^^^^^^^^^^^^^^^^^
 Every time a :ref:`dds_layer_domainParticipant` opens a :ref:`transport_sharedMemory_concepts_port`
-(for reading or writing), a health check is performed to assess it is correct.
-The reason is that if one of the processes involved crashes while using the :ref:`transport_sharedMemory_concepts_port`,
-the port can be left inoperative.
+(for reading or writing), a health check is performed to assess its correctness.
+The reason is that if one of the processes involved crashes while using a :ref:`transport_sharedMemory_concepts_port`,
+that port can be left inoperative.
 If the attached listeners do not respond in a given timeout, the :ref:`transport_sharedMemory_concepts_port`
 is considered damaged, and it is destroyed and created again.
+
+
+.. _transport_sharedMemory_transportDescriptor:
+
+SharedMemTransportDescriptor
+----------------------------
+
+In addition to the data members defined in the :ref:`transport_transportApi_transportDescriptor`,
+the TransportDescriptor for Shared Memory defines the following ones:
+
++------------------------------+----------------+----------------------------------+------------------------------+
+| Member                       | Data type      | Accessor / Mutator               | Description                  |
++==============================+================+==================================+==============================+
+| ``segment_size_``            | ``uint32_t``   | :func:`segment_size`             | The size of the shared       |
+|                              |                |                                  | memory segment (in octets).  |
++------------------------------+----------------+----------------------------------+------------------------------+
+| ``port_queue_capacity_``     | ``uint32_t``   | :func:`port_queue_capacity`      | The size of the listening    |
+|                              |                |                                  | port (in messages).          |
++------------------------------+----------------+----------------------------------+------------------------------+
+| ``healthy_check_timeout_ms_``| ``uint32_t``   | :func:`healthy_check_timeout_ms` | Timeout for the health check |
+|                              |                |                                  | of ports (in milliseconds).  |
++------------------------------+----------------+----------------------------------+------------------------------+
+| ``rtps_dump_file_``          | ``string``     | :func:`rtps_dump_file`           | Full path of the protocol    |
+|                              |                |                                  | dump_file.                   |
++------------------------------+----------------+----------------------------------+------------------------------+
+
+If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the :ref:`dds_layer_domainParticipant`
+(sent and received) is traced to a file.
+The output file format is *tcpdump* hexadecimal text, and can be processed with protocol analyzer applications
+such as Wireshark.
+
+.. note::
+
+   The *kind* value for a SharedMemTransportDescriptor is given by the value
+   ``eprosima::fastrtps::rtps::LOCATOR_KIND_SHM``
 
 
 .. _transport_sharedMemory_enabling:
@@ -127,10 +162,11 @@ The examples below show this procedure in both C++ code and XML file.
 +--------------------------------------------------+
 | **C++**                                          |
 +--------------------------------------------------+
-| .. literalinclude:: /../code/CodeTester.cpp      |
+| .. literalinclude:: /../code/DDSCodeTester.cpp   |
 |    :language: c++                                |
 |    :start-after: //CONF-SHM-TRANSPORT-SETTING    |
 |    :end-before: //!--                            |
+|    :dedent: 8                                    |
 +--------------------------------------------------+
 | **XML**                                          |
 +--------------------------------------------------+
@@ -138,6 +174,8 @@ The examples below show this procedure in both C++ code and XML file.
 |    :language: xml                                |
 |    :start-after: <!-->CONF-SHM-TRANSPORT-SETTING |
 |    :end-before: <!--><-->                        |
+|    :lines: 2-3,5-                                |
+|    :append: </profiles>                          |
 +--------------------------------------------------+
 
 .. note:
@@ -145,37 +183,6 @@ The examples below show this procedure in both C++ code and XML file.
   When two participants on the same machine have SHM transport enabled, all communications between them are
   automatically performed by SHM transport only.
   The rest of the enabled transports are not used between those two participants.
-
-
-.. _transport_sharedMemory_transportDescriptor:
-
-SharedMemTransportDescriptor
-----------------------------
-
-In addition to the data members defined in the :ref:`transport_transportApi_transportDescriptor`,
-the TransportDescriptor for Shared Memory defines the following ones:
-
-+------------------------------+----------------+-----------------------------------------------------------+
-| Member                       | Data type      | Description                                               |
-+==============================+================+===========================================================+
-| ``segment_size_``            | ``uint32_t``   | The size of the shared memory segment, in bytes.          |
-+------------------------------+----------------+-----------------------------------------------------------+
-| ``port_queue_capacity_``     | ``uint32_t``   | The size of the listening port, in messages.              |
-+------------------------------+----------------+-----------------------------------------------------------+
-| ``healthy_check_timeout_ms_``| ``uint32_t``   | Timeout for the health check of ports.                    |
-+------------------------------+----------------+-----------------------------------------------------------+
-| ``rtps_dump_file_``          | ``string``     | Full path of the protocol dump_file.                      |
-+------------------------------+----------------+-----------------------------------------------------------+
-
-If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the :ref:`dds_layer_domainParticipant`
-(sent and received) is traced to a file.
-The output file format is *tcpdump* hexadecimal text, and can be processed with protocol analyzer applications
-such as Wireshark.
-
-.. note::
-
-   The *kind* value for a SharedMemTransportDescriptor is given by the value
-   ``eprosima::fastrtps::rtps::LOCATOR_KIND_SHM``
 
 
 .. _transport_sharedMemory_example:

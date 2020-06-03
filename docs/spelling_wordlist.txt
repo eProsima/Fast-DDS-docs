@@ -40,6 +40,7 @@ coverity
 crl
 crypto
 cryptographic
+cryptosystem
 datagram
 datarate
 deallocating

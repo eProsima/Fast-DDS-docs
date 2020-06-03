@@ -454,6 +454,7 @@
         <userTransports>
             <transport_id>tcp_transport</transport_id>
         </userTransports>
+        <useBuiltinTransports>false</useBuiltinTransports>
     </rtps>
 </participant>
 <!--><-->
@@ -500,6 +501,7 @@
                 </locator>
             </initialPeersList>
         </builtin>
+        <useBuiltinTransports>false</useBuiltinTransports>
     </rtps>
 </participant>
 <!--><-->

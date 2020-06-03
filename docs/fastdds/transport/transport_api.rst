@@ -3,13 +3,18 @@
 Transport API
 =============
 
-The following diagram presents the classes defined on the transport API of eProsima Fast DDS.
+The following diagram presents the classes defined on the transport API of *eProsima Fast DDS*.
 It shows the abstract API interfaces, and the classes required to implement a transport.
 
 .. figure:: /01-figures/transport_api_class_diagram.svg
     :align: center
 
     Transport API diagram
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
 
 
 .. _transport_transportApi_transportDescriptor:
@@ -57,6 +62,11 @@ this configured instance to the list of user-defined transports of the :ref:`dds
 The :ref:`dds_layer_domainParticipant` will use the factory function on the :class:`TransportDescriptor`
 to create the :class:`Transport` when required.
 
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: c++
+    :start-after: //CONF-UDP-TRANSPORT-SETTING
+    :end-before: //!--
+    :dedent: 8
 
 Data members
 ^^^^^^^^^^^^
@@ -68,6 +78,31 @@ The :ref:`transport_transportApi_transport` defines the following data members:
 +=========================+==================+=======================================================================+
 | ``transport_kind_``     | ``int32_t``      | Unique identifier of the transport type.                              |
 +-------------------------+------------------+-----------------------------------------------------------------------+
+
+.. note::
+
+   ``transport_kind_`` is a protected data member for internal use.
+   It cannot be accessed nor modified from the public API.
+   However, users that are implementing a custom :class:`Transport` need to fill it with a unique constant value
+   in the new implementation.
+
+Currently the following identifiers are used in *Fast DDS*:
+
++---------------------------+----------+-----------------------------------------------------------------------+
+| Identifier                | Value    | Transport type                                                        |
++===========================+==========+=======================================================================+
+| ``LOCATOR_KIND_RESERVED`` | ``0``    | None. Reserved value for internal use.                                |
++---------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_UDPv4``    | ``1``    | :ref:`transport_udp_udp` over IPv4.                                   |
++---------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_UDPv6``    | ``2``    | :ref:`transport_udp_udp` over IPv6.                                   |
++---------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_TCPv4``    | ``4``    | :ref:`transport_tcp_tcp` over IPv4.                                   |
++---------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_TCPv6``    | ``8``    | :ref:`transport_tcp_tcp` over IPv6.                                   |
++---------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_SHM``      | ``16``   | :ref:`transport_sharedMemory_sharedMemory`.                           |
++---------------------------+----------+-----------------------------------------------------------------------+
 
 
 .. _transport_transportApi_locator:
@@ -84,8 +119,8 @@ Instead, transports should map the data members of the :class:`Locator` class to
 concepts. For example, on :ref:`transport_sharedMemory_sharedMemory` the ``address`` contains a unique ID
 for the local host, and the ``port`` represents the shared ring buffer used to communicate buffer descriptors.
 
-On :ref:`listening_locators` you can find more information about how to configure :ref:`dds_layer_domainParticipant`
-to listen to incoming traffic.
+Please refer to :ref:`listening_locators` for more information about how to configure
+:ref:`dds_layer_domainParticipant` to listen to incoming traffic.
 
 Data members
 ^^^^^^^^^^^^
@@ -103,24 +138,30 @@ The :ref:`transport_transportApi_locator` defines the following data members:
 +--------------+------------------+-----------------------------------------------------------------------+
 
 In TCP, the port of the locator is divided into a physical and a logical port.
-The *physical port* is the port used by the network device, the real port that the operating system understands.
-The *logical port* can be seen as RTPS port, or UDP's equivalent port (physical ports of UDP, are logical ports in TCP).
+
+* The *physical port* is the port used by the network device, the real port that the operating system understands.
+  It is stored in the two least significant bytes of the member ``port``.
+* The *logical port* is the RTPS port.
+  It is stored in the two most significant bytes of the member ``port``.
+
+In UDP there is only the *physical port*, which is also the RTPS port, and is stored in the two least significant bytes
+of the member ``port``.
 
 .. _transport_transportApi_ipLocator:
 
 Configuring IP locators with IPLocator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:class:`IPLocator` is an auxiliary static class that offers methods manipulate IP based locators.
+:class:`IPLocator` is an auxiliary static class that offers methods to manipulate IP based locators.
 It is convenient when setting up a new :ref:`transport_udp_udp` or :ref:`transport_tcp_tcp`,
 as it simplifies setting IPv4 and IPv6 addresses, or manipulating ports.
 
 For example, normally users configure the physical port and do not need to worry about logical ports.
 However, :class:`IPLocator` allows to manage them if needed.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
     :start-after: //CONF-IPLOCATOR-USAGE
     :end-before: //!--
-
+    :dedent: 8
 

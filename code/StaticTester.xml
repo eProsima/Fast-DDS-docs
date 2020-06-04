@@ -5,7 +5,7 @@
         <name>HelloWorldSubscriber</name>
         <reader>
             <userId>3</userId>
-            <entityId>4</entityId>
+            <entityID>4</entityID>
             <expectsInlineQos>true</expectsInlineQos>
             <topicName>HelloWorldTopic</topicName>
             <topicDataType>HelloWorld</topicDataType>
@@ -28,7 +28,7 @@
             <unicastLocator address="10.47.8.31" port="8000"/>
             <multicastLocator address="239.255.1.1" port="7000"/>
             <userId>5</userId>
-            <entityId>6</entityId>
+            <entityID>6</entityID>
             <topicName>HelloWorldTopic</topicName>
             <topicDataType>HelloWorld</topicDataType>
             <topicKind>WITH_KEY</topicKind>
@@ -50,7 +50,7 @@
         <name>HelloWorldPublisher</name>
         <writer>
             <userId>1</userId>
-            <entityId>2</entityId>
+            <entityID>2</entityID>
             <topicName>HelloWorldTopic</topicName>
             <topicDataType>HelloWorld</topicDataType>
         </writer>
@@ -64,7 +64,7 @@
         <name>HelloWorldSubscriber</name>
         <reader>
             <userId>3</userId>
-            <entityId>4</entityId>
+            <entityID>4</entityID>
             <topicName>HelloWorldTopic</topicName>
             <topicDataType>HelloWorld</topicDataType>
         </reader>

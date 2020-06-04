@@ -44,7 +44,7 @@ You can find all the library's source code on our [GitHub repository](https://gi
 
     ```bash
     cd ~
-    git clone https://github.com/eProsima/Fast-DDS-docs fastdds-docs
+    git clone https://github.com/eProsima/Fast-RTPS-docs fastdds-docs
     ```
 
 1. Create a virtual environment and install python3 dependencies

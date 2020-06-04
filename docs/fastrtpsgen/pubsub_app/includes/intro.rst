@@ -1,4 +1,4 @@
-First of all you need to follow the steps outlined in the :ref:`installation` for the installation of
+First of all you need to follow the steps outlined in the Installation Manual for the installation of
 *eprosima Fast RTPS* and all its dependencies.
 If you have followed the steps, you should have Fast DDS, Fast CDR, and Fast-RTPS-Gen installed.
 

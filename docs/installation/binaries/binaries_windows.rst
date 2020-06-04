@@ -49,8 +49,8 @@ Dependencies
 
 *eProsima Fast RTPS* has the following dependencies, when installed from binaries in a Windows environment:
 
-* tinyxml2_bw_
-* openssl_bw_
+* :ref:`tinyxml2_bw`
+* :ref:`openssl_bw`
 
 .. _tinyxml2_bw:
 
@@ -98,7 +98,8 @@ version and architecture when prompted.
 
 .. note::
 
-    By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the windows_sources_ page.
+    By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the
+    :ref:`windows_sources` page.
 
 
 .. _contents_bw:
@@ -117,7 +118,7 @@ By default, the installation will download all the available packages, namely:
 
 .. _env_vars_bw:
 
-Environment Variables
+Environment variables
 ^^^^^^^^^^^^^^^^^^^^^
 
 eProsima Fast RTPS requires the following environment variable setup in order to function properly:

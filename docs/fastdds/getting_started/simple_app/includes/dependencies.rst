@@ -3,7 +3,7 @@ Import linked libraries and its dependencies
 
 The DDS application requires the Fast DDS and Fast CDR libraries.
 The way we will make these accessible from the
-workspace depends on the installation procedure we have followed in the :ref:`installation`.
+workspace depends on the installation procedure we have followed in the Installation Manual.
 
 Installation from binaries and manual installation
 """"""""""""""""""""""""""""""""""""""""""""""""""

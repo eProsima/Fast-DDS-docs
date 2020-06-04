@@ -3,8 +3,8 @@
 Linux installation from sources
 ===============================
 
-In this page, we provide the instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl_>`
-and the :ref:`Fast DDS-Gen <fastddsgen_sl_>` generation tool from sources.
+In this page, we provide the instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
+and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources.
 
 .. _fastdds_lib_sl:
 
@@ -20,10 +20,10 @@ sources. The following packages will be installed:
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
 
-First of all, the requirements_sl_ and dependencies_sl_ detailed below need to be met.
+First of all, the :ref:`requirements_sl` and :ref:`dependencies_sl` detailed below need to be met.
 
-Afterwards, the user can choose whether to follow either the colcon (see colcon :ref:`colcon_installation_linux`)
-or the CMake (see :ref:`cmake_installation_linux`) installation instructions.
+Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_linux>`)
+or the :ref:`CMake <cmake_installation_linux>`) installation instructions.
 
 .. _requirements_sl:
 
@@ -34,11 +34,8 @@ Requirements
 The installation of *eProsima Fast DDS* in a Linux environment from binaries requires the following tools to be
 installed in the system:
 
-* CMake_
-* gcc_
-* pip_
-* wget_
-* gtest_sl_ [optional]
+* :ref:`cmake_gcc_pip_wget_git_sl`
+* :ref:`gtest_sl` [optional]
 
 .. _cmake_gcc_pip_wget_git_sl:
 
@@ -64,7 +61,7 @@ By default, *eProsima Fast DDS* does not compile tests.
 It is possible to activate them with the opportune
 `CMake configuration options <https://cmake.org/cmake/help/v3.6/manual/cmake.1.html#options>`_
 when calling colcon_ or CMake_.
-For more details, please refer to the parameters_cmake_ section.
+For more details, please refer to the :ref:`parameters_cmake` section.
 
 For a detailed description of the Gtest installation process, please refer to the
 `Gtest Installation Guide <https://github.com/google/googletest>`_.
@@ -77,8 +74,8 @@ Dependencies
 
 *eProsima Fast RTPS* has the following dependencies, when installed from binaries in a Linux environment:
 
-* asiotinyxml2_sl_
-* openssl_sl_
+* :ref:`asiotinyxml2_sl`
+* :ref:`openssl_sl`
 
 .. _asiotinyxml2_sl:
 
@@ -117,7 +114,7 @@ Colcon installation
 colcon_ is a command line tool based on CMake_ aimed at building sets of software packages.
 This section explains how to use it to compile *eProsima Fast DDS* and its dependencies.
 
-#. Install the ROS 2 development tools (colcon_ and vcstool_):
+#. Install the ROS 2 development tools (colcon_ and vcstool_) by executing the following command:
 
    .. code-block:: bash
 
@@ -160,13 +157,12 @@ When running an instance of an application using *eProsima Fast DDS*, the colcon
 dedicated :code:`Fast-DDS` directory must be sourced.
 There are two possibilities:
 
-* Prepare the environment locally by typing the command:
+* Every time the :code:`Fast-DDS` directory is opened in a new shell, prepare the environment locally by typing the
+  command:
 
   .. code-block:: bash
 
       source install/setup.bash
-
-  every time the :code:`Fast-DDS` directory is opened in a new shell environment.
 
 * Add the sourcing of the colcon overlay permanently to the :code:`PATH`, by typing the following:
 
@@ -257,8 +253,7 @@ Run an application
 When running an instance of an application using *eProsima Fast DDS*, it must be linked with the library where the
 packages have been installed, :code:`/usr/local/lib/`. There are two possibilities:
 
-* Prepare the environment locally by typing in the console used for running the *eProsima Fast DDS* instance
-  the command:
+* Prepare the environment locally by typing the command:
 
   .. code-block:: bash
 
@@ -279,6 +274,43 @@ Fast DDS-Gen installation
 In this section, we provide the instructions for installing *Fast DDS-Gen* in a Linux environment from
 sources.
 *Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
+
+Requirements
+------------
+
+In order to compile *Fast DDS-Gen*, the following packages need to be installed in the system:
+
+* `Gradle <https://gradle.org/install>`_
+* `Java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_
+
+  .. note::
+
+      Check the Java JDK recommended version for the gradle version you have installed.
+
+Install
+-------
+
+To install *Fast DDS-Gen*, follow the steps below:
+
+.. code-block:: bash
+
+    cd ~
+    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git
+    cd Fast-DDS-Gen
+    gradle assemble
+
+Contents
+^^^^^^^^
+
+The :code:`Fast-DDS-Gen` folder contains the following packages:
+
+* :code:`share/fastrtps`, where the generated Java application is.
+* :code:`scripts`, containing some user friendly scripts.
+
+  .. note::
+
+      To make these scripts available from anywhere, add the :code:`scripts` folder path to your
+      :code:`PATH` environment variable.
 
 .. External links
 

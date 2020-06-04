@@ -24,7 +24,8 @@ the :code:`install.sh` script with administrative privileges:
 
 .. note::
 
-    By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the linux_sources_ page.
+    By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the :ref:`linux_sources`
+    page.
 
 .. _contents_bl:
 

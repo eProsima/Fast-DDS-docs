@@ -3,8 +3,16 @@
 Windows installation from sources
 =================================
 
-In this page, we provide the instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl_>`
-and the :ref:`Fast DDS-Gen <fastddsgen_sl_>` generation tool from sources. The following packages will be installed:
+In this page, we provide the instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
+and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources.
+
+.. _fastdds_lib_sw:
+
+Fast DDS library installation
+"""""""""""""""""""""""""""""
+
+In this section, we provide the instructions for installing *eProsima Fast DDS* in a Windows environment from
+sources. The following packages will be installed:
 
 * :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
   `library <https://github.com/foonathan/memory>`_.
@@ -13,19 +21,11 @@ and the :ref:`Fast DDS-Gen <fastddsgen_sl_>` generation tool from sources. The f
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
 
 
-.. _fastdds_lib_sw:
-
-Fast DDS library installation
-"""""""""""""""""""""""""""""
-
-In this section, we provide the instructions for installing *eProsima Fast DDS* in a Windows environment from
-sources.
-
-First of all, the requirements_sw_ and dependencies_sw_ detailed below need to be met.
+First of all, the :ref:`requirements_sw` and :ref:`dependencies_sw` detailed below need to be met.
 
 
-Afterwards, the user can choose whether to follow either the colcon_ (see colcon colcon_installation_windows_)
-or the CMake_ (see cmake_installation_windows_) installation instructions.
+Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_windows>`)
+or the :ref:`CMake <cmake_installation_windows>`) installation instructions.
 
 
 .. _requirements_sw:
@@ -36,10 +36,10 @@ Requirements
 The installation of *eProsima Fast DDS* in a Windows environment from sources requires the following tools to be
 installed in the system:
 
-* visual_studio_sw_
-* chocolatey_sw_
-* cmake_pip_wget_git_sw_
-* gtest_sw_ [optional]
+* :ref:`visual_studio_sw`
+* :ref:`chocolatey_sw`
+* :ref:`cmake_pip_wget_git_sw`
+* :ref:`gtest_sw` [optional]
 
 .. _visual_studio_sw:
 
@@ -84,7 +84,7 @@ By default, *eProsima Fast DDS* does not compile tests.
 It is possible to activate them with the opportune
 `CMake configuration options <https://cmake.org/cmake/help/v3.6/manual/cmake.1.html#options>`_
 when calling colcon_ or CMake_.
-For more details, please refer to the parameters_cmake_ section.
+For more details, please refer to the :ref:`parameters_cmake` section.
 
 For a detailed description of the Gtest installation process, please refer to the
 `Gtest Installation Guide <https://github.com/google/googletest>`_.
@@ -97,8 +97,8 @@ Dependencies
 
 *eProsima Fast RTPS* has the following dependencies, when installed from sources in a Windows environment:
 
-* asiotinyxml2_sw_
-* openssl_bw_
+* :ref:`asiotinyxml2_sw`
+* :ref:`openssl_sw`
 
 .. _asiotinyxml2_sw:
 
@@ -109,10 +109,10 @@ Asio is a cross-platform C++ library for network and low-level I/O programming p
 asynchronous model.
 TinyXML2 is a simple, small and efficient C++ XML parser.
 
-They can be downloaded directly from
-`here <https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg>`_
-and
-`here <https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg>`_
+They can be downloaded directly from the links below:
+
+* `Asio <https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg>`_
+* `TinyXML2 <https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg>`_
 
 After downloading these packages, open an administrative shell with *PowerShell* and execute the following command:
 
@@ -152,7 +152,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
     Run colcon within a Visual Studio prompt. To do so, launch a *Developer Command Prompt* from the
     search engine.
 
-#. Install the ROS 2 development tools (colcon_ and vcstool_):
+#. Install the ROS 2 development tools (colcon_ and vcstool_) by executing the following command:
 
    .. code-block:: bash
 
@@ -198,13 +198,12 @@ When running an instance of an application using *eProsima Fast DDS*, the colcon
 dedicated :code:`Fast-DDS` directory must be sourced.
 There are two possibilities:
 
-* Prepare the environment locally by typing the command:
+* Every time the :code:`Fast-DDS` directory is opened in a new shell, prepare the environment locally by typing the
+  command:
 
   .. code-block:: bash
 
       setup.bat
-
-  every time the :code:`Fast-DDS` directory is opened in a new shell environment.
 
 * Add the sourcing of the colcon overlay permanently, by opening the
   *Edit the system environment variables* control panel, and adding :code:`~/Fast-DDS/install/setup.bat`
@@ -277,8 +276,7 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 
 .. code-block:: bash
 
-    -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
-
+    -DCMAKE_INSTALL_PREFIX=??
 
 .. note::
 
@@ -293,8 +291,7 @@ Run an application
 When running an instance of an application using *eProsima Fast DDS*, it must be linked with the library where the
 packages have been installed. There are two possibilities:
 
-* Prepare the environment locally by typing in the console used for running the *eProsima Fast DDS* instance
-  the command:
+* Prepare the environment locally by typing the command:
 
   .. code-block:: bash
 
@@ -312,6 +309,43 @@ Fast DDS-Gen installation
 In this section, we provide the instructions for installing *Fast DDS-Gen* in a Windows environment from
 sources.
 *Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
+
+Requirements
+------------
+
+In order to compile *Fast DDS-Gen*, the following packages need to be installed in the system:
+
+* `Gradle <https://gradle.org/install>`_
+* `Java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_
+
+  .. note::
+
+      Check the Java JDK recommended version for the gradle version you have installed.
+
+Install
+-------
+
+To install *Fast DDS-Gen*, follow the steps below:
+
+.. code-block:: bash
+
+    cd ~
+    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git
+    cd Fast-DDS-Gen
+    gradle assemble
+
+Contents
+^^^^^^^^
+
+The :code:`Fast-DDS-Gen` folder contains the following packages:
+
+* :code:`share/fastrtps`, where the generated Java application is.
+* :code:`scripts`, containing some user friendly scripts.
+
+  .. note::
+
+      To make these scripts available from anywhere, add the :code:`scripts` folder path to your
+      :code:`PATH` environment variable.
 
 .. External links
 

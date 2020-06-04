@@ -18,11 +18,11 @@ Thus, the following XML codes are equivalent.
 |   :end-before: <!--><-->                                 |   :end-before: <!--><-->                                  |
 +----------------------------------------------------------+-----------------------------------------------------------+
 
-.. Note::
+.. important::
 
     The ``<subscriber>`` and ``<data_reader>`` XML tags are equivalent.
-    Therefore, **XML profiles in which the |DataReaders| are defined with the ``<subscriber>`` tag are fully compatible
-    with Fast DDS**.
+    Therefore, XML profiles in which the |DataReaders| are defined with the ``<subscriber>`` tag are fully compatible
+    with Fast DDS.
 
 
 DataReader XML attributes

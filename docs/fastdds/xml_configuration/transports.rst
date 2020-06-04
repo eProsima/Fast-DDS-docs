@@ -19,6 +19,7 @@ An example of how to load the ``<transport_descriptor>`` into the XML profile of
 
 The following table lists all the available XML elements that can be defined within the ``<transport_descriptor>``
 element for the configuration of the transport layer.
+A more detailed explanation of each of these elements can be found in :ref:`comm-transports-configuration`.
 
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | Name                          | Description                                        | Values               | Default  |
@@ -36,28 +37,26 @@ element for the configuration of the transport layer.
 |                               |                                                    +----------------------+          |
 |                               |                                                    | SHM                  |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<sendBufferSize>``          | Size in bytes of the socket send buffer. |br|      | ``uint32``           | 0        |
+| ``<sendBufferSize>``          | Size in bytes of the send socket buffer. |br|      | ``uint32``           | 0        |
 |                               | If the value is zero then Fast DDS will use |br|   |                      |          |
-|                               | the default size from the sockets |br|             |                      |          |
-|                               | configuration ,which has a minimum size of |br|    |                      |          |
-|                               | 65536 bytes.                                       |                      |          |
+|                               | the system default socket size.                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<receiveBufferSize>``       | Size in bytes of the socket receive buffer. |br|   | ``uint32``           | 0        |
-|                               | If the value is zero then Fast DDS will use |br|   |                      |          |
-|                               | the default size from the sockets |br|             |                      |          |
-|                               | configuration ,which has a minimum size of |br|    |                      |          |
-|                               | 65536 bytes.                                       |                      |          |
+| ``<receiveBufferSize>``       | Size in bytes of the reception socket |br|         | ``uint32``           | 0        |
+|                               | buffer. If the value is zero then Fast DDS |br|    |                      |          |
+|                               | will use the system default socket size.           |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<TTL>``                     | *Time To Live* (UDP **only**).                     | ``uint8``            | 1        |
+| ``<TTL>``                     | *Time To Live* (UDP **only**). See |br|            | ``uint8``            | 1        |
+|                               | :ref:`transport_udp_udp`.                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<non_blocking_send>``       | Whether to set the non-blocking send mode on |br|  | ``bool``             | false    |
-|                               | the socket (UDP **only**).                         |                      |          |
+| ``<non_blocking_send>``       | Whether to set the non-blocking send mode on |br|  | ``bool``             | ``false``|
+|                               | the socket (UDP **only**). See |br|                |                      |          |
+|                               | :ref:`transport_udp_transportDescriptor`.          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<maxMessageSize>``          | The maximum size in bytes of the transport's |br|  | ``uint32``           | 65500    |
 |                               | message buffer.                                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<maxInitialPeersRange>``    | The maximum number of guessed initial peers |br|   | ``uint32``           | 4        |
-|                               | to try to connect.                                 |                      |          |
+| ``<maxInitialPeersRange>``    | Number of channels opened with each initial |br|   | ``uint32``           | 4        |
+|                               | remote peer.                                       |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<interfaceWhiteList>``      | Allows defining an interfaces |whitelist|.         | |whitelist|          |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
@@ -101,22 +100,22 @@ element for the configuration of the transport layer.
 |                               | for error control (TCP **only**). |br|             |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<check_crc>``               | Check the CRC for error control (TCP |br|          | ``boolean``          | ``true`` |
-|                               | **only**). |br|                                    |                      |          |
+|                               | **only**).                                         |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<enable_tcp_nodelay>``      | Socket option for disabling the Nagle |br|         | ``boolean``          | ``false``|
-|                               | algorithm. (TCP **only**). |br|                    |                      |          |
+|                               | algorithm. (TCP **only**).                         |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<segment_size>``            | Size (in bytes) of the shared-memory segment. |br| | ``uint32``           | 262144   |
 |                               | (Optional, SHM **only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<port_queue_capacity>``     | Capacity (in number of messages) available to |br| | ``uint32``           | 512      |
-|                               | every Listener (Optional, SHM **only**). |br|      |                      |          |
+|                               | every Listener (Optional, SHM **only**).           |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<healthy_check_timeout_ms>``| Maximum time-out (in milliseconds) used when |br|  | ``uint32``           | 1000     |
 |                               | checking whether a Listener is alive |br|          |                      |          |
 |                               | (Optional, SHM **only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<rtps_dump_file>``          | Complete path (including file) where RTPS |br|     | ``string``           | empty    |
+| ``<rtps_dump_file>``          | Complete path (including file) where RTPS |br|     | ``string``           | Empty    |
 |                               | messages will be stored for debugging |br|         |                      |          |
 |                               | purposes. An empty string indicates no trace |br|  |                      |          |
 |                               | will be performed (Optional, SHM **only**).        |                      |          |
@@ -145,6 +144,7 @@ TLS Configuration
 
 Fast DDS provides mechanisms to configure the Transport Layer Security (TLS) protocol parameters
 through the ``<tls>`` XML element of its ``<transport_descriptor>``.
+Please, refer to :ref:`transport_tcp_tls` for a detailed explanation of the entire TLS configuration in Fast DDS.
 More information on how to set up secure communication in Fast DDS can be found in the :ref:`security` section.
 
 .. warning::

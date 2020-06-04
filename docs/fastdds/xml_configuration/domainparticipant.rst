@@ -371,12 +371,12 @@ configurable settings.
 | ``<simpleEDP>``                 | Attributes of the Simple Discovery |br|        | :ref:`sedp`         |             |
 |                                 | Protocol. See :ref:`Simple EDP Attributes`.    |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<leaseDuration>``             | Indicates how long the DomainParticipant |br|  | :ref:`DurationType` | 20 seconds  |
+| ``<leaseDuration>``             | Indicates how long the DomainParticipant |br|  | :ref:`DurationType` | 20s         |
 |                                 | should consider remote DomainParticipant |br|  |                     |             |
 |                                 | alive.                                         |                     |             |
 |                                 | See :ref:`discovery_lease_dur`.                |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<leaseAnnouncement>``         | The period for the DomainParticipant to |br|   | :ref:`DurationType` | 3 seconds   |
+| ``<leaseAnnouncement>``         | The period for the DomainParticipant to |br|   | :ref:`DurationType` | 3s          |
 |                                 | send its discovery message to all other |br|   |                     |             |
 |                                 | discovered DomainParticipant as well as |br|   |                     |             |
 |                                 | to all Multicast ports.                        |                     |             |

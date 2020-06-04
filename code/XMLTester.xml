@@ -1217,13 +1217,13 @@
 <!--><-->
 <!-->XML-BITSET-INHERIT<-->
 <bitset name="ParentBitSet">
-    <bitfield name="a" bit_bound="3"/>
-    <bitfield name="b" bit_bound="1"/>
+    <bitfield name="a" bit_bound="10"/>
+    <bitfield name="b" bit_bound="15"/>
 </bitset>
 
 <bitset name="ChildBitSet" baseType="ParentBitSet">
-    <bitfield name="c" bit_bound="30"/>
-    <bitfield name="d" bit_bound="13"/>
+    <bitfield bit_bound="1"/>
+    <bitfield bit_bound="5" type="uint16"/>
 </bitset>
 <!--><-->
 <!-->XML-STRUCT-INHERIT<-->
@@ -1366,7 +1366,6 @@
 <!-->XML-BUILTIN<-->
 <builtin>
     <discovery_config>
-
         <discoveryProtocol>NONE</discoveryProtocol>
 
         <ignoreParticipantFlags>FILTER_DIFFERENT_HOST</ignoreParticipantFlags>
@@ -1394,8 +1393,7 @@
             <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
         </simpleEDP>
 
-        <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>  <!-- string -->
-
+        <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
     </discovery_config>
 
     <avoid_builtin_multicast>true</avoid_builtin_multicast>
@@ -1462,7 +1460,7 @@
 <!--><-->
 
 <!-->XML-DATAREADER-COMPARISON<-->
-<data_writer profile_name="my_datareader_profile">
+<data_reader profile_name="my_datareader_profile">
     <topic>
         <!-- TOPIC_TYPE -->
     </topic>
@@ -1470,11 +1468,11 @@
         <!-- QOS -->
     </qos>
     <!-- Other elements -->
-</data_writer>
+</data_reader>
 <!--><-->
 
 <!-->XML-SUBSCRIBER-COMPARISON<-->
-<publisher profile_name="my_subscriber_profile">
+<subscriber profile_name="my_subscriber_profile">
     <topic>
         <!-- TOPIC_TYPE -->
     </topic>
@@ -1482,7 +1480,7 @@
         <!-- QOS -->
     </qos>
     <!-- Other elements -->
-</publisher>
+</subscriber>
 <!--><-->
 
 <!-->XML-DATAWRITER<-->

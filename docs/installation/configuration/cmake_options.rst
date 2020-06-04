@@ -95,7 +95,11 @@ dependency on other options.
           more information on Fast DDS real-time configuration.
         - ``OFF``
     *   - :class:`INTERNAL_DEBUG`
-        - Activates developer debug messages. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON``.
+        - Activates |Log::Kind::Info| debug messages (See :ref:`dds_layer_log_intro`). |br|
+          For this option to have any effect, i.e. to print the information messages,  |br|
+          Fast DDS must be debug built. This is done by setting the :class:`CMAKE_BUILD_TYPE` |br|
+          option to `Debug`. Moreover, :class:`INTERNAL_DEBUG` is set to ``ON`` if |br|
+          :class:`EPROSIMA_BUILD` is ``ON``.
         - ``OFF``
 
 

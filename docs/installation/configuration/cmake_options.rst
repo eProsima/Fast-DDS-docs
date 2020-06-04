@@ -8,10 +8,10 @@ CMake options
 *eProsima Fast DDS* provides numerous CMake options for changing the behavior and configuration of *Fast DDS*.
 These options allow the user to enable/disable certain *Fast DDS* settings by defining these options to ON/OFF at the
 CMake execution.
-This section is structured as follows.
-First, the CMake options for the general configuration of *Fast DDS* are described.
-Then, the options related to the third party libraries are presented.
-Finally, the possible options for the building of *Fast DDS* tests are defined.
+This section is structured as follows:
+first, the CMake options for the general configuration of *Fast DDS* are described;
+then, the options related to the third party libraries are presented;
+finally, the possible options for the building of *Fast DDS* tests are defined.
 
 General options
 ^^^^^^^^^^^^^^^
@@ -42,7 +42,7 @@ dependency on other options.
           Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other options:
 
             - :class:`INTERNAL_DEBUG` is set to ``ON``.
-            - :class:`SHM_TRANSPORT_DEFAULT` is set to ``ON``.
+            - :class:`SHM_TRANSPORT_DEFAULT` is set to ``ON`` and :class:`EPROSIMA_INSTALLER` is set to OFF.
             - :class:`COMPILE_EXAMPLES` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
             - :class:`THIRDPARTY` is set to ``ON``.
             - :class:`EPROSIMA_GTEST` is set to ``ON`` if GoogleTest (GTest) library was found.
@@ -72,7 +72,7 @@ dependency on other options.
     *   - :class:`COMPILE_EXAMPLES`
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
           :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the
-          `eProsima *Fast DDS* <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_ |br|
+          `eProsima Fast DDS <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_ |br|
           `GitHub repository <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_.
         - ``OFF``
     *   - :class:`INSTALL_EXAMPLES`
@@ -114,7 +114,7 @@ files, so *Fast DDS* can use them (see :ref:`xml_profiles`).
 These three libraries (eProsima FastCDR, Asio and TinyXML2) can be installed by the user, or downloaded on the
 *Fast DDS* build.
 In the latter case, they are referred to as *Fast DDS* internal third-party libraries.
-This can be done by setting :class:`THIRDPARTY` to ``ON`` or :class:`EPROSIMA_BUILD` is set to ``ON``.
+This can be done by setting either :class:`THIRDPARTY` or :class:`EPROSIMA_BUILD` to ``ON``.
 
 These libraries can also be configured using *Fast DDS* CMake options.
 
@@ -153,15 +153,10 @@ These libraries can also be configured using *Fast DDS* CMake options.
 Test options
 ------------
 
-*eProsima *Fast DDS** comes with a full set of tests for continuous integration.
+*eProsima Fast DDS* comes with a full set of tests for continuous integration.
 The types of tests are: unit tests, black-box tests, performance tests, profiling tests, and
 XTypes tests.
 The building and execution of these tests is specified by the *Fast DDS* CMake options shown in the table below.
-
-Moreover, *Fast DDS* tests are implemented using the GoogleTest framework.
-To run the tests it is required to enable this framework using the :class:`GTEST_INDIVIDUAL` option.
-The configuration of the installation directories is also allowed as indicated in the following table.
-
 
 .. list-table::
     :header-rows: 1
@@ -170,8 +165,9 @@ The configuration of the installation directories is also allowed as indicated i
         - Description
         - Default
     *   - :class:`GTEST_INDIVIDUAL`
-        - Activate the individual building of GoogleTest tests. However, the test are compiled if |br|
-          :class:`EPROSIMA_BUILD` is set to ``ON``. Therefore, if :class:`GTEST_INDIVIDUAL` is ``OFF`` and |br|
+        - Activate the individual building of GoogleTest tests, since *Fast DDS* tests are |br|
+          implemented using the GoogleTest framework. However, the test are compiled |br|
+          if :class:`EPROSIMA_BUILD` is set to ``ON``. Therefore, if :class:`GTEST_INDIVIDUAL` is ``OFF`` and |br|
           :class:`EPROSIMA_BUILD` is ``ON``, the tests are processed as a single major test.
         - ``OFF``
     *   - :class:`EPROSIMA_GTEST`

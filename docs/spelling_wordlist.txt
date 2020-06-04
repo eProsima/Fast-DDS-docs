@@ -67,8 +67,10 @@ GCM
 getter
 Github
 GMAC
+GMock
 gradle
 gtest
+GTest
 helloworld
 hostid
 IDL

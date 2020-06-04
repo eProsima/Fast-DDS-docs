@@ -62,6 +62,9 @@ The following table describes the data members that are configurable on :class:`
 .. |TLSOptions| replace:: :ref:`transport_tcp_tls_options`
 .. |TLSRole| replace:: :ref:`transport_tcp_tls_role`
 
+.. _Boost asio: https://www.boost.org/doc/libs/1_73_0/doc/html/boost_asio.html
+.. _Boost asio context: https://www.boost.org/doc/libs/1_73_0/doc/html/boost_asio/reference/ssl__context.html
+
 +--------------------------+----------------------+-------------+-----------------------------------------------------+
 | Member                   | Data type            | Default     | Description                                         |
 +==========================+======================+=============+=====================================================+
@@ -96,10 +99,20 @@ The following table describes the data members that are configurable on :class:`
 |                          |                      |             | See |TLSRole|                                       |
 +--------------------------+----------------------+-------------+-----------------------------------------------------+
 
+.. note::
+
+   *Fast DDS* uses the `Boost asio`_ library to handle TLS secure connections.
+   These data members are used to build the asio library context, and most of them are mapped directly into this context
+   without further manipulation.
+   You can find more information about the implications of each member on the `Boost asio context`_ documentation.
+
+
 .. _transport_tcp_tls_verifyMode:
 
 TLS Verification Mode
 ---------------------
+
+.. _OpenSSL documentation: https://www.openssl.org/docs/man1.0.2/man3/SSL_CTX_set_verify.html
 
 The verification mode defines how the peer node will be verified.
 The following table describes the available verification options.
@@ -120,6 +133,10 @@ using the :func:`add_verify_mode` member function.
 |                                 | Ignored unless ``VERIFY_PEER`` is also set.                                       |
 +---------------------------------+-----------------------------------------------------------------------------------+
 
+.. note::
+
+   For a complete description of the different verification modes, please refer to the
+   `OpenSSL documentation`_.
 
 .. _transport_tcp_tls_options:
 
@@ -134,7 +151,7 @@ using the :func:`add_option` member function.
 +---------------------------------+-----------------------------------------------------------------------------------+
 | Value                           | Description                                                                       |
 +=================================+===================================================================================+
-| ``DEFAULT_WORKAROUNDS``         | Perform no verification.                                                          |
+| ``DEFAULT_WORKAROUNDS``         | Implement various bug workarounds. See `Boost asio context`_                      |
 +---------------------------------+-----------------------------------------------------------------------------------+
 | ``NO_COMPRESSION``              | Disable compression.                                                              |
 +---------------------------------+-----------------------------------------------------------------------------------+

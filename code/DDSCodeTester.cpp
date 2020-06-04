@@ -3213,7 +3213,8 @@ void dds_transport_examples ()
         using TLSVerifyMode = eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode;
         tls_transport->apply_security = true;
         tls_transport->tls_config.verify_file = "ca.pem";
-        tls_transport->tls_config.verify_mode = TLSVerifyMode::VERIFY_PEER;
+        tls_transport->tls_config.add_verify_mode(TLSVerifyMode::VERIFY_PEER);
+        tls_transport->tls_config.add_verify_mode(TLSVerifyMode::VERIFY_FAIL_IF_NO_PEER_CERT);
         tls_transport->tls_config.add_option(TLSOptions::DEFAULT_WORKAROUNDS);
         tls_transport->tls_config.add_option(TLSOptions::SINGLE_DH_USE);
         tls_transport->tls_config.add_option(TLSOptions::NO_SSLV2);

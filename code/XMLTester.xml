@@ -573,6 +573,7 @@
                 <verify_file>ca.pem</verify_file>
                 <verify_mode>
                     <verify>VERIFY_PEER</verify>
+                    <verify>VERIFY_FAIL_IF_NO_PEER_CERT</verify>
                 </verify_mode>
                 <options>
                     <option>DEFAULT_WORKAROUNDS</option>

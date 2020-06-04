@@ -103,7 +103,8 @@ TLS Verification Mode
 
 The verification mode defines how the peer node will be verified.
 The following table describes the available verification options.
-Several verification options can be combined in the same :ref:`transport_tcp_transportDescriptor`.
+Several verification options can be combined in the same :ref:`transport_tcp_transportDescriptor`
+using the :func:`add_verify_mode` member function.
 
 +---------------------------------+-----------------------------------------------------------------------------------+
 | Value                           | Description                                                                       |
@@ -127,7 +128,8 @@ TLS Options
 
 These options define which TLS features are to be supported.
 The following table describes the available options.
-Several options can be combined in the same :ref:`transport_tcp_transportDescriptor`.
+Several options can be combined in the same :ref:`transport_tcp_transportDescriptor`
+using the :func:`add_option` member function.
 
 +---------------------------------+-----------------------------------------------------------------------------------+
 | Value                           | Description                                                                       |

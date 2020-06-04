@@ -3,41 +3,116 @@
 Windows installation from sources
 =================================
 
-To install *eProsima Fast DDS* from sources, you first need to meet the required dependencies
-(see requirements_windows_sources_)
-and then choose whether to follow either the colcon_ (see colcon colcon_installation_windows_) or the CMake_
-(see cmake_installation_windows_) installation instructions.
+In this page, we provide the instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl_>`
+and the :ref:`Fast DDS-Gen <fastddsgen_sl_>` generation tool from sources. The following packages will be installed:
 
-.. _requirements_windows_sources:
+* :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
+  `library <https://github.com/foonathan/memory>`_.
+* :code:`fastcdr`, a C++ library that serializes according to the
+  `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
+* :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
+
+
+.. _fastdds_lib_sw:
+
+Fast DDS library installation
+"""""""""""""""""""""""""""""
+
+In this section, we provide the instructions for installing *eProsima Fast DDS* in a Windows environment from
+sources.
+
+First of all, the requirements_sw_ and dependencies_sw_ detailed below need to be met.
+
+
+Afterwards, the user can choose whether to follow either the colcon_ (see colcon colcon_installation_windows_)
+or the CMake_ (see cmake_installation_windows_) installation instructions.
+
+
+.. _requirements_sw:
 
 Requirements
 ------------
 
-*eProsima Fast RTPS* requires the following dependencies when building from sources in a Windows environment.
+The installation of *eProsima Fast DDS* in a Windows environment from sources requires the following tools to be
+installed in the system:
+
+* visual_studio_sw_
+* chocolatey_sw_
+* cmake_pip_wget_git_sw_
+* gtest_sw_ [optional]
+
+.. _visual_studio_sw:
 
 Visual Studio
 ^^^^^^^^^^^^^
 
-To install *eProsima Fast DDS*, you need to have `Visual Studio <https://visualstudio.microsoft.com/>`_ installed in
-your system. Make sure you check the :code:`Desktop development with C++` option during the installation process.
-If you have Visual Studio but you haven’t the Visual C++ Redistributable packages installed,
+`Visual Studio <https://visualstudio.microsoft.com/>`_ is required to
+have a C++ compiler in the system. For this purpose, make sure to check the
+:code:`Desktop development with C++` option during the Visual Studio installation process.
+
+If Visual Studio is already installed but the Visual C++ Redistributable packages are not,
 open Visual Studio and go to :code:`Tools` -> :code:`Get Tools and Features` and in the :code:`Workloads` tab enable
-:code:`Desktop development with C++`. Click :code:`Modify` at the bottom right when you're done.
+:code:`Desktop development with C++`. Finally, click :code:`Modify` at the bottom right.
+
+.. _chocolatey_sw:
 
 Chocolatey
 ^^^^^^^^^^
 
-In order to install some of *eProsima Fast DDS*'s dependencies, you need to have the Windows package
-manager Chocolatey_ installed in your system.
+Chocolatey is a Windows package manager. It is needed to install some of *eProsima Fast DDS*'s dependencies.
+Download and install it directly from the `website <https://chocolatey.org/>`_.
+
+.. _cmake_pip_wget_git_sw:
+
+CMake, pip, wget and git
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+These packages provide the tools needed to install *eProsima Fast DDS* and its dependency from command line.
+Download and install CMake_, pip_, wget_ and git_ by following the instructions detailed in the respective
+websites.
+Once installed, add the path to the executables to the :code:`PATH` from the
+*Edit the system environment variables* control panel.
+
+.. _gtest_sw:
+
+Gtest
+^^^^^
+
+GTest is a unit testing library for C++.
+
+By default, *eProsima Fast DDS* does not compile tests.
+It is possible to activate them with the opportune
+`CMake configuration options <https://cmake.org/cmake/help/v3.6/manual/cmake.1.html#options>`_
+when calling colcon_ or CMake_.
+For more details, please refer to the parameters_cmake_ section.
+
+For a detailed description of the Gtest installation process, please refer to the
+`Gtest Installation Guide <https://github.com/google/googletest>`_.
+
+
+.. _dependencies_sw:
+
+Dependencies
+------------
+
+*eProsima Fast RTPS* has the following dependencies, when installed from sources in a Windows environment:
+
+* asiotinyxml2_sw_
+* openssl_bw_
+
+.. _asiotinyxml2_sw:
 
 Asio and TinyXML2 libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once you have Chocolatey installed, download the following Chocolatey packages from this
-`ROS2 Github repository <https://github.com/ros2/choco-packages/releases/tag/2020-02-24>`_.
+Asio is a cross-platform C++ library for network and low-level I/O programming providing with a consistent
+asynchronous model.
+TinyXML2 is a simple, small and efficient C++ XML parser.
 
-* asio.1.12.1.nupkg
-* tinyxml2.6.0.0.nupkg
+They can be downloaded directly from
+`here <https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg>`_
+and
+`here <https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg>`_
 
 After downloading these packages, open an administrative shell with *PowerShell* and execute the following command:
 
@@ -45,26 +120,16 @@ After downloading these packages, open an administrative shell with *PowerShell*
 
     choco install -y -s <PATH_TO_DOWNLOADS> asio tinyxml2
 
-where :code:`<PATH_TO_DOWNLOADS>` is the folder you downloaded the packages into.
+where :code:`<PATH_TO_DOWNLOADS>` is the folder into which the packages have been downloaded.
 
-Python
-^^^^^^
-
-Download and install the Python_ version that better fits your requirements.
-
-CMake, pip, wget and git
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can download and install CMake_, pip_, wget_ and git_ by following the instructions on the respective
-websites.
-Once installed, you need to add the path to these executables to your :code:`PATH` from the
-*Edit the system environment variables* control panel.
+.. _openssl_sw:
 
 OpenSSL
 ^^^^^^^
 
-You can download the latest OpenSSL version for Windows at this webpage_.
-Download and use the installer that fits your requirements.
+OpenSSL is a robust toolkit for the TLS and SSL protocols and a general-purpose cryptography library.
+Download and install the latest OpenSSL version for Windows at this
+`link <https://slproweb.com/products/Win32OpenSSL.html>`_.
 After installing, add the environment variable :code:`OPENSSL_ROOT_DIR` pointing to the installation root directory.
 
 For example:
@@ -73,130 +138,141 @@ For example:
 
    OPENSSL_ROOT_DIR=C:\Program Files\OpenSSL-Win64
 
-Gtest
-^^^^^
-
-.. note::
-
-    By default, *eProsima Fast DDS* does not compile tests.
-    You can activate them by adding the :code:`-DPERFORMANCE_TESTS=ON` flag when calling colcon_ or CMake_
-    (for details, see below).
-
-You can find information on how to install Gtest at this `link <https://github.com/google/googletest>`_.
 
 .. _colcon_installation_windows:
 
-Colcon Installation
+Colcon installation
 -------------------
 
-colcon_ is a command line tool to build sets of software packages.
-This section explains how to use it to compile easily *eProsima Fast DDS* and its dependencies.
+colcon_ is a command line tool based on CMake_ aimed at building sets of software packages.
+This section explains how to use it to compile *eProsima Fast DDS* and its dependencies.
 
 .. important::
 
-    You need to run colcon within a Visual Studio prompt. To do so, launch a *Developer Command Prompt* from the
+    Run colcon within a Visual Studio prompt. To do so, launch a *Developer Command Prompt* from the
     search engine.
 
-You can then install the ROS2 development tools (colcon_ and vcstool_):
+#. Install the ROS 2 development tools (colcon_ and vcstool_):
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    pip install -U colcon-common-extensions vcstool
+       pip install -U colcon-common-extensions vcstool
 
-and add the path to the :code:`vcs` executable to your :code:`PATH` from the
-*Edit the system environment variables* control panel.
+   and add the path to the :code:`vcs` executable to the :code:`PATH` from the
+   *Edit the system environment variables* control panel.
 
-.. note::
+   .. note::
 
-    If this fails due to an Environment Error, add the :code:`--user` flag to your installation.
+       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip` installation command.
 
-Now, create a colcon_ workspace and download the repos file that will be used to install *eProsima Fast DDS* and
-its dependencies:
+#. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
+   *eProsima Fast DDS* and its dependencies:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    $ mkdir Fast-DDS-ws && cd Fast-DDS-ws
-    $ wget https://raw.githubusercontent.com/eProsima/Fast-RTPS/master/fastrtps.repos
-    $ mkdir src
-    $ vcs import src < fastrtps.repos
+       mkdir ~/Fast-DDS
+       cd ~/Fast-DDS
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos
+       mkdir src
+       vcs import src < fastrtps.repos
 
-Finally, use colcon_ to compile all software:
+   Finally, use colcon_ to compile all software:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    colcon build
-
-To run an *eProsima Fast DDS* instance, you need to source the colcon overlay with the command:
-
-.. code-block:: bash
-
-    setup.bat
-
-.. important::
-
-    The sourcing of the local colcon overlay is required every time the colcon workspace is opened in a new shell
-    environment to run an *eProsima Fast DDS* instance.
-    As an alternative, you can add it permanently to your :code:`PATH`.
+       colcon build
 
 .. note::
 
-    If you want to compile the examples, you will need to add the flag
-    :code:`--cmake-args "-DCOMPILE_EXAMPLES=ON"` when running :code:`colcon build`.
-    If you want to compile the performance tests, you will need to add the flag
-    :code:`--cmake-args "--DPERFORMANCE_TESTS=ON"` when running :code:`colcon build`.
-    For this step, you need Gtest_ as explained in the requirements_windows_sources_ section above.
+    Being based on CMake_, it is possible to pass the CMake configuration options to the :code:`colcon build`
+    command. For more information on the specific syntax, please refer to the
+    `CMake specific arguments <https://colcon.readthedocs.io/en/released/reference/verb/build.html#cmake-specific-arguments>`_
+    page of the colcon_ manual.
+
+.. _run_app_colcon_sw:
+
+Run an application
+^^^^^^^^^^^^^^^^^^
+
+When running an instance of an application using *eProsima Fast DDS*, the colcon overlay built in the
+dedicated :code:`Fast-DDS` directory must be sourced.
+There are two possibilities:
+
+* Prepare the environment locally by typing the command:
+
+  .. code-block:: bash
+
+      setup.bat
+
+  every time the :code:`Fast-DDS` directory is opened in a new shell environment.
+
+* Add the sourcing of the colcon overlay permanently, by opening the
+  *Edit the system environment variables* control panel, and adding :code:`~/Fast-DDS/install/setup.bat`
+  to the :code:`PATH`.
 
 
 .. _cmake_installation_windows:
 
-CMake Installation
+CMake installation
 -------------------
 
-This section explains how to compile *eProsima Fast DDS* locally with CMake_.
-Open a command prompt, and create a :code:`Fast-DDS` directory where to download and build *eProsima Fast DDS* and
-its dependencies:
+This section explains how to compile *eProsima Fast DDS* with CMake_, either :ref:`locally <local_installation_sw>` or
+:ref:`globally <global_installation_sw>`.
 
-.. code-block:: bash
+.. _local_installation_sw:
 
-    mkdir Fast-DDS && cd Fast-DDS
+Local installation
+^^^^^^^^^^^^^^^^^^
 
-Now clone the following dependencies and compile them using CMake_.
+#. Open a command prompt, and create a :code:`Fast-DDS` directory where to download and build *eProsima Fast DDS* and
+   its dependencies:
 
-* `Foonathan memory <https://github.com/foonathan/memory>`_
+   .. code-block:: bash
 
-  .. code-block:: bash
+       mkdir ~/Fast-DDS
 
-      $ git clone https://github.com/eProsima/foonathan_memory_vendor.git
-      $ cd foonathan_memory_vendor
-      $ mkdir build && cd build
-      $ cmake .. -DCMAKE_INSTALL_PREFIX=../../install
-      $ cmake --build . --target install
-      $ cd ../..
+#. Clone the following dependencies and compile them using CMake_.
 
-* `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
+   * `Foonathan memory <https://github.com/foonathan/memory>`_
 
-  .. code-block:: bash
+     .. code-block:: bash
 
-      $ git clone https://github.com/eProsima/Fast-CDR.git
-      $ cd Fast-CDR
-      $ mkdir build && cd build
-      $ cmake .. -DCMAKE_INSTALL_PREFIX=../../install
-      $ cmake --build . --target install
-      $ cd ../..
+         cd ~/Fast-DDS
+         git clone https://github.com/eProsima/foonathan_memory_vendor.git
+         cd foonathan_memory_vendor
+         mkdir build && cd build
+         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DBUILD_SHARED_LIBS=ON
+         cmake --build . --target install
 
-Once all dependencies are installed, you will be able to compile and install *eProsima Fast DDS*:
+   * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
-.. code-block:: bash
+     .. code-block:: bash
 
-    $ git clone https://github.com/eProsima/Fast-RTPS.git
-    $ cd Fast-RTPS
-    $ mkdir build && cd build
-    $ cmake ..  -DCMAKE_INSTALL_PREFIX=../../install -DCMAKE_PREFIX_PATH=../../install
-    $ cmake --build . --target install
+         cd ~/Fast-DDS
+         git clone https://github.com/eProsima/Fast-CDR.git
+         cd Fast-CDR
+         mkdir build && cd build
+         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install
+         cmake --build . --target install
 
+#. Once all dependencies are installed, install *eProsima Fast DDS*:
 
-If you want to install *eProsima Fast DDS* system-wide instead of locally, you need to remove all the flags that
-appear in the configuration steps of :code:`Fast-CDR` and :code:`Fast-RTPS`, and change the one in the
+   .. code-block:: bash
+
+       cd ~/Fast-DDS
+       git clone https://github.com/eProsima/Fast-RTPS.git
+       cd Fast-RTPS
+       mkdir build && cd build
+       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DCMAKE_PREFIX_PATH=~/Fast-DDS/install
+       cmake --build . --target install
+
+.. _global_installation_sw:
+
+Global installation
+^^^^^^^^^^^^^^^^^^^
+
+To install *eProsima Fast DDS* system-wide instead of locally, remove all the flags that
+appear in the configuration steps of :code:`Fast-CDR` and :code:`Fast-RTPS`, and change the first in the
 configuration step of :code:`foonathan_memory_vendor` to the following:
 
 .. code-block:: bash
@@ -206,34 +282,41 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 
 .. note::
 
-    If you want to compile the examples, you will need to add the argument :code:`-DCOMPILE_EXAMPLES=ON` when calling
-    the configuration CMake_.
-    If you want to compile the performance tests, you will need to add the argument
-    :code:`-DPERFORMANCE_TESTS=ON` when calling the configuration CMake_.
-    For this step, you need Gtest_ as explained in the requirements_windows_sources_ section above.
+    By default, *eProsima Fast DDS* does not compile tests.
+    However, they can be activated by downloading and installing `Gtest <https://github.com/google/googletest>`_.
+
+.. _run_app_cmake_sw:
+
+Run an application
+^^^^^^^^^^^^^^^^^^
+
+When running an instance of an application using *eProsima Fast DDS*, it must be linked with the library where the
+packages have been installed. There are two possibilities:
+
+* Prepare the environment locally by typing in the console used for running the *eProsima Fast DDS* instance
+  the command:
+
+  .. code-block:: bash
+
+      C:\> PATH=~/Fast-DDS/install/bin
+
+* Link it permanently, by opening the *Edit the system environment variables* control panel, and adding
+  :code:`~/Fast-DDS/install/bin` to the :code:`PATH`.
 
 
-.. important::
+.. _fastddsgen_sw:
 
-    When running an *eProsima Fast DDS* application, you need to link it with the library
-    where the packages have been installed. You can either prepare the environment locally by typing the command:
+Fast DDS-Gen installation
+"""""""""""""""""""""""""
 
-    .. code-block:: bash
-
-        C:\> PATH=<PATH_TO_Fast-DDS_INSTALLATION>/Fast-DDS/install/bin
-
-    in the console you use to run the *eProsima Fast DDS* instance, or permanently add it to your path, by opening the
-    *Edit the system environment variables* control panel, and adding
-    :code:`<PATH_TO_Fast-DDS_INSTALLATION>/Fast-DDS/install/bin`
-    to the :code:`PATH`.
+In this section, we provide the instructions for installing *Fast DDS-Gen* in a Windows environment from
+sources.
+*Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
 
 .. External links
 
 .. _colcon: https://colcon.readthedocs.io/en/released/
 .. _CMake: https://cmake.org
-.. _Chocolatey: https://chocolatey.org
-.. _webpage: https://slproweb.com/products/Win32OpenSSL.html
-.. _Python: https://www.python.org/
 .. _pip: https://pypi.org/project/pip/
 .. _wget: https://www.gnu.org/software/wget/
 .. _git: https://git-scm.com/

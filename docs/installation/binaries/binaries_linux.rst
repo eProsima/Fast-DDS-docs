@@ -3,28 +3,20 @@
 Linux installation from binaries
 ================================
 
-You can download the latest release of *eProsima Fast DDS* for Linux from the company website
+In this page, we provide the instructions for installing *eProsima Fast DDS* in a Linux environment from
+binaries.
+
+.. _install_bl:
+
+Install
+-------
+
+The latest release of *eProsima Fast DDS* for Linux is available at the company website
 `downloads page <https://eprosima.com/index.php/downloads-all>`_.
 Once downloaded, extract the contents of the package.
 
-Packages
---------
-
-In the :code:`src` folder you will find:
-
-- :code:`fastcdr`
-- :code:`fastrtps`
-- :code:`fastrtpsgen`
-- :code:`foonathan_memory_vendor`
-
-If you don't want to install any of these components, you can simply remove or rename its folder from the :code:`src`
-directory.
-
-Installing and uninstalling
----------------------------
-
-To install *eProsima Fast DDS* and all its dependencies in the system, you have to run (with administrative privileges)
-the :code:`install.sh` script:
+Now, to install *eProsima Fast DDS* and all its dependencies in the system, execute
+the :code:`install.sh` script with administrative privileges:
 
 .. code-block:: bash
 
@@ -32,19 +24,50 @@ the :code:`install.sh` script:
 
 .. note::
 
-    When running an *eProsima Fast DDS* application, you need to link it with the library where the packages have been
-    installed. You can either prepare the environment locally by typing the command:
+    By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the linux_sources_ page.
 
-    .. code-block:: bash
+.. _contents_bl:
 
-        export LD_LIBRARY_PATH=/usr/local/lib/
+Contents
+^^^^^^^^
 
-    in the console you use to run the *eProsima Fast DDS* instance, or permanently add it to your path, by typing:
+The :code:`src` folder contains the following packages:
 
-    .. code-block:: bash
+* :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
+  `library <https://github.com/foonathan/memory>`_.
+* :code:`fastcdr`, a C++ library that serializes according to the
+  `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
+* :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
+* :code:`fastrtpsgen`, a Java application that generates source code using the data types defined in an IDL file.
 
-        echo 'export LD_LIBRARY_PATH=/usr/local/lib/' >> ~/.bashrc
+In case any of these components is unwanted, it can be simply renamed or removed from the :code:`src`
+directory.
 
+.. _run_app_bl:
+
+Run an application
+^^^^^^^^^^^^^^^^^^
+
+When running an instance of an application using *eProsima Fast DDS*, it must be linked with the library where the
+packages have been installed, :code:`/usr/local/lib/`. There are two possibilities:
+
+* Prepare the environment locally by typing in the console used for running the *eProsima Fast DDS* instance
+  the command:
+
+  .. code-block:: bash
+
+      export LD_LIBRARY_PATH=/usr/local/lib/
+
+* Add it permanently to the :code:`PATH`, by typing:
+
+  .. code-block:: bash
+
+      echo 'export LD_LIBRARY_PATH=/usr/local/lib/' >> ~/.bashrc
+
+.. _uninstall_bl:
+
+Uninstall
+---------
 
 To uninstall all installed components, execute the :code:`uninstall.sh` script (with administrative privileges):
 
@@ -56,8 +79,3 @@ To uninstall all installed components, execute the :code:`uninstall.sh` script (
 
     If any of the other components were already installed in some other way in the system, they will be
     removed as well. To avoid it, edit the script before executing it.
-
-.. note::
-
-    By default, *eProsima Fast DDS* does not compile tests.
-    You can activate them by downloading and installing `Gtest <https://github.com/google/googletest>`_.

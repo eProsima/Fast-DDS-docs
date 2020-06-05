@@ -3003,6 +3003,54 @@ void log_examples()
     // Stop the loggin thread and free its resources.
     Log::KillThread();
     //!--
+
+}
+
+void xml_profiles_examples()
+{
+    {
+        //XML-LOAD-APPLY-PROFILES
+        if (ReturnCode_t::RETCODE_OK ==
+                DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
+        {
+            DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant_with_profile(
+                        0, "participant_xml_profile");
+            Publisher* publisher = participant->create_publisher_with_profile("publisher_xml_profile");
+            Subscriber* subscriber = participant->create_subscriber_with_profile("subscriber_xml_profile");
+        }
+        //!--
+    }
+    {
+        //XML-USAGE
+        // Create a DomainParticipant
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Load the XML File
+        if (ReturnCode_t::RETCODE_OK ==
+                DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
+        {
+            // Retrieve the an instance of MyStruct type
+            eprosima::fastrtps::types::DynamicType_ptr my_struct_type =
+                    eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName("MyStruct")->build();
+            // Register MyStruct type
+            TypeSupport my_struct_type_support(new eprosima::fastrtps::types::DynamicPubSubType(my_struct_type));
+            my_struct_type_support.register_type(participant, nullptr);
+            //!--
+        }
+        else
+        {
+            std::cout << "Cannot open XML file \"types.xml\". "
+                    << "Please, set the correct path to the XML file"
+                    << std::endl;
+        }
+    }
 }
 
 void dds_transport_examples ()

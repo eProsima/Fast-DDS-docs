@@ -272,7 +272,7 @@ Loading dynamic types in a *Fast DDS* application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the *Fast DDS* application that will make use of the *XML Types*, the XML files that
-defines the types must be loaded before trying to instantiate |DynamicPubSubType| objects of these types.
+define the types must be loaded before trying to instantiate |DynamicPubSubType| objects of these types.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++

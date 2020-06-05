@@ -71,7 +71,7 @@ These elements allow the user to define the DomainParticipant configuration.
 | ``<name>``                        | The DomainParticipant's name.                    | ``string_255``      |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
 | ``<defaultUnicastLocatorList>``   | List of default reception unicast locators |br|  | ``Locator``         |         |
-|                                   | for user data traffic (as opposed to the |br|    |                     |         |
+|                                   | for user data traffic (see |br|                  |                     |         |
 |                                   | ``<metatrafficUnicastLocatorList>`` |br|         |                     |         |
 |                                   | defined in :ref:`builtin`). |br|                 |                     |         |
 |                                   | It expects a :ref:`LocatorListType`.             |                     |         |

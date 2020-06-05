@@ -17,7 +17,7 @@ An XML profile is defined by a unique name that is used to reference the XML pro
 during the creation of an |Entity|, the :ref:`Trasport <comm-transports-configuration>` configuration, or the
 :ref:`DynamicTypes <dds_layer_topic_dynamic_data_types>` definition.
 
-Both options can be complemented, i. e. it is possible to load multiple XML files but these must not have XML profiles
+Both options can be complemented, i.e. it is possible to load multiple XML files but these must not have XML profiles
 with the same name.
 This section explains how to configure DDS |Entities| using XML profiles.
 This includes the description of all the configuration values available for each of the XML profiles, as well as how

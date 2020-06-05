@@ -141,12 +141,7 @@ Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
 | Name                    | Description                                   | Values                   | Default         |
 +=========================+===============================================+==========================+=================+
-| ``<kind>``              | It defines the |Topic|'s key kind. This |br|  | :class:`NO_KEY`          | :class:`NO_KEY` |
-| ``<kind>``              | element is only used if the |Topic| is |br|   +--------------------------+                 |
-|                         | defined using the *Fast DDS* RTPS-layer |br|  | :class:`WITH_KEY`        |                 |
-|                         | API, and will be ignored if the |Topic| |br|  |                          |                 |
-|                         | is defined via the *Fast DDS* DDS-layer |br|  |                          |                 |
-|                         | API. See                                      |                          |                 |
+| ``<kind>``              | It defines the |Topic|'s key kind. See |br|   |                          |                 |
 |                         | :ref:`dds_layer_definition_data_types`.       |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
 | ``<name>``              | It defines the |Topic|'s name. It must |br|   | ``string_255``           |                 |
@@ -164,6 +159,11 @@ Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the
 |                         | requirements imposed by the application |br|  |                          |                 |
 |                         | and other QoS settings.                       |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
+
+.. warning::
+
+    The ``<kind>`` child element is only used if the |Topic| is defined using the *Fast DDS* RTPS-layer API, and will
+    be ignored if the |Topic| is defined via the *Fast DDS* DDS-layer API.
 
 **Example**
 

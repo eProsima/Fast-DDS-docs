@@ -100,7 +100,7 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 | ``<calculate_crc>``           | Calculates the Cyclic Redundancy Code (CRC) |br|   | ``boolean``          | ``true`` |
 |                               | for error control (**TCP only**). |br|             |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<check_crc>``               | Check the CRC for error control (TCP |br|          | ``boolean``          | ``true`` |
+| ``<check_crc>``               | Check the CRC for error control (**TCP** |br|      | ``boolean``          | ``true`` |
 |                               | **only**).                                         |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<enable_tcp_nodelay>``      | Socket option for disabling the Nagle |br|         | ``boolean``          | ``false``|

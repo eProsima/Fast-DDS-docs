@@ -10,19 +10,19 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     If this variable is set and its value corresponds with an existing file, *Fast DDS* will load its profiles.
     For more information about XML profiles, please refer to :ref:`xml_profiles`.
 
-+--------------------------------------------------------------+
-| **linux**                                                    |
-+--------------------------------------------------------------+
-| .. code-block::                                              |
-|                                                              |
-|    FASTRTPS_DEFAULT_PROFILES_FILE=/home/user/profiles.xml    |
-+--------------------------------------------------------------+
-| **windows**                                                  |
-+--------------------------------------------------------------+
-| .. code-block::                                              |
-|                                                              |
-|    set FASTRTPS_DEFAULT_PROFILES_FILE=C:\profiles.xml        |
-+--------------------------------------------------------------+
+    +--------------------------------------------------------------+
+    | **linux**                                                    |
+    +--------------------------------------------------------------+
+    | .. code-block::                                              |
+    |                                                              |
+    |    FASTRTPS_DEFAULT_PROFILES_FILE=/home/user/profiles.xml    |
+    +--------------------------------------------------------------+
+    | **windows**                                                  |
+    +--------------------------------------------------------------+
+    | .. code-block::                                              |
+    |                                                              |
+    |    set FASTRTPS_DEFAULT_PROFILES_FILE=C:\profiles.xml        |
+    +--------------------------------------------------------------+
 
 
 ``ROS2_AUTO_CLIENT_SERVER``
@@ -37,19 +37,19 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     it will start the :ref:`dds_layer_domainParticipant` as a client,
     connecting to the server at the specified locator.
 
-+--------------------------------------------------------------+
-| **linux**                                                    |
-+--------------------------------------------------------------+
-| .. code-block::                                              |
-|                                                              |
-|    ROS2_AUTO_CLIENT_SERVER=192.168.2.23:24353                |
-+--------------------------------------------------------------+
-| **windows**                                                  |
-+--------------------------------------------------------------+
-| .. code-block::                                              |
-|                                                              |
-|    set ROS2_AUTO_CLIENT_SERVER=192.168.2.23:24353            |
-+--------------------------------------------------------------+
+    +--------------------------------------------------------------+
+    | **linux**                                                    |
+    +--------------------------------------------------------------+
+    | .. code-block::                                              |
+    |                                                              |
+    |    ROS2_AUTO_CLIENT_SERVER=192.168.2.23:24353                |
+    +--------------------------------------------------------------+
+    | **windows**                                                  |
+    +--------------------------------------------------------------+
+    | .. code-block::                                              |
+    |                                                              |
+    |    set ROS2_AUTO_CLIENT_SERVER=192.168.2.23:24353            |
+    +--------------------------------------------------------------+
 
 
 ``FASTDDS_AUTO_CLIENT_SERVER``

@@ -80,18 +80,7 @@ Environment variables
 
 Environment variables are those variables that are defined outside the scope of the program, through operating system
 functionalities.
-Fast DDS relies on two environment variables so that the user can easily customize the default settings of DDS
+*Fast DDS* relies on environment variables so that the user can easily customize the default settings of DDS
 applications.
-These two environment variables are as follows:
-
-* ``FASTRTPS_DEFAULT_PROFILES_FILE``.
-  Defines the location of the profile configuration XML files.
-
-* ``ROS_DISCOVERY_SERVER``.
-  Sets as the default discovery protocol the Server-Client Discovery.
-  Through this environment variable, the user can provide a list of locators (IP-port pairs) that specify the addresses
-  of the servers.
-  In this case, the server can be a user configured DomainParticipant, or one created by a binary provided by Fast DDS.
-  In this sense, the variable configures the DomainParticipants as clients to the servers in the list.
-
-More information about Fast DDS environment variables can be found in the :ref:`env_vars` section.
+Please, refer to the :ref:`env_vars` section for a complete list and description of the environment variables
+affecting *Fast DDS*.

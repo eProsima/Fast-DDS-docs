@@ -42,7 +42,7 @@ dependency on other options.
           Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other options:
 
             - :class:`INTERNAL_DEBUG` is set to ``ON``.
-            - :class:`SHM_TRANSPORT_DEFAULT` is set to ``ON`` and :class:`EPROSIMA_INSTALLER` is set to OFF.
+            - :class:`SHM_TRANSPORT_DEFAULT` is set to ``ON`` and :class:`EPROSIMA_INSTALLER` is set to ``OFF``.
             - :class:`COMPILE_EXAMPLES` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
             - :class:`THIRDPARTY` is set to ``ON``.
             - :class:`EPROSIMA_GTEST` is set to ``ON`` if GoogleTest (GTest) library was found.

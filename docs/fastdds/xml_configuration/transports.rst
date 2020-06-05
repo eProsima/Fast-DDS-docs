@@ -5,7 +5,7 @@
 Transport descriptors
 ---------------------
 
-This section defines the XML elements available for configuring the transport layer parameters in Fast DDS.
+This section defines the XML elements available for configuring the transport layer parameters in *Fast DDS*.
 These elements are defined within the XML tag ``<transports_descriptors>``.
 The ``<transport_descriptors>`` can contain one or more ``<transport_descriptor>`` XML elements.
 Each ``<transport_descriptor>`` element defines a configuration for a specific type of transport protocol.
@@ -38,19 +38,12 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 |                               |                                                    | SHM                  |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<sendBufferSize>``          | Size in bytes of the send socket buffer. |br|      | ``uint32``           | 0        |
-|                               | If the value is zero then Fast DDS will use |br|   |                      |          |
+|                               | If the value is zero then *Fast DDS* will use |br| |                      |          |
 |                               | the system default socket size.                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<receiveBufferSize>``       | Size in bytes of the reception socket |br|         | ``uint32``           | 0        |
-|                               | buffer. If the value is zero then Fast DDS |br|    |                      |          |
+|                               | buffer. If the value is zero then *Fast DDS* |br|  |                      |          |
 |                               | will use the system default socket size.           |                      |          |
-+-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<TTL>``                     | *Time To Live* (UDP **only**). See |br|            | ``uint8``            | 1        |
-|                               | :ref:`transport_udp_udp`.                          |                      |          |
-+-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<non_blocking_send>``       | Whether to set the non-blocking send mode on |br|  | ``bool``             | ``false``|
-|                               | the socket (UDP **only**). See |br|                |                      |          |
-|                               | :ref:`transport_udp_transportDescriptor`.          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<maxMessageSize>``          | The maximum size in bytes of the transport's |br|  | ``uint32``           | 65500    |
 |                               | message buffer.                                    |                      |          |
@@ -60,65 +53,73 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<interfaceWhiteList>``      | Allows defining an interfaces |whitelist|.         | |whitelist|          |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<wan_addr>``                | Public WAN address when using **TCPv4** |br|       |  IPv4 formatted |br| |          |
-|                               | **transports**. This field is optional if the |br| |  ``string``: |br|    |          |
-|                               | transport doesn't need to define a WAN address.    |  ``XXX.XXX.XXX.XXX`` |          |
+| ``<TTL>``                     | *Time To Live* (**UDP only**). See |br|            | ``uint8``            | 1        |
+|                               | :ref:`transport_udp_udp`.                          |                      |          |
++-------------------------------+----------------------------------------------------+----------------------+----------+
+| ``<non_blocking_send>``       | Whether to set the non-blocking send mode on |br|  | ``bool``             | ``false``|
+|                               | the socket (**UDP only**). See |br|                |                      |          |
+|                               | :ref:`transport_udp_transportDescriptor`.          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<output_port>``             | Port used for output bound. |br|                   | ``uint16``           | 0        |
 |                               | If this field isn't defined, the output port |br|  |                      |          |
-|                               | will be random (UDP **only**).                     |                      |          |
+|                               | will be random (**UDP only**).                     |                      |          |
++-------------------------------+----------------------------------------------------+----------------------+----------+
+| ``<wan_addr>``                | Public WAN address when using **TCPv4** |br|       |  IPv4 formatted |br| |          |
+|                               | **transports**. This field is optional if the |br| |  ``string``: |br|    |          |
+|                               | transport doesn't need to define a WAN |br|        |  ``XXX.XXX.XXX.XXX`` |          |
+|                               | address (**TCPv4 only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<keep_alive_frequency_ms>`` | Frequency in milliseconds for sending              | ``uint32``           | 50000    |
 |                               | :ref:`RTCP <rtcpdefinition>` |br|                  |                      |          |
-|                               | keep-alive requests (TCP **only**).                |                      |          |
+|                               | keep-alive requests (**TCP only**).                |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<keep_alive_timeout_ms>``   | Time in milliseconds since the last |br|           | ``uint32``           | 10000    |
 |                               | keep-alive request was sent to consider a |br|     |                      |          |
-|                               | connection as broken (TCP **only**).               |                      |          |
+|                               | connection as broken (**TCP only**).               |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<max_logical_port>``        | The maximum number of logical ports to try |br|    | ``uint16``           | 100      |
 |                               | during :ref:`RTCP<rtcpdefinition>`                 |                      |          |
-|                               | negotiations (TCP **only**).                       |                      |          |
+|                               | negotiations (**TCP only**).                       |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<logical_port_range>``      | The maximum number of logical ports per |br|       | ``uint16``           | 20       |
 |                               | request to try during                              |                      |          |
 |                               | :ref:`RTCP<rtcpdefinition>` negotiations |br|      |                      |          |
-|                               | (TCP **only**).                                    |                      |          |
+|                               | (**TCP only**).                                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<logical_port_increment>``  | Increment between logical ports to try during |br| | ``uint16``           |  2       |
 |                               | :ref:`RTCP<rtcpdefinition>` negotiation |br|       |                      |          |
-|                               | (TCP **only**).                                    |                      |          |
+|                               | (**TCP only**).                                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<listening_ports>``         | Local port to work as TCP acceptor for input |br|  | ``List <uint16>``    |          |
 |                               | connections. If not set, the transport will |br|   |                      |          |
-|                               | work as TCP client only (TCP **only**).            |                      |          |
+|                               | work as TCP client only (**TCP only**).            |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<tls>``                     | Allows to define TLS related parameters and |br|   | :ref:`tcp-tls`       |          |
-|                               | options (TCP **only**).                            |                      |          |
+|                               | options (**TCP only**).                            |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<calculate_crc>``           | Calculates the Cyclic Redundancy Code (CRC) |br|   | ``boolean``          | ``true`` |
-|                               | for error control (TCP **only**). |br|             |                      |          |
+|                               | for error control (**TCP only**). |br|             |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<check_crc>``               | Check the CRC for error control (TCP |br|          | ``boolean``          | ``true`` |
 |                               | **only**).                                         |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<enable_tcp_nodelay>``      | Socket option for disabling the Nagle |br|         | ``boolean``          | ``false``|
-|                               | algorithm. (TCP **only**).                         |                      |          |
+|                               | algorithm. (**TCP only**).                         |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<segment_size>``            | Size (in bytes) of the shared-memory segment. |br| | ``uint32``           | 262144   |
-|                               | (Optional, SHM **only**).                          |                      |          |
+|                               | (Optional, **SHM only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<port_queue_capacity>``     | Capacity (in number of messages) available to |br| | ``uint32``           | 512      |
-|                               | every Listener (Optional, SHM **only**).           |                      |          |
+|                               | every Listener (Optional, **SHM only**).           |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<healthy_check_timeout_ms>``| Maximum time-out (in milliseconds) used when |br|  | ``uint32``           | 1000     |
 |                               | checking whether a Listener is alive |br|          |                      |          |
-|                               | (Optional, SHM **only**).                          |                      |          |
+|                               | (Optional, **SHM only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<rtps_dump_file>``          | Complete path (including file) where RTPS |br|     | ``string``           | Empty    |
 |                               | messages will be stored for debugging |br|         |                      |          |
 |                               | purposes. An empty string indicates no trace |br|  |                      |          |
-|                               | will be performed (Optional, SHM **only**).        |                      |          |
+|                               | will be performed (Optional, **SHM only**).        |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 
 The following XML code shows an example of transport protocol configuration using all configurable parameters.
@@ -142,10 +143,10 @@ More examples of transports descriptors can be found in the :ref:`comm-transport
 TLS Configuration
 ^^^^^^^^^^^^^^^^^
 
-Fast DDS provides mechanisms to configure the Transport Layer Security (TLS) protocol parameters
+*Fast DDS* provides mechanisms to configure the Transport Layer Security (TLS) protocol parameters
 through the ``<tls>`` XML element of its ``<transport_descriptor>``.
-Please, refer to :ref:`transport_tcp_tls` for a detailed explanation of the entire TLS configuration in Fast DDS.
-More information on how to set up secure communication in Fast DDS can be found in the :ref:`security` section.
+Please, refer to :ref:`transport_tcp_tls` for a detailed explanation of the entire TLS configuration in *Fast DDS*.
+More information on how to set up secure communication in *Fast DDS* can be found in the :ref:`security` section.
 
 .. warning::
     For the full understanding of this section, a basic knowledge of network security
@@ -163,7 +164,9 @@ protocol are listed in the following table:
 +===========================+===================================+========================================+=============+
 | ``<password>``            | Password of the                   | ``string``                             |             |
 |                           | ``<private_key_file>``            |                                        |             |
-|                           | if provided |br| (or RSA).        |                                        |             |
+|                           | or |br|                           |                                        |             |
+|                           | ``<rsa_private_key_file>``        |                                        |             |
+|                           | if provided.                      |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
 | ``<private_key_file>``    | Path to the private key           | ``string``                             |             |
 |                           | certificate file.                 |                                        |             |
@@ -177,22 +180,22 @@ protocol are listed in the following table:
 | ``<tmp_dh_file>``         | Path to the Diffie-Hellman        | ``string``                             |             |
 |                           | parameters file                   |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
-| ``<verify_file>``         | Path to the Certification-        | ``string``                             |             |
+| ``<verify_file>``         | Path to the Certification         | ``string``                             |             |
 |                           | Authority (CA) file.              |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
 | ``<verify_mode>``         | Establishes the verification      | :cpp:concept:`VERIFY_NONE`             |             |
-|                           | mode mask.                        +----------------------------------------+             |
-|                           |                                   | :cpp:concept:`VERIFY_PEER`             |             |
-|                           |                                   +----------------------------------------+             |
-|                           |                                   | |VERIFY_FAIL_IF_NO_PEER_CERT|          |             |
+|                           | mode mask. Several |br|           +----------------------------------------+             |
+|                           | verification options can be       | :cpp:concept:`VERIFY_PEER`             |             |
+|                           | combined in the same |br|         +----------------------------------------+             |
+|                           | ``<transport_descriptor>``.       | |VERIFY_FAIL_IF_NO_PEER_CERT|          |             |
 |                           |                                   +----------------------------------------+             |
 |                           |                                   | :cpp:concept:`VERIFY_CLIENT_ONCE`      |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
 | ``<options>``             | Establishes the SSL Context       | :cpp:concept:`DEFAULT_WORKAROUNDS`     |             |
-|                           | options mask.                     +----------------------------------------+             |
-|                           |                                   | :cpp:concept:`NO_COMPRESSION`          |             |
-|                           |                                   +----------------------------------------+             |
-|                           |                                   | :cpp:concept:`NO_SSLV2`                |             |
+|                           | options mask. Several |br|        +----------------------------------------+             |
+|                           | options can be combined in the    | :cpp:concept:`NO_COMPRESSION`          |             |
+|                           | same |br|                         +----------------------------------------+             |
+|                           | ``<transport_descriptor>``.       | :cpp:concept:`NO_SSLV2`                |             |
 |                           |                                   +----------------------------------------+             |
 |                           |                                   | :cpp:concept:`NO_SSLV3`                |             |
 |                           |                                   +----------------------------------------+             |
@@ -209,13 +212,13 @@ protocol are listed in the following table:
 | ``<verify_paths>``        | Paths where the system will       |  ``string``                            |             |
 |                           | look for verification |br| files. |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
-| ``<verify_depth>``        | Maximum allowed depth for         | ``uint32``                             |             |
+| ``<verify_depth>``        | Maximum allowed depth to          | ``uint32``                             |             |
 |                           | verify intermediate |br|          |                                        |             |
 |                           | certificates.                     |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
-| ``<default_verify_path>`` | Specifies whether the default     |  ``boolean``                           | ``false``   |
-|                           | path where the system |br|        |                                        |             |
-|                           | will look for the                 |                                        |             |
+| ``<default_verify_path>`` | Specifies whether the system      |  ``boolean``                           | ``false``   |
+|                           | will look on the |br|             |                                        |             |
+|                           | default paths for the             |                                        |             |
 |                           | verification files.               |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
 | ``<handshake_role>``      | Role that the transport will      | :cpp:concept:`DEFAULT`                 | |DEFconc|   |

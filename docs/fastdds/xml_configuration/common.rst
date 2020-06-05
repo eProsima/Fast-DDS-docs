@@ -39,9 +39,14 @@ It represents a list of |Locator_t|.
 LocatorListType is used inside other configuration parameter labels that expect a list of locators,
 for example, in ``<defaultUnicastLocatorList>``.
 Therefore, LocatorListType is defined as a set of ``<locator>`` elements.
-The ``<locator>`` element has a single child element that define the transport protocol for which the locator is
+The ``<locator>`` element has a single child element that defines the transport protocol for which the locator is
 defined. These are: ``<udpv4>``, ``<tcpv4>``, ``<udpv6>``, and ``<tcpv6>``.
 The table presented below outlines each possible Locator's field.
+
+.. note::
+
+    :ref:`SHM transport <transport_sharedMemory_sharedMemory>` locators cannot be configured as they are
+    automatically handled by SHM.
 
 +---------------------+--------------------------------------------------------+--------------------+------------------+
 | Name                | Description                                            | Values             | Default          |
@@ -130,26 +135,32 @@ An infinite value can be specified by using the values :cpp:concept:`DURATION_IN
 TopicType
 ^^^^^^^^^
 
-The |Topic| name and data type are used to determine whether Datawriters and DataReader can exchange messages.
+The |Topic| name and data type are used to determine whether Datawriters and DataReaders can exchange messages.
 Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the |Topic| class.
 
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
 | Name                    | Description                                   | Values                   | Default         |
 +=========================+===============================================+==========================+=================+
-| ``<kind>``              | It defines the Topic's key kind. |br|         | :class:`NO_KEY`          | :class:`NO_KEY` |
-|                         | See :ref:`dds_layer_definition_data_types`.   | :class:`WITH_KEY`        |                 |
+| ``<kind>``              | It defines the |Topic|'s key kind. This |br|  | :class:`NO_KEY`          | :class:`NO_KEY` |
+| ``<kind>``              | element is only used if the |Topic| is |br|   +--------------------------+                 |
+|                         | defined using the *Fast DDS* RTPS-layer |br|  | :class:`WITH_KEY`        |                 |
+|                         | API, and will be ignored if the |Topic| |br|  |                          |                 |
+|                         | is defined via the *Fast DDS* DDS-layer |br|  |                          |                 |
+|                         | API. See                                      |                          |                 |
+|                         | :ref:`dds_layer_definition_data_types`.       |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<name>``              | It defines the Topic's name. Must be unique.  | ``string_255``           |                 |
+| ``<name>``              | It defines the |Topic|'s name. It must |br|   | ``string_255``           |                 |
+|                         | be unique.                                    |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<dataType>``          | It references the Topic's data type.          | ``string_255``           |                 |
+| ``<dataType>``          | It references the |Topic|'s data type.        | ``string_255``           |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<historyQos>``        | It controls the behavior of Fast DDS |br|     | :ref:`hQos`              |                 |
+| ``<historyQos>``        | It controls the behavior of *Fast DDS* |br|   | :ref:`hQos`              |                 |
 |                         | when the value of an instance changes  |br|   |                          |                 |
 |                         | before it is finally communicated to |br|     |                          |                 |
 |                         | some of its existing DataReaders. |br|        |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<resourceLimitsQos>`` | It controls the resources that Fast DDS |br|  | :ref:`rLsQos`            |                 |
-|                         | can use in order to meet the |br|             |                          |                 |
+| ``<resourceLimitsQos>`` | It controls the resources that *Fast DDS*     | :ref:`rLsQos`            |                 |
+|                         | |br| can use in order to meet the |br|        |                          |                 |
 |                         | requirements imposed by the application |br|  |                          |                 |
 |                         | and other QoS settings.                       |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
@@ -166,17 +177,17 @@ Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the
 HistoryQoS
 """"""""""
 
-It controls the behavior of Fast DDS when the value of an instance changes before it is finally
+It controls the behavior of *Fast DDS* when the value of an instance changes before it is finally
 communicated to some of its existing DataReaders.
 Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQoS.
 
 +-------------+--------------------------------------------------------------+--------------------+--------------------+
 | Name        | Description                                                  | Values             | Default            |
 +=============+==============================================================+====================+====================+
-| ``<kind>``  | Fast DDS will only attempt to keep the latest values         | :class:`KEEP_LAST` | :class:`KEEP_LAST` |
+| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values       | :class:`KEEP_LAST` | :class:`KEEP_LAST` |
 |             | of the instance |br| and discard the older ones.             |                    |                    |
 |             +--------------------------------------------------------------+--------------------+                    +
-|             | Fast DDS will attempt to maintain and deliver all the        | :class:`KEEP_ALL`  |                    |
+|             | *Fast DDS* will attempt to maintain and deliver all the      | :class:`KEEP_ALL`  |                    |
 |             | values of the instance |br| to existing DataReaders.         |                    |                    |
 +-------------+--------------------------------------------------------------+--------------------+--------------------+
 | ``<depth>`` | It must be consistent with the :ref:`rLsQos`                 | ``UInt32``         | 1000               |
@@ -190,7 +201,7 @@ Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQo
 ResourceLimitsQos
 """""""""""""""""
 
-It controls the resources that Fast DDS can use in order to meet the requirements imposed by the
+It controls the resources that *Fast DDS* can use in order to meet the requirements imposed by the
 application and other QoS settings.
 Please refer to :ref:`ResourceLimitsQosPolicy` for further information on ResourceLimitsQos.
 
@@ -214,7 +225,7 @@ QOS
 ^^^
 
 The Quality of Service (QoS) is used to specify the behavior of the Service, allowing the user to define how each
-Entity will behave.
+|Entity| will behave.
 Please refer to the :ref:`dds_layer_core_policy` section for more information on QoS.
 
 .. |MANUAL_BY_PARTICIPANT| replace:: :class:`MANUAL_BY_PARTICIPANT`

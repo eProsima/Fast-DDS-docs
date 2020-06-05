@@ -22,7 +22,7 @@ Thus, the following XML codes are equivalent.
 
     The ``<subscriber>`` and ``<data_reader>`` XML tags are equivalent.
     Therefore, XML profiles in which the |DataReaders| are defined with the ``<subscriber>`` tag are fully compatible
-    with Fast DDS.
+    with *Fast DDS*.
 
 
 DataReader XML attributes
@@ -43,7 +43,9 @@ The ``<data_reader>`` element has two attributes defined: ``profile_name`` and `
        :ref:`loadingapplyingprofiles`.
      - Mandatory
    * - ``is_default_profile``
-     - Sets the ``<data_reader>`` profile as the default profile.
+     - Sets the ``<data_reader>`` profile as the default profile. Thus, if a default profile |br|
+       exists, it will be used when no other DataReader profile is specified at the |br|
+       DataReader's creation.
      - Optional
 
 DataReader configuration
@@ -85,7 +87,7 @@ The DataReader configuration is performed through the XML elements listed in the
    * - ``<expectsInlineQos>``
      - It indicates if QoS is expected inline.
      - ``Boolean``
-     - :class:`false`
+     - ``false``
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for DataReaders's |br| history.
      - :ref:`memorymanagementpolicy`
@@ -103,9 +105,8 @@ The DataReader configuration is performed through the XML elements listed in the
      - ``Int16``
      - -1
    * - ``<matchedPublishersAllocation>``
-     - Sets the limits of a DataWriters limited |br|
-       collection, as well as the DataReader |br|
-       :ref:`CommonAlloc`. See |br|
+     - Sets the limits of the collection of matched |br|
+       DataWriters. See |br|
        :ref:`participantresourcelimitsqos`.
      - :ref:`CommonAlloc`
      -
@@ -124,8 +125,6 @@ The DataReader configuration is performed through the XML elements listed in the
 
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
 
-    - :class:`DURATION` means it expects a :ref:`DurationType`.
-
     - For :class:`QOS` details, please refer to :ref:`CommonQOS`.
 
     - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
@@ -140,6 +139,5 @@ Times
 +==============================+=======================================================+=====================+=========+
 | ``<initialAcknackDelay>``    | Initial ACKNACK delay.                                | :ref:`DurationType` | 70 ms   |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
-| ``<heartbeatResponseDelay>`` | Heartbeat response time delay when receiving          | :ref:`DurationType` | 5 ms    |
-|                              | an acknack.                                           |                     |         |
+| ``<heartbeatResponseDelay>`` | Response time delay when receiving a Heartbeat.       | :ref:`DurationType` | 5 ms    |
 +------------------------------+-------------------------------------------------------+---------------------+---------+

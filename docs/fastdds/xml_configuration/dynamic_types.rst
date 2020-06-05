@@ -5,7 +5,7 @@
 Dynamic Types profiles
 ----------------------
 
-Fast DDS supports the implementation of |DynamicTypes| by defining them through XML profile files.
+*Fast DDS* supports the implementation of |DynamicTypes| by defining them through XML files.
 Thus the :ref:`Dynamic Types <dynamic-types>` can be modified without the need to modify the source code of the DDS
 application.
 
@@ -32,7 +32,7 @@ Below, an example of a stand-alone types definition via XML is shown.
 
 Type definition
 ^^^^^^^^^^^^^^^
-Below, the types supported by Fast DDS are presented .
+Below, the types supported by *Fast DDS* are presented .
 For further information about the supported |DynamicTypes|, please, refer to :ref:`dynamictypes_supportedtypes`.
 For each of the types detailed below, an example of how to build the type's XML profile is provided.
 
@@ -92,8 +92,8 @@ Please, refer to :ref:`dynamictypes_supportedtypes_structure` for more informati
   :end-before: <!--><-->
 
 Structs can inherit from another structs.
-This is implemented by defining as the value of the ``baseType`` attribute, on the child ``<struct>`` element, the value
-of the ``name`` attribute of the parent ``<struct>`` element.
+This is implemented by defining the value of the ``baseType`` attribute, on the child ``<struct>`` element to be the
+value of the ``name`` attribute of the parent ``<struct>`` element.
 This is exemplified by the code snippet below.
 
 .. literalinclude:: /../code/XMLTester.xml
@@ -117,7 +117,7 @@ Please, refer to :ref:`dynamictypes_supportedtypes_union` for more information o
 Bitset
 """"""
 
-The ``<bitset>`` element define the :ref:`dynamictypes_supportedtypes_bitset` type.
+The ``<bitset>`` element defines the :ref:`dynamictypes_supportedtypes_bitset` type.
 It is comprised by a ``name`` attribute and a set of ``<bitfield>`` child elements.
 In turn, the ``<bitfield>`` element has the mandatory ``bit_bound`` attribute, which can not be higher than 64, and
 two optional attributes:
@@ -188,7 +188,7 @@ All of them are defined as follows:
 Arrays
 ******
 
-Arrays are defined in the same way as any other member type but it adds the attribute ``arrayDimensions``.
+Arrays are defined in the same way as any other member type but they add the attribute ``arrayDimensions``.
 The format of the ``arrayDimensions`` attribute value is the size of each dimension separated by commas.
 Please, refer to :ref:`dynamictypes_supportedtypes_array` explanation for more information on array type.
 
@@ -223,7 +223,7 @@ See section :ref:`dynamictypes_supportedtypes_map` for more information on map t
 
 .. literalinclude:: /../code/XMLTester.xml
   :language: xml
-  :start-after: <!-->XML-SEQUENCES<-->
+  :start-after: <!-->XML-MAPS<-->
   :end-before: <!--><-->
 
 Complex types
@@ -268,10 +268,10 @@ these attributes are then defined in the following table.
 
 .. _Usage:
 
-Loading dynamic types in a Fast DDS application
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Loading dynamic types in a *Fast DDS* application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the Fast DDS application that will make use of the *XML Types*, the XML profiles file that
+In the *Fast DDS* application that will make use of the *XML Types*, the XML files that
 defines the types must be loaded before trying to instantiate |DynamicPubSubType| objects of these types.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -280,6 +280,3 @@ defines the types must be loaded before trying to instantiate |DynamicPubSubType
     :end-before: //!--
     :dedent: 8
 
-.. warning::
-
-    It is worth mentioning that only ``<struct>`` types generate usable |DynamicPubSubType| instances.

@@ -3648,11 +3648,7 @@
     <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
 <-->
         <participant profile_name="participant_profile">
-            <domainId>80</domainId>
-
-            <rtps>
-                <!-- ... -->
-            </rtps>
+            <!-- ... -->
         </participant>
 
         <data_writer profile_name="datawriter_profile">
@@ -3664,13 +3660,7 @@
         </data_reader>
 
         <transport_descriptors>
-            <transport_descriptor>
-                <transport_id>TransportProfile</transport_id>
-
-                <type>UDPv4</type>
-
-                <!-- ... -->
-            </transport_descriptor>
+            <!-- ... -->
         </transport_descriptors>
 
         <log>
@@ -3678,11 +3668,7 @@
         </log>
 
         <types>
-            <type>
-                <struct name="struct_profile">
-                    <!-- ... -->
-                </struct>
-            </type>
+            <!-- ... -->
         </types>
 <!-->
     </profiles>

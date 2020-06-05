@@ -17,32 +17,26 @@ The following sections will show implementation examples for each of these profi
     :language: xml
     :start-after: <!-->CREATING_XML_PROFILES<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-42, 44-45
-
-.. important::
-
-    The `Fast DDS XSD scheme <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_
-    uses some structures common to several profiles types.
-    For readability, the :ref:`commonxml` section groups these common structures.
+    :lines: 2-4, 6-28, 30-31
 
 .. note::
 
     The :ref:`examplexml` section shows an XML file with all the possible configurations and profile types.
     This example is useful as a quick reference to look for a particular property and how to use it.
-    The aforementioned
-    `XSD scheme <https://github.com/eProsima/Fast-RTPS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_ can be used
-    as a quick reference too.
+    The
+    `Fast DDS XSD scheme <https://github.com/eProsima/Fast-DDS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_
+    can be used as a quick reference too.
 
 .. _loadingapplyingprofiles:
 
 Loading and applying profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In case the user loads the |Entity| profiles via XML files, before creating any |Entity|, it is required to load these
-XML files using the |load_XML_profiles_file| public member function.
+In case the user defines the |Entity| profiles via XML files, it is required to load these
+XML files using the |load_XML_profiles_file| public member function before creating any |Entity|.
 Moreover, |create_participant_with_profile|, |create_publisher_with_profile|, and |create_subscriber_with_profile|
 member functions expect a profile name as an argument.
-Fast DDS searches over all the XML profiles loaded using the given profile name, applying the profile to the entity
+*Fast DDS* searches the given profile name over all the loaded XML profiles, applying the profile to the entity
 if founded.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -58,14 +52,14 @@ if founded.
 
 .. note::
 
-    To load dynamic types from XML profile files see the :ref:`Usage` subsection of :ref:`xmldynamictypes`.
+    To load dynamic types from XML files see the :ref:`Usage` subsection of :ref:`xmldynamictypes`.
 
 .. _rootedvsstandalone:
 
 Rooted vs Standalone profiles definition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fast DDS offers various options for the definition of XML profiles. These options are:
+*Fast DDS* offers various options for the definition of XML profiles. These options are:
 
 *   Stand-alone:
     The element defining the XML profile is the root element of the XML file.

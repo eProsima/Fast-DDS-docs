@@ -22,7 +22,7 @@ Thus, the following XML code snippets are equivalent.
 
     The ``<publisher>`` and ``<data_writer>`` XML tags are equivalent.
     Therefore, XML profiles in which the |DataWriters| are defined with the ``<publisher>``
-    tag are fully compatible with Fast DDS.
+    tag are fully compatible with *Fast DDS*.
 
 DataWriter XML attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,7 +42,9 @@ The ``<data_writer>`` element has two attributes defined: ``profile_name`` and `
        :ref:`loadingapplyingprofiles`.
      - Mandatory
    * - ``is_default_profile``
-     - Sets the ``<data_writer>`` profile as the default profile.
+     - Sets the ``<data_writer>`` profile as the default profile. Thus, if a default profile |br|
+       exists, it will be used when no other DataWriter profile is specified at the |br|
+       DataWriter's creation.
      - Optional
 
 DataWriter configuration
@@ -103,9 +105,8 @@ The DataWriter configuration is performed through the XML elements listed in the
      - ``Int16``
      - -1
    * - ``<matchedSubscribersAllocation>``
-     - Sets the limits of a DataReaders limited |br|
-       collection, as well as the DataWriter |br|
-       :ref:`CommonAlloc`. See |br|
+     - Sets the limits of the collection of matched |br|
+       DataReaders. See |br|
        :ref:`participantresourcelimitsqos`.
      - :ref:`CommonAlloc`
      -

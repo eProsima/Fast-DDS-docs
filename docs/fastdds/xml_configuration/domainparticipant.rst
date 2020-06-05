@@ -6,7 +6,7 @@ DomainParticipant profiles
 --------------------------
 
 The |DomainParticipant| profiles allow the definition of the configuration of |DomainParticipants| through
-XML profile files.
+XML files.
 These profiles are defined within the ``<participant>`` XML tags.
 
 .. _domainparticipantattributes:
@@ -29,7 +29,9 @@ The ``<participant>`` element has two attributes defined: ``profile_name`` and `
        :ref:`loadingapplyingprofiles`.
      - Mandatory
    * - ``is_default_profile``
-     - Sets the ``<participant>`` profile as the default profile.
+     - Sets the ``<participant>`` profile as the default profile. Thus, if a default profile |br|
+       exists, it will be used when no other DomainParticipant profile is specified at the |br|
+       DomainParticipant's creation.
      - Optional
 
 .. _domainparticipantconfig:
@@ -40,8 +42,6 @@ DomainParticipant configuration
 The ``<participant>`` element has two child elements: ``<domain_id>`` and ``<rtps>``.
 All the |DomainParticipant| configuration options belong to the ``<rtps>`` element, except for the DDS |DomainId| which
 is defined by the ``<domain_id>`` element.
-Attribute ``profile_name`` is the name under which the ``<participant>`` profile is registered in the DDS Domain, so
-that it can be loaded later by a |DomainParticipant|, as shown in :ref:`loadingapplyingprofiles`.
 Below a list with the configuration XML elements is presented:
 
 +----------------+----------------------------------------------------------------------------+--------------+---------+
@@ -49,8 +49,8 @@ Below a list with the configuration XML elements is presented:
 +================+============================================================================+==============+=========+
 | ``<domainId>`` | |DomainId| to be used by the |DomainParticipant|.                          | ``uint32``   | 0       |
 +----------------+----------------------------------------------------------------------------+--------------+---------+
-| ``<rtps>``     | Fast DDS |DomainParticipant| configurations. |br|                          |  :ref:`RTPS` |         |
-| ``<rtps>``     | See :ref:`RTPS`.                                                           |              |         |
+| ``<rtps>``     | *Fast DDS* |DomainParticipant| configurations. |br|                        |  :ref:`RTPS` |         |
+|                | See :ref:`RTPS`.                                                           |              |         |
 +----------------+----------------------------------------------------------------------------+--------------+---------+
 
 .. _RTPS:
@@ -70,19 +70,26 @@ These elements allow the user to define the DomainParticipant configuration.
 +===================================+==================================================+=====================+=========+
 | ``<name>``                        | The DomainParticipant's name.                    | ``string_255``      |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<defaultUnicastLocatorList>``   | List of default reception unicast locators. |br| | ``Locator``         |         |
+| ``<defaultUnicastLocatorList>``   | List of default reception unicast locators |br|  | ``Locator``         |         |
+|                                   | for user data traffic (as opposed to the |br|    |                     |         |
+|                                   | ``<metatrafficUnicastLocatorList>`` |br|         |                     |         |
+|                                   | defined in :ref:`builtin`). |br|                 |                     |         |
 |                                   | It expects a :ref:`LocatorListType`.             |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
 | ``<defaultMulticastLocatorList>`` | List of default reception multicast locators.    | ``Locator``         |         |
-|                                   | |br| It expects a :ref:`LocatorListType`.        |                     |         |
+|                                   | for user data traffic (as opposed to the |br|    |                     |         |
+|                                   | ``<metatrafficMulticastLocatorList>`` |br|       |                     |         |
+|                                   | defined in :ref:`builtin`). |br|                 |                     |         |
+|                                   | It expects a :ref:`LocatorListType`.             |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
 | ``<sendSocketBufferSize>``        | Size in bytes of the send socket buffer. |br|    | ``uint32``          | 0       |
-|                                   | If the value is zero then Fast DDS will use |br| |                     |         |
-|                                   | the system default socket size.                  |                     |         |
+|                                   | If the value is zero then *Fast DDS* will |br|   |                     |         |
+|                                   | use the system default socket size.              |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
 | ``<listenSocketBufferSize>``      | Size in bytes of the reception socket |br|       | ``uint32``          | 0       |
-|                                   | buffer. If the value is zero then Fast DDS |br|  |                     |         |
-|                                   | will use the system default socket size.         |                     |         |
+|                                   | buffer. If the value is zero then  |br|          |                     |         |
+|                                   | *Fast DDS* will use the system default |br|      |                     |         |
+|                                   | socket size.                                     |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
 | ``<builtin>``                     | |DomainParticipantQosWireProtocolBuiltin|        | :ref:`builtin`      |         |
 |                                   | public data member of the |br|                   |                     |         |
@@ -133,8 +140,6 @@ These elements allow the user to define the DomainParticipant configuration.
 
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
 
-    - :class:`DURATION` means a :ref:`DurationType` is expected.
-
     - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
 
     - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
@@ -170,7 +175,7 @@ Therefore the following parameters can be specified:
 .. warning::
 
   Changing these default parameters may break compatibility with other RTPS compliant implementations, as well as
-  with other Fast DDS applications with default port settings.
+  with other *Fast DDS* applications with default port settings.
 
 .. _ParticipantAllocationType:
 
@@ -338,8 +343,8 @@ This section specifies the available XML members for the configuration of this
 discovery_config
 ################
 
-Through the ``<discovery_config>`` element, Fast DDS allows the configuration of the discovery mechanism via an XML
-profile file.
+Through the ``<discovery_config>`` element, *Fast DDS* allows the configuration of the discovery mechanism via an XML
+file.
 Please refer to the :ref:`discovery` section for more detail on the various types of discovery mechanisms and
 configurable settings.
 
@@ -372,18 +377,18 @@ configurable settings.
 |                                 | Protocol. See :ref:`Simple EDP Attributes`.    |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<leaseDuration>``             | Indicates how long the DomainParticipant |br|  | :ref:`DurationType` | 20s         |
-|                                 | should consider remote DomainParticipant |br|  |                     |             |
+|                                 | should consider remote DomainParticipants |br| |                     |             |
 |                                 | alive.                                         |                     |             |
 |                                 | See :ref:`discovery_lease_dur`.                |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<leaseAnnouncement>``         | The period for the DomainParticipant to |br|   | :ref:`DurationType` | 3s          |
 |                                 | send its discovery message to all other |br|   |                     |             |
-|                                 | discovered DomainParticipant as well as |br|   |                     |             |
+|                                 | discovered DomainParticipants as well as |br|  |                     |             |
 |                                 | to all Multicast ports.                        |                     |             |
 |                                 | See :ref:`discovery_lease_announ`.             |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<initialAnnouncements>``      | Allows the user to configure the number |br|   | :ref:`InitAnnounce` |             |
-|                                 | and period of the initial DomainParticipant's  |                     |             |
+|                                 | and period of the DomainParticipant's initial  |                     |             |
 |                                 | |br| discovery messages.                       |                     |             |
 |                                 | See :ref:`Initial Announcements`.              |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+

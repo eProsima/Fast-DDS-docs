@@ -7,7 +7,7 @@ Log profiles
 
 *eProsima Fast DDS* allows for registering and configuring :ref:`log consumers <dds_layer_log_consumer>` using XML
 configuration files.
-Please refer to :ref:`dds_layer_log_intro` for more information on Fast DDS extensible Logging built-in module.
+Please refer to :ref:`dds_layer_log_intro` for more information on *Fast DDS* extensible Logging built-in module.
 The logging profiles are defined within the ``<log>`` XML tags.
 The ``<log>`` element has two child elements: ``<use_default>`` and ``<consumer>``.
 These are described in the following table.

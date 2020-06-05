@@ -16,6 +16,7 @@ eProsima Fast DDS Documentation
    /installation/requirements/requirements
    /installation/binaries/binaries
    /installation/sources/sources
+   /installation/configuration/cmake_options
 
 
 .. _index_fast_dds:

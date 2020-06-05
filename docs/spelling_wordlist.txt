@@ -67,11 +67,14 @@ GCM
 getter
 Github
 GMAC
+GMock
 gradle
 gtest
+GTest
 helloworld
 hostid
 IDL
+ifaddrs
 interoperability
 Intra
 IPv
@@ -143,6 +146,7 @@ unidimensional
 univocally
 unmatch
 unmatching
+Valgrind
 vcstool
 whitelist
 whitelists

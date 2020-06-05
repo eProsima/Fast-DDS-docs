@@ -5,6 +5,12 @@ Linux installation from sources
 
 In this page, we provide the instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
 and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources.
+It is organized as follows:
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 2
 
 .. _fastdds_lib_sl:
 
@@ -280,23 +286,35 @@ Requirements
 
 In order to compile *Fast DDS-Gen*, the following packages need to be installed in the system:
 
-* `Gradle <https://gradle.org/install>`_
-* `Java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_
+* :ref:`java_sl`
+* :ref:`gradle_sl`
 
-  .. note::
+.. _java_sl:
 
-      Check the Java JDK recommended version for the gradle version you have installed.
+Java JDK
+^^^^^^^^
+
+The JDK is a development environment for building applications and components using the Java language.
+Download and install it at the following `page <https://www.oracle.com/java/technologies/javase-downloads.html>`_.
+
+.. _gradle_sl:
+
+Gradle
+^^^^^^
+
+Gradle is an open-source build automation tool. Download and install `Gradle <https://gradle.org/install>`_
+in the preferred way.
 
 Install
 -------
 
-To install *Fast DDS-Gen*, follow the steps below:
+Once the requirements above are met, install *Fast DDS-Gen* by following the steps below:
 
 .. code-block:: bash
 
     cd ~
     git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git
-    cd Fast-DDS-Gen
+    cd Fast-RTPS-Gen
     gradle assemble
 
 Contents
@@ -309,7 +327,7 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
 
   .. note::
 
-      To make these scripts available from anywhere, add the :code:`scripts` folder path to your
+      To make these scripts available from anywhere, add the :code:`scripts` folder path to the
       :code:`PATH` environment variable.
 
 .. External links

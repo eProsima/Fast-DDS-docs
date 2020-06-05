@@ -5,10 +5,18 @@ Windows installation from binaries
 
 In this page, we provide the instructions for installing *eProsima Fast DDS* in a Windows environment from
 binaries.
-First of all, the requirements_bw_ and dependencies_bw_ detailed below need to be met.
+
+It is organized as follows:
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 2
+
+First of all, the :ref:`requirements_bw` and :ref:`dependencies_bw` detailed below need to be met.
+
 
 .. _requirements_bw:
-
 
 Requirements
 ------------
@@ -16,8 +24,8 @@ Requirements
 The installation of *eProsima Fast DDS* in a Windows environment from binaries requires the following tools to be
 installed in the system:
 
-* visual_studio_bw_
-* chocolatey_bw_
+* :ref:`visual_studio_bw`
+* :ref:`chocolatey_bw`
 
 .. _visual_studio_bw:
 

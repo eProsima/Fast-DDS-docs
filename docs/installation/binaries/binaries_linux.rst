@@ -4,7 +4,12 @@ Linux installation from binaries
 ================================
 
 In this page, we provide the instructions for installing *eProsima Fast DDS* in a Linux environment from
-binaries.
+binaries. It is organized as follows:
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 2
 
 .. _install_bl:
 

@@ -8,6 +8,7 @@ acknack
 acknowledgement
 acks
 AES
+allocator
 ami
 appendable
 asio

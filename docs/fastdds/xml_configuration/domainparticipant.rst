@@ -76,8 +76,8 @@ These elements allow the user to define the DomainParticipant configuration.
 |                                   | defined in :ref:`builtin`). |br|                 |                     |         |
 |                                   | It expects a :ref:`LocatorListType`.             |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<defaultMulticastLocatorList>`` | List of default reception multicast locators.    | ``Locator``         |         |
-|                                   | for user data traffic (as opposed to the |br|    |                     |         |
+| ``<defaultMulticastLocatorList>`` | List of default reception multicast |br|         | ``Locator``         |         |
+|                                   | locators for user data traffic (see |br|         |                     |         |
 |                                   | ``<metatrafficMulticastLocatorList>`` |br|       |                     |         |
 |                                   | defined in :ref:`builtin`). |br|                 |                     |         |
 |                                   | It expects a :ref:`LocatorListType`.             |                     |         |

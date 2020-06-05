@@ -42,7 +42,7 @@ installed in the system:
 CMake, g++, pip, wget and git
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-These packages provide the tools needed to install *eProsima Fast DDS* and its dependency from command line.
+These packages provide the tools required to install *eProsima Fast DDS* and its dependencies from command line.
 Install CMake_, `g++ <https://gcc.gnu.org/>`_, pip_, wget_ and git_ using the package manager of the appropriate
 Linux distribution. For example, on Ubuntu use the command:
 

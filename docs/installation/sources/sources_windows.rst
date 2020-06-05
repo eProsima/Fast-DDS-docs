@@ -67,7 +67,7 @@ Download and install it directly from the `website <https://chocolatey.org/>`_.
 CMake, pip, wget and git
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-These packages provide the tools needed to install *eProsima Fast DDS* and its dependency from command line.
+These packages provide the tools required to install *eProsima Fast DDS* and its dependencies from command line.
 Download and install CMake_, pip_, wget_ and git_ by following the instructions detailed in the respective
 websites.
 Once installed, add the path to the executables to the :code:`PATH` from the

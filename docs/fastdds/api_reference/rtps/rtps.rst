@@ -7,7 +7,8 @@ RTPS
 
 .. toctree::
 
-    ./attributes/attributes
-    ./exceptions/exceptions
-    ./flowcontrol/flowcontrol
-    ./common/common
+    /fastdds/api_reference/rtps/attributes/attributes
+    /fastdds/api_reference/rtps/history/history
+    /fastdds/api_reference/rtps/exceptions/exceptions
+    /fastdds/api_reference/rtps/flowcontrol/flowcontrol
+    /fastdds/api_reference/rtps/common/common

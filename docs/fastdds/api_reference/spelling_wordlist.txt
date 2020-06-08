@@ -69,6 +69,7 @@ maxInitialPeersRange
 maxMessageSize
 md
 msg
+mutex
 nackResponseDelay
 nackSupressionDuration
 NoOpDomainParticipantListener
@@ -104,6 +105,7 @@ ResourceLimitsQosPolicy
 retransmit
 RTPSParticipantAllocationAttributes
 SecurityException
+sequenceNumber
 SampleLostStatus
 SampleRejectedStatus
 serialised
@@ -119,6 +121,8 @@ subclasses
 subentities
 SubscriberListener
 SubscriptionMatchedStatus
+succesful
+suer
 synchronism
 te
 TimeBasedFilterQosPolicy

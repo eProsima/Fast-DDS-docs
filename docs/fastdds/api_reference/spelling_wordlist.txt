@@ -103,6 +103,7 @@ RequestTypeSupport
 ResourceLimitsQosPolicy
 retransmit
 RTPSParticipantAllocationAttributes
+SecurityException
 SampleLostStatus
 SampleRejectedStatus
 serialised

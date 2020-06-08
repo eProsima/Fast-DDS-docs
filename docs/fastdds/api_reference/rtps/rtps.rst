@@ -8,7 +8,10 @@ RTPS
 .. toctree::
 
     /fastdds/api_reference/rtps/attributes/attributes
+    /fastdds/api_reference/rtps/reader/reader
+    /fastdds/api_reference/rtps/writer/writer
     /fastdds/api_reference/rtps/history/history
+    /fastdds/api_reference/rtps/resources/resources
     /fastdds/api_reference/rtps/exceptions/exceptions
     /fastdds/api_reference/rtps/flowcontrol/flowcontrol
     /fastdds/api_reference/rtps/common/common

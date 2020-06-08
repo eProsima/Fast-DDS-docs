@@ -1,3 +1,4 @@
+acceptMsgDirectedTo
 ACKs
 addReaderLocator
 addReaderProxy
@@ -10,6 +11,10 @@ availabel
 behaviour
 booleans
 bytesPerPeriod
+cacheChange
+CacheChange
+changeKind
+coumpound
 cond
 config
 const
@@ -22,6 +27,7 @@ DataWriter
 datawriters
 DeadlineQosPolicy
 deserialized
+destinated
 DestinationOrderQosPolicy
 Destructor
 differnet
@@ -32,6 +38,7 @@ DomainParticipantListener
 DurabilityKind
 DurabilityQosPolicy
 DurabilityServiceQosPolicy
+durtation
 dyn
 DynamicPubSubType
 enought
@@ -42,6 +49,7 @@ eprosima
 expectsInlineQos
 fastrtps
 GenericDataQosPolicy
+getHistory
 getTypeDependencies
 getTypes
 guid
@@ -74,6 +82,7 @@ nackResponseDelay
 nackSupressionDuration
 NoOpDomainParticipantListener
 nullptr
+Num
 OfferedDeadlineMissedStatus
 OfferedIncompatibleQosStatus
 Otherwhise
@@ -82,6 +91,7 @@ OwnershipStrengthQosPolicy
 parameterList
 params
 PartitionQosPolicy
+PDPListener
 periodMillisecs
 Pid
 polycy
@@ -108,10 +118,15 @@ SecurityException
 sequenceNumber
 SampleLostStatus
 SampleRejectedStatus
+separatedly
 serialised
 serializedPaylaod
 SetVerbosity
 SetVerbosity
+StatefulReader
+StatefulWriter
+StatelessReader
+StatelessWriter
 StatusCondition
 statusmask
 stdout
@@ -129,6 +144,7 @@ TimeBasedFilterQosPolicy
 timedout
 TimeInfinite
 TimeInifinite
+timepoint
 TimeZero
 TopicDataType
 TopicListener
@@ -143,10 +159,13 @@ TypeInformation
 typelookup
 TypeLookup
 TypeLookup
+TypeLookupRequestListener
+TypeLookupReplyListener
 TypeObjectV
 unregister
 unregistering
 untaken
 verbosities
 wether
+WLPListener
 xtypes

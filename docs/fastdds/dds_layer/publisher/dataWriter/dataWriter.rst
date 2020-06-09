@@ -1,3 +1,6 @@
+.. include:: ../../exports/aliases.include
+.. include:: ../../../api_reference/dds_pim/publisher/exports/aliases.include
+
 .. _dds_layer_publisher_dataWriter:
 
 DataWriter
@@ -24,53 +27,53 @@ DataWriterQos
 :class:`DataWriterQos` controls the behavior of the :ref:`dds_layer_publisher_dataWriter`.
 Internally it contains the following :class:`QosPolicy` objects:
 
-+--------------------------------+------------------------------------+----------+
-| QosPolicy class                | Accessor/Mutator                   | Mutable  |
-+================================+====================================+==========+
-| DurabilityQosPolicy            | :func:`durability`                 | No       |
-+--------------------------------+------------------------------------+----------+
-| DurabilityServiceQosPolicy     | :func:`durability_service`         | Yes      |
-+--------------------------------+------------------------------------+----------+
-| DeadlineQosPolicy              | :func:`deadline`                   | Yes      |
-+--------------------------------+------------------------------------+----------+
-| LatencyBudgetQosPolicy         | :func:`latency_budget`             | Yes      |
-+--------------------------------+------------------------------------+----------+
-| LivelinessQosPolicy            | :func:`liveliness`                 | No       |
-+--------------------------------+------------------------------------+----------+
-| ReliabilityQosPolicy           | :func:`reliability`                | No (*)   |
-+--------------------------------+------------------------------------+----------+
-| DestinationOrderQosPolicy      | :func:`destination_order`          | No       |
-+--------------------------------+------------------------------------+----------+
-| HistoryQosPolicy               | :func:`history`                    | Yes      |
-+--------------------------------+------------------------------------+----------+
-| ResourceLimitsQosPolicy        | :func:`resource_limits`            | Yes      |
-+--------------------------------+------------------------------------+----------+
-| TransportPriorityQosPolicy     | :func:`transport_priority`         | Yes      |
-+--------------------------------+------------------------------------+----------+
-| LifespanQosPolicy              | :func:`lifespan`                   | Yes      |
-+--------------------------------+------------------------------------+----------+
-| UserDataQosPolicy              | :func:`user_data`                  | Yes      |
-+--------------------------------+------------------------------------+----------+
-| OwnershipQosPolicy             | :func:`ownership`                  | No       |
-+--------------------------------+------------------------------------+----------+
-| OwnershipStrengthQosPolicy     | :func:`ownership_strength`         | Yes      |
-+--------------------------------+------------------------------------+----------+
-| WriterDataLifecycleQosPolicy   | :func:`writer_data_lifecycle`      | Yes      |
-+--------------------------------+------------------------------------+----------+
-| PublishModeQosPolicy           | :func:`publish_mode`               | Yes      |
-+--------------------------------+------------------------------------+----------+
-| DataRepresentationQosPolicy    | :func:`representation`             | Yes      |
-+--------------------------------+------------------------------------+----------+
-| PropertyPolicyQos              | :func:`properties`                 | Yes      |
-+--------------------------------+------------------------------------+----------+
-| RTPSReliableWriterQos          | :func:`reliable_writer_qos`        | Yes      |
-+--------------------------------+------------------------------------+----------+
-| RTPSEndpointQos                | :func:`endpoint`                   | Yes      |
-+--------------------------------+------------------------------------+----------+
-| WriterResourceLimitsQos        | :func:`writer_resource_limits`     | Yes      |
-+--------------------------------+------------------------------------+----------+
-| ThroughputControllerDescriptor | :func:`throughput_controller`      | Yes      |
-+--------------------------------+------------------------------------+----------+
++----------------------------------+-------------------------------------------------+----------+
+| QosPolicy class                  | Accessor/Mutator                                | Mutable  |
++==================================+=================================================+==========+
+| |DurabilityQosPolicy|            | |DataWriterQos::durability-api|                 | No       |
++----------------------------------+-------------------------------------------------+----------+
+| |DurabilityServiceQosPolicy|     | |DataWriterQos::durability_service-api|         | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |DeadlineQosPolicy|              | |DataWriterQos::deadline-api|                   | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |LatencyBudgetQosPolicy|         | |DataWriterQos::latency_budget-api|             | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |LivelinessQosPolicy|            | |DataWriterQos::liveliness-api|                 | No       |
++----------------------------------+-------------------------------------------------+----------+
+| |ReliabilityQosPolicy|           | |DataWriterQos::reliability-api|                | No (*)   |
++----------------------------------+-------------------------------------------------+----------+
+| |DestinationOrderQosPolicy|      | |DataWriterQos::destination_order-api|          | No       |
++----------------------------------+-------------------------------------------------+----------+
+| |HistoryQosPolicy|               | |DataWriterQos::history-api|                    | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |ResourceLimitsQosPolicy|        | |DataWriterQos::resource_limits-api|            | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |TransportPriorityQosPolicy|     | |DataWriterQos::transport_priority-api|         | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |LifespanQosPolicy|              | |DataWriterQos::lifespan-api|                   | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |UserDataQosPolicy|              | |DataWriterQos::user_data-api|                  | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |OwnershipQosPolicy|             | |DataWriterQos::ownership-api|                  | No       |
++----------------------------------+-------------------------------------------------+----------+
+| |OwnershipStrengthQosPolicy|     | |DataWriterQos::ownership_strength-api|         | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |WriterDataLifecycleQosPolicy|   | |DataWriterQos::writer_data_lifecycle-api|      | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |PublishModeQosPolicy|           | |DataWriterQos::publish_mode-api|               | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |DataRepresentationQosPolicy|    | |DataWriterQos::representation-api|             | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |PropertyPolicyQos|              | |DataWriterQos::properties-api|                 | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |RTPSReliableWriterQos|          | |DataWriterQos::reliable_writer_qos-api|        | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |RTPSEndpointQos|                | |DataWriterQos::endpoint-api|                   | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| |WriterResourceLimitsQos|        | |DataWriterQos::writer_resource_limits-api|     | Yes      |
++----------------------------------+-------------------------------------------------+----------+
+| ThroughputControllerDescriptor   | |DataWriterQos::throughput_controller-api|      | Yes      |
++----------------------------------+-------------------------------------------------+----------+
 
 Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
 default values.

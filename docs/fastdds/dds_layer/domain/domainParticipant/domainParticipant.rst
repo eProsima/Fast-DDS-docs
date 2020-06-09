@@ -1,3 +1,6 @@
+.. include:: ../../exports/aliases.include
+.. include:: ../../../api_reference/dds_pim/domain/exports/aliases.include
+
 .. _dds_layer_domainParticipant:
 
 DomainParticipant
@@ -26,21 +29,21 @@ DomainParticipantQos
 :class:`DomainParticipantQos` controls the behavior of the :ref:`dds_layer_domainParticipant`.
 Internally it contains the following :class:`QosPolicy` objects:
 
-+------------------------------+------------------------+----------+
-| QosPolicy class              | Accessor/Mutator       | Mutable  |
-+==============================+========================+==========+
-| UserDataQosPolicy            | :func:`user_data`      | Yes      |
-+------------------------------+------------------------+----------+
-| EntityFactoryQosPolicy       | :func:`entity_factory` | Yes      |
-+------------------------------+------------------------+----------+
-| ParticipantResourceLimitsQos | :func:`allocation`     | No       |
-+------------------------------+------------------------+----------+
-| PropertyPolicyQos            | :func:`properties`     | No       |
-+------------------------------+------------------------+----------+
-| WireProtocolConfigQos        | :func:`wire_protocol`  | No       |
-+------------------------------+------------------------+----------+
-| TransportConfigQos           | :func:`transport`      | No       |
-+------------------------------+------------------------+----------+
++--------------------------------+----------------------------------------------+----------+
+| QosPolicy class                | Accessor/Mutator                             | Mutable  |
++================================+==============================================+==========+
+| |UserDataQosPolicy|            | |DomainParticipantQos::user_data-api|        | Yes      |
++--------------------------------+----------------------------------------------+----------+
+| |EntityFactoryQosPolicy|       | |DomainParticipantQos::entity_factory-api|   | Yes      |
++--------------------------------+----------------------------------------------+----------+
+| |ParticipantResourceLimitsQos| | |DomainParticipantQos::allocation-api|       | No       |
++--------------------------------+----------------------------------------------+----------+
+| |PropertyPolicyQos|            | |DomainParticipantQos::properties-api|       | No       |
++--------------------------------+----------------------------------------------+----------+
+| |WireProtocolConfigQos|        | |DomainParticipantQos::wire_protocol-api|    | No       |
++--------------------------------+----------------------------------------------+----------+
+| |TransportConfigQos|           | |DomainParticipantQos::transport-api|        | No       |
++--------------------------------+----------------------------------------------+----------+
 
 Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
 default values.

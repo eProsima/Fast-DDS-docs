@@ -1,3 +1,6 @@
+.. include:: ../../exports/aliases.include
+.. include:: ../../../api_reference/dds_pim/subscriber/exports/aliases.include
+
 .. _dds_layer_subscriber_subscriber:
 
 Subscriber
@@ -23,22 +26,17 @@ SubscriberQos
 :ref:`api_pim_subscriberqos` controls the behavior of the :ref:`dds_layer_subscriber_subscriber`.
 Internally it contains the following :class:`QosPolicy` objects:
 
-.. |presentation| replace:: :cpp:func:`presentation<eprosima::fastdds::dds::SubscriberQos::presentation>`
-.. |partition| replace:: :cpp:func:`partition<eprosima::fastdds::dds::SubscriberQos::partition>`
-.. |group_data| replace:: :cpp:func:`group_data<eprosima::fastdds::dds::SubscriberQos::group_data>`
-.. |entity_factory| replace:: :cpp:func:`entity_factory<eprosima::fastdds::dds::SubscriberQos::entity_factory>`
-
-+----------------------------------------+----------------------+----------+
-| QosPolicy class                        | Accessor/Mutator     | Mutable  |
-+========================================+======================+==========+
-| :ref:`api_pim_presentationqospolicy`   | |presentation|       | Yes      |
-+----------------------------------------+----------------------+----------+
-| :ref:`api_pim_partitionqospolicy`      | |partition|          | Yes      |
-+----------------------------------------+----------------------+----------+
-| :ref:`api_pim_groupdataqospolicy`      | |group_data|         | Yes      |
-+----------------------------------------+----------------------+----------+
-| :ref:`api_pim_entityfactoryqospolicy`  | |entity_factory|     | Yes      |
-+----------------------------------------+----------------------+----------+
++----------------------------------------+-------------------------------------+----------+
+| QosPolicy class                        | Accessor/Mutator                    | Mutable  |
++========================================+=====================================+==========+
+| |presentationqospolicy|                | |SubscriberQos::presentation-api|   | Yes      |
++----------------------------------------+-------------------------------------+----------+
+| |partitionqospolicy|                   | |SubscriberQos::partition-api|      | Yes      |
++----------------------------------------+-------------------------------------+----------+
+| |groupdataqospolicy|                   | |SubscriberQos::group_data-api|     | Yes      |
++----------------------------------------+-------------------------------------+----------+
+| |entityfactoryqospolicy|               | |SubscriberQos::entity_factory-api| | Yes      |
++----------------------------------------+-------------------------------------+----------+
 
 Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
 default values.

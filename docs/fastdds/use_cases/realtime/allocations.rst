@@ -7,7 +7,7 @@ Allocating and deallocating memory implies some non-deterministic time consuming
 Therefore, most real-time systems need to operate in a way that all dynamic memory is allocated during the
 application initialization, avoiding memory management operations in the main loop.
 
-If users provide maximum sizes for the data and collections that Fast DDS keeps internally,
+If users provide maximum sizes for the data and collections that *Fast DDS* keeps internally,
 memory for these data and collections can be preallocated during entity initialization.
 In order to choose the correct size values, users must be aware of the topology of the whole domain.
 Specifically, the number of :ref:`DomainParticipants<dds_layer_domainParticipant>`,
@@ -81,6 +81,8 @@ alternatives given by these data members.
 |    :language: xml                                      |
 |    :start-after: <!-->CONF-ALLOCATION-QOS-PARTICIPANTS |
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 .. warning::
@@ -123,6 +125,8 @@ By default, a full dynamic behavior is used.
 |    :language: xml                                      |
 |    :start-after: <!-->CONF-ALLOCATION-QOS-PARAMETERS   |
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 .. warning::
@@ -140,7 +144,6 @@ Every :ref:`dds_layer_publisher_dataWriter` holds an internal collection with in
 :ref:`dds_layer_subscriber_dataReader` to which it matches.
 By default, this collection is fully dynamic, meaning that new memory is allocated when a new
 :ref:`dds_layer_subscriber_dataReader` is matched.
-
 However, :ref:`dds_layer_publisher_dataWriterQos` has a data member ``writer_resource_limits``,
 of type :ref:`writerresourcelimitsqos`, that allows configuring
 the memory allocation behavior on the :ref:`dds_layer_publisher_dataWriter`.
@@ -169,6 +172,8 @@ alternatives given by this data member.
 |    :language: xml                                      |
 |    :start-after: <!-->CONF-ALLOCATION-QOS-WRITER       |
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 .. warning::
@@ -187,7 +192,6 @@ Every :ref:`dds_layer_subscriber_dataReader` holds an internal collection with i
 :ref:`readerresourcelimitsqos` to which it matches.
 By default, this collection is fully dynamic, meaning that new memory is allocated when a new
 :ref:`dds_layer_publisher_dataWriter` is matched.
-
 However, :ref:`dds_layer_subscriber_dataReaderQos` has a data member ``reader_resource_limits``,
 of type :ref:`readerresourcelimitsqos`, that allows configuring
 the memory allocation behavior on the :ref:`dds_layer_subscriber_dataReader`.
@@ -215,6 +219,8 @@ alternatives given by this data member.
 |    :language: xml                                      |
 |    :start-after: <!-->CONF-ALLOCATION-QOS-READER       |
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 .. warning::
@@ -282,6 +288,8 @@ The following piece of code shows the set of parameters needed for the use case 
 |    :language: xml                                   |
 |    :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE   |
 |    :end-before: <!--><-->                           |
+|    :lines: 2-3,5-                                   |
+|    :append: </profiles>                             |
 +-----------------------------------------------------+
 
 

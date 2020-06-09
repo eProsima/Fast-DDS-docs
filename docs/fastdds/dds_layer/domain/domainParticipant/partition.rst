@@ -50,10 +50,10 @@ be able to communicate through the default nameless Partition.
 Wildcards in Partitions
 -----------------------
 
-.. _POSIX ``fnmatch`` API (1003.2-1992 section B.6): https://standards.ieee.org/standard/1003_2-1992.html
+.. _1003.2-1992 section B.6: https://standards.ieee.org/standard/1003_2-1992.html
 
 Partition name entries can have wildcards following the naming conventions defined by the
-`POSIX ``fnmatch`` API (1003.2-1992 section B.6)`_.
+POSIX ``fnmatch`` API (`1003.2-1992 section B.6`_).
 Entries with wildcards can match several names, allowing an endpoint to easily be included in several Partitions.
 Two Partition names with wildcards will match if either of them matches the other one according to ``fnmatch``.
 That is, the matching is checked both ways.

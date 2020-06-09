@@ -14,74 +14,22 @@ as it is over ethernet.
 
 The recommended solution to this challenge is to configure an initial list of remote peers on the
 :ref:`dds_layer_domainParticipant`, so that it can set unicast communication with them.
-This way, the use of multicast is not needed to discover this initial peers.
+This way, the use of multicast is not needed to discover these initial peers.
 Furthermore, if all the peers are known and configured beforehand, all multicast communication can be
 removed.
 
-.. _use-case-initial-peers:
+Alternatively, SERVER-CLIENT discovery can be used to avoid multicast discovery.
+A :ref:`dds_layer_domainParticipant` with a well-know address acts as a discovery server,
+providing the rest of the participants the information required to connect among them.
+If all the peers are known and configured beforehand, STATIC discovery can be used instead,
+completely avoiding the discovery phase.
+Use-case :ref:`well_known_deployments` provides a detailed explanation on how to configure *Fast DDS* for
+STATIC discovery.
 
-Configuring Initial Peers
--------------------------
+.. toctree::
+    :maxdepth: 2
 
-A complete description of the initial peers list and its configuration can be found on
-:ref:`Simple Initial Peers`.
-For convenience, however, this example shows how to configure an initial peers list with one peer
-on host ``192.168.10.13`` with participant ID ``1`` in domain ``0``.
-Beware that the port number used here is not arbitrary, as discovery ports are defined by
-the `RTPS v2.2 standard`_.
-Refer to :ref:`listening_locators_defaultPorts` to learn about these standard port numbers.
-
-
-+---------------------------------------------------------+
-| **C++**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp          |
-|    :language: c++                                       |
-|    :start-after: //CONF_INITIAL_PEERS_BASIC             |
-|    :end-before: //!--                                   |
-|    :dedent: 8                                           |
-+---------------------------------------------------------+
-| **XML**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml              |
-|    :language: xml                                       |
-|    :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->      |
-|    :end-before: <!--><-->                               |
-+---------------------------------------------------------+
-
-.. _use-case-disabling-multicast-discovery:
-
-Disabling multicast discovery
------------------------------
-
-If all the peers are known and configured on the initial peer list beforehand,
-it is possible to disable the multicast meta traffic completely, as all
-:ref:`DomainParticipants<dds_layer_domainParticipant>` can communicate among them through unicast.
-
-The complete description of the procedure to disable multicast discovery can be found at
-:ref:`transport_disableMulticast`.
-For convenience, however, this example shows how to disable all multicast traffic configuring one
-*metatraffic unicast* locator.
-Consideration should be given to the assignment of the ports in the ``metatrafficUnicastLocatorList``,
-avoiding the assignment of ports that are not available or do not match the address-port
-listed in the :ref:`intial peers list<Simple Initial Peers>` of the peer participant.
-
-+------------------------------------------------------------+
-| **C++**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp             |
-|    :language: c++                                          |
-|    :start-after: //CONF_INITIAL_PEERS_METAUNICAST          |
-|    :end-before: //!--                                      |
-|    :dedent: 8                                              |
-+------------------------------------------------------------+
-| **XML**                                                    |
-+------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                 |
-|    :language: xml                                          |
-|    :start-after: <!-->CONF_INITIAL_PEERS_METAUNICAST<-->   |
-|    :end-before: <!--><-->                                  |
-+------------------------------------------------------------+
-
-
+    /fastdds/use_cases/wifi/initial_peers.rst
+    /fastdds/use_cases/wifi/disable_multicast.rst
+    /fastdds/use_cases/wifi/server_discovery.rst
 

@@ -3,13 +3,27 @@
 Server-Client Discovery
 =======================
 
-Fast DDS provides a client-server discovery mechanism, in which a server :ref:`dds_layer_domainParticipant` operates
+During :ref:`discovery`, the Participant Discovery Phase (PDP) relies on meta traffic
+announcements sent to multicast addresses so that all the :ref:`DomainParticipants<dds_layer_domainParticipant>`
+in the network can acknowledge each other.
+This phase is followed by a Endpoint Discovery Phase (EDP) where all the
+:ref:`DomainParticipants<dds_layer_domainParticipant>` use discovered unicast addresses to exchange information about
+their :ref:`dds_layer_publisher` and :ref:`dds_layer_subscriber` entities with the rest of the
+:ref:`DomainParticipants<dds_layer_domainParticipant>`, so that matching between entities of the same topic can occur.
+
+*Fast DDS* provides a client-server discovery mechanism, in which a server :ref:`dds_layer_domainParticipant` operates
 as the central point of communication.
 It collects and processes the metatraffic sent by the client :ref:`DomainParticipants<dds_layer_domainParticipant>`,
 and then distributes the appropriate information among the rest of the clients.
 
 A complete description of the feature can be found at :ref:`discovery_server`.
 The following subsections present configurations for different discovery server use cases.
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
+
 
 .. _discovery_server_major_scenario_setup:
 
@@ -42,6 +56,8 @@ Two parameters to be configured in this type of implementation are outlined:
 |    :language: xml                                      |
 |    :start-after: <!-->CONF_DS_MAIN_SCENARIO_SERVER<--> |
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 +--------------------------------------------------------+
@@ -61,6 +77,8 @@ Two parameters to be configured in this type of implementation are outlined:
 |    :language: xml                                      |
 |    :start-after: <!-->CONF_DS_MAIN_SCENARIO_CLIENT<--> |
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 .. _discovery_server_redundancy_scenario_setup:
@@ -68,9 +86,9 @@ Two parameters to be configured in this type of implementation are outlined:
 UDPv4 redundancy example
 ------------------------
 
-The :ref:`basic setup example<discovery_server_major_scenario_setup>` presents a *single point of failure*,
-that is, if the server fails the clients are not able to perform the discovery.
-To prevent this, several servers could be linked to each *client.
+The :ref:`basic setup example<discovery_server_major_scenario_setup>` presents a *single point of failure*.
+That is, if the server fails the clients are not able to perform the discovery.
+To prevent this, several servers could be linked to each client.
 Then, a discovery failure only takes place if *all servers* fail, which is a more unlikely event.
 
 In the example below, the values have been chosen to ensure each server has a unique *GUID Prefix* and
@@ -146,6 +164,8 @@ Likewise, several servers can share the same port if their IP addresses are diff
 |    :language: xml                                      |
 |    :start-after: <!-->CONF_DS_RDNCY_SCENARIO_SERVER<-->|
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 +--------------------------------------------------------+
@@ -165,6 +185,8 @@ Likewise, several servers can share the same port if their IP addresses are diff
 |    :language: xml                                      |
 |    :start-after: <!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->|
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 .. _discovery_server_persistency_scenario_setup:
@@ -179,7 +201,7 @@ In the :ref:`basic setup<discovery_server_major_scenario_setup>` this is done
 starting over the :ref:`discovery` process.
 Given that servers usually have lots of clients associated, this is very time consuming.
 
-Alternatively, Fast DDS allows to synchronize the server's discovery record to a file, so that the information can be
+Alternatively, *Fast DDS* allows to synchronize the server's discovery record to a file, so that the information can be
 loaded back into memory during the restart.
 This feature is enabled specifying the :ref:`discovery_protocol` as **BACKUP**.
 
@@ -195,7 +217,7 @@ To make a fresh restart, any such backup file must be removed or renamed before 
 UDPv4 partitioning using servers
 --------------------------------
 
-Server association can be seen as another isolation mechanism besides :ref:`domains <dds_layer_domain>` and
+Server association can be seen as another isolation mechanism besides :ref:`Domains <dds_layer_domain>` and
 :ref:`partitions`.
 Clients that do not share a server cannot see each other and belong to isolated server networks.
 For example, in the following figure, *client 1* and *client 2* cannot communicate even if they are on the
@@ -238,7 +260,7 @@ can be connected through routers:
     * :ref:`discovery_server_partitioning_option3`:
       Create a new server linked to the servers to which the clients are connected.
 
-Options 1 and 2 can only be implemented by modifying attributes or XML configuration files beforehand.
+Options 1 and 2 can only be implemented by modifying QoS values or XML configuration files beforehand.
 In this regard they match the domain and partition strategy.
 Option 3, however, can be implemented at runtime, when the isolated networks are already up and running.
 
@@ -345,6 +367,8 @@ In order to communicate both networks we can set server A to act as client of se
 |    :language: xml                                      |
 |    :start-after: <!-->CONF_DS_PARTITION_2<-->          |
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 
 .. _discovery_server_partitioning_option3:
@@ -382,5 +406,7 @@ In order to communicate both networks we can setup server C to act as client of 
 |    :language: xml                                      |
 |    :start-after: <!-->CONF_DS_PARTITION_3<-->          |
 |    :end-before: <!--><-->                              |
+|    :lines: 2-3,5-                                      |
+|    :append: </profiles>                                |
 +--------------------------------------------------------+
 

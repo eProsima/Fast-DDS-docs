@@ -650,12 +650,16 @@
 <!--><-->
 
 <!-->CONF-QOS-FLOWCONTROLLER<-->
-<publisher profile_name="publisher_profile_qos_flowcontroller">
-    <throughputController>
-        <bytesPerPeriod>300000</bytesPerPeriod>
-        <periodMillisecs>1000</periodMillisecs>
-    </throughputController>
-</publisher>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <publisher profile_name="publisher_profile_qos_flowcontroller">
+        <throughputController>
+            <bytesPerPeriod>300000</bytesPerPeriod>
+            <periodMillisecs>1000</periodMillisecs>
+        </throughputController>
+    </publisher>
 <!--><-->
 
 <!-->CONF-QOS-PUBLISHMODE<-->
@@ -738,12 +742,16 @@
 <!--><-->
 
 <!-->CONF-QOS-INCREASE-SOCKETBUFFERS<-->
-<participant profile_name="participant_xml_profile_qos_socketbuffers">
-    <rtps>
-        <sendSocketBufferSize>1048576</sendSocketBufferSize>
-        <listenSocketBufferSize>4194304</listenSocketBufferSize>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="participant_xml_profile_qos_socketbuffers">
+        <rtps>
+            <sendSocketBufferSize>1048576</sendSocketBufferSize>
+            <listenSocketBufferSize>4194304</listenSocketBufferSize>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->SECURITY_CONF_ALL_PLUGINS<-->
@@ -1828,398 +1836,458 @@
 <!--><-->
 
 <!-->CONF-ALLOCATION-QOS-PARTICIPANTS<-->
-<participant profile_name="participant_profile_qos_entity_resource_limit">
-    <rtps>
-        <allocation>
-            <!-- Limit to 3 participants -->
-            <total_participants>
-                <initial>3</initial>
-                <maximum>3</maximum>
-                <increment>0</increment>
-            </total_participants>
-
-            <!-- Limit to 3 readers per participant -->
-            <total_readers>
-                <initial>3</initial>
-                <maximum>3</maximum>
-                <increment>0</increment>
-            </total_readers>
-
-            <!-- Limit to 1 writer per participant -->
-            <total_writers>
-                <initial>1</initial>
-                <maximum>1</maximum>
-                <increment>0</increment>
-            </total_writers>
-        </allocation>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="participant_profile_qos_entity_resource_limit">
+        <rtps>
+            <allocation>
+                <!-- Limit to 3 participants -->
+                <total_participants>
+                    <initial>3</initial>
+                    <maximum>3</maximum>
+                    <increment>0</increment>
+                </total_participants>
+    
+                <!-- Limit to 3 readers per participant -->
+                <total_readers>
+                    <initial>3</initial>
+                    <maximum>3</maximum>
+                    <increment>0</increment>
+                </total_readers>
+    
+                <!-- Limit to 1 writer per participant -->
+                <total_writers>
+                    <initial>1</initial>
+                    <maximum>1</maximum>
+                    <increment>0</increment>
+                </total_writers>
+            </allocation>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-ALLOCATION-QOS-PARAMETERS<-->
-<participant profile_name="participant_profile_qos_parameter_resource_limit">
-    <rtps>
-        <allocation>
-            <max_partitions>256</max_partitions>
-            <max_user_data>256</max_user_data>
-            <max_properties>512</max_properties>
-        </allocation>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="participant_profile_qos_parameter_resource_limit">
+        <rtps>
+            <allocation>
+                <max_partitions>256</max_partitions>
+                <max_user_data>256</max_user_data>
+                <max_properties>512</max_properties>
+            </allocation>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-ALLOCATION-QOS-WRITER<-->
-<publisher profile_name="writer_profile_qos_resource_limit">
-    <!-- Limit to 3 matching readers -->
-    <matchedSubscribersAllocation>
-        <initial>3</initial>
-        <maximum>3</maximum>
-        <increment>0</increment>
-    </matchedSubscribersAllocation>
-</publisher>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <publisher profile_name="writer_profile_qos_resource_limit">
+        <!-- Limit to 3 matching readers -->
+        <matchedSubscribersAllocation>
+            <initial>3</initial>
+            <maximum>3</maximum>
+            <increment>0</increment>
+        </matchedSubscribersAllocation>
+    </publisher>
 <!--><-->
 
 <!-->CONF-ALLOCATION-QOS-READER<-->
-<subscriber profile_name="reader_profile_qos_resource_limit">
-    <!-- Limit to 1 matching writer -->
-    <matchedPublishersAllocation>
-        <initial>1</initial>
-        <maximum>1</maximum>
-        <increment>0</increment>
-    </matchedPublishersAllocation>
-</subscriber>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <subscriber profile_name="reader_profile_qos_resource_limit">
+        <!-- Limit to 1 matching writer -->
+        <matchedPublishersAllocation>
+            <initial>1</initial>
+            <maximum>1</maximum>
+            <increment>0</increment>
+        </matchedPublishersAllocation>
+    </subscriber>
 <!--><-->
 
 <!-->CONF-ALLOCATION-QOS-EXAMPLE<-->
-<participant profile_name="participant_alloc_qos_example">
-    <rtps>
-        <allocation>
-            <!-- We know we have 3 participants on the domain -->
-            <total_participants>
-                <initial>3</initial>
-                <maximum>3</maximum>
-                <increment>0</increment>
-            </total_participants>
-            <!-- We know we have at most 2 readers on each participant -->
-            <total_readers>
-                <initial>2</initial>
-                <maximum>2</maximum>
-                <increment>0</increment>
-            </total_readers>
-            <!-- We know we have at most 1 writer on each participant -->
-            <total_writers>
-                <initial>1</initial>
-                <maximum>1</maximum>
-                <increment>0</increment>
-            </total_writers>
-            <max_partitions>256</max_partitions>
-            <max_user_data>256</max_user_data>
-            <max_properties>512</max_properties>
-        </allocation>
-    </rtps>
-</participant>
-
-<publisher profile_name="alloc_qos_example_pub_for_topic_1">
-    <!-- we know we will have three matching subscribers -->
-    <matchedSubscribersAllocation>
-        <initial>3</initial>
-        <maximum>3</maximum>
-        <increment>0</increment>
-    </matchedSubscribersAllocation>
-</publisher>
-
-<publisher profile_name="alloc_qos_example_pub_for_topic_2">
-    <!-- we know we will have two matching subscribers -->
-    <matchedSubscribersAllocation>
-        <initial>2</initial>
-        <maximum>2</maximum>
-        <increment>0</increment>
-    </matchedSubscribersAllocation>
-</publisher>
-
-<subscriber profile_name="alloc_qos_example_sub">
-    <!-- we know we will only have one matching publisher -->
-    <matchedPublishersAllocation>
-        <initial>1</initial>
-        <maximum>1</maximum>
-        <increment>0</increment>
-    </matchedPublishersAllocation>
-</subscriber>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="participant_alloc_qos_example">
+        <rtps>
+            <allocation>
+                <!-- We know we have 3 participants on the domain -->
+                <total_participants>
+                    <initial>3</initial>
+                    <maximum>3</maximum>
+                    <increment>0</increment>
+                </total_participants>
+                <!-- We know we have at most 2 readers on each participant -->
+                <total_readers>
+                    <initial>2</initial>
+                    <maximum>2</maximum>
+                    <increment>0</increment>
+                </total_readers>
+                <!-- We know we have at most 1 writer on each participant -->
+                <total_writers>
+                    <initial>1</initial>
+                    <maximum>1</maximum>
+                    <increment>0</increment>
+                </total_writers>
+                <max_partitions>256</max_partitions>
+                <max_user_data>256</max_user_data>
+                <max_properties>512</max_properties>
+            </allocation>
+        </rtps>
+    </participant>
+    
+    <publisher profile_name="alloc_qos_example_pub_for_topic_1">
+        <!-- we know we will have three matching subscribers -->
+        <matchedSubscribersAllocation>
+            <initial>3</initial>
+            <maximum>3</maximum>
+            <increment>0</increment>
+        </matchedSubscribersAllocation>
+    </publisher>
+    
+    <publisher profile_name="alloc_qos_example_pub_for_topic_2">
+        <!-- we know we will have two matching subscribers -->
+        <matchedSubscribersAllocation>
+            <initial>2</initial>
+            <maximum>2</maximum>
+            <increment>0</increment>
+        </matchedSubscribersAllocation>
+    </publisher>
+    
+    <subscriber profile_name="alloc_qos_example_sub">
+        <!-- we know we will only have one matching publisher -->
+        <matchedPublishersAllocation>
+            <initial>1</initial>
+            <maximum>1</maximum>
+            <increment>0</increment>
+        </matchedPublishersAllocation>
+    </subscriber>
 <!--><-->
 
 <!-->CONF_INITIAL_PEERS_BASIC<-->
-<participant profile_name="initial_peers_example_profile" is_default_profile="true">
-    <rtps>
-        <builtin>
-            <initialPeersList>
-                <locator>
-                    <udpv4>
-                        <address>192.168.10.13</address>
-                        <port>7412</port>
-                    </udpv4>
-                </locator>
-            </initialPeersList>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="initial_peers_example_profile" is_default_profile="true">
+        <rtps>
+            <builtin>
+                <initialPeersList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.13</address>
+                            <port>7412</port>
+                        </udpv4>
+                    </locator>
+                </initialPeersList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF_INITIAL_PEERS_METAUNICAST<-->
-<participant profile_name="initial_peers_multicast_avoidance" is_default_profile="true" >
-    <rtps>
-        <builtin>
-            <!-- Choosing a specific unicast address -->
-            <metatrafficUnicastLocatorList>
-                <locator>
-                    <udpv4>
-                        <address>192.168.10.13</address>
-                        <port>7412</port>
-                    </udpv4>
-                </locator>
-            </metatrafficUnicastLocatorList>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="initial_peers_multicast_avoidance" is_default_profile="true" >
+        <rtps>
+            <builtin>
+                <!-- Choosing a specific unicast address -->
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.13</address>
+                            <port>7412</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF_DS_MAIN_SCENARIO_SERVER<-->
-<participant profile_name="UDP SERVER" is_default_profile="true">
-    <rtps>
-        <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>SERVER</discoveryProtocol>
-            </discovery_config>
-            <metatrafficUnicastLocatorList>
-                <locator>
-                    <udpv4>
-                        <address>192.168.10.57</address>
-                        <port>56542</port>
-                    </udpv4>
-                </locator>
-            </metatrafficUnicastLocatorList>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="UDP SERVER" is_default_profile="true">
+        <rtps>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>SERVER</discoveryProtocol>
+                </discovery_config>
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.57</address>
+                            <port>56542</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+            <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF_DS_MAIN_SCENARIO_CLIENT<-->
-<participant profile_name="UDP CLIENT" is_default_profile="true">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>CLIENT</discoveryProtocol>
-                <discoveryServersList>
-                    <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.10.57</address>
-                                    <port>56542</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                </discoveryServersList>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="UDP CLIENT" is_default_profile="true">
+        <rtps>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>CLIENT</discoveryProtocol>
+                    <discoveryServersList>
+                        <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.57</address>
+                                        <port>56542</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
+                </discovery_config>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF_DS_RDNCY_SCENARIO_SERVER<-->
-<participant profile_name="UDP SERVER 1">
-    <rtps>
-        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>SERVER</discoveryProtocol>
-            </discovery_config>
-            <metatrafficUnicastLocatorList>
-                <locator>
-                    <udpv4>
-                        <address>192.168.10.57</address>
-                        <port>56542</port>
-                    </udpv4>
-                </locator>
-            </metatrafficUnicastLocatorList>
-        </builtin>
-    </rtps>
-</participant>
-
-<participant profile_name="UDP SERVER 2">
-    <rtps>
-        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.32</prefix>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>SERVER</discoveryProtocol>
-            </discovery_config>
-            <metatrafficUnicastLocatorList>
-                <locator>
-                    <udpv4>
-                        <address>192.168.10.60</address>
-                        <port>56543</port>
-                    </udpv4>
-                </locator>
-            </metatrafficUnicastLocatorList>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="UDP SERVER 1">
+        <rtps>
+            <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>SERVER</discoveryProtocol>
+                </discovery_config>
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.57</address>
+                            <port>56542</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
+    
+    <participant profile_name="UDP SERVER 2">
+        <rtps>
+            <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.32</prefix>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>SERVER</discoveryProtocol>
+                </discovery_config>
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.60</address>
+                            <port>56543</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->
-<participant profile_name="UDP CLIENT REDUNDANCY">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>CLIENT</discoveryProtocol>
-                <discoveryServersList>
-                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.10.57</address>
-                                    <port>56542</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.10.60</address>
-                                    <port>56543</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                </discoveryServersList>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="UDP CLIENT REDUNDANCY">
+        <rtps>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>CLIENT</discoveryProtocol>
+                    <discoveryServersList>
+                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.57</address>
+                                        <port>56542</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.60</address>
+                                        <port>56543</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
+                </discovery_config>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF_DS_PARTITION_2<-->
-<participant profile_name="UDP SERVER A">
-    <rtps>
-        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>SERVER</discoveryProtocol>
-                <discoveryServersList>
-                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.10.57</address>
-                                    <port>56542</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                </discoveryServersList>
-            </discovery_config>
-            <metatrafficUnicastLocatorList>
-                <locator>
-                    <udpv4>
-                        <address>192.168.10.60</address>
-                        <port>56543</port>
-                    </udpv4>
-                </locator>
-            </metatrafficUnicastLocatorList>
-    </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="UDP SERVER A">
+        <rtps>
+            <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>SERVER</discoveryProtocol>
+                    <discoveryServersList>
+                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.57</address>
+                                        <port>56542</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
+                </discovery_config>
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.60</address>
+                            <port>56543</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF_DS_PARTITION_3<-->
-<participant profile_name="UDP SERVER C">
-    <rtps>
-        <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.33</prefix>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>SERVER</discoveryProtocol>
-                <discoveryServersList>
-                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.10.57</address>
-                                    <port>56542</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                    <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.10.60</address>
-                                    <port>56543</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                </discoveryServersList>
-            </discovery_config>
-            <metatrafficUnicastLocatorList>
-                <locator>
-                    <udpv4>
-                        <address>192.168.10.54</address>
-                        <port>56541</port>
-                    </udpv4>
-                </locator>
-            </metatrafficUnicastLocatorList>
-    </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="UDP SERVER C">
+        <rtps>
+            <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.33</prefix>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>SERVER</discoveryProtocol>
+                    <discoveryServersList>
+                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.57</address>
+                                        <port>56542</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.60</address>
+                                        <port>56543</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
+                </discovery_config>
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.54</address>
+                            <port>56541</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
-<participant profile_name="participant_profile_static_pub">
-    <rtps>
-        <name>HelloWorldPublisher</name>
-        <builtin>
-            <discovery_config>
-                <EDP>STATIC</EDP>
-                <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-
-<publisher profile_name="uc_publisher_xml_conf_static_discovery">
-    <topic>
-        <name>HelloWorldTopic</name>
-        <dataType>HelloWorld</dataType>
-    </topic>
-    <userDefinedID>1</userDefinedID>
-    <entityID>2</entityID>
-</publisher>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="participant_profile_static_pub">
+        <rtps>
+            <name>HelloWorldPublisher</name>
+            <builtin>
+                <discovery_config>
+                    <EDP>STATIC</EDP>
+                    <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
+                </discovery_config>
+            </builtin>
+        </rtps>
+    </participant>
+    
+    <publisher profile_name="uc_publisher_xml_conf_static_discovery">
+        <topic>
+            <name>HelloWorldTopic</name>
+            <dataType>HelloWorld</dataType>
+        </topic>
+        <userDefinedID>1</userDefinedID>
+        <entityID>2</entityID>
+    </publisher>
 <!--><-->
 
 <!-->STATIC_DISCOVERY_USE_CASE_SUB<-->
-<participant profile_name="participant_profile_static_sub">
-    <rtps>
-        <name>HelloWorldSubscriber</name>
-        <builtin>
-            <discovery_config>
-                <staticEndpointXMLFilename>HelloWorldPublisher.xml</staticEndpointXMLFilename>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-
-<subscriber profile_name="uc_subscriber_xml_conf_static_discovery">
-    <topic>
-        <name>HelloWorldTopic</name>
-        <dataType>HelloWorld</dataType>
-    </topic>
-    <userDefinedID>3</userDefinedID>
-    <entityID>4</entityID>
-</subscriber>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="participant_profile_static_sub">
+        <rtps>
+            <name>HelloWorldSubscriber</name>
+            <builtin>
+                <discovery_config>
+                    <staticEndpointXMLFilename>HelloWorldPublisher.xml</staticEndpointXMLFilename>
+                </discovery_config>
+            </builtin>
+        </rtps>
+    </participant>
+    
+    <subscriber profile_name="uc_subscriber_xml_conf_static_discovery">
+        <topic>
+            <name>HelloWorldTopic</name>
+            <dataType>HelloWorld</dataType>
+        </topic>
+        <userDefinedID>3</userDefinedID>
+        <entityID>4</entityID>
+    </subscriber>
 <!--><-->
 
 <!-->CONF_ROS2_DEFAULT_PROFILE<-->
@@ -3780,14 +3848,18 @@
 <!-->STANDALONE_TYPES_END<-->
 
 <!-->DDS_MULTICAST_DELIVERY<-->
-<publisher profile_name="publisher_xml_conf_multicast_locators_profile">
-    <multicastLocatorList>
-        <locator>
-            <udpv4>
-                <address>239.255.0.4</address>
-                <port>7900</port>
-            </udpv4>
-        </locator>
-    </multicastLocatorList>
-</publisher>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <publisher profile_name="publisher_xml_conf_multicast_locators_profile">
+        <multicastLocatorList>
+            <locator>
+                <udpv4>
+                    <address>239.255.0.4</address>
+                    <port>7900</port>
+                </udpv4>
+            </locator>
+        </multicastLocatorList>
+    </publisher>
 <!--><-->

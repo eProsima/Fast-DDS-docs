@@ -3,9 +3,10 @@
 Introduction
 ============
 
-eProsima Fast DDS-Gen is a Java application that generates source code using the data types defined in an IDL file.
-This generated source code can be used in your applications in order to publish and subscribe to a topic of your defined
-type.
+eProsima Fast DDS-Gen is a Java application that generates *eProsima Fast DDS* source code using the data types defined
+in an IDL file.
+This generated source code can be used in any *Fast DDS* application in order to define the data type of a topic,
+which will later be used to publish or subscribe.
 
 To declare your structured data, you have to use IDL (Interface Definition Language) format.
 IDL is a specification language, made by OMG (Object Management Group), which describes an interface in a
@@ -26,4 +27,4 @@ One of the main features of eProsima Fast DDS-Gen is to avoid the users the trou
 serialization or deserialization procedures.
 It also provides an initial implementation of a publisher and a subscriber using eProsima RTPS library.
 
-For installing *Fast DDS-Gen* from sources, please refer to the Installation Manual.
+For installing Fast DDS-Gen from sources, please refer to the Installation Manual.

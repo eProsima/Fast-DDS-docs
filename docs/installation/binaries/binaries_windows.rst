@@ -3,8 +3,8 @@
 Windows installation from binaries
 ==================================
 
-In this page, we provide the instructions for installing *eProsima Fast DDS* in a Windows environment from
-binaries.
+The instructions for installing *eProsima Fast DDS* in a Windows environment from
+binaries are provided in this page..
 It is organized as follows:
 
 .. contents::
@@ -54,7 +54,7 @@ Download and install it directly from the `website <https://chocolatey.org/>`_.
 Dependencies
 ------------
 
-*eProsima Fast RTPS* has the following dependencies, when installed from binaries in a Windows environment:
+*eProsima Fast DDS* has the following dependencies, when installed from binaries in a Windows environment:
 
 * :ref:`tinyxml2_bw`
 * :ref:`openssl_bw`
@@ -82,8 +82,7 @@ OpenSSL
 ^^^^^^^
 
 OpenSSL is a robust toolkit for the TLS and SSL protocols and a general-purpose cryptography library.
-Download and install the latest OpenSSL version for Windows at this
-`link <https://slproweb.com/products/Win32OpenSSL.html>`_.
+The latest OpenSSL version for Windows can be found in the `OpenSSL website <https://www.openssl.org/>`_.
 After installing, add the environment variable :code:`OPENSSL_ROOT_DIR` pointing to the installation root directory.
 
 For example:
@@ -128,10 +127,10 @@ By default, the installation will download all the available packages, namely:
 Environment variables
 ^^^^^^^^^^^^^^^^^^^^^
 
-eProsima Fast RTPS requires the following environment variable setup in order to function properly:
+*eProsima Fast DDS* requires the following environment variable setup in order to function properly:
 
 * :code:`FASTRTPSHOME`: Root folder where *eProsima Fast DDS* is installed.
-* Additions to the PATH: the location of *eProsima Fast DDS* scripts and libraries should be
-  appended to the PATH.
+* Additions to the ``PATH``: The location of *eProsima Fast DDS* scripts and libraries should be
+  appended to the ``PATH``.
 
 These variables are set automatically by checking the corresponding box during the installation process.

@@ -3,8 +3,8 @@
 Linux installation from binaries
 ================================
 
-In this page, we provide the instructions for installing *eProsima Fast DDS* in a Linux environment from
-binaries. It is organized as follows:
+The instructions for installing *eProsima Fast DDS* in a Linux environment from
+binaries are provided in this page.. It is organized as follows:
 
 .. contents::
     :local:
@@ -18,9 +18,9 @@ Install
 
 The latest release of *eProsima Fast DDS* for Linux is available at the company website
 `downloads page <https://eprosima.com/index.php/downloads-all>`_.
-Once downloaded, extract the contents of the package.
+Once downloaded, extract the contents in your preferred directory.
 
-Now, to install *eProsima Fast DDS* and all its dependencies in the system, execute
+Then, to install *eProsima Fast DDS* and all its dependencies in the system, execute
 the :code:`install.sh` script with administrative privileges:
 
 .. code-block:: bash
@@ -41,8 +41,8 @@ The :code:`src` folder contains the following packages:
 
 * :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
   `library <https://github.com/foonathan/memory>`_.
-* :code:`fastcdr`, a C++ library that serializes according to the
-  `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
+* :code:`fastcdr`, a C++ library for data serialization according to the
+  `CDR standard <https://www.omg.org/spec/DDSI-RTPS/2.2>`_ (*Section 10.2.1.2 OMG CDR*).
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
 * :code:`fastrtpsgen`, a Java application that generates source code using the data types defined in an IDL file.
 
@@ -64,7 +64,7 @@ packages have been installed, :code:`/usr/local/lib/`. There are two possibiliti
 
       export LD_LIBRARY_PATH=/usr/local/lib/
 
-* Add it permanently to the :code:`PATH`, by typing:
+* Add it permanently to the :code:`PATH` by executing:
 
   .. code-block:: bash
 
@@ -75,13 +75,14 @@ packages have been installed, :code:`/usr/local/lib/`. There are two possibiliti
 Uninstall
 ---------
 
-To uninstall all installed components, execute the :code:`uninstall.sh` script (with administrative privileges):
+To uninstall all installed components, execute the `uninstall.sh` script (with administrative privileges):
 
 .. code-block:: bash
 
+    cd <extraction_directory>
     sudo ./uninstall.sh
 
-.. caution::
+.. warning::
 
     If any of the other components were already installed in some other way in the system, they will be
     removed as well. To avoid it, edit the script before executing it.

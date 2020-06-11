@@ -3,8 +3,8 @@
 Linux installation from sources
 ===============================
 
-In this page, we provide the instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
-and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources.
+The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
+and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources are provided in this page.
 It is organized as follows:
 
 .. contents::
@@ -17,7 +17,7 @@ It is organized as follows:
 Fast DDS library installation
 """""""""""""""""""""""""""""
 
-In this section, we provide the instructions for installing *eProsima Fast DDS* in a Linux environment from
+This section describes the instructions for installing *eProsima Fast DDS* in a Linux environment from
 sources. The following packages will be installed:
 
 * :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
@@ -78,7 +78,7 @@ For a detailed description of the Gtest installation process, please refer to th
 Dependencies
 ------------
 
-*eProsima Fast RTPS* has the following dependencies, when installed from binaries in a Linux environment:
+*eProsima Fast DDS* has the following dependencies, when installed from binaries in a Linux environment:
 
 * :ref:`asiotinyxml2_sl`
 * :ref:`openssl_sl`
@@ -88,7 +88,7 @@ Dependencies
 Asio and TinyXML2 libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Asio is a cross-platform C++ library for network and low-level I/O programming providing with a consistent
+Asio is a cross-platform C++ library for network and low-level I/O programming, which provides a consistent
 asynchronous model. TinyXML2 is a simple, small and efficient C++ XML parser.
 
 Install these libraries using the package manager of the appropriate Linux distribution.
@@ -163,12 +163,12 @@ When running an instance of an application using *eProsima Fast DDS*, the colcon
 dedicated :code:`Fast-DDS` directory must be sourced.
 There are two possibilities:
 
-* Every time the :code:`Fast-DDS` directory is opened in a new shell, prepare the environment locally by typing the
+* Every time a new shell is opened, prepare the environment locally by typing the
   command:
 
   .. code-block:: bash
 
-      source install/setup.bash
+      source ~/Fast-DDS/install/setup.bash
 
 * Add the sourcing of the colcon overlay permanently to the :code:`PATH`, by typing the following:
 
@@ -225,9 +225,9 @@ Local installation
    .. code-block:: bash
 
        cd ~/Fast-DDS
-       git clone https://github.com/eProsima/Fast-RTPS.git
-       mkdir Fast-RTPS/build
-       cd Fast-RTPS/build
+       git clone https://github.com/eProsima/Fast-DDS.git
+       mkdir Fast-DDS/build
+       cd Fast-DDS/build
        cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DCMAKE_PREFIX_PATH=~/Fast-DDS/install
        sudo cmake --build . --target install
 
@@ -243,7 +243,7 @@ Global installation
 ^^^^^^^^^^^^^^^^^^^
 
 To install *eProsima Fast DDS* system-wide instead of locally, remove all the flags that
-appear in the configuration steps of :code:`Fast-CDR` and :code:`Fast-RTPS`, and change the first in the
+appear in the configuration steps of :code:`Fast-CDR` and :code:`Fast-DDS`, and change the first in the
 configuration step of :code:`foonathan_memory_vendor` to the following:
 
 .. code-block:: bash
@@ -257,7 +257,9 @@ Run an application
 ^^^^^^^^^^^^^^^^^^
 
 When running an instance of an application using *eProsima Fast DDS*, it must be linked with the library where the
-packages have been installed, :code:`/usr/local/lib/`. There are two possibilities:
+packages have been installed, which in the case of system-wide installation  is: :code:`/usr/local/lib/` (if local
+installation is used, adjust for the correct directory).
+There are two possibilities:
 
 * Prepare the environment locally by typing the command:
 
@@ -277,7 +279,7 @@ packages have been installed, :code:`/usr/local/lib/`. There are two possibiliti
 Fast DDS-Gen installation
 """""""""""""""""""""""""
 
-In this section, we provide the instructions for installing *Fast DDS-Gen* in a Linux environment from
+This section provides the instructions for installing *Fast DDS-Gen* in a Linux environment from
 sources.
 *Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
 
@@ -313,8 +315,8 @@ Once the requirements above are met, install *Fast DDS-Gen* by following the ste
 .. code-block:: bash
 
     cd ~
-    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git
-    cd Fast-RTPS-Gen
+    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git Fast-DDS-Gen
+    cd Fast-DDS-Gen
     gradle assemble
 
 Contents
@@ -328,7 +330,7 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
   .. note::
 
       To make these scripts available from anywhere, add the :code:`scripts` folder path to the
-      :code:`PATH` environment variable.
+      :code:`PATH` environment variable using the method described above.
 
 .. External links
 

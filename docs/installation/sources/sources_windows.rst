@@ -3,8 +3,8 @@
 Windows installation from sources
 =================================
 
-In this page, we provide the instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
-and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources.
+The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
+and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources are provided in this page.
 It is organized as follows:
 
 .. contents::
@@ -17,7 +17,7 @@ It is organized as follows:
 Fast DDS library installation
 """""""""""""""""""""""""""""
 
-In this section, we provide the instructions for installing *eProsima Fast DDS* in a Windows environment from
+This section provides the instructions for installing *eProsima Fast DDS* in a Windows environment from
 sources. The following packages will be installed:
 
 * :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
@@ -111,7 +111,7 @@ Dependencies
 Asio and TinyXML2 libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Asio is a cross-platform C++ library for network and low-level I/O programming providing with a consistent
+Asio is a cross-platform C++ library for network and low-level I/O programming, which provides a consistent
 asynchronous model.
 TinyXML2 is a simple, small and efficient C++ XML parser.
 
@@ -176,8 +176,8 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. code-block:: bash
 
-       mkdir ~/Fast-DDS
-       cd ~/Fast-DDS
+       mkdir ~\Fast-DDS
+       cd ~\Fast-DDS
        wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos
        mkdir src
        vcs import src < fastrtps.repos
@@ -204,7 +204,7 @@ When running an instance of an application using *eProsima Fast DDS*, the colcon
 dedicated :code:`Fast-DDS` directory must be sourced.
 There are two possibilities:
 
-* Every time the :code:`Fast-DDS` directory is opened in a new shell, prepare the environment locally by typing the
+* Every time a new shell is opened, prepare the environment locally by typing the
   command:
 
   .. code-block:: bash
@@ -234,7 +234,7 @@ Local installation
 
    .. code-block:: bash
 
-       mkdir ~/Fast-DDS
+       mkdir ~\Fast-DDS
 
 #. Clone the following dependencies and compile them using CMake_.
 
@@ -242,33 +242,33 @@ Local installation
 
      .. code-block:: bash
 
-         cd ~/Fast-DDS
+         cd ~\Fast-DDS
          git clone https://github.com/eProsima/foonathan_memory_vendor.git
          cd foonathan_memory_vendor
          mkdir build && cd build
-         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DBUILD_SHARED_LIBS=ON
+         cmake ..  -DBUILD_SHARED_LIBS=ON
          cmake --build . --target install
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
      .. code-block:: bash
 
-         cd ~/Fast-DDS
+         cd ~\Fast-DDS
          git clone https://github.com/eProsima/Fast-CDR.git
          cd Fast-CDR
          mkdir build && cd build
-         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install
+         cmake ..
          cmake --build . --target install
 
 #. Once all dependencies are installed, install *eProsima Fast DDS*:
 
    .. code-block:: bash
 
-       cd ~/Fast-DDS
-       git clone https://github.com/eProsima/Fast-RTPS.git
-       cd Fast-RTPS
+       cd ~\Fast-DDS
+       git clone https://github.com/eProsima/Fast-DDS.git
+       cd Fast-DDS
        mkdir build && cd build
-       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DCMAKE_PREFIX_PATH=~/Fast-DDS/install
+       cmake ..
        cmake --build . --target install
 
 .. _global_installation_sw:
@@ -277,12 +277,7 @@ Global installation
 ^^^^^^^^^^^^^^^^^^^
 
 To install *eProsima Fast DDS* system-wide instead of locally, remove all the flags that
-appear in the configuration steps of :code:`Fast-CDR` and :code:`Fast-RTPS`, and change the first in the
-configuration step of :code:`foonathan_memory_vendor` to the following:
-
-.. code-block:: bash
-
-    -DCMAKE_INSTALL_PREFIX=??
+appear in the configuration steps of ``Fast-CDR`` and ``Fast-DDS``.
 
 .. note::
 
@@ -295,16 +290,11 @@ Run an application
 ^^^^^^^^^^^^^^^^^^
 
 When running an instance of an application using *eProsima Fast DDS*, it must be linked with the library where the
-packages have been installed. There are two possibilities:
+packages have been installed. This can be done by opening the *Edit system environment variables* control panel and
+adding to the ``PATH`` the *Fast DDS* and *Fast CDR* installation directories:
 
-* Prepare the environment locally by typing the command:
-
-  .. code-block:: bash
-
-      C:\> PATH=~/Fast-DDS/install/bin
-
-* Link it permanently, by opening the *Edit the system environment variables* control panel, and adding
-  :code:`~/Fast-DDS/install/bin` to the :code:`PATH`.
+*   *Fast DDS*: C:\Program Files\fastrtps
+*   *Fast CDR*: C:\Program Files\fastcdr
 
 
 .. _fastddsgen_sw:
@@ -312,7 +302,7 @@ packages have been installed. There are two possibilities:
 Fast DDS-Gen installation
 """""""""""""""""""""""""
 
-In this section, we provide the instructions for installing *Fast DDS-Gen* in a Windows environment from
+This section outlines the instructions for installing *Fast DDS-Gen* in a Windows environment from
 sources.
 *Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
 
@@ -348,22 +338,22 @@ Once the requirements above are met, install *Fast DDS-Gen* by following the ste
 .. code-block:: bash
 
     cd ~
-    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git
-    cd Fast-RTPS-Gen
+    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git Fast-DDS-Gen
+    cd Fast-DDS-Gen
     gradle assemble
 
 Contents
 ^^^^^^^^
 
-The :code:`Fast-DDS-Gen` folder contains the following packages:
+The ``Fast-DDS-Gen`` folder contains the following packages:
 
-* :code:`share/fastrtps`, where the generated Java application is.
-* :code:`scripts`, containing some user friendly scripts.
+* ``share/fastrtps``, where the generated Java application is.
+* ``scripts``, containing some user friendly scripts.
 
   .. note::
 
-      To make these scripts available from anywhere, add the :code:`scripts` folder path to the
-      :code:`PATH` environment variable.
+      To make these scripts available from anywhere, add the ``scripts`` folder path to the
+      ``PATH`` environment variable.
 
 .. External links
 

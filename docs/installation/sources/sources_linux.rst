@@ -282,6 +282,7 @@ Fast DDS-Gen installation
 This section provides the instructions for installing *Fast DDS-Gen* in a Linux environment from
 sources.
 *Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
+Please refer to :ref:`fastrtpsgen_intro` for more information.
 
 Requirements
 ------------
@@ -297,15 +298,16 @@ Java JDK
 ^^^^^^^^
 
 The JDK is a development environment for building applications and components using the Java language.
-Download and install it at the following `page <https://www.oracle.com/java/technologies/javase-downloads.html>`_.
+Download and install it at the following the steps given in the
+`Oracle website <https://www.oracle.com/java/technologies/javase-downloads.html>`_.
 
 .. _gradle_sl:
 
 Gradle
 ^^^^^^
 
-Gradle is an open-source build automation tool. Download and install `Gradle <https://gradle.org/install>`_
-in the preferred way.
+Gradle is an open-source build automation tool.
+Download and install the last stable version of `Gradle <https://gradle.org/install>`_ in the preferred way.
 
 Install
 -------
@@ -315,7 +317,7 @@ Once the requirements above are met, install *Fast DDS-Gen* by following the ste
 .. code-block:: bash
 
     cd ~
-    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git Fast-DDS-Gen
+    git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git
     cd Fast-DDS-Gen
     gradle assemble
 
@@ -329,7 +331,7 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
 
   .. note::
 
-      To make these scripts available from anywhere, add the :code:`scripts` folder path to the
+      To make these scripts accessible from any shell session and directory, add the :code:`scripts` folder path to the
       :code:`PATH` environment variable using the method described above.
 
 .. External links

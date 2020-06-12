@@ -13,11 +13,11 @@ eProsima Fast DDS Documentation
    :maxdepth: 2
    :numbered: 5
 
-   /installation/requirements/requirements
-   /installation/binaries/binaries
-   /installation/sources/sources
+   /installation/binaries/binaries_linux
+   /installation/binaries/binaries_windows
+   /installation/sources/sources_linux
+   /installation/sources/sources_windows
    /installation/configuration/cmake_options
-
 
 .. _index_fast_dds:
 

@@ -8,6 +8,7 @@ acknack
 acknowledgement
 acks
 AES
+allocator
 ami
 appendable
 asio
@@ -34,6 +35,7 @@ Centric
 chocolatey
 ciphertext
 CMake
+colcon
 Colcon
 connectionless
 config
@@ -61,7 +63,9 @@ eClock
 endian
 eProsima
 ethernet
+executables
 extensibility
+fastcdr
 fastdds
 fastrtpsgen
 GCM
@@ -148,6 +152,7 @@ Topologies
 typeobject
 TypeObject
 uint
+uncheck
 unicast
 unidimensional
 univocally
@@ -155,8 +160,10 @@ unmatch
 unmatching
 Valgrind
 vcstool
+wget
 whitelist
 whitelists
 Wireshark
+worskspace
 WString
 XTypes

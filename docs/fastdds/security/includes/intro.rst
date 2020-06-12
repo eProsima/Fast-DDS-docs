@@ -31,7 +31,7 @@ the logging plugin (DDS\:Logging\:DDS_LogTopic).
 
 By default, Fast DDS does not compile any security support, but it can be activated adding ``-DSECURITY=ON`` at CMake
 configuration step.
-For more information about Fast DDS compilation, see :ref:`installation-from-sources`.
+For more information about Fast DDS compilation, see :ref:`linux_sources` and :ref:`windows_sources`.
 
 Security plugins can be activated through the |DomainParticipantQos| properties.
 A |Property| is defined by its name (:class:`std::string`)

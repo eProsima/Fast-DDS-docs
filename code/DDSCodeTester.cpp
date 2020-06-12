@@ -3375,7 +3375,7 @@ void dds_usecase_examples()
 
         // configure an initial peer on host 192.168.10.13.
         // The port number corresponds to the well-known port for metatraffic unicast
-        // on participant ID ``1`` and domain ``0``.
+        // on participant ID `1` and domain `0`.
         Locator_t initial_peer;
         IPLocator::setIPv4(initial_peer, "192.168.10.13");
         initial_peer.port = 7412;
@@ -3388,7 +3388,7 @@ void dds_usecase_examples()
         DomainParticipantQos qos;
 
         // configure one metatraffic unicast locator on interface 192.168.10.13.
-        // on participant ID ``1`` and domain ``0``.
+        // on participant ID `1` and domain `0`.
         Locator_t meta_unicast_locator;
         IPLocator::setIPv4(meta_unicast_locator, "192.168.10.13");
         meta_unicast_locator.port = 7412;

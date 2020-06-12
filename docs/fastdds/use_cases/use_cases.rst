@@ -6,7 +6,7 @@ Typical Use-Cases
 .. _OSRF: https://www.openrobotics.org/
 .. _Robot Operation System 2 (ROS 2): https://index.ros.org/doc/ros2/
 
-*Fast DDS* is highly configurable, which allows for it use in a large number of scenarios.
+*Fast DDS* is highly configurable, which allows for its use in a large number of scenarios.
 This section provides configuration examples for the following typical use cases when dealing
 with distributed systems:
 

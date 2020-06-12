@@ -4,7 +4,7 @@ Linux installation from binaries
 ================================
 
 The instructions for installing *eProsima Fast DDS* in a Linux environment from
-binaries are provided in this page.. It is organized as follows:
+binaries are provided in this page.
 
 .. contents::
     :local:
@@ -16,15 +16,15 @@ binaries are provided in this page.. It is organized as follows:
 Install
 -------
 
-The latest release of *eProsima Fast DDS* for Linux is available at the company website
-`downloads page <https://eprosima.com/index.php/downloads-all>`_.
+The latest release of *eProsima Fast DDS* for Linux is available at the eProsima website
+`Downloads tab <https://eprosima.com/index.php/downloads-all>`_.
 Once downloaded, extract the contents in your preferred directory.
-
 Then, to install *eProsima Fast DDS* and all its dependencies in the system, execute
 the :code:`install.sh` script with administrative privileges:
 
 .. code-block:: bash
 
+    cd <extraction_directory>
     sudo ./install.sh
 
 .. note::

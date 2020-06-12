@@ -4,7 +4,7 @@ Windows installation from binaries
 ==================================
 
 The instructions for installing *eProsima Fast DDS* in a Windows environment from
-binaries are provided in this page..
+binaries are provided in this page.
 It is organized as follows:
 
 .. contents::

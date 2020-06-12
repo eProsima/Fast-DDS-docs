@@ -26,10 +26,7 @@ sources. The following packages will be installed:
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
 
-
 First of all, the :ref:`requirements_sw` and :ref:`dependencies_sw` detailed below need to be met.
-
-
 Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_windows>`)
 or the :ref:`CMake <cmake_installation_windows>`) installation instructions.
 
@@ -85,13 +82,11 @@ Gtest
 ^^^^^
 
 GTest is a unit testing library for C++.
-
 By default, *eProsima Fast DDS* does not compile tests.
 It is possible to activate them with the opportune
 `CMake configuration options <https://cmake.org/cmake/help/v3.6/manual/cmake.1.html#options>`_
 when calling colcon_ or CMake_.
 For more details, please refer to the :ref:`cmake_options` section.
-
 For a detailed description of the Gtest installation process, please refer to the
 `Gtest Installation Guide <https://github.com/google/googletest>`_.
 
@@ -114,7 +109,6 @@ Asio and TinyXML2 libraries
 Asio is a cross-platform C++ library for network and low-level I/O programming, which provides a consistent
 asynchronous model.
 TinyXML2 is a simple, small and efficient C++ XML parser.
-
 They can be downloaded directly from the links below:
 
 * `Asio <https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg>`_
@@ -293,8 +287,8 @@ When running an instance of an application using *eProsima Fast DDS*, it must be
 packages have been installed. This can be done by opening the *Edit system environment variables* control panel and
 adding to the ``PATH`` the *Fast DDS* and *Fast CDR* installation directories:
 
-*   *Fast DDS*: C:\Program Files\fastrtps
-*   *Fast CDR*: C:\Program Files\fastcdr
+*   *Fast DDS*: C:\\Program Files\\fastrtps
+*   *Fast CDR*: C:\\Program Files\\fastcdr
 
 
 .. _fastddsgen_sw:
@@ -332,8 +326,8 @@ Gradle
 Gradle is an open-source build automation tool.
 Download and install the last stable version of `Gradle <https://gradle.org/install>`_ in the preferred way.
 
-Install
--------
+Compiling Fast DDS-Gen
+----------------------
 
 Once the requirements above are met, install *Fast DDS-Gen* by following the steps below:
 

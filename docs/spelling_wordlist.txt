@@ -64,10 +64,9 @@ eProsima
 ethernet
 executables
 extensibility
+fastcdr
 fastdds
 fastrtpsgen
-Filesfastcdr
-Filesfastrtps
 GCM
 getter
 Github

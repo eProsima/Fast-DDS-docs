@@ -27,7 +27,6 @@ sources. The following packages will be installed:
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
 
 First of all, the :ref:`requirements_sl` and :ref:`dependencies_sl` detailed below need to be met.
-
 Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_linux>`)
 or the :ref:`CMake <cmake_installation_linux>`) installation instructions.
 
@@ -62,13 +61,11 @@ Gtest
 ^^^^^
 
 GTest is a unit testing library for C++.
-
 By default, *eProsima Fast DDS* does not compile tests.
 It is possible to activate them with the opportune
 `CMake configuration options <https://cmake.org/cmake/help/v3.6/manual/cmake.1.html#options>`_
 when calling colcon_ or CMake_.
 For more details, please refer to the :ref:`cmake_options` section.
-
 For a detailed description of the Gtest installation process, please refer to the
 `Gtest Installation Guide <https://github.com/google/googletest>`_.
 
@@ -89,8 +86,8 @@ Asio and TinyXML2 libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Asio is a cross-platform C++ library for network and low-level I/O programming, which provides a consistent
-asynchronous model. TinyXML2 is a simple, small and efficient C++ XML parser.
-
+asynchronous model.
+TinyXML2 is a simple, small and efficient C++ XML parser.
 Install these libraries using the package manager of the appropriate Linux distribution.
 For example, on Ubuntu use the command:
 
@@ -248,7 +245,7 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 
 .. code-block:: bash
 
-    -DCMAKE_INSTALL_PREFIX=/usr/local/
+    -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
 
 .. _run_app_cmake_sl:
@@ -309,10 +306,10 @@ Gradle
 Gradle is an open-source build automation tool.
 Download and install the last stable version of `Gradle <https://gradle.org/install>`_ in the preferred way.
 
-Install
--------
+Compiling Fast DDS-Gen
+----------------------
 
-Once the requirements above are met, install *Fast DDS-Gen* by following the steps below:
+Once the requirements above are met, compile *Fast DDS-Gen* by following the steps below:
 
 .. code-block:: bash
 

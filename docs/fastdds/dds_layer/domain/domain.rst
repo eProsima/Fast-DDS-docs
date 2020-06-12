@@ -18,6 +18,12 @@ For an application to be added to a domain, it must create an instance of
 Instances of :ref:`dds_layer_domainParticipant` are created through the
 :ref:`dds_layer_domainParticipantFactory` singleton.
 
+:ref:`partitions` introduce another entity isolation level within the domain.
+While :ref:`DomainParticipants<dds_layer_domainParticipant>` will be able to communicate with each other if they
+are in the same domain, it is still possible to isolate their :ref:`Publishers<dds_layer_publisher_publisher>` and
+:ref:`Subscribers<dds_layer_subscriber_subscriber>` assigning them to different :ref:`partitions`.
+
+
 .. figure:: /01-figures/domain_class_diagram.svg
     :align: center
 
@@ -29,4 +35,5 @@ Instances of :ref:`dds_layer_domainParticipant` are created through the
     /fastdds/dds_layer/domain/domainParticipantListener/domainParticipantListener
     /fastdds/dds_layer/domain/domainParticipantFactory/domainParticipantFactory
     /fastdds/dds_layer/domain/domainParticipant/createDomainParticipant
+    /fastdds/dds_layer/domain/domainParticipant/partition
 

@@ -61,9 +61,19 @@ Data types with a key
 
 Data types that define a set of fields to form a unique key can distinguish different data sets
 within the same data type.
-This mechanism is implemented overriding the :func:`getKey` member function on the TopicDataType to return
-the appropriate key value according to the field data.
-Types that do not define a key will not override this member function.
+
+To define a keyed :ref:`dds_layer_topic_topic`, the :func:`getKey` member function on the :class:`TopicDataType`
+has to be overridden to return the appropriate key value according to the data fields.
+Additionally, the ``m_isGetKeyDefined`` data member needs to be set to ``true`` to let the entities know that
+this is a keyed :ref:`dds_layer_topic_topic` and that :func:`getKey` should be used.
+Types that do not define a key will have ``m_isGetKeyDefined`` set to false.
+
+There are three ways to implement keys on the :class:`TopicDataType`:
+
+* Adding a ``@Key`` annotation to the members that form the key in the IDL file when using Fast DDS-Gen.
+* Adding the attribute ``Key`` to the member and its parents when using :ref:`dynamic-types`.
+* Manually implementing the :func:`getKey` member function on the :class:`TopicDataType` and setting
+  the ``m_isGetKeyDefined`` data member value to ``true``.
 
 Data types with key are used to define data sub flows on a single :ref:`dds_layer_topic_topic`.
 Data values with the same key on the same :ref:`dds_layer_topic_topic` represent data from the same sub-flow,

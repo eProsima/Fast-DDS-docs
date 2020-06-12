@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="315px" preserveAspectRatio="none" style="width:779px;height:315px;" version="1.1" viewBox="0 0 779 315" width="779px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1nk6o5gtuae7e" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <!--MD5=[3429367a28cd7974222338d792013d87] cluster Option 1 | Static-->
+        <polygon fill="#FFFFFF" filter="url(#f1nk6o5gtuae7e)" points="22,24,164,24,171,46.2969,251,46.2969,251,207,22,207,22,24" style="stroke: #000000; stroke-width: 1.5;" />
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="171" y1="46.2969" y2="46.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="136" x="26" y="38.9951">Option 1 | Static</text>
+        <!--MD5=[99051101d5eaac9cdbb70e4fae85e15a] cluster Option 2 | Static-->
+        <polygon fill="#FFFFFF" filter="url(#f1nk6o5gtuae7e)" points="275,24,417,24,424,46.2969,504,46.2969,504,207,275,207,275,24" style="stroke: #000000; stroke-width: 1.5;" />
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="275" x2="424" y1="46.2969" y2="46.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="136" x="279" y="38.9951">Option 2 | Static</text>
+        <!--MD5=[12cfd440d48bdfae60545d8605852b59] cluster Option 3 | Dynamic-->
+        <polygon fill="#FFFFFF" filter="url(#f1nk6o5gtuae7e)" points="528,24,689,24,696,46.2969,757,46.2969,757,303,528,303,528,24" style="stroke: #000000; stroke-width: 1.5;" />
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="528" x2="696" y1="46.2969" y2="46.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="155" x="532" y="38.9951">Option 3 | Dynamic</text>
+        <!--MD5=[7e4a1da69a72fd3f499ce552a128784c] entity 1_s1-->
+        <rect fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="80" x="38" y="59" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33" y="64" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33" y="85.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="60" x="48" y="81.9951">Server 1</text>
+        <!--MD5=[50cd4e9d1f5b5ad092a129c24b070d54] entity 1_s2-->
+        <rect fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="79" x="38.5" y="155" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33.5" y="160" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33.5" y="181.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="59" x="48.5" y="177.9951">Server 2</text>
+        <ellipse cx="194.1838" cy="77.0236" fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" rx="41.1838" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="167.1838" y="81.6721">client 1</text>
+        <ellipse cx="192.9767" cy="173.0236" fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" rx="40.4767" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="166.4767" y="177.6721">client 2</text>
+        <!--MD5=[57419c2a62a4a3c4596ca795c61b31cc] entity 2_s1-->
+        <rect fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="80" x="291" y="59" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="286" y="64" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="286" y="85.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="60" x="301" y="81.9951">Server 1</text>
+        <!--MD5=[4f7697b7df28867dba7cf157fe8ac10f] entity 2_s2-->
+        <rect fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="79" x="291.5" y="155" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="286.5" y="160" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="286.5" y="181.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="59" x="301.5" y="177.9951">Server 2</text>
+        <ellipse cx="447.1838" cy="77.0236" fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" rx="41.1838" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="420.1838" y="81.6721">client 1</text>
+        <ellipse cx="445.9767" cy="173.0236" fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" rx="40.4767" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="419.4767" y="177.6721">client 2</text>
+        <!--MD5=[c42b6dce302e419d4fce31713cc663c1] entity 3_s1-->
+        <rect fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="80" x="544" y="59" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="539" y="64" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="539" y="85.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="60" x="554" y="81.9951">Server 1</text>
+        <!--MD5=[ab6984d625d1d88b676298f9cb5bc632] entity 3_s2-->
+        <rect fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="79" x="544.5" y="251" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="539.5" y="256" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="539.5" y="277.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="59" x="554.5" y="273.9951">Server 2</text>
+        <!--MD5=[cd8720ab33c8f80d6812a328de1e1944] entity aux-->
+        <rect fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="97" x="593.5" y="155" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="588.5" y="160" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="588.5" y="181.2969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="77" x="603.5" y="177.9951">Aux Server</text>
+        <ellipse cx="700.1838" cy="77.0236" fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" rx="41.1838" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="673.1838" y="81.6721">client 1</text>
+        <ellipse cx="698.9767" cy="269.0236" fill="#FEFECE" filter="url(#f1nk6o5gtuae7e)" rx="40.4767" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="672.4767" y="273.6721">client 2</text>
+        <!--MD5=[b77c2c6aea56162730883f261008d83a] link 1_s1 to 1_s2-->
+        <!--MD5=[c8787d7836c1d3744bb52eb6b8131575] link 1_c1 to 1_c2-->
+        <!--MD5=[b833482012ce8593a7dcd29f7ed45f02] reverse link 1_s1 to 1_c1-->
+        <path d="M123.462,77 C133.279,77 143.096,77 152.913,77 " fill="none" id="1_s1&lt;-1_c1" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="118.328,77,127.328,81,123.328,77,127.328,73,118.328,77" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[4d1020644a1e190ff0cd691bb1e6ff21] reverse link 1_s2 to 1_c2-->
+        <path d="M122.695,173 C132.569,173 142.443,173 152.318,173 " fill="none" id="1_s2&lt;-1_c2" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="117.531,173,126.531,177,122.531,173,126.531,169,117.531,173" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[d01cc1245ff1617b82ceecb2b467f801] reverse link 1_s1 to 1_c2-->
+        <path d="M102.9364,98.383 C125.609,116.916 158.36,143.685 177.486,159.319 " fill="none" id="1_s1&lt;-1_c2" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="98.8256,95.023,103.2625,103.8158,102.6969,98.1873,108.3254,97.6217,98.8256,95.023" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[15b3215bcf11f1de924651d0e648c051] link 1_c1 to 1_s2-->
+        <path d="M178.356,90.677 C159.144,106.246 126.299,132.861 103.4378,151.387 " fill="none" id="1_c1-&gt;1_s2" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="99.291,154.747,108.8021,152.1898,103.1761,151.5996,103.7663,145.9737,99.291,154.747" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[7c3d7fda35c1f4c3233da016ad95f411] link 2_s1 to 2_s2-->
+        <path d="M331,95.241 C331,112.202 331,137.945 331,154.868 " fill="none" id="2_s1-2_s2" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[c47c24edec2c24256c114d710c19a42a] link 2_c1 to 2_c2-->
+        <!--MD5=[46fad36c8f725a933bb7fe6250145650] reverse link 2_s1 to 2_c1-->
+        <path d="M376.462,77 C386.279,77 396.096,77 405.913,77 " fill="none" id="2_s1&lt;-2_c1" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="371.328,77,380.328,81,376.328,77,380.328,73,371.328,77" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[8995caf29fc0c6401b8ab9dc59bd432c] reverse link 2_s2 to 2_c2-->
+        <path d="M375.695,173 C385.569,173 395.443,173 405.318,173 " fill="none" id="2_s2&lt;-2_c2" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="370.531,173,379.531,177,375.531,173,379.531,169,370.531,173" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[f2ce1cf6b002a513857904d77980d4c5] link aux to 3_s2-->
+        <path d="M631.362,191.241 C621.796,206.744 607.702,229.5856 597.376,246.3211 " fill="none" id="aux-&gt;3_s2" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="594.571,250.8683,602.7008,245.309,597.1963,246.613,595.8923,241.1085,594.571,250.8683" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[71123ed53955519d27ee43c54c47fdb5] reverse link 3_s1 to aux-->
+        <path d="M597.449,99.797 C607.793,116.561 621.885,139.4 631.429,154.868 " fill="none" id="3_s1&lt;-aux" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="594.638,95.241,595.9596,105.0008,597.2634,99.4962,602.768,100.8001,594.638,95.241" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[26e76faa6881821a099fd1400a36ea2a] link aux to 3_c2-->
+        <!--MD5=[edd622d07669ff5d6637b388cceec6ea] link 3_c1 to aux-->
+        <!--MD5=[e73dcadc3c5f1360cc039523b78ca23c] reverse link 3_s1 to 3_c1-->
+        <path d="M629.462,77 C639.279,77 649.096,77 658.913,77 " fill="none" id="3_s1&lt;-3_c1" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="624.328,77,633.328,81,629.328,77,633.328,73,624.328,77" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[ebc7b706c0f9c33f8681321aea70fabc] reverse link 3_s2 to 3_c2-->
+        <path d="M628.695,269 C638.569,269 648.443,269 658.318,269 " fill="none" id="3_s2&lt;-3_c2" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="623.531,269,632.531,273,628.531,269,632.531,265,623.531,269" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[411e0886752848effc003f3143327ca8]
+            @startuml
+            package "Option 1 | Static" {
+
+            component [Server 1] as 1_s1
+            component [Server 2] as 1_s2
+            (client 1) as 1_c1
+            (client 2) as 1_c2
+
+            1_s2 -[hidden]up- 1_s1
+            1_c2 -[hidden]up- 1_c1
+
+            }
+
+            1_s1 <- 1_c1
+            1_s2 <- 1_c2
+
+            1_s1 <- 1_c2
+            1_s2 <-left- 1_c1
+
+            package "Option 2 | Static" {
+
+            component [Server 1] as 2_s1
+            component [Server 2] as 2_s2
+            (client 1) as 2_c1
+            (client 2) as 2_c2
+
+            2_s2 -up- 2_s1
+            2_c2 -[hidden]up- 2_c1
+
+            }
+
+            2_s1 <- 2_c1
+
+            2_s2 <- 2_c2
+
+            package "Option 3 | Dynamic" {
+
+            component [Server 1] as 3_s1
+            component [Server 2] as 3_s2
+            component [Aux Server] as aux
+
+            (client 1) as 3_c1
+            (client 2) as 3_c2
+
+            3_s2 <-up- aux
+            aux -up-> 3_s1
+            3_c2 -[hidden]up- aux
+            aux -[hidden]up- 3_c1
+            }
+
+            3_s1 <-right- 3_c1
+
+            3_s2 <-right- 3_c2
+            @enduml
+
+            PlantUML version 1.2020.11beta3(Unknown compile time)
+            (GPL source distribution)
+            Java Runtime: Java(TM) SE Runtime Environment
+            JVM: Java HotSpot(TM) 64-Bit Server VM
+            Default Encoding: UTF-8
+            Language: en
+            Country: US
+        -->
+    </g>
+</svg>

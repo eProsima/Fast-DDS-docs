@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="301px" preserveAspectRatio="none" style="width:628px;height:301px;" version="1.1" viewBox="0 0 628 301" width="628px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1qh488rl1gd3c" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <!--MD5=[ab4b7946a224f3200111f86b2c9d655c]
+cluster Servers-->
+        <polygon fill="#FFFFFF" filter="url(#f1qh488rl1gd3c)" points="22,65.5,88,65.5,95,87.7969,399,87.7969,399,259.5,22,259.5,22,65.5" style="stroke: #000000; stroke-width: 1.5;" />
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="95" y1="87.7969" y2="87.7969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="60" x="26" y="80.4951">Servers</text>
+        <!--MD5=[a3a458535fdcfbbb6367078bc381dc55]
+cluster Clients-->
+        <polygon fill="#FFFFFF" filter="url(#f1qh488rl1gd3c)" points="423,65,433,55,606,55,606,255,596,265,423,265,423,65" style="stroke: #000000; stroke-width: 1.5;" />
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="596" x2="605" y1="65" y2="56" />
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="423" x2="596" y1="65" y2="65" />
+        <line style="stroke: #000000; stroke-width: 1.5;" x1="596" x2="596" y1="65" y2="265" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="56" x="482.5" y="80.9951">Clients</text>
+        <!--MD5=[a24ab22cd0721cba63912cb1a2e0552a]
+entity P1-->
+        <ellipse cx="374" cy="225.5" fill="#FEFECE" filter="url(#f1qh488rl1gd3c)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="326.5" y="255.4951" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="103" x="322.5" y="271.792">192.168.10.57</text>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="43" x="322.5" y="288.0889">56542</text>
+        <!--MD5=[363690bfff83d946e49026b48e74bf54]
+entity P2-->
+        <ellipse cx="374" cy="118.5" fill="#FEFECE" filter="url(#f1qh488rl1gd3c)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="326.5" y="148.4951" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="103" x="322.5" y="164.792">192.168.10.60</text>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="322.5" y="181.0889">56543</text>
+        <!--MD5=[e9de15ca33d60382b789ee7ede67e917]
+entity 75.63.2D.73.76.72.63.6C.6E.74.2D.31-->
+        <rect fill="#FEFECE" filter="url(#f1qh488rl1gd3c)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="292" x="38" y="207.5" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33" y="212.5" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33" y="233.7969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="272" x="48" y="230.4951">75.63.2D.73.76.72.63.6C.6E.74.2D.31</text>
+        <!--MD5=[69be38c84311b6a3e491498c77749112]
+entity 75.63.2D.73.76.72.63.6C.6E.74.2D.32-->
+        <rect fill="#FEFECE" filter="url(#f1qh488rl1gd3c)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="291" x="38.5" y="100.5" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33.5" y="105.5" />
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="33.5" y="126.7969" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="271" x="48.5" y="123.4951">75.63.2D.73.76.72.63.6C.6E.74.2D.32</text>
+        <ellipse cx="467.7739" cy="118.4895" fill="#FEFECE" filter="url(#f1qh488rl1gd3c)" rx="28.7739" ry="23.4895" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="447.2739" y="118.8674">client</text>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="9" x="463.2739" y="135.1643">1</text>
+        <ellipse cx="468.2425" cy="225.4645" fill="#FEFECE" filter="url(#f1qh488rl1gd3c)" rx="28.7425" ry="23.4645" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="447.7425" y="225.8836">client</text>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="8" x="464.2425" y="242.1805">2</text>
+        <ellipse cx="560.7739" cy="118.4895" fill="#FEFECE" filter="url(#f1qh488rl1gd3c)" rx="28.7739" ry="23.4895" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="540.2739" y="118.8674">client</text>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="9" x="556.2739" y="135.1643">3</text>
+        <ellipse cx="560.8091" cy="225.5174" fill="#FEFECE" filter="url(#f1qh488rl1gd3c)" rx="28.8091" ry="23.5174" style="stroke: #A80036; stroke-width: 1.5;" />
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="540.3091" y="225.8493">client</text>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="10" x="555.8091" y="242.1462">X</text>
+        <!--MD5=[c66c5968c9a219bead5066999c462f40] link 75.63.2D.73.76.72.63.6C.6E.74.2D.31 to P1-->
+        <path d="M330.211,225.5 C341.728,225.5 353.246,225.5 364.763,225.5 " fill="none" id="75.63.2D.73.76.72.63.6C.6E.74.2D.31-P1" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[80db2846aedde77f14a7f96d188c603f] link 75.63.2D.73.76.72.63.6C.6E.74.2D.32 to P2-->
+        <path d="M329.84,118.5 C341.455,118.5 353.07,118.5 364.685,118.5 " fill="none" id="75.63.2D.73.76.72.63.6C.6E.74.2D.32-P2" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[fd406565cf49a2badc2d9c019d2b71d8] link 75.63.2D.73.76.72.63.6C.6E.74.2D.32 to 75.63.2D.73.76.72.63.6C.6E.74.2D.31-->
+        <!--MD5=[b13be65bfeaba766acbc507bb184ee76] link P2 to P1-->
+        <!--MD5=[4bb6f112e1e2edb675dc5c64292512fe] link ps1 to P1-->
+        <path d="M451.195,138.272 C431.949,159.769 400.991,194.3506 384.744,212.4982 " fill="none" id="ps1-&gt;P1" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="381.322,216.3209,390.305,212.2829,384.6568,212.5954,384.3442,206.9472,381.322,216.3209" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[6073c5e92b4af71da9c1e0d09789a308] link ps1 to P2-->
+        <path d="M438.843,118.5 C422.028,118.5 405.213,118.5 388.398,118.5 " fill="none" id="ps1-&gt;P2" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;" />
+        <polygon fill="#A80036" points="383.18,118.5,392.18,122.5,388.18,118.5,392.18,114.5,383.18,118.5" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[99c7d273a5a3004e11b627628521a3d1] link ps2 to P1-->
+        <path d="M439.174,225.5 C422.259,225.5 405.344,225.5 388.429,225.5 " fill="none" id="ps2-&gt;P1" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="383.18,225.5,392.18,229.5,388.18,225.5,392.18,221.5,383.18,225.5" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[ee7afdf2024f8c318721b67467bbfef4] reverse link P2 to ps2-->
+        <path d="M384.81,131.575 C401.106,149.778 432.099,184.3976 451.31,205.8566 " fill="none" id="P2&lt;-ps2" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;" />
+        <polygon fill="#A80036" points="381.376,127.739,384.3992,137.1124,384.7112,131.4641,390.3594,131.7761,381.376,127.739" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[28fdbc34c7daa90fc518cde06455c194] link ps3 to P1-->
+        <path d="M537.694,132.586 C498.29,154.712 419.687,198.8471 387.859,216.7181 " fill="none" id="ps3-&gt;P1" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="383.166,219.3534,392.9721,218.4362,387.5261,216.906,389.0563,211.4601,383.166,219.3534" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[3cee136ae61108e84c5fe03e9f7e7329] link ps3 to P2-->
+        <path d="M553.789,95.43 C544.76,70.958 526.693,33.587 496.5,17 C474.686,5.016 462.397,5.168 440.5,17 C405.866,35.714 386.361,81.19 378.352,104.386 " fill="none" id="ps3-&gt;P2" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;" />
+        <polygon fill="#A80036" points="376.731,109.245,383.3718,101.9718,378.3121,104.5016,375.7823,99.4419,376.731,109.245" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[43b6cfe45422277b13195bee743ddca5] link psX to P1-->
+        <path d="M544.3,205.9512 C532.403,193.6102 515.249,178.764 496.5,172 C473.088,163.554 463.975,163.729 440.5,172 C417.702,180.032 396.957,199.5508 384.905,212.656 " fill="none" id="psX-&gt;P1" style="stroke: #A80036; stroke-width: 1.0;" />
+        <polygon fill="#A80036" points="381.452,216.4975,390.4436,212.4787,384.7948,212.7792,384.4943,207.1303,381.452,216.4975" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[b04fc1960d0e5920341753bf4ead443b] reverse link P2 to psX-->
+        <path d="M387.683,127.183 C419.335,144.956 497.915,189.0781 537.467,211.2864 " fill="none" id="P2&lt;-psX" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;" />
+        <polygon fill="#A80036" points="383.019,124.564,388.9075,132.4586,387.3786,127.0123,392.8249,125.4833,383.019,124.564" style="stroke: #A80036; stroke-width: 1.0;" />
+        <!--MD5=[29d69c9934d126ed49122f0a08164c4e] link ps1 to ps2-->
+        <!--MD5=[97824b5bf0fdbbf3254325380f84b6b2] link ps2 to psX-->
+        <!--MD5=[6a65cbc0abb431b5c1d34b36b36ace9a] link ps3 to psX-->
+        <!--MD5=[9369a6e3eacb8d9f963b70815c52682a]
+            @startuml
+            package "Servers" {
+
+            interface "\n192.168.10.57\n56542" as P1
+            interface "\n192.168.10.60\n56543" as P2
+
+            P1 -left- [75.63.2D.73.76.72.63.6C.6E.74.2D.31]
+            P2 -left- [75.63.2D.73.76.72.63.6C.6E.74.2D.32]
+
+            [75.63.2D.73.76.72.63.6C.6E.74.2D.31] -[hidden]up- [75.63.2D.73.76.72.63.6C.6E.74.2D.32]
+            P1 -[hidden]up- P2
+            }
+
+            node "Clients" {
+            (client\n1) as ps1
+            (client\n2) as ps2
+            (client\n3) as ps3
+            (client\nX) as psX
+            }
+
+            ps1 -> P1
+            ps1 .> P2
+
+            ps2 -> P1
+            ps2 .left.> P2
+
+            ps3 -> P1
+            ps3 .> P2
+
+            psX -> P1
+            psX .left.> P2
+
+            ps1 -[hidden]down- ps2
+            ps2 -[hidden]right- psX
+            ps3 -[hidden]down- psX
+            @enduml
+
+            PlantUML version 1.2020.11beta3(Unknown compile time)
+            (GPL source distribution)
+            Java Runtime: Java(TM) SE Runtime Environment
+            JVM: Java HotSpot(TM) 64-Bit Server VM
+            Default Encoding: UTF-8
+            Language: en
+            Country: US
+        -->
+    </g>
+</svg>

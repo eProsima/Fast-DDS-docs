@@ -53,7 +53,7 @@ The following annotations modifies the behavior of DynamicTypes:
 
 - | ``@bit_bound``: Applies to :ref:`dynamictypes_supportedtypes_bitset`. Sets the size in bits of the bitfield.
 
-- | ``@key``: Alias for ``@Key``. See :ref:`topics-and-keys` section for more details.
+- | ``@key``: Alias for ``@Key``. See :ref:`dds_layer_topic_keyed_data_types` section for more details.
 
 - | ``@default``: Sets a default value for the member.
 

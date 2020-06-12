@@ -36,6 +36,8 @@
 #include <security/accesscontrol/GovernanceParser.h>
 #include <security/accesscontrol/PermissionsParser.h>
 
+#include <sstream>
+
 using namespace eprosima::fastdds::dds;
 
 //DDS_DOMAINPARTICIPANT_LISTENER_SPECIALIZATION
@@ -420,7 +422,7 @@ void dds_domain_examples()
     }
     {
         // DDS_SECURITY_AUTH_PLUGIN
-        eprosima::fastdds::dds::DomainParticipantQos pqos;
+        DomainParticipantQos pqos;
 
         // Activate DDS:Auth:PKI-DH plugin
         pqos.properties().properties().emplace_back("dds.sec.auth.plugin",
@@ -446,7 +448,7 @@ void dds_domain_examples()
     }
     {
         // DDS_SECURITY_ACCESS_CONTROL_PLUGIN
-        eprosima::fastdds::dds::DomainParticipantQos pqos;
+        DomainParticipantQos pqos;
 
         // Activate DDS:Access:Permissions plugin
         pqos.properties().properties().emplace_back("dds.sec.access.plugin",
@@ -466,7 +468,7 @@ void dds_domain_examples()
     }
     {
         // DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT
-        eprosima::fastdds::dds::DomainParticipantQos pqos;
+        DomainParticipantQos pqos;
 
         // Activate DDS:Crypto:AES-GCM-GMAC plugin
         pqos.properties().properties().emplace_back("dds.sec.crypto.plugin",
@@ -480,7 +482,7 @@ void dds_domain_examples()
         //!--
 
         // DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER
-        eprosima::fastdds::dds::DataWriterQos wqos;
+        DataWriterQos wqos;
 
         // Only if DDS:Access:Permissions plugin is not enabled
         // Configure DDS:Crypto:AES-GCM-GMAC plugin
@@ -493,7 +495,7 @@ void dds_domain_examples()
         //!--
 
         // DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER
-        eprosima::fastdds::dds::DataWriterQos rqos;
+        DataWriterQos rqos;
 
         // Only if DDS:Access:Permissions plugin is not enabled
         // Configure DDS:Crypto:AES-GCM-GMAC plugin
@@ -504,7 +506,7 @@ void dds_domain_examples()
     }
     {
         // DDS_SECURITY_LOGGING_PLUGIN
-        eprosima::fastdds::dds::DomainParticipantQos pqos;
+        DomainParticipantQos pqos;
 
         // Activate DDS:Logging:DDS_LogTopic plugin
         pqos.properties().properties().emplace_back("dds.sec.log.plugin",
@@ -517,6 +519,35 @@ void dds_domain_examples()
         pqos.properties().properties().emplace_back(
             "dds.sec.log.builtin.DDS_LogTopic.log_file",
             "myLogFile.log");
+        //!--
+    }
+
+    {
+        //CONF-QOS-PARTITIONS
+        PublisherQos pub_11_qos;
+        pub_11_qos.partition().push_back("Partition_1");
+        pub_11_qos.partition().push_back("Partition_2");
+
+        PublisherQos pub_12_qos;
+        pub_12_qos.partition().push_back("*");
+
+        PublisherQos pub_21_qos;
+        //No partitions defined for pub_21
+
+        PublisherQos pub_22_qos;
+        pub_22_qos.partition().push_back("Partition*");
+
+        SubscriberQos subs_31_qos;
+        subs_31_qos.partition().push_back("Partition_1");
+
+        SubscriberQos subs_32_qos;
+        subs_32_qos.partition().push_back("Partition_2");
+
+        SubscriberQos subs_33_qos;
+        subs_33_qos.partition().push_back("Partition_3");
+
+        SubscriberQos subs_34_qos;
+        //No partitions defined for subs_34
         //!--
     }
 }
@@ -612,87 +643,111 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
 
 void dds_discovery_examples()
 {
+    using Locator_t = eprosima::fastrtps::rtps::Locator_t;
+    using RemoteServerAttributes = eprosima::fastrtps::rtps::RemoteServerAttributes;
+    using IPLocator = eprosima::fastrtps::rtps::IPLocator;
+    using DiscoveryProtocol_t = eprosima::fastrtps::rtps::DiscoveryProtocol_t;
+    using ThroughputControllerDescriptor = eprosima::fastrtps::rtps::ThroughputControllerDescriptor;
+    using ParticipantFilteringFlags_t = eprosima::fastrtps::rtps::ParticipantFilteringFlags_t;
     {
-        eprosima::fastdds::dds::DomainParticipantQos pqos;
-
         //SET-DISCOVERY-CALLBACKS
+        // Create the participant QoS and configure values
+        DomainParticipantQos pqos;
+
         // Create a custom user DomainParticipantListener
         DiscoveryDomainParticipantListener* plistener = new DiscoveryDomainParticipantListener();
         // Pass the listener on DomainParticipant creation.
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(
-                        0, PARTICIPANT_QOS_DEFAULT, plistener);
+                        0, pqos, plistener);
         //!--
-
+    }
+    {
         //CONF-DISCOVERY-PROTOCOL
-        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SIMPLE;
-        //!--
+        DomainParticipantQos pqos;
 
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                DiscoveryProtocol_t::SIMPLE;
+        //!--
+    }
+    {
         //CONF-DISCOVERY-IGNORE-FLAGS
+        DomainParticipantQos pqos;
+
         pqos.wire_protocol().builtin.discovery_config.ignoreParticipantFlags =
                 static_cast<eprosima::fastrtps::rtps::ParticipantFilteringFlags_t>(
-            eprosima::fastrtps::rtps::ParticipantFilteringFlags_t::FILTER_DIFFERENT_PROCESS |
-            eprosima::fastrtps::rtps::ParticipantFilteringFlags_t::FILTER_SAME_PROCESS);
+            ParticipantFilteringFlags_t::FILTER_DIFFERENT_PROCESS |
+            ParticipantFilteringFlags_t::FILTER_SAME_PROCESS);
         //!--
-
+    }
+    {
         //CONF-DISCOVERY-LEASE-DURATION
+        DomainParticipantQos pqos;
+
         pqos.wire_protocol().builtin.discovery_config.leaseDuration = Duration_t(10, 20);
         //!--
-
+    }
+    {
         //CONF-DISCOVERY-LEASE-ANNOUNCEMENT
+        DomainParticipantQos pqos;
+
         pqos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod = Duration_t(1, 2);
         //!--
-
+    }
+    {
         //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT
+        DomainParticipantQos pqos;
+
         pqos.wire_protocol().builtin.discovery_config.initial_announcements.count = 5;
         pqos.wire_protocol().builtin.discovery_config.initial_announcements.period = Duration_t(0, 100000000u);
         //!--
-
+    }
+    {
         //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
+        DomainParticipantQos pqos;
+
         pqos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = true;
         pqos.wire_protocol().builtin.discovery_config.m_simpleEDP.use_PublicationWriterANDSubscriptionReader = true;
         pqos.wire_protocol().builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter = false;
         //!--
-
-        //CONF_INITIAL_PEERS_BASIC
-        eprosima::fastrtps::rtps::Locator_t initial_peers_locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peers_locator, "192.168.10.13");
-        initial_peers_locator.port = 7412;
-
-        pqos.wire_protocol().builtin.initialPeersList.push_back(initial_peers_locator);
-        //!--
-
+    }
+    {
         //CONF_STATIC_DISCOVERY_CODE
+        DomainParticipantQos pqos;
+
         pqos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         pqos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
         //!--
-
+    }
+    {
         //CONF_QOS_STATIC_DISCOVERY_USERID
         // Configure the DataWriter
-        eprosima::fastdds::dds::DataWriterQos wqos;
+        DataWriterQos wqos;
         wqos.endpoint().user_defined_id = 1;
 
         // Configure the DataReader
-        eprosima::fastdds::dds::DataReaderQos rqos;
+        DataReaderQos rqos;
         rqos.endpoint().user_defined_id = 3;
         //!--
-
+    }
+    {
         //CONF_STATIC_DISCOVERY_XML
+        DomainParticipantQos pqos;
+
         pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
         pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
         //!--
     }
     {
         //CONF_SERVER_DISCOVERY_PROTOCOL
-        eprosima::fastdds::dds::DomainParticipantQos pqos;
+        DomainParticipantQos pqos;
 
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
+                DiscoveryProtocol_t::CLIENT;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+                DiscoveryProtocol_t::SERVER;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                eprosima::fastrtps::rtps::DiscoveryProtocol_t::BACKUP;
+                DiscoveryProtocol_t::BACKUP;
         //!--
     }
     {
@@ -713,62 +768,62 @@ void dds_discovery_examples()
         serverGuidPrefix.value[10] = octet(0x82);
         serverGuidPrefix.value[11] = octet(0x79);
 
-        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        DomainParticipantQos serverQos;
         serverQos.wire_protocol().prefix = serverGuidPrefix;
         //!--
     }
     {
         //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
-        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        DomainParticipantQos serverQos;
         std::istringstream("4d.49.47.55.45.4c.5f.42.41.52.52.4f") >> serverQos.wire_protocol().prefix;
         //!--
     }
     {
         //CONF_SERVER_METATRAFFICUNICAST
-        eprosima::fastrtps::rtps::Locator_t locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        Locator_t locator;
+        IPLocator::setIPv4(locator, 192, 168, 1, 133);
         locator.port = 64863;
 
-        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        DomainParticipantQos serverQos;
         serverQos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
         //!--
     }
     {
         //CONF_SERVER_CLIENT_GUIDPREFIX
-        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        RemoteServerAttributes server;
         server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
 
-        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        DomainParticipantQos clientQos;
         clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
         //!--
     }
     {
         //CONF_SERVER_CLIENT_LOCATORS
-        eprosima::fastrtps::rtps::Locator_t locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        Locator_t locator;
+        IPLocator::setIPv4(locator, 192, 168, 1, 133);
         locator.port = 64863;
-        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        RemoteServerAttributes server;
         server.metatrafficUnicastLocatorList.push_back(locator);
 
-        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        DomainParticipantQos clientQos;
         clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
         //!--
     }
 
     {
         //CONF_SERVER_SERVER_LOCATORS
-        eprosima::fastrtps::rtps::Locator_t locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        Locator_t locator;
+        IPLocator::setIPv4(locator, 192, 168, 1, 133);
         locator.port = 64863;
 
-        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        DomainParticipantQos serverQos;
         serverQos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
         //!--
     }
 
     {
         //CONF_SERVER_CLIENT_PING
-        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        DomainParticipantQos clientQos;
         clientQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
                 Duration_t(0, 250000000);
         //!--
@@ -776,7 +831,7 @@ void dds_discovery_examples()
 
     {
         //CONF_SERVER_SERVER_PING
-        eprosima::fastdds::dds::DomainParticipantQos serverQos;
+        DomainParticipantQos serverQos;
         serverQos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
                 Duration_t(0, 250000000);
         //!--
@@ -784,15 +839,15 @@ void dds_discovery_examples()
 
     {
         //CONF_SERVER_PING
-        eprosima::fastrtps::rtps::RemoteServerAttributes server;
+        RemoteServerAttributes server;
         server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
 
-        eprosima::fastrtps::rtps::Locator_t locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, 192, 168, 1, 133);
+        Locator_t locator;
+        IPLocator::setIPv4(locator, 192, 168, 1, 133);
         locator.port = 64863;
         server.metatrafficUnicastLocatorList.push_back(locator);
 
-        eprosima::fastdds::dds::DomainParticipantQos clientQos;
+        DomainParticipantQos clientQos;
         clientQos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
         clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
@@ -2817,7 +2872,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
-        eprosima::fastdds::dds::WireProtocolConfigQos wire_protocol;
+        WireProtocolConfigQos wire_protocol;
         //Set the guid prefix
         std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> wire_protocol.prefix;
         //Configure Builtin Attributes
@@ -3306,4 +3361,452 @@ void dds_transport_examples ()
     }
 }
 
+void dds_usecase_examples()
+{
+    using Locator_t = eprosima::fastrtps::rtps::Locator_t;
+    using RemoteServerAttributes = eprosima::fastrtps::rtps::RemoteServerAttributes;
+    using IPLocator = eprosima::fastrtps::rtps::IPLocator;
+    using DiscoveryProtocol_t = eprosima::fastrtps::rtps::DiscoveryProtocol_t;
+    using ThroughputControllerDescriptor = eprosima::fastrtps::rtps::ThroughputControllerDescriptor;
 
+    {
+        //CONF_INITIAL_PEERS_BASIC
+        DomainParticipantQos qos;
+
+        // configure an initial peer on host 192.168.10.13.
+        // The port number corresponds to the well-known port for metatraffic unicast
+        // on participant ID `1` and domain `0`.
+        Locator_t initial_peer;
+        IPLocator::setIPv4(initial_peer, "192.168.10.13");
+        initial_peer.port = 7412;
+        qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer);
+        //!--
+    }
+
+    {
+        //CONF_INITIAL_PEERS_METAUNICAST
+        DomainParticipantQos qos;
+
+        // configure one metatraffic unicast locator on interface 192.168.10.13.
+        // on participant ID `1` and domain `0`.
+        Locator_t meta_unicast_locator;
+        IPLocator::setIPv4(meta_unicast_locator, "192.168.10.13");
+        meta_unicast_locator.port = 7412;
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(meta_unicast_locator);
+        //!--
+    }
+
+    {
+        //CONF_DS_MAIN_SCENARIO_SERVER
+        DomainParticipantQos qos;
+
+        // Configure the current participant as SERVER
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+
+        // Define the listening locator to be on interface 192.168.10.57 and port 56542
+        Locator_t server_locator;
+        IPLocator::setIPv4(server_locator, "192.168.10.57");
+        server_locator.port = 56542;
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+
+        // Set the GUID prefix to identify this server
+        std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> qos.wire_protocol().prefix;
+        //!--
+    }
+
+    {
+        //CONF_DS_MAIN_SCENARIO_CLIENT
+        DomainParticipantQos qos;
+
+        // Configure the current participant as CLIENT
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+
+        // Define a locator for the SERVER Participant on address 192.168.10.57 and port 56542
+        Locator_t remote_server_locator;
+        IPLocator::setIPv4(remote_server_locator, "192.168.10.57");
+        remote_server_locator.port = 56542;
+
+        RemoteServerAttributes remote_server_attr;
+        remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator);
+
+        // Set the GUID prefix to identify the remote server
+        remote_server_attr.ReadguidPrefix("72.61.73.70.66.61.72.6d.74.65.73.74");
+
+        // Connect to the SERVER at the previous locator
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
+        //!--
+    }
+
+    {
+        //CONF_DS_REDUNDANCY_SCENARIO_SERVER
+        // Configure first server's locator on interface 192.168.10.57 and port 56542
+        Locator_t server_locator_1;
+        IPLocator::setIPv4(server_locator_1, "192.168.10.57");
+        server_locator_1.port = 56542;
+
+        // Configure participant_1 as SERVER listening on the previous locator
+        DomainParticipantQos server_1_qos;
+        server_1_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.31") >> server_1_qos.wire_protocol().prefix;
+        server_1_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator_1);
+
+        // Configure second server's locator on interface 192.168.10.60 and port 56543
+        Locator_t server_locator_2;
+        IPLocator::setIPv4(server_locator_2, "192.168.10.60");
+        server_locator_2.port = 56543;
+
+        // Configure participant_2 as SERVER listening on the previous locator
+        DomainParticipantQos server_2_qos;
+        server_2_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.32") >> server_2_qos.wire_protocol().prefix;
+        server_2_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator_2);
+        //!--
+    }
+
+    {
+        //CONF_DS_REDUNDANCY_SCENARIO_CLIENT
+        // Define a locator for the first SERVER Participant
+        Locator_t remote_server_locator_1;
+        IPLocator::setIPv4(remote_server_locator_1, "192.168.10.57");
+        remote_server_locator_1.port = 56542;
+
+        RemoteServerAttributes remote_server_attr_1;
+        remote_server_attr_1.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
+        remote_server_attr_1.metatrafficUnicastLocatorList.push_back(remote_server_locator_1);
+
+        // Define a locator for the second SERVER Participant
+        Locator_t remote_server_locator_2;
+        IPLocator::setIPv4(remote_server_locator_2, "192.168.10.60");
+        remote_server_locator_2.port = 56543;
+
+        RemoteServerAttributes remote_server_attr_2;
+        remote_server_attr_2.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+        remote_server_attr_2.metatrafficUnicastLocatorList.push_back(remote_server_locator_2);
+
+        // Configure the current participant as CLIENT connecting to the SERVERS at the previous locators
+        DomainParticipantQos client_qos;
+        client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_1);
+        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_2);
+        //!--
+    }
+
+    {
+        //CONF_DS_PARTITION_2
+        DomainParticipantQos qos;
+
+        // Configure current Participant as SERVER on address 192.168.10.60
+        Locator_t server_locator;
+        IPLocator::setIPv4(server_locator, "192.168.10.60");
+        server_locator.port = 56543;
+
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.31") >> qos.wire_protocol().prefix;
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+
+        // Add the connection attributes to the remote server.
+        Locator_t remote_server_locator;
+        IPLocator::setIPv4(remote_server_locator, "192.168.10.57");
+        remote_server_locator.port = 56542;
+
+        RemoteServerAttributes remote_server_attr;
+        remote_server_attr.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+        remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator);
+
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
+        //!--
+    }
+
+    {
+        //CONF_DS_PARTITION_3
+        DomainParticipantQos qos;
+
+        // Configure current Participant as SERVER on address 192.168.10.60
+        Locator_t server_locator;
+        IPLocator::setIPv4(server_locator, "192.168.10.54");
+        server_locator.port = 56541;
+
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.33") >> qos.wire_protocol().prefix;
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+
+        // Add the connection attributes to the remote server A.
+        Locator_t remote_server_locator_A;
+        IPLocator::setIPv4(remote_server_locator_A, "192.168.10.60");
+        remote_server_locator_A.port = 56543;
+
+        RemoteServerAttributes remote_server_attr_A;
+        remote_server_attr_A.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
+        remote_server_attr_A.metatrafficUnicastLocatorList.push_back(remote_server_locator_A);
+
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_A);
+
+        // Add the connection attributes to the remote server B.
+        Locator_t remote_server_locator_B;
+        IPLocator::setIPv4(remote_server_locator_B, "192.168.10.57");
+        remote_server_locator_B.port = 56542;
+
+        RemoteServerAttributes remote_server_attr_B;
+        remote_server_attr_B.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
+        remote_server_attr_B.metatrafficUnicastLocatorList.push_back(remote_server_locator_B);
+
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_B);
+        //!--
+    }
+
+    {
+        //STATIC_DISCOVERY_USE_CASE_PUB
+        // Participant configuration
+        DomainParticipantQos participant_qos;
+        participant_qos.name("HelloWorldPublisher");
+        participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+        participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+        participant_qos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldSubscriber.xml");
+
+        // DataWriter configuration
+        DataWriterQos writer_qos;
+        writer_qos.endpoint().user_defined_id = 1;
+        writer_qos.endpoint().entity_id = 2;
+
+        // Create the DomainParticipant
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, participant_qos);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Publisher
+        Publisher* publisher =
+                participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+        if (nullptr != publisher)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Topic with the appropriate name and data type
+        std::string topic_name = "HelloWorldTopic";
+        std::string data_type = "HelloWorld";
+        Topic* topic =
+                participant->create_topic(topic_name, data_type, TOPIC_QOS_DEFAULT);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create the DataWriter
+        DataWriter* writer =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr != writer)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //STATIC_DISCOVERY_USE_CASE_SUB
+        // Participant configuration
+        DomainParticipantQos participant_qos;
+        participant_qos.name("HelloWorldSubscriber");
+        participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
+        participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
+        participant_qos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldPublisher.xml");
+
+        // DataWriter configuration
+        DataWriterQos writer_qos;
+        writer_qos.endpoint().user_defined_id = 3;
+        writer_qos.endpoint().entity_id = 4;
+
+        // Create the DomainParticipant
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, participant_qos);
+        if (nullptr != participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Subscriber
+        Subscriber* subscriber =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr != subscriber)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Topic with the appropriate name and data type
+        std::string topic_name = "HelloWorldTopic";
+        std::string data_type = "HelloWorld";
+        Topic* topic =
+                participant->create_topic(topic_name, data_type, TOPIC_QOS_DEFAULT);
+        if (nullptr != topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create the DataReader
+        DataReader* reader =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr != reader)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //CONF-QOS-INCREASE-SOCKETBUFFERS
+        DomainParticipantQos participant_qos;
+
+        // Increase the sending buffer size
+        participant_qos.transport().send_socket_buffer_size = 1048576;
+
+        // Increase the receiving buffer size
+        participant_qos.transport().listen_socket_buffer_size = 4194304;
+        //!--
+    }
+
+    {
+        //CONF-QOS-FLOWCONTROLLER
+        // Limit to 300kb per second.
+        ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000};
+
+        DataWriterQos qos;
+        qos.throughput_controller(slowPublisherThroughputController);
+        //!--
+    }
+
+    {
+        //CONF_QOS_TUNING_RELIABLE_WRITER
+        DataWriterQos qos;
+        qos.reliable_writer_qos().times.heartbeatPeriod.seconds = 0;
+        qos.reliable_writer_qos().times.heartbeatPeriod.nanosec = 500000000; //500 ms
+        //!--
+    }
+
+    {
+        //DDS_MULTICAST_DELIVERY
+        DataWriterQos qos;
+
+        // Add new multicast locator with IP 239.255.0.4 and port 7900
+        eprosima::fastrtps::rtps::Locator_t new_multicast_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
+        new_multicast_locator.port = 7900;
+        qos.endpoint().multicast_locator_list.push_back(new_multicast_locator);
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-PARTICIPANTS
+        DomainParticipantQos qos;
+
+        // Fix the size of discovered participants to 3
+        // This will effectively preallocate the memory during initialization
+        qos.allocation().participants =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+
+        // Fix the size of discovered DataWriters to 1 per DomainParticipant
+        // Fix the size of discovered DataReaders to 3 per DomainParticipant
+        // This will effectively preallocate the memory during initialization
+        qos.allocation().writers =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        qos.allocation().readers =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-PARAMETERS
+        DomainParticipantQos qos;
+
+        // Fix the size of the complete user data field to 256 octets
+        qos.allocation().data_limits.max_user_data = 256u;
+        // Fix the size of the complete partitions field to 256 octets
+        qos.allocation().data_limits.max_partitions = 256u;
+        // Fix the size of the complete properties field to 512 octets
+        qos.allocation().data_limits.max_properties = 512u;
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-WRITER
+        DataWriterQos qos;
+
+        // Fix the size of matched DataReaders to 3
+        // This will effectively preallocate the memory during initialization
+        qos.writer_resource_limits().matched_subscriber_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-READER
+        DataReaderQos qos;
+
+        // Fix the size of matched DataWriters to 1
+        // This will effectively preallocate the memory during initialization
+        qos.reader_resource_limits().matched_publisher_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        //!--
+    }
+
+    {
+        //CONF-ALLOCATION-QOS-EXAMPLE
+        // DomainParticipant configuration
+        //////////////////////////////////
+        DomainParticipantQos participant_qos;
+
+        // We know we have 3 participants on the domain
+        participant_qos.allocation().participants =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        // We know we have at most 2 readers on each participant
+        participant_qos.allocation().readers =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+        // We know we have at most 1 writer on each participant
+        participant_qos.allocation().writers =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+
+        // We know the maximum size of partition data
+        participant_qos.allocation().data_limits.max_partitions = 256u;
+        // We know the maximum size of user data
+        participant_qos.allocation().data_limits.max_user_data = 256u;
+        // We know the maximum size of properties data
+        participant_qos.allocation().data_limits.max_properties = 512u;
+
+
+        // DataWriter configuration for Topic 1
+        ///////////////////////////////////////
+        DataWriterQos writer1_qos;
+
+        // We know we will only have three matching subscribers
+        writer1_qos.writer_resource_limits().matched_subscriber_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+
+        // DataWriter configuration for Topic 2
+        ///////////////////////////////////////
+        DataWriterQos writer2_qos;
+
+        // We know we will only have two matching subscribers
+        writer2_qos.writer_resource_limits().matched_subscriber_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+
+
+        // DataReader configuration for both Topics
+        ///////////////////////////////////////////
+        DataReaderQos reader_qos;
+
+        // We know we will only have one matching publisher
+        reader_qos.reader_resource_limits().matched_publisher_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        //!--
+    }
+
+}

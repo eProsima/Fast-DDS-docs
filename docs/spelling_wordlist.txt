@@ -80,6 +80,7 @@ ignoreParticipantFlags
 interoperability
 Intra
 IPv
+kB
 libs
 lifecycle
 LogTopic
@@ -115,6 +116,7 @@ preallocates
 preprocessor
 QoS
 QosPolicyCount
+quadratically
 readNextData
 reconfigurations
 redistributable

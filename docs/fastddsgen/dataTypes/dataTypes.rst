@@ -143,35 +143,10 @@ The following IDL structure:
 
 Would be converted to:
 
-.. code-block::
-
-    class Structure
-    {
-    public:
-       Structure();
-       ~Structure();
-       Structure(const Structure &x);
-       Structure(Structure &&x);
-       Structure& operator=( const Structure &x);
-       Structure& operator=(Structure &&x);
-
-       void octet_value(uint8_t _octet_value);
-       uint8_t octet_value() const;
-       uint8_t& octet_value();
-       void long_value(int64_t _long_value);
-       int64_t long_value() const;
-       int64_t& long_value();
-       void string_value(const std::string
-          &_string_value);
-       void string_value(std::string &&_string_value);
-       const std::string& string_value() const;
-       std::string& string_value();
-
-    private:
-       uint8_t m_octet_value;
-       int64_t m_long_value;
-       std::string m_string_value;
-    };
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: //STRUCTURES_DATA_TYPE
+   :end-before: //!
 
 Structures can inherit from other structures, extending their member set.
 
@@ -189,17 +164,10 @@ Structures can inherit from other structures, extending their member set.
 
 In this case, the resulting C++ code will be:
 
-.. code-block::
-
-    class ParentStruct
-    {
-        ...
-    };
-
-    class ChildStruct : public ParentStruct
-    {
-        ...
-    };
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: //STRUCTURE_INHERITANCE
+   :end-before: //!
 
 Unions
 ^^^^^^
@@ -224,45 +192,16 @@ The following IDL union:
 
 Would be converted to:
 
-.. code-block::
-
-    class Union
-    {
-    public:
-       Union();
-       ~Union();
-       Union(const Union &x);
-       Union(Union &&x);
-       Union& operator=(const Union &x);
-       Union& operator=(Union &&x);
-
-       void d(int32t __d);
-       int32_t _d() const;
-       int32_t& _d();
-
-       void octet_value(uint8_t _octet_value);
-       uint8_t octet_value() const;
-       uint8_t& octet_value();
-       void long_value(int64_t _long_value);
-       int64_t long_value() const;
-       int64_t& long_value();
-       void string_value(const std::string
-          &_string_value);
-       void string_value(std:: string &&_string_value);
-       const std::string& string_value() const;
-       std::string& string_value();
-
-    private:
-       int32_t m__d;
-       uint8_t m_octet_value;
-       int64_t m_long_value;
-       std::string m_string_value;
-    };
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: //UNION_DATA_TYPE
+   :end-before: //!
 
 Bitsets
 ^^^^^^^
 
-Bitsets are a special kind of structure, which encloses a set of bits. A bitset can represent up to 64 bits.
+Bitsets are a special kind of structure, which encloses a set of bits.
+A bitset can represent up to 64 bits.
 Each member is defined as *bitfield* and eases the access to a part of the bitset.
 
 For example:
@@ -285,27 +224,17 @@ The type MyBitset will store a total of 25 bits (3 + 10 + 12) and will require 3
 
 The resulting C++ code will be similar to:
 
-.. code-block::
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: //BITSET_DATA_TYPE
+   :end-before: //!
 
-    class MyBitset
-    {
-    public:
-        void a(char _a);
-        char a() const;
-
-        void b(uint16_t _b);
-        uint16_t b() const;
-
-        void c(int32_t _c);
-        int32_t c() const;
-    private:
-        std::bitset<25> m_bitset;
-    };
-
-Internally is stored as a std::bitset. For each bitfield, getter and setter methods are generated with the
-smaller possible primitive unsigned type to access it. In the case of bitfield 'c', the user has established
-that this accessing type will be **int**, so the generated code uses **int32_t** instead of automatically
-use **uint16_t**.
+Internally is stored as a ``std::bitset``.
+For each bitfield, getter and setter methods are generated with the smaller possible primitive unsigned type to
+access it.
+In the case of bitfield 'c', the user has established that this accessing type will be ``int``, so the generated code
+uses ``int32_t`` instead of automatically
+use ``uint16_t``.
 
 Bitsets can inherit from other bitsets, extending their member set.
 
@@ -323,17 +252,10 @@ Bitsets can inherit from other bitsets, extending their member set.
 
 In this case, the resulting C++ code will be:
 
-.. code-block::
-
-    class ParentBitset
-    {
-        ...
-    };
-
-    class ChildBitset : public ParentBitset
-    {
-        ...
-    };
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: //BITSET_INHERITANCE
+   :end-before: //!
 
 Note that in this case, ChildBitset will have two ``std::bitset`` members, one belonging to ParentBitset and the
 other belonging to ChildBitset.
@@ -357,14 +279,10 @@ The following IDL enumeration:
 
 Would be converted to:
 
-.. code-block::
-
-    enum Enumeration : uint32_t
-    {
-        RED,
-        GREEN,
-        BLUE
-    };
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: //ENUMERATION_DATA_TYPE
+   :end-before: //!
 
 Bitmasks
 ^^^^^^^^
@@ -388,21 +306,16 @@ The following IDL bitmask:
 
 Would be converted to:
 
-.. code-block::
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: //BITMASK_DATA_TYPE
+   :end-before: //!
 
-    enum MyBitMask : uint8_t
-    {
-        flag0 = 0x01 << 0,
-        flag1 = 0x01 << 1,
-        flag4 = 0x01 << 4,
-        flag6 = 0x01 << 6,
-        flag7 = 0x01 << 7
-    };
-
-The annotation *bit_bound* defines the width of the associated enumeration. It must be a positive number between
-1 and 64. If omitted, it will be 32 bits.
-For each *flag*, the user can use the annotation *position* to define the position of the flag. If omitted, it will
-be auto incremented from the last defined flag, starting at 0.
+The annotation *bit_bound* defines the width of the associated enumeration.
+It must be a positive number between 1 and 64.
+If omitted, it will be 32 bits.
+For each *flag*, the user can use the annotation *position* to define the position of the flag.
+If omitted, it will be auto incremented from the last defined flag, starting at 0.
 
 Keyed Types
 ^^^^^^^^^^^
@@ -422,29 +335,30 @@ For example in the following IDL file the *id* and *type* field would be the key
     };
 
 Fast DDS-Gen automatically detects these tags and correctly generates the serialization methods for the key generation
-function in TopicDataType (`getKey`).
+function in TopicDataType (:func:`getKey`).
 This function will obtain the 128-bit MD5 digest of the big-endian serialization of the Key Members.
 
 Including other IDL files
 -------------------------
 
-You can include another IDL files in yours in order to use data types defined in them. Fast DDS-Gen uses a C/C++
-preprocessor for this purpose, and you can use ``#include`` directive to include an IDL file.
+You can include another IDL files in yours in order to use data types defined in them.
+Fast DDS-Gen uses a C/C++ preprocessor for this purpose, and you can use ``#include`` directive to include an IDL file.
 
-.. code-block:: c
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: //INCLUDE_MORE_IDL_FILES
+   :end-before: //!
 
-    #include "OtherFile.idl"
-    #include <AnotherFile.idl>
-
-If Fast DDS-Gen doesn't find a C/C++ preprocessor in default system paths, you could specify the preprocessor path
+If Fast DDS-Gen does not find a C/C++ preprocessor in default system paths, the preprocessor path can be specified
 using parameter ``-ppPath``.
-If you want to disable the usage of the preprocessor, you could use the parameter ``-ppDisable``.
+The parameter ``-ppDisable`` can be used to disable the usage of the C/C++ preprocessor.
 
 
 Annotations
 --------------
 
-The application allows the user to define and use their own annotations as defined in the IDL 4.2 standard.
+The application allows the user to define and use their own annotations as defined in the
+`OMG IDL 4.2 specification <https://www.omg.org/spec/IDL/4.2/>`_.
 User annotations will be passed to TypeObject generated code if the ``-typeobject`` argument was used.
 
 .. code-block:: idl
@@ -539,9 +453,10 @@ IDL 4.2 allows using the following names for primitive types:
 Forward declaration
 ---------------------
 
-The application allows forward declarations:
+Fast DDS-Gen supports forward declarations.
+As the example shows, this allows declaring inter-dependant structures, unions, etc.
 
-.. code-block::
+.. code-block:: idl
 
     struct ForwardStruct;
 
@@ -559,5 +474,3 @@ The application allows forward declarations:
         default:
             string empty;
     };
-
-As the example shows, this allows declaring inter-dependant structures, unions, etc.

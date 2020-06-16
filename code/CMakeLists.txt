@@ -192,7 +192,7 @@ if(BUILDCOP)
     ####################################################################################################################
     # Compile example
     ####################################################################################################################
-    add_executable(doctest CodeTester.cpp DDSCodeTester.cpp)
+    add_executable(doctest CodeTester.cpp DDSCodeTester.cpp FastDDSGenCodeTester.cpp)
     target_include_directories(doctest PRIVATE ${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/src/cpp
         ${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/thirdparty/tinyxml2)
     target_link_libraries(doctest fastrtps)

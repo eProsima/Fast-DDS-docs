@@ -143,7 +143,7 @@ The following IDL structure:
 
 Would be converted to:
 
-.. code-block:: cpp
+.. code-block::
 
     class Structure
     {
@@ -189,7 +189,7 @@ Structures can inherit from other structures, extending their member set.
 
 In this case, the resulting C++ code will be:
 
-.. code-block:: cpp
+.. code-block::
 
     class ParentStruct
     {
@@ -224,7 +224,7 @@ The following IDL union:
 
 Would be converted to:
 
-.. code-block:: cpp
+.. code-block::
 
     class Union
     {
@@ -285,7 +285,7 @@ The type MyBitset will store a total of 25 bits (3 + 10 + 12) and will require 3
 
 The resulting C++ code will be similar to:
 
-.. code-block:: cpp
+.. code-block::
 
     class MyBitset
     {
@@ -323,7 +323,7 @@ Bitsets can inherit from other bitsets, extending their member set.
 
 In this case, the resulting C++ code will be:
 
-.. code-block:: cpp
+.. code-block::
 
     class ParentBitset
     {
@@ -357,7 +357,7 @@ The following IDL enumeration:
 
 Would be converted to:
 
-.. code-block:: cpp
+.. code-block::
 
     enum Enumeration : uint32_t
     {
@@ -388,7 +388,7 @@ The following IDL bitmask:
 
 Would be converted to:
 
-.. code-block:: cpp
+.. code-block::
 
     enum MyBitMask : uint8_t
     {
@@ -541,7 +541,7 @@ Forward declaration
 
 The application allows forward declarations:
 
-.. code-block:: cpp
+.. code-block::
 
     struct ForwardStruct;
 

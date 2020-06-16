@@ -50,6 +50,7 @@ eProsima Fast DDS Documentation
    /fastddsgen/geninfo/geninfo
    /fastddsgen/pubsub_app/pubsub_app
    /fastddsgen/genuse/genuse
+   /fastddsgen/dataTypes/dataTypes
 
 .. _index_notes:
 

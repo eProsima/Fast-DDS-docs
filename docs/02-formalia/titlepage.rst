@@ -169,6 +169,14 @@ Support available at:
 * Email: support@eprosima.com
 * Phone: +34 91 804 34 48
 
+Contributing to the documentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*Fast DDS-Docs* is an open source project, and as such all contributions, both in the form of feedback and content
+generation, are most welcomed.
+To make such contributions, please refer to the Contribution Guidelines hosted in our
+`Fast DDS-Docs <https://github.com/eProsima/Fast-RTPS-docs>`_ GitHub repository.
+
 Structure of the documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

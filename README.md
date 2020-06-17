@@ -2,20 +2,27 @@
 
 [![Releases](https://img.shields.io/github/release/eProsima/Fast-DDS.svg)](https://github.com/eProsima/Fast-DDS/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Linux Build Status](http://jenkins.eprosima.com:8080/job/nightly_fastdds-docs_master/badge/icon)](http://jenkins.eprosima.com:8080/job/nightly_fastdds-docs_master/)
+[![Linux Build Status](http://jenkins.eprosima.com:8080/job/nightly_fastdds-docs_master/badge/icon?subject=CI%20testing%20)](http://jenkins.eprosima.com:8080/job/nightly_fastdds-docs_master/)
 
 <a href="http://www.eprosima.com"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSd0PDlVz1U_7MgdTe0FRIWD0Jc9_YH-gGi0ZpLkr-qgCI6ZEoJZ5GBqQ" align="left" hspace="8" vspace="2" width="100" height="100" ></a>
 
-*eprosima Fast DDS* is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG. eProsima Fast DDS holds the benefit of being standalone and up-to-date, as most vendor solutions either implement RTPS as a tool to implement DDS or use past versions of the specification.
+*Fast DDS-Docs* is an open source project aiming at documenting *Fast DDS* APIs, functionalities, and modes of use.
+Please refer to [LICENSE](LICENSE) and [Contributing](#contributing) for any use or contribution you intend to do of this project.
 
-For more information about the library, check out the [Fast DDS documentation](https://fast-dds.docs.eprosima.com/en/latest/).
+*eprosima Fast DDS* is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium.
+RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG.
+eProsima Fast DDS holds the benefit of being standalone and up-to-date, as most vendor solutions either implement RTPS as a tool to implement DDS or use past versions of the specification.
 You can find all the library's source code on our [GitHub repository](https://github.com/eProsima/Fast-DDS).
+
+The documentation is built using [Sphinx](https://www.sphinx-doc.org), and it is hosted at [Read the Docs](https://readthedocs.org).
+The online documentation generated with this project can be found in [Fast DDS documentation](https://fast-dds.docs.eprosima.com).
 
 1. [Installation Guide](#installation-guide)
 1. [Getting Started](#getting-started)
 1. [Generating documentation in other formats](#generating-documentation-in-other-formats)
 1. [Running documentation tests](#running-documentation-tests)
 1. [Simulating Read the Docs](#simulating-read-the-docs)
+1. [Contributing](#contributing)
 
 ## Installation Guide
 
@@ -140,3 +147,7 @@ READTHEDOCS=True FASTDDS_BRANCH=<branch> sphinx-build \
     -d <abs_path_to_docs_repo>/fastdds-docs/build/doctrees \
     docs <abs_path_to_docs_repo>/fastdds-docs/build/html
 ```
+
+## Contributing
+
+If you are interested in making some contributions, either in the form of an issue or a pull request, please refer to our [Contribution Guidelines](CONTRIBUTING.md).

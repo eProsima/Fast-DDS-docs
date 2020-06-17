@@ -1,5 +1,5 @@
 Background
-^^^^^^^^^^^
+-----------
 
 *eProsima Fast DDS-Gen* is a Java application that generates eProsima Fast DDS source code using the data types defined
 in an IDL (Interface Definition Language) file.

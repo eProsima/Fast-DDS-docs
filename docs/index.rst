@@ -48,8 +48,8 @@ eProsima Fast DDS Documentation
    :numbered: 5
 
    /fastddsgen/introduction/introduction
-   /fastddsgen/pubsub_app/pubsub_app
    /fastddsgen/usage/usage
+   /fastddsgen/pubsub_app/pubsub_app
    /fastddsgen/dataTypes/dataTypes
 
 .. _index_notes:

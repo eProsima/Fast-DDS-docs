@@ -1,3 +1,5 @@
+.. include:: ../includes/aliases.rst
+
 .. _fastddsgen_intro:
 
 Introduction
@@ -7,6 +9,11 @@ Introduction
 defined in an IDL (Interface Definition Language) file.
 This generated source code can be used in any *Fast DDS* application in order to define the data type of a topic,
 which will later be used to publish or subscribe.
+*eProsima Fast DDS* defines the data type exchanged in a Topic through two classes: the |TypeSupport| and the
+|TopicDataType|. |TopicDataType| describes the data type exchanged between a publication and a subscription, i.e.
+the data corresponding to a Topic; while |TypeSupport| encapsulates an instance of TopicDataType, providing
+the functions needed to register the type and interact with the publication and subscription.
+Please refer to :ref:`dds_layer_definition_data_types` for more information on data types.
 
 To declare the structured data, the IDL format must be used.
 IDL is a specification language, made by `OMG <https://www.omg.org/>`_ (Object Management Group), which describes an

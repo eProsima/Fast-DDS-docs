@@ -1,53 +1,62 @@
 Generating a minimal functional example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------
 
-If you have followed the steps outlined in the Installation Manual, you should have *Fast DDS*, Fast CDR, and
-Fast-RTPS-Gen installed.
+If the steps outlined in the Installation Manual have been followed, then *Fast DDS*, *Fast CDR*, and
+Fast-RTPS-Gen should be installed in the system.
 
 Generate the Fast DDS source code
-***********************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The application files are generated using the following command.
-The `-example` option creates an example application, and the CMake files needed to build it.
+The ``-example`` option creates an example application, and the CMake files needed to build it.
+In the workspace directory (*FastDDSGenHelloWorld* directory), execute one of the following commands according to the
+installation followed and the operating system.
 
-    * On Linux:
+* On Linux:
 
-        - If you have followed the **colcon installation**:
+    - For an **installation from binaries** or a **colcon installation**:
 
-        .. code:: bash
+    .. code:: bash
 
-            <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen -example CMake HelloWorld.idl
 
-        - However, if you have followed the **stand-alone installation**, run:
+    - For a **stand-alone installation**, run:
 
-        .. code:: bash
+    .. code:: bash
 
-            <path-to-Fast-DDS-Gen>/scripts/fastrtpsgen -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-Gen>/scripts/fastrtpsgen -example CMake HelloWorld.idl
 
-    * On Windows:
+* On Windows:
 
-        - If you have followed the **colcon installation**:
+    - For a **colcon installation**:
 
-        .. code:: bash
+    .. code:: bash
 
-            <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
 
-        - However, if you have followed the **stand-alone installation**, run:
+    - For a **stand-alone installation**, run:
 
-        .. code:: bash
+    .. code:: bash
 
-            <path-to-Fast-DDS-Gen>/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-Gen>/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+
+    - For an **installation from binaries**, run:
+
+    .. code:: bash
+
+        $INST_DIR/src/fastrtpsgen/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+
 
 Build the Fast DDS application
-********************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Then, compile the generated code.
+Then, compile the generated code executing the following commands from the *FastDDSGenHelloWorld* directory.
 
     * On Linux:
 
     .. code:: bash
 
-        mkdir build && cd build
+        cd build
         cmake ..
         make
 
@@ -55,14 +64,14 @@ Then, compile the generated code.
 
     .. code:: bash
 
-        mkdir build && cd build
+        cd build
         cmake -G "Visual Studio 15 2017 Win64" ..
         cmake --build .
 
 Run the Fast DDS application
-*****************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The application build can be used to spawn any number of publishers and subscribers associated with your topic.
+The application build can be used to spawn any number of publishers and subscribers associated with the topic.
 
     * On Linux:
 
@@ -79,11 +88,11 @@ The application build can be used to spawn any number of publishers and subscrib
         HelloWorld.exe subscriber
 
 
-Each time you press <Enter\> on the Publisher, a new datagram is generated, sent over the network and receiver by
+Each time <Enter\> is pressed on the Publisher, a new datagram is generated, sent over the network and receiver by
 Subscribers currently online.
 If more than one subscriber is available, it can be seen that the message is equally received on all listening nodes.
 
-You can also modify any values on your custom, IDL-generated data type.
+The values on the custom IDL-generated data type can also be modified as indicated below.
 
 .. literalinclude:: /../code/CodeTester.cpp
    :language: c++
@@ -93,4 +102,4 @@ You can also modify any values on your custom, IDL-generated data type.
 
 .. warning::
 
-    You may need to set up a special rule in your Firewall for *eprosima Fast DDS* to work correctly on Windows.
+    It may be necessary to set up a special rule in the Firewall for *eprosima Fast DDS* to work correctly on Windows.

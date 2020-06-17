@@ -1,7 +1,7 @@
 .. _fastddsgen_pubsub_app:
 
 Building a publish/subscribe application
------------------------------------------------
+=========================================
 
 *Fast DDS-Gen* can be used to build a fully functional publication/subscription application from an IDL file that
 defines the Topic under which messages are published and received.
@@ -16,6 +16,10 @@ desired, all belonging to the same Domain and communicating using the same Topic
 .. include:: includes/background.rst
 
 .. include:: includes/prerequisites.rst
+
+.. include:: includes/workspace.rst
+
+.. include:: includes/dependencies.rst
 
 .. include:: includes/idl_file.rst
 

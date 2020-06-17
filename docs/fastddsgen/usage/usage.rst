@@ -1,4 +1,4 @@
-.. include:: includes/aliases.rst
+.. include:: ../includes/aliases.rst
 
 .. _fastddsgen_usage:
 
@@ -10,7 +10,7 @@ This section explains the usage of *Fast DDS-Gen*  tool and briefly describes th
 Running the *Fast DDS-Gen* Java application
 ----------------------------------------------
 
-First the steps outlined in :ref:`Linux installation of Fast DDS-Gen <fastddsgen_sl>` or
+First, the steps outlined in :ref:`Linux installation of Fast DDS-Gen <fastddsgen_sl>` or
 :ref:`Window installation of Fast DDS-Gen <fastddsgen_sw>` must be accomplished for the installation of *Fast DDS-Gen*.
 According to this section, an executable file for Linux and Windows that runs the Java *Fast DDS-Gen* application is
 available in the ``scripts`` folder.

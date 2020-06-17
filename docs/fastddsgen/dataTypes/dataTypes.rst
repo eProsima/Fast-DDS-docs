@@ -20,66 +20,66 @@ Primitive types
 
 The following table shows the basic IDL types supported by *Fast DDS-Gen* and how they are mapped to C++11.
 
-    +--------------------+-------------+
-    | IDL                | C++11       |
-    +====================+=============+
-    | char               | char        |
-    +--------------------+-------------+
-    | octet              | uint8_t     |
-    +--------------------+-------------+
-    | short              | int16_t     |
-    +--------------------+-------------+
-    | unsigned short     | uint16_t    |
-    +--------------------+-------------+
-    | long               | int32_t     |
-    +--------------------+-------------+
-    | unsigned long      | uint32_t    |
-    +--------------------+-------------+
-    | long long          | int64_t     |
-    +--------------------+-------------+
-    | unsigned long long | uint64_t    |
-    +--------------------+-------------+
-    | float              | float       |
-    +--------------------+-------------+
-    | double             | double      |
-    +--------------------+-------------+
-    | long double        | long double |
-    +--------------------+-------------+
-    | boolean            | bool        |
-    +--------------------+-------------+
-    | string             | std::string |
-    +--------------------+-------------+
++--------------------+-------------+
+| IDL                | C++11       |
++====================+=============+
+| char               | char        |
++--------------------+-------------+
+| octet              | uint8_t     |
++--------------------+-------------+
+| short              | int16_t     |
++--------------------+-------------+
+| unsigned short     | uint16_t    |
++--------------------+-------------+
+| long               | int32_t     |
++--------------------+-------------+
+| unsigned long      | uint32_t    |
++--------------------+-------------+
+| long long          | int64_t     |
++--------------------+-------------+
+| unsigned long long | uint64_t    |
++--------------------+-------------+
+| float              | float       |
++--------------------+-------------+
+| double             | double      |
++--------------------+-------------+
+| long double        | long double |
++--------------------+-------------+
+| boolean            | bool        |
++--------------------+-------------+
+| string             | std::string |
++--------------------+-------------+
 
 Arrays
 ^^^^^^
 
 *Fast DDS-Gen* supports unidimensional and multidimensional arrays.
 Arrays are always mapped to ``std::array`` containers.
-The following table shows the array types supported and how they map.
+The following table shows the array types supported and their mapping.
 
-    +-------------------------+--------------------------+
-    | IDL                     | C++11                    |
-    +=========================+==========================+
-    | char a[5]               | std::array<char,5> a     |
-    +-------------------------+--------------------------+
-    | octet a[5]              | std::array<uint8_t,5> a  |
-    +-------------------------+--------------------------+
-    | short a[5]              | std::array<int16_t,5> a  |
-    +-------------------------+--------------------------+
-    | unsigned short a[5]     | std::array<uint16_t,5> a |
-    +-------------------------+--------------------------+
-    | long a[5]               | std::array<int32_t,5> a  |
-    +-------------------------+--------------------------+
-    | unsigned long a[5]      | std::array<uint32_t,5> a |
-    +-------------------------+--------------------------+
-    | long long a[5]          | std::array<int64_t,5> a  |
-    +-------------------------+--------------------------+
-    | unsigned long long a[5] | std::array<uint64_t,5> a |
-    +-------------------------+--------------------------+
-    | float a[5]              | std::array<float,5> a    |
-    +-------------------------+--------------------------+
-    | double a[5]             | std::array<double,5> a   |
-    +-------------------------+--------------------------+
++-------------------------+--------------------------+
+| IDL                     | C++11                    |
++=========================+==========================+
+| char a[5]               | std::array<char,5> a     |
++-------------------------+--------------------------+
+| octet a[5]              | std::array<uint8_t,5> a  |
++-------------------------+--------------------------+
+| short a[5]              | std::array<int16_t,5> a  |
++-------------------------+--------------------------+
+| unsigned short a[5]     | std::array<uint16_t,5> a |
++-------------------------+--------------------------+
+| long a[5]               | std::array<int32_t,5> a  |
++-------------------------+--------------------------+
+| unsigned long a[5]      | std::array<uint32_t,5> a |
++-------------------------+--------------------------+
+| long long a[5]          | std::array<int64_t,5> a  |
++-------------------------+--------------------------+
+| unsigned long long a[5] | std::array<uint64_t,5> a |
++-------------------------+--------------------------+
+| float a[5]              | std::array<float,5> a    |
++-------------------------+--------------------------+
+| double a[5]             | std::array<double,5> a   |
++-------------------------+--------------------------+
 
 Sequences
 ^^^^^^^^^
@@ -87,29 +87,29 @@ Sequences
 *Fast DDS-Gen* supports sequences, which map into the STD vector container.
 The following table represents how the map between IDL and C++11 is handled.
 
-    +------------------------------+--------------------------+
-    | IDL                          | C++11                    |
-    +==============================+==========================+
-    | sequence<char>               |    std::vector<char>     |
-    +------------------------------+--------------------------+
-    | sequence<octet>              |    std::vector<uint8_t>  |
-    +------------------------------+--------------------------+
-    | sequence<short>              |    std::vector<int16_t>  |
-    +------------------------------+--------------------------+
-    | sequence<unsigned short>     |    std::vector<uint16_t> |
-    +------------------------------+--------------------------+
-    | sequence<long>               |    std::vector<int32_t>  |
-    +------------------------------+--------------------------+
-    | sequence<unsigned long>      |    std::vector<uint32_t> |
-    +------------------------------+--------------------------+
-    | sequence<long long>          |    std::vector<int64_t>  |
-    +------------------------------+--------------------------+
-    | sequence<unsigned long long> |    std::vector<uint64_t> |
-    +------------------------------+--------------------------+
-    | sequence<float>              |    std::vector<float>    |
-    +------------------------------+--------------------------+
-    | sequence<double>             |    std::vector<double>   |
-    +------------------------------+--------------------------+
++------------------------------+--------------------------+
+| IDL                          | C++11                    |
++==============================+==========================+
+| sequence<char>               |    std::vector<char>     |
++------------------------------+--------------------------+
+| sequence<octet>              |    std::vector<uint8_t>  |
++------------------------------+--------------------------+
+| sequence<short>              |    std::vector<int16_t>  |
++------------------------------+--------------------------+
+| sequence<unsigned short>     |    std::vector<uint16_t> |
++------------------------------+--------------------------+
+| sequence<long>               |    std::vector<int32_t>  |
++------------------------------+--------------------------+
+| sequence<unsigned long>      |    std::vector<uint32_t> |
++------------------------------+--------------------------+
+| sequence<long long>          |    std::vector<int64_t>  |
++------------------------------+--------------------------+
+| sequence<unsigned long long> |    std::vector<uint64_t> |
++------------------------------+--------------------------+
+| sequence<float>              |    std::vector<float>    |
++------------------------------+--------------------------+
+| sequence<double>             |    std::vector<double>   |
++------------------------------+--------------------------+
 
 Maps
 ^^^^
@@ -117,18 +117,19 @@ Maps
 *Fast DDS-Gen* supports maps, which are equivalent to the STD map container.
 The equivalence between types is handled in the same way as for sequences_.
 
-    +-------------------------------+---------------------------------+
-    | IDL                           | C++11                           |
-    +===============================+=================================+
-    | map<char, unsigned long long> |    std::map<char, uint64_T>     |
-    +-------------------------------+---------------------------------+
++-------------------------------+---------------------------------+
+| IDL                           | C++11                           |
++===============================+=================================+
+| map<char, unsigned long long> |    std::map<char, uint64_T>     |
++-------------------------------+---------------------------------+
 
 Structures
 ^^^^^^^^^^
 
 You can define an IDL structure with a set of members with multiple types.
-It will be converted into a C++ class with each member mapped as an attribute plus methods to *get* and *set* each
-member.
+It will be converted into a C++ class in which the members of the structure defined via IDL are mapped to private data
+members of the class.
+Furthermore, :func:`set` and :func:`get` member functions are created to access these private data members.
 
 The following IDL structure:
 
@@ -145,7 +146,7 @@ Would be converted to:
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
-   :start-after: //STRUCTURES_DATA_TYPE
+   :start-after: // STRUCTURES_DATA_TYPE
    :end-before: //!
 
 Structures can inherit from other structures, extending their member set.
@@ -166,7 +167,7 @@ In this case, the resulting C++ code will be:
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
-   :start-after: //STRUCTURE_INHERITANCE
+   :start-after: // STRUCTURE_INHERITANCE
    :end-before: //!
 
 Unions
@@ -174,7 +175,7 @@ Unions
 
 In IDL, a union is defined as a sequence of members with their own types and a discriminant that specifies which member
 is in use.
-An IDL union type is mapped as a C++ class with access functions to the union members and the discriminant.
+An IDL union type is mapped as a C++ class with member functions to access the union members and the discriminant.
 
 The following IDL union:
 
@@ -194,7 +195,7 @@ Would be converted to:
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
-   :start-after: //UNION_DATA_TYPE
+   :start-after: // UNION_DATA_TYPE
    :end-before: //!
 
 Bitsets
@@ -215,7 +216,7 @@ For example:
         bitfield<12, int> c;
     };
 
-The type MyBitset will store a total of 25 bits (3 + 10 + 12) and will require 32 bits in memory
+The type :class:`MyBitset` will store a total of 25 bits (3 + 10 + 12) and will require 32 bits in memory
 (lowest primitive type to store the bitset's size).
 
 - The bitfield 'a' allows us to access to the first 3 bits (0..2).
@@ -226,15 +227,14 @@ The resulting C++ code will be similar to:
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
-   :start-after: //BITSET_DATA_TYPE
+   :start-after: // BITSET_DATA_TYPE
    :end-before: //!
 
-Internally is stored as a ``std::bitset``.
-For each bitfield, getter and setter methods are generated with the smaller possible primitive unsigned type to
-access it.
+Internally, it is stored as a ``std::bitset``.
+For each bitfield, :func:`get` and :func:`set` member functions are generated with the smaller possible primitive
+unsigned type to access it.
 In the case of bitfield 'c', the user has established that this accessing type will be ``int``, so the generated code
-uses ``int32_t`` instead of automatically
-use ``uint16_t``.
+uses ``int32_t`` instead of automatically use ``uint16_t``.
 
 Bitsets can inherit from other bitsets, extending their member set.
 
@@ -254,16 +254,16 @@ In this case, the resulting C++ code will be:
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
-   :start-after: //BITSET_INHERITANCE
+   :start-after: // BITSET_INHERITANCE
    :end-before: //!
 
-Note that in this case, ChildBitset will have two ``std::bitset`` members, one belonging to ParentBitset and the
-other belonging to ChildBitset.
+Note that in this case, :class:`ChildBitset` will have two ``std::bitset`` data members, one belonging to
+:class:`ParentBitset` and the other belonging to :class:`ChildBitset`.
 
 Enumerations
 ^^^^^^^^^^^^
 
-An enumeration in IDL format is a collection of identifiers that have a numeric value associated.
+An enumeration in IDL format is a collection of identifiers that have an associated numeric value.
 An IDL enumeration type is mapped directly to the corresponding C++11 enumeration definition.
 
 The following IDL enumeration:
@@ -281,14 +281,14 @@ Would be converted to:
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
-   :start-after: //ENUMERATION_DATA_TYPE
+   :start-after: // ENUMERATION_DATA_TYPE
    :end-before: //!
 
 Bitmasks
 ^^^^^^^^
 
-Bitmasks are a special kind of Enumeration to manage masks of bits. It allows defining bit masks based on their
-position.
+Bitmasks are a special kind of Enumeration to manage masks of bits.
+It allows defining bit masks based on their position.
 
 The following IDL bitmask:
 
@@ -308,20 +308,20 @@ Would be converted to:
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
-   :start-after: //BITMASK_DATA_TYPE
+   :start-after: // BITMASK_DATA_TYPE
    :end-before: //!
 
-The annotation *bit_bound* defines the width of the associated enumeration.
+The annotation ``bit_bound`` defines the width of the associated enumeration.
 It must be a positive number between 1 and 64.
 If omitted, it will be 32 bits.
-For each *flag*, the user can use the annotation *position* to define the position of the flag.
+For each ``flag``, the user can use the annotation ``position`` to define the position of the flag.
 If omitted, it will be auto incremented from the last defined flag, starting at 0.
 
 Keyed Types
 ^^^^^^^^^^^
 
 In order to use keyed topics, the user should define some key members inside the structure.
-This is achieved by writing “@Key” before the members of the structure you want to use as keys.
+This is achieved by writing the ``@Key`` annotation before the members of the structure you want to use as keys.
 For example in the following IDL file the *id* and *type* field would be the keys:
 
 .. code-block:: idl
@@ -341,13 +341,13 @@ This function will obtain the 128-bit MD5 digest of the big-endian serialization
 Including other IDL files
 -------------------------
 
-You can include another IDL files in yours in order to use data types defined in them.
+Other IDL files can be included in addition to the current IDL file.
 *Fast DDS-Gen* uses a C/C++ preprocessor for this purpose, and you can use ``#include`` directive to include an IDL
 file.
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
-   :start-after: //INCLUDE_MORE_IDL_FILES
+   :start-after: // INCLUDE_MORE_IDL_FILES
    :end-before: //!
 
 If *Fast DDS-Gen* does not find a C/C++ preprocessor in default system paths, the preprocessor path can be specified
@@ -455,7 +455,7 @@ Forward declaration
 ---------------------
 
 *Fast DDS-Gen* supports forward declarations.
-As the example shows, this allows declaring inter-dependant structures, unions, etc.
+This allows declaring inter-dependant structures, unions, etc.
 
 .. code-block:: idl
 

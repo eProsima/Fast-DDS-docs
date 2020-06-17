@@ -4,7 +4,7 @@
 
 using octet = unsigned char;
 
-//STRUCTURES_DATA_TYPE
+// STRUCTURES_DATA_TYPE
 class Structure
 {
 public:
@@ -12,7 +12,7 @@ public:
     ~Structure();
     Structure(const Structure &x);
     Structure(Structure &&x);
-    Structure& operator=( const Structure &x);
+    Structure& operator=(const Structure &x);
     Structure& operator=(Structure &&x);
 
     void octet_value(uint8_t _octet_value);
@@ -34,7 +34,7 @@ private:
 };
 //!
 
-//STRUCTURE_INHERITANCE
+// STRUCTURE_INHERITANCE
 class ParentStruct
 {
     octet parent_member;
@@ -47,7 +47,7 @@ class ChildStruct : public ParentStruct
 //!
 
 
-//UNION_DATA_TYPE
+// UNION_DATA_TYPE
 class Union
 {
 public:
@@ -82,7 +82,7 @@ private:
 };
 //!
 
-//BITSET_DATA_TYPE
+// BITSET_DATA_TYPE
 class MyBitset
 {
 public:
@@ -100,7 +100,7 @@ private:
 };
 //!
 
-//BITSET_INHERITANCE
+// BITSET_INHERITANCE
 class ParentBitset
 {
     std::bitset<3> parent_member;
@@ -112,7 +112,7 @@ class ChildBitset : public ParentBitset
 };
 //!
 
-//ENUMERATION_DATA_TYPE
+// ENUMERATION_DATA_TYPE
 enum Enumeration : uint32_t
 {
     RED,
@@ -121,7 +121,7 @@ enum Enumeration : uint32_t
 };
 //!
 
-//BITMASK_DATA_TYPE
+// BITMASK_DATA_TYPE
 enum MyBitMask : uint8_t
 {
     flag0 = 0x01 << 0,
@@ -133,7 +133,7 @@ enum MyBitMask : uint8_t
 //!
 
 /*
-//INCLUDE_MORE_IDL_FILES
+// INCLUDE_MORE_IDL_FILES
 #include "OtherFile.idl"
 #include <AnotherFile.idl>
 //!

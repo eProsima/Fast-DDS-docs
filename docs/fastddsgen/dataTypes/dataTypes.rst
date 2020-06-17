@@ -428,29 +428,6 @@ Additionally, the following standard annotations are builtin (recognized and pas
 
 Most unimplemented annotations are related to Extended Types.
 
-IDL 4.2 aliases
-------------------
-
-IDL 4.2 allows using the following names for primitive types:
-
-+------------------------+
-| int8                   |
-+------------------------+
-| uint8                  |
-+------------------------+
-| int16                  |
-+------------------------+
-| uint16                 |
-+------------------------+
-| int32                  |
-+------------------------+
-| uint32                 |
-+------------------------+
-| int64                  |
-+------------------------+
-| uint64                 |
-+------------------------+
-
 Forward declaration
 ---------------------
 
@@ -474,4 +451,46 @@ This allows declaring inter-dependant structures, unions, etc.
             ForwardStruct fw_struct;
         default:
             string empty;
+    };
+
+IDL 4.2 aliases
+------------------
+
+IDL 4.2 allows using the following names for primitive types:
+
++------------------------+
+| int8                   |
++------------------------+
+| uint8                  |
++------------------------+
+| int16                  |
++------------------------+
+| uint16                 |
++------------------------+
+| int32                  |
++------------------------+
+| uint32                 |
++------------------------+
+| int64                  |
++------------------------+
+| uint64                 |
++------------------------+
+
+IDL 4.2 comments
+-----------------
+
+There are two ways to write IDL comments:
+
+* The characters ``/*`` start a comment, which terminates with the characters ``*/``.
+* The characters ``//`` start a comment, which terminates at the end of the line on which they occur.
+
+Please refer to the `IDL 4.2 specification <https://www.omg.org/spec/IDL/4.2/PDF>`_ (*Section 7.2 Lexical Conventions*)
+for more information on IDL conventions.
+
+.. code-block:: idl
+
+    /* MyStruct definition */
+    struct MyStruc
+    {
+        string mymessage;   // mymessage data member.
     };

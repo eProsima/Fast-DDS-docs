@@ -2,7 +2,7 @@ Summary and next steps
 ----------------------
 
 In this tutorial a publisher and a subscriber DDS application using *Fast DDS-Gen* has been built.
-You have also learned how to generate IDL files that contain the description of the Topic data type.
+The tutorial also describes how to generate IDL files that contain the description of the Topic data type.
 
 To continue developing DDS applications please take a look at the
 `eProsima Fast DDS examples on github <https://github.com/eProsima/Fast DDS/tree/master/examples>`_

@@ -52,40 +52,40 @@ Build the Fast DDS application
 
 Then, compile the generated code executing the following commands from the *FastDDSGenHelloWorld* directory.
 
-    * On Linux:
+* On Linux:
 
-    .. code:: bash
+.. code:: bash
 
-        cd build
-        cmake ..
-        make
+    cd build
+    cmake ..
+    make
 
-    * On Windows:
+* On Windows:
 
-    .. code:: bash
+.. code:: bash
 
-        cd build
-        cmake -G "Visual Studio 15 2017 Win64" ..
-        cmake --build .
+    cd build
+    cmake -G "Visual Studio 15 2017 Win64" ..
+    cmake --build .
 
 Run the Fast DDS application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The application build can be used to spawn any number of publishers and subscribers associated with the topic.
 
-    * On Linux:
+* On Linux:
 
-    .. code:: bash
+.. code:: bash
 
-        ./HelloWorld publisher
-        ./HelloWorld subscriber
+    ./HelloWorld publisher
+    ./HelloWorld subscriber
 
-    * On Windows:
+* On Windows:
 
-    .. code:: bash
+.. code:: bash
 
-        HelloWorld.exe publisher
-        HelloWorld.exe subscriber
+    HelloWorld.exe publisher
+    HelloWorld.exe subscriber
 
 
 Each time <Enter\> is pressed on the Publisher, a new datagram is generated, sent over the network and receiver by

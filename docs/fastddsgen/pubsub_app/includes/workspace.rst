@@ -32,4 +32,4 @@ Execute the following command to create the directory in which the files generat
 .. code:: bash
 
     mkdir FastDDSGenHelloWorld && cd FastDDSGenHelloWorld
-    mkdir src build
+    mkdir build

@@ -1,4 +1,4 @@
-.. _fastrtpsgen_intro:
+.. _fastddsgen_intro:
 
 Introduction
 ============
@@ -16,13 +16,13 @@ same language.
 The eProsima Fast DDS-Gen tool reads the IDL files and parses a subset of the
 `OMG IDL specification <https://www.omg.org/spec/IDL/4.2/>`_ to generate
 source code for data serialization.
-This subset includes the data type descriptions included in :ref:`idl-types`.
+This subset includes the data type descriptions included in :ref:`fastddsgen_idl_datatypes`.
 The rest of the file content is ignored.
 
 eProsima Fast DDS-Gen generated source code uses `Fast CDR <https://github.com/eProsima/Fast-CDR>`_, a C++11 library
 that provides the data serialization and codification mechanisms.
-Therefore, as stated in the RTPs standard, when the data are sent, they are serialized and encoded using the
-corresponding Common Data Representation (CDR).
+Therefore, as stated in the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_, when the data are sent,
+they are serialized and encoded using the corresponding Common Data Representation (CDR).
 The CDR transfer syntax is a low-level representation for inter-agents transfer, mapping from OMG IDL data types to
 byte streams.
 Please refer to the official `CDR specification <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ for more

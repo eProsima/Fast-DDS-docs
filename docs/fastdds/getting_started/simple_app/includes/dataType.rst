@@ -8,8 +8,8 @@ Interface Description Language (IDL) file. This application can do two different
 2. Generate a functional example that uses your topic data.
 
 It will be the former that will be followed in this tutorial.
-To see an example of application of the latter you can check this other :ref:`example <fastrtpsgen_pubsub_app>`.
-See :ref:`fastrtpsgen_intro` for further details.
+To see an example of application of the latter you can check this other :ref:`example <fastddsgen_pubsub_app>`.
+See :ref:`fastddsgen_intro` for further details.
 For this project, we will use the Fast DDS-Gen application to define the data type of the messages that will be sent
 by the publishers and received by the subscribers.
 

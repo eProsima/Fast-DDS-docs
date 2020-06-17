@@ -1,4 +1,4 @@
-.. _idl-types:
+.. _fastddsgen_idl_datatypes:
 
 Defining a data type via IDL
 =============================

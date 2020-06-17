@@ -1,4 +1,4 @@
-.. _fastrtpsgen_pubsub_app:
+.. _fastddsgen_pubsub_app:
 
 Building a publish/subscribe application
 -----------------------------------------------

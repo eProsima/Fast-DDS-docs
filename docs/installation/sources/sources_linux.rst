@@ -279,7 +279,7 @@ Fast DDS-Gen installation
 This section provides the instructions for installing *Fast DDS-Gen* in a Linux environment from
 sources.
 *Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
-Please refer to :ref:`fastrtpsgen_intro` for more information.
+Please refer to :ref:`fastddsgen_intro` for more information.
 
 Requirements
 ------------

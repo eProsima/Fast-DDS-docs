@@ -1,6 +1,6 @@
 .. include:: includes/aliases.rst
 
-.. _fastrtpsgen_use:
+.. _fastddsgen_usage:
 
 Usage
 =====

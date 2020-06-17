@@ -1,7 +1,7 @@
 Summary
 ^^^^^^^
 
-In this tutorial you have built a publisher and a subscriber DDS application using Fast DDS-Gen.
+In this tutorial you have built a publisher and a subscriber DDS application using *Fast DDS-Gen*.
 You have also learned how to generate IDL files that contain the description of the Topic data type.
 
 Next steps

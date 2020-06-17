@@ -18,7 +18,7 @@ Supported IDL types
 Primitive types
 ^^^^^^^^^^^^^^^
 
-The following table shows the basic IDL types supported by Fast DDS-Gen and how they are mapped to C++11.
+The following table shows the basic IDL types supported by *Fast DDS-Gen* and how they are mapped to C++11.
 
     +--------------------+-------------+
     | IDL                | C++11       |
@@ -53,7 +53,7 @@ The following table shows the basic IDL types supported by Fast DDS-Gen and how 
 Arrays
 ^^^^^^
 
-Fast DDS-Gen supports unidimensional and multidimensional arrays.
+*Fast DDS-Gen* supports unidimensional and multidimensional arrays.
 Arrays are always mapped to ``std::array`` containers.
 The following table shows the array types supported and how they map.
 
@@ -84,7 +84,7 @@ The following table shows the array types supported and how they map.
 Sequences
 ^^^^^^^^^
 
-Fast DDS-Gen supports sequences, which map into the STD vector container.
+*Fast DDS-Gen* supports sequences, which map into the STD vector container.
 The following table represents how the map between IDL and C++11 is handled.
 
     +------------------------------+--------------------------+
@@ -114,7 +114,7 @@ The following table represents how the map between IDL and C++11 is handled.
 Maps
 ^^^^
 
-Fast DDS-Gen supports maps, which are equivalent to the STD map container.
+*Fast DDS-Gen* supports maps, which are equivalent to the STD map container.
 The equivalence between types is handled in the same way as for sequences_.
 
     +-------------------------------+---------------------------------+
@@ -334,7 +334,7 @@ For example in the following IDL file the *id* and *type* field would be the key
         long positionY;
     };
 
-Fast DDS-Gen automatically detects these tags and correctly generates the serialization methods for the key generation
+*Fast DDS-Gen* automatically detects these tags and correctly generates the serialization methods for the key generation
 function in TopicDataType (:func:`getKey`).
 This function will obtain the 128-bit MD5 digest of the big-endian serialization of the Key Members.
 
@@ -342,14 +342,15 @@ Including other IDL files
 -------------------------
 
 You can include another IDL files in yours in order to use data types defined in them.
-Fast DDS-Gen uses a C/C++ preprocessor for this purpose, and you can use ``#include`` directive to include an IDL file.
+*Fast DDS-Gen* uses a C/C++ preprocessor for this purpose, and you can use ``#include`` directive to include an IDL
+file.
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
    :start-after: //INCLUDE_MORE_IDL_FILES
    :end-before: //!
 
-If Fast DDS-Gen does not find a C/C++ preprocessor in default system paths, the preprocessor path can be specified
+If *Fast DDS-Gen* does not find a C/C++ preprocessor in default system paths, the preprocessor path can be specified
 using parameter ``-ppPath``.
 The parameter ``-ppDisable`` can be used to disable the usage of the C/C++ preprocessor.
 
@@ -453,7 +454,7 @@ IDL 4.2 allows using the following names for primitive types:
 Forward declaration
 ---------------------
 
-Fast DDS-Gen supports forward declarations.
+*Fast DDS-Gen* supports forward declarations.
 As the example shows, this allows declaring inter-dependant structures, unions, etc.
 
 .. code-block:: idl

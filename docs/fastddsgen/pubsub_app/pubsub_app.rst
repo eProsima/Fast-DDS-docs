@@ -3,9 +3,9 @@
 Building a publish/subscribe application
 -----------------------------------------------
 
-The Fast DDS-Gen tool is used to build a fully functional publication/subscription application from an IDL file that
+*Fast DDS-Gen* can be used to build a fully functional publication/subscription application from an IDL file that
 defines the Topic under which messages are published and received.
-The application generated allows the creation of as many publishers and subscribers as
+The application generated allows for the creation of as many publishers and subscribers as
 desired, all belonging to the same Domain and communicating using the same Topic.
 
 .. contents::

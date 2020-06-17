@@ -21,7 +21,7 @@ presented in :ref:`dds_layer_definition_data_types`.
     };
 
 Then, this file is translated to something *Fast DDS* understands.
-For this, use the Fast DDS-Gen code generation tool, which can do two different things:
+For this, use the *Fast DDS-Gen* code generation tool, which can do two different things:
 
 1. Generate C++ definitions for your custom topic.
 2. Generate a functional example that uses your topic data.

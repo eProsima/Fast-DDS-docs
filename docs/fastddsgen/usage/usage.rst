@@ -5,16 +5,16 @@
 Usage
 =====
 
-This section explains the usage of Fast DDS-Gen  tool and briefly describes the generated files.
+This section explains the usage of *Fast DDS-Gen*  tool and briefly describes the generated files.
 
-Running the Fast DDS-Gen Java application
-------------------------------------------
+Running the *Fast DDS-Gen* Java application
+----------------------------------------------
 
 First the steps outlined in :ref:`Linux installation of Fast DDS-Gen <fastddsgen_sl>` or
-:ref:`Window installation of Fast DDS-Gen <fastddsgen_sw>` must be accomplished for the installation of Fast DDS-Gen.
-According to this section, an executable file for Linux and Windows that runs the Java Fast DDS-Gen application is
+:ref:`Window installation of Fast DDS-Gen <fastddsgen_sw>` must be accomplished for the installation of *Fast DDS-Gen*.
+According to this section, an executable file for Linux and Windows that runs the Java *Fast DDS-Gen* application is
 available in the ``scripts`` folder.
-If the ``scripts`` folder path is added to the ``PATH`` environment variable, Fast DDS-Gen can be executed running
+If the ``scripts`` folder path is added to the ``PATH`` environment variable, *Fast DDS-Gen* can be executed running
 the following commands:
 
 - Linux:
@@ -51,7 +51,7 @@ Where the option choices are:
 +=====================+================================================================================================+
 | -help               | Shows the help information.                                                                    |
 +---------------------+------------------------------------------------------------------------------------------------+
-| -version            | Shows the current version of eProsima Fast DDS-Gen.                                            |
+| -version            | Shows the current version of eProsima *Fast DDS-Gen*.                                          |
 +---------------------+------------------------------------------------------------------------------------------------+
 | -d <directory>      | Sets the output directory where the generated files are created.                               |
 +---------------------+------------------------------------------------------------------------------------------------+

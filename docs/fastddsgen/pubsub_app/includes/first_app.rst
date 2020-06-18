@@ -18,13 +18,13 @@ installation followed and the operating system.
 
     .. code:: bash
 
-        <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastddsgen -example CMake HelloWorld.idl
 
     - For a **stand-alone installation**, run:
 
     .. code:: bash
 
-        <path-to-Fast-DDS-Gen>/scripts/fastrtpsgen -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-Gen>/scripts/fastddsgen -example CMake HelloWorld.idl
 
 * On Windows:
 
@@ -32,19 +32,29 @@ installation followed and the operating system.
 
     .. code:: bash
 
-        <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
     - For a **stand-alone installation**, run:
 
     .. code:: bash
 
-        <path-to-Fast-DDS-Gen>/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-Gen>/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
     - For an **installation from binaries**, run:
 
     .. code:: bash
 
-        $INST_DIR/src/fastrtpsgen/scripts/fastrtpsgen.bat -example CMake HelloWorld.idl
+        fastrtpsgen.bat -example CMake HelloWorld.idl
+
+.. warning::
+
+    The colcon installation does not build the ``fastddsgen.jar`` file although it does download the Fast DDS-Gen
+    repository. The following commands must be executed to build the Java executable:
+
+    .. code-block:: bash
+
+        cd <path-to-Fast-DDS-workspace>/src/fastrtpsgen
+        gradle assemble
 
 
 Build the Fast DDS application

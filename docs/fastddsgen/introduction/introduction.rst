@@ -19,7 +19,6 @@ To declare the structured data, the IDL format must be used.
 IDL is a specification language, made by `OMG <https://www.omg.org/>`_ (Object Management Group), which describes an
 interface in a language independent manner, allowing communication between software components that do not share the
 same language.
-
 The *eProsima Fast DDS-Gen* tool reads the IDL files and parses a subset of the
 `OMG IDL specification <https://www.omg.org/spec/IDL/4.2/>`_ to generate
 source code for data serialization.

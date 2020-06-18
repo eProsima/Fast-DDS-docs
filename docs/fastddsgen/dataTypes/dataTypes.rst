@@ -84,7 +84,7 @@ The following table shows the array types supported and their mapping.
 Sequences
 ^^^^^^^^^
 
-*Fast DDS-Gen* supports sequences, which map into the STD vector container.
+*Fast DDS-Gen* supports sequences, which map into the ``std::vector`` container.
 The following table represents how the map between IDL and C++11 is handled.
 
 +------------------------------+--------------------------+
@@ -114,7 +114,7 @@ The following table represents how the map between IDL and C++11 is handled.
 Maps
 ^^^^
 
-*Fast DDS-Gen* supports maps, which are equivalent to the STD map container.
+*Fast DDS-Gen* supports maps, which are equivalent to the ``std::map`` container.
 The equivalence between types is handled in the same way as for sequences_.
 
 +-------------------------------+---------------------------------+
@@ -317,11 +317,11 @@ If omitted, it will be 32 bits.
 For each ``flag``, the user can use the annotation ``position`` to define the position of the flag.
 If omitted, it will be auto incremented from the last defined flag, starting at 0.
 
-Keyed Types
-^^^^^^^^^^^
+Data types with a key
+^^^^^^^^^^^^^^^^^^^^^
 
 In order to use keyed topics, the user should define some key members inside the structure.
-This is achieved by writing the ``@Key`` annotation before the members of the structure you want to use as keys.
+This is achieved by writing the ``@Key`` annotation before the members of the structure that are used as keys.
 For example in the following IDL file the *id* and *type* field would be the keys:
 
 .. code-block:: idl
@@ -342,7 +342,7 @@ Including other IDL files
 -------------------------
 
 Other IDL files can be included in addition to the current IDL file.
-*Fast DDS-Gen* uses a C/C++ preprocessor for this purpose, and you can use ``#include`` directive to include an IDL
+*Fast DDS-Gen* uses a C/C++ preprocessor for this purpose, and ``#include`` directive can be used to include an IDL
 file.
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp

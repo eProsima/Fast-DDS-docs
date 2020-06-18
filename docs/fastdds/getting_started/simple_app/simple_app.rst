@@ -7,6 +7,9 @@ Writing a simple publisher and subscriber application
 
 This section details how to create an simple Fast DDS application with a publisher and a subscriber
 step by step.
+It is also possible to self-generate a similar example to the one implemented in this section by using the
+*eProsima Fast DDS-Gen* tool.
+This additional approach is explained in :ref:`fastddsgen_pubsub_app`.
 
 .. contents::
     :local:

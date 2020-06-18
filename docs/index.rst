@@ -47,9 +47,10 @@ eProsima Fast DDS Documentation
    :maxdepth: 2
    :numbered: 5
 
-   /fastrtpsgen/geninfo/geninfo
-   /fastrtpsgen/pubsub_app/pubsub_app
-   /fastrtpsgen/genuse/genuse
+   /fastddsgen/introduction/introduction
+   /fastddsgen/usage/usage
+   /fastddsgen/pubsub_app/pubsub_app
+   /fastddsgen/dataTypes/dataTypes
 
 .. _index_notes:
 

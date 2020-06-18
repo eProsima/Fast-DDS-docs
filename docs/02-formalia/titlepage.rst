@@ -18,7 +18,7 @@ distributed network paradigm that neatly allows separation of the publisher and 
 *eProsima Fast DDS* comprises:
 
 * The :ref:`DDS API <dds_layer>` implementation.
-* :ref:`Fast DDS-Gen <fastrtpsgen_intro>`, a generation tool for bridging typed interfaces with the middleware
+* :ref:`Fast DDS-Gen <fastddsgen_intro>`, a generation tool for bridging typed interfaces with the middleware
   implementation.
 * The underlying :ref:`RTPS <rtps_layer>` wire protocol implementation.
 
@@ -64,7 +64,7 @@ Fast DDS-Gen
 
 Relying on interfaces implies the need for a generation tool that translates type descriptions into appropriate
 implementations that fill the gap between the interfaces and the middleware.
-This task is carried out by a dedicated generation tool, :ref:`Fast DDS-Gen <fastrtpsgen_intro>`, a Java application
+This task is carried out by a dedicated generation tool, :ref:`Fast DDS-Gen <fastddsgen_intro>`, a Java application
 that generates source code using the data types defined in an
 `Interface Definition Language (IDL) <https://www.omg.org/spec/IDL/About-IDL/>`__ file.
 

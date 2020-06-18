@@ -9,7 +9,7 @@ Fast DDS-Gen for data types source code generation
 translating an IDL specification of a data type to a functional implementation.
 Thus, this tool automatically generates the source code of a data type defined using IDL.
 A basic use of the tool is described below.
-To learn about all the features that Fast DDS offers, please refer to :ref:`Fast DDS-Gen <fastrtpsgen_intro>` section.
+To learn about all the features that Fast DDS offers, please refer to :ref:`Fast DDS-Gen <fastddsgen_intro>` section.
 
 Basic usage
 ^^^^^^^^^^^
@@ -31,7 +31,7 @@ The IDL file containing the data type definition is given with the ``<IDLfile>``
 |    fastrtpsgen.bat [<options>] <IDLfile> [<IDLfile> ...]                                                             |
 +----------------------------------------------------------------------------------------------------------------------+
 
-Among the available arguments defined in :ref:`fastrtpsgen_use`, the main Fast DDS-Gen options for data type source
+Among the available arguments defined in :ref:`fastddsgen_usage`, the main Fast DDS-Gen options for data type source
 code generation are the following:
 
 *   ``-replace``: It replaces existing files in case the data type files have been previously generated.
@@ -42,7 +42,7 @@ code generation are the following:
     the given ``platform``.
     Thus, Fast DDS-Gen tool can generate a sample application using the provided data type, together with a
     `Makefile`, to compile it on Linux distributions, and a Visual Studio project for Windows.
-    To see an example of this please refer to tutorial :ref:`fastrtpsgen_pubsub_app`.
+    To see an example of this please refer to tutorial :ref:`fastddsgen_pubsub_app`.
 
 Output files
 ^^^^^^^^^^^^

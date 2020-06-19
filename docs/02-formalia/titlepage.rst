@@ -175,7 +175,7 @@ Contributing to the documentation
 *Fast DDS-Docs* is an open source project, and as such all contributions, both in the form of feedback and content
 generation, are most welcomed.
 To make such contributions, please refer to the Contribution Guidelines hosted in our
-`Fast DDS-Docs <https://github.com/eProsima/Fast-RTPS-docs>`_ GitHub repository.
+`Fast DDS-Docs repository <https://github.com/eProsima/Fast-RTPS-docs>`_.
 
 Structure of the documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

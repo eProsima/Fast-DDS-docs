@@ -1,7 +1,7 @@
 # Contribution Guidelines
 
 *Fast DDS-Docs* is an open source project for documenting the *Fast DDS* library and some related tools such as *Fast DDS-Gen*.
-In that sense, contributions to expand or improve the documentation are most welcome and encouraged; we just want the best documentation possible for out community.
+In that sense, contributions to expand or improve the documentation are most welcome and encouraged; we just want the best documentation possible for our community.
 
 There are two ways to contribute to this project:
 
@@ -18,7 +18,7 @@ When doing so, please take the following into account:
 1. Try to use positive and welcoming language.
 We sincerely appreciate your contribution and want to help each other.
 1. Describe your needs or concerns in detail.
-The more information provided, the better our understanding there will be, and the more satisfied you will get in the end.
+The more information provided, the better our understanding will be, and the more satisfied you will get in the end.
 1. Be patient.
 Bear in mind that your issue might not be answered or addressed right away.
 If a couple of days go by without any feedback, please send a friendly ping by commenting on the issue.
@@ -28,7 +28,7 @@ Once your issue is addressed, please provide feedback so we can improve the proc
 ## Submitting a pull request
 
 If writing an issue does not do it for you because you just know what has to be done and how, and you have the energy and time to directly contribute to the documentation, submitting a pull request is your way to go.
-Please mind that in doing so, you accept to abide to the pull request process followed on this repository, meaning:
+Please mind that by doing so, you accept to abide to the pull request process followed on this repository, meaning:
 
 1. Document one thing at a time.
 Avoid pull requests where several features or functionalities are documented at the same time.
@@ -48,13 +48,13 @@ Please do not take criticism as personal, we really appreciate your contributing
 
 ## Project structure
 
-The project follows the following structure:
+The project is structured as follows:
 
 1. The root directory contains global scope files, such as this one.
 1. The [docs directory](#docs-directory) contains all documentation source code.
 1. Code snippets and testing code is located in the [code directory](#code-directory).
 
-### docs directory
+### `doc` directory
 
 The [docs](docs) directory contains:
 
@@ -71,7 +71,7 @@ Keep in mind that this is an Sphinx based project, and as such, the all the docu
 
 All unrecognized words must be added to the [spelling_wordlist.txt](docs/spelling_wordlist.txt) dictionary in alphabetical order, with exception of the ones coming from the API reference documentation, which must be added to [docs/fastdds/api_reference/spelling_wordlist.txt](docs/fastdds/api_reference/spelling_wordlist.txt).
 
-### code directory
+### `code` directory
 
 The [code](code) directory contains all the files related to code snippets and CI testing.
 Files of particular importance are:
@@ -116,7 +116,7 @@ Use them as much as you can, even if it duplicates some information.
 1. Use as many `note`, `important`, and `warning` blocks as you need.
 They are a great way to convey a really important message the reader should not overlook.
 1. Add cross-references to other relevant sections, API reference, and external sites or documents as much as possible.
-Make sure the reader has easy access to all relevant information they may need for fully comprehending the documentation.
+Make sure the reader has easy access to all relevant information they may need to fully comprehend the documentation.
 1. Avoid two titles without text in the middle.
 If this happens, it probably means that your are missing some introductory text.
 1. Avoid sections with only one subsection as much as possible.

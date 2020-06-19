@@ -39,6 +39,7 @@ DisablePositiveACKsQosPolicy
 DiscoveryProtocol
 DomainParticipant
 DomainParticipantListener
+doxygenfunction
 DurabilityKind
 DurabilityQosPolicy
 DurabilityServiceQosPolicy
@@ -60,6 +61,7 @@ GenericDataQosPolicy
 getHistory
 getTypeDependencies
 getTypes
+greather
 guid
 GuidPrefix
 hearbeat
@@ -94,6 +96,7 @@ nullptr
 Num
 OfferedDeadlineMissedStatus
 OfferedIncompatibleQosStatus
+OStream
 Otherwhise
 OwnershipQosPolicy
 OwnershipStrengthQosPolicy
@@ -135,6 +138,7 @@ serialised
 serializedPaylaod
 SetVerbosity
 SetVerbosity
+sn
 StatefulReader
 StatefulWriter
 StatelessReader
@@ -148,6 +152,10 @@ subclasses
 subentities
 SubscriberListener
 SubscriptionMatchedStatus
+substract
+substraction
+substracts
+Substracts
 succesful
 suer
 synchronism
@@ -186,4 +194,5 @@ wdata
 wether
 wiht
 WLPListener
+xml
 xtypes

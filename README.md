@@ -6,12 +6,27 @@
 
 <a href="http://www.eprosima.com"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSd0PDlVz1U_7MgdTe0FRIWD0Jc9_YH-gGi0ZpLkr-qgCI6ZEoJZ5GBqQ" align="left" hspace="8" vspace="2" width="100" height="100" ></a>
 
-*Fast DDS-Docs* is an open source project aiming at documenting *Fast DDS* APIs, functionalities, and modes of use.
-Please refer to [LICENSE](LICENSE) and [Contributing](#contributing) for any use or contribution you intend to do of this project.
+*eprosima Fast DDS* (formerly Fast RTPS) is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). eProsima Fast DDS implements the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP,
+as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution
+Service (DDS) standard. *eProsima Fast DDS* exposes an API to access the RTPS protocol directly, giving the user full access to the protocol internals.
 
-*eprosima Fast DDS* is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium.
-RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG.
-eProsima Fast DDS holds the benefit of being standalone and up-to-date, as most vendor solutions either implement RTPS as a tool to implement DDS or use past versions of the specification.
+Some of the main features of this library are:
+
+* Configurable best-effort and reliable publish-subscribe communication policies for real-time
+applications.
+* Plug and play connectivity so that any new applications are automatically discovered by any other
+members of the network.
+* Modularity and scalability to allow continuous growth with complex and simple devices in the
+network.
+* Configurable network behavior and interchangeable transport layer: Choose the best protocol and
+system input/output channel combination for each deployment.
+* Two API Layers: a high-level Publisher-Subscriber one focused on usability (DDS) and a lower-level Writer-Reader one that provides finer access to the inner workings of the RTPS protocol.
+
+*eProsima Fast DDS* has been adopted by multiple organizations in many sectors including these important cases:
+
+* Robotics: ROS (Robotic Operating System) as their default middleware for ROS2.
+* EU R&D: FIWARE Incubated GE.
+
 You can find all the library's source code on our [GitHub repository](https://github.com/eProsima/Fast-DDS).
 
 The documentation is built using [Sphinx](https://www.sphinx-doc.org), and it is hosted at [Read the Docs](https://readthedocs.org).

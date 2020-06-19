@@ -69,13 +69,22 @@ The online documentation generated with this project can be found in [Fast DDS d
     git clone https://github.com/eProsima/Fast-RTPS-docs fastdds-docs
     ```
 
-1. Create a virtual environment and install python3 dependencies
+1. Create a virtual environment and install python3 dependencies.
 
     ```bash
     cd ~/fastdds-docs
     python3 -m venv fastdds-docs-venv
     source fastdds-docs-venv/bin/activate
     pip3 install -r docs/requirements.txt
+    cd fastdds-docs-venv/lib/<python-version>/site-packages
+    curl https://patch-diff.githubusercontent.com/raw/sphinx-doc/sphinx/pull/7851.diff | git apply
+    cd -
+    ```
+
+    The version of python3 used in the virtual environment can be seen by running the following command within the virtual environment:
+
+    ```bash
+    python3 -V
     ```
 
 ## Getting Started

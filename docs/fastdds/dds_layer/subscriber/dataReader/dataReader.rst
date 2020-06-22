@@ -1,5 +1,5 @@
-.. include:: ../../exports/aliases.include
-.. include:: ../../../api_reference/dds_pim/subscriber/exports/aliases.include
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
 
 .. _dds_layer_subscriber_dataReader:
 

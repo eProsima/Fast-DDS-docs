@@ -1,4 +1,0 @@
-.. |Topic| replace:: :ref:`Topic<dds_layer_topic>`
-.. |Topics| replace:: :ref:`Topics<dds_layer_topic>`
-.. |TopicQos| replace:: :ref:`TopicQos<dds_layer_topic_topicQos>`
-.. |TopicListener| replace:: :ref:`TopicListener<dds_layer_topic_topicListener>`

@@ -1,24 +1,24 @@
-.. include:: ../../exports/aliases.include
-.. include:: ../../../api_reference/dds_pim/domain/exports/aliases.include
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
 
 .. _dds_layer_domainParticipant:
 
 DomainParticipant
 =================
 
-A :class:`DomainParticipant` is the entry point of the application to a domain.
-Every :class:`DomainParticipant` is linked to a single domain from its creation,
+A |DomainParticipant| is the entry point of the application to a domain.
+Every DomainParticipant is linked to a single domain from its creation,
 and contains all the Entities related to that domain.
 It also acts as a factory for :ref:`dds_layer_publisher_publisher`, :ref:`dds_layer_subscriber_subscriber`
 and :ref:`dds_layer_topic_topic`.
 
-The behavior of the :class:`DomainParticipant` can be modified with the QoS values
+The behavior of the DomainParticipant can be modified with the QoS values
 specified on :ref:`dds_layer_domainParticipantQos`.
-The QoS values can be set at the creation of the :class:`DomainParticipant`,
+The QoS values can be set at the creation of the DomainParticipant,
 or modified later with :func:`set_qos()` member function.
 
-As an Entity, :class:`DomainParticipant` accepts a :ref:`dds_layer_domainParticipantListener`
-that will be notified of status changes on the :class:`DomainParticipant` instance.
+As an Entity, DomainParticipant accepts a :ref:`dds_layer_domainParticipantListener`
+that will be notified of status changes on the DomainParticipant instance.
 
 
 .. _dds_layer_domainParticipantQos:

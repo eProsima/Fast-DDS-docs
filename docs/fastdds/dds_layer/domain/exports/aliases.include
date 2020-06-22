@@ -1,5 +1,0 @@
-.. |domain| replace:: :ref:`domain<dds_layer_domain>`
-.. |domains| replace:: :ref:`domains<dds_layer_domain>`
-.. |DomainParticipant| replace:: :ref:`DomainParticipant<dds_layer_domainParticipant>`
-.. |DomainParticipants| replace:: :ref:`DomainParticipants<dds_layer_domainParticipant>`
-.. |DomainParticipantQos| replace:: :ref:`DomainParticipantQos<dds_layer_domainParticipantQos>`

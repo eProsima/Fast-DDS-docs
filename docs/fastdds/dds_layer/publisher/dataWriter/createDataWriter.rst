@@ -1,3 +1,6 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_publisher_datawriter_creation:
 
 Creating a DataWriter

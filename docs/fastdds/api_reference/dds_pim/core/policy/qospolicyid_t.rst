@@ -5,5 +5,5 @@
 QosPolicyId_t
 -------------
 
-.. doxygentypedef:: eprosima::fastdds::dds::QosPolicyId_t
+.. doxygenenum:: eprosima::fastdds::dds::QosPolicyId_t
     :project: FastDDS

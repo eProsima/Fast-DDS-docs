@@ -14,7 +14,6 @@ Status
    /fastdds/api_reference/dds_pim/core/status/publicationmatchedstatus.rst
    /fastdds/api_reference/dds_pim/core/status/qospolicycount.rst
    /fastdds/api_reference/dds_pim/core/status/qospolicycountseq.rst
-   /fastdds/api_reference/dds_pim/core/status/qospolicyid_t.rst
    /fastdds/api_reference/dds_pim/core/status/requesteddeadlinemissedstatus.rst
    /fastdds/api_reference/dds_pim/core/status/requestedicompatibleqosstatus.rst
    /fastdds/api_reference/dds_pim/core/status/rtpslivelinessloststatus.rst

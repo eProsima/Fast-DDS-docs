@@ -32,6 +32,7 @@ Policy
    /fastdds/api_reference/dds_pim/core/policy/publishmodeqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/publishmodeqospolicykind.rst
    /fastdds/api_reference/dds_pim/core/policy/qospolicy.rst
+   /fastdds/api_reference/dds_pim/core/policy/qospolicyid_t.rst
    /fastdds/api_reference/dds_pim/core/policy/readerdatalifecycleqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/reliabilityqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/reliabilityqospolicykind.rst

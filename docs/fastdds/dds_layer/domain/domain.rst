@@ -18,11 +18,11 @@ Applications that share this domainId belong to the same domain and will be able
 
 For an application to be added to a domain, it must create an instance of
 :ref:`dds_layer_domainParticipant` with the appropriate domainId.
-Instances of :ref:`dds_layer_domainParticipant` are created through the
+Instances of DomainParticipant are created through the
 :ref:`dds_layer_domainParticipantFactory` singleton.
 
 :ref:`partitions` introduce another entity isolation level within the domain.
-While :ref:`DomainParticipants<dds_layer_domainParticipant>` will be able to communicate with each other if they
+While DomainParticipant will be able to communicate with each other if they
 are in the same domain, it is still possible to isolate their :ref:`Publishers<dds_layer_publisher_publisher>` and
 :ref:`Subscribers<dds_layer_subscriber_subscriber>` assigning them to different :ref:`partitions`.
 

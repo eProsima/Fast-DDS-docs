@@ -1,9 +1,15 @@
 .. eProsima Fast DDS documentation master file.
 
-eProsima Fast DDS Documentation
-================================
-
 .. include:: 02-formalia/titlepage.rst
+
+.. _index_introduction:
+
+.. toctree::
+   :caption: Introduction
+   :maxdepth: 2
+   :hidden:
+
+   /02-formalia/titlepage.rst
 
 
 .. _index_installation:

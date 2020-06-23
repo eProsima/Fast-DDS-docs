@@ -5,5 +5,5 @@ RemoteLocators
 
 .. toctree::
 
-    /fastdds/api_reference/rtps/common/RemoteLocators/RemoteLocatorList
     /fastdds/api_reference/rtps/common/RemoteLocators/operators
+    /fastdds/api_reference/rtps/common/RemoteLocators/RemoteLocatorList

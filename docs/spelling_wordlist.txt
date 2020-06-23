@@ -134,13 +134,10 @@ runtime
 sanitizers
 scalability
 scalable
-<<<<<<< HEAD
 simpleEDP
-=======
 seqNum
 SequenceNumber
 sequencenumbers
->>>>>>> 80221d21... Refs #8612: Added the remaining common settings.
 sqlite
 stateful
 struct

@@ -13,8 +13,8 @@ Attributes
     /fastdds/api_reference/rtps/attributes/HistoryAttributes
     /fastdds/api_reference/rtps/attributes/InitialAnnouncementConfig
     /fastdds/api_reference/rtps/attributes/ParticipantFilteringFlags
-    /fastdds/api_reference/rtps/attributes/PropertyPolicyHelper
     /fastdds/api_reference/rtps/attributes/PropertyPolicy
+    /fastdds/api_reference/rtps/attributes/PropertyPolicyHelper
     /fastdds/api_reference/rtps/attributes/ReaderAttributes
     /fastdds/api_reference/rtps/attributes/ReaderTimes
     /fastdds/api_reference/rtps/attributes/RemoteLocatorsAllocationAttributes

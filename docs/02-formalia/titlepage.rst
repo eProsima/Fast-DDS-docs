@@ -182,7 +182,7 @@ Structure of the documentation
 
 This documentation is organized into the sections below.
 
-* :ref:`index_installation`
-* :ref:`index_fast_dds`
-* :ref:`index_gen`
-* :ref:`index_notes`
+* :ref:`Installation Manual <linux_binaries>`
+* :ref:`Fast DDS <getting_started>`
+* :ref:`Fast DDS-Gen <fastddsgen_intro>`
+* :ref:`Release Notes <release_notes>`

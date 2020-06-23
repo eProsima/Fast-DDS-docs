@@ -12,6 +12,7 @@ eProsima Fast DDS Documentation
    :caption: Installation Manual
    :maxdepth: 2
    :numbered: 5
+   :hidden:
 
    /installation/binaries/binaries_linux
    /installation/binaries/binaries_windows
@@ -25,6 +26,7 @@ eProsima Fast DDS Documentation
    :caption: Fast DDS
    :maxdepth: 2
    :numbered: 5
+   :hidden:
 
    /fastdds/getting_started/getting_started
    /fastdds/library_overview/library_overview
@@ -46,6 +48,7 @@ eProsima Fast DDS Documentation
    :caption: Fast DDS-Gen
    :maxdepth: 2
    :numbered: 5
+   :hidden:
 
    /fastddsgen/introduction/introduction
    /fastddsgen/usage/usage
@@ -57,5 +60,6 @@ eProsima Fast DDS Documentation
 .. toctree::
    :caption: Release Notes
    :maxdepth: 2
+   :hidden:
 
    /notes/notes

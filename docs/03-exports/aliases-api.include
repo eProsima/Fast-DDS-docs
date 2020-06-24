@@ -200,3 +200,8 @@
 
 .. |ReliabilityQosPolicy-api| replace:: :cpp:class:`ReliabilityQosPolicy<eprosima::fastdds::dds::ReliabilityQosPolicy>`
 .. |ReliabilityQosPolicy::max_blocking_time-api| replace:: :cpp:member:`max_blocking_time<eprosima::fastdds::dds::ReliabilityQosPolicy::max_blocking_time>`
+
+.. |Entity-api| replace:: :cpp:class:`Entity<eprosima::fastdds::dds::Entity>`
+.. |Entity::get_instance_handle-api| replace:: :cpp:func:`get_instance_handle()<eprosima::fastdds::dds::Entity::get_instance_handle>`
+
+

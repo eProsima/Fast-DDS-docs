@@ -24,7 +24,7 @@ DomainParticipantFactory does not accept any Listener, since it is not an Entity
 DomainParticipantFactoryQos
 ---------------------------
 
-DomainParticipantFactory controls the behavior of the :ref:`dds_layer_domainParticipantFactory`.
+DomainParticipantFactoryQos controls the behavior of the :ref:`dds_layer_domainParticipantFactory`.
 Internally it contains the following |QosPolicy-api| objects:
 
 +------------------------------+----------------------------------------------------------------------------+----------+

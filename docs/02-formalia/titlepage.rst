@@ -1,9 +1,15 @@
+.. raw:: html
+
+  <h1>
+    eProsima Fast DDS Documentation
+  </h1>
+
 .. image:: /01-figures/logo.png
-   :height: 100px
-   :width: 100px
-   :align: left
-   :alt: eProsima
-   :target: http://www.eprosima.com/
+  :height: 100px
+  :width: 100px
+  :align: left
+  :alt: eProsima
+  :target: http://www.eprosima.com/
 
 *eProsima Fast DDS* is a C++ implementation of the
 `DDS (Data Distribution Service) Specification <https://www.omg.org/spec/DDS/About-DDS/>`__, a protocol
@@ -17,15 +23,14 @@ For meeting these requirements, it makes use of typed interfaces and hinges on a
 distributed network paradigm that neatly allows separation of the publisher and subscriber sides of the communication.
 *eProsima Fast DDS* comprises:
 
-* The :ref:`DDS API <dds_layer>` implementation.
-* :ref:`Fast DDS-Gen <fastddsgen_intro>`, a generation tool for bridging typed interfaces with the middleware
-  implementation.
-* The underlying :ref:`RTPS <rtps_layer>` wire protocol implementation.
+#.  The :ref:`DDS API <dds_layer>` implementation.
+#.  :ref:`Fast DDS-Gen <fastddsgen_intro>`, a generation tool for bridging typed interfaces with the middleware
+    implementation.
+#.  The underlying :ref:`RTPS <rtps_layer>` wire protocol implementation.
 
 
 For all the above, *eProsima Fast DDS* has been chosen as the default middleware supported by the
 `Robot Operating System 2 (ROS 2) <https://index.ros.org/doc/ros2/>`__.
-
 
 DDS API
 ^^^^^^^
@@ -174,15 +179,15 @@ Contributing to the documentation
 
 *Fast DDS-Docs* is an open source project, and as such all contributions, both in the form of feedback and content
 generation, are most welcomed.
-To make such contributions, please refer to the Contribution Guidelines hosted in our
-`Fast DDS-Docs repository <https://github.com/eProsima/Fast-RTPS-docs>`_.
+To make such contributions, please refer to the
+`Contribution Guidelines <https://github.com/eProsima/all-docs/blob/master/CONTRIBUTING.md>`_ hosted in our GitHub repository.
 
 Structure of the documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This documentation is organized into the sections below.
 
-* :ref:`index_installation`
-* :ref:`index_fast_dds`
-* :ref:`index_gen`
-* :ref:`index_notes`
+* :ref:`Installation Manual <linux_binaries>`
+* :ref:`Fast DDS <getting_started>`
+* :ref:`Fast DDS-Gen <fastddsgen_intro>`
+* :ref:`Release Notes <release_notes>`

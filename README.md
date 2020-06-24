@@ -32,12 +32,50 @@ You can find all the library's source code on our [GitHub repository](https://gi
 The documentation is built using [Sphinx](https://www.sphinx-doc.org), and it is hosted at [Read the Docs](https://readthedocs.org).
 The online documentation generated with this project can be found in [Fast DDS documentation](https://fast-dds.docs.eprosima.com).
 
+1. [Project structure](#project-structure)
 1. [Installation Guide](#installation-guide)
 1. [Getting Started](#getting-started)
 1. [Generating documentation in other formats](#generating-documentation-in-other-formats)
 1. [Running documentation tests](#running-documentation-tests)
 1. [Simulating Read the Docs](#simulating-read-the-docs)
 1. [Contributing](#contributing)
+
+## Project structure
+
+The project is structured as follows:
+
+1. The root directory contains global scope files, such as this one.
+1. The [docs directory](#docs-directory) contains all documentation source code.
+1. Code snippets and testing code is located in the [code directory](#code-directory).
+
+### `doc` directory
+
+The [docs](docs) directory contains:
+
+* [_static](docs/_static): For HTML theme related files.
+* [01-figures](docs/01-figures): For all the documentation figures. SVG files are the preferred format since the XML can be modified or otherwise checked for differences.
+* [02-formalia](docs/02-formalia): Must-have pages such as Introduction.
+* [fastdds](docs/fastdds): Fast DDS documentation.
+* [fastddsgen](docs/fastddsgen): Fast DDS-Gen documentation.
+* [installation](docs/installation): Installation manual.
+* [notes](docs/notes): Release notes.
+
+All new documentation must fall into one of these directories, with the exception of those contributions which are not related to any of the given descriptions.
+Keep in mind that this is an Sphinx based project, and as such, the all the documentation is written in `reStructuredText`.
+
+All unrecognized words must be added to the [spelling_wordlist.txt](docs/spelling_wordlist.txt) dictionary in alphabetical order, with exception of the ones coming from the API reference documentation, which must be added to [docs/fastdds/api_reference/spelling_wordlist.txt](docs/fastdds/api_reference/spelling_wordlist.txt).
+
+### `code` directory
+
+The [code](code) directory contains all the files related to code snippets and CI testing.
+Files of particular importance are:
+
+* [CodeTester.cpp](code/CodeTester.cpp): Contains all Fast DDS pub-sub and RTPS layer snippets.
+It is a buildable file, so it can be compiled and linked against the Fast DDS to verify that all samples of code are up to date.
+Furthermore, it is used to create an executable that is then used to generate Ctest tests.
+* [DDSCodeTester.cpp](code/DDSCodeTester.cpp): Contains Fast DDS DDS layer snippets.
+* [XMLTester.xml](code/XMLTester.xml): Contains XML snippets.
+* [doxygen-config.in](code/doxygen-config.in): Doxyfile to configure Doxygen for creating Fast DDS API reference.
 
 ## Installation Guide
 
@@ -174,4 +212,4 @@ READTHEDOCS=True FASTDDS_BRANCH=<branch> sphinx-build \
 
 ## Contributing
 
-If you are interested in making some contributions, either in the form of an issue or a pull request, please refer to our [Contribution Guidelines](CONTRIBUTING.md).
+If you are interested in making some contributions, either in the form of an issue or a pull request, please refer to our [Contribution Guidelines](https://github.com/eProsima/all-docs/blob/master/CONTRIBUTING.md).

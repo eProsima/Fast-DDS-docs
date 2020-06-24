@@ -1,3 +1,5 @@
+.. _release_notes:
+
 Version 2.0.0
 =============
 

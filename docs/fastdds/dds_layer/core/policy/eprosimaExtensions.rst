@@ -704,7 +704,7 @@ List of QoS Policy data members:
 +--------------------------------+---------------------------------------+-----------------------+
 | builtin                        | :ref:`DS_BuiltinAttributes`           |                       |
 +--------------------------------+---------------------------------------+-----------------------+
-| throughput_controller          | :ref:`throughputcontrollerdescription`|                       |
+| throughput_controller          | :ref:`throughputcontrollerdescriptor` |                       |
 +--------------------------------+---------------------------------------+-----------------------+
 | default_unicast_locator_list   | fastrtps::rtps::LocatorList_t         | Empty List            |
 +--------------------------------+---------------------------------------+-----------------------+
@@ -728,9 +728,9 @@ List of QoS Policy data members:
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
-.. _throughputcontrollerdescription:
+.. _throughputcontrollerdescriptor:
 
-ThroughputControllerDescription
+ThroughputControllerDescriptor
 """""""""""""""""""""""""""""""
 
 This structure allows to limit the output bandwidth.

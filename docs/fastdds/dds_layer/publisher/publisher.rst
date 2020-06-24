@@ -6,14 +6,14 @@
 Publisher
 =========
 
-A publication is defined by the association of a **DataWriter**
-to a **Publisher**.
+A publication is defined by the association of a |DataWriter|
+to a |Publisher|.
 To start publishing the values of a data instance, the application creates a new
-**DataWriter** in a **Publisher**.
-This **DataWriter** will be bound to the **Topic**
+DataWriter in a Publisher.
+This DataWriter will be bound to the |Topic|
 that describes the data type that is being transmitted.
 Remote subscriptions that match with this
-**Topic** will be able to receive the data value updates from the **DataWriter**.
+Topic will be able to receive the data value updates from the DataWriter.
 
 
 .. image:: /01-figures/publisher_class_diagram.svg

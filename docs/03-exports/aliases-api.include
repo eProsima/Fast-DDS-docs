@@ -31,6 +31,7 @@
 .. |QosPolicy-api| replace:: :cpp:class:`QosPolicy <eprosima::fastdds::dds::QosPolicy>`
 .. |DataWriter::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::DataWriter::get_qos>`
 .. |DataWriter::set_qos-api| replace:: :cpp:func:`set_qos()<eprosima::fastdds::dds::DataWriter::set_qos>`
+.. |DataWriter::write-api| replace:: :cpp:func:`write()<eprosima::fastdds::dds::DataWriter::write>`
 .. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
 .. |DataWriterQos-api| replace:: :cpp:class:`DataWriterQos <eprosima::fastdds::dds::DataWriterQos>`
 .. |DataWriterQos::DataWriterQos-api| replace:: :cpp:func:`DataWriterQos()<eprosima::fastdds::dds::DataWriterQos::DataWriterQos>`
@@ -60,7 +61,9 @@
 .. |DomainParticipant-api| replace:: :cpp:class:`DomainParticipant <eprosima::fastdds::dds::DomainParticipant>`
 .. |DomainParticipantQoS::DomainParticipantQoS-api| replace:: :cpp:func:`DomainParticipantQoS <eprosima::fastdds::dds::DomainParticipantQoS::DomainParticipantQoS>`
 .. |DomainParticipant::create_publisher-api| replace:: :cpp:func:`create_publisher()<eprosima::fastdds::dds::DomainParticipant::create_publisher>`
+.. |DomainParticipant::create_publisher_with_profile-api| replace:: :cpp:func:`create_publisher()<eprosima::fastdds::dds::DomainParticipant::create_publisher>`
 .. |DomainParticipant::create_subscriber-api| replace:: :cpp:func:`create_subscriber()<eprosima::fastdds::dds::DomainParticipant::create_subscriber>`
+.. |DomainParticipant::create_subscriber_with_profile-api| replace:: :cpp:func:`create_subscriber()<eprosima::fastdds::dds::DomainParticipant::create_subscriber>`
 .. |DomainParticipant::create_topic-api| replace:: :cpp:func:`create_topic()<eprosima::fastdds::dds::DomainParticipant::create_topic>`
 .. |DomainParticipant::delete_publisher-api| replace:: :cpp:func:`delete_publisher()<eprosima::fastdds::dds::DomainParticipant::delete_publisher>`
 .. |DomainParticipant::delete_subscriber-api| replace:: :cpp:func:`delete_subscriber()<eprosima::fastdds::dds::DomainParticipant::delete_subscriber>`
@@ -92,6 +95,11 @@
 .. |Publisher-api| replace:: :cpp:class:`Publisher <eprosima::fastdds::dds::Publisher>`
 .. |Publisher::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::Publisher::get_qos>`
 .. |Publisher::set_qos-api| replace:: :cpp:func:`set_qos()<eprosima::fastdds::dds::Publisher::set_qos>`
+.. |Publisher::create_datawriter-api| replace:: :cpp:func:`create_datawriter()<eprosima::fastdds::dds::Publisher::create_datawriter>`
+.. |Publisher::delete_datawriter-api| replace:: :cpp:func:`delete_datawriter()<eprosima::fastdds::dds::Publisher::delete_datawriter>`
+.. |Publisher::create_datawriter_with_profile-api| replace:: :cpp:func:`create_datawriter_with_profile()<eprosima::fastdds::dds::Publisher::create_datawriter_with_profile>`
+.. |Publisher::get_default_datawriter_qos-api| replace:: :cpp:func:`get_default_datawriter_qos()<eprosima::fastdds::dds::Publisher::get_default_datawriter_qos>`
+.. |Publisher::set_default_datawriter_qos-api| replace:: :cpp:func:`set_default_datawriter_qos()<eprosima::fastdds::dds::Publisher::set_default_datawriter_qos>`
 .. |DomainParticipant::set_qos-api| replace:: :cpp:func:`set_qos()<eprosima::fastdds::dds::DomainParticipant::set_qos>`
 .. |DomainParticipantFactory::set_qos-api| replace:: :cpp:func:`set_qos()<eprosima::fastdds::dds::DomainParticipantFactory::set_qos>`
 .. |DomainParticipantFactory::load_XML_profiles_file-api| replace:: :cpp:func:`load_XML_profiles_file()<eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_file>`
@@ -101,7 +109,7 @@
 .. |PublisherQos::group_data-api| replace:: :cpp:func:`group_data()<eprosima::fastdds::dds::PublisherQos::group_data>`
 .. |PublisherQos::partition-api| replace:: :cpp:func:`partition()<eprosima::fastdds::dds::PublisherQos::partition>`
 .. |PublisherQos::presentation-api| replace:: :cpp:func:`presentation()<eprosima::fastdds::dds::PublisherQos::presentation>`
-.. |PublisherQos::PublisherQos-api| replace:: :cpp:func:`PublisherQos()<eprosima::fastdds::dds::Publisher::PublisherQos>`
+.. |PublisherQos::PublisherQos-api| replace:: :cpp:func:`PublisherQos()<eprosima::fastdds::dds::PublisherQos::PublisherQos>`
 .. |Publishers-api| replace:: :cpp:class:`Publishers <eprosima::fastdds::dds::Publisher>`
 .. |Subscriber-api| replace:: :cpp:class:`Subscriber <eprosima::fastdds::dds::Subscriber>`
 .. |Subscriber::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::Subscriber::get_qos>`
@@ -115,3 +123,6 @@
 .. |SubscriberQos::presentation-api| replace:: :cpp:func:`presentation<eprosima::fastdds::dds::SubscriberQos::presentation>`
 .. |SubscriberQos::SubscriberQos-api| replace:: :cpp:func:`SubscriberQos()<eprosima::fastdds::dds::Subscriber::SubscriberQos>`
 .. |Subscribers-api| replace:: :cpp:class:`Subscribers <eprosima::fastdds::dds::Subscriber>`
+.. |TopicDataType::getKey-api| replace:: :cpp:func:`getKey()<eprosima::fastdds::dds::TopicDataType::getKey>`
+.. |TypeSupport-api| replace:: :cpp:class:`TypeSupport<eprosima::fastdds::dds::TypeSupport>`
+.. |InstanceHandle_t-api| replace:: :cpp:struct:`InstanceHandle_t <eprosima::fastrtps::rtps::InstanceHandle_t>`

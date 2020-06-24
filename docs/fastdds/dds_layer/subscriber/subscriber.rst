@@ -9,14 +9,14 @@ Subscriber
 A subscription is defined by the association of a :ref:`dds_layer_subscriber_dataReader`
 to a :ref:`dds_layer_subscriber_subscriber`.
 To start receiving updates of a publication, the application creates a new
-:ref:`dds_layer_subscriber_dataReader` in a :ref:`dds_layer_subscriber_subscriber`.
-This :ref:`dds_layer_subscriber_dataReader` will be bound to the :ref:`dds_layer_topic_topic`
+DataReader in a Subscriber.
+This DataReader will be bound to the :ref:`dds_layer_topic_topic`
 that describes the data type that is going to be received.
-The :ref:`dds_layer_subscriber_dataReader` will then start receiving data value updates from
-remote publications that match this :ref:`dds_layer_topic_topic`.
+The DataReader will then start receiving data value updates from
+remote publications that match this Topic.
 
-When the :ref:`dds_layer_subscriber_subscriber` receives data, it informs the application that new data is available.
-Then, the application can use the :ref:`dds_layer_subscriber_dataReader` to get the received data.
+When the Subscriber receives data, it informs the application that new data is available.
+Then, the application can use the DataReader to get the received data.
 
 .. figure:: /01-figures/subscriber_class_diagram.svg
     :align: center

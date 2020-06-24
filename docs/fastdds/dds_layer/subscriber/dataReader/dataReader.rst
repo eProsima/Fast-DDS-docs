@@ -7,31 +7,31 @@ DataReader
 ==========
 
 
-A :ref:`api_pim_datareader` is attached to exactly one
+A |DataReader-api| is attached to exactly one
 :ref:`dds_layer_subscriber_subscriber` that acts as a factory for it.
-Additionally, each :ref:`api_pim_datareader` is bound to a single
+Additionally, each DataReader is bound to a single
 :ref:`dds_layer_topic_topic` since its creation.
-This :ref:`dds_layer_topic_topic` must exist prior to the creation of the
-:ref:`api_pim_datareader`,
-and must be bound to the data type that the :ref:`api_pim_datareader` wants to publish.
+This Topic must exist prior to the creation of the
+DataReader,
+and must be bound to the data type that the DataReader wants to publish.
 
-The effect of creating a new :ref:`api_pim_datareader` in a
-:ref:`dds_layer_subscriber_subscriber` for a specific
-:ref:`dds_layer_topic_topic` is to initiate a new subscription with the name and data type described
-by the :ref:`dds_layer_topic_topic`.
+The effect of creating a new DataReader in a
+Subscriber for a specific
+Topic is to initiate a new subscription with the name and data type described
+by the Topic.
 
-Once the :ref:`api_pim_datareader` is created, the application will be informed
+Once the DataReader is created, the application will be informed
 when changes in the data value are received from remote publications.
-These changes can then be retrieved using the :func:`read` or :func:`take`
-member functions of the :ref:`api_pim_datareader`.
+These changes can then be retrieved using the |DataReader::read_next_sample-api| or |DataReader::take_next_sample-api|
+member functions of the DataReader.
 
 .. _dds_layer_subscriber_dataReaderQos:
 
 DataReaderQos
 -------------
 
-:ref:`api_pim_datareaderqos` controls the behavior of the :ref:`dds_layer_subscriber_dataReader`.
-Internally it contains the following :class:`QosPolicy` objects:
+|DatareaderQos-api| controls the behavior of the :ref:`dds_layer_subscriber_dataReader`.
+Internally it contains the following |QosPolicy-api| objects:
 
 +-----------------------------------------------+---------------------------------------------+----------+
 | QosPolicy class                               | Accessor/Mutator                            | Mutable  |
@@ -77,16 +77,17 @@ Internally it contains the following :class:`QosPolicy` objects:
 | ``boolean``                                   | |DataReaderQos::expects_inline_qos-api|     | Yes      |
 +-----------------------------------------------+---------------------------------------------+----------+
 
-Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
+Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
 default values.
 
 .. note::
 
    Reliability kind (whether the publication is reliable or best effort) is not mutable.
-   However, the ``max_blocking_time`` data member of :ref:`api_pim_reliabilityqospolicy` can be modified any time.
+   However, the |ReliabilityQosPolicy::max_blocking_time-api| data member of |ReliabilityQosPolicy-api| can be modified
+   any time.
 
-The QoS value of a previously created :ref:`dds_layer_subscriber_dataReader` can be modified using the
-:func:`set_qos` member function.
+The QoS value of a previously created DataReader can be modified using the
+|DataReader::set_qos-api| member function.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -100,20 +101,20 @@ The QoS value of a previously created :ref:`dds_layer_subscriber_dataReader` can
 Default DataReaderQos
 ^^^^^^^^^^^^^^^^^^^^^
 
-The default :ref:`dds_layer_subscriber_dataReaderQos` refers to the value returned by the
-:func:`get_default_datareader_qos` member function on the
+The default DataReaderQos refers to the value returned by the
+|Subscriber::get_default_datareader_qos-api| member function on the
 :ref:`dds_layer_subscriber_subscriber` instance.
 The special value ``DATAREADER_QOS_DEFAULT`` can be used as QoS argument on
-:func:`create_datareader` or
-:func:`set_qos` member functions to indicate that the current default
-:ref:`dds_layer_subscriber_dataReaderQos` should be used.
+|Subscriber::create_datareader-api| or
+|DataReader::set_qos-api| member functions to indicate that the current default
+DataReaderQos should be used.
 
-When the system starts, the default :ref:`dds_layer_subscriber_dataReaderQos` is equivalent to
-the default constructed value :func:`DataReaderQos`.
-The default :ref:`dds_layer_subscriber_dataReaderQos` can be modified at any time using the
-:func:`set_default_datareader_qos` member function on the
-:ref:`dds_layer_subscriber_subscriber` instance.
-Modifying the default :ref:`dds_layer_subscriber_dataReaderQos` will not affect already existing
+When the system starts, the default DataReaderQos is equivalent to
+the default constructed value |DataReaderQos::DataReaderQos-api|.
+The default DataReaderQos can be modified at any time using the
+|Subscriber::set_default_datareader_qos-api| member function on the
+Subscriber instance.
+Modifying the default DataReaderQos will not affect already existing
 :ref:`dds_layer_subscriber_dataReader` instances.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -122,10 +123,10 @@ Modifying the default :ref:`dds_layer_subscriber_dataReaderQos` will not affect 
    :end-before: //!
    :dedent: 8
 
-:func:`set_default_datareader_qos` member function also accepts
+|Subscriber::set_default_datareader_qos-api| member function also accepts
 the special value ``DATAREADER_QOS_DEFAULT`` as input argument.
-This will reset the current default :ref:`dds_layer_subscriber_dataReaderQos` to default constructed
-value :func:`DataReaderQos`.
+This will reset the current default DataReaderQos to default constructed
+value |DataReaderQos::DataReaderQos-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -136,10 +137,10 @@ value :func:`DataReaderQos`.
 .. note::
    The value ``DATAREADER_QOS_DEFAULT`` has different meaning depending on where it is used:
 
-   * On :func:`create_datareader`
-     and :func:`set_qos` it refers to the default
-     :ref:`dds_layer_subscriber_dataReaderQos` as returned by
-     :func:`get_default_datareader_qos`.
-   * On :func:`set_default_dataReader_qos` it refers
-     to the default constructed :func:`DataReaderQos`.
+   * On |Subscriber::create_datareader-api|
+     and |DataReader::set_qos-api| it refers to the default
+     DataReaderQos as returned by
+     |Subscriber::get_default_datareader_qos-api|.
+   * On |Subscriber::set_default_datareader_qos-api| it refers
+     to the default constructed |DataReaderQos::DataReaderQos-api|.
 

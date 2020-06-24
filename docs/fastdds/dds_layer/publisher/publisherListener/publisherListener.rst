@@ -22,6 +22,6 @@ will only be called if the triggering DataWriter has
 no Listener attached.
 
 |PublisherListener-api| does not add any new callback.
-Please, refer to the DataWriterListener for the list of inherited callbacks
+Please, refer to the :ref:`dds_layer_publisher_dataWriterListener` for the list of inherited callbacks
 and override examples.
 

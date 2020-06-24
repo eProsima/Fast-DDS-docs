@@ -6,15 +6,15 @@
 Subscriber
 ==========
 
-The :ref:`api_pim_subscriber_class` acts on behalf of one or several :ref:`dds_layer_subscriber_dataReader` objects
+The |Subscriber-api| acts on behalf of one or several :ref:`dds_layer_subscriber_dataReader` objects
 that belong to it.
-It serves as a container that allows grouping different :ref:`dds_layer_subscriber_dataReader` objects under
-a common configuration given by the :ref:`dds_layer_subscriber_subscriberQos` of the :ref:`api_pim_subscriber_class`.
+It serves as a container that allows grouping different DataReader objects under
+a common configuration given by the :ref:`dds_layer_subscriber_subscriberQos` of the Subscriber.
 
-:ref:`dds_layer_subscriber_dataReader` objects that belong to the same :ref:`api_pim_subscriber_class`
-do not have any other relation among each other beyond the :class:`SubscriberQos` of the :class:`Subscriber`
+DataReader objects that belong to the same Subscriber
+do not have any other relation among each other beyond the |SubscriberQos-api| of the Subscriber
 and act independently otherwise.
-Specifically, a :ref:`api_pim_subscriber_class` can host :ref:`dds_layer_subscriber_dataReader` objects
+Specifically, a Subscriber can host DataReader objects
 for different topics and data types.
 
 
@@ -23,26 +23,26 @@ for different topics and data types.
 SubscriberQos
 -------------
 
-:ref:`api_pim_subscriberqos` controls the behavior of the :ref:`dds_layer_subscriber_subscriber`.
-Internally it contains the following :class:`QosPolicy` objects:
+|SubscriberQos-api| controls the behavior of the :ref:`dds_layer_subscriber_subscriber`.
+Internally it contains the following |QosPolicy-api| objects:
 
-+----------------------------------------+-------------------------------------+----------+
-| QosPolicy class                        | Accessor/Mutator                    | Mutable  |
-+========================================+=====================================+==========+
-| |presentationqospolicy|                | |SubscriberQos::presentation-api|   | Yes      |
-+----------------------------------------+-------------------------------------+----------+
-| |partitionqospolicy|                   | |SubscriberQos::partition-api|      | Yes      |
-+----------------------------------------+-------------------------------------+----------+
-| |groupdataqospolicy|                   | |SubscriberQos::group_data-api|     | Yes      |
-+----------------------------------------+-------------------------------------+----------+
-| |entityfactoryqospolicy|               | |SubscriberQos::entity_factory-api| | Yes      |
-+----------------------------------------+-------------------------------------+----------+
++----------------------------------------+------------------------------------------------------------------+----------+
+| QosPolicy class                        | Accessor/Mutator                                                 | Mutable  |
++========================================+==================================================================+==========+
+| |presentationqospolicy|                | |SubscriberQos::presentation-api|                                | Yes      |
++----------------------------------------+------------------------------------------------------------------+----------+
+| |partitionqospolicy|                   | |SubscriberQos::partition-api|                                   | Yes      |
++----------------------------------------+------------------------------------------------------------------+----------+
+| |groupdataqospolicy|                   | |SubscriberQos::group_data-api|                                  | Yes      |
++----------------------------------------+------------------------------------------------------------------+----------+
+| |entityfactoryqospolicy|               | |SubscriberQos::entity_factory-api|                              | Yes      |
++----------------------------------------+------------------------------------------------------------------+----------+
 
-Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
+Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
 default values.
 
-The QoS value of a previously created :ref:`dds_layer_subscriber_subscriber` can be modified using the
-:func:`set_qos` member function.
+The QoS value of a previously created Subscriber can be modified using the
+|Subscriber::set_qos-api| member function.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -57,20 +57,20 @@ Default SubscriberQos
 ^^^^^^^^^^^^^^^^^^^^^
 
 The default :ref:`dds_layer_subscriber_subscriberQos` refers to the value returned by the
-:func:`get_default_subscriber_qos` member function
+|DomainParticipant::get_default_subscriber_qos-api| member function
 on the :ref:`dds_layer_domainParticipant` instance.
 The special value ``SUBSCRIBER_QOS_DEFAULT`` can be used as QoS argument on
-:func:`create_subscriber` or :func:`set_qos`
-member functions to indicate that the current default :ref:`dds_layer_subscriber_subscriberQos`
+|DomainParticipant::create_subscriber-api| or |Subscriber::set_qos-api|
+member functions to indicate that the current default SubscriberQos
 should be used.
 
-When the system starts, the default :ref:`dds_layer_subscriber_subscriberQos` is equivalent to the default constructed
-value :func:`SubscriberQos`.
-The default :ref:`dds_layer_subscriber_subscriberQos` can be modified at any time using the
-:func:`set_default_subscriber_qos` member function on the
-:ref:`dds_layer_domainParticipant` instance.
-Modifying the default :ref:`dds_layer_subscriber_subscriberQos` will not affect already existing
-:ref:`dds_layer_subscriber_subscriber` instances.
+When the system starts, the default SubscriberQos is equivalent to the default constructed
+value |SubscriberQos::SubscriberQos-api|.
+The default SubscriberQos can be modified at any time using the
+|DomainParticipant::set_default_subscriber_qos-api| member function on the
+DomainParticipant instance.
+Modifying the default SubscriberQos will not affect already existing
+Subscriber instances.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -78,10 +78,10 @@ Modifying the default :ref:`dds_layer_subscriber_subscriberQos` will not affect 
    :end-before: //!
    :dedent: 8
 
-:func:`set_default_subscriber_qos` member function also accepts
+|DomainParticipant::set_default_subscriber_qos-api| member function also accepts
 the special value ``SUBSCRIBER_QOS_DEFAULT`` as input argument.
-This will reset the current default :ref:`dds_layer_subscriber_subscriberQos` to default constructed
-value :func:`SubscriberQos`.
+This will reset the current default SubscriberQos to default constructed
+value |SubscriberQos::SubscriberQos-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -92,7 +92,8 @@ value :func:`SubscriberQos`.
 .. note::
    The value ``SUBSCRIBER_QOS_DEFAULT`` has different meaning depending on where it is used:
 
-   * On :func:`create_subscriber` and :func:`set_qos` it refers to the default
-     :ref:`dds_layer_subscriber_subscriberQos` as returned by :func:`get_default_subscriber_qos`.
-   * On :func:`set_default_subscriber_qos` it refers to the default constructed :func:`SubscriberQos`.
+   * On |DomainParticipant::create_subscriber-api| and |Subscriber::set_qos-api| it refers to the default
+     SubscriberQos as returned by |DomainParticipant::get_default_subscriber_qos-api|.
+   * On |DomainParticipant::set_default_subscriber_qos-api| it refers to the default constructed
+     |SubscriberQos::SubscriberQos-api|.
 

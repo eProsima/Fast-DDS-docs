@@ -1,3 +1,6 @@
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+
 .. _dds_layer:
 
 DDS Layer
@@ -17,24 +20,24 @@ in depth explanation of the five modules into which it is divided:
   style with the middleware.
 
 * :ref:`dds_layer_domain`:
-  It contains the :ref:`api_pim_domainparticipant` class that acts as an entry-point of the Service,
-  as well as a factory for many of the classes. The :class:`DomainParticipant` also acts as a container for the other
+  It contains the |DomainParticipant-api| class that acts as an entry-point of the Service,
+  as well as a factory for many of the classes. The |DomainParticipant-api| also acts as a container for the other
   objects that make up the Service.
 
 * :ref:`dds_layer_publisher`:
-  It describes the classes used on the publication side, including :ref:`api_pim_publisher_class` and
-  :ref:`api_pim_datawriter` classes, as well as the :ref:`api_pim_publisherlistener` and
-  :ref:`api_pim_datawriterlistener` interfaces.
+  It describes the classes used on the publication side, including |Publisher-api| and
+  |DataWriter-api| classes, as well as the |PublisherListener-api| and
+  |DataWriterListener-api| interfaces.
 
 * :ref:`dds_layer_subscriber`:
-  It describes the classes used on the subscription side, including :ref:`api_pim_subscriber_class` and
-  :ref:`api_pim_datareader` classes, as well as the :ref:`api_pim_subscriberlistener`
-  and :ref:`api_pim_datareaderlistener` interfaces.
+  It describes the classes used on the subscription side, including |Subscriber-api| and
+  |DataReader-api| classes, as well as the |SubscriberListener-api|
+  and |DataReaderListener-api| interfaces.
 
 * :ref:`dds_layer_topic`:
-  It describes the classes used to define communication topics and data types, including :ref:`api_pim_topic_class`
-  and :ref:`api_pim_topicdescription` classes, as well as :ref:`api_pim_typesupport`, and the
-  :ref:`api_pim_topiclistener` interface.
+  It describes the classes used to define communication topics and data types, including |Topic-api|
+  and |TopicDescription-api| classes, as well as |TypeSupport-api|, and the
+  |TopicListener-api| interface.
 
 
 .. toctree::

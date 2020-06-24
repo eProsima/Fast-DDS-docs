@@ -23,28 +23,28 @@ if no other Listener was able to handle the event.
 
 Additionally, DomainParticipantListener adds the following callbacks:
 
- * **on_participant_discovery**: A new DomainParticipant is discovered in the same domain,
+ * |DomainParticipantListener::on_participant_discovery-api|: A new DomainParticipant is discovered in the same domain,
    a previously known DomainParticipant has been removed, or some DomainParticipant
    has changed its QoS.
 
- * **on_subscriber_discovery**: A new :ref:`dds_layer_subscriber_subscriber` is discovered in the same domain,
+ * |DomainParticipantListener::on_subscriber_discovery-api|: A new :ref:`dds_layer_subscriber_subscriber` is discovered in the same domain,
    a previously known Subscriber has been removed,
    or some Subscriber has changed its QoS.
 
- * **on_publisher_discovery**: A new :ref:`dds_layer_publisher_publisher` is discovered in the same domain,
+ * |DomainParticipantListener::on_publisher_discovery-api|: A new :ref:`dds_layer_publisher_publisher` is discovered in the same domain,
    a previously known Publisher has been removed,
    or some Publisher has changed its QoS.
 
- * **on_type_discovery**: A new data Type is discovered in the same domain.
+ * |DomainParticipantListener::on_type_discovery-api|: A new data Type is discovered in the same domain.
 
- * **on_type_dependencies_reply**: The Type lookup client received a replay to a :func:`getTypeDependencies` request.
+ * |DomainParticipantListener::on_type_dependencies_reply-api|: The Type lookup client received a replay to a :func:`getTypeDependencies` request.
    This callback can be used to retrieve the new type using the :func:`getTypes` request and create a new
    dynamic type using the retrieved type object.
 
- * **on_type_information_received**: A new |TypeInformation-api| has been received from a newly discovered
+ * |DomainParticipantListener::on_type_information_received-api|: A new |TypeInformation-api| has been received from a newly discovered
    DomainParticipant.
 
- * **onParticipantAuthentication**: Informs about the result of the authentication process
+ * |DomainParticipantListener::onParticipantAuthentication-api|: Informs about the result of the authentication process
    of a remote DomainParticipant (either on failure or success).
 
 .. literalinclude:: /../code/DDSCodeTester.cpp

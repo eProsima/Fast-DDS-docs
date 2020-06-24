@@ -15,11 +15,11 @@ Callbacks that are not overridden will maintain their empty implementation.
 
 |TopicListener| has the following callback:
 
- * **on_inconsistent_topic**: A remote Topic is discovered with the same name
+ * |TopicListener::on_inconsistent_topic-api|: A remote Topic is discovered with the same name
    but different characteristics as another locally created Topic.
 
 .. warning::
-   Currently *on_inconsistent_topic* is not implemented (it will never be called), and will be implemented
+   Currently |TopicListener::on_inconsistent_topic-api| is not implemented (it will never be called), and will be implemented
    on a future release of Fast DDS.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp

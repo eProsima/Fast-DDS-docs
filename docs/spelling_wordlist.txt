@@ -61,6 +61,7 @@ doxygen
 DurabilityKind
 eClock
 endian
+endianness
 eProsima
 ethernet
 executables
@@ -105,6 +106,7 @@ nack
 Nagle
 namespace
 Namespaces
+nanosec
 nupkg
 offsetd
 oneway
@@ -133,6 +135,9 @@ sanitizers
 scalability
 scalable
 simpleEDP
+seqNum
+SequenceNumber
+sequencenumbers
 sqlite
 stateful
 struct

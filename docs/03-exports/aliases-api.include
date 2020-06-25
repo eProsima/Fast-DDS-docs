@@ -116,7 +116,6 @@
 .. |DomainParticipantQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DomainParticipantQos::user_data>`
 .. |DomainParticipantQos::wire_protocol-api| replace:: :cpp:func:`wire_protocol()<eprosima::fastdds::dds::DomainParticipantQos::wire_protocol>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
-.. |EntityFactoryQosPolicy-api| replace:: :cpp:class:`EntityFactoryQosPolicy <eprosima::fastdds::dds::EntityFactoryQosPolicy>`
 .. |InstanceHandle_t-api| replace:: :cpp:struct:`InstanceHandle_t <eprosima::fastrtps::rtps::InstanceHandle_t>`
 .. |Publisher-api| replace:: :cpp:class:`Publisher <eprosima::fastdds::dds::Publisher>`
 .. |Publisher::create_datawriter_with_profile-api| replace:: :cpp:func:`create_datawriter_with_profile()<eprosima::fastdds::dds::Publisher::create_datawriter_with_profile>`
@@ -198,10 +197,140 @@
 .. |SampleInfo::sample_identity-api| replace:: :cpp:member:`sample_identity<eprosima::fastdds::dds::SampleInfo::sample_identity>`
 .. |SampleInfo::related_sample_identity-api| replace:: :cpp:member:`related_sample_identity<eprosima::fastdds::dds::SampleInfo::related_sample_identity>`
 
-.. |ReliabilityQosPolicy-api| replace:: :cpp:class:`ReliabilityQosPolicy<eprosima::fastdds::dds::ReliabilityQosPolicy>`
-.. |ReliabilityQosPolicy::max_blocking_time-api| replace:: :cpp:member:`max_blocking_time<eprosima::fastdds::dds::ReliabilityQosPolicy::max_blocking_time>`
-
 .. |Entity-api| replace:: :cpp:class:`Entity<eprosima::fastdds::dds::Entity>`
 .. |Entity::get_instance_handle-api| replace:: :cpp:func:`get_instance_handle()<eprosima::fastdds::dds::Entity::get_instance_handle>`
 
 
+
+.. |DestinationOrderQosPolicyKind-api| replace:: :cpp:enum:`DestinationOrderQosPolicyKind<dds::fastdds::eprosima::DestinationOrderQosPolicyKind>`
+.. |BY_RECEPTION_TIMESTAMP| replace:: :cpp:enumerator:`BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS<dds::fastdds::eprosima::DestinationOrderQosPolicyKind::BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS>`
+.. |BY_SOURCE_TIMESTAMP| replace:: :cpp:enumerator:`BY_SOURCE_TIMESTAMP_DESTINATIONORDER_QOS<dds::fastdds::eprosima::DestinationOrderQosPolicyKind::BY_SOURCE_TIMESTAMP_DESTINATIONORDER_QOS>`
+
+.. |DurabilityQosPolicyKind-api| replace:: :cpp:enum:`DurabilityQosPolicyKind<dds::fastdds::eprosima::DurabilityQosPolicyKind>`
+.. |VOLATILE_DURABILITY_QOS-api| replace:: :cpp:enumerator:`VOLATILE_DURABILITY_QOS<dds::fastdds::eprosima::DurabilityQosPolicyKind::VOLATILE_DURABILITY_QOS>`
+.. |TRANSIENT_LOCAL_DURABILITY_QOS-api| replace:: :cpp:enumerator:`TRANSIENT_LOCAL_DURABILITY_QOS<dds::fastdds::eprosima::DurabilityQosPolicyKind::TRANSIENT_LOCAL_DURABILITY_QOS>`
+.. |TRANSIENT_DURABILITY_QOS-api| replace:: :cpp:enumerator:`TRANSIENT_DURABILITY_QOS<dds::fastdds::eprosima::DurabilityQosPolicyKind::TRANSIENT_DURABILITY_QOS>`
+.. |PERSISTENT_DURABILITY_QOS-api| replace:: :cpp:enumerator:`PERSISTENT_DURABILITY_QOS<dds::fastdds::eprosima::DurabilityQosPolicyKind::PERSISTENT_DURABILITY_QOS>`
+
+.. |HistoryQosPolicyKind-api| replace:: :cpp:enum:`HistoryQosPolicyKind<dds::fastdds::eprosima::HistoryQosPolicyKind>`
+.. |KEEP_LAST_HISTORY_QOS-api| replace:: :cpp:enumerator:`KEEP_LAST_HISTORY_QOS<dds::fastdds::eprosima::HistoryQosPolicyKind::KEEP_LAST_HISTORY_QOS>`
+.. |KEEP_ALL_HISTORY_QOS-api| replace:: :cpp:enumerator:`KEEP_ALL_HISTORY_QOS<dds::fastdds::eprosima::HistoryQosPolicyKind::KEEP_ALL_HISTORY_QOS>`
+
+.. |ReliabilityQosPolicyKind-api| replace:: :cpp:enum:`ReliabilityQosPolicyKind<dds::fastdds::eprosima::ReliabilityQosPolicyKind>`
+.. |BEST_EFFORT_RELIABILITY_QOS-api| replace:: :cpp:enumerator:`BEST_EFFORT_RELIABILITY_QOS<dds::fastdds::eprosima::ReliabilityQosPolicyKind::BEST_EFFORT_RELIABILITY_QOS>`
+.. |RELIABLE_RELIABILITY_QOS-api| replace:: :cpp:enumerator:`RELIABLE_RELIABILITY_QOS<dds::fastdds::eprosima::ReliabilityQosPolicyKind::RELIABLE_RELIABILITY_QOS>`
+
+.. |DurabilityServiceQosPolicy-api| replace:: :cpp:class:`DurabilityServiceQosPolicy<eprosima::fastdds::dds::DurabilityServiceQosPolicy>`
+.. |service_cleanup_delay-api| replace:: :cpp:member:`service_cleanup_delay<eprosima::fastdds::dds::DurabilityServiceQosPolicy::service_cleanup_delay>`
+.. |history_kind-api| replace:: :cpp:member:`history_kind<eprosima::fastdds::dds::DurabilityServiceQosPolicy::history_kind>`
+.. |history_depth-api| replace:: :cpp:member:`history_depth<eprosima::fastdds::dds::DurabilityServiceQosPolicy::history_depth>`
+.. |max_samples-api| replace:: :cpp:member:`max_samples<eprosima::fastdds::dds::DurabilityServiceQosPolicy::max_samples>`
+.. |max_instances-api| replace:: :cpp:member:`max_instances<eprosima::fastdds::dds::DurabilityServiceQosPolicy::max_instances>`
+.. |max_samples_per_instance-api| replace:: :cpp:member:`max_samples_per_instance<eprosima::fastdds::dds::DurabilityServiceQosPolicy::max_samples_per_instance>`
+
+.. |InstanceStateKind-api| replace:: :cpp:enum:`InstanceStateKind<dds::fastdds::eprosima::InstanceStateKind>`
+.. |ALIVE-api| replace:: :cpp:enumerator:`ALIVE<dds::fastdds::eprosima::InstanceStateKind::ALIVE>`
+.. |NOT_ALIVE_DISPOSED-api| replace:: :cpp:enumerator:`NOT_ALIVE_DISPOSED<dds::fastdds::eprosima::InstanceStateKind::NOT_ALIVE_DISPOSED>`
+.. |NOT_ALIVE_NO_WRITERS-api| replace:: :cpp:enumerator:`NOT_ALIVE_NO_WRITERS<dds::fastdds::eprosima::InstanceStateKind::NOT_ALIVE_NO_WRITERS>`
+
+
+.. |PresentationQosPolicyAccessScopeKind-api| replace:: :cpp:enum:`PresentationQosPolicyAccessScopeKind<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind>`
+.. |INSTANCE_PRESENTATION_QOS-api| replace:: :cpp:enumerator:`INSTANCE_PRESENTATION_QOS<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind::INSTANCE_PRESENTATION_QOS>`
+.. |TOPIC_PRESENTATION_QOS-api| replace:: :cpp:enumerator:`TOPIC_PRESENTATION_QOS<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind::TOPIC_PRESENTATION_QOS>`
+.. |GROUP_PRESENTATION_QOS-api| replace:: :cpp:enumerator:`GROUP_PRESENTATION_QOS<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind::GROUP_PRESENTATION_QOS>`
+
+.. |EntityFactoryQosPolicy-api| replace:: :cpp:class:`EntityFactoryQosPolicy<eprosima::fastdds::dds::EntityFactoryQosPolicy>`
+.. |autoenable_created_entities-api| replace:: :cpp:member:`autoenable_created_entities<eprosima::fastdds::dds::EntityFactoryQosPolicy::autoenable_created_entities>`
+
+.. |GroupDataQosPolicy-api| replace:: :cpp:class:`GroupDataQosPolicy<eprosima::fastdds::dds::GroupDataQosPolicy>`
+.. |octet-api| replace:: :cpp:type:`octet<eprosima::fastrtps::rtps::octet>`
+
+.. |PartitionQosPolicy-api| replace:: :cpp:class:`PartitionQosPolicy<eprosima::fastdds::dds::PartitionQosPolicy>`
+.. |PartitionQosPolicy::max_size-api| replace:: :cpp:member:`max_size<eprosima::fastdds::dds::PartitionQosPolicy::max_size>`
+.. |PartitionQosPolicy::partitions-api| replace:: :cpp:member:`partitions<eprosima::fastdds::dds::PartitionQosPolicy::partitions>`
+
+.. |ReaderDataLifecycleQosPolicy-api| replace:: :cpp:class:`ReaderDataLifecycleQosPolicy<eprosima::fastdds::dds::ReaderDataLifecycleQosPolicy>`
+.. |ReaderDataLifecycleQosPolicy::autopurge_no_writer_samples_delay-api| replace:: :cpp:member:`autopurge_no_writer_samples_delay<eprosima::fastdds::dds::ReaderDataLifecycleQosPolicy::autopurge_no_writer_samples_delay>`
+.. |ReaderDataLifecycleQosPolicy::autopurge_disposed_samples_delay-api| replace:: :cpp:member:`autopurge_disposed_samples_delay<eprosima::fastdds::dds::ReaderDataLifecycleQosPolicy::autopurge_disposed_samples_delay>`
+
+.. |PresentationQosPolicy-api| replace:: :cpp:class:`PresentationQosPolicy<eprosima::fastdds::dds::PresentationQosPolicy>`
+.. |access_scope-api| replace:: :cpp:member:`access_scope<eprosima::fastdds::dds::PresentationQosPolicy::access_scope>`
+.. |coherent_access-api| replace:: :cpp:member:`coherent_access<eprosima::fastdds::dds::PresentationQosPolicy::coherent_access>`
+.. |ordered_access-api| replace:: :cpp:member:`ordered_access<eprosima::fastdds::dds::PresentationQosPolicy::ordered_access>`
+
+
+.. |HistoryQosPolicy-api| replace:: :cpp:class:`HistoryQosPolicy<eprosima::fastdds::dds::HistoryQosPolicy>`
+.. |HistoryQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::HistoryQosPolicy::kind>`
+.. |HistoryQosPolicy::depth-api| replace:: :cpp:member:`depth<eprosima::fastdds::dds::HistoryQosPolicy::depth>`
+
+.. |OwnershipStrengthQosPolicy-api| replace:: :cpp:class:`OwnershipStrengthQosPolicy<eprosima::fastdds::dds::OwnershipStrengthQosPolicy>`
+.. |OwnershipStrengthQosPolicy::value-api| replace:: :cpp:member:`value<eprosima::fastdds::dds::OwnershipStrengthQosPolicy::value>`
+
+.. |LatencyBudgetQosPolicy-api| replace:: :cpp:class:`LatencyBudgetQosPolicy<eprosima::fastdds::dds::LatencyBudgetQosPolicy>`
+.. |LatencyBudgetQosPolicy::duration-api| replace:: :cpp:member:`duration<eprosima::fastdds::dds::LatencyBudgetQosPolicy::duration>`
+
+.. |DeadlineQosPolicy-api| replace:: :cpp:class:`DeadlineQosPolicy<eprosima::fastdds::dds::DeadlineQosPolicy>`
+.. |DeadlineQosPolicy::period-api| replace:: :cpp:member:`period<eprosima::fastdds::dds::DeadlineQosPolicy::period>`
+
+.. |LifespanQosPolicy-api| replace:: :cpp:class:`LifespanQosPolicy<eprosima::fastdds::dds::LifespanQosPolicy>`
+.. |LifespanQosPolicy::duration-api| replace:: :cpp:member:`duration<eprosima::fastdds::dds::LifespanQosPolicy::duration>`
+
+.. |DestinationOrderQosPolicy-api| replace:: :cpp:class:`DestinationOrderQosPolicy<eprosima::fastdds::dds::DestinationOrderQosPolicy>`
+.. |DestinationOrderQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::DestinationOrderQosPolicy::kind>`
+
+.. |DurabilityQosPolicy-api| replace:: :cpp:class:`DurabilityQosPolicy<eprosima::fastdds::dds::DurabilityQosPolicy>`
+.. |DurabilityQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::DurabilityQosPolicy::kind>`
+
+.. |OwnershipQosPolicy-api| replace:: :cpp:class:`OwnershipQosPolicy<eprosima::fastdds::dds::OwnershipQosPolicy>`
+.. |OwnershipQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::OwnershipQosPolicy::kind>`
+
+.. |ReliabilityQosPolicy-api| replace:: :cpp:class:`ReliabilityQosPolicy<eprosima::fastdds::dds::ReliabilityQosPolicy>`
+.. |ReliabilityQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::ReliabilityQosPolicy::kind>`
+.. |ReliabilityQosPolicy::max_blocking_time-api| replace:: :cpp:member:`max_blocking_time<eprosima::fastdds::dds::ReliabilityQosPolicy::max_blocking_time>`
+
+.. |LivelinessQosPolicy-api| replace:: :cpp:class:`LivelinessQosPolicy<eprosima::fastdds::dds::LivelinessQosPolicy>`
+.. |LivelinessQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::LivelinessQosPolicy::kind>`
+.. |LivelinessQosPolicy::lease_duration-api| replace:: :cpp:member:`lease_duration<eprosima::fastdds::dds::LivelinessQosPolicy::lease_duration>`
+.. |LivelinessQosPolicy::announcement_period-api| replace:: :cpp:member:`announcement_period<eprosima::fastdds::dds::LivelinessQosPolicy::announcement_period>`
+
+
+.. |ResourceLimitsQosPolicy-api| replace:: :cpp:class:`ResourceLimitsQosPolicy<eprosima::fastdds::dds::ResourceLimitsQosPolicy>`
+.. |ResourceLimitsQosPolicy::max_samples-api| replace:: :cpp:member:`max_samples<eprosima::fastdds::dds::ResourceLimitsQosPolicy::max_samples>`
+.. |ResourceLimitsQosPolicy::max_instances-api| replace:: :cpp:member:`max_instances<eprosima::fastdds::dds::ResourceLimitsQosPolicy::max_instances>`
+.. |ResourceLimitsQosPolicy::max_samples_per_instance-api| replace:: :cpp:member:`max_samples_per_instance<eprosima::fastdds::dds::ResourceLimitsQosPolicy::max_samples_per_instance>`
+.. |ResourceLimitsQosPolicy::allocated_samples-api| replace:: :cpp:member:`allocated_samples<eprosima::fastdds::dds::ResourceLimitsQosPolicy::allocated_samples>`
+
+.. |TimeBasedFilterQosPolicy-api| replace:: :cpp:class:`TimeBasedFilterQosPolicy<eprosima::fastdds::dds::TimeBasedFilterQosPolicy>`
+.. |TimeBasedFilterQosPolicy::minimum_separation-api| replace:: :cpp:member:`minimum_separation<eprosima::fastdds::dds::TimeBasedFilterQosPolicy::minimum_separation>`
+
+.. |TopicDataQosPolicy-api| replace:: :cpp:class:`TopicDataQosPolicy<eprosima::fastdds::dds::TopicDataQosPolicy>`
+.. |UserDataQosPolicy-api| replace:: :cpp:class:`UserDataQosPolicy<eprosima::fastdds::dds::UserDataQosPolicy>`
+.. |TransportPriorityQosPolicy-api| replace:: :cpp:class:`TransportPriorityQosPolicy<eprosima::fastdds::dds::TransportPriorityQosPolicy>`
+.. |TransportPriorityQosPolicy::value-api| replace:: :cpp:member:`value<eprosima::fastdds::dds::TransportPriorityQosPolicy::value>`
+
+
+.. |WriterDataLifecycleQosPolicy-api| replace:: :cpp:class:`WriterDataLifecycleQosPolicy<eprosima::fastdds::dds::WriterDataLifecycleQosPolicy>`
+.. |WriterDataLifecycleQosPolicy::autodispose_unregistered_instances-api| replace:: :cpp:member:`autodispose_unregistered_instances<eprosima::fastdds::dds::WriterDataLifecycleQosPolicy::autodispose_unregistered_instances>`
+
+
+
+
+
+
+
+.. |LivelinessQosPolicyKind-api| replace:: :cpp:enum:`LivelinessQosPolicyKind<dds::fastdds::eprosima::LivelinessQosPolicyKind>`
+.. |AUTOMATIC_LIVELINESS_QOS-api| replace:: :cpp:enumerator:`AUTOMATIC_LIVELINESS_QOS<dds::fastdds::eprosima::LivelinessQosPolicyKind::AUTOMATIC_LIVELINESS_QOS>`
+.. |MANUAL_BY_PARTICIPANT_LIVELINESS_QOS-api| replace:: :cpp:enumerator:`MANUAL_BY_PARTICIPANT_LIVELINESS_QOS<dds::fastdds::eprosima::LivelinessQosPolicyKind::MANUAL_BY_PARTICIPANT_LIVELINESS_QOS>`
+.. |MANUAL_BY_TOPIC_LIVELINESS_QOS-api| replace:: :cpp:enumerator:`MANUAL_BY_TOPIC_LIVELINESS_QOS<dds::fastdds::eprosima::LivelinessQosPolicyKind::MANUAL_BY_TOPIC_LIVELINESS_QOS>`
+
+.. |OwnershipQosPolicyKind-api| replace:: :cpp:enum:`OwnershipQosPolicyKind<dds::fastdds::eprosima::OwnershipQosPolicyKind>`
+.. |SHARED_OWNERSHIP_QOS-api| replace:: :cpp:enumerator:`SHARED_OWNERSHIP_QOS<dds::fastdds::eprosima::OwnershipQosPolicyKind::SHARED_OWNERSHIP_QOS>`
+.. |EXCLUSIVE_OWNERSHIP_QOS-api| replace:: :cpp:enumerator:`EXCLUSIVE_OWNERSHIP_QOS<dds::fastdds::eprosima::OwnershipQosPolicyKind::EXCLUSIVE_OWNERSHIP_QOS>`
+
+.. |Duration_t-api| replace:: :cpp:type:`Duration_t<fastrtps::eprosima::Duration_t>`
+.. |c_TimeInfinite-api| replace:: :cpp:type:`c_TimeInfinite<fastrtps::eprosima::c_TimeInfinite>`
+.. |c_TimeZero-api| replace:: :cpp:type:`c_TimeZero<fastrtps::eprosima::c_TimeZero>`
+.. |c_TimeInvalid-api| replace:: :cpp:type:`c_TimeInvalid<fastrtps::eprosima::c_TimeInvalid>`
+
+
+.. |SerializedPayload_t-api| replace:: :cpp:type:`SerializedPayload_t<rtps::fastrtps::eprosima::SerializedPayload_t>`

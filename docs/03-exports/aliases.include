@@ -14,6 +14,7 @@
 .. |DisablePositiveACKsQosPolicy| replace:: :ref:`DisablePositiveACKsQosPolicy<disablepositiveacksqospolicy>`
 .. |domain| replace:: :ref:`domain<dds_layer_domain>`
 .. |DomainParticipant| replace:: :ref:`DomainParticipant<dds_layer_domainParticipant>`
+.. |DomainParticipantFactory| replace:: :ref:`DomainParticipantFactory<dds_layer_domainparticipantfactory>`
 .. |DomainParticipantQos| replace:: :ref:`DomainParticipantQos<dds_layer_domainParticipantQos>`
 .. |DomainParticipants| replace:: :ref:`DomainParticipants<dds_layer_domainParticipant>`
 .. |domains| replace:: :ref:`domains<dds_layer_domain>`

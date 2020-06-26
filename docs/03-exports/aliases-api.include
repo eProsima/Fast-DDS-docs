@@ -112,7 +112,6 @@
 .. |DomainParticipantQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DomainParticipantQos::user_data>`
 .. |DomainParticipantQos::wire_protocol-api| replace:: :cpp:func:`wire_protocol()<eprosima::fastdds::dds::DomainParticipantQos::wire_protocol>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
-.. |InstanceHandle_t-api| replace:: :cpp:struct:`InstanceHandle_t <eprosima::fastrtps::rtps::InstanceHandle_t>`
 .. |Publisher-api| replace:: :cpp:class:`Publisher <eprosima::fastdds::dds::Publisher>`
 .. |Publisher::create_datawriter_with_profile-api| replace:: :cpp:func:`create_datawriter_with_profile()<eprosima::fastdds::dds::Publisher::create_datawriter_with_profile>`
 .. |Publisher::create_datawriter-api| replace:: :cpp:func:`create_datawriter()<eprosima::fastdds::dds::Publisher::create_datawriter>`
@@ -236,7 +235,7 @@
 .. |autoenable_created_entities-api| replace:: :cpp:member:`autoenable_created_entities<eprosima::fastdds::dds::EntityFactoryQosPolicy::autoenable_created_entities>`
 
 .. |GroupDataQosPolicy-api| replace:: :cpp:class:`GroupDataQosPolicy<eprosima::fastdds::dds::GroupDataQosPolicy>`
-.. |octet-api| replace:: :cpp:type:`octet<eprosima::fastrtps::rtps::octet>`
+.. |octet-api| replace:: :cpp:type:`octet<rtps::fastrtps::eprosima::octet>`
 
 .. |PartitionQosPolicy-api| replace:: :cpp:class:`PartitionQosPolicy<eprosima::fastdds::dds::PartitionQosPolicy>`
 .. |PartitionQosPolicy::max_size-api| replace:: :cpp:member:`max_size<eprosima::fastdds::dds::PartitionQosPolicy::max_size>`
@@ -319,6 +318,9 @@
 
 .. |SerializedPayload_t-api| replace:: :cpp:type:`SerializedPayload_t<rtps::fastrtps::eprosima::SerializedPayload_t>`
 
+.. |InconsistentTopicStatus-api| replace:: :cpp:type:`InconsistentTopicStatus<rtps::fastrtps::eprosima::InconsistentTopicStatus>`
+.. |SampleLostStatus-api| replace:: :cpp:type:`SampleLostStatus<rtps::fastrtps::eprosima::SampleLostStatus>`
+
 
 .. |MemoryManagementPolicy-api| replace:: :cpp:enum:`MemoryManagementPolicy<rtps::fastrtps::eprosima::MemoryManagementPolicy>`
 .. |PREALLOCATED_MEMORY_MODE-api| replace:: :cpp:enumerator:`PREALLOCATED_MEMORY_MODE<rtps::fastrtps::eprosima::MemoryManagementPolicy::PREALLOCATED_MEMORY_MODE>`
@@ -369,6 +371,11 @@
 .. |VariableLengthDataLimits::max_partitions-api| replace:: :cpp:member:`max_partitions<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_partitions>`
 
 .. |PropertyPolicyQos-api| replace:: :cpp:type:`PropertyPolicyQos<dds::fastdds::eprosima::PropertyPolicyQos>`
+.. |RequestedDeadlineMissedStatus-api| replace:: :cpp:type:`RequestedDeadlineMissedStatus<dds::fastdds::eprosima::RequestedDeadlineMissedStatus>`
+.. |RequestedIncompatibleQosStatus-api| replace:: :cpp:type:`RequestedIncompatibleQosStatus<dds::fastdds::eprosima::RequestedIncompatibleQosStatus>`
+.. |LivelinessLostStatus-api| replace:: :cpp:type:`LivelinessLostStatus<dds::fastdds::eprosima::LivelinessLostStatus>`
+.. |OfferedDeadlineMissedStatus-api| replace:: :cpp:type:`OfferedDeadlineMissedStatus<dds::fastdds::eprosima::OfferedDeadlineMissedStatus>`
+.. |OfferedIncompatibleQosStatus-api| replace:: :cpp:type:`OfferedIncompatibleQosStatus<dds::fastdds::eprosima::OfferedIncompatibleQosStatus>`
 
 .. |PublishModeQosPolicy-api| replace:: :cpp:class:`PublishModeQosPolicy<eprosima::fastdds::dds::PublishModeQosPolicy>`
 .. |PublishModeQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::PublishModeQosPolicy::kind>`
@@ -423,3 +430,80 @@
 
 .. |WriterResourceLimitsQos-api| replace:: :cpp:class:`WriterResourceLimitsQos<eprosima::fastdds::dds::WriterResourceLimitsQos>`
 .. |WriterResourceLimitsQos::matched_subscriber_allocation-api| replace:: :cpp:member:`matched_subscriber_allocation<eprosima::fastdds::dds::WriterResourceLimitsQos::matched_subscriber_allocation>`
+
+.. |DataRepresentationQosPolicy-api| replace:: :cpp:class:`DataRepresentationQosPolicy<eprosima::fastdds::dds::DataRepresentationQosPolicy>`
+.. |DataRepresentationQosPolicy::m_value-api| replace:: :cpp:member:`m_value<eprosima::fastdds::dds::DataRepresentationQosPolicy::m_value>`
+
+.. |DataRepresentationId-api| replace:: :cpp:enum:`DataRepresentationId<dds::fastdds::eprosima::DataRepresentationId>`
+.. |XCDR_DATA_REPRESENTATION-api| replace:: :cpp:enumerator:`XCDR_DATA_REPRESENTATION<dds::fastdds::eprosima::DataRepresentationId::XCDR_DATA_REPRESENTATION>`
+.. |XML_DATA_REPRESENTATION-api| replace:: :cpp:enumerator:`XML_DATA_REPRESENTATION<dds::fastdds::eprosima::DataRepresentationId::XML_DATA_REPRESENTATION>`
+.. |XCDR2_DATA_REPRESENTATION-api| replace:: :cpp:enumerator:`XCDR2_DATA_REPRESENTATION<dds::fastdds::eprosima::DataRepresentationId::XCDR2_DATA_REPRESENTATION>`
+
+.. |TypeConsistencyEnforcementQosPolicy-api| replace:: :cpp:class:`TypeConsistencyEnforcementQosPolicy<eprosima::fastdds::dds::TypeConsistencyEnforcementQosPolicy>`
+.. |TypeConsistencyEnforcementQosPolicy::m_kind-api| replace:: :cpp:member:`m_kind<eprosima::fastdds::dds::TypeConsistencyEnforcementQosPolicy::m_kind>`
+.. |TypeConsistencyEnforcementQosPolicy::m_ignore_sequence_bounds-api| replace:: :cpp:member:`m_ignore_sequence_bounds<eprosima::fastdds::dds::TypeConsistencyEnforcementQosPolicy::m_ignore_sequence_bounds>`
+.. |TypeConsistencyEnforcementQosPolicy::m_ignore_string_bounds-api| replace:: :cpp:member:`m_ignore_string_bounds<eprosima::fastdds::dds::TypeConsistencyEnforcementQosPolicy::m_ignore_string_bounds>`
+.. |TypeConsistencyEnforcementQosPolicy::m_ignore_member_names-api| replace:: :cpp:member:`m_ignore_member_names<eprosima::fastdds::dds::TypeConsistencyEnforcementQosPolicy::m_ignore_member_names>`
+.. |TypeConsistencyEnforcementQosPolicy::m_prevent_type_widening-api| replace:: :cpp:member:`m_prevent_type_widening<eprosima::fastdds::dds::TypeConsistencyEnforcementQosPolicy::m_prevent_type_widening>`
+.. |TypeConsistencyEnforcementQosPolicy::m_force_type_validation-api| replace:: :cpp:member:`m_force_type_validation<eprosima::fastdds::dds::TypeConsistencyEnforcementQosPolicy::m_force_type_validation>`
+
+.. |TypeConsistencyKind-api| replace:: :cpp:enum:`TypeConsistencyKind<dds::fastdds::eprosima::TypeConsistencyKind>`
+.. |DISALLOW_TYPE_COERCION-api| replace:: :cpp:enumerator:`DISALLOW_TYPE_COERCION<dds::fastdds::eprosima::TypeConsistencyKind::DISALLOW_TYPE_COERCION>`
+.. |ALLOW_TYPE_COERCION-api| replace:: :cpp:enumerator:`ALLOW_TYPE_COERCION<dds::fastdds::eprosima::TypeConsistencyKind::ALLOW_TYPE_COERCION>`
+
+.. |BaseStatus-api| replace:: :cpp:struct:`BaseStatus<eprosima::fastdds::dds::BaseStatus>`
+.. |BaseStatus::total_count-api| replace:: :cpp:member:`total_count<eprosima::fastdds::dds::BaseStatus::total_count>`
+.. |BaseStatus::total_count_change-api| replace:: :cpp:member:`total_count_change<eprosima::fastdds::dds::BaseStatus::total_count_change>`
+
+.. |DataWriterListener::on_liveliness_lost-api| replace:: :cpp:func:`on_liveliness_lost()<eprosima::fastdds::dds::DataWriterListener::on_liveliness_lost>`
+.. |DataWriterListener::on_offered_deadline_missed-api| replace:: :cpp:func:`on_offered_deadline_missed()<eprosima::fastdds::dds::DataWriterListener::on_offered_deadline_missed>`
+.. |DataWriterListener::on_offered_incompatible_qos-api| replace:: :cpp:func:`on_offered_incompatible_qos()<eprosima::fastdds::dds::DataWriterListener::on_offered_incompatible_qos>`
+.. |DataWriterListener::on_publication_matched-api| replace:: :cpp:func:`on_publication_matched()<eprosima::fastdds::dds::DataWriterListener::on_publication_matched>`
+
+.. |LivelinessChangedStatus-api| replace:: :cpp:struct:`LivelinessChangedStatus<eprosima::fastdds::dds::LivelinessChangedStatus>`
+.. |LivelinessChangedStatus::alive_count-api| replace:: :cpp:member:`alive_count<eprosima::fastdds::dds::LivelinessChangedStatus::alive_count>`
+.. |LivelinessChangedStatus::not_alive_count-api| replace:: :cpp:member:`not_alive_count<eprosima::fastdds::dds::LivelinessChangedStatus::not_alive_count>`
+.. |LivelinessChangedStatus::alive_count_change-api| replace:: :cpp:member:`alive_count_change<eprosima::fastdds::dds::LivelinessChangedStatus::alive_count_change>`
+.. |LivelinessChangedStatus::not_alive_count_change-api| replace:: :cpp:member:`not_alive_count_change<eprosima::fastdds::dds::LivelinessChangedStatus::not_alive_count_change>`
+.. |LivelinessChangedStatus::last_publication_handle-api| replace:: :cpp:member:`last_publication_handle<eprosima::fastdds::dds::LivelinessChangedStatus::last_publication_handle>`
+
+.. |InstanceHandle_t-api| replace:: :cpp:struct:`InstanceHandle_t<eprosima::fastrtps::rtps::InstanceHandle_t>`
+
+.. |DeadlineMissedStatus-api| replace:: :cpp:struct:`DeadlineMissedStatus<eprosima::fastdds::dds::DeadlineMissedStatus>`
+.. |DeadlineMissedStatus::total_count-api| replace:: :cpp:member:`total_count<eprosima::fastdds::dds::DeadlineMissedStatus::total_count>`
+.. |DeadlineMissedStatus::total_count_change-api| replace:: :cpp:member:`total_count_change<eprosima::fastdds::dds::DeadlineMissedStatus::total_count_change>`
+.. |DeadlineMissedStatus::last_instance_handle-api| replace:: :cpp:member:`last_instance_handle<eprosima::fastdds::dds::DeadlineMissedStatus::last_instance_handle>`
+
+.. |IncompatibleQosStatus-api| replace:: :cpp:struct:`IncompatibleQosStatus<eprosima::fastdds::dds::IncompatibleQosStatus>`
+.. |IncompatibleQosStatus::total_count-api| replace:: :cpp:member:`total_count<eprosima::fastdds::dds::IncompatibleQosStatus::total_count>`
+.. |IncompatibleQosStatus::total_count_change-api| replace:: :cpp:member:`total_count_change<eprosima::fastdds::dds::IncompatibleQosStatus::total_count_change>`
+.. |IncompatibleQosStatus::last_policy_id-api| replace:: :cpp:member:`last_policy_id<eprosima::fastdds::dds::IncompatibleQosStatus::last_policy_id>`
+.. |IncompatibleQosStatus::policies-api| replace:: :cpp:member:`policies<eprosima::fastdds::dds::IncompatibleQosStatus::policies>`
+
+.. |QosPolicyCount-api| replace:: :cpp:struct:`QosPolicyCount<eprosima::fastdds::dds::QosPolicyCount>`
+.. |QosPolicyCount::policy_id-api| replace:: :cpp:member:`policy_id<eprosima::fastdds::dds::QosPolicyCount::policy_id>`
+.. |QosPolicyCount::count-api| replace:: :cpp:member:`count<eprosima::fastdds::dds::QosPolicyCount::count>`
+
+.. |SampleRejectedStatus-api| replace:: :cpp:struct:`SampleRejectedStatus<eprosima::fastdds::dds::SampleRejectedStatus>`
+.. |SampleRejectedStatus::total_count-api| replace:: :cpp:member:`total_count<eprosima::fastdds::dds::SampleRejectedStatus::total_count>`
+.. |SampleRejectedStatus::total_count_change-api| replace:: :cpp:member:`total_count_change<eprosima::fastdds::dds::SampleRejectedStatus::total_count_change>`
+.. |SampleRejectedStatus::last_reason-api| replace:: :cpp:member:`last_reason<eprosima::fastdds::dds::SampleRejectedStatus::last_reason>`
+.. |SampleRejectedStatus::last_instance_handle-api| replace:: :cpp:member:`last_instance_handle<eprosima::fastdds::dds::SampleRejectedStatus::last_instance_handle>`
+
+.. |SampleRejectedStatusKind-api| replace:: :cpp:enum:`SampleRejectedStatusKind<dds::fastdds::eprosima::SampleRejectedStatusKind>`
+.. |NOT_REJECTED| replace:: :cpp:enumerator:`NOT_REJECTED<dds::fastdds::eprosima::SampleRejectedStatusKind::NOT_REJECTED>`
+.. |REJECTED_BY_INSTANCES_LIMIT| replace:: :cpp:enumerator:`REJECTED_BY_INSTANCES_LIMIT<dds::fastdds::eprosima::SampleRejectedStatusKind::REJECTED_BY_INSTANCES_LIMIT>`
+.. |REJECTED_BY_SAMPLES_LIMIT| replace:: :cpp:enumerator:`REJECTED_BY_SAMPLES_LIMIT<dds::fastdds::eprosima::SampleRejectedStatusKind::REJECTED_BY_SAMPLES_LIMIT>`
+.. |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| replace:: :cpp:enumerator:`REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT<dds::fastdds::eprosima::SampleRejectedStatusKind::REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT>`
+
+.. |SubscriptionMatchedStatus-api| replace:: :cpp:struct:`SubscriptionMatchedStatus<eprosima::fastdds::dds::SubscriptionMatchedStatus>`
+.. |SubscriptionMatchedStatus::last_publication_handle-api| replace:: :cpp:member:`last_publication_handle<eprosima::fastdds::dds::SubscriptionMatchedStatus::last_publication_handle>`
+
+.. |MatchedStatus-api| replace:: :cpp:struct:`MatchedStatus<eprosima::fastdds::dds::MatchedStatus>`
+.. |MatchedStatus::total_count-api| replace:: :cpp:member:`total_count<eprosima::fastdds::dds::MatchedStatus::total_count>`
+.. |MatchedStatus::total_count_change-api| replace:: :cpp:member:`total_count_change<eprosima::fastdds::dds::MatchedStatus::total_count_change>`
+.. |MatchedStatus::current_count-api| replace:: :cpp:member:`current_count<eprosima::fastdds::dds::MatchedStatus::current_count>`
+.. |MatchedStatus::current_count_change-api| replace:: :cpp:member:`current_count_change<eprosima::fastdds::dds::MatchedStatus::current_count_change>`
+
+.. |PublicationMatchedStatus-api| replace:: :cpp:struct:`PublicationMatchedStatus<eprosima::fastdds::dds::PublicationMatchedStatus>`
+.. |PublicationMatchedStatus::last_subscription_handle-api| replace:: :cpp:member:`last_subscription_handle<eprosima::fastdds::dds::PublicationMatchedStatus::last_subscription_handle>`

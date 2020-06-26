@@ -302,7 +302,7 @@ List of QoS Policy data members:
   That information is kept until all the following conditions are met:
 
   * The instance has been explicitly disposed and its InstanceState becomes |NOT_ALIVE_DISPOSED-api|.
-  * There isn't any alive DataWriter writing the instance, which means that all existing writers either unregister the
+  * There is not any alive DataWriter writing the instance, which means that all existing writers either unregister the
     instance or lose their liveliness.
   * A time interval longer than the one established on the |service_cleanup_delay-api| has elapsed since the moment the
     service detected that the two previous conditions were met.
@@ -382,7 +382,7 @@ List of QoS Policy data members:
 +--------------------------+-------------------------------+-------------------+
 | Data Member Name         | Type                          | Default Value     |
 +==========================+===============================+===================+
-| collection               | std::vector< |octet-api| >    | Empty vector      |
+| collection               | std::vector<|octet-api|>      | Empty vector      |
 +--------------------------+-------------------------------+-------------------+
 
 .. note::
@@ -977,7 +977,7 @@ The DataReader maintains the samples that have not been taken by the application
 See |ReaderDataLifecycleQosPolicy-api|.
 
 Under normal circumstances, the DataReader can only reclaim the resources associated with data instances if there are
-no writers and all the samples have been taken. But this fact can cause problems if the application doesn't take those
+no writers and all the samples have been taken. But this fact can cause problems if the application does not take those
 samples as the service will prevent the DataReader from reclaiming the resources and they will remain in the DataReader
 indefinitely. This QoS exist to avoid that situation.
 
@@ -1193,7 +1193,7 @@ TimeBasedFilterQosPolicy
     This QoS Policy will be implemented in future releases.
 
 Filter that allows a |DataReader| to specify that it is interested only in a subset of the values of the data.
-This filter states that the DataReader doesn't want to receive more than one value each
+This filter states that the DataReader does not want to receive more than one value each
 |TimeBasedFilterQosPolicy::minimum_separation-api|, regardless of how fast the changes occur.
 See |TimeBasedFilterQosPolicy-api|.
 
@@ -1229,7 +1229,7 @@ List of QoS Policy data members:
 +------------------------------------------------------------+----------------------------------------+----------------+
 | Data Member Name                                           | Type                                   | Default Value  |
 +============================================================+========================================+================+
-| collection                                                 | std::vector< |octet-api| >             | Empty vector   |
+| collection                                                 | std::vector<|octet-api|>               | Empty vector   |
 +------------------------------------------------------------+----------------------------------------+----------------+
 
 .. note::
@@ -1296,7 +1296,7 @@ List of QoS Policy data members:
 +-------------------------------------------------------------------+----------------------------------+---------------+
 | Data Member Name                                                  | Type                             | Default Value |
 +===================================================================+==================================+===============+
-| collection                                                        | std::vector< |octet-api| >       | Empty vector  |
+| collection                                                        | std::vector<|octet-api|>         | Empty vector  |
 +-------------------------------------------------------------------+----------------------------------+---------------+
 
 .. note::

@@ -423,7 +423,7 @@ List of QoS Policy data members:
   changed by means of this QoS.
 * |RTPSEndpointQos::multicast_locator_list-api|:
   Stores the list of multicast locators associated to the DDS Entity.
-  By default, DataReaders and DataWriters don't use any multicast locator, but it can be changed by means of this QoS.
+  By default, DataReaders and DataWriters do not use any multicast locator, but it can be changed by means of this QoS.
 * |RTPSEndpointQos::remote_locator_list-api|:
   States the list of remote locators associated to the DDS Entity.
 * |RTPSEndpointQos::user_defined_id-api|:
@@ -635,21 +635,26 @@ This QoS Policy allows the configuration of the transport layer settings.
 See |TransportConfigQos-api|.
 
 List of QoS Policy data members:
-std::vector<std::shared_ptr<:ref:`transportdescriptorinterface`>>
 
-+-----------------------------------------------------+-----------------------------------------------------+----------+
-| Data Member Name                                    | Type                                                | Default  |
-|                                                     |                                                     | Value    |
-+=====================================================+=====================================================+==========+
-| |TransportConfigQos::user_transports-api|           |                                                     | Empty    |
-|                                                     |                                                     | Vector   |
-+-----------------------------------------------------+-----------------------------------------------------+----------+
-| |TransportConfigQos::use_builtin_transports-api|    | ``bool``                                            | ``true`` |
-+-----------------------------------------------------+-----------------------------------------------------+----------+
-| |TransportConfigQos::send_socket_buffer_size-api|   | ``uint32_t``                                        | 0        |
-+-----------------------------------------------------+-----------------------------------------------------+----------+
-| |TransportConfigQos::listen_socket_buffer_size-api| | ``uint32_t``                                        | 0        |
-+-----------------------------------------------------+-----------------------------------------------------+----------+
+.. list-table::
+   :header-rows: 1
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - |TransportConfigQos::user_transports-api|
+     - ``std::vector<std::shared_ptr<TransportDescriptorInterface>>``
+     -
+   * - |TransportConfigQos::use_builtin_transports-api|
+     - ``bool``
+     - Empty vector
+   * - |TransportConfigQos::send_socket_buffer_size-api|
+     - ``uint32_t``
+     - ``true``
+   * - |TransportConfigQos::listen_socket_buffer_size-api|
+     - ``uint32_t``
+     - 0
+
 
 * |TransportConfigQos::user_transports-api|:
   This data member defines the list of transports to use alongside or in place of builtins.

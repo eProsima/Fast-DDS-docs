@@ -24,6 +24,7 @@ Policy
    /fastdds/api_reference/dds_pim/core/policy/ownershipqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/ownershipqospolicykind.rst
    /fastdds/api_reference/dds_pim/core/policy/ownershipstrengthqospolicy.rst
+   /fastdds/api_reference/dds_pim/core/policy/participantresourcelimitsqos.rst
    /fastdds/api_reference/dds_pim/core/policy/partition_t.rst
    /fastdds/api_reference/dds_pim/core/policy/partitionqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/presentationqospolicy.rst

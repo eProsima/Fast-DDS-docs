@@ -5,7 +5,6 @@
 .. |DataReader::take_next_sample-api| replace:: :cpp:func:`DataReader::take_next_sample()<eprosima::fastdds::dds::DataReader::take_next_sample>`
 .. |DataReaderListener-api| replace:: :cpp:class:`DataReaderListener <eprosima::fastdds::dds::DataReaderListener>`
 
-
 .. |DataReaderListener::on_data_available-api| replace:: :cpp:func:`on_data_available()<eprosima::fastdds::dds::DataReaderListener::on_data_available>`
 .. |DataReaderListener::on_subscription_matched-api| replace:: :cpp:func:`on_subscription_matched()<eprosima::fastdds::dds::DataReaderListener::on_subscription_matched>`
 .. |DataReaderListener::on_requested_deadline_missed-api| replace:: :cpp:func:`on_requested_deadline_missed()<eprosima::fastdds::dds::DataReaderListener::on_requested_deadline_missed>`
@@ -14,9 +13,6 @@
 .. |DataReaderListener::on_liveliness_changed-api| replace:: :cpp:func:`on_liveliness_changed()<eprosima::fastdds::dds::DataReaderListener::on_liveliness_changed>`
 .. |DataReaderListener::on_sample_rejected-api| replace:: :cpp:func:`on_sample_rejected()<eprosima::fastdds::dds::DataReaderListener::on_sample_rejected>`
 .. |DataReaderListener::on_sample_lost-api| replace:: :cpp:func:`on_sample_lost()<eprosima::fastdds::dds::DataReaderListener::on_sample_lost>`
-
-
-
 
 .. |DataReaderQos-api| replace:: :cpp:class:`DataReaderQos <eprosima::fastdds::dds::DataReaderQos>`
 .. |DataReaderQos::DataReaderQos-api| replace:: :cpp:func:`DataReaderQos()<eprosima::fastdds::dds::DataReaderQos::DataReaderQos>`
@@ -200,8 +196,6 @@
 .. |Entity-api| replace:: :cpp:class:`Entity<eprosima::fastdds::dds::Entity>`
 .. |Entity::get_instance_handle-api| replace:: :cpp:func:`get_instance_handle()<eprosima::fastdds::dds::Entity::get_instance_handle>`
 
-
-
 .. |DestinationOrderQosPolicyKind-api| replace:: :cpp:enum:`DestinationOrderQosPolicyKind<dds::fastdds::eprosima::DestinationOrderQosPolicyKind>`
 .. |BY_RECEPTION_TIMESTAMP| replace:: :cpp:enumerator:`BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS<dds::fastdds::eprosima::DestinationOrderQosPolicyKind::BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS>`
 .. |BY_SOURCE_TIMESTAMP| replace:: :cpp:enumerator:`BY_SOURCE_TIMESTAMP_DESTINATIONORDER_QOS<dds::fastdds::eprosima::DestinationOrderQosPolicyKind::BY_SOURCE_TIMESTAMP_DESTINATIONORDER_QOS>`
@@ -233,7 +227,6 @@
 .. |NOT_ALIVE_DISPOSED-api| replace:: :cpp:enumerator:`NOT_ALIVE_DISPOSED<dds::fastdds::eprosima::InstanceStateKind::NOT_ALIVE_DISPOSED>`
 .. |NOT_ALIVE_NO_WRITERS-api| replace:: :cpp:enumerator:`NOT_ALIVE_NO_WRITERS<dds::fastdds::eprosima::InstanceStateKind::NOT_ALIVE_NO_WRITERS>`
 
-
 .. |PresentationQosPolicyAccessScopeKind-api| replace:: :cpp:enum:`PresentationQosPolicyAccessScopeKind<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind>`
 .. |INSTANCE_PRESENTATION_QOS-api| replace:: :cpp:enumerator:`INSTANCE_PRESENTATION_QOS<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind::INSTANCE_PRESENTATION_QOS>`
 .. |TOPIC_PRESENTATION_QOS-api| replace:: :cpp:enumerator:`TOPIC_PRESENTATION_QOS<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind::TOPIC_PRESENTATION_QOS>`
@@ -257,7 +250,6 @@
 .. |access_scope-api| replace:: :cpp:member:`access_scope<eprosima::fastdds::dds::PresentationQosPolicy::access_scope>`
 .. |coherent_access-api| replace:: :cpp:member:`coherent_access<eprosima::fastdds::dds::PresentationQosPolicy::coherent_access>`
 .. |ordered_access-api| replace:: :cpp:member:`ordered_access<eprosima::fastdds::dds::PresentationQosPolicy::ordered_access>`
-
 
 .. |HistoryQosPolicy-api| replace:: :cpp:class:`HistoryQosPolicy<eprosima::fastdds::dds::HistoryQosPolicy>`
 .. |HistoryQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::HistoryQosPolicy::kind>`
@@ -293,7 +285,6 @@
 .. |LivelinessQosPolicy::lease_duration-api| replace:: :cpp:member:`lease_duration<eprosima::fastdds::dds::LivelinessQosPolicy::lease_duration>`
 .. |LivelinessQosPolicy::announcement_period-api| replace:: :cpp:member:`announcement_period<eprosima::fastdds::dds::LivelinessQosPolicy::announcement_period>`
 
-
 .. |ResourceLimitsQosPolicy-api| replace:: :cpp:class:`ResourceLimitsQosPolicy<eprosima::fastdds::dds::ResourceLimitsQosPolicy>`
 .. |ResourceLimitsQosPolicy::max_samples-api| replace:: :cpp:member:`max_samples<eprosima::fastdds::dds::ResourceLimitsQosPolicy::max_samples>`
 .. |ResourceLimitsQosPolicy::max_instances-api| replace:: :cpp:member:`max_instances<eprosima::fastdds::dds::ResourceLimitsQosPolicy::max_instances>`
@@ -308,15 +299,8 @@
 .. |TransportPriorityQosPolicy-api| replace:: :cpp:class:`TransportPriorityQosPolicy<eprosima::fastdds::dds::TransportPriorityQosPolicy>`
 .. |TransportPriorityQosPolicy::value-api| replace:: :cpp:member:`value<eprosima::fastdds::dds::TransportPriorityQosPolicy::value>`
 
-
 .. |WriterDataLifecycleQosPolicy-api| replace:: :cpp:class:`WriterDataLifecycleQosPolicy<eprosima::fastdds::dds::WriterDataLifecycleQosPolicy>`
 .. |WriterDataLifecycleQosPolicy::autodispose_unregistered_instances-api| replace:: :cpp:member:`autodispose_unregistered_instances<eprosima::fastdds::dds::WriterDataLifecycleQosPolicy::autodispose_unregistered_instances>`
-
-
-
-
-
-
 
 .. |LivelinessQosPolicyKind-api| replace:: :cpp:enum:`LivelinessQosPolicyKind<dds::fastdds::eprosima::LivelinessQosPolicyKind>`
 .. |AUTOMATIC_LIVELINESS_QOS-api| replace:: :cpp:enumerator:`AUTOMATIC_LIVELINESS_QOS<dds::fastdds::eprosima::LivelinessQosPolicyKind::AUTOMATIC_LIVELINESS_QOS>`
@@ -329,8 +313,113 @@
 
 .. |Duration_t-api| replace:: :cpp:type:`Duration_t<fastrtps::eprosima::Duration_t>`
 .. |c_TimeInfinite-api| replace:: :cpp:type:`c_TimeInfinite<fastrtps::eprosima::c_TimeInfinite>`
-.. |c_TimeZero-api| replace:: :cpp:type:`c_TimeZero<fastrtps::eprosima::c_TimeZero>`
-.. |c_TimeInvalid-api| replace:: :cpp:type:`c_TimeInvalid<fastrtps::eprosima::c_TimeInvalid>`
-
+.. |c_TimeZero-api| replace:: :cpp:type:`c_TimeZero<fastrtps::eprosima::c_TimeInfinite>`
+.. |c_TimeInvalid-api| replace:: :cpp:type:`c_TimeInvalid<fastrtps::eprosima::c_TimeInfinite>`
+.. |LocatorList_t-api| replace:: :cpp:class:`LocatorList_t<LocatorList_t>`
 
 .. |SerializedPayload_t-api| replace:: :cpp:type:`SerializedPayload_t<rtps::fastrtps::eprosima::SerializedPayload_t>`
+
+
+.. |MemoryManagementPolicy-api| replace:: :cpp:enum:`MemoryManagementPolicy<rtps::fastrtps::eprosima::MemoryManagementPolicy>`
+.. |PREALLOCATED_MEMORY_MODE-api| replace:: :cpp:enumerator:`PREALLOCATED_MEMORY_MODE<rtps::fastrtps::eprosima::MemoryManagementPolicy::PREALLOCATED_MEMORY_MODE>`
+.. |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api| replace:: :cpp:enumerator:`PREALLOCATED_WITH_REALLOC_MEMORY_MODE<rtps::fastrtps::eprosima::MemoryManagementPolicy::PREALLOCATED_WITH_REALLOC_MEMORY_MODE>`
+.. |DYNAMIC_RESERVE_MEMORY_MODE-api| replace:: :cpp:enumerator:`DYNAMIC_RESERVE_MEMORY_MODE<rtps::fastrtps::eprosima::MemoryManagementPolicy::DYNAMIC_RESERVE_MEMORY_MODE>`
+.. |DYNAMIC_REUSABLE_MEMORY_MODE-api| replace:: :cpp:enumerator:`DYNAMIC_REUSABLE_MEMORY_MODE<rtps::fastrtps::eprosima::MemoryManagementPolicy::DYNAMIC_REUSABLE_MEMORY_MODE>`
+
+.. |RTPSReliableReaderQos-api| replace:: :cpp:class:`RTPSReliableReaderQos<eprosima::fastdds::dds::RTPSReliableReaderQos>`
+.. |RTPSReliableReaderQos::times-api| replace:: :cpp:member:`times<eprosima::fastdds::dds::RTPSReliableReaderQos::times>`
+.. |RTPSReliableReaderQos::disable_positive_ACKs-api| replace:: :cpp:member:`disable_positive_ACKs<eprosima::fastdds::dds::RTPSReliableReaderQos::disable_positive_ACKs>`
+
+.. |DisablePositiveACKsQosPolicy-api| replace:: :cpp:class:`DisablePositiveACKsQosPolicy<eprosima::fastdds::dds::DisablePositiveACKsQosPolicy>`
+.. |DisablePositiveACKsQosPolicy::enabled-api| replace:: :cpp:member:`enabled<eprosima::fastdds::dds::DisablePositiveACKsQosPolicy::enabled>`
+.. |DisablePositiveACKsQosPolicy::duration-api| replace:: :cpp:member:`duration<eprosima::fastdds::dds::DisablePositiveACKsQosPolicy::duration>`
+
+.. |ParticipantResourceLimitsQos-api| replace:: :cpp:type:`ParticipantResourceLimitsQos<dds::fastdds::eprosima::ParticipantResourceLimitsQos>`
+.. |ParticipantResourceLimitsQos::locators-api| replace:: :cpp:member:`locators<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::locators>`
+.. |ParticipantResourceLimitsQos::participants-api| replace:: :cpp:member:`participants<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::participants>`
+.. |ParticipantResourceLimitsQos::readers-api| replace:: :cpp:member:`readers<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::readers>`
+.. |ParticipantResourceLimitsQos::writers-api| replace:: :cpp:member:`writers<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::writers>`
+.. |ParticipantResourceLimitsQos::send_buffers-api| replace:: :cpp:member:`send_buffers<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::send_buffers>`
+.. |ParticipantResourceLimitsQos::data_limits-api| replace:: :cpp:member:`data_limits<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::data_limits>`
+
+.. |RemoteLocatorsAllocationAttributes-api| replace:: :cpp:struct:`RemoteLocatorsAllocationAttributes<eprosima::fastrtps::rtps::RemoteLocatorsAllocationAttributes>`
+.. |RemoteLocatorsAllocationAttributes::max_unicast_locators-api| replace:: :cpp:member:`max_unicast_locators<eprosima::fastrtps::rtps::RemoteLocatorsAllocationAttributes::max_unicast_locators>`
+.. |RemoteLocatorsAllocationAttributes::max_multicast_locators-api| replace:: :cpp:member:`max_multicast_locators<eprosima::fastrtps::rtps::RemoteLocatorsAllocationAttributes::max_multicast_locators>`
+
+.. |ResourceLimitedContainerConfig-api| replace:: :cpp:struct:`ResourceLimitedContainerConfig<eprosima::fastrtps::ResourceLimitedContainerConfig>`
+.. |ResourceLimitedContainerConfig::initial-api| replace:: :cpp:member:`initial<eprosima::fastrtps::ResourceLimitedContainerConfig::initial>`
+.. |ResourceLimitedContainerConfig::maximum-api| replace:: :cpp:member:`maximum<eprosima::fastrtps::ResourceLimitedContainerConfig::maximum>`
+.. |ResourceLimitedContainerConfig::increment-api| replace:: :cpp:member:`increment<eprosima::fastrtps::ResourceLimitedContainerConfig::increment>`
+
+.. |SendBuffersAllocationAttributes-api| replace:: :cpp:struct:`SendBuffersAllocationAttributes<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes>`
+.. |SendBuffersAllocationAttributes::preallocated_number-api| replace:: :cpp:member:`preallocated_number<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes::preallocated_number>`
+.. |SendBuffersAllocationAttributes::dynamic-api| replace:: :cpp:member:`dynamic<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes::dynamic>`
+
+.. |ReaderTimes-api| replace:: :cpp:class:`ReaderTimes<eprosima::fastrtps::rtps::ReaderTimes>`
+.. |ReaderTimes::initialAcknackDelay-api| replace:: :cpp:member:`initialAcknackDelay<eprosima::fastrtps::rtps::ReaderTimes::initialAcknackDelay>`
+.. |ReaderTimes::heartbeatResponseDelay-api| replace:: :cpp:member:`heartbeatResponseDelay<eprosima::fastrtps::rtps::ReaderTimes::heartbeatResponseDelay>`
+
+.. |RTPSReliableWriterQos-api| replace:: :cpp:class:`RTPSReliableWriterQos<eprosima::fastdds::dds::RTPSReliableWriterQos>`
+.. |RTPSReliableWriterQos::times-api| replace:: :cpp:member:`times<eprosima::fastdds::dds::RTPSReliableWriterQos::times>`
+.. |RTPSReliableWriterQos::disable_positive_acks-api| replace:: :cpp:member:`disable_positive_acks<eprosima::fastdds::dds::RTPSReliableWriterQos::disable_positive_acks>`
+
+.. |VariableLengthDataLimits-api| replace:: :cpp:struct:`VariableLengthDataLimits<eprosima::fastrtps::rtps::VariableLengthDataLimits>`
+.. |VariableLengthDataLimits::max_properties-api| replace:: :cpp:member:`max_properties<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_properties>`
+.. |VariableLengthDataLimits::max_user_data-api| replace:: :cpp:member:`max_user_data<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_user_data>`
+.. |VariableLengthDataLimits::max_partitions-api| replace:: :cpp:member:`max_partitions<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_partitions>`
+
+.. |PropertyPolicyQos-api| replace:: :cpp:type:`PropertyPolicyQos<dds::fastdds::eprosima::PropertyPolicyQos>`
+
+.. |PublishModeQosPolicy-api| replace:: :cpp:class:`PublishModeQosPolicy<eprosima::fastdds::dds::PublishModeQosPolicy>`
+.. |PublishModeQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::PublishModeQosPolicy::kind>`
+
+.. |PublishModeQosPolicyKind-api| replace:: :cpp:enum:`PublishModeQosPolicyKind<dds::fastdds::eprosima::PublishModeQosPolicyKind>`
+.. |SYNCHRONOUS_PUBLISH_MODE-api| replace:: :cpp:enumerator:`SYNCHRONOUS_PUBLISH_MODE<dds::fastdds::eprosima::PublishModeQosPolicyKind::SYNCHRONOUS_PUBLISH_MODE>`
+.. |ASYNCHRONOUS_PUBLISH_MODE-api| replace:: :cpp:enumerator:`ASYNCHRONOUS_PUBLISH_MODE<dds::fastdds::eprosima::PublishModeQosPolicyKind::ASYNCHRONOUS_PUBLISH_MODE>`
+
+.. |ReaderResourceLimitsQos-api| replace:: :cpp:class:`ReaderResourceLimitsQos<eprosima::fastdds::dds::ReaderResourceLimitsQos>`
+.. |ReaderResourceLimitsQos::matched_publisher_allocation-api| replace:: :cpp:member:`matched_publisher_allocation<eprosima::fastdds::dds::ReaderResourceLimitsQos::matched_publisher_allocation>`
+
+.. |RTPSEndpointQos-api| replace:: :cpp:class:`RTPSEndpointQos<eprosima::fastdds::dds::RTPSEndpointQos>`
+.. |RTPSEndpointQos::unicast_locator_list-api| replace:: :cpp:member:`unicast_locator_list<eprosima::fastdds::dds::RTPSEndpointQos::unicast_locator_list>`
+.. |RTPSEndpointQos::multicast_locator_list-api| replace:: :cpp:member:`multicast_locator_list<eprosima::fastdds::dds::RTPSEndpointQos::multicast_locator_list>`
+.. |RTPSEndpointQos::remote_locator_list-api| replace:: :cpp:member:`remote_locator_list<eprosima::fastdds::dds::RTPSEndpointQos::remote_locator_list>`
+.. |RTPSEndpointQos::user_defined_id-api| replace:: :cpp:member:`user_defined_id<eprosima::fastdds::dds::RTPSEndpointQos::user_defined_id>`
+.. |RTPSEndpointQos::entity_id-api| replace:: :cpp:member:`entity_id<eprosima::fastdds::dds::RTPSEndpointQos::entity_id>`
+.. |RTPSEndpointQos::history_memory_policy-api| replace:: :cpp:member:`history_memory_policy<eprosima::fastdds::dds::RTPSEndpointQos::history_memory_policy>`
+
+.. |WriterTimes-api| replace:: :cpp:struct:`WriterTimes<eprosima::fastrtps::rtps::WriterTimes>`
+.. |WriterTimes::initialHeartbeatDelay-api| replace:: :cpp:member:`initialHeartbeatDelay<eprosima::fastrtps::rtps::WriterTimes::initialHeartbeatDelay>`
+.. |WriterTimes::heartbeatPeriod-api| replace:: :cpp:member:`heartbeatPeriod<eprosima::fastrtps::rtps::WriterTimes::heartbeatPeriod>`
+.. |WriterTimes::nackResponseDelay-api| replace:: :cpp:member:`nackResponseDelay<eprosima::fastrtps::rtps::WriterTimes::nackResponseDelay>`
+.. |WriterTimes::nackSupressionDuration-api| replace:: :cpp:member:`nackSupressionDuration<eprosima::fastrtps::rtps::WriterTimes::nackSupressionDuration>`
+
+.. |TransportConfigQos-api| replace:: :cpp:class:`TransportConfigQos<eprosima::fastdds::dds::TransportConfigQos>`
+.. |TransportConfigQos::user_transports-api| replace:: :cpp:member:`user_transports<eprosima::fastdds::dds::TransportConfigQos::user_transports>`
+.. |TransportConfigQos::use_builtin_transports-api| replace:: :cpp:member:`use_builtin_transports<eprosima::fastdds::dds::TransportConfigQos::use_builtin_transports>`
+.. |TransportConfigQos::send_socket_buffer_size-api| replace:: :cpp:member:`send_socket_buffer_size<eprosima::fastdds::dds::TransportConfigQos::send_socket_buffer_size>`
+.. |TransportConfigQos::listen_socket_buffer_size-api| replace:: :cpp:member:`listen_socket_buffer_size<eprosima::fastdds::dds::TransportConfigQos::listen_socket_buffer_size>`
+
+
+.. |TransportDescriptorInterface-api| replace:: :cpp:class:`TransportDescriptorInterface<eprosima::fastdds::rtps::TransportDescriptorInterface>`
+.. |TransportDescriptorInterface::maxMessageSize-api| replace:: :cpp:member:`maxMessageSize<eprosima::fastdds::rtps::TransportDescriptorInterface::maxMessageSize>`
+.. |TransportDescriptorInterface::maxInitialPeersRange-api| replace:: :cpp:member:`maxInitialPeersRange<eprosima::fastdds::rtps::TransportDescriptorInterface::maxInitialPeersRange>`
+
+.. |TypeConsistencyQos-api| replace:: :cpp:class:`TypeConsistencyQos<eprosima::fastdds::dds::TypeConsistencyQos>`
+.. |TypeConsistencyQos::type_consistency-api| replace:: :cpp:member:`type_consistency<eprosima::fastdds::dds::TypeConsistencyQos::type_consistency>`
+.. |TypeConsistencyQos::representation-api| replace:: :cpp:member:`representation<eprosima::fastdds::dds::TypeConsistencyQos::representation>`
+
+.. |WireProtocolConfigQos-api| replace:: :cpp:class:`WireProtocolConfigQos<eprosima::fastdds::dds::WireProtocolConfigQos>`
+.. |WireProtocolConfigQos::prefix-api| replace:: :cpp:member:`prefix<eprosima::fastdds::dds::WireProtocolConfigQos::prefix>`
+.. |WireProtocolConfigQos::participant_id-api| replace:: :cpp:member:`participant_id<eprosima::fastdds::dds::WireProtocolConfigQos::participant_id>`
+.. |WireProtocolConfigQos::builtin-api| replace:: :cpp:member:`builtin<eprosima::fastdds::dds::WireProtocolConfigQos::builtin>`
+.. |WireProtocolConfigQos::throughput_controller-api| replace:: :cpp:member:`throughput_controller<eprosima::fastdds::dds::WireProtocolConfigQos::throughput_controller>`
+.. |WireProtocolConfigQos::default_unicast_locator_list-api| replace:: :cpp:member:`default_unicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_unicast_locator_list>`
+.. |WireProtocolConfigQos::default_multicast_locator_list-api| replace:: :cpp:member:`default_multicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_multicast_locator_list>`
+
+.. |ThroughputControllerDescriptor-api| replace:: :cpp:struct:`ThroughputControllerDescriptor<eprosima::fastrtps::rtps::ThroughputControllerDescriptor>`
+.. |ThroughputControllerDescriptor::bytesPerPeriod-api| replace:: :cpp:member:`bytesPerPeriod<eprosima::fastrtps::rtps::ThroughputControllerDescriptor::bytesPerPeriod>`
+.. |ThroughputControllerDescriptor::periodMillisecs-api| replace:: :cpp:member:`periodMillisecs<eprosima::fastrtps::rtps::ThroughputControllerDescriptor::periodMillisecs>`
+
+.. |WriterResourceLimitsQos-api| replace:: :cpp:class:`WriterResourceLimitsQos<eprosima::fastdds::dds::WriterResourceLimitsQos>`
+.. |WriterResourceLimitsQos::matched_subscriber_allocation-api| replace:: :cpp:member:`matched_subscriber_allocation<eprosima::fastdds::dds::WriterResourceLimitsQos::matched_subscriber_allocation>`

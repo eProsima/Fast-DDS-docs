@@ -1,3 +1,6 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. role:: raw-html(raw)
     :format: html
 
@@ -24,30 +27,33 @@ limited.
 It consists in changing the default behavior by which positive acks are sent from readers to writers.
 Instead, only negative acks will be sent when a reader is missing a sample, but writers will keep data for a sufficient
 time before considering it as acknowledged.
+See |DisablePositiveACKsQosPolicy-api|.
 
 List of QoS Policy data members:
 
-+------------------------------------+------------------------------+-------------------+
-| Data Member Name                   | Type                         | Default Value     |
-+====================================+==============================+===================+
-| enabled                            | bool                         | false             |
-+------------------------------------+------------------------------+-------------------+
-| duration                           | fastrtps::Duration_t         | c_TimeInfinite    |
-+------------------------------------+------------------------------+-------------------+
++-------------------------------------------------------------+------------------------------+-------------------------+
+| Data Member Name                                            | Type                         | Default Value           |
++=============================================================+==============================+=========================+
+| |DisablePositiveACKsQosPolicy::enabled-api|                 | bool                         | ``false``               |
++-------------------------------------------------------------+------------------------------+-------------------------+
+| |DisablePositiveACKsQosPolicy::duration-api|                | |Duration_t-api|             | |c_TimeInvalid-api|     |
++-------------------------------------------------------------+------------------------------+-------------------------+
 
-* **Enabled**: Specifies if the QoS is enabled or not. If it is true means that the positive acks are disabled and the
+* |DisablePositiveACKsQosPolicy::enabled-api|:
+  Specifies if the QoS is enabled or not. If it is true means that the positive acks are disabled and the
   DataReader only sends negative acks. Otherwise, both positive and negative acks are sent.
-* **Duration**: State the duration that the DataWriters keep the data before considering it as acknowledged.
+* |DisablePositiveACKsQosPolicy::duration-api|:
+  State the duration that the DataWriters keep the data before considering it as acknowledged.
   This value does not apply to DataReaders.
 
 .. note::
-     This QoS Policy concerns to DataWriter and DataReader entities.
+     This QoS Policy concerns to |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
 .. warning::
-    For DataWriters and DataReaders to match, they must follow the compatibility rule. See :ref:`disableacks_compatibilityrule`
-    for further details.
+    For DataWriters and DataReaders to match, they must follow the compatibility rule.
+    See :ref:`disableacks_compatibilityrule` for further details.
 
 .. _disableacks_compatibilityrule:
 
@@ -62,13 +68,13 @@ Table with the possible combinations:
 +----------------------------+----------------------------+-----------------+
 | DataWriter `enabled` value | DataReader `enabled` value | Compatibility   |
 +============================+============================+=================+
-| true                       | true                       | Yes             |
+| ``true``                   | ``true``                   | Yes             |
 +----------------------------+----------------------------+-----------------+
-| true                       | false                      | Yes             |
+| ``true``                   | ``false``                  | Yes             |
 +----------------------------+----------------------------+-----------------+
-| false                      | true                       | No              |
+| ``false``                  | ``true``                   | No              |
 +----------------------------+----------------------------+-----------------+
-| false                      | false                      | Yes             |
+| ``false``                  | ``false``                  | Yes             |
 +----------------------------+----------------------------+-----------------+
 
 Example
@@ -95,37 +101,44 @@ ParticipantResourceLimitsQos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This QoS configures allocation limits and the use of physical memory for internal resources.
+See |ParticipantResourceLimitsQos-api|.
 
 List of QoS Policy data members:
 
-+-------------------------+-------------------------------------------+
-| Data Member Name        | Type                                      |
-+=========================+===========================================+
-| locators                | :ref:`remotelocatorsallocationattributes` |
-+-------------------------+-------------------------------------------+
-| participants            | :ref:`resourcelimitedcontainerconfig`     |
-+-------------------------+-------------------------------------------+
-| readers                 | :ref:`resourcelimitedcontainerconfig`     |
-+-------------------------+-------------------------------------------+
-| writers                 | :ref:`resourcelimitedcontainerconfig`     |
-+-------------------------+-------------------------------------------+
-| send_buffers            | :ref:`sendbuffersallocationattributes`    |
-+-------------------------+-------------------------------------------+
-| data_limits             | :ref:`variablelengthdatalimits`           |
-+-------------------------+-------------------------------------------+
++--------------------------------------------------------------------------+-------------------------------------------+
+| Data Member Name                                                         | Type                                      |
++==========================================================================+===========================================+
+| |ParticipantResourceLimitsQos::locators-api|                             | :ref:`remotelocatorsallocationattributes` |
++--------------------------------------------------------------------------+-------------------------------------------+
+| |ParticipantResourceLimitsQos::participants-api|                         | :ref:`resourcelimitedcontainerconfig`     |
++--------------------------------------------------------------------------+-------------------------------------------+
+| |ParticipantResourceLimitsQos::readers-api|                              | :ref:`resourcelimitedcontainerconfig`     |
++--------------------------------------------------------------------------+-------------------------------------------+
+| |ParticipantResourceLimitsQos::writers-api|                              | :ref:`resourcelimitedcontainerconfig`     |
++--------------------------------------------------------------------------+-------------------------------------------+
+| |ParticipantResourceLimitsQos::send_buffers-api|                         | :ref:`sendbuffersallocationattributes`    |
++--------------------------------------------------------------------------+-------------------------------------------+
+| |ParticipantResourceLimitsQos::data_limits-api|                          | :ref:`variablelengthdatalimits`           |
++--------------------------------------------------------------------------+-------------------------------------------+
 
-* **Locators**: Defines the limits for collections of remote locators.
-* **Participants**: Specifies the allocation behavior and limits for collections dependent on the total number of
+* |ParticipantResourceLimitsQos::locators-api|:
+  Defines the limits for collections of remote locators.
+* |ParticipantResourceLimitsQos::participants-api|:
+  Specifies the allocation behavior and limits for collections dependent on the total number of
   participants.
-* **Readers**: Specifies the allocation behavior and limits for collections dependent on the total number of
+* |ParticipantResourceLimitsQos::readers-api|:
+  Specifies the allocation behavior and limits for collections dependent on the total number of
   readers per participant.
-* **Writers**: Specifies the allocation behavior and limits for collections dependent on the total number of
+* |ParticipantResourceLimitsQos::writers-api|:
+  Specifies the allocation behavior and limits for collections dependent on the total number of
   writers per participant.
-* **Send buffers**: Defines the allocation behavior and limits for the send buffer manager.
-* **Data Limits**: States the limits for variable-length data.
+* |ParticipantResourceLimitsQos::send_buffers-api|:
+  Defines the allocation behavior and limits for the send buffer manager.
+* |ParticipantResourceLimitsQos::data_limits-api|:
+  States the limits for variable-length data.
 
 .. note::
-     This QoS Policy concerns to DomainParticipant entities.
+     This QoS Policy concerns to |DomainParticipant| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -135,23 +148,26 @@ RemoteLocatorsAllocationAttributes
 """"""""""""""""""""""""""""""""""
 
 This structure holds the limits for the remote locators' collections.
+See |RemoteLocatorsAllocationAttributes-api|.
 
 List of structure members:
 
-+------------------------------------+------------------------------+-------------------+
-| Member Name                        | Type                         | Default Value     |
-+====================================+==============================+===================+
-| max_unicast_locators               | size_t                       | 4                 |
-+------------------------------------+------------------------------+-------------------+
-| max_multicast_locators             | size_t                       | 1                 |
-+------------------------------------+------------------------------+-------------------+
++-----------------------------------------------------------------------------------------+------------+---------------+
+| Member Name                                                                             | Type       | Default Value |
++=========================================================================================+============+===============+
+| |RemoteLocatorsAllocationAttributes::max_unicast_locators-api|                          | ``size_t`` | 4             |
++-----------------------------------------------------------------------------------------+------------+---------------+
+| |RemoteLocatorsAllocationAttributes::max_multicast_locators-api|                        | ``size_t`` | 1             |
++-----------------------------------------------------------------------------------------+------------+---------------+
 
-* **Max unicast locators**: This member controls the maximum number of unicast locators to keep for each discovered
+* |RemoteLocatorsAllocationAttributes::max_unicast_locators-api|:
+  This member controls the maximum number of unicast locators to keep for each discovered
   remote entity.
   It is recommended to use the highest number of local addresses found on all the systems belonging to the same domain.
-* **Max multicast locators**: This member controls the maximum number of multicast locators to keep for each discovered
+* |RemoteLocatorsAllocationAttributes::max_multicast_locators-api|:
+  This member controls the maximum number of multicast locators to keep for each discovered
   remote entity.
-  The default value is usually enough, as it doesn't make sense to add more than one multicast locator per entity.
+  The default value is usually enough, as it does not make sense to add more than one multicast locator per entity.
 
 
 .. _resourcelimitedcontainerconfig:
@@ -161,22 +177,26 @@ ResourceLimitedContainerConfig
 
 This structure holds the limits of a resource limited collection, as well as the allocation configuration, which can be
 fixed size or dynamic size.
+See |ResourceLimitedContainerConfig-api|.
 
 List of structure members:
 
-+------------------------------------+------------------------------+-----------------------------------+
-| Member Name                        | Type                         | Default Value                     |
-+====================================+==============================+===================================+
-| initial                            | size_t                       | 0                                 |
-+------------------------------------+------------------------------+-----------------------------------+
-| maximum                            | size_t                       | std::numeric_limits<size_t>::max()|
-+------------------------------------+------------------------------+-----------------------------------+
-| increment                          | size_t                       | 1 (dynamic size), 0 (fixed size)  |
-+------------------------------------+------------------------------+-----------------------------------+
++-------------------------------------------------+------------+-------------------------------------------------------+
+| Member Name                                     | Type       | Default Value                                         |
++=================================================+============+=======================================================+
+| |ResourceLimitedContainerConfig::initial-api|   | ``size_t`` | 0                                                     |
++-------------------------------------------------+------------+-------------------------------------------------------+
+| |ResourceLimitedContainerConfig::maximum-api|   | ``size_t`` | :func:`std::numeric_limits<size_t>::max()`            |
++-------------------------------------------------+------------+-------------------------------------------------------+
+| |ResourceLimitedContainerConfig::increment-api| | ``size_t`` | 1 (dynamic size), 0 (fixed size)                      |
++-------------------------------------------------+------------+-------------------------------------------------------+
 
-* **Initial**: Indicates the number of elements to preallocate in the collection.
-* **Maximum**: Specifies the maximum number of elements allowed in the collection.
-* **Increment**: States the number of items to add when the reserved capacity limit is reached. This member has a
+* |ResourceLimitedContainerConfig::initial-api|:
+  Indicates the number of elements to preallocate in the collection.
+* |ResourceLimitedContainerConfig::maximum-api|:
+  Specifies the maximum number of elements allowed in the collection.
+* |ResourceLimitedContainerConfig::increment-api|:
+  States the number of items to add when the reserved capacity limit is reached. This member has a
   different default value depending on the allocation configuration chosen.
 
 .. _sendbuffersallocationattributes:
@@ -185,21 +205,24 @@ SendBuffersAllocationAttributes
 """""""""""""""""""""""""""""""
 
 This structure holds the limits for the allocations of the send buffers.
+See |SendBuffersAllocationAttributes-api|.
 
 List of structure members:
 
-+------------------------------------+------------------------------+-------------------+
-| Member Name                        | Type                         | Default Value     |
-+====================================+==============================+===================+
-| preallocated_number                | size_t                       | 0                 |
-+------------------------------------+------------------------------+-------------------+
-| dynamic                            | bool                         | false             |
-+------------------------------------+------------------------------+-------------------+
++------------------------------------------------------------------------+-------------------------+-------------------+
+| Member Name                                                            | Type                    | Default Value     |
++========================================================================+=========================+===================+
+| |SendBuffersAllocationAttributes::preallocated_number-api|             | ``size_t``              | 0                 |
++------------------------------------------------------------------------+-------------------------+-------------------+
+| |SendBuffersAllocationAttributes::dynamic-api|                         | ``bool``                | ``false``         |
++------------------------------------------------------------------------+-------------------------+-------------------+
 
-* **Preallocated number**: This member controls the initial number of send buffers to be allocated.
+* |SendBuffersAllocationAttributes::preallocated_number-api|:
+  This member controls the initial number of send buffers to be allocated.
   The default value will perform an initial guess of the number of buffers required, based on the number of threads
   from which a send operation could be started.
-* **Dynamic**: This member controls how the buffer manager behaves when a send buffer is not available.
+* |SendBuffersAllocationAttributes::dynamic-api|:
+  This member controls how the buffer manager behaves when a send buffer is not available.
   When true, a new buffer will be created. Otherwise, it will wait for a buffer to be returned.
 
 .. _variablelengthdatalimits:
@@ -208,22 +231,26 @@ VariableLengthDataLimits
 """"""""""""""""""""""""
 
 This structure holds the limits for variable-length data.
+See |VariableLengthDataLimits-api|.
 
 List of structure members:
 
-+------------------------------------+------------------------------+-------------------+
-| Member Name                        | Type                         | Default Value     |
-+====================================+==============================+===================+
-| max_properties                     | size_t                       | 0                 |
-+------------------------------------+------------------------------+-------------------+
-| max_user_data                      | size_t                       | 0                 |
-+------------------------------------+------------------------------+-------------------+
-| max_partitions                     | size_t                       | 0                 |
-+------------------------------------+------------------------------+-------------------+
++----------------------------------------------------------------------------------+---------------+-------------------+
+| Member Name                                                                      | Type          | Default Value     |
++==================================================================================+===============+===================+
+| |VariableLengthDataLimits::max_properties-api|                                   | ``size_t``    | 0                 |
++----------------------------------------------------------------------------------+---------------+-------------------+
+| |VariableLengthDataLimits::max_user_data-api|                                    | ``size_t``    | 0                 |
++----------------------------------------------------------------------------------+---------------+-------------------+
+| |VariableLengthDataLimits::max_partitions-api|                                   | ``size_t``    | 0                 |
++----------------------------------------------------------------------------------+---------------+-------------------+
 
-* **Max properties**: Defines the maximum size, in octets, of the properties data in the local or remote participant.
-* **Max user data**: Establishes the maximum size, in octets, of the user data in the local or remote participant.
-* **Max partitions**: States the maximum size, in octets, of the partitions data in the local or remote participant.
+* |VariableLengthDataLimits::max_properties-api|:
+  Defines the maximum size, in octets, of the properties data in the local or remote participant.
+* |VariableLengthDataLimits::max_user_data-api|:
+  Establishes the maximum size, in octets, of the user data in the local or remote participant.
+* |VariableLengthDataLimits::max_partitions-api|:
+  States the maximum size, in octets, of the partitions data in the local or remote participant.
 
 Example
 """""""
@@ -248,7 +275,8 @@ XML
 PropertyPolicyQos
 ^^^^^^^^^^^^^^^^^
 
-This additional QoS Policy stores name/value pairs that can be used to configure certain DDS settings that cannot
+This additional QoS Policy (|PropertyPolicyQos-api|) stores name/value pairs that can be used to configure certain
+DDS settings that cannot
 be configured directly using an standard QoS Policy.
 In Fast DDS, it can be used to configure the security settings (See :ref:`security` for further details of the security
 functionality).
@@ -276,15 +304,16 @@ XML
 PublishModeQosPolicy
 ^^^^^^^^^^^^^^^^^^^^
 
-This QoS Policy configures how the DataWriter sends the data.
+This QoS Policy configures how the |DataWriter| sends the data.
+See |PublishModeQosPolicy-api|.
 
 List of QoS Policy data members:
 
-+--------------------------+--------------------------------+-----------------------+
-| Data Member Name         | Type                           | Default Value         |
-+==========================+================================+=======================+
-| kind                     | :ref:`publishmodeqospolicykind`| SYNCHRONOUS           |
-+--------------------------+--------------------------------+-----------------------+
++------------------------------------------------------+---------------------------------+-----------------------------+
+| Data Member Name                                     | Type                            | Default Value               |
++======================================================+=================================+=============================+
+| |PublishModeQosPolicy::kind-api|                     | :ref:`publishmodeqospolicykind` | SYNCHRONOUS                 |
++------------------------------------------------------+---------------------------------+-----------------------------+
 
 .. note::
      This QoS Policy concerns to DataWriter entities.
@@ -296,10 +325,10 @@ List of QoS Policy data members:
 PublishModeQosPolicyKind
 """"""""""""""""""""""""
 
-There are two possible values:
+There are two possible values (see |PublishModeQosPolicyKind-api|):
 
-* ``SYNCHRONOUS_PUBLISH_MODE``: The data is sent in the context of the user thread that calls the write operation.
-* ``ASYNCHRONOUS_PUBLISH_MODE``: An internal thread takes the responsibility of sending the data asynchronously.
+* |SYNCHRONOUS_PUBLISH_MODE-api|: The data is sent in the context of the user thread that calls the write operation.
+* |ASYNCHRONOUS_PUBLISH_MODE-api|: An internal thread takes the responsibility of sending the data asynchronously.
   The write operation returns before the data is actually sent.
 
 Example
@@ -325,16 +354,17 @@ XML
 ReaderResourceLimitsQos
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-This QoS Policy states the limits for the matched DataWriters' resource limited collections based on the maximum number
-of DataWriters that are going to match with the DataReader.
+This QoS Policy states the limits for the matched |DataWriters|' resource limited collections based on the maximum
+number of DataWriters that are going to match with the |DataReader|.
+See |ReaderResourceLimitsQos-api|.
 
 List of QoS Policy data members:
 
-+------------------------------+-------------------------------------------+
-| Data Member Name             | Type                                      |
-+==============================+===========================================+
-| matched_publisher_allocation | :ref:`resourcelimitedcontainerconfig`     |
-+------------------------------+-------------------------------------------+
++--------------------------------------------------------------------------+-------------------------------------------+
+| Data Member Name                                                         | Type                                      |
++==========================================================================+===========================================+
+| |ReaderResourceLimitsQos::matched_publisher_allocation-api|              | :ref:`resourcelimitedcontainerconfig`     |
++--------------------------------------------------------------------------+-------------------------------------------+
 
 
 .. note::
@@ -367,37 +397,44 @@ RTPSEndpointQos
 
 This QoS Policy configures the aspects of an RTPS endpoint, such as the list of locators, the identifiers, and the
 history memory policy.
+See |RTPSEndpointQos-api|.
 
 List of QoS Policy data members:
 
-+--------------------------+--------------------------------+-----------------------+
-| Data Member Name         | Type                           | Default Value         |
-+==========================+================================+=======================+
-| unicast_locator_list     | fastrtps::rtps::LocatorList_t  | Empty List            |
-+--------------------------+--------------------------------+-----------------------+
-| multicast_locator_list   | fastrtps::rtps::LocatorList_t  | Empty List            |
-+--------------------------+--------------------------------+-----------------------+
-| remote_locator_list      | fastrtps::rtps::LocatorList_t  | Empty List            |
-+--------------------------+--------------------------------+-----------------------+
-| user_defined_id          | int16_t                        | -1                    |
-+--------------------------+--------------------------------+-----------------------+
-| entity_id                | int16_t                        | -1                    |
-+--------------------------+--------------------------------+-----------------------+
-| history_memory_policy    | :ref:`memorymanagementpolicy`  | PREALLOCATED          |
-+--------------------------+--------------------------------+-----------------------+
++-----------------------------------------------+-------------------------------+--------------------------------------+
+| Data Member Name                              | Type                          | Default Value                        |
++===============================================+===============================+======================================+
+| |RTPSEndpointQos::unicast_locator_list-api|   | |LocatorList_t-api|           | Empty List                           |
++-----------------------------------------------+-------------------------------+--------------------------------------+
+| |RTPSEndpointQos::multicast_locator_list-api| | |LocatorList_t-api|           | Empty List                           |
++-----------------------------------------------+-------------------------------+--------------------------------------+
+| |RTPSEndpointQos::remote_locator_list-api|    | |LocatorList_t-api|           | Empty List                           |
++-----------------------------------------------+-------------------------------+--------------------------------------+
+| |RTPSEndpointQos::user_defined_id-api|        | ``int16_t``                   | -1                                   |
++-----------------------------------------------+-------------------------------+--------------------------------------+
+| |RTPSEndpointQos::entity_id-api|              | ``int16_t``                   | -1                                   |
++-----------------------------------------------+-------------------------------+--------------------------------------+
+| |RTPSEndpointQos::history_memory_policy-api|  | :ref:`memorymanagementpolicy` | |PREALLOCATED_MEMORY_MODE-api|       |
++-----------------------------------------------+-------------------------------+--------------------------------------+
 
-* **Unicast locator list**: Defines the list of unicast locators associated to the DDS Entity.
+* |RTPSEndpointQos::unicast_locator_list-api|:
+  Defines the list of unicast locators associated to the DDS Entity.
   DataReaders and DataWriters inherit the list of unicast locators set in the DomainParticipant, but it can be
   changed by means of this QoS.
-* **Multicast locator list**: Stores the list of multicast locators associated to the DDS Entity.
+* |RTPSEndpointQos::multicast_locator_list-api|:
+  Stores the list of multicast locators associated to the DDS Entity.
   By default, DataReaders and DataWriters don't use any multicast locator, but it can be changed by means of this QoS.
-* **Remote locator list**: States the list of remote locators associated to the DDS Entity.
-* **User defined ID**: Establishes the unique identifier used for StaticEndpointDiscovery.
-* **Entity ID**: The user can specify the identifier for the endpoint.
-* **History memory policy**: Indicates the way the memory is managed in terms of dealing with the CacheChanges.
+* |RTPSEndpointQos::remote_locator_list-api|:
+  States the list of remote locators associated to the DDS Entity.
+* |RTPSEndpointQos::user_defined_id-api|:
+  Establishes the unique identifier used for StaticEndpointDiscovery.
+* |RTPSEndpointQos::entity_id-api|:
+  The user can specify the identifier for the endpoint.
+* |RTPSEndpointQos::history_memory_policy-api|:
+  Indicates the way the memory is managed in terms of dealing with the CacheChanges.
 
 .. note::
-     This QoS Policy concerns to DataWriter and DataReader entities.
+     This QoS Policy concerns to |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -406,16 +443,20 @@ List of QoS Policy data members:
 MemoryManagementPolicy
 """"""""""""""""""""""
 
-There are four possible values:
+There are four possible values (see |MemoryManagementPolicy-api|):
 
-* ``PREALLOCATED_MEMORY_MODE``: This option sets the size to the maximum of each data type. It produces the largest
+* |PREALLOCATED_MEMORY_MODE-api|:
+  This option sets the size to the maximum of each data type. It produces the largest
   memory footprint but the smallest allocation count.
-* ``PREALLOCATED_WITH_REALLOC_MEMORY_MODE``: This option set the size to the default for each data type and it requires
+* |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|:
+  This option set the size to the default for each data type and it requires
   reallocation when a bigger message arrives. It produces a lower memory footprint at the expense of increasing the
   allocation count.
-* ``DYNAMIC_RESERVE_MEMORY_MODE``: This option allocates the size dynamically at the time of message arrival. It
+* |DYNAMIC_RESERVE_MEMORY_MODE-api|:
+  This option allocates the size dynamically at the time of message arrival. It
   produces the least memory footprint but the highest allocation count.
-* ``DYNAMIC_REUSABLE_MEMORY_MODE``: This option is similar to ``DYNAMIC_RESERVE_MEMORY_MODE``, but the allocated memory
+* |DYNAMIC_REUSABLE_MEMORY_MODE-api|:
+  This option is similar to ``DYNAMIC_RESERVE_MEMORY_MODE``, but the allocated memory
   is reused for future messages.
 
 Example
@@ -442,23 +483,26 @@ RTPSReliableReaderQos
 ^^^^^^^^^^^^^^^^^^^^^
 
 This RTPS QoS Policy allows the configuration of several RTPS reliable reader's aspects.
+See |RTPSReliableReaderQos-api|.
 
 List of QoS Policy data members:
 
-+--------------------------+------------------------------------+
-| Data Member Name         | Type                               |
-+==========================+====================================+
-| times                    | :ref:`readertimes`                 |
-+--------------------------+------------------------------------+
-| disable_positive_ACKs    | :ref:`disablepositiveacksqospolicy`|
-+--------------------------+------------------------------------+
++--------------------------------------------------------------------------------+-------------------------------------+
+| Data Member Name                                                               | Type                                |
++================================================================================+=====================================+
+| |RTPSReliableReaderQos::times-api|                                             | :ref:`readertimes`                  |
++--------------------------------------------------------------------------------+-------------------------------------+
+| |RTPSReliableReaderQos::disable_positive_ACKs-api|                             | :ref:`disablepositiveacksqospolicy` |
++--------------------------------------------------------------------------------+-------------------------------------+
 
-* **Times**: Defines the duration of the RTPSReader events. See :ref:`readertimes` for further details.
-* **Disable positive ACKs**: Configures the settings to disable the positive acks.
+* |RTPSReliableReaderQos::times-api|:
+  Defines the duration of the RTPSReader events. See :ref:`readertimes` for further details.
+* |RTPSReliableReaderQos::disable_positive_ACKs-api|:
+  Configures the settings to disable the positive acks.
   See :ref:`disablepositiveacksqospolicy` for further details.
 
 .. note::
-     This QoS Policy concerns to DataReader entities.
+     This QoS Policy concerns to |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -468,19 +512,22 @@ ReaderTimes
 """""""""""
 
 This structure defines the times associated with the Reliable Readers' events.
+See |ReaderTimes-api|.
 
 List of structure members:
 
-+------------------------------------+------------------------------+-------------------+
-| Member Name                        | Type                         | Default Value     |
-+====================================+==============================+===================+
-| initialAcknackDelay                | fastrtps::Duration_t         | 70 milliseconds   |
-+------------------------------------+------------------------------+-------------------+
-| heartbeatResponseDelay             | fastrtps::Duration_t         | 5 milliseconds    |
-+------------------------------------+------------------------------+-------------------+
++-----------------------------------------------------------------------------------+------------------+---------------+
+| Member Name                                                                       | Type             | Default Value |
++===================================================================================+==================+===============+
+| |ReaderTimes::initialAcknackDelay-api|                                            | |Duration_t-api| | 70 ms         |
++-----------------------------------------------------------------------------------+------------------+---------------+
+| |ReaderTimes::heartbeatResponseDelay-api|                                         | |Duration_t-api| | 5 ms          |
++-----------------------------------------------------------------------------------+------------------+---------------+
 
-* **Initial acknack delay**: Defines the duration of the initial acknack delay.
-* **Heartbeat response delay**: Establishes the duration of the delay applied when a heartbeat message is received.
+* |ReaderTimes::initialAcknackDelay-api|:
+  Defines the duration of the initial acknack delay.
+* |ReaderTimes::heartbeatResponseDelay-api|:
+  Establishes the duration of the delay applied when a heartbeat message is received.
 
 Example
 """""""
@@ -507,23 +554,26 @@ RTPSReliableWriterQos
 ^^^^^^^^^^^^^^^^^^^^^
 
 This RTPS QoS Policy allows the configuration of several RTPS reliable writer's aspects.
+See |RTPSReliableWriterQos-api|.
 
 List of QoS Policy data members:
 
-+--------------------------+------------------------------------+
-| Data Member Name         | Type                               |
-+==========================+====================================+
-| times                    | :ref:`writertimes`                 |
-+--------------------------+------------------------------------+
-| disable_positive_acks    | :ref:`disablepositiveacksqospolicy`|
-+--------------------------+------------------------------------+
++--------------------------------------------------------------------------------+-------------------------------------+
+| Data Member Name                                                               | Type                                |
++================================================================================+=====================================+
+| |RTPSReliableWriterQos::times-api|                                             | :ref:`writertimes`                  |
++--------------------------------------------------------------------------------+-------------------------------------+
+| |RTPSReliableWriterQos::disable_positive_acks-api|                             | :ref:`disablepositiveacksqospolicy` |
++--------------------------------------------------------------------------------+-------------------------------------+
 
-* **Times**: Defines the duration of the RTPSWriter events. See :ref:`writertimes` for further details.
-* **Disable positive ACKs**: Configures the settings to disable the positive acks.
+* |RTPSReliableWriterQos::times-api|:
+  Defines the duration of the RTPSWriter events. See :ref:`writertimes` for further details.
+* |RTPSReliableWriterQos::disable_positive_acks-api|:
+  Configures the settings to disable the positive acks.
   See :ref:`disablepositiveacksqospolicy` for further details.
 
 .. note::
-     This QoS Policy concerns to DataWriter entities.
+     This QoS Policy concerns to |DataWriter| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -536,22 +586,26 @@ This structure defines the times associated with the Reliable Writers' events.
 
 List of structure members:
 
-+------------------------------------+------------------------------+-------------------+
-| Member Name                        | Type                         | Default Value     |
-+====================================+==============================+===================+
-| initialHeartbeatDelay              | fastrtps::Duration_t         | 12 milliseconds   |
-+------------------------------------+------------------------------+-------------------+
-| heartbeatPeriod                    | fastrtps::Duration_t         | 3 seconds         |
-+------------------------------------+------------------------------+-------------------+
-| nackResponseDelay                  | fastrtps::Duration_t         | 5 milliseconds    |
-+------------------------------------+------------------------------+-------------------+
-| nackSupressionDuration             | fastrtps::Duration_t         | 0 seconds         |
-+------------------------------------+------------------------------+-------------------+
++-----------------------------------------------------------------------------------+------------------+---------------+
+| Member Name                                                                       | Type             | Default Value |
++===================================================================================+==================+===============+
+| |WriterTimes::initialHeartbeatDelay-api|                                          | |Duration_t-api| | 12ms          |
++-----------------------------------------------------------------------------------+------------------+---------------+
+| |WriterTimes::heartbeatPeriod-api|                                                | |Duration_t-api| | 3s            |
++-----------------------------------------------------------------------------------+------------------+---------------+
+| |WriterTimes::nackResponseDelay-api|                                              | |Duration_t-api| | 5ms           |
++-----------------------------------------------------------------------------------+------------------+---------------+
+| |WriterTimes::nackSupressionDuration-api|                                         | |Duration_t-api| | 0s            |
++-----------------------------------------------------------------------------------+------------------+---------------+
 
-* **Initial heartbeat delay**: Defines duration of the initial heartbeat delay.
-* **Heartbeat period**: Specifies the interval between periodic heartbeats.
-* **Nack response delay**: Establishes the duration of the delay applied to the response of an ACKNACK message.
-* **Nack supression duration**: The RTPSWriter ignores the nack messages received after sending the data until the
+* |WriterTimes::initialHeartbeatDelay-api|:
+  Defines duration of the initial heartbeat delay.
+* |WriterTimes::heartbeatPeriod-api|:
+  Specifies the interval between periodic heartbeats.
+* |WriterTimes::nackResponseDelay-api|:
+  Establishes the duration of the delay applied to the response of an ACKNACK message.
+* |WriterTimes::nackSupressionDuration-api|:
+  The RTPSWriter ignores the nack messages received after sending the data until the
   duration time elapses.
 
 Example
@@ -578,31 +632,39 @@ TransportConfigQos
 ^^^^^^^^^^^^^^^^^^
 
 This QoS Policy allows the configuration of the transport layer settings.
+See |TransportConfigQos-api|.
 
 List of QoS Policy data members:
+std::vector<std::shared_ptr<:ref:`transportdescriptorinterface`>>
 
-+---------------------------+------------------------------------------------------------------+-----------------+
-| Data Member Name          | Type                                                             | Default Value   |
-+===========================+==================================================================+=================+
-| user_transports           | std::vector<std::shared_ptr<:ref:`transportdescriptorinterface`>>| Empty Vector    |
-+---------------------------+------------------------------------------------------------------+-----------------+
-| use_builtin_transports    | bool                                                             | true            |
-+---------------------------+------------------------------------------------------------------+-----------------+
-| send_socket_buffer_size   | uint32_t                                                         | 0               |
-+---------------------------+------------------------------------------------------------------+-----------------+
-| listen_socket_buffer_size | uint32_t                                                         | 0               |
-+---------------------------+------------------------------------------------------------------+-----------------+
++-----------------------------------------------------+-----------------------------------------------------+----------+
+| Data Member Name                                    | Type                                                | Default  |
+|                                                     |                                                     | Value    |
++=====================================================+=====================================================+==========+
+| |TransportConfigQos::user_transports-api|           |                                                     | Empty    |
+|                                                     |                                                     | Vector   |
++-----------------------------------------------------+-----------------------------------------------------+----------+
+| |TransportConfigQos::use_builtin_transports-api|    | ``bool``                                            | ``true`` |
++-----------------------------------------------------+-----------------------------------------------------+----------+
+| |TransportConfigQos::send_socket_buffer_size-api|   | ``uint32_t``                                        | 0        |
++-----------------------------------------------------+-----------------------------------------------------+----------+
+| |TransportConfigQos::listen_socket_buffer_size-api| | ``uint32_t``                                        | 0        |
++-----------------------------------------------------+-----------------------------------------------------+----------+
 
-* **User transports**: This data member defines the list of transports to use alongside or in place of builtins.
-* **Use builtin transports**: It controls whether the built-in transport layer is enabled or disabled. If it is set to
+* |TransportConfigQos::user_transports-api|:
+  This data member defines the list of transports to use alongside or in place of builtins.
+* |TransportConfigQos::use_builtin_transports-api|:
+  It controls whether the built-in transport layer is enabled or disabled. If it is set to
   false, the default UDPv4 implementation is disabled.
-* **Send socket buffer size**: By default, Fast DDS creates socket buffers using the system default size. This data
+* |TransportConfigQos::send_socket_buffer_size-api|:
+  By default, Fast DDS creates socket buffers using the system default size. This data
   member allows to change the send socket buffer size used to send data.
-* **Listen socket buffer size**: The listen socket buffer size is also created with the system default size, but it can
+* |TransportConfigQos::listen_socket_buffer_size-api|:
+  The listen socket buffer size is also created with the system default size, but it can
   be changed using this data member.
 
 .. note::
-     This QoS Policy concerns to DomainParticipant entities.
+     This QoS Policy concerns to |DomainParticipant| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -612,19 +674,22 @@ TransportDescriptorInterface
 """"""""""""""""""""""""""""
 
 This structure is the base for the data type used to define transport configuration.
+See |TransportDescriptorInterface-api|.
 
 List of structure members:
 
-+------------------------------------+------------------------------+
-| Member Name                        | Type                         |
-+====================================+==============================+
-| maxMessageSize                     | uint32_t                     |
-+------------------------------------+------------------------------+
-| maxInitialPeersRange               | uint32_t                     |
-+------------------------------------+------------------------------+
++--------------------------------------------------------------------------------------------------+-------------------+
+| Member Name                                                                                      | Type              |
++==================================================================================================+===================+
+| |TransportDescriptorInterface::maxMessageSize-api|                                               | ``uint32_t``      |
++--------------------------------------------------------------------------------------------------+-------------------+
+| |TransportDescriptorInterface::maxInitialPeersRange-api|                                         | ``uint32_t``      |
++--------------------------------------------------------------------------------------------------+-------------------+
 
-* **Max message size**: This member sets the maximum size in bytes of the transport's message buffer.
-* **Max initial peers range**: This member states the maximum number of guessed initial peers to try to connect.
+* |TransportDescriptorInterface::maxMessageSize-api|:
+  This member sets the maximum size in bytes of the transport's message buffer.
+* |TransportDescriptorInterface::maxInitialPeersRange-api|:
+  This member states the maximum number of guessed initial peers to try to connect.
 
 Example
 """""""
@@ -649,21 +714,24 @@ XML
 TypeConsistencyQos
 ^^^^^^^^^^^^^^^^^^
 
-This QoS Policy allows the configuration of the XTypes extension QoS on the DataReader.
+This QoS Policy allows the configuration of the :ref:`XTypes extension QoS<xtypes_extensions>` on the |DataReader|.
+See |TypeConsistencyQos-api|.
 
 List of QoS Policy data members:
 
-+--------------------------------+-------------------------------------------+
-| Data Member Name               | Type                                      |
-+================================+===========================================+
-| type_consistency               | :ref:`typeconsistencyenforcementqospolicy`|
-+--------------------------------+-------------------------------------------+
-| representation                 | :ref:`datarepresentationqospolicy`        |
-+--------------------------------+-------------------------------------------+
++-------------------------------------------------------------------------+--------------------------------------------+
+| Data Member Name                                                        | Type                                       |
++=========================================================================+============================================+
+| |TypeConsistencyQos::type_consistency-api|                              | :ref:`typeconsistencyenforcementqospolicy` |
++-------------------------------------------------------------------------+--------------------------------------------+
+| |TypeConsistencyQos::representation-api|                                | :ref:`datarepresentationqospolicy`         |
++-------------------------------------------------------------------------+--------------------------------------------+
 
-* **Type consistency**: It states the rules for the data types compatibility.
+* |TypeConsistencyQos::type_consistency-api|:
+  It states the rules for the data types compatibility.
   See :ref:`typeconsistencyenforcementqospolicy` for further details.
-* **Representation**: It specifies the data representations valid for the entities.
+* |TypeConsistencyQos::representation-api|:
+  It specifies the data representations valid for the entities.
   See :ref:`datarepresentationqospolicy` for further details.
 
 .. note::
@@ -692,34 +760,41 @@ WireProtocolConfigQos
 ^^^^^^^^^^^^^^^^^^^^^
 
 This QoS Policy allows the configuration of the wire protocol.
+See |WireProtocolConfigQos-api|.
 
 List of QoS Policy data members:
 
-+--------------------------------+---------------------------------------+-----------------------+
-| Data Member Name               | Type                                  | Default Value         |
-+================================+=======================================+=======================+
-| prefix                         | fastrtps::rtps::GuidPrefix_t          | 0                     |
-+--------------------------------+---------------------------------------+-----------------------+
-| participant_id                 | int32_t                               | -1                    |
-+--------------------------------+---------------------------------------+-----------------------+
-| builtin                        | :ref:`DS_BuiltinAttributes`           |                       |
-+--------------------------------+---------------------------------------+-----------------------+
-| throughput_controller          | :ref:`throughputcontrollerdescriptor` |                       |
-+--------------------------------+---------------------------------------+-----------------------+
-| default_unicast_locator_list   | fastrtps::rtps::LocatorList_t         | Empty List            |
-+--------------------------------+---------------------------------------+-----------------------+
-| default_multicast_locator_list | fastrtps::rtps::LocatorList_t         | Empty List            |
-+--------------------------------+---------------------------------------+-----------------------+
++--------------------------------------------------------------+---------------------------------------+---------------+
+| Data Member Name                                             | Type                                  | Default Value |
++==============================================================+=======================================+===============+
+| |WireProtocolConfigQos::prefix-api|                          | fastrtps::rtps::GuidPrefix_t          | 0             |
++--------------------------------------------------------------+---------------------------------------+---------------+
+| |WireProtocolConfigQos::participant_id-api|                  | int32_t                               | -1            |
++--------------------------------------------------------------+---------------------------------------+---------------+
+| |WireProtocolConfigQos::builtin-api|                         | :ref:`DS_BuiltinAttributes`           |               |
++--------------------------------------------------------------+---------------------------------------+---------------+
+| |WireProtocolConfigQos::throughput_controller-api|           | :ref:`throughputcontrollerdescriptor` |               |
++--------------------------------------------------------------+---------------------------------------+---------------+
+| |WireProtocolConfigQos::default_unicast_locator_list-api|    | |LocatorList_t-api|                   | Empty List    |
++--------------------------------------------------------------+---------------------------------------+---------------+
+| |WireProtocolConfigQos::default_multicast_locator_list-api|  | |LocatorList_t-api|                   | Empty List    |
++--------------------------------------------------------------+---------------------------------------+---------------+
 
-* **Prefix**: This data member allows the user to set manually the GUID prefix.
-* **Participant ID**: It sets the participant identifier. By default, it will be automatically generated by the Domain.
-* **Builtin**: This data member allows the configuration of the built-in parameters.
+* |WireProtocolConfigQos::prefix-api|:
+  This data member allows the user to set manually the GUID prefix.
+* |WireProtocolConfigQos::participant_id-api|:
+  It sets the participant identifier. By default, it will be automatically generated by the Domain.
+* |WireProtocolConfigQos::builtin-api|:
+  This data member allows the configuration of the built-in parameters.
   See :ref:`DS_BuiltinAttributes` for further details.
-* **Throughput controller**: It allows the configuration of the throughput settings.
-* **Default unicast locator list**: States the default list of unicast locators to be used for any endpoint defined
+* |WireProtocolConfigQos::throughput_controller-api|:
+  It allows the configuration of the throughput settings.
+* |WireProtocolConfigQos::default_unicast_locator_list-api|:
+  States the default list of unicast locators to be used for any endpoint defined
   inside the RTPSParticipant in the case that it was defined without unicast locators. This list should include at
   least one locator.
-* **Default multicast locator list**: Stores the default list of multicast locators to be used for any endpoint defined
+* |WireProtocolConfigQos::default_multicast_locator_list-api|:
+  Stores the default list of multicast locators to be used for any endpoint defined
   inside the RTPSParticipant in the case that it was defined without multicast locators. This list is usually left
   empty.
 
@@ -734,19 +809,22 @@ ThroughputControllerDescriptor
 """""""""""""""""""""""""""""""
 
 This structure allows to limit the output bandwidth.
+See |ThroughputControllerDescriptor-api|.
 
 List of structure members:
 
-+------------------------------------+------------------------------+
-| Member Name                        | Type                         |
-+====================================+==============================+
-| bytesPerPeriod                     | uint32_t                     |
-+------------------------------------+------------------------------+
-| periodMillisecs                    | uint32_t                     |
-+------------------------------------+------------------------------+
++-------------------------------------------------------------------------------------------------+--------------------+
+| Member Name                                                                                     | Type               |
++=================================================================================================+====================+
+| |ThroughputControllerDescriptor::bytesPerPeriod-api|                                            | ``uint32_t``       |
++-------------------------------------------------------------------------------------------------+--------------------+
+| |ThroughputControllerDescriptor::periodMillisecs-api|                                           | ``uint32_t``       |
++-------------------------------------------------------------------------------------------------+--------------------+
 
-* **Bytes per period**: This member states the number of bytes that this controller will allow in a given period.
-* **Period in milliseconds**: It specifies the window of time in which no more than `bytesPerPeriod` bytes are allowed.
+* |ThroughputControllerDescriptor::bytesPerPeriod-api|:
+  This member states the number of bytes that this controller will allow in a given period.
+* |ThroughputControllerDescriptor::periodMillisecs-api|:
+  It specifies the window of time in which no more than `bytesPerPeriod` bytes are allowed.
 
 Example
 """""""
@@ -771,16 +849,17 @@ XML
 WriterResourceLimitsQos
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-This QoS Policy states the limits for the matched DataReaders' resource limited collections based on the maximum number
-of DataReaders that are going to match with the DataWriter.
+This QoS Policy states the limits for the matched |DataReaders|' resource limited collections based on the maximum
+number of DataReaders that are going to match with the |DataWriter|.
+See |WriterResourceLimitsQos-api|.
 
 List of QoS Policy data members:
 
-+-------------------------------+-------------------------------------------+
-| Data Member Name              | Type                                      |
-+===============================+===========================================+
-| matched_subscriber_allocation | :ref:`resourcelimitedcontainerconfig`     |
-+-------------------------------+-------------------------------------------+
++-----------------------------------------------------------------------------+----------------------------------------+
+| Data Member Name                                                            | Type                                   |
++=============================================================================+========================================+
+| |WriterResourceLimitsQos::matched_subscriber_allocation-api|                | :ref:`resourcelimitedcontainerconfig`  |
++-----------------------------------------------------------------------------+----------------------------------------+
 
 .. note::
      This QoS Policy concerns to DataWriter entities.

@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _discovery_server:
 
@@ -6,7 +8,7 @@ Server-Client Discovery Settings
 --------------------------------
 
 This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among
-|DomainParticipants| to identify each other) is managed by one or several server |DomainParticipants| (left figure), as
+|DomainParticipants| to identify each other) is managed by one or several server DomainParticipants (left figure), as
 opposed to simple discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an
 IP multicast protocol.
 A `Discovery-Server <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ tool is available to
@@ -29,28 +31,29 @@ In this architecture there are several key concepts to understand:
 - The Server-Client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard DDS
   |DataWriters| and |DataReaders|.
 
-- Discovery server |DomainParticipants| may be *clients* or *servers*.
+- Discovery server DomainParticipants may be *clients* or *servers*.
   The only difference between them is how they handle meta-traffic.
-  The user traffic, that is, the traffic among the |DataWriters| and |DataReaders| they create, is role-independent.
+  The user traffic, that is, the traffic among the DataWriters and DataReaders they create, is role-independent.
 
 - All *server* and *client* discovery information will be shared with linked *clients*.
   Note that a *server* may act as a *client* for other *servers*.
 
 - *Clients* require a beforehand knowledge of the *servers* to which they want to link.
-  Basically it is reduced to the *server* identity (henceforth called ``GuidPrefix``) and a list of locators where the
+  Basically it is reduced to the *server* identity (henceforth called |GuidPrefix_t-api|) and a list of locators
+  where the
   *server* is listening.
   These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
 
-  - The ``GuidPrefix`` is the RTPS standard |RTPSParticipant| unique identifier, a 12-byte chain.
+  - The |GuidPrefix_t-api| is the RTPS standard RTPSParticipant unique identifier, a 12-byte chain.
     This identifier allows clients to assess whether they are receiving messages from the right server, as each
     standard RTPS message contains this piece of information.
 
-    The ``GuidPrefix`` is used because the server's IP address may not be a reliable enough server identifier,
+    The |GuidPrefix_t-api| is used because the server's IP address may not be a reliable enough server identifier,
     since several servers can be hosted in the same machine, thus having the same IP, and also because multicast
     addresses are acceptable addresses.
 
-- *Servers* do not require any beforehand knowledge of their *clients*, but their ``GuidPrefix`` and locator list (where
-  they are listening) must match the one provided to the *clients*.
+- *Servers* do not require any beforehand knowledge of their *clients*, but their |GuidPrefix_t-api| and locator list
+  (where they are listening) must match the one provided to the *clients*.
   In order to gather *client* discovery information, the following handshake strategy is followed:
 
   - *Clients* send discovery messages to the *servers* at regular intervals (ping period) until they receive message
@@ -109,10 +112,10 @@ section <DS_DiscoverySettings>`. The examples below show how to manage the corre
 The GuidPrefix as the server unique identifier
 """"""""""""""""""""""""""""""""""""""""""""""
 
-The ``GuidPrefix`` attribute belongs to the RTPS specification and univocally identifies each |RTPSParticipant|.
-It consists on 12 bytes and in Fast DDS is a key for the |DomainParticipant| used in the DDS domain.
-Fast DDS defines the |DomainParticipant| ``GuidPrefix`` as a public data member of the
-|DomainParticipantQosWireProtocolClass| class.
+The |GuidPrefix_t-api| attribute belongs to the RTPS specification and univocally identifies each RTPSParticipant.
+It consists on 12 bytes and in Fast DDS is a key for the DomainParticipant used in the DDS domain.
+Fast DDS defines the DomainParticipant |GuidPrefix_t-api| as a public data member of the
+|WireProtocolConfigQos-api| class.
 In the Server-Client discovery, it has the purpose to link a *server* to its *clients*.
 It must be mandatorily specified in: *server* and *client* setups.
 
@@ -153,8 +156,9 @@ Client side setup
 *****************
 
 Each *client* must keep a list of the *servers* to which it wants to link.
-Each single element represents an individual server and a ``GuidPrefix`` must be provided.
-The *server* list must be populated with ``RemoteServerAttributes`` objects with a valid ``guidPrefix`` data member.
+Each single element represents an individual server and a |GuidPrefix_t-api| must be provided.
+The *server* list must be populated with |RemoteServerAttributes-api| objects with a valid |GuidPrefix_t-api| data
+member.
 In XML the server list and its elements are simultaneously specified.
 Note that ``prefix`` is an element of the ``RemoteServer`` tag.
 
@@ -212,7 +216,7 @@ Client side setup
 *****************
 
 Each *client* must keep a list of locators associated to the *servers* to which it wants to link.
-Each *server* specifies its own locator list and must be populated with ``RemoteServerAttributes`` objects with a
+Each *server* specifies its own locator list and must be populated with |RemoteServerAttributes-api| objects with a
 valid ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``.
 In XML the server list and its elements are simultaneously specified.
 Note the ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList`` are elements of the ``RemoteServer``
@@ -269,7 +273,7 @@ As explained :ref:`above <DS_key_concepts>`, the *servers* receive discovery mes
 communication.
 However, the *servers* do not start processing them until a time interval, defined by this period, has
 elapsed, which starts at the moment the server is instantiated.
-Therefore, this member specifies a time interval in which the server's |DataReader| is disabled and incoming messages
+Therefore, this member specifies a time interval in which the server's DataReader| is disabled and incoming messages
 are not processed.
 It is a time interval intended to allow the server to initialize its resources.
 
@@ -300,18 +304,18 @@ The settings related with server-client discovery are:
 .. csv-table::
     :header: "Name", "Description"
 
-    :ref:`WireProtocolConfigQos <DS_WireProtocolConfigQos>` |br| (|DomainParticipantQosWireProtocol|), "
-    Specifies wire protocol settings for a |DomainParticipant|. |br|
+    :ref:`WireProtocolConfigQos <DS_WireProtocolConfigQos>` |br| (|WireProtocolConfigQos-api|), "
+    Specifies wire protocol settings for a DomainParticipant. |br|
     Some of it data members must be modified in order to properly configure a Server. |br|
-    An example is the |DomainParticipantQosWireProtocolPrefix| data member."
-    :ref:`RTPS BuiltinAttributes <DS_BuiltinAttributes>` |br| (|DomainParticipantQosWireProtocolBuiltin|), "
-    It is a public data member of the above |DomainParticipantQosWireProtocolClass| class. |br|
+    An example is the |WireProtocolConfigQos::prefix-api| data member."
+    :ref:`RTPS BuiltinAttributes <DS_BuiltinAttributes>` |br| (|WireProtocolConfigQos::builtin-api|), "
+    It is a public data member of the above |WireProtocolConfigQos-api| class. |br|
     Allows to specify some mandatory server discovery settings like the addresses were it |br|
     listens for clients discovery information."
     :ref:`DiscoverySettings <DS_DiscoverySettings>`, "
-    It is a member of the above :class:`BuiltinAttributes` structure. |br|
+    It is a member of the above |BuiltinAttributes-api| structure. |br|
     Allows to specify some mandatory and optional Server-Client discovery settings such as |br|
-    whether the |DomainParticipant| is a client or a server, the list of servers it is linked to, |br|
+    whether the DomainParticipant is a client or a server, the list of servers it is linked to, |br|
     the client-ping, and the server-match frequencies."
 
 .. _DS_WireProtocolConfigQos:
@@ -319,7 +323,7 @@ The settings related with server-client discovery are:
 WireProtocolConfigQos
 """""""""""""""""""""
 
-The |DomainParticipantQosWireProtocolPrefix| data member of the |DomainParticipantQosWireProtocol| class
+The |WireProtocolConfigQos::prefix-api| data member of the |WireProtocolConfigQos-api| class
 specifies the server's identity.
 This member has only significance if ``discovery_config.discoveryProtocol`` is **SERVER** or **BACKUP**.
 
@@ -345,7 +349,8 @@ This member has only significance if ``discovery_config.discoveryProtocol`` is *
 RTPS BuiltinAttributes
 """"""""""""""""""""""
 
-All discovery related information is gathered in the :ref:`DS_DiscoverySettings` ``discovery_config`` data member.
+All discovery related information is gathered in the |BuiltinAttributes-api|
+|BuiltinAttributes::discovery_config-api| data member.
 
 In order to receive client metatraffic, ``metatrafficUnicastLocatorList`` or
 ``metatrafficMulticastLocatorList`` must be populated with the addresses (IP and port) that were given to
@@ -373,31 +378,31 @@ the clients.
 DiscoverySettings
 """""""""""""""""
 
-The :class:`discoveryProtocol` enum data member (:ref:`discovery_protocol`) specifies the participant's discovery kind.
+The |DiscoveryProtocol_t| enum data member (|discoveryProtocol|) specifies the participant's discovery kind.
 As was explained before, to setup the Server-Client discovery it may be:
 
 .. csv-table::
     :header: "enum value", "Description"
     :widths: 15, 100
 
-    CLIENT, "
-    Generates a client |DomainParticipant|, which relies on a server (or servers) to be notified of other clients |br|
-    presence. This |DomainParticipant| can create |DataWriters| and |DataReaders| of any topic (static or dynamic) |br|
-    as ordinary |DomainParticipants| do."
-    SERVER, "
-    Generates a server |DomainParticipant|, which receives, manages and spreads its matched client's metatraffic |br|
-    assuring any single one is aware of the others. This |DomainParticipant| can create |DataWriters| and |br|
-    |DataReaders| of any topic (static or dynamic) as ordinary |DomainParticipants| do. |br|
+    |SERVER|, "
+    Generates a client DomainParticipant, which relies on a server (or servers) to be notified of other clients |br|
+    presence. This DomainParticipant can create DataWriters and DataReaders of any topic (static or dynamic) |br|
+    as ordinary DomainParticipants do."
+    |CLIENT|, "
+    Generates a server DomainParticipant, which receives, manages and spreads its matched client's metatraffic |br|
+    assuring any single one is aware of the others. This DomainParticipant can create DataWriters and |br|
+    DataReaders of any topic (static or dynamic) as ordinary DomainParticipants do. |br|
     Servers can link to other servers in order to share its clients information."
-    BACKUP, "
-    Generates a server |DomainParticipant| with additional functionality over **SERVER**. Specifically, it uses a |br|
+    |BACKUP|, "
+    Generates a server DomainParticipant with additional functionality over **SERVER**. Specifically, it uses a |br|
     database to backup its client information, so that this information can be automatically restored at any |br|
     moment and continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to |br|
     collect client information again, introducing a recovery delay."
 
-A :class:`DiscoveryServers` that lists the servers linked to a client |DomainParticipant|. This member
-has only significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or **BACKUP**.
-These member elements are :class:`RemoteServerAttributes` objects that identify each server and report where the
+A |m_DiscoveryServers| lists the servers linked to a client DomainParticipant. This member
+has only significance if |discoveryProtocol| is **CLIENT**, **SERVER** or **BACKUP**.
+These member elements are |RemoteServerAttributes-api| objects that identify each server and report where the
 servers can be reached:
 
 .. list-table::
@@ -405,13 +410,14 @@ servers can be reached:
 
    * - Data members
      - Description
-   * - ``GuidPrefix_t guidPrefix``
-     - Is the RTPS unique identifier of the remote server |DomainParticipant|.
-   * - ``metatrafficUnicastLocatorList`` |br| ``metatrafficMulticastLocatorList``
-     - Are ordinary ``LocatorList_t`` (see :ref:`LocatorListType`) where the server's |br|
+   * - |RemoteServerAttributes::guidPrefix-api|
+     - Is the RTPS unique identifier of the remote server DomainParticipant.
+   * - |RemoteServerAttributes::metatrafficUnicastLocatorList-api| |br|
+       |RemoteServerAttributes::metatrafficMulticastLocatorList-api|
+     - Are ordinary |LocatorList_t-api| (see :ref:`LocatorListType`) where the server's |br|
        locators must be specified. At least one of them should be populated.
-   * - ``Duration_t discoveryServer_client_syncperiod``
-     - Has only significance if :ref:`discovery_protocol` is **CLIENT**, **SERVER** or |br|
+   * - |discoveryServer_client_syncperiod|
+     - Has only significance if |discoveryProtocol| is **CLIENT**, **SERVER** or |br|
        **BACKUP**. For a *client* it specifies the pinging period as explained in |br|
        :ref:`key concepts <DS_key_concepts>`. When a client has not yet established a |br|
        reliable connection to a server it *pings* until the server notices him and |br|

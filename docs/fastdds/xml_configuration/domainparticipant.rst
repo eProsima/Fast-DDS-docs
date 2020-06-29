@@ -91,9 +91,9 @@ These elements allow the user to define the DomainParticipant configuration.
 |                                   | *Fast DDS* will use the system default |br|      |                     |         |
 |                                   | socket size.                                     |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<builtin>``                     | |DomainParticipantQosWireProtocolBuiltin|        | :ref:`builtin`      |         |
+| ``<builtin>``                     | |WireProtocolConfigQos::builtin-api|             | :ref:`builtin`      |         |
 |                                   | public data member of the |br|                   |                     |         |
-|                                   | |DomainParticipantQosWireProtocolClass|          |                     |         |
+|                                   | |WireProtocolConfigQos-api|                      |                     |         |
 |                                   | class. |br|                                      |                     |         |
 |                                   | See the                                          |                     |         |
 |                                   | :ref:`builtin` section.                          |                     |         |
@@ -115,7 +115,7 @@ These elements allow the user to define the DomainParticipant configuration.
 | ``<useBuiltinTransports>``        | Boolean field to indicate the system |br|        | ``bool``            | true    |
 |                                   | whether the DomainParticipant will use the |br|  |                     |         |
 |                                   | default                                          |                     |         |
-|                                   | |DomainParticipantQosWireProtocolBuiltin|        |                     |         |
+|                                   | |WireProtocolConfigQos::builtin-api|             |                     |         |
 |                                   | transport instead |br|                           |                     |         |
 |                                   | of its ``<userTransports>``.                     |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
@@ -270,10 +270,10 @@ Builtin parameters
 ********************
 
 By calling the |DomainParticipantQosWireProtocol| member function of the |DomainParticipantQos|, it is possible to
-access the |DomainParticipantQosWireProtocolBuiltin| public data member of the |DomainParticipantQosWireProtocolClass|
+access the |WireProtocolConfigQos::builtin-api| public data member of the |WireProtocolConfigQos-api|
 class.
 This section specifies the available XML members for the configuration of this
-|DomainParticipantQosWireProtocolBuiltin| parameters.
+|WireProtocolConfigQos::builtin-api| parameters.
 
 .. Some large words outside of table. Then table fit maximum line length
 

@@ -77,3 +77,4 @@
 .. |WireProtocolConfigQos| replace:: :ref:`WireProtocolConfigQos<wireprotocolconfigqos>`
 .. |WriterDataLifecycleQosPolicy| replace:: :ref:`WriterDataLifecycleQosPolicy<writerdatalifecycleqospolicy>`
 .. |WriterResourceLimitsQos| replace:: :ref:`WriterResourceLimitsQos<writerresourcelimitsqos>`
+.. |DomainParticipantListener| replace:: :ref:`DomainParticipantListener<dds_layer_domainParticipantListener>`

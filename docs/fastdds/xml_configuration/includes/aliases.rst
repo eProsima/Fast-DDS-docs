@@ -1,9 +1,9 @@
 .. |DomainId| replace:: :cpp:type:`DomainId <eprosima::fastdds::dds::DomainId_t>`
 .. |DomainParticipantQos| replace:: :cpp:class:`DomainParticipantQos <eprosima::fastdds::dds::DomainParticipantQos>`
 .. |DomainParticipantQosWireProtocol| replace:: :cpp:func:`wire_protocol() <eprosima::fastdds::dds::DomainParticipantQos::wire_protocol()>`
-.. |DomainParticipantQosWireProtocolClass| replace:: :cpp:class:`WireProtocolConfigQos <eprosima::fastdds::dds::WireProtocolConfigQos>`
+.. |WireProtocolConfigQos-api| replace:: :cpp:class:`WireProtocolConfigQos <eprosima::fastdds::dds::WireProtocolConfigQos>`
 .. |DomainParticipantQosWireProtocolPrefix| replace:: :cpp:member:`prefix <eprosima::fastdds::dds::WireProtocolConfigQos::prefix>`
-.. |DomainParticipantQosWireProtocolBuiltin| replace:: :cpp:member:`builtin <eprosima::fastdds::dds::WireProtocolConfigQos::builtin>`
+.. |WireProtocolConfigQos::builtin-api| replace:: :cpp:member:`builtin <eprosima::fastdds::dds::WireProtocolConfigQos::builtin>`
 .. |Entity| replace:: :cpp:class:`Entity <eprosima::fastdds::dds::Entity>`
 .. |Entities| replace:: :cpp:class:`Entities <eprosima::fastdds::dds::Entity>`
 .. |DomainParticipantFactory| replace:: :cpp:class:`DomainParticipantFactory <eprosima::fastdds::dds::DomainParticipant>`

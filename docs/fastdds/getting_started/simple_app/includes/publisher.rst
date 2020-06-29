@@ -34,19 +34,19 @@ data type that we have defined in the previous section.
 
 The next block includes the C++ header files that allow the use of the Fast DDS API.
 
-*   |DomainParticipantFactory|.
+*   |DomainParticipantFactory-api|.
     Allows for the creation and destruction of DomainParticipant objects.
-*   |DomainParticipant|.
+*   |DomainParticipant-api|.
     Acts as a container for all other Entity objects and as a factory for the Publisher, Subscriber,
     and Topic objects.
-*   |TypeSupport|.
+*   |TypeSupport-api|.
     Provides the participant with the functions to serialize, deserialize and get the key of a
     specific data type.
-*   |Publisher|.
+*   |Publisher-api|.
     Is the object responsible for the creation of DataReaders.
-*   |DataWriter|.
+*   |DataWriter-api|.
     Allows the application to set the value of the data to be published under a given Topic.
-*   |DataWriterListener|.
+*   |DataWriterListener-api|.
     Allows the redefinition of the functions of the DataWriterListener.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
@@ -71,14 +71,14 @@ Continuing with the private data members of the class, the ``hello_`` data membe
 we created with the IDL file.
 Next, the private data members corresponding to the participant, publisher, topic, DataWriter and data type are
 defined.
-The ``type_`` object of the |TypeSupport| class is the object that will be used to register the topic data type
+The ``type_`` object of the |TypeSupport-api| class is the object that will be used to register the topic data type
 in the DomainParticipant.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
     :lines: 33-45
 
-Then, the :class:`PubListener` class is defined by inheriting from the |DataWriterListener| class.
+Then, the :class:`PubListener` class is defined by inheriting from the |DataWriterListener-api| class.
 This class overrides the default DataWriter listener callbacks, which allow us to execute routines in case of an event.
 The overridden callback
 :cpp:func:`on_publication_matched <eprosima::fastdds::dds::DataWriterListener::on_publication_matched>`
@@ -113,14 +113,14 @@ This function performs several actions:
 
 1.  Initializes the content of the HelloWorld type ``hello_`` structure members.
 2.  Assigns a name to the participant through the QoS of the DomainParticipant.
-3.  Uses the |DomainParticipantFactory| to create the participant.
+3.  Uses the |DomainParticipantFactory-api| to create the participant.
 4.  Registers the data type defined in the IDL.
 5.  Creates the topic for the publications.
 6.  Creates the publisher.
 7.  Creates the DataWriter with the listener previously created.
 
 As you can see, the QoS configuration for all entities, except for the participant's name, is the default configuration
-(|PARTICIPANT_QOS_DEFAULT|, |PUBLISHER_QOS_DEFAULT|, |TOPIC_QOS_DEFAULT|, |DATAWRITER_QOS_DEFAULT|).
+(|PARTICIPANT_QOS_DEFAULT-api|, |PUBLISHER_QOS_DEFAULT-api|, |TOPIC_QOS_DEFAULT-api|, |DATAWRITER_QOS_DEFAULT-api|).
 The default value of the QoS of each DDS Entity can be checked in the
 `DDS standard <https://www.omg.org/spec/DDS/About-DDS/>`_.
 

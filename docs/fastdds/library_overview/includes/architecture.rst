@@ -1,11 +1,11 @@
 Architecture
 ------------
 
-The architecture of Fast DDS is shown in the figure below, where a layer model with the following different
+The architecture of *Fast DDS* is shown in the figure below, where a layer model with the following different
 environments can be seen.
 
 * **Application layer**.
-  The user application that makes use of the Fast DDS API for the implementation of communications in
+  The user application that makes use of the *Fast DDS* API for the implementation of communications in
   distributed systems.
 * **Fast DDS layer**.
   Robust implementation of the DDS communications middleware.
@@ -16,21 +16,21 @@ environments can be seen.
   for interoperability with DDS applications.
   This layer acts an abstraction layer of the transport layer.
 * **Transport Layer**.
-  Fast DDS can be used over various transport protocols such as unreliable transport protocols (UDP), reliable
+  *Fast DDS* can be used over various transport protocols such as unreliable transport protocols (UDP), reliable
   transport protocols (TCP), or shared memory transport protocols (SHM).
 
 .. figure:: /01-figures/fast_dds/library_overview/library_overview.svg
   :align: center
 
-  Fast DDS layer model architecture
+  *Fast DDS* layer model architecture
 
 DDS Layer
 ^^^^^^^^^
 
-Several key elements for communication are defined in the DDS layer of Fast DDS.
+Several key elements for communication are defined in the DDS layer of *Fast DDS*.
 The user will create these elements in their application, thus incorporating DDS application elements and creating a
 data-centric communication system.
-Fast DDS, following the DDS specification, defines these elements involved in communication as **Entities**.
+*Fast DDS*, following the DDS specification, defines these elements involved in communication as **Entities**.
 A DDS **Entity** is any object that supports Quality of Service configuration (QoS), and the implements listener.
 
 * **QoS**.
@@ -81,8 +81,8 @@ section.
 RTPS layer
 ^^^^^^^^^^
 
-As mentioned above, the RTPS protocol in Fast DDS allows the abstraction of DDS application entities from the transport
-layer.
+As mentioned above, the RTPS protocol in *Fast DDS* allows the abstraction of DDS application entities from the
+transport layer.
 According to the graph shown above, the RTPS layer has four main **Entities**.
 
 * **RTPSDomain**.
@@ -101,7 +101,7 @@ section.
 Transport layer
 ^^^^^^^^^^^^^^^
 
-Fast DDS supports the implementation of applications over various transport protocols.
+*Fast DDS* supports the implementation of applications over various transport protocols.
 Those are UDPv4, UDPv6, TCPv4, TCPv6 and Shared Memory Transport (SHM).
 By default, a DomainParticipant implements a UDPv4 transport protocol.
 The configuration of all supported transport protocols is detailed in the :ref:`comm-transports-configuration` section.

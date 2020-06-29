@@ -507,3 +507,51 @@
 
 .. |PublicationMatchedStatus-api| replace:: :cpp:struct:`PublicationMatchedStatus<eprosima::fastdds::dds::PublicationMatchedStatus>`
 .. |PublicationMatchedStatus::last_subscription_handle-api| replace:: :cpp:member:`last_subscription_handle<eprosima::fastdds::dds::PublicationMatchedStatus::last_subscription_handle>`
+
+.. |DataReaderQoS-api| replace:: :cpp:class:`DataReaderQoS <eprosima::fastdds::dds::DataReaderQos>`
+.. |PARTICIPANT_QOS_DEFAULT-api| replace:: :cpp:member:`PARTICIPANT_QOS_DEFAULT <dds::fastdds::eprosima::PARTICIPANT_QOS_DEFAULT>`
+.. |PUBLISHER_QOS_DEFAULT-api| replace:: :cpp:member:`PUBLISHER_QOS_DEFAULT <dds::fastdds::eprosima::PUBLISHER_QOS_DEFAULT>`
+.. |SUBSCRIBER_QOS_DEFAULT-api| replace:: :cpp:member:`SUBSCRIBER_QOS_DEFAULT <dds::fastdds::eprosima::SUBSCRIBER_QOS_DEFAULT>`
+.. |TOPIC_QOS_DEFAULT-api| replace:: :cpp:member:`TOPIC_QOS_DEFAULT <dds::fastdds::eprosima::TOPIC_QOS_DEFAULT>`
+.. |DATAWRITER_QOS_DEFAULT-api| replace:: :cpp:member:`DATAWRITER_QOS_DEFAULT <dds::fastdds::eprosima::DATAWRITER_QOS_DEFAULT>`
+.. |DATAREADER_QOS_DEFAULT-api| replace:: :cpp:member:`DATAREADER_QOS_DEFAULT <dds::fastdds::eprosima::DATAREADER_QOS_DEFAULT>`
+
+.. |DomainId-api| replace:: :cpp:type:`DomainId <eprosima::fastdds::dds::DomainId_t>`
+
+.. |RTPSParticipants-api| replace:: :cpp:class:`RTPSParticipants <eprosima::fastrtps::rtps::RTPSParticipant>`
+.. |RTPSParticipant-api| replace:: :cpp:class:`RTPSParticipant <eprosima::fastrtps::rtps::RTPSParticipant>`
+.. |RTPSReaders-api| replace:: :cpp:class:`RTPSReaders <eprosima::fastrtps::rtps::RTPSReader>`
+.. |RTPSWriters-api| replace:: :cpp:class:`RTPSWriters <eprosima::fastrtps::rtps::RTPSWriter>`
+
+.. |DiscoverySettings-api| replace:: :cpp:class:`DiscoverySettings <eprosima::fastrtps::rtps::DiscoverySettings>`
+.. |leaseDuration_announcementperiod| replace:: :cpp:member:`leaseDuration_announcementperiod <eprosima::fastrtps::rtps::DiscoverySettings::leaseDuration_announcementperiod>`
+.. |DiscoveryProtocol_t| replace:: :cpp:member:`DiscoveryProtocol_t <eprosima::fastrtps::rtps::DiscoverySettings::DiscoveryProtocol_t>`
+.. |ParticipantFilteringFlags_t| replace:: :cpp:member:`ParticipantFilteringFlags_t <eprosima::fastrtps::rtps::DiscoverySettings::ParticipantFilteringFlags_t>`
+.. |discoveryProtocol| replace:: :cpp:member:`discoveryProtocol <eprosima::fastrtps::rtps::DiscoverySettings::discoveryProtocol>`
+.. |m_DiscoveryServers| replace:: :cpp:member:`m_DiscoveryServers <eprosima::fastrtps::rtps::DiscoverySettings::m_DiscoveryServers>`
+.. |discoveryServer_client_syncperiod| replace:: :cpp:member:`discoveryServer_client_syncperiod <eprosima::fastrtps::rtps::DiscoverySettings::discoveryServer_client_syncperiod>`
+
+.. |DiscoveryProtocol-api| replace:: :cpp:enum:`DiscoveryProtocol<rtps::fastrtps::eprosima::DiscoveryProtocol>`
+.. |SIMPLE| replace:: :cpp:enumerator:`SIMPLE<rtps::fastrtps::eprosima::DiscoveryProtocol::SIMPLE>`
+.. |STATIC| replace:: :cpp:enumerator:`STATIC<rtps::fastrtps::eprosima::DiscoveryProtocol::STATIC>`
+.. |SERVER| replace:: :cpp:enumerator:`SERVER<rtps::fastrtps::eprosima::DiscoveryProtocol::SERVER>`
+.. |CLIENT| replace:: :cpp:enumerator:`CLIENT<rtps::fastrtps::eprosima::DiscoveryProtocol::CLIENT>`
+.. |BACKUP| replace:: :cpp:enumerator:`BACKUP<rtps::fastrtps::eprosima::DiscoveryProtocol::BACKUP>`
+.. |NONE| replace:: :cpp:enumerator:`NONE<rtps::fastrtps::eprosima::DiscoveryProtocol::NONE>`
+
+.. |ParticipantFilteringFlags-api| replace:: :cpp:enum:`ParticipantFilteringFlags<rtps::fastrtps::eprosima::ParticipantFilteringFlags>`
+.. |NO_FILTER| replace:: :cpp:enumerator:`NO_FILTER<rtps::fastrtps::eprosima::ParticipantFilteringFlags::NO_FILTER>`
+.. |FILTER_DIFFERENT_HOST| replace:: :cpp:enumerator:`FILTER_DIFFERENT_HOST<rtps::fastrtps::eprosima::ParticipantFilteringFlags::FILTER_DIFFERENT_HOST>`
+.. |FILTER_DIFFERENT_PROCESS| replace:: :cpp:enumerator:`FILTER_DIFFERENT_PROCESS<rtps::fastrtps::eprosima::ParticipantFilteringFlags::FILTER_DIFFERENT_PROCESS>`
+.. |FILTER_SAME_PROCESS| replace:: :cpp:enumerator:`FILTER_SAME_PROCESS<rtps::fastrtps::eprosima::ParticipantFilteringFlags::FILTER_SAME_PROCESS>`
+
+.. |GuidPrefix_t-api| replace:: :cpp:struct:`GuidPrefix_t<eprosima::fastrtps::rtps::GuidPrefix_t>`
+.. |InitialAnnouncementConfig-api| replace:: :cpp:struct:`InitialAnnouncementConfig<eprosima::fastrtps::rtps::InitialAnnouncementConfig>`
+.. |InitialAnnouncementConfig::period-api| replace:: :cpp:member:`period<eprosima::fastrtps::rtps::InitialAnnouncementConfig::period>`
+.. |RemoteServerAttributes-api| replace:: :cpp:class:`RemoteServerAttributes<eprosima::fastrtps::rtps::RemoteServerAttributes>`
+.. |RemoteServerAttributes::metatrafficUnicastLocatorList-api| replace:: :cpp:member:`metatrafficUnicastLocatorList<eprosima::fastrtps::rtps::RemoteServerAttributes::metatrafficUnicastLocatorList>`
+.. |RemoteServerAttributes::metatrafficMulticastLocatorList-api| replace:: :cpp:member:`metatrafficMulticastLocatorList<eprosima::fastrtps::rtps::RemoteServerAttributes::metatrafficMulticastLocatorList>`
+.. |RemoteServerAttributes::guidPrefix-api| replace:: :cpp:member:`guidPrefix<eprosima::fastrtps::rtps::RemoteServerAttributes::guidPrefix>`
+.. |BuiltinAttributes-api| replace:: :cpp:class:`BuiltinAttributes<eprosima::fastrtps::rtps::BuiltinAttributes>`
+.. |BuiltinAttributes::discovery_config-api| replace:: :cpp:member:`discovery_config<eprosima::fastrtps::rtps::BuiltinAttributes::discovery_config>`
+

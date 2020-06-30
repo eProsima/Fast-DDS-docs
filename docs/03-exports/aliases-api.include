@@ -555,3 +555,5 @@
 .. |BuiltinAttributes-api| replace:: :cpp:class:`BuiltinAttributes<eprosima::fastrtps::rtps::BuiltinAttributes>`
 .. |BuiltinAttributes::discovery_config-api| replace:: :cpp:member:`discovery_config<eprosima::fastrtps::rtps::BuiltinAttributes::discovery_config>`
 
+.. |Property-api| replace:: :cpp:class:`Property<eprosima::fastrtps::rtps::Property>`
+

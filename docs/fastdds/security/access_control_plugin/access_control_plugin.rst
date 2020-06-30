@@ -1,4 +1,6 @@
-.. include:: ../includes/aliases.rst
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _access-permissions:
 
@@ -7,17 +9,17 @@ Access control plugin: DDS\:Access\:Permissions
 
 The access control plugin provides the mechanisms and operations required for validating the |DomainParticipant|
 permissions.
-If the security module was activated at Fast DDS compilation, after a remote |DomainParticipant| is authenticated,
+If the security module was activated at Fast DDS compilation, after a remote DomainParticipant is authenticated,
 its permissions need to be validated and enforced.
 
-Access rights that each |DomainParticipant| has over a resource are defined using the access control plugin.
-For the proper functioning of a |DomainParticipant| in a DDS Domain, the |DomainParticipant| must be authorized to
+Access rights that each DomainParticipant has over a resource are defined using the access control plugin.
+For the proper functioning of a DomainParticipant in a DDS Domain, the DomainParticipant must be authorized to
 operate in that specific domain.
-The |DomainParticipant| is responsible for creating the |DataWriters| and |DataReaders| that communicate over a certain
+The DomainParticipant is responsible for creating the |DataWriters| and |DataReaders| that communicate over a certain
 |Topic|.
-Hence, a |DomainParticipant| must have the permissions needed to create a |Topic|, to publish
-through its |DataWriters| under defined |Topics|, and to subscribe via its |DataReaders| to other |Topics|.
-Access control plugin can configure the Cryptographic plugin as its usage is based on the |DomainParticipant|'s
+Hence, a DomainParticipant must have the permissions needed to create a Topic, to publish
+through its DataWriters under defined Topics, and to subscribe via its DataReaders to other Topics.
+Access control plugin can configure the Cryptographic plugin as its usage is based on the DomainParticipant's
 permissions.
 
 The authentication plugin implemented in Fast DDS is referred to as "DDS\:Access\:Permissions", in compliance with the
@@ -30,9 +32,10 @@ in detail below.
 
    1. The Permissions CA certificate.
    2. The Domain governance signed by the Permissions CA.
-   3. The |DomainParticipant| permissions signed by the Permissions CA.
+   3. The DomainParticipant permissions signed by the Permissions CA.
 
-The DDS\:Access\:Permissions authentication plugin, can be activated setting the |DomainParticipantQos| |Property|
+The DDS\:Access\:Permissions authentication plugin, can be activated setting the |DomainParticipantQos|
+|DomainParticipantQos::properties-api|
 ``dds.sec.auth.plugin`` with the value ``builtin.Access-Permissions``.
 The following table outlines the properties used for the DDS\:Access\:Permissions plugin configuration.
 
@@ -118,18 +121,18 @@ The domain rules define aspects of the DDS Domain such as:
 *  Whether the discovery data should be protected and the type of protection: MAC only or encryption followed by MAC.
 *  Whether the whole RTPS message should be encrypted.
 *  Whether the liveliness of the messages should be protected.
-*  Whether a non-authenticated |DomainParticipant| can access or not to the unprotected discovery metatraffic and
+*  Whether a non-authenticated DomainParticipant can access or not to the unprotected discovery metatraffic and
    unprotected Topics.
-*  Whether an authenticated |DomainParticipant| can access the domain without evaluating the access control policies.
-*  Whether discovery information on a certain Topic should be sent with secure |DataWriters|.
-*  Whether or not the access to Topics should be restricted to |DomainParticipants| with the appropriate permission to
+*  Whether an authenticated DomainParticipant can access the domain without evaluating the access control policies.
+*  Whether discovery information on a certain Topic should be sent with secure DataWriters.
+*  Whether or not the access to Topics should be restricted to DomainParticipants with the appropriate permission to
    read them.
 *  Whether the metadata sent on a certain Topic should be protected and the type of protection.
 *  Whether payload data on a certain Topic should be protected and the type of protection.
 
 The domain rules are evaluated in the same order as they appear in the document.
-A rule only applies to a particular |DomainParticipant| if the domain section matches the DDS
-:cpp:var:`Domain_Id <eprosima::fastdds::dds::DomainId_t>` to which the |DomainParticipant| belongs.
+A rule only applies to a particular DomainParticipant if the domain section matches the DDS
+:cpp:var:`Domain_Id <eprosima::fastdds::dds::DomainId_t>` to which the DomainParticipant belongs.
 If multiple rules match, the first rule that matches is the only one that applies.
 Each domain rule is delimited by the ``<domain_rule>`` XML element tag.
 
@@ -216,14 +219,14 @@ Allow Unauthenticated Participants
 **********************************
 
 This element is delimited by the ``<allow_unauthenticated_participants>`` XML element tag.
-It indicates whether the matching of a |DomainParticipant| with a remote |DomainParticipant| requires authentication.
+It indicates whether the matching of a DomainParticipant with a remote DomainParticipant requires authentication.
 The possible values for this element are:
 
-*  ``false``: the |DomainParticipant| shall enforce the authentication of remote |DomainParticipants| and
+*  ``false``: the DomainParticipant shall enforce the authentication of remote |DomainParticipants| and
    disallow matching those that cannot be successfully authenticated.
-*  ``true``: the |DomainParticipant| shall allow matching other |DomainParticipants| (event if the remote
-   |DomainParticipant| cannot authenticate) as long as there is not an already valid authentication with the same
-   |DomainParticipant|'s GUID.
+*  ``true``: the DomainParticipant shall allow matching other |DomainParticipants| (event if the remote
+   DomainParticipant cannot authenticate) as long as there is not an already valid authentication with the same
+   DomainParticipant's GUID.
 
 Enable Join Access Control
 **************************
@@ -233,8 +236,8 @@ Indicates whether the matching of the participant with a remote DomqainParticipa
 DDS\:Access\:Permissions plugin.
 Its possible values are:
 
-*  ``false``: the |DomainParticipant| shall not check the permissions of the authenticated remote |DomainParticipant|.
-*  ``true``: the |DomainParticipant| shall check the permissions of the authenticated remote |DomainParticipant|.
+*  ``false``: the DomainParticipant shall not check the permissions of the authenticated remote DomainParticipant.
+*  ``true``: the DomainParticipant shall check the permissions of the authenticated remote DomainParticipant.
 
 Discovery Protection Kind
 *************************
@@ -321,7 +324,7 @@ Topic expression
 
 This element is delimited by the ``<topic_expression>`` XML element tag.
 The value in this element identifies the set of Topic names to which the rule applies.
-The rule applies to any |DataReader| or |DataWriter| associated with a |Topic| whose name matches the value.
+The rule applies to any DataReader or DataWriter associated with a Topic whose name matches the value.
 
 The Topic name expression syntax and matching shall use the syntax and rules of the POSIX ``fnmatch()`` function as
 specified in `IEEE 1003.1-2017 <https://pubs.opengroup.org/onlinepubs/9699919799/functions/fnmatch.html>`_.
@@ -412,11 +415,11 @@ Indicates whether the data payload shall be encrypted by the Cryptographic plugi
 DomainParticipant Permissions Document
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The permissions document is an XML file which contains the permissions of a |DomainParticipant| and binds them to the
-|DomainParticipant| distinguished name defined in the DDS\:Auth\:PKI-DH plugin.
+The permissions document is an XML file which contains the permissions of a DomainParticipant and binds them to the
+DomainParticipant distinguished name defined in the DDS\:Auth\:PKI-DH plugin.
 The permissions document shall be signed by the Permissions CA in S/MIME format.
 The XML scheme of this document is defined in :ref:`domainparticipant_permissions_xsd_rst`.
-The following is an example of the |DomainParticipant| Permissions XML file contents.
+The following is an example of the DomainParticipant Permissions XML file contents.
 
 .. literalinclude:: /../code/PermissionsTester.xml
    :language: xml
@@ -443,9 +446,9 @@ Subject name
 ************
 
 This section is delimited by XML element ``<subject_name>``.
-The subject name identifies the |DomainParticipant| to which the permissions apply.
+The subject name identifies the DomainParticipant to which the permissions apply.
 Each subject name can only appear in a single ``<permissions>`` section within the XML Permissions document.
-The contents of the subject name element shall be the X.509 subject name of the |DomainParticipant| that was given in
+The contents of the subject name element shall be the X.509 subject name of the DomainParticipant that was given in
 the authorization X.509 Certificate.
 
 Validity
@@ -457,7 +460,7 @@ It reflects the valid dates for the permissions.
 Rules
 *****
 
-This section contains the permissions assigned to the |DomainParticipant|.
+This section contains the permissions assigned to the DomainParticipant.
 The rules are applied in the same order that appears in the document.
 If the criteria for the rule matched the Domain join, publish or subscribe operation that is being attempted,
 then the *allow* or *deny* decision is applied.

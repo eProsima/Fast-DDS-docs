@@ -1,4 +1,6 @@
-.. include:: ../includes/aliases.rst
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _crypto-aes-gcm-gmac:
 
@@ -11,8 +13,8 @@ DomainParticipants, |DataWriters| and |DataReaders|.
 Encryption can be applied over three different levels of DDS protocol:
 
 * The whole RTPS messages.
-* The RTPS submessages of a specific DDS Entity (|DataWriter| or |DataReader|).
-* The payload (user data) of a particular |DataWriter|.
+* The RTPS submessages of a specific DDS Entity (DataWriter or DataReader).
+* The payload (user data) of a particular DataWriter.
 
 The authentication plugin implemented in Fast DDS is referred to as "DDS\:Crypto\:AES-GCM-GMAC", in compliance with the
 `DDS Security <https://www.omg.org/spec/DDS-SECURITY/1.1/>`_ specification.
@@ -21,13 +23,14 @@ This plugin is explained in detail below.
 The DDS\:Crypto\:AES-GCM-GMAC plugin provides authentication encryption using Advanced Encryption Standard (AES) in
 Galois Counter Mode (`AES-GCM <https://csrc.nist.gov/publications/detail/sp/800-38d/final>`_).
 It supports 128 bits and 256 bits AES key sizes.
-It may also provide additional |DataReader|-specific Message Authentication Codes (MACs) using Galois MAC
+It may also provide additional DataReader-specific Message Authentication Codes (MACs) using Galois MAC
 (`AES-GMAC <https://csrc.nist.gov/publications/detail/sp/800-38d/final>`_).
 
-The DDS\:Crypto\:AES-GCM-GMAC authentication plugin, can be activated setting the |DomainParticipantQos| |Property|
+The DDS\:Crypto\:AES-GCM-GMAC authentication plugin, can be activated setting the |DomainParticipantQos|
+|DomainParticipantQos::properties-api|
 ``dds.sec.crypto.plugin`` with the value ``builtin.AES-GCM-GMAC``.
-Moreover, this plugin needs the activation of the :ref:`auth-pki-dh` plugin.
-The DDS\:Crypto\:\AES-GCM-GMAC plugin is configured using the :ref:`access-permissions` plugin, i.e the cryptography
+Moreover, this plugin needs the activation of the :ref:`auth-pki-dh`.
+The DDS\:Crypto\:\AES-GCM-GMAC plugin is configured using the :ref:`access-permissions`, i.e the cryptography
 plugin is configured through the properties and configuration files of the access control plugin.
 If the :ref:`access-permissions` plugin will not be used, you can configure the DDS\:Crypto\:AES-GCM-GMAC plugin
 manually with the properties outlined in the following table.
@@ -42,7 +45,7 @@ manually with the properties outlined in the following table.
 | rtps.endpoint.payload_protection_kind    | Encrypt payload of a particular Writer          | ``ENCRYPT``             |
 +------------------------------------------+-------------------------------------------------+-------------------------+
 
-The following is an example of how to set the properties of |DomainParticipantQoS| for the DDS\:Crypto\:AES-GCM-GMAC
+The following is an example of how to set the properties of DomainParticipantQoS for the DDS\:Crypto\:AES-GCM-GMAC
 configuration.
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -62,10 +65,10 @@ configuration.
 |    :end-before: <!--><-->                                                                                            |
 +----------------------------------------------------------------------------------------------------------------------+
 
-Next example shows how to configure |DataWriters| to encrypt their RTPS submessages and the RTPS message payload, i.e.
+Next example shows how to configure DataWriters to encrypt their RTPS submessages and the RTPS message payload, i.e.
 the user data.
-This is done by setting the DDS\:Crypto\:AES-GCM-GMAC properties corresponding to the |DataWriters| in the
-|DataWriterQos|.
+This is done by setting the DDS\:Crypto\:AES-GCM-GMAC properties (|DataWriterQos::properties-api|) corresponding to the
+DataWriters in the |DataWriterQos|.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
@@ -85,9 +88,9 @@ This is done by setting the DDS\:Crypto\:AES-GCM-GMAC properties corresponding t
 +----------------------------------------------------------------------------------------------------------------------+
 
 
-The last example shows how to configure |DataReader| to encrypt their RTPS submessages.
-This is done by setting the DDS\:Crypto\:AES-GCM-GMAC properties corresponding to the |DataReaders| in the
-|DataReaderQos|.
+The last example shows how to configure DataReader to encrypt their RTPS submessages.
+This is done by setting the DDS\:Crypto\:AES-GCM-GMAC properties (|DataReaderQos::properties-api|) corresponding to the
+DataReaders in the |DataReaderQos|.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |

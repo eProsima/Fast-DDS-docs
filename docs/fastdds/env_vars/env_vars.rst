@@ -11,13 +11,13 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     For more information about XML profiles, please refer to :ref:`xml_profiles`.
 
     +------------------------------------------------------------------+
-    | **linux**                                                        |
+    | **Linux**                                                        |
     +------------------------------------------------------------------+
     | .. code-block::                                                  |
     |                                                                  |
     |    export FASTRTPS_DEFAULT_PROFILES_FILE=/home/user/profiles.xml |
     +------------------------------------------------------------------+
-    | **windows**                                                      |
+    | **Windows**                                                      |
     +------------------------------------------------------------------+
     | .. code-block::                                                  |
     |                                                                  |
@@ -34,17 +34,17 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     If the specified address is a local address of the current machine, it will start the
     :ref:`dds_layer_domainParticipant` as a server.
     If the address is a remote one, or if there is already a server at the given port,
-    it will start the :ref:`dds_layer_domainParticipant` as a client,
+    it will start the DomainParticipant as a client,
     connecting to the server at the specified locator.
 
     +--------------------------------------------------------------+
-    | **linux**                                                    |
+    | **Linux**                                                    |
     +--------------------------------------------------------------+
     | .. code-block::                                              |
     |                                                              |
     |    export ROS2_AUTO_CLIENT_SERVER=192.168.2.23:24353         |
     +--------------------------------------------------------------+
-    | **windows**                                                  |
+    | **Windows**                                                  |
     +--------------------------------------------------------------+
     | .. code-block::                                              |
     |                                                              |

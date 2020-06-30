@@ -4,7 +4,7 @@ UDP Transport
 =============
 
 UDP is a connectionless transport, where the receiving :ref:`dds_layer_domainParticipant` must open a UDP port
-listening for incoming messages, and the sending :ref:`dds_layer_domainParticipant` sends messages to this port.
+listening for incoming messages, and the sending DomainParticipant sends messages to this port.
 
 
 .. warning::

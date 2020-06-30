@@ -5,7 +5,7 @@ TCP Transport
 
 TCP is a connection oriented transport, so the :ref:`dds_layer_domainParticipant` must establish a TCP connection
 to the remote peer before sending data messages.
-Therefore, one of the communicating :ref:`DomainParticipants<dds_layer_domainParticipant>` (the one acting
+Therefore, one of the communicating DomainParticipants (the one acting
 as *server*) must open a TCP port listening for incoming connections, and the other one (the one acting as *client*)
 must connect to this port.
 
@@ -122,12 +122,12 @@ TCPv6TransportDescriptor
 Enabling TCP Transport
 ----------------------
 
-To enable TCP transport in a :ref:`dds_layer_domainParticipant`, you need to
+To enable TCP transport in a DomainParticipant, you need to
 create an instance of :ref:`transport_tcp_v4transportDescriptor` (for TCPv4) or
 :ref:`transport_tcp_v6transportDescriptor` (for TCPv6), and add it to the user transport list of the
-:ref:`dds_layer_domainParticipant`.
+DomainParticipant.
 
-If you provide ``listening_ports`` on the descriptor, the :ref:`dds_layer_domainParticipant` will act
+If you provide ``listening_ports`` on the descriptor, the DomainParticipant will act
 as *TCP server*, listening for incoming remote connections on the given ports.
 The examples below show this procedure in both C++ code and XML file.
 
@@ -150,7 +150,7 @@ The examples below show this procedure in both C++ code and XML file.
 |    :append: </profiles>                                 |
 +---------------------------------------------------------+
 
-If you provide ``initialPeersList`` to the :ref:`dds_layer_domainParticipant`, it will act
+If you provide ``initialPeersList`` to the DomainParticipant, it will act
 as *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
 The examples below show this procedure in both C++ code and XML file.
 See :ref:`Simple Initial Peers` for more information about their configuration.
@@ -191,10 +191,10 @@ For example, imagine we have the scenario represented on the following figure:
 .. image:: /01-figures/TCP_WAN.png
     :align: center
 
-* A :ref:`dds_layer_domainParticipant` acts as a *TCP server* listening on port ``5100``
+* A DomainParticipant acts as a *TCP server* listening on port ``5100``
   and is connected to the WAN through a router with public IP ``80.80.99.45``.
 
-* Another :ref:`dds_layer_domainParticipant` acts as a *TCP client* and has configured
+* Another DomainParticipant acts as a *TCP client* and has configured
   the server's IP address and port in its ``initial_peer`` list.
 
 On the server side, the router must be configured to forward to the *TCP server*
@@ -204,7 +204,7 @@ machine is enough. Any existing firewall should be configured as well.
 In addition, to allow incoming connections through a WAN,
 the :ref:`transport_tcp_v4transportDescriptor` must indicate its **public** IP address
 in the ``wan_addr`` data member. The following examples show how to configure
-the :ref:`dds_layer_domainParticipant` both in C++ and XML.
+the DomainParticipant both in C++ and XML.
 
 +---------------------------------------------------------+
 | **C++**                                                 |
@@ -225,7 +225,7 @@ the :ref:`dds_layer_domainParticipant` both in C++ and XML.
 |    :append: </profiles>                                 |
 +---------------------------------------------------------+
 
-On the client side, the :ref:`dds_layer_domainParticipant` must be configured
+On the client side, the DomainParticipant must be configured
 with the **public** IP address and ``listening_port`` of the *TCP server* as
 ``initial_peer``.
 

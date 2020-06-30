@@ -317,6 +317,14 @@
 .. |LocatorList_t-api| replace:: :cpp:class:`LocatorList_t<LocatorList_t>`
 .. |Locator_t-api| replace:: :cpp:class:`LocatorList_t<eprosima::fastrtps::rtps::LocatorList_t>`
 
+.. |LOCATOR_KIND_RESERVED-api| replace:: :cpp:type:`LOCATOR_KIND_RESERVED<LOCATOR_KIND_RESERVED>`
+.. |LOCATOR_KIND_UDPv4-api| replace:: :cpp:type:`LOCATOR_KIND_UDPv4<LOCATOR_KIND_UDPv4>`
+.. |LOCATOR_KIND_UDPv6-api| replace:: :cpp:type:`LOCATOR_KIND_UDPv6<LOCATOR_KIND_UDPv6>`
+.. |LOCATOR_KIND_TCPv4-api| replace:: :cpp:type:`LOCATOR_KIND_TCPv4<LOCATOR_KIND_TCPv4>`
+.. |LOCATOR_KIND_TCPv6-api| replace:: :cpp:type:`LOCATOR_KIND_TCPv6<LOCATOR_KIND_TCPv6>`
+.. |LOCATOR_KIND_SHM-api| replace:: :cpp:type:`LOCATOR_KIND_SHM<LOCATOR_KIND_SHM>`
+
+
 .. |SerializedPayload_t-api| replace:: :cpp:type:`SerializedPayload_t<rtps::fastrtps::eprosima::SerializedPayload_t>`
 
 .. |InconsistentTopicStatus-api| replace:: :cpp:type:`InconsistentTopicStatus<rtps::fastrtps::eprosima::InconsistentTopicStatus>`

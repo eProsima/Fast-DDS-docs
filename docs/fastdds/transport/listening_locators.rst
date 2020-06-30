@@ -5,7 +5,7 @@ Listening Locators
 
 Listening :ref:`Locators<transport_transportApi_locator>` are used to receive incoming traffic on the
 :ref:`dds_layer_domainParticipant`.
-These :ref:`Locators<transport_transportApi_locator>` can be classified according to the communication type
+These Locators can be classified according to the communication type
 and to the nature of the data.
 
 According to the communication type we have:
@@ -28,20 +28,20 @@ or use the :ref:`listening_locators_default` provided by *eProsima Fast DDS*.
 Adding Listening Locators
 -------------------------
 
-Users can add custom Listening :ref:`Locators<transport_transportApi_locator>` to the
-:ref:`dds_layer_domainParticipant` using the :ref:`dds_layer_domainParticipantQos`.
-Depending on the field where the :ref:`transport_transportApi_locator` is added,
+Users can add custom Listening Locators to the
+DomainParticipant using the :ref:`dds_layer_domainParticipantQos`.
+Depending on the field where the Locator is added,
 it will be treated as a *multicast*, *unicast*, *user* or *metatraffic*
-:ref:`transport_transportApi_locator`.
+Locator.
 
 .. note::
 
-   Both UDP and TCP unicast :ref:`Locators<transport_transportApi_locator>` support to have a null address.
+   Both UDP and TCP unicast Locators support to have a null address.
    In that case, *Fast DDS* automatically gets and uses local network addresses.
 
 .. note::
 
-   Both UDP and TCP :ref:`Locators<transport_transportApi_locator>` support to have a zero port.
+   Both UDP and TCP Locators support to have a zero port.
    In that case, *Fast DDS* automatically calculates and uses well-known ports for that type of traffic.
    See :ref:`listening_locators_defaultPorts` for details about the well-known ports.
 
@@ -162,25 +162,25 @@ Default Listening Locators
 
 .. _DDSI-RTPS V2.2: https://www.omg.org/spec/DDSI-RTPS/2.2/PDF
 
-If the application does not define any :ref:`listening_locators`,
+If the application does not define any Listening Locators,
 *eProsima Fast DDS* automatically enables a set of listening UDPv4 locators by default.
 This allows out-of-the-box communication in most cases, without the need of
 further configuring the :ref:`comm-transports-configuration`.
 
- * If the application does not define any *metatraffic* :ref:`transport_transportApi_locator`
-   (neither *unicast* nor *multicast*), *Fast DDS* enables one *multicast*  :ref:`transport_transportApi_locator`
-   that will be used during :ref:`discovery`, and one *unicast* :ref:`transport_transportApi_locator`
+ * If the application does not define any *metatraffic* Locator
+   (neither *unicast* nor *multicast*), *Fast DDS* enables one *multicast*  Locator
+   that will be used during :ref:`discovery`, and one *unicast* Locator
    that will be used for peer-to-peer communication with already discovered
-   :ref:`DomainParticipants<dds_layer_domainParticipant>`.
+   DomainParticipants.
 
- * If the application does not define any *user-traffic* :ref:`transport_transportApi_locator`
-   (neither *unicast* nor *multicast*), *Fast DDS* enables one *unicast* :ref:`transport_transportApi_locator`
+ * If the application does not define any *user-traffic* Locator
+   (neither *unicast* nor *multicast*), *Fast DDS* enables one *unicast* Locator
    that will be used for peer-to-peer communication of :ref:`dds_layer_topic_topic` data.
 
 For example, it is possible to prevent *multicast* traffic adding a single *user-traffic unicast* Locator
 as described in :ref:`transport_disableMulticast`.
 
-Default :ref:`listening_locators` always use :ref:`listening_locators_defaultPorts`.
+Default Listening Locators always use :ref:`listening_locators_defaultPorts`.
 
 .. _listening_locators_defaultPorts:
 
@@ -188,10 +188,10 @@ Well Known Ports
 ----------------
 
 The `DDSI-RTPS V2.2`_ standard (Section 9.6.1.1) defines a set of rules to calculate well-known
-ports for default :ref:`Locators<transport_transportApi_locator>`, so that
-:ref:`DomainParticipants<dds_layer_domainParticipant>` can communicate with these
-default :ref:`Locators<transport_transportApi_locator>`.
-Well-known ports are also selected automatically by *Fast DDS* when a :ref:`transport_transportApi_locator`
+ports for default Locators, so that
+DomainParticipants can communicate with these
+default Locators.
+Well-known ports are also selected automatically by *Fast DDS* when a Locator
 is configured with port number `0`.
 
 Well-known ports are calculated using the following predefined rules:

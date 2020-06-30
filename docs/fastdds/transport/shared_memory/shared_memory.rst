@@ -49,67 +49,67 @@ Segment
 ^^^^^^^
 
 A *Segment* is a block of shared memory that can be accessed from different processes.
-Every :ref:`dds_layer_domainParticipant` that has been configured with :ref:`transport_sharedMemory_sharedMemory`
+Every DomainParticipant that has been configured with Shared Memory Transport
 creates a segment of shared memory.
-The :ref:`dds_layer_domainParticipant` writes to this segment any data it needs to deliver to other
-:ref:`DomainParticipants<dds_layer_domainParticipant>`, and the remote
-:ref:`DomainParticipants<dds_layer_domainParticipant>` are able to read it directly using the
+The DomainParticipant writes to this segment any data it needs to deliver to other
+DomainParticipants, and the remote
+DomainParticipants are able to read it directly using the
 shared memory mechanisms.
 
 Every segment has a *segmentId*, a 16 character UUID that uniquely identifies each shared memory segment.
-These *segmentIds* are used to identify and access the segment of each :ref:`dds_layer_domainParticipant`.
+These *segmentIds* are used to identify and access the segment of each DomainParticipant.
 
 .. _transport_sharedMemory_concepts_buffer:
 
 Segment Buffer
 ^^^^^^^^^^^^^^
 
-A buffer allocated in the shared memory :ref:`transport_sharedMemory_concepts_segment`.
-It works as a container for a DDS message that is placed in the :ref:`transport_sharedMemory_concepts_segment`.
-In other words, each message that the :ref:`dds_layer_domainParticipant` writes on the
-:ref:`transport_sharedMemory_concepts_segment` will be placed in a different buffer.
+A buffer allocated in the shared memory Segment.
+It works as a container for a DDS message that is placed in the Segment.
+In other words, each message that the DomainParticipant writes on the
+Segment will be placed in a different buffer.
 
 .. _transport_sharedMemory_concepts_bufferDescriptor:
 
 Buffer Descriptor
 ^^^^^^^^^^^^^^^^^
 
-It acts as a pointer to a specific :ref:`transport_sharedMemory_concepts_buffer`
-in a specific :ref:`transport_sharedMemory_concepts_segment`.
-It contains the *segmentId* and the offset of the :ref:`transport_sharedMemory_concepts_buffer` from the base of the
-:ref:`transport_sharedMemory_concepts_segment`.
-When communicating a message to other :ref:`DomainParticipants<dds_layer_domainParticipant>`,
-:ref:`transport_sharedMemory_sharedMemory` only distributes the Buffer Descriptor, avoiding the copy of
-the message from a :ref:`dds_layer_domainParticipant` to another.
-With this descriptor, the receiving :ref:`dds_layer_domainParticipant` can access the message written in the buffer,
-as is uniquely identifies the :ref:`transport_sharedMemory_concepts_segment` (through the *segmentId*)
-and the :ref:`transport_sharedMemory_concepts_buffer` (through its offset).
+It acts as a pointer to a specific Segment Buffer
+in a specific Segment.
+It contains the *segmentId* and the offset of the Segment Buffer from the base of the
+Segment.
+When communicating a message to other DomainParticipants,
+Shared Memory Transport only distributes the Buffer Descriptor, avoiding the copy of
+the message from a DomainParticipant to another.
+With this descriptor, the receiving DomainParticipant can access the message written in the buffer,
+as is uniquely identifies the Segment (through the *segmentId*)
+and the Segment Buffer (through its offset).
 
 .. _transport_sharedMemory_concepts_port:
 
 Port
 ^^^^
-Represents a channel to communicate :ref:`Buffer Descriptors <transport_sharedMemory_concepts_bufferDescriptor>`.
-It is implemented as a ring-buffer in shared memory, so that any :ref:`dds_layer_domainParticipant`
+Represents a channel to communicate Buffer Descriptors.
+It is implemented as a ring-buffer in shared memory, so that any DomainParticipant
 can potentially read or write information on it.
 Each port has a unique identifier, a 32 bit number that can be used to refer to the port.
-Every :ref:`dds_layer_domainParticipant` that has been configured with :ref:`transport_sharedMemory_sharedMemory`
-creates a port to receive :ref:`Buffer Descriptors <transport_sharedMemory_concepts_bufferDescriptor>`.
+Every DomainParticipant that has been configured with Shared Memory Transport
+creates a port to receive Buffer Descriptors.
 The identifier of this port is shared during the :ref:`discovery`, so that remote peers know which port to use
-when they want to communicate with each :ref:`dds_layer_domainParticipant`.
+when they want to communicate with each DomainParticipant.
 
-:ref:`DomainParticipants <dds_layer_domainParticipant>` create a listener to their receiving port,
-so that they can be notified when a new :ref:`transport_sharedMemory_concepts_bufferDescriptor` is pushed to the port.
+DomainParticipants create a listener to their receiving port,
+so that they can be notified when a new Buffer Descriptor is pushed to the port.
 
 .. _transport_sharedMemory_concepts_portHealthCheck:
 
 Port Health Check
 ^^^^^^^^^^^^^^^^^
-Every time a :ref:`dds_layer_domainParticipant` opens a :ref:`transport_sharedMemory_concepts_port`
+Every time a DomainParticipant opens a Port
 (for reading or writing), a health check is performed to assess its correctness.
-The reason is that if one of the processes involved crashes while using a :ref:`transport_sharedMemory_concepts_port`,
+The reason is that if one of the processes involved crashes while using a Port,
 that port can be left inoperative.
-If the attached listeners do not respond in a given timeout, the :ref:`transport_sharedMemory_concepts_port`
+If the attached listeners do not respond in a given timeout, the Port
 is considered damaged, and it is destroyed and created again.
 
 
@@ -137,7 +137,7 @@ the TransportDescriptor for Shared Memory defines the following ones:
 |                              |                |                                  | dump_file.                   |
 +------------------------------+----------------+----------------------------------+------------------------------+
 
-If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the :ref:`dds_layer_domainParticipant`
+If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the DomainParticipant
 (sent and received) is traced to a file.
 The output file format is *tcpdump* hexadecimal text, and can be processed with protocol analyzer applications
 such as Wireshark.
@@ -154,9 +154,9 @@ Enabling Shared Memory Transport
 --------------------------------
 
 SHM transport is not enabled by default.
-To enable SHM transport in a :ref:`dds_layer_domainParticipant`, you need to
-create an instance of :ref:`transport_sharedMemory_transportDescriptor` and add it to the user transport list of the
-:ref:`dds_layer_domainParticipant`.
+To enable SHM transport in a DomainParticipant, you need to
+create an instance of SharedMemTransportDescriptor and add it to the user transport list of the
+DomainParticipant.
 The examples below show this procedure in both C++ code and XML file.
 
 +--------------------------------------------------+

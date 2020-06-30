@@ -12,7 +12,7 @@ TLS over TCP
 *Fast DDS* allows configuring TCP Transports to use TLS (Transport Layer Security).
 In order to set up TLS, the :ref:`transport_tcp_transportDescriptor` must
 have its ``apply_security`` data member set to ``true``, and its ``tls_config`` data member
-filled with the desired configuration on the :ref:`transport_tcp_transportDescriptor`.
+filled with the desired configuration on the TransportDescriptor.
 The following is an example of configuration of TLS on the *TCP server*.
 
 +--------------------------------------------------+
@@ -116,7 +116,7 @@ TLS Verification Mode
 
 The verification mode defines how the peer node will be verified.
 The following table describes the available verification options.
-Several verification options can be combined in the same :ref:`transport_tcp_transportDescriptor`
+Several verification options can be combined in the same TransportDescriptor
 using the :func:`add_verify_mode` member function.
 
 +---------------------------------+-----------------------------------------------------------------------------------+
@@ -145,7 +145,7 @@ TLS Options
 
 These options define which TLS features are to be supported.
 The following table describes the available options.
-Several options can be combined in the same :ref:`transport_tcp_transportDescriptor`
+Several options can be combined in the same TransportDescriptor
 using the :func:`add_option` member function.
 
 +---------------------------------+-----------------------------------------------------------------------------------+

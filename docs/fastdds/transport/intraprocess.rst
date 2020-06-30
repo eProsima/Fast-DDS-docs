@@ -8,7 +8,7 @@ overhead involved in the transport layer.
 Instead, the :ref:`dds_layer_publisher_publisher` directly calls the reception functions of the
 :ref:`dds_layer_subscriber_subscriber`.
 This not only avoids the copy or send operations of the transport, but also ensures the message is received by the
-:ref:`dds_layer_subscriber_subscriber`, avoiding the acknowledgement mechanism.
+Subscriber, avoiding the acknowledgement mechanism.
 
 This feature is enabled by default, and can be configured using :ref:`xml_profiles`.
 Currently the following options are available:
@@ -24,6 +24,7 @@ Currently the following options are available:
 |    :language: xml                                   |
 |    :start-after: <!-->CONF-LIBRARY-SETTINGS         |
 |    :end-before: <!--><-->                           |
+|    :dedent: 4                                       |
 +-----------------------------------------------------+
 
 

@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _dds_layer_log_thread:
 
@@ -11,9 +13,9 @@ When awaken, this thread feeds all the entries in the queue to all the registere
 Once the work is done, the thread falls back into idle state.
 This strategy prevents the module from blocking the application thread when a logging operation is performed.
 However, sometimes applications may want to wait until the logging routine is done to continue their operation.
-The logging module provides this capability via the member function |Log::Flush|.
+The logging module provides this capability via the member function |Log::Flush-api|.
 Furthermore, it is possible to completely eliminate the thread and its resources using member function
-|Log::KillThread|.
+|Log::KillThread-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
@@ -24,4 +26,4 @@ Furthermore, it is possible to completely eliminate the thread and its resources
 .. warning::
 
     A call to any of the macros present in :ref:`dds_layer_log_logging` will spawn the logging thread even if it has
-    been previously killed with |Log::KillThread|.
+    been previously killed with |Log::KillThread-api|.

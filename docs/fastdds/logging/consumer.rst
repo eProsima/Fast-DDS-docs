@@ -1,11 +1,13 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _dds_layer_log_consumer:
 
 Consumers
 ---------
 
-Consumers are classes that take a |Log::Entry| and produce a log output accordingly.
+Consumers are classes that take a |Log::Entry-api| and produce a log output accordingly.
 *eProsima Fast DDS* provides two different log consumers that output log entries to different streams:
 
 * :ref:`dds_layer_log_consumer_stdout`: Outputs log entries to STDOUT
@@ -17,10 +19,10 @@ Consumers are classes that take a |Log::Entry| and produce a log output accordin
 StdoutConsumer
 ^^^^^^^^^^^^^^
 
-|StdoutConsumer| is the default log consumer.
+|StdoutConsumer-api| is the default log consumer.
 It outputs log entries to STDOUT stream following the convection specified in :ref:`dds_layer_log_logging_spec`.
-By default, the logging module only has one consumer, which is a |StdoutConsumer|.
-The |StdoutConsumer| can be registered and unregistered using the methods explained in
+By default, the logging module only has the StdoutConsumer.
+It can be registered and unregistered using the methods explained in
 :ref:`dds_layer_log_register_consumers` and :ref:`dds_layer_log_reset`.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -35,10 +37,10 @@ The |StdoutConsumer| can be registered and unregistered using the methods explai
 FileConsumer
 ^^^^^^^^^^^^
 
-|FileConsumer| provides the logging module with log-to-file logging capabilities.
+|FileConsumer-api| provides the logging module with log-to-file logging capabilities.
 Applications willing to hold a persistent execution log record can specify a logging file using this consumer.
 Furthermore, the application can choose whether the file stream should be in "write" or "append" mode, according to the
-behaviour defined by |std::fstream::open|.
+behaviour defined by |std::fstream::open-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++

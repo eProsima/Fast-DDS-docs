@@ -78,3 +78,4 @@
 .. |WriterDataLifecycleQosPolicy| replace:: :ref:`WriterDataLifecycleQosPolicy<writerdatalifecycleqospolicy>`
 .. |WriterResourceLimitsQos| replace:: :ref:`WriterResourceLimitsQos<writerresourcelimitsqos>`
 .. |DomainParticipantListener| replace:: :ref:`DomainParticipantListener<dds_layer_domainParticipantListener>`
+.. |whitelist| replace:: :ref:`Whitelist <whitelist-interfaces>`

@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _xml_profiles:
 
@@ -19,7 +21,7 @@ during the creation of an |Entity|, the :ref:`Trasport <comm-transports-configur
 
 Both options can be complemented, i.e. it is possible to load multiple XML files but these must not have XML profiles
 with the same name.
-This section explains how to configure DDS |Entities| using XML profiles.
+This section explains how to configure DDS entities using XML profiles.
 This includes the description of all the configuration values available for each of the XML profiles, as well as how
 to create complete XML files.
 

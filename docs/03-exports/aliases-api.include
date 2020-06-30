@@ -315,6 +315,7 @@
 .. |c_TimeZero-api| replace:: :cpp:type:`c_TimeZero<fastrtps::eprosima::c_TimeInfinite>`
 .. |c_TimeInvalid-api| replace:: :cpp:type:`c_TimeInvalid<fastrtps::eprosima::c_TimeInfinite>`
 .. |LocatorList_t-api| replace:: :cpp:class:`LocatorList_t<LocatorList_t>`
+.. |Locator_t-api| replace:: :cpp:class:`LocatorList_t<eprosima::fastrtps::rtps::LocatorList_t>`
 
 .. |SerializedPayload_t-api| replace:: :cpp:type:`SerializedPayload_t<rtps::fastrtps::eprosima::SerializedPayload_t>`
 
@@ -596,3 +597,10 @@
 .. |LOG_NO_INFO| replace:: :cpp:type:`LOG_NO_INFO`
 .. |LOG_NO_WARNING| replace:: :cpp:type:`LOG_NO_WARNING`
 .. |LOG_NO_ERROR| replace:: :cpp:type:`LOG_NO_ERROR`
+
+.. |EDPStatic| replace:: :cpp:class:`EDPStatic <eprosima::fastrtps::rtps::EDPStatic>`
+
+.. |DynamicPubSubType| replace:: :cpp:class:`DynamicPubSubType <eprosima::fastrtps::types::DynamicPubSubType>`
+.. |DynamicPubSubTypes| replace:: :cpp:class:`DynamicPubSubTypes <eprosima::fastrtps::types::DynamicPubSubType>`
+.. |DynamicType| replace:: :cpp:class:`DynamicType <eprosima::fastrtps::types::DynamicType>`
+.. |DynamicTypes| replace:: :cpp:class:`DynamicTypes <eprosima::fastrtps::types::DynamicType>`

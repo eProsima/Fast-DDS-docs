@@ -1,11 +1,13 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _participantprofiles:
 
 DomainParticipant profiles
 --------------------------
 
-The |DomainParticipant| profiles allow the definition of the configuration of |DomainParticipants| through
+The |DomainParticipant| profiles allow the definition of the configuration of |DomainParticipants-api| through
 XML files.
 These profiles are defined within the ``<participant>`` XML tags.
 
@@ -25,7 +27,7 @@ The ``<participant>`` element has two attributes defined: ``profile_name`` and `
      - Use
    * - ``profile_name``
      - Sets the name under which the ``<participant>`` profile is registered in the DDS Domain, |br|
-       so that it can be loaded later by the |DomainParticipantFactory|, as shown in |br|
+       so that it can be loaded later by the |DomainParticipantFactory-api|, as shown in |br|
        :ref:`loadingapplyingprofiles`.
      - Mandatory
    * - ``is_default_profile``
@@ -40,16 +42,16 @@ DomainParticipant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``<participant>`` element has two child elements: ``<domain_id>`` and ``<rtps>``.
-All the |DomainParticipant| configuration options belong to the ``<rtps>`` element, except for the DDS |DomainId| which
-is defined by the ``<domain_id>`` element.
+All the DomainParticipant configuration options belong to the ``<rtps>`` element, except for the DDS |DomainId-api|
+which is defined by the ``<domain_id>`` element.
 Below a list with the configuration XML elements is presented:
 
 +----------------+----------------------------------------------------------------------------+--------------+---------+
 | Name           | Description                                                                | Values       | Default |
 +================+============================================================================+==============+=========+
-| ``<domainId>`` | |DomainId| to be used by the |DomainParticipant|.                          | ``uint32``   | 0       |
+| ``<domainId>`` | DomainId to be used by the DomainParticipant.                              | ``uint32_t`` | 0       |
 +----------------+----------------------------------------------------------------------------+--------------+---------+
-| ``<rtps>``     | *Fast DDS* |DomainParticipant| configurations. |br|                        |  :ref:`RTPS` |         |
+| ``<rtps>``     | *Fast DDS* DomainParticipant configurations. |br|                          |  :ref:`RTPS` |         |
 |                | See :ref:`RTPS`.                                                           |              |         |
 +----------------+----------------------------------------------------------------------------+--------------+---------+
 
@@ -70,23 +72,23 @@ These elements allow the user to define the DomainParticipant configuration.
 +===================================+==================================================+=====================+=========+
 | ``<name>``                        | The DomainParticipant's name.                    | ``string_255``      |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<defaultUnicastLocatorList>``   | List of default reception unicast locators |br|  | ``Locator``         |         |
+| ``<defaultUnicastLocatorList>``   | List of default reception unicast locators |br|  | ``<locator>``       |         |
 |                                   | for user data traffic (see |br|                  |                     |         |
 |                                   | ``<metatrafficUnicastLocatorList>`` |br|         |                     |         |
 |                                   | defined in :ref:`builtin`). |br|                 |                     |         |
 |                                   | It expects a :ref:`LocatorListType`.             |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<defaultMulticastLocatorList>`` | List of default reception multicast |br|         | ``Locator``         |         |
+| ``<defaultMulticastLocatorList>`` | List of default reception multicast |br|         | ``<locator>``       |         |
 |                                   | locators for user data traffic (see |br|         |                     |         |
 |                                   | ``<metatrafficMulticastLocatorList>`` |br|       |                     |         |
 |                                   | defined in :ref:`builtin`). |br|                 |                     |         |
 |                                   | It expects a :ref:`LocatorListType`.             |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<sendSocketBufferSize>``        | Size in bytes of the send socket buffer. |br|    | ``uint32``          | 0       |
+| ``<sendSocketBufferSize>``        | Size in bytes of the send socket buffer. |br|    | ``uint32_t``        | 0       |
 |                                   | If the value is zero then *Fast DDS* will |br|   |                     |         |
 |                                   | use the system default socket size.              |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<listenSocketBufferSize>``      | Size in bytes of the reception socket |br|       | ``uint32``          | 0       |
+| ``<listenSocketBufferSize>``      | Size in bytes of the reception socket |br|       | ``uint32_t``        | 0       |
 |                                   | buffer. If the value is zero then  |br|          |                     |         |
 |                                   | *Fast DDS* will use the system default |br|      |                     |         |
 |                                   | socket size.                                     |                     |         |
@@ -101,7 +103,7 @@ These elements allow the user to define the DomainParticipant configuration.
 | ``<port>``                        | Allows defining the port and gains related |br|  | `Port`_             |         |
 |                                   | to the RTPS protocol. See the `Port`_ section.   |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
-| ``<participantID>``               | DomainParticipant's identifier. Typically |br|   | ``int32``           | 0       |
+| ``<participantID>``               | DomainParticipant's identifier. Typically |br|   | ``int32_t``         | 0       |
 |                                   | it will be automatically generated by the |br|   |                     |         |
 |                                   | |DomainParticipantFactory|.                      |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
@@ -150,26 +152,26 @@ Port Configuration
 ******************
 
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the
-|RTPSParticipants|' discovery traffic unicast listening ports are calculated using the following equation:
+|RTPSParticipants-api|' discovery traffic unicast listening ports are calculated using the following equation:
 :math:`7400 + 250 * DomainId + 10 + 2 * ParticipantId`.
 Therefore the following parameters can be specified:
 
 +------------------------------+------------------------------------------------------+-----------------+--------------+
 | Name                         | Description                                          | Values          | Default      |
 +==============================+======================================================+=================+==============+
-| ``<portBase>``               | Base ``port``.                                       | ``uint16``      | 7400         |
+| ``<portBase>``               | Base ``port``.                                       | ``uint16_t``    | 7400         |
 +------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<domainIDGain>``           | Gain in |DomainId|.                                  | ``uint16``      | 250          |
+| ``<domainIDGain>``           | Gain in DomainId.                                    | ``uint16_t``    | 250          |
 +------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<participantIDGain>``      | Gain in |DomainParticipant_Id|.                      | ``uint16``      | 2            |
+| ``<participantIDGain>``      | Gain in |WireProtocolConfigQos::participant_id-api|. | ``uint16_t``    | 2            |
 +------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd0>``               | Multicast metadata offset.                           | ``uint16``      | 0            |
+| ``<offsetd0>``               | Multicast metadata offset.                           | ``uint16_t``    | 0            |
 +------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd1>``               | Unicast metadata offset.                             | ``uint16``      | 10           |
+| ``<offsetd1>``               | Unicast metadata offset.                             | ``uint16_t``    | 10           |
 +------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd2>``               | Multicast user data offset.                          | ``uint16``      | 1            |
+| ``<offsetd2>``               | Multicast user data offset.                          | ``uint16_t``    | 1            |
 +------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd3>``               | Unicast user data offset.                            | ``uint16``      | 11           |
+| ``<offsetd3>``               | Unicast user data offset.                            | ``uint16_t``    | 11           |
 +------------------------------+------------------------------------------------------+-----------------+--------------+
 
 .. warning::
@@ -202,20 +204,20 @@ configuration.
        ``<max_multicast_locators>``
      -
    * - ``<max_unicast_locators>``
-     - Child element of <remote_locators>. |br|
+     - Child element of ``<remote_locators>``. |br|
        Maximum number of unicast locators expected on a |br|
        remote  entity. It is recommended to use the maximum |br|
        number of network interfaces available on the machine |br|
        on which DomainParticipant is running. |br|
        See :ref:`remotelocatorsallocationattributes`.
-     - ``UInt32``
+     - ``uint32_t``
      - 4
    * - ``<max_multicast_locators>``
-     - Child element of <remote_locators>. |br|
+     - Child element of ``<remote_locators>``. |br|
        Maximum number of multicast locators expected on a |br|
        remote entity. May be set to zero to disable multicast |br|
        traffic. See :ref:`remotelocatorsallocationattributes`.
-     - ``UInt32``
+     - ``uint32_t``
      - 1
    * - ``<total_participants>``
      - DomainParticipant :ref:`CommonAlloc` to specify the |br|
@@ -242,19 +244,19 @@ configuration.
      - Maximum size of the partitions submessage. |br|
        Set to zero for no limit. |br|
        See :ref:`sendbuffersallocationattributes`.
-     - ``UInt32``
+     - ``uint32_t``
      -
    * - ``<max_user_data>``
      - Maximum size of the user data submessage. |br|
        Set to zero for no limit. See |br|
        :ref:`sendbuffersallocationattributes`.
-     - ``UInt32``
+     - ``uint32_t``
      -
    * - ``<max_properties>``
      - Maximum size of the properties submessage. |br|
        Set to zero for no limit. See |br|
        :ref:`sendbuffersallocationattributes`.
-     - ``UInt32``
+     - ``uint32_t``
      -
 
 **Example**
@@ -269,7 +271,8 @@ configuration.
 Builtin parameters
 ********************
 
-By calling the |DomainParticipantQosWireProtocol| member function of the |DomainParticipantQos|, it is possible to
+By calling the |DomainParticipantQos::wire_protocol-api| member function of the |DomainParticipantQos-api|,
+it is possible to
 access the |WireProtocolConfigQos::builtin-api| public data member of the |WireProtocolConfigQos-api|
 class.
 This section specifies the available XML members for the configuration of this
@@ -279,7 +282,7 @@ This section specifies the available XML members for the configuration of this
 
 .. |loclist| replace:: A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
 .. |mempol| replace:: :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
-.. |mempoldefault| replace:: :class:`PREALLOCATED_WITH_REALLOC`
+.. |mempoldefault| replace:: |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
 
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
 | Name                                  | Description                          | Values              | Default         |
@@ -289,10 +292,10 @@ This section specifies the available XML members for the configuration of this
 |                                       | settings can be configured. |br|     |                     |                 |
 |                                       | See :ref:`discovery`.                |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<avoid_builtin_multicast>``         | Restricts multicast metatraffic |br| | ``Boolean``         | :class:`true`   |
+| ``<avoid_builtin_multicast>``         | Restricts multicast metatraffic |br| | ``bool``            | :class:`true`   |
 |                                       | to PDP only.                         |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<use_WriterLivelinessProtocol>``    | Indicates whether to use the |br|    | ``Boolean``         | :class:`true`   |
+| ``<use_WriterLivelinessProtocol>``    | Indicates whether to use the |br|    | ``bool``            | :class:`true`   |
 |                                       | DataWriterLiveliness protocol.       |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
 | ``<metatrafficUnicastLocatorList>``   | Metatraffic Unicast Locator List.    | |loclist|           |                 |
@@ -313,19 +316,19 @@ This section specifies the available XML members for the configuration of this
 | ``<DataWriterHistoryMemoryPolicy>``   | Memory policy for DataWriters. |br|  | |mempol|            | |mempoldefault| |
 |                                       | See :ref:`historyqospolicykind`.     |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<readerPayloadSize>``               | Maximum DataReader's History |br|    | ``UInt32``          | 512             |
+| ``<readerPayloadSize>``               | Maximum DataReader's History |br|    | ``uint32_t``        | 512             |
 |                                       | payload size. Allows to reserve |br| |                     |                 |
 |                                       | all the required memory at |br|      |                     |                 |
 |                                       | DataReader initialization. |br|      |                     |                 |
 |                                       | See :ref:`memorymanagementpolicy`.   |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<writerPayloadSize>``               | Maximum DataWriter's History |br|    | ``UInt32``          | 512             |
+| ``<writerPayloadSize>``               | Maximum DataWriter's History |br|    | ``uint32_t``        | 512             |
 |                                       | payload size. Allows to reserve |br| |                     |                 |
 |                                       | all the required memory at |br|      |                     |                 |
 |                                       | DataWriter initialization. |br|      |                     |                 |
 |                                       | See :ref:`memorymanagementpolicy`.   |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<mutation_tries>``                  | Number of different ports |br|       | ``UInt32``          | 100             |
+| ``<mutation_tries>``                  | Number of different ports |br|       | ``uint32_t``        | 100             |
 |                                       | to try if DataReader's physical |br| |                     |                 |
 |                                       | port is already in use.              |                     |                 |
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
@@ -365,7 +368,7 @@ configurable settings.
 |                                 | filtering criteria.                            |                     |             |
 |                                 | See :ref:`discovery_ignore_flags`.             |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<EDP>``                       | If set to ``SIMPLE``, ``<simpleEDP>`` |br|     | ``SIMPLE``          | ``SIMPLE``  |
+| ``<EDP>``                       | If set to |SIMPLE|, ``<simpleEDP>`` |br|       | |SIMPLE|            | |SIMPLE|    |
 |                                 | element would be used. |br|                    +---------------------+             |
 |                                 | If set to ``STATIC``, |EDPStatic| will be |br| | ``STATIC``          |             |
 |                                 | performed, configured with the contents |br|   |                     |             |
@@ -403,22 +406,22 @@ configurable settings.
 ignoreParticipantFlags
 ++++++++++++++++++++++
 
-+------------------------------------------------+---------------------------------------------------------------------+
-| Possible values                                | Description                                                         |
-+================================================+=====================================================================+
-| NO_FILTER                                      | All Discovery traffic is processed.                                 |
-+------------------------------------------------+---------------------------------------------------------------------+
-| FILTER_DIFFERENT_HOST                          | Discovery traffic from another host is discarded.                   |
-+------------------------------------------------+---------------------------------------------------------------------+
-| FILTER_DIFFERENT_PROCESS                       | Discovery traffic from another process on the same host is |br|     |
-|                                                | discarded.                                                          |
-+------------------------------------------------+---------------------------------------------------------------------+
-| FILTER_SAME_PROCESS                            | Discovery traffic from DomainParticipant's own process is |br|      |
-|                                                | discarded.                                                          |
-+------------------------------------------------+---------------------------------------------------------------------+
-| FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS | Discovery traffic from DomainParticipant's own host is |br|         |
-|                                                | discarded.                                                          |
-+------------------------------------------------+---------------------------------------------------------------------+
++----------------------------------------------------+-----------------------------------------------------------------+
+| Possible values                                    | Description                                                     |
++====================================================+=================================================================+
+| |NO_FILTER|                                        | All Discovery traffic is processed.                             |
++----------------------------------------------------+-----------------------------------------------------------------+
+| |FILTER_DIFFERENT_HOST|                            | Discovery traffic from another host is discarded.               |
++----------------------------------------------------+-----------------------------------------------------------------+
+| |FILTER_DIFFERENT_PROCESS|                         | Discovery traffic from another process on the same host is |br| |
+|                                                    | discarded.                                                      |
++----------------------------------------------------+-----------------------------------------------------------------+
+| |FILTER_SAME_PROCESS|                              | Discovery traffic from DomainParticipant's own process is |br|  |
+|                                                    | discarded.                                                      |
++----------------------------------------------------+-----------------------------------------------------------------+
+| |FILTER_DIFFERENT_PROCESS| | |FILTER_SAME_PROCESS| | Discovery traffic from DomainParticipant's own host is |br|     |
+|                                                    | discarded.                                                      |
++----------------------------------------------------+-----------------------------------------------------------------+
 
 .. _sedp:
 
@@ -428,10 +431,10 @@ simpleEDP
 +---------------------------+------------------------------------------------------------+-------------+---------------+
 | Name                      | Description                                                | Values      | Default       |
 +===========================+============================================================+=============+===============+
-| ``<PUBWRITER_SUBREADER>`` | Indicates if the participant must use |br|                 | ``Boolean`` | ``true``      |
+| ``<PUBWRITER_SUBREADER>`` | Indicates if the participant must use |br|                 | ``bool``    | ``true``      |
 |                           | Publication DataWriter and Subscription DataReader.        |             |               |
 +---------------------------+------------------------------------------------------------+-------------+---------------+
-| ``<PUBREADER_SUBWRITER>`` | Indicates if the participant must use |br|                 | ``Boolean`` | ``true``      |
+| ``<PUBREADER_SUBWRITER>`` | Indicates if the participant must use |br|                 | ``bool``    | ``true``      |
 |                           | Publication DataReader and Subscription DataWriter.        |             |               |
 +---------------------------+------------------------------------------------------------+-------------+---------------+
 
@@ -443,7 +446,7 @@ Initial Announcements
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
 | Name         | Description                                                           | Values              | Default |
 +==============+=======================================================================+=====================+=========+
-| ``<count>``  | Number of initial discovery messages to send at the period            | ``Uint32``          | 5       |
+| ``<count>``  | Number of initial discovery messages to send at the period            | ``uint32_t``        | 5       |
 |              | specified by |br|                                                     |                     |         |
 |              | ``<period>``. After these announcements, the DomainParticipant will   |                     |         |
 |              | continue |br|                                                         |                     |         |

@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _transportdescriptors:
 
@@ -37,30 +39,30 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 |                               |                                                    +----------------------+          |
 |                               |                                                    | SHM                  |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<sendBufferSize>``          | Size in bytes of the send socket buffer. |br|      | ``uint32``           | 0        |
+| ``<sendBufferSize>``          | Size in bytes of the send socket buffer. |br|      | ``uint32_t``         | 0        |
 |                               | If the value is zero then *Fast DDS* will use |br| |                      |          |
 |                               | the system default socket size.                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<receiveBufferSize>``       | Size in bytes of the reception socket |br|         | ``uint32``           | 0        |
+| ``<receiveBufferSize>``       | Size in bytes of the reception socket |br|         | ``uint32_t``         | 0        |
 |                               | buffer. If the value is zero then *Fast DDS* |br|  |                      |          |
 |                               | will use the system default socket size.           |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<maxMessageSize>``          | The maximum size in bytes of the transport's |br|  | ``uint32``           | 65500    |
+| ``<maxMessageSize>``          | The maximum size in bytes of the transport's |br|  | ``uint32_t``         | 65500    |
 |                               | message buffer.                                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<maxInitialPeersRange>``    | Number of channels opened with each initial |br|   | ``uint32``           | 4        |
+| ``<maxInitialPeersRange>``    | Number of channels opened with each initial |br|   | ``uint32_t``         | 4        |
 |                               | remote peer.                                       |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<interfaceWhiteList>``      | Allows defining an interfaces |whitelist|.         | |whitelist|          |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<TTL>``                     | *Time To Live* (**UDP only**). See |br|            | ``uint8``            | 1        |
+| ``<TTL>``                     | *Time To Live* (**UDP only**). See |br|            | ``uint8_t``          | 1        |
 |                               | :ref:`transport_udp_udp`.                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<non_blocking_send>``       | Whether to set the non-blocking send mode on |br|  | ``bool``             | ``false``|
 |                               | the socket (**UDP only**). See |br|                |                      |          |
 |                               | :ref:`transport_udp_transportDescriptor`.          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<output_port>``             | Port used for output bound. |br|                   | ``uint16``           | 0        |
+| ``<output_port>``             | Port used for output bound. |br|                   | ``uint16_t``         | 0        |
 |                               | If this field isn't defined, the output port |br|  |                      |          |
 |                               | will be random (**UDP only**).                     |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
@@ -69,50 +71,50 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 |                               | transport doesn't need to define a WAN |br|        |  ``XXX.XXX.XXX.XXX`` |          |
 |                               | address (**TCPv4 only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<keep_alive_frequency_ms>`` | Frequency in milliseconds for sending              | ``uint32``           | 50000    |
+| ``<keep_alive_frequency_ms>`` | Frequency in milliseconds for sending              | ``uint32_t``         | 50000    |
 |                               | :ref:`RTCP <rtcpdefinition>` |br|                  |                      |          |
 |                               | keep-alive requests (**TCP only**).                |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<keep_alive_timeout_ms>``   | Time in milliseconds since the last |br|           | ``uint32``           | 10000    |
+| ``<keep_alive_timeout_ms>``   | Time in milliseconds since the last |br|           | ``uint32_t``         | 10000    |
 |                               | keep-alive request was sent to consider a |br|     |                      |          |
 |                               | connection as broken (**TCP only**).               |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<max_logical_port>``        | The maximum number of logical ports to try |br|    | ``uint16``           | 100      |
+| ``<max_logical_port>``        | The maximum number of logical ports to try |br|    | ``uint16_t``         | 100      |
 |                               | during :ref:`RTCP<rtcpdefinition>`                 |                      |          |
 |                               | negotiations (**TCP only**).                       |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<logical_port_range>``      | The maximum number of logical ports per |br|       | ``uint16``           | 20       |
+| ``<logical_port_range>``      | The maximum number of logical ports per |br|       | ``uint16_t``         | 20       |
 |                               | request to try during                              |                      |          |
 |                               | :ref:`RTCP<rtcpdefinition>` negotiations |br|      |                      |          |
 |                               | (**TCP only**).                                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<logical_port_increment>``  | Increment between logical ports to try during |br| | ``uint16``           |  2       |
+| ``<logical_port_increment>``  | Increment between logical ports to try during |br| | ``uint16_t``         |  2       |
 |                               | :ref:`RTCP<rtcpdefinition>` negotiation |br|       |                      |          |
 |                               | (**TCP only**).                                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<listening_ports>``         | Local port to work as TCP acceptor for input |br|  | ``List <uint16>``    |          |
+| ``<listening_ports>``         | Local port to work as TCP acceptor for input |br|  | ``List <uint16_t>``  |          |
 |                               | connections. If not set, the transport will |br|   |                      |          |
 |                               | work as TCP client only (**TCP only**).            |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<tls>``                     | Allows to define TLS related parameters and |br|   | :ref:`tcp-tls`       |          |
 |                               | options (**TCP only**).                            |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<calculate_crc>``           | Calculates the Cyclic Redundancy Code (CRC) |br|   | ``boolean``          | ``true`` |
+| ``<calculate_crc>``           | Calculates the Cyclic Redundancy Code (CRC) |br|   | ``bool``             | ``true`` |
 |                               | for error control (**TCP only**). |br|             |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<check_crc>``               | Check the CRC for error control (**TCP** |br|      | ``boolean``          | ``true`` |
+| ``<check_crc>``               | Check the CRC for error control (**TCP** |br|      | ``bool``             | ``true`` |
 |                               | **only**).                                         |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<enable_tcp_nodelay>``      | Socket option for disabling the Nagle |br|         | ``boolean``          | ``false``|
+| ``<enable_tcp_nodelay>``      | Socket option for disabling the Nagle |br|         | ``bool``             | ``false``|
 |                               | algorithm. (**TCP only**).                         |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<segment_size>``            | Size (in bytes) of the shared-memory segment. |br| | ``uint32``           | 262144   |
+| ``<segment_size>``            | Size (in bytes) of the shared-memory segment. |br| | ``uint32_t``         | 262144   |
 |                               | (Optional, **SHM only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<port_queue_capacity>``     | Capacity (in number of messages) available to |br| | ``uint32``           | 512      |
+| ``<port_queue_capacity>``     | Capacity (in number of messages) available to |br| | ``uint32_t``         | 512      |
 |                               | every Listener (Optional, **SHM only**).           |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
-| ``<healthy_check_timeout_ms>``| Maximum time-out (in milliseconds) used when |br|  | ``uint32``           | 1000     |
+| ``<healthy_check_timeout_ms>``| Maximum time-out (in milliseconds) used when |br|  | ``uint32_t``         | 1000     |
 |                               | checking whether a Listener is alive |br|          |                      |          |
 |                               | (Optional, **SHM only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
@@ -212,11 +214,11 @@ protocol are listed in the following table:
 | ``<verify_paths>``        | Paths where the system will       |  ``string``                            |             |
 |                           | look for verification |br| files. |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
-| ``<verify_depth>``        | Maximum allowed depth to          | ``uint32``                             |             |
+| ``<verify_depth>``        | Maximum allowed depth to          | ``uint32_t``                           |             |
 |                           | verify intermediate |br|          |                                        |             |
 |                           | certificates.                     |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
-| ``<default_verify_path>`` | Specifies whether the system      |  ``boolean``                           | ``false``   |
+| ``<default_verify_path>`` | Specifies whether the system      |  ``bool``                              | ``false``   |
 |                           | will look on the |br|             |                                        |             |
 |                           | default paths for the             |                                        |             |
 |                           | verification files.               |                                        |             |

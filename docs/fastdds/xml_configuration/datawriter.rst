@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _publisherprofiles:
 
@@ -21,7 +23,7 @@ Thus, the following XML code snippets are equivalent.
 .. important::
 
     The ``<publisher>`` and ``<data_writer>`` XML tags are equivalent.
-    Therefore, XML profiles in which the |DataWriters| are defined with the ``<publisher>``
+    Therefore, XML profiles in which the DataWriters are defined with the ``<publisher>``
     tag are fully compatible with *Fast DDS*.
 
 DataWriter XML attributes
@@ -75,12 +77,12 @@ The DataWriter configuration is performed through the XML elements listed in the
    * - ``<unicastLocatorList>``
      - List of input unicast locators. |br|
        It expects a :ref:`LocatorListType`.
-     - ``Locator``
+     - ``<locator>``
      -
    * - ``<multicastLocatorList>``
      - List of input multicast locators. |br|
        It expects a :ref:`LocatorListType`.
-     - ``Locator``
+     - ``<locator>``
      -
    * - ``<throughputController>``
      - Limits the output bandwidth of the |br|
@@ -98,11 +100,11 @@ The DataWriter configuration is performed through the XML elements listed in the
      -
    * - ``<userDefinedID>``
      - Used for |EDPStatic|.
-     - ``Int16``
+     - ``int16_t``
      - -1
    * - ``<entityID>``
-     - Set the |entity_id| of the |RTPSEndpointQos| |br| class.
-     - ``Int16``
+     - Sets the |RTPSEndpointQos::entity_id-api| of the |RTPSEndpointQos| |br| class.
+     - ``int16_t``
      - -1
    * - ``<matchedSubscribersAllocation>``
      - Sets the limits of the collection of matched |br|

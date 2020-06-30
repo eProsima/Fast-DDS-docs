@@ -1,11 +1,13 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _logprofiles:
 
 Log profiles
 ----------------
 
-*eProsima Fast DDS* allows for registering and configuring :ref:`log consumers <dds_layer_log_consumer>` using XML
+*eProsima Fast DDS* allows for registering and configuring :ref:`Log consumers <dds_layer_log_consumer>` using XML
 configuration files.
 Please refer to :ref:`dds_layer_log_intro` for more information on *Fast DDS* extensible Logging built-in module.
 The logging profiles are defined within the ``<log>`` XML tags.
@@ -15,7 +17,8 @@ These are described in the following table.
 +-------------------+---------------------------------------------------------------+-----------------------+----------+
 | Name              | Description                                                   | Values                | Default  |
 +===================+===============================================================+=======================+==========+
-| ``<use_default>`` | If set to ``FALSE``, a call to |Log::ClearConsumers| is |br|  | ``Boolean``           | ``true`` |
+| ``<use_default>`` | If set to ``FALSE``, a call to                                | ``bool``              | ``true`` |
+| ``<use_default>`` | |Log::ClearConsumers-api| is |br|                             | ``bool``              | ``true`` |
 |                   | performed. See :ref:`dds_layer_log_register_consumers`.       |                       |          |
 +-------------------+---------------------------------------------------------------+-----------------------+----------+
 | ``<consumer>``    | Defines the class and configuration of the consumer to |br|   | :ref:`xmllogconsumer` |          |
@@ -23,8 +26,8 @@ These are described in the following table.
 |                   | this way. See :ref:`dds_layer_log_consumer`.                  |                       |          |
 +-------------------+---------------------------------------------------------------+-----------------------+----------+
 
-The following constitutes an example of an XML configuration file that sets the |Log| to use one |StdoutConsumer| and
-one |FileConsumer|:
+The following constitutes an example of an XML configuration file that sets the |Log-api| to use one
+|StdoutConsumer-api| and one |FileConsumer-api|:
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml

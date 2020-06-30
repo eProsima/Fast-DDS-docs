@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _commonxml:
 
@@ -35,7 +37,7 @@ This section aims to explain these common elements.
 LocatorListType
 ^^^^^^^^^^^^^^^
 
-It represents a list of |Locator_t|.
+It represents a list of |Locator_t-api|.
 LocatorListType is used inside other configuration parameter labels that expect a list of locators,
 for example, in ``<defaultUnicastLocatorList>``.
 Therefore, LocatorListType is defined as a set of ``<locator>`` elements.
@@ -51,11 +53,11 @@ The table presented below outlines each possible Locator's field.
 +---------------------+--------------------------------------------------------+--------------------+------------------+
 | Name                | Description                                            | Values             | Default          |
 +=====================+========================================================+====================+==================+
-| ``<port>``          | RTPS port number of the locator. |br|                  | ``Uint32``         | 0                |
+| ``<port>``          | RTPS port number of the locator. |br|                  | ``uint32_t``       | 0                |
 |                     | *Physical port* in UDP,                                |                    |                  |
 |                     | *logical port* in TCP.                                 |                    |                  |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<physical_port>`` | TCP's *physical port*.                                 | ``Uint32``         | 0                |
+| ``<physical_port>`` | TCP's *physical port*.                                 | ``uint32_t``       | 0                |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
 | ``<address>``       | IP address of the locator.                             | ``string``         | ""               |
 |                     |                                                        | (IPv4/IPv6 format) |                  |
@@ -93,7 +95,7 @@ It is useful at defining extended or custom configuration parameters.
 +-----------------+---------------------------------------------------------------------+-------------+----------------+
 | ``<value>``     | Property's value.                                                   | ``string``  |                |
 +-----------------+---------------------------------------------------------------------+-------------+----------------+
-| ``<propagate>`` | Indicates if it is going to be serialized along with the |br|       | ``Boolean`` | ``false``      |
+| ``<propagate>`` | Indicates if it is going to be serialized along with the |br|       | ``bool``    | ``false``      |
 |                 | object it belongs to.                                               |             |                |
 +-----------------+---------------------------------------------------------------------+-------------+----------------+
 
@@ -118,9 +120,9 @@ An infinite value can be specified by using the values :cpp:concept:`DURATION_IN
 +-----------------------+---------------------------------------------------------+-------------------+----------------+
 | Name                  | Description                                             | Values            | Default        |
 +=======================+=========================================================+===================+================+
-| ``<sec>``             | Number of seconds.                                      | ``Int32``         | 0              |
+| ``<sec>``             | Number of seconds.                                      | ``int32_t``       | 0              |
 +-----------------------+---------------------------------------------------------+-------------------+----------------+
-| ``<nanosec>``         | Number of nanoseconds.                                  | ``UInt32``        | 0              |
+| ``<nanosec>``         | Number of nanoseconds.                                  | ``uint32_t``      | 0              |
 +-----------------------+---------------------------------------------------------+-------------------+----------------+
 
 **Example**
@@ -141,13 +143,13 @@ Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
 | Name                    | Description                                   | Values                   | Default         |
 +=========================+===============================================+==========================+=================+
-| ``<kind>``              | It defines the |Topic|'s key kind. See |br|   |                          |                 |
+| ``<kind>``              | It defines the Topic's key kind. See |br|     |                          |                 |
 |                         | :ref:`dds_layer_definition_data_types`.       |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<name>``              | It defines the |Topic|'s name. It must |br|   | ``string_255``           |                 |
+| ``<name>``              | It defines the Topic's name. It must |br|     | ``string_255``           |                 |
 |                         | be unique.                                    |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<dataType>``          | It references the |Topic|'s data type.        | ``string_255``           |                 |
+| ``<dataType>``          | It references the Topic's data type.          | ``string_255``           |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
 | ``<historyQos>``        | It controls the behavior of *Fast DDS* |br|   | :ref:`hQos`              |                 |
 |                         | when the value of an instance changes  |br|   |                          |                 |
@@ -162,8 +164,8 @@ Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the
 
 .. warning::
 
-    The ``<kind>`` child element is only used if the |Topic| is defined using the *Fast DDS* RTPS-layer API, and will
-    be ignored if the |Topic| is defined via the *Fast DDS* DDS-layer API.
+    The ``<kind>`` child element is only used if the Topic is defined using the *Fast DDS* RTPS-layer API, and will
+    be ignored if the Topic is defined via the *Fast DDS* DDS-layer API.
 
 **Example**
 
@@ -181,20 +183,23 @@ It controls the behavior of *Fast DDS* when the value of an instance changes bef
 communicated to some of its existing DataReaders.
 Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQoS.
 
-+-------------+--------------------------------------------------------------+--------------------+--------------------+
-| Name        | Description                                                  | Values             | Default            |
-+=============+==============================================================+====================+====================+
-| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values       | :class:`KEEP_LAST` | :class:`KEEP_LAST` |
-|             | of the instance |br| and discard the older ones.             |                    |                    |
-|             +--------------------------------------------------------------+--------------------+                    +
-|             | *Fast DDS* will attempt to maintain and deliver all the      | :class:`KEEP_ALL`  |                    |
-|             | values of the instance |br| to existing DataReaders.         |                    |                    |
-+-------------+--------------------------------------------------------------+--------------------+--------------------+
-| ``<depth>`` | It must be consistent with the :ref:`rLsQos`                 | ``UInt32``         | 1000               |
-|             | ``<max_samples_per_instance>`` |br|                          |                    |                    |
-|             | element value. It must be verified that: |br|                |                    |                    |
-|             | ``<depth>`` `<=` ``<max_samples_per_instance>``.             |                    |                    |
-+-------------+--------------------------------------------------------------+--------------------+--------------------+
+.. |KEEP_LAST| replace:: |KEEP_LAST_HISTORY_QOS-api|
+.. |KEEP_ALL| replace:: |KEEP_ALL_HISTORY_QOS-api|
+
++-------------+---------------------------------------------------------+-------------------------+--------------------+
+| Name        | Description                                             | Values                  | Default            |
++=============+=========================================================+=========================+====================+
+| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | |KEEP_LAST|             | |KEEP_LAST|        |
+|             | of the instance |br| and discard the older ones.        |                         |                    |
+|             +---------------------------------------------------------+-------------------------+                    +
+|             | *Fast DDS* will attempt to maintain and deliver all the | |KEEP_ALL|              |                    |
+|             | values of the instance |br| to existing DataReaders.    |                         |                    |
++-------------+---------------------------------------------------------+-------------------------+--------------------+
+| ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``            | 1000               |
+|             | ``<max_samples_per_instance>`` |br|                     |                         |                    |
+|             | element value. It must be verified that: |br|           |                         |                    |
+|             | ``<depth>`` `<=` ``<max_samples_per_instance>``.        |                         |                    |
++-------------+---------------------------------------------------------+-------------------------+--------------------+
 
 .. _rLsQos:
 
@@ -205,30 +210,34 @@ It controls the resources that *Fast DDS* can use in order to meet the requireme
 application and other QoS settings.
 Please refer to :ref:`ResourceLimitsQosPolicy` for further information on ResourceLimitsQos.
 
-+--------------------------------+--------------------------------------------------------------+------------+---------+
-| Name                           | Description                                                  | Values     | Default |
-+================================+==============================================================+============+=========+
-| ``<max_samples>``              | It must verify that:                                         | ``UInt32`` | 5000    |
-|                                | ``<max_samples>`` `>=` ``<max_samples_per_instance>``.       |            |         |
-+--------------------------------+--------------------------------------------------------------+------------+---------+
-| ``<max_instances>``            | It defines the maximum number of instances.                  | ``UInt32`` | 10      |
-+--------------------------------+--------------------------------------------------------------+------------+---------+
-| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`                | ``UInt32`` | 400     |
-|                                | ``<depth>`` `<=` ``<max_samples_per_instance>``.             |            |         |
-+--------------------------------+--------------------------------------------------------------+------------+---------+
-| ``<allocated_samples>``        | It controls the maximum number of samples to be stored.      | ``UInt32`` | 100     |
-+--------------------------------+--------------------------------------------------------------+------------+---------+
++--------------------------------+-----------------------------------------------------------+---------------+---------+
+| Name                           | Description                                               | Values        | Default |
++================================+===========================================================+===============+=========+
+| ``<max_samples>``              | It must verify that:                                      | ``uint32_t``  | 5000    |
+|                                | ``<max_samples>`` `>=` ``<max_samples_per_instance>``.    |               |         |
++--------------------------------+-----------------------------------------------------------+---------------+---------+
+| ``<max_instances>``            | It defines the maximum number of instances.               | ``uint32_t``  | 10      |
++--------------------------------+-----------------------------------------------------------+---------------+---------+
+| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`             | ``uint32_t``  | 400     |
+|                                | ``<depth>`` `<=` ``<max_samples_per_instance>``.          |               |         |
++--------------------------------+-----------------------------------------------------------+---------------+---------+
+| ``<allocated_samples>``        | It controls the maximum number of samples to be stored.   | ``uint32_t``  | 100     |
++--------------------------------+-----------------------------------------------------------+---------------+---------+
 
 .. _CommonQOS:
 
-QOS
+QoS
 ^^^
 
 The Quality of Service (QoS) is used to specify the behavior of the Service, allowing the user to define how each
 |Entity| will behave.
 Please refer to the :ref:`dds_layer_core_policy` section for more information on QoS.
 
-.. |MANUAL_BY_PARTICIPANT| replace:: :class:`MANUAL_BY_PARTICIPANT`
+.. |AUTOMATIC| replace:: |AUTOMATIC_LIVELINESS_QOS-api|
+.. |MANUAL_BY_PARTICIPANT| replace:: |MANUAL_BY_PARTICIPANT_LIVELINESS_QOS-api|
+.. |MANUAL_BY_TOPIC| replace:: |MANUAL_BY_TOPIC_LIVELINESS_QOS-api|
+.. |BEST_EFFORT| replace:: |BEST_EFFORT_RELIABILITY_QOS-api|
+.. |RELIABLE| replace:: |RELIABLE_RELIABILITY_QOS-api|
 
 +--------------------------+---------------------------------------------------+---------------------------------------+
 | Name                     | Description                                       | Values                                |
@@ -263,36 +272,36 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
 Durability
 """"""""""
 
-+--------------------------+---------------------------------------+--------------------------+------------------------+
-| Name                     | Description                           | Values                   | Default                |
-+==========================+=======================================+==========================+========================+
-| ``<kind>``               | See :ref:`durabilitykind`.            | :class:`VOLATILE`        | :class:`VOLATILE`      |
-|                          |                                       +--------------------------+                        |
-|                          |                                       | :class:`TRANSIENT_LOCAL` |                        |
-|                          |                                       +--------------------------+                        |
-|                          |                                       | :class:`TRANSIENT`       |                        |
-|                          |                                       +--------------------------+                        |
-|                          |                                       | :class:`PERSISTENT`      |                        |
-+--------------------------+---------------------------------------+--------------------------+------------------------+
++------------+----------------------------+--------------------------------------+-------------------------------------+
+| Name       | Description                | Values                               | Default                             |
++============+============================+======================================+=====================================+
+| ``<kind>`` | See :ref:`durabilitykind`. | |VOLATILE_DURABILITY_QOS-api|        | |VOLATILE_DURABILITY_QOS-api|       |
+|            |                            +--------------------------------------+                                     |
+|            |                            | |TRANSIENT_LOCAL_DURABILITY_QOS-api| |                                     |
+|            |                            +--------------------------------------+                                     |
+|            |                            | |TRANSIENT_DURABILITY_QOS-api|       |                                     |
+|            |                            +--------------------------------------+                                     |
+|            |                            | |PERSISTENT_DURABILITY_QOS-api|      |                                     |
++------------+----------------------------+--------------------------------------+-------------------------------------+
 
 .. _xml_liveliness:
 
 Liveliness
 """"""""""
 
-+---------------------------+---------------------------------+----------------------------------+---------------------+
-| Name                      | Description                     | Values                           | Default             |
-+===========================+=================================+==================================+=====================+
-| ``<kind>``                | See                             | :class:`AUTOMATIC`               | :class:`AUTOMATIC`  |
-|                           | :ref:`livelinessqospolicykind`. +----------------------------------+                     |
-|                           |                                 | :class:`MANUAL_BY_PARTICIPANT`   |                     |
-|                           |                                 +----------------------------------+                     |
-|                           |                                 | :class:`MANUAL_BY_TOPIC`         |                     |
-+---------------------------+---------------------------------+----------------------------------+---------------------+
-| ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`              | |c_TimeInfinite|    |
-+---------------------------+---------------------------------+----------------------------------+---------------------+
-| ``<announcement_period>`` | See :ref:`livelinessqospolicy`. |                                  | |c_TimeInfinite|    |
-+---------------------------+---------------------------------+----------------------------------+---------------------+
++---------------------------+---------------------------------+--------------------------------+-----------------------+
+| Name                      | Description                     | Values                         | Default               |
++===========================+=================================+================================+=======================+
+| ``<kind>``                | See                             | |AUTOMATIC|                    | |AUTOMATIC|           |
+|                           | :ref:`livelinessqospolicykind`. +--------------------------------+                       |
+|                           |                                 | |MANUAL_BY_PARTICIPANT|        |                       |
+|                           |                                 +--------------------------------+                       |
+|                           |                                 | |MANUAL_BY_TOPIC|              |                       |
++---------------------------+---------------------------------+--------------------------------+-----------------------+
+| ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`            | |c_TimeInfinite-api|  |
++---------------------------+---------------------------------+--------------------------------+-----------------------+
+| ``<announcement_period>`` | See :ref:`livelinessqospolicy`. |                                | |c_TimeInfinite-api|  |
++---------------------------+---------------------------------+--------------------------------+-----------------------+
 
 .. _xml_reliability:
 
@@ -302,9 +311,9 @@ ReliabilityQosPolicy
 +---------------------------+----------------------------------+----------------------+--------------------------------+
 | Name                      | Description                      | Values               | Default                        |
 +===========================+==================================+======================+================================+
-| ``<kind>``                | See                              | :class:`BEST_EFFORT` | DataReaders:                   |
-|                           | :ref:`reliabilityqospolicykind`. +----------------------+ :class:`BEST_EFFORT`  |br|     |
-|                           |                                  | :class:`RELIABLE`    | Datawriters: :class:`RELIABLE` |
+| ``<kind>``                | See                              | |BEST_EFFORT|        | DataReaders:                   |
+|                           | :ref:`reliabilityqospolicykind`. +----------------------+ |BEST_EFFORT| |br|             |
+|                           |                                  | |RELIABLE|           | Datawriters: |RELIABLE|        |
 +---------------------------+----------------------------------+----------------------+--------------------------------+
 | ``<max_blocking_time>``   | See :ref:`reliabilityqospolicy`. | :ref:`DurationType`  | 100 ms                         |
 +---------------------------+----------------------------------+----------------------+--------------------------------+
@@ -326,35 +335,35 @@ Partition
 
 Deadline
 """"""""
-+---------------------------+-------------------------------------------------+---------------------+------------------+
-| Name                      | Description                                     | Values              | Default          |
-+===========================+=================================================+=====================+==================+
-| ``<period>``              | See :ref:`deadlineqospolicy`.                   | :ref:`DurationType` | |c_TimeInfinite| |
-+---------------------------+-------------------------------------------------+---------------------+------------------+
++---------------------------+----------------------------------+---------------------+---------------------------------+
+| Name                      | Description                      | Values              | Default                         |
++===========================+==================================+=====================+=================================+
+| ``<period>``              | See :ref:`deadlineqospolicy`.    | :ref:`DurationType` | |c_TimeInfinite-api|            |
++---------------------------+----------------------------------+---------------------+---------------------------------+
 
 .. _xml_lifespan:
 
 Lifespan
 """"""""
 
-+---------------------------+-------------------------------------------------+---------------------+------------------+
-| Name                      | Description                                     | Values              | Default          |
-+===========================+=================================================+=====================+==================+
-| ``<duration>``            | See :ref:`lifespanqospolicy`.                   | :ref:`DurationType` | |c_TimeInfinite| |
-+---------------------------+-------------------------------------------------+---------------------+------------------+
++---------------------------+----------------------------------+---------------------+---------------------------------+
+| Name                      | Description                      | Values              | Default                         |
++===========================+==================================+=====================+=================================+
+| ``<duration>``            | See :ref:`lifespanqospolicy`.    | :ref:`DurationType` | |c_TimeInfinite-api|            |
++---------------------------+----------------------------------+---------------------+---------------------------------+
 
 .. _xml_disablepositiveacks:
 
 DisablePositiveAcks
 """""""""""""""""""
 
-+---------------------------+-------------------------------------------------+---------------------+------------------+
-| Name                      | Description                                     | Values              | Default          |
-+===========================+=================================================+=====================+==================+
-| ``<enabled>``             | See :ref:`disablepositiveacksqospolicy`.        | ``Boolean``         | ``false``        |
-+---------------------------+-------------------------------------------------+---------------------+------------------+
-| ``<duration>``            | See :ref:`disablepositiveacksqospolicy`.        | :ref:`DurationType` | |c_TimeInfinite| |
-+---------------------------+-------------------------------------------------+---------------------+------------------+
++--------------------+------------------------------------------+---------------------+--------------------------------+
+| Name               | Description                              | Values              | Default                        |
++====================+==========================================+=====================+================================+
+| ``<enabled>``      | See :ref:`disablepositiveacksqospolicy`. | ``bool``            | ``false``                      |
++--------------------+------------------------------------------+---------------------+--------------------------------+
+| ``<duration>``     | See :ref:`disablepositiveacksqospolicy`. | :ref:`DurationType` | |c_TimeInfinite-api|           |
++--------------------+------------------------------------------+---------------------+--------------------------------+
 
 .. _xml_latencybudget:
 
@@ -375,17 +384,17 @@ Throughput Configuration
 The ``<throughputController>`` element allows to limit the output bandwidth.
 It contains two child elements which are explained in the following table.
 
-+-----------------------+-----------------------------------------------------------+------------+---------------------+
-| Name                  | Description                                               | Values     | Default             |
-+=======================+===========================================================+============+=====================+
-| ``<bytesPerPeriod>``  | Packet size in bytes that the throughput controller       | ``UInt32`` | 4294967295 bytes    |
-|                       | will allow to send |br|                                   |            |                     |
-|                       | in a given period.                                        |            |                     |
-+-----------------------+-----------------------------------------------------------+------------+---------------------+
-| ``<periodMillisecs>`` | Window of time in which no more than ``<bytesPerPeriod>`` | ``UInt32`` | 0                   |
-|                       | bytes |br|                                                |            |                     |
-|                       | are allowed.                                              |            |                     |
-+-----------------------+-----------------------------------------------------------+------------+---------------------+
++-----------------------+-----------------------------------------------------------+---------------+------------------+
+| Name                  | Description                                               | Values        | Default          |
++=======================+===========================================================+===============+==================+
+| ``<bytesPerPeriod>``  | Packet size in bytes that the throughput controller       | ``uint32_t``  | 4294967295 bytes |
+|                       | will allow to send |br|                                   |               |                  |
+|                       | in a given period.                                        |               |                  |
++-----------------------+-----------------------------------------------------------+---------------+------------------+
+| ``<periodMillisecs>`` | Window of time in which no more than ``<bytesPerPeriod>`` | ``uint32_t``  | 0                |
+|                       | bytes |br|                                                |               |                  |
+|                       | are allowed.                                              |               |                  |
++-----------------------+-----------------------------------------------------------+---------------+------------------+
 
 **Example**
 
@@ -415,13 +424,13 @@ and to :ref:`realtime-allocations` for detailed information on how to tune alloc
      - Default
    * - ``<initial>``
      - Number of elements for which space is initially allocated.
-     - ``UInt32``
+     - ``uint32_t``
      - 0
    * - ``<maximum>``
      - Maximum number of elements for which space will be allocated.
-     - ``UInt32``
+     - ``uint32_t``
      - 0 (Means no limit)
    * - ``<increment>``
      - Number of new elements that will be allocated when more space is |br| necessary.
-     - ``UInt32``
+     - ``uint32_t``
      - 1

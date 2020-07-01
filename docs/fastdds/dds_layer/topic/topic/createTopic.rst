@@ -46,7 +46,7 @@ Profile based creation of a Topic
 ---------------------------------
 
 Instead of using a TopicQos, the name of a profile
-can be used to create a Topic with the |DomainParticipantFactory::create_topic_with_profile-api|
+can be used to create a Topic with the |DomainParticipant::create_topic_with_profile-api|
 member function on the DomainParticipant instance.
 
 Mandatory arguments are:

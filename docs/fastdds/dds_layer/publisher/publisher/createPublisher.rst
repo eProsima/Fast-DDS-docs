@@ -43,7 +43,7 @@ Profile based creation of a Publisher
 -------------------------------------
 
 Instead of using a :ref:`dds_layer_publisher_publisherQos`, the name of a profile
-can be used to create a Publisher with the |DomainParticipant::create_subscriber_with_profile-api|
+can be used to create a Publisher with the |DomainParticipant::create_publisher_with_profile-api|
 member function on the DomainParticipant instance.
 
 Mandatory arguments are:
@@ -60,7 +60,7 @@ Optional arguments are:
    PublisherListener.
    By default all events are enabled.
 
-|DomainParticipant::create_subscriber_with_profile-api| will return a null pointer if there was an error during the
+|DomainParticipant::create_publisher_with_profile-api| will return a null pointer if there was an error during the
 operation, e.g. if the provided QoS is not compatible or is not supported.
 It is advisable to check that the returned value is a valid pointer.
 

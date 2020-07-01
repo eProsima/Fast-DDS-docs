@@ -7,14 +7,14 @@ Status
 ======
 
 Each :ref:`dds_layer_core_entity` is associated with a set of :class:`Status` objects whose values represent
-the *communication status* of that :ref:`dds_layer_core_entity`.
+the *communication status* of that Entity.
 Changes on the status values occur due to communication events related to each of the entities,
 e.g., when new data arrives, a new participant is discovered, or a remote endpoint is lost.
 The status is decomposed into several status objects, each concerning a different aspect of the communication,
 so that each of these status objects can vary independently of the others.
 
 Changes on a status object trigger the corresponding :ref:`dds_layer_core_entity_commonchars_listener` callbacks
-that allow the :ref:`dds_layer_core_entity` to inform the application about the event.
+that allow the Entity to inform the application about the event.
 For a given status object with name :class:`fooStatus`, the entity listener interface defines a callback
 function :func:`on_foo` that will be called when the status changes.
 The only exceptions are :ref:`dds_layer_core_status_dataOnReaders` and :ref:`dds_layer_core_status_dataAvailable`.
@@ -30,7 +30,7 @@ Beware that some statuses have data members that are reset every time the getter
 See the documentation of each status for details.
 
 The following subsections describe each of the status objects, their data members, and to which
-:ref:`dds_layer_core_entity` type they concern.
+Entity type they concern.
 The next table can be used as a quick reference too.
 
 +-------------------------------------+--------------+-----------------------------------------------------------------+
@@ -355,7 +355,7 @@ List of status data members:
 +----------------------------------------------------------------------------+-----------------------------------------+
 | |SampleRejectedStatus::total_count_change-api|                             | ``int32_t``                             |
 +----------------------------------------------------------------------------+-----------------------------------------+
-| |SampleRejectedStatus::last_reason-api|                                    | ``SampleRejectedStatusKind``            |
+| |SampleRejectedStatus::last_reason-api|                                    | |SampleRejectedStatusKind-api|          |
 +----------------------------------------------------------------------------+-----------------------------------------+
 | |SampleRejectedStatus::last_instance_handle-api|                           | |InstanceHandle_t-api|                  |
 +----------------------------------------------------------------------------+-----------------------------------------+
@@ -455,7 +455,7 @@ List of status data members:
 * |SubscriptionMatchedStatus::last_publication_handle-api|:
   Handle to the last DataWriter
   that matched the DataReader.
-  If no matching ever happened, it will have value ``c_InstanceHandle_Unknown``.
+  If no matching ever happened, it will have value |c_InstanceHandle_Unknown-api|.
 
 
 .. _dds_layer_core_status_livelinessLostStatus:
@@ -528,7 +528,7 @@ List of status data members:
 
 * |DeadlineMissedStatus::last_instance_handle-api|:
   Handle to the last instance that missed the deadline.
-  If no deadline was ever missed, it will have value ``c_InstanceHandle_Unknown``.
+  If no deadline was ever missed, it will have value |c_InstanceHandle_Unknown-api|.
 
 .. warning::
 
@@ -639,7 +639,7 @@ List of status data members:
 * |PublicationMatchedStatus::last_subscription_handle-api|:
   Handle to the last DataReader
   that matched the DataWriter.
-  If no matching ever happened, it will have value ``c_InstanceHandle_Unknown``.
+  If no matching ever happened, it will have value |c_InstanceHandle_Unknown-api|.
 
 
 

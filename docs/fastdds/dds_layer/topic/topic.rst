@@ -6,7 +6,7 @@
 Topic
 =====
 
-A :ref:`dds_layer_topic_topic` conceptually fits between publications and subscriptions.
+A Topic conceptually fits between publications and subscriptions.
 Each publication channel must be unambiguously identified by the subscriptions in order to receive only the data flow
 they are interested in, and not data from other publications.
 A Topic serves this purpose, allowing publications and subscriptions that share the same

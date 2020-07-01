@@ -36,7 +36,7 @@ List of QoS Policy data members:
 +=============================================================+==============================+=========================+
 | |DisablePositiveACKsQosPolicy::enabled-api|                 | bool                         | ``false``               |
 +-------------------------------------------------------------+------------------------------+-------------------------+
-| |DisablePositiveACKsQosPolicy::duration-api|                | |Duration_t-api|             | |c_TimeInvalid-api|     |
+| |DisablePositiveACKsQosPolicy::duration-api|                | |Duration_t-api|             | |c_TimeInfinite-api|    |
 +-------------------------------------------------------------+------------------------------+-------------------------+
 
 * |DisablePositiveACKsQosPolicy::enabled-api|:
@@ -309,11 +309,11 @@ See |PublishModeQosPolicy-api|.
 
 List of QoS Policy data members:
 
-+------------------------------------------------------+---------------------------------+-----------------------------+
-| Data Member Name                                     | Type                            | Default Value               |
-+======================================================+=================================+=============================+
-| |PublishModeQosPolicy::kind-api|                     | :ref:`publishmodeqospolicykind` | SYNCHRONOUS                 |
-+------------------------------------------------------+---------------------------------+-----------------------------+
++------------------------------------------+---------------------------------+-----------------------------------------+
+| Data Member Name                         | Type                            | Default Value                           |
++==========================================+=================================+=========================================+
+| |PublishModeQosPolicy::kind-api|         | :ref:`publishmodeqospolicykind` | |SYNCHRONOUS_PUBLISH_MODE-api|          |
++------------------------------------------+---------------------------------+-----------------------------------------+
 
 .. note::
      This QoS Policy concerns to DataWriter entities.

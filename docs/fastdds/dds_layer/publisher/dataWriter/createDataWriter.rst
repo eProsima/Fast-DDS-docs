@@ -85,7 +85,7 @@ Deleting a DataWriter
 ---------------------
 
 A DataWriter can be deleted with the |Publisher::delete_datawriter-api| member function on the
-:ref:`dds_layer_domainParticipant` instance where the DataWriter was created.
+:ref:`dds_layer_publisher_publisher` instance where the DataWriter was created.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

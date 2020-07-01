@@ -94,21 +94,22 @@ Defines a filter to ignore some discovery traffic when received.
 This is useful to add an extra level of DomainParticipant isolation.
 The possible values are:
 
-+-----------------------------------------+----------------------------------------------------------------------------+
-| Possible values                         | Description                                                                |
-+=========================================+============================================================================+
-| |NO_FILTER|                             | All Discovery traffic is processed.                                        |
-+-----------------------------------------+----------------------------------------------------------------------------+
-| |FILTER_DIFFERENT_HOST|                 | Discovery traffic from another host is discarded.                          |
-+-----------------------------------------+----------------------------------------------------------------------------+
-| |FILTER_DIFFERENT_PROCESS|              | Discovery traffic from another process on the same host is                 |
-|                                         | discarded.                                                                 |
-+-----------------------------------------+----------------------------------------------------------------------------+
-| |FILTER_SAME_PROCESS|                   | Discovery traffic from DomainParticipant's own process is discarded.       |
-+-----------------------------------------+----------------------------------------------------------------------------+
-| |FILTER_DIFFERENT_PROCESS|              | Discovery traffic from DomainParticipant's own host is discarded.          |
-| |FILTER_SAME_PROCESS|                   |                                                                            |
-+-----------------------------------------+----------------------------------------------------------------------------+
++------------------------------------------------------------+---------------------------------------------------------+
+| Possible values                                            | Description                                             |
++============================================================+=========================================================+
+| |NO_FILTER|                                                | All Discovery traffic is processed.                     |
++------------------------------------------------------------+---------------------------------------------------------+
+| |FILTER_DIFFERENT_HOST|                                    | Discovery traffic from another host is discarded.       |
++------------------------------------------------------------+---------------------------------------------------------+
+| |FILTER_DIFFERENT_PROCESS|                                 | Discovery traffic from another process on the same host |
+|                                                            | is discarded.                                           |
++------------------------------------------------------------+---------------------------------------------------------+
+| |FILTER_SAME_PROCESS|                                      | Discovery traffic from DomainParticipant's own          |
+|                                                            | process is discarded.                                   |
++------------------------------------------------------------+---------------------------------------------------------+
+| |FILTER_DIFFERENT_PROCESS| | |FILTER_SAME_PROCESS|         | Discovery traffic from DomainParticipant's own          |
+|                                                            | host is discarded.                                      |
++------------------------------------------------------------+---------------------------------------------------------+
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |

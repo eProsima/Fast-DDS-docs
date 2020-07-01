@@ -7,7 +7,7 @@ Topic
 =====
 
 A |Topic-api| is a specialization of the broader concept of :ref:`dds_layer_topic_topicDescription`.
-A |Topic| represents a single data flow between :ref:`dds_layer_publisher_publisher`
+A Topic represents a single data flow between :ref:`dds_layer_publisher_publisher`
 and :ref:`dds_layer_subscriber_subscriber`, providing:
 
  * The name to identify the data flow.
@@ -63,7 +63,7 @@ Internally it contains the following |QosPolicy-api| objects:
 | |DataRepresentationQosPolicy|                | |TopicQos::representation-api|                             | Yes      |
 +----------------------------------------------+------------------------------------------------------------+----------+
 
-Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
+Refer to the detailed description of each QosPolicy-api class for more information about their usage and
 default values.
 
 The QoS value of a previously created Topic can be modified using the
@@ -84,7 +84,7 @@ Default TopicQos
 The default :ref:`dds_layer_topic_topicQos` refers to the value returned by the
 |DomainParticipant::get_default_topic_qos-api| member function on the :ref:`dds_layer_domainParticipant` instance.
 The special value ``TOPIC_QOS_DEFAULT`` can be used as QoS argument on |DomainParticipant::create_topic-api|
-or |Topic::set_qos-api| member functions to indicate that the current default |TopicQos-api|
+or |Topic::set_qos-api| member functions to indicate that the current default TopicQos
 should be used.
 
 When the system starts, the default TopicQos is equivalent to the default constructed

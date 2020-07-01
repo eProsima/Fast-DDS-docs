@@ -30,7 +30,7 @@ Internally it contains the following |QosPolicy-api| objects:
 +------------------------------+----------------------------------------------------------------------------+----------+
 | QosPolicy class              | Accessor/Mutator                                                           | Mutable  |
 +==============================+============================================================================+==========+
-| |EntityFactoryQosPolicy-api| | |DomainParticipantFactoryQos::entity_factory-api|                          | Yes      |
+| |EntityFactoryQosPolicy|     | |DomainParticipantFactoryQos::entity_factory-api|                          | Yes      |
 +------------------------------+----------------------------------------------------------------------------+----------+
 
 Since the DomainParticipantFactory is a singleton, its QoS can only be modified with the

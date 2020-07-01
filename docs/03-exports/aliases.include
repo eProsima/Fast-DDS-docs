@@ -121,3 +121,5 @@
 
 .. |TopicDataType| replace:: :ref:`TopicDataType<dds_layer_definition_data_types>`
 .. |TopicDataTypes| replace:: :ref:`TopicDataTypes<dds_layer_definition_data_types>`
+
+.. |Fast DDS-Gen| replace:: :ref:`Fast DDS-Gen<fastddsgen_intro>`

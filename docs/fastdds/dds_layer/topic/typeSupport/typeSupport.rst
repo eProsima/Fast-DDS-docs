@@ -18,7 +18,7 @@ before it can be used to create Topic objects.
 A TypeSupport object encapsulates an instance of TopicDataType, providing the functions needed to
 register the type and interact with the publication and subscription.
 To register the data type, create a new TypeSupport with a TopicDataType instance
-and use the :func:`register_type` member function on the TypeSupport.
+and use the |TypeSupport::register_type-api| member function on the TypeSupport.
 Then the Topic can be created with the registered type name.
 
 .. note::
@@ -71,7 +71,7 @@ Types that do not define a key will have |TopicDataType::m_isGetKeyDefined-api| 
 
 There are three ways to implement keys on the TopicDataType:
 
-* Adding a ``@Key`` annotation to the members that form the key in the IDL file when using *Fast DDS-Gen*.
+* Adding a ``@Key`` annotation to the members that form the key in the IDL file when using |Fast DDS-Gen|.
 * Adding the attribute ``Key`` to the member and its parents when using :ref:`dynamic-types`.
 * Manually implementing the |TopicDataType::getKey-api| member function on the TopicDataType and setting
   the |TopicDataType::m_isGetKeyDefined-api| data member value to ``true``.

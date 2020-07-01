@@ -224,7 +224,7 @@ The possible values for this element are:
 
 *  ``false``: the DomainParticipant shall enforce the authentication of remote |DomainParticipants| and
    disallow matching those that cannot be successfully authenticated.
-*  ``true``: the DomainParticipant shall allow matching other |DomainParticipants| (event if the remote
+*  ``true``: the DomainParticipant shall allow matching other DomainParticipants (event if the remote
    DomainParticipant cannot authenticate) as long as there is not an already valid authentication with the same
    DomainParticipant's GUID.
 
@@ -312,7 +312,7 @@ The following table summarizes the elements and sections that each domain rule m
 +---------------------------------------+------------------------------------------+-----------------------------------+
 
 The topic expression within the rules selects a set of Topic names.
-The rule applies to any |DataReader| or |DataWriter| associated with a |Topic| whose name matches the |Topic| expression
+The rule applies to any |DataReader| or |DataWriter| associated with a |Topic| whose name matches the Topic expression
 name.
 The topic access rules are evaluated in the same order as they appear within the ``<topic_access_rules>`` section.
 If multiple rules match, the first rule that matches is the only one that applies.

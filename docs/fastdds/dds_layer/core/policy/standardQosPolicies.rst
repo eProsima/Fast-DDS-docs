@@ -142,9 +142,9 @@ Compatibility Rule
 
 To maintain the compatibility between DestinationOrderQosPolicy in DataReaders and DataWriters when they have different
 kind values, the DataWriter kind must be higher or equal to the DataReader kind.
-And the order between the different kinds is::
+And the order between the different kinds is:
 
- |BY_RECEPTION_TIMESTAMP| < |BY_SOURCE_TIMESTAMP|
+|BY_RECEPTION_TIMESTAMP| < |BY_SOURCE_TIMESTAMP|
 
 Table with the possible combinations:
 
@@ -214,10 +214,10 @@ Compatibility Rule
 
 To maintain the compatibility between DurabilityQosPolicy in DataReaders and DataWriters when they have different kind
 values, the DataWriter kind must be higher or equal to the DataReader kind.
-And the order between the different kinds is::
+And the order between the different kinds is:
 
- |VOLATILE_DURABILITY_QOS-api| < |TRANSIENT_LOCAL_DURABILITY_QOS-api| < |TRANSIENT_DURABILITY_QOS-api| <
- |PERSISTENT_DURABILITY_QOS-api|
+|VOLATILE_DURABILITY_QOS-api| < |TRANSIENT_LOCAL_DURABILITY_QOS-api| < |TRANSIENT_DURABILITY_QOS-api| <
+|PERSISTENT_DURABILITY_QOS-api|
 
 Table with the possible combinations:
 
@@ -633,7 +633,7 @@ To maintain the compatibility between LivelinessQosPolicy in DataReaders and Dat
 higher or equal to the DataReader kind.
 And the order between the different kinds is::
 
- |AUTOMATIC_LIVELINESS_QOS-api| < |MANUAL_BY_PARTICIPANT_LIVELINESS_QOS-api| < |MANUAL_BY_TOPIC_LIVELINESS_QOS-api|
+|AUTOMATIC_LIVELINESS_QOS-api| < |MANUAL_BY_PARTICIPANT_LIVELINESS_QOS-api| < |MANUAL_BY_TOPIC_LIVELINESS_QOS-api|
 
 Table with the possible combinations:
 
@@ -768,7 +768,8 @@ OwnershipStrengthQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This QoS Policy specifies the value of the `strength` used to arbitrate among multiple DataWriters that attempt to
-modify the same data instance. It is only applicable if the :ref:`ownershipqospolicy` kind is set to EXCLUSIVE.
+modify the same data instance. It is only applicable if the :ref:`ownershipqospolicy` kind is set to
+|EXCLUSIVE_OWNERSHIP_QOS-api|.
 See |OwnershipStrengthQosPolicy-api|.
 
 List of QoS Policy data members:
@@ -806,23 +807,23 @@ PartitionQosPolicy
 
 This Qos Policy allows the introduction of a logical partition inside the physical partition introduced by a domain.
 For a DataReader to see the changes made by a DataWriter, not only the Topic must match, but also they have to share
-at least one logical partition (see |HistoryQosPolicy-api|).
+at least one logical partition (see |PartitionQosPolicy-api|).
 
 The empty string is also considered as a valid partition and it matches with other partition names using the same rules
 of string matching and regular-expression matching used for any other partition name.
 
 List of QoS Policy data members:
 
-+-------------------------------+-----------------------------------------------------+--------------------------------+
-| Data Member Name              | Type                                                | Default Value                  |
-+===============================+=====================================================+================================+
-| |HistoryQosPolicy::kind-api|  | uint32_t                                            | 0 (Length Unlimited)           |
-+-------------------------------+-----------------------------------------------------+--------------------------------+
-| |HistoryQosPolicy::depth-api| | |SerializedPayload_t-api|                           | Empty List                     |
-+-------------------------------+-----------------------------------------------------+--------------------------------+
++---------------------------------------+---------------------------------------------+--------------------------------+
+| Data Member Name                      | Type                                        | Default Value                  |
++=======================================+=============================================+================================+
+| |PartitionQosPolicy::max_size-api|    | uint32_t                                    | 0 (Length Unlimited)           |
++---------------------------------------+---------------------------------------------+--------------------------------+
+| |PartitionQosPolicy::names-api|       | |SerializedPayload_t-api|                   | Empty List                     |
++---------------------------------------+---------------------------------------------+--------------------------------+
 
-* **Max Size**: Maximum size for the list of partition names.
-* **Partitions**: List of partition names.
+* |PartitionQosPolicy::max_size-api|: Maximum size for the list of partition names.
+* |PartitionQosPolicy::names-api|: List of partition names.
 
 .. note::
      This QoS Policy concerns to Publisher and Subscriber entities.
@@ -933,7 +934,7 @@ To maintain the compatibility between PresentationQosPolicy in DataReaders and D
 |access_scope-api| must be higher or equal to the Subscriber |access_scope-api|.
 And the order between the different access scopes is::
 
-  |INSTANCE_PRESENTATION_QOS-api| < |TOPIC_PRESENTATION_QOS-api| < |GROUP_PRESENTATION_QOS-api|
+|INSTANCE_PRESENTATION_QOS-api| < |TOPIC_PRESENTATION_QOS-api| < |GROUP_PRESENTATION_QOS-api|
 
 Table with the possible combinations:
 
@@ -1077,7 +1078,7 @@ To maintain the compatibility between ReliabilityQosPolicy in DataReaders and Da
 must be higher or equal to the DataReader kind.
 And the order between the different kinds is::
 
- |BEST_EFFORT_RELIABILITY_QOS-api| < |RELIABLE_RELIABILITY_QOS-api|
+|BEST_EFFORT_RELIABILITY_QOS-api| < |RELIABLE_RELIABILITY_QOS-api|
 
 Table with the possible combinations:
 

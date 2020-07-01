@@ -83,7 +83,10 @@ trigger to communicate the Status changes to the application.
 Users can implement their own listeners inheriting from these interfaces and implementing the callbacks that are
 are needed on their application.
 Then they can link these listeners to each entity, either during their creation or at a later time with the
-:func:`set_listener` function that every entity exposes.
+:func:`set_listener` function that every entity exposes
+(|DomainParticipant::set_listener-api|, |Publisher::set_listener-api|,
+|Subscriber::set_listener-api|, |Topic::set_listener-api|, |DataWriter::set_listener-api|,
+|DataReader::set_listener-api|).
 The listener interfaces that each entity type and their callbacks are explained in the documentation
 for each entity type.
 
@@ -94,7 +97,7 @@ Status
 Each entity is associated with a set of status objects whose values represent the *communication status*
 of that entity.
 The changes on these status values are the ones that trigger the invocation of the appropriate
-Listener. callback to asynchronously inform the application.
+Listener callback to asynchronously inform the application.
 See :ref:`dds_layer_core_status` for a list of all the status objects and a description of their content.
 There you can also find which status applies to which entity type.
 

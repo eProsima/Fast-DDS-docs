@@ -21,10 +21,10 @@ by *reading* or *taking*.
 If there is no unread data in the DataReader, both operations will return
 ``NO_DATA`` and nothing is returned.
 
-In addition to the data value, the data access operations also provide a :ref:`dds_layer_subscriber_sampleInfo`
+In addition to the data value, the data access operations also provide a SampleInfo
 instance with additional information that help interpreting the returned data value, like the originating
 :ref:`dds_layer_publisher_dataWriter` or the publication time stamp.
-Please, refer to the SampleInfo section for an extensive description of its contents.
+Please, refer to the :ref:`dds_layer_subscriber_sampleInfo` section for an extensive description of its contents.
 
 
 .. _dds_layer_subscriber_accessreceived_listener:

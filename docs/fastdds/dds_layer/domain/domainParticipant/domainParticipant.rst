@@ -45,15 +45,15 @@ Internally it contains the following |QosPolicy-api| objects:
 | |TransportConfigQos|           | |DomainParticipantQos::transport-api|        | No       |
 +--------------------------------+----------------------------------------------+----------+
 
-Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
+Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.
 
 The QoS value of a previously created DomainParticipant can be modified using the
 |DomainParticipant::set_qos-api| member function.
-Trying to modify an immutable |QosPolicy-api| on an already enabled DomainParticipant
+Trying to modify an immutable QosPolicy on an already enabled DomainParticipant
 will result on an error.
 In such case, no changes will be applied and the DomainParticipant will keep its
-previous :class:`DomainParticipantQos`.
+previous DomainParticipantQos.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -68,8 +68,10 @@ Default DomainParticipantQos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The default DomainParticipantQos refers to the value returned by the
-:func:`get_default_participant_qos()` member function on the :ref:`dds_layer_domainParticipantFactory` singleton.
-The special value ``PARTICIPANT_QOS_DEFAULT`` can be used as QoS argument on :func:`create_participant()`
+|DomainParticipantFactory::get_default_participant_qos-api| member function on the
+:ref:`dds_layer_domainParticipantFactory` singleton.
+The special value ``PARTICIPANT_QOS_DEFAULT`` can be used as QoS argument on
+|DomainParticipantFactory::create_participant-api|
 or |DomainParticipant::set_qos-api| member functions to indicate that the current default
 DomainParticipantQos should be used.
 

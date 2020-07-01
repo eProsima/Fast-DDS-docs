@@ -15,12 +15,12 @@ Callbacks that are not overridden will maintain their empty implementation.
 
 |DataWriterListener-api| defines the following callbacks:
 
-* **on_publication_matched**: The DataWriter has found a
+* |DataWriterListener::on_publication_matched-api|: The DataWriter has found a
   :ref:`dds_layer_subscriber_dataReader` that matches the :ref:`dds_layer_topic_topic` and has
   a common partition and a compatible QoS, or has ceased to be matched with a
   DataReader that was previously considered to be matched.
 
-* **on_offered_deadline_missed**: The DataWriter failed to provide
+* |DataWriterListener::on_offered_deadline_missed-api|: The DataWriter failed to provide
   data within the deadline period configured on its :ref:`dds_layer_publisher_dataWriterQos`.
   It will be called for each deadline period and data instance for which the
   DataWriter failed to provide data.
@@ -29,7 +29,7 @@ Callbacks that are not overridden will maintain their empty implementation.
    Currently *on_offered_deadline_missed* is not implemented (it will never be called), and will be implemented
    on a future release of Fast DDS.
 
-* **on_offered_incompatible_qos**: The DataWriter has found a
+* |DataWriterListener::on_offered_incompatible_qos-api|: The DataWriter has found a
   DataReader that matches the Topic and has
   a common partition, but with a requested QoS that is incompatible with the one defined on the
   DataWriter.
@@ -38,7 +38,7 @@ Callbacks that are not overridden will maintain their empty implementation.
    Currently *on_offered_incompatible_qos* is not implemented (it will never be called), and will be implemented
    on a future release of Fast DDS.
 
-* **on_liveliness_lost**: The DataWriter did not respect the
+* |DataWriterListener::on_liveliness_lost-api|: The DataWriter did not respect the
   liveliness configuration on its DataWriterQos, and therefore,
   DataReader entities will consider the DataWriter
   as no longer *active*.

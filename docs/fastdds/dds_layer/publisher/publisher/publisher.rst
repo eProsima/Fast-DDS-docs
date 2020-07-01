@@ -56,11 +56,11 @@ The QoS value of a previously created Publisher can be modified using the
 Default PublisherQos
 ^^^^^^^^^^^^^^^^^^^^
 
-The default PublisherQos refers to the value returned by the
+The default :ref:`dds_layer_publisher_publisherQos` refers to the value returned by the
 |DomainParticipant::get_default_publisher_qos-api| member function on the DomainParticipant instance.
 The special value :class:`PUBLISHER_QOS_DEFAULT` can be used as QoS argument on
 |DomainParticipant::create_publisher-api| or |Publisher::set_qos-api| member functions to indicate that the current
-default :ref:`dds_layer_publisher_publisherQos` should be used.
+default PublisherQos should be used.
 
 When the system starts, the default PublisherQos is equivalent to the default constructed
 value |PublisherQos::PublisherQos-api|.

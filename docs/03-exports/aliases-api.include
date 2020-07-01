@@ -608,7 +608,15 @@
 
 .. |EDPStatic| replace:: :cpp:class:`EDPStatic <eprosima::fastrtps::rtps::EDPStatic>`
 
-.. |DynamicPubSubType| replace:: :cpp:class:`DynamicPubSubType <eprosima::fastrtps::types::DynamicPubSubType>`
-.. |DynamicPubSubTypes| replace:: :cpp:class:`DynamicPubSubTypes <eprosima::fastrtps::types::DynamicPubSubType>`
-.. |DynamicType| replace:: :cpp:class:`DynamicType <eprosima::fastrtps::types::DynamicType>`
-.. |DynamicTypes| replace:: :cpp:class:`DynamicTypes <eprosima::fastrtps::types::DynamicType>`
+.. |DynamicPubSubType-api| replace:: :cpp:class:`DynamicPubSubType <eprosima::fastrtps::types::DynamicPubSubType>`
+.. |DynamicPubSubTypes-api| replace:: :cpp:class:`DynamicPubSubTypes <eprosima::fastrtps::types::DynamicPubSubType>`
+.. |DynamicType-api| replace:: :cpp:class:`DynamicType <eprosima::fastrtps::types::DynamicType>`
+.. |DynamicTypes-api| replace:: :cpp:class:`DynamicTypes <eprosima::fastrtps::types::DynamicType>`
+
+.. |TypeObjectV1-api| replace:: :cpp:class:`TypeObject<eprosima::fastdds::dds::TypeObjectV1>`
+.. |TypeIdV1-api| replace:: :cpp:class:`TypeIdentifier<eprosima::fastdds::dds::TypeIdV1>`
+
+.. |TopicDataType::auto_fill_type_object-api| replace:: :cpp:func:`auto_fill_type_object<eprosima::fastdds::dds::TopicDataType::auto_fill_type_object>`
+.. |TopicDataType::auto_fill_type_information-api| replace:: :cpp:func:`auto_fill_type_information<eprosima::fastdds::dds::TopicDataType::auto_fill_type_information>`
+
+.. |DomainParticipant::register_remote_type-api| replace:: :cpp:func:`register_remote_type<eprosima::fastdds::dds::DomainParticipant::register_remote_type>`

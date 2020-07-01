@@ -1,18 +1,20 @@
+.. include:: ../../03-exports/aliases.include
+
 .. _dynamictypes_annotations:
 
 Annotations
 ===========
 
 
-:ref:`dynamictypes_overview_dynamictypebuilder` allows applying an annotation
+|DynamicTypeBuilder| allows applying an annotation
 to both current type and inner members with the functions:
 
-- ``apply_annotation``
+- :func:`apply_annotation`
 
-- ``apply_annotation_to_member``
+- :func:`apply_annotation_to_member`
 
 Both functions take the name,  the key and the value of the annotation.
-``apply_annotation_to_member`` additionally receives the ``MemberId`` of the inner member.
+:func:`apply_annotation_to_member` additionally receives the ``MemberId`` of the inner member.
 
 For example, if we define an annotation like:
 
@@ -33,7 +35,7 @@ And then we apply it through IDL to a struct:
     {
     ...
 
-The equivalent code using DynamicTypes will be:
+The equivalent code using |DynamicTypes| will be:
 
 .. literalinclude:: /../code/CodeTester.cpp
    :language: c++
@@ -46,12 +48,12 @@ Builtin annotations
 
 The following annotations modifies the behavior of DynamicTypes:
 
-- | ``@position``: When applied to :ref:`dynamictypes_supportedtypes_bitmask`, sets the position of the flag,
+- | ``@position``: When applied to |Bitmask|, sets the position of the flag,
   | as expected in the IDL annotation.
-  | If applied to :ref:`dynamictypes_supportedtypes_bitset`, sets the base position of the bitfield,
+  | If applied to |Bitset|, sets the base position of the bitfield,
   | useful to identify unassigned bits.
 
-- | ``@bit_bound``: Applies to :ref:`dynamictypes_supportedtypes_bitset`. Sets the size in bits of the bitfield.
+- | ``@bit_bound``: Applies to |Bitset|. Sets the size in bits of the bitfield.
 
 - | ``@key``: Alias for ``@Key``. See :ref:`dds_layer_topic_keyed_data_types` section for more details.
 

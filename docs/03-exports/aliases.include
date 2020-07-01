@@ -79,3 +79,44 @@
 .. |WriterResourceLimitsQos| replace:: :ref:`WriterResourceLimitsQos<writerresourcelimitsqos>`
 .. |DomainParticipantListener| replace:: :ref:`DomainParticipantListener<dds_layer_domainParticipantListener>`
 .. |whitelist| replace:: :ref:`Whitelist <whitelist-interfaces>`
+
+.. |DynamicType| replace:: :ref:`dynamictypes_overview_dynamictype`
+.. |DynamicTypes| replace:: :ref:`dynamictypes_overview_dynamictype`
+.. |DynamicTypeBuilderFactory| replace:: :ref:`dynamictypes_overview_dynamictypebuilderfactory`
+.. |DynamicTypeBuilder| replace:: :ref:`dynamictypes_overview_dynamictypebuilder`
+.. |TypeDescriptor| replace:: :ref:`dynamictypes_overview_typedescriptor`
+.. |DynamicTypeMember| replace:: :ref:`dynamictypes_overview_dynamictypemember`
+.. |MemberDescriptor| replace:: :ref:`dynamictypes_overview_memberdescriptor`
+.. |DynamicData| replace:: :ref:`dynamictypes_overview_dynamicdata`
+.. |DynamicDataFactory| replace:: :ref:`dynamictypes_overview_dynamicdatafactory`
+.. |DynamicPubSubType| replace:: :ref:`dynamictypes_overview_dynamicpubsubtype`
+
+.. |Supported Types| replace:: :ref:`dynamictypes_supportedtypes`
+.. |Primitive Types| replace:: :ref:`dynamictypes_supportedtypes_primitive`
+.. |String and WString| replace:: :ref:`dynamictypes_supportedtypes_string`
+.. |Alias| replace:: :ref:`dynamictypes_supportedtypes_alias`
+.. |Enumeration| replace:: :ref:`dynamictypes_supportedtypes_enumeration`
+.. |Bitmask| replace:: :ref:`dynamictypes_supportedtypes_bitmask`
+.. |Structure| replace:: :ref:`dynamictypes_supportedtypes_structure`
+.. |Bitset| replace:: :ref:`dynamictypes_supportedtypes_bitset`
+.. |Union| replace:: :ref:`dynamictypes_supportedtypes_union`
+.. |Sequence| replace:: :ref:`dynamictypes_supportedtypes_sequence`
+.. |Array| replace:: :ref:`dynamictypes_supportedtypes_array`
+.. |Map| replace:: :ref:`dynamictypes_supportedtypes_map`
+
+.. |Memory management| replace:: :ref:`dynamictypes_memorymanagement`
+
+.. |Complex Types| replace:: :ref:`dynamictypes_complextypes`
+
+.. |Nested structures| replace:: :ref:`dynamictypes_complextypes_nestedstructures`
+.. |Structure inheritance| replace:: :ref:`dynamictypes_complextypes_inheritance`
+.. |Alias of an alias| replace:: :ref:`dynamictypes_complextypes_aliasalias`
+.. |Unions with complex types| replace:: :ref:`dynamictypes_complextypes_complexunions`
+
+.. |TypeObject| replace:: :ref:`dynamictypes_discovery_typeobject`
+.. |TypeInformation| replace:: :ref:`dynamictypes_discovery_typeinformation`
+.. |TypeIdentifier| replace:: :ref:`dynamictypes_discovery_typeidentifier`
+.. |TypeObjectFactory| replace:: :ref:`dynamictypes_discovery_typeobjectfactory`
+
+.. |TopicDataType| replace:: :ref:`TopicDataType<dds_layer_definition_data_types>`
+.. |TopicDataTypes| replace:: :ref:`TopicDataTypes<dds_layer_definition_data_types>`

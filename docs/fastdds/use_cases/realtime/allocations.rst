@@ -1,3 +1,6 @@
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+
 .. _realtime-allocations:
 
 Tuning allocations
@@ -22,29 +25,29 @@ Although some examples are provided on each section as reference, there is also 
 Parameters on the participant
 -----------------------------
 
-Every :ref:`dds_layer_domainParticipant` holds an internal collection with information about every local and remote
-peer :ref:`DomainParticipants<dds_layer_domainParticipant>` that has been discovered.
+Every DomainParticipant holds an internal collection with information about every local and remote
+peer DomainParticipants that has been discovered.
 This information includes, among other things:
 
-* A nested collection with information of every :ref:`dds_layer_publisher_dataWriter` announced on the
-  peer :ref:`dds_layer_domainParticipant`.
-* A nested collection with information of every :ref:`dds_layer_subscriber_dataReader` announced on the
-  peer :ref:`dds_layer_domainParticipant`.
-* Custom data configured by the user on the peer :ref:`dds_layer_domainParticipant`, namely,
-  :ref:`User Data<userdataqospolicy>`, :ref:`Partitions<partitionqospolicy>`,
-  and :ref:`Properties<propertypolicyqos>`.
+* A nested collection with information of every DataWriter announced on the
+  peer DomainParticipant.
+* A nested collection with information of every DataReader announced on the
+  peer DomainParticipant.
+* Custom data configured by the user on the peer DomainParticipant, namely,
+  :ref:`userdataqospolicy`, :ref:`partitionqospolicy`,
+  and :ref:`propertypolicyqos`.
 
 By default, these collections are fully dynamic, meaning that new memory is allocated when a new
-:ref:`dds_layer_domainParticipant`, :ref:`dds_layer_publisher_dataWriter`, or :ref:`dds_layer_subscriber_dataReader`
+DomainParticipant, DataWriter, or DataReader
 is discovered.
 Likewise, the mentioned custom configuration data parameters have an arbitrary size.
-By default, the memory for these parameters is allocated when the peer :ref:`dds_layer_domainParticipant` announces
+By default, the memory for these parameters is allocated when the peer DomainParticipant announces
 their value.
 
-However, :ref:`dds_layer_domainParticipantQos` has a data member ``allocation``,
+However, :ref:`dds_layer_domainParticipantQos` has a member function |DomainParticipantQos::allocation-api|,
 of type :ref:`participantresourcelimitsqos`, that allows configuring
 maximum sizes for these collections and parameters, so that all the required memory can be preallocated during
-the initialization of the :ref:`dds_layer_domainParticipant`.
+the initialization of the DomainParticipant.
 
 
 Limiting the number of discovered entities
@@ -53,12 +56,12 @@ Limiting the number of discovered entities
 :ref:`participantresourcelimitsqos` provides three data members to configure the allocation behavior of
 discovered entities:
 
-* ``participants`` configures the allocation of the collection of discovered
-  :ref:`DomainParticipants<dds_layer_domainParticipant>`.
-* ``writers`` configures the allocation of the collection of :ref:`DataWriters<dds_layer_publisher_dataWriter>`
-  within each discovered :ref:`dds_layer_domainParticipant`.
-* ``readers`` configures the allocation of the collection of :ref:`DataReaders<dds_layer_subscriber_dataReader>`
-  within each discovered :ref:`dds_layer_domainParticipant`.
+* |ParticipantResourceLimitsQos::participants-api| configures the allocation of the collection of discovered
+  DomainParticipants.
+* |ParticipantResourceLimitsQos::readers-api| configures the allocation of the collection of DataWriters
+  within each discovered DomainParticipant.
+* |ParticipantResourceLimitsQos::writers-api| configures the allocation of the collection of DataReaders
+  within each discovered DomainParticipant.
 
 By default, a full dynamic behavior is used.
 Using these members, however, it is easy to configure the collections to be preallocated during initialization,
@@ -90,20 +93,23 @@ alternatives given by these data members.
    Configuring a collection as fixed in size effectively limits the number of peer entities
    that can be discovered.
    Once the configured limit is reached, any new entity will be ignored.
-   In the given example, if a fourth peer :ref:`dds_layer_domainParticipant` appears, it will
-   not be discovered, as the collection of discovered :ref:`DomainParticipants<dds_layer_domainParticipant>`
+   In the given example, if a fourth peer DomainParticipant appears, it will
+   not be discovered, as the collection of discovered DomainParticipants
    is already full.
 
 
 Limiting the size of custom parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``data_limits`` inside :ref:`participantresourcelimitsqos` provides three data members to configure the allocation
-behavior of custom parameters:
+|ParticipantResourceLimitsQos::data_limits-api| inside :ref:`participantresourcelimitsqos` provides three data members
+to configure the allocation behavior of custom parameters:
 
-* ``max_user_data`` limits the size of :ref:`User Data<userdataqospolicy>` to the given number of octets.
-* ``max_partitions`` limits the size of :ref:`Partitions<partitionqospolicy>` to the given number of octets.
-* ``max_properties`` limits the size of :ref:`Properties<propertypolicyqos>` to the given number of octets.
+* |VariableLengthDataLimits::max_user_data-api| limits the size of :ref:`userdataqospolicy` to the given number
+  of octets.
+* |VariableLengthDataLimits::max_properties-api| limits the size of :ref:`partitionqospolicy` to the given number
+  of octets.
+* |VariableLengthDataLimits::max_partitions-api| limits the size of :ref:`propertypolicyqos` to the given number
+  of octets.
 
 If these sizes are configured to something different than zero, enough memory will be allocated for them
 for each participant and endpoint.
@@ -140,18 +146,18 @@ By default, a full dynamic behavior is used.
 Parameters on the DataWriter
 ----------------------------
 
-Every :ref:`dds_layer_publisher_dataWriter` holds an internal collection with information about every
-:ref:`dds_layer_subscriber_dataReader` to which it matches.
+Every DataWriter holds an internal collection with information about every
+DataReader to which it matches.
 By default, this collection is fully dynamic, meaning that new memory is allocated when a new
-:ref:`dds_layer_subscriber_dataReader` is matched.
-However, :ref:`dds_layer_publisher_dataWriterQos` has a data member ``writer_resource_limits``,
+DataReader is matched.
+However, :ref:`dds_layer_publisher_dataWriterQos` has a data member |DataWriterQos::writer_resource_limits-api|,
 of type :ref:`writerresourcelimitsqos`, that allows configuring
-the memory allocation behavior on the :ref:`dds_layer_publisher_dataWriter`.
+the memory allocation behavior on the DataWriter.
 
-:ref:`writerresourcelimitsqos` provides a data member ``matched_subscriber_allocation``
+:ref:`writerresourcelimitsqos` provides a data member |WriterResourceLimitsQos::matched_subscriber_allocation-api|
 of type :ref:`resourcelimitedcontainerconfig` that allows configuring
-the maximum expected size of the collection of matched :ref:`DataReaders<dds_layer_subscriber_dataReader>`,
-so that it can be preallocated during the initialization of the :ref:`dds_layer_publisher_dataWriter`,
+the maximum expected size of the collection of matched DataReader,
+so that it can be preallocated during the initialization of the DataWriter,
 as shown in the example below.
 Please, refer to :ref:`resourcelimitedcontainerconfig` for a complete description of additional configuration
 alternatives given by this data member.
@@ -178,28 +184,28 @@ alternatives given by this data member.
 
 .. warning::
 
-   Configuring the collection of matched :ref:`DataReaders<dds_layer_subscriber_dataReader>` as fixed in size
-   effectively limits the number of :ref:`DataReaders<dds_layer_subscriber_dataReader>` to be matched.
-   Once the configured limit is reached, any new :ref:`dds_layer_subscriber_dataReader` will be ignored.
-   In the given example, if a fourth (potentially matching) :ref:`dds_layer_subscriber_dataReader`
+   Configuring the collection of matched DataReaders as fixed in size
+   effectively limits the number of DataReaders to be matched.
+   Once the configured limit is reached, any new DataReader will be ignored.
+   In the given example, if a fourth (potentially matching) DataReader
    appears, it will not be matched, as the collection is already full.
 
 
 Parameters on the DataReader
 ----------------------------
 
-Every :ref:`dds_layer_subscriber_dataReader` holds an internal collection with information about every
+Every DataReader holds an internal collection with information about every
 :ref:`readerresourcelimitsqos` to which it matches.
 By default, this collection is fully dynamic, meaning that new memory is allocated when a new
-:ref:`dds_layer_publisher_dataWriter` is matched.
-However, :ref:`dds_layer_subscriber_dataReaderQos` has a data member ``reader_resource_limits``,
+DataWriter is matched.
+However, :ref:`dds_layer_subscriber_dataReaderQos` has a data member |DataReaderQos::reader_resource_limits-api|,
 of type :ref:`readerresourcelimitsqos`, that allows configuring
-the memory allocation behavior on the :ref:`dds_layer_subscriber_dataReader`.
+the memory allocation behavior on the DataReader.
 
-:ref:`readerresourcelimitsqos` provides a data member ``matched_publisher_allocation``
+:ref:`readerresourcelimitsqos` provides a data member |ReaderResourceLimitsQos::matched_publisher_allocation-api|
 of type :ref:`resourcelimitedcontainerconfig` that allows configuring
-the maximum expected size of the collection of matched :ref:`DataWriters<dds_layer_publisher_dataWriter>`,
-so that it can be preallocated during the initialization of the :ref:`dds_layer_subscriber_dataReader`,
+the maximum expected size of the collection of matched DataWriters,
+so that it can be preallocated during the initialization of the DataReader,
 as shown in the example below.
 Please, refer to :ref:`resourcelimitedcontainerconfig` for a complete description of additional configuration
 alternatives given by this data member.
@@ -225,10 +231,10 @@ alternatives given by this data member.
 
 .. warning::
 
-   Configuring the collection of matched :ref:`DataWriters<dds_layer_publisher_dataWriter>` as fixed in size
-   effectively limits the number of :ref:`DataWriters<dds_layer_publisher_dataWriter>` to be matched.
-   Once the configured limit is reached, any new :ref:`dds_layer_publisher_dataWriter` will be ignored.
-   In the given example, if a fourth (potentially matching) :ref:`dds_layer_publisher_dataWriter`
+   Configuring the collection of matched DataWriters as fixed in size
+   effectively limits the number of DataWriters to be matched.
+   Once the configured limit is reached, any new DataWriter will be ignored.
+   In the given example, if a fourth (potentially matching) DataWriter
    appears, it will not be matched, as the collection is already full.
 
 .. _tuning_allocations_full_example:
@@ -255,21 +261,21 @@ Given a system with the following topology:
      -
      - Topic 2 subscriber
 
-* The total number of :ref:`DomainParticipants<dds_layer_domainParticipant>` is 3.
-* The maximum number of :ref:`DataWriters<dds_layer_publisher_dataWriter>` per :ref:`dds_layer_domainParticipant` is 1
-* The maximum number of :ref:`DataReaders<dds_layer_subscriber_dataReader>` per :ref:`dds_layer_domainParticipant` is 2.
+* The total number of DomainParticipants is 3.
+* The maximum number of DataWriters per DomainParticipant is 1
+* The maximum number of DataReaders per DomainParticipant is 2.
 * The :ref:`DataWriter<dds_layer_publisher_dataWriter>` for topic 1
-  matches with 3 :ref:`DataReaders<dds_layer_subscriber_dataReader>`.
+  matches with 3 DataReaders.
 * The :ref:`DataWriter<dds_layer_publisher_dataWriter>` for topic 2
-  matches with 2 :ref:`DataReaders<dds_layer_subscriber_dataReader>`.
-* All the :ref:`DataReaders<dds_layer_subscriber_dataReader>`
+  matches with 2 DataReaders.
+* All the DataReaders
   match exactly with 1 :ref:`DataWriter<dds_layer_publisher_dataWriter>`.
 
 We will also limit the size of the parameters:
 
-* Maximum :ref:`Partition Data<partitionqospolicy>` size: 256
-* Maximum :ref:`User Data<userdataqospolicy>` size: 256
-* Maximum :ref:`Properties Data <propertypolicyqos>` size: 512
+* Maximum :ref:`partitionqospolicy` size: 256
+* Maximum :ref:`userdataqospolicy` size: 256
+* Maximum :ref:`propertypolicyqos` size: 512
 
 The following piece of code shows the set of parameters needed for the use case depicted in this example.
 

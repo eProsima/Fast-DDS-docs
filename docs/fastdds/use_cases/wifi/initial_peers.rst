@@ -5,13 +5,16 @@ Configuring Initial Peers
 
 .. _RTPS v2.2 standard: https://www.omg.org/spec/DDSI-RTPS/2.2/
 
-A complete description of the initial peers list and its configuration can be found on
+A complete description of the initial peers list and its configuration can be found in
 :ref:`Simple Initial Peers`.
 For convenience, this example shows how to configure an initial peers list with one peer
 on host ``192.168.10.13`` with participant ID ``1`` in domain ``0``.
-Beware that the port number used here is not arbitrary, as discovery ports are defined by
-the `RTPS v2.2 standard`_.
-Refer to :ref:`listening_locators_defaultPorts` to learn about these standard port numbers.
+
+.. note::
+
+    Note that the port number used here is not arbitrary, as discovery ports are defined by
+    the `RTPS v2.2 standard`_.
+    Refer to :ref:`listening_locators_defaultPorts` to learn about these standard port numbers.
 
 
 +---------------------------------------------------------+

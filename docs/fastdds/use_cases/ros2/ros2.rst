@@ -1,3 +1,7 @@
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
+
 .. _fastrtps_ros2:
 
 Fast DDS in ROS 2
@@ -42,7 +46,7 @@ As described in :ref:`xml_profiles` section, there are two possibilities for pro
 with XML configuration files:
 
 * **Recommended**: Define the location of the XML configuration file with environment variable
-  ``FASTRTPS_DEFAULT_PROFILES_FILE``.
+  ``FASTRTPS_DEFAULT_PROFILES_FILE`` (see :ref:`env_vars`).
 
   ::
 
@@ -91,19 +95,25 @@ By default, ``rmw_fastrtps`` sets some of the *Fast DDS* configurable parameters
 provided in the XML file.
 Said parameters, and their default values under ROS 2, are:
 
-+-----------------------+--------------------------------------------------+-------------------------------------------+
-| Parameter             | Description                                      | Default ROS 2 value                       |
-+=======================+==================================================+===========================================+
-| History memory policy | *Fast DDS* preallocates memory for the publisher | ``PREALLOCATED_WITH_REALLOC_MEMORY_MODE`` |
-|                       | and subscriber histories.                        |                                           |
-|                       | When those histories fill up, a reallocation     |                                           |
-|                       | occurs to reserve more memory.                   |                                           |
-+-----------------------+--------------------------------------------------+-------------------------------------------+
-| Publication mode      | User calls to publication method add the         | ``ASYNCHRONOUS_PUBLISH_MODE``             |
-|                       | messages in a queue that is managed in a         |                                           |
-|                       | different thread, meaning that the user thread   |                                           |
-|                       | is available right after the call to send data.  |                                           |
-+-----------------------+--------------------------------------------------+-------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Parameter
+     - Description
+     - Default ROS 2 value
+   * - |MemoryManagementPolicy|
+     - *Fast DDS* preallocates memory for the publisher |br|
+       and subscriber histories. When those histories fill |br|
+       up, a reallocation occurs to reserve more memory.
+     - |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
+   * - |PublishModeQosPolicy|
+     - User calls to publication method add the messages |br|
+       in a queue that is managed in a different thread, |br|
+       meaning that the user thread is available right |br|
+       after the call to send data.
+     - |ASYNCHRONOUS_PUBLISH_MODE-api|
+
 
 However, it is possible to fully configure *Fast DDS* (including the history memory policy and the publication mode)
 using an XML file in combination with environment variable ``RMW_FASTRTPS_USE_QOS_FROM_XML``.

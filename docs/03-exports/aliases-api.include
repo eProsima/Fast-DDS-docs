@@ -375,8 +375,8 @@
 .. |RTPSReliableWriterQos::disable_positive_acks-api| replace:: :cpp:member:`disable_positive_acks<eprosima::fastdds::dds::RTPSReliableWriterQos::disable_positive_acks>`
 
 .. |VariableLengthDataLimits-api| replace:: :cpp:struct:`VariableLengthDataLimits<eprosima::fastrtps::rtps::VariableLengthDataLimits>`
-.. |VariableLengthDataLimits::max_properties-api| replace:: :cpp:member:`max_properties<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_properties>`
 .. |VariableLengthDataLimits::max_user_data-api| replace:: :cpp:member:`max_user_data<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_user_data>`
+.. |VariableLengthDataLimits::max_properties-api| replace:: :cpp:member:`max_properties<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_properties>`
 .. |VariableLengthDataLimits::max_partitions-api| replace:: :cpp:member:`max_partitions<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_partitions>`
 
 .. |PropertyPolicyQos-api| replace:: :cpp:type:`PropertyPolicyQos<dds::fastdds::eprosima::PropertyPolicyQos>`

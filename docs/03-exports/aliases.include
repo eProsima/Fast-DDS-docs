@@ -79,6 +79,7 @@
 .. |WriterResourceLimitsQos| replace:: :ref:`WriterResourceLimitsQos<writerresourcelimitsqos>`
 .. |DomainParticipantListener| replace:: :ref:`DomainParticipantListener<dds_layer_domainParticipantListener>`
 .. |whitelist| replace:: :ref:`Whitelist <whitelist-interfaces>`
+.. |MemoryManagementPolicy| replace:: :ref:`MemoryManagementPolicy<memorymanagementpolicy>`
 
 .. |DynamicType| replace:: :ref:`dynamictypes_overview_dynamictype`
 .. |DynamicTypes| replace:: :ref:`dynamictypes_overview_dynamictype`

@@ -19,13 +19,13 @@ with distributed systems:
 
   - Disable the multicast discovery mechanism (see :ref:`use-case-disabling-multicast-discovery`).
 
-  - Configure a SERVER :ref:`discovery` mechanism (see :ref:`server-client-discovery-use-case`).
+  - Configure a SERVER discovery mechanism (see :ref:`server-client-discovery-use-case`).
 
 + :ref:`well_known_deployments`.
   Describes a situation where the entire entity network topology (Participants, Publishers, Subscribers,
   and their addresses and ports) are known beforehand.
-  In these kind of environments, *Fast DDS* allows to completely avoid the :ref:`discovery` phase
-  configuring a STATIC :ref:`discovery` mechanism (see :ref:`well_known_deployments`).
+  In these kind of environments, *Fast DDS* allows to completely avoid the discovery phase
+  configuring a STATIC discovery mechanism (see :ref:`well_known_deployments`).
 
 + :ref:`use-case-manySubscribers`.
   In cases where there are many :ref:`DataReaders<dds_layer_subscriber_dataReader>` subscribed to the same

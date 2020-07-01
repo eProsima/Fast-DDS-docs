@@ -19,7 +19,7 @@ Furthermore, if all the peers are known and configured beforehand, all multicast
 removed.
 
 Alternatively, SERVER-CLIENT discovery can be used to avoid multicast discovery.
-A :ref:`dds_layer_domainParticipant` with a well-know address acts as a discovery server,
+A DomainParticipant with a well-know address acts as a discovery server,
 providing the rest of the participants the information required to connect among them.
 If all the peers are known and configured beforehand, STATIC discovery can be used instead,
 completely avoiding the discovery phase.

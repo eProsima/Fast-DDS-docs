@@ -1,3 +1,6 @@
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+
 .. _use-case-largeData:
 
 Large Data Rates
@@ -12,34 +15,34 @@ In this scenario, several limitations have to be taken into account:
 
 * Network packages could be dropped because the transmitted amount of data fills the socket buffer
   before it can be processed.
-  The solution is to :ref:`increase the buffers size<tuning-socket-buffer>`).
+  The solution is to :ref:`increase the buffers size<tuning-socket-buffer>`.
 
-* It is also possible to limit the rate at which the :ref:`dds_layer_publisher` sends data using
+* It is also possible to limit the rate at which the Publisher sends data using
   :ref:`flow-controllers`, in order to limit the effect of message bursts, and avoid to flood
-  the :ref:`Subscribers<dds_layer_subscriber>` faster than they can process the messages.
+  the Subscribers faster than they can process the messages.
 
-* On :cpp:enumerator:`RELIABLE<dds::fastdds::eprosima::ReliabilityQosPolicyKind::RELIABLE_RELIABILITY_QOS>` mode,
+* On |RELIABLE_RELIABILITY_QOS-api| mode,
   the overall message rate can be affected due to the retransmission of lost packets.
   Selecting the Heartbeat period allows to tune between increased meta traffic or faster response to lost packets.
   See :ref:`tuning-heartbeat-period`.
 
-* Also on :cpp:enumerator:`RELIABLE<dds::fastdds::eprosima::ReliabilityQosPolicyKind::RELIABLE_RELIABILITY_QOS>` mode,
+* Also on |RELIABLE_RELIABILITY_QOS-api| mode,
   with high message rates, the history of the :ref:`dds_layer_publisher_dataWriter`
   can be filled up, blocking the publication of new messages.
   A :ref:`non-strict reliable mode<tuning-nonstrict-reliability>` can be configured to avoid this blocking,
-  at the cost of potentially losing some messages on some of the :ref:`Subscribers<dds_layer_subscriber>`.
+  at the cost of potentially losing some messages on some of the Subscribers.
 
 
 .. warning::
 
-   eProsima Fast DDS defines a conservative default message size of 64kB,
+   *eProsima Fast DDS* defines a conservative default message size of 64kB,
    which roughly corresponds to TCP and UDP payload sizes.
    If the topic data is bigger, it will automatically be be fragmented into several transport packets.
 
 .. warning::
 
    The loss of a fragment means the loss of the entire message.
-   This has most impact on *best-effort* mode, where the message loss
+   This has most impact on |BEST_EFFORT_RELIABILITY_QOS-api| mode, where the message loss
    probability increases with the number of fragments
 
 
@@ -50,10 +53,10 @@ Increasing socket buffers size
 
 In high rate scenarios or large data scenarios, network packages can be dropped because
 the transmitted amount of data fills the socket buffer before it can be processed.
-Using :cpp:enumerator:`RELIABLE<dds::fastdds::eprosima::ReliabilityQosPolicyKind::RELIABLE_RELIABILITY_QOS>` mode,
+Using |RELIABLE_RELIABILITY_QOS-api| mode,
 *Fast DDS* will try to recover lost samples, but with the penalty of
 retransmission.
-With :cpp:enumerator:`BEST_EFFORT<dds::fastdds::eprosima::ReliabilityQosPolicyKind::BEST_EFFORT_RELIABILITY_QOS>` mode,
+With |BEST_EFFORT_RELIABILITY_QOS-api| mode,
 samples will be definitely lost.
 
 By default *eProsima Fast DDS* creates socket buffers with the system default size.
@@ -83,7 +86,7 @@ Finding out system maximum values
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Operating systems set a maximum value for socket buffer sizes.
-If the buffer sizes are tuned with :ref:`dds_layer_domainParticipantQos`, the values set
+If the buffer sizes are tuned with DomainParticipantQos, the values set
 cannot exceed the maximum value of the system.
 
 Linux
@@ -140,11 +143,12 @@ Flow Controllers
 ----------------
 
 *eProsima Fast DDS* provides a mechanism to limit the rate at which the data is sent by a
-:ref:`dds_layer_publisher_dataWriter`.
-These controllers can be configured at :ref:`dds_layer_publisher_dataWriter` or :ref:`dds_layer_domainParticipant`
+DataWriter.
+These controllers can be configured at DataWriter or DomainParticipant
 level.
-On the :ref:`dds_layer_domainParticipant` the throughput controller is configured on the ``wire_protocol()`` field,
-while the :ref:`dds_layer_publisher_dataWriterQos` uses the ``throughput_controller()`` field.
+On the DomainParticipant the throughput controller is configured on the |DomainParticipantQos::wire_protocol-api|
+member function, while the :ref:`dds_layer_publisher_dataWriterQos` uses the
+|DataWriterQos::throughput_controller-api| member function.
 
 +------------------------------------------------+
 | **C++**                                        |
@@ -176,16 +180,16 @@ while the :ref:`dds_layer_publisher_dataWriterQos` uses the ``throughput_control
 Tuning Heartbeat Period
 -----------------------
 
-On ``RELIABLE`` :ref:`reliabilityqospolicy`, RTPS protocol can detect which messages have been lost
-and retransmit them again.
+On |RELIABLE_RELIABILITY_QOS-api| (:ref:`reliabilityqospolicy`), RTPS protocol can detect which messages have been lost
+and retransmit them.
 This mechanism is based on meta-traffic information exchanged between
-:ref:`DataWriters<dds_layer_publisher_dataWriter>` and :ref:`DataReaders<dds_layer_subscriber_dataReader>`,
+DataWriters and DataReaders,
 namely, Heartbeat and Ack/Nack messages.
 
 A smaller Heartbeat period increases the CPU and network overhead, but speeds up the system response when
 a piece of data is lost.
 Therefore, users can customize the Heartbeat period to match their needs.
-This can be done with the :ref:`dds_layer_publisher_dataWriterQos`.
+This can be done with the DataWriterQos.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -198,14 +202,14 @@ This can be done with the :ref:`dds_layer_publisher_dataWriterQos`.
 Using Non-strict Reliability
 ----------------------------
 
-When :ref:`historyqospolicykind` is set as ``KEEP_ALL``, all samples have to be received (and acknowledged)
-by all subscribers before they can be overridden by the :ref:`dds_layer_publisher_dataWriter`.
+When :ref:`historyqospolicykind` is set as |KEEP_ALL_HISTORY_QOS-api|, all samples have to be received
+(and acknowledged) by all subscribers before they can be overridden by the DataWriter.
 If the message rate is high and the network is not reliable (i.e., lots of packets get lost), the history of the
-:ref:`dds_layer_publisher_dataWriter` can be filled up, blocking the publication of new messages until any
+DataWriter can be filled up, blocking the publication of new messages until any
 of the old messages is acknowledged by all subscribers.
 
-If this strictness is not needed, :ref:`historyqospolicykind` can be set as ``KEEP_LAST``.
-In this case, when the history of the :ref:`dds_layer_publisher_dataWriter` is full, the oldest message that has not
+If this strictness is not needed, :ref:`historyqospolicykind` can be set as |KEEP_ALL_HISTORY_QOS-api|.
+In this case, when the history of the DataWriter is full, the oldest message that has not
 been fully acknowledged yet is overridden with the new one.
 If any subscriber did not receive the discarded message, the publisher
 will send a GAP message to inform the subscriber that the message is lost forever.
@@ -221,23 +225,23 @@ Example: Sending a large file
 
 Consider the following scenario:
 
-* A :ref:`dds_layer_publisher` needs to send a file with a size of 9.9 MB.
-* The :ref:`dds_layer_publisher` and :ref:`dds_layer_subscriber` are connected through a network
+* A Publisher needs to send a file with a size of 9.9 MB.
+* The Publisher and Subscriber are connected through a network
   with a bandwidth of 100 MB/s
 
-With a fragment size of 64 kB, the :ref:`dds_layer_publisher` has to send about 1100 fragments to send the whole file.
+With a fragment size of 64 kB, the Publisher has to send about 1100 fragments to send the whole file.
 A possible configuration for this scenario could be:
 
-* Using ``RELIABLE`` :ref:`reliabilityqospolicy`,
+* Using |RELIABLE_RELIABILITY_QOS-api|,
   since a losing a single fragment would mean the loss of the complete file.
-* Decreasing the heartbeat period, in order to increase the reactivity of the :ref:`dds_layer_publisher`.
+* Decreasing the heartbeat period, in order to increase the reactivity of the Publisher.
 * Limiting the data rate using a :ref:`Flow Controller<flow-controllers>`,
   to avoid this transmission cannibalizing the whole bandwidth.
   A reasonable rate for this application could be 5 MB/s, which represents only 5% of the total bandwidth.
 
 .. note::
 
-   Using SHM transport the only limit to the fragment size is the available memory.
+   Using :ref:`transport_sharedMemory_sharedMemory` the only limit to the fragment size is the available memory.
    Therefore, all fragmentation can be avoided in SHM by increasing the size of the shared buffers.
 
 .. _use-case-largeData-exampleStreaming:
@@ -245,11 +249,11 @@ A possible configuration for this scenario could be:
 Example: Video streaming
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this scenario, the application transmits a video stream between a :ref:`dds_layer_publisher`
-and a :ref:`dds_layer_subscriber`, at 50 fps. In real-time audio or video transmissions,
+In this scenario, the application transmits a video stream between a Publisher
+and a Subscriber, at 50 fps. In real-time audio or video transmissions,
 it is usually preferred to have a high stable datarate feed, even at the cost of losing some
 samples.
 Losing one or two samples per second at 50 fps is more acceptable than freezing the video waiting for the retransmission
 of lost samples.
-Therefore, in this case *best-effort* reliability can be appropriate.
+Therefore, in this case |BEST_EFFORT_RELIABILITY_QOS-api| can be appropriate.
 

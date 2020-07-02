@@ -1,23 +1,26 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_topic_topicListener:
 
 TopicListener
 =============
 
-:class:`TopicListener` is an abstract class defining the callbacks that will be triggered
+|TopicListener-api| is an abstract class defining the callbacks that will be triggered
 in response to state changes on the :ref:`dds_layer_topic_topic`.
 By default, all these callbacks are empty and do nothing.
 The user should implement a specialization of this class overriding the callbacks
 that are needed on the application.
 Callbacks that are not overridden will maintain their empty implementation.
 
-:class:`TopicListener` has the following callback:
+TopicListener has the following callback:
 
- * **on_inconsistent_topic**: A remote :ref:`dds_layer_topic_topic` is discovered with the same name
-   but different characteristics as another locally created :ref:`dds_layer_topic_topic`.
+ * |TopicListener::on_inconsistent_topic-api|: A remote Topic is discovered with the same name
+   but different characteristics as another locally created Topic.
 
 .. warning::
-   Currently *on_inconsistent_topic* is not implemented (it will never be called), and will be implemented
-   on a future release of Fast DDS.
+   Currently |TopicListener::on_inconsistent_topic-api| is not implemented (it will never be called), and will be
+   implemented on a future release of *Fast DDS*.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

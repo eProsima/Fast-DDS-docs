@@ -1,17 +1,24 @@
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+
 .. _dynamictypes_examples:
 
 Dynamic HelloWorld Examples
 ===========================
 
+.. _Fast DDS GitHub repository: https://github.com/eProsima/Fast-DDS
+
 These are complete working examples that make use of dynamic types.
-You can explore them to find how this feature connects to the rest of Fast DDS,
+You can explore them to find how this feature connects to the rest of *Fast DDS*,
 and learn how to integrate it in your own application.
 
 DynamicHelloWorldExample
 ------------------------
 
-This example is located in folder ``examples/C++/DynamicHelloWorldExample``.
-It shows the use of DynamicType generation to provide the TopicDataType.
+This example is in folder
+`examples/C++/DynamicHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/DynamicHelloWorldExample>`_
+of the `Fast DDS GitHub repository`_.
+It shows the use of DynamicType generation to provide the |TopicDataType|.
 This example is compatible with the classic HelloWorldExample.
 
 As a quick reference, the following piece of code shows how the HelloWorld type is created using DynamicTypes:
@@ -26,15 +33,19 @@ As a quick reference, the following piece of code shows how the HelloWorld type 
 DDSDynamicHelloWorldExample
 ---------------------------
 
-This example uses the DDS API, and it is located in the ``examples/C++/DDS/DynamicHelloWorldExample`` folder.
+This example uses the DDS API, and can be retrieve from folder
+`examples/C++/DDS/DynamicHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/DDS/DynamicHelloWorldExample>`_
+of the `Fast DDS GitHub repository`_.
 It shows a publisher that loads a type from an XML file, and shares it during discovery.
 The subscriber discovers the type using :ref:`discovery-time-data-typing`, and registers the
-discovered type on the ``on_type_discovery`` listener function.
+discovered type on the |DomainParticipantListener::on_type_discovery-api| listener function.
 
 TypeLookupService
 -----------------
 
-This example uses the DDS API, and it is located in the ``examples/C++/DDS/TypeLookupService`` folder.
-It's very similar to DDSDynamicHelloWorldExample, but the shared type is complex enough to require the
+This example uses the DDS API, and it is located in folder
+`examples/C++/DDS/TypeLookupService <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/DDS/TypeLookupService>`_
+of the `Fast DDS GitHub repository`_.
+It is very similar to DDSDynamicHelloWorldExample, but the shared type is complex enough to require the
 TypeLookup Service due to the dependency of inner struct types.
-Specifically, it uses the ``register_remote_type`` approach with a callback.
+Specifically, it uses the |DomainParticipant::register_remote_type-api| approach with a callback.

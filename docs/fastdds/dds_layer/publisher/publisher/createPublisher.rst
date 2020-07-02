@@ -1,29 +1,32 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_publisher_creation:
 
 Creating a Publisher
 ====================
 
 A :ref:`dds_layer_publisher_publisher` always belongs to a :ref:`dds_layer_domainParticipant`.
-Creation of a :ref:`dds_layer_publisher_publisher` is done with the :func:`create_publisher` member function on the
-:ref:`dds_layer_domainParticipant` instance, that acts as a factory for the :ref:`dds_layer_publisher_publisher`.
+Creation of a Publisher is done with the |DomainParticipant::create_publisher-api| member function on the
+DomainParticipant instance, that acts as a factory for the Publisher.
 
 Mandatory arguments are:
 
- * The :ref:`dds_layer_publisher_publisherQos` describing the behavior of the :ref:`dds_layer_publisher_publisher`.
+ * The :ref:`dds_layer_publisher_publisherQos` describing the behavior of the Publisher.
    If the provided value is :class:`PUBLISHER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultPublisherQos` is used.
 
 Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_publisher_publisherListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the :ref:`dds_layer_publisher_publisher`.
+   that will be triggered in response to events and state changes on the Publisher.
    By default empty callbacks are used.
 
- * A :class:`StatusMask` that activates or deactivates triggering of individual callbacks on the
-   :ref:`dds_layer_publisher_publisherListener`.
+ * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
+   PublisherListener.
    By default all events are enabled.
 
-:func:`create_publisher` will return a null pointer if there was an error during the operation, e.g.
+|DomainParticipant::create_publisher-api| will return a null pointer if there was an error during the operation, e.g.
 if the provided QoS is not compatible or is not supported.
 It is advisable to check that the returned value is a valid pointer.
 
@@ -40,25 +43,25 @@ Profile based creation of a Publisher
 -------------------------------------
 
 Instead of using a :ref:`dds_layer_publisher_publisherQos`, the name of a profile
-can be used to create a :ref:`dds_layer_publisher_publisher` with the :func:`create_publisher_with_profile`
-member function on the :ref:`dds_layer_domainParticipant` instance.
+can be used to create a Publisher with the |DomainParticipant::create_publisher_with_profile-api|
+member function on the DomainParticipant instance.
 
 Mandatory arguments are:
 
- * A string with the name that identifies the :ref:`dds_layer_publisher_publisher`.
+ * A string with the name that identifies the Publisher.
 
 Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_publisher_publisherListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the :ref:`dds_layer_publisher_publisher`.
+   that will be triggered in response to events and state changes on the Publisher.
    By default empty callbacks are used.
 
- * A :class:`StatusMask` that activates or deactivates triggering of individual callbacks on the
-   :ref:`dds_layer_publisher_publisherListener`.
+ * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
+   PublisherListener.
    By default all events are enabled.
 
-:func:`create_publisher_with_profile` will return a null pointer if there was an error during the operation, e.g.
-if the provided QoS is not compatible or is not supported.
+|DomainParticipant::create_publisher_with_profile-api| will return a null pointer if there was an error during the
+operation, e.g. if the provided QoS is not compatible or is not supported.
 It is advisable to check that the returned value is a valid pointer.
 
 .. note::
@@ -77,8 +80,8 @@ It is advisable to check that the returned value is a valid pointer.
 Deleting a Publisher
 --------------------
 
-A :ref:`dds_layer_publisher_publisher` can be deleted with the :func:`delete_publisher` member function on the
-:ref:`dds_layer_domainParticipant` instance where the :ref:`dds_layer_publisher_publisher` was created.
+A Publisher can be deleted with the |DomainParticipant::delete_publisher-api| member function on the
+DomainParticipant instance where the Publisher was created.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

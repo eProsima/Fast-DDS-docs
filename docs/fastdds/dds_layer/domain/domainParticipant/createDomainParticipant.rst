@@ -1,29 +1,34 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_domainParticipant_creation:
 
 Creating a DomainParticipant
 ============================
 
-Creation of a :ref:`dds_layer_domainParticipant` is done with the :func:`create_participant()` member function on the
-:ref:`dds_layer_domainParticipantFactory` singleton, that acts as a factory for the :ref:`dds_layer_domainParticipant`.
+Creation of a :ref:`dds_layer_domainParticipant` is done with the |DomainParticipantFactory::create_participant-api|
+member function on the
+:ref:`dds_layer_domainParticipantFactory` singleton, that acts as a factory for the DomainParticipant.
 
 Mandatory arguments are:
 
- * The domainId that identifies the domain where the :ref:`dds_layer_domainParticipant` will be created.
+ * The domainId that identifies the domain where the DomainParticipant will be created.
 
- * The :ref:`dds_layer_domainParticipantQos` describing the behavior of the :ref:`dds_layer_domainParticipant`.
-   If the provided value is :class:`TOPIC_QOS_DEFAULT`, the value of the :ref:`dds_layer_domainParticipantQos` is used.
+ * The :ref:`dds_layer_domainParticipantQos` describing the behavior of the DomainParticipant.
+   If the provided value is :class:`TOPIC_QOS_DEFAULT`, the value of the DomainParticipantQos is used.
 
 Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the :ref:`dds_layer_domainParticipant`.
+   that will be triggered in response to events and state changes on the DomainParticipant.
    By default empty callbacks are used.
 
- * A :class:`StatusMask` that activates or deactivates triggering of individual callbacks on the
+ * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
    :ref:`dds_layer_domainParticipantListener`.
    By default all events are enabled.
 
-:func:`create_participant()` will return a null pointer if there was an error during the operation, e.g.
+|DomainParticipantFactory::create_participant-api|
+will return a null pointer if there was an error during the operation, e.g.
 if the provided QoS is not compatible or is not supported.
 It is advisable to check that the returned value is a valid pointer.
 
@@ -39,28 +44,28 @@ It is advisable to check that the returned value is a valid pointer.
 Profile based creation of a DomainParticipant
 ---------------------------------------------
 
-Instead of using a :ref:`dds_layer_domainParticipantQos`, the name of a profile
-can be used to create a :ref:`dds_layer_domainParticipant` with the :func:`create_participant_with_profile()`
+Instead of using a DomainParticipantQos, the name of a profile
+can be used to create a DomainParticipant with the |DomainParticipantFactory::create_participant_with_profile-api|
 member function on the :ref:`dds_layer_domainParticipantFactory` singleton.
 
 Mandatory arguments are:
 
- * The domainId that identifies the domain where the :ref:`dds_layer_domainParticipant` will be created.
+ * The domainId that identifies the domain where the DomainParticipant will be created.
 
- * The name of the profile to be applied to the :ref:`dds_layer_domainParticipant`.
+ * The name of the profile to be applied to the DomainParticipant.
 
 Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the :ref:`dds_layer_domainParticipant`.
+   that will be triggered in response to events and state changes on the DomainParticipant.
    By default empty callbacks are used.
 
- * A :class:`StatusMask` that activates or deactivates triggering of individual callbacks on the
+ * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
    :ref:`dds_layer_domainParticipantListener`.
    By default all events are enabled.
 
-:func:`create_participant_with_profile()` will return a null pointer if there was an error during the operation, e.g
-if the provided QoS is not compatible or is not supported.
+|DomainParticipantFactory::create_participant_with_profile-api| will return a null pointer if there was an error during
+the operation, e.g if the provided QoS is not compatible or is not supported.
 It is advisable to check that the returned value is a valid pointer.
 
 .. note::
@@ -78,7 +83,7 @@ It is advisable to check that the returned value is a valid pointer.
 Deleting a DomainParticipant
 ----------------------------
 
-A :ref:`dds_layer_domainParticipant` can be deleted with the :func:`delete_participant()` member function on the
+A DomainParticipant can be deleted with the |DomainParticipantFactory::delete_participant-api| member function on the
 :ref:`dds_layer_domainParticipantFactory` singleton.
 
 .. note::

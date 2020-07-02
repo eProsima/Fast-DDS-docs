@@ -3097,7 +3097,6 @@ void xml_profiles_examples()
             // Register MyStruct type
             TypeSupport my_struct_type_support(new eprosima::fastrtps::types::DynamicPubSubType(my_struct_type));
             my_struct_type_support.register_type(participant, nullptr);
-            //!--
         }
         else
         {
@@ -3105,6 +3104,7 @@ void xml_profiles_examples()
                     << "Please, set the correct path to the XML file"
                     << std::endl;
         }
+        //!--
     }
 }
 

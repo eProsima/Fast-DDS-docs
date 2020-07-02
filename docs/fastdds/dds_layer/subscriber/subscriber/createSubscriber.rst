@@ -1,29 +1,32 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_subscriber_creation:
 
 Creating a Subscriber
 =====================
 
 A :ref:`dds_layer_subscriber_subscriber` always belongs to a :ref:`dds_layer_domainParticipant`.
-Creation of a :ref:`dds_layer_subscriber_subscriber` is done with the :func:`create_subscriber` member function on the
-:ref:`dds_layer_domainParticipant` instance, that acts as a factory for the :ref:`dds_layer_subscriber_subscriber`.
+Creation of a Subscriber is done with the |DomainParticipant::create_subscriber-api| member function on the
+DomainParticipant instance, that acts as a factory for the Subscriber.
 
 Mandatory arguments are:
 
- * The :ref:`dds_layer_subscriber_subscriberQos` describing the behavior of the :ref:`dds_layer_subscriber_subscriber`.
+ * The :ref:`dds_layer_subscriber_subscriberQos` describing the behavior of the Subscriber.
    If the provided value is :class:`SUBSCRIBER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultSubscriberQos` is used.
 
 Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_subscriber_subscriberListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the :ref:`dds_layer_subscriber_subscriber`.
+   that will be triggered in response to events and state changes on the Subscriber.
    By default empty callbacks are used.
 
- * A :class:`StatusMask` that activates or deactivates triggering of individual callbacks on the
-   :ref:`dds_layer_subscriber_subscriberListener`.
+ * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
+   SubscriberListener.
    By default all events are enabled.
 
-:func:`create_subscriber` will return a null pointer if there was an error during the operation, e.g.
+|DomainParticipant::create_subscriber-api| will return a null pointer if there was an error during the operation, e.g.
 if the provided QoS is not compatible or is not supported.
 It is advisable to check that the returned value is a valid pointer.
 
@@ -39,26 +42,26 @@ It is advisable to check that the returned value is a valid pointer.
 Profile based creation of a Subscriber
 --------------------------------------
 
-Instead of using a :ref:`dds_layer_subscriber_subscriberQos`, the name of a profile
-can be used to create a :ref:`dds_layer_subscriber_subscriber` with the :func:`create_subscriber_with_profile`
-member function on the :ref:`dds_layer_domainParticipant` instance.
+Instead of using a SubscriberQos, the name of a profile
+can be used to create a Subscriber with the |DomainParticipant::create_subscriber_with_profile-api|
+member function on the DomainParticipant instance.
 
 Mandatory arguments are:
 
- * A string with the name that identifies the :ref:`dds_layer_subscriber_subscriber`.
+ * A string with the name that identifies the Subscriber.
 
 Optional arguments are:
 
- * A Listener derived from :ref:`dds_layer_subscriber_subscriberListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the :ref:`dds_layer_subscriber_subscriber`.
+ * A Listener derived from SubscriberListener, implementing the callbacks
+   that will be triggered in response to events and state changes on the Subscriber.
    By default empty callbacks are used.
 
- * A :class:`StatusMask` that activates or deactivates triggering of individual callbacks on the
-   :ref:`dds_layer_subscriber_subscriberListener`.
+ * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
+   SubscriberListener.
    By default all events are enabled.
 
-:func:`create_subscriber_with_profile` will return a null pointer if there was an error during the operation, e.g.
-if the provided QoS is not compatible or is not supported.
+|DomainParticipant::create_subscriber_with_profile-api| will return a null pointer if there was an error during
+the operation, e.g. if the provided QoS is not compatible or is not supported.
 It is advisable to check that the returned value is a valid pointer.
 
 .. note::
@@ -77,8 +80,8 @@ It is advisable to check that the returned value is a valid pointer.
 Deleting a Subscriber
 ---------------------
 
-A :ref:`dds_layer_subscriber_subscriber` can be deleted with the :func:`delete_subscriber` member function on the
-:ref:`dds_layer_domainParticipant` instance where the :ref:`dds_layer_subscriber_subscriber` was created.
+A Subscriber can be deleted with the |DomainParticipant::delete_subscriber-api| member function on the
+DomainParticipant instance where the Subscriber was created.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

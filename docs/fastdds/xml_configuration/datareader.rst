@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _subscriberprofiles:
 
@@ -21,7 +23,7 @@ Thus, the following XML codes are equivalent.
 .. important::
 
     The ``<subscriber>`` and ``<data_reader>`` XML tags are equivalent.
-    Therefore, XML profiles in which the |DataReaders| are defined with the ``<subscriber>`` tag are fully compatible
+    Therefore, XML profiles in which the DataReaders are defined with the ``<subscriber>`` tag are fully compatible
     with *Fast DDS*.
 
 
@@ -86,7 +88,7 @@ The DataReader configuration is performed through the XML elements listed in the
      -
    * - ``<expectsInlineQos>``
      - It indicates if QoS is expected inline.
-     - ``Boolean``
+     - ``bool``
      - ``false``
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for DataReaders's |br| history.
@@ -98,11 +100,11 @@ The DataReader configuration is performed through the XML elements listed in the
      -
    * - ``<userDefinedID>``
      - Used for StaticEndpointDiscovery.
-     - ``Int16``
+     - ``int16_t``
      - -1
    * - ``<entityID>``
-     - Set the |entity_id| of the |RTPSEndpointQos| |br| class.
-     - ``Int16``
+     - Set the |RTPSEndpointQos::entity_id-api| of the |RTPSEndpointQos| |br| class.
+     - ``int16_t``
      - -1
    * - ``<matchedPublishersAllocation>``
      - Sets the limits of the collection of matched |br|

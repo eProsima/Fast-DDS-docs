@@ -1,3 +1,7 @@
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
+
 .. _transport_transportApi:
 
 Transport API
@@ -30,7 +34,7 @@ using its :func:`create_transport` factory member function.
 Data members
 ^^^^^^^^^^^^
 
-The :ref:`transport_transportApi_transportDescriptor` defines the following data members:
+The TransportDescriptorInterface defines the following data members:
 
 +--------------------------+------------------+-----------------------------------------------------------------------+
 | Member                   | Data type        | Description                                                           |
@@ -53,13 +57,13 @@ A :class:`Transport` is any class that implements the :class:`TransportInterface
 It is the object that actually performs the message distribution over a physical transport.
 
 Each :class:`Transport` class defines its own ``transport_kind``, a unique identifier that is used to
-check the compatibility of a :ref:`transport_transportApi_locator` with a :class:`Transport`, i.e.,
-determine whether a :ref:`transport_transportApi_locator` refers to a :class:`Transport` or not.
+check the compatibility of a :ref:`transport_transportApi_locator` with a Transport, i.e.,
+determine whether a Locator refers to a Transport or not.
 
 Applications do not create the :class:`Transport` instance themselves.
 Instead, applications use a :class:`TransportDescriptor` instance to configure the desired transport, and add
 this configured instance to the list of user-defined transports of the :ref:`dds_layer_domainParticipant`.
-The :ref:`dds_layer_domainParticipant` will use the factory function on the :class:`TransportDescriptor`
+The DomainParticipant will use the factory function on the :class:`TransportDescriptor`
 to create the :class:`Transport` when required.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -71,7 +75,7 @@ to create the :class:`Transport` when required.
 Data members
 ^^^^^^^^^^^^
 
-The :ref:`transport_transportApi_transport` defines the following data members:
+The TransportInterface defines the following data members:
 
 +-------------------------+------------------+-----------------------------------------------------------------------+
 | Member                  | Data type        | Description                                                           |
@@ -83,26 +87,26 @@ The :ref:`transport_transportApi_transport` defines the following data members:
 
    ``transport_kind_`` is a protected data member for internal use.
    It cannot be accessed nor modified from the public API.
-   However, users that are implementing a custom :class:`Transport` need to fill it with a unique constant value
+   However, users that are implementing a custom Transport need to fill it with a unique constant value
    in the new implementation.
 
 Currently the following identifiers are used in *Fast DDS*:
 
-+---------------------------+----------+-----------------------------------------------------------------------+
-| Identifier                | Value    | Transport type                                                        |
-+===========================+==========+=======================================================================+
-| ``LOCATOR_KIND_RESERVED`` | ``0``    | None. Reserved value for internal use.                                |
-+---------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_UDPv4``    | ``1``    | :ref:`transport_udp_udp` over IPv4.                                   |
-+---------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_UDPv6``    | ``2``    | :ref:`transport_udp_udp` over IPv6.                                   |
-+---------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_TCPv4``    | ``4``    | :ref:`transport_tcp_tcp` over IPv4.                                   |
-+---------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_TCPv6``    | ``8``    | :ref:`transport_tcp_tcp` over IPv6.                                   |
-+---------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_SHM``      | ``16``   | :ref:`transport_sharedMemory_sharedMemory`.                           |
-+---------------------------+----------+-----------------------------------------------------------------------+
++-----------------------------------+----------+-----------------------------------------------------------------------+
+| Identifier                        | Value    | Transport type                                                        |
++===================================+==========+=======================================================================+
+| ``LOCATOR_KIND_RESERVED-api``     | ``0``    | None. Reserved value for internal use.                                |
++-----------------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_UDPv4-api``        | ``1``    | :ref:`transport_udp_udp` over IPv4.                                   |
++-----------------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_UDPv6-api``        | ``2``    | :ref:`transport_udp_udp` over IPv6.                                   |
++-----------------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_TCPv4-api``        | ``4``    | :ref:`transport_tcp_tcp` over IPv4.                                   |
++-----------------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_TCPv6-api``        | ``8``    | :ref:`transport_tcp_tcp` over IPv6.                                   |
++-----------------------------------+----------+-----------------------------------------------------------------------+
+| ``LOCATOR_KIND_SHM-api``          | ``16``   | :ref:`transport_sharedMemory_sharedMemory`.                           |
++-----------------------------------+----------+-----------------------------------------------------------------------+
 
 
 .. _transport_transportApi_locator:
@@ -110,22 +114,22 @@ Currently the following identifiers are used in *Fast DDS*:
 Locator
 -------
 
-A :class:`Locator` uniquely identifies a communication channel with a remote peer for a particular transport.
-For example, on UDP transports, the :class:`Locator` will contain the information of the IP address and port
+A |Locator_t-api| uniquely identifies a communication channel with a remote peer for a particular transport.
+For example, on UDP transports, the Locator will contain the information of the IP address and port
 of the remote peer.
 
-The :class:`Locator` class is not abstract, and no specializations are implemented for each transport type.
-Instead, transports should map the data members of the :class:`Locator` class to their own channel identification
+The Locator class is not abstract, and no specializations are implemented for each transport type.
+Instead, transports should map the data members of the Locator class to their own channel identification
 concepts. For example, on :ref:`transport_sharedMemory_sharedMemory` the ``address`` contains a unique ID
 for the local host, and the ``port`` represents the shared ring buffer used to communicate buffer descriptors.
 
 Please refer to :ref:`listening_locators` for more information about how to configure
-:ref:`dds_layer_domainParticipant` to listen to incoming traffic.
+DomainParticipant to listen to incoming traffic.
 
 Data members
 ^^^^^^^^^^^^
 
-The :ref:`transport_transportApi_locator` defines the following data members:
+The Locator defines the following data members:
 
 +--------------+------------------+-----------------------------------------------------------------------+
 | Member       | Data type        | Description                                                           |

@@ -1,3 +1,6 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_subscriber_accessreceived:
 
 Accessing received data
@@ -6,19 +9,19 @@ Accessing received data
 The application can access and consume the data values received on the :ref:`dds_layer_subscriber_dataReader`
 by *reading* or *taking*.
 
- * **Reading** is done with the :func:`read_next_data` member function.
+ * **Reading** is done with the |DataReader::read_next_sample-api| member function.
    It reads the next, non-previously accessed data value available on the
-   :ref:`dds_layer_subscriber_dataReader`, and stores it in the provided data buffer.
- * **Taking** is done with the :func:`take_next_data` member function.
+   DataReader, and stores it in the provided data buffer.
+ * **Taking** is done with the |DataReader::take_next_sample-api| member function.
    It reads the next, non-previously accessed data value available on the
-   :ref:`dds_layer_subscriber_dataReader`, and stores it in the provided data buffer.
-   Additionally, it also removes the value from the :ref:`dds_layer_subscriber_dataReader`,
+   DataReader, and stores it in the provided data buffer.
+   Additionally, it also removes the value from the DataReader,
    so it is no longer accessible.
 
-If there is no unread data in the :ref:`dds_layer_subscriber_dataReader`, both operations will return
+If there is no unread data in the DataReader, both operations will return
 ``NO_DATA`` and nothing is returned.
 
-In addition to the data value, the data access operations also provide a :ref:`dds_layer_subscriber_sampleInfo`
+In addition to the data value, the data access operations also provide a SampleInfo
 instance with additional information that help interpreting the returned data value, like the originating
 :ref:`dds_layer_publisher_dataWriter` or the publication time stamp.
 Please, refer to the :ref:`dds_layer_subscriber_sampleInfo` section for an extensive description of its contents.
@@ -29,13 +32,13 @@ Please, refer to the :ref:`dds_layer_subscriber_sampleInfo` section for an exten
 Accessing data on callbacks
 ---------------------------
 
-When the :ref:`dds_layer_subscriber_dataReader` new data values from any matching
-:ref:`dds_layer_publisher_dataWriter`, it informs the application through
+When the DataReader new data values from any matching
+DataWriter, it informs the application through
 two Listener callbacks:
 
-* :cpp:func:`on_data_available<eprosima::fastdds::dds::DataReaderListener::on_data_available>`.
+* |DataReaderListener::on_data_available-api|.
 
-* :cpp:func:`on_data_on_readers<eprosima::fastdds::dds::SubscriberListener::on_data_on_readers>`.
+* |SubscriberListener::on_data_on_readers-api|.
 
 These callbacks can be used to retrieve the newly arrived data, as in the following example.
 
@@ -57,7 +60,7 @@ Accessing data with a waiting thread
 
 Instead of relying on the Listener to try and get new data values,
 the application can also dedicate a thread to wait until any new data is available on the
-:ref:`dds_layer_subscriber_dataReader`.
+DataReader.
 This can be done with the :func:`wait_for_unread_message` member function,
 that blocks until a new data sample is available or the given timeout expires.
 If no new data was available after the timeout expired, it will return with value ``false``.

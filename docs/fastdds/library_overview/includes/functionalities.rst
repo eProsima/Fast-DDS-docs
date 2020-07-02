@@ -1,7 +1,7 @@
 Functionalities
 ---------------
 
-Fast DDS has some added features that can be implemented and configured by the user in their application.
+*Fast DDS* has some added features that can be implemented and configured by the user in their application.
 These are outlined below.
 
 Discovery Protocols
@@ -10,7 +10,7 @@ Discovery Protocols
 The discovery protocols define the mechanisms by which DataWriters publishing under a given Topic, and DataReaders
 subscribing to that same Topic are matched, so that they can start sharing data.
 This applies at any point in the communication process.
-Fast DDS provides the following discovery mechanisms:
+*Fast DDS* provides the following discovery mechanisms:
 
 * **Simple Discovery**.
   This is the default discovery mechanism, which is defined in the
@@ -29,13 +29,13 @@ Fast DDS provides the following discovery mechanisms:
   It allows the user to manually match and unmatch RTPSParticipants, RTPSWriters, and RTPSReaders using whatever
   external meta-information channel of its choice.
 
-The detailed explanation and configuration of all the discovery protocols implemented in Fast DDS can be seen in
+The detailed explanation and configuration of all the discovery protocols implemented in *Fast DDS* can be seen in
 the :ref:`discovery` section.
 
 Security
 ^^^^^^^^
 
-Fast DDS can be configured to provide secure communications by implementing pluggable security at three levels:
+*Fast DDS* can be configured to provide secure communications by implementing pluggable security at three levels:
 
 * Authentication of remote DomainParticipants.
   The **DDS:Auth:PKI-DH** plugin provides authentication using a trusted Certificate
@@ -47,12 +47,12 @@ Fast DDS can be configured to provide secure communications by implementing plug
   The **DDS:Crypto:AES-GCM-GMAC** plugin provides authenticated encryption using Advanced Encryption Standard (AES) in
   Galois Counter Mode (AES-GCM).
 
-More information about security configuration in Fast DDS is available in the :ref:`security` section.
+More information about security configuration in *Fast DDS* is available in the :ref:`security` section.
 
 Logging
 ^^^^^^^
 
-Fast DDS provides an extensible Logging system.
+*Fast DDS* provides an extensible Logging system.
 :class:`Log` class is the entry point of the Logging system.
 It exposes three macro definitions to ease its usage: ``logInfo``, ``logWarning`` and ``logError``.
 Moreover, it allows the definition of new categories, in addition to those already available
@@ -64,7 +64,7 @@ Details of the possible Logging system configurations can be found in the :ref:`
 XML profiles configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fast DDS offers the possibility to make changes in its default settings by using XML profile configuration files.
+*Fast DDS* offers the possibility to make changes in its default settings by using XML profile configuration files.
 Thus, the behavior of the DDS Entities can be modified without the need for the user to implement any program source
 code or re-build an existing application.
 

@@ -5,18 +5,18 @@ Topics with many subscribers
 
 By default, every time a :ref:`dds_layer_publisher_dataWriter` publishes a data change on a
 :ref:`Topic<dds_layer_topic_topic>`, it sends a unicast message for every
-:ref:`dds_layer_subscriber_dataReader` that is subscribed to the :ref:`Topic<dds_layer_topic_topic>`.
-If there are several :ref:`DataReaders<dds_layer_subscriber_dataReader>` subscribed, it is recommendable
+:ref:`dds_layer_subscriber_dataReader` that is subscribed to the Topic.
+If there are several DataReaders subscribed, it is recommendable
 to use multicast instead of unicast.
 By doing so, only one network package will be sent for each sample.
 This will improve both CPU and network usage.
 
-This solution can be implemented with :ref:`transport_udp_udp` or :ref:`transport_sharedMemory_sharedMemory`.
-:ref:`transport_sharedMemory_sharedMemory` is multicast by default, but is only available between DataWriters and
+This solution can be implemented with :ref:`transport_udp_udp` or :ref:`transport_sharedMemory_sharedMemory` (SHM).
+SHM transport is multicast by default, but is only available between DataWriters and
 DataReaders on the same machine.
-:ref:`transport_udp_udp` needs some extra configuration.
+UDP transport needs some extra configuration.
 The example below shows how to set a :ref:`dds_layer_publisher_dataWriterQos` to configure
-a :ref:`dds_layer_publisher_dataWriter` to use a multicast transport on UDP.
+a DataWriter to use a multicast transport on UDP.
 More information about configuring local and remote locators on endpoints can be found in :ref:`rtpsendpointqos`.
 
 .. note::

@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _dds_layer_log_intro:
 
@@ -7,7 +9,7 @@ Logging
 
 *eProsima Fast DDS* provides an extensible built-in logging module that exposes the following main functionalities:
 
-* Three different logging levels: |Log::Kind::Info|, |Log::Kind::Warning|, and |Log::Kind::Error| (see
+* Three different logging levels: |Log::Kind::Info-api|, |Log::Kind::Warning-api|, and |Log::Kind::Error-api| (see
   :ref:`dds_layer_log_logging`).
 * Message filtering according to different criteria: category, content, or source file (see
   :ref:`dds_layer_log_filter`).

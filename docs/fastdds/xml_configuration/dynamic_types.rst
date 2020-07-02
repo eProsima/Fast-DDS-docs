@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _xmldynamictypes:
 
@@ -167,15 +169,15 @@ The identifiers of the available basic types are listed in the table below.
 Please, refer to :ref:`dynamictypes_supportedtypes_primitive` for more information on the primitive types.
 
 +--------------------------------------+---------------------------------------+---------------------------------------+
-| ``boolean``                          | ``int32``                             | ``float32``                           |
+| ``bool``                             | ``int32_t``                           | ``float32``                           |
 +--------------------------------------+---------------------------------------+---------------------------------------+
-| ``byte``                             | ``int64``                             | ``float64``                           |
+| ``byte``                             | ``int64_t``                           | ``float64``                           |
 +--------------------------------------+---------------------------------------+---------------------------------------+
-| ``char``                             | ``uint16``                            | ``float128``                          |
+| ``char``                             | ``uint16_t``                          | ``float128``                          |
 +--------------------------------------+---------------------------------------+---------------------------------------+
-| ``wchar``                            | ``uint32``                            | ``string``                            |
+| ``wchar``                            | ``uint32_t``                          | ``string``                            |
 +--------------------------------------+---------------------------------------+---------------------------------------+
-| ``int16``                            | ``uint64``                            | ``wstring``                           |
+| ``int16_t``                          | ``uint64_t``                          | ``wstring``                           |
 +--------------------------------------+---------------------------------------+---------------------------------------+
 
 All of them are defined as follows:
@@ -252,7 +254,7 @@ these attributes are then defined in the following table.
         - Description
     *   - ``type``
         - Data type.
-          This can be a `Primitive types`_ or a ``nonBasic`` type.
+          This can be a `Primitive types`_ or a ``nonBasic`` type. |br|
           The latter is used to denote that a complex type is defined.
     *   - ``nonBasicTypeName``
         - Name of the complex type. Only applies if the ``type`` attribute is set to ``nonBasic``.

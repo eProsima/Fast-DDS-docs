@@ -1,17 +1,20 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_publisher_publisher:
 
 Publisher
 =========
 
-The :class:`Publisher` acts on behalf of one or several :ref:`dds_layer_publisher_dataWriter` objects
+The |Publisher| acts on behalf of one or several |DataWriter| objects
 that belong to it.
-It serves as a container that allows grouping different :ref:`dds_layer_publisher_dataWriter` objects under
-a common configuration given by the :class:`PublisherQos` of the :class:`Publisher`.
+It serves as a container that allows grouping different DataWriter objects under
+a common configuration given by the |PublisherQos| of the Publisher.
 
-:ref:`dds_layer_publisher_dataWriter` objects that belong to the same :class:`Publisher` do not have any other
-relation among each other beyond the :class:`PublisherQos` of the :class:`Publisher` and act independently
+DataWriter objects that belong to the same Publisher do not have any other
+relation among each other beyond the PublisherQos of the Publisher and act independently
 otherwise.
-Specifically, a :class:`Publisher` can host :ref:`dds_layer_publisher_dataWriter` objects for different topics
+Specifically, a Publisher can host DataWriter objects for different |Topics|
 and data types.
 
 
@@ -20,26 +23,26 @@ and data types.
 PublisherQos
 ------------
 
-:class:`PublisherQos` controls the behavior of the :ref:`dds_layer_publisher_publisher`.
-Internally it contains the following :class:`QosPolicy` objects:
+|PublisherQos-api| controls the behavior of the |Publisher-api|.
+Internally it contains the following |QosPolicy-api| objects:
 
 +--------------------------------+------------------------------------+----------+
 | QosPolicy class                | Accessor/Mutator                   | Mutable  |
 +================================+====================================+==========+
-| PresentationQosPolicy          | :func:`presentation`               | Yes      |
+| |PresentationQosPolicy|        | |PublisherQos::presentation-api|   | Yes      |
 +--------------------------------+------------------------------------+----------+
-| PartitionQosPolicy             | :func:`partition`                  | Yes      |
+| |PartitionQosPolicy|           | |PublisherQos::partition-api|      | Yes      |
 +--------------------------------+------------------------------------+----------+
-| GroupDataQosPolicy             | :func:`group_data`                 | Yes      |
+| |GroupDataQosPolicy|           | |PublisherQos::group_data-api|     | Yes      |
 +--------------------------------+------------------------------------+----------+
-| EntityFactoryQosPolicy         | :func:`entity_factory`             | Yes      |
+| |EntityFactoryQosPolicy|       | |PublisherQos::entity_factory-api| | Yes      |
 +--------------------------------+------------------------------------+----------+
 
-Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
+Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
 default values.
 
-The QoS value of a previously created :ref:`dds_layer_publisher_publisher` can be modified using the
-:func:`set_qos` member function.
+The QoS value of a previously created Publisher can be modified using the
+|Publisher::set_qos-api| member function.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -54,16 +57,16 @@ Default PublisherQos
 ^^^^^^^^^^^^^^^^^^^^
 
 The default :ref:`dds_layer_publisher_publisherQos` refers to the value returned by the
-:func:`get_default_publisher_qos` member function on the :ref:`dds_layer_domainParticipant` instance.
-The special value ``PUBLISHER_QOS_DEFAULT`` can be used as QoS argument on :func:`create_publisher`
-or :func:`set_qos` member functions to indicate that the current default :ref:`dds_layer_publisher_publisherQos`
-should be used.
+|DomainParticipant::get_default_publisher_qos-api| member function on the DomainParticipant instance.
+The special value :class:`PUBLISHER_QOS_DEFAULT` can be used as QoS argument on
+|DomainParticipant::create_publisher-api| or |Publisher::set_qos-api| member functions to indicate that the current
+default PublisherQos should be used.
 
-When the system starts, the default :ref:`dds_layer_publisher_publisherQos` is equivalent to the default constructed
-value :func:`PublisherQos`.
-The default :ref:`dds_layer_publisher_publisherQos` can be modified at any time using the
-:func:`set_default_publisher_qos` member function on the :ref:`dds_layer_domainParticipant` instance.
-Modifying the default :ref:`dds_layer_publisher_publisherQos` will not affect already existing
+When the system starts, the default PublisherQos is equivalent to the default constructed
+value |PublisherQos::PublisherQos-api|.
+The default PublisherQos can be modified at any time using the
+|DomainParticipant::set_default_publisher_qos-api| member function on the :ref:`dds_layer_domainParticipant` instance.
+Modifying the default PublisherQos will not affect already existing
 :ref:`dds_layer_publisher_publisher` instances.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -72,10 +75,10 @@ Modifying the default :ref:`dds_layer_publisher_publisherQos` will not affect al
    :end-before: //!
    :dedent: 8
 
-:func:`set_default_publisher_qos` member function also accepts the special value ``PUBLISHER_QOS_DEFAULT``
-as input argument.
-This will reset the current default :ref:`dds_layer_publisher_publisherQos` to default constructed
-value :func:`PublisherQos`.
+|DomainParticipant::set_default_publisher_qos-api| member function also accepts the special value
+``PUBLISHER_QOS_DEFAULT`` as input argument.
+This will reset the current default PublisherQos to default constructed
+value |PublisherQos::PublisherQos-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -86,7 +89,9 @@ value :func:`PublisherQos`.
 .. note::
    The value ``PUBLISHER_QOS_DEFAULT`` has different meaning depending on where it is used:
 
-   * On :func:`create_publisher` and :func:`set_qos` it refers to the default :ref:`dds_layer_publisher_publisherQos`
-     as returned by :func:`get_default_publisher_qos`.
-   * On :func:`set_default_publisher_qos` it refers to the default constructed :func:`PublisherQos`.
+   * On |DomainParticipant::create_publisher-api| and |Publisher::set_qos-api| it refers to the default
+     :ref:`dds_layer_publisher_publisherQos`.
+     as returned by |DomainParticipant::get_default_publisher_qos-api|.
+   * On |DomainParticipant::set_default_publisher_qos-api| it refers to the default constructed
+     |PublisherQos::PublisherQos-api|.
 

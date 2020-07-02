@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _dds_layer_log_filter:
 
@@ -26,8 +28,8 @@ Category Filtering
 
 Log entries can be filtered upon consumption according to their :ref:`dds_layer_log_category` component using regular
 expressions.
-Each time an entry is ready to be consumed, the category filter is applied using |std::regex_search|.
-To set a category filter, member function |Log::SetCategoryFilter| is used:
+Each time an entry is ready to be consumed, the category filter is applied using |std::regex_search-api|.
+To set a category filter, member function |Log::SetCategoryFilter-api| is used:
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
@@ -50,8 +52,8 @@ File Name Filtering
 
 Log entries can be filtered upon consumption according to their :ref:`dds_layer_log_file_context` component using
 regular expressions.
-Each time an entry is ready to be consumed, the file name filter is applied using |std::regex_search|.
-To set a file name filter, member function |Log::SetFilenameFilter| is used:
+Each time an entry is ready to be consumed, the file name filter is applied using |std::regex_search-api|.
+To set a file name filter, member function |Log::SetFilenameFilter-api| is used:
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
@@ -77,8 +79,8 @@ Content Filtering
 
 Log entries can be filtered upon consumption according to their :ref:`dds_layer_log_message` component using regular
 expressions.
-Each time an entry is ready to be consumed, the content filter is applied using |std::regex_search|.
-To set a content filter, member function |Log::SetErrorStringFilter| is used:
+Each time an entry is ready to be consumed, the content filter is applied using |std::regex_search-api|.
+To set a content filter, member function |Log::SetErrorStringFilter-api| is used:
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
@@ -96,13 +98,13 @@ The previous example would produce the following output:
 Reset Logging Filters
 ^^^^^^^^^^^^^^^^^^^^^
 
-The logging module's filters can be reset with member function |Log::Reset|.
+The logging module's filters can be reset with member function |Log::Reset-api|.
 
 .. warning::
 
     Resetting the module's filters entails:
 
-    * Setting :ref:`dds_layer_log_verbosity_level` to |Log::Kind::Error|.
+    * Setting :ref:`dds_layer_log_verbosity_level` to |Log::Kind::Error-api|.
     * Disabling :ref:`dds_layer_log_file_context` component.
     * Enabling :ref:`dds_layer_log_function_name` component.
     * Clear all :ref:`dds_layer_log_filter`.

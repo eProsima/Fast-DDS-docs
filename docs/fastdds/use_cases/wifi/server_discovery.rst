@@ -7,13 +7,13 @@ During :ref:`discovery`, the Participant Discovery Phase (PDP) relies on meta tr
 announcements sent to multicast addresses so that all the :ref:`DomainParticipants<dds_layer_domainParticipant>`
 in the network can acknowledge each other.
 This phase is followed by a Endpoint Discovery Phase (EDP) where all the
-:ref:`DomainParticipants<dds_layer_domainParticipant>` use discovered unicast addresses to exchange information about
+DomainParticipants use discovered unicast addresses to exchange information about
 their :ref:`dds_layer_publisher` and :ref:`dds_layer_subscriber` entities with the rest of the
-:ref:`DomainParticipants<dds_layer_domainParticipant>`, so that matching between entities of the same topic can occur.
+DomainParticipants, so that matching between entities of the same topic can occur.
 
-*Fast DDS* provides a client-server discovery mechanism, in which a server :ref:`dds_layer_domainParticipant` operates
+*Fast DDS* provides a client-server discovery mechanism, in which a server DomainParticipant operates
 as the central point of communication.
-It collects and processes the metatraffic sent by the client :ref:`DomainParticipants<dds_layer_domainParticipant>`,
+It collects and processes the metatraffic sent by the client DomainParticipants,
 and then distributes the appropriate information among the rest of the clients.
 
 A complete description of the feature can be found at :ref:`discovery_server`.
@@ -221,7 +221,7 @@ Server association can be seen as another isolation mechanism besides :ref:`Doma
 :ref:`partitions`.
 Clients that do not share a server cannot see each other and belong to isolated server networks.
 For example, in the following figure, *client 1* and *client 2* cannot communicate even if they are on the
-same physical network and :ref:`dds_layer_domain`.
+same physical network and Domain.
 
 .. figure:: /01-figures/ds_partition.svg
     :align: center

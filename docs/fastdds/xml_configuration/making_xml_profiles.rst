@@ -1,4 +1,6 @@
-.. include:: includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _making_xml_profiles:
 
@@ -8,9 +10,15 @@ Creating an XML profiles file
 An XML file can contain several XML profiles.
 These XML profiles are defined within the ``<dds>`` element, and in turn, within the ``<profiles>`` XML elements.
 The possible topologies for the definition of XML profiles are specified in :ref:`rootedvsstandalone`.
-The available profile types are: :ref:`participantprofiles`,
-:ref:`publisherprofiles`, :ref:`subscriberprofiles`, :ref:`transportdescriptors`, :ref:`logprofiles`, and
-:ref:`xmldynamictypes`.
+The available profile types are:
+
+* :ref:`participantprofiles`,
+* :ref:`publisherprofiles`,
+* :ref:`subscriberprofiles`,
+* :ref:`transportdescriptors`,
+* :ref:`logprofiles`, and
+* :ref:`xmldynamictypes`.
+
 The following sections will show implementation examples for each of these profiles.
 
 .. literalinclude:: /../code/XMLTester.xml
@@ -32,9 +40,11 @@ The following sections will show implementation examples for each of these profi
 Loading and applying profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In case the user defines the |Entity| profiles via XML files, it is required to load these
-XML files using the |load_XML_profiles_file| public member function before creating any |Entity|.
-Moreover, |create_participant_with_profile|, |create_publisher_with_profile|, and |create_subscriber_with_profile|
+In case the user defines the |Entity-api| profiles via XML files, it is required to load these
+XML files using the |DomainParticipantFactory::load_XML_profiles_file-api| public member function before creating any
+entity.
+Moreover, |DomainParticipantFactory::create_participant_with_profile-api|,
+|DomainParticipant::create_publisher_with_profile-api|, and |DomainParticipant::create_subscriber_with_profile-api|
 member functions expect a profile name as an argument.
 *Fast DDS* searches the given profile name over all the loaded XML profiles, applying the profile to the entity
 if founded.

@@ -1,3 +1,5 @@
+.. include:: ../../03-exports/aliases.include
+
 .. _dynamictypes_supportedtypes:
 
 Supported Types
@@ -39,11 +41,11 @@ This section includes every simple kind:
 +--------------------------+--------------------------+
 
 By definition, primitive types are self-described and can be created without configuration parameters.
-Therefore, ``DynamicTypeBuilderFactory`` exposes several functions to allow users create
-the dynamic type avoiding the ``DynamicTypeBuilder`` step.
-The ``DynamicTypeBuilder`` can still be used to create dynamic data of primitive types,
+Therefore, |DynamicTypeBuilderFactory| exposes several functions to allow users create
+the dynamic type avoiding the |DynamicTypeBuilder| step.
+The DynamicTypeBuilder can still be used to create dynamic data of primitive types,
 as shown on the example below.
-The ``DynamicData`` class has a specific ``get`` and ``set`` functions for each primitive
+The DynamicData class has a specific :func:`get` and :func:`set` functions for each primitive
 type of the list.
 
 .. literalinclude:: /../code/CodeTester.cpp
@@ -61,9 +63,9 @@ Strings are pretty similar to primitive types, the main difference being
 that they need to set the size of the ``buffer`` that they can manage.
 By default this size is set to 255 characters.
 
-``DynamicTypeBuilderFactory`` exposes the functions ``create_string_type`` and ``create_wstring_type``
-to allow users create the Dynamic Types avoiding the ``DynamicTypeBuilder`` step.
-The ``DynamicTypeBuilder`` can still be used to create String type dynamic data,
+DynamicTypeBuilderFactory exposes the functions :func:`create_string_type` and :func:`create_wstring_type`
+to allow users create the DynamicTypes avoiding the DynamicTypeBuilder step.
+The DynamicTypeBuilder can still be used to create String type dynamic data,
 as shown on the example below.
 
 .. literalinclude:: /../code/CodeTester.cpp
@@ -78,12 +80,12 @@ Alias
 -----
 
 Alias types provide an alternative name to an already existing type.
-Once the ``DynamicData`` is created, users can access its information as if
+Once the DynamicData is created, users can access its information as if
 they were working with the base type.
 
-``DynamicTypeBuilderFactory`` exposes the function ``create_alias_type`` to allow users
-create the Alias types avoiding the ``DynamicTypeBuilder`` step.
-The ``DynamicTypeBuilder`` can still be used to create Alias,
+DynamicTypeBuilderFactory exposes the function :func:`create_alias_type` to allow users
+create the Alias types avoiding the DynamicTypeBuilder step.
+The DynamicTypeBuilder can still be used to create Alias,
 as shown on the example below.
 
 .. literalinclude:: /../code/CodeTester.cpp
@@ -98,11 +100,11 @@ Enumeration
 -----------
 
 An enumeration contains a set of supported values and a selected value among those supported.
-The supported values must be configured using the ``DynamicTypeBuilder``, using the ``add_member`` function
+The supported values must be configured using the DynamicTypeBuilder, using the :func:`add_member` function
 for each supported value.
 The input to this function is the index and the name of the value we want to add.
 
-The ``DynamicData`` class has functions ``get_enum_value`` and ``set_enum_value`` to work
+The DynamicData class has functions :func:`get_enum_value` and :func:`set_enum_value` to work
 with value index or value name name strings.
 
 .. literalinclude:: /../code/CodeTester.cpp
@@ -118,7 +120,7 @@ Bitmask
 
 Bitmasks are similar to `enumeration` types, but their members work as bit flags that can be individually turned on and
 off. Bit operations can be applied when testing or setting a bitmask value.
-``DynamicData`` has the special functions ``get_bitmask_value`` and ``set_bitmask_value`` which allow to retrieve or
+DynamicData has the special functions :func:`get_bitmask_value` and :func:`set_bitmask_value` which allow to retrieve or
 modify the full value instead of accessing each bit.
 
 Bitmasks can be bound to any number of bits up to 64.
@@ -135,20 +137,20 @@ Structure
 ---------
 
 Structures are the common complex types, they allow to add any kind of members inside them.
-They don't have any value, they are only used to contain other types.
+They do not have any value, they are only used to contain other types.
 
-To manage the types inside the structure, users can call the ``get`` and ``set`` functions
+To manage the types inside the structure, users can call the :func:`get` and :func:`set` functions
 according to the kind of the type inside the structure using their ``ids``.
 If the structure contains a complex value, it should be used with ``loan_value`` to
 access to it and ``return_loaned_value`` to release that pointer.
-``DynamicData`` manages the counter of loaned values and users can't loan a value that
+DynamicData manages the counter of loaned values and users can not loan a value that
 has been loaned previously without calling ``return_loaned_value`` before.
 
-The ``Ids`` must be consecutive starting by zero, and the ``DynamicType`` will change that
+The ``ids`` must be consecutive starting by zero, and the DynamicType will change that
 Id if it doesn't match with the next value.
 If two members have the same Id, after adding the second one, the previous
 will change its Id to the next value.
-To get the Id of a member by name, ``DynamicData`` exposes the function ``get_member_id_by_name``.
+To get the Id of a member by name, DynamicData exposes the function :func:`get_member_id_by_name`.
 
 .. literalinclude:: /../code/CodeTester.cpp
    :language: c++
@@ -157,7 +159,7 @@ To get the Id of a member by name, ``DynamicData`` exposes the function ``get_me
    :dedent: 8
 
 Structures allow inheritance, exactly with the same OOP meaning. To inherit from another structure, we must create the
-structure calling the ``create_child_struct_builder`` of the factory. This function is shared with bitsets and will
+structure calling the :func:`create_child_struct_builder` of the factory. This function is shared with bitsets and will
 deduce our type depending on the parent's type.
 
 .. literalinclude:: /../code/CodeTester.cpp
@@ -222,7 +224,7 @@ Unions are a special kind of structures where only one of the members is active
 at the same time.
 To control these members, users must set the ``discriminator`` type that is going to be used
 to select the current member calling the ``create_union_builder`` function.
-The ``discriminator`` itself is a Dynamic Type of any primitive type, string type or union type.
+The ``discriminator`` itself is a DynamicType of any primitive type, string type or union type.
 
 Every member that is going to be added needs at least one ``union_case_index`` to set
 how it is going to be selected and, optionally, if it is the default value of the union.
@@ -243,13 +245,13 @@ insert, remove or access to a member of the list. To create this type users
 need to specify the type that it is going to store and optionally the size
 limit of the list.
 
-To ease the memory management of this type, ``DynamicData`` has these functions:
+To ease the memory management of this type, DynamicData has these functions:
 
- - ``insert_sequence_data``: Creates a new element at the end of the list and returns
+ - :func:`insert_sequence_data`: Creates a new element at the end of the list and returns
    the ``id`` of the new element.
- - ``remove_sequence_data``: Removes the element of the given index and refreshes the ids
+ - :func:`remove_sequence_data`: Removes the element of the given index and refreshes the ``ids``
    to keep the consistency of the list.
- - ``clear_data``: Removes all the elements of the list.
+ - :func:`clear_data`: Removes all the elements of the list.
 
 .. literalinclude:: /../code/CodeTester.cpp
    :language: c++
@@ -271,17 +273,17 @@ For that, users must provide a vector with as many elements as dimensions in the
 Each element in the vector represents the size of the given dimension.
 If the value of an element is set to zero, the default value applies (``100``).
 
-Id values on the ``set`` and ``get`` functions of ``DynamicData`` correspond to the array index.
-To ease the management of array elements, every ``set`` function in ``DynamicData`` class creates
+Id values on the :func:`set` and :func:`get` functions of DynamicData correspond to the array index.
+To ease the management of array elements, every :func:`set` function in DynamicData class creates
 the item if the given index is empty.
 
-To ease the memory management of this type, ``DynamicData`` has these functions:
+To ease the memory management of this type, DynamicData has these functions:
 
- * ``insert_array_data``: Creates a new element at the end of the array and returns
+ * :func:`insert_array_data`: Creates a new element at the end of the array and returns
    the ``id`` of the new element.
- * ``remove_array_data``: Clears the element of the given index.
- * ``clear_data``: Removes all the elements of the array.
- * ``get_array_index``: Returns the position id giving a vector of indexes on every dimension
+ * :func:`remove_array_data`: Clears the element of the given index.
+ * :func:`clear_data`: Removes all the elements of the array.
+ * :func:`get_array_index`: Returns the position id giving a vector of indexes on every dimension
    that the arrays support, which is useful in multidimensional arrays.
 
 .. literalinclude:: /../code/CodeTester.cpp
@@ -303,13 +305,13 @@ creates copies of the key element to block the access to these elements.
 To create a map, users must set the types of the key and the value elements, and,
 optionally, the size limit of the map.
 
-To ease the memory management of this type, ``DynamicData`` has these functions:
+To ease the memory management of this type, `DynamicData` has these functions:
 
- * ``insert_map_data``: Inserts a new key value pair and returns the ids of the newly
+ * :func:`insert_map_data`: Inserts a new key value pair and returns the ids of the newly
    created key and value elements.
- * ``remove_map_data``: Uses the given id to find the key element and removes the key
+ * :func:`remove_map_data`: Uses the given id to find the key element and removes the key
    and the value elements from the map.
- * ``clear_data``: Removes all the elements from the map.
+ * :func:`clear_data`: Removes all the elements from the map.
 
 .. literalinclude:: /../code/CodeTester.cpp
    :language: c++

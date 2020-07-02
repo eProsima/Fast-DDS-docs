@@ -1,22 +1,25 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_topic_topic:
 
 Topic
 =====
 
-A :class:`Topic` is a specialization of the broader concept of :ref:`dds_layer_topic_topicDescription`.
-A :class:`Topic` represents a single data flow between :ref:`dds_layer_publisher_publisher`
+A |Topic-api| is a specialization of the broader concept of :ref:`dds_layer_topic_topicDescription`.
+A Topic represents a single data flow between :ref:`dds_layer_publisher_publisher`
 and :ref:`dds_layer_subscriber_subscriber`, providing:
 
  * The name to identify the data flow.
  * The data type that is transmitted on that flow.
  * The QoS values related to the data itself.
 
-The behavior of the :class:`Topic` can be modified with the QoS values
+The behavior of the Topic can be modified with the QoS values
 specified on :ref:`dds_layer_topic_topicQos`.
-The QoS values can be set at the creation of the :class:`Topic`,
-or modified later with the :func:`set_qos` member function.
+The QoS values can be set at the creation of the Topic,
+or modified later with the |Topic::set_qos-api| member function.
 
-Like other Entities, :class:`Topic` accepts a Listener that will be notified of
+Like other Entities, Topic accepts a Listener that will be notified of
 status changes on the Topic.
 
 
@@ -25,46 +28,46 @@ status changes on the Topic.
 TopicQos
 --------
 
-:class:`TopicQos` controls the behavior of the :ref:`dds_layer_topic_topic`.
-Internally it contains the following :class:`QosPolicy` objects:
+|TopicQos-api| controls the behavior of the Topic.
+Internally it contains the following |QosPolicy-api| objects:
 
-+------------------------------+----------------------------+----------+
-| QosPolicy class              | Accessor                   | Mutable  |
-+==============================+============================+==========+
-| TopicDataQosPolicy           | :func:`topic_data`         | Yes      |
-+------------------------------+----------------------------+----------+
-| DurabilityQosPolicy          | :func:`durability`         | Yes      |
-+------------------------------+----------------------------+----------+
-| DurabilityServiceQosPolicy   | :func:`durability_service` | Yes      |
-+------------------------------+----------------------------+----------+
-| DeadlineQosPolicy            | :func:`deadline`           | Yes      |
-+------------------------------+----------------------------+----------+
-| LatencyBudgetQosPolicy       | :func:`latency_budget`     | Yes      |
-+------------------------------+----------------------------+----------+
-| LivelinessQosPolicy          | :func:`liveliness`         | Yes      |
-+------------------------------+----------------------------+----------+
-| ReliabilityQosPolicy         | :func:`reliability`        | Yes      |
-+------------------------------+----------------------------+----------+
-| DestinationOrderQosPolicy    | :func:`destination_order`  | Yes      |
-+------------------------------+----------------------------+----------+
-| HistoryQosPolicy             | :func:`history`            | Yes      |
-+------------------------------+----------------------------+----------+
-| ResourceLimitsQosPolicy      | :func:`resource_limits`    | Yes      |
-+------------------------------+----------------------------+----------+
-| TransportPriorityQosPolicy   | :func:`transport_priority` | Yes      |
-+------------------------------+----------------------------+----------+
-| LifespanQosPolicy            | :func:`lifespan`           | Yes      |
-+------------------------------+----------------------------+----------+
-| OwnershipQosPolicy           | :func:`ownership`          | Yes      |
-+------------------------------+----------------------------+----------+
-| DataRepresentationQosPolicy  | :func:`representation`     | Yes      |
-+------------------------------+----------------------------+----------+
++----------------------------------------------+------------------------------------------------------------+----------+
+| QosPolicy class                              | Accessor                                                   | Mutable  |
++==============================================+============================================================+==========+
+| |TopicDataQosPolicy|                         | |TopicQos::topic_data-api|                                 | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |DurabilityQosPolicy|                        | |TopicQos::durability-api|                                 | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |DurabilityServiceQosPolicy|                 | |TopicQos::durability_service-api|                         | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |DeadlineQosPolicy|                          | |TopicQos::deadline-api|                                   | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |LatencyBudgetQosPolicy|                     | |TopicQos::latency_budget-api|                             | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |LivelinessQosPolicy|                        | |TopicQos::liveliness-api|                                 | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |ReliabilityQosPolicy|                       | |TopicQos::reliability-api|                                | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |DestinationOrderQosPolicy|                  | |TopicQos::destination_order-api|                          | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |HistoryQosPolicy|                           | |TopicQos::history-api|                                    | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |ResourceLimitsQosPolicy|                    | |TopicQos::resource_limits-api|                            | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |TransportPriorityQosPolicy|                 | |TopicQos::transport_priority-api|                         | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |LifespanQosPolicy|                          | |TopicQos::lifespan-api|                                   | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |OwnershipQosPolicy|                         | |TopicQos::ownership-api|                                  | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
+| |DataRepresentationQosPolicy|                | |TopicQos::representation-api|                             | Yes      |
++----------------------------------------------+------------------------------------------------------------+----------+
 
-Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
+Refer to the detailed description of each QosPolicy-api class for more information about their usage and
 default values.
 
-The QoS value of a previously created :ref:`dds_layer_topic_topic` can be modified using the
-:func:`set_qos` member function.
+The QoS value of a previously created Topic can be modified using the
+|Topic::set_qos-api| member function.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -79,16 +82,16 @@ Default TopicQos
 ^^^^^^^^^^^^^^^^
 
 The default :ref:`dds_layer_topic_topicQos` refers to the value returned by the
-:func:`get_default_topic_qos` member function on the :ref:`dds_layer_domainParticipant` instance.
-The special value ``TOPIC_QOS_DEFAULT`` can be used as QoS argument on :func:`create_topic`
-or :func:`set_qos` member functions to indicate that the current default :ref:`dds_layer_topic_topicQos`
+|DomainParticipant::get_default_topic_qos-api| member function on the :ref:`dds_layer_domainParticipant` instance.
+The special value ``TOPIC_QOS_DEFAULT`` can be used as QoS argument on |DomainParticipant::create_topic-api|
+or |Topic::set_qos-api| member functions to indicate that the current default TopicQos
 should be used.
 
-When the system starts, the default :ref:`dds_layer_topic_topicQos` is equivalent to the default constructed
-value :func:`TopicQos`.
-The default :ref:`dds_layer_topic_topicQos` can be modified at any time using the
-:func:`set_default_topict_qos` member function on the :ref:`dds_layer_domainParticipant` instance.
-Modifying the default :ref:`dds_layer_topic_topicQos` will not affect already existing :ref:`dds_layer_topic_topic`
+When the system starts, the default TopicQos is equivalent to the default constructed
+value |TopicQos::TopicQos-api|.
+The default TopicQos can be modified at any time using the
+|DomainParticipant::get_default_topic_qos-api| member function on the DomainParticipant instance.
+Modifying the default TopicQos will not affect already existing Topic
 instances.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -97,10 +100,10 @@ instances.
    :end-before: //!
    :dedent: 8
 
-:func:`set_default_topic_qos` member function also accepts the value ``TOPIC_QOS_DEFAULT``
+|DomainParticipant::get_default_topic_qos-api| member function also accepts the value ``TOPIC_QOS_DEFAULT``
 as input argument.
-This will reset the current default :ref:`dds_layer_topic_topicQos` to default constructed
-value :func:`TopicQos`.
+This will reset the current default TopicQos to default constructed
+value |TopicQos::TopicQos-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -111,8 +114,8 @@ value :func:`TopicQos`.
 .. note::
    The value ``TOPIC_QOS_DEFAULT`` has different meaning depending on where it is used:
 
-   * On :func:`create_topic` and :func:`set_qos` it refers to the default :ref:`dds_layer_topic_topicQos`
-     as returned by :func:`get_default_topic_qos`.
-   * On :func:`set_default_topic_qos` it refers to the default constructed :func:`TopicQos`.
+   * On |DomainParticipant::create_topic-api| and |Topic::set_qos-api| it refers to the default TopicQos
+     as returned by |DomainParticipant::get_default_topic_qos-api|.
+   * On |DomainParticipant::get_default_topic_qos-api| it refers to the default constructed |TopicQos::TopicQos-api|.
 
 

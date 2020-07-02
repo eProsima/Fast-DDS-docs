@@ -1,3 +1,6 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _partitions:
 
 Partitions
@@ -6,13 +9,13 @@ Partitions
 Partitions introduce a logical entity isolation level concept inside the physical isolation induced by a
 :ref:`dds_layer_domain`.
 They represent another level to separate :ref:`Publishers<dds_layer_publisher>` and
-:ref:`Subscribers<dds_layer_subscriber>` beyond :ref:`dds_layer_domain` and
+:ref:`Subscribers<dds_layer_subscriber>` beyond Domain and
 :ref:`dds_layer_topic`.
-For a :ref:`dds_layer_publisher` to communicate with a :ref:`dds_layer_subscriber`,
+For a Publisher to communicate with a Subscriber,
 they have to belong at least to one common partition.
 In this sense, partitions represent a light mechanism to provide data separation among endpoints:
 
- * Unlike :ref:`dds_layer_domain` and :ref:`dds_layer_topic`, Partitions can be changed dynamically
+ * Unlike Domain and Topic, Partitions can be changed dynamically
    during the life cycle of the endpoint with little cost.
    Specifically, no new threads are launched, no new memory is allocated, and the change history is not affected.
    Beware that modifying the Partition membership of endpoints will trigger the announcement
@@ -20,12 +23,12 @@ In this sense, partitions represent a light mechanism to provide data separation
    depending on the new Partition configuration.
    Changes on the memory allocation and running threads may occur due to the matching of remote endpoints.
 
- * Unlike :ref:`dds_layer_domain` and :ref:`dds_layer_topic`, an endpoint can belong to several Partitions
+ * Unlike Domain and Topic, an endpoint can belong to several Partitions
    at the same time.
-   For certain data to be shared over different :ref:`Topics<dds_layer_topic>`, there must be a different
-   :ref:`dds_layer_publisher` for each :ref:`dds_layer_topic`,
+   For certain data to be shared over different Topics, there must be a different
+   Publisher for each Topic,
    each of them sharing its own history of changes.
-   On the other hand, a single :ref:`dds_layer_publisher` can share the same data over different Partitions
+   On the other hand, a single Publisher can share the same data over different Partitions
    using a single topic data change, thus reducing network overload.
 
 .. |partition| replace:: :cpp:func:`partition<eprosima::fastdds::dds::SubscriberQos::partition>`
@@ -34,7 +37,7 @@ The Partition membership of an endpoint can be configured on the :ref:`api_pim_p
 data member of the :ref:`dds_layer_publisher_publisherQos` or :ref:`dds_layer_subscriber_subscriberQos` objects.
 This member holds a list of Partition name strings.
 If no Partition is defined for an entity, it will be automatically included in the default nameless Partition.
-Therefore, a :ref:`dds_layer_publisher` and a :ref:`dds_layer_subscriber` that specify no Partition will still
+Therefore, a Publisher and a Subscriber that specify no Partition will still
 be able to communicate through the default nameless Partition.
 
 .. warning::
@@ -59,10 +62,10 @@ Two Partition names with wildcards will match if either of them matches the othe
 That is, the matching is checked both ways.
 For example, consider the following configuration:
 
- - A :ref:`dds_layer_publisher` with Partition ``part*``
- - A :ref:`dds_layer_subscriber` with Partition ``partition*``
+ - A Publisher with Partition ``part*``
+ - A Subscriber with Partition ``partition*``
 
-Even though ``partition*`` does not match ``part*``, these :ref:`dds_layer_publisher` and :ref:`dds_layer_subscriber`
+Even though ``partition*`` does not match ``part*``, these Publisher and Subscriber
 will communicate between them because ``part*`` matches ``partition*``.
 
 Note that a Partition with name ``*`` will match any other partition **except the default Partition**.

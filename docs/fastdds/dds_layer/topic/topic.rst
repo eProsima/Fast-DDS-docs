@@ -1,16 +1,19 @@
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+
 .. _dds_layer_topic:
 
 Topic
 =====
 
-A :ref:`dds_layer_topic_topic` conceptually fits between publications and subscriptions.
+A Topic conceptually fits between publications and subscriptions.
 Each publication channel must be unambiguously identified by the subscriptions in order to receive only the data flow
 they are interested in, and not data from other publications.
-A :ref:`dds_layer_topic_topic` serves this purpose, allowing publications and subscriptions that share the same
-:ref:`dds_layer_topic_topic` to match and start communicating.
-In that sense, the :ref:`dds_layer_topic_topic` acts as a description for a data flow.
+A Topic serves this purpose, allowing publications and subscriptions that share the same
+Topic to match and start communicating.
+In that sense, the Topic acts as a description for a data flow.
 
-Publications are always linked to a single :ref:`dds_layer_topic_topic`, while subscriptions are linked to a
+Publications are always linked to a single Topic, while subscriptions are linked to a
 broader concept of :ref:`dds_layer_topic_topicDescription`.
 
 .. figure:: /01-figures/topic_class_diagram.svg

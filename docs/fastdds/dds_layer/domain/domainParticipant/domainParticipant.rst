@@ -1,21 +1,24 @@
+.. include:: ../../../../03-exports/aliases.include
+.. include:: ../../../../03-exports/aliases-api.include
+
 .. _dds_layer_domainParticipant:
 
 DomainParticipant
 =================
 
-A :class:`DomainParticipant` is the entry point of the application to a domain.
-Every :class:`DomainParticipant` is linked to a single domain from its creation,
+A |DomainParticipant| is the entry point of the application to a domain.
+Every DomainParticipant is linked to a single domain from its creation,
 and contains all the Entities related to that domain.
 It also acts as a factory for :ref:`dds_layer_publisher_publisher`, :ref:`dds_layer_subscriber_subscriber`
 and :ref:`dds_layer_topic_topic`.
 
-The behavior of the :class:`DomainParticipant` can be modified with the QoS values
-specified on :ref:`dds_layer_domainParticipantQos`.
-The QoS values can be set at the creation of the :class:`DomainParticipant`,
-or modified later with :func:`set_qos()` member function.
+The behavior of the DomainParticipant can be modified with the QoS values
+specified on DomainParticipantQos.
+The QoS values can be set at the creation of the DomainParticipant,
+or modified later with |DomainParticipant::set_qos-api| member function.
 
-As an Entity, :class:`DomainParticipant` accepts a :ref:`dds_layer_domainParticipantListener`
-that will be notified of status changes on the :class:`DomainParticipant` instance.
+As an Entity, DomainParticipant accepts a :ref:`dds_layer_domainParticipantListener`
+that will be notified of status changes on the DomainParticipant instance.
 
 
 .. _dds_layer_domainParticipantQos:
@@ -23,34 +26,34 @@ that will be notified of status changes on the :class:`DomainParticipant` instan
 DomainParticipantQos
 --------------------
 
-:class:`DomainParticipantQos` controls the behavior of the :ref:`dds_layer_domainParticipant`.
-Internally it contains the following :class:`QosPolicy` objects:
+|DomainParticipantQos-api| controls the behavior of the DomainParticipant.
+Internally it contains the following |QosPolicy-api| objects:
 
-+------------------------------+------------------------+----------+
-| QosPolicy class              | Accessor/Mutator       | Mutable  |
-+==============================+========================+==========+
-| UserDataQosPolicy            | :func:`user_data`      | Yes      |
-+------------------------------+------------------------+----------+
-| EntityFactoryQosPolicy       | :func:`entity_factory` | Yes      |
-+------------------------------+------------------------+----------+
-| ParticipantResourceLimitsQos | :func:`allocation`     | No       |
-+------------------------------+------------------------+----------+
-| PropertyPolicyQos            | :func:`properties`     | No       |
-+------------------------------+------------------------+----------+
-| WireProtocolConfigQos        | :func:`wire_protocol`  | No       |
-+------------------------------+------------------------+----------+
-| TransportConfigQos           | :func:`transport`      | No       |
-+------------------------------+------------------------+----------+
++--------------------------------+----------------------------------------------+----------+
+| QosPolicy class                | Accessor/Mutator                             | Mutable  |
++================================+==============================================+==========+
+| |UserDataQosPolicy|            | |DomainParticipantQos::user_data-api|        | Yes      |
++--------------------------------+----------------------------------------------+----------+
+| |EntityFactoryQosPolicy|       | |DomainParticipantQos::entity_factory-api|   | Yes      |
++--------------------------------+----------------------------------------------+----------+
+| |ParticipantResourceLimitsQos| | |DomainParticipantQos::allocation-api|       | No       |
++--------------------------------+----------------------------------------------+----------+
+| |PropertyPolicyQos|            | |DomainParticipantQos::properties-api|       | No       |
++--------------------------------+----------------------------------------------+----------+
+| |WireProtocolConfigQos|        | |DomainParticipantQos::wire_protocol-api|    | No       |
++--------------------------------+----------------------------------------------+----------+
+| |TransportConfigQos|           | |DomainParticipantQos::transport-api|        | No       |
++--------------------------------+----------------------------------------------+----------+
 
-Refer to the detailed description of each :class:`QosPolicy` class for more information about their usage and
+Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.
 
-The QoS value of a previously created :ref:`dds_layer_domainParticipant` can be modified using the
-:func:`set_qos()` member function.
-Trying to modify an immutable :class:`QosPolicy` on an already enabled :ref:`dds_layer_domainParticipant`
+The QoS value of a previously created DomainParticipant can be modified using the
+|DomainParticipant::set_qos-api| member function.
+Trying to modify an immutable QosPolicy on an already enabled DomainParticipant
 will result on an error.
-In such case, no changes will be applied and the :ref:`dds_layer_domainParticipant` will keep its
-previous :class:`DomainParticipantQos`.
+In such case, no changes will be applied and the DomainParticipant will keep its
+previous DomainParticipantQos.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -64,18 +67,21 @@ previous :class:`DomainParticipantQos`.
 Default DomainParticipantQos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The default :ref:`dds_layer_domainParticipantQos` refers to the value returned by the
-:func:`get_default_participant_qos()` member function on the :ref:`dds_layer_domainParticipantFactory` singleton.
-The special value ``PARTICIPANT_QOS_DEFAULT`` can be used as QoS argument on :func:`create_participant()`
-or :func:`set_qos()` member functions to indicate that the current default :ref:`dds_layer_domainParticipantQos`
-should be used.
+The default DomainParticipantQos refers to the value returned by the
+|DomainParticipantFactory::get_default_participant_qos-api| member function on the
+:ref:`dds_layer_domainParticipantFactory` singleton.
+The special value ``PARTICIPANT_QOS_DEFAULT`` can be used as QoS argument on
+|DomainParticipantFactory::create_participant-api|
+or |DomainParticipant::set_qos-api| member functions to indicate that the current default
+DomainParticipantQos should be used.
 
-When the system starts, the default :ref:`dds_layer_domainParticipantQos` is equivalent to the default constructed
-value :func:`DomainParticipantQos()`.
-The default :ref:`dds_layer_domainParticipantQos` can be modified at any time using the
-:func:`set_default_participant_qos()` member function on the :ref:`dds_layer_domainParticipantFactory` singleton.
-Modifying the default :ref:`dds_layer_domainParticipantQos` will not affect already existing
-:ref:`dds_layer_domainParticipant` instances.
+When the system starts, the default DomainParticipantQos is equivalent to the default constructed
+value |DomainParticipantQos::DomainParticipantQos-api|.
+The default DomainParticipantQos can be modified at any time using the
+|DomainParticipantFactory::set_default_participant_qos-api|
+member function on the DomainParticipantFactory singleton.
+Modifying the default DomainParticipantQos will not affect already existing
+DomainParticipant instances.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -83,10 +89,11 @@ Modifying the default :ref:`dds_layer_domainParticipantQos` will not affect alre
    :end-before: //!
    :dedent: 8
 
-:func:`set_default_participant_qos()` member function also accepts the value ``PARTICIPANT_QOS_DEFAULT``
+|DomainParticipantFactory::set_default_participant_qos-api|
+member function also accepts the value ``PARTICIPANT_QOS_DEFAULT``
 as input argument.
-This will reset the current default :ref:`dds_layer_domainParticipantQos` to the default constructed value
-:func:`DomainParticipantQos()`.
+This will reset the current default DomainParticipantQos to the default constructed value
+|DomainParticipantQos::DomainParticipantQos-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -97,7 +104,8 @@ This will reset the current default :ref:`dds_layer_domainParticipantQos` to the
 .. note::
    The value ``PARTICIPANT_QOS_DEFAULT`` has different meaning depending on where it is used:
 
-   * On :func:`create_participant` and :func:`set_qos` it refers to the default :ref:`dds_layer_domainParticipantQos`
-     as returned by :func:`get_default_participant_qos`.
-   * On :func:`set_default_participant_qos` it refers to the default constructed :func:`DomainParticipantQos`.
+   * On |DomainParticipantFactory::create_participant-api| and |DomainParticipant::set_qos-api| it refers to the
+     default DomainParticipantQos as returned by |DomainParticipantFactory::get_default_participant_qos-api|.
+   * On |DomainParticipantFactory::set_default_participant_qos-api| it refers to the default constructed
+     |DomainParticipantQoS::DomainParticipantQoS-api|.
 

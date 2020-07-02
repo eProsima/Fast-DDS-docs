@@ -34,10 +34,6 @@ Callbacks that are not overridden will maintain their empty implementation.
   a common partition, but with a requested QoS that is incompatible with the one defined on the
   DataWriter.
 
-.. warning::
-   Currently *on_offered_incompatible_qos* is not implemented (it will never be called), and will be implemented
-   on a future release of Fast DDS.
-
 * |DataWriterListener::on_liveliness_lost-api|: The DataWriter did not respect the
   liveliness configuration on its DataWriterQos, and therefore,
   DataReader entities will consider the DataWriter

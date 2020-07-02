@@ -17,7 +17,6 @@ Changes on a status object trigger the corresponding :ref:`dds_layer_core_entity
 that allow the Entity to inform the application about the event.
 For a given status object with name :class:`fooStatus`, the entity listener interface defines a callback
 function :func:`on_foo` that will be called when the status changes.
-The only exceptions are :ref:`dds_layer_core_status_dataOnReaders` and :ref:`dds_layer_core_status_dataAvailable`.
 Beware that some statuses have data members that are reset every time the corresponding listener is called.
 The only exception to this rule is when the entity has no listener attached, so the callback cannot be called.
 See the documentation of each status for details.
@@ -25,6 +24,7 @@ See the documentation of each status for details.
 The entities expose functions to access the value of its statuses.
 For a given status with name :class:`fooStatus`, the entity exposes a member function :func:`get_foo` to
 access the data in its :class:`fooStatus`.
+The only exceptions are :ref:`dds_layer_core_status_dataOnReaders` and :ref:`dds_layer_core_status_dataAvailable`.
 These getter functions return a read-only struct where all data members are public and accessible to the application.
 Beware that some statuses have data members that are reset every time the getter function is called by the application.
 See the documentation of each status for details.
@@ -33,36 +33,65 @@ The following subsections describe each of the status objects, their data member
 Entity type they concern.
 The next table can be used as a quick reference too.
 
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| Status Name                         | Entity       | Listener callback                                               |
-+=====================================+==============+=================================================================+
-| |InconsistentTopicStatus|           | |Topic|      | |TopicListener::on_inconsistent_topic-api|                      |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |DataOnReaders|                     | |Subscriber| | |SubscriberListener::on_data_on_readers-api|                    |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |DataAvailable|                     | |DataReader| | |DataReaderListener::on_data_available-api|                     |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |LivelinessChangedStatus|           | |DataReader| | |DataReaderListener::on_liveliness_changed-api|                 |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |RequestedDeadlineMissedStatus|     | |DataReader| | |DataReaderListener::on_requested_deadline_missed-api|          |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |RequestedIncompatibleQosStatus|    | |DataReader| | |DataReaderListener::on_requested_incompatible_qos-api|         |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |SampleLostStatus|                  | |DataReader| | |DataReaderListener::on_sample_lost-api|                        |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |SampleRejectedStatus|              | |DataReader| | |DataReaderListener::on_sample_rejected-api|                    |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |SubscriptionMatchedStatus|         | |DataReader| | |DataReaderListener::on_subscription_matched-api|               |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |LivelinessLostStatus|              | |DataWriter| | |DataWriterListener::on_liveliness_lost-api|                    |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |OfferedDeadlineMissedStatus|       | |DataWriter| | |DataWriterListener::on_offered_deadline_missed-api|            |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |OfferedIncompatibleQosStatus|      | |DataWriter| | |DataWriterListener::on_offered_incompatible_qos-api|           |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
-| |PublicationMatchedStatus|          | |DataWriter| | |DataWriterListener::on_publication_matched-api|                |
-+-------------------------------------+--------------+-----------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
 
+   * - Status Name
+     - Entity
+     - Listener callback
+     - Accessor
+   * - |InconsistentTopicStatus|
+     - |Topic|
+     - |TopicListener::on_inconsistent_topic-api|
+     - |Topic::get_inconsistent_topic_status-api|
+   * - |DataOnReaders|
+     - |Subscriber|
+     - |SubscriberListener::on_data_on_readers-api|
+     - N/A
+   * - |DataAvailable|
+     - |DataReader|
+     - |DataReaderListener::on_data_available-api|
+     - N/A
+   * - |LivelinessChangedStatus|
+     - |DataReader|
+     - |DataReaderListener::on_liveliness_changed-api|
+     - |DataReader::get_liveliness_changed_status-api|
+   * - |RequestedDeadlineMissedStatus|
+     - |DataReader|
+     - |DataReaderListener::on_requested_deadline_missed-api|
+     - |DataReader::get_requested_deadline_missed_status-api|
+   * - |RequestedIncompatibleQosStatus|
+     - |DataReader|
+     - |DataReaderListener::on_requested_incompatible_qos-api|
+     - |DataReader::get_requested_incompatible_qos_status-api|
+   * - |SampleLostStatus|
+     - |DataReader|
+     - |DataReaderListener::on_sample_lost-api|
+     - |DataReader::get_sample_lost_status-api|
+   * - |SampleRejectedStatus|
+     - |DataReader|
+     - |DataReaderListener::on_sample_rejected-api|
+     - |DataReader::get_sample_rejected_status-api|
+   * - |SubscriptionMatchedStatus|
+     - |DataReader|
+     - |DataReaderListener::on_subscription_matched-api|
+     - |DataReader::get_subscription_matched_status-api|
+   * - |LivelinessLostStatus|
+     - |DataWriter|
+     - |DataWriterListener::on_liveliness_lost-api|
+     - |DataWriter::get_liveliness_lost_status-api|
+   * - |OfferedDeadlineMissedStatus|
+     - |DataWriter|
+     - |DataWriterListener::on_offered_deadline_missed-api|
+     - |DataWriter::get_offered_deadline_missed_status-api|
+   * - |OfferedIncompatibleQosStatus|
+     - |DataWriter|
+     - |DataWriterListener::on_offered_incompatible_qos-api|
+     - |DataWriter::get_offered_incompatible_qos_status-api|
+   * - |PublicationMatchedStatus|
+     - |DataWriter|
+     - |DataWriterListener::on_publication_matched-api|
+     - |DataWriter::get_publication_matched_status-api|
 
 
 .. _dds_layer_core_status_inconsistentTopicStatus:
@@ -249,9 +278,9 @@ List of status data members:
 +----------------------------------------------------------------------------+-----------------------------------------+
 | |IncompatibleQosStatus::total_count_change-api|                            | ``int32_t``                             |
 +----------------------------------------------------------------------------+-----------------------------------------+
-| |IncompatibleQosStatus::last_policy_id-api|                                | ``uint32_t``                            |
+| |IncompatibleQosStatus::last_policy_id-api|                                | |QosPolicyId_t-api|                     |
 +----------------------------------------------------------------------------+-----------------------------------------+
-| |IncompatibleQosStatus::policies-api|                                      | ``std::vector<QosPolicyCount>``         |
+| |IncompatibleQosStatus::policies-api|                                      | |QosPolicyCountSeq-api|                 |
 +----------------------------------------------------------------------------+-----------------------------------------+
 
 * |IncompatibleQosStatus::total_count-api|:
@@ -270,16 +299,27 @@ List of status data members:
   If more than one policy happens to be incompatible, only one of them will be reported in this member.
 
 * |IncompatibleQosStatus::policies-api|:
-  A list that holds, for each policy, the total number of times that the policy was
+  A collection that holds, for each policy, the total number of times that the policy was
   found to be incompatible with the one offered by a remote DataWriter that
   matched the Topic and with a common partition.
-  See :ref:`dds_layer_core_status_qosPolicyCount` for more information the information that is stored for each policy.
+  See :ref:`dds_layer_core_status_qosPolicyCountSeq` and :ref:`dds_layer_core_status_qosPolicyCount`
+  for more information the information that is stored for each policy.
 
-.. warning::
 
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
+.. _dds_layer_core_status_qosPolicyCountSeq:
+
+QosPolicyCountSeq
+^^^^^^^^^^^^^^^^^
+
+Holds a :ref:`dds_layer_core_status_qosPolicyCount` for each :ref:`dds_layer_core_policy`,
+indexed by its |QosPolicyId_t-api|. Therefore, the Qos Policy with ID ``N`` will be at position ``N`` in the sequence.
+See |QosPolicyCountSeq-api|.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :dedent: 8
+   :start-after: //DDS_QOS_POLICY_COUNT_SEQ
+   :end-before: //!
 
 
 .. _dds_layer_core_status_qosPolicyCount:
@@ -295,7 +335,7 @@ List of data members:
 +----------------------------------------------------------------------------+-----------------------------------------+
 | Data Member Name                                                           | Type                                    |
 +============================================================================+=========================================+
-| |QosPolicyCount::policy_id-api|                                            | ``int32_t``                             |
+| |QosPolicyCount::policy_id-api|                                            | |QosPolicyId_t-api|                     |
 +----------------------------------------------------------------------------+-----------------------------------------+
 | |QosPolicyCount::count-api|                                                | ``int32_t``                             |
 +----------------------------------------------------------------------------+-----------------------------------------+
@@ -557,9 +597,9 @@ List of status data members:
 +----------------------------------------------------------------------------+-----------------------------------------+
 | |IncompatibleQosStatus::total_count_change-api|                            | ``int32_t``                             |
 +----------------------------------------------------------------------------+-----------------------------------------+
-| |IncompatibleQosStatus::last_policy_id-api|                                | ``uint32_t``                            |
+| |IncompatibleQosStatus::last_policy_id-api|                                | |QosPolicyId_t-api|                     |
 +----------------------------------------------------------------------------+-----------------------------------------+
-| |IncompatibleQosStatus::policies-api|                                      | ``std::vector<QosPolicyCount>``         |
+| |IncompatibleQosStatus::policies-api|                                      | |QosPolicyCountSeq-api|                 |
 +----------------------------------------------------------------------------+-----------------------------------------+
 
 * |IncompatibleQosStatus::total_count-api|:
@@ -578,16 +618,11 @@ List of status data members:
   If more than one policy happens to be incompatible, only one of them will be reported in this member.
 
 * |IncompatibleQosStatus::policies-api|:
-  A list that holds, for each policy, the total number of times that the policy was
+  A collection that holds, for each policy, the total number of times that the policy was
   found to be incompatible with the one requested by a remote DataReader that
   matched the Topic and with a common partition.
-  See :ref:`dds_layer_core_status_qosPolicyCount` for more information the information that is stored for each policy.
-
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
+  See :ref:`dds_layer_core_status_qosPolicyCountSeq` and :ref:`dds_layer_core_status_qosPolicyCount`
+  for more information the information that is stored for each policy.
 
 
 .. _dds_layer_core_status_publicationMatchedStatus:

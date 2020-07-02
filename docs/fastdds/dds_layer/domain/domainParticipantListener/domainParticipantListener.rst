@@ -19,7 +19,10 @@ Therefore, it has the ability to react to every kind of event that is
 reported to any of its attached Entities.
 Since events are always notified to the most specific Entity Listener that can handle the event,
 callbacks that DomainParticipantListener inherits from other Listeners will only be called
-if no other Listener was able to handle the event.
+if no other Entity was able to handle the event,
+either because it has no Listener attached,
+or because the callback is disabled by the |StatusMask-api| on the Entity.
+
 
 Additionally, DomainParticipantListener adds the following callbacks:
 

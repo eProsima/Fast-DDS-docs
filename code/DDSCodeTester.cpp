@@ -1582,11 +1582,11 @@ public:
     }
 
     virtual void on_offered_incompatible_qos(
-         DataWriter* writer,
+         DataWriter* /*writer*/,
          const OfferedIncompatibleQosStatus& status)
     {
-        (void)writer, (void)status;
-        std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
+        std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << status.last_policy_id <<
+                ")" <<std::endl;
     }
 
     virtual void on_liveliness_lost(
@@ -2221,11 +2221,11 @@ public:
     }
 
     virtual void on_requested_incompatible_qos(
-            DataReader* reader,
+            DataReader* /*reader*/,
             const RequestedIncompatibleQosStatus& info)
     {
-        (void)reader, (void)info;
-        std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
+        std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << info.last_policy_id <<
+                ")" <<std::endl;
     }
 
     virtual void on_sample_lost(
@@ -2934,6 +2934,15 @@ void dds_qos_examples()
         consistency_qos.representation.m_value.push_back(DataRepresentationId_t::XCDR2_DATA_REPRESENTATION);
         //You can change the TypeConsistencyEnforcementQosPolicy. For further details see TypeConsistencyEnforcementQosPolicy section.
         consistency_qos.type_consistency.m_kind = TypeConsistencyKind::ALLOW_TYPE_COERCION;
+        //!--
+    }
+
+    {
+        //DDS_QOS_POLICY_COUNT_SEQ
+        RequestedIncompatibleQosStatus status;
+
+        // Set the count for ReliabilityQosPolicy
+        status.policies[RELIABILITY_QOS_POLICY_ID].count = 4;
         //!--
     }
 }

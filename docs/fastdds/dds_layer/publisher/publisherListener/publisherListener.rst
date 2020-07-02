@@ -19,7 +19,8 @@ Therefore, it has the ability to react to all events that are reported to the
 Since events are always notified to the most specific Entity Listener that can handle the event,
 callbacks that |PublisherListener-api| inherits from DataWriterListener
 will only be called if the triggering DataWriter has
-no Listener attached.
+no Listener attached,
+or if the callback is disabled by the |StatusMask-api| on the DataWriter.
 
 |PublisherListener-api| does not add any new callback.
 Please, refer to the :ref:`dds_layer_publisher_dataWriterListener` for the list of inherited callbacks

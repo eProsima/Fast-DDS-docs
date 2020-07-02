@@ -180,7 +180,7 @@
 .. |TopicQos::topic_data-api| replace:: :cpp:func:`topic_data()<eprosima::fastdds::dds::TopicQos::topic_data>`
 .. |TopicQos::TopicQos-api| replace:: :cpp:func:`TopicQos() <eprosima::fastdds::dds::TopicQos::TopicQos>`
 .. |TopicQos::transport_priority-api| replace:: :cpp:func:`transport_priority()<eprosima::fastdds::dds::TopicQos::transport_priority>`
-.. |TypeInformation-api| replace:: :cpp:class:`TypeInformation <eprosima::fastdds::dds::TypeInformation>`
+.. |TypeInformation-api| replace:: :cpp:class:`TypeInformation <eprosima::fastdds::dds::xtypes::TypeInformation>`
 .. |TypeObject-api| replace:: :cpp:class:`TypeObject <eprosima::fastrtps::types::TypeObject>`
 .. |TypeObjectFactory-api| replace:: :cpp:class:`TypeObjectFactory <eprosima::fastrtps::types::TypeObjectFactory>`
 .. |TypeSupport-api| replace:: :cpp:class:`TypeSupport<eprosima::fastdds::dds::TypeSupport>`

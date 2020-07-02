@@ -264,12 +264,12 @@ Given a system with the following topology:
 * The total number of DomainParticipants is 3.
 * The maximum number of DataWriters per DomainParticipant is 1
 * The maximum number of DataReaders per DomainParticipant is 2.
-* The :ref:`DataWriter<dds_layer_publisher_dataWriter>` for topic 1
+* The DataWriter for topic 1
   matches with 3 DataReaders.
-* The :ref:`DataWriter<dds_layer_publisher_dataWriter>` for topic 2
+* The DataWriter for topic 2
   matches with 2 DataReaders.
 * All the DataReaders
-  match exactly with 1 :ref:`DataWriter<dds_layer_publisher_dataWriter>`.
+  match exactly with 1 DataWriter.
 
 We will also limit the size of the parameters:
 

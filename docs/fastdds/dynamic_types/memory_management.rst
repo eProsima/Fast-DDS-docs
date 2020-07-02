@@ -5,7 +5,7 @@
 Memory management
 =================
 
-Memory management is critical for Dynamic Types since
+Memory management is critical for dynamic types since
 every dynamic type and dynamic data is managed with pointers.
 Every object stored inside of a dynamic object is managed by its owner, and users
 must delete every object they create using the factories.

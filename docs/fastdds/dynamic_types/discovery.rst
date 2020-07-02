@@ -53,7 +53,7 @@ Then each Endpoint can request the complete TypeObject for the data
 types it is interested in.
 This avoids sending the complete data type to Endpoints that may not be interested.
 
-|TypeIdV1-api| is described in the annexes of `DDS-XTypes V1.2`_ document,
+|TypeInformation-api| is described in the annexes of `DDS-XTypes V1.2`_ document,
 please refer to this document for details.
 
 

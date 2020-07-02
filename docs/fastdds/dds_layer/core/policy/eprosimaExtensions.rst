@@ -177,7 +177,6 @@ ResourceLimitedContainerConfig
 
 This structure holds the limits of a resource limited collection, as well as the allocation configuration, which can be
 fixed size or dynamic size.
-See |ResourceLimitedContainerConfig-api|.
 
 List of structure members:
 
@@ -679,7 +678,6 @@ TransportDescriptorInterface
 """"""""""""""""""""""""""""
 
 This structure is the base for the data type used to define transport configuration.
-See |TransportDescriptorInterface-api|.
 
 List of structure members:
 

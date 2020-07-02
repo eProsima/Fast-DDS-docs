@@ -8,7 +8,7 @@ Dynamic HelloWorld Examples
 
 .. _Fast DDS GitHub repository: https://github.com/eProsima/Fast-DDS
 
-These are complete working examples that make use of Dynamic Types.
+These are complete working examples that make use of dynamic types.
 You can explore them to find how this feature connects to the rest of *Fast DDS*,
 and learn how to integrate it in your own application.
 

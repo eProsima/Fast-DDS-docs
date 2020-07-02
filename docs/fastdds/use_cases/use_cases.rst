@@ -25,7 +25,7 @@ with distributed systems:
   Describes a situation where the entire entity network topology (Participants, Publishers, Subscribers,
   and their addresses and ports) are known beforehand.
   In these kind of environments, *Fast DDS* allows to completely avoid the discovery phase
-  configuring a STATIC discovery mechanism (see :ref:`well_known_deployments`).
+  configuring a STATIC discovery mechanism.
 
 + :ref:`use-case-manySubscribers`.
   In cases where there are many :ref:`DataReaders<dds_layer_subscriber_dataReader>` subscribed to the same

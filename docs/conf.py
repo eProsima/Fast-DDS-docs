@@ -28,7 +28,7 @@ import git
 import requests
 
 
-def download_css(html_build_dir):
+def download_css(html_css_dir):
     """
     Download the common theme of eProsima readthedocs documentation.
 
@@ -36,8 +36,7 @@ def download_css(html_build_dir):
     repository with the index of all eProsima product documentation
     (https://github.com/eProsima/all-docs).
 
-    :param html_build_dir: The directory where the files for the generation of
-        the readthedocs website are built.
+    :param html_css_dir: The directory to save the CSS stylesheet.
     :return: True if the file was downloaded and generated successfully.
         False if not.
     """
@@ -51,9 +50,9 @@ def download_css(html_build_dir):
             'Return code: {}'.format(req.status_code))
         return False
     os.makedirs(
-        os.path.dirname('{}/_static/css/'.format(html_build_dir)),
+        os.path.dirname('{}/_static/css/'.format(html_css_dir)),
         exist_ok=True)
-    theme_path = '{}/_static/css/eprosima_rtd_theme.css'.format(html_build_dir)
+    theme_path = '{}/_static/css/eprosima_rtd_theme.css'.format(html_css_dir)
     with open(theme_path, 'wb') as f:
         try:
             f.write(req.content)
@@ -63,17 +62,16 @@ def download_css(html_build_dir):
     return True
 
 
-def select_css(html_build_dir):
+def select_css(html_css_dir):
     """
     Select CSS file with the website's template.
 
-    :param html_build_dir: The directory where the files for the generation of
-        the readthedocs website are built.
+    :param html_css_dir: The directory to save the CSS stylesheet.
     :return: Returns a list of CSS files to be imported.
     """
     common_css = '_static/css/eprosima_rtd_theme.css'
     local_css = '_static/css/fiware_readthedocs.css'
-    if download_css(html_build_dir):
+    if download_css(html_css_dir):
         print('Appliying CSS style file: {}'.format(common_css))
         return [common_css]
     else:
@@ -136,7 +134,6 @@ def configure_doxyfile(
 
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
-html_build_dir = os.path.abspath('{}/../build/html/'.format(script_path))
 project_source_dir = os.path.abspath('{}/../code'.format(script_path))
 project_binary_dir = os.path.abspath('{}/../build/code'.format(script_path))
 output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
@@ -392,7 +389,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 html_context = {
-        'css_files': select_css(html_build_dir),
+        'css_files': select_css(script_path),
         }
 
 

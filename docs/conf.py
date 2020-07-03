@@ -25,6 +25,61 @@ import subprocess
 
 import git
 
+import requests
+
+
+def download_css(html_build_dir):
+    """
+    Download the common theme of eProsima readthedocs documentation.
+
+    The theme is defined in a CSS file that is hosted in the eProsima GitHub
+    repository with the index of all eProsima product documentation
+    (https://github.com/eProsima/all-docs).
+
+    :param html_build_dir: The directory where the files for the generation of
+        the readthedocs website are built.
+    :return: True if the file was downloaded and generated successfully.
+        False if not.
+    """
+    url = (
+        'https://raw.githubusercontent.com/eProsima/all-docs/'
+        'master/source/_static/css/fiware_readthedocs.css')
+    req = requests.get(url, allow_redirects=True)
+    if req.status_code != 200:
+        print(
+            'Failed to download the CSS with the eProsima rtd theme.'
+            'Return code: {}'.format(req.status_code))
+        return False
+    os.makedirs(
+        os.path.dirname('{}/_static/css/'.format(html_build_dir)),
+        exist_ok=True)
+    theme_path = '{}/_static/css/eprosima_rtd_theme.css'.format(html_build_dir)
+    with open(theme_path, 'wb') as f:
+        try:
+            f.write(req.content)
+        except OSError:
+            print('Failed to create the file: {}'.format(theme_path))
+            return False
+    return True
+
+
+def select_css(html_build_dir):
+    """
+    Select CSS file with the website's template.
+
+    :param html_build_dir: The directory where the files for the generation of
+        the readthedocs website are built.
+    :return: Returns a list of CSS files to be imported.
+    """
+    common_css = '_static/css/eprosima_rtd_theme.css'
+    local_css = '_static/css/fiware_readthedocs.css'
+    if download_css(html_build_dir):
+        print('Appliying CSS style file: {}'.format(common_css))
+        return [common_css]
+    else:
+        print('Appliying CSS style file: {}'.format(local_css))
+        return [local_css]
+
 
 def get_git_branch():
     """Get the git branch this repository is currently on."""
@@ -81,6 +136,7 @@ def configure_doxyfile(
 
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
+html_build_dir = os.path.abspath('{}/../build/html/'.format(script_path))
 project_source_dir = os.path.abspath('{}/../code'.format(script_path))
 project_binary_dir = os.path.abspath('{}/../build/code'.format(script_path))
 output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
@@ -336,9 +392,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 html_context = {
-        'css_files': [
-            '_static/css/fiware_readthedocs.css',  # logo
-            ],
+        'css_files': select_css(html_build_dir),
         }
 
 

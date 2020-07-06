@@ -2937,12 +2937,24 @@ void dds_qos_examples()
         //!--
     }
 
+    // Taken out of the examples to avoid bloating them
+    DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+    Subscriber* subscriber =
+            participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+    Topic* topic =
+            participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+
     {
         //DDS_QOS_POLICY_COUNT_SEQ
-        RequestedIncompatibleQosStatus status;
+        DataReader* data_reader =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
 
-        // Set the count for ReliabilityQosPolicy
-        status.policies[RELIABILITY_QOS_POLICY_ID].count = 4;
+        // Get how many times ReliabilityQosPolicy was not compatible with a remote writer
+        RequestedIncompatibleQosStatus status;
+        data_reader->get_requested_incompatible_qos_status(status);
+        uint32_t incompatible_reliability_count = status.policies[RELIABILITY_QOS_POLICY_ID].count;
+
         //!--
     }
 }

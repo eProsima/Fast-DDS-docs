@@ -1582,11 +1582,11 @@ public:
     }
 
     virtual void on_offered_incompatible_qos(
-         DataWriter* writer,
+         DataWriter* /*writer*/,
          const OfferedIncompatibleQosStatus& status)
     {
-        (void)writer, (void)status;
-        std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
+        std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << status.last_policy_id <<
+                ")" <<std::endl;
     }
 
     virtual void on_liveliness_lost(
@@ -2221,11 +2221,11 @@ public:
     }
 
     virtual void on_requested_incompatible_qos(
-            DataReader* reader,
+            DataReader* /*reader*/,
             const RequestedIncompatibleQosStatus& info)
     {
-        (void)reader, (void)info;
-        std::cout << "Found a remote Topic with incompatible QoS" << std::endl;
+        std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << info.last_policy_id <<
+                ")" <<std::endl;
     }
 
     virtual void on_sample_lost(
@@ -2934,6 +2934,27 @@ void dds_qos_examples()
         consistency_qos.representation.m_value.push_back(DataRepresentationId_t::XCDR2_DATA_REPRESENTATION);
         //You can change the TypeConsistencyEnforcementQosPolicy. For further details see TypeConsistencyEnforcementQosPolicy section.
         consistency_qos.type_consistency.m_kind = TypeConsistencyKind::ALLOW_TYPE_COERCION;
+        //!--
+    }
+
+    // Taken out of the examples to avoid bloating them
+    DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+    Subscriber* subscriber =
+            participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+    Topic* topic =
+            participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+
+    {
+        //DDS_QOS_POLICY_COUNT_SEQ
+        DataReader* data_reader =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+
+        // Get how many times ReliabilityQosPolicy was not compatible with a remote writer
+        RequestedIncompatibleQosStatus status;
+        data_reader->get_requested_incompatible_qos_status(status);
+        uint32_t incompatible_reliability_count = status.policies[RELIABILITY_QOS_POLICY_ID].count;
+
         //!--
     }
 }

@@ -9,13 +9,13 @@ Persistence Service
 
 Using default QoS, the |DataWriter-api| history is only available for |DataReaders-api| throughout the |DataWriter-api|
 life.
-This means that the history does not persist between |DataWriter-api| initializations and therefore it is on a empty
+This means that the history does not persist between |DataWriter-api| initializations and therefore it is on an empty
 state on |DataWriter-api| creation.
-Similarly, |DataReader-api| history does not persist the |DataReader-api| life, thus also being empty on
+Similarly, the |DataReader-api| history does not persist the |DataReader-api| life, thus also being empty on
 |DataReader-api| creation.
 However, *eProsima Fast DDS* offers the possibility to configure the |DataWriter-api| history to be stored in a
 persistent database, so that the |DataWriter-api| can load it on creation.
-Furthermore, |DataReader-api| can be configured to stored the last notified change in the database, so that they can
+Furthermore, |DataReaders-api| can be configured to store the last notified change in the database, so that they can
 recover their state on creation.
 
 This mechanism allows to recover a previous state on starting the Data Distribution Service, thus adding robustness to
@@ -24,7 +24,7 @@ Configuring the persistence service, |DataWriters-api| and |DataReaders-api| can
 in which they where when the shutdown occurred.
 
 .. note::
-    Mind that |DataReaders-api| do not stored their history into the database, but rather the last notified change from
+    Mind that |DataReaders-api| do not store their history into the database, but rather the last notified change from
     the |DataWriter-api|.
     This means that they will resume operation where they left, but they will not have the previous information, since
     that was already notified to the application.
@@ -51,8 +51,8 @@ and |DataReader-api| |DurabilityQosPolicy-api|, and by specifying the appropriat
     * The last 4 octets correspond to the |EntityId_t-api|.
 
   The persistence identifier is specified using a string of 12 dot-separated octets, expressed in hexadecimal base,
-  followed by a ``|`` separator and another 4 dot-separated octets, also expressed in hexadecimal base (see
-  :ref:`persistence_example`).
+  followed by a vertical bar separator (``|``) and another 4 dot-separated octets, also expressed in hexadecimal base
+  (see :ref:`persistence_example`).
   For selecting an appropriate |Guid_t-api| for the |DataReader-api| and |DataWriter-api|, please refer to
   `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (section *9.3.1 The Globally Unique Identifier (GUID)*).
 
@@ -74,7 +74,6 @@ PERSISTENCE:SQLITE3
 ^^^^^^^^^^^^^^^^^^^
 
 This plugin provides persistence through a local database file using *SQLite3* API.
-
 To activate the plugin, ``dds.persistence.plugin`` property must be added to the |PropertyPolicyQos-api| of the
 |DomainParticipant-api|, |DataWriter-api|, or |DataReader-api| with value ``builtin.SQLITE3``.
 Furthermore, ``dds.persistence.sqlite3.filename`` property must be added to the entities |PropertyPolicyQos-api|,

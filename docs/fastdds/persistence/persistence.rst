@@ -7,25 +7,25 @@
 Persistence Service
 ===================
 
-Using default QoS, the |DataWriter-api| history is only available for |DataReaders-api| throughout the |DataWriter-api|
-life.
-This means that the history does not persist between |DataWriter-api| initializations and therefore it is on an empty
-state on |DataWriter-api| creation.
-Similarly, the |DataReader-api| history does not persist the |DataReader-api| life, thus also being empty on
-|DataReader-api| creation.
-However, *eProsima Fast DDS* offers the possibility to configure the |DataWriter-api| history to be stored in a
-persistent database, so that the |DataWriter-api| can load it on creation.
-Furthermore, |DataReaders-api| can be configured to store the last notified change in the database, so that they can
+Using default QoS, the :ref:`dds_layer_publisher_dataWriter` history is only available for
+:ref:`dds_layer_subscriber_dataReader` throughout the DataWriter life.
+This means that the history does not persist between DataWriter initializations and therefore it is on an empty
+state on DataWriter creation.
+Similarly, the DataReader history does not persist the DataReader life, thus also being empty on
+DataReader creation.
+However, *eProsima Fast DDS* offers the possibility to configure the DataWriter history to be stored in a
+persistent database, so that the DataWriter can load it on creation.
+Furthermore, DataReaders can be configured to store the last notified change in the database, so that they can
 recover their state on creation.
 
 This mechanism allows to recover a previous state on starting the Data Distribution Service, thus adding robustness to
 applications in the case of, for example, unexpected shutdowns.
-Configuring the persistence service, |DataWriters-api| and |DataReaders-api| can resume their operation from the state
+Configuring the persistence service, DataWriters and DataReaders can resume their operation from the state
 in which they where when the shutdown occurred.
 
 .. note::
-    Mind that |DataReaders-api| do not store their history into the database, but rather the last notified change from
-    the |DataWriter-api|.
+    Mind that DataReaders do not store their history into the database, but rather the last notified change from
+    the DataWriter.
     This means that they will resume operation where they left, but they will not have the previous information, since
     that was already notified to the application.
 
@@ -35,48 +35,40 @@ in which they where when the shutdown occurred.
 Configuration
 -------------
 
-The configuration of the persistence service is accomplished through the setting of the appropriate |DataWriter-api|
-and |DataReader-api| |DurabilityQosPolicy-api|, and by specifying the appropriate properties in the entities'
-(|DomainParticipant-api|, |DataWriter-api|, or |DataReader-api|) |PropertyPolicyQos-api|.
+The configuration of the persistence service is accomplished through the setting of the appropriate DataWriter
+and DataReader |DurabilityQosPolicy|, and by specifying the appropriate properties in the entities'
+(|DomainParticipant-api|, DataWriter, or DataReader) |PropertyPolicyQos|.
 
 * For the :ref:`persistence_service` to have any effect, the |DurabilityQosPolicyKind-api| needs to be set to
   |TRANSIENT_DURABILITY_QOS-api|.
 
 * A persistence identifier (|Guid_t-api|) must be set for the entity using the property ``dds.persistence.guid``.
-  This identifier is used to load the appropriate data from the database, and also to synchronize |DataWriter-api| and
-  |DataReader-api| between restarts.
-  The |Guid_t-api| consists on 16 octets separated in two groups:
+  This identifier is used to load the appropriate data from the database, and also to synchronize DataWriter and
+  DataReader between restarts.
+  The GUID consists on 16 bytes separated in two groups:
 
-    * The first 12 octets correspond to the |GuidPrefix_t-api|.
-    * The last 4 octets correspond to the |EntityId_t-api|.
+    * The first 12 bytes correspond to the |GuidPrefix_t-api|.
+    * The last 4 bytes correspond to the |EntityId_t-api|.
 
-  The persistence identifier is specified using a string of 12 dot-separated octets, expressed in hexadecimal base,
-  followed by a vertical bar separator (``|``) and another 4 dot-separated octets, also expressed in hexadecimal base
+  The persistence identifier is specified using a string of 12 dot-separated bytes, expressed in hexadecimal base,
+  followed by a vertical bar separator (``|``) and another 4 dot-separated bytes, also expressed in hexadecimal base
   (see :ref:`persistence_example`).
-  For selecting an appropriate |Guid_t-api| for the |DataReader-api| and |DataWriter-api|, please refer to
+  For selecting an appropriate GUID for the DataReader and DataWriter, please refer to
   `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (section *9.3.1 The Globally Unique Identifier (GUID)*).
 
 * A persistence plugin must be configured for managing the database using property ``dds.persistence.plugin`` (see
-  :ref:`persistence_builtin_plugins`):
+  :ref:`persistence_sqlite3_builtin_plugin`):
 
 
-.. _persistence_builtin_plugins:
+.. _persistence_sqlite3_builtin_plugin:
 
-Built-in plugins
-----------------
-
-*eProsima Fast DDS* provides one builtin plugin for the persistence service: :ref:`persistence-sqlite3`.
-
-
-.. _persistence-sqlite3:
-
-PERSISTENCE:SQLITE3
-^^^^^^^^^^^^^^^^^^^
+PERSISTENCE:SQLITE3 built-in plugin
+-----------------------------------
 
 This plugin provides persistence through a local database file using *SQLite3* API.
-To activate the plugin, ``dds.persistence.plugin`` property must be added to the |PropertyPolicyQos-api| of the
-|DomainParticipant-api|, |DataWriter-api|, or |DataReader-api| with value ``builtin.SQLITE3``.
-Furthermore, ``dds.persistence.sqlite3.filename`` property must be added to the entities |PropertyPolicyQos-api|,
+To activate the plugin, ``dds.persistence.plugin`` property must be added to the PropertyPolicyQos of the
+DomainParticipant, DataWriter, or DataReader with value ``builtin.SQLITE3``.
+Furthermore, ``dds.persistence.sqlite3.filename`` property must be added to the entities PropertyPolicyQos,
 specifying the database file name.
 These properties are summarized in the following table:
 
@@ -93,8 +85,8 @@ These properties are summarized in the following table:
        Default value: ``persistence.db``
 
 .. important::
-    The plugin set in the |PropertyPolicyQos-api| of |DomainParticipant-api| only applies if that of the
-    |DataWriter-api|/|DataReader-api| does no exist or is invalid.
+    The plugin set in the PropertyPolicyQos of DomainParticipant only applies if that of the
+    DataWriter/DataReader does no exist or is invalid.
 
 
 .. _persistence_example:
@@ -102,10 +94,28 @@ These properties are summarized in the following table:
 Example
 -------
 
-This example shows how to configure the persistence service using :ref:`persistence-sqlite3` plugin.
+This example shows how to configure the persistence service using :ref:`persistence_sqlite3_builtin_plugin` plugin both
+from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles`).
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
-    :language: c++
-    :start-after: //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE
-    :end-before: //!--
-    :dedent: 4
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|     :language: c++                                                                                                   |
+|     :start-after: //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE                                                         |
+|     :end-before: //!--                                                                                               |
+|     :dedent: 4                                                                                                       |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|     :language: xml                                                                                                   |
+|     :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->                                                  |
+|     :end-before: <!--><-->                                                                                           |
+|     :lines: 2-4, 6-47, 49-50                                                                                         |
++----------------------------------------------------------------------------------------------------------------------+
+
+.. note::
+    For instruction on how to create DomainParticipants, DataReaders, and DataWriters, please refer to
+    :ref:`dds_layer_domainParticipant_creation_profile`, :ref:`dds_layer_publisher_datawriter_creation_profile`, and
+    :ref:`dds_layer_subscriber_datareader_creation_profile` respectively.

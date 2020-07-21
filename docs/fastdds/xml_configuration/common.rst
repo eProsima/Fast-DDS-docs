@@ -183,16 +183,14 @@ It controls the behavior of *Fast DDS* when the value of an instance changes bef
 communicated to some of its existing DataReaders.
 Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQoS.
 
-.. |KEEP_LAST| replace:: |KEEP_LAST_HISTORY_QOS-api|
-.. |KEEP_ALL| replace:: |KEEP_ALL_HISTORY_QOS-api|
 
 +-------------+---------------------------------------------------------+-------------------------+--------------------+
 | Name        | Description                                             | Values                  | Default            |
 +=============+=========================================================+=========================+====================+
-| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | |KEEP_LAST|             | |KEEP_LAST|        |
+| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | :class:`KEEP_LAST`      | :class:`KEEP_LAST` |
 |             | of the instance |br| and discard the older ones.        |                         |                    |
 |             +---------------------------------------------------------+-------------------------+                    +
-|             | *Fast DDS* will attempt to maintain and deliver all the | |KEEP_ALL|              |                    |
+|             | *Fast DDS* will attempt to maintain and deliver all the | :class:`KEEP_ALL`       |                    |
 |             | values of the instance |br| to existing DataReaders.    |                         |                    |
 +-------------+---------------------------------------------------------+-------------------------+--------------------+
 | ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``            | 1000               |
@@ -233,11 +231,6 @@ The Quality of Service (QoS) is used to specify the behavior of the Service, all
 |Entity| will behave.
 Please refer to the :ref:`dds_layer_core_policy` section for more information on QoS.
 
-.. |AUTOMATIC| replace:: |AUTOMATIC_LIVELINESS_QOS-api|
-.. |MANUAL_BY_PARTICIPANT| replace:: |MANUAL_BY_PARTICIPANT_LIVELINESS_QOS-api|
-.. |MANUAL_BY_TOPIC| replace:: |MANUAL_BY_TOPIC_LIVELINESS_QOS-api|
-.. |BEST_EFFORT| replace:: |BEST_EFFORT_RELIABILITY_QOS-api|
-.. |RELIABLE| replace:: |RELIABLE_RELIABILITY_QOS-api|
 
 +--------------------------+---------------------------------------------------+---------------------------------------+
 | Name                     | Description                                       | Values                                |
@@ -275,13 +268,13 @@ Durability
 +------------+----------------------------+--------------------------------------+-------------------------------------+
 | Name       | Description                | Values                               | Default                             |
 +============+============================+======================================+=====================================+
-| ``<kind>`` | See :ref:`durabilitykind`. | |VOLATILE_DURABILITY_QOS-api|        | |VOLATILE_DURABILITY_QOS-api|       |
+| ``<kind>`` | See :ref:`durabilitykind`. | :class:`VOLATILE`                    | :class:`VOLATILE`                   |
 |            |                            +--------------------------------------+                                     |
-|            |                            | |TRANSIENT_LOCAL_DURABILITY_QOS-api| |                                     |
+|            |                            | :class:`TRANSIENT_LOCAL`             |                                     |
 |            |                            +--------------------------------------+                                     |
-|            |                            | |TRANSIENT_DURABILITY_QOS-api|       |                                     |
+|            |                            | :class:`TRANSIENT`                   |                                     |
 |            |                            +--------------------------------------+                                     |
-|            |                            | |PERSISTENT_DURABILITY_QOS-api|      |                                     |
+|            |                            | :class:`PERSISTENT`                  |                                     |
 +------------+----------------------------+--------------------------------------+-------------------------------------+
 
 .. _xml_liveliness:
@@ -292,11 +285,11 @@ Liveliness
 +---------------------------+---------------------------------+--------------------------------+-----------------------+
 | Name                      | Description                     | Values                         | Default               |
 +===========================+=================================+================================+=======================+
-| ``<kind>``                | See                             | |AUTOMATIC|                    | |AUTOMATIC|           |
+| ``<kind>``                | See                             |  :class:`AUTOMATIC`            |  :class:`AUTOMATIC`   |
 |                           | :ref:`livelinessqospolicykind`. +--------------------------------+                       |
-|                           |                                 | |MANUAL_BY_PARTICIPANT|        |                       |
+|                           |                                 |  :class:`MANUAL_BY_PARTICIPANT`|                       |
 |                           |                                 +--------------------------------+                       |
-|                           |                                 | |MANUAL_BY_TOPIC|              |                       |
+|                           |                                 |  :class:`MANUAL_BY_TOPIC`      |                       |
 +---------------------------+---------------------------------+--------------------------------+-----------------------+
 | ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`            | |c_TimeInfinite-api|  |
 +---------------------------+---------------------------------+--------------------------------+-----------------------+
@@ -308,15 +301,15 @@ Liveliness
 ReliabilityQosPolicy
 """"""""""""""""""""
 
-+---------------------------+----------------------------------+----------------------+--------------------------------+
-| Name                      | Description                      | Values               | Default                        |
-+===========================+==================================+======================+================================+
-| ``<kind>``                | See                              | |BEST_EFFORT|        | DataReaders:                   |
-|                           | :ref:`reliabilityqospolicykind`. +----------------------+ |BEST_EFFORT| |br|             |
-|                           |                                  | |RELIABLE|           | Datawriters: |RELIABLE|        |
-+---------------------------+----------------------------------+----------------------+--------------------------------+
-| ``<max_blocking_time>``   | See :ref:`reliabilityqospolicy`. | :ref:`DurationType`  | 100 ms                         |
-+---------------------------+----------------------------------+----------------------+--------------------------------+
++---------------------------+----------------------------------+----------------------+----------------------------------+
+| Name                      | Description                      | Values               | Default                          |
++===========================+==================================+======================+==================================+
+| ``<kind>``                | See                              |  :class:`BEST_EFFORT`| DataReaders: :class:`BEST_EFFORT`|
+|                           | :ref:`reliabilityqospolicykind`. +----------------------+                                  |
+|                           |                                  |  :class:`RELIABLE`   | Datawriters: :class:`RELIABLE`   |
++---------------------------+----------------------------------+----------------------+----------------------------------+
+| ``<max_blocking_time>``   | See :ref:`reliabilityqospolicy`. | :ref:`DurationType`  | 100 ms                           |
++---------------------------+----------------------------------+----------------------+----------------------------------+
 
 .. _xml_partition:
 

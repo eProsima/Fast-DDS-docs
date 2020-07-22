@@ -1,4 +1,6 @@
 .. include:: ../includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
 
 .. _cmake_options:
 
@@ -101,6 +103,10 @@ dependency on other options.
           option to `Debug`. Moreover, :class:`INTERNAL_DEBUG` is set to ``ON`` if |br|
           :class:`EPROSIMA_BUILD` is ``ON``.
         - ``OFF``
+    *   - :class:`SQLITE3_SUPPORT`
+        - Builds  the |TRANSIENT_DURABILITY_QOS-api| and |PERSISTENT_DURABILITY_QOS-api| options for |br|
+          the :ref:`durabilitykind`.
+        - ``ON``
 
 
 Third-party libraries options

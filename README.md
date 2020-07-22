@@ -145,6 +145,12 @@ source fastdds-docs-venv/bin/activate
 FASTDDS_BRANCH=<branch> make help
 ```
 
+### Troubleshooting
+
+Python versions 3.7 and newer produce `Duplicate declaration` and `Error when parsing function declaration` warnings 
+when running `make test`,this is due to a difference in the Sphinx 3.0.3 module code which prevents the patch from
+working.
+
 ## Generating documentation in other formats
 
 The documentation can be generated in several formats such as HTML, PDF, LaTex, etc. For a complete list of targets run:

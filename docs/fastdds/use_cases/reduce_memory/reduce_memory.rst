@@ -7,21 +7,21 @@ Reduce the usage of memory
 ==========================
 
 A great number of modern systems have tight constraints over available memory. Reducing the memory usage is critical for
-these applications. Memory consumption of your Fast-DDS application can be achieved through a different number of
+these applications. Reducing memory consumption of a Fast-DDS application can be achieved through a different number of
 approaches, mainly through architectural restructuring, but also via the limiting of resources and by avoiding static
 allocations.
 
-If your system has a low memory limit it would be recommended to limit the maximum resources of the application to
-ensure that it will run properly. To lower the usage during runtime, allocations can be set dynamically to ensure the
-lowest amount of memory is always in use.
+If a system has a low memory limit it is recommended to limit the maximum resources of the application to ensure that it
+will run properly. To lower the usage during runtime, allocations can be set dynamically to ensure the lowest amount of
+memory is always in use.
 
 QoS Adjustments
 ---------------
 
 ResourceLimitsQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^
-Limit the resources to the application's needs. At the lowest limit we can reduce it to one sample per |DataWriter-api|
-and |DataReader-api|.
+Limit the resources to the application's needs. The lowest it can be reduced to is one sample per |DataWriter-api| and
+|DataReader-api|.
 
 
 .. warning::
@@ -54,9 +54,9 @@ and |DataReader-api|.
 Set Dynamic Allocation
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Use the dynamic settings of the :ref:`rtpsendpointqos` to prevent allocating unused memory. Lowest footprint is achieved
-with |DYNAMIC_RESERVE_MEMORY_MODE-api| at the cost of higher allocation counts, for higher determinism at a small memory
-cost use |DYNAMIC_REUSABLE_MEMORY_MODE-api|.
+Using the dynamic settings of the :ref:`rtpsendpointqos` will prevent unecessery allocations. Lowest footprint is
+achieved with |DYNAMIC_RESERVE_MEMORY_MODE-api| at the cost of higher allocation counts, for higher determinism at a
+small memory cost the |DYNAMIC_REUSABLE_MEMORY_MODE-api| option is available.
 
 
 

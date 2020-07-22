@@ -402,7 +402,7 @@ Indicates the way the memory is managed in terms of dealing with the CacheChange
 +----------------+--------------------------------------+------------------------------------+-------------------------+
 | Name           | Description                          | Values                             | Default                 |
 +================+======================================+====================================+=========================+
-| |MemManagment| |  Four diffrent options as described  | :class:`PREALLOCATED`              |                         |
+| |MemManagment| |  Four different options as described | :class:`PREALLOCATED`              |                         |
 |                |  in :ref:`memorymanagementpolicy`    +------------------------------------+                         |
 |                |                                      | :class:`PREALLOCATED_WITH_REALLOC` |                         |
 |                |                                      +------------------------------------+                         |

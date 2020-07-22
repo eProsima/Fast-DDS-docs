@@ -389,6 +389,30 @@ It contains two child elements which are explained in the following table.
 |                       | are allowed.                                              |               |                  |
 +-----------------------+-----------------------------------------------------------+---------------+------------------+
 
+.. _historymemorypoliciesXML:
+
+.. |MemManagment| replace:: :class:`MemoryManagementPolicy`
+
+
+HistoryMemoryPolicy
+^^^^^^^^^^^^^^^^^^^
+
+Indicates the way the memory is managed in terms of dealing with the CacheChanges of the :ref:`rtpsendpointqos`.
+
++----------------+--------------------------------------+------------------------------------+-------------------------+
+| Name           | Description                          | Values                             | Default                 |
++================+======================================+====================================+=========================+
+| |MemManagment| |  Four diffrent options as described  | :class:`PREALLOCATED`              |                         |
+|                |  in :ref:`memorymanagementpolicy`    +------------------------------------+                         |
+|                |                                      | :class:`PREALLOCATED_WITH_REALLOC` |                         |
+|                |                                      +------------------------------------+                         |
+|                |                                      | :class:`DYNAMIC`                   | :class:`PREALLOCATED`   |
+|                |                                      +------------------------------------+                         |
+|                |                                      | :class:`DYNAMIC_REUSABLE`          |                         |
+|                |                                      |                                    |                         |
+|                |                                      |                                    |                         |
++----------------+--------------------------------------+------------------------------------+-------------------------+
+
 **Example**
 
 .. literalinclude:: /../code/XMLTester.xml

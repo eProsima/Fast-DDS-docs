@@ -18,10 +18,10 @@ persistent database, so that the DataWriter can load it on creation.
 Furthermore, DataReaders can be configured to store the last notified change in the database, so that they can
 recover their state on creation.
 
-This mechanism allows to recover a previous state on starting the Data Distribution Service, thus adding robustness to
+This mechanism allows recovering a previous state on starting the Data Distribution Service, thus adding robustness to
 applications in the case of, for example, unexpected shutdowns.
 Configuring the persistence service, DataWriters and DataReaders can resume their operation from the state
-in which they where when the shutdown occurred.
+in which they were when the shutdown occurred.
 
 .. note::
     Mind that DataReaders do not store their history into the database, but rather the last notified change from
@@ -35,9 +35,9 @@ in which they where when the shutdown occurred.
 Configuration
 -------------
 
-The configuration of the persistence service is accomplished through the setting of the appropriate DataWriter
-and DataReader |DurabilityQosPolicy|, and by specifying the appropriate properties in the entities'
-(|DomainParticipant-api|, DataWriter, or DataReader) |PropertyPolicyQos|.
+The configuration of the persistence service is accomplished by setting of the appropriate DataWriter and DataReader
+|DurabilityQosPolicy|, and by specifying the suitable properties for each entity's (|DomainParticipant-api|, DataWriter,
+or DataReader) |PropertyPolicyQos|.
 
 * For the :ref:`persistence_service` to have any effect, the |DurabilityQosPolicyKind-api| needs to be set to
   |TRANSIENT_DURABILITY_QOS-api|.
@@ -45,7 +45,7 @@ and DataReader |DurabilityQosPolicy|, and by specifying the appropriate properti
 * A persistence identifier (|Guid_t-api|) must be set for the entity using the property ``dds.persistence.guid``.
   This identifier is used to load the appropriate data from the database, and also to synchronize DataWriter and
   DataReader between restarts.
-  The GUID consists on 16 bytes separated in two groups:
+  The GUID consists of 16 bytes separated into two groups:
 
     * The first 12 bytes correspond to the |GuidPrefix_t-api|.
     * The last 4 bytes correspond to the |EntityId_t-api|.
@@ -116,6 +116,6 @@ from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. note::
-    For instruction on how to create DomainParticipants, DataReaders, and DataWriters, please refer to
+    For instructions on how to create DomainParticipants, DataReaders, and DataWriters, please refer to
     :ref:`dds_layer_domainParticipant_creation_profile`, :ref:`dds_layer_publisher_datawriter_creation_profile`, and
     :ref:`dds_layer_subscriber_datareader_creation_profile` respectively.

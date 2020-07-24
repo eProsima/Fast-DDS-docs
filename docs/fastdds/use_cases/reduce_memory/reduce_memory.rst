@@ -3,7 +3,7 @@
 
 .. _use-case-reduceMemory:
 
-Reduce the usage of memory
+Reduce memory usage
 ==========================
 
 A great number of modern systems have tight constraints over available memory. Reducing the memory usage is critical for
@@ -94,4 +94,3 @@ small memory cost the |DYNAMIC_REUSABLE_MEMORY_MODE-api| option is available.
     +--------------------------------------+----------------------------+
     |DYNAMIC_REUSABLE_MEMORY_MODE          | DYNAMIC_REUSABLE           |
     +--------------------------------------+----------------------------+
-

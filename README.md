@@ -125,6 +125,12 @@ Furthermore, it is used to create an executable that is then used to generate Ct
     python3 -V
     ```
 
+### Troubleshooting
+
+Python versions 3.7 and newer produce `Duplicate declaration` and `Error when parsing function declaration` warnings 
+when running `make test`, this is due to a difference in the Sphinx 3.0.3 module code which prevents the patch from
+working.
+
 ## Getting Started
 
 To generate the documentation in a HTML format for a specific branch of Fast DDS run:
@@ -144,12 +150,6 @@ cd ~/fastdds-docs
 source fastdds-docs-venv/bin/activate
 FASTDDS_BRANCH=<branch> make help
 ```
-
-### Troubleshooting
-
-Python versions 3.7 and newer produce `Duplicate declaration` and `Error when parsing function declaration` warnings 
-when running `make test`, this is due to a difference in the Sphinx 3.0.3 module code which prevents the patch from
-working.
 
 ## Generating documentation in other formats
 

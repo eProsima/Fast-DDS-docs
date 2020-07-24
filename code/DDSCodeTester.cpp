@@ -3834,7 +3834,7 @@ void dds_usecase_examples()
         //CONF-MEMORY-QOS-PUBSUB
 
         ResourceLimitsQosPolicy resource_limits;
-        //The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
+        // The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
         //Change max_samples to the minimum
         resource_limits.max_samples = 1;
         //The ResourceLimitsQosPolicy is default constructed with max_instances = 10

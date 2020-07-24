@@ -83,18 +83,3 @@ not freed and is reused for future messages.
 |    :append: </profiles>                                |
 +--------------------------------------------------------+
 
-
-.. note::
-    Memory allocation modes have different names for XML config files and C++ source code.
-
-    +--------------------------------------+----------------------------+
-    |C++                                   | XML                        |
-    +======================================+============================+
-    |PREALLOCATED_MEMORY_MODE              | PREALLOCATED               |
-    +--------------------------------------+----------------------------+
-    |PREALLOCATED_WITH_REALLOC_MEMORY_MODE | PREALLOCATED_WITH_REALLOC  |
-    +--------------------------------------+----------------------------+
-    |DYNAMIC_RESERVE_MEMORY_MODE           | DYNAMIC                    |
-    +--------------------------------------+----------------------------+
-    |DYNAMIC_REUSABLE_MEMORY_MODE          | DYNAMIC_REUSABLE           |
-    +--------------------------------------+----------------------------+

@@ -580,7 +580,9 @@
 .. |FILTER_DIFFERENT_PROCESS| replace:: :cpp:enumerator:`FILTER_DIFFERENT_PROCESS<rtps::fastrtps::eprosima::ParticipantFilteringFlags::FILTER_DIFFERENT_PROCESS>`
 .. |FILTER_SAME_PROCESS| replace:: :cpp:enumerator:`FILTER_SAME_PROCESS<rtps::fastrtps::eprosima::ParticipantFilteringFlags::FILTER_SAME_PROCESS>`
 
+.. |Guid_t-api| replace:: :cpp:struct:`Guid_t<eprosima::fastrtps::rtps::Guid_t>`
 .. |GuidPrefix_t-api| replace:: :cpp:struct:`GuidPrefix_t<eprosima::fastrtps::rtps::GuidPrefix_t>`
+.. |EntityId_t-api| replace:: :cpp:struct:`EntityId_t<eprosima::fastrtps::rtps::EntityId_t>`
 .. |InitialAnnouncementConfig-api| replace:: :cpp:struct:`InitialAnnouncementConfig<eprosima::fastrtps::rtps::InitialAnnouncementConfig>`
 .. |InitialAnnouncementConfig::period-api| replace:: :cpp:member:`period<eprosima::fastrtps::rtps::InitialAnnouncementConfig::period>`
 .. |RemoteServerAttributes-api| replace:: :cpp:class:`RemoteServerAttributes<eprosima::fastrtps::rtps::RemoteServerAttributes>`

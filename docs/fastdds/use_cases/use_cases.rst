@@ -60,9 +60,9 @@ with distributed systems:
   this tutorial is an explanation of how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2
   project.
 
-+ :ref:`use-case-reduce-memory`.
-  For use cases where available memory is scarce, *Fast DDS*  can configured to reduce memory footprint
-  to a minimum by adjusting different  QoS policies.
++ :ref:`use-case-reduceMemory`.
+  For use cases where available memory is scarce, *Fast DDS*  can be configured to reduce memory footprint
+  to a minimum by adjusting different QoS policies.
 
 .. toctree::
     :maxdepth: 2
@@ -74,4 +74,3 @@ with distributed systems:
     /fastdds/use_cases/realtime/realtime.rst
     /fastdds/use_cases/ros2/ros2.rst
     /fastdds/use_cases/reduce_memory/reduce_memory.rst
-

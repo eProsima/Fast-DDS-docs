@@ -53,10 +53,14 @@ Limit the resources to the application's needs. The lowest it can be reduced to 
 
 Set Dynamic Allocation
 ^^^^^^^^^^^^^^^^^^^^^^
+By default :ref:`memorymanagementpolicy` is set to |PREALLOCATED_MEMORY_MODE-api|, meaning that the amount of memory
+required by the configured :ref:`resourcelimitsqospolicy` will be allocated at initialization.
 
 Using the dynamic settings of the :ref:`rtpsendpointqos` will prevent unnecessary allocations. Lowest footprint is
-achieved with |DYNAMIC_RESERVE_MEMORY_MODE-api| at the cost of higher allocation counts, for higher determinism at a
-small memory cost the |DYNAMIC_REUSABLE_MEMORY_MODE-api| option is available.
+achieved with |DYNAMIC_RESERVE_MEMORY_MODE-api| at the cost of higher allocation counts, in this mode memory is
+allocated when needed and freed as soon as it stops being used. For higher determinism at a small memory cost the
+|DYNAMIC_REUSABLE_MEMORY_MODE-api| option is available, this option is similar but once more memory is allocated it is
+not freed and is reused for future messages.
 
 
 

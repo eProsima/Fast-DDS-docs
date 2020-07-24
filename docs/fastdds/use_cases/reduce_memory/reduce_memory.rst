@@ -54,7 +54,7 @@ Limit the resources to the application's needs. The lowest it can be reduced to 
 Set Dynamic Allocation
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Using the dynamic settings of the :ref:`rtpsendpointqos` will prevent unecessery allocations. Lowest footprint is
+Using the dynamic settings of the :ref:`rtpsendpointqos` will prevent unnecessary allocations. Lowest footprint is
 achieved with |DYNAMIC_RESERVE_MEMORY_MODE-api| at the cost of higher allocation counts, for higher determinism at a
 small memory cost the |DYNAMIC_REUSABLE_MEMORY_MODE-api| option is available.
 

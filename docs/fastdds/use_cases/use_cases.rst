@@ -61,7 +61,7 @@ with distributed systems:
   project.
 
 + :ref:`use-case-reduceMemory`.
-  For use cases where available memory is scarce, *Fast DDS*  can configured to reduce memory footprint
+  For use cases where available memory is scarce, *Fast DDS*  can be configured to reduce memory footprint
   to a minimum by adjusting different  QoS policies.
 
 .. toctree::
@@ -74,4 +74,3 @@ with distributed systems:
     /fastdds/use_cases/realtime/realtime.rst
     /fastdds/use_cases/ros2/ros2.rst
     /fastdds/use_cases/reduce_memory/reduce_memory.rst
-

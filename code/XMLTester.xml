@@ -3387,6 +3387,7 @@
 <dds>
     <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
+        <!-- DomainParticipant configuration -->
         <participant profile_name="persistence_service_participant">
             <rtps>
                 <propertiesPolicy>
@@ -3406,7 +3407,14 @@
             </rtps>
         </participant>
 
+        <!-- DataWriter configuration -->
         <data_writer profile_name="persistence_service_data_writer">
+            <qos>
+                <!-- Set durability to TRANSIENT_DURABILITY_QOS -->
+                <durability>
+                    <kind>TRANSIENT</kind>
+                </durability>
+            </qos>
             <propertiesPolicy>
                 <properties>
                     <!-- Persistence GUID -->
@@ -3419,6 +3427,12 @@
         </data_writer>
 
         <data_reader profile_name="persistence_service_data_reader">
+            <qos>
+                <!-- Set durability to TRANSIENT_DURABILITY_QOS -->
+                <durability>
+                    <kind>TRANSIENT</kind>
+                </durability>
+            </qos>
             <propertiesPolicy>
                 <properties>
                     <!-- Persistence GUID -->

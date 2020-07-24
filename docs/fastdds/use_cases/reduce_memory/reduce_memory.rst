@@ -6,31 +6,39 @@
 Reduce memory usage
 ===================
 
-A great number of modern systems have tight constraints over available memory. Reducing the memory usage is critical for
-these applications. Reducing memory consumption of a Fast-DDS application can be achieved through a different number of
-approaches, mainly through architectural restructuring, but also via the limiting of resources and by avoiding static
-allocations.
+A great number of modern systems have tight constraints over available memory, making the reduction of memory usage to a
+minimum critical. Reducing memory consumption of a *Fast DDS* application can be achieved through a different number of
+approaches, mainly through architectural restructuring of the application, but also via limiting the resources the
+middleware utilizes, and by avoiding static allocations.
 
-If a system has a low memory limit it is recommended to limit the maximum resources of the application to ensure that it
-will run properly. To lower the usage during runtime, allocations can be set dynamically to ensure the lowest amount of
-memory is always in use.
+.. |max_samples| replace:: |ResourceLimitsQosPolicy::max_samples-api|
+.. |max_instances| replace:: |ResourceLimitsQosPolicy::max_instances-api|
+.. |max_samples_per_instance| replace:: |ResourceLimitsQosPolicy::max_samples_per_instance-api|
+.. |allocated_samples| replace:: |ResourceLimitsQosPolicy::allocated_samples-api|
+.. |depth| replace:: |HistoryQosPolicy::depth-api|
 
-QoS Adjustments
----------------
-
-ResourceLimitsQosPolicy
+Limiting Resources
 ^^^^^^^^^^^^^^^^^^^^^^^
-Limit the resources to the application's needs. The lowest it can be reduced to is one sample per |DataWriter-api| and
-|DataReader-api|.
+The :ref:`resourcelimitsqospolicy` controls the resources that the service can use in order to meet the requirements
+imposed. Limit the resources to the application's needs. 
 
+* |max_samples|: Configures the maximum number of samples that the DataWriter or DataReader can manage across all the
+  instances associated with it. In other words, it represents the maximum samples that the middleware can store for a
+  DataReader or DataWriter.
+* |max_instances|: Configures the maximum number of instances that a DataWriter or DataWriter can manage.
+* |max_samples_per_instance|: Controls the maximum number of samples within an instance  that the DataWriter or
+  DataReader can manage.
+* |allocated_samples|: States the number of samples that will be allocated on initialization.
+
+All these parameters can be lowered as much as needed to reduce memory consumption. Below is an example of a
+configuration for the minimum resource limits possible.
 
 .. warning::
 
-   The value of |ResourceLimitsQosPolicy::max_samples-api| must be higher or equal to the value of
-   |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
+  * The value of |max_samples| must be higher or equal to the value of |max_samples_per_instance|.
 
-   The value established for the :ref:`historyqospolicy` |HistoryQosPolicy::depth-api| must be lower or equal to the
-   value stated for |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
+  * The value established for the :ref:`historyqospolicy` |depth| must be lower or equal to the value stated for
+    |max_samples_per_instance|.
 
 +--------------------------------------------------------+
 | **C++**                                                |

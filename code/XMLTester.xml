@@ -3387,11 +3387,11 @@
 <dds>
     <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-        <participant profile_name="persistance_service_participant">
+        <participant profile_name="persistence_service_participant">
             <rtps>
                 <propertiesPolicy>
                     <properties>
-                        <!-- Select persistance plugin -->
+                        <!-- Select persistence plugin -->
                         <property>
                             <name>dds.persistence.plugin</name>
                             <value>builtin.SQLITE3</value>
@@ -3399,14 +3399,14 @@
                         <!-- Database file name -->
                         <property>
                             <name>dds.persistence.sqlite3.filename</name>
-                            <value>persistance_service.db</value>
+                            <value>persistence_service.db</value>
                         </property>
                     </properties>
                 </propertiesPolicy>
             </rtps>
         </participant>
 
-        <data_writer profile_name="persistance_service_data_writer">
+        <data_writer profile_name="persistence_service_data_writer">
             <propertiesPolicy>
                 <properties>
                     <!-- Persistence GUID -->
@@ -3418,7 +3418,7 @@
             </propertiesPolicy>
         </data_writer>
 
-        <data_reader profile_name="persistance_service_data_reader">
+        <data_reader profile_name="persistence_service_data_reader">
             <propertiesPolicy>
                 <properties>
                     <!-- Persistence GUID -->

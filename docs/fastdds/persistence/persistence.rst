@@ -8,13 +8,13 @@ Persistence Service
 ===================
 
 Using default QoS, the :ref:`dds_layer_publisher_dataWriter` history is only available for
-:ref:`dds_layer_subscriber_dataReader` throughout the DataWriter life.
+:ref:`dds_layer_subscriber_dataReader` throughout the DataWriter's life.
 This means that the history does not persist between DataWriter initializations and therefore it is on an empty
 state on DataWriter creation.
-Similarly, the DataReader history does not persist the DataReader life, thus also being empty on
+Similarly, the DataReader history does not persist the DataReader's life, thus also being empty on
 DataReader creation.
-However, *eProsima Fast DDS* offers the possibility to configure the DataWriter history to be stored in a
-persistent database, so that the DataWriter can load it on creation.
+However, *eProsima Fast DDS* offers the possibility to configure the DataWriter's history to be stored in a
+persistent database, so that the DataWriter can load its history from it on creation.
 Furthermore, DataReaders can be configured to store the last notified change in the database, so that they can
 recover their state on creation.
 
@@ -83,6 +83,10 @@ These properties are summarized in the following table:
    * - ``dds.persistence.sqlite3.filename``
      - Name of the file used for persistent storage. |br|
        Default value: ``persistence.db``
+
+.. note::
+    To avoid undesired delays caused by concurrent access to the SQLite3 database, it is advisable to specify a
+    different database file for each DataWriter and DataReader.
 
 .. important::
     The plugin set in the PropertyPolicyQos of DomainParticipant only applies if that of the

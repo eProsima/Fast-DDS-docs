@@ -20,7 +20,7 @@ middleware utilizes, and by avoiding static allocations.
 Limiting Resources
 ^^^^^^^^^^^^^^^^^^^^^^^
 The :ref:`resourcelimitsqospolicy` controls the resources that the service can use in order to meet the requirements
-imposed. Limit the resources to the application's needs. 
+imposed. Limit the resources to the application's needs.
 
 * |max_samples|: Configures the maximum number of samples that the DataWriter or DataReader can manage across all the
   instances associated with it. In other words, it represents the maximum samples that the middleware can store for a

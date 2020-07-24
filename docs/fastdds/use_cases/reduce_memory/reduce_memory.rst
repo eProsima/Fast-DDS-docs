@@ -1,7 +1,7 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
 
-.. _use-case-reduceMemory:
+.. _use-case-reduce-memory:
 
 Reduce memory usage
 ==========================

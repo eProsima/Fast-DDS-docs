@@ -4,7 +4,7 @@
 .. _use-case-reduce-memory:
 
 Reduce memory usage
-==========================
+===================
 
 A great number of modern systems have tight constraints over available memory. Reducing the memory usage is critical for
 these applications. Reducing memory consumption of a Fast-DDS application can be achieved through a different number of

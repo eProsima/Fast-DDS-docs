@@ -393,7 +393,7 @@ It contains two child elements which are explained in the following table.
 
 .. _historymemorypoliciesXML:
 
-.. |MemManagment| replace:: :class:`MemoryManagementPolicy`
+.. |MemManagment| replace:: <historyMemoryPolicy>
 
 
 HistoryMemoryPolicy
@@ -405,8 +405,8 @@ Indicates the way the memory is managed in terms of dealing with the CacheChange
 | Name           | Description                          | Values                              | Default                |
 +================+======================================+=====================================+========================+
 | |MemManagment| |  Four different options as described | |PREALLOCATED-xml-api|              |                        |
-|                |  in :ref:`memorymanagementpolicy`    +-------------------------------------+                        |
-|                |                                      | |PREALLOCATED_WITH_REALLOC-xml-api| |                        |
+|                |  |br| in                             +-------------------------------------+                        |
+|                |  :ref:`memorymanagementpolicy`.      | |PREALLOCATED_WITH_REALLOC-xml-api| |                        |
 |                |                                      +-------------------------------------+                        |
 |                |                                      | |DYNAMIC-xml-api|                   | |PREALLOCATED-xml-api| |
 |                |                                      +-------------------------------------+                        |

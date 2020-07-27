@@ -6,9 +6,9 @@
 Reduce memory usage
 ===================
 
-A great number of modern systems have tight constraints over available memory, making the reduction of memory usage to a
-minimum critical. Reducing memory consumption of a *Fast DDS* application can be achieved through a different number of
-approaches, mainly through architectural restructuring of the application, but also via limiting the resources the
+A great number of modern systems have tight constraints on available memory, making the reduction of memory usage to a
+minimum critical. Reducing memory consumption of a *Fast DDS* application can be achieved through various approaches,
+mainly through architectural restructuring of the application, but also by limiting the resources the
 middleware utilizes, and by avoiding static allocations.
 
 .. |max_samples| replace:: |ResourceLimitsQosPolicy::max_samples-api|
@@ -20,11 +20,12 @@ middleware utilizes, and by avoiding static allocations.
 Limiting Resources
 ^^^^^^^^^^^^^^^^^^^^^^^
 The :ref:`resourcelimitsqospolicy` controls the resources that the service can use in order to meet the requirements
-imposed. Limit the resources to the application's needs.
+imposed.
+Limit the resources to the application's needs.
 
-* |max_samples|: Configures the maximum number of samples that the DataWriter or DataReader can manage across all the
-  instances associated with it. In other words, it represents the maximum samples that the middleware can store for a
-  DataReader or DataWriter.
+* |max_samples|: Configures the maximum number of samples that the :ref:`dds_layer_publisher_dataWriter` or
+  :ref:`dds_layer_publisher_dataWriter` can manage across all the instances associated with it, i.e. it represents the
+  maximum samples that the middleware can store for a DataReader or DataWriter.
 * |max_instances|: Configures the maximum number of instances that a DataWriter or DataWriter can manage.
 * |max_samples_per_instance|: Controls the maximum number of samples within an instance  that the DataWriter or
   DataReader can manage.

@@ -3849,7 +3849,6 @@ void dds_usecase_examples()
         // The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
         // No allocated samples
         resource_limits.allocated_samples = 0;
-
         //!--
     }
 

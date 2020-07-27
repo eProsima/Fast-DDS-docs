@@ -1835,6 +1835,18 @@
 </participant>
 <!--><-->
 
+<!-->CONF-HISTORYMEMORYPOLICY-EXAMPLE<-->
+    <data_writer profile_name="data_writer_historyMemoryPolicy">
+        <!-- ...  -->
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </data_writer>
+
+    <data_reader profile_name="data_reader_historyMemoryPolicy">
+        <!-- ...  -->
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </data_reader>
+<!--><-->
+
 <!-->CONF-ALLOCATION-QOS-PARTICIPANTS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

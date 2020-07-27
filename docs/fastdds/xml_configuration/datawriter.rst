@@ -93,7 +93,7 @@ The DataWriter configuration is performed through the XML elements listed in the
      - Memory allocation kind for DataWriter's |br|
        history. See :ref:`historyqospolicykind`.
      - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
-     - :class:`PREALLOCATED`
+     - |PREALLOCATED-xml-api|
    * - ``<propertiesPolicy>``
      - Additional configuration properties.
      - :ref:`PropertiesPolicyType`

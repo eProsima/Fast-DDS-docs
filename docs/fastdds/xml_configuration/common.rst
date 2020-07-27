@@ -187,10 +187,10 @@ Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQo
 +-------------+---------------------------------------------------------+-------------------------+--------------------+
 | Name        | Description                                             | Values                  | Default            |
 +=============+=========================================================+=========================+====================+
-| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | :class:`KEEP_LAST`      | :class:`KEEP_LAST` |
+| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | |KEEP_LAST-xml-api|     | |KEEP_LAST-xml-api||
 |             | of the instance |br| and discard the older ones.        |                         |                    |
 |             +---------------------------------------------------------+-------------------------+                    +
-|             | *Fast DDS* will attempt to maintain and deliver all the | :class:`KEEP_ALL`       |                    |
+|             | *Fast DDS* will attempt to maintain and deliver all the | |KEEP_ALL-xml-api|      |                    |
 |             | values of the instance |br| to existing DataReaders.    |                         |                    |
 +-------------+---------------------------------------------------------+-------------------------+--------------------+
 | ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``            | 1000               |
@@ -268,13 +268,13 @@ Durability
 +------------+----------------------------+--------------------------------------+-------------------------------------+
 | Name       | Description                | Values                               | Default                             |
 +============+============================+======================================+=====================================+
-| ``<kind>`` | See :ref:`durabilitykind`. | :class:`VOLATILE`                    | :class:`VOLATILE`                   |
+| ``<kind>`` | See :ref:`durabilitykind`. | |VOLATILE-xml-api|                   | |VOLATILE-xml-api|                  |
 |            |                            +--------------------------------------+                                     |
-|            |                            | :class:`TRANSIENT_LOCAL`             |                                     |
+|            |                            | |TRANSIENT_LOCAL-xml-api|            |                                     |
 |            |                            +--------------------------------------+                                     |
-|            |                            | :class:`TRANSIENT`                   |                                     |
+|            |                            | |TRANSIENT-xml-api|                  |                                     |
 |            |                            +--------------------------------------+                                     |
-|            |                            | :class:`PERSISTENT`                  |                                     |
+|            |                            | |PERSISTENT-xml-api|                 |                                     |
 +------------+----------------------------+--------------------------------------+-------------------------------------+
 
 .. _xml_liveliness:
@@ -285,11 +285,11 @@ Liveliness
 +---------------------------+---------------------------------+--------------------------------+-----------------------+
 | Name                      | Description                     | Values                         | Default               |
 +===========================+=================================+================================+=======================+
-| ``<kind>``                | See                             |  :class:`AUTOMATIC`            |  :class:`AUTOMATIC`   |
+| ``<kind>``                | See                             | |AUTOMATIC-xml-api|            |  |AUTOMATIC-xml-api|  |
 |                           | :ref:`livelinessqospolicykind`. +--------------------------------+                       |
-|                           |                                 |  :class:`MANUAL_BY_PARTICIPANT`|                       |
+|                           |                                 | |MANUAL_BY_PARTICIPANT-xml-api||                       |
 |                           |                                 +--------------------------------+                       |
-|                           |                                 |  :class:`MANUAL_BY_TOPIC`      |                       |
+|                           |                                 | |MANUAL_BY_TOPIC-xml-api|      |                       |
 +---------------------------+---------------------------------+--------------------------------+-----------------------+
 | ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`            | |c_TimeInfinite-api|  |
 +---------------------------+---------------------------------+--------------------------------+-----------------------+
@@ -301,15 +301,15 @@ Liveliness
 ReliabilityQosPolicy
 """"""""""""""""""""
 
-+-------------------------+----------------------------------+----------------------+----------------------------------+
-| Name                    | Description                      | Values               | Default                          |
-+=========================+==================================+======================+==================================+
-| ``<kind>``              | See                              |  :class:`BEST_EFFORT`| DataReaders: :class:`BEST_EFFORT`|
-|                         | :ref:`reliabilityqospolicykind`. +----------------------+                                  |
-|                         |                                  |  :class:`RELIABLE`   | Datawriters: :class:`RELIABLE`   |
-+-------------------------+----------------------------------+----------------------+----------------------------------+
-| ``<max_blocking_time>`` | See :ref:`reliabilityqospolicy`. | :ref:`DurationType`  | 100 ms                           |
-+-------------------------+----------------------------------+----------------------+----------------------------------+
++------------------------+----------------------------------+----------------------+-----------------------------------+
+| Name                   | Description                      | Values               | Default                           |
++========================+==================================+======================+===================================+
+| ``<kind>``             | See                              | |BEST_EFFORT-xml-api|| DataReaders: |BEST_EFFORT-xml-api||
+|                        | :ref:`reliabilityqospolicykind`. +----------------------+                                   |
+|                        |                                  | |RELIABLE-xml-api|   | DataWriters: |RELIABLE-xml-api|   |
++------------------------+----------------------------------+----------------------+-----------------------------------+
+| ``<max_blocking_time>``| See :ref:`reliabilityqospolicy`. | :ref:`DurationType`  | 100 ms                            |
++------------------------+----------------------------------+----------------------+-----------------------------------+
 
 .. _xml_partition:
 
@@ -402,13 +402,13 @@ Indicates the way the memory is managed in terms of dealing with the CacheChange
 +----------------+--------------------------------------+------------------------------------+-------------------------+
 | Name           | Description                          | Values                             | Default                 |
 +================+======================================+====================================+=========================+
-| |MemManagment| |  Four different options as described | :class:`PREALLOCATED`              |                         |
+| |MemManagment| |  Four different options as described | |PREALLOCATED-xml-api|             |                         |
 |                |  in :ref:`memorymanagementpolicy`    +------------------------------------+                         |
-|                |                                      | :class:`PREALLOCATED_WITH_REALLOC` |                         |
+|                |                                      | |PREALLOCATED_WITH_REALLOC-xml-api||                         |
 |                |                                      +------------------------------------+                         |
-|                |                                      | :class:`DYNAMIC`                   | :class:`PREALLOCATED`   |
+|                |                                      | |DYNAMIC-xml-api|                  | |PREALLOCATED-xml-api|  |
 |                |                                      +------------------------------------+                         |
-|                |                                      | :class:`DYNAMIC_REUSABLE`          |                         |
+|                |                                      | |DYNAMIC_REUSABLE-xml-api|         |                         |
 |                |                                      |                                    |                         |
 |                |                                      |                                    |                         |
 +----------------+--------------------------------------+------------------------------------+-------------------------+

@@ -93,7 +93,7 @@ The DataReader configuration is performed through the XML elements listed in the
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for DataReaders's |br| history.
      - :ref:`memorymanagementpolicy`
-     - :class:`PREALLOCATED`
+     - |PREALLOCATED-xml-api|
    * - ``<propertiesPolicy>``
      - Additional configuration properties.
      - :ref:`PropertiesPolicyType`

@@ -282,7 +282,7 @@ This section specifies the available XML members for the configuration of this
 
 .. |loclist| replace:: A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
 .. |mempol| replace:: :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
-.. |mempoldefault| replace:: :class:`PREALLOCATED`
+.. |mempoldefault| replace:: |PREALLOCATED-xml-api|
 
 +---------------------------------------+--------------------------------------+---------------------+-----------------+
 | Name                                  | Description                          | Values              | Default         |

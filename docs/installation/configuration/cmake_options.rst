@@ -107,8 +107,8 @@ dependency on other options.
         - ``OFF``
     *   - :class:`SQLITE3_SUPPORT`
         - Builds the |SQLITE3_PLUGIN|. This enables the |TRANSIENT_DURABILITY_QOS-api| |br|
-          and |PERSISTENT_DURABILITY_QOS-api| options for the :ref:`durabilitykind`, |br|
-          and therefore the :ref:`persistence_service`.
+          and |PERSISTENT_DURABILITY_QOS-api| options for the :ref:`durabilitykind` |br|
+          which depend on, and therfore enable, the :ref:`persistence_service`.
         - ``ON``
 
 

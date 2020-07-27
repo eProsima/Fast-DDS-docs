@@ -392,7 +392,7 @@ It contains two child elements which are explained in the following table.
 
 .. _historymemorypoliciesXML:
 
-.. |MemManagment| replace:: <historyMemoryPolicy>
+.. |MemManagment| replace:: ``<historyMemoryPolicy>``
 
 
 HistoryMemoryPolicy

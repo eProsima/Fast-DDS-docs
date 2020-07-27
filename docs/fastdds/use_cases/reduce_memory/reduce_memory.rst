@@ -20,19 +20,19 @@ middleware utilizes, and by avoiding static allocations.
 Limiting Resources
 ^^^^^^^^^^^^^^^^^^^^^^^
 The :ref:`resourcelimitsqospolicy` controls the resources that the service can use in order to meet the requirements
-imposed.
-Limit the resources to the application's needs.
+imposed. It limits the amount of allocated memory per :ref:`dds_layer_publisher_dataWriter` or
+:ref:`dds_layer_publisher_dataWriter`, as per the following parameters:
 
-* |max_samples|: Configures the maximum number of samples that the :ref:`dds_layer_publisher_dataWriter` or
-  :ref:`dds_layer_publisher_dataWriter` can manage across all the instances associated with it, i.e. it represents the
-  maximum samples that the middleware can store for a DataReader or DataWriter.
+* |max_samples|: Configures the maximum number of samples that the DataWriter or DataReader can manage across all the
+  instances associated with it, i.e. it represents the maximum samples that the middleware can store for a DataReader or
+  DataWriter.
 * |max_instances|: Configures the maximum number of instances that a DataWriter or DataWriter can manage.
 * |max_samples_per_instance|: Controls the maximum number of samples within an instance  that the DataWriter or
   DataReader can manage.
 * |allocated_samples|: States the number of samples that will be allocated on initialization.
 
-All these parameters can be lowered as much as needed to reduce memory consumption. Below is an example of a
-configuration for the minimum resource limits possible.
+All these parameters may be lowered as much as needed to reduce memory consumption, limit the resources to the
+application's needs. Below is an example of a configuration for the minimum resource limits possible.
 
 .. warning::
 

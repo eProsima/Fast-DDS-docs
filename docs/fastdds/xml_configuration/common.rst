@@ -390,6 +390,13 @@ It contains two child elements which are explained in the following table.
 |                       | are allowed.                                              |               |                  |
 +-----------------------+-----------------------------------------------------------+---------------+------------------+
 
+**Example**
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->CONF-THROUGHPUT-EXAMPLE<-->
+    :end-before: <!--><-->
+
 .. _historymemorypoliciesXML:
 
 .. |MemManagment| replace:: ``<historyMemoryPolicy>``
@@ -418,8 +425,9 @@ Indicates the way the memory is managed in terms of dealing with the CacheChange
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
-    :start-after: <!-->CONF-THROUGHPUT-EXAMPLE<-->
+    :start-after: <!-->CONF-HISTORYMEMORYPOLICY-EXAMPLE<-->
     :end-before: <!--><-->
+    :dedent: 4
 
 .. _CommonAlloc:
 

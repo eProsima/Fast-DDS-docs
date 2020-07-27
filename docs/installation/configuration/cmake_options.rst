@@ -1,4 +1,6 @@
 .. include:: ../includes/aliases.rst
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
 
 .. _cmake_options:
 
@@ -15,6 +17,8 @@ finally, the possible options for the building of *Fast DDS* tests are defined.
 
 General options
 ^^^^^^^^^^^^^^^
+
+.. |SQLITE3_PLUGIN| replace:: :ref:`SQLITE3 Plugin<persistence_sqlite3_builtin_plugin>`
 
 The *Fast DDS* CMake options for configuring general settings are shown below, together with their description and
 dependency on other options.
@@ -101,6 +105,11 @@ dependency on other options.
           option to `Debug`. Moreover, :class:`INTERNAL_DEBUG` is set to ``ON`` if |br|
           :class:`EPROSIMA_BUILD` is ``ON``.
         - ``OFF``
+    *   - :class:`SQLITE3_SUPPORT`
+        - Builds the |SQLITE3_PLUGIN|, which enables the |TRANSIENT_DURABILITY_QOS-api| |br|
+          and |PERSISTENT_DURABILITY_QOS-api| options for the :ref:`durabilitykind` |br|
+          and therefore the :ref:`persistence_service`.
+        - ``ON``
 
 
 Third-party libraries options

@@ -40,6 +40,7 @@
    /fastdds/rtps_layer/rtps_layer
    /fastdds/discovery/discovery
    /fastdds/transport/transport
+   /fastdds/persistence/persistence
    /fastdds/security/security
    /fastdds/logging/intro
    /fastdds/xml_configuration/xml_configuration

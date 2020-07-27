@@ -18,6 +18,8 @@ finally, the possible options for the building of *Fast DDS* tests are defined.
 General options
 ^^^^^^^^^^^^^^^
 
+.. |SQLITE3_PLUGIN| replace:: :ref:`SQLITE3 Plugin<persistence_sqlite3_builtin_plugin>`
+
 The *Fast DDS* CMake options for configuring general settings are shown below, together with their description and
 dependency on other options.
 
@@ -104,8 +106,9 @@ dependency on other options.
           :class:`EPROSIMA_BUILD` is ``ON``.
         - ``OFF``
     *   - :class:`SQLITE3_SUPPORT`
-        - Builds  the |TRANSIENT_DURABILITY_QOS-api| and |PERSISTENT_DURABILITY_QOS-api| options for |br|
-          the :ref:`durabilitykind`.
+        - Builds the |SQLITE3_PLUGIN|. This enables the |TRANSIENT_DURABILITY_QOS-api| |br|
+          and |PERSISTENT_DURABILITY_QOS-api| options for the :ref:`durabilitykind`, which |br|
+          depend on the :ref:`persistence_service`.
         - ``ON``
 
 

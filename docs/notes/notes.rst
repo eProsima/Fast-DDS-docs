@@ -1,49 +1,35 @@
 .. _release_notes:
 
-Version 2.0.0
+Version 2.0.1
 =============
 
-This release has the following **API breaks**:
+This release includes the following bug fixes:
 
-* eClock API, which was deprecated on v1.9.1, has been removed
-* `eprosima::fastrtps::rtps::RTPSDomain::createParticipant` methods now have an additional first argument `domain_id`
-* Data member `domainId` has been removed from `eprosima::fastrtps::rtps::RTPSParticipantAttributes` and added to
-  `eprosima::fastrtps::ParticipantAttributes`
+* Fixed sending GAPs to late joiners
+* Fixed asserting liveliness on data reception
+* Avoid calling :func:`OpenSSL_add_all_algorithms` when not required
 
-Users should also be aware of the following **deprecation announcement**:
+Other improvements:
 
-* All classes inside the namespace `eprosima::fastrtps` should be considered deprecated.
-  Equivalent functionality is offered through namespace `eprosima::fastdds`.
-* Namespaces beneath `eprosima::fastrtps` are not included in this deprecation, i.e.
-  `eprosima::fastrtps::rtps` can still be used)
+* Fixing warnings
 
-This release adds the following **features**:
+PRs in merge order:
+`#1295 <https://github.com/eProsima/Fast-DDS/pull/1295>`_,
+`#1300 <https://github.com/eProsima/Fast-DDS/pull/1300>`_,
+`#1304 <https://github.com/eProsima/Fast-DDS/pull/1304>`_,
+`#1290 <https://github.com/eProsima/Fast-DDS/pull/1290>`_,
+`#1307 <https://github.com/eProsima/Fast-DDS/pull/1307>`_.
 
-* Added support for register/unregister/dispose instance
-* Added DDS compliant API. This new API exposes all the functionality of the Publisher-Subscriber Fast RTPS API
-  adhering to the `Data Distribution Service (DDS) version 1.4 specification <https://www.omg.org/spec/DDS/1.4>`_
-* Added Security Logging Plugin (contributed by Cannonical Ltd.)
-* Bump to FastCDR v1.0.14
-
-It also includes the following bug fixes and improvements:
-
-* Support for OpenSSL 1.1.1d and higher
-* Support for latest versions of gtest
-* Support for FreeBSD
-* Fault tolerance improvements to Shared Memory transport
-* Fixed segfault when no network interfaces are detected
-* Correctly ignoring length of `PID_SENTINEL` on parameter list
-* Improved traffic on PDP simple mode
-* Reduced CPU and memory usage
-
-**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
-from IDL files using *fastrtpsgen*.
-If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastrtpsgen*.
+  If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.
 
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.0.0.rst
 .. include:: previous_versions/v1.10.0.rst
 .. include:: previous_versions/v1.9.4.rst
 .. include:: previous_versions/v1.9.3.rst

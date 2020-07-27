@@ -183,7 +183,6 @@ It controls the behavior of *Fast DDS* when the value of an instance changes bef
 communicated to some of its existing DataReaders.
 Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQoS.
 
-
 +-------------+---------------------------------------------------------+-----------------------+----------------------+
 | Name        | Description                                             | Values                | Default              |
 +=============+=========================================================+=======================+======================+
@@ -193,7 +192,7 @@ Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQo
 |             | *Fast DDS* will attempt to maintain and deliver all the | |KEEP_ALL-xml-api|    |                      |
 |             | values of the instance |br| to existing DataReaders.    |                       |                      |
 +-------------+---------------------------------------------------------+-----------------------+----------------------+
-| ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``          | 1000                 |
+| ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``          | 1                    |
 |             | ``<max_samples_per_instance>`` |br|                     |                       |                      |
 |             | element value. It must be verified that: |br|           |                       |                      |
 |             | ``<depth>`` `<=` ``<max_samples_per_instance>``.        |                       |                      |

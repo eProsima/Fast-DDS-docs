@@ -3831,6 +3831,116 @@ void dds_usecase_examples()
         //!--
     }
 
+    {
+        //CONF-MEMORY-QOS-PUBSUB
+        ResourceLimitsQosPolicy resource_limits;
+
+        // The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
+        // Change max_samples to the minimum
+        resource_limits.max_samples = 1;
+
+        // The ResourceLimitsQosPolicy is default constructed with max_instances = 10
+        // Change max_instances to the minimum
+        resource_limits.max_instances = 1;
+
+        // The ResourceLimitsQosPolicy is default constructed with max_samples_per_instance = 400
+        // Change max_samples_per_instance to the minimum
+        resource_limits.max_samples_per_instance = 1;
+        
+        // The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
+        // No allocated samples
+        resource_limits.allocated_samples = 0;
+        //!--
+    }
+
+
+    {
+        //CONF-MEMORY-QOS-ENDPOINTS
+        RTPSEndpointQos endpoint;
+        endpoint.history_memory_policy = eprosima::fastrtps::rtps::DYNAMIC_REUSABLE_MEMORY_MODE;
+        //!--
+    }
+
+}
+
+void dds_persistence_examples()
+{
+    //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE
+    /*
+    * In order for this example to be self-contained, all the entities are created programatically, including the data
+    * type and type support. This has been done using Fast DDS Dynamic Types API, but it could be substituted with a
+    * Fast DDS-Gen generated type support if an IDL file is available. The Dynamic Type created here is the equivalent
+    * of the following IDL:
+    *
+    *     struct persistence_topic_type
+    *     {
+    *         unsigned long index;
+    *         string message;
+    *     };
+    */
+
+    // Configure persistence service plugin for DomainParticipant
+    DomainParticipantQos pqos;
+    pqos.properties().properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
+    pqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "persistence.db");
+    DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+
+    /********************************************************************************************************
+     * CREATE TYPE AND TYPE SUPPORT
+    *********************************************************************************************************
+     * This part could be replaced if IDL file and Fast DDS-Gen are available.
+     * The type is created with name "persistence_topic_type"
+     * Additionally, create a data object and populate it, just to show how to do it
+    ********************************************************************************************************/
+    // Create a struct builder for a type with name "persistence_topic_type"
+    const std::string topic_type_name = "persistence_topic_type";
+    eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_type_builder(
+            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance()->create_struct_builder());
+    struct_type_builder->set_name(topic_type_name);
+
+    // The type consists of two members, and index and a message. Add members to the struct.
+    struct_type_builder->add_member(0, "index",
+            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance()->create_uint32_type());
+    struct_type_builder->add_member(1, "message",
+            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance()->create_string_type());
+
+    // Build the type
+    eprosima::fastrtps::types::DynamicType_ptr dyn_type_ptr = struct_type_builder->build();
+
+    // Create type support and register the type
+    TypeSupport type_support(new eprosima::fastrtps::types::DynamicPubSubType(dyn_type_ptr));
+    type_support.register_type(participant);
+
+    // Create data sample a populate data. This is to be used when calling `writer->write()`
+    eprosima::fastrtps::types::DynamicData* dyn_helloworld;
+    dyn_helloworld = eprosima::fastrtps::types::DynamicDataFactory::get_instance()->create_data(dyn_type_ptr);
+    dyn_helloworld->set_uint32_value(0, 0);
+    dyn_helloworld->set_string_value("HelloWorld", 1);
+    /********************************************************************************************************
+     * END CREATE TYPE AND TYPE SUPPORT
+    ********************************************************************************************************/
+
+    // Create a topic
+    Topic* topic = participant->create_topic("persistence_topic_name", topic_type_name, TOPIC_QOS_DEFAULT);
+
+    // Create a publisher and a subscriber with default QoS
+    Publisher* publisher = participant->create_publisher(PUBLISHER_QOS_DEFAULT, nullptr);
+    Subscriber* subscriber = participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT, nullptr);
+
+    // Configure DataWriter's durability and persistence GUID so it can use the persistence service
+    DataWriterQos dwqos = DATAWRITER_QOS_DEFAULT;
+    dwqos.durability().kind = TRANSIENT_DURABILITY_QOS;
+    dwqos.properties().properties().emplace_back("dds.persistence.guid",
+            "77.72.69.74.65.72.5f.70.65.72.73.5f|67.75.69.64");
+    DataWriter* writer = publisher->create_datawriter(topic, dwqos);
+
+    // Configure DataReaders's durability and persistence GUID so it can use the persistence service
+    DataReaderQos drqos = DATAREADER_QOS_DEFAULT;
+    drqos.durability().kind = TRANSIENT_DURABILITY_QOS;
+    drqos.properties().properties().emplace_back("dds.persistence.guid",
+            "72.65.61.64.65.72.5f.70.65.72.73.5f|67.75.69.64");
+    DataReader* reader = subscriber->create_datareader(topic, drqos);
+    //!--
 }
 
 void dds_persistence_examples()

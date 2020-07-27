@@ -228,13 +228,24 @@
 .. |TRANSIENT_DURABILITY_QOS-api| replace:: :cpp:enumerator:`TRANSIENT_DURABILITY_QOS<dds::fastdds::eprosima::DurabilityQosPolicyKind::TRANSIENT_DURABILITY_QOS>`
 .. |PERSISTENT_DURABILITY_QOS-api| replace:: :cpp:enumerator:`PERSISTENT_DURABILITY_QOS<dds::fastdds::eprosima::DurabilityQosPolicyKind::PERSISTENT_DURABILITY_QOS>`
 
+.. |VOLATILE-xml-api| replace:: :cpp:enumerator:`VOLATILE<dds::fastdds::eprosima::DurabilityQosPolicyKind::VOLATILE_DURABILITY_QOS>`
+.. |TRANSIENT_LOCAL-xml-api| replace:: :cpp:enumerator:`TRANSIENT_LOCAL<dds::fastdds::eprosima::DurabilityQosPolicyKind::TRANSIENT_LOCAL_DURABILITY_QOS>`
+.. |TRANSIENT-xml-api| replace:: :cpp:enumerator:`TRANSIENT<dds::fastdds::eprosima::DurabilityQosPolicyKind::TRANSIENT_DURABILITY_QOS>`
+.. |PERSISTENT-xml-api| replace:: :cpp:enumerator:`PERSISTENT<dds::fastdds::eprosima::DurabilityQosPolicyKind::PERSISTENT_DURABILITY_QOS>`
+
 .. |HistoryQosPolicyKind-api| replace:: :cpp:enum:`HistoryQosPolicyKind<dds::fastdds::eprosima::HistoryQosPolicyKind>`
 .. |KEEP_LAST_HISTORY_QOS-api| replace:: :cpp:enumerator:`KEEP_LAST_HISTORY_QOS<dds::fastdds::eprosima::HistoryQosPolicyKind::KEEP_LAST_HISTORY_QOS>`
 .. |KEEP_ALL_HISTORY_QOS-api| replace:: :cpp:enumerator:`KEEP_ALL_HISTORY_QOS<dds::fastdds::eprosima::HistoryQosPolicyKind::KEEP_ALL_HISTORY_QOS>`
 
+.. |KEEP_LAST-xml-api| replace:: :cpp:enumerator:`KEEP_LAST<dds::fastdds::eprosima::HistoryQosPolicyKind::KEEP_LAST_HISTORY_QOS>`
+.. |KEEP_ALL-xml-api| replace:: :cpp:enumerator:`KEEP_ALL<dds::fastdds::eprosima::HistoryQosPolicyKind::KEEP_ALL_HISTORY_QOS>`
+
 .. |ReliabilityQosPolicyKind-api| replace:: :cpp:enum:`ReliabilityQosPolicyKind<dds::fastdds::eprosima::ReliabilityQosPolicyKind>`
 .. |BEST_EFFORT_RELIABILITY_QOS-api| replace:: :cpp:enumerator:`BEST_EFFORT_RELIABILITY_QOS<dds::fastdds::eprosima::ReliabilityQosPolicyKind::BEST_EFFORT_RELIABILITY_QOS>`
 .. |RELIABLE_RELIABILITY_QOS-api| replace:: :cpp:enumerator:`RELIABLE_RELIABILITY_QOS<dds::fastdds::eprosima::ReliabilityQosPolicyKind::RELIABLE_RELIABILITY_QOS>`
+
+.. |BEST_EFFORT-xml-api| replace:: :cpp:enumerator:`BEST_EFFORT<dds::fastdds::eprosima::ReliabilityQosPolicyKind::BEST_EFFORT_RELIABILITY_QOS>`
+.. |RELIABLE-xml-api| replace:: :cpp:enumerator:`RELIABLE<dds::fastdds::eprosima::ReliabilityQosPolicyKind::RELIABLE_RELIABILITY_QOS>`
 
 .. |DurabilityServiceQosPolicy-api| replace:: :cpp:class:`DurabilityServiceQosPolicy<eprosima::fastdds::dds::DurabilityServiceQosPolicy>`
 .. |service_cleanup_delay-api| replace:: :cpp:member:`service_cleanup_delay<eprosima::fastdds::dds::DurabilityServiceQosPolicy::service_cleanup_delay>`
@@ -329,6 +340,10 @@
 .. |MANUAL_BY_PARTICIPANT_LIVELINESS_QOS-api| replace:: :cpp:enumerator:`MANUAL_BY_PARTICIPANT_LIVELINESS_QOS<dds::fastdds::eprosima::LivelinessQosPolicyKind::MANUAL_BY_PARTICIPANT_LIVELINESS_QOS>`
 .. |MANUAL_BY_TOPIC_LIVELINESS_QOS-api| replace:: :cpp:enumerator:`MANUAL_BY_TOPIC_LIVELINESS_QOS<dds::fastdds::eprosima::LivelinessQosPolicyKind::MANUAL_BY_TOPIC_LIVELINESS_QOS>`
 
+.. |AUTOMATIC-xml-api| replace:: :cpp:enumerator:`AUTOMATIC<dds::fastdds::eprosima::LivelinessQosPolicyKind::AUTOMATIC_LIVELINESS_QOS>`
+.. |MANUAL_BY_PARTICIPANT-xml-api| replace:: :cpp:enumerator:`MANUAL_BY_PARTICIPANT<dds::fastdds::eprosima::LivelinessQosPolicyKind::MANUAL_BY_PARTICIPANT_LIVELINESS_QOS>`
+.. |MANUAL_BY_TOPIC-xml-api| replace:: :cpp:enumerator:`MANUAL_BY_TOPIC<dds::fastdds::eprosima::LivelinessQosPolicyKind::MANUAL_BY_TOPIC_LIVELINESS_QOS>`
+
 .. |OwnershipQosPolicyKind-api| replace:: :cpp:enum:`OwnershipQosPolicyKind<dds::fastdds::eprosima::OwnershipQosPolicyKind>`
 .. |SHARED_OWNERSHIP_QOS-api| replace:: :cpp:enumerator:`SHARED_OWNERSHIP_QOS<dds::fastdds::eprosima::OwnershipQosPolicyKind::SHARED_OWNERSHIP_QOS>`
 .. |EXCLUSIVE_OWNERSHIP_QOS-api| replace:: :cpp:enumerator:`EXCLUSIVE_OWNERSHIP_QOS<dds::fastdds::eprosima::OwnershipQosPolicyKind::EXCLUSIVE_OWNERSHIP_QOS>`
@@ -359,6 +374,11 @@
 .. |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api| replace:: :cpp:enumerator:`PREALLOCATED_WITH_REALLOC_MEMORY_MODE<rtps::fastrtps::eprosima::MemoryManagementPolicy::PREALLOCATED_WITH_REALLOC_MEMORY_MODE>`
 .. |DYNAMIC_RESERVE_MEMORY_MODE-api| replace:: :cpp:enumerator:`DYNAMIC_RESERVE_MEMORY_MODE<rtps::fastrtps::eprosima::MemoryManagementPolicy::DYNAMIC_RESERVE_MEMORY_MODE>`
 .. |DYNAMIC_REUSABLE_MEMORY_MODE-api| replace:: :cpp:enumerator:`DYNAMIC_REUSABLE_MEMORY_MODE<rtps::fastrtps::eprosima::MemoryManagementPolicy::DYNAMIC_REUSABLE_MEMORY_MODE>`
+
+.. |PREALLOCATED-xml-api| replace:: :cpp:enumerator:`PREALLOCATED<rtps::fastrtps::eprosima::MemoryManagementPolicy::PREALLOCATED_MEMORY_MODE>`
+.. |PREALLOCATED_WITH_REALLOC-xml-api| replace:: :cpp:enumerator:`PREALLOCATED_WITH_REALLOC<rtps::fastrtps::eprosima::MemoryManagementPolicy::PREALLOCATED_WITH_REALLOC_MEMORY_MODE>`
+.. |DYNAMIC-xml-api| replace:: :cpp:enumerator:`DYNAMIC<rtps::fastrtps::eprosima::MemoryManagementPolicy::DYNAMIC_RESERVE_MEMORY_MODE>`
+.. |DYNAMIC_REUSABLE-xml-api| replace:: :cpp:enumerator:`DYNAMIC_REUSABLE<rtps::fastrtps::eprosima::MemoryManagementPolicy::DYNAMIC_REUSABLE_MEMORY_MODE>`
 
 .. |RTPSReliableReaderQos-api| replace:: :cpp:class:`RTPSReliableReaderQos<eprosima::fastdds::dds::RTPSReliableReaderQos>`
 .. |RTPSReliableReaderQos::times-api| replace:: :cpp:member:`times<eprosima::fastdds::dds::RTPSReliableReaderQos::times>`

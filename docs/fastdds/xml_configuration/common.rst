@@ -183,23 +183,20 @@ It controls the behavior of *Fast DDS* when the value of an instance changes bef
 communicated to some of its existing DataReaders.
 Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQoS.
 
-.. |KEEP_LAST| replace:: |KEEP_LAST_HISTORY_QOS-api|
-.. |KEEP_ALL| replace:: |KEEP_ALL_HISTORY_QOS-api|
-
-+-------------+---------------------------------------------------------+-------------------------+--------------------+
-| Name        | Description                                             | Values                  | Default            |
-+=============+=========================================================+=========================+====================+
-| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | |KEEP_LAST|             | |KEEP_LAST|        |
-|             | of the instance |br| and discard the older ones.        |                         |                    |
-|             +---------------------------------------------------------+-------------------------+                    +
-|             | *Fast DDS* will attempt to maintain and deliver all the | |KEEP_ALL|              |                    |
-|             | values of the instance |br| to existing DataReaders.    |                         |                    |
-+-------------+---------------------------------------------------------+-------------------------+--------------------+
-| ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``            | 1                  |
-|             | ``<max_samples_per_instance>`` |br|                     |                         |                    |
-|             | element value. It must be verified that: |br|           |                         |                    |
-|             | ``<depth>`` `<=` ``<max_samples_per_instance>``.        |                         |                    |
-+-------------+---------------------------------------------------------+-------------------------+--------------------+
++-------------+---------------------------------------------------------+-----------------------+----------------------+
+| Name        | Description                                             | Values                | Default              |
++=============+=========================================================+=======================+======================+
+| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | |KEEP_LAST-xml-api|   | |KEEP_LAST-xml-api|  |
+|             | of the instance |br| and discard the older ones.        |                       |                      |
+|             +---------------------------------------------------------+-----------------------+                      |
+|             | *Fast DDS* will attempt to maintain and deliver all the | |KEEP_ALL-xml-api|    |                      |
+|             | values of the instance |br| to existing DataReaders.    |                       |                      |
++-------------+---------------------------------------------------------+-----------------------+----------------------+
+| ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``          | 1                    |
+|             | ``<max_samples_per_instance>`` |br|                     |                       |                      |
+|             | element value. It must be verified that: |br|           |                       |                      |
+|             | ``<depth>`` `<=` ``<max_samples_per_instance>``.        |                       |                      |
++-------------+---------------------------------------------------------+-----------------------+----------------------+
 
 .. _rLsQos:
 
@@ -233,11 +230,6 @@ The Quality of Service (QoS) is used to specify the behavior of the Service, all
 |Entity| will behave.
 Please refer to the :ref:`dds_layer_core_policy` section for more information on QoS.
 
-.. |AUTOMATIC| replace:: |AUTOMATIC_LIVELINESS_QOS-api|
-.. |MANUAL_BY_PARTICIPANT| replace:: |MANUAL_BY_PARTICIPANT_LIVELINESS_QOS-api|
-.. |MANUAL_BY_TOPIC| replace:: |MANUAL_BY_TOPIC_LIVELINESS_QOS-api|
-.. |BEST_EFFORT| replace:: |BEST_EFFORT_RELIABILITY_QOS-api|
-.. |RELIABLE| replace:: |RELIABLE_RELIABILITY_QOS-api|
 
 +--------------------------+---------------------------------------------------+---------------------------------------+
 | Name                     | Description                                       | Values                                |
@@ -275,13 +267,13 @@ Durability
 +------------+----------------------------+--------------------------------------+-------------------------------------+
 | Name       | Description                | Values                               | Default                             |
 +============+============================+======================================+=====================================+
-| ``<kind>`` | See :ref:`durabilitykind`. | |VOLATILE_DURABILITY_QOS-api|        | |VOLATILE_DURABILITY_QOS-api|       |
+| ``<kind>`` | See :ref:`durabilitykind`. | |VOLATILE-xml-api|                   | |VOLATILE-xml-api|                  |
 |            |                            +--------------------------------------+                                     |
-|            |                            | |TRANSIENT_LOCAL_DURABILITY_QOS-api| |                                     |
+|            |                            | |TRANSIENT_LOCAL-xml-api|            |                                     |
 |            |                            +--------------------------------------+                                     |
-|            |                            | |TRANSIENT_DURABILITY_QOS-api|       |                                     |
+|            |                            | |TRANSIENT-xml-api|                  |                                     |
 |            |                            +--------------------------------------+                                     |
-|            |                            | |PERSISTENT_DURABILITY_QOS-api|      |                                     |
+|            |                            | |PERSISTENT-xml-api|                 |                                     |
 +------------+----------------------------+--------------------------------------+-------------------------------------+
 
 .. _xml_liveliness:
@@ -289,34 +281,36 @@ Durability
 Liveliness
 """"""""""
 
-+---------------------------+---------------------------------+--------------------------------+-----------------------+
-| Name                      | Description                     | Values                         | Default               |
-+===========================+=================================+================================+=======================+
-| ``<kind>``                | See                             | |AUTOMATIC|                    | |AUTOMATIC|           |
-|                           | :ref:`livelinessqospolicykind`. +--------------------------------+                       |
-|                           |                                 | |MANUAL_BY_PARTICIPANT|        |                       |
-|                           |                                 +--------------------------------+                       |
-|                           |                                 | |MANUAL_BY_TOPIC|              |                       |
-+---------------------------+---------------------------------+--------------------------------+-----------------------+
-| ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`            | |c_TimeInfinite-api|  |
-+---------------------------+---------------------------------+--------------------------------+-----------------------+
-| ``<announcement_period>`` | See :ref:`livelinessqospolicy`. |                                | |c_TimeInfinite-api|  |
-+---------------------------+---------------------------------+--------------------------------+-----------------------+
++---------------------------+---------------------------------+---------------------------------+----------------------+
+| Name                      | Description                     | Values                          | Default              |
++===========================+=================================+=================================+======================+
+| ``<kind>``                | See                             | |AUTOMATIC-xml-api|             | |AUTOMATIC-xml-api|  |
+|                           | :ref:`livelinessqospolicykind`. +---------------------------------+                      |
+|                           |                                 | |MANUAL_BY_PARTICIPANT-xml-api| |                      |
+|                           |                                 +---------------------------------+                      |
+|                           |                                 | |MANUAL_BY_TOPIC-xml-api|       |                      |
++---------------------------+---------------------------------+---------------------------------+----------------------+
+| ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`             | |c_TimeInfinite-api| |
++---------------------------+---------------------------------+---------------------------------+----------------------+
+| ``<announcement_period>`` | See :ref:`livelinessqospolicy`. |                                 | |c_TimeInfinite-api| |
++---------------------------+---------------------------------+---------------------------------+----------------------+
 
 .. _xml_reliability:
 
 ReliabilityQosPolicy
 """"""""""""""""""""
 
-+---------------------------+----------------------------------+----------------------+--------------------------------+
-| Name                      | Description                      | Values               | Default                        |
-+===========================+==================================+======================+================================+
-| ``<kind>``                | See                              | |BEST_EFFORT|        | DataReaders:                   |
-|                           | :ref:`reliabilityqospolicykind`. +----------------------+ |BEST_EFFORT| |br|             |
-|                           |                                  | |RELIABLE|           | Datawriters: |RELIABLE|        |
-+---------------------------+----------------------------------+----------------------+--------------------------------+
-| ``<max_blocking_time>``   | See :ref:`reliabilityqospolicy`. | :ref:`DurationType`  | 100 ms                         |
-+---------------------------+----------------------------------+----------------------+--------------------------------+
+.. |max_block| replace:: ``<max_blocking_time>``
+
++------------------+-----------------------------------+-------------------------+-------------------------------------+
+| Name             | Description                       | Values                  | Default                             |
++==================+===================================+=========================+=====================================+
+| ``<kind>``       | See                               | |BEST_EFFORT-xml-api|   | DataReaders: |BEST_EFFORT-xml-api|  |
+|                  | :ref:`reliabilityqospolicykind`.  +-------------------------+ |br|                                |
+|                  |                                   | |RELIABLE-xml-api|      | DataWriters: |RELIABLE-xml-api|     |
++------------------+-----------------------------------+-------------------------+-------------------------------------+
+| |max_block|      | See :ref:`reliabilityqospolicy`.  | :ref:`DurationType`     | 100 ms                              |
++------------------+-----------------------------------+-------------------------+-------------------------------------+
 
 .. _xml_partition:
 
@@ -402,6 +396,38 @@ It contains two child elements which are explained in the following table.
     :language: xml
     :start-after: <!-->CONF-THROUGHPUT-EXAMPLE<-->
     :end-before: <!--><-->
+
+.. _historymemorypoliciesXML:
+
+.. |MemManagment| replace:: ``<historyMemoryPolicy>``
+
+
+HistoryMemoryPolicy
+^^^^^^^^^^^^^^^^^^^
+
+Indicates the way the memory is managed in terms of dealing with the CacheChanges of the :ref:`rtpsendpointqos`.
+
++----------------+--------------------------------------+-------------------------------------+------------------------+
+| Name           | Description                          | Values                              | Default                |
++================+======================================+=====================================+========================+
+| |MemManagment| |  Four different options as described | |PREALLOCATED-xml-api|              |                        |
+|                |  |br| in                             +-------------------------------------+                        |
+|                |  :ref:`memorymanagementpolicy`.      | |PREALLOCATED_WITH_REALLOC-xml-api| |                        |
+|                |                                      +-------------------------------------+                        |
+|                |                                      | |DYNAMIC-xml-api|                   | |PREALLOCATED-xml-api| |
+|                |                                      +-------------------------------------+                        |
+|                |                                      | |DYNAMIC_REUSABLE-xml-api|          |                        |
+|                |                                      |                                     |                        |
+|                |                                      |                                     |                        |
++----------------+--------------------------------------+-------------------------------------+------------------------+
+
+**Example**
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->CONF-HISTORYMEMORYPOLICY-EXAMPLE<-->
+    :end-before: <!--><-->
+    :dedent: 4
 
 .. _CommonAlloc:
 

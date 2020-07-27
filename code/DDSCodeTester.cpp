@@ -3830,4 +3830,34 @@ void dds_usecase_examples()
         //!--
     }
 
+    {
+        //CONF-MEMORY-QOS-PUBSUB
+        ResourceLimitsQosPolicy resource_limits;
+
+        // The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
+        // Change max_samples to the minimum
+        resource_limits.max_samples = 1;
+
+        // The ResourceLimitsQosPolicy is default constructed with max_instances = 10
+        // Change max_instances to the minimum
+        resource_limits.max_instances = 1;
+
+        // The ResourceLimitsQosPolicy is default constructed with max_samples_per_instance = 400
+        // Change max_samples_per_instance to the minimum
+        resource_limits.max_samples_per_instance = 1;
+        
+        // The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
+        // No allocated samples
+        resource_limits.allocated_samples = 0;
+        //!--
+    }
+
+
+    {
+        //CONF-MEMORY-QOS-ENDPOINTS
+        RTPSEndpointQos endpoint;
+        endpoint.history_memory_policy = eprosima::fastrtps::rtps::DYNAMIC_REUSABLE_MEMORY_MODE;
+        //!--
+    }
+
 }

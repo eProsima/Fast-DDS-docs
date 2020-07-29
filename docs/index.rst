@@ -62,6 +62,16 @@
    /fastddsgen/pubsub_app/pubsub_app
    /fastddsgen/dataTypes/dataTypes
 
+.. _index_cli:
+
+.. toctree::
+   :caption: Fast DDS CLI
+   :maxdepth: 2
+   :numbered: 5
+   :hidden:
+
+   /fastddscli/cli/cli
+
 .. _index_notes:
 
 .. toctree::

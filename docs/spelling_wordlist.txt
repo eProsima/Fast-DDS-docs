@@ -69,6 +69,7 @@ extensibility
 fastcdr
 fastdds
 fastrtpsgen
+fi
 GCM
 getter
 Github
@@ -89,6 +90,7 @@ IPv
 kB
 libs
 lifecycle
+localhost
 LogTopic
 loopback
 lroundl
@@ -139,6 +141,7 @@ simpleEDP
 seqNum
 SequenceNumber
 sequencenumbers
+shm
 sqlite
 stateful
 struct
@@ -169,6 +172,8 @@ vcstool
 wget
 whitelist
 whitelists
+wi
+wifi
 Wireshark
 worskspace
 WString

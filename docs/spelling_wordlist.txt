@@ -69,7 +69,6 @@ extensibility
 fastcdr
 fastdds
 fastrtpsgen
-fi
 GCM
 getter
 Github
@@ -172,7 +171,6 @@ vcstool
 wget
 whitelist
 whitelists
-wi
 wifi
 Wireshark
 worskspace

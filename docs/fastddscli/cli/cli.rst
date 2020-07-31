@@ -42,8 +42,8 @@ discovery
 Launches a server for :ref:`Server-Client Discovery<discovery_server>`. This server will manage the messages of the
 clients which are pointed to its IP address.
 Clients must be aware of how to reach the server by specifying an IP address and a transport protocol like UDP
-or TCP. Servers don’t need any beforehand knowledge of their clients but require a listening IP address, where they may
-be reached, to be specified.
+or TCP. Servers don’t need any beforehand knowledge of their clients but require a listening IP address, where they
+may be reached, to be specified.
 
 .. code-block:: bash
 
@@ -78,35 +78,35 @@ Examples
 1. Launch a default server with id 0 (first on ``ROS_DISCOVERY_SERVER``)
    listening on all available interfaces on UDP port '11811'. Only one
    server can use default values per machine.
-   
+
    .. code-block:: bash
-   
+
        fastdds discovery -i 0
 
 2. Launch a default server with id 1 (second on ``ROS_DISCOVERY_SERVER``)
    listening on localhost with UDP port 14520. Only localhost clients
    can reach the server defining as ``ROS_DISCOVERY_SERVER``=;127.0.0.1:14520 .
-   
+
    .. code-block:: bash
-   
+
        fastdds discovery -i 1 -l 127.0.0.1 -p 14520
 
 3. Launch a default server with id 3 (third on ``ROS_DISCOVERY_SERVER``)
    listening on WiFi (192.168.36.34) and Ethernet (172.20.96.1) local
    interfaces with UDP ports 8783 and 51083 respectively
    (addresses and ports are made up for the example).
-   
+
    .. code-block:: bash
-   
+
        fastdds discovery -i 1 -l 192.168.36.34 -p 14520 -l 172.20.96.1 -p 51083
 
 4. Launch a default server with id 4 (fourth on ``ROS_DISCOVERY_SERVER``)
    listening on 172.30.144.1 with UDP port 12345 and provided with a
    backup file. If the server crashes it will automatically restore its
    previous state when re-enacted.
-   
+
    .. code-block:: bash
-   
+
        fastdds discovery -i 1 -l 172.30.144.1 -p 12345 -b
 
 

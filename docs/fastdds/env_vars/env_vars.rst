@@ -34,7 +34,7 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     The value of the variable must list the locator of the server
     in the form of the IP address (e.g., '192.168.2.23') or IP-port pair (e.g., '192.168.2.23:24353').
     If no port is specified, the default port 11811 is used. For more information on how to configure the discovery
-    mechanism in *Fast DDS*, please refer to ::ref:`.. _discovery:`.
+    mechanism in *Fast DDS*, please refer to ::ref:`discovery`.
 
     To set more than one address they must be separated by semicolons.
     The server's Id is determined by their position in the list.

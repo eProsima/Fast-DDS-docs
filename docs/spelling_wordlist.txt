@@ -89,6 +89,7 @@ IPv
 kB
 libs
 lifecycle
+localhost
 LogTopic
 loopback
 lroundl
@@ -139,6 +140,7 @@ simpleEDP
 seqNum
 SequenceNumber
 sequencenumbers
+shm
 sqlite
 stateful
 struct
@@ -169,6 +171,7 @@ vcstool
 wget
 whitelist
 whitelists
+WiFi
 Wireshark
 worskspace
 WString

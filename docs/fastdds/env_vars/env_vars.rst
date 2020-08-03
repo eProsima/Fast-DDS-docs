@@ -32,7 +32,6 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     the given Server, implementing the :ref:`Server-Client Discovery<discovery_server>` mechanism, provided its
     :ref:`dds_layer_domainParticipant`'s |discoveryProtocol| setting has been left configured as default
     (:ref:`Simple discovery<simple_disc_settings>`).
-    More information on configuring the DomainParticipant can be found in :ref:`participantprofiles`.
     The value of the variable must list the locator of the server
     in the form of the IP address (e.g., '192.168.2.23') or IP-port pair (e.g., '192.168.2.23:24353').
     If no port is specified, the default port 11811 is used. For more information on how to configure the discovery

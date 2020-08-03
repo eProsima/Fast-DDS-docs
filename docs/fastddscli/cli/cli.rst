@@ -9,9 +9,9 @@ The *Fast DDS* command line interface provides a set commands and sub-commands t
 related, maintenance and configuration tasks.
 
 An executable file for Linux and Windows that runs the *Fast DDS CLI* application is
-available in the ``tools`` folder.
-If the ``tools/fastdds`` folder path is added to the ``PATH``, or by sourcing the `<path/to/fastdds>/install/setup.bash`
-environment variable, *Fast DDS CLI* can be executed running the following commands:
+available in the `tools` folder.
+If the `tools/fastdds` folder path is added to the ``PATH``, or by sourcing the `<path/to/fastdds>/install/setup.bash`
+configuration file, *Fast DDS CLI* can be executed running the following commands:
 
 - Linux:
 
@@ -24,6 +24,8 @@ environment variable, *Fast DDS CLI* can be executed running the following comma
     .. code-block:: bash
 
         > fastdds.bat <command> [<command-args>]
+
+There are two verbs whose functionality is described in the following table:
 
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Verbs                    | Description                                                                               |
@@ -42,8 +44,10 @@ discovery
 Launches a server for :ref:`Server-Client Discovery<discovery_server>`. This server will manage the messages of the
 clients which are pointed to its IP address.
 Clients must be aware of how to reach the server by specifying an IP address and a transport protocol like UDP
-or TCP. Servers don’t need any beforehand knowledge of their clients but require a listening IP address, where they
-may be reached, to be specified.
+or TCP.
+Servers do not need any knowledge of their clients beforehand, but require the listening IP address, where they
+may be reached.
+For more information on how to configure the discovery mechanism in *Fast DDS*, please refer to :ref:`discovery`.
 
 .. code-block:: bash
 
@@ -52,22 +56,16 @@ may be reached, to be specified.
 Where the parameters are:
 
 +--------------------------+-------------------------------------------------------------------------------------------+
-| Parameter                | Description                                                                               |
-+==========================+===========================================================================================+
-| ``-i  --server-id``      | Mandatory unique server identifier. Specifies zero based server position in |br|          |
-|                          | ``ROS_DISCOVERY_SERVER`` environment variable.                                            |
-+--------------------------+-------------------------------------------------------------------------------------------+
-
-And the options are:
-
-+--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
 +==========================+===========================================================================================+
+| ``-i  --server-id``      | **Mandatory** unique server identifier. Specifies zero based server position in |br|      |
+|                          | ``ROS_DISCOVERY_SERVER`` environment variable.                                            |
++--------------------------+-------------------------------------------------------------------------------------------+
 | ``-h  -help``            | Produce help message.                                                                     |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-l  --ip-address``     | IP address chosen to listen the clients. Defaults to any (0.0.0.0)                        |
+| ``-l  --ip-address``     | IP address chosen to listen the clients. Defaults to any (0.0.0.0).                       |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-p  --port``           | UDP port chosen to listen the clients. Defaults to '11811'                                |
+| ``-p  --port``           | UDP port chosen to listen the clients. Defaults to '11811'.                               |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-b  --backup``         | Creates a server with a backup file associated.                                           |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -85,7 +83,7 @@ Examples
 
 2.  Launch a default server with id 1 (second on ``ROS_DISCOVERY_SERVER``)
     listening on localhost with UDP port 14520. Only localhost clients
-    can reach the server defining as ``ROS_DISCOVERY_SERVER`` =;127.0.0.1:14520 .
+    can reach the server defining as `ROS_DISCOVERY_SERVER=;127.0.0.1:14520` .
 
     .. code-block:: bash
 
@@ -116,8 +114,8 @@ Examples
 shm
 ---
 
-Provides maintenance tasks related with :ref:`transport_sharedMemory_sharedMemory`. Shared memory creates
-::ref:`Segments<transport_sharedMemory_concepts_segment>`, blocks of memory accessible from different processes.
+Provides maintenance tasks related with :ref:`transport_sharedMemory_sharedMemory`. Shared Memory transport creates
+:ref:`Segments<transport_sharedMemory_concepts_segment>`, blocks of memory accessible from different processes.
 Zombie files are memory blocks that were reserved by shared memory and are no longer in use which take up valuable
 memory resources.
 This tool finds and frees those memory allocations.

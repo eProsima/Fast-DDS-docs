@@ -28,13 +28,14 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
 
 
 ``ROS_DISCOVERY_SERVER``
-    When this variable is set it configures the participant as a client of
-    :ref:`Server-Client Discovery<discovery_server>` provided the
-    :ref:`dds_layer_domainParticipant`'s |discoveryProtocol| has been left configured as default.
+    Setting this variable configures the participant as a client of
+    :ref:`Server-Client Discovery<discovery_server>` provided its
+    :ref:`dds_layer_domainParticipant`'s |discoveryProtocol| setting has been left configured as default.
+    More information on configuring the DomainParticipant can be found in :ref:`participantprofiles`.
     The value of the variable must list the locator of the server
     in the form of the IP address (e.g., '192.168.2.23') or IP-port pair (e.g., '192.168.2.23:24353').
     If no port is specified, the default port 11811 is used. For more information on how to configure the discovery
-    mechanism in *Fast DDS*, please refer to ::ref:`discovery`.
+    mechanism in *Fast DDS*, please refer to :ref:`discovery`.
 
     To set more than one address they must be separated by semicolons.
     The server's Id is determined by their position in the list.
@@ -43,8 +44,8 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
 
     **Example**
 
-    The following example shows how to give the address two remote discovery servers with addresses '84.22.259.329:8888'
-    and '81.41.17.102:1234' and Ids 0 and 2.
+    The following example shows how to set the address of two remote discovery servers with addresses
+    '84.22.259.329:8888' and '81.41.17.102:1234' and Ids 0 and 2 respectively.
 
         +----------------------------------------------------------------------------+
         | **Linux**                                                                  |

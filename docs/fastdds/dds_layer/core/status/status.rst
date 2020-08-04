@@ -31,7 +31,7 @@ See the documentation of each status for details.
 
 The following subsections describe each of the status objects, their data members, and to which
 Entity type they concern.
-The next table can be used as a quick reference too.
+The next table offers a quick reference as well as the corresponding bit for each status in the |StatusMask-api|.
 
 .. list-table::
    :header-rows: 1
@@ -40,59 +40,72 @@ The next table can be used as a quick reference too.
      - Entity
      - Listener callback
      - Accessor
+     - Bit
    * - |InconsistentTopicStatus|
      - |Topic|
      - |TopicListener::on_inconsistent_topic-api|
      - |Topic::get_inconsistent_topic_status-api|
-   * - |DataOnReaders|
-     - |Subscriber|
-     - |SubscriberListener::on_data_on_readers-api|
-     - N/A
-   * - |DataAvailable|
-     - |DataReader|
-     - |DataReaderListener::on_data_available-api|
-     - N/A
-   * - |LivelinessChangedStatus|
-     - |DataReader|
-     - |DataReaderListener::on_liveliness_changed-api|
-     - |DataReader::get_liveliness_changed_status-api|
-   * - |RequestedDeadlineMissedStatus|
-     - |DataReader|
-     - |DataReaderListener::on_requested_deadline_missed-api|
-     - |DataReader::get_requested_deadline_missed_status-api|
-   * - |RequestedIncompatibleQosStatus|
-     - |DataReader|
-     - |DataReaderListener::on_requested_incompatible_qos-api|
-     - |DataReader::get_requested_incompatible_qos_status-api|
-   * - |SampleLostStatus|
-     - |DataReader|
-     - |DataReaderListener::on_sample_lost-api|
-     - |DataReader::get_sample_lost_status-api|
-   * - |SampleRejectedStatus|
-     - |DataReader|
-     - |DataReaderListener::on_sample_rejected-api|
-     - |DataReader::get_sample_rejected_status-api|
-   * - |SubscriptionMatchedStatus|
-     - |DataReader|
-     - |DataReaderListener::on_subscription_matched-api|
-     - |DataReader::get_subscription_matched_status-api|
-   * - |LivelinessLostStatus|
-     - |DataWriter|
-     - |DataWriterListener::on_liveliness_lost-api|
-     - |DataWriter::get_liveliness_lost_status-api|
+     - 0
    * - |OfferedDeadlineMissedStatus|
      - |DataWriter|
      - |DataWriterListener::on_offered_deadline_missed-api|
      - |DataWriter::get_offered_deadline_missed_status-api|
+     - 1
+   * - |RequestedDeadlineMissedStatus|
+     - |DataReader|
+     - |DataReaderListener::on_requested_deadline_missed-api|
+     - |DataReader::get_requested_deadline_missed_status-api|
+     - 2
    * - |OfferedIncompatibleQosStatus|
      - |DataWriter|
      - |DataWriterListener::on_offered_incompatible_qos-api|
      - |DataWriter::get_offered_incompatible_qos_status-api|
+     - 5
+   * - |RequestedIncompatibleQosStatus|
+     - |DataReader|
+     - |DataReaderListener::on_requested_incompatible_qos-api|
+     - |DataReader::get_requested_incompatible_qos_status-api|
+     - 6
+   * - |SampleLostStatus|
+     - |DataReader|
+     - |DataReaderListener::on_sample_lost-api|
+     - |DataReader::get_sample_lost_status-api|
+     - 7
+   * - |SampleRejectedStatus|
+     - |DataReader|
+     - |DataReaderListener::on_sample_rejected-api|
+     - |DataReader::get_sample_rejected_status-api|
+     - 8
+   * - |DataOnReaders|
+     - |Subscriber|
+     - |SubscriberListener::on_data_on_readers-api|
+     - N/A
+     - 9
+   * - |DataAvailable|
+     - |DataReader|
+     - |DataReaderListener::on_data_available-api|
+     - N/A
+     - 10
+   * - |LivelinessLostStatus|
+     - |DataWriter|
+     - |DataWriterListener::on_liveliness_lost-api|
+     - |DataWriter::get_liveliness_lost_status-api|
+     - 11
+   * - |LivelinessChangedStatus|
+     - |DataReader|
+     - |DataReaderListener::on_liveliness_changed-api|
+     - |DataReader::get_liveliness_changed_status-api|
+     - 12
    * - |PublicationMatchedStatus|
      - |DataWriter|
      - |DataWriterListener::on_publication_matched-api|
      - |DataWriter::get_publication_matched_status-api|
-
+     - 13
+   * - |SubscriptionMatchedStatus|
+     - |DataReader|
+     - |DataReaderListener::on_subscription_matched-api|
+     - |DataReader::get_subscription_matched_status-api|
+     - 14
 
 .. _dds_layer_core_status_inconsistentTopicStatus:
 

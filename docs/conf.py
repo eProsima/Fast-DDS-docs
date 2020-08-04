@@ -43,7 +43,13 @@ def download_css(html_css_dir):
     url = (
         'https://raw.githubusercontent.com/eProsima/all-docs/'
         'master/source/_static/css/fiware_readthedocs.css')
-    req = requests.get(url, allow_redirects=True)
+    try:
+        req = requests.get(url, allow_redirects=True, timeout=10)
+    except requests.RequestException as e:
+        print(
+            'Failed to download the CSS with the eProsima rtd theme.'
+            'Request Error: {}'.format(e)
+        )
     if req.status_code != 200:
         print(
             'Failed to download the CSS with the eProsima rtd theme.'
@@ -72,10 +78,10 @@ def select_css(html_css_dir):
     common_css = '_static/css/eprosima_rtd_theme.css'
     local_css = '_static/css/fiware_readthedocs.css'
     if download_css(html_css_dir):
-        print('Appliying CSS style file: {}'.format(common_css))
+        print('Appliying common CSS style file: {}'.format(common_css))
         return [common_css]
     else:
-        print('Appliying CSS style file: {}'.format(local_css))
+        print('Appliying local CSS style file: {}'.format(local_css))
         return [local_css]
 
 

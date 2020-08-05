@@ -89,6 +89,19 @@ Then they can link these listeners to each entity, either during their creation 
 |DataReader::set_listener-api|).
 The listener interfaces that each entity type and their callbacks are explained in the documentation
 for each entity type.
+In the case in which the listeners of different entities have the same callback defined, the order in which each
+callback is executed is dictated by the inheritance from parent to child, i.e. from the lowest level entity to the
+highest. 
+
+.. figure:: /01-figures/listeners_inheritance_diagram.svg
+  :align: center
+
+  Listeners inheritance diagram.
+
+.. note::
+  The |SubscriberListener::on_data_on_readers-api| callback intercepts messages before
+  |DataReaderListener::on_data_available-api|. Within each callback entity hierarchy remains the same.
+
 
 .. _dds_layer_core_entity_commonchars_status:
 

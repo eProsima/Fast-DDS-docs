@@ -50,6 +50,7 @@ def download_css(html_css_dir):
             'Failed to download the CSS with the eProsima rtd theme.'
             'Request Error: {}'.format(e)
         )
+        return False
     if req.status_code != 200:
         print(
             'Failed to download the CSS with the eProsima rtd theme.'

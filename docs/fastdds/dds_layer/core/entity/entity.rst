@@ -91,7 +91,7 @@ The listener interfaces that each entity type and their callbacks are explained 
 for each entity type.
 In the case in which the listeners of different entities have the same callback defined, the order in which each
 callback is executed is dictated by the inheritance from parent to child, i.e. from the lowest level entity to the
-highest. 
+highest.
 
 .. figure:: /01-figures/listeners_inheritance_diagram.svg
   :align: center

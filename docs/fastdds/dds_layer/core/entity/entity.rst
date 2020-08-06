@@ -108,8 +108,8 @@ diagram:
 
 Status
 ^^^^^^
-of that entity.
 Each entity is associated with a set of status objects whose values represent the *communication status*
+of that entity.
 The changes on these status values are the ones that trigger the invocation of the appropriate
 Listener callback to asynchronously inform the application.
 See :ref:`dds_layer_core_status` for a list of all the status objects and a description of their content.

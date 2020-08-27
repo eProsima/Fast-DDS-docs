@@ -3,10 +3,12 @@
 Interface Whitelist
 -------------------
 
-It is possible to block some network interfaces on the :ref:`transport_tcp_tcp`
-or :ref:`transport_udp_udp` to avoid *Fast DDS* using them.
-To block an interface, just add the IP address of assigned to the interface to the ``interfaceWhiteList``
+It is possible to define various network interfaces on the :ref:`transport_tcp_tcp`
+or :ref:`transport_udp_udp` in order to force Fast DDS entities to use exclusively these network interfaces.
+This is achieved by adding the IP address corresponding to the interface to the ``interfaceWhiteList``
 field in the :ref:`transport_tcp_transportDescriptor` or :ref:`transport_udp_transportDescriptor`.
+Thus, the communication of the entities that define an ``interfaceWhiteList`` is forced through the addresses that
+are defined in it, avoiding the use of the rest of the network interfaces available in the system.
 The values on this list should match the IPs of your machine in that networks.
 For example:
 

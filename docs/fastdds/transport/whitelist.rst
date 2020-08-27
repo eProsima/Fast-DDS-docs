@@ -1,14 +1,19 @@
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
+
 .. _whitelist-interfaces:
 
 Interface Whitelist
 -------------------
 
-It is possible to define various network interfaces on the :ref:`transport_tcp_tcp`
-or :ref:`transport_udp_udp` in order to force Fast DDS entities to use exclusively these network interfaces.
-This is achieved by adding the IP address corresponding to the interface to the ``interfaceWhiteList``
+Using *Fast DDS*, it is possible to limit the network interfaces used by :ref:`transport_tcp_tcp` and
+:ref:`transport_udp_udp`.
+This is achieved by adding the interfaces' IP addresses to the ``interfaceWhiteList``
 field in the :ref:`transport_tcp_transportDescriptor` or :ref:`transport_udp_transportDescriptor`.
-Thus, the communication of the entities that define an ``interfaceWhiteList`` is forced through the addresses that
-are defined in it, avoiding the use of the rest of the network interfaces available in the system.
+Thus, the communication interfaces used by the |DomainParticipants| whose :class:`TransportDescriptor` defines an
+``interfaceWhiteList`` is limited to the interfaces' IP addresses defined in that list,
+therefore avoiding the use of the rest of the network interfaces available in the system.
 The values on this list should match the IPs of your machine in that networks.
 For example:
 

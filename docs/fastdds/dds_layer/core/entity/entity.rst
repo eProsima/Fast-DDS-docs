@@ -80,7 +80,7 @@ about the :ref:`dds_layer_core_entity_commonchars_status` changes in the entity.
 
 All entity types define an abstract listener interface, which contains the callback functions that the entity will
 trigger to communicate the Status changes to the application.
-Users can implement their own listeners inheriting from these interfaces and implementing the callbacks that are
+Users can implement their own listeners inheriting from these interfaces and implementing the callbacks that
 are needed on their application.
 Then they can link these listeners to each entity, either during their creation or at a later time with the
 :func:`set_listener` function that every entity exposes
@@ -103,6 +103,17 @@ diagram:
   The |SubscriberListener::on_data_on_readers-api| callback intercepts messages before
   |DataReaderListener::on_data_available-api|. Within each callback entity hierarchy remains the same.
 
+
+.. note::
+
+   Only one thread is created to listen for every listener implemented, so it is encouraged to
+   keep listener functions simple, and leave the process of such information to the proper class.
+
+.. warning::
+
+   Do not to create or delete any Entity from a Listener, since it could lead to an undefined
+   behavior. It is recommended instead to use the Listener class as an information channel, and use the upper
+   Entity class to encapsulate such behaviour.
 
 .. _dds_layer_core_entity_commonchars_status:
 

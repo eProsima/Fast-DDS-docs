@@ -89,6 +89,20 @@ Then they can link these listeners to each entity, either during their creation 
 |DataReader::set_listener-api|).
 The listener interfaces that each entity type and their callbacks are explained in the documentation
 for each entity type.
+When an event occurs it is handled by the lowest level entity with a listener that is non-null
+and has the corresponding callback enabled in its |StatusMask-api|.
+Higher level listeners inherit from the lower level ones as shown in the following
+diagram:
+
+.. figure:: /01-figures/listeners_inheritance_diagram.svg
+  :align: center
+
+  Listeners inheritance diagram.
+
+.. note::
+  The |SubscriberListener::on_data_on_readers-api| callback intercepts messages before
+  |DataReaderListener::on_data_available-api|. Within each callback entity hierarchy remains the same.
+
 
 .. _dds_layer_core_entity_commonchars_status:
 

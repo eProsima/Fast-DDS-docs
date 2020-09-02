@@ -160,7 +160,7 @@ void dds_domain_examples()
         // Profiles can now be used to create Entities
         DomainParticipant* participant_with_profile =
                 DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile");
-        if (nullptr != participant_with_profile)
+        if (nullptr == participant_with_profile)
         {
             // Error
             return;
@@ -174,7 +174,7 @@ void dds_domain_examples()
         // The value PARTICIPANT_QOS_DEFAULT is used to denote the default QoS.
         DomainParticipant* participant_with_default_attributes =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant_with_default_attributes)
+        if (nullptr == participant_with_default_attributes)
         {
             // Error
             return;
@@ -188,7 +188,7 @@ void dds_domain_examples()
 
         DomainParticipant* participant_with_custom_qos =
                 DomainParticipantFactory::get_instance()->create_participant(0, custom_qos);
-        if (nullptr != participant_with_custom_qos)
+        if (nullptr == participant_with_custom_qos)
         {
             // Error
             return;
@@ -200,7 +200,7 @@ void dds_domain_examples()
         CustomDomainParticipantListener custom_listener;
         DomainParticipant* participant_with_default_qos_and_custom_listener =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT, &custom_listener);
-        if (nullptr != participant_with_default_qos_and_custom_listener)
+        if (nullptr == participant_with_default_qos_and_custom_listener)
         {
             // Error
             return;
@@ -216,7 +216,7 @@ void dds_domain_examples()
         // Create a DomainParticipant using a profile and no Listener
         DomainParticipant* participant_with_profile =
                 DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile");
-        if (nullptr != participant_with_profile)
+        if (nullptr == participant_with_profile)
         {
             // Error
             return;
@@ -227,7 +227,7 @@ void dds_domain_examples()
         CustomDomainParticipantListener custom_listener;
         DomainParticipant* participant_with_profile_and_custom_listener =
                 DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile", &custom_listener);
-        if (nullptr != participant_with_profile_and_custom_listener)
+        if (nullptr == participant_with_profile_and_custom_listener)
         {
             // Error
             return;
@@ -240,7 +240,7 @@ void dds_domain_examples()
         // Create a DomainParticipant with default DomainParticipantQos
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -268,7 +268,7 @@ void dds_domain_examples()
         // Create a DomainParticipant with a custom DomainParticipantQos
 
         DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, custom_qos);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -296,7 +296,7 @@ void dds_domain_examples()
         // Create a DomainParticipant
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -332,7 +332,7 @@ void dds_domain_examples()
         // Create a DomainParticipant with the new default DomainParticipantQos.
         DomainParticipant* participant_with_qos_type1 =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant_with_qos_type1)
+        if (nullptr == participant_with_qos_type1)
         {
             // Error
             return;
@@ -354,7 +354,7 @@ void dds_domain_examples()
         // Create a Topic with the new default TopicQos.
         DomainParticipant* participant_with_qos_type2 =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant_with_qos_type2)
+        if (nullptr == participant_with_qos_type2)
         {
             // Error
             return;
@@ -395,7 +395,7 @@ void dds_domain_examples()
         // The returned DomainParticipant is already enabled
         DomainParticipant* enabled_participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != enabled_participant)
+        if (nullptr == enabled_participant)
         {
             // Error
             return;
@@ -414,7 +414,7 @@ void dds_domain_examples()
         // The returned DomainParticipant is disabled and will need to be enabled explicitly
         DomainParticipant* disabled_participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != disabled_participant)
+        if (nullptr == disabled_participant)
         {
             // Error
             return;
@@ -939,7 +939,7 @@ void dds_topic_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -949,7 +949,7 @@ void dds_topic_examples()
         // The symbol TOPIC_QOS_DEFAULT is used to denote the default QoS.
         Topic* topic_with_default_qos =
                 participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
-        if (nullptr != topic_with_default_qos)
+        if (nullptr == topic_with_default_qos)
         {
             // Error
             return;
@@ -963,7 +963,7 @@ void dds_topic_examples()
 
         Topic* topic_with_custom_qos =
                 participant->create_topic("TopicName", "DataTypeName", custom_qos);
-        if (nullptr != topic_with_custom_qos)
+        if (nullptr == topic_with_custom_qos)
         {
             // Error
             return;
@@ -975,7 +975,7 @@ void dds_topic_examples()
         CustomTopicListener custom_listener;
         Topic* topic_with_default_qos_and_custom_listener =
                 participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT, &custom_listener);
-        if (nullptr != topic_with_default_qos_and_custom_listener)
+        if (nullptr == topic_with_default_qos_and_custom_listener)
         {
             // Error
             return;
@@ -991,7 +991,7 @@ void dds_topic_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1000,7 +1000,7 @@ void dds_topic_examples()
         // Create a Topic using a profile and no Listener
         Topic* topic_with_profile =
                 participant->create_topic_with_profile("TopicName", "DataTypeName", "topic_profile");
-        if (nullptr != topic_with_profile)
+        if (nullptr == topic_with_profile)
         {
             // Error
             return;
@@ -1011,7 +1011,7 @@ void dds_topic_examples()
         CustomTopicListener custom_listener;
         Topic* topic_with_profile_and_custom_listener =
                 participant->create_topic_with_profile("TopicName", "DataTypeName", "topic_profile", &custom_listener);
-        if (nullptr != topic_with_profile_and_custom_listener)
+        if (nullptr == topic_with_profile_and_custom_listener)
         {
             // Error
             return;
@@ -1024,7 +1024,7 @@ void dds_topic_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1033,7 +1033,7 @@ void dds_topic_examples()
         // Create a Topic with default TopicQos
         Topic* topic =
                 participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
-        if (nullptr != topic)
+        if (nullptr == topic)
         {
             // Error
             return;
@@ -1055,7 +1055,7 @@ void dds_topic_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1069,7 +1069,7 @@ void dds_topic_examples()
 
         // Create a topic with a custom TopicQos
         Topic* topic = participant->create_topic("TopicName", "DataTypeName", custom_qos);
-        if (nullptr != topic)
+        if (nullptr == topic)
         {
             // Error
             return;
@@ -1097,7 +1097,7 @@ void dds_topic_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1106,7 +1106,7 @@ void dds_topic_examples()
         // Create a Topic
         Topic* topic =
                 participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
-        if (nullptr != topic)
+        if (nullptr == topic)
         {
             // Error
             return;
@@ -1129,7 +1129,7 @@ void dds_topic_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1151,7 +1151,7 @@ void dds_topic_examples()
         // Create a Topic with the new default TopicQos.
         Topic* topic_with_qos_type1 =
                 participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
-        if (nullptr != topic_with_qos_type1)
+        if (nullptr == topic_with_qos_type1)
         {
             // Error
             return;
@@ -1173,7 +1173,7 @@ void dds_topic_examples()
         // Create a Topic with the new default TopicQos.
         Topic* topic_with_qos_type2 =
                 participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
-        if (nullptr != topic_with_qos_type2)
+        if (nullptr == topic_with_qos_type2)
         {
             // Error
             return;
@@ -1202,7 +1202,7 @@ void dds_topic_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1220,7 +1220,7 @@ void dds_topic_examples()
         // Create a Topic with the registered type.
         Topic* topic =
                 participant->create_topic("topic_name", custom_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
-        if (nullptr != topic)
+        if (nullptr == topic)
         {
             // Error
             return;
@@ -1232,7 +1232,7 @@ void dds_topic_examples()
         // We can now use the aliased name to If no name is given, it uses the name returned by the type itself
         Topic* another_topic =
                 participant->create_topic("other_topic_name", "data_type_name", TOPIC_QOS_DEFAULT);
-        if (nullptr != another_topic)
+        if (nullptr == another_topic)
         {
             // Error
             return;
@@ -1245,7 +1245,7 @@ void dds_topic_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1263,7 +1263,7 @@ void dds_topic_examples()
         // Create a Topic with the registered type.
         Topic* topic =
                 participant->create_topic("topic_name", dyn_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
-        if (nullptr != topic)
+        if (nullptr == topic)
         {
             // Error
             return;
@@ -1284,7 +1284,7 @@ void dds_publisher_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1294,7 +1294,7 @@ void dds_publisher_examples()
         // The value PUBLISHER_QOS_DEFAULT is used to denote the default QoS.
         Publisher* publisher_with_default_qos =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT);
-        if (nullptr != publisher_with_default_qos)
+        if (nullptr == publisher_with_default_qos)
         {
             // Error
             return;
@@ -1308,7 +1308,7 @@ void dds_publisher_examples()
 
         Publisher* publisher_with_custom_qos =
                 participant->create_publisher(custom_qos);
-        if (nullptr != publisher_with_custom_qos)
+        if (nullptr == publisher_with_custom_qos)
         {
             // Error
             return;
@@ -1320,7 +1320,7 @@ void dds_publisher_examples()
         CustomPublisherListener custom_listener;
         Publisher* publisher_with_default_qos_and_custom_listener =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT, &custom_listener);
-        if (nullptr != publisher_with_default_qos_and_custom_listener)
+        if (nullptr == publisher_with_default_qos_and_custom_listener)
         {
             // Error
             return;
@@ -1336,7 +1336,7 @@ void dds_publisher_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1345,7 +1345,7 @@ void dds_publisher_examples()
         // Create a Publisher using a profile and no Listener
         Publisher* publisher_with_profile =
                 participant->create_publisher_with_profile("publisher_profile");
-        if (nullptr != publisher_with_profile)
+        if (nullptr == publisher_with_profile)
         {
             // Error
             return;
@@ -1356,7 +1356,7 @@ void dds_publisher_examples()
         CustomPublisherListener custom_listener;
         Publisher* publisher_with_profile_and_custom_listener =
                 participant->create_publisher_with_profile("publisher_profile", &custom_listener);
-        if (nullptr != publisher_with_profile_and_custom_listener)
+        if (nullptr == publisher_with_profile_and_custom_listener)
         {
             // Error
             return;
@@ -1369,7 +1369,7 @@ void dds_publisher_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1378,7 +1378,7 @@ void dds_publisher_examples()
         // Create a Publisher with default PublisherQos
         Publisher* publisher =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT);
-        if (nullptr != publisher)
+        if (nullptr == publisher)
         {
             // Error
             return;
@@ -1400,7 +1400,7 @@ void dds_publisher_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1414,7 +1414,7 @@ void dds_publisher_examples()
 
         // Create a publisher with a custom PublisherQos
         Publisher* publisher = participant->create_publisher(custom_qos);
-        if (nullptr != publisher)
+        if (nullptr == publisher)
         {
             // Error
             return;
@@ -1442,7 +1442,7 @@ void dds_publisher_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1451,7 +1451,7 @@ void dds_publisher_examples()
         // Create a Publisher
         Publisher* publisher =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT);
-        if (nullptr != publisher)
+        if (nullptr == publisher)
         {
             // Error
             return;
@@ -1474,7 +1474,7 @@ void dds_publisher_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1496,7 +1496,7 @@ void dds_publisher_examples()
         // Create a Publisher with the new default PublisherQos.
         Publisher* publisher_with_qos_type1 =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT);
-        if (nullptr != publisher_with_qos_type1)
+        if (nullptr == publisher_with_qos_type1)
         {
             // Error
             return;
@@ -1518,7 +1518,7 @@ void dds_publisher_examples()
         // Create a Publisher with the new default PublisherQos.
         Publisher* publisher_with_qos_type2 =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT);
-        if (nullptr != publisher_with_qos_type2)
+        if (nullptr == publisher_with_qos_type2)
         {
             // Error
             return;
@@ -1616,7 +1616,7 @@ void dds_dataWriter_examples()
         // The value DATAWRITER_QOS_DEFAULT is used to denote the default QoS.
         DataWriter* data_writer_with_default_qos =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != data_writer_with_default_qos)
+        if (nullptr == data_writer_with_default_qos)
         {
             // Error
             return;
@@ -1630,7 +1630,7 @@ void dds_dataWriter_examples()
 
         DataWriter* data_writer_with_custom_qos =
                 publisher->create_datawriter(topic, custom_qos);
-        if (nullptr != data_writer_with_custom_qos)
+        if (nullptr == data_writer_with_custom_qos)
         {
             // Error
             return;
@@ -1642,7 +1642,7 @@ void dds_dataWriter_examples()
         CustomDataWriterListener custom_listener;
         DataWriter* data_writer_with_default_qos_and_custom_listener =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT, &custom_listener);
-        if (nullptr != data_writer_with_default_qos_and_custom_listener)
+        if (nullptr == data_writer_with_default_qos_and_custom_listener)
         {
             // Error
             return;
@@ -1658,7 +1658,7 @@ void dds_dataWriter_examples()
         // Create a DataWriter using a profile and no Listener
         DataWriter* data_writer_with_profile =
                 publisher->create_datawriter_with_profile(topic, "data_writer_profile");
-        if (nullptr != data_writer_with_profile)
+        if (nullptr == data_writer_with_profile)
         {
             // Error
             return;
@@ -1669,7 +1669,7 @@ void dds_dataWriter_examples()
         CustomDataWriterListener custom_listener;
         DataWriter* data_writer_with_profile_and_custom_listener =
                 publisher->create_datawriter_with_profile(topic, "data_writer_profile", &custom_listener);
-        if (nullptr != data_writer_with_profile_and_custom_listener)
+        if (nullptr == data_writer_with_profile_and_custom_listener)
         {
             // Error
             return;
@@ -1682,7 +1682,7 @@ void dds_dataWriter_examples()
         // Create a DataWriter with default DataWriterQos
         DataWriter* data_writer =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != data_writer)
+        if (nullptr == data_writer)
         {
             // Error
             return;
@@ -1709,7 +1709,7 @@ void dds_dataWriter_examples()
 
         // Create a DataWriter with a custom DataWriterQos
         DataWriter* data_writer = publisher->create_datawriter(topic, custom_qos);
-        if (nullptr != data_writer)
+        if (nullptr == data_writer)
         {
             // Error
             return;
@@ -1737,7 +1737,7 @@ void dds_dataWriter_examples()
         // Create a DataWriter
         DataWriter* data_writer =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != data_writer)
+        if (nullptr == data_writer)
         {
             // Error
             return;
@@ -1773,7 +1773,7 @@ void dds_dataWriter_examples()
         // Create a DataWriter with the new default DataWriterQos.
         DataWriter* data_writer_with_qos_type1 =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != data_writer_with_qos_type1)
+        if (nullptr == data_writer_with_qos_type1)
         {
             // Error
             return;
@@ -1795,7 +1795,7 @@ void dds_dataWriter_examples()
         // Create a DataWriter with the new default DataWriterQos.
         DataWriter* data_writer_with_qos_type2 =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != data_writer_with_qos_type2)
+        if (nullptr == data_writer_with_qos_type2)
         {
             // Error
             return;
@@ -1828,7 +1828,7 @@ void dds_dataWriter_examples()
         // Create a Topic with the registered type.
         Topic* custom_topic =
                 participant->create_topic("topic_name", custom_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
-        if (nullptr != custom_topic)
+        if (nullptr == custom_topic)
         {
             // Error
             return;
@@ -1837,7 +1837,7 @@ void dds_dataWriter_examples()
         // Create a DataWriter
         DataWriter* data_writer =
                 publisher->create_datawriter(custom_topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != data_writer)
+        if (nullptr == data_writer)
         {
             // Error
             return;
@@ -1894,7 +1894,7 @@ void dds_subscriber_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1904,7 +1904,7 @@ void dds_subscriber_examples()
         // The value SUBSCRIBER_QOS_DEFAULT is used to denote the default QoS.
         Subscriber* subscriber_with_default_qos =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
-        if (nullptr != subscriber_with_default_qos)
+        if (nullptr == subscriber_with_default_qos)
         {
             // Error
             return;
@@ -1918,7 +1918,7 @@ void dds_subscriber_examples()
 
         Subscriber* subscriber_with_custom_qos =
                 participant->create_subscriber(custom_qos);
-        if (nullptr != subscriber_with_custom_qos)
+        if (nullptr == subscriber_with_custom_qos)
         {
             // Error
             return;
@@ -1930,7 +1930,7 @@ void dds_subscriber_examples()
         CustomSubscriberListener custom_listener;
         Subscriber* subscriber_with_default_qos_and_custom_listener =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT, &custom_listener);
-        if (nullptr != subscriber_with_default_qos_and_custom_listener)
+        if (nullptr == subscriber_with_default_qos_and_custom_listener)
         {
             // Error
             return;
@@ -1946,7 +1946,7 @@ void dds_subscriber_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1955,7 +1955,7 @@ void dds_subscriber_examples()
         // Create a Subscriber using a profile and no Listener
         Subscriber* subscriber_with_profile =
                 participant->create_subscriber_with_profile("subscriber_profile");
-        if (nullptr != subscriber_with_profile)
+        if (nullptr == subscriber_with_profile)
         {
             // Error
             return;
@@ -1966,7 +1966,7 @@ void dds_subscriber_examples()
         CustomSubscriberListener custom_listener;
         Subscriber* subscriber_with_profile_and_custom_listener =
                 participant->create_subscriber_with_profile("subscriber_profile", &custom_listener);
-        if (nullptr != subscriber_with_profile_and_custom_listener)
+        if (nullptr == subscriber_with_profile_and_custom_listener)
         {
             // Error
             return;
@@ -1979,7 +1979,7 @@ void dds_subscriber_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -1988,7 +1988,7 @@ void dds_subscriber_examples()
         // Create a Subscriber with default SubscriberQos
         Subscriber* subscriber =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
-        if (nullptr != subscriber)
+        if (nullptr == subscriber)
         {
             // Error
             return;
@@ -2010,7 +2010,7 @@ void dds_subscriber_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -2024,7 +2024,7 @@ void dds_subscriber_examples()
 
         // Create a subscriber with a custom SubscriberQos
         Subscriber* subscriber = participant->create_subscriber(custom_qos);
-        if (nullptr != subscriber)
+        if (nullptr == subscriber)
         {
             // Error
             return;
@@ -2052,7 +2052,7 @@ void dds_subscriber_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -2061,7 +2061,7 @@ void dds_subscriber_examples()
         // Create a Subscriber
         Subscriber* subscriber =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
-        if (nullptr != subscriber)
+        if (nullptr == subscriber)
         {
             // Error
             return;
@@ -2084,7 +2084,7 @@ void dds_subscriber_examples()
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -2106,7 +2106,7 @@ void dds_subscriber_examples()
         // Create a Subscriber with the new default SubscriberQos.
         Subscriber* subscriber_with_qos_type1 =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
-        if (nullptr != subscriber_with_qos_type1)
+        if (nullptr == subscriber_with_qos_type1)
         {
             // Error
             return;
@@ -2128,7 +2128,7 @@ void dds_subscriber_examples()
         // Create a Subscriber with the new default SubscriberQos.
         Subscriber* subscriber_with_qos_type2 =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
-        if (nullptr != subscriber_with_qos_type2)
+        if (nullptr == subscriber_with_qos_type2)
         {
             // Error
             return;
@@ -2255,7 +2255,7 @@ void dds_dataReader_examples()
         // The value DATAREADER_QOS_DEFAULT is used to denote the default QoS.
         DataReader* data_reader_with_default_qos =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
-        if (nullptr != data_reader_with_default_qos)
+        if (nullptr == data_reader_with_default_qos)
         {
             // Error
             return;
@@ -2269,7 +2269,7 @@ void dds_dataReader_examples()
 
         DataReader* data_reader_with_custom_qos =
                 subscriber->create_datareader(topic, custom_qos);
-        if (nullptr != data_reader_with_custom_qos)
+        if (nullptr == data_reader_with_custom_qos)
         {
             // Error
             return;
@@ -2281,7 +2281,7 @@ void dds_dataReader_examples()
         CustomDataReaderListener custom_listener;
         DataReader* data_reader_with_default_qos_and_custom_listener =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT, &custom_listener);
-        if (nullptr != data_reader_with_default_qos_and_custom_listener)
+        if (nullptr == data_reader_with_default_qos_and_custom_listener)
         {
             // Error
             return;
@@ -2297,7 +2297,7 @@ void dds_dataReader_examples()
         // Create a DataReader using a profile and no Listener
         DataReader* data_reader_with_profile =
                 subscriber->create_datareader_with_profile(topic, "data_reader_profile");
-        if (nullptr != data_reader_with_profile)
+        if (nullptr == data_reader_with_profile)
         {
             // Error
             return;
@@ -2308,7 +2308,7 @@ void dds_dataReader_examples()
         CustomDataReaderListener custom_listener;
         DataReader* data_reader_with_profile_and_custom_listener =
                 subscriber->create_datareader_with_profile(topic, "data_reader_profile", &custom_listener);
-        if (nullptr != data_reader_with_profile_and_custom_listener)
+        if (nullptr == data_reader_with_profile_and_custom_listener)
         {
             // Error
             return;
@@ -2321,7 +2321,7 @@ void dds_dataReader_examples()
         // Create a DataReader with default DataReaderQos
         DataReader* data_reader =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
-        if (nullptr != data_reader)
+        if (nullptr == data_reader)
         {
             // Error
             return;
@@ -2348,7 +2348,7 @@ void dds_dataReader_examples()
 
         // Create a DataWriter with a custom DataReaderQos
         DataReader* data_reader = subscriber->create_datareader(topic, custom_qos);
-        if (nullptr != data_reader)
+        if (nullptr == data_reader)
         {
             // Error
             return;
@@ -2376,7 +2376,7 @@ void dds_dataReader_examples()
         // Create a DataReader
         DataReader* data_reader =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
-        if (nullptr != data_reader)
+        if (nullptr == data_reader)
         {
             // Error
             return;
@@ -2412,7 +2412,7 @@ void dds_dataReader_examples()
         // Create a DataReader with the new default DataReaderQos.
         DataReader* data_reader_with_qos_type1 =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
-        if (nullptr != data_reader_with_qos_type1)
+        if (nullptr == data_reader_with_qos_type1)
         {
             // Error
             return;
@@ -2434,7 +2434,7 @@ void dds_dataReader_examples()
         // Create a DataReader with the new default DataReaderQos.
         DataReader* data_reader_with_qos_type2 =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
-        if (nullptr != data_reader_with_qos_type2)
+        if (nullptr == data_reader_with_qos_type2)
         {
             // Error
             return;
@@ -2462,7 +2462,7 @@ void dds_dataReader_examples()
         // Create a DataReader
         DataReader* data_reader =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
-        if (nullptr != data_reader)
+        if (nullptr == data_reader)
         {
             // Error
             return;
@@ -3103,7 +3103,7 @@ void xml_profiles_examples()
         // Create a DomainParticipant
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -3593,7 +3593,7 @@ void dds_usecase_examples()
         // Create the DomainParticipant
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, participant_qos);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -3602,7 +3602,7 @@ void dds_usecase_examples()
         // Create the Publisher
         Publisher* publisher =
                 participant->create_publisher(PUBLISHER_QOS_DEFAULT);
-        if (nullptr != publisher)
+        if (nullptr == publisher)
         {
             // Error
             return;
@@ -3613,7 +3613,7 @@ void dds_usecase_examples()
         std::string data_type = "HelloWorld";
         Topic* topic =
                 participant->create_topic(topic_name, data_type, TOPIC_QOS_DEFAULT);
-        if (nullptr != topic)
+        if (nullptr == topic)
         {
             // Error
             return;
@@ -3622,7 +3622,7 @@ void dds_usecase_examples()
         // Create the DataWriter
         DataWriter* writer =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
-        if (nullptr != writer)
+        if (nullptr == writer)
         {
             // Error
             return;
@@ -3647,7 +3647,7 @@ void dds_usecase_examples()
         // Create the DomainParticipant
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, participant_qos);
-        if (nullptr != participant)
+        if (nullptr == participant)
         {
             // Error
             return;
@@ -3656,7 +3656,7 @@ void dds_usecase_examples()
         // Create the Subscriber
         Subscriber* subscriber =
                 participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
-        if (nullptr != subscriber)
+        if (nullptr == subscriber)
         {
             // Error
             return;
@@ -3667,7 +3667,7 @@ void dds_usecase_examples()
         std::string data_type = "HelloWorld";
         Topic* topic =
                 participant->create_topic(topic_name, data_type, TOPIC_QOS_DEFAULT);
-        if (nullptr != topic)
+        if (nullptr == topic)
         {
             // Error
             return;
@@ -3676,7 +3676,7 @@ void dds_usecase_examples()
         // Create the DataReader
         DataReader* reader =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
-        if (nullptr != reader)
+        if (nullptr == reader)
         {
             // Error
             return;

@@ -104,15 +104,15 @@ diagram:
   |DataReaderListener::on_data_available-api|. Within each callback entity hierarchy remains the same.
 
 
-.. note::
+.. warning::
 
    Only one thread is created to listen for every listener implemented, so it is encouraged to
-   keep listener functions simple, and leave the process of such information to the proper class.
+   keep listener functions simple, leaving the process of such information to the proper class.
 
 .. warning::
 
-   Do not to create or delete any Entity from a Listener, since it could lead to an undefined
-   behavior. It is recommended instead to use the Listener class as an information channel, and use the upper
+   Do not create or delete any Entity within the scope of a Listener member function, since it could lead to an undefined
+   behavior. It is recommended instead to use the Listener class as an information channel and the upper
    Entity class to encapsulate such behaviour.
 
 .. _dds_layer_core_entity_commonchars_status:

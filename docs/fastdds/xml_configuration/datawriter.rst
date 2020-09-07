@@ -63,7 +63,8 @@ The DataWriter configuration is performed through the XML elements listed in the
      - Values
      - Default
    * - ``<topic>``
-     - :ref:`TopicType` configuration of the DataWriter.
+     - |HistoryQosPolicy| and |ResourceLimitsQosPolicy| |br|
+       configuration of the DataWriter.
      - :ref:`TopicType`
      -
    * - ``<qos>``

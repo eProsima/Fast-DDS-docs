@@ -14,10 +14,6 @@ This section aims to explain these common elements.
 *   :ref:`PropertiesPolicyType`
 *   :ref:`DurationType`
 *   :ref:`TopicType`
-
-    -   :ref:`hQos`
-    -   :ref:`rLsQos`
-
 *   :ref:`CommonQOS`
 
     -   :ref:`xml_durability`
@@ -137,20 +133,15 @@ An infinite value can be specified by using the values :cpp:concept:`DURATION_IN
 TopicType
 ^^^^^^^^^
 
-The |Topic| name and data type are used to determine whether Datawriters and DataReaders can exchange messages.
-Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the |Topic| class.
+In the current implementation of the *Fast DDS* API, the ``<topic>`` defined as a child element of the
+``<data_writer>``/``<data_reader>`` only defines the ``<historyQos>`` and the ``<resourceLimitsQos>`` elements
+(see |HistoryQosPolicy| and |ResourceLimitsQosPolicy|).
+To define a Topic via XML see the :ref:`topicprofiles` section.
+Please refer to :ref:`dds_layer_topic` section for a deeper explanation on the |Topic| class.
 
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
 | Name                    | Description                                   | Values                   | Default         |
 +=========================+===============================================+==========================+=================+
-| ``<kind>``              | It defines the Topic's key kind. See |br|     |                          |                 |
-|                         | :ref:`dds_layer_definition_data_types`.       |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<name>``              | It defines the Topic's name. It must |br|     | ``string_255``           |                 |
-|                         | be unique.                                    |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<dataType>``          | It references the Topic's data type.          | ``string_255``           |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
 | ``<historyQos>``        | It controls the behavior of *Fast DDS* |br|   | :ref:`hQos`              |                 |
 |                         | when the value of an instance changes  |br|   |                          |                 |
 |                         | before it is finally communicated to |br|     |                          |                 |
@@ -162,64 +153,16 @@ Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the
 |                         | and other QoS settings.                       |                          |                 |
 +-------------------------+-----------------------------------------------+--------------------------+-----------------+
 
-.. warning::
-
-    The ``<kind>`` child element is only used if the Topic is defined using the *Fast DDS* RTPS-layer API, and will
-    be ignored if the Topic is defined via the *Fast DDS* DDS-layer API.
-
 **Example**
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
-    :start-after: <!-->XML-TOPIC<-->
+    :start-after: <!-->XML-TOPIC-INTERNAL<-->
     :end-before: <!--><-->
 
-.. _hQos:
+.. warning::
 
-HistoryQoS
-""""""""""
-
-It controls the behavior of *Fast DDS* when the value of an instance changes before it is finally
-communicated to some of its existing DataReaders.
-Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQoS.
-
-+-------------+---------------------------------------------------------+-----------------------+----------------------+
-| Name        | Description                                             | Values                | Default              |
-+=============+=========================================================+=======================+======================+
-| ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | |KEEP_LAST-xml-api|   | |KEEP_LAST-xml-api|  |
-|             | of the instance |br| and discard the older ones.        |                       |                      |
-|             +---------------------------------------------------------+-----------------------+                      |
-|             | *Fast DDS* will attempt to maintain and deliver all the | |KEEP_ALL-xml-api|    |                      |
-|             | values of the instance |br| to existing DataReaders.    |                       |                      |
-+-------------+---------------------------------------------------------+-----------------------+----------------------+
-| ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``          | 1                    |
-|             | ``<max_samples_per_instance>`` |br|                     |                       |                      |
-|             | element value. It must be verified that: |br|           |                       |                      |
-|             | ``<depth>`` `<=` ``<max_samples_per_instance>``.        |                       |                      |
-+-------------+---------------------------------------------------------+-----------------------+----------------------+
-
-.. _rLsQos:
-
-ResourceLimitsQos
-"""""""""""""""""
-
-It controls the resources that *Fast DDS* can use in order to meet the requirements imposed by the
-application and other QoS settings.
-Please refer to :ref:`ResourceLimitsQosPolicy` for further information on ResourceLimitsQos.
-
-+--------------------------------+-----------------------------------------------------------+---------------+---------+
-| Name                           | Description                                               | Values        | Default |
-+================================+===========================================================+===============+=========+
-| ``<max_samples>``              | It must verify that:                                      | ``uint32_t``  | 5000    |
-|                                | ``<max_samples>`` `>=` ``<max_samples_per_instance>``.    |               |         |
-+--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<max_instances>``            | It defines the maximum number of instances.               | ``uint32_t``  | 10      |
-+--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`             | ``uint32_t``  | 400     |
-|                                | ``<depth>`` `<=` ``<max_samples_per_instance>``.          |               |         |
-+--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<allocated_samples>``        | It controls the maximum number of samples to be stored.   | ``uint32_t``  | 100     |
-+--------------------------------+-----------------------------------------------------------+---------------+---------+
+    This element will be deprecated in future versions of *Fast DDS*.
 
 .. _CommonQOS:
 

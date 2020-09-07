@@ -64,7 +64,8 @@ The DataReader configuration is performed through the XML elements listed in the
      - Values
      - Default
    * - ``<topic>``
-     - :ref:`TopicType` configuration of the DataReader.
+     - |HistoryQosPolicy| and |ResourceLimitsQosPolicy| |br|
+       configuration of the DataReader.
      - :ref:`TopicType`
      -
    * - ``<qos>``

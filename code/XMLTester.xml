@@ -1637,6 +1637,30 @@
 <-->
 <!--><-->
 
+<!-->XML-TOPIC<-->
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<-->
+        <topic profile_name="topic_profile_name">
+            <historyQos>
+                <kind>KEEP_LAST</kind>
+                <depth>20</depth>
+            </historyQos>
+            <resourceLimitsQos>
+                <max_samples>5</max_samples>
+                <max_instances>2</max_instances>
+                <max_samples_per_instance>1</max_samples_per_instance>
+                <allocated_samples>20</allocated_samples>
+            </resourceLimitsQos>
+        </topic>
+<!-->
+</profiles>
+<dds>
+<-->
+<!--><-->
+
 <participant profile_name="part_locator_list">
 <rtps>
 <!-->XML-LOCATOR-LIST<-->
@@ -1724,11 +1748,8 @@
 </participant>
 
 <subscriber profile_name="sub_topic_qos">
-<!-->XML-TOPIC<-->
+<!-->XML-TOPIC-INTERNAL<-->
 <topic>
-    <kind>NO_KEY</kind>
-    <name>TopicName</name>
-    <dataType>TopicDataTypeName</dataType>
     <historyQos>
         <kind>KEEP_LAST</kind>
         <depth>20</depth>

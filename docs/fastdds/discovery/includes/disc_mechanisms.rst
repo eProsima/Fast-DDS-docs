@@ -11,7 +11,7 @@ Fast DDS provides the following discovery mechanisms:
 
 - :ref:`Static Discovery <static_edp>`: This mechanisms uses the Simple Participant Discovery Protocol (SPDP) for the
   PDP phase (as specified by the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_), but allows for skipping
-  the Simple Participant Discovery Protocol (SEDP) phase when all the DataWriters' and DataReaders' IPs and ports,
+  the Simple Endpoint Discovery Protocol (SEDP) phase when all the DataWriters' and DataReaders' IPs and ports,
   data types, and Topics are known beforehand.
 
 - :ref:`Server-Client Discovery <discovery_server>`: This discovery mechanism uses a centralized discovery architecture,

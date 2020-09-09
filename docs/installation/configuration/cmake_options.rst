@@ -28,6 +28,7 @@ dependency on other options.
 
     *   - Option
         - Description
+        - Possible values
         - Default
     *   - :class:`EPROSIMA_INSTALLER`
         - Creates a build for Windows binary installers. Specifically it adds to the list of |br|
@@ -39,6 +40,7 @@ dependency on other options.
             - :class:`BUILD_DOCUMENTATION` is set to ``ON``.
             - :class:`INSTALL_EXAMPLES` is set to ``ON``.
 
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`EPROSIMA_BUILD`
         - Activates internal *Fast DDS* builds.
@@ -48,55 +50,68 @@ dependency on other options.
             - :class:`INTERNAL_DEBUG` is set to ``ON``.
             - :class:`SHM_TRANSPORT_DEFAULT` is set to ``ON`` and :class:`EPROSIMA_INSTALLER` is set to ``OFF``.
             - :class:`COMPILE_EXAMPLES` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
-            - :class:`THIRDPARTY` is set to ``ON``.
+            - :class:`THIRDPARTY_fastcdr` is set to ``ON`` if it was not set to ``FORCE``.
+            - :class:`THIRDPARTY_Asio` is set to ``ON`` if it was not set to ``FORCE``.
+            - :class:`THIRDPARTY_TinyXML2` is set to ``ON`` if it was not set to ``FORCE``.
+            - :class:`THIRDPARTY_android-ifaddrs` is set to ``ON`` if it was not set to ``FORCE``.
             - :class:`EPROSIMA_GTEST` is set to ``ON`` if GoogleTest (GTest) library was found.
             - :class:`EPROSIMA_GMOCK` is set to ``ON`` if GoogleMock (GMock) library was found.
             - :class:`EPROSIMA_BUILD_TESTS` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
 
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`BUILD_SHARED_LIBS`
         - Builds internal libraries as shared libraries, i.e. cause :func:`add_library` CMake function |br|
           to create shared libraries if on. All libraries are built shared unless the library was |br|
           explicitly added as a static library.
+        - ``ON`` ``OFF``
         - ``ON``
     *   - :class:`SECURITY`
         - Activates the *Fast DDS* security module. Please refer to :ref:`security` for more information |br|
           on security module.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`NO_TLS`
         - Disables Transport Layer Security (TLS) Support. Please refer to :ref:`transport_tcp_tls` for |br|
           more information on *Fast DDS* TLS configuration.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`SHM_TRANSPORT_DEFAULT`
         - Adds Shared Memory transport (SHM) to the default transports. It is set to ``ON`` if |br|
           :class:`EPROSIMA_BUILD` is ``ON``. Please refer to :ref:`SHM <transport_sharedMemory_sharedMemory>` section
           for more information |br|
           on *Fast DDS* SHM transport.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`COMPILE_EXAMPLES`
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
           :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the
           `eProsima Fast DDS <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_ |br|
           `GitHub repository <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`INSTALL_EXAMPLES`
         - Installs the *Fast DDS* examples, i.e. adds the *Fast DDS* examples to the list of |br|
           components to install (:class:`CPACK_COMPONENTS_ALL`). It is set to ``ON`` if |br|
           :class:`EPROSIMA_INSTALLER` is ``ON``.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`BUILD_DOCUMENTATION`
         - Uses doxygen to create the *Fast DDS* API reference documentation. It is set to ``ON`` |br|
           if :class:`EPROSIMA_INSTALLER` is ``ON`` or if :class:`CHECK_DOCUMENTATION` is ``ON``.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`CHECK_DOCUMENTATION`
         - Downloads *Fast DDS* documentation from Read the Docs media servers. The |br|
           documentation files are extracted in the `doc/manual` directory, updating |br|
           any previous version already downloaded. |br|
           If :class:`CHECK_DOCUMENTATION` is ``ON``, :class:`BUILD_DOCUMENTATION` is set to ``ON``.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`STRICT_REALTIME`
         - Enables a strict real-time behaviour. Please refer to the Real-Time Use Case for |br|
           more information on *Fast DDS* real-time configuration.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`INTERNAL_DEBUG`
         - Activates |Log::Kind::Info| debug messages (See :ref:`dds_layer_log_intro`). |br|
@@ -104,11 +119,13 @@ dependency on other options.
           *Fast DDS* must be debug built. This is done by setting the :class:`CMAKE_BUILD_TYPE` |br|
           option to `Debug`. Moreover, :class:`INTERNAL_DEBUG` is set to ``ON`` if |br|
           :class:`EPROSIMA_BUILD` is ``ON``.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`SQLITE3_SUPPORT`
         - Builds the |SQLITE3_PLUGIN|, which enables the |TRANSIENT_DURABILITY_QOS-api| |br|
           and |PERSISTENT_DURABILITY_QOS-api| options for the :ref:`durabilitykind` |br|
           and therefore the :ref:`persistence_service`.
+        - ``ON`` ``OFF``
         - ``ON``
 
 
@@ -132,27 +149,56 @@ These libraries can also be configured using *Fast DDS* CMake options.
 
     *   - Option
         - Description
+        - Possible values
         - Default
-    *   - :class:`THIRDPARTY`
-        - Activates the use of Fast CDR and the internal third-party libraries. It is set to ``ON`` |br|
-          if :class:`EPROSIMA_BUILD` is ``ON``.
-        - ``OFF``
-    *   - :class:`THIRDPARTY_UPDATE`
-        - Activates the automatic update of just Fast CDR library.
-        - ``ON``
     *   - :class:`THIRDPARTY_fastcdr`
-        - Links against the internal Fast CDR library.
+        - ``ON`` activates the use of the internal Fast CDR third-party library if it is not |br|
+          found elsewhere in the system. |br|
+          ``FORCE`` activates the use of the internal Fast CDR third-party library |br|
+          regardless of whether it can be found elsewhere in the system. |br|
+          ``OFF`` deactivates the use of the internal Fast CDR third-party library. |br|
+          If it is not set to ``FORCE``, it is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON``.
+        - ``ON`` ``OFF`` ``FORCE``
         - ``OFF``
     *   - :class:`THIRDPARTY_Asio`
-        - Links against the internal Asio internal third-party library.
+        - ``ON`` activates the use of the internal Asio third-party library if it is not |br|
+          found elsewhere in the system. |br|
+          ``FORCE`` activates the use of the internal Asio third-party library |br|
+          regardless of whether it can be found elsewhere in the system. |br|
+          ``OFF`` deactivates the use of the internal Asio third-party library. |br|
+          If it is not set to ``FORCE``, it is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON``.
+        - ``ON`` ``OFF`` ``FORCE``
         - ``OFF``
     *   - :class:`THIRDPARTY_TinyXML2`
-        - Links against the internal TinyXML2 internal third-party library.
+        - ``ON`` activates the use of the internal TinyXML2 third-party library if it is not |br|
+          found elsewhere in the system. |br|
+          ``FORCE`` activates the use of the internal TinyXML2 third-party library |br|
+          regardless of whether it can be found elsewhere in the system. |br|
+          ``OFF`` deactivates the use of the internal TinyXML2 third-party library. |br|
+          If it is not set to ``FORCE``, it is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON``.
+        - ``ON`` ``OFF`` ``FORCE``
         - ``OFF``
     *   - :class:`THIRDPARTY_android-ifaddrs`
-        - Links against the internal android-ifaddrs, an implementation of :func:`getifaddrs` |br|
-          for Android. Only if :class:`ANDROID` is ``ON``.
+        - android-ifaddrs is an implementation of :func:`getifaddrs` for Android. |br|
+          Only used if :class:`ANDROID` is ``1``. |br|
+          ``ON`` activates the use of the internal android-ifaddrs third-party library if it is not |br|
+          found elsewhere in the system. |br|
+          ``FORCE`` activates the use of the internal android-ifaddrs third-party library |br|
+          regardless of whether it can be found elsewhere in the system. |br|
+          ``OFF`` deactivates the use of the internal android-ifaddrs third-party library. |br|
+          If it is not set to ``FORCE``, it is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON``.
+        - ``ON`` ``OFF`` ``FORCE``
         - ``OFF``
+    *   - :class:`THIRDPARTY`
+        - Unless they are otherwise specified, sets value of all third-party |br|
+          git submodules :class:`THIRDPARTY_fastcdr`, :class:`THIRDPARTY_Asio`, |br|
+          :class:`THIRDPARTY_TinyXML2`, and :class:`THIRDPARTY_android-ifaddrs`.
+        - ``ON`` ``OFF`` ``FORCE``
+        - ``OFF``
+    *   - :class:`THIRDPARTY_UPDATE`
+        - Activates the update of all third-party git submodules.
+        - ``ON`` ``OFF``
+        - ``ON``
 
 .. Note::
 
@@ -172,47 +218,58 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
 
     *   - Option
         - Description
+        - Possible values
         - Default
     *   - :class:`GTEST_INDIVIDUAL`
         - Activate the individual building of GoogleTest tests, since *Fast DDS* tests are |br|
           implemented using the GoogleTest framework. However, the test are compiled |br|
           if :class:`EPROSIMA_BUILD` is set to ``ON``. Therefore, if :class:`GTEST_INDIVIDUAL` is ``OFF`` and |br|
           :class:`EPROSIMA_BUILD` is ``ON``, the tests are processed as a single major test.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`EPROSIMA_GTEST`
         - Activates special set of GTEST_ROOT, i.e. the root directory of the GoogleTest |br|
           installation.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`EPROSIMA_GMOCK`
         - Activates special set of GMOCK_ROOT, i.e. the root directory of the GoogleTest C++ |br|
           mocking framework installation. In the latest version of GoogleTest, GoogleMock is |br|
           integrated into it.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`FASTRTPS_API_TESTS`
         - Enables the building of black-box tests for the verification of RTPS communications |br|
           using the *Fast DDS* RTPS-layer API.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`FASTDDS_PIM_API_TESTS`
         - Enables the building of black-box tests for the verification of DDS communications |br|
           using the *Fast DDS* DDS-layer API.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`PERFORMANCE_TESTS`
         - Activates the building of performance tests, except for the video test, which requires |br|
           both :class:`PERFORMANCE_TESTS` and :class:`VIDEO_TESTS` to be set to ``ON``.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`PROFILING_TESTS`
         - Activates the building of profiling tests using Valgrind.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`EPROSIMA_BUILD_TESTS`
         - Activates the building of black-box, unit, xtypes, RTPS communication and |br|
-          DDS communication tests. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and
-          :class:`EPROSIMA_INSTALLER` |br| is ``OFF``.
+          DDS communication tests. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
+          :class:`EPROSIMA_INSTALLER` is ``OFF``.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`VIDEO_TESTS`
         - If :class:`PERFORMANCE_TESTS` is ``ON``, it will activate the building of video performance tests.
+        - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`DISABLE_UDPV6_TESTS`
         - Disables UDPv6 tests.
+        - ``ON`` ``OFF``
         - ``OFF``
 
 

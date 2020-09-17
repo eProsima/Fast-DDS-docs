@@ -14,7 +14,7 @@ Fast DDS provides the following discovery mechanisms:
   the Simple Endpoint Discovery Protocol (SEDP) phase when all the DataWriters' and DataReaders' IPs and ports,
   data types, and Topics are known beforehand.
 
-- :ref:`Server-Client Discovery <discovery_server>`: This discovery mechanism uses a centralized discovery architecture,
+- :ref:`Discovery Service <discovery_service>`: This discovery mechanism uses a centralized discovery architecture,
   where a DomainParticipant, referred as Server, act as a hub for discovery meta traffic.
 
 - **Manual Discovery**: This mechanism is only compatible with the RTPS layer.

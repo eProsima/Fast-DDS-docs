@@ -1,7 +1,7 @@
-.. _server-client-discovery-use-case:
+.. _discovery-service-use-case:
 
-Server-Client Discovery
-=======================
+Discovery Service
+=================
 
 During :ref:`discovery`, the Participant Discovery Phase (PDP) relies on meta traffic
 announcements sent to multicast addresses so that all the :ref:`DomainParticipants<dds_layer_domainParticipant>`
@@ -16,8 +16,8 @@ as the central point of communication.
 It collects and processes the metatraffic sent by the client DomainParticipants,
 and then distributes the appropriate information among the rest of the clients.
 
-A complete description of the feature can be found at :ref:`discovery_server`.
-The following subsections present configurations for different discovery server use cases.
+A complete description of the feature can be found at :ref:`discovery_service`.
+The following subsections present configurations for different discovery service use cases.
 
 .. contents::
     :local:
@@ -30,7 +30,7 @@ The following subsections present configurations for different discovery server 
 UDPv4 basic example setup
 -------------------------
 
-To configure the client-server discovery scenario, two types of participants are created: the server participant and
+To configure the Discovery Service scenario, two types of participants are created: the server participant and
 the client participant.
 Two parameters to be configured in this type of implementation are outlined:
 
@@ -194,7 +194,7 @@ Likewise, several servers can share the same port if their IP addresses are diff
 UDPv4 persistency example
 -------------------------
 
-On server-client discovery, servers gather and maintain the information of all connected endpoints,
+On Discovery Service, servers gather and maintain the information of all connected endpoints,
 and distribute it to the clients.
 In case of a server failure, all this information is lost and the server needs to recover it on restart.
 In the :ref:`basic setup<discovery_server_major_scenario_setup>` this is done

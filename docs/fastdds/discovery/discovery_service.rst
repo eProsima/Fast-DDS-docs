@@ -2,9 +2,9 @@
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
-.. _discovery_server:
+.. _discovery_service:
 
-Server-Client Discovery Settings
+Discovery Service Settings
 --------------------------------
 
 This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among
@@ -12,7 +12,7 @@ This mechanism is based on a client-server discovery paradigm, i.e. the metatraf
 opposed to simple discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an
 IP multicast protocol.
 A `Discovery-Server <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ tool is available to
-ease client-server setup and testing.
+ease Discovery Service setup and testing.
 
 .. figure:: /01-figures/fast_dds/discovery/discovery-server.svg
     :align: center
@@ -28,10 +28,10 @@ Key concepts
 
 In this architecture there are several key concepts to understand:
 
-- The Server-Client discovery mechanism reuses the RTPS discovery messages structure, as well as the standard DDS
+- The Discovery Service mechanism reuses the RTPS discovery messages structure, as well as the standard DDS
   |DataWriters| and |DataReaders|.
 
-- Discovery server DomainParticipants may be *clients* or *servers*.
+- Discovery service DomainParticipants may be *clients* or *servers*.
   The only difference between them is how they handle meta-traffic.
   The user traffic, that is, the traffic among the DataWriters and DataReaders they create, is role-independent.
 
@@ -68,8 +68,8 @@ one focusing on the main setting structures and XML tags (:ref:`setup by QoS <DS
 
 .. _DS_setup_concepts:
 
-Server-Client setup by concept
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discovery service setup by concept
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
     :header: "Concept", "Description"
@@ -87,7 +87,7 @@ Choosing between Client and Server
 
 It is set by the :ref:`Discovery Protocol <discovery_protocol>` general setting. A participant can only play a role
 (despite the fact that a *server* may act as a *client* of other server). It's mandatory to fill this value because it
-defaults to *simple*.  The values associated with the Server-Client discovery are specified in :ref:`discovery settings
+defaults to *simple*.  The values associated with the Discovery Service are specified in :ref:`discovery settings
 section <DS_DiscoverySettings>`. The examples below show how to manage the corresponding enum and XML tag.
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -116,7 +116,7 @@ The |GuidPrefix_t-api| attribute belongs to the RTPS specification and univocall
 It consists on 12 bytes and in Fast DDS is a key for the DomainParticipant used in the DDS domain.
 Fast DDS defines the DomainParticipant |GuidPrefix_t-api| as a public data member of the
 |WireProtocolConfigQos-api| class.
-In the Server-Client discovery, it has the purpose to link a *server* to its *clients*.
+In the Discovery Service, it has the purpose to link a *server* to its *clients*.
 It must be mandatorily specified in: *server* and *client* setups.
 
 Server side setup
@@ -296,8 +296,8 @@ It is a time interval intended to allow the server to initialize its resources.
 
 .. _DS_setup_attributes:
 
-Server-Client setup by Qos
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discovery Service setup by Qos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The settings related with server-client discovery are:
 
@@ -314,7 +314,7 @@ The settings related with server-client discovery are:
     listens for clients discovery information."
     :ref:`DiscoverySettings <DS_DiscoverySettings>`, "
     It is a member of the above |BuiltinAttributes-api| structure. |br|
-    Allows to specify some mandatory and optional Server-Client discovery settings such as |br|
+    Allows to specify some mandatory and optional Discovery Service settings such as |br|
     whether the DomainParticipant is a client or a server, the list of servers it is linked to, |br|
     the client-ping, and the server-match frequencies."
 
@@ -379,7 +379,7 @@ DiscoverySettings
 """""""""""""""""
 
 The |DiscoveryProtocol_t| enum data member (|discoveryProtocol|) specifies the participant's discovery kind.
-As was explained before, to setup the Server-Client discovery it may be:
+As was explained before, to setup the Discovery Service it may be:
 
 .. csv-table::
     :header: "enum value", "Description"

@@ -19,7 +19,7 @@ with distributed systems:
 
   - Disable the multicast discovery mechanism (see :ref:`use-case-disabling-multicast-discovery`).
 
-  - Configure a SERVER discovery mechanism (see :ref:`server-client-discovery-use-case`).
+  - Configure a SERVER discovery mechanism (see :ref:`discovery-service-use-case`).
 
 + :ref:`well_known_deployments`.
   Describes a situation where the entire entity network topology (Participants, Publishers, Subscribers,
@@ -55,14 +55,14 @@ with distributed systems:
 
   - Limit the blocking time of API functions to have a predictable response time (see :ref:`non-blocking-calls`).
 
-+ :ref:`fastrtps_ros2`.
-  Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
-  this tutorial is an explanation of how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2
-  project.
-
 + :ref:`use-case-reduce-memory`.
   For use cases with memory consumption constraints, *Fast DDS* can be configured to reduce memory footprint
   to a minimum by adjusting different QoS policies.
+
++ :ref:`ros2`.
+  Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
+  we have a whole independent section to show the use of it over ROS2,
+  and how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2 project.
 
 .. toctree::
     :maxdepth: 2
@@ -72,5 +72,4 @@ with distributed systems:
     /fastdds/use_cases/large_data/large_data.rst
     /fastdds/use_cases/many_subscribers/many_subscribers.rst
     /fastdds/use_cases/realtime/realtime.rst
-    /fastdds/use_cases/ros2/ros2.rst
     /fastdds/use_cases/reduce_memory/reduce_memory.rst

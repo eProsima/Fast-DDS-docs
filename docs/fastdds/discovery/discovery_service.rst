@@ -18,7 +18,7 @@ ease Discovery Service setup and testing.
     :align: center
     :width: 50%
 
-    Comparison of Server-Client discovery and Simple discovery mechanisms
+    Comparison of Discovery Service and Simple discovery mechanisms
 
 .. _DS_key_concepts:
 
@@ -77,7 +77,7 @@ Discovery service setup by concept
     :ref:`Discovery protocol <DS_discovery_protocol>`, Make a participant a *client* or a *server*.
     :ref:`Server unique id <DS_guidPrefx>`, Link a *clients* to *servers*.
     :ref:`Seting up transport <DS_locators>`, Specify which transport to use and make *servers* reachable.
-    :ref:`Pinging period <DS_ping_period>`, Fine tune server-client handshake.
+    :ref:`Pinging period <DS_ping_period>`, Fine tune discovery service handshake.
     :ref:`Matching period <DS_match_period>`, Fine tune server deliver efficiency.
 
 .. _DS_discovery_protocol:
@@ -299,7 +299,7 @@ It is a time interval intended to allow the server to initialize its resources.
 Discovery Service setup by Qos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The settings related with server-client discovery are:
+The settings related with Discovery Service are:
 
 .. csv-table::
     :header: "Name", "Description"

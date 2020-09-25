@@ -8,6 +8,8 @@ Environment variables
 This is the list of environment variables that affect the behavior of *Fast DDS*:
 
 ``FASTRTPS_DEFAULT_PROFILES_FILE``
+----------------------------------
+
     Defines the location of the default profile configuration XML file.
     If this variable is set and its value corresponds with an existing file, *Fast DDS* will load its profiles.
     For more information about XML profiles, please refer to :ref:`xml_profiles`.
@@ -28,6 +30,7 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
 
 
 ``ROS_DISCOVERY_SERVER``
+------------------------
 
     When setting this variable the :ref:`DomainParticipant<dds_layer_domainParticipant>` is configured as a Client of
     the given Server, implementing the :ref:`Discovery Service<discovery_service>` mechanism, provided its

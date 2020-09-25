@@ -59,8 +59,8 @@ The possible values are:
 |                     +---------------------+--------------------------------------------------------------------------+
 |                     | |BACKUP|            | Creates a SERVER DomainParticipant which has a persistent ``sqlite``     |
 |                     |                     | |br| database. A BACKUP server can load the a database on start. |br|    |
-|                     |                     | This type of sever makes the Discovery Service architecture              |
-|                     |                     | resilient |br| to server destruction.                                    |
+|                     |                     | This type of sever makes the Discovery Service architecture |br|         |
+|                     |                     | resilient to server destruction.                                         |
 +---------------------+---------------------+--------------------------------------------------------------------------+
 | Manual              | |NONE|              | Disables PDP phase, therefore the is no EDP phase. |br|                  |
 |                     |                     | All matching must be done manually through the |br|                      |

@@ -273,7 +273,7 @@ We run the first server listening in localhost in default port 11811.
 
     fastdds discovery -i 0 -l 127.0.0.1 -p 11811
 
-In another terminal we run the second server listening in localhost in port 11888 (random port).
+In another terminal we run the second server listening in localhost in port another port, in this case 11888.
 
 .. code-block:: console
 

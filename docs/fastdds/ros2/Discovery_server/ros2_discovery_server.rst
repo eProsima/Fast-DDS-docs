@@ -279,10 +279,9 @@ In another terminal we run the second server listening in localhost in port 1188
 
     fastdds discovery -i 1 -l 127.0.0.1 -p 11888
 
-Now we run in different terminals each of the nodes we want to run. Using the *env var*
-``ROS_DISCOVERY_SERVER`` we decide
-which server they are connected to. Be aware that the
-`ids must match <https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html>`__.
+Now we run each node in a different terminal. Using the *environment variable* ``ROS_DISCOVERY_SERVER`` we decide which
+server they are connected to. Be aware that the `ids must match
+<https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html>`__.
 
 .. code-block:: console
 
@@ -317,36 +316,41 @@ partition of *Talker 2* and so it does not listen it.
 Compare Discovery Server with Simple Discovery
 -----------------------------------------------
 
-In order to compare the ROS 2 execution using *Simple Discovery* or *Discovery Server*,
-we would provide two scripts that execute a talker and many listeners and analyze the network traffic during this time.
+In order to compare the ROS2 execution using *Simple Discovery* or *Discovery Service*, we provide two scripts that
+execute a talker and many listeners and analyze the network traffic during this time. For this you will need to install
+``tshark`` on your system.
 
-However, this functionality are references for advance purpose
-and we are going to leave its studying to the user.
-In the following links you can download these scripts to test them by yourself.
-The script *bash network traffic generator*
-throw many listeners in simple and service mode to get traffic info.
-And the script *python3 graph generator*
-analyze tcpdump traces and generates the graph.
+However, this functionality are references for advance purpose and we are going to leave its studying to the user.
 
 :download:`bash network traffic generator <generate_discovery_packages.bash>`
 
 :download:`python3 graph generator <discovery_packets.py>`
 
-To successfully execute these scripts,
-first we must run the bash script with the argument to the *setup* path to source ROS 2.
+Run the bash script with the *setup* path to source ROS2 as argument.
 This will generate the traffic trace for simple discovery.
-Executing the same script with second argument ``SERVER`` it will generates the trace for service discovery.
-After both executions are done, we run the python script to generates a graph similar to the one below:
+Executing the same script with second argument ``SERVER``, it will generates the trace for service discovery.
+
+.. note::
+
+    Depending on your configuration of ``tcpdump`` this script may require ``sudo`` privileges to read traffic across
+    your network device.
+
+After both executions are done, run the python script to generates a graph similar to the one below:
+
+.. code-block:: console
+
+    $ sudo bash generate_discovery_packages.bash ~/ros2_foxy/install/local_setup.bash
+    $ sudo bash generate_discovery_packages.bash ~/ros2_foxy/install/local_setup.bash SERVER
+    $ python3 discovery_packets.py
 
 .. image:: /01-figures/fast_dds/discovery/discovery_packets.svg
     :align: center
 
-In this graph (this is a specific examples,
-but the user can execute the scripts and watch their own results) we can easily see how the network traffic is
-reduced when using *Discovery Server*.
+This graph is the result of a  is a specific example, the user can execute the scripts and watch their own results. We
+can easily see how the network traffic is reduced when using *Discovery Service*.
 
-The reduction in traffic is due to avoid the network discovery structure where every node communicate
-itself and wait a response for every other node in the net.
-This creates a huge amount of traffic with big architectures.
-This reduction would increase if we increase the number of Nodes,
-making this architecture more scalable than the simple one.
+The reduction in traffic is a result of avoiding every node announcing itself and waiting a response from every other
+node in the net.
+This creates a huge amount of traffic in large architectures.
+This reduction from this method increases with the number of Nodes, making this architecture more scalable than the
+simple one.

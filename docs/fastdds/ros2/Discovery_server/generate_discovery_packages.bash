@@ -1,9 +1,41 @@
 #!/bin/bash
 
-# First argument must be setup.bash of ROS2
+usage="usage: $(basename "$0") SETUP_FILE [PROTOCOL] [-h] -- analyze network trafic of ros2 nodes discovery messages
+
+positional arguments:
+    SETUP_FILE location setup.bash of ROS2
+    [optional] PROTOCOL if is SERVER it uses Discovery Service else it uses Simple Discovery
+
+options:
+    -h  show this help text"
+
+seed=42
+while getopts ':h:' option; do
+  case "$option" in
+    h) echo "$usage"
+       exit
+       ;;
+   \?) printf "illegal option: -%s\n" "$OPTARG" >&2
+       echo "$usage" >&2
+       exit 1
+       ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+# first argument must be setup.bash of ROS2
 SETUP_FILE=${1}
-# If second argument is SERVER it uses Discovery Server
+
+if [ -z ${SETUP_FILE} ]
+    then
+    echo "$usage"
+    exit 2
+fi
+
+# if second argument is SERVER it uses Discovery Service
 PROTOCOL=${2}
+
+
 
 # Prepare environment
 echo "source to file: " ${SETUP_FILE}
@@ -13,8 +45,13 @@ source ${SETUP_FILE}
 DUMP_FILE="simple.pcapng"
 if [[ ${PROTOCOL} == "SERVER" ]]
 then
+<<<<<<< HEAD:docs/fastdds/ros2/Discovery_server/generate_discovery_packages.bash
     DUMP_FILE="server_client.pcapng"
     echo "Run in Discovery Server mode"
+=======
+    DUMP_FILE="discovery_service.pcapng"
+    echo "Run in Discovery Service mode"
+>>>>>>> 755fd3c2... Refs #9273: added help to tool:docs/fastdds/ros2/Discovery_service/generate_discovery_packages.bash
 else
     unset ROS_DISCOVERY_SERVER
     echo "Run in Simple Discovery mode"

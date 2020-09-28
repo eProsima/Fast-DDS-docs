@@ -84,7 +84,7 @@ Said parameters, and their default values under ROS 2, are:
 
 
 However, it is possible to fully configure *Fast DDS* (including the history memory policy and the publication mode)
-using an XML file in combination with environment variable ``RMW_FASTRTPS_USE_QOS_FROM_XML``.
+using an XML file in combination with an environment variable ``RMW_FASTRTPS_USE_QOS_FROM_XML``.
 
 ::
 
@@ -97,8 +97,8 @@ using an XML file in combination with environment variable ``RMW_FASTRTPS_USE_QO
 Example
 -------
 
-The following example uses the ROS 2 talker/listener demo, configuring *Fast DDS* to publish synchronously,
-and to have a dynamically allocated publisher and subscriber histories.
+The following example uses the ROS 2 talker/listener demo, configuring *Fast DDS* to publish synchronously, and to have
+dynamically allocated publisher and subscriber histories.
 
 #. Create a XML file `ros_example.xml` and save it in `path/to/xml/`
 

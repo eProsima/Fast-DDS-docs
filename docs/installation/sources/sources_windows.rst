@@ -41,7 +41,7 @@ installed in the system:
 
 * :ref:`visual_studio_sw`
 * :ref:`chocolatey_sw`
-* :ref:`cmake_pip_wget_git_sw`
+* :ref:`cmake_pip3_wget_git_sw`
 * :ref:`gtest_sw` [optional]
 
 .. _visual_studio_sw:
@@ -65,13 +65,13 @@ Chocolatey
 Chocolatey is a Windows package manager. It is needed to install some of *eProsima Fast DDS*'s dependencies.
 Download and install it directly from the `website <https://chocolatey.org/>`_.
 
-.. _cmake_pip_wget_git_sw:
+.. _cmake_pip3_wget_git_sw:
 
 CMake, pip, wget and git
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 These packages provide the tools required to install *eProsima Fast DDS* and its dependencies from command line.
-Download and install CMake_, pip_, wget_ and git_ by following the instructions detailed in the respective
+Download and install CMake_, pip3_, wget_ and git_ by following the instructions detailed in the respective
 websites.
 Once installed, add the path to the executables to the :code:`PATH` from the
 *Edit the system environment variables* control panel.
@@ -355,7 +355,7 @@ The ``Fast-DDS-Gen`` folder contains the following packages:
 
 .. _colcon: https://colcon.readthedocs.io/en/released/
 .. _CMake: https://cmake.org
-.. _pip: https://pypi.org/project/pip/
+.. _pip3: https://docs.python.org/3/installing/index.html
 .. _wget: https://www.gnu.org/software/wget/
 .. _git: https://git-scm.com/
 .. _vcstool: https://pypi.org/project/vcstool/

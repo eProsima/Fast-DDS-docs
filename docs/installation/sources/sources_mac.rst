@@ -244,7 +244,7 @@ Local installation
        cd ~/Fast-DDS
        git clone https://github.com/eProsima/Fast-DDS.git
        mkdir Fast-DDS/build
-       cd Fast-DDS/build 
+       cd Fast-DDS/build
        cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DCMAKE_PREFIX_PATH=~/Fast-DDS/install -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
        sudo cmake --build . --target install
 
@@ -287,6 +287,7 @@ There are two possibilities:
 * Add it permanently it to the :code:`PATH`, by typing:
 
   .. code-block:: bash
+
       touch ~/.bash_profile
       echo 'export LD_LIBRARY_PATH=/usr/local/lib/' >> ~/.bash_profile
 

@@ -78,6 +78,8 @@ gradle
 gtest
 GTest
 helloworld
+homebrew
+Homebrew
 hostid
 IDL
 ifaddrs
@@ -92,6 +94,7 @@ lifecycle
 LogTopic
 loopback
 lroundl
+macOS
 mandatorily
 md
 metatraffic
@@ -172,4 +175,5 @@ whitelists
 Wireshark
 worskspace
 WString
+Xcode
 XTypes

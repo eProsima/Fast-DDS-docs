@@ -59,8 +59,8 @@ To install it open a terminal window and run the following command.
 
 Xcode Command Line Tools
 ^^^^^^^^^^^^^^^^^^^^^^^^
-The Xcode command line tools package is separate from xcode and allows for command line development in mac.
-The previous step should have installed Xcode CLI, to check the correct installation run the followin command:
+The Xcode command line tools package is separate from Xcode and allows for command line development in mac.
+The previous step should have installed Xcode CLI, to check the correct installation run the following command:
 
 .. code-block::
 
@@ -326,7 +326,7 @@ Gradle
 
 Gradle is an open-source build automation tool.
 Download and install the last stable version of `Gradle <https://gradle.org/install>`_ in the preferred way.
-withHomebrew it would be running th command:
+with Homebrew it would be running the command:
 
 .. code-block:: bash
 

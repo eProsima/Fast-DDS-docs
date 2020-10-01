@@ -41,7 +41,7 @@
             </transport_descriptor>
         </transport_descriptors>
 
-        <participant profile_name="part_profile_example">
+        <participant profile_name="participant_profile_example">
             <domainId>4</domainId>
             <rtps>
                 <name>Participant Name</name> <!-- String -->
@@ -278,7 +278,7 @@
             </rtps>
         </participant>
 
-        <data_writer profile_name="datareader_profile_example">
+        <data_writer profile_name="datawriter_profile_example">
             <topic>
                 <kind>WITH_KEY</kind>
                 <name>TopicName</name>
@@ -444,7 +444,7 @@
             <entityID>76</entityID>
         </data_writer>
 
-        <data_reader profile_name="datawriter_profile_example">
+        <data_reader profile_name="datareader_profile_example">
             <topic>
                 <kind>WITH_KEY</kind>
                 <name>TopicName</name>

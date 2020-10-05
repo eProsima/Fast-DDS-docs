@@ -643,13 +643,13 @@ List of QoS Policy data members:
      - Default Value
    * - |TransportConfigQos::user_transports-api|
      - ``std::vector<std::shared_ptr<TransportDescriptorInterface>>``
-     -
+     - Empty vector
    * - |TransportConfigQos::use_builtin_transports-api|
      - ``bool``
-     - Empty vector
+     - ``true``
    * - |TransportConfigQos::send_socket_buffer_size-api|
      - ``uint32_t``
-     - ``true``
+     - 0
    * - |TransportConfigQos::listen_socket_buffer_size-api|
      - ``uint32_t``
      - 0

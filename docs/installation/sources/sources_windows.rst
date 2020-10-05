@@ -67,8 +67,8 @@ Download and install it directly from the `website <https://chocolatey.org/>`_.
 
 .. _cmake_pip3_wget_git_sw:
 
-CMake, pip, wget and git
-^^^^^^^^^^^^^^^^^^^^^^^^
+CMake, pip3, wget and git
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 These packages provide the tools required to install *eProsima Fast DDS* and its dependencies from command line.
 Download and install CMake_, pip3_, wget_ and git_ by following the instructions detailed in the respective
@@ -156,14 +156,14 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. code-block:: bash
 
-       pip install -U colcon-common-extensions vcstool
+       pip3 install -U colcon-common-extensions vcstool
 
    and add the path to the :code:`vcs` executable to the :code:`PATH` from the
    *Edit the system environment variables* control panel.
 
    .. note::
 
-       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip` installation command.
+       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip3` installation command.
 
 #. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
    *eProsima Fast DDS* and its dependencies:
@@ -343,7 +343,7 @@ Contents
 
 The ``Fast-DDS-Gen`` folder contains the following packages:
 
-* ``share/fastrtps``, where the generated Java application is.
+* ``share/fastddsgen``, where the generated Java application is.
 * ``scripts``, containing some user friendly scripts.
 
   .. note::

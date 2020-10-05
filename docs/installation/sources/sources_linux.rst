@@ -121,11 +121,11 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. code-block:: bash
 
-       pip install -U colcon-common-extensions vcstool
+       pip3 install -U colcon-common-extensions vcstool
 
    .. note::
 
-       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip` installation command.
+       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip3` installation command.
 
 #. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
    *eProsima Fast DDS* and its dependencies:
@@ -323,7 +323,7 @@ Contents
 
 The :code:`Fast-DDS-Gen` folder contains the following packages:
 
-* :code:`share/fastrtps`, where the generated Java application is.
+* :code:`share/fastddsgen`, where the generated Java application is.
 * :code:`scripts`, containing some user friendly scripts.
 
   .. note::

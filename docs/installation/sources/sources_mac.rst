@@ -160,12 +160,14 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. code-block:: bash
 
-       colcon build --cmake-args -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
+       colcon build
 
 .. note::
 
     The :code:`--cmake-args` option allows to pass the CMake configuration options to the :code:`colcon build` command.
-    In Mac OS the location of OpenSSL is not found automatically and therefore has to be passed explicitly.
+    In Mac OS the location of OpenSSL is not found automatically and therefore has to be passed explicitly:
+    :code:`--cmake-args -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib`.
+    This is only required when building with :ref:`security`.
     For more information on the specific syntax, please refer to the `CMake specific arguments
     <https://colcon.readthedocs.io/en/released/reference/verb/build.html#cmake-specific-arguments>`_ page of the colcon_
     manual.
@@ -223,7 +225,7 @@ Local installation
          git clone https://github.com/eProsima/foonathan_memory_vendor.git
          mkdir foonathan_memory_vendor/build
          cd foonathan_memory_vendor/build
-         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DBUILD_SHARED_LIBS=ON -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
+         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DBUILD_SHARED_LIBS=ON
          sudo cmake --build . --target install
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
@@ -234,7 +236,7 @@ Local installation
          git clone https://github.com/eProsima/Fast-CDR.git
          mkdir Fast-CDR/build
          cd Fast-CDR/build
-         cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
+         cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install
          sudo cmake --build . --target install
 
 #. Once all dependencies are installed, install *eProsima Fast DDS*:
@@ -245,7 +247,7 @@ Local installation
        git clone https://github.com/eProsima/Fast-DDS.git
        mkdir Fast-DDS/build
        cd Fast-DDS/build
-       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DCMAKE_PREFIX_PATH=~/Fast-DDS/install -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
+       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DCMAKE_PREFIX_PATH=~/Fast-DDS/install
        sudo cmake --build . --target install
 
 .. note::
@@ -350,7 +352,7 @@ Contents
 
 The :code:`Fast-DDS-Gen` folder contains the following packages:
 
-* :code:`share/fastrtps`, where the generated Java application is.
+* :code:`share/fastddsgen`, where the generated Java application is.
 * :code:`scripts`, containing some user friendly scripts.
 
   .. note::

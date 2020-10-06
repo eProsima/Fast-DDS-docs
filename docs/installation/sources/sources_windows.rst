@@ -41,7 +41,7 @@ installed in the system:
 
 * :ref:`visual_studio_sw`
 * :ref:`chocolatey_sw`
-* :ref:`cmake_pip_wget_git_sw`
+* :ref:`cmake_pip3_wget_git_sw`
 * :ref:`gtest_sw` [optional]
 
 .. _visual_studio_sw:
@@ -65,13 +65,13 @@ Chocolatey
 Chocolatey is a Windows package manager. It is needed to install some of *eProsima Fast DDS*'s dependencies.
 Download and install it directly from the `website <https://chocolatey.org/>`_.
 
-.. _cmake_pip_wget_git_sw:
+.. _cmake_pip3_wget_git_sw:
 
-CMake, pip, wget and git
-^^^^^^^^^^^^^^^^^^^^^^^^
+CMake, pip3, wget and git
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 These packages provide the tools required to install *eProsima Fast DDS* and its dependencies from command line.
-Download and install CMake_, pip_, wget_ and git_ by following the instructions detailed in the respective
+Download and install CMake_, pip3_, wget_ and git_ by following the instructions detailed in the respective
 websites.
 Once installed, add the path to the executables to the :code:`PATH` from the
 *Edit the system environment variables* control panel.
@@ -156,14 +156,14 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. code-block:: bash
 
-       pip install -U colcon-common-extensions vcstool
+       pip3 install -U colcon-common-extensions vcstool
 
    and add the path to the :code:`vcs` executable to the :code:`PATH` from the
    *Edit the system environment variables* control panel.
 
    .. note::
 
-       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip` installation command.
+       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip3` installation command.
 
 #. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
    *eProsima Fast DDS* and its dependencies:
@@ -343,7 +343,7 @@ Contents
 
 The ``Fast-DDS-Gen`` folder contains the following packages:
 
-* ``share/fastrtps``, where the generated Java application is.
+* ``share/fastddsgen``, where the generated Java application is.
 * ``scripts``, containing some user friendly scripts.
 
   .. note::
@@ -355,7 +355,7 @@ The ``Fast-DDS-Gen`` folder contains the following packages:
 
 .. _colcon: https://colcon.readthedocs.io/en/released/
 .. _CMake: https://cmake.org
-.. _pip: https://pypi.org/project/pip/
+.. _pip3: https://docs.python.org/3/installing/index.html
 .. _wget: https://www.gnu.org/software/wget/
 .. _git: https://git-scm.com/
 .. _vcstool: https://pypi.org/project/vcstool/

@@ -189,3 +189,94 @@ You can specify a maximum amount of changes for the History to hold and an initi
 When the initial amount of reserved changes is lower than the maximum, the History will allocate more changes as they
 are needed until it reaches the maximum size.
 
+Using a custom Payload Pool
+---------------------------
+
+A *Payload* is defined as the data the user wants to transmit between a Writer and a Reader.
+RTPS needs to add some metadata to this Payload in order to manage the communication between the endpoints.
+Therefore, this Payload is encapsulated inside the :cpp:member:`SerializedPayload_t` field of the :class:`CacheChange_t`,
+while the rest of the fields of the :class:`CacheChange_t` provide the required metadata.
+
+|WriterHistory-api| and |ReaderHistory-api| provide an interface for the user to interact with these changes:
+Changes to be transmited by the Writeres are added to its WriterHistory,
+and changes already processed on the Reader can be removed from the ReaderHistory.
+In this sense, the History acts as a buffer for changes that are not fully processed yet.
+
+During a normal execution, new changes are added to the History and old ones are removed from it.
+In order to manage the lifecycle of the Payloads contained in these changes,
+Readers and Writers use a pool object,
+an implementation of the |IPayloadPool-api| interface.
+Different pool implementations allow for different optimizations.
+For example, Payloads of different size could be retrieved from different preallocated memory chunks.
+
+Writers and Readers can automatically select a default Payload pool implementation that best suits
+the configuration given in |HistoryAttributes-api|.
+However, a custom Payload pool can be given to |RTPSDomain::createRTPSWriter-api| and
+|RTPSDomain::createRTPSReader-api| functions.
+Writers and Readers will use the provided pool when a new :class:`CacheChange_t` is requested
+or released.
+
+
+IPayloadPool interface
+^^^^^^^^^^^^^^^^^^^^^^
+
+* |IPayloadPool::get_payload-api| with size parameter:
+
+  Ties an empty Payload of the requested size to a :class:`CacheChange_t` instance.
+  The Payload can then be filled with the required data.
+
+* |IPayloadPool::get_payload-api| with SerializadPayload parameter:
+
+  Copies the given Payload data to a new Payload from the pool and ties it to the :class:`CacheChange_t` instance.
+  This overload also takes a pointer to the pool that owns the original Payload.
+  This allows certain optimizations, like sharing the Payload if the original one comes form this same pool,
+  therefore avoiding the copy operation.
+
+* |IPayloadPool::release_payload-api|:
+
+  Returns the Payload tied to a :class:`CacheChange_t` to the pool, and breaks the tie.
+
+
+Default Payload pool implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If no custom Payload pool is provided to the Writer or Reader, *Fast DDS* will automatically use the
+default implementation that best matches the |HistoryAttributes::memoryPolicy-api| configuration of the History.
+
+**PREALLOCATED_MEMORY_MODE**
+
+All payloads will have a data buffer of fixed size,
+equal to the value of |HistoryAttributes::payloadMaxSize-api|,
+regardless of the size requested to |IPayloadPool::get_payload-api|.
+Released Payloads can be reused for another :class:`CacheChange_t`.
+This reduces memory allocation operations at the cost of higher memory usage.
+
+**PREALLOCATED_WITH_REALLOC_MEMORY_MODE**
+
+Payloads are guaranteed to have a data buffer at least as large as the 
+maximum between the requested size and |HistoryAttributes::payloadMaxSize-api|.
+Released Payloads can be reused for another :class:`CacheChange_t`.
+If there is at least one free Payload with a buffer size equal or larger to the requested one,
+no memory allocation is done.
+
+During the initialization of the History, |HistoryAttributes::initialReservedCaches-api|
+Payloads are preallocated for the initially allocated :class:`CacheChange_t`.
+
+**DYNAMIC_RESERVE_MEMORY_MODE**
+
+Every time a Payload is requested, a new one is allocated in memory with the appropriate size.
+|HistoryAttributes::payloadMaxSize-api| is ignored.
+The memory of released Payloads is always deallocated, so there are never free Payloads in the pool.
+This reduces memory usage at the cost of frequent memory allocations.
+
+No preallocation of Payloads is done in the initialization of the History, 
+
+**DYNAMIC_REUSABLE_MEMORY_MODE**
+
+Payloads are guaranteed to have a data buffer at least as large as the requested size.
+|HistoryAttributes::payloadMaxSize-api| is ignored.
+
+Released Payloads can be reused for another :class:`CacheChange_t`.
+If there is at least one free Payload with a buffer size equal or larger to the requested one,
+no memory allocation is done.
+

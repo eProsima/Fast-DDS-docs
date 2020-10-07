@@ -280,3 +280,11 @@ Released Payloads can be reused for another :class:`CacheChange_t`.
 If there is at least one free Payload with a buffer size equal or larger to the requested one,
 no memory allocation is done.
 
+Example using a custom Payload pool
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: ../../../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_API_ENTITY_CREATE_WITH_PAYLOAD_POOL
+    :end-before: //!--
+    :dedent: 4

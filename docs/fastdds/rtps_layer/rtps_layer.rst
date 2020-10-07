@@ -1,3 +1,5 @@
+.. include:: ../../03-exports/aliases-api.include
+
 .. _rtps_layer:
 
 RTPS Layer
@@ -33,14 +35,15 @@ How to use the RTPS Layer
 We will now go over the use of the RTPS Layer like we did with the :ref:`dds_layer` one,
 explaining the new features it presents.
 
-We recommend you to look at the two examples of how to use this layer the distribution comes with while reading
-this section. They are located in `examples/RTPSTest_as_socket` and in `examples/RTPSTest_registered`
+We recommend you to look at the two examples describing how to use the RTPS layer that come with the distribution
+while reading this section.
+They are located in `examples/RTPSTest_as_socket` and in `examples/RTPSTest_registered`
 
 Managing the Participant
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Creating a :class:`RTPSParticipant` is done with :func:`RTPSDomain::createParticipant`.
-:class:`RTPSParticipantAttributes` structure is used to configure the :class:`RTPSParticipant` upon creation.
+Creating a |RTPSParticipant-api| is done with |RTPSDomain::createParticipant-api|.
+|RTPSParticipantAttributes-api| structure is used to configure the :class:`RTPSParticipant` upon creation.
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
@@ -51,12 +54,12 @@ Creating a :class:`RTPSParticipant` is done with :func:`RTPSDomain::createPartic
 Managing the Writers and Readers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As the RTPS standard specifies, Writers and Readers are always associated with a History element.
+As the RTPS standard specifies, |RTPSWriters-api| and |RTPSReaders-api| are always associated with a |History-api| element.
 In the :ref:`dds_layer`, its creation and management is hidden,
 but in the :ref:`rtps_layer`, you have full control over its creation and configuration.
 
-Writers are created with :func:`RTPSDomain::createRTPSWriter` and configured with a :class:`WriterAttributes` structure.
-They also need a :class:`WriterHistory` which is configured with a :class:`HistoryAttributes` structure.
+Writers are created with |RTPSDomain::createRTPSWriter-api| and configured with a |WriterAttributes-api| structure.
+They also need a |WriterHistory-api| which is configured with a |HistoryAttributes-api| structure.
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
@@ -64,8 +67,10 @@ They also need a :class:`WriterHistory` which is configured with a :class:`Histo
     :end-before: //!--
     :dedent: 4
 
-The creation of a Reader is similar to that of the Writers.
-Note that in this case, you can provide a specialization of :class:`ReaderListener` class that implements your
+Similar to the creation of Writers, Readers are created with |RTPSDomain::createRTPSReader-api|
+and configured with a |ReaderAttributes-api| structure.
+A |HistoryAttributes-api| structure is used to configure the required |ReaderHistory-api|.
+Note that in this case, you can provide a specialization of |ReaderListener-api| class that implements your
 callbacks:
 
 .. literalinclude:: ../../../code/CodeTester.cpp
@@ -78,15 +83,19 @@ Using the History to Send and Receive Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the RTPS Protocol, Readers and Writers save the data about a topic in their associated History.
-Each piece of data is represented by a Change, which *eprosima Fast DDS* implements as :class:`CacheChange_t`.
-Changes are always managed by the History. As a user, the procedure for interacting with the History is always the same:
+Each piece of data is represented by a Change, which *eprosima Fast DDS* implements as |CacheChange_t-api|.
+Changes are always managed by the History.
 
-1. Request a :class:`CacheChange_t` from the History
-2. Use it
-3. Release it
+You can add a new :class:`CacheChange_t` to the History of the Writer to send data.
+The procedure is as follows:
 
-You can interact with the History of the Writer to send data.
-A callback that returns the maximum number of payload bytes is required:
+1. Request a :class:`CacheChange_t` from the Writer with |RTPSWriters::new_change-api|.
+   In order to allocate enough memory,
+   you need to provide a callback that returns the maximum number bytes in the payload.
+2. Fill the :class:`CacheChange_t` with the data.
+3. Add it to the History with |WriterHistory::add_change-api|.
+
+The Writer will take care of everything to communicate the data to the Readers.
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
@@ -98,7 +107,13 @@ If your topic data type has several fields, you will have to provide functions t
 your data in and out of the :class:`CacheChange_t`.
 *Fast DDS-Gen* does this for you.
 
-You can receive data from within a :class:`ReaderListener` callback method as we did in the :ref:`dds_layer`:
+You can receive data from within the |ReaderListener::onNewCacheChangeAdded-api| callback,
+as we did in the :ref:`dds_layer`:
+
+1. The callback receives a :class:`CacheChange_t` parameter containing the received data.
+2. Process the data within the received :class:`CacheChange_t`.
+3. Inform the Reader's History that the change is not needed anymore.
+
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
@@ -146,7 +161,7 @@ sends all changes you have not explicitly released from the History.
 Configuring the History
 -----------------------
 
-The History has its own configuration structure, the :class:`HistoryAttributes`.
+The History has its own configuration structure, the |HistoryAttributes-api|.
 
 Changing the maximum size of the payload
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

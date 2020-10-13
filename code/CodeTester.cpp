@@ -956,8 +956,8 @@ void rtps_api_example_create_entities_with_custom_pool()
     class CustomPayloadPool : public IPayloadPool
     {
         bool get_payload(
-            uint32_t size,
-            CacheChange_t& cache_change) override
+                uint32_t size,
+                CacheChange_t& cache_change) override
         {
             // Reserve new memory for the payload buffer
             octet* payload = new octet[size];
@@ -967,7 +967,7 @@ void rtps_api_example_create_entities_with_custom_pool()
             cache_change.serializedPayload.length = size;
             cache_change.serializedPayload.max_size = size;
 
-            // Tell the CacheChange who needs to release ist payload
+            // Tell the CacheChange who needs to release its payload
             cache_change.payload_owner(this);
             
             return true;
@@ -989,7 +989,7 @@ void rtps_api_example_create_entities_with_custom_pool()
             cache_change.serializedPayload.length = data.length;
             cache_change.serializedPayload.max_size = data.length;
 
-            // Tell the CacheChange who needs to release ist payload
+            // Tell the CacheChange who needs to release its payload
             cache_change.payload_owner(this);
             
             return true;
@@ -998,6 +998,9 @@ void rtps_api_example_create_entities_with_custom_pool()
         bool release_payload(
                 CacheChange_t& cache_change) override
         {
+            // ensure precondition
+            assert (this == cache_change.payload_owner());
+
             // Dealloc the buffer of the payload
             delete[] cache_change.serializedPayload.data;
 
@@ -1013,21 +1016,21 @@ void rtps_api_example_create_entities_with_custom_pool()
         }
     };
 
-    CustomPayloadPool payload_pool;
+    std::shared_ptr<CustomPayloadPool> payload_pool = std::make_shared<CustomPayloadPool>();
 
     // A writer using the custom payload pool
-    HistoryAttributes history_attr;
-    WriterHistory* history = new WriterHistory(history_attr);
+    HistoryAttributes writer_history_attr;
+    WriterHistory* writer_history = new WriterHistory(writer_history_attr);
     WriterAttributes writer_attr;
-    RTPSWriter* writer = RTPSDomain::createRTPSWriter(participant, writer_attr, payload_pool, history);
+    RTPSWriter* writer = RTPSDomain::createRTPSWriter(participant, writer_attr, payload_pool, writer_history);
 
     // A reader using the same instance of the custom payload pool
-    HistoryAttributes history_attr;
-    ReaderHistory* history = new ReaderHistory(history_attr);
+    HistoryAttributes reader_history_attr;
+    ReaderHistory* reader_history = new ReaderHistory(reader_history_attr);
     ReaderAttributes reader_attr;
-    RTPSReader* reader = RTPSDomain::createRTPSReader(participant, reader_attr, payload_pool, history);
+    RTPSReader* reader = RTPSDomain::createRTPSReader(participant, reader_attr, payload_pool, reader_history);
 
-    // Write and Read operations work as usual, but take the Payloads from the poo.
+    // Write and Read operations work as usual, but take the Payloads from the pool.
     // Requesting a change to the Writer will provide one with an empty Payload taken from the pool
     CacheChange_t* change = writer->new_change([]() -> uint32_t {
         return 255;
@@ -1035,7 +1038,7 @@ void rtps_api_example_create_entities_with_custom_pool()
 
     // Write serialized data into the change and add it to the history
     change->serializedPayload.length = sprintf((char*) change->serializedPayload.data, "My example string %d", 2) + 1;
-    history->add_change(change);
+    writer_history->add_change(change);
 
 
     //!--

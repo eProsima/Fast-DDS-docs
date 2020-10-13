@@ -1,12 +1,14 @@
 .. include:: ../../03-exports/aliases-api.include
 
+.. _RTPS standard: https://www.omg.org/spec/DDSI-RTPS/2.2
+
 .. _rtps_layer:
 
 RTPS Layer
 ==========
 
 The lower level RTPS Layer of *eprosima Fast DDS* serves an implementation of the protocol defined in the
-`RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_.
+`RTPS standard`_.
 This layer provides more control over the internals of the communication protocol than the :ref:`dds_layer`, so advanced
 users have finer control over the library's functionalities.
 
@@ -54,7 +56,8 @@ Creating a |RTPSParticipant-api| is done with |RTPSDomain::createParticipant-api
 Managing the Writers and Readers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As the RTPS standard specifies, |RTPSWriters-api| and |RTPSReaders-api| are always associated with a |History-api| element.
+As the RTPS standard specifies, |RTPSWriters-api| and |RTPSReaders-api| are always associated
+with a |History-api| element.
 In the :ref:`dds_layer`, its creation and management is hidden,
 but in the :ref:`rtps_layer`, you have full control over its creation and configuration.
 
@@ -194,11 +197,12 @@ Using a custom Payload Pool
 
 A *Payload* is defined as the data the user wants to transmit between a Writer and a Reader.
 RTPS needs to add some metadata to this Payload in order to manage the communication between the endpoints.
-Therefore, this Payload is encapsulated inside the :cpp:member:`SerializedPayload_t` field of the :class:`CacheChange_t`,
+Therefore, this Payload is encapsulated inside the :cpp:member:`SerializedPayload_t` field
+of the :class:`CacheChange_t`,
 while the rest of the fields of the :class:`CacheChange_t` provide the required metadata.
 
 |WriterHistory-api| and |ReaderHistory-api| provide an interface for the user to interact with these changes:
-Changes to be transmited by the Writeres are added to its WriterHistory,
+Changes to be transmitted by the Writers are added to its WriterHistory,
 and changes already processed on the Reader can be removed from the ReaderHistory.
 In this sense, the History acts as a buffer for changes that are not fully processed yet.
 
@@ -236,6 +240,20 @@ IPayloadPool interface
 
   Returns the Payload tied to a :class:`CacheChange_t` to the pool, and breaks the tie.
 
+.. note::
+  When implementing a custom Payload pool, make sure that the allocated Payloads
+  fulfill the requirements of standard RTPS serialization.
+  Specifically, the Payloads must be large enough to accommodate the serialized user data plus the 4 octets
+  of the `SerializedPayloadHeader` as specified in section 10.2 of the `RTPS standard`_.
+
+  For example, if we know the upper bound of the serialized user data,
+  we may consider implementing a pool that always allocates Payloads of a fixed size,
+  large enough to hold any of this data.
+  If the serialized user data has at most N octets,
+  then the allocated Payloads must have at least N+4 octets.
+
+  Note that the size requested to |IPayloadPool::get_payload-api| already considers this 4 octet header.
+
 
 Default Payload pool implementation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -251,9 +269,12 @@ regardless of the size requested to |IPayloadPool::get_payload-api|.
 Released Payloads can be reused for another :class:`CacheChange_t`.
 This reduces memory allocation operations at the cost of higher memory usage.
 
+During the initialization of the History, |HistoryAttributes::initialReservedCaches-api|
+Payloads are preallocated for the initially allocated :class:`CacheChange_t`.
+
 **PREALLOCATED_WITH_REALLOC_MEMORY_MODE**
 
-Payloads are guaranteed to have a data buffer at least as large as the 
+Payloads are guaranteed to have a data buffer at least as large as the
 maximum between the requested size and |HistoryAttributes::payloadMaxSize-api|.
 Released Payloads can be reused for another :class:`CacheChange_t`.
 If there is at least one free Payload with a buffer size equal or larger to the requested one,
@@ -269,7 +290,7 @@ Every time a Payload is requested, a new one is allocated in memory with the app
 The memory of released Payloads is always deallocated, so there are never free Payloads in the pool.
 This reduces memory usage at the cost of frequent memory allocations.
 
-No preallocation of Payloads is done in the initialization of the History, 
+No preallocation of Payloads is done in the initialization of the History,
 
 **DYNAMIC_REUSABLE_MEMORY_MODE**
 

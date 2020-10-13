@@ -46,7 +46,10 @@ cryptographic
 cryptosystem
 datagram
 datarate
+deallocate
+deallocated
 deallocating
+deallocation
 decrypt
 decrypted
 dependant
@@ -124,6 +127,7 @@ pre
 preallocate
 preallocated
 preallocates
+preallocation
 preprocessor
 QoS
 QosPolicyCount

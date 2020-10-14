@@ -579,10 +579,39 @@
 .. |DomainId-api| replace:: :cpp:type:`DomainId <dds::fastdds::eprosima::DomainId_t>`
 .. |c_InstanceHandle_Unknown-api| replace:: :cpp:member:`c_InstanceHandle_Unknown <rtps::fastrtps::eprosima::c_InstanceHandle_Unknown>`
 
+.. |RTPSDomain-api| replace:: :cpp:class:`RTPSDomain <eprosima::fastrtps::rtps::RTPSDomain>`
+.. |RTPSDomain::createParticipant-api| replace:: :cpp:func:`RTPSDomain::createParticipant() <eprosima::fastrtps::rtps::RTPSDomain::createParticipant>`
+.. |RTPSDomain::createRTPSWriter-api| replace:: :cpp:func:`RTPSDomain::createRTPSWriter() <eprosima::fastrtps::rtps::RTPSDomain::createRTPSWriter>`
+.. |RTPSDomain::createRTPSReader-api| replace:: :cpp:func:`RTPSDomain::createRTPSReader() <eprosima::fastrtps::rtps::RTPSDomain::createRTPSReader>`
+
 .. |RTPSParticipants-api| replace:: :cpp:class:`RTPSParticipants <eprosima::fastrtps::rtps::RTPSParticipant>`
 .. |RTPSParticipant-api| replace:: :cpp:class:`RTPSParticipant <eprosima::fastrtps::rtps::RTPSParticipant>`
+.. |RTPSParticipantAttributes-api| replace:: :cpp:class:`RTPSParticipantAttributes<eprosima::fastrtps::rtps::RTPSParticipantAttributes>`
+
 .. |RTPSReaders-api| replace:: :cpp:class:`RTPSReaders <eprosima::fastrtps::rtps::RTPSReader>`
+.. |ReaderAttributes-api| replace:: :cpp:class:`ReaderAttributes<eprosima::fastrtps::rtps::ReaderAttributes>`
+.. |ReaderListener-api| replace:: :cpp:class:`ReaderListener<eprosima::fastrtps::rtps::ReaderListener>`
+.. |ReaderListener::onNewCacheChangeAdded-api| replace:: :cpp:func:`ReaderListener::onNewCacheChangeAdded<eprosima::fastrtps::rtps::ReaderListener::onNewCacheChangeAdded>`
+
 .. |RTPSWriters-api| replace:: :cpp:class:`RTPSWriters <eprosima::fastrtps::rtps::RTPSWriter>`
+.. |WriterAttributes-api| replace:: :cpp:class:`WriterAttributes<eprosima::fastrtps::rtps::WriterAttributes>`
+.. |RTPSWriters::new_change-api| replace:: :cpp:func:`RTPSWriter::new_change() <eprosima::fastrtps::rtps::RTPSWriter::new_change>`
+
+.. |History-api| replace:: :cpp:class:`History <eprosima::fastrtps::rtps::History>`
+.. |WriterHistory-api| replace:: :cpp:class:`WriterHistory <eprosima::fastrtps::rtps::WriterHistory>`
+.. |WriterHistory::add_change-api| replace:: :cpp:func:`WriterHistory::add_change() <eprosima::fastrtps::rtps::WriterHistory::add_change>`
+.. |ReaderHistory-api| replace:: :cpp:class:`ReaderHistory <eprosima::fastrtps::rtps::ReaderHistory>`
+.. |CacheChange_t-api| replace:: :cpp:class:`CacheChange_t<eprosima::fastrtps::rtps::CacheChange_t>`
+
+.. |HistoryAttributes-api| replace:: :cpp:class:`HistoryAttributes<eprosima::fastrtps::rtps::HistoryAttributes>`
+.. |HistoryAttributes::memoryPolicy-api| replace:: :cpp:member:`memoryPolicy<eprosima::fastrtps::rtps::HistoryAttributes::memoryPolicy>`
+.. |HistoryAttributes::payloadMaxSize-api| replace:: :cpp:member:`payloadMaxSize<eprosima::fastrtps::rtps::HistoryAttributes::payloadMaxSize>`
+.. |HistoryAttributes::initialReservedCaches-api| replace:: :cpp:member:`initialReservedCaches<eprosima::fastrtps::rtps::HistoryAttributes::initialReservedCaches>`
+
+.. |IPayloadPool-api| replace:: :cpp:class:`IPayloadPool <eprosima::fastrtps::rtps::IPayloadPool>`
+.. |IPayloadPool::get_payload-api| replace:: :cpp:func:`IPayloadPool::get_payload <eprosima::fastrtps::rtps::IPayloadPool::get_payload>`
+.. |IPayloadPool::release_payload-api| replace:: :cpp:func:`IPayloadPool::release_payload <eprosima::fastrtps::rtps::IPayloadPool::release_payload>`
+
 
 .. |DiscoverySettings-api| replace:: :cpp:class:`DiscoverySettings <eprosima::fastrtps::rtps::DiscoverySettings>`
 .. |leaseDuration_announcementperiod| replace:: :cpp:member:`leaseDuration_announcementperiod <eprosima::fastrtps::rtps::DiscoverySettings::leaseDuration_announcementperiod>`
@@ -687,3 +716,4 @@
 .. |Subscriber::set_listener-api| replace:: :cpp:func:`Subscriber::set_listener()<eprosima::fastdds::dds::Subscriber::set_listener>`
 .. |DataReader::set_listener-api| replace:: :cpp:func:`DataReader::set_listener()<eprosima::fastdds::dds::DataReader::set_listener>`
 .. |Topic::set_listener-api| replace:: :cpp:func:`Topic::set_listener()<eprosima::fastdds::dds::Topic::set_listener>`
+

@@ -3128,6 +3128,30 @@ void xml_profiles_examples()
         }
         //!--
     }
+        {
+        std::string custom_name;
+        //XML-MIX-WITH-CODE
+        if (ReturnCode_t::RETCODE_OK ==
+                DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
+        {
+            DomainParticipantQos participant_qos;
+            DomainParticipantFactory::get_instance()->get_participant_qos_from_profile(
+                    "participant_xml_profile",
+                    participant_qos);
+
+            // Name obtained in another section of the code 
+            participant_qos.name() = custom_name;
+
+            // hard coded number of preallocations
+            participant_qos.allocation().send_buffers.preallocated_number = 10; 
+
+            // create with the modified XML qos 
+            DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(
+                        0, participant_qos);
+        }
+        //!--
+    }
 }
 
 void dds_transport_examples ()

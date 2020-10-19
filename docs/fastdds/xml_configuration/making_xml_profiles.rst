@@ -100,6 +100,15 @@ approaches.
 |    :lines: 2-3, 5-14, 16                                                                                             |
 +----------------------------------------------------------------------------------------------------------------------+
 
+Mixing XML with coded Qos
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Some scenarios require both a set of easily accessible QoS configuration and hard coded or variable dependent QoS.
+For such cases the :ref:`dds_layer_core_entity_types` which act as factories posses a method to get the QoS from the
+XML profile. This allows to extract the user defined QoS and modify them before applying them to a new entity.
 
-
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: cpp
+    :start-after: //XML-MIX-WITH-CODE
+    :end-before: //!--
+    :dedent: 8

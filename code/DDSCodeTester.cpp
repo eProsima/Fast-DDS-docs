@@ -3142,10 +3142,10 @@ void xml_profiles_examples()
             // Name obtained in another section of the code 
             participant_qos.name() = custom_name;
 
-            // hard coded number of preallocations
+            // Modify number of preallocations (this overrides the one set in the XML profile)
             participant_qos.allocation().send_buffers.preallocated_number = 10; 
 
-            // create with the modified XML qos 
+            // Create participant using the modified XML Qos 
             DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(
                         0, participant_qos);

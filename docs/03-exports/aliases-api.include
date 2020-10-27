@@ -622,7 +622,9 @@
 
 .. |Log-api| replace:: :cpp:class:`Log <eprosima::fastdds::dds::Log>`
 .. |LogConsumer-api| replace:: :cpp:class:`LogConsumer <eprosima::fastdds::dds::LogConsumer>`
+.. |OStreamConsumer-api| replace:: :cpp:class:`OStreamConsumer <eprosima::fastdds::dds::OStreamConsumer>`
 .. |StdoutConsumer-api| replace:: :cpp:class:`StdoutConsumer <eprosima::fastdds::dds::StdoutConsumer>`
+.. |StdoutErrConsumer-api| replace:: :cpp:class:`StdoutErrConsumer <eprosima::fastdds::dds::StdoutErrConsumer>`
 .. |FileConsumer-api| replace:: :cpp:class:`FileConsumer <eprosima::fastdds::dds::FileConsumer>`
 .. |Log::Entry-api| replace:: :cpp:struct:`Log::Entry <eprosima::fastdds::dds::Log::Entry>`
 
@@ -649,6 +651,8 @@
 .. |Log::Flush-api| replace:: :cpp:func:`Log::Flush() <eprosima::fastdds::dds::Log::Flush()>`
 .. |Log::KillThread-api| replace:: :cpp:func:`Log::KillThread() <eprosima::fastdds::dds::Log::KillThread()>`
 
+.. |StdoutErrConsumer::stderr_threshold-api| replace:: :cpp:func:`StdoutErrConsumer::stderr_threshold() <eprosima::fastdds::dds::StdoutErrConsumer::stderr_threshold()>`
+
 .. |std::regex_search-api| replace:: :cpp:func:`std::regex_search()`
 .. |std::fstream::open-api| replace:: :cpp:func:`std::fstream::open()`
 
@@ -659,6 +663,7 @@
 .. |LOG_NO_INFO| replace:: :cpp:type:`LOG_NO_INFO`
 .. |LOG_NO_WARNING| replace:: :cpp:type:`LOG_NO_WARNING`
 .. |LOG_NO_ERROR| replace:: :cpp:type:`LOG_NO_ERROR`
+.. |LOG_CONSUMER_DEFAULT| replace:: :cpp:type:`LOG_CONSUMER_DEFAULT`
 
 .. |EDPStatic| replace:: :cpp:class:`EDPStatic <eprosima::fastrtps::rtps::EDPStatic>`
 

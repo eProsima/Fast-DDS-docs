@@ -187,7 +187,7 @@ The logging module's configuration can be reset to default settings with member 
     * Disabling :ref:`dds_layer_log_file_context` component.
     * Enabling :ref:`dds_layer_log_function_name` component.
     * Clear all :ref:`dds_layer_log_filter`.
-    * Clear all consumers and set a STDOUT consumer.
+    * Clear all consumers and set a STDOUT or STDOUTERR consumer (depending on the CMake option |LOG_CONSUMER_DEFAULT|).
 
 
 .. _dds_layer_log_xml:

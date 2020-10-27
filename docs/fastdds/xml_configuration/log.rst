@@ -18,7 +18,7 @@ These are described in the following table.
 | Name              | Description                                                   | Values                | Default  |
 +===================+===============================================================+=======================+==========+
 | ``<use_default>`` | If set to ``FALSE``, a call to                                | ``bool``              | ``true`` |
-| ``<use_default>`` | |Log::ClearConsumers-api| is |br|                             | ``bool``              | ``true`` |
+|                   | |Log::ClearConsumers-api| is |br|                             |                       |          |
 |                   | performed. See :ref:`dds_layer_log_register_consumers`.       |                       |          |
 +-------------------+---------------------------------------------------------------+-----------------------+----------+
 | ``<consumer>``    | Defines the class and configuration of the consumer to |br|   | :ref:`xmllogconsumer` |          |
@@ -27,13 +27,13 @@ These are described in the following table.
 +-------------------+---------------------------------------------------------------+-----------------------+----------+
 
 The following constitutes an example of an XML configuration file that sets the |Log-api| to use one
-|StdoutConsumer-api| and one |FileConsumer-api|:
+|StdoutConsumer-api|, one |StdoutErrConsumer-api| and one |FileConsumer-api|:
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->LOG-CONFIG<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-32, 34
+    :lines: 2-3, 5-43, 45
 
 .. _xmllogconsumer:
 
@@ -45,10 +45,12 @@ ConsumerDataType
 +===================+==========================================================================+=======================+
 | ``<class>``       | The class of the consumer.                                               | ``StdoutConsumer``    |
 |                   |                                                                          +-----------------------+
+|                   |                                                                          | ``StdoutErrConsumer`` |
+|                   |                                                                          +-----------------------+
 |                   |                                                                          | ``FileConsumer``      |
 +-------------------+--------------------------------------------------------------------------+-----------------------+
-| ``<property>``    | This element is used to configured the file consumer and therefore |br|  | :ref:`xmllogprop`     |
-|                   | only applies if ``<class>`` is set to ``FileConsumer``.                  |                       |
+| ``<property>``    | This element is used to configured the log consumer and only applies|br| | :ref:`xmllogprop`     |
+|                   | if ``<class>`` is set to ``StdoutErrConsumer`` or ``FileConsumer``.      |                       |
 +-------------------+--------------------------------------------------------------------------+-----------------------+
 
 .. _xmllogprop:
@@ -56,19 +58,32 @@ ConsumerDataType
 PropertyType
 ^^^^^^^^^^^^
 
-+-------------+--------------------------------------------------------------------------+--------------+--------------+
-| Name        | Description                                                              | Values       | Default      |
-+=============+==========================================================================+==============+==============+
-| ``<name>``  | Name of the property to be configured.                                   | ``filename`` |              |
-|             |                                                                          +--------------+--------------+
-|             |                                                                          | ``append``   |              |
-+-------------+--------------------------------------------------------------------------+--------------+--------------+
-| ``<value>`` | The value of the property.                                               |              |              |
-|             +--------------------------------------------------------------------------+--------------+--------------+
-|             | * If ``<name>`` is set to ``filename``, then this element contains  |br| | ``string``   | `output.log` |
-|             |   the name of the log file.                                              |              |              |
-|             +--------------------------------------------------------------------------+--------------+--------------+
-|             | * If ``<name>`` is set to ``append``, then this element defines  |br|    | ``Boolean``  | ``false``    |
-|             |   whether the consumer should, upon creation, open the file for  |br|    |              |              |
-|             |   appending or overriding.                                               |              |              |
-+-------------+--------------------------------------------------------------------------+--------------+--------------+
++-------------+------------------------------------------------------------------+----------------------+--------------+
+| Name        | Description                                                      | Values               | Default      |
++=============+==================================================================+======================+==============+
+| ``<name>``  | Name of the property to be configured.                           | ``filename``         |              |
+|             |                                                                  +----------------------+--------------+
+|             |                                                                  | ``append``           |              |
+|             |                                                                  +----------------------+--------------+
+|             |                                                                  | ``stderr_threshold`` |              |
++-------------+------------------------------------------------------------------+----------------------+--------------+
+| ``<value>`` | The value of the property.                                       |                      |              |
+|             +------------------------------------------------------------------+----------------------+--------------+
+|             | * If ``<name>`` is set to ``filename``, then this element        | ``string``           | `output.log` |
+|             |   contains  |br|                                                 |                      |              |
+|             |   the name of the log file. This property only applies if |br|   |                      |              |
+|             |   ``<class>`` is set to ``FileConsumer``                         |                      |              |
+|             +------------------------------------------------------------------+----------------------+--------------+
+|             | * If ``<name>`` is set to ``append``, then this element          | ``Boolean``          | ``false``    |
+|             |   defines |br|                                                   |                      |              |
+|             |   whether the consumer should, upon creation, open the file |br| |                      |              |
+|             |   for appending or overriding. This property only applies if |br||                      |              |
+|             |   ``<class>`` is set to ``FileConsumer``                         |                      |              |
+|             +------------------------------------------------------------------+----------------------+--------------+
+|             | * If ``<name>`` is set to ``stderr_threshold``, then this element|                      | ``Log::Kind::Warning``|
+|             |   defines |br|                                                   |                      |              |
+|             |   the threshold used by the                                      |                      |              |
+|             |   :ref:`Log consumers <dds_layer_log_consumer>`. This |br|       |                      |              |
+|             |   property only applies if ``class`` is set to                   |                      |              |
+|             |   ``StdoutErrConsumer``                                          |                      |              |
++-------------+------------------------------------------------------------------+----------------------+--------------+

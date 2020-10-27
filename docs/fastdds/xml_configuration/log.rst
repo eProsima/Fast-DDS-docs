@@ -49,7 +49,7 @@ ConsumerDataType
 |                   |                                                                          +-----------------------+
 |                   |                                                                          | ``FileConsumer``      |
 +-------------------+--------------------------------------------------------------------------+-----------------------+
-| ``<property>``    | This element is used to configured the log consumer and only applies |br|| :ref:`xmllogprop`     |
+| ``<property>``    | This element is used to configure the log consumer and only applies |br| | :ref:`xmllogprop`     |
 |                   | if ``<class>`` is set to ``StdoutErrConsumer`` or ``FileConsumer``.      |                       |
 +-------------------+--------------------------------------------------------------------------+-----------------------+
 

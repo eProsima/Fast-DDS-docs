@@ -28,7 +28,7 @@ The logging module provides the following classes:
 
   - |OstreamConsumer-api| derives from |LogConsumer-api|.
     It defines how to consume log entries for outputting to an |std::ostream-api| object.
-    It includes a member function that derived classes could overload to define the desired |std::ostream-api| object.
+    It includes a member function that derived classes must overload to define the desired |std::ostream-api| object.
 
       1. |StdoutConsumer-api| derives from |OStreamConsumer-api|.
       It defines STDOUT as the output |std::ostream-api| object (see :ref:`dds_layer_ostream_consumer_stdout`).

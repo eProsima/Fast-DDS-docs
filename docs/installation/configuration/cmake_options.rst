@@ -84,7 +84,7 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`LOG_CONSUMER_DEFAULT`
-        - Selects the default log consumer for the logging module. ``AUTO`` has the same behavior as ``STDOUT``.|br|
+        - Selects the default log consumer for the logging module. ``AUTO`` has the same behavior as ``STDOUT``. |br|
           For more information, please refer to :ref:`Log consumers <dds_layer_log_consumer>`.
         - ``AUTO`` ``STDOUT`` |br|
           ``STDOUTERR``

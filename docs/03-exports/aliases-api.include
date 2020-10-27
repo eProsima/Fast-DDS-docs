@@ -655,6 +655,7 @@
 
 .. |std::regex_search-api| replace:: :cpp:func:`std::regex_search()`
 .. |std::fstream::open-api| replace:: :cpp:func:`std::fstream::open()`
+.. |std::ostream-api| replace:: :cpp:class:`std::ostream`
 
 .. |logInfo| replace:: :cpp:type:`logInfo <logInfo>`
 .. |logWarning| replace:: :cpp:type:`logWarning <logWarning>`

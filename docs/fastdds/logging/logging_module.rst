@@ -27,17 +27,20 @@ The logging module provides the following classes:
   It includes the member functions that derived classes should overload to consume log entries.
 
   - |OstreamConsumer-api| derives from |LogConsumer-api|.
-    It defines how to consume log entries for outputting to an `ostream` object.
-    It includes a member function that derived classes chould overload to define the desired `ostream` object.
+    It defines how to consume log entries for outputting to an |std::ostream-api| object.
+    It includes a member function that derived classes could overload to define the desired |std::ostream-api| object.
 
-    * |StdoutConsumer-api| derives from |OStreamConsumer-api|.
-    It defines STDOUT as the output `ostream` object (see :ref:`dds_layer_ostream_consumer_stdout`).
-    * |StdoutErrConsumer-api| derives from |OStreamConsumer-api|.
-    It defines a |Log::Kind-api| threshold so that if the |Log::Kind-api| is equal to or more severe than the selected
-    threshold, the output defined will be STDERR.
-    Otherwise, it defines STDOUT as the output (see :ref:`dds_layer_ostream_consumer_stdouterr`).
-    * |FileConsumer-api| derives from |OStreamConsumer-api|.
-    It defines an user specified file as the otuput `ostream` object (see :ref:`dds_layer_ostream_consumer_file`).
+      1. |StdoutConsumer-api| derives from |OStreamConsumer-api|.
+      It defines STDOUT as the output |std::ostream-api| object (see :ref:`dds_layer_ostream_consumer_stdout`).
+
+      2. |StdoutErrConsumer-api| derives from |OStreamConsumer-api|.
+      It defines a |Log::Kind-api| threshold so that if the |Log::Kind-api| is equal to or more severe than the selected
+      threshold, the output defined will be STDERR.
+      Otherwise, it defines STDOUT as the output (see :ref:`dds_layer_ostream_consumer_stdouterr`).
+
+      3. |FileConsumer-api| derives from |OStreamConsumer-api|.
+      It defines an user specified file as the otuput |std::ostream-api| object
+      (see :ref:`dds_layer_ostream_consumer_file`).
 
 .. figure:: /01-figures/fast_dds/log/class_diagram.svg
     :align: center

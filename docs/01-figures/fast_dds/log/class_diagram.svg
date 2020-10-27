@@ -9,9 +9,9 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="105mm"
-   height="74mm"
-   viewBox="-0.5 -0.5 396.85039 279.68503"
+   width="148mm"
+   height="105mm"
+   viewBox="-0.5 -0.5 559.37007 396.85038"
    content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-26T07:37:24.921Z&quot; agent=&quot;5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36&quot; version=&quot;13.1.3&quot; etag=&quot;zAg-HsQqGidBK6lqN6wr&quot; type=&quot;google&quot;&gt;&lt;diagram id=&quot;h1aG65vgbbE6H1VkKz_N&quot;&gt;3VhRb9owEP41vEzaRGxC0sdC2+2hkyYxaeujiU3iNclljlNgv35n4mCc0I1p7QR7wvf57mJ/d/dBGNF5sXmvWJV9BC7yERnzzYjejAgJaBjih0G2LRKFUQukSnLr5ICF/CEsOLZoI7moPUcNkGtZ+WACZSkS7WFMKVj7bivI/adWLBUDYJGwfIh+kVxnLRqHY4d/EDLNuicHY7tTsM7ZAnXGOKwPIHo7onMFoNtVsZmL3JDX8dLG3T2zuz+YEqU+JYC0AU8sb+zdRmSaY+hsaU6nt/bK0++NOdJsBaV+W+8Kco0OAamwqDO3j6vUfuad/18luoe0y4W3aNP5j0B46TDiPY0oaEouzGXHuL3OpBaLiiVmd429iVimixytwJ7JNltA9tmehNJi8yy/wb5q2O4CCqHVFl1sAJ3aQttOJxNrr13fRBbKDlqGWozZTk33mV0xcWHreby2dMCG4NjG1gSlM0ihZPmtQ2c+X87nHqCyLH0TWm8tTazR4HMoNlJ/NeHvQms92GRmfbM5NLadUeLN2qAo7OyHLqExXNzOcoH82owzmssckscWupOGks7hsKDHC2xY8cpbQ6MSC02svDCVClub+OQmUCJnWj752Y+VdBeKV2HbA4cKZKnrg8yfDOB6axKHXm/RqDfrff8g/pU/LtoTuObaX+Wkfpucu5ZgY4g5lHVTCHXJojIhvcLHQ1EJyCupSniBqkLOTVWm56sqNPC/sX6nKjSir6oq03NXlYXm0Oj/QVdI2Cv9v9SV6HJ0ZS8PXLICSv45k6UnEsFQJE4QhXgoCuTlReHUesTnPnf4ZtAfuqV6kaNd4uzS/uwGw9m9eqXRvRq0ypsBP3gz7ZNQawWP+HssB4VICaWZ6BUOUA9iuUxxvG4SZAJLTWeGJ4kv49d2o5Cc7+TgGOt+XV6C6Lj3Rnc1JHpyhGjy50Sj6f4JaL863f8p9PYn&lt;/diagram&gt;&lt;/mxfile&gt;"
    id="svg3885"
    sodipodi:docname="class_diagram.svg"
@@ -37,16 +37,16 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1043"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
      id="namedview3887"
      showgrid="false"
      inkscape:snap-others="false"
      inkscape:zoom="1.4142136"
-     inkscape:cx="100.84669"
-     inkscape:cy="42.642633"
-     inkscape:window-x="3840"
-     inkscape:window-y="0"
+     inkscape:cx="403.05067"
+     inkscape:cy="184.06399"
+     inkscape:window-x="1992"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:current-layer="g3875"
      units="mm" />
@@ -54,17 +54,17 @@
      id="defs3821" />
   <g
      id="g3875"
-     transform="matrix(1.2349533,0,0,1.181115,0.10511539,77.759198)">
+     transform="matrix(1.2349533,0,0,1.181115,0.10511539,194.92455)">
     <rect
-       x="118"
-       y="-52.492756"
-       width="70"
-       height="30"
+       x="180.75156"
+       y="-143.96948"
+       width="107.10782"
+       height="39.796223"
        pointer-events="all"
        id="rect3823"
-       style="fill:#ffffff;stroke:#000000" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.4246949" />
     <g
-       transform="translate(7.5,-52.992766)"
+       transform="matrix(1.5301116,0,0,1.3265407,11.674229,-144.63285)"
        id="g3829">
       <switch
          id="switch3827">
@@ -94,26 +94,30 @@
            y="19"
            font-size="12px"
            id="text3825"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">Log</text>
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
+          <tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.62349701px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             id="tspan936">Log</tspan>
+        </text>
       </switch>
     </g>
     <path
-       d="m 207.71816,105.20161 13.02512,-6.449532 -0.0504,12.999902 z"
+       d="m 318.03035,65.218491 19.9299,-8.555567 -0.0772,17.2449 z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3833"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+       style="fill:none;stroke:#000000;stroke-width:1.4246949;stroke-miterlimit:10" />
     <rect
-       x="214.84151"
-       y="140"
-       width="80.158485"
-       height="30"
+       x="328.92987"
+       y="111.37999"
+       width="122.65143"
+       height="39.796223"
        pointer-events="all"
        id="rect3835"
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.81730497" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.16441023" />
     <g
-       transform="translate(20.74754,-0.5)"
+       transform="matrix(1.5301116,0,0,1.3265407,31.944444,-74.998999)"
        id="g3841">
       <switch
          id="switch3839">
@@ -132,7 +136,7 @@
                 <xhtml:b
                    style="font-size: 12px">
                   <xhtml:font
-                     style="font-size: 12px">FileConsumer</xhtml:font>
+                     style="font-size: 10px">FileConsumer</xhtml:font>
                 </xhtml:b>
               </xhtml:div>
             </xhtml:div>
@@ -145,21 +149,21 @@
            id="text3837"
            style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
           <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.66666698px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.74899769px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
              id="tspan4898">FileConsumer</tspan>
         </text>
       </switch>
     </g>
     <rect
-       x="-0.058316939"
-       y="139.94168"
-       width="93.277641"
-       height="30.116632"
+       x="0.10916007"
+       y="111.30264"
+       width="142.7252"
+       height="39.950939"
        pointer-events="all"
        id="rect3847"
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.88336611" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.25852716" />
     <g
-       transform="translate(-13.919497,-0.22042715)"
+       transform="matrix(1.5301116,0,0,1.3265407,-21.099992,-74.628135)"
        id="g3853">
       <switch
          id="switch3851">
@@ -178,7 +182,7 @@
                 <xhtml:b
                    style="font-size: 12px">
                   <xhtml:font
-                     style="font-size: 12px">StdoutConsumer</xhtml:font>
+                     style="font-size: 10px">StdoutConsumer</xhtml:font>
                 </xhtml:b>
               </xhtml:div>
             </xhtml:div>
@@ -189,37 +193,37 @@
            y="159"
            font-size="12px"
            id="text3849"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.52389717px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000">
           <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.66666698px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.74899769px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
              id="tspan4894">StdoutConsumer</tspan>
         </text>
       </switch>
     </g>
     <path
-       d="M 152.95058,24.884264 V -0.95090894 11.966683 -8.7143778"
+       d="m 234.22985,-41.325739 v -34.271409 17.135711 -27.434269"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.22518826;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#000000;stroke-width:1.7455194;stroke-miterlimit:10;stroke-dasharray:none" />
     <path
-       d="m 153,-21.502768 3.82,6.5 -3.82,6.5000008 -3.82,-6.5000008 z"
+       d="m 234.30547,-102.86003 5.84503,8.622518 -5.84503,8.622516 -5.84502,-8.622516 z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3857"
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-miterlimit:10"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.4246949;stroke-miterlimit:10"
        inkscape:connector-curvature="0" />
     <rect
-       x="107.20924"
-       y="25.510445"
-       width="90"
-       height="30"
+       x="164.24051"
+       y="-40.495079"
+       width="137.71005"
+       height="39.796223"
        pointer-events="all"
        id="rect3859"
-       style="fill:#ffffff;stroke:#000000" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.4246949" />
     <g
-       transform="translate(7.9783611,-44.958048)"
+       transform="matrix(1.5301116,0,0,1.3265407,12.406174,-133.97447)"
        id="g3865">
       <switch
          id="switch3863">
@@ -251,19 +255,23 @@
            y="89"
            font-size="12px"
            id="text3861"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">LogConsumer</text>
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
+          <tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.62349701px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             id="tspan934">LogConsumer</tspan>
+        </text>
       </switch>
     </g>
     <rect
-       x="130"
-       y="50"
-       width="40"
-       height="20"
+       x="199.1129"
+       y="-8.0086946"
+       width="61.204464"
+       height="26.530815"
        pointer-events="all"
        id="rect3867"
-       style="fill:none;stroke:none" />
+       style="fill:none;stroke:none;stroke-width:1.4246949" />
     <g
-       transform="translate(8.5944066,-40.468691)"
+       transform="matrix(1.5301116,0,0,1.3265407,13.348793,-128.01915)"
        id="g3873">
       <switch
          id="switch3871"
@@ -296,15 +304,15 @@
       </switch>
     </g>
     <rect
-       x="98.771835"
-       y="139.96581"
-       width="109.78238"
-       height="30.083771"
+       x="151.33032"
+       y="111.33463"
+       width="167.97929"
+       height="39.907349"
        pointer-events="all"
        id="rect3847-3"
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.95781404" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.36459279" />
     <g
-       transform="translate(93.04906,-1.361747)"
+       transform="matrix(1.5301116,0,0,1.3265407,142.57384,-76.142142)"
        id="g3853-6">
       <switch
          id="switch3851-7"
@@ -324,7 +332,7 @@
                 <xhtml:b
                    style="font-size: 12px">
                   <xhtml:font
-                     style="font-size: 12px">StdoutErrConsumer</xhtml:font>
+                     style="font-size: 10px">StdoutErrConsumer</xhtml:font>
                 </xhtml:b>
               </xhtml:div>
             </xhtml:div>
@@ -337,21 +345,21 @@
            id="text3849-5"
            style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
           <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.66666698px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.74899769px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
              id="tspan4896">StdoutErrConsumer</tspan>
         </text>
       </switch>
     </g>
     <rect
-       x="97.019005"
-       y="86.375198"
-       width="109.78238"
-       height="30.083771"
+       x="148.6483"
+       y="40.244507"
+       width="167.97929"
+       height="39.907349"
        pointer-events="all"
        id="rect3847-3-4"
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.95781404" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.36459279" />
     <g
-       transform="translate(7.254648,16.049316)"
+       transform="matrix(1.5301116,0,0,1.3265407,11.298813,-53.045658)"
        id="g3865-4">
       <switch
          id="switch3863-7">
@@ -370,7 +378,7 @@
                 <xhtml:b
                    style="font-size: 12px">
                   <xhtml:font
-                     style="font-size: 12px">OStreamConsumer<xhtml:br
+                     style="font-size: 10px">OStreamConsumer<xhtml:br
    style="font-size: 12px" />
 </xhtml:font>
                 </xhtml:b>
@@ -383,71 +391,85 @@
            y="89"
            font-size="12px"
            id="text3861-6"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">OStreamConsumer</text>
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
+          <tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.74899769px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             id="tspan932">OStreamConsumer</tspan>
+        </text>
       </switch>
     </g>
     <path
-       d="M 153.26507,85.847696 V 69.106515 77.477108 64.075796"
+       d="M 234.71105,39.544736 V 17.336878 28.44081 10.663424"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.65599353;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#000000;stroke-width:2.35928535;stroke-miterlimit:10;stroke-dasharray:none" />
     <path
-       d="m 95.46695,105.11094 -13.000593,6.49882 0.0012,-12.999997 z"
+       d="m 146.27348,65.098214 -19.89236,8.620949 0.002,-17.245025 z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3833-5"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-miterlimit:10" />
+       style="fill:none;stroke:#000000;stroke-width:1.4246949;stroke-miterlimit:10" />
     <path
-       d="m 152.89149,116.89251 3.66658,7.55761 -7.26445,0.0276 z"
+       d="M 234.13944,80.726946 239.74972,90.7524 228.63429,90.789 Z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3833-5-9"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:0.57049209;stroke-miterlimit:10" />
+       style="fill:none;stroke:#000000;stroke-width:0.8127771;stroke-miterlimit:10" />
     <path
-       d="m 152.84571,139.91563 v -11.76718 5.88361 -9.41963"
+       d="M 234.06939,111.268 V 95.658365 103.4632 90.96771"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.65599353;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#000000;stroke-width:2.35928535;stroke-miterlimit:10;stroke-dasharray:none" />
     <path
-       d="m 44.506511,140.04518 v -27.03477 13.51742 -21.64125"
+       d="M 68.298321,111.43985 V 75.577183 93.50856 64.800591"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6-2"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#000000;stroke-width:1.4246949;stroke-miterlimit:10;stroke-dasharray:none" />
     <path
-       d="m 44.50636,105.39139 28.992877,-0.19909 -14.496485,0.0996 23.208789,-0.15937"
+       d="m 68.29809,65.470242 44.36234,-0.264101 -22.181242,0.132124 35.512032,-0.211411"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6-2-1"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.0040307;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#000000;stroke-width:1.43043733;stroke-miterlimit:10;stroke-dasharray:none" />
     <path
-       d="m 220.33538,105.23417 28.23524,-0.19927 -14.11767,0.0997 22.6023,-0.15952"
+       d="m 337.33612,65.261684 43.20307,-0.26434 -21.60162,0.132256 34.58404,-0.21161"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6-2-1-7"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:0.99111213;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#000000;stroke-width:1.41203225;stroke-miterlimit:10;stroke-dasharray:none" />
     <path
-       d="m 256.55535,139.91501 v -27.23867 13.61938 -21.80447"
+       d="M 392.75671,111.26718 V 75.134025 93.200655 64.27617"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6-2-8"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.00376391;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#000000;stroke-width:1.43005729;stroke-miterlimit:10;stroke-dasharray:none" />
     <path
-       d="m 153.31608,56.374935 3.66658,7.55759 -7.26445,0.0276 z"
+       d="m 234.78911,0.44791679 5.61028,10.02545221 -11.11543,0.03661 z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3833-5-9-5"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:0.57049209;stroke-miterlimit:10" />
-  </g>
+       style="fill:none;stroke:#000000;stroke-width:0.8127771;stroke-miterlimit:10" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot938"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion940"><rect
+           id="rect942"
+           width="899.43982"
+           height="507.70267"
+           x="-71.417786"
+           y="-4.7862382" /></flowRegion><flowPara
+         id="flowPara944"></flowPara></flowRoot>  </g>
 </svg>

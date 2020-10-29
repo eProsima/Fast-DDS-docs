@@ -39,7 +39,7 @@ The logging module provides the following classes:
       Otherwise, it defines STDOUT as the output (see :ref:`dds_layer_ostream_consumer_stdouterr`).
 
       3. |FileConsumer-api| derives from |OStreamConsumer-api|.
-      It defines an user specified file as the otuput |std::ostream-api| object
+      It defines an user specified file as the output |std::ostream-api| object
       (see :ref:`dds_layer_ostream_consumer_file`).
 
 .. figure:: /01-figures/fast_dds/log/class_diagram.svg

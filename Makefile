@@ -71,7 +71,7 @@ test: compile
 	doc8 --max-line-length 120 docs
 	@echo
 	@echo "RST checking finished."
-	$(SPHINXBUILD) -W --keep-going -b spelling $(ALLSPHINXOPTS) $(BUILDDIR)/spelling
+	$(SPHINXBUILD) -W --keep-going -b spelling $(ALLSPHINXOPTS) $(BUILDDIR)/spelling || { cat $(BUILDDIR)/spelling/output.txt; exit 1; }
 	@echo
 	@echo "Spell checking finished. The results in $(BUILDDIR)/spelling."
 	grep -Rn "code-block::.*c[+p][+p]" docs; test "$$?" -ne "0"

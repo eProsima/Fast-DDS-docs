@@ -23,7 +23,7 @@ StdoutConsumer
 |StdoutConsumer-api| outputs log entries to STDOUT stream following the convection specified in
 :ref:`dds_layer_log_logging_spec`.
 It is the default and only log consumer of the logging module if the CMake option |LOG_CONSUMER_DEFAULT| is set to
-``AUTO`` or ``STDOUT``.
+``AUTO``, ``STDOUT``, or not set at all.
 It can be registered and unregistered using the methods explained in
 :ref:`dds_layer_log_register_consumers` and :ref:`dds_layer_log_reset`.
 

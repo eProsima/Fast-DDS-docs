@@ -75,7 +75,7 @@ PropertyType
 |             |   ``FileConsumer``                                       |                      |                      |
 |             +----------------------------------------------------------+----------------------+----------------------+
 |             | * If ``<name>`` is set to ``append``, then this |br|     | ``Boolean``          | ``false``            |
-|             |   element defines wether the consumer should, upon |br|  |                      |                      |
+|             |   element defines whether the consumer should, upon |br| |                      |                      |
 |             |   creation, open the file for appending or |br|          |                      |                      |
 |             |   overriding. This property only applies if |br|         |                      |                      |
 |             |   ``<class>`` is set to ``FileConsumer``                 |                      |                      |

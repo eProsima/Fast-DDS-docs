@@ -26,6 +26,6 @@ plus some meta information depending on the module's configuration (see :ref:`dd
 
 .. warning::
 
-    Note that |logInfo| is deactivated  when compiled with ``CMAKE_BUILD_TYPE`` other than ``Debug``. More more
+    Note that |logInfo| is deactivated  when compiled with ``CMAKE_BUILD_TYPE`` other than ``Debug``. For more
     information about how to enable and disable each individual logging macro, please refer to
     :ref:`dds_layer_log_disable`.

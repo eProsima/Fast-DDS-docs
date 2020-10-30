@@ -27,7 +27,7 @@ These are described in the following table.
 +-------------------+---------------------------------------------------------------+-----------------------+----------+
 
 The following constitutes an example of an XML configuration file that sets the |Log-api| to use one
-|StdoutConsumer-api|, one |StdoutErrConsumer-api| and one |FileConsumer-api|:
+|StdoutConsumer-api|, one |StdoutErrConsumer-api|, and one |FileConsumer-api|:
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml

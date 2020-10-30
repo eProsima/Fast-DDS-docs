@@ -108,4 +108,4 @@ The logging module's filters can be reset with member function |Log::Reset-api|.
     * Disabling :ref:`dds_layer_log_file_context` component.
     * Enabling :ref:`dds_layer_log_function_name` component.
     * Clear all :ref:`dds_layer_log_filter`.
-    * Clear all consumers.
+    * Clear all consumers and reset the default consumer according to CMake option |LOG_CONSUMER_DEFAULT|.

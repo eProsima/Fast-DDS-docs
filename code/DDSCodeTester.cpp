@@ -23,7 +23,9 @@
 #include <fastrtps/types/DynamicTypePtr.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastdds/dds/log/Log.hpp>
+#include <fastdds/dds/log/OStreamConsumer.hpp>
 #include <fastdds/dds/log/StdoutConsumer.hpp>
+#include <fastdds/dds/log/StdoutErrConsumer.hpp>
 #include <fastdds/dds/log/FileConsumer.hpp>
 
 #include <fastdds/rtps/transport/TCPTransportDescriptor.h>
@@ -3057,8 +3059,17 @@ void log_examples()
     // Create a StdoutConsumer consumer that logs entries to stdout stream.
     std::unique_ptr<StdoutConsumer> stdout_consumer(new StdoutConsumer());
 
-    // Register the consumers.
+    // Register the consumer.
     Log::RegisterConsumer(std::move(stdout_consumer));
+    //!--
+
+    //LOG_STDOUTERR_CONSUMER
+    // Create a StdoutErrConsumer consumer that logs entries to stderr only when the Log::Kind is equal to ERROR
+    std::unique_ptr<StdoutErrConsumer> stdouterr_consumer(new StdoutErrConsumer());
+    stdouterr_consumer->stderr_threshold(Log::Kind::Error);
+
+    // Register the consumer
+    Log::RegisterConsumer(std::move(stdouterr_consumer));
     //!--
 
     //LOG_FILE_CONSUMER

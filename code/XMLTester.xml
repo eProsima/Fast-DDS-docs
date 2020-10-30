@@ -3536,6 +3536,17 @@
         </consumer>
 
         <!--
+        StdoutErrConsumer with threshold set to Log::Kind::Error
+        -->
+        <consumer>
+            <class>StdoutErrConsumer</class>
+            <property>
+                <name>stderr_threshold</name>
+                <value>Log::Kind::Error</value>
+            </property>
+        </consumer>
+
+        <!--
         FileConsumer openning "execution.log" in append mode
         -->
         <consumer>

@@ -81,6 +81,12 @@ dependency on other options.
           for more information on *Fast DDS* SHM transport.
         - ``ON`` ``OFF``
         - ``ON``
+    *   - :class:`LOG_CONSUMER_DEFAULT`
+        - Selects the default log consumer for the logging module. ``AUTO`` has the same behavior as ``STDOUT``. |br|
+          For more information, please refer to :ref:`Log consumers <dds_layer_log_consumer>`.
+        - ``AUTO`` ``STDOUT`` |br|
+          ``STDOUTERR``
+        - ``AUTO``
     *   - :class:`COMPILE_EXAMPLES`
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
           :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the

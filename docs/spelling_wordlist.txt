@@ -32,6 +32,7 @@ Cannonical
 CDR
 centric
 Centric
+cerr
 chocolatey
 ciphertext
 CMake
@@ -39,6 +40,7 @@ colcon
 Colcon
 connectionless
 config
+cout
 coverity
 crl
 crypto
@@ -146,6 +148,7 @@ sequencenumbers
 shm
 sqlite
 stateful
+stderr
 struct
 Struct
 structs

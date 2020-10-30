@@ -7,8 +7,9 @@
 Log Entry Specification
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Log entries created by :ref:`dds_layer_log_consumer_stdout` and :ref:`dds_layer_log_consumer_file` (*eProsima Fast DDS*
-built-in :ref:`dds_layer_log_consumer`) adhere to the following structure:
+Log entries created by :ref:`dds_layer_ostream_consumer_stdout`, :ref:`dds_layer_ostream_consumer_stdouterr` and
+:ref:`dds_layer_ostream_consumer_file` (*eProsima Fast DDS* built-in :ref:`dds_layer_log_consumer`) adhere to the
+following structure:
 
 .. code-block:: bash
 

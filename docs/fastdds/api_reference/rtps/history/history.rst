@@ -5,7 +5,7 @@ History
 
 .. toctree::
 
-    /fastdds/api_reference/rtps/history/History
+    /fastdds/api_reference/rtps/history/History_class
     /fastdds/api_reference/rtps/history/ReaderHistory
     /fastdds/api_reference/rtps/history/WriterHistory
 

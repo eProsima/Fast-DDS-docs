@@ -31,7 +31,7 @@ can choose the one that best suits their requirements, or create their own.
 - **TCPv6**: TCP communication over IPv6
   (see :ref:`transport_tcp_tcp`).
 
-- **SHM**: Shared memory communication among entities running on the same host
+- **SHM**: Shared memory communication among entities running on the same host.
   This transport is created by default on a new :ref:`dds_layer_domainParticipant`
   if no specific transport configuration is given
   (see :ref:`transport_sharedMemory_sharedMemory`).

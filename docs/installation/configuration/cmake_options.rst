@@ -48,7 +48,6 @@ dependency on other options.
           Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other options:
 
             - :class:`INTERNAL_DEBUG` is set to ``ON``.
-            - :class:`SHM_TRANSPORT_DEFAULT` is set to ``ON`` and :class:`EPROSIMA_INSTALLER` is set to ``OFF``.
             - :class:`COMPILE_EXAMPLES` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
             - :class:`THIRDPARTY_fastcdr` is set to ``ON`` if it was not set to ``FORCE``.
             - :class:`THIRDPARTY_Asio` is set to ``ON`` if it was not set to ``FORCE``.
@@ -77,12 +76,11 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`SHM_TRANSPORT_DEFAULT`
-        - Adds Shared Memory transport (SHM) to the default transports. It is set to ``ON`` if |br|
-          :class:`EPROSIMA_BUILD` is ``ON``. Please refer to :ref:`SHM <transport_sharedMemory_sharedMemory>` section
-          for more information |br|
+        - Adds Shared Memory transport (SHM) to the default transports.
+          Please refer to :ref:`SHM <transport_sharedMemory_sharedMemory>` section for more information |br|
           on *Fast DDS* SHM transport.
         - ``ON`` ``OFF``
-        - ``OFF``
+        - ``ON``
     *   - :class:`LOG_CONSUMER_DEFAULT`
         - Selects the default log consumer for the logging module. ``AUTO`` has the same behavior as ``STDOUT``. |br|
           For more information, please refer to :ref:`Log consumers <dds_layer_log_consumer>`.

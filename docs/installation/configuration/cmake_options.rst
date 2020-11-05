@@ -77,8 +77,8 @@ dependency on other options.
         - ``OFF``
     *   - :class:`SHM_TRANSPORT_DEFAULT`
         - Adds Shared Memory transport (SHM) to the default transports.
-          Please refer to :ref:`SHM <transport_sharedMemory_sharedMemory>` section for more information |br|
-          on *Fast DDS* SHM transport.
+          Please refer to :ref:`SHM <transport_sharedMemory_sharedMemory>` section |br|
+          for more information on *Fast DDS* SHM transport.
         - ``ON`` ``OFF``
         - ``ON``
     *   - :class:`LOG_CONSUMER_DEFAULT`

@@ -46,7 +46,6 @@ dependency on other options.
           Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other options:
 
             - :class:`INTERNAL_DEBUG` is set to ``ON``.
-            - :class:`SHM_TRANSPORT_DEFAULT` is set to ``ON`` and :class:`EPROSIMA_INSTALLER` is set to ``OFF``.
             - :class:`COMPILE_EXAMPLES` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
             - :class:`THIRDPARTY` is set to ``ON``.
             - :class:`EPROSIMA_GTEST` is set to ``ON`` if GoogleTest (GTest) library was found.
@@ -68,11 +67,10 @@ dependency on other options.
           more information on *Fast DDS* TLS configuration.
         - ``OFF``
     *   - :class:`SHM_TRANSPORT_DEFAULT`
-        - Adds Shared Memory transport (SHM) to the default transports. It is set to ``ON`` if |br|
-          :class:`EPROSIMA_BUILD` is ``ON``. Please refer to :ref:`SHM <transport_sharedMemory_sharedMemory>` section
-          for more information |br|
-          on *Fast DDS* SHM transport.
-        - ``OFF``
+        - Adds Shared Memory transport (SHM) to the default transports.
+          Please refer to :ref:`SHM <transport_sharedMemory_sharedMemory>` section |br|
+          for more information on *Fast DDS* SHM transport.
+        - ``ON``
     *   - :class:`COMPILE_EXAMPLES`
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
           :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the

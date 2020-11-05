@@ -17,8 +17,9 @@ can choose the one that best suits their requirements, or create their own.
 
 *eProsima Fast DDS* comes with five transports already implemented:
 
-- **UDPv4**: UDP Datagram communication over IPv4. This is the default transport created on a new
-  :ref:`dds_layer_domainParticipant` if no specific transport configuration is given
+- **UDPv4**: UDP Datagram communication over IPv4.
+  This transport is created by default on a new :ref:`dds_layer_domainParticipant`
+  if no specific transport configuration is given
   (see :ref:`transport_udp_udp`).
 
 - **UDPv6**: UDP Datagram communication over IPv6
@@ -30,7 +31,9 @@ can choose the one that best suits their requirements, or create their own.
 - **TCPv6**: TCP communication over IPv6
   (see :ref:`transport_tcp_tcp`).
 
-- **SHM**: Shared memory communication among entities running on the same host
+- **SHM**: Shared memory communication among entities running on the same host.
+  This transport is created by default on a new :ref:`dds_layer_domainParticipant`
+  if no specific transport configuration is given
   (see :ref:`transport_sharedMemory_sharedMemory`).
 
 Although it is not part of the transport module, :ref:`intraprocess data delivery<intraprocess-delivery>`

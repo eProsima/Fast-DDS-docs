@@ -103,6 +103,6 @@ Transport layer
 
 *Fast DDS* supports the implementation of applications over various transport protocols.
 Those are UDPv4, UDPv6, TCPv4, TCPv6 and Shared Memory Transport (SHM).
-By default, a DomainParticipant implements a UDPv4 transport protocol.
+By default, a DomainParticipant implements a UDPv4 and a SHM transport protocol.
 The configuration of all supported transport protocols is detailed in the :ref:`comm-transports-configuration` section.
 

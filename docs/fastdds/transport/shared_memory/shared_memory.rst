@@ -1,3 +1,5 @@
+.. include:: ../includes/aliases.rst
+
 .. _transport_sharedMemory_sharedMemory:
 
 Shared Memory Transport
@@ -121,21 +123,38 @@ SharedMemTransportDescriptor
 In addition to the data members defined in the :ref:`transport_transportApi_transportDescriptor`,
 the TransportDescriptor for Shared Memory defines the following ones:
 
-+------------------------------+----------------+----------------------------------+------------------------------+
-| Member                       | Data type      | Accessor / Mutator               | Description                  |
-+==============================+================+==================================+==============================+
-| ``segment_size_``            | ``uint32_t``   | :func:`segment_size`             | The size of the shared       |
-|                              |                |                                  | memory segment (in octets).  |
-+------------------------------+----------------+----------------------------------+------------------------------+
-| ``port_queue_capacity_``     | ``uint32_t``   | :func:`port_queue_capacity`      | The size of the listening    |
-|                              |                |                                  | port (in messages).          |
-+------------------------------+----------------+----------------------------------+------------------------------+
-| ``healthy_check_timeout_ms_``| ``uint32_t``   | :func:`healthy_check_timeout_ms` | Timeout for the health check |
-|                              |                |                                  | of ports (in milliseconds).  |
-+------------------------------+----------------+----------------------------------+------------------------------+
-| ``rtps_dump_file_``          | ``string``     | :func:`rtps_dump_file`           | Full path of the protocol    |
-|                              |                |                                  | dump_file.                   |
-+------------------------------+----------------+----------------------------------+------------------------------+
+
+.. list-table::
+    :header-rows: 1
+
+    *   - Member
+        - Data type
+        - Default
+        - Accessor / Mutator
+        - Description
+    *   - ``segment_size_``
+        - ``uint32_t``
+        - ``512*1024``
+        - :func:`segment_size`
+        - Size of the shared memory segment |br|
+          (in octets).
+    *   - ``port_queue_capacity_``
+        - ``uint32_t``
+        - ``512``
+        - :func:`port_queue_capacity`
+        - The size of the listening port |br|
+          (in messages).
+    *   - ``healthy_check_timeout_ms_``
+        - ``uint32_t``
+        - ``1000``
+        - :func:`healthy_check_timeout_ms`
+        - Timeout for the health check of ports |br|
+          (in milliseconds).
+    *   - ``rtps_dump_file_``
+        - ``string``
+        - Empty
+        - :func:`rtps_dump_file`
+        - Full path of the protocol dump file.
 
 If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the DomainParticipant
 (sent and received) is traced to a file.

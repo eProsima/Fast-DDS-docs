@@ -153,10 +153,12 @@ such as Wireshark.
 Enabling Shared Memory Transport
 --------------------------------
 
-SHM transport is not enabled by default.
-To enable SHM transport in a DomainParticipant, you need to
-create an instance of SharedMemTransportDescriptor and add it to the user transport list of the
-DomainParticipant.
+*Fast DDS* enables a SHM transport by default.
+Nevertheless, the application can enable other SHM transports if needed.
+To enable a new SHM transport in a :ref:`dds_layer_domainParticipant`, first
+create an instance of :ref:`transport_sharedMemory_transportDescriptor`,
+and add it to the user transport list of the :ref:`dds_layer_domainParticipant`.
+
 The examples below show this procedure in both C++ code and XML file.
 
 +--------------------------------------------------+

@@ -1,34 +1,29 @@
 .. _release_notes:
 
-Version 2.0.1
+Version 2.0.2
 =============
 
-This release includes the following bug fixes:
+This release includes the following improvements:
 
-* Fixed sending GAPs to late joiners
-* Fixed asserting liveliness on data reception
-* Avoid calling :func:`OpenSSL_add_all_algorithms` when not required
+* Support persistence for large data
+* Improve QNX support
+* Security improvements
+* Fast DDS Quality Declaration (QL 2)
+* Large traffic reduction when using Discovery Server (up to 85-90% for large deployments)
+* Configuration of Clients of Discovery Server using an environment variable
+* A CLI for Fast DDS:
 
-Other improvements:
+  * This can be used to launch a discovery server
+  * Clean SHM directories with one command
 
-* Fixing warnings
-
-PRs in merge order:
-`#1295 <https://github.com/eProsima/Fast-DDS/pull/1295>`_,
-`#1300 <https://github.com/eProsima/Fast-DDS/pull/1300>`_,
-`#1304 <https://github.com/eProsima/Fast-DDS/pull/1304>`_,
-`#1290 <https://github.com/eProsima/Fast-DDS/pull/1290>`_,
-`#1307 <https://github.com/eProsima/Fast-DDS/pull/1307>`_.
-
-.. note::
-  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
-  files using *fastrtpsgen*.
-  If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.
-
+* Shared memory transport enabled by default
+* Solved edge-case interoperability issue with CycloneDDS
+* Add package.xml
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.0.1.rst
 .. include:: previous_versions/v2.0.0.rst
 .. include:: previous_versions/v1.10.0.rst
 .. include:: previous_versions/v1.9.4.rst

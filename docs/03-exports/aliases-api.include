@@ -5,13 +5,6 @@
 .. |DataReader::take_next_sample-api| replace:: :cpp:func:`DataReader::take_next_sample()<eprosima::fastdds::dds::DataReader::take_next_sample>`
 .. |DataReaderListener-api| replace:: :cpp:class:`DataReaderListener <eprosima::fastdds::dds::DataReaderListener>`
 
-.. |DataReader::get_requested_deadline_missed_status-api| replace:: :cpp:func:`get_requested_deadline_missed_status()<eprosima::fastdds::dds::DataReader::get_requested_deadline_missed_status>`
-.. |DataReader::get_requested_incompatible_qos_status-api| replace:: :cpp:func:`get_requested_incompatible_qos_status()<eprosima::fastdds::dds::DataReader::get_requested_incompatible_qos_status>`
-.. |DataReader::get_liveliness_changed_status-api| replace:: :cpp:func:`get_liveliness_changed_status()<eprosima::fastdds::dds::DataReader::get_liveliness_changed_status>`
-.. |DataReader::get_sample_rejected_status-api| replace:: :cpp:func:`get_sample_rejected_status()<eprosima::fastdds::dds::DataReader::get_sample_rejected_status>`
-.. |DataReader::get_sample_lost_status-api| replace:: :cpp:func:`get_sample_lost_status()<eprosima::fastdds::dds::DataReader::get_sample_lost_status>`
-.. |DataReader::get_subscription_matched_status-api| replace:: :cpp:func:`get_subscription_matched_status()<eprosima::fastdds::dds::DataReader::get_subscription_matched_status>`
-
 .. |DataReaderListener::on_data_available-api| replace:: :cpp:func:`on_data_available()<eprosima::fastdds::dds::DataReaderListener::on_data_available>`
 .. |DataReaderListener::on_subscription_matched-api| replace:: :cpp:func:`on_subscription_matched()<eprosima::fastdds::dds::DataReaderListener::on_subscription_matched>`
 .. |DataReaderListener::on_requested_deadline_missed-api| replace:: :cpp:func:`on_requested_deadline_missed()<eprosima::fastdds::dds::DataReaderListener::on_requested_deadline_missed>`
@@ -51,11 +44,6 @@
 .. |DataWriter::set_qos-api| replace:: :cpp:func:`DataWriter::set_qos()<eprosima::fastdds::dds::DataWriter::set_qos>`
 .. |DataWriter::write-api| replace:: :cpp:func:`write()<eprosima::fastdds::dds::DataWriter::write>`
 .. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
-
-.. |DataWriter::get_offered_deadline_missed_status-api| replace:: :cpp:func:`get_offered_deadline_missed_status()<eprosima::fastdds::dds::DataWriter::get_offered_deadline_missed_status>`
-.. |DataWriter::get_offered_incompatible_qos_status-api| replace:: :cpp:func:`get_offered_incompatible_qos_status()<eprosima::fastdds::dds::DataWriter::get_offered_incompatible_qos_status>`
-.. |DataWriter::get_publication_matched_status-api| replace:: :cpp:func:`get_publication_matched_status()<eprosima::fastdds::dds::DataWriter::get_publication_matched_status>`
-.. |DataWriter::get_liveliness_lost_status-api| replace:: :cpp:func:`get_liveliness_lost_status()<eprosima::fastdds::dds::DataWriter::get_liveliness_lost_status>`
 
 .. |DataWriterQos-api| replace:: :cpp:class:`DataWriterQos <eprosima::fastdds::dds::DataWriterQos>`
 .. |DataWriterQos::DataWriterQos-api| replace:: :cpp:func:`DataWriterQos()<eprosima::fastdds::dds::DataWriterQos::DataWriterQos>`
@@ -170,7 +158,6 @@
 .. |Subscribers-api| replace:: :cpp:class:`Subscribers <eprosima::fastdds::dds::Subscriber>`
 .. |Topic-api| replace:: :cpp:class:`Topic <eprosima::fastdds::dds::Topic>`
 .. |Topic::set_qos-api| replace:: :cpp:func:`Topic::set_qos()<eprosima::fastdds::dds::Topic::set_qos>`
-.. |Topic::get_inconsistent_topic_status-api| replace:: :cpp:func:`get_inconsistent_topic_status()<eprosima::fastdds::dds::Topic::get_inconsistent_topic_status>`
 .. |TopicDataType-api| replace:: :cpp:class:`TopicDataType<eprosima::fastdds::dds::TopicDataType>`
 .. |TopicDataType::getKey-api| replace:: :cpp:func:`getKey()<eprosima::fastdds::dds::TopicDataType::getKey>`
 .. |TopicDataType::m_isGetKeyDefined-api| replace:: :cpp:member:`m_isGetKeyDefined<eprosima::fastdds::dds::TopicDataType::m_isGetKeyDefined>`
@@ -535,8 +522,6 @@
 .. |QosPolicyCount-api| replace:: :cpp:struct:`QosPolicyCount<eprosima::fastdds::dds::QosPolicyCount>`
 .. |QosPolicyCount::policy_id-api| replace:: :cpp:member:`policy_id<eprosima::fastdds::dds::QosPolicyCount::policy_id>`
 .. |QosPolicyCount::count-api| replace:: :cpp:member:`count<eprosima::fastdds::dds::QosPolicyCount::count>`
-.. |QosPolicyId_t-api| replace:: :cpp:enum:`QosPolicyId_t<dds::fastdds::eprosima::QosPolicyId_t>`
-.. |QosPolicyCountSeq-api| replace:: :cpp:any:`QosPolicyCountSeq<dds::fastdds::eprosima::QosPolicyCountSeq>`
 
 .. |SampleRejectedStatus-api| replace:: :cpp:struct:`SampleRejectedStatus<eprosima::fastdds::dds::SampleRejectedStatus>`
 .. |SampleRejectedStatus::total_count-api| replace:: :cpp:member:`total_count<eprosima::fastdds::dds::SampleRejectedStatus::total_count>`

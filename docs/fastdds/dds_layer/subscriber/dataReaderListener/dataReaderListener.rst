@@ -47,6 +47,11 @@ DataReaderListener defines the following callbacks:
   a common partition, but with a QoS that is incompatible with the one defined on the
   DataReader.
 
+.. warning::
+   Currently
+   |DataReaderListener::on_requested_incompatible_qos-api|
+   is not implemented (it will never be called), and will be implemented on a future release of Fast DDS.
+
 * |DataReaderListener::on_liveliness_changed-api|:
   The liveliness status of a matched DataWriter has changed.
   Either a DataWriter that was *inactive* has become *active* or the other

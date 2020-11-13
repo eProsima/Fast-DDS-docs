@@ -1,7 +1,7 @@
 .. _ros2:
 
-ROS2 using Fast-DDS middleware
-==============================
+ROS 2 using Fast-DDS middleware
+===============================
 
 .. _OSRF: https://www.openrobotics.org/
 .. _Robot Operation System 2 (ROS 2): https://index.ros.org/doc/ros2/
@@ -10,12 +10,12 @@ ROS2 using Fast-DDS middleware
 `Open Source Robotic Fundation (OSRF) <https://www.openrobotics.org/>`_
 `Robot Operating System ROS 2 <https://index.ros.org/doc/ros2/>`_.
 
-**ROS 2** is one of the most famous software for robot engineering.
+**ROS 2** is a state-of-the-art software for robot engineering.
 It consists of a set of `free software libraries <https://github.com/ros2>`__ and tools for building robot applications.
-In this page, we are going to show some use cases and how to take full advantage of
+This page shows some use cases and how to take full advantage of
 Fast DDS wide set of capabilities in a ROS 2 project.
 
-The interface between the ROS2 stack and *Fast DDS* is provided by a ROS 2 package
+The interface between the ROS 2 stack and *Fast DDS* is provided by a ROS 2 package
 `rmw_fastrtps <https://github.com/ros2/rmw_fastrtps>`_.
 This package is available in all ROS 2 distributions, both from binaries and from sources.
 ``rmw_fastrtps`` actually provides not one but two different ROS 2 middleware implementations, both of them using
@@ -44,4 +44,4 @@ However, it is still possible to select ``rmw_fastrtps_dynamic_cpp`` using the e
     :maxdepth: 1
 
     /fastdds/ros2/ros2_configure.rst
-    /fastdds/ros2/Discovery_service/ros2_discovery_service.rst
+    /fastdds/ros2/Discovery_server/ros2_discovery_server.rst

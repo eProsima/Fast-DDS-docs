@@ -5,16 +5,13 @@
 .. ros2_configure:
 
 
-Configuring Fast DDS
-====================
+Configuring Fast DDS in ROS 2
+=============================
 
-To use some specific features from Fast-DDS library using ROS2,
+To use some specific features from Fast-DDS library using ROS 2,
 we can use the XML configuration files that the library uses to configure *QoS*.
-To check the whole parameter list that could be configured for Fast-DDS library review the
-`configuration page<xml_profiles>`.
-
-As described in :ref:`xml_profiles` section, there are two possibilities for providing *Fast DDS*
-with XML configuration files:
+Please refer to :ref:`xml_profiles` to see the whole list of configuration options available in *Fast DDS*.
+There are two possibilities for providing *Fast DDS* with XML configuration files:
 
 * **Recommended**: Define the location of the XML configuration file with environment variable
   ``FASTRTPS_DEFAULT_PROFILES_FILE`` (see :ref:`env_vars`).
@@ -27,7 +24,7 @@ with XML configuration files:
   executable.
 
 Default profiles
-----------------
+^^^^^^^^^^^^^^^^
 
 Under ROS 2, the entity creation does not allow for selecting different profiles from the XML.
 To work around this issue, the profiles can be marked with an attribute ``is_default_profile="true"``, so when an entity

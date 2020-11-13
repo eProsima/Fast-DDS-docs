@@ -61,7 +61,7 @@ with distributed systems:
 
 + :ref:`ros2`.
   Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
-  we have a whole independent section to show the use of it over ROS2,
+  we have a whole independent section to show the use of it over ROS 2,
   and how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2 project.
 
 .. toctree::

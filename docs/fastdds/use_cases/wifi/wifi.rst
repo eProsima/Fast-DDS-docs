@@ -18,7 +18,7 @@ This way, the use of multicast is not needed to discover these initial peers.
 Furthermore, if all the peers are known and configured beforehand, all multicast communication can be
 removed.
 
-Alternatively, **Discovery Service** can be used to avoid multicast discovery.
+Alternatively, **Discovery Server** can be used to avoid multicast discovery.
 A DomainParticipant with a well-know address acts as a discovery server,
 providing the rest of the participants the information required to connect among them.
 If all the peers are known and configured beforehand, STATIC discovery can be used instead,

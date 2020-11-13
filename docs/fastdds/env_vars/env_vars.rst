@@ -33,7 +33,7 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
 ------------------------
 
     When setting this variable the :ref:`DomainParticipant<dds_layer_domainParticipant>` is configured as a Client of
-    the given Server, implementing the :ref:`Discovery Service<discovery_service>` mechanism, provided its
+    the given Server, implementing the :ref:`Discovery Server<discovery_server>` mechanism, provided its
     :ref:`dds_layer_domainParticipant`'s |discoveryProtocol| setting has been left configured as default
     (:ref:`Simple discovery<simple_disc_settings>`).
     The value of the variable must list the locator of the server

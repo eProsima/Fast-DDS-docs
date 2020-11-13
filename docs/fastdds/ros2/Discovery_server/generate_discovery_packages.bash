@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# first argument must be setup.bash of ROS2
+# First argument must be setup.bash of ROS2
 SETUP_FILE=${1}
-# if second argument is SERVER it uses Discovery Service
+# If second argument is SERVER it uses Discovery Server
 PROTOCOL=${2}
 
 # Prepare environment
@@ -14,13 +14,13 @@ DUMP_FILE="simple.pcapng"
 if [[ ${PROTOCOL} == "SERVER" ]]
 then
     DUMP_FILE="server_client.pcapng"
-    echo "Run in Discovery Service mode"
+    echo "Run in Discovery Server mode"
 else
     unset ROS_DISCOVERY_SERVER
     echo "Run in Simple Discovery mode"
 fi
 
-# time running
+# Time running
 RUN_TIME=15
 
 # Start capture
@@ -36,10 +36,10 @@ then
     fast-discovery-server -i 0 -g > /dev/null &
     DIS_PID=$!
 
-    # wait until server ready
+    # Wait until server ready
     sleep 1
 
-    # Env variable to set new nodes to use Discovery Service
+    # Env variable to set new nodes to use Discovery Server
     export ROS_DISCOVERY_SERVER=127.0.0.1:11811
 
     # Run talker
@@ -56,7 +56,7 @@ else
     echo "Spawn talker"
     ros2 run demo_nodes_cpp \
         talker --ros-args --remap __node:=simple_talker &
-    
+
     echo "Spawn first listener 0"
     ros2 run demo_nodes_cpp \
         listener --ros-args --remap __node:=listener_0 &
@@ -75,7 +75,7 @@ sleep $RUN_TIME
 kill -s SIGINT $(ps -C talker) > /dev/null 2>&1
 kill -s SIGINT $(ps -C listener) > /dev/null 2>&1
 
-# ends all discovery servers
+# Ends all discovery servers
 if [[ ${PROTOCOL} == "SERVER" ]]
 then
     kill -s SIGINT $DIS_PID > /dev/null 2>&1

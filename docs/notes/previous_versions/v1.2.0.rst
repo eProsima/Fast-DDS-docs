@@ -12,7 +12,7 @@ This release introduced two important new features:
 
 But there is more:
 
-* Full ROS2 Support: Fast RTPS is used by ROS2, the upcoming release of the Robot Operating System (ROS).
+* Full ROS 2 Support: Fast RTPS is used by ROS 2, the upcoming release of the Robot Operating System (ROS).
 * Better documentation: More content and examples.
 * Improved performance.
 * Bug fixing.

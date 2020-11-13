@@ -1,15 +1,15 @@
 .. ros2-discovery-service
 
-Use ROS2 with Fast-DDS Discovery Service
-========================================
+Use ROS 2 with Fast-DDS Discovery Server
+=========================================
 
-In this section we are going to explain how to run some ROS2 examples using the Discovery Services
+This section explains how to run some ROS 2 examples using the Discovery Servers
 as discovery communication.
 In order to get more information about the specific use of this configuration,
-please check the :ref:`Discovery Service Documentation <discovery_service>`
+please check the :ref:`Discovery Server Documentation <discovery_server>`
 or read the :ref:`common use cases <discovery-service-use-case>` for this configuration.
 
-The following tutorial gathers the steps to check this functionality and learn how to use it with ROS2.
+The following tutorial gathers the steps to check this functionality and learn how to use it with ROS 2.
 
 .. contents::
     :local:
@@ -17,44 +17,61 @@ The following tutorial gathers the steps to check this functionality and learn h
     :depth: 2
 
 The :ref:`Simple Discovery Protocol <simple_disc_settings>` is the
-standard protocol defined in the `standard DDS <https://www.omg.org/omg-dds-portal/>`__.
-But it has certain known disadvantages in some scenarios:
+standard protocol defined in the `DDS standard <https://www.omg.org/omg-dds-portal/>`__.
+However, it has certain known disadvantages in some scenarios:
 
 * It does not **Scale** efficiently, as the number of exchanged packets highly increases as new nodes are added.
-* It requires **Multicasting** capabilities, that may not work reliably in some connection cases as WiFi.
+* It requires **Multicasting** capabilities, that may not work reliably in some scenarios, e.g. WiFi.
 
-The **Discovery Service** provides a Client-Server Architecture that allows
+The **Discovery Server** provides a Client-Server Architecture that allows
 the nodes to connect with each other using an intermediate server.
 Each node will work as a *Client*, sharing its info with the *Discovery Server* and receiving
 the discovery information from it.
 This means that the network traffic is highly reduced in big systems, and it does not require *Multicasting*.
 
-.. image:: ds_explanation.png
+.. image:: /01-figures/fast_dds/discovery/ds_explanation.svg
     :align: center
 
 These **Discovery Servers** can be independent, duplicated or connected with each other in order to create
 redundancy over the network and avoid having a *Single-Point-Of-Failure*.
 
-In order to use this functionality, **Fast-DDS Discovery Service** can be set by parameters using
+Discovery Server v2
+^^^^^^^^^^^^^^^^^^^
+The new version **v2** of Discovery Server implements a new filter feature that allows to reduce
+the number of discovery messages sent.
+This version uses the *topic* of the different nodes to decide if two nodes must be connected, or they
+could be left unmatched.
+The following schema represents the decrease of the discovery packages:
+
+.. image:: /01-figures/fast_dds/discovery/ds1vs2.svg
+    :align: center
+
+This architecture reduces the number of packges sent between the server and the different clients dramatically.
+In the following graph is shown the reduction in traffic network over the discovery phase for a
+RMF use case:
+
+.. image:: /01-figures/fast_dds/discovery/v2performance.svg
+    :align: center
+
+
+In order to use this functionality, **Fast-DDS Discovery Server** can be set by parameters using
 the :ref:`XML configuration for Participants <DS_setup_concepts>`.
-
-However, Fast DDS library provides an easier way to set a **Discovery Service** communication using
-the ``fastdds`` :ref:`CLI tool <ffastddscli_cli>`
-and an :ref:`environment variable <env_vars>`.
-
-For a complete information about the actual implementation, testing and performance,
-visit this `link <https://eprosima.com/index.php/resources-all/scalability/fast-rtps-discovery-mechanisms-analysis>`__
+However, Fast DDS library provides an easier way to set a **Discovery Server** communication using
+the ``fastdds`` :ref:`CLI tool <ffastddscli_cli>` and an :ref:`environment variable <env_vars>`,
+which are going to be used along this tutorial.
+For a more detaild explanation about the configuration of the Discovery Server,
+visit this docs :ref:`section <discovery_server>`.
 
 
 Prerequisites
 -------------
 
-This tutorial assumes you have a `working ROS 2 installation <https://index.ros.org/doc/ros2/Installation/>`__.
-In case your installation is using a Fast DDS version lower than v2.1.0, you could not use the ``fastdds`` tool.
+This tutorial assumes you have a `working Foxy ROS 2 installation <https://index.ros.org/doc/ros2/Installation/>`__.
+In case your installation is using a Fast DDS version lower than v2.0.2 you could not use the ``fastdds`` tool.
 You could update your repository to use a different Fast DDS version,
-or :ref:`set the discovery service by Fast-DDS XML QoS configuration <discovery_service>`.
+or :ref:`set the discovery server by Fast-DDS XML QoS configuration <discovery_server>`.
 
-The ``talker-listener`` ROS2 demo allows to create a *talker* node that publishes a *Hello World* message every second,
+The ``talker-listener`` ROS 2 demo allows to create a *talker* node that publishes a *Hello World* message every second,
 and a *listener* node that listens to these messages.
 
 
@@ -66,13 +83,13 @@ you will get access to the CLI of Fast DDS library CLI tool ``fastdds``.
 From this CLI we have access to the :ref:`discovery tool <cli_discovery>`,
 which allows to launch a server. This server will manage the discovery process for the nodes that connect to it.
 
-.. note::
+.. important::
 
     Do not forget to `source ROS 2 <https://index.ros.org/doc/ros2/Tutorials/Configuring-ROS2-Environment/>`__
-    in every new terminal you open.
+    in every new terminal opened.
 
 
-Setup Discovery Service
+Setup Discovery Server
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Start by launching a server with id 0, with port 11811 and listening on all available interfaces.
@@ -89,21 +106,21 @@ Launch node listener
 
 Execute the listener demo, that will listen in ``/chatter`` topic.
 
-In a new terminal, set the environment variable ``ROS_DISCOVERY_SERVER`` to use *Discovery Service*.
-(Do not forget to source ROS2 in every new terminal)
+In a new terminal, set the environment variable ``ROS_DISCOVERY_SERVER`` to use *Discovery Server*.
+(Do not forget to source ROS 2 in every new terminal)
 
 .. code-block:: console
 
     export ROS_DISCOVERY_SERVER=127.0.0.1:11811
 
-Afterwards, launch the listener node. We use the argument ``--remap __node:=listener_discovery_service``
+Afterwards, launch the listener node. We use the argument ``--remap __node:=listener_discovery_server``
 to change the node's name for future purpose.
 
 .. code-block:: console
 
-    ros2 run demo_nodes_cpp listener --ros-args --remap __node:=listener_discovery_service
+    ros2 run demo_nodes_cpp listener --ros-args --remap __node:=listener_discovery_server
 
-This process will create a ROS2 node, that will automatically create a client for the *Discovery Service*
+This process will create a ROS 2 node, that will automatically create a client for the *Discovery Server*
 and use the server created previously to run the discovery protocol.
 
 
@@ -115,17 +132,16 @@ Open a new terminal and set the environment variable as before, so the node rais
 .. code-block:: console
 
     export ROS_DISCOVERY_SERVER=127.0.0.1:11811
-    ros2 run demo_nodes_cpp talker --ros-args --remap __node:=talker_discovery_service
+    ros2 run demo_nodes_cpp talker --ros-args --remap __node:=talker_discovery_server
 
 Now, we should see the talker publishing *Hello World* messages, and the listener receiving these messages.
 
 
 
-Demonstrate Discovery Service execution
+Demonstrate Discovery Server execution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 So far, we cannot probe that this example and the standard talker-listener example run differently.
-
 For this purpose, we are going to run another node that is not connected to our Discovery Server.
 We just need to run a new listener (listening in ``/chatter`` topic by default) in a new terminal and check that it is
 not connected to the talker already running.
@@ -144,12 +160,15 @@ To finally verify that we are running everything correctly, we can create a new 
     ros2 run demo_nodes_cpp talker --ros-args --remap __node:=simple_talker
 
 Now we should see the listener *simple_listener* receiving the messages from *simple_talker* but not the other
-messages from *talker_discovery_service*.
+messages from *talker_discovery_server*.
 
+
+Visualization tool `rqt_graph`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The tool ``rqt_graph`` can be used to verify the nodes and structure of this example.
-Remember, to use the ``rqt_graph`` with the *Discovery Service Protocol*
-(i.e., to see the ``listener/talker_discovery_service``)
+Remember, in order to use the ``rqt_graph`` with the *Discovery Server Protocol*
+(i.e., to see the ``listener/talker_discovery_server``)
 the environment variable ``ROS_DISCOVERY_SERVER`` must be set beforehand.
 
 
@@ -157,17 +176,19 @@ the environment variable ``ROS_DISCOVERY_SERVER`` must be set beforehand.
 Advance user cases
 ------------------
 
+In the following paragraphs, we are going to show different features of the Discovery Server
+that allows to hold a robust structure over the node's network.
 
 Server Redundancy
 ^^^^^^^^^^^^^^^^^
 
 Using the Fast DDS tool, we can create several servers, and we can connect each of our nodes to as many
-servers as we want. This allows to have a save redundancy network that will work even if some servers or
+servers as we want. This allows to have a safe redundancy network that will work even if some servers or
 nodes shut down unexpectedly.
 
 Next schema shows a simple architecture that will work with server redundancy:
 
-.. image:: ds_redundancy_example.png
+.. image:: /01-figures/fast_dds/discovery/ds_redundancy_example.svg
     :align: center
 
 In different terminals, run the next code to establish a communication over a backup server.
@@ -180,7 +201,7 @@ In different terminals, run the next code to establish a communication over a ba
 
     fastdds discovery -i 1 -l 127.0.0.1 -p 11888
 
-``-i N`` means server with id N. Twhen referencing the servers with ``ROS_DISCOVERY_SERVER``,
+``-i N`` means server with id N. When referencing the servers with ``ROS_DISCOVERY_SERVER``,
 server ``0`` must be in first place and server ``1`` in second place.
 
 .. code-block:: console
@@ -195,19 +216,14 @@ server ``0`` must be in first place and server ``1`` in second place.
 
 Now, if one of these servers fails, we would still have discovery communication between nodes.
 
-.. note::
-
-    Be aware that to successfully raise a new node, all the servers that this node will connect with
-    must be running at the time we create it.
-
 
 Backup Server
 ^^^^^^^^^^^^^
 
-Fast-DDS Discovery Service allows to easily build a server with a **backup** functionality.
+Fast-DDS Discovery Server allows to easily build a server with a **backup** functionality.
 This allows the server to retake the last state it saved in case of a shutdown.
 
-.. image:: ds_backup_example.png
+.. image:: /01-figures/fast_dds/discovery/ds_backup_example.svg
     :align: center
 
 In different terminals, run the next code to establish a communication over a backup server.
@@ -226,26 +242,30 @@ In different terminals, run the next code to establish a communication over a ba
     export ROS_DISCOVERY_SERVER="127.0.0.1:11811"
     ros2 run demo_nodes_cpp listener --ros-args --remap __node:=listener
 
-We will see how a ``SQLite`` DB is created in the path we have run the server.
-
+We will see how several backup files are created in the path we have run the server.
+Two ``SQLite`` files and two ``json`` files that contains the information required to
+raise a new server in case of failure, avoiding the whole discovery process to happen again.
 
 
 Discovery partitions
 ^^^^^^^^^^^^^^^^^^^^
 
-The **Discovery Service** communication could be used with different servers to split in virtual
+The **Discovery Server** communication could be used with different servers to split in virtual
 partitions the discovery info.
 This means that two endpoints only would know each other if there is a server or a server network
 between them.
 
-We are going to execute an example with two different servers. The following image shows an
-schema of the architecture desired:
+We are going to execute an example with two different independent servers.
+The following image shows a schema of the architecture desired:
 
-.. image:: ds_partition_example.png
+.. image:: /01-figures/fast_dds/discovery/ds_partition_example.svg
     :align: center
 
-With this schema we are going to see how *Listener 1* is connected to *Talker 1* and *Talker 2*, but
-*Listener 2* will only listen *Talker 1*.
+With this schema *Listener 1* will be connected to *Talker 1* and *Talker 2*, as they
+share *Server 1*.
+*Listener 2* will connect with *Talker 1* as they share *Server 2*.
+But *Listener 2* will not hear the messages from *Talker 2* because they do not
+share any server or servers' network that connect them.
 
 We run the first server listening in localhost in default port 11811.
 
@@ -285,7 +305,7 @@ which server they are connected to. Be aware that the
     ros2 run demo_nodes_cpp listener --ros-args --remap __node:=listener_2
 
 We should see how *Listener 1* is receiving double messages while *Listener 2* is in a different
-partition of *Talker 2* and so it does not listen him.
+partition of *Talker 2* and so it does not listen it.
 
 .. note::
 
@@ -294,34 +314,36 @@ partition of *Talker 2* and so it does not listen him.
 
 
 
-Compare Discovery Service with Simple Discovery
+Compare Discovery Server with Simple Discovery
 -----------------------------------------------
 
-In order to compare the ROS2 execution using *Simple Discovery* or *Discovery Service*,
+In order to compare the ROS 2 execution using *Simple Discovery* or *Discovery Server*,
 we would provide two scripts that execute a talker and many listeners and analyze the network traffic during this time.
 
 However, this functionality are references for advance purpose
 and we are going to leave its studying to the user.
+In the following links you can download these scripts to test them by yourself.
+The script *bash network traffic generator*
+throw many listeners in simple and service mode to get traffic info.
+And the script *python3 graph generator*
+analyze tcpdump traces and generates the graph.
 
-*Throw many listeners in simple and service mode to get traffic info:*
-* :download:`bash network traffic generator <generate_discovery_packages.bash>`
+:download:`bash network traffic generator <generate_discovery_packages.bash>`
 
-*Analyze tcpdump traces and generates the graph:*
-* :download:`python3 graph generator <discovery_packets.py>`
+:download:`python3 graph generator <discovery_packets.py>`
 
 To successfully execute these scripts,
-first we must run the bash script with the argument to the *setup* path to source ROS2.
+first we must run the bash script with the argument to the *setup* path to source ROS 2.
 This will generate the traffic trace for simple discovery.
 Executing the same script with second argument ``SERVER`` it will generates the trace for service discovery.
-
 After both executions are done, we run the python script to generates a graph similar to the one below:
 
-.. image:: discovery_packets.png
+.. image:: /01-figures/fast_dds/discovery/discovery_packets.svg
     :align: center
 
 In this graph (this is a specific examples,
 but the user can execute the scripts and watch their own results) we can easily see how the network traffic is
-reduced when using *Discovery Service*.
+reduced when using *Discovery Server*.
 
 The reduction in traffic is due to avoid the network discovery structure where every node communicate
 itself and wait a response for every other node in the net.

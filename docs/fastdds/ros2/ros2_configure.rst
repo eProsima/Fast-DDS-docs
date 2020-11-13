@@ -9,7 +9,7 @@ Configuring Fast DDS in ROS 2
 =============================
 
 To use some specific features from Fast-DDS library using ROS 2,
-we can use the XML configuration files that the library uses to configure *QoS*.
+the XML configuration files that the library uses to configure *QoS* can be used.
 Please refer to :ref:`xml_profiles` to see the whole list of configuration options available in *Fast DDS*.
 There are two possibilities for providing *Fast DDS* with XML configuration files:
 

@@ -85,7 +85,7 @@ callbacks:
 Using the History to Send and Receive Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the RTPS Protocol, Readers and Writers save the data about a topic in their associated History.
+In the RTPS Protocol, Readers and Writers save the data about a topic in their associated Histories.
 Each piece of data is represented by a Change, which *eprosima Fast DDS* implements as |CacheChange_t-api|.
 Changes are always managed by the History.
 
@@ -202,7 +202,7 @@ of the :class:`CacheChange_t`,
 while the rest of the fields of the :class:`CacheChange_t` provide the required metadata.
 
 |WriterHistory-api| and |ReaderHistory-api| provide an interface for the user to interact with these changes:
-Changes to be transmitted by the Writers are added to its WriterHistory,
+Changes to be transmitted by the Writer are added to its WriterHistory,
 and changes already processed on the Reader can be removed from the ReaderHistory.
 In this sense, the History acts as a buffer for changes that are not fully processed yet.
 
@@ -240,7 +240,7 @@ IPayloadPool interface
 
   Returns the Payload tied to a :class:`CacheChange_t` to the pool, and breaks the tie.
 
-.. note::
+.. important::
   When implementing a custom Payload pool, make sure that the allocated Payloads
   fulfill the requirements of standard RTPS serialization.
   Specifically, the Payloads must be large enough to accommodate the serialized user data plus the 4 octets

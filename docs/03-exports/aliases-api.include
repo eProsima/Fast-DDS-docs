@@ -716,4 +716,3 @@
 .. |Subscriber::set_listener-api| replace:: :cpp:func:`Subscriber::set_listener()<eprosima::fastdds::dds::Subscriber::set_listener>`
 .. |DataReader::set_listener-api| replace:: :cpp:func:`DataReader::set_listener()<eprosima::fastdds::dds::DataReader::set_listener>`
 .. |Topic::set_listener-api| replace:: :cpp:func:`Topic::set_listener()<eprosima::fastdds::dds::Topic::set_listener>`
-

@@ -998,8 +998,8 @@ void rtps_api_example_create_entities_with_custom_pool()
         bool release_payload(
                 CacheChange_t& cache_change) override
         {
-            // ensure precondition
-            assert (this == cache_change.payload_owner());
+            // Ensure precondition
+            assert(this == cache_change.payload_owner());
 
             // Dealloc the buffer of the payload
             delete[] cache_change.serializedPayload.data;
@@ -1039,8 +1039,6 @@ void rtps_api_example_create_entities_with_custom_pool()
     // Write serialized data into the change and add it to the history
     change->serializedPayload.length = sprintf((char*) change->serializedPayload.data, "My example string %d", 2) + 1;
     writer_history->add_change(change);
-
-
     //!--
 }
 

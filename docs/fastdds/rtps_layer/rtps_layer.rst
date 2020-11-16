@@ -39,7 +39,9 @@ explaining the new features it presents.
 
 We recommend you to look at the two examples describing how to use the RTPS layer that come with the distribution
 while reading this section.
-They are located in `examples/RTPSTest_as_socket` and in `examples/RTPSTest_registered`
+They are located in
+`examples/C++/RTPSTest_as_socket <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/RTPSTest_as_socket>`_ and
+`examples/C++/RTPSTest_registered <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/RTPSTest_registered>`_
 
 Managing the Participant
 ^^^^^^^^^^^^^^^^^^^^^^^^

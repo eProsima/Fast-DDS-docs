@@ -224,12 +224,12 @@ or released.
 IPayloadPool interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
-* |IPayloadPool::get_payload-api| with size parameter:
+* |IPayloadPool::get_payload-api| overload with size parameter:
 
   Ties an empty Payload of the requested size to a :class:`CacheChange_t` instance.
   The Payload can then be filled with the required data.
 
-* |IPayloadPool::get_payload-api| with SerializadPayload parameter:
+* |IPayloadPool::get_payload-api| overload with SerializadPayload parameter:
 
   Copies the given Payload data to a new Payload from the pool and ties it to the :class:`CacheChange_t` instance.
   This overload also takes a pointer to the pool that owns the original Payload.

@@ -54,6 +54,11 @@ Some important **bugfixes** are also included:
 * Fixed transient local retransmission after participant drop
 * Fixed assertion failure on persistent writers
 
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastrtpsgen*.
+  If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.
+
 Previous versions
 =================
 

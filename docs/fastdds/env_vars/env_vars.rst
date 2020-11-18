@@ -8,6 +8,8 @@ Environment variables
 This is the list of environment variables that affect the behavior of *Fast DDS*:
 
 ``FASTRTPS_DEFAULT_PROFILES_FILE``
+----------------------------------
+
     Defines the location of the default profile configuration XML file.
     If this variable is set and its value corresponds with an existing file, *Fast DDS* will load its profiles.
     For more information about XML profiles, please refer to :ref:`xml_profiles`.
@@ -28,8 +30,10 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
 
 
 ``ROS_DISCOVERY_SERVER``
+------------------------
+
     When setting this variable the :ref:`DomainParticipant<dds_layer_domainParticipant>` is configured as a Client of
-    the given Server, implementing the :ref:`Server-Client Discovery<discovery_server>` mechanism, provided its
+    the given Server, implementing the :ref:`Discovery Server<discovery_server>` mechanism, provided its
     :ref:`dds_layer_domainParticipant`'s |discoveryProtocol| setting has been left configured as default
     (:ref:`Simple discovery<simple_disc_settings>`).
     The value of the variable must list the locator of the server
@@ -38,7 +42,7 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     mechanism in *Fast DDS*, please refer to :ref:`discovery`.
 
     .. warning::
-        The environment variable is only used in the case where :ref:`discoveryProtocol<discovery_protocol>`
+        The environment variable is only used in the case where :ref:`discovery protocol<discovery_protocol>`
         is set to |SIMPLE|.
         In any other case the environment variable has no effect.
 
@@ -65,6 +69,3 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
         |                                                                            |
         |    set ROS_DISCOVERY_SERVER=84.22.259.329:8888;;81.41.17.102:1234          |
         +----------------------------------------------------------------------------+
-
-
-

@@ -100,7 +100,7 @@ Main Features
 * **Real-Time behaviour.** *eProsima Fast DDS* can be configured to offer real-time features, guaranteeing responses
   within specified time constrains.
 
-* **Built-in Discovery Service.** *eProsima Fast DDS* is based on the dynamical discovery of existing publishers and
+* **Built-in Discovery Server.** *eProsima Fast DDS* is based on the dynamical discovery of existing publishers and
   subscribers, and performs this task continuously without the need to contacting or setting any servers.
   However, a Client-Server discovery as well as other discovery paradigms can also be configured.
 

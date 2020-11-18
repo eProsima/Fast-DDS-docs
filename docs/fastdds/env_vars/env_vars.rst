@@ -42,7 +42,7 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     mechanism in *Fast DDS*, please refer to :ref:`discovery`.
 
     .. warning::
-        The environment variable is only used in the case where :ref:`discovery Protocol<discovery_protocol>`
+        The environment variable is only used in the case where :ref:`discovery protocol<discovery_protocol>`
         is set to |SIMPLE|.
         In any other case the environment variable has no effect.
 

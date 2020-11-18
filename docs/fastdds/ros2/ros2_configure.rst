@@ -1,4 +1,4 @@
-.. include:: ../../03-exports/aliases.include
+ .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
@@ -8,8 +8,8 @@
 Configuring Fast DDS in ROS 2
 =============================
 
-To use some specific features from Fast-DDS library using ROS 2,
-the XML configuration files that the library uses to configure *QoS* can be used.
+To use specific *Fast-DDS* features within a ROS 2 application,
+XML configuration files can be used to configure a wide set of *QoS*.
 Please refer to :ref:`xml_profiles` to see the whole list of configuration options available in *Fast DDS*.
 There are two possibilities for providing *Fast DDS* with XML configuration files:
 

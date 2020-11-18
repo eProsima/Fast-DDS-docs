@@ -1,6 +1,6 @@
 .. _ros2:
 
-ROS 2 using Fast-DDS middleware
+ROS 2 using Fast DDS middleware
 ===============================
 
 .. _OSRF: https://www.openrobotics.org/
@@ -10,9 +10,9 @@ ROS 2 using Fast-DDS middleware
 `Open Source Robotic Fundation (OSRF) <https://www.openrobotics.org/>`_
 `Robot Operating System ROS 2 <https://index.ros.org/doc/ros2/>`_.
 
-**ROS 2** is a state-of-the-art software for robot engineering.
-It consists of a set of `free software libraries <https://github.com/ros2>`__ and tools for building robot applications.
-This page shows some use cases and how to take full advantage of
+**ROS 2** is a state-of-the-art software for robot engineering which
+consists of a set of `free software libraries <https://github.com/ros2>`__ and tools for building robot applications.
+This section presents some use cases and shows how to take full advantage of
 Fast DDS wide set of capabilities in a ROS 2 project.
 
 The interface between the ROS 2 stack and *Fast DDS* is provided by a ROS 2 package

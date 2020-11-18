@@ -2355,18 +2355,11 @@
     </subscriber>
 <!--><-->
 
-<!-->CONF_ROS2_DEFAULT_PROFILE<-->
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-    <participant profile_name="participant_profile_ros2" is_default_profile="true">
-        <rtps>
-            <name>profile_for_ros2_node</name>
-        </rtps>
-    </participant>
-</profiles>
-<!--><-->
-
 <!-->CONF_ROS2_EXAMPLE<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
     <participant profile_name="participant_profile_ros2" is_default_profile="true">
         <rtps>
             <name>profile_for_ros2_node</name>
@@ -2385,7 +2378,6 @@
     <subscriber profile_name="ros2_subscription_profile" is_default_profile="true">
         <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
     </subscriber>
-</profiles>
 <!--><-->
 
 <!-->CONF-DISCOVERY-PROTOCOL<-->

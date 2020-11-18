@@ -54,8 +54,10 @@ For example, a profile for a ROS 2 ``Node`` would be specified as:
 +---------------------------------------------------------+
 | .. literalinclude:: /../code/XMLTester.xml              |
 |    :language: xml                                       |
-|    :start-after: <!-->CONF_ROS2_DEFAULT_PROFILE         |
+|    :start-after: <!-->CONF_ROS2_EXAMPLE                 |
 |    :end-before: <!--><-->                               |
+|    :lines: 2-3,5-9                                      |
+|    :append: </profiles>                                 |
 +---------------------------------------------------------+
 
 Configure Publication Mode and History Memory Policy
@@ -111,6 +113,8 @@ dynamically allocated publisher and subscriber histories.
    |    :language: xml                                       |
    |    :start-after: <!-->CONF_ROS2_EXAMPLE                 |
    |    :end-before: <!--><-->                               |
+   |    :lines: 2-3,5-                                       |
+   |    :append: </profiles>                                 |
    +---------------------------------------------------------+
 
 #. Open one terminal and run:

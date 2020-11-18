@@ -72,6 +72,8 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
 
 
 ``SKIP_DEFAULT_XML``
+--------------------
+
     Skips looking for a default profile configuration XML file.
     If this variable is set to `1`, *Fast DDS* will load the configuration parameters directly from the classes'
     definitions without looking for the DEFAULT_FASTRTPS_PROFILES.xml in the working directory.

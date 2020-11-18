@@ -1,4 +1,4 @@
-.. _discovery-service-use-case:
+.. _discovery-server-use-case:
 
 Discovery Server
 =================

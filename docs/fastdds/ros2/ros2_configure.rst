@@ -1,4 +1,4 @@
- .. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
@@ -31,19 +31,21 @@ To work around this issue, the profiles can be marked with an attribute ``is_def
 of that type is created, it will automatically load that profile.
 The mapping between ROS 2 entities and *Fast DDS* entities is:
 
-+--------------+------------------------+
-| ROS entity   | *Fast DDS* entity      |
-+==============+========================+
-| Node         | Participant            |
-+--------------+------------------------+
-| Publisher    | Publisher              |
-+--------------+------------------------+
-| Subscription | Subscriber             |
-+--------------+------------------------+
-| Service      | Publisher + Subscriber |
-+--------------+------------------------+
-| Client       | Publisher + Subscriber |
-+--------------+------------------------+
++--------------+--------------------------------------+--------------------------------------+
+| ROS entity   | *Fast DDS* entity  *Foxy*            | *Fast DDS* entity  *Eloquent & below*|
++==============+======================================+======================================+
+| Context      | Participant                          | *Not DDS direct mapping*             |
++--------------+--------------------------------------+--------------------------------------+
+| Node         | *Not DDS direct mapping*             | Participant                          |
++--------------+--------------------------------------+--------------------------------------+
+| Publisher    | Publisher                            | Publisher                            |
++--------------+--------------------------------------+--------------------------------------+
+| Subscription | Subscriber                           | Subscriber                           |
++--------------+--------------------------------------+--------------------------------------+
+| Service      | Publisher + Subscriber               | Publisher + Subscriber               |
++--------------+--------------------------------------+--------------------------------------+
+| Client       | Publisher + Subscriber               | Publisher + Subscriber               |
++--------------+--------------------------------------+--------------------------------------+
 
 For example, a profile for a ROS 2 ``Node`` would be specified as:
 
@@ -86,7 +88,7 @@ Said parameters, and their default values under ROS 2, are:
 However, it is possible to fully configure *Fast DDS* (including the history memory policy and the publication mode)
 using an XML file in combination with an environment variable ``RMW_FASTRTPS_USE_QOS_FROM_XML``.
 
-::
+.. code-block:: bash
 
     export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
     export RMW_FASTRTPS_USE_QOS_FROM_XML=1
@@ -113,7 +115,7 @@ dynamically allocated publisher and subscriber histories.
 
 #. Open one terminal and run:
 
-   ::
+   .. code-block:: bash
 
        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
        export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/xml/ros_example.xml
@@ -122,7 +124,7 @@ dynamically allocated publisher and subscriber histories.
 
 #. Open one terminal and run:
 
-   ::
+   .. code-block:: bash
 
        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
        export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/xml/ros_example.xml

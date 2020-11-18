@@ -19,7 +19,7 @@ with distributed systems:
 
   - Disable the multicast discovery mechanism (see :ref:`use-case-disabling-multicast-discovery`).
 
-  - Configure a SERVER discovery mechanism (see :ref:`discovery-service-use-case`).
+  - Configure a SERVER discovery mechanism (see :ref:`discovery-server-use-case`).
 
 + :ref:`well_known_deployments`.
   Describes a situation where the entire entity network topology (Participants, Publishers, Subscribers,
@@ -61,7 +61,7 @@ with distributed systems:
 
 + :ref:`ros2`.
   Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
-  we have a whole independent section to show the use of it over ROS 2,
+  this documentation includes a whole independent section to show the use of the library in ROS 2,
   and how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2 project.
 
 .. toctree::

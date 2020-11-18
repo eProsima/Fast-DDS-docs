@@ -23,7 +23,7 @@ while getopts ':h:' option; do
 done
 shift $((OPTIND - 1))
 
-# first argument must be setup.bash of ROS2
+# First argument must be setup.bash of ROS2
 SETUP_FILE=${1}
 
 if [ -z ${SETUP_FILE} ]
@@ -32,10 +32,8 @@ if [ -z ${SETUP_FILE} ]
     exit 2
 fi
 
-# if second argument is SERVER it uses Discovery Service
+# If second argument is SERVER it uses Discovery Service
 PROTOCOL=${2}
-
-
 
 # Prepare environment
 echo "source to file: " ${SETUP_FILE}
@@ -45,13 +43,8 @@ source ${SETUP_FILE}
 DUMP_FILE="simple.pcapng"
 if [[ ${PROTOCOL} == "SERVER" ]]
 then
-<<<<<<< HEAD:docs/fastdds/ros2/Discovery_server/generate_discovery_packages.bash
-    DUMP_FILE="server_client.pcapng"
+    DUMP_FILE="discovery_server.pcapng"
     echo "Run in Discovery Server mode"
-=======
-    DUMP_FILE="discovery_service.pcapng"
-    echo "Run in Discovery Service mode"
->>>>>>> 755fd3c2... Refs #9273: added help to tool:docs/fastdds/ros2/Discovery_service/generate_discovery_packages.bash
 else
     unset ROS_DISCOVERY_SERVER
     echo "Run in Simple Discovery mode"

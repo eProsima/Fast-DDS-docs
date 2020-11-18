@@ -44,4 +44,4 @@ However, it is still possible to select ``rmw_fastrtps_dynamic_cpp`` by using th
     :maxdepth: 1
 
     /fastdds/ros2/ros2_configure.rst
-    /fastdds/ros2/Discovery_server/ros2_discovery_server.rst
+    /fastdds/ros2/discovery_server/ros2_discovery_server.rst

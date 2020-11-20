@@ -19,8 +19,7 @@ Therefore, it has the ability to react to all events that are reported to the
 :ref:`dds_layer_subscriber_dataReader`.
 Since events are always notified to the most specific Entity Listener that can handle the event,
 callbacks that SubscriberListener inherits from
-DataReaderListener will only be called if the triggering DataReader has no Listener attached,
-or if the callback is disabled by the |StatusMask-api| on the DataReader.
+DataReaderListener will only be called if the triggering DataReader has no Listener attached.
 
 Additionally, SubscriberListener adds the following callback:
 

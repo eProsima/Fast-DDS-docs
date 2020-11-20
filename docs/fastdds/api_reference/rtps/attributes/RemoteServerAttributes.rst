@@ -3,6 +3,6 @@
 RemoteServerAttributes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::RemoteServerAttributes
+.. doxygenclass:: eprosima::fastdds::rtps::RemoteServerAttributes
     :project: FastDDS
     :members:

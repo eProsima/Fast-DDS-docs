@@ -97,6 +97,7 @@ Num
 OfferedDeadlineMissedStatus
 OfferedIncompatibleQosStatus
 OStream
+OStreamConsumer
 Otherwhise
 OwnershipQosPolicy
 OwnershipStrengthQosPolicy

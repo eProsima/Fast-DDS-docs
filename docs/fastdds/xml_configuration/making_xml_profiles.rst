@@ -100,15 +100,6 @@ approaches.
 |    :lines: 2-3, 5-14, 16                                                                                             |
 +----------------------------------------------------------------------------------------------------------------------+
 
-Modifying predefined XML profiles
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Some scenarios may require to modify some of the QoS after loading the XML profiles.
-For such cases the :ref:`dds_layer_core_entity_types` which act as factories provide methods to get the QoS from the
-XML profile. This allows the user to read and modify predefined XML profiles before applying them to a new entity.
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
-    :language: cpp
-    :start-after: //XML-MIX-WITH-CODE
-    :end-before: //!--
-    :dedent: 8
+

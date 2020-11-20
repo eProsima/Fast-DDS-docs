@@ -1,6 +1,3 @@
-.. include:: ../../../../03-exports/aliases-api.include
-
-
 .. _dds_layer_core_policy:
 
 Policy
@@ -12,10 +9,6 @@ To increase the flexibility of the system, the QoS is decomposed in several QoS 
 independently.
 However, there may be cases where several policies conflict. Those conflicts are notified to the user through the
 `ReturnCodes` that the QoS setter functions returns.
-
-Each Qos Policy has a unique ID defined in the |QosPolicyId_t-api| enumerator.
-This ID is used in some :ref:`dds_layer_core_status` instances to identify the specific Qos Policy
-to which the Status refers.
 
 There are QoS Policies that are immutable, which means that only can be specified either at the entity creation or
 before calling the enable operation.

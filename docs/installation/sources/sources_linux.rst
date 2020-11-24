@@ -318,6 +318,15 @@ Once the requirements above are met, compile *Fast DDS-Gen* by following the ste
     cd Fast-DDS-Gen
     gradle assemble
 
+.. note::
+
+    If errors occur during compilation, or *Gradle* installation is wished to be avoided, an executable script is
+    included which will download a temporal *Gradle* for the compilation step.
+
+    .. code-block:: bash
+
+        ./gradlew assemble
+
 Contents
 ^^^^^^^^
 

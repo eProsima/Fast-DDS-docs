@@ -334,6 +334,14 @@ with Homebrew it would be running the command:
 
         brew install gradle
 
+.. note::
+
+    If errors occur during compilation, or *Gradle* installation is wished to be avoided, an executable script is
+    included which will download a temporal *Gradle* for the compilation step.
+
+    .. code-block:: bash
+
+        ./gradlew assemble
 
 Compiling Fast DDS-Gen
 ----------------------

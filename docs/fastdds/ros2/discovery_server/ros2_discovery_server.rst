@@ -279,8 +279,7 @@ In another terminal run the second server listening in localhost in port another
     fastdds discovery -i 1 -l 127.0.0.1 -p 11888
 
 Now, run each node in a different terminal. Use the *environment variable* ``ROS_DISCOVERY_SERVER`` to decide which
-server they are connected to. Be aware that the `ids must match
-<https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html>`__.
+server they are connected to. Be aware that the `ids must match :ref:`env_vars`.
 
 .. code-block:: console
 
@@ -318,12 +317,21 @@ Compare Discovery Server with Simple Discovery
 In order to compare the ROS2 execution using *Simple Discovery* or *Discovery Service*, two scripts that
 execute a talker and many listeners and analyze the network traffic during this time are provided.
 For this experiment, ``tshark`` is required to be installed on your system.
+The configuration file is mandatory in order to avoid using intra-process mode.
+
+.. note::
+
+    These scripts require a Discovery Server closure feature that is only available from versions newer than the
+    one used in ROS 2 Foxy.
+    In order to use this functionality, compile ROS 2 with Fast DDS v2.1.0 or higher.
 
 These scripts' functionalities are references for advance purpose and their study is left to the user.
 
-:download:`bash network traffic generator <generate_discovery_packages.bash>`
+* :download:`bash network traffic generator <generate_discovery_packages.bash>`
 
-:download:`python3 graph generator <discovery_packets.py>`
+* :download:`python3 graph generator <discovery_packets.py>`
+
+* :download:`XML configuration <no_intraprocess_configuration.xml>`
 
 Run the bash script with the *setup* path to source ROS2 as argument.
 This will generate the traffic trace for simple discovery.
@@ -338,6 +346,7 @@ After both executions are done, run the python script to generates a graph simil
 
 .. code-block:: console
 
+    $ export FASTRTPS_DEFAULT_PROFILES_FILE="no_intraprocess_configuration.xml"
     $ sudo bash generate_discovery_packages.bash ~/ros2_foxy/install/local_setup.bash
     $ sudo bash generate_discovery_packages.bash ~/ros2_foxy/install/local_setup.bash SERVER
     $ python3 discovery_packets.py

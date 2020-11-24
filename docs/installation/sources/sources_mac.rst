@@ -336,8 +336,8 @@ with Homebrew it would be running the command:
 
 .. note::
 
-    If errors occur during compilation or you do not wish to install gradle, an executable script is included which will
-    download gradle temporarily for the compilation step.
+    If errors occur during compilation, or *Gradle* installation is wished to be avoided, an executable script is
+    included which will download a temporal *Gradle* for the compilation step.
 
     .. code-block:: bash
 

@@ -85,7 +85,7 @@ PropertiesPolicyType
 ^^^^^^^^^^^^^^^^^^^^
 
 PropertiesPolicyType defines the ``<propertiesPolicy>`` element.
-It allows the user to define a set of generic properties.
+It allows the user to define a set of generic properties inside a ``<properties>`` element.
 It is useful at defining extended or custom configuration parameters.
 
 +-----------------+---------------------------------------------------------------------+-------------+----------------+

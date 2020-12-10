@@ -1316,11 +1316,13 @@
 
             <propertiesPolicy>
                 <!-- PROPERTIES_POLICY -->
-                <property>
-                    <name>Property1Name</name>
-                    <value>Property1Value</value>
-                    <propagate>false</propagate>
-                </property>
+                <properties>
+                    <property>
+                        <name>Property1Name</name>
+                        <value>Property1Value</value>
+                        <propagate>false</propagate>
+                    </property>
+                </properties>
             </propertiesPolicy>
 
             <allocation>

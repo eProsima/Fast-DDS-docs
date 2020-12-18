@@ -3,6 +3,5 @@
 VendorId_t
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::VendorId_t
+.. doxygentypedef:: eprosima::fastdds::rtps::VendorId_t
     :project: FastDDS
-    :members:

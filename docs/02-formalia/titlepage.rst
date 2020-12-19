@@ -157,7 +157,7 @@ Main Features
   * Minimizes the need to copy data.
 
 * **Multi-platform.** The OS dependencies are treated as pluggable modules.
-  The user can easily implement his platform modules to *eProsima Fast DDS* library in his specific platform.
+  Users may easily implement platform modules using the *eProsima Fast DDS* library on their target platforms.
   By default, the project can run over Linux, Windows and MacOS.
 
 * **Free and Open Source.** The Fast DDS library, the underneath RTPS library, the generator tool, the internal

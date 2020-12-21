@@ -18,8 +18,8 @@ Const values
 .. doxygenvariable:: eprosima::fastrtps::rtps::c_ProtocolVersion
     :project: FastDDS
 
-.. doxygenvariable:: eprosima::fastrtps::rtps::c_VendorId_Unknown
+.. doxygenvariable:: eprosima::fastdds::rtps::c_VendorId_Unknown
     :project: FastDDS
 
-.. doxygenvariable:: eprosima::fastrtps::rtps::c_VendorId_eProsima
+.. doxygenvariable:: eprosima::fastdds::rtps::c_VendorId_eProsima
     :project: FastDDS

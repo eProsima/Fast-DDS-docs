@@ -7,6 +7,8 @@ Environment variables
 
 This is the list of environment variables that affect the behavior of *Fast DDS*:
 
+.. _env_vars_fastrtps_default_profiles_file:
+
 ``FASTRTPS_DEFAULT_PROFILES_FILE``
 ----------------------------------
 
@@ -28,6 +30,31 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
     |    set FASTRTPS_DEFAULT_PROFILES_FILE=C:\profiles.xml            |
     +------------------------------------------------------------------+
 
+.. _env_vars_skip_default_xml:
+
+``SKIP_DEFAULT_XML``
+--------------------
+
+    Skips looking for a default profile configuration XML file.
+    If this variable is set to `1`, *Fast DDS* will load the configuration parameters directly from the classes'
+    definitions without looking for the *DEFAULT_FASTRTPS_PROFILES.xml* in the working directory.
+    For more information about XML profiles, please refer to :ref:`xml_profiles`.
+
+    +------------------------------------------------------------------+
+    | **Linux**                                                        |
+    +------------------------------------------------------------------+
+    | .. code-block:: bash                                             |
+    |                                                                  |
+    |    export SKIP_DEFAULT_XML=1                                     |
+    +------------------------------------------------------------------+
+    | **Windows**                                                      |
+    +------------------------------------------------------------------+
+    | .. code-block:: bash                                             |
+    |                                                                  |
+    |    set SKIP_DEFAULT_XML=1                                        |
+    +------------------------------------------------------------------+
+
+.. _env_vars_ros_discovery_server:
 
 ``ROS_DISCOVERY_SERVER``
 ------------------------
@@ -69,26 +96,3 @@ This is the list of environment variables that affect the behavior of *Fast DDS*
         |                                                                            |
         |    set ROS_DISCOVERY_SERVER=84.22.259.329:8888;;81.41.17.102:1234          |
         +----------------------------------------------------------------------------+
-
-
-``SKIP_DEFAULT_XML``
---------------------
-
-    Skips looking for a default profile configuration XML file.
-    If this variable is set to `1`, *Fast DDS* will load the configuration parameters directly from the classes'
-    definitions without looking for the DEFAULT_FASTRTPS_PROFILES.xml in the working directory.
-    For more information about XML profiles, please refer to :ref:`xml_profiles`.
-
-    +------------------------------------------------------------------+
-    | **Linux**                                                        |
-    +------------------------------------------------------------------+
-    | .. code-block:: bash                                             |
-    |                                                                  |
-    |    export SKIP_DEFAULT_XML=1                                     |
-    +------------------------------------------------------------------+
-    | **Windows**                                                      |
-    +------------------------------------------------------------------+
-    | .. code-block:: bash                                             |
-    |                                                                  |
-    |    set SKIP_DEFAULT_XML=1                                        |
-    +------------------------------------------------------------------+

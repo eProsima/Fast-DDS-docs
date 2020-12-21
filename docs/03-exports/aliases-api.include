@@ -262,9 +262,9 @@
 .. |max_samples_per_instance-api| replace:: :cpp:member:`max_samples_per_instance<eprosima::fastdds::dds::DurabilityServiceQosPolicy::max_samples_per_instance>`
 
 .. |InstanceStateKind-api| replace:: :cpp:enum:`InstanceStateKind<dds::fastdds::eprosima::InstanceStateKind>`
-.. |ALIVE-api| replace:: :cpp:enumerator:`ALIVE<dds::fastdds::eprosima::InstanceStateKind::ALIVE>`
-.. |NOT_ALIVE_DISPOSED-api| replace:: :cpp:enumerator:`NOT_ALIVE_DISPOSED<dds::fastdds::eprosima::InstanceStateKind::NOT_ALIVE_DISPOSED>`
-.. |NOT_ALIVE_NO_WRITERS-api| replace:: :cpp:enumerator:`NOT_ALIVE_NO_WRITERS<dds::fastdds::eprosima::InstanceStateKind::NOT_ALIVE_NO_WRITERS>`
+.. |ALIVE_INSTANCE_STATE-api| replace:: :cpp:enumerator:`ALIVE_INSTANCE_STATE<dds::fastdds::eprosima::InstanceStateKind::ALIVE_INSTANCE_STATE>`
+.. |NOT_ALIVE_DISPOSED_INSTANCE_STATE-api| replace:: :cpp:enumerator:`NOT_ALIVE_DISPOSED_INSTANCE_STATE<dds::fastdds::eprosima::InstanceStateKind::NOT_ALIVE_DISPOSED_INSTANCE_STATE>`
+.. |NOT_ALIVE_NO_WRITERS_INSTANCE_STATE-api| replace:: :cpp:enumerator:`NOT_ALIVE_NO_WRITERS_INSTANCE_STATE<dds::fastdds::eprosima::InstanceStateKind::NOT_ALIVE_NO_WRITERS_INSTANCE_STATE>`
 
 .. |PresentationQosPolicyAccessScopeKind-api| replace:: :cpp:enum:`PresentationQosPolicyAccessScopeKind<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind>`
 .. |INSTANCE_PRESENTATION_QOS-api| replace:: :cpp:enumerator:`INSTANCE_PRESENTATION_QOS<dds::fastdds::eprosima::PresentationQosPolicyAccessScopeKind::INSTANCE_PRESENTATION_QOS>`

@@ -2486,7 +2486,7 @@ void dds_dataReader_examples()
             {
                 if (data_reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
                 {
-                    if (info.instance_state == ALIVE)
+                    if (info.instance_state == ALIVE_INSTANCE_STATE)
                     {
                         // Do something with the data
                         std::cout << "Received new data value for topic "
@@ -2541,7 +2541,7 @@ public:
         // Keep taking data until there is nothing to take
         while (reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
         {
-            if (info.instance_state == ALIVE)
+            if (info.instance_state == ALIVE_INSTANCE_STATE)
             {
                 // Do something with the data
                 std::cout << "Received new data value for topic "
@@ -3150,13 +3150,13 @@ void xml_profiles_examples()
                     "participant_xml_profile",
                     participant_qos);
 
-            // Name obtained in another section of the code 
+            // Name obtained in another section of the code
             participant_qos.name() = custom_name;
 
             // Modify number of preallocations (this overrides the one set in the XML profile)
-            participant_qos.allocation().send_buffers.preallocated_number = 10; 
+            participant_qos.allocation().send_buffers.preallocated_number = 10;
 
-            // Create participant using the modified XML Qos 
+            // Create participant using the modified XML Qos
             DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(
                         0, participant_qos);
@@ -3881,7 +3881,7 @@ void dds_usecase_examples()
         // The ResourceLimitsQosPolicy is default constructed with max_samples_per_instance = 400
         // Change max_samples_per_instance to the minimum
         resource_limits.max_samples_per_instance = 1;
-        
+
         // The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
         // No allocated samples
         resource_limits.allocated_samples = 0;

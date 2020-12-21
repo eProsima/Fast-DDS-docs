@@ -301,7 +301,7 @@ List of QoS Policy data members:
 * |service_cleanup_delay-api|: It controls when the service can remove all the information regarding a data instance.
   That information is kept until all the following conditions are met:
 
-  * The instance has been explicitly disposed and its InstanceState becomes |NOT_ALIVE_DISPOSED-api|.
+  * The instance has been explicitly disposed and its InstanceState becomes |NOT_ALIVE_DISPOSED_INSTANCE_STATE-api|.
   * There is not any alive DataWriter writing the instance, which means that all existing writers either unregister the
     instance or lose their liveliness.
   * A time interval longer than the one established on the |service_cleanup_delay-api| has elapsed since the moment the
@@ -994,12 +994,12 @@ List of QoS Policy data members:
 
 * |ReaderDataLifecycleQosPolicy::autopurge_no_writer_samples_delay-api|:
   Defines the maximum duration the DataReader must retain the information
-  regarding an instance once its |SampleInfo::instance_state-api| becomes |NOT_ALIVE_NO_WRITERS-api|.
+  regarding an instance once its |SampleInfo::instance_state-api| becomes |NOT_ALIVE_NO_WRITERS_INSTANCE_STATE-api|.
   After this time elapses, the DataReader purges all the internal information of the instance, including the untaken
   samples that will be lost.
 * |ReaderDataLifecycleQosPolicy::autopurge_disposed_samples_delay-api|:
   Defines the maximum duration the DataReader must retain the information
-  regarding an instance once its |SampleInfo::instance_state-api| becomes |NOT_ALIVE_DISPOSED-api|.
+  regarding an instance once its |SampleInfo::instance_state-api| becomes |NOT_ALIVE_DISPOSED_INSTANCE_STATE-api|.
   After this time elapses, the DataReader purges all the samples for the instance.
 
 .. note::

@@ -420,7 +420,7 @@ servers can be reached:
      - Has only significance if |discoveryProtocol| is **CLIENT**, **SERVER** or |br|
        **BACKUP**. For a *client* it specifies the pinging period as explained in |br|
        :ref:`key concepts <DS_key_concepts>`. When a client has not yet established a |br|
-       reliable connection to a server it *pings* until the server notices him and |br|
+       reliable connection to a server it *pings* until the server notices it and |br|
        establishes the connection. |br|
        For a *server* it specifies the match period as explained in :ref:`key concepts <DS_key_concepts>`. |br|
        When a *server* discovers new *clients* it only starts exchanging information with them |br|

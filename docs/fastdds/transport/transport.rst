@@ -36,8 +36,9 @@ can choose the one that best suits their requirements, or create their own.
   if no specific transport configuration is given
   (see :ref:`transport_sharedMemory_sharedMemory`).
 
-Although it is not part of the transport module, :ref:`intraprocess data delivery<intraprocess-delivery>`
-is also available to send messages between entities within the same process.
+Although it is not part of the transport module,
+:ref:`intraprocess data delivery<intraprocess-delivery>` and :ref:`data sharing delivery<datasharing-delivery>`
+are also available to send messages between entities on some settings.
 
 .. toctree::
     :maxdepth: 2
@@ -47,6 +48,7 @@ is also available to send messages between entities within the same process.
     /fastdds/transport/tcp/tcp.rst
     /fastdds/transport/shared_memory/shared_memory.rst
     /fastdds/transport/intraprocess.rst
+    /fastdds/transport/datasharing.rst
     /fastdds/transport/tcp/tls.rst
     /fastdds/transport/listening_locators.rst
     /fastdds/transport/whitelist.rst

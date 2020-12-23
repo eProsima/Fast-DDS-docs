@@ -74,6 +74,8 @@ Internally it contains the following |QosPolicy-api| objects:
 +----------------------------------+-------------------------------------------------+----------+
 | |ThroughputControllerDescriptor| | |DataWriterQos::throughput_controller-api|      | Yes      |
 +----------------------------------+-------------------------------------------------+----------+
+| |DataSharingQosPolicy|           | |DataWriterQos::data_sharing-api|               | No       |
++----------------------------------+-------------------------------------------------+----------+
 
 Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
 default values.

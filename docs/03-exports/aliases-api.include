@@ -23,6 +23,7 @@
 
 .. |DataReaderQos-api| replace:: :cpp:class:`DataReaderQos <eprosima::fastdds::dds::DataReaderQos>`
 .. |DataReaderQos::DataReaderQos-api| replace:: :cpp:func:`DataReaderQos()<eprosima::fastdds::dds::DataReaderQos::DataReaderQos>`
+.. |DataReaderQos::data_sharing-api| replace:: :cpp:func:`data_sharing()<eprosima::fastdds::dds::DataReaderQos::data_sharing>`
 .. |DataReaderQos::deadline-api| replace:: :cpp:func:`deadline()<eprosima::fastdds::dds::DataReaderQos::deadline>`
 .. |DataReaderQos::destination_order-api| replace:: :cpp:func:`destination_order()<eprosima::fastdds::dds::DataReaderQos::destination_order>`
 .. |DataReaderQos::durability_service-api| replace:: :cpp:func:`durability_service()<eprosima::fastdds::dds::DataReaderQos::durability_service>`
@@ -59,6 +60,7 @@
 
 .. |DataWriterQos-api| replace:: :cpp:class:`DataWriterQos <eprosima::fastdds::dds::DataWriterQos>`
 .. |DataWriterQos::DataWriterQos-api| replace:: :cpp:func:`DataWriterQos()<eprosima::fastdds::dds::DataWriterQos::DataWriterQos>`
+.. |DataWriterQos::data_sharing-api| replace:: :cpp:func:`data_sharing()<eprosima::fastdds::dds::DataWriterQos::data_sharing>`
 .. |DataWriterQos::deadline-api| replace:: :cpp:func:`deadline()<eprosima::fastdds::dds::DataWriterQos::deadline>`
 .. |DataWriterQos::destination_order-api| replace:: :cpp:func:`destination_order()<eprosima::fastdds::dds::DataWriterQos::destination_order>`
 .. |DataWriterQos::durability_service-api| replace:: :cpp:func:`durability_service()<eprosima::fastdds::dds::DataWriterQos::durability_service>`
@@ -179,6 +181,7 @@
 .. |Topic::get_inconsistent_topic_status-api| replace:: :cpp:func:`get_inconsistent_topic_status()<eprosima::fastdds::dds::Topic::get_inconsistent_topic_status>`
 .. |TopicDataType-api| replace:: :cpp:class:`TopicDataType<eprosima::fastdds::dds::TopicDataType>`
 .. |TopicDataType::getKey-api| replace:: :cpp:func:`getKey()<eprosima::fastdds::dds::TopicDataType::getKey>`
+.. |TopicDataType::is_bounded-api| replace:: :cpp:func:`is_bounded()<eprosima::fastdds::dds::TopicDataType::is_bounded>`
 .. |TopicDataType::m_isGetKeyDefined-api| replace:: :cpp:member:`m_isGetKeyDefined<eprosima::fastdds::dds::TopicDataType::m_isGetKeyDefined>`
 .. |TopicDescription-api| replace:: :cpp:class:`TopicDescription<eprosima::fastdds::dds::TopicDescription>`
 .. |TopicListener-api| replace:: :cpp:class:`TopicListener<eprosima::fastdds::dds::TopicListener>`
@@ -252,6 +255,21 @@
 
 .. |BEST_EFFORT-xml-api| replace:: :cpp:enumerator:`BEST_EFFORT<dds::fastdds::eprosima::ReliabilityQosPolicyKind::BEST_EFFORT_RELIABILITY_QOS>`
 .. |RELIABLE-xml-api| replace:: :cpp:enumerator:`RELIABLE<dds::fastdds::eprosima::ReliabilityQosPolicyKind::RELIABLE_RELIABILITY_QOS>`
+
+.. |DataSharingKind-api| replace:: :cpp:enum:`DataSharingKind<dds::fastdds::eprosima::DataSharingKind>`
+.. |DATASHARING_AUTO-api| replace:: :cpp:enumerator:`AUTO<dds::fastdds::eprosima::DataSharingKind::AUTO>`
+.. |DATASHARING_ON-api| replace:: :cpp:enumerator:`ON<dds::fastdds::eprosima::DataSharingKind::ON>`
+.. |DATASHARING_OFF-api| replace:: :cpp:enumerator:`OFF<dds::fastdds::eprosima::DataSharingKind::OFF>`
+
+.. |DataSharingQosPolicy-api| replace:: :cpp:class:`DataSharingQosPolicy<eprosima::fastdds::dds::DataSharingQosPolicy>`
+.. |DataSharingQosPolicy::kind-api| replace:: :cpp:func:`kind()<eprosima::fastdds::dds::DataSharingQosPolicy::kind>`
+.. |DataSharingQosPolicy::shm_directory-api| replace:: :cpp:func:`shm_directory()<eprosima::fastdds::dds::DataSharingQosPolicy::shm_directory>`
+.. |DataSharingQosPolicy::max_domains-api| replace:: :cpp:func:`max_domains()<eprosima::fastdds::dds::DataSharingQosPolicy::max_domains>`
+.. |DataSharingQosPolicy::domain_ids-api| replace:: :cpp:func:`domain_ids()<eprosima::fastdds::dds::DataSharingQosPolicy::domain_ids>`
+.. |DataSharingQosPolicy::add_domain_id-api| replace:: :cpp:func:`add_domain_id()<eprosima::fastdds::dds::DataSharingQosPolicy::add_domain_id>`
+.. |DataSharingQosPolicy::auto-api| replace:: :cpp:func:`automatic()<eprosima::fastdds::dds::DataSharingQosPolicy::automatic>`
+.. |DataSharingQosPolicy::on-api| replace:: :cpp:func:`on()<eprosima::fastdds::dds::DataSharingQosPolicy::on>`
+.. |DataSharingQosPolicy::off-api| replace:: :cpp:func:`off()<eprosima::fastdds::dds::DataSharingQosPolicy::off>`
 
 .. |DurabilityServiceQosPolicy-api| replace:: :cpp:class:`DurabilityServiceQosPolicy<eprosima::fastdds::dds::DurabilityServiceQosPolicy>`
 .. |service_cleanup_delay-api| replace:: :cpp:member:`service_cleanup_delay<eprosima::fastdds::dds::DurabilityServiceQosPolicy::service_cleanup_delay>`

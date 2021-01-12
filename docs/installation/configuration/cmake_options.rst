@@ -81,12 +81,6 @@ dependency on other options.
           for more information on *Fast DDS* SHM transport.
         - ``ON`` ``OFF``
         - ``ON``
-    *   - :class:`LOG_CONSUMER_DEFAULT`
-        - Selects the default log consumer for the logging module. ``AUTO`` has the same behavior as ``STDOUT``. |br|
-          For more information, please refer to :ref:`Log consumers <dds_layer_log_consumer>`.
-        - ``AUTO`` ``STDOUT`` |br|
-          ``STDOUTERR``
-        - ``AUTO``
     *   - :class:`COMPILE_EXAMPLES`
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
           :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the
@@ -117,14 +111,6 @@ dependency on other options.
           more information on *Fast DDS* real-time configuration.
         - ``ON`` ``OFF``
         - ``OFF``
-    *   - :class:`INTERNAL_DEBUG`
-        - Activates |Log::Kind::Info| debug messages (See :ref:`dds_layer_log_intro`). |br|
-          For this option to have any effect, i.e. to print the information messages,  |br|
-          *Fast DDS* must be debug built. This is done by setting the :class:`CMAKE_BUILD_TYPE` |br|
-          option to `Debug`. Moreover, :class:`INTERNAL_DEBUG` is set to ``ON`` if |br|
-          :class:`EPROSIMA_BUILD` is ``ON``.
-        - ``ON`` ``OFF``
-        - ``OFF``
     *   - :class:`SQLITE3_SUPPORT`
         - Builds the |SQLITE3_PLUGIN|, which enables the |TRANSIENT_DURABILITY_QOS-api| |br|
           and |PERSISTENT_DURABILITY_QOS-api| options for the :ref:`durabilitykind` |br|
@@ -132,6 +118,45 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``ON``
 
+Log options
+-----------
+*Fast DDS* uses its own configurable **Log module**  with different verbosity levels.
+Please, refer to :ref:`dds_layer_log_intro` section for more information.
+
+This module can be configured using *Fast DDS* CMake arguments regarding the following options.
+
+.. list-table::
+    :header-rows: 1
+
+    *   - Option
+        - Description
+        - Possible values
+        - Default
+    *   - :class:`LOG_CONSUMER_DEFAULT`
+        - Selects the default log consumer for the logging module. ``AUTO`` has the same behavior as ``STDOUT``. |br|
+          For more information, please refer to :ref:`Log consumers <dds_layer_log_consumer>`.
+        - ``AUTO`` ``STDOUT`` |br|
+          ``STDOUTERR``
+        - ``AUTO``
+    *   - :class:`LOG_NO_INFO`
+        - Deactivates Info Log level. |br|
+          If *Fast DDS* is built in debug mode, the default value will be ``OFF``.
+        - ``ON`` ``OFF``
+        - ``ON``
+    *   - :class:`LOG_NO_WARNING`
+        - Deactivates Warning Log level.
+        - ``ON`` ``OFF``
+        - ``OFF``
+    *   - :class:`LOG_NO_ERROR`
+        - Deactivates Error Log level.
+        - ``ON`` ``OFF``
+        - ``OFF``
+    *   - :class:`INTERNAL_DEBUG`
+        - Activates compilation of log messages (See :ref:`dds_layer_log_disable`). |br|
+          Moreover, :class:`INTERNAL_DEBUG` is set to ``ON`` if |br|
+          :class:`EPROSIMA_BUILD` is ``ON``.
+        - ``ON`` ``OFF``
+        - ``OFF``
 
 Third-party libraries options
 -----------------------------

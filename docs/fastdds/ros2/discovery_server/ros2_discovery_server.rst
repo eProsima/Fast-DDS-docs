@@ -163,16 +163,6 @@ Now we should see the listener *simple_listener* receiving the messages from *si
 messages from *talker_discovery_server*.
 
 
-Visualization tool `rqt_graph`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The tool ``rqt_graph`` can be used to verify the nodes and structure of this example.
-Remember, in order to use the ``rqt_graph`` with the *Discovery Server Protocol*
-(i.e., to see the ``listener/talker_discovery_server``)
-the environment variable ``ROS_DISCOVERY_SERVER`` must be set beforehand.
-
-
-
 Advance user cases
 ------------------
 
@@ -308,6 +298,12 @@ partition from *Talker 2* and so it does not listen to it.
 
     Once two endpoints know each other, they do not need the server network between them to
     listen to each other messages.
+
+
+ROS2 Introspection
+^^^^^^^^^^^^^^^^^^
+
+
 
 
 

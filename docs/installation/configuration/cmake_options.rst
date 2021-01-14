@@ -119,7 +119,8 @@ dependency on other options.
         - ``ON``
 
 Log options
------------
+^^^^^^^^^^^
+
 *Fast DDS* uses its own configurable **Log module**  with different verbosity levels.
 Please, refer to :ref:`dds_layer_log_intro` section for more information.
 
@@ -133,7 +134,8 @@ This module can be configured using *Fast DDS* CMake arguments regarding the fol
         - Possible values
         - Default
     *   - :class:`LOG_CONSUMER_DEFAULT`
-        - Selects the default log consumer for the logging module. ``AUTO`` has the same behavior as ``STDOUT``. |br|
+        - Selects the default log consumer for the logging module. |br|
+          ``AUTO`` has the same behavior as ``STDOUT``. |br|
           For more information, please refer to :ref:`Log consumers <dds_layer_log_consumer>`.
         - ``AUTO`` ``STDOUT`` |br|
           ``STDOUTERR``
@@ -159,7 +161,7 @@ This module can be configured using *Fast DDS* CMake arguments regarding the fol
         - ``OFF``
 
 Third-party libraries options
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *Fast DDS* relies on the `eProsima FastCDR <https://github.com/eProsima/Fast-CDR>`_ library for serialization
 mechanisms.
@@ -235,7 +237,7 @@ These libraries can also be configured using *Fast DDS* CMake options.
     (:class:`CMAKE_SYSTEM_NAME`) is Android.
 
 Test options
-------------
+^^^^^^^^^^^^
 
 *eProsima Fast DDS* comes with a full set of tests for continuous integration.
 The types of tests are: unit tests, black-box tests, performance tests, profiling tests, and

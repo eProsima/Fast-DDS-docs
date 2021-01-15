@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     files = [
         'simple.pcapng',
-        'discovery_service.pcapng',
+        'discovery_server.pcapng',
     ]
     data = pd.DataFrame()
     protocols = []
@@ -58,8 +58,8 @@ if __name__ == '__main__':
             continue
 
         protocol = 'Simple'
-        if 'service' in f:
-            protocol = 'Discovery Service'
+        if 'server' in f:
+            protocol = 'Discovery Server'
 
         protocols.append(protocol)
         packets.append(count_packets(f))

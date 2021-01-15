@@ -2486,7 +2486,7 @@ void dds_dataReader_examples()
             {
                 if (data_reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
                 {
-                    if (info.instance_state == ALIVE_INSTANCE_STATE)
+                    if (info.valid_data)
                     {
                         // Do something with the data
                         std::cout << "Received new data value for topic "
@@ -2541,7 +2541,7 @@ public:
         // Keep taking data until there is nothing to take
         while (reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
         {
-            if (info.instance_state == ALIVE_INSTANCE_STATE)
+            if (info.valid_data)
             {
                 // Do something with the data
                 std::cout << "Received new data value for topic "

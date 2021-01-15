@@ -12,5 +12,5 @@ as well as how to define the |DomainParticipantListener| discovery callbacks.
     general_disc_settings.rst
     simple.rst
     static.rst
-    server_client.rst
+    discovery_server.rst
     disc_callbacks.rst

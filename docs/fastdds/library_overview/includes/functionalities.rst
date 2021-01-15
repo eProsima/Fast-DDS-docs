@@ -17,7 +17,7 @@ This applies at any point in the communication process.
   `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2>`_ and provides compatibility with other DDS implementations
   Here the DomainParticipants are discovered individually at an early stage to subsequently match the DataWriter and
   DataReader they implement.
-* **Server-Client Discovery**.
+* **Discovery Server**.
   This discovery mechanism uses a centralized discovery architecture, where servers act as a hubs for discovery meta
   traffic.
 * **Static Discovery**.

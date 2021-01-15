@@ -50,7 +50,7 @@ The possible values are:
 +---------------------+---------------------+--------------------------------------------------------------------------+
 | Static              | |STATIC|            | SPDP with manual EDP specified in XML files.                             |
 +---------------------+---------------------+--------------------------------------------------------------------------+
-| Server-Client       | |SERVER|            | The DomainParticipant acts as a hub for discovery traffic, receiving     |
+| Discovery Server    | |SERVER|            | The DomainParticipant acts as a hub for discovery traffic, receiving     |
 |                     |                     | |br| and distributing discovery information.                             |
 |                     +---------------------+--------------------------------------------------------------------------+
 |                     | |CLIENT|            | The DomainParticipant acts as a client for discovery traffic. |br|       |
@@ -59,8 +59,8 @@ The possible values are:
 |                     +---------------------+--------------------------------------------------------------------------+
 |                     | |BACKUP|            | Creates a SERVER DomainParticipant which has a persistent ``sqlite``     |
 |                     |                     | |br| database. A BACKUP server can load the a database on start. |br|    |
-|                     |                     | This type of sever makes the Server-Client architecture resilient |br|   |
-|                     |                     | to server destruction.                                                   |
+|                     |                     | This type of sever makes the Discovery Server architecture |br|          |
+|                     |                     | resilient to server destruction.                                         |
 +---------------------+---------------------+--------------------------------------------------------------------------+
 | Manual              | |NONE|              | Disables PDP phase, therefore the is no EDP phase. |br|                  |
 |                     |                     | All matching must be done manually through the |br|                      |

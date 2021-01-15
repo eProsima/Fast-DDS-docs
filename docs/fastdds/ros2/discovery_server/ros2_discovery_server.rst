@@ -311,14 +311,14 @@ ROS 2 Command Line Interface (CLI) implements several introspection features to 
 execution.
 These features (i.e. `rosbag`, `topic list`, etc.) are very helpful to understand a ROS 2 working network.
 
-Most of these features use the DDS capability to share any topic info with every existant participant.
+Most of these features use the DDS capability to share any topic info with every exiting participant.
 However, the new :ref:`ros2_discovery_server_v2` implements a traffic network reduction
 that limits the discovery data between nodes that do not share a topic.
 This means that not every node will receive every topic data unless it has a reader in that topic.
 
 The Discovery Server v2 functionality allows every server to know and share all the participants and topic information
 with every other server matched.
-So, this functionality can be used in order to use ROS 2 introspection succesfully when running with Discovery Server
+So, this functionality can be used in order to use ROS 2 introspection successfully when running with Discovery Server
 discovery protocol.
 
 
@@ -341,7 +341,7 @@ Otherwise, the new participant creation will lead to an error.
 
 * :download:`XML Discovery Server configuration file <discovery_server_configuration_file.xml>`
 
-First of all, instanciate a ROS 2 Daemon using this configuration (remember to source ROS 2 installation in every
+First of all, instantiate a ROS 2 Daemon using this configuration (remember to source ROS 2 installation in every
 new terminal).
 
 .. code-block:: console
@@ -375,7 +375,7 @@ are created within this tools' executions).
     ros2 topic echo /chatter
 
 Be careful to use a different terminal than the Daemon one for each execution, as some of the introspection tools
-instanciate their own nodes, and only one node could be instanciated with `discovery_server_configuration_file.xml`
+instantiate their own nodes, and only one node could be instantiated with `discovery_server_configuration_file.xml`
 exported.
 
 We can also see the Node's Graph using the ROS 2 tool `rqt_graph` as follows.
@@ -391,7 +391,7 @@ No Daemon commands
 
 Some ROS 2 CLI tools can be executed without the ROS 2 Daemon.
 In order to these tools to connect with a Discovery Server and receive all the topics info
-they need to be instanciated as a Server different than the main one, because they are
+they need to be instantiated as a Server different than the main one, because they are
 volatile nodes.
 
 We can configure a Discovery Server that is connected to the main Server using a similar

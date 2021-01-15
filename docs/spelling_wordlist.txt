@@ -134,6 +134,7 @@ preallocate
 preallocated
 preallocates
 preallocation
+preconfigure
 preprocessor
 QoS
 QosPolicyCount

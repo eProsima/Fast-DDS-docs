@@ -321,8 +321,8 @@ The configuration file is mandatory in order to avoid using intra-process mode.
 
 .. note::
 
-    These scripts require a Discovery Server closure feature that is only available from versions newer than
-    Fast DDS v2.1.0.
+    These scripts require a Discovery Server closure feature that is only available from
+    Fast DDS v2.1.0 and forward.
     In order to use this functionality, compile ROS 2 with Fast DDS v2.1.0 or higher.
 
 These scripts' functionalities are references for advance purpose and their study is left to the user.

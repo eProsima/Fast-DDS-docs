@@ -69,6 +69,7 @@ heartbeatPeriod
 heartbeatResponseDelay
 HistoryQosPolicy
 InconsistentTopicStatus
+infos
 initialAcknackDelay
 initialHeartbeatDelay
 instanceHandle

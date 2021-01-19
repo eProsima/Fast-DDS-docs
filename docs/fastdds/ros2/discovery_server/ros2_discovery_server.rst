@@ -1,4 +1,4 @@
-.. ros2-discovery-server
+.. _ros2-discovery-server:
 
 Use ROS 2 with Fast-DDS Discovery Server
 =========================================
@@ -36,7 +36,6 @@ These **Discovery Servers** can be independent, duplicated or connected with eac
 redundancy over the network and avoid having a *Single-Point-Of-Failure*.
 
 .. _ros2_discovery_server_v2:
-
 
 Discovery Server v2
 -------------------
@@ -311,22 +310,26 @@ ROS 2 Command Line Interface (CLI) implements several introspection features to 
 execution.
 These features (i.e. `rosbag`, `topic list`, etc.) are very helpful to understand a ROS 2 working network.
 
-Most of these features use the DDS capability to share any topic info with every exiting participant.
+Most of these features use the DDS capability to share any topic information with every exiting participant.
 However, the new :ref:`ros2_discovery_server_v2` implements a traffic network reduction
 that limits the discovery data between nodes that do not share a topic.
 This means that not every node will receive every topic data unless it has a reader in that topic.
+As most of ROS 2 CLI Introspection is executed by adding a node into the network (some of them use ROS 2 Daemon,
+and some creates their own nodes), using Discovery Server v2 we will find that most of these functionalities are
+limited and do not have the whole information.
 
-The Discovery Server v2 functionality allows every server to know and share all the participants and topic information
-with every other server matched.
-So, this functionality can be used in order to use ROS 2 introspection successfully when running with Discovery Server
-discovery protocol.
+The Discovery Server v2 functionality allows every node running as a **Server** (Participant/Node type)
+to know and share all the participants and topics information with every other server matched.
+In this sense, a server can be configured alongside ROS 2 introspection, since then the introspection tool will
+be able to discover every entity in the network that is using the Discovery Server protocol.
 
 
 Daemon's related commands
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ROS 2 Daemon is used in several ROS 2 CLI introspection commands.
-This section will explain how to use ROS 2 CLI with ROS 2 Daemon running as a Server.
+The ROS 2 Daemon is used in several ROS 2 CLI introspection commands. It adds a ROS 2 Node to the network in order
+to receive all the data sent.
+This section will explain how to use ROS 2 CLI with ROS 2 Daemon running as a **Server**.
 This will allow the Daemon to know all the Node's graph and to receive every topic and endpoint information.
 
 Fast DDS CLI can execute a Discovery Server, but it will spawn the Server in the actual process (or in a new one),
@@ -334,10 +337,10 @@ and we want to run ROS 2 Daemon process as the Discovery Server.
 For this purpose, Fast DDS XML configuration can be used in order to preconfigure every new node that is created
 with this configuration exported.
 
-Here it is the configuration file that will make that every new participant will be created as a Discovery Server.
-It is important to notice that, in order to create a Discovery Server, it is needed to specify a port and a GUID (id)
-so only one participant must be created while this configuration file is in use.
-Otherwise, the new participant creation will lead to an error.
+Below you can find a XML configuration file which will configure every new participant as a Discovery Server.
+It is important to notice that, in order to create a Discovery Server, port and a GUID (id) must be specified.
+so only one participant at a time can be created whit this configuration file.
+Creating more than one participant with the same file will lead to an error.
 
 * :download:`XML Discovery Server configuration file <discovery_server_configuration_file.xml>`
 
@@ -350,7 +353,7 @@ new terminal).
     ros2 daemon stop
     ros2 daemon start
 
-Run a talker and a listener that will discover each other by the Server/Daemon (notice that ROS_DISCOVERY_SERVER
+Run a talker and a listener that will discover each other by the Server/Daemon (notice that ``ROS_DISCOVERY_SERVER``
 configuration is the same as the one in `discovery_server_configuration_file.xml`).
 
 .. code-block:: console
@@ -363,7 +366,7 @@ configuration is the same as the one in `discovery_server_configuration_file.xml
     export ROS_DISCOVERY_SERVER="127.0.0.1:11811"
     ros2 run demo_nodes_cpp talker --ros-args --remap __node:=talker
 
-Now the Daemon can be used to introspect the network (ROS_DISCOVERY_SERVER must be exported because new nodes
+Now the Daemon can be used to introspect the network (``ROS_DISCOVERY_SERVER`` must be exported because new nodes
 are created within this tools' executions).
 
 .. code-block:: console
@@ -374,7 +377,7 @@ are created within this tools' executions).
     ros2 topic info /chatter
     ros2 topic echo /chatter
 
-Be careful to use a different terminal than the Daemon one for each execution, as some of the introspection tools
+Be careful to use a different terminal than that of the Daemon one for each execution, as some of the introspection tools
 instantiate their own nodes, and only one node could be instantiated with `discovery_server_configuration_file.xml`
 exported.
 
@@ -390,7 +393,7 @@ No Daemon commands
 ^^^^^^^^^^^^^^^^^^
 
 Some ROS 2 CLI tools can be executed without the ROS 2 Daemon.
-In order to these tools to connect with a Discovery Server and receive all the topics info
+In order for these tools to connect with a Discovery Server and receive all the topics information
 they need to be instantiated as a Server different than the main one, because they are
 volatile nodes.
 

@@ -315,10 +315,10 @@ However, the new :ref:`ros2_discovery_server_v2` implements a traffic network re
 that limits the discovery data between nodes that do not share a topic.
 This means that not every node will receive every topic data unless it has a reader in that topic.
 As most of ROS 2 CLI Introspection is executed by adding a node into the network (some of them use ROS 2 Daemon,
-and some creates their own nodes), using Discovery Server v2 we will find that most of these functionalities are
-limited and do not have the whole information.
+and some create their own nodes), using Discovery Server v2 we will find that most of these functionalities are
+limited and do not have all the information.
 
-The Discovery Server v2 functionality allows every node running as a **Server** (Participant/Node type)
+The Discovery Server v2 functionality allows every node running as a **Server** (a kind of *Participant type*)
 to know and share all the participants and topics information with every other server matched.
 In this sense, a server can be configured alongside ROS 2 introspection, since then the introspection tool will
 be able to discover every entity in the network that is using the Discovery Server protocol.
@@ -339,7 +339,7 @@ with this configuration exported.
 
 Below you can find a XML configuration file which will configure every new participant as a Discovery Server.
 It is important to notice that, in order to create a Discovery Server, port and a GUID (id) must be specified.
-so only one participant at a time can be created whit this configuration file.
+so only one participant at a time can be created with this configuration file.
 Creating more than one participant with the same file will lead to an error.
 
 * :download:`XML Discovery Server configuration file <discovery_server_configuration_file.xml>`
@@ -377,7 +377,7 @@ are created within this tools' executions).
     ros2 topic info /chatter
     ros2 topic echo /chatter
 
-Be careful to use a different terminal than that of the Daemon one for each execution, as some of the introspection
+Be careful to use a different terminal than that of the Daemon for each execution, as some of the introspection
 tools instantiate their own nodes, and only one node could be instantiated with
 `discovery_server_configuration_file.xml`
 exported.

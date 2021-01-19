@@ -377,8 +377,9 @@ are created within this tools' executions).
     ros2 topic info /chatter
     ros2 topic echo /chatter
 
-Be careful to use a different terminal than that of the Daemon one for each execution, as some of the introspection tools
-instantiate their own nodes, and only one node could be instantiated with `discovery_server_configuration_file.xml`
+Be careful to use a different terminal than that of the Daemon one for each execution, as some of the introspection
+tools instantiate their own nodes, and only one node could be instantiated with
+`discovery_server_configuration_file.xml`
 exported.
 
 We can also see the Node's Graph using the ROS 2 tool `rqt_graph` as follows.

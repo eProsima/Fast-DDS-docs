@@ -9,20 +9,27 @@ Accessing received data
 The application can access and consume the data values received on the :ref:`dds_layer_subscriber_dataReader`
 by *reading* or *taking*.
 
- * **Reading** is done with the |DataReader::read_next_sample-api| member function.
-   It reads the next, non-previously accessed data value available on the
-   DataReader, and stores it in the provided data buffer.
- * **Taking** is done with the |DataReader::take_next_sample-api| member function.
-   It reads the next, non-previously accessed data value available on the
-   DataReader, and stores it in the provided data buffer.
-   Additionally, it also removes the value from the DataReader,
-   so it is no longer accessible.
+ * **Reading** is done with any of the following member functions:
 
-If there is no unread data in the DataReader, both operations will return
-``NO_DATA`` and nothing is returned.
+   * |DataReader::read_next_sample-api| reads the next, non-previously accessed data value available
+     on the DataReader, and stores it in the provided data buffer.
+   * |DataReader::read-api|, |DataReader::read_instance-api| and |DataReader::read_next_instance-api|
+     provide mechanisms to get a collection of samples matching certain conditions.
 
-In addition to the data value, the data access operations also provide a SampleInfo
-instance with additional information that help interpreting the returned data value, like the originating
+ * **Taking** is done with any of the following member functions:
+
+   * |DataReader::take_next_sample-api| reads the next, non-previously accessed data value available on the DataReader,
+     and stores it in the provided data buffer.
+   * |DataReader::take-api|, |DataReader::take_instance-api| and |DataReader::take_next_instance-api|
+     provide mechanisms to get a collection of samples matching certain conditions.
+
+   When taking data, the returned samples are also removed from the DataReader, so they are no longer accessible.
+
+When there is no data in the DataReader matching the required conditions, all the operations will return
+``NO_DATA`` and output parameter will remain unchanged.
+
+In addition to the data values, the data access operations also provide SampleInfo instances with additional
+information that help interpreting the returned data values, like the originating
 :ref:`dds_layer_publisher_dataWriter` or the publication time stamp.
 Please, refer to the :ref:`dds_layer_subscriber_sampleInfo` section for an extensive description of its contents.
 
@@ -32,8 +39,7 @@ Please, refer to the :ref:`dds_layer_subscriber_sampleInfo` section for an exten
 Accessing data on callbacks
 ---------------------------
 
-When the DataReader new data values from any matching
-DataWriter, it informs the application through
+When the DataReader receives new data values from any matching DataWriter, it informs the application through
 two Listener callbacks:
 
 * |DataReaderListener::on_data_available-api|.
@@ -65,7 +71,7 @@ This can be done with the :func:`wait_for_unread_message` member function,
 that blocks until a new data sample is available or the given timeout expires.
 If no new data was available after the timeout expired, it will return with value ``false``.
 This function returning with value ``true`` means there is new data available on the
-:ref:`dds_layer_subscriber_dataReaderListener` ready for the application to retrieve.
+:ref:`dds_layer_subscriber_dataReader` ready for the application to retrieve.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

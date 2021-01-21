@@ -63,6 +63,24 @@ See the code below for an example of borrowing and returning loaned sequences.
    :end-before: //!
    :dedent: 8
 
+.. _dds_layer_subscriber_accessreceived_data:
+
+Processing returned data
+------------------------
+
+After calling the |DataReader::read-api| or |DataReader::take-api| operations, accessing the data on the returned
+sequences is quite easy.
+The sequences API provide a **length()** operation returning the number of elements in the collections.
+The application code just needs to check this value and use the **[]** operator to access the corresponding elements.
+Elements on the DDS data sequence should only be accessed when the corresponding element on the SampleInfo sequence
+indicate that valid data is present.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_DATAREADER_PROCESS_DATA
+   :end-before: //!
+   :dedent: 8
+
 .. _dds_layer_subscriber_accessreceived_listener:
 
 Accessing data on callbacks

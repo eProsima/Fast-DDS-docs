@@ -33,6 +33,35 @@ information that help interpreting the returned data values, like the originatin
 :ref:`dds_layer_publisher_dataWriter` or the publication time stamp.
 Please, refer to the :ref:`dds_layer_subscriber_sampleInfo` section for an extensive description of its contents.
 
+.. _dds_layer_subscriber_accessreceived_loans:
+
+Loaning and Returning Data and SampleInfo Sequences
+---------------------------------------------------
+
+The |DataReader::read-api| and |DataReader::take-api| operations (and their variants) return information to the
+application in two sequences:
+
+ * Received DDS data samples in a sequence of the data type
+ * Corresponding information about each DDS sample in a SampleInfo sequence
+
+These sequences are parameters that are passed by the application code into the
+|DataReader::read-api| and |DataReader::take-api| operations.
+When empty sequences (sequences that are initialized but have a maximum length of 0) are used, the middleware will
+fill those sequences with memory directly loaned from the receive queue itself.
+There is no copying of the data or SampleInfo when the contents of the sequences are loaned.
+This is certainly the most efficient way for the application code to retrieve the data.
+
+When doing so, however, the code must return the loaned sequences back to the middleware so that they can be reused
+by the receive queue.
+If the application does not return the loan by calling the |DataReader::return_loan-api| operation, then Fast DDS
+will eventually run out of memory to store DDS data samples received from the network for that DataReader.
+See the code below for an example of borrowing and returning loaned sequences.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_DATAREADER_LOAN_SEQUENCES
+   :end-before: //!
+   :dedent: 8
 
 .. _dds_layer_subscriber_accessreceived_listener:
 

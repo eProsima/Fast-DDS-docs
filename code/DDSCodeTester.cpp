@@ -2518,6 +2518,7 @@ void dds_dataReader_examples()
         }
         //!--
 
+        {
         //DDS_DATAREADER_LOAN_SEQUENCES
         // Sequences are automatically initialized to be empty (maximum == 0)
         FooSeq data_seq;
@@ -2534,6 +2535,38 @@ void dds_dataReader_examples()
         // must return the loaned sequences when done processing
         data_reader->return_loan(data_seq, info_seq);
         //!--
+        }
+
+        {
+        //DDS_DATAREADER_PROCESS_DATA
+        // Sequences are automatically initialized to be empty (maximum == 0)
+        FooSeq data_seq;
+        SampleInfoSeq info_seq;
+
+        // with empty sequences, a take() or read() will return loaned
+        // sequence elements
+        ReturnCode_t ret_code = data_reader->take(data_seq, info_seq,
+                LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
+                ANY_VIEW_STATE, ANY_INSTANCE_STATE);
+
+        // process the returned data
+        if (ret_code == ReturnCode_t::RETCODE_OK)
+        {
+            // Both info_seq.length() and data_seq.length() will have the number of samples returned
+            for (FooSeq::size_type n = 0; n < info_seq.length(); ++n)
+            {
+                // Only samples for which valid_data is true should be accessed
+                if (info_seq[n].valid_data)
+                {
+                    // Do something with data_seq[n]
+                }
+            }
+
+            // must return the loaned sequences when done processing
+            data_reader->return_loan(data_seq, info_seq);
+        }
+        //!--
+        }
     }
 }
 

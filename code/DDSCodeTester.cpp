@@ -885,6 +885,14 @@ public:
 };
 //!--
 
+struct Foo
+{
+    int32_t a;
+    uint64_t b;
+};
+
+FASTDDS_SEQUENCE(FooSeq, Foo);
+
 class CustomDataType : public TopicDataType
 {
 public:
@@ -892,7 +900,7 @@ public:
     CustomDataType()
         : TopicDataType()
     {
-        setName("footype");
+        setName("Foo");
     }
 
     bool serialize(
@@ -2471,7 +2479,7 @@ void dds_dataReader_examples()
         }
 
         // Create a data and SampleInfo instance
-        void* data = data_reader->type().create_data();
+        Foo data;
         SampleInfo info;
 
         //Define a timeout of 5 seconds
@@ -2508,10 +2516,23 @@ void dds_dataReader_examples()
                 std::cout << "No data this time" << std::endl;
             }
         }
+        //!--
 
-        // The data instance can be reused to retrieve new values,
-        // but delete it at the end to avoid leaks
-        data_reader->type().delete_data(data);
+        //DDS_DATAREADER_LOAN_SEQUENCES
+        // Sequences are automatically initialized to be empty (maximum == 0)
+        FooSeq data_seq;
+        SampleInfoSeq info_seq;
+        
+        // with empty sequences, a take() or read() will return loaned
+        // sequence elements
+        ReturnCode_t ret_code = data_reader->take(data_seq, info_seq,
+                LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
+                ANY_VIEW_STATE, ANY_INSTANCE_STATE);
+
+        // process the returned data
+
+        // must return the loaned sequences when done processing
+        data_reader->return_loan(data_seq, info_seq);
         //!--
     }
 }
@@ -2535,7 +2556,7 @@ public:
             DataReader* reader)
     {
         // Create a data and SampleInfo instance
-        void* data = reader->type().create_data();
+        Foo data;
         SampleInfo info;
 
         // Keep taking data until there is nothing to take
@@ -2555,10 +2576,6 @@ public:
                           << " is dead" << std::endl;
             }
         }
-
-        // The data instance can be reused to retrieve new values,
-        // but delete it at the end to avoid leaks
-        reader->type().delete_data(data);
     }
 };
 //!--

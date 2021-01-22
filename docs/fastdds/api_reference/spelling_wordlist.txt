@@ -21,7 +21,6 @@ cond
 config
 const
 Contructs
-correcly
 coumpound
 datareader
 DataReader
@@ -162,7 +161,6 @@ succesful
 suer
 synchronism
 te
-th
 TimeBasedFilterQosPolicy
 timedout
 TimeInfinite

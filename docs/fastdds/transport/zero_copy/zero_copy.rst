@@ -29,8 +29,8 @@ Overview
 
 When creating a DataWriter that supports Zero-Copy transfers, samples must be created with a *Fast DDS* function
 that extends the DDS API (|DataWriter::loan_sample-api|).
-The return of this function is a reference A* to the sample being sent, that is, a reference to the sample stored in the
-memory mapped file.
+The return of this function is a reference A* to the sample being sent, that is, a reference to the sample stored
+in the memory mapped file.
 The reference to this sample is sent to the DataReader which supports Zero-Copy and which is attached to the memory
 mapped file.
 Thus, the user has access to a reference B* to the sample.
@@ -73,7 +73,7 @@ To enable Zero-Copy perform the following steps:
     b)  Take/read the sample using the available functions in the DataReader.
         Please refer to section :ref:`dds_layer_subscriber_accessreceived` for further detail on how to access
         received data.
-    c)  Return the loaned sample using :func:`return_loan`.
+    c)  Return the loaned sample using |DataReader::return_loan-api|.
 
 Writing and reading in Zero-Copy transfers
 ------------------------------------------
@@ -93,7 +93,7 @@ An application example of a DataWriter that supports Zero-Copy using the *Fast D
 There are several points to note in the following code:
 
 *   Enabling the ``DataSharingQosPolicy``.
-*   The use of the :func:`return_loan` function to access and modify data samples.
+*   The use of the |DataReader::return_loan-api| function to access and modify data samples.
 *   The writing of data samples.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
@@ -120,9 +120,9 @@ Finally, the code snippet below implements the |DataReaderListener::on_data_avai
 callback.
 The key points to be noted in this function are:
 
-*   The declaration and handling of ``LoanableSequences``.
-*   The use of the :func:`return_loan` function to indicate to the DataReader that the application has finished
-    accessing the sequence.
+*   The declaration and handling of ``LoanableSequence``.
+*   The use of the |DataReader::return_loan-api| function to indicate to the DataReader that the application has
+    finished accessing the sequence.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
    :language: c++

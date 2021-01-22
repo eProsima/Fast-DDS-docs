@@ -66,6 +66,9 @@
 .. |DataWriter::get_offered_incompatible_qos_status-api| replace:: :cpp:func:`get_offered_incompatible_qos_status()<eprosima::fastdds::dds::DataWriter::get_offered_incompatible_qos_status>`
 .. |DataWriter::get_publication_matched_status-api| replace:: :cpp:func:`get_publication_matched_status()<eprosima::fastdds::dds::DataWriter::get_publication_matched_status>`
 .. |DataWriter::get_liveliness_lost_status-api| replace:: :cpp:func:`get_liveliness_lost_status()<eprosima::fastdds::dds::DataWriter::get_liveliness_lost_status>`
+.. |DataWriter::loan_sample-api| replace:: :cpp:func:`loan_sample()<eprosima::fastdds::dds::DataWriter::loan_sample>`
+.. |DataWriter::discard_loan-api| replace:: :cpp:func:`discard_loan()<eprosima::fastdds::dds::DataWriter::discard_loan>`
+
 
 .. |DataWriterQos-api| replace:: :cpp:class:`DataWriterQos <eprosima::fastdds::dds::DataWriterQos>`
 .. |DataWriterQos::DataWriterQos-api| replace:: :cpp:func:`DataWriterQos()<eprosima::fastdds::dds::DataWriterQos::DataWriterQos>`

@@ -6,16 +6,52 @@
 Data-sharing delivery
 =====================
 
-eProsima Fast DDS allows to speed up communications between entities within the same machine
+*Fast DDS* allows to speed up communications between entities within the same machine
 by sharing the history of the |DataWriter| with the |DataReader| through shared memory,
 thus avoiding any of the overhead involved in the transport layer,
-and effectively achieving zero-copy between DataWriter and DataReader.
+and effectively avoiding any data copy between DataWriter and DataReader.
 
-This feature is available only if the following requisites are met:
+.. note::
+    Although Data-sharing delivery uses sahred memory,
+    it differs from :ref:`transport_sharedMemory_sharedMemory`
+    in that :ref:`transport_sharedMemory_sharedMemory` is a full-compliant transport.
+    That means that with :ref:`transport_sharedMemory_sharedMemory`
+    the data being transmitted must be copied from the DataWriter history to the transport
+    and from the transport to the DataReader.
+    With Data-sharing these copies can be avoided
 
+The figure below shows a comparison between the different transports available in *Fast DDS*.
+
+.. figure:: /01-figures/fast_dds/transport/transport_comparison.png
+    :align: center
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
+
+Overview
+---------
+
+When the DataWriter is created, *Fast DDS* will pre-allocate a pool of
+|ResourceLimitsQosPolicy::max_samples-api| + |ResourceLimitsQosPolicy::extra_samples-api| samples that reside
+in a shared memory mapped file.
+When publishing new data, the DataWriter will take a sample from this pool and add it to its history,
+and notify the DataReader which sample from the pool has the new data.
+
+The DataReader will have access to the same shared memory mapped file,
+and will be able to access the data published by the DataWriter.
+
+
+Constraints
+-----------
+
+This feature is available only if the following requirements are met:
+
+* The |DataWriter| and |DataReader| have access to the same shared memory.
 * The |Topic| has a bounded |TopicDataType|,
   i.e., its |TopicDataType::is_bounded-api| member function returns true.
-* The |DataWriter| is configured with |PREALLOCATED_MEMORY_MODE-api| or |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|.
+* The DataWriter is configured with |PREALLOCATED_MEMORY_MODE-api| or |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|.
 
 
 Data-sharing delivery configuration

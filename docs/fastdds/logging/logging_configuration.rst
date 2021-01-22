@@ -91,6 +91,12 @@ respectively.
     :end-before: //!--
     :dedent: 4
 
+.. warning::
+
+    Setting any of the CMake options ``LOG_NO_INFO``, ``LOG_NO_WARNING`` or ``LOG_NO_ERROR`` to ``ON``
+    will completely disable the corresponding verbosity level.
+    ``LOG_NO_INFO`` is set to ``ON`` as default value if not in ``Debug`` mode.
+
 
 .. _dds_layer_log_message:
 

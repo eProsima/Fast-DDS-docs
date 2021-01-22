@@ -14,26 +14,26 @@ However, it is possible to fully disable each macro (and therefore each verbosit
 
 * |logInfo| is fully disabled by either:
 
-    * Setting CMake option ``CMAKE_BUILD_TYPE`` to something other than ``Debug`` (``Release`` or ``RelWithDebInfo``).
-    * Setting CMake option |LOG_NO_INFO| to ``ON``.
-    * Defining macro |LOG_NO_INFO| to ``ON``
+    * Setting CMake option |LOG_NO_INFO| to ``ON`` (default with ``CMAKE_BUILD_TYPE`` other than ``Debug``).
+    * Defining macro |LOG_NO_INFO| to ``ON``.
 
 * |logWarning| is fully disabled by either:
 
     * Setting CMake option |LOG_NO_WARNING| to ``ON``.
-    * Defining macro |LOG_NO_WARNING| to ``ON``
+    * Defining macro |LOG_NO_WARNING| to ``ON``.
 
 * |logError| is fully disabled by either:
 
     * Setting CMake option |LOG_NO_ERROR| to ``ON``.
-    * Defining macro |LOG_NO_ERROR| to ``ON``
+    * Defining macro |LOG_NO_ERROR| to ``ON``.
 
 Applying either of the previously described methods will set the macro to be empty at configuration time, thus allowing
 the compiler to optimize the call out.
-|logInfo| is a special case worth mentioning; |logInfo| is only active is ``CMAKE_BUILD_TYPE`` is set to ``Debug``, or
-if ``INTERNAL_DEBUG`` is set to ``ON``.
 This is done so that all the debugging messages present on the library are optimized out at build time if not building
 for debugging purposes, thus preventing them to impact performance.
+
+``INTERNAL_DEBUG`` CMake option activates log macros compilation, so the arguments of the macros are compiled.
+However it does not activate the log messages, i.e. the messages are not written in the log queue.
 
 .. warning::
 

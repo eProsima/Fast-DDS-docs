@@ -59,22 +59,26 @@ Data-sharing delivery configuration
 
 Data-sharing delivery can be configured in the |DataWriter| and the |DataReader|
 using :ref:`datasharingqospolicy`.
-Three attributes can be configured: the data-sharing delivery kind, the shared memory directory,
-and the data-sharing domain identifiers.
+Four attributes can be configured:
+
+* The data-sharing delivery kind
+* The shared memory directory
+* The data-sharing domain identifiers.
+* The maximum number of data-sharing domain identifiers.
 
 Data-Sharing delivery kind
 """"""""""""""""""""""""""
 
 Can be set to one of three modes:
 
-* **AUTO**: If the requisites are met,
-  data-sharing delivery will be used with entities that are data-sharing compatible.
-  If the requisites are not met, no data-sharing delivery will be used.
-* **ON**: Like **AUTO**, but the creation of the entity will fail if the requisites are not met.
+* **AUTO**: If both a DataWriter and DataReader meet the requirements,
+  data-sharing delivery will be used between them.
+  This is the default value.
+* **ON**: Like **AUTO**, but the creation of the entity will fail if the requirements are not met.
 * **OFF**: No data-sharing delivery will be used on this entity.
 
 The following matrix shows when two entities are data-sharing compatible according to their configuration
-(given that the entity creation does not fail):
+(given that the entity creation does not fail and that both entities have access to a shared memory):
 
 .. |common_ids| replace:: Only if they have common domain IDs
 .. |bounded_and_common_ids| replace:: Only if the TopicDataType is bounded and they have common domain IDs
@@ -99,10 +103,30 @@ Users can define the domains of a |DataWriter| or |DataReader| with the :ref:`da
 If no domain identifier is provided by the user, the system will create one automatically.
 This automatic data-sharing domain will be unique for the machine where the entity is running.
 That is, all entities running on the same machine, and for which the user has configured no user-specific domains,
-will be able to use data-sharing delivery (given that the rest of requisites are met).
+will be able to use data-sharing delivery (given that the rest of requirements are met).
 
-Even though a data-sharing domain identifier is a 64 bit integer,
-user-defined identifiers are restricted to 16 bit integers.
+During the discovery phase, entities will exchange their domain identifiers and check if they can
+use Data-sharing to communicate.
+
+.. note::
+    Even though a data-sharing domain identifier is a 64 bit integer,
+    user-defined identifiers are restricted to 16 bit integers.
+
+
+Maximum number of Data-sharing domain identifiers
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+The maximum number of domain identifiers that are expected to be received
+from a remote entity during discovery.
+If the remote entity defines (and sends) more than this number of domain identifiers,
+the discovery will fail.
+
+By default there is no limit to the number of identifiers.
+The default value can be changed with the |DataSharingQosPolicy::max_domains-api| function.
+Defining a finite number allows to preallocate the required memory
+to receive the list of identifiers during the entity creation,
+avoiding dynamic memory allocations afterwars.
+Note that a value of ``0`` means no limit.
 
 
 Shared memory directory

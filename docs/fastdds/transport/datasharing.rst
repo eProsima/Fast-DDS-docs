@@ -148,8 +148,8 @@ Configuring a user-defined directory may be useful in some scenarios:
     and the default directory configured for the current system is used.
 
 
-Effects of the writer history configuration
--------------------------------------------
+DataReader and DataWriter history coupling
+------------------------------------------
 
 With traditional :ref:`comm-transports-configuration` delivery,
 the DataReader and DataWriter keep separate and independent histories,
@@ -158,47 +158,56 @@ Once the samples is sent through the transport and received by the DataReader,
 the DataWriter is free to remove the sample from its history
 without affecting the DataReader.
 
-With data-sharing delivery, DataReader directly accesses the shared history of the DataWriter.
+With data-sharing delivery,
+the DataReader directly accesses the data instance created by the DataWriter.
 This means that the samples in both the history of the DataReader and the DataWriter
-are the same object in the shared memory.
-If the DataWriter removes the sample from its history, the DataReader loses access to it.
+refer to the same object in the shared memory.
 Therefore, there is a strong coupling in the behavior of the DataReader and DataWriter histories.
+If the DataWriter reuses the same sample to publish new data,
+the DataReader loses access to the old data sample.
 
-Reliable - keep all
-"""""""""""""""""""
+.. note::
+    The DataWriter can remove the sample from its history,
+    and it will still be available on the DataReader,
+    unless the same sample from the pool is reused to publish a new one.
+
+
+Data acknowledgement
+""""""""""""""""""""
 
 With data-sharing delivery, sample acknowledgment from the DataReader occurs the first time
 a sample is retrieved by the application (using |DataReader::read_next_sample-api|,
 |DataReader::take_next_sample-api|, or any of their variations).
-Therefore, this configuration ensures that the DataWriter will not remove a samples that has not been seen
-by the reader end application at least once.
+Once the data has been accessed by the application,
+the DataWriter is free to reuse that sample to publish new data.
+The DataReader detects when a samples has been reused
+and automatically removes it from its history.
 
-Reliable - keep last
-""""""""""""""""""""
+This means that subsequent attempts to access the same sample
+from the DataReader may return no sample at all.
 
-With |KEEP_LAST_HISTORY_QOS-api| configuration, the DataWriter can reuse the oldest sample
-in its history to add a new one, even if it was not acknowledged by the DataReader.
-This is specially harmful with a shallow history depth, but even with deep history depths,
-if the publishing rate is consistently higher than the rate at which the DataReader can process the samples,
-the DataWriter history will become full and samples will be reused before being acknowledged.
 
-If the publications come in bursts, the problem can be mitigated configuring
-|ResourceLimitsQosPolicy::extra_samples-api|.
-Instead of increasing the size of the DataWriter history,
-this parameter defines the number of samples that will be allocated to act as an extended buffer
-before an unacknowledged samples is reused.
-The DataWriter will behave normally, according to its history configuration,
-but the DataReader will have a total of
-|ResourceLimitsQosPolicy::max_samples-api| plus |ResourceLimitsQosPolicy::extra_samples-api|
-samples available for the application.
+Blocking reuse of samples until acknowledged
+""""""""""""""""""""""""""""""""""""""""""""
 
-The value of |ResourceLimitsQosPolicy::extra_samples-api| will strongly depend on the
-publication and reading rates, and in the duration of the publication bursts.
+With |KEEP_LAST_HISTORY_QOS-api| or |BEST_EFFORT_RELIABILITY_QOS-api| configurations,
+the DataWriter can remove samples from its history to add new ones,
+even if they were not acknowledged by the DataReader.
+In situations where the publishing rate is consistently faster
+than the rate at which the DataReader can process the samples,
+this can lead to every sample being reused before the application
+has a chance to process it, thus blocking the communication at application level.
 
-Best effort
-"""""""""""
+In order to avoid this situation,
+the samples in the preallocated pool are never reused unless they have been acknowledged,
+i.e., they have been processed by the application at least once.
+If there is no reusable sample in the pool,
+the writing operation in the DataWriter will be blocked until one is available
+or until |ReliabilityQosPolicy::max_blocking_time-api| is reached.
 
-With |BEST_EFFORT_RELIABILITY_QOS-api| the behavior is similar to that of
-|KEEP_LAST_HISTORY_QOS-api|, even worse,
-no sample waits for an acknowledge on the DataWriter.
-The solution is to use |ResourceLimitsQosPolicy::extra_samples-api| again.
+Note that the DataWriter history is not affected by this behavior,
+samples will be removed from the history by standard rules.
+Only the reuse of pool samples is affected.
+This means that the DataWriter history can be empty and the write operation
+be still blocked because all samples in the pool are unacknowledged.
+

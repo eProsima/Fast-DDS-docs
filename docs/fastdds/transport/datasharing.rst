@@ -12,7 +12,7 @@ thus avoiding any of the overhead involved in the transport layer,
 and effectively avoiding any data copy between DataWriter and DataReader.
 
 .. note::
-    Although Data-sharing delivery uses sahred memory,
+    Although Data-sharing delivery uses shared memory,
     it differs from :ref:`transport_sharedMemory_sharedMemory`
     in that :ref:`transport_sharedMemory_sharedMemory` is a full-compliant transport.
     That means that with :ref:`transport_sharedMemory_sharedMemory`
@@ -125,7 +125,7 @@ By default there is no limit to the number of identifiers.
 The default value can be changed with the |DataSharingQosPolicy::max_domains-api| function.
 Defining a finite number allows to preallocate the required memory
 to receive the list of identifiers during the entity creation,
-avoiding dynamic memory allocations afterwars.
+avoiding dynamic memory allocations afterwards.
 Note that a value of ``0`` means no limit.
 
 

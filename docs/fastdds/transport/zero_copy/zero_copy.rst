@@ -8,15 +8,11 @@ Zero-Copy
 =========
 
 This section explains the Zero-Copy transfer mode implemented in *Fast DDS*.
-The Zero-Copy transfer allows the transmission of data between DDS |DataWriter| and |DataReader| entities without
-making copies of the data being transmitted.
-These samples are stored in a shared memory region, which is accessible by multiple processes implementing an
-application using Fast DDS. In other words, the DataWriter has its History in a memory mapped file accessible to
-the DataReader.
+The Zero-Copy transfer allows the transmission of data between DDS |DataWriter| and |DataReader| using Shared
+Memory transport without copying data.
+Using data loans from writer to reader, the data sent does not need to be copied at any time, saving time and resources.
 
-The figure below shows a comparison between the different transports available in *Fast DDS*.
-
-.. figure:: /01-figures/fast_dds/transport/transport_comparison.png
+.. figure:: /01-figures/fast_dds/transport/transport_comparison.svg
     :align: center
 
 .. contents::
@@ -29,13 +25,15 @@ Overview
 
 When creating a DataWriter that supports Zero-Copy transfers, samples must be created with a *Fast DDS* function
 that extends the DDS API (|DataWriter::loan_sample-api|).
-The return of this function is a reference A* to the sample being sent, that is, a reference to the sample stored
+The return of this function is a reference ``A*`` to the sample being sent, that is, a reference to the sample stored
 in the memory mapped file.
 The reference to this sample is sent to the DataReader which supports Zero-Copy and which is attached to the memory
 mapped file.
-Thus, the user has access to a reference B* to the sample.
+Thus, the user has access to a reference ``B*`` to the sample.
 Since both processes do not share process memory, i.e., each has an assigned virtual process memory,
-the references A* and B* will be different but both point to the same RAM region.
+the references ``A*`` and ``B*`` will be different but both point to the same RAM region.
+On the Subscriber side, the DataReaderListener has to request the DataWriter for loans of the received data,
+thus directly receiving the reference ``B*`` instead of a copy.
 
 It is worth mentioning that one of the main advantages of this transfer solution is to avoid encapsulation of
 RTPS packets for DDS entities running on the same machine.
@@ -63,13 +61,13 @@ To enable Zero-Copy perform the following steps:
 
 2.  On the DataWriter side:
 
-    a)  Create a DataWriter for the previous type.
+    a)  Create a DataWriter for the previous type. Make sure that the DataWriter does not have DataSharing disabled.
     b)  Get a loan on a sample using |DataWriter::loan_sample-api|.
     c)  Write the sample using |DataWriter::write-api|.
 
 3.  On the DataReader side:
 
-    a)  Create a DataReader for the previous type.
+    a)  Create a DataReader for the previous type. Make sure that the DataReader does not have DataSharing disabled.
     b)  Take/read the sample using the available functions in the DataReader.
         Please refer to section :ref:`dds_layer_subscriber_accessreceived` for further detail on how to access
         received data.
@@ -87,13 +85,13 @@ DataWriter
 When the DataWriter is created, *Fast DDS* will pre-allocate a pool of
 |ResourceLimitsQosPolicy::max_samples-api| + |ResourceLimitsQosPolicy::extra_samples-api| samples that reside
 in a shared memory mapped file.
-This poll will be used to loan samples when the |DataWriter::loan_sample-api| function is called.
+This pool will be used to loan samples when the |DataWriter::loan_sample-api| function is called.
 
 An application example of a DataWriter that supports Zero-Copy using the *Fast DDS* library is presented below.
 There are several points to note in the following code:
 
-*   Enabling the ``DataSharingQosPolicy``.
-*   The use of the |DataReader::return_loan-api| function to access and modify data samples.
+*   Not disabling the ``DataSharingQosPolicy``. ``AUTO`` value enables Zero-Copy when possible.
+*   The use of the |DataReader::loan_sample-api| function to access and modify data samples.
 *   The writing of data samples.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
@@ -106,9 +104,8 @@ There are several points to note in the following code:
 DataReader
 ^^^^^^^^^^
 
-The following is an application example of a DataWriter that supports Zero-Copy using the *Fast DDS* library.
-As shown in this code snippet, the only difference in the DataReader declaration is enabling the
-|DataReaderQoS| ``DataSharingQosPolicy``.
+The following is an application example of a DataReader that supports Zero-Copy using the *Fast DDS* library.
+As shown in this code snippet, the configuration in the DataReader is truly similar to the DataWriter.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
    :language: c++
@@ -120,6 +117,7 @@ Finally, the code snippet below implements the |DataReaderListener::on_data_avai
 callback.
 The key points to be noted in this function are:
 
+*   Not disabling the ``DataSharingQosPolicy``. ``AUTO`` value enables Zero-Copy when possible.
 *   The declaration and handling of ``LoanableSequence``.
 *   The use of the |DataReader::return_loan-api| function to indicate to the DataReader that the application has
     finished accessing the sequence.
@@ -133,7 +131,7 @@ The key points to be noted in this function are:
 Caveats
 -------
 
-*   After calling |DataWriter::loan_sample-api|, *Fast DDS* takes ownership of the sample and therefore it is no longer
+*   After calling |DataWriter::write-api|, *Fast DDS* takes ownership of the sample and therefore it is no longer
     safe to make changes to that sample.
 *   If function |DataWriter::loan_sample-api| is called first and the sample is never written, it is necessary to use
     function |DataWriter::discard_loan-api| to return the sample to the DataWriter.
@@ -149,7 +147,7 @@ it has some constraints:
 
 *   Complete support for plain types.
 *   Unbounded types are not supported.
-*   Suitable for |PREALLOCATED_MEMORY_MODE-api| memory configurations only.
+*   Suitable for |PREALLOCATED_MEMORY_MODE-api| and |PREALOCATED_WITH_REALLOC-api| memory configurations only.
 
 .. note::
     Zero-Copy transfer support for non-plain types will be implemented in future releases of *Fast DDS*.
@@ -157,6 +155,6 @@ it has some constraints:
 Next steps
 ----------
 
-In the *eProsima Fast DDS* Github repository contains the complete example discussed in this section, as well as
+The *eProsima Fast DDS* Github repository contains the complete example discussed in this section, as well as
 multiple other examples for different use cases. The example implementing Zero-Copy transfers can be found
 `here <https://github.com/eProsima/Fast-DDS/tree/feature/zero-copy-preview/examples/C%2B%2B/DDS/ZeroCopyExample>`_..

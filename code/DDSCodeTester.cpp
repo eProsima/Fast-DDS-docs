@@ -4192,8 +4192,9 @@ void dds_zero_copy_example()
         DataWriterQos wqos = DATAWRITER_QOS_DEFAULT;
         wqos.history().depth = 10;
         wqos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;
-        // Enable the DataSharingQosPolicy using the DataWriterQoS
-        // wqos.data_sharing().automatic();
+        // DataSharingQosPolicy has to be set to AUTO (the default) or ON to enable Zero-Copy
+        wqos.data_sharing().on("shared_directory");
+
         DataWriter* writer = publisher->create_datawriter(topic, wqos);
 
         std::cout << "LoanableHelloWorld DataWriter created." << std::endl;
@@ -4286,8 +4287,9 @@ void dds_zero_copy_example()
         rqos.history().depth = 10;
         rqos.reliability().kind = RELIABLE_RELIABILITY_QOS;
         rqos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;
-        // Enable the DataSharingQosPolicy using the DataReaderQoS
-        // rqos.data_sharing().automatic();
+        // DataSharingQosPolicy has to be set to AUTO (the default) or ON to enable Zero-Copy
+        rqos.data_sharing().automatic();
+
         DataReader* reader = subscriber->create_datareader(topic, rqos, &datareader_listener);
         //!--
     }

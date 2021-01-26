@@ -39,6 +39,11 @@ can choose the one that best suits their requirements, or create their own.
 Although it is not part of the transport module,
 :ref:`intraprocess data delivery<intraprocess-delivery>` and :ref:`data sharing delivery<datasharing-delivery>`
 are also available to send messages between entities on some settings.
+The figure below shows a comparison between the different transports available in *Fast DDS*.
+
+.. figure:: /01-figures/fast_dds/transport/transport_comparison.svg
+    :align: center
+
 
 .. toctree::
     :maxdepth: 2

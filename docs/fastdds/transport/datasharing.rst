@@ -7,23 +7,22 @@ Data-sharing delivery
 =====================
 
 *Fast DDS* allows to speed up communications between entities within the same machine
-by sharing the history of the |DataWriter| with the |DataReader| through shared memory,
-thus avoiding any of the overhead involved in the transport layer,
-and effectively avoiding any data copy between DataWriter and DataReader.
+by sharing the history of the |DataWriter| with the |DataReader| through shared memory.
+This prevents any of the overhead involved in the transport layer,
+effectively avoiding any data copy between DataWriter and DataReader.
+
+Use of Data-sharing delivery does not prevent data copies between the application
+and the DataReader and DataWriter.
+These can be avoided in some cases using Zero-Copy delivery.
 
 .. note::
     Although Data-sharing delivery uses shared memory,
     it differs from :ref:`transport_sharedMemory_sharedMemory`
-    in that :ref:`transport_sharedMemory_sharedMemory` is a full-compliant transport.
-    That means that with :ref:`transport_sharedMemory_sharedMemory`
+    in that Shared Memory is a full-compliant transport.
+    That means that with Shared Memory Transport
     the data being transmitted must be copied from the DataWriter history to the transport
     and from the transport to the DataReader.
-    With Data-sharing these copies can be avoided
-
-The figure below shows a comparison between the different transports available in *Fast DDS*.
-
-.. figure:: /01-figures/fast_dds/transport/transport_comparison.png
-    :align: center
+    With Data-sharing these copies can be avoided.
 
 .. contents::
     :local:
@@ -154,7 +153,7 @@ DataReader and DataWriter history coupling
 With traditional :ref:`comm-transports-configuration` delivery,
 the DataReader and DataWriter keep separate and independent histories,
 each one with their own copy of the sample.
-Once the samples is sent through the transport and received by the DataReader,
+Once the sample is sent through the transport and received by the DataReader,
 the DataWriter is free to remove the sample from its history
 without affecting the DataReader.
 
@@ -180,7 +179,7 @@ a sample is retrieved by the application (using |DataReader::read_next_sample-ap
 |DataReader::take_next_sample-api|, or any of their variations).
 Once the data has been accessed by the application,
 the DataWriter is free to reuse that sample to publish new data.
-The DataReader detects when a samples has been reused
+The DataReader detects when a sample has been reused
 and automatically removes it from its history.
 
 This means that subsequent attempts to access the same sample

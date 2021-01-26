@@ -53,7 +53,7 @@ List of QoS Policy data members:
   A value of zero represents unlimited number of IDs.
 * Data sharing domain IDs:
   The list of data-sharing domain IDs configured for the current |DataWriter| or |DataReader|.
-  If no ID is provided, the system will create one unique for the current machine.
+  If no ID is provided, the system will create a unique one for the current machine.
 
 .. note::
      This QoS Policy concerns to |DataWriter| and |DataReader| entities.
@@ -117,7 +117,10 @@ C++
 
 XML
 ***
-XML configuration is not yet supported for this policy.
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->CONF-QOS-DATASHARING<-->
+    :end-before: <!--><-->
 
 .. _disablepositiveacksqospolicy:
 

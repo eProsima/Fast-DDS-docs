@@ -274,6 +274,32 @@
 </subscriber>
 <!--><-->
 
+<!-->CONF-QOS-DATASHARING<-->
+<publisher profile_name="publisher_profile_qos_datasharing">
+    <qos>
+        <data_sharing>
+            <kind>AUTOMATIC</kind>
+            <domain_ids>
+                <domainId>0x1234</domainId>
+                <domainId>0xABCD</domainId>
+            </domain_ids>
+        </data_sharing>
+    </qos>
+</publisher>
+
+<subscriber profile_name="subscriber_profile_qos_datasharing">
+    <qos>
+        <data_sharing>
+            <kind>AUTOMATIC</kind>
+            <domain_ids>
+                <domainId>0x1234</domainId>
+                <domainId>0xABCD</domainId>
+            </domain_ids>
+        </data_sharing>
+    </qos>
+</subscriber>
+<!--><-->
+
 <!-->CONF-QOS-KEY<-->
 <publisher profile_name="publisher_profile_qos_key">
     <topic>

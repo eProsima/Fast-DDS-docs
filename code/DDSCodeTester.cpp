@@ -2751,7 +2751,6 @@ void dds_qos_examples()
     }
 
     {
-        /* Commented out until DataSharing brranch is merged
         //DDS_CHANGE_DATASHARING_QOS_POLICY
         DataSharingQosPolicy datasharing;
 
@@ -2771,7 +2770,6 @@ void dds_qos_examples()
         datasharing.automatic();
 
         //!--
-        */
     }
 
     {

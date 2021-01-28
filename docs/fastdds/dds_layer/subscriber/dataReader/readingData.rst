@@ -13,14 +13,14 @@ by *reading* or *taking*.
 
    * |DataReader::read_next_sample-api| reads the next, non-previously accessed data value available
      on the DataReader, and stores it in the provided data buffer.
-   * |DataReader::read-api|, |DataReader::read_instance-api| and |DataReader::read_next_instance-api|
+   * |DataReader::read-api|, |DataReader::read_instance-api|, and |DataReader::read_next_instance-api|
      provide mechanisms to get a collection of samples matching certain conditions.
 
  * **Taking** is done with any of the following member functions:
 
    * |DataReader::take_next_sample-api| reads the next, non-previously accessed data value available on the DataReader,
      and stores it in the provided data buffer.
-   * |DataReader::take-api|, |DataReader::take_instance-api| and |DataReader::take_next_instance-api|
+   * |DataReader::take-api|, |DataReader::take_instance-api|, and |DataReader::take_next_instance-api|
      provide mechanisms to get a collection of samples matching certain conditions.
 
    When taking data, the returned samples are also removed from the DataReader, so they are no longer accessible.
@@ -46,12 +46,12 @@ application in two sequences:
 
 These sequences are parameters that are passed by the application code into the
 |DataReader::read-api| and |DataReader::take-api| operations.
-When empty sequences (sequences that are initialized but have a maximum length of 0) are used, the middleware will
+When the passed sequences are empty (they are initialized but have a maximum length of 0), the middleware will
 fill those sequences with memory directly loaned from the receive queue itself.
 There is no copying of the data or SampleInfo when the contents of the sequences are loaned.
 This is certainly the most efficient way for the application code to retrieve the data.
 
-When doing so, however, the code must return the loaned sequences back to the middleware so that they can be reused
+When doing so, however, the code must return the loaned sequences back to the middleware, so that they can be reused
 by the receive queue.
 If the application does not return the loan by calling the |DataReader::return_loan-api| operation, then Fast DDS
 will eventually run out of memory to store DDS data samples received from the network for that DataReader.
@@ -70,7 +70,7 @@ Processing returned data
 
 After calling the |DataReader::read-api| or |DataReader::take-api| operations, accessing the data on the returned
 sequences is quite easy.
-The sequences API provide a **length()** operation returning the number of elements in the collections.
+The sequences API provides a **length()** operation returning the number of elements in the collections.
 The application code just needs to check this value and use the **[]** operator to access the corresponding elements.
 Elements on the DDS data sequence should only be accessed when the corresponding element on the SampleInfo sequence
 indicate that valid data is present.
@@ -125,4 +125,3 @@ This function returning with value ``true`` means there is new data available on
    :start-after: //DDS_DATAREADER_READ_WAIT
    :end-before: //!
    :dedent: 8
-

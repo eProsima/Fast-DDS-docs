@@ -172,9 +172,9 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
        mkdir ~\Fast-DDS
        cd ~\Fast-DDS
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos -output fastrtps.repos
        mkdir src
-       vcs import src < fastrtps.repos
+       vcs import src --input fastrtps.repos
 
    Finally, use colcon_ to compile all software:
 

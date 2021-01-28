@@ -26,6 +26,7 @@ datareader
 DataReader
 DataReaderListener
 DataRepresentationQosPolicy
+DataSharingQosPolicy
 datawriter
 DataWriter
 datawriters

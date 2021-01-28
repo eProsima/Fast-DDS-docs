@@ -2,7 +2,7 @@
 
 .. rst-class:: api-ref
 
-DataSharingqosPolicy
+DataSharingQosPolicy
 --------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::DataSharingQosPolicy

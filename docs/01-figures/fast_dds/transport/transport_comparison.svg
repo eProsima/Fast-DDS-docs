@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml version="1.0" encoding="UTF-8"?><svg
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg
    xmlns:xhtml="http://www.w3.org/1999/xhtml"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -835,11 +834,11 @@
            height="100%"
            requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
           <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 76px; margin-left: 221px;">
+             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 70px; height: 1px; padding-top: 78px; margin-left: 215px;">
             <xhtml:div
                style="box-sizing: border-box; font-size: 0; text-align: center; ">
               <xhtml:div
-                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">Zero-copy</xhtml:div>
+                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">Data-sharing</xhtml:div>
             </xhtml:div>
           </xhtml:div>
         </foreignObject>
@@ -967,11 +966,11 @@
            height="100%"
            requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
           <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 76px; margin-left: 221px;">
+             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 107px; margin-left: 221px;">
             <xhtml:div
                style="box-sizing: border-box; font-size: 0; text-align: center; ">
               <xhtml:div
-                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">Zero-copy</xhtml:div>
+                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">Intraprocess</xhtml:div>
             </xhtml:div>
           </xhtml:div>
         </foreignObject>

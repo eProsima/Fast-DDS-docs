@@ -4178,18 +4178,22 @@ void dds_zero_copy_example()
         DomainParticipantQos pqos;
         pqos.name("Participant_pub");
         DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+
         // REGISTER THE TYPE
         TypeSupport type;
         type.register_type(participant);
+
         // CREATE THE PUBLISHER
         Publisher* publisher = participant->create_publisher(PUBLISHER_QOS_DEFAULT, nullptr);
+        
         // CREATE THE TOPIC
         Topic* topic = participant->create_topic(
             "LoanableHelloWorldTopic",
             type.get_type_name(),
             TOPIC_QOS_DEFAULT);
+        
         // CREATE THE WRITER
-        DataWriterQos wqos = DATAWRITER_QOS_DEFAULT;
+        DataWriterQos wqos = publisher->get_default_datawriter_qos();
         wqos.history().depth = 10;
         wqos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;
         // DataSharingQosPolicy has to be set to AUTO (the default) or ON to enable Zero-Copy
@@ -4272,18 +4276,22 @@ void dds_zero_copy_example()
         DomainParticipantQos pqos;
         pqos.name("Participant_sub");
         DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+
         // REGISTER THE TYPE
         TypeSupport type;
         type.register_type(participant);
+
         // CREATE THE SUBSCRIBER
         Subscriber* subscriber = participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT, nullptr);
+
         // CREATE THE TOPIC
         Topic* topic = participant->create_topic(
             "LoanableHelloWorldTopic",
             type.get_type_name(),
             TOPIC_QOS_DEFAULT);
+            
         // CREATE THE READER
-        DataReaderQos rqos = DATAREADER_QOS_DEFAULT;
+        DataReaderQos rqos = subscriber->get_default_datareader_qos();
         rqos.history().depth = 10;
         rqos.reliability().kind = RELIABLE_RELIABILITY_QOS;
         rqos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;

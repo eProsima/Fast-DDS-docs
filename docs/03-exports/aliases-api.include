@@ -151,6 +151,9 @@
 .. |DomainParticipantQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DomainParticipantQos::user_data>`
 .. |DomainParticipantQos::wire_protocol-api| replace:: :cpp:func:`wire_protocol()<eprosima::fastdds::dds::DomainParticipantQos::wire_protocol>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
+
+.. |LoanableSequence-api| replace:: :cpp:class:`LoanableSequence <eprosima::fastdds::dds::LoanableSequence>`
+
 .. |Publisher-api| replace:: :cpp:class:`Publisher <eprosima::fastdds::dds::Publisher>`
 .. |Publisher::create_datawriter_with_profile-api| replace:: :cpp:func:`create_datawriter_with_profile()<eprosima::fastdds::dds::Publisher::create_datawriter_with_profile>`
 .. |Publisher::create_datawriter-api| replace:: :cpp:func:`create_datawriter()<eprosima::fastdds::dds::Publisher::create_datawriter>`

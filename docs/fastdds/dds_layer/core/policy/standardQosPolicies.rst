@@ -1134,6 +1134,8 @@ List of QoS Policy data members:
 +----------------------------------------------------------------------------------------+-------------+---------------+
 | |ResourceLimitsQosPolicy::allocated_samples-api|                                       | ``int32_t`` | 100           |
 +----------------------------------------------------------------------------------------+-------------+---------------+
+| |ResourceLimitsQosPolicy::extra_samples-api|                                           | ``int32_t`` | 1             |
++----------------------------------------------------------------------------------------+-------------+---------------+
 
 * |ResourceLimitsQosPolicy::max_samples-api|: Controls the maximum number of samples that the DataWriter or DataReader
   can manage across all the
@@ -1146,6 +1148,10 @@ List of QoS Policy data members:
   DataReader can manage.
 * |ResourceLimitsQosPolicy::allocated_samples-api|: States the number of samples that will be allocated on
   initialization.
+* |ResourceLimitsQosPolicy::extra_samples-api|: States the number of extra samples that will be allocated on
+  the pool, so the maximum number of samples on the pool will be
+  |ResourceLimitsQosPolicy::max_samples-api| plus |ResourceLimitsQosPolicy::extra_samples-api|.
+  These extra samples act as a reservoir of samples even when the history is full.
 
 .. note::
      This QoS Policy concerns to Topic, DataWriter and DataReader entities.

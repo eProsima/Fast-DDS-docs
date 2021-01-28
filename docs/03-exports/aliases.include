@@ -5,6 +5,7 @@
 .. |DataReaderQos| replace:: :ref:`DataReaderQos<dds_layer_subscriber_dataReaderQos>`
 .. |DataReaders| replace:: :ref:`DataReaders<dds_layer_subscriber_dataReader>`
 .. |DataRepresentationQosPolicy| replace:: :ref:`DataRepresentationQosPolicy<datarepresentationqospolicy>`
+.. |DataSharingQosPolicy| replace:: :ref:`DataSharingQosPolicy<datasharingqospolicy>`
 .. |DataWriter| replace:: :ref:`DataWriter<dds_layer_publisher_dataWriter>`
 .. |DataWriterListener| replace:: :ref:`DataWriterListener<dds_layer_publisher_dataWriterListener>`
 .. |DataWriterQos| replace:: :ref:`DataWriterQos<dds_layer_publisher_dataWriterQos>`

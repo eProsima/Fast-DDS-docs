@@ -5,6 +5,8 @@ Policy
 
    /fastdds/api_reference/dds_pim/core/policy/datarepresentationid.rst
    /fastdds/api_reference/dds_pim/core/policy/datarepresentationqospolicy.rst
+   /fastdds/api_reference/dds_pim/core/policy/datasharingqospolicy.rst
+   /fastdds/api_reference/dds_pim/core/policy/datasharingkind.rst
    /fastdds/api_reference/dds_pim/core/policy/deadlineqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/destinationorderqospolicy.rst
    /fastdds/api_reference/dds_pim/core/policy/destinationorderqospolicykind.rst

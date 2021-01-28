@@ -2801,6 +2801,28 @@ void dds_qos_examples()
     }
 
     {
+        //DDS_CHANGE_DATASHARING_QOS_POLICY
+        DataSharingQosPolicy datasharing;
+
+        // Configure the DataSharing as AUTO with two user-defined IDs
+        std::vector<uint16_t> ids;
+        ids.push_back(0x1234);
+        ids.push_back(0xABCD);
+        datasharing.automatic(ids);
+
+        // Alternatively, configure with no IDs and add them afterwards
+        datasharing.automatic();
+        datasharing.add_domain_id(uint16_t(0x1234));
+        datasharing.add_domain_id(uint16_t(0xABCD));
+
+        // Or you can leave the IDs empty and the system will create one for you
+        // unique for the current machine
+        datasharing.automatic();
+
+        //!--
+    }
+
+    {
         //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
         ParticipantResourceLimitsQos participant_limits;
         //Set the maximum size of participant resource limits collection to 3 and it allocation configuration to fixed size

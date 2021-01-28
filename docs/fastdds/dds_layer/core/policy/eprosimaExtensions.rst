@@ -17,6 +17,113 @@ The eProsima QoS Policies extensions are those that allow changing the values of
     :backlinks: none
     :depth: 1
 
+
+.. _datasharingqospolicy:
+
+DataSharingQosPolicy
+^^^^^^^^^^^^^^^^^^^^
+
+This additional QoS allows configuring the data-sharing delivery communication between a writer and a reader.
+Please, see :ref:`datasharing-delivery` for a description of the data-sharing delivery functionality.
+
+List of QoS Policy data members:
+
++-------------------------+------------------------+-------------------------------------------+---------------+
+| Data Member             | Type                   | Accessor                                  | Default Value |
++=========================+========================+===========================================+===============+
+| Data-sharing kind       | :ref:`datasharingkind` | |DataSharingQosPolicy::kind-api|          | ``AUTO``      |
++-------------------------+------------------------+-------------------------------------------+---------------+
+| Shared memory directory | ``string``             | |DataSharingQosPolicy::shm_directory-api| | Empty string  |
++-------------------------+------------------------+-------------------------------------------+---------------+
+| Maximum domain number   | ``uint32_t``           | |DataSharingQosPolicy::max_domains-api|   | 0 (unlimited) |
++-------------------------+------------------------+-------------------------------------------+---------------+
+| Data-sharing domain IDs | ``vector<uint64_t>``   | |DataSharingQosPolicy::domain_ids-api|    | Empty         |
++-------------------------+------------------------+-------------------------------------------+---------------+
+
+* Data-sharing kind:
+  Specifies the behavior of data-sharing delivery.
+  See :ref:`DataSharingKind` for a description of possible values and their effect.
+* Shared memory directory:
+  The directory that will be used for the memory-mapped files.
+  If none is configured, then the system default directory will be used.
+* Maximum domain number:
+  Establishes the maximum number of data-sharing domain IDs in the local or remote endpoints.
+  Domain IDs are exchanged between data-sharing delivery compatible endpoints.
+  If this value is lower that the size of the list for any remote endpoint, the matching may fail.
+  A value of zero represents unlimited number of IDs.
+* Data sharing domain IDs:
+  The list of data-sharing domain IDs configured for the current |DataWriter| or |DataReader|.
+  If no ID is provided, the system will create a unique one for the current machine.
+
+.. note::
+     This QoS Policy concerns to |DataWriter| and |DataReader| entities.
+     :raw-html:`<br />`
+     It cannot be changed on enabled entities.
+
+.. _datasharingkind:
+
+DataSharingKind
+"""""""""""""""
+
+There are three possible values (see |DataSharingKind-api|):
+
+* |DATASHARING_OFF-api|:
+  The data-sharing delivery is disabled.
+  No communication will be performed using data-sharing delivery functionality.
+* |DATASHARING_ON-api|:
+  The data-sharing delivery is manually enabled.
+  An error will occur if the current topic is not :ref:`compatible<datasharing-delivery-constraints>`
+  with data-sharing delivery.
+  Communication with remote entities that share at least one data-sharing domain ID
+  will be done using data-sharing delivery functionality.
+* |DATASHARING_AUTO-api|:
+  data-sharing delivery will be activated if the current topic is
+  :ref:`compatible<datasharing-delivery-constraints>` with data-sharing,
+  and deactivated if not.
+
+
+.. datasharingconfiguration:
+
+Data-sharing configuration helper functions
+"""""""""""""""""""""""""""""""""""""""""""
+
+In order to set the data-sharing delivery configuration, one of the following helper member functions must be used.
+There is one for each :ref:`datasharingkind` flavor:
+
++----------------------------------+---------------------------+-------------------------+-------------------------+
+| Function                         | Resulting DataSharingKind | Shared memory directory | Data sharing domain IDs |
++==================================+===========================+=========================+=========================+
+| |DataSharingQosPolicy::auto-api| | |DATASHARING_AUTO-api|    | Optional                | Optional                |
++----------------------------------+---------------------------+-------------------------+-------------------------+
+| |DataSharingQosPolicy::on-api|   | |DATASHARING_ON-api|      | Mandatory               | Optional                |
++----------------------------------+---------------------------+-------------------------+-------------------------+
+| |DataSharingQosPolicy::off-api|  | |DATASHARING_OFF-api|     | N/A                     | N/A                     |
++----------------------------------+---------------------------+-------------------------+-------------------------+
+
+Instead of defining the data-sharing domain IDs on these helper functions,
+you can add them later with the |DataSharingQosPolicy::add_domain_id-api| function.
+Beware that adding a new domain ID counts as modifying the QosPolicy,
+so it must be done before the entity is enabled.
+
+
+Example
+"""""""
+
+C++
+***
+.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+   :language: c++
+   :dedent: 8
+   :start-after: //DDS_CHANGE_DATASHARING_QOS_POLICY
+   :end-before: //!
+
+XML
+***
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->CONF-QOS-DATASHARING<-->
+    :end-before: <!--><-->
+
 .. _disablepositiveacksqospolicy:
 
 DisablePositiveACKsQosPolicy

@@ -220,6 +220,8 @@ Please refer to :ref:`ResourceLimitsQosPolicy` for further information on Resour
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
 | ``<allocated_samples>``        | It controls the maximum number of samples to be stored.   | ``uint32_t``  | 100     |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
+| ``<extra_samples>``            | The number of extra samples to allocate on the pool.      | ``uint32_t``  | 1       |
++--------------------------------+-----------------------------------------------------------+---------------+---------+
 
 .. _CommonQOS:
 

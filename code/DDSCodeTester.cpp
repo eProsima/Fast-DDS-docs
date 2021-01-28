@@ -1870,6 +1870,38 @@ void dds_dataWriter_examples()
         // but delete it at the end to avoid leaks
         custom_type_support->deleteData(data);
         //!--
+
+        {
+        //DDS_DATAWRITER_LOAN_SAMPLES
+        // Borrow a data instance
+        void* data = nullptr;
+        if (ReturnCode_t::RETCODE_OK == data_writer->loan_sample(data))
+        {
+            bool error = false;
+
+            // Fill the data values
+            // (...)
+
+            if (error)
+            {
+                // Return the loan without publishing
+                data_writer->discard_loan(data);
+                return;
+            }
+
+            // Publish the new value
+            if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != ReturnCode_t::RETCODE_OK)
+            {
+                // Error
+                return;
+            }
+        }
+
+        // The data instance can be reused to publish new values,
+        // but delete it at the end to avoid leaks
+        custom_type_support->deleteData(data);
+        //!--
+        }
     }
 }
 

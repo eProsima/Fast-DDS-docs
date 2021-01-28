@@ -58,6 +58,8 @@
 .. |DataWriter::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::DataWriter::get_qos>`
 .. |DataWriter::set_qos-api| replace:: :cpp:func:`DataWriter::set_qos()<eprosima::fastdds::dds::DataWriter::set_qos>`
 .. |DataWriter::write-api| replace:: :cpp:func:`write()<eprosima::fastdds::dds::DataWriter::write>`
+.. |DataWriter::loan_sample-api| replace:: :cpp:func:`loan_sample()<eprosima::fastdds::dds::DataWriter::loan_sample>`
+.. |DataWriter::discard_loan-api| replace:: :cpp:func:`discard_loan()<eprosima::fastdds::dds::DataWriter::discard_loan>`
 .. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
 
 .. |DataWriter::get_offered_deadline_missed_status-api| replace:: :cpp:func:`get_offered_deadline_missed_status()<eprosima::fastdds::dds::DataWriter::get_offered_deadline_missed_status>`

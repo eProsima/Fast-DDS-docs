@@ -49,4 +49,37 @@ If ``max_blocking_time`` elapses before the DataWriter is able to store
 the modification without exceeding the limits, the write operation will fail and return ``TIMEOUT``.
 
 
+.. _dds_layer_publisher_write_loans:
 
+Borrowing a data buffer
+-----------------------
+
+When the user calls |DataWriter::write-api| with a new sample value,
+the data is copied from the given sample to the DataWriter's memory.
+For large data types this copy can consume significant time and memory resources.
+Instead, the DataWriter can loan a sample from its memory to the user,
+and the user can fill this sample with the required values.
+When |DataWriter::write-api| is called with such a loaned sample,
+the DataWriter does not copy its contents, as it already owns the buffer.
+
+To use loaned data samples in publications, perform the following steps:
+
+1. Get a reference to a loaned sample using |DataWriter::loan_sample-api|.
+2. Use the reference to build the data sample.
+3. Write the sample using |DataWriter::write-api|.
+
+
+Once |DataWriter::write-api| has been called with a loaned sample,
+the loan is considered returned, and it is not safe to make any
+changes on the contents of the sample.
+
+If function |DataWriter::loan_sample-api| is called but the sample is never written,
+the loan must be returned to the DataWriter using |DataWriter::discard_loan-api|.
+Otherwise the DataWriter may run out of samples.
+
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_DATAWRITER_LOAN_SAMPLES
+   :end-before: //!
+   :dedent: 8

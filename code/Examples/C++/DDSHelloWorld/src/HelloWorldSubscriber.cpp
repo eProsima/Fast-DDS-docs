@@ -82,7 +82,7 @@ private:
             SampleInfo info;
             if (reader->take_next_sample(&hello_, &info) == ReturnCode_t::RETCODE_OK)
             {
-                if (info.instance_state == ALIVE_INSTANCE_STATE)
+                if (info.valid_data)
                 {
                     samples_++;
                     std::cout << "Message: " << hello_.message() << " with index: " << hello_.index()

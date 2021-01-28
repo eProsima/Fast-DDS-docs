@@ -1,8 +1,15 @@
 .. |DataReader-api| replace:: :cpp:class:`DataReader <eprosima::fastdds::dds::DataReader>`
 .. |DataReader::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::DataReader::get_qos>`
 .. |DataReader::set_qos-api| replace:: :cpp:func:`DataReader::set_qos()<eprosima::fastdds::dds::DataReader::set_qos>`
+.. |DataReader::read-api| replace:: :cpp:func:`DataReader::read()<eprosima::fastdds::dds::DataReader::read>`
+.. |DataReader::read_instance-api| replace:: :cpp:func:`DataReader::read_instance()<eprosima::fastdds::dds::DataReader::read_instance>`
+.. |DataReader::read_next_instance-api| replace:: :cpp:func:`DataReader::read_next_instance()<eprosima::fastdds::dds::DataReader::read_next_instance>`
 .. |DataReader::read_next_sample-api| replace:: :cpp:func:`DataReader::read_next_sample()<eprosima::fastdds::dds::DataReader::read_next_sample>`
+.. |DataReader::take-api| replace:: :cpp:func:`DataReader::take()<eprosima::fastdds::dds::DataReader::take>`
+.. |DataReader::take_instance-api| replace:: :cpp:func:`DataReader::take_instance()<eprosima::fastdds::dds::DataReader::take_instance>`
+.. |DataReader::take_next_instance-api| replace:: :cpp:func:`DataReader::take_next_instance()<eprosima::fastdds::dds::DataReader::take_next_instance>`
 .. |DataReader::take_next_sample-api| replace:: :cpp:func:`DataReader::take_next_sample()<eprosima::fastdds::dds::DataReader::take_next_sample>`
+.. |DataReader::return_loan-api| replace:: :cpp:func:`DataReader::return_loan()<eprosima::fastdds::dds::DataReader::return_loan>`
 .. |DataReaderListener-api| replace:: :cpp:class:`DataReaderListener <eprosima::fastdds::dds::DataReaderListener>`
 
 .. |DataReader::get_requested_deadline_missed_status-api| replace:: :cpp:func:`get_requested_deadline_missed_status()<eprosima::fastdds::dds::DataReader::get_requested_deadline_missed_status>`

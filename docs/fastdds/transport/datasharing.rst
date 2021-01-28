@@ -41,6 +41,7 @@ and notify the DataReader which sample from the pool has the new data.
 The DataReader will have access to the same shared memory mapped file,
 and will be able to access the data published by the DataWriter.
 
+.. _datasharing-delivery-constraints:
 
 Constraints
 -----------
@@ -50,6 +51,7 @@ This feature is available only if the following requirements are met:
 * The |DataWriter| and |DataReader| have access to the same shared memory.
 * The |Topic| has a bounded |TopicDataType|,
   i.e., its |TopicDataType::is_bounded-api| member function returns true.
+* The Topic :ref:`is not keyed<dds_layer_topic_keyed_data_types>`.
 * The DataWriter is configured with |PREALLOCATED_MEMORY_MODE-api| or |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|.
 
 
@@ -80,22 +82,26 @@ The following matrix shows when two entities are data-sharing compatible accordi
 (given that the entity creation does not fail and that both entities have access to a shared memory):
 
 .. |common_ids| replace:: Only if they have common domain IDs
-.. |bounded_and_common_ids| replace:: Only if the TopicDataType is bounded and they have common domain IDs
+.. |bounded_and_common_ids| replace:: Only if the TopicDataType is bounded :raw-html:`<br />`
+   and they have common domain IDs
 
-+------+------------------+-------------------+--------------------------+
-|      | ON               | OFF               | AUTO                     |
-+======+==================+===================+==========================+
-| ON   | |common_ids|     | No                | |common_ids|             |
-+------+------------------+-------------------+--------------------------+
-| OFF  | No               | No                | No                       |
-+------+------------------+-------------------+--------------------------+
-| AUTO | |common_ids|     | No                | |bounded_and_common_ids| |
-+------+------------------+-------------------+--------------------------+
++------------+----------+------------------+-------------------+--------------------------+
+|                       |                       **Reader**                                |
++                       +------------------+-------------------+--------------------------+
+|                       | **ON**           | **OFF**           | **AUTO**                 |
++------------+----------+------------------+-------------------+--------------------------+
+| **Writer** | **ON**   | |common_ids|     | No                | |common_ids|             |
++            +----------+------------------+-------------------+--------------------------+
+|            | **OFF**  | No               | No                | No                       |
++            +----------+------------------+-------------------+--------------------------+
+|            | **AUTO** | |common_ids|     | No                | |bounded_and_common_ids| |
++------------+----------+------------------+-------------------+--------------------------+
+
 
 Data-sharing domain identifiers
 """""""""""""""""""""""""""""""
 
-Each entity defines a set of identifiers that represent a *domain* to which the entity belong.
+Each entity defines a set of identifiers that represent a *domain* to which the entity belongs.
 Two entities will be able to use data-sharing delivery between them only if both have at least a common domain.
 
 Users can define the domains of a |DataWriter| or |DataReader| with the :ref:`datasharingqospolicy`.
@@ -210,3 +216,9 @@ Only the reuse of pool samples is affected.
 This means that the DataWriter history can be empty and the write operation
 be still blocked because all samples in the pool are unacknowledged.
 
+The chance of the DataWriter blocking on a write operation can be reduced
+using |ResourceLimitsQosPolicy::extra_samples-api|.
+This will make the pool to allocate more samples than the history size,
+so that the DataWriter has more chances to get a free sample,
+while the DataReader can still access samples that have been removed from the
+DataWriter history.

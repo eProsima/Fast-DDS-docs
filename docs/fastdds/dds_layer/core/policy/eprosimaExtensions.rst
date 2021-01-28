@@ -72,11 +72,13 @@ There are three possible values (see |DataSharingKind-api|):
   No communication will be performed using data-sharing delivery functionality.
 * |DATASHARING_ON-api|:
   The data-sharing delivery is manually enabled.
-  An error will occur if the data type of the current topic is not compatible with data-sharing delivery.
+  An error will occur if the current topic is not :ref:`compatible<datasharing-delivery-constraints>`
+  with data-sharing delivery.
   Communication with remote entities that share at least one data-sharing domain ID
   will be done using data-sharing delivery functionality.
 * |DATASHARING_AUTO-api|:
-  data-sharing delivery will be activated if the data type of the current topic is compatible with data-sharing,
+  data-sharing delivery will be activated if the current topic is
+  :ref:`compatible<datasharing-delivery-constraints>` with data-sharing,
   and deactivated if not.
 
 

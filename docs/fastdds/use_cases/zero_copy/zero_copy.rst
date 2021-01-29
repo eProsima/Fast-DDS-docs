@@ -35,11 +35,11 @@ If Data-sharing delivery is used, the loaned data buffer will be in the shared m
 Reading the data on the subscriber side can also be done
 with :ref:`loans from the DataReader<dds_layer_subscriber_accessreceived_loans>`.
 The application gets the received samples as a reference to the receive queue itself.
-This prevents the copying of the data between the receiving application and the DataReader.
+This prevents the copying of the data from the DataReader to the receiving application.
 Again, if Data-sharing delivery is used, the loaned data will be in the shared memory,
 and will indeed be the same memory buffer used in the DataWriter history.
 
-Combining these three features, we can achieve a Zero-Copy communication between the
+Combining these three features, we can achieve Zero-Copy communication between the
 publishing application and the subscribing application.
 
 
@@ -68,10 +68,10 @@ To enable Zero-Copy perform the following steps:
 3.  On the DataReader side:
 
     a)  Create a DataReader for the previous type. Make sure that the DataReader does not have DataSharing disabled.
-    b)  Take/read the sample using the available functions in the DataReader.
+    b)  Take/read samples using the available functions in the DataReader.
         Please refer to section :ref:`dds_layer_subscriber_accessreceived_loans` for further detail on how to access
         to loans of the received data.
-    c)  Return the loaned sample using |DataReader::return_loan-api|.
+    c)  Return the loaned samples using |DataReader::return_loan-api|.
 
 Writing and reading in Zero-Copy transfers
 ------------------------------------------
@@ -107,6 +107,8 @@ DataReader
 
 The following is an application example of a DataReader that supports Zero-Copy using the *Fast DDS* library.
 As shown in this code snippet, the configuration in the DataReader is similar to the DataWriter.
+Be sure not to disable the :ref:`datasharingqospolicy`.
+|DATASHARING_AUTO-api| kind automatically enables Zero-Copy when possible.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
    :language: c++
@@ -118,8 +120,6 @@ Finally, the code snippet below implements the |DataReaderListener::on_data_avai
 callback.
 The key points to be noted in this function are:
 
-*   Not disabling the :ref:`datasharingqospolicy`.
-    |DATASHARING_AUTO-api| kind automatically enables Zero-Copy when possible.
 *   The declaration and handling of |LoanableSequence-api|.
 *   The use of the |DataReader::return_loan-api| function to indicate to the DataReader that the application has
     finished accessing the sequence.
@@ -152,11 +152,11 @@ it has some constraints:
     memory configurations only.
 
 .. note::
-    Zero-Copy transfer support for non-plain types will be implemented in future releases of *Fast DDS*.
+    Zero-Copy transfer support for non-plain types may be implemented in future releases of *Fast DDS*.
 
 Next steps
 ----------
 
 The *eProsima Fast DDS* Github repository contains the complete example discussed in this section, as well as
 multiple other examples for different use cases. The example implementing Zero-Copy transfers can be found
-`here <https://github.com/eProsima/Fast-DDS/tree/feature/zero-copy-preview/examples/C%2B%2B/DDS/ZeroCopyExample>`.
+`here <https://github.com/eProsima/Fast-DDS/tree/feature/zero-copy-preview/examples/C%2B%2B/DDS/ZeroCopyExample>`_.

@@ -4180,7 +4180,7 @@ void dds_zero_copy_example()
         DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
 
         // REGISTER THE TYPE
-        TypeSupport type;
+        TypeSupport type(new LoanableHelloWorldPubSubType());
         type.register_type(participant);
 
         // CREATE THE PUBLISHER
@@ -4214,6 +4214,12 @@ void dds_zero_copy_example()
             LoanableHelloWorld* data = static_cast<LoanableHelloWorld*>(sample);
             data->index() = msgsent + 1;
             memcpy(data->message().data(), "LoanableHelloWorld ", 20);
+
+            std::cout << "Sending sample (count=" << msgsent
+                    << ") at address " << &data << std::endl
+                    << "  index=" << data->index() << std::endl
+                    << "  message=" << data->message().data() << std::endl;
+
             // Write the sample.
             // After this function returns, the middleware owns the sample.
             writer->write(sample);

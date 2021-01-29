@@ -434,7 +434,7 @@
             <xhtml:div
                style="box-sizing: border-box; font-size: 0; text-align: center; ">
               <xhtml:div
-                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #333333; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">RTPS Reader</xhtml:div>
+                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #333333; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">RTPS Writer</xhtml:div>
             </xhtml:div>
           </xhtml:div>
         </foreignObject>

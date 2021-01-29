@@ -59,6 +59,10 @@ with distributed systems:
   For use cases with memory consumption constraints, *Fast DDS* can be configured to reduce memory footprint
   to a minimum by adjusting different QoS policies.
 
++ :ref:`use-case-zero-copy`.
+  Under certain constraints, *Fast DDS* can provide application level communication
+  between publishing and subscribing nodes avoiding any data copy during the process.
+
 + :ref:`ros2`.
   Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
   this documentation includes a whole independent section to show the use of the library in ROS 2,
@@ -73,3 +77,4 @@ with distributed systems:
     /fastdds/use_cases/many_subscribers/many_subscribers.rst
     /fastdds/use_cases/realtime/realtime.rst
     /fastdds/use_cases/reduce_memory/reduce_memory.rst
+    /fastdds/use_cases/zero_copy/zero_copy.rst

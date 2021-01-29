@@ -4081,3 +4081,230 @@ void dds_persistence_examples()
     DataReader* reader = subscriber->create_datareader(topic, drqos);
     //!--
 }
+
+class LoanableHelloWorldPubSubType : public eprosima::fastdds::dds::TopicDataType
+{
+public:
+
+    LoanableHelloWorldPubSubType()
+        : TopicDataType()
+    {
+        setName("LoanableHelloWorld");
+    }
+
+    bool serialize(
+            void* /*data*/,
+            eprosima::fastrtps::rtps::SerializedPayload_t* /*payload*/) override
+    {
+        return true;
+    }
+
+    bool deserialize(
+            eprosima::fastrtps::rtps::SerializedPayload_t* /*payload*/,
+            void* /*data*/) override
+    {
+        return true;
+    }
+
+    std::function<uint32_t()> getSerializedSizeProvider(
+            void* /*data*/) override
+    {
+        return std::function<uint32_t()>();
+    }
+
+    void* createData() override
+    {
+        return nullptr;
+    }
+
+    void deleteData(
+            void* /*data*/) override
+    {
+    }
+
+    bool getKey(
+            void* /*data*/,
+            eprosima::fastrtps::rtps::InstanceHandle_t* /*ihandle*/,
+            bool /*force_md5*/) override
+    {
+        return true;
+    }
+
+    MD5 m_md5;
+    unsigned char* m_keyBuffer;
+};
+
+class LoanableHelloWorld
+{
+public:
+
+    LoanableHelloWorld()
+    {
+        m_index = 0;
+        memset(&m_message, 0, (256) * 1);
+    }
+
+    uint32_t& index()
+    {
+        return m_index;
+    }
+
+    uint32_t index() const
+    {
+        return m_index;
+    }
+
+    const std::array<char, 256>& message() const
+    {
+        return m_message;
+    }
+
+    std::array<char, 256>& message()
+    {
+        return m_message;
+    }
+
+private:
+
+    uint32_t m_index;
+    std::array<char, 256> m_message;
+};
+
+void dds_zero_copy_example()
+{
+    {
+        //LOANABLE_HELLOWORLD_EXAMPLE_WRITER
+        // CREATE THE PARTICIPANT
+        DomainParticipantQos pqos;
+        pqos.name("Participant_pub");
+        DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+
+        // REGISTER THE TYPE
+        TypeSupport type(new LoanableHelloWorldPubSubType());
+        type.register_type(participant);
+
+        // CREATE THE PUBLISHER
+        Publisher* publisher = participant->create_publisher(PUBLISHER_QOS_DEFAULT, nullptr);
+        
+        // CREATE THE TOPIC
+        Topic* topic = participant->create_topic(
+            "LoanableHelloWorldTopic",
+            type.get_type_name(),
+            TOPIC_QOS_DEFAULT);
+        
+        // CREATE THE WRITER
+        DataWriterQos wqos = publisher->get_default_datawriter_qos();
+        wqos.history().depth = 10;
+        wqos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;
+        // DataSharingQosPolicy has to be set to AUTO (the default) or ON to enable Zero-Copy
+        wqos.data_sharing().on("shared_directory");
+
+        DataWriter* writer = publisher->create_datawriter(topic, wqos);
+
+        std::cout << "LoanableHelloWorld DataWriter created." << std::endl;
+
+        int msgsent = 0;
+        void* sample = nullptr;
+        // Always call loan_sample() before writing a new sample.
+        // This function will provide the user with a pointer to an internal buffer where the data type can be
+        // prepared for sending.
+        if (ReturnCode_t::RETCODE_OK == writer->loan_sample(sample))
+        {
+            // Modify the sample data
+            LoanableHelloWorld* data = static_cast<LoanableHelloWorld*>(sample);
+            data->index() = msgsent + 1;
+            memcpy(data->message().data(), "LoanableHelloWorld ", 20);
+
+            std::cout << "Sending sample (count=" << msgsent
+                    << ") at address " << &data << std::endl
+                    << "  index=" << data->index() << std::endl
+                    << "  message=" << data->message().data() << std::endl;
+
+            // Write the sample.
+            // After this function returns, the middleware owns the sample.
+            writer->write(sample);
+        }
+        //!--
+    }
+    {
+        class SubListener : public eprosima::fastdds::dds::DataReaderListener
+        {
+        public:
+
+            SubListener() = default;
+
+            ~SubListener() override = default;
+
+            //LOANABLE_HELLOWORLD_EXAMPLE_LISTENER_READER
+            void on_data_available(
+                    eprosima::fastdds::dds::DataReader* reader)
+            {
+                // Declare a LoanableSequence for a data type
+                FASTDDS_SEQUENCE(DataSeq, LoanableHelloWorld);
+
+                DataSeq data;
+                SampleInfoSeq infos;
+                // Access to the collection of data-samples and its corresponding collection of SampleInfo structures
+                while (ReturnCode_t::RETCODE_OK == reader->take(data, infos))
+                {
+                    // Iterate over each LoanableCollection in the SampleInfo sequence
+                    for (LoanableCollection::size_type i = 0; i < infos.length(); ++i)
+                    {
+                        // Check whether the DataSample contains data or is only used to communicate of a
+                        // change in the instance
+                        if (infos[i].valid_data)
+                        {
+                            // Print the data.
+                            const LoanableHelloWorld& sample = data[i];
+
+                            ++samples;
+                            std::cout << "Sample received (count=" << samples
+                                    << ") at address " << &sample << std::endl
+                                    << "  index=" << sample.index() << std::endl
+                                    << "  message=" << sample.message().data() << std::endl;
+                        }
+                    }
+                    // Indicate to the DataReader that the application is done accessing the collection of
+                    // data values and SampleInfo, obtained by some earlier invocation of read or take on the
+                    // DataReader.
+                    reader->return_loan(data, infos);
+                }
+            }
+            //!--
+
+            int matched = 0;
+            uint32_t samples = 0;
+        }
+        datareader_listener;
+
+        //LOANABLE_HELLOWORLD_EXAMPLE_READER
+        // CREATE THE PARTICIPANT
+        DomainParticipantQos pqos;
+        pqos.name("Participant_sub");
+        DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+
+        // REGISTER THE TYPE
+        TypeSupport type(new LoanableHelloWorldPubSubType());
+        type.register_type(participant);
+
+        // CREATE THE SUBSCRIBER
+        Subscriber* subscriber = participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT, nullptr);
+
+        // CREATE THE TOPIC
+        Topic* topic = participant->create_topic(
+            "LoanableHelloWorldTopic",
+            type.get_type_name(),
+            TOPIC_QOS_DEFAULT);
+            
+        // CREATE THE READER
+        DataReaderQos rqos = subscriber->get_default_datareader_qos();
+        rqos.history().depth = 10;
+        rqos.reliability().kind = RELIABLE_RELIABILITY_QOS;
+        rqos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;
+        // DataSharingQosPolicy has to be set to AUTO (the default) or ON to enable Zero-Copy
+        rqos.data_sharing().automatic();
+
+        DataReader* reader = subscriber->create_datareader(topic, rqos, &datareader_listener);
+        //!--
+    }
+}

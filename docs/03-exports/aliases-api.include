@@ -60,12 +60,11 @@
 .. |DataWriter::write-api| replace:: :cpp:func:`write()<eprosima::fastdds::dds::DataWriter::write>`
 .. |DataWriter::loan_sample-api| replace:: :cpp:func:`loan_sample()<eprosima::fastdds::dds::DataWriter::loan_sample>`
 .. |DataWriter::discard_loan-api| replace:: :cpp:func:`discard_loan()<eprosima::fastdds::dds::DataWriter::discard_loan>`
-.. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
-
 .. |DataWriter::get_offered_deadline_missed_status-api| replace:: :cpp:func:`get_offered_deadline_missed_status()<eprosima::fastdds::dds::DataWriter::get_offered_deadline_missed_status>`
 .. |DataWriter::get_offered_incompatible_qos_status-api| replace:: :cpp:func:`get_offered_incompatible_qos_status()<eprosima::fastdds::dds::DataWriter::get_offered_incompatible_qos_status>`
 .. |DataWriter::get_publication_matched_status-api| replace:: :cpp:func:`get_publication_matched_status()<eprosima::fastdds::dds::DataWriter::get_publication_matched_status>`
 .. |DataWriter::get_liveliness_lost_status-api| replace:: :cpp:func:`get_liveliness_lost_status()<eprosima::fastdds::dds::DataWriter::get_liveliness_lost_status>`
+.. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
 
 .. |DataWriterQos-api| replace:: :cpp:class:`DataWriterQos <eprosima::fastdds::dds::DataWriterQos>`
 .. |DataWriterQos::DataWriterQos-api| replace:: :cpp:func:`DataWriterQos()<eprosima::fastdds::dds::DataWriterQos::DataWriterQos>`
@@ -148,6 +147,9 @@
 .. |DomainParticipantQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DomainParticipantQos::user_data>`
 .. |DomainParticipantQos::wire_protocol-api| replace:: :cpp:func:`wire_protocol()<eprosima::fastdds::dds::DomainParticipantQos::wire_protocol>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
+
+.. |LoanableSequence-api| replace:: :cpp:class:`LoanableSequence <eprosima::fastdds::dds::LoanableSequence>`
+
 .. |Publisher-api| replace:: :cpp:class:`Publisher <eprosima::fastdds::dds::Publisher>`
 .. |Publisher::create_datawriter_with_profile-api| replace:: :cpp:func:`create_datawriter_with_profile()<eprosima::fastdds::dds::Publisher::create_datawriter_with_profile>`
 .. |Publisher::create_datawriter-api| replace:: :cpp:func:`create_datawriter()<eprosima::fastdds::dds::Publisher::create_datawriter>`

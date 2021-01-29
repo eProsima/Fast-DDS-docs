@@ -53,7 +53,6 @@ The figure below shows a comparison between the different transports available i
     /fastdds/transport/tcp/tcp.rst
     /fastdds/transport/shared_memory/shared_memory.rst
     /fastdds/transport/datasharing.rst
-    /fastdds/transport/zero_copy/zero_copy.rst
     /fastdds/transport/intraprocess.rst
     /fastdds/transport/tcp/tls.rst
     /fastdds/transport/listening_locators.rst

@@ -13,7 +13,7 @@ effectively avoiding any data copy between DataWriter and DataReader.
 
 Use of Data-sharing delivery does not prevent data copies between the application
 and the DataReader and DataWriter.
-These can be avoided in some cases using :ref:`Zero-Copy delivery<transport_zero_copy>`.
+These can be avoided in some cases using :ref:`use-case-zero-copy`.
 
 .. note::
     Although Data-sharing delivery uses shared memory,

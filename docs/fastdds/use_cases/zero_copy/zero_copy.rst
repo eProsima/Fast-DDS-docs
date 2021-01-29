@@ -2,15 +2,15 @@
 .. include:: ../../../03-exports/aliases-api.include
 .. include:: ../../../03-exports/roles.include
 
-.. _transport_zero_copy:
+.. _use-case-zero-copy:
 
-Zero-Copy
-=========
+Zero-Copy communication
+=======================
 
-This section explains the Zero-Copy transfer mode implemented in *Fast DDS*.
-The Zero-Copy transfer allows the transmission of data between applications
+This section explains how to configure a Zero-Copy communication in *Fast DDS*.
+The Zero-Copy communication allows the transmission of data between applications
 without copying data in memory, saving time and resources.
-In order to achieve this, it uses :ref:`datasharing-delivery` between the |DataWriter|
+In order to achieve this, it uses Data-sharing delivery between the |DataWriter|
 and the |DataReader|, and data buffer loans between the application and *Fast DDS*.
 
 .. contents::
@@ -21,20 +21,27 @@ and the |DataReader|, and data buffer loans between the application and *Fast DD
 Overview
 ---------
 
-When creating a DataWriter that supports Zero-Copy transfers, samples must be created with a *Fast DDS* function
-that extends the DDS DataWriter API to get a buffer loaned from the DataWriter history (|DataWriter::loan_sample-api|).
-This function returns a reference to a sample stored in the memory mapped file.
-The publishing application can fill this sample with data, and return the loan to the DataWriter.
-The DataWriter will then inform the DataReader that a new sample is available through Data-sharing.
+:ref:`datasharing-delivery` provides a communication channel between a DataWriter and a DataReader
+using shared memory. Therefore, it does not require copying the sample data to transmit it.
 
-Once notified, the DataReader that is attached to the same memory mapped file will have access to this data.
-The subscriber application can request the DataWriter for a loaned reference to the data,
-thus directly receiving a reference to the original memory buffer of the DataWriter instead of a copy.
+:ref:`DataWriter sample loaning<dds_layer_publisher_write_loans>`
+is a *Fast DDS* extension that allows the application to borrow
+a buffer for a sample in the publishing DataWriter.
+The sample can be constructed directly on this buffer,
+eliminating the need to copy it to the DataWriter afterwards.
+This prevents the copying of the data between the publishing application and the DataWriter.
+If Data-sharing delivery is used, the loaned data buffer will be in the shared memory itself.
 
-This feature requires the usage of new *Fast DDS* API which extends the standard DDS API.
+Reading the data on the subscriber side can also be done
+with :ref:`loans from the DataReader<dds_layer_subscriber_accessreceived_loans>`.
+The application gets the received samples as a reference to the receive queue itself.
+This prevents the copying of the data between the receiving application and the DataReader.
+Again, if Data-sharing delivery is used, the loaned data will be in the shared memory,
+and will indeed be the same memory buffer used in the DataWriter history.
 
-* |DataWriter::loan_sample-api|
-* |DataWriter::discard_loan-api|
+Combining these three features, we can achieve a Zero-Copy communication between the
+publishing application and the subscribing application.
+
 
 Getting started
 ---------------

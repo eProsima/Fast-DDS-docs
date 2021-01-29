@@ -4284,7 +4284,7 @@ void dds_zero_copy_example()
         DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
 
         // REGISTER THE TYPE
-        TypeSupport type;
+        TypeSupport type(new LoanableHelloWorldPubSubType());
         type.register_type(participant);
 
         // CREATE THE SUBSCRIBER

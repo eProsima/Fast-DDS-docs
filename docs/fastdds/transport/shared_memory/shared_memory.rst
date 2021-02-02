@@ -166,6 +166,10 @@ such as Wireshark.
    The *kind* value for a SharedMemTransportDescriptor is given by the value
    ``eprosima::fastrtps::rtps::LOCATOR_KIND_SHM``
 
+.. warning::
+
+    Setting a ``<segment_size>`` close to or smaller than the data size poses a high risk of data loss, since the
+    write operation will overwrite the buffer during a single send operation.
 
 .. _transport_sharedMemory_enabling:
 

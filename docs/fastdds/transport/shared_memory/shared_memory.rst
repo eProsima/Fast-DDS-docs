@@ -168,7 +168,7 @@ such as Wireshark.
 
 .. warning::
 
-    Setting a ``<segment_size>`` close to or smaller than the data size creates a high risk of data loss, as the
+    Setting a ``<segment_size>`` close to or smaller than the data size poses a high risk of data loss, since the
     write operation will overwrite the buffer during a single send operation.
 
 .. _transport_sharedMemory_enabling:

@@ -2,69 +2,51 @@
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
-.. ros2_configure:
+.. _ros2_configure:
+
+Configuring *Fast DDS* in ROS 2
+===============================
+
+ROS 2 only allows for the configuration of certain middleware QoS
+(see `ROS 2 QoS policies <https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/#qos-policies>`_).
+However, *rmw_fastrtps* offers extended configuration capabilities
+to take full advantage of the features in *Fast DDS*.
+This section describes how to specify this extended configuration.
+
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 2
 
 
-Configuring Fast DDS in ROS 2
-=============================
+.. _ros2_configure_publication_mode:
 
-To use specific *Fast-DDS* features within a ROS 2 application,
-XML configuration files can be used to configure a wide set of *QoS*.
-Please refer to :ref:`xml_profiles` to see the whole list of configuration options available in *Fast DDS*.
-There are two possibilities for providing *Fast DDS* with XML configuration files:
+Changing publication mode
+-------------------------
 
-* **Recommended**: Define the location of the XML configuration file with environment variable
-  ``FASTRTPS_DEFAULT_PROFILES_FILE`` (see :ref:`env_vars`).
+*rmw_fastrtps* in ROS 2 uses asynchronous publication by default.
+This can be easily changed setting the environment variable ``RMW_FASTRTPS_PUBLICATION_MODE``
+to one of the following allowed values:
 
-  ::
+* **ASYNCHRONOUS**: asynchronous publication mode.
+  Setting this mode implies that when the publisher invokes the write operation, the data is copied into a queue,
+  a background thread (asynchronous thread) is notified about the addition to the queue,
+  and control of the thread is returned to the user before the data is actually sent.
+  The background thread is in charge of consuming the queue and sending the data to every matched reader.
+* **SYNCHRONOUS**: synchronous publication mode.
+  Setting this mode implies that the data is sent directly within the context of the user thread.
+  This entails that any blocking call occurring during the write operation would block the user thread,
+  thus preventing the application with continuing its operation.
+  It is important to note that this mode typically yields higher throughput rates at lower latencies,
+  since there is no notification nor context switching between threads.
+* **AUTO**: let Fast DDS select the publication mode.
+  This implies using the publication mode set in the :ref:`XML file<ros2_configure_xml>`, or otherwise,
+  the default value set in Fast DDS (see |PublishModeQosPolicy|).
 
-      export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
 
-* **Alternative**: Create a *DEFAULT_FASTRTPS_PROFILES.xml* and place it in the same directory as the application
-  executable.
 
-Default profiles
-^^^^^^^^^^^^^^^^
-
-Under ROS 2, the entity creation does not allow for selecting different profiles from the XML.
-To work around this issue, the profiles can be marked with an attribute ``is_default_profile="true"``, so when an entity
-of that type is created, it will automatically load that profile.
-The mapping between ROS 2 entities and *Fast DDS* entities is:
-
-+--------------+--------------------------------------+--------------------------------------+
-| ROS entity   | *Fast DDS* entity  *Foxy*            | *Fast DDS* entity  *Eloquent & below*|
-+==============+======================================+======================================+
-| Context      | Participant                          | *Not DDS direct mapping*             |
-+--------------+--------------------------------------+--------------------------------------+
-| Node         | *Not DDS direct mapping*             | Participant                          |
-+--------------+--------------------------------------+--------------------------------------+
-| Publisher    | Publisher                            | Publisher                            |
-+--------------+--------------------------------------+--------------------------------------+
-| Subscription | Subscriber                           | Subscriber                           |
-+--------------+--------------------------------------+--------------------------------------+
-| Service      | Publisher + Subscriber               | Publisher + Subscriber               |
-+--------------+--------------------------------------+--------------------------------------+
-| Client       | Publisher + Subscriber               | Publisher + Subscriber               |
-+--------------+--------------------------------------+--------------------------------------+
-
-For example, a profile for a ROS 2 ``Node`` would be specified as:
-
-+---------------------------------------------------------+
-| **XML**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml              |
-|    :language: xml                                       |
-|    :start-after: <!-->CONF_ROS2_EXAMPLE                 |
-|    :end-before: <!--><-->                               |
-|    :lines: 2-3,5-9                                      |
-|    :append: </profiles>                                 |
-+---------------------------------------------------------+
-
-Configure Publication Mode and History Memory Policy
-----------------------------------------------------
-
-By default, ``rmw_fastrtps`` sets some of the *Fast DDS* configurable parameters, ignoring whatever configuration is
-provided in the XML file.
+*rmw_fastrtps* defines two configurable parameteres in addition to
+`ROS 2 QoS policies <https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/#qos-policies>`_.
 Said parameters, and their default values under ROS 2, are:
 
 .. list-table::
@@ -87,14 +69,208 @@ Said parameters, and their default values under ROS 2, are:
      - |ASYNCHRONOUS_PUBLISH_MODE-api|
 
 
-However, it is possible to fully configure *Fast DDS* (including the history memory policy and the publication mode)
-using an XML file in combination with an environment variable ``RMW_FASTRTPS_USE_QOS_FROM_XML``.
+.. _ros2_configure_xml:
+
+XML configuration
+-----------------
+
+To use specific *Fast-DDS* features within a ROS 2 application,
+XML configuration files can be used to configure a wide set of *QoS*.
+Please refer to :ref:`xml_profiles` to see the whole list of configuration options available in *Fast DDS*.
+
+When configuring *rmw_fastrtps* using XML files, there are certain points that have to be taken into account:
+
+* ROS 2 QoS contained in `rmw_qos_profile_t <http://docs.ros2.org/latest/api/rmw/structrmw__qos__profile__t.html>`_
+  are always honored, unless set to ``*_SYSTEM_DEFAULT``.
+  In that case, XML values, or Fast DDS default values in the absences of XML ones, are applied.
+  This means that if any QoS in ``rmw_qos_profile_t`` is set to something other than ``*_SYSTEM_DEFAULT``,
+  the corresponding value in the XML is ignored.
+
+* By default, *rmw_fastrtps* overrides the values for |MemoryManagementPolicy| and |PublishModeQosPolicy|.
+  This means that the values configured in the XML for these two parameters will be ignored.
+  Instead, |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api| and |ASYNCHRONOUS_PUBLISH_MODE-api|
+  are used respectively.
+
+* The override of MemoryManagementPolicy and PublishModeQosPolicy can be avoided
+  by setting the environment variable ``RMW_FASTRTPS_USE_QOS_FROM_XML`` to ``1``
+  (its default value is ``0``).
+  This will make *rmw_fastrtps* use the values defined in the XML for
+  MemoryManagementPolicy and PublishModeQosPolicy.
+  Bear in mind that setting this environment variable but not setting these policies in the XML
+  results in using the default values in *Fast DDS*.
+  These are different from the aforementioned *rmw_fastrtps* default values
+  (see |MemoryManagementPolicy| and |PublishModeQosPolicy|).
+
+* Setting ``RMW_FASTRTPS_USE_QOS_FROM_XML`` effectively overrides whatever configuration was set
+  with ``RMW_FASTRTPS_PUBLICATION_MODE``, setting the publication mode to the value specified in the XML,
+  or to the *Fast DDS* default publication mode if none is set in the XML.
+
+
+The following table summarizes which values are used or ignored according to the configured variables:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - RMW_FASTRTPS_USE_QOS_FROM_XML
+     - rmw_qos_profile_t
+     - Fast DDS XML QoS
+     - Fast DDS XML history memory policy |br|
+       and publication mode
+   * - 0 (default)
+     - Default values
+     - Overridden by |br|
+       rmw_qos_profile_t
+     - Overridden by |br|
+       rmw_fastrtps default value
+   * - 0 (default)
+     - Non system default
+     - overridden by |br|
+       rmw_qos_profile_t
+     - Overridden by |br|
+       rmw_fastrtps default value
+   * - 0 (default)
+     - System default
+     - Used
+     - Overridden by |br|
+       rmw_fastrtps default value
+   * - 1
+     - Default values
+     - Overridden by |br|
+       rmw_qos_profile_t
+     - Used
+   * - 1
+     - Non system default
+     - Overridden by |br|
+       rmw_qos_profile_t
+     - Used
+   * - 1
+     - System default
+     - Used
+     - Used
+
+
+XML configuration file location
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There are two possibilities for providing *Fast DDS* with XML configuration files:
+
+* **Recommended**: Setting the location with environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE``
+  to contain the path to the XML configuration file (see :ref:`env_vars`).
+
+  ::
+
+      export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
+
+* **Alternative**: Placing the XML file in the running application directory
+  under the name *DEFAULT_FASTRTPS_PROFILES.xml*.
+
+For example:
 
 .. code-block:: bash
 
     export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
     export RMW_FASTRTPS_USE_QOS_FROM_XML=1
     ros2 run <package> <application>
+
+
+Applying different profiles to different entities
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*rmw_fastrtps* allows for the configuration of different entities with different QoS using the same XML file.
+For doing so, *rmw_fastrtps* locates profiles in the XML based on topic names.
+
+Creating publishers/subscribers with different profiles
+.......................................................
+
+* To configure a publisher, define a ``<publisher>`` profile
+  with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic before mangling,
+  i.e., the topic name used to create the publisher.
+  If such profile is not defined, *rmw_fastrtps* attempts to load the ``<publisher>`` profile
+  with attribute ``is_default_profile="true"``.
+
+* To configure a subscriber, define a ``<subscriber>`` profile
+  with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic before mangling.
+  If such profile is not defined, *rmw_fastrtps* attempts to load the ``<subscriber>`` profile
+  with attribute ``is_default_profile="true"``.
+
+
+Creating services with different profiles
+.........................................
+
+ROS 2 services contain a subscriber for receiving requests, and a publisher to reply to them.
+*rmw_fastrtps* allows for configuring each of these endpoints separately in the following manner:
+
+* To configure the request subscriber, define a ``<subscriber>`` profile with attribute ``profile_name=topic_name``,
+  where ``topic_name`` is the name of the service after mangling.
+  For more information on name mangling, please refer to
+  `Topic and Service name mapping to DDS <https://design.ros2.org/articles/topic_and_service_names.html>`_.
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<subscriber>`` profile
+  with attribute ``profile_name="service"``.
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<subscriber>`` profile
+  with attribute ``is_default_profile="true"``.
+
+* To configure the reply publisher, define a ``<publisher>`` profile with attribute ``profile_name=topic_name``,
+  where ``topic_name`` is the name of the service after mangling.
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<publisher>`` profile
+  with ``attribute profile_name="service"``.
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<publisher>`` profile
+  with attribute ``is_default_profile="true"``.
+
+
+Creating clients with different profiles
+........................................
+
+ROS 2 clients contain a publisher to send requests, and a subscription to receive the service's replies.
+*rmw_fastrtps* allows for configuring each of these endpoints separately in the following manner:
+
+* To configure the requests publisher, define a ``<publisher>`` profile with attribute ``profile_name=topic_name``,
+  where ``topic_name`` is the name of the service after mangling.
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<publisher>`` profile
+  with attribute ``profile_name="client"``.
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<publisher>`` profile
+  with attribute ``is_default_profile="true"``.
+
+* To configure the reply subscription, define a ``<subscriber>`` profile with ``attribute profile_name=topic_name``,
+  where ``topic_name`` is the name of the service after mangling.
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<subscriber>`` profile
+  with attribute ``profile_name="client"``.
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<subscriber>`` profile
+  with attribute ``is_default_profile="true"``.
+
+
+Creating ROS contexts and nodes
+...............................
+
+ROS *context* and *node* entities are mapped to *Fast DDS* Participant entity,
+according to the following table:
+
+
++--------------+--------------------------------------+----------------------------------------+
+| ROS entity   | *Fast DDS* entity in *Foxy*          | *Fast DDS* entity in *Eloquent & below*|
++==============+======================================+========================================+
+| Context      | Participant                          | *Not DDS direct mapping*               |
++--------------+--------------------------------------+----------------------------------------+
+| Node         | *Not DDS direct mapping*             | Participant                            |
++--------------+--------------------------------------+----------------------------------------+
+
+This means that on *Foxy*, contexts can be configured using a ``<Participant>`` profile
+with attribute ``is_default_profile="true"``.
+The same profile will be used in *Eloquent* and below to configure nodes.
+
+For example, a profile for a ROS 2 context on *Foxy* would be specified as:
+
++---------------------------------------------------------+
+| **XML**                                                 |
++---------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml              |
+|    :language: xml                                       |
+|    :start-after: <!-->CONF_ROS2_EXAMPLE                 |
+|    :end-before: <!--><-->                               |
+|    :lines: 2-3,5-9                                      |
+|    :append: </profiles>                                 |
++---------------------------------------------------------+
+
 
 .. _ros2_example:
 

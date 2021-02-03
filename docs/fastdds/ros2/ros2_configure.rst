@@ -45,7 +45,7 @@ to one of the following allowed values:
 
 
 
-*rmw_fastrtps* defines two configurable parameteres in addition to
+*rmw_fastrtps* defines two configurable parameters in addition to
 `ROS 2 QoS policies <https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/#qos-policies>`_.
 Said parameters, and their default values under ROS 2, are:
 
@@ -113,36 +113,36 @@ The following table summarizes which values are used or ignored according to the
    :align: left
 
    * - RMW_FASTRTPS_USE_QOS_FROM_XML
-     - rmw_qos_profile_t
+     - ``rmw_qos_profile_t``
      - Fast DDS XML QoS
      - Fast DDS XML history memory policy |br|
        and publication mode
    * - 0 (default)
      - Default values
      - Overridden by |br|
-       rmw_qos_profile_t
+       ``rmw_qos_profile_t``
      - Overridden by |br|
-       rmw_fastrtps default value
+       *rmw_fastrtps* default value
    * - 0 (default)
      - Non system default
      - overridden by |br|
-       rmw_qos_profile_t
+       ``rmw_qos_profile_t``
      - Overridden by |br|
-       rmw_fastrtps default value
+       *rmw_fastrtps* default value
    * - 0 (default)
      - System default
      - Used
      - Overridden by |br|
-       rmw_fastrtps default value
+       *rmw_fastrtps* default value
    * - 1
      - Default values
      - Overridden by |br|
-       rmw_qos_profile_t
+       ``rmw_qos_profile_t``
      - Used
    * - 1
      - Non system default
      - Overridden by |br|
-       rmw_qos_profile_t
+       *rmw_qos_profile_t*
      - Used
    * - 1
      - System default

@@ -82,6 +82,7 @@ LivelinessChangedStatus
 LivelinessLostStatus
 LivelinessQosPolicy
 livelivess
+LoanableTypedCollection
 LocatorList
 logError
 logInfo

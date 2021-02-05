@@ -36,7 +36,7 @@ to one of the following allowed values:
 * **SYNCHRONOUS**: synchronous publication mode.
   Setting this mode implies that the data is sent directly within the context of the user thread.
   This entails that any blocking call occurring during the write operation would block the user thread,
-  thus preventing the application with continuing its operation.
+  thus preventing the application from continuing its operation.
   It is important to note that this mode typically yields higher throughput rates at lower latencies,
   since there is no notification nor context switching between threads.
 * **AUTO**: let Fast DDS select the publication mode.

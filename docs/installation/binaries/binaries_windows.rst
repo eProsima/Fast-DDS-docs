@@ -38,6 +38,8 @@ If Visual Studio is already installed but the Visual C++ Redistributable package
 open Visual Studio and go to :code:`Tools` -> :code:`Get Tools and Features` and in the :code:`Workloads` tab enable
 :code:`Desktop development with C++`. Finally, click :code:`Modify` at the bottom right.
 
+.. _install_bw:
+
 Install
 -------
 

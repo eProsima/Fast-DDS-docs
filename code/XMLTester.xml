@@ -2390,11 +2390,12 @@
 -->
     <participant profile_name="participant_profile_ros2" is_default_profile="true">
         <rtps>
-            <name>profile_for_ros2_node</name>
+            <name>profile_for_ros2_context</name>
         </rtps>
     </participant>
 
-    <publisher profile_name="ros2_publisher_profile" is_default_profile="true">
+    <!-- Default publisher profile -->
+    <publisher profile_name="default publisher profile" is_default_profile="true">
         <qos>
             <publishMode>
                 <kind>SYNCHRONOUS</kind>
@@ -2403,7 +2404,36 @@
         <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
     </publisher>
 
-    <subscriber profile_name="ros2_subscription_profile" is_default_profile="true">
+    <!-- Publisher profile for topic helloworld -->
+    <publisher profile_name="helloworld">
+        <qos>
+            <publishMode>
+                <kind>SYNCHRONOUS</kind>
+            </publishMode>
+        </qos>
+    </publisher>
+
+    <!-- Request subscriber profile for services -->
+    <subscriber profile_name="service">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </subscriber>
+
+    <!-- Request publisher profile for clients -->
+    <publisher profile_name="client">
+        <qos>
+            <publishMode>
+                <kind>ASYNCHRONOUS</kind>
+            </publishMode>
+        </qos>
+    </publisher>
+
+    <!-- Request subscriber profile for server of service "add_two_ints" -->
+    <subscriber profile_name="rq/add_two_intsRequest">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </subscriber>
+
+    <!-- Reply subscriber profile for client of service "add_two_ints" -->
+    <subscriber profile_name="rr/add_two_intsReply">
         <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
     </subscriber>
 <!--><-->

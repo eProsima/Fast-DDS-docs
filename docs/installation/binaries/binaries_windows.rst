@@ -12,7 +12,7 @@ It is organized as follows:
     :backlinks: none
     :depth: 2
 
-First of all, the :ref:`requirements_bw` and :ref:`dependencies_bw` detailed below need to be met.
+First of all, the :ref:`requirements_bw` detailed below need to be met.
 
 
 .. _requirements_bw:

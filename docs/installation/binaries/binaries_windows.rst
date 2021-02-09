@@ -12,7 +12,7 @@ It is organized as follows:
     :backlinks: none
     :depth: 2
 
-First of all, the :ref:`requirements_bw` and :ref:`dependencies_bw` detailed below need to be met.
+First of all, the :ref:`requirements_bw` detailed below need to be met.
 
 
 .. _requirements_bw:
@@ -24,7 +24,6 @@ The installation of *eProsima Fast DDS* in a Windows environment from binaries r
 installed in the system:
 
 * :ref:`visual_studio_bw`
-* :ref:`chocolatey_bw`
 
 .. _visual_studio_bw:
 
@@ -38,58 +37,6 @@ have a C++ compiler in the system. For this purpose, make sure to check the
 If Visual Studio is already installed but the Visual C++ Redistributable packages are not,
 open Visual Studio and go to :code:`Tools` -> :code:`Get Tools and Features` and in the :code:`Workloads` tab enable
 :code:`Desktop development with C++`. Finally, click :code:`Modify` at the bottom right.
-
-.. _chocolatey_bw:
-
-Chocolatey
-^^^^^^^^^^
-
-Chocolatey is a Windows package manager. It is needed to install some of *eProsima Fast DDS*'s dependencies.
-Download and install it directly from the `website <https://chocolatey.org/>`_.
-
-
-.. _dependencies_bw:
-
-
-Dependencies
-------------
-
-*eProsima Fast DDS* has the following dependencies, when installed from binaries in a Windows environment:
-
-* :ref:`tinyxml2_bw`
-* :ref:`openssl_bw`
-
-.. _tinyxml2_bw:
-
-TinyXML2
-^^^^^^^^
-
-TinyXML2 is a simple, small and efficient C++ XML parser.
-It can be downloaded directly from
-`here <https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg>`_.
-
-After downloading this package, open an administrative shell with *PowerShell* and execute the following command:
-
-.. code-block:: bash
-
-    choco install -y -s <PATH_TO_DOWNLOADS> tinyxml2
-
-where :code:`<PATH_TO_DOWNLOADS>` is the folder into which the package has been downloaded.
-
-.. _openssl_bw:
-
-OpenSSL
-^^^^^^^
-
-OpenSSL is a robust toolkit for the TLS and SSL protocols and a general-purpose cryptography library.
-The latest OpenSSL version for Windows can be found in the `OpenSSL website <https://www.openssl.org/>`_.
-After installing, add the environment variable :code:`OPENSSL_ROOT_DIR` pointing to the installation root directory.
-
-For example:
-
-.. code-block:: bash
-
-   OPENSSL_ROOT_DIR=C:\Program Files\OpenSSL-Win64
 
 .. _install_bw:
 

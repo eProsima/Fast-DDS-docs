@@ -15,8 +15,8 @@ This solution can be implemented with :ref:`transport_udp_udp` or :ref:`transpor
 SHM transport is multicast by default, but is only available between DataWriters and
 DataReaders on the same machine.
 UDP transport needs some extra configuration.
-The example below shows how to set a :ref:`dds_layer_publisher_dataWriterQos` to configure
-a DataWriter to use a multicast transport on UDP.
+The example below shows how to set a :ref:`dds_layer_subscriber_dataReaderQos` to configure
+a DataReader to use a multicast transport on UDP.
 More information about configuring local and remote locators on endpoints can be found in :ref:`rtpsendpointqos`.
 
 .. note::

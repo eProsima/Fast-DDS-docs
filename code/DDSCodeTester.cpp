@@ -3855,7 +3855,7 @@ void dds_usecase_examples()
 
     {
         //DDS_MULTICAST_DELIVERY
-        DataWriterQos qos;
+        DataReaderQos qos;
 
         // Add new multicast locator with IP 239.255.0.4 and port 7900
         eprosima::fastrtps::rtps::Locator_t new_multicast_locator;

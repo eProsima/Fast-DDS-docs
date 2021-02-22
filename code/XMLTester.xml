@@ -4058,7 +4058,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <publisher profile_name="publisher_xml_conf_multicast_locators_profile">
+    <subscriber profile_name="publisher_xml_conf_multicast_locators_profile">
         <multicastLocatorList>
             <locator>
                 <udpv4>
@@ -4067,5 +4067,5 @@
                 </udpv4>
             </locator>
         </multicastLocatorList>
-    </publisher>
+    </subscriber>
 <!--><-->

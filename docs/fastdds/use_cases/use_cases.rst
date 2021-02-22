@@ -63,6 +63,10 @@ with distributed systems:
   Under certain constraints, *Fast DDS* can provide application level communication
   between publishing and subscribing nodes avoiding any data copy during the process.
 
++ :ref:`use-case-unique-flows`.
+  APIs allowing the identification of the network flows being used, and requesting them to be unique,
+  are explained here.
+
 + :ref:`ros2`.
   Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
   this documentation includes a whole independent section to show the use of the library in ROS 2,
@@ -78,3 +82,4 @@ with distributed systems:
     /fastdds/use_cases/realtime/realtime.rst
     /fastdds/use_cases/reduce_memory/reduce_memory.rst
     /fastdds/use_cases/zero_copy/zero_copy.rst
+    /fastdds/use_cases/unique_netwotk_flows/unique_netwotk_flows.rst

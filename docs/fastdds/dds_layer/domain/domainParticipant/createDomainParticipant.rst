@@ -27,6 +27,14 @@ Optional arguments are:
    :ref:`dds_layer_domainParticipantListener`.
    By default all events are enabled.
 
+.. _DDSI-RTPS V2.2: https://www.omg.org/spec/DDSI-RTPS/2.2/PDF
+
+.. warning::
+   Following the `DDSI-RTPS V2.2`_ standard (Section 9.6.1.1), the default ports are calculated depending on the
+   domainId, as it is explained in section :ref:`listening_locators_defaultPorts`.
+   Thus, it is encouraged to use domainIds lower than 200
+   (over domainId 233 default port assign will fail consistently).
+
 |DomainParticipantFactory::create_participant-api|
 will return a null pointer if there was an error during the operation, e.g.
 if the provided QoS is not compatible or is not supported.
@@ -51,6 +59,8 @@ member function on the :ref:`dds_layer_domainParticipantFactory` singleton.
 Mandatory arguments are:
 
  * The domainId that identifies the domain where the DomainParticipant will be created.
+   Do not use domainIds higher than 200 (see :ref:`dds_layer_domainParticipant_creation`).
+
 
  * The name of the profile to be applied to the DomainParticipant.
 
@@ -97,4 +107,3 @@ A DomainParticipant can be deleted with the |DomainParticipantFactory::delete_pa
    :start-after: //DDS_DELETE_DOMAINPARTICIPANT
    :end-before: //!
    :dedent: 8
-

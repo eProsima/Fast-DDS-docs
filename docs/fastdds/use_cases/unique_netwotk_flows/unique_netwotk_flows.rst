@@ -43,9 +43,38 @@ The *5-tuple* is a traditional unique identifier for flows on 3GPP enabled equip
 The 5-tuple consists of five parameters: source IP address, source port, destination IP address, destination port,
 and the transport protocol (example, TCP/UDP).
 
-Fast DDS provides the APIs needed for the identification of such flows.
+Definitions
+^^^^^^^^^^^
+
+**Network flow**: A tuple of networking resources selected by the middleware for transmission of messages from a
+DataWriter to a DataReader, namely:
+
+  - transport protocol: UDP or TCP
+  - transport port
+  - internet protocol: IPv4 or IPv6
+  - internet address
+
+**Network Flow Endpoint (NFE)**: The portion of a network flow specific to the DataWriter or the DataReader.
+In other words, each network flow has two NFEs; one for the DataWriter and the other for the DataReader.
+
+APIs
+^^^^
+
+Fast DDS provides the APIs needed to get the list of NFEs used by a DataWriter or a DataReader.
+On the DataWriter, get_sending_locators() allows the application to obtain the list of locators from which the
+writer may send data.
+On the DataReader, get_listening_locators() allows the application to obtain the list of locators on wich the
+reader is listening.
 
 Requesting unique flows
 -----------------------
 
-:ref:`rtpsendpointqos`
+A unique flow can be created just ensuring that one of the two NFEs are unique.
+On Fast DDS, there are two ways to select unique listening locators on the DataReader.
+
+* The application can specify on which locators the DataReader should be listening, using :ref:`rtpsendpointqos` on
+  the :ref:`dds_layer_subscriber_dataReaderQos`.
+  In this case is the responsibility of the application to ensure the uniqueness of the locators used.
+* The application can request the reader to be created with unique listening locators, using a
+  :ref:`propertypolicyqos` including the property ``"fastdds.unique_network_flows"``.
+  In this case, the reader will listen on a unique port outside the range of ports typically used by RTPS.

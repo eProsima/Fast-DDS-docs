@@ -720,9 +720,13 @@
 .. |logWarning| replace:: :cpp:type:`logWarning <logWarning>`
 .. |logError| replace:: :cpp:type:`logError <logError>`
 
+.. |FASTDDS_ENFORCE_LOG_INFO| replace:: :cpp:type:`FASTDDS_ENFORCE_LOG_INFO`
 .. |LOG_NO_INFO| replace:: :cpp:type:`LOG_NO_INFO`
 .. |LOG_NO_WARNING| replace:: :cpp:type:`LOG_NO_WARNING`
 .. |LOG_NO_ERROR| replace:: :cpp:type:`LOG_NO_ERROR`
+.. |HAVE_LOG_NO_INFO| replace:: :cpp:type:`HAVE_LOG_NO_INFO`
+.. |HAVE_LOG_NO_WARNING| replace:: :cpp:type:`HAVE_LOG_NO_WARNING`
+.. |HAVE_LOG_NO_ERROR| replace:: :cpp:type:`HAVE_LOG_NO_ERROR`
 .. |LOG_CONSUMER_DEFAULT| replace:: :cpp:type:`LOG_CONSUMER_DEFAULT`
 
 .. |EDPStatic| replace:: :cpp:class:`EDPStatic <eprosima::fastrtps::rtps::EDPStatic>`

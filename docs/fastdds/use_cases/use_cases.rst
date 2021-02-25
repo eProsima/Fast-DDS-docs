@@ -64,8 +64,8 @@ with distributed systems:
   between publishing and subscribing nodes avoiding any data copy during the process.
 
 + :ref:`use-case-unique-flows`.
-  APIs allowing the identification of the network flows being used, and requesting them to be unique,
-  are explained here.
+  This use case illustrates the APIs that allow for the request of unique network flows, and for the identification
+  of those in use.
 
 + :ref:`ros2`.
   Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,

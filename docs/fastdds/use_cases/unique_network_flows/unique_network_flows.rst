@@ -18,19 +18,18 @@ Background
 ----------
 
 IP networking is the pre-dominant inter-networking technology used nowadays.
-Ethernet, WiFi, 4G/5G telecommunication all rely on IP networking.
+Ethernet, WiFi, 4G/5G telecommunication, all of them rely on IP networking.
 
 Streams of IP packets from a given source to destination are called *packet flows* or simply *flows*.
 The network QoS of a flow can be configured when using certain networking equipment (routers, switches).
-Such equipments are typically supporting 3GPP/5QI protocols to assign certain Network QoS parameters to
+Such pieces of equipment typically support 3GPP/5QI protocols to assign certain Network QoS parameters to
 specific flows.
-
 Requesting a specific Network QoS is usually done on the endpoint sending the data, as it is the one
 that usually haves complete information about the network flow.
 
 Applications may need to use specific Network QoS parameters on different topics.
 
-This means an application should be able to
+This means an application should be able to:
 
 a) Identify the flows being used in the communications, so they can correctly configure the networking
    equipment.
@@ -49,34 +48,33 @@ Definitions
 **Network flow**: A tuple of networking resources selected by the middleware for transmission of messages from a
 DataWriter to a DataReader, namely:
 
-  - transport protocol: UDP or TCP
-  - transport port
-  - internet protocol: IPv4 or IPv6
-  - internet address
+  - Transport protocol: UDP or TCP
+  - Transport port
+  - Internet protocol: IPv4 or IPv6
+  - IP address
 
 **Network Flow Endpoint (NFE)**: The portion of a network flow specific to the DataWriter or the DataReader.
-In other words, each network flow has two NFEs; one for the DataWriter and the other for the DataReader.
+In other words, each network flow has two NFEs; one for the DataWriter, and the other for the DataReader.
 
 APIs
 ^^^^
 
-Fast DDS provides the APIs needed to get the list of NFEs used by a DataWriter or a DataReader.
+Fast DDS provides the APIs needed to get the list of NFEs used by a given DataWriter or a DataReader.
 
-On the DataWriter, |DataWriter::get_sending_locators-api| allows the application to obtain the list of locators
+* On the DataWriter, |DataWriter::get_sending_locators-api| allows the application to obtain the list of locators
 from which the writer may send data.
-
-On the DataReader, |DataReader::get_listening_locators-api| allows the application to obtain the list of locators
+* On the DataReader, |DataReader::get_listening_locators-api| allows the application to obtain the list of locators
 on wich the reader is listening.
 
 Requesting unique flows
 -----------------------
 
-A unique flow can be created just ensuring that one of the two NFEs are unique.
-On Fast DDS, there are two ways to select unique listening locators on the DataReader.
+A unique flow can be created by ensuring that at least one of the two NFEs are unique.
+On Fast DDS, there are two ways to select unique listening locators on the DataReader:
 
-* The application can specify on which locators the DataReader should be listening, using :ref:`rtpsendpointqos` on
-  the :ref:`dds_layer_subscriber_dataReaderQos`.
-  In this case is the responsibility of the application to ensure the uniqueness of the locators used.
-* The application can request the reader to be created with unique listening locators, using a
-  :ref:`propertypolicyqos` including the property ``"fastdds.unique_network_flows"``.
+* The application can specify on which locators the DataReader should be listening.
+  This is done using :ref:`rtpsendpointqos` on the :ref:`dds_layer_subscriber_dataReaderQos`.
+  In this case it is the responsibility of the application to ensure the uniqueness of the locators used.
+* The application can request the reader to be created with unique listening locators.
+  This is done using a :ref:`propertypolicyqos` including the property ``"fastdds.unique_network_flows"``.
   In this case, the reader will listen on a unique port outside the range of ports typically used by RTPS.

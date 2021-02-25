@@ -82,4 +82,4 @@ with distributed systems:
     /fastdds/use_cases/realtime/realtime.rst
     /fastdds/use_cases/reduce_memory/reduce_memory.rst
     /fastdds/use_cases/zero_copy/zero_copy.rst
-    /fastdds/use_cases/unique_netwotk_flows/unique_netwotk_flows.rst
+    /fastdds/use_cases/unique_network_flows/unique_network_flows.rst

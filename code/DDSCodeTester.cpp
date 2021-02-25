@@ -4000,6 +4000,73 @@ void dds_usecase_examples()
         //!--
     }
 
+    {
+        // Create the DomainParticipant
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Publisher
+        Publisher* publisher = participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+        if (nullptr == publisher)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Subscriber
+        Subscriber* subscriber = participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr == subscriber)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Topic with the appropriate name and data type
+        std::string topic_name = "HelloWorldTopic";
+        std::string data_type = "HelloWorld";
+        Topic* topic = participant->create_topic(topic_name, data_type, TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+
+        //UNIQUE_NETWORK_FLOWS_USE_CASE
+        // Create the DataWriter
+        DataWriter* writer = publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr == writer)
+        {
+            // Error
+            return;
+        }
+        
+        // Create DataReader with unique flows
+        DataReaderQos drqos = DATAREADER_QOS_DEFAULT;
+        drqos.properties().properties().emplace_back("fastdds.unique_network_flows", "");
+        DataReader* reader = subscriber->create_datareader(topic, drqos);
+        
+        // Print locators information
+        eprosima::fastdds::rtps::LocatorList locators;
+        writer->get_sending_locators(locators);
+        std::cout << "Writer is sending from the following locators:" << std::endl;
+        for (const auto& locator : locators)
+        {
+            std::cout << "  " << locator << std::endl;
+        }
+        
+        reader->get_listening_locators(locators);
+        std::cout << "Reader is listening on the following locators:" << std::endl;
+        for (const Locator_t& locator : locators)
+        {
+            std::cout << "  " << locator << std::endl;
+        }
+        //!--
+    }
 }
 
 void dds_persistence_examples()

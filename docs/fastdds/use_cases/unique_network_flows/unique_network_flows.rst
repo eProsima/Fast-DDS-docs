@@ -78,3 +78,14 @@ On Fast DDS, there are two ways to select unique listening locators on the DataR
 * The application can request the reader to be created with unique listening locators.
   This is done using a :ref:`propertypolicyqos` including the property ``"fastdds.unique_network_flows"``.
   In this case, the reader will listen on a unique port outside the range of ports typically used by RTPS.
+
+Example
+-------
+
+The following snippet demonstrates all the APIs described on this page:
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //UNIQUE_NETWORK_FLOWS_USE_CASE
+   :end-before: //!--
+   :dedent: 8

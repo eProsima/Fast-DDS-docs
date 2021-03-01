@@ -1,3 +1,6 @@
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+
 .. _intraprocess-delivery:
 
 Intra-process delivery
@@ -27,5 +30,41 @@ Currently the following options are available:
 |    :dedent: 4                                       |
 +-----------------------------------------------------+
 
+.. _intraprocess_delivery_guids:
 
+GUID Prefix considerations for intra-process delivery
+------------------------------------------------------
 
+Fast DDS utilizes the |DomainParticipant|'s |GuidPrefix_t-api| to identify peers running in the same process.
+Two participants with identical 8 first bytes on the |GuidPrefix_t-api| are considered to be running in the same
+process, and therefore intra-process delivery is used.
+This mechanism works out-of-the-box when letting Fast DDS set the GUID prefixes for the created DomainParticipants.
+However, special consideration is required when setting the |GuidPrefix_t-api| manually, either programmatically or when
+using XML
+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++** - Option 1: Manual setting of the ``unsigned char`` in ASCII format.                                         |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_GUIDPREFIX_OPTION_1                                                                          |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **C++** - Option 2: Using the ``>>`` operator and the ``std::ostream`` type.                                         |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: //CONF_GUIDPREFIX_OPTION_2                                                                          |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->CONF-GUID-PREFIX<-->                                                                           |
+|    :end-before: <!--><-->                                                                                            |
+|    :lines: 2-3,5-11                                                                                                  |
+|    :append: </profiles>                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+

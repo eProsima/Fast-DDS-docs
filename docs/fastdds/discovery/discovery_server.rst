@@ -5,7 +5,7 @@
 .. _discovery_server:
 
 Discovery Server Settings
---------------------------------
+-------------------------
 
 This mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among
 |DomainParticipants| to identify each other) is managed by one or several server DomainParticipants (left figure), as
@@ -22,7 +22,6 @@ ease Discovery Server setup and testing.
 
 .. _DS_key_concepts:
 
-
 Key concepts
 ^^^^^^^^^^^^
 
@@ -32,63 +31,61 @@ In this architecture there are several key concepts to understand:
   |DataWriters| and |DataReaders|.
 
 - Discovery Server DomainParticipants may be *clients* or *servers*.
-  The only difference between them is how they handle meta-traffic.
+  The only difference between them is on how they handle discovery traffic.
   The user traffic, that is, the traffic among the DataWriters and DataReaders they create, is role-independent.
 
 - All *server* and *client* discovery information will be shared with linked *clients*.
   Note that a *server* may act as a *client* for other *servers*.
 
+- A *server* is a participant to which the *clients* (and maybe other *servers*) send their discovery information.
+  The role of the *server* is to re-distribute the *clients* (and *servers*) discovery information to their known
+  *clients* and *servers*.
+  A *server* may connect to other *servers* to receive information about their *clients*.
+  Known *servers* will receive all the information known by the *server*.
+  Known *clients* will only receive the information they need to establish communication, i.e. the information about the
+  DomainParticipants, DataWriters, and DataReader to which they match.
+  This means that the *server* runs a "matching" algorithm to sort out which information is required by which *client*.
+
+- A *client* is a participant that connects to one or more *servers* from which it receives the discovery information
+  they require to establish communication.
+
 - *Clients* require a beforehand knowledge of the *servers* to which they want to link.
-  Basically it is reduced to the *server* identity (henceforth called |GuidPrefix_t-api|) and a list of locators
-  where the
-  *server* is listening.
+  Basically it is reduced to the *servers* identity (henceforth called |GuidPrefix_t-api|) and a list of locators
+  where the *servers* are listening.
   These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
 
   - The |GuidPrefix_t-api| is the RTPS standard RTPSParticipant unique identifier, a 12-byte chain.
-    This identifier allows clients to assess whether they are receiving messages from the right server, as each
+    This identifier allows *clients* to assess whether they are receiving messages from the right *server*, as each
     standard RTPS message contains this piece of information.
 
-    The |GuidPrefix_t-api| is used because the server's IP address may not be a reliable enough server identifier,
-    since several servers can be hosted in the same machine, thus having the same IP, and also because multicast
+    The |GuidPrefix_t-api| is used because the *server's* IP address may not be a reliable enough server identifier,
+    since several *servers* can be hosted in the same machine, thus having the same IP, and also because multicast
     addresses are acceptable addresses.
 
 - *Servers* do not require any beforehand knowledge of their *clients*, but their |GuidPrefix_t-api| and locator list
   (where they are listening) must match the one provided to the *clients*.
-  In order to gather *client* discovery information, the following handshake strategy is followed:
-
-  - *Clients* send discovery messages to the *servers* at regular intervals (ping period) until they receive message
-    reception acknowledgement.
-
-  - *Servers* receive discovery messages from the clients, but they do not start processing them until a time interval
-    has elapsed, which starts at the moment the server is instantiated.
-
-In order to clarify this discovery setup, either on compile time (sources) or runtime (XML files), this explanation is
-divided into two sections: on focusing on the main concepts (:ref:`setup by concept <DS_setup_concepts>`), and another
-one focusing on the main setting structures and XML tags (:ref:`setup by QoS <DS_setup_attributes>`).
-
-.. _DS_setup_concepts:
-
-Discovery Server setup by concept
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  *Clients* send discovery messages to the *servers* at regular intervals (ping period) until they receive message
+  reception acknowledgement.
+  From them on, the *server* knows about the *client* and will inform it of the relevant discovery information.
+  They same principle applies to a *server* connecting to another *server*.
 
 .. csv-table::
     :header: "Concept", "Description"
 
     :ref:`Discovery protocol <DS_discovery_protocol>`, Make a participant a *client* or a *server*.
-    :ref:`Server unique id <DS_guidPrefx>`, Link a *clients* to *servers*.
+    :ref:`Server unique id <DS_guidPrefx>`, Link *clients* (or other *servers*) to *servers*.
     :ref:`Seting up transport <DS_locators>`, Specify which transport to use and make *servers* reachable.
     :ref:`Pinging period <DS_ping_period>`, Fine tune discovery server handshake.
-    :ref:`Matching period <DS_match_period>`, Fine tune server deliver efficiency.
 
 .. _DS_discovery_protocol:
 
 Choosing between Client and Server
-""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-It is set by the :ref:`Discovery Protocol <discovery_protocol>` general setting. A participant can only play a role
-(despite the fact that a *server* may act as a *client* of other server). It's mandatory to fill this value because it
-defaults to *simple*.  The values associated with the Discovery Server are specified in :ref:`discovery settings
-section <DS_DiscoverySettings>`. The examples below show how to manage the corresponding enum and XML tag.
+It is set by the :ref:`Discovery Protocol <discovery_protocol>` general setting.
+A participant can only play a role (despite the fact that a *server* may connect to other *servers*).
+It is mandatory to fill this value because it defaults to *simple*.
+The examples below show how to manage the corresponding enum and XML tag.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
@@ -105,22 +102,24 @@ section <DS_DiscoverySettings>`. The examples below show how to manage the corre
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->                                                             |
 |    :end-before: <!--><-->                                                                                            |
+|    :lines: 2-3,5-17                                                                                                  |
+|    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_guidPrefx:
 
 The GuidPrefix as the server unique identifier
-""""""""""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The |GuidPrefix_t-api| attribute belongs to the RTPS specification and univocally identifies each RTPSParticipant.
-It consists on 12 bytes and in Fast DDS is a key for the DomainParticipant used in the DDS domain.
+It consists on 12 bytes, and in Fast DDS is a key for the DomainParticipant used in the DDS domain.
 Fast DDS defines the DomainParticipant |GuidPrefix_t-api| as a public data member of the
 |WireProtocolConfigQos-api| class.
 In the Discovery Server, it has the purpose to link a *server* to its *clients*.
-It must be mandatorily specified in: *server* and *client* setups.
+It must be specified in *server* and *client* setups.
 
 Server side setup
-*****************
+"""""""""""""""""
 
 The examples below show how to manage the corresponding enum data member and XML tag.
 
@@ -147,16 +146,25 @@ The examples below show how to manage the corresponding enum data member and XML
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->                                                                  |
 |    :end-before: <!--><-->                                                                                            |
+|    :lines: 2-3,5-11                                                                                                  |
+|    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
-Note that a *server* can act as a *client* of other *servers*.
+Note that a *server* can connect other *servers*.
 Thus, the following section may also apply.
 
+.. important::
+     When selecting a GUID prefix for the *server*, it is important to take into account that Fast DDS also uses this
+     parameter to identify participants in the same process and enable intra-process communications.
+     Setting two DomainParticipant GUID prefixes as intra-process compatible will result in no communication if the
+     DomainParticipants run in separate processes.
+     For more information, please refer to :ref:`intraprocess_delivery_guids`.
+
 Client side setup
-*****************
+"""""""""""""""""
 
 Each *client* must keep a list of the *servers* to which it wants to link.
-Each single element represents an individual server and a |GuidPrefix_t-api| must be provided.
+Each single element represents an individual server, and a |GuidPrefix_t-api| must be provided.
 The *server* list must be populated with |RemoteServerAttributes-api| objects with a valid |GuidPrefix_t-api| data
 member.
 In XML the server list and its elements are simultaneously specified.
@@ -177,19 +185,21 @@ Note that ``prefix`` is an element of the ``RemoteServer`` tag.
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX<-->                                                                  |
 |    :end-before: <!--><-->                                                                                            |
+|    :lines: 2-3,5-19                                                                                                  |
+|    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_locators:
 
 The server locator list
-"""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Each *server* must specify valid locators where it can be reached.
 Any *client* must be given proper locators to reach each of its *servers*.
 As in the :ref:`above section <DS_guidPrefx>`, here there is a *server* and a *client* side setup.
 
 Server side setup
-*****************
+"""""""""""""""""
 
 The examples below show how to setup the server locator list and XML tag.
 
@@ -208,15 +218,17 @@ The examples below show how to setup the server locator list and XML tag.
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->                                                                |
 |    :end-before: <!--><-->                                                                                            |
+|    :lines: 2-3,5-19                                                                                                  |
+|    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
-Note that a *server* can act as a client of other *servers*, thus, the following section may also apply.
+Note that a *server* can connect other *servers*, thus, the following section may also apply.
 
 Client side setup
-*****************
+"""""""""""""""""
 
 Each *client* must keep a list of locators associated to the *servers* to which it wants to link.
-Each *server* specifies its own locator list and must be populated with |RemoteServerAttributes-api| objects with a
+Each *server* specifies its own locator list which must be populated with |RemoteServerAttributes-api| objects with a
 valid ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``.
 In XML the server list and its elements are simultaneously specified.
 Note the ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList`` are elements of the ``RemoteServer``
@@ -237,15 +249,18 @@ tag.
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->                                                                |
 |    :end-before: <!--><-->                                                                                            |
+|    :lines: 2-3,5-25                                                                                                  |
+|    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. _DS_ping_period:
 
 Client ping period
-""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 As explained :ref:`above <DS_key_concepts>` the *clients* send discovery messages to the *servers* at regular
 intervals (ping period) until they receive message reception acknowledgement.
+Mind that this period also applies for those *servers* which connect to other *servers*.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
@@ -262,186 +277,6 @@ intervals (ping period) until they receive message reception acknowledgement.
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-CLIENT-PING<-->                                                                    |
 |    :end-before: <!--><-->                                                                                            |
+|    :lines: 2-3,5-16                                                                                                  |
+|    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
-
-.. _DS_match_period:
-
-Server match period
-"""""""""""""""""""
-
-As explained :ref:`above <DS_key_concepts>`, the *servers* receive discovery messages from new clients to join the
-communication.
-However, the *servers* do not start processing them until a time interval, defined by this period, has
-elapsed, which starts at the moment the server is instantiated.
-Therefore, this member specifies a time interval in which the server's DataReader| is disabled and incoming messages
-are not processed.
-It is a time interval intended to allow the server to initialize its resources.
-
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_SERVER_PING                                                                           |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-SERVER-PING<-->                                                                    |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
-
-.. _DS_setup_attributes:
-
-Discovery Server setup by Qos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The settings related with Discovery Server are:
-
-.. csv-table::
-    :header: "Name", "Description"
-
-    :ref:`WireProtocolConfigQos <DS_WireProtocolConfigQos>` |br| (|WireProtocolConfigQos-api|), "
-    Specifies wire protocol settings for a DomainParticipant. |br|
-    Some of it data members must be modified in order to properly configure a Server. |br|
-    An example is the |WireProtocolConfigQos::prefix-api| data member."
-    :ref:`RTPS BuiltinAttributes <DS_BuiltinAttributes>` |br| (|WireProtocolConfigQos::builtin-api|), "
-    It is a public data member of the above |WireProtocolConfigQos-api| class. |br|
-    Allows to specify some mandatory server discovery settings like the addresses were it |br|
-    listens for clients discovery information."
-    :ref:`DiscoverySettings <DS_DiscoverySettings>`, "
-    It is a member of the above |BuiltinAttributes-api| structure. |br|
-    Allows to specify some mandatory and optional Discovery Server settings such as |br|
-    whether the DomainParticipant is a client or a server, the list of servers it is linked to, |br|
-    the client-ping, and the server-match frequencies."
-
-.. _DS_WireProtocolConfigQos:
-
-WireProtocolConfigQos
-"""""""""""""""""""""
-
-The |WireProtocolConfigQos::prefix-api| data member of the |WireProtocolConfigQos-api| class
-specifies the server's identity.
-This member has only significance if ``discovery_config.discoveryProtocol`` is **SERVER** or **BACKUP**.
-
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX                                                                     |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX                                                                      |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
-
-.. _DS_BuiltinAttributes:
-
-RTPS BuiltinAttributes
-""""""""""""""""""""""
-
-All discovery related information is gathered in the |BuiltinAttributes-api|
-|BuiltinAttributes::discovery_config-api| data member.
-
-In order to receive client metatraffic, ``metatrafficUnicastLocatorList`` or
-``metatrafficMulticastLocatorList`` must be populated with the addresses (IP and port) that were given to
-the clients.
-
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_METATRAFFICUNICAST                                                                    |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-METATRAFFICUNICASTLOCATOR                                                          |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
-
-.. _DS_DiscoverySettings:
-
-DiscoverySettings
-"""""""""""""""""
-
-The |DiscoveryProtocol_t| enum data member (|discoveryProtocol|) specifies the participant's discovery kind.
-As was explained before, to setup the Discovery Server it may be:
-
-.. csv-table::
-    :header: "enum value", "Description"
-    :widths: 15, 100
-
-    |SERVER|, "
-    Generates a client DomainParticipant, which relies on a server (or servers) to be notified of other clients |br|
-    presence. This DomainParticipant can create DataWriters and DataReaders of any topic (static or dynamic) |br|
-    as ordinary DomainParticipants do."
-    |CLIENT|, "
-    Generates a server DomainParticipant, which receives, manages and spreads its matched client's metatraffic |br|
-    assuring any single one is aware of the others. This DomainParticipant can create DataWriters and |br|
-    DataReaders of any topic (static or dynamic) as ordinary DomainParticipants do. |br|
-    Servers can link to other servers in order to share its clients information."
-    |BACKUP|, "
-    Generates a server DomainParticipant with additional functionality over **SERVER**. Specifically, it uses a |br|
-    database to backup its client information, so that this information can be automatically restored at any |br|
-    moment and continue spreading metatraffic to late joiners. A **SERVER** in the same scenario ought to |br|
-    collect client information again, introducing a recovery delay."
-
-A |m_DiscoveryServers| lists the servers linked to a client DomainParticipant. This member
-has only significance if |discoveryProtocol| is **CLIENT**, **SERVER** or **BACKUP**.
-These member elements are |RemoteServerAttributes-api| objects that identify each server and report where the
-servers can be reached:
-
-.. list-table::
-   :header-rows: 1
-
-   * - Data members
-     - Description
-   * - |RemoteServerAttributes::guidPrefix-api|
-     - Is the RTPS unique identifier of the remote server DomainParticipant.
-   * - |RemoteServerAttributes::metatrafficUnicastLocatorList-api| |br|
-       |RemoteServerAttributes::metatrafficMulticastLocatorList-api|
-     - Are ordinary |LocatorList_t-api| (see :ref:`LocatorListType`) where the server's |br|
-       locators must be specified. At least one of them should be populated.
-   * - |discoveryServer_client_syncperiod|
-     - Has only significance if |discoveryProtocol| is **CLIENT**, **SERVER** or |br|
-       **BACKUP**. For a *client* it specifies the pinging period as explained in |br|
-       :ref:`key concepts <DS_key_concepts>`. When a client has not yet established a |br|
-       reliable connection to a server it *pings* until the server notices it and |br|
-       establishes the connection. |br|
-       For a *server* it specifies the match period as explained in :ref:`key concepts <DS_key_concepts>`. |br|
-       When a *server* discovers new *clients* it only starts exchanging information with them |br|
-       at regular intervals as a mechanism to bundle discovery information and optimize delivery. |br|
-       The default value is half a second.
-
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_PING                                                                                  |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-PING                                                                               |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
-
-

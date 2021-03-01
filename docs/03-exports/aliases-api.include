@@ -1,4 +1,5 @@
 .. |DataReader-api| replace:: :cpp:class:`DataReader <eprosima::fastdds::dds::DataReader>`
+.. |DataReader::get_listening_locators-api| replace:: :cpp:func:`get_listening_locators()<eprosima::fastdds::dds::DataReader::get_listening_locators>`
 .. |DataReader::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::DataReader::get_qos>`
 .. |DataReader::set_qos-api| replace:: :cpp:func:`DataReader::set_qos()<eprosima::fastdds::dds::DataReader::set_qos>`
 .. |DataReader::read-api| replace:: :cpp:func:`DataReader::read()<eprosima::fastdds::dds::DataReader::read>`
@@ -55,6 +56,7 @@
 .. |DataReaders-api| replace:: :cpp:class:`DataReaders <eprosima::fastdds::dds::DataReader>`
 
 .. |DataWriter-api| replace:: :cpp:class:`DataWriter <eprosima::fastdds::dds::DataWriter>`
+.. |DataWriter::get_sending_locators-api| replace:: :cpp:func:`get_sending_locators()<eprosima::fastdds::dds::DataWriter::get_sending_locators>`
 .. |DataWriter::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::DataWriter::get_qos>`
 .. |DataWriter::set_qos-api| replace:: :cpp:func:`DataWriter::set_qos()<eprosima::fastdds::dds::DataWriter::set_qos>`
 .. |DataWriter::write-api| replace:: :cpp:func:`write()<eprosima::fastdds::dds::DataWriter::write>`

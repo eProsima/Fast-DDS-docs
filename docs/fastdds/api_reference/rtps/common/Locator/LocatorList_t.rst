@@ -3,6 +3,5 @@
 LocatorList_t
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::LocatorList_t
+.. doxygentypedef:: eprosima::fastrtps::rtps::LocatorList_t
     :project: FastDDS
-    :members:

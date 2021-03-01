@@ -1,8 +1,8 @@
 .. rst-class:: api-ref
 
-LocatorsIterator
+LocatorList
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastdds::rtps::LocatorsIterator
+.. doxygenclass:: eprosima::fastdds::rtps::LocatorList
     :project: FastDDS
     :members:

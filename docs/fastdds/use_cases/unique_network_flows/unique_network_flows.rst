@@ -64,7 +64,7 @@ Fast DDS provides the APIs needed to get the list of NFEs used by a given DataWr
 * On the DataWriter, |DataWriter::get_sending_locators-api| allows the application to obtain the list of locators
   from which the writer may send data.
 * On the DataReader, |DataReader::get_listening_locators-api| allows the application to obtain the list of locators
-  on wich the reader is listening.
+  on which the reader is listening.
 
 Requesting unique flows
 -----------------------

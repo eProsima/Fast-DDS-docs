@@ -819,6 +819,72 @@ void dds_discovery_examples()
                 Duration_t(0, 250000000);
         //!--
     }
+
+    {
+        //CONF_SERVER_FULL_EXAMPLE
+        // Get default participant QoS
+        DomainParticipantQos server_qos = PARTICIPANT_QOS_DEFAULT;
+
+        // Set participant as SERVER
+        server_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                DiscoveryProtocol_t::SERVER;
+
+        // Set SERVER's GUID prefix
+        std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> server_qos.wire_protocol().prefix;
+
+        // Set SERVER's listening locator for PDP
+        Locator_t locator;
+        IPLocator::setIPv4(locator, 127, 0, 0, 1);
+        locator.port = 11811;
+        server_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
+
+        // Create SERVER
+        DomainParticipant* server =
+            DomainParticipantFactory::get_instance()->create_participant(0, server_qos);
+        if (nullptr == server)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //CONF_CLIENT_FULL_EXAMPLE
+        // Get default participant QoS
+        DomainParticipantQos client_qos = PARTICIPANT_QOS_DEFAULT;
+
+        // Set participant as CLIENT
+        client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                DiscoveryProtocol_t::CLIENT;
+
+        // Set SERVER's GUID prefix
+        RemoteServerAttributes remote_server_att;
+        remote_server_att.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.41");
+
+        // Set SERVER's listening locator for PDP
+        Locator_t locator;
+        IPLocator::setIPv4(locator, 127, 0, 0, 1);
+        locator.port = 11811;
+        remote_server_att.metatrafficUnicastLocatorList.push_back(locator);
+
+        // Add remote SERVER to CLIENT's list of SERVERs
+        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
+
+        // Set ping period to 250 ms
+        client_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
+                Duration_t(0, 250000000);
+
+        // Create CLIENT
+        DomainParticipant* client =
+            DomainParticipantFactory::get_instance()->create_participant(0, client_qos);
+        if (nullptr == client)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
 }
 
 //DDS_TOPIC_LISTENER_SPECIALIZATION

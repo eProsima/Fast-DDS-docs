@@ -280,3 +280,57 @@ Mind that this period also applies for those *servers* which connect to other *s
 |    :lines: 2-3,5-16                                                                                                  |
 |    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
+
+.. _DS_full_example:
+
+Full example
+^^^^^^^^^^^^
+
+The following constitutes a full example on how to configure *server* and *client* both programmatically and using XML.
+
+Server side setup
+"""""""""""""""""
+
++---------------------------------------------------------------------+
+| **C++**                                                             |
++---------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                      |
+|    :language: c++                                                   |
+|    :start-after: //CONF_SERVER_FULL_EXAMPLE                         |
+|    :end-before: //!--                                               |
+|    :dedent: 8                                                       |
+|                                                                     |
++---------------------------------------------------------------------+
+| **XML**                                                             |
++---------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                          |
+|    :language: xml                                                   |
+|    :start-after: <!-->CONF_SERVER_FULL_EXAMPLE<-->                  |
+|    :end-before: <!--><-->                                           |
+|    :lines: 2-3,5-25                                                 |
+|    :append: </profiles>                                             |
++---------------------------------------------------------------------+
+
+
+Client side setup
+"""""""""""""""""
+
++---------------------------------------------------------------------+
+| **C++**                                                             |
++---------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                      |
+|    :language: c++                                                   |
+|    :start-after: //CONF_CLIENT_FULL_EXAMPLE                         |
+|    :end-before: //!--                                               |
+|    :dedent: 8                                                       |
+|                                                                     |
++---------------------------------------------------------------------+
+| **XML**                                                             |
++---------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                          |
+|    :language: xml                                                   |
+|    :start-after: <!-->CONF_CLIENT_FULL_EXAMPLE<-->                  |
+|    :end-before: <!--><-->                                           |
+|    :lines: 2-3,5-40                                                 |
+|    :append: </profiles>                                             |
++---------------------------------------------------------------------+

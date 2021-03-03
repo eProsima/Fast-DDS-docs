@@ -838,6 +838,20 @@ void dds_discovery_examples()
         locator.port = 11811;
         server_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
 
+        /* Add a remote serve to which this server will connect */
+        // Set remote SERVER's GUID prefix
+        RemoteServerAttributes remote_server_att;
+        remote_server_att.ReadguidPrefix("44.53.01.5f.45.50.52.4f.53.49.4d.41");
+
+        // Set remote SERVER's listening locator for PDP
+        Locator_t remote_locator;
+        IPLocator::setIPv4(remote_locator, 127, 0, 0, 1);
+        remote_locator.port = 11812;
+        remote_server_att.metatrafficUnicastLocatorList.push_back(remote_locator);
+
+        // Add remote SERVER to SERVER's list of SERVERs
+        server_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
+
         // Create SERVER
         DomainParticipant* server =
             DomainParticipantFactory::get_instance()->create_participant(0, server_qos);

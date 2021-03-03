@@ -51,7 +51,7 @@ using XML
 |    :end-before: //!--                                                                                                |
 |    :dedent: 8                                                                                                        |
 +----------------------------------------------------------------------------------------------------------------------+
-| **C++** - Option 2: Using the ``>>`` operator and the ``std::ostream`` type.                                         |
+| **C++** - Option 2: Using the ``>>`` operator and the ``std::istringstream`` type.                                   |
 +----------------------------------------------------------------------------------------------------------------------+
 | .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
 |    :language: c++                                                                                                    |

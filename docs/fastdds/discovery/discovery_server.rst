@@ -14,6 +14,11 @@ IP multicast protocol.
 A `Discovery-Server <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ tool is available to
 ease Discovery Server setup and testing.
 
+.. contents::
+    :local:
+    :backlinks: none
+    :depth: 1
+
 .. figure:: /01-figures/fast_dds/discovery/discovery-server.svg
     :align: center
     :width: 50%
@@ -37,16 +42,24 @@ In this architecture there are several key concepts to understand:
 - All *server* and *client* discovery information will be shared with linked *clients*.
   Note that a *server* may act as a *client* for other *servers*.
 
-- A *server* is a participant to which the *clients* (and maybe other *servers*) send their discovery information.
+- A |SERVER| is a participant to which the *clients* (and maybe other *servers*) send their discovery information.
   The role of the *server* is to re-distribute the *clients* (and *servers*) discovery information to their known
   *clients* and *servers*.
   A *server* may connect to other *servers* to receive information about their *clients*.
   Known *servers* will receive all the information known by the *server*.
   Known *clients* will only receive the information they need to establish communication, i.e. the information about the
-  DomainParticipants, DataWriters, and DataReader to which they match.
+  DomainParticipants, DataWriters, and DataReaders to which they match.
   This means that the *server* runs a "matching" algorithm to sort out which information is required by which *client*.
 
-- A *client* is a participant that connects to one or more *servers* from which it receives the discovery information
+- A |BACKUP| *server* is a *server* that persists its discovery database into a file.
+  This type of *server* can load the network graph from a file on start-up without the need of receiving any *clients*
+  information.
+  It can be used to persists the *server* knowledge about the network between runs, thus securing the *server's*
+  information in case of unexpected shutdowns.
+  It is important to note that the discovery times will be negatively affected when using this type of *server*, since
+  periodically writing to a file is an expensive operation.
+
+- A |CLIENT| is a participant that connects to one or more *servers* from which it receives the discovery information
   they require to establish communication.
 
 - *Clients* require a beforehand knowledge of the *servers* to which they want to link.
@@ -66,16 +79,8 @@ In this architecture there are several key concepts to understand:
   (where they are listening) must match the one provided to the *clients*.
   *Clients* send discovery messages to the *servers* at regular intervals (ping period) until they receive message
   reception acknowledgement.
-  From them on, the *server* knows about the *client* and will inform it of the relevant discovery information.
-  They same principle applies to a *server* connecting to another *server*.
-
-.. csv-table::
-    :header: "Concept", "Description"
-
-    :ref:`Discovery protocol <DS_discovery_protocol>`, Make a participant a *client* or a *server*.
-    :ref:`Server unique id <DS_guidPrefx>`, Link *clients* (or other *servers*) to *servers*.
-    :ref:`Seting up transport <DS_locators>`, Specify which transport to use and make *servers* reachable.
-    :ref:`Pinging period <DS_ping_period>`, Fine tune discovery server handshake.
+  From then on, the *server* knows about the *client* and will inform it of the relevant discovery information.
+  The same principle applies to a *server* connecting to another *server*.
 
 .. _DS_discovery_protocol:
 
@@ -83,9 +88,9 @@ Choosing between Client and Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is set by the :ref:`Discovery Protocol <discovery_protocol>` general setting.
-A participant can only play a role (despite the fact that a *server* may connect to other *servers*).
-It is mandatory to fill this value because it defaults to *simple*.
-The examples below show how to manage the corresponding enum and XML tag.
+A participant can only play one role (despite the fact that a *server* may connect to other *servers*).
+It is mandatory to fill this value because it defaults to |SIMPLE|.
+The examples below shows how to set this parameter both programmatically and using XML.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
@@ -106,7 +111,7 @@ The examples below show how to manage the corresponding enum and XML tag.
 |    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
-.. _DS_guidPrefx:
+.. _DS_guidPrefix:
 
 The GuidPrefix as the server unique identifier
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -132,7 +137,7 @@ The examples below show how to manage the corresponding enum data member and XML
 |    :end-before: //!--                                                                                                |
 |    :dedent: 8                                                                                                        |
 +----------------------------------------------------------------------------------------------------------------------+
-| **C++** - Option 2: Using the ``>>`` operator and the ``std::ostream`` type.                                         |
+| **C++** - Option 2: Using the ``>>`` operator and the ``std::istringstream`` type.                                   |
 +----------------------------------------------------------------------------------------------------------------------+
 | .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
 |    :language: c++                                                                                                    |
@@ -150,7 +155,7 @@ The examples below show how to manage the corresponding enum data member and XML
 |    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
-Note that a *server* can connect other *servers*.
+Note that a *server* can connect to other *servers*.
 Thus, the following section may also apply.
 
 .. important::
@@ -196,7 +201,7 @@ The server locator list
 
 Each *server* must specify valid locators where it can be reached.
 Any *client* must be given proper locators to reach each of its *servers*.
-As in the :ref:`above section <DS_guidPrefx>`, here there is a *server* and a *client* side setup.
+As in the :ref:`above section <DS_guidPrefix>`, here there is a *server* and a *client* side setup.
 
 Server side setup
 """""""""""""""""
@@ -222,7 +227,7 @@ The examples below show how to setup the server locator list and XML tag.
 |    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
-Note that a *server* can connect other *servers*, thus, the following section may also apply.
+Note that a *server* can connect to other *servers*, thus, the following section may also apply.
 
 Client side setup
 """""""""""""""""
@@ -255,8 +260,8 @@ tag.
 
 .. _DS_ping_period:
 
-Client ping period
-^^^^^^^^^^^^^^^^^^
+Fine tuning discovery server handshake
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As explained :ref:`above <DS_key_concepts>` the *clients* send discovery messages to the *servers* at regular
 intervals (ping period) until they receive message reception acknowledgement.
@@ -307,7 +312,7 @@ Server side setup
 |    :language: xml                                                   |
 |    :start-after: <!-->CONF_SERVER_FULL_EXAMPLE<-->                  |
 |    :end-before: <!--><-->                                           |
-|    :lines: 2-3,5-25                                                 |
+|    :lines: 2-3,5-47                                                 |
 |    :append: </profiles>                                             |
 +---------------------------------------------------------------------+
 

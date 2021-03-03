@@ -41,13 +41,14 @@ There are two verbs whose functionality is described in the following table:
 discovery
 ---------
 
-Launches a *server* for :ref:`Discovery Server <discovery_server>`. This *server* will manage the discovery phases of
-the *clients* which are connected to it.
+This command launches a *server* for :ref:`Discovery Server <discovery_server>`. This *server* will manage the discovery
+phases of the *clients* which are connected to it.
 *Clients* must know how to reach the *server*, which is accomplished by specifying an IP address, the *servers* GUID
 prefix, and a transport protocol like UDP or TCP.
 *Servers* do not need any prior knowledge of their *clients*, but require a GUID prefix, and the listening IP address
 where they may be reached.
-For more information on how to configure the discovery mechanism in *Fast DDS*, please refer to :ref:`discovery`.
+For more information on the different *Fast DDS* discovery mechanisms and how to configure them, please refer to
+:ref:`discovery`.
 
 .. _cli_discovery_run:
 
@@ -60,7 +61,7 @@ On a shell, execute:
 
     fastdds discovery -i {0-255} [optional parameters]
 
-Where the optional parameters are:
+Where the parameters are:
 
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
@@ -74,7 +75,7 @@ Where the optional parameters are:
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-p  --port``           | UDP port chosen to listen the clients. Defaults to '11811'.                               |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-b  --backup``         | Creates a BACKUP *server*                                                                 |
+| ``-b  --backup``         | Creates a BACKUP *server* (see :ref:`discovery_general_settings`)                         |
 +--------------------------+-------------------------------------------------------------------------------------------+
 
 The output is:

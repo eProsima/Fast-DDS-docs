@@ -2686,7 +2686,29 @@
             <builtin>
                 <!-- Set participant as SERVER -->
                 <discovery_config>
-                        <discoveryProtocol>SERVER</discoveryProtocol>
+                    <discoveryProtocol>SERVER</discoveryProtocol>
+                    <!-- 
+                        Set a list of remote servers to which this server connects.
+                        This list may contain one or more <RemoteServer> tags
+                    -->
+                    <discoveryServersList>
+                        <!-- 
+                            Set remote server configuration: 
+                                - Prefix
+                                - PDP listening locator
+                        -->
+                        <RemoteServer prefix="44.53.01.5f.45.50.52.4f.53.49.4d.41">
+                            <metatrafficUnicastLocatorList>
+                                <!-- Set SERVER's listening locator for PDP -->
+                                <locator>
+                                    <udpv4>
+                                        <address>127.0.0.1</address>
+                                        <port>11812</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
                 </discovery_config>
                 <!-- Set SERVER's listening locator for PDP -->
                 <metatrafficUnicastLocatorList>
@@ -2715,7 +2737,7 @@
                     <discoveryProtocol>CLIENT</discoveryProtocol>
                     <!-- 
                         Set list of remote servers. This list may contain one or
-                        more <RemoteServer> tags-
+                        more <RemoteServer> tags
                     -->
                     <discoveryServersList>
                         <!-- 

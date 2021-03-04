@@ -462,7 +462,7 @@ void configuration_compilation_check()
     IPLocator::setIPv4(server_address, 192, 168, 2, 65);
 
     RemoteServerAttributes ratt;
-    ratt.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+    ratt.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.41");
     ratt.metatrafficUnicastLocatorList.push_back(server_address);
 
     participant_attr.rtps.builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
@@ -722,18 +722,8 @@ void configuration_compilation_check()
     }
 
     //CONF_SERVER_PREFIX_EXAMPLE
-    participant_attr.rtps.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+    participant_attr.rtps.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.41");
     //!--
-
-    {
-        //CONF_SERVER_METATRAFFICUNICAST
-        eprosima::fastrtps::rtps::Locator_t locator;
-        IPLocator::setIPv4(locator, 192, 168, 1, 133);
-        locator.port = 64863;
-
-        participant_attr.rtps.builtin.metatrafficUnicastLocatorList.push_back(locator);
-        //!--
-    }
 
     {
         //CONF_SERVER_DISCOVERY_PROTOCOL
@@ -747,7 +737,7 @@ void configuration_compilation_check()
     {
         //CONF_SERVER_CLIENT_GUIDPREFIX
         RemoteServerAttributes server;
-        server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+        server.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.41");
 
         DiscoverySettings& ds = participant_attr.rtps.builtin.discovery_config;
         ds.m_DiscoveryServers.push_back(server);
@@ -756,7 +746,7 @@ void configuration_compilation_check()
 
     {
         //CONF_SERVER_SERVER_GUIDPREFIX
-        participant_attr.rtps.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
+        participant_attr.rtps.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.41");
         //!--
     }
 
@@ -790,31 +780,6 @@ void configuration_compilation_check()
         ds.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
         //!--
     }
-
-    {
-        //CONF_SERVER_SERVER_PING
-        DiscoverySettings& ds = participant_attr.rtps.builtin.discovery_config;
-        ds.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
-        //!--
-    }
-
-    {
-        //CONF_SERVER_PING
-        RemoteServerAttributes server;
-        server.ReadguidPrefix("4D.49.47.55.45.4c.5f.42.41.52.52.4f");
-
-        eprosima::fastrtps::rtps::Locator_t locator;
-        IPLocator::setIPv4(locator, 192, 168, 1, 133);
-        locator.port = 64863;
-        server.metatrafficUnicastLocatorList.push_back(locator);
-
-        DiscoverySettings& ds = participant_attr.rtps.builtin.discovery_config;
-        ds.discoveryProtocol =  DiscoveryProtocol_t::CLIENT;
-        ds.m_DiscoveryServers.push_back(server);
-        ds.discoveryServer_client_syncperiod = Duration_t(0, 250000000);
-        //!--
-    }
-
 }
 
 //API-DISCOVERY-TOPICS-LISTENER
@@ -969,7 +934,7 @@ void rtps_api_example_create_entities_with_custom_pool()
 
             // Tell the CacheChange who needs to release its payload
             cache_change.payload_owner(this);
-            
+
             return true;
         }
 
@@ -991,7 +956,7 @@ void rtps_api_example_create_entities_with_custom_pool()
 
             // Tell the CacheChange who needs to release its payload
             cache_change.payload_owner(this);
-            
+
             return true;
         }
 

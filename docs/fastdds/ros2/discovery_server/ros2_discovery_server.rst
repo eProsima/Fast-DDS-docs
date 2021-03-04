@@ -58,7 +58,7 @@ RMF Clinic demo use case, is shown:
 
 
 In order to use this functionality, **Fast-DDS Discovery Server** can be set using
-the :ref:`XML configuration for Participants <DS_setup_concepts>`.
+the XML configuration for Participants.
 Furthermore, Fast DDS provides an easier way to set a **Discovery Server** communication using
 the ``fastdds`` :ref:`CLI tool <ffastddscli_cli>` and an :ref:`environment variable <env_vars>`,
 which are going to be used along this tutorial.

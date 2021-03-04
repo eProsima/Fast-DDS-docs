@@ -41,13 +41,21 @@ There are two verbs whose functionality is described in the following table:
 discovery
 ---------
 
-Launches a server for :ref:`Discovery Server <discovery_server>`. This server will manage the messages of the
-clients which are pointed to its IP address.
-Clients must be aware of how to reach the server by specifying an IP address and a transport protocol like UDP
-or TCP.
-Servers do not need any knowledge of their clients beforehand, but require the listening IP address, where they
-may be reached.
-For more information on how to configure the discovery mechanism in *Fast DDS*, please refer to :ref:`discovery`.
+This command launches a *server* for :ref:`Discovery Server <discovery_server>`. This *server* will manage the discovery
+phases of the *clients* which are connected to it.
+*Clients* must know how to reach the *server*, which is accomplished by specifying an IP address, the *servers* GUID
+prefix, and a transport protocol like UDP or TCP.
+*Servers* do not need any prior knowledge of their *clients*, but require a GUID prefix, and the listening IP address
+where they may be reached.
+For more information on the different *Fast DDS* discovery mechanisms and how to configure them, please refer to
+:ref:`discovery`.
+
+.. _cli_discovery_run:
+
+How to run
+^^^^^^^^^^
+
+On a shell, execute:
 
 .. code-block:: bash
 
@@ -59,7 +67,7 @@ Where the parameters are:
 | Option                   | Description                                                                               |
 +==========================+===========================================================================================+
 | ``-i  --server-id``      | **Mandatory** unique server identifier. Specifies zero based server position in |br|      |
-|                          | ``ROS_DISCOVERY_SERVER`` environment variable.                                            |
+|                          | ``ROS_DISCOVERY_SERVER`` environment variable. Must be an integer in range [0, 255]       |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-h  -help``            | Produce help message.                                                                     |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -67,8 +75,25 @@ Where the parameters are:
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-p  --port``           | UDP port chosen to listen the clients. Defaults to '11811'.                               |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-b  --backup``         | Creates a server with a backup file associated.                                           |
+| ``-b  --backup``         | Creates a BACKUP *server* (see :ref:`discovery_protocol`)                                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
+
+The output is:
+
+.. code-block:: bash
+
+    ### Server is running ###
+      Participant Type:   <SERVER|BACKUP>
+      Server ID:          <server-id>
+      Server GUID prefix: 44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
+      Server Addresses:   UDPv4:[<ip-address>]:<port>
+                          UDPv4:[<ip-address>]:<port>
+
+Once the *server* is instantiated, the *clients* can be configured either programmatically or by XML (see
+:ref:`discovery_server`), or using environment variable ``ROS_DISCOVERY_SERVER`` (see
+:ref:`env_vars_ros_discovery_server`)
+
+.. _cli_discovery_examples:
 
 Examples
 ^^^^^^^^
@@ -81,6 +106,16 @@ Examples
 
         fastdds discovery -i 0
 
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type:   SERVER
+          Server ID:          0
+          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   UDPv4:[0.0.0.0]:11811
+
 2.  Launch a default server with id 1 (second on ``ROS_DISCOVERY_SERVER``)
     listening on localhost with UDP port 14520. Only localhost clients
     can reach the server defining as `ROS_DISCOVERY_SERVER=;127.0.0.1:14520` .
@@ -88,6 +123,16 @@ Examples
     .. code-block:: bash
 
         fastdds discovery -i 1 -l 127.0.0.1 -p 14520
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type:   SERVER
+          Server ID:          1
+          Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   UDPv4:[127.0.0.1]:14520
 
 3.  Launch a default server with id 2 (third on ``ROS_DISCOVERY_SERVER``)
     listening on WiFi (192.168.36.34) and Ethernet (172.20.96.1) local
@@ -98,6 +143,17 @@ Examples
 
         fastdds discovery -i 2 -l 192.168.36.34 -p 8783 -l 172.20.96.1 -p 51083
 
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type    SERVER
+          Server ID:          2
+          Server GUID prefix: 44.53.02.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   UDPv4:[192.168.36.34]:8783
+                              UDPv4:[172.20.96.1]:51083
+
 4.  Launch a default server with id 3 (fourth on ``ROS_DISCOVERY_SERVER``)
     listening on 172.30.144.1 with UDP port 12345 and provided with a
     backup file. If the server crashes it will automatically restore its
@@ -107,6 +163,16 @@ Examples
     .. code-block:: bash
 
         fastdds discovery -i 3 -l 172.30.144.1 -p 12345 -b
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type    BACKUP
+          Server ID:          3
+          Server GUID prefix: 44.53.03.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   UDPv4:[172.30.144.1]:12345
 
 
 .. _cli_shm:

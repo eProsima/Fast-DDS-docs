@@ -1,3 +1,4 @@
+.. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
 .. _ffastddscli_cli:
@@ -41,14 +42,18 @@ There are two verbs whose functionality is described in the following table:
 discovery
 ---------
 
-This command launches a *server* for :ref:`Discovery Server <discovery_server>`. This *server* will manage the discovery
-phases of the *clients* which are connected to it.
+This command launches a |SERVER| (or |BACKUP|) for :ref:`Discovery Server <discovery_server>`. This *server* will manage
+the discovery phases of the |CLIENTS| which are connected to it.
 *Clients* must know how to reach the *server*, which is accomplished by specifying an IP address, the *servers* GUID
 prefix, and a transport protocol like UDP or TCP.
 *Servers* do not need any prior knowledge of their *clients*, but require a GUID prefix, and the listening IP address
 where they may be reached.
 For more information on the different *Fast DDS* discovery mechanisms and how to configure them, please refer to
 :ref:`discovery`.
+
+.. important::
+    It is possible to interconnect *servers* (or *backup* servers) instantiated with ``fastdds discovery`` using
+    environment variable ``ROS_DISCOVERY_SERVER`` (see :ref:`env_vars_ros_discovery_server`).
 
 .. _cli_discovery_run:
 

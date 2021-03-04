@@ -52,9 +52,9 @@ In this architecture there are several key concepts to understand:
   This means that the *server* runs a "matching" algorithm to sort out which information is required by which *client*.
 
 - A |BACKUP| *server* is a *server* that persists its discovery database into a file.
-  This type of *server* can load the network graph from a file on start-up without the need of receiving any *clients*
+  This type of *server* can load the network graph from a file on start-up without the need of receiving any *client's*
   information.
-  It can be used to persists the *server* knowledge about the network between runs, thus securing the *server's*
+  It can be used to persist the *server* knowledge about the network between runs, thus securing the *server's*
   information in case of unexpected shutdowns.
   It is important to note that the discovery times will be negatively affected when using this type of *server*, since
   periodically writing to a file is an expensive operation.

@@ -658,6 +658,7 @@
 .. |STATIC| replace:: :cpp:enumerator:`STATIC<rtps::fastrtps::eprosima::DiscoveryProtocol::STATIC>`
 .. |SERVER| replace:: :cpp:enumerator:`SERVER<rtps::fastrtps::eprosima::DiscoveryProtocol::SERVER>`
 .. |CLIENT| replace:: :cpp:enumerator:`CLIENT<rtps::fastrtps::eprosima::DiscoveryProtocol::CLIENT>`
+.. |CLIENTS| replace:: :cpp:enumerator:`CLIENTS<rtps::fastrtps::eprosima::DiscoveryProtocol::CLIENT>`
 .. |BACKUP| replace:: :cpp:enumerator:`BACKUP<rtps::fastrtps::eprosima::DiscoveryProtocol::BACKUP>`
 .. |NONE| replace:: :cpp:enumerator:`NONE<rtps::fastrtps::eprosima::DiscoveryProtocol::NONE>`
 

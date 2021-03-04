@@ -62,14 +62,17 @@ For more information about XML profiles, please refer to :ref:`xml_profiles`.
 
 .. warning::
     The environment variable is only used in the case where :ref:`discovery protocol<discovery_protocol>`
-    is set to |SIMPLE|.
-    In any other case the environment variable has no effect.
+    is set to |SIMPLE|, |SERVER|, or |BACKUP|.
+    In any other case, the environment variable has no effect.
 
-When setting this variable, the :ref:`DomainParticipant<dds_layer_domainParticipant>` is configured as a *Client* of
-the given *Server*, implementing the :ref:`Discovery Server<discovery_server>` mechanism, provided its
-:ref:`dds_layer_domainParticipant`'s |discoveryProtocol| setting has been left configured as default
-(:ref:`Simple discovery<simple_disc_settings>`).
-For more information on how to configure the discovery mechanism in *Fast DDS*, please refer to :ref:`discovery`.
+Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainParticipant>` to connect to one or more
+*servers* using the :ref:`Discovery Server<discovery_server>` discovery mechanism.
+
+* If ``ROS_DISCOVERY_SERVER`` is defined, and the ``DomainParticipant``'s :ref:`discovery protocol<discovery_protocol>`,
+  is set to |SIMPLE|, then Fast DDS will instead configure it as |CLIENT| of the given *server*.
+* If ``ROS_DISCOVERY_SERVER`` is defined, and the ``DomainParticipant``'s :ref:`discovery protocol<discovery_protocol>`
+  is |SERVER| or |BACKUP|, then the variable is used to add remote *servers* to the given *server*, leaving the
+  :ref:`discovery protocol<discovery_protocol>` as |SERVER| or |BACKUP| respectively.
 
 * The value of the variable must list the locator of the server in the form of the IP address (e.g., '192.168.2.23')
   or IP-port pair (e.g., '192.168.2.23:24353').

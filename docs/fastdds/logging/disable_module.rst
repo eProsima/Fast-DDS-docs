@@ -37,7 +37,7 @@ for debugging purposes, thus preventing them to impact performance.
 However:
 
 * it does not activate the log Warning and Error messages, i.e. the messages are not written in the log queue.
-* **logInfo** has a special behaviour to simplify working with Multi-Config capability IDEs. If |LOG_NO_INFO| is ``OFF``
+* |logInfo| has a special behaviour to simplify working with Multi-Config capability IDEs. If |LOG_NO_INFO| is ``OFF``
   or |HAVE_LOG_NO_INFO| is ``0`` the logging is enabled only for ``Debug`` configuration. By setting
   |FASTDDS_ENFORCE_LOG_INFO| to ``ON`` the logging will always be enabled.
 

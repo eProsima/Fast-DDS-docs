@@ -69,7 +69,7 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
 *servers* using the :ref:`Discovery Server<discovery_server>` discovery mechanism.
 
 * If ``ROS_DISCOVERY_SERVER`` is defined, and the ``DomainParticipant``'s :ref:`discovery protocol<discovery_protocol>`,
-  is set |SIMPLE|, then Fast DDS will instead configure it as |CLIENT| of the given *server*.
+  is set to |SIMPLE|, then Fast DDS will instead configure it as |CLIENT| of the given *server*.
 * If ``ROS_DISCOVERY_SERVER`` is defined, and the ``DomainParticipant``'s :ref:`discovery protocol<discovery_protocol>`
   is |SERVER| or |BACKUP|, then the variable is used to add remote *servers* to the given *server*, leaving the
   :ref:`discovery protocol<discovery_protocol>` as |SERVER| or |BACKUP| respectively.

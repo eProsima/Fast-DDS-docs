@@ -55,6 +55,10 @@ The possible values are:
 |                     +---------------------+--------------------------------------------------------------------------+
 |                     | |CLIENT|            | The DomainParticipant acts as a client for discovery traffic. |br|       |
 |                     |                     | It send its discovery information to the server, and receives |br|       |
+|                     |                     | only the information that is relevant to it.                             |
+|                     +---------------------+--------------------------------------------------------------------------+
+|                     | |SUPER_CLIENT|      | The DomainParticipant acts as a client for discovery traffic. |br|       |
+|                     |                     | It send its discovery information to the server, and receives |br|       |
 |                     |                     | all other discovery information from the server.                         |
 |                     +---------------------+--------------------------------------------------------------------------+
 |                     | |BACKUP|            | Creates a SERVER DomainParticipant which has a persistent ``sqlite``     |

@@ -3,12 +3,11 @@
     <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
         <participant profile_name="server_profile" is_default_profile="true">
             <rtps>
-                <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
                 <builtin>
                     <discovery_config>
-                        <discoveryProtocol>SERVER</discoveryProtocol>
+                        <discoveryProtocol>SUPER_CLIENT</discoveryProtocol>
                         <discoveryServersList>
-                            <RemoteServer prefix="44.49.53.43.53.45.52.56.45.52.5f.30">
+                            <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
                                 <metatrafficUnicastLocatorList>
                                     <locator>
                                         <udpv4>
@@ -20,14 +19,6 @@
                             </RemoteServer>
                         </discoveryServersList>
                     </discovery_config>
-                    <metatrafficUnicastLocatorList>
-                        <locator>
-                            <udpv4>
-                                <address>127.0.0.1</address>
-                                <port>12345</port>
-                            </udpv4>
-                        </locator>
-                    </metatrafficUnicastLocatorList>
                 </builtin>
             </rtps>
         </participant>

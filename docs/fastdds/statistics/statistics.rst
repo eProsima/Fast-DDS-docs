@@ -2,10 +2,10 @@
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
-.. _instrumentation:
+.. _statistics:
 
-Instrumentation
-===============
+Statistics
+==========
 
 .. include:: includes/intro.rst
 

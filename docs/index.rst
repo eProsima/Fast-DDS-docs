@@ -44,7 +44,7 @@
    /fastdds/persistence/persistence
    /fastdds/security/security
    /fastdds/logging/intro
-   /fastdds/instrumentation/instrumentation
+   /fastdds/statistics/statistics
    /fastdds/xml_configuration/xml_configuration
    /fastdds/env_vars/env_vars
    /fastdds/dynamic_types/dynamic_types

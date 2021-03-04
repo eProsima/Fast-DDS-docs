@@ -81,9 +81,9 @@ dependency on other options.
           for more information on *Fast DDS* SHM transport.
         - ``ON`` ``OFF``
         - ``ON``
-    *   - :class:`FASTDDS_INSTRUMENTATION`
-        - Enables the *Fast DDS* instrumentation module. Please refer to :ref:`instrumentation` for more |br|
-          information on instrumentation module.
+    *   - :class:`FASTDDS_STATISTICS`
+        - Enables the *Fast DDS* Statistics module. Please refer to :ref:`statistics` for more |br|
+          information on this module.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`COMPILE_EXAMPLES`

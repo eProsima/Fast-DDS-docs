@@ -2647,6 +2647,7 @@
                     <discoveryProtocol>CLIENT</discoveryProtocol>
                     <!-- alternatives
                     <discoveryProtocol>SERVER</discoveryProtocol>
+                    <discoveryProtocol>SUPER_CLIENT</discoveryProtocol>
                     <discoveryProtocol>BACKUP</discoveryProtocol>
                     -->
                     </discovery_config>

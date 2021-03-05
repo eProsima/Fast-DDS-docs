@@ -748,6 +748,8 @@ void dds_discovery_examples()
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 DiscoveryProtocol_t::CLIENT;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                DiscoveryProtocol_t::SUPER_CLIENT;
+        pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 DiscoveryProtocol_t::SERVER;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 DiscoveryProtocol_t::BACKUP;

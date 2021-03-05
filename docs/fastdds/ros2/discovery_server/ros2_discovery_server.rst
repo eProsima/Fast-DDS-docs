@@ -1,3 +1,5 @@
+.. include:: ../../../03-exports/aliases-api.include
+
 .. _ros2-discovery-server:
 
 Use ROS 2 with Fast-DDS Discovery Server
@@ -306,7 +308,7 @@ partition from *Talker 2* and so it does not listen to it.
 ROS 2 Introspection
 -------------------
 
-ROS 2 Command Line Interface (CLI) implements several introspection features to analyze the behaviour of a ROS2
+ROS 2 Command Line Interface (CLI) implements several introspection features to analyze the behaviour of a ROS 2
 execution.
 These features (i.e. `rosbag`, `topic list`, etc.) are very helpful to understand a ROS 2 working network.
 
@@ -318,43 +320,39 @@ As most of ROS 2 CLI Introspection is executed by adding a node into the network
 and some create their own nodes), using Discovery Server v2 we will find that most of these functionalities are
 limited and do not have all the information.
 
-The Discovery Server v2 functionality allows every node running as a **Server** (a kind of *Participant type*)
-to know and share all the participants and topics information with every other server matched.
-In this sense, a server can be configured alongside ROS 2 introspection, since then the introspection tool will
-be able to discover every entity in the network that is using the Discovery Server protocol.
+The Discovery Server v2 functionality allows every node running as a |SUPER_CLIENT|, a kind of **Client** that
+connects to a |SERVER|, from which it receives all the available discovery information (instead of just what it needs).
+In this sense, ROS 2 introspection tools can be configured as **Super Client**, thus being able to discover every entity
+that is using the Discovery Server protocol within the network.
 
 
 Daemon's related commands
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ROS 2 Daemon is used in several ROS 2 CLI introspection commands. It adds a ROS 2 Node to the network in order
-to receive all the data sent.
-This section will explain how to use ROS 2 CLI with ROS 2 Daemon running as a **Server**.
-This will allow the Daemon to know all the Node's graph and to receive every topic and endpoint information.
+The ROS 2 Daemon is used in several ROS 2 CLI introspection commands.
+It adds a ROS 2 Node to the network in order to receive all the data sent.
+In order for the ROS 2 CLI to work when using Discover Server discovery mechanism, the ROS 2 Daemon needs to be
+configured as **Super Client**.
+Therefore, this section is devoted to explain how to use ROS 2 CLI with ROS 2 Daemon running as a **Super Client**.
+This will allow the Daemon to discover the entire Node graph, and to receive every topic and endpoint information.
+To do so, a Fast DDS XML configuration file is used to configure the ROS 2 Daemon and CLI tools.
 
-Fast DDS CLI can execute a Discovery Server, but it will spawn the Server in the actual process (or in a new one),
-and we want to run ROS 2 Daemon process as the Discovery Server.
-For this purpose, Fast DDS XML configuration can be used in order to preconfigure every new node that is created
-with this configuration exported.
+.. warning::
+    Although it is possible to run the ROS 2 Daemon as a **Server**, this is not recommended since the daemon will stop
+    after two hours of inactivity, taking the **Server** down with it.
 
-Below you can find a XML configuration file which will configure every new participant as a Discovery Server.
-It is important to notice that, in order to create a Discovery Server, port and a GUID (id) must be specified.
-so only one participant at a time can be created with this configuration file.
-Creating more than one participant with the same file will lead to an error.
+Below you can find a XML configuration file which will configure every new participant as a **Super Client**.
 
-* :download:`XML Discovery Server configuration file <discovery_server_configuration_file.xml>`
+* :download:`XML Super Client configuration file <super_client_configuration_file.xml>`
 
-First of all, instantiate a ROS 2 Daemon using this configuration (remember to source ROS 2 installation in every
-new terminal).
+First of all, instantiate a Discovery Server using :ref:`Fast DDS CLI<cli_discovery>`
 
 .. code-block:: console
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=discovery_server_configuration_file.xml
-    ros2 daemon stop
-    ros2 daemon start
+    fastdds discovery -i 0 -l 127.0.0.1 -p 11811
 
-Run a talker and a listener that will discover each other by the Server/Daemon (notice that ``ROS_DISCOVERY_SERVER``
-configuration is the same as the one in `discovery_server_configuration_file.xml`).
+Run a talker and a listener that will discover each other through the Server (notice that ``ROS_DISCOVERY_SERVER``
+configuration is the same as the one in `super_client_configuration_file.xml`).
 
 .. code-block:: console
 
@@ -366,28 +364,25 @@ configuration is the same as the one in `discovery_server_configuration_file.xml
     export ROS_DISCOVERY_SERVER="127.0.0.1:11811"
     ros2 run demo_nodes_cpp talker --ros-args --remap __node:=talker
 
-Now the Daemon can be used to introspect the network (``ROS_DISCOVERY_SERVER`` must be exported because new nodes
-are created within this tools' executions).
+Then, instantiate a ROS 2 Daemon using the **Super Client** configuration (remember to source ROS 2 installation in
+every new terminal).
 
 .. code-block:: console
 
-    export ROS_DISCOVERY_SERVER="127.0.0.1:11811"
+    export FASTRTPS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
+    ros2 daemon stop
+    ros2 daemon start
     ros2 topic list
     ros2 node info /talker
     ros2 topic info /chatter
     ros2 topic echo /chatter
 
-Be careful to use a different terminal than that of the Daemon for each execution, as some of the introspection
-tools instantiate their own nodes, and only one node could be instantiated with
-`discovery_server_configuration_file.xml`
-exported.
-
-We can also see the Node's Graph using the ROS 2 tool `rqt_graph` as follows.
+We can also see the Node's Graph using the ROS 2 tool `rqt_graph` as follows (you may need to press the refresh button):
 
 .. code-block:: console
 
-    export ROS_DISCOVERY_SERVER="127.0.0.1:11811"
-    rqt_grap
+    export FASTRTPS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
+    rqt_graph
 
 
 No Daemon commands
@@ -395,21 +390,16 @@ No Daemon commands
 
 Some ROS 2 CLI tools can be executed without the ROS 2 Daemon.
 In order for these tools to connect with a Discovery Server and receive all the topics information
-they need to be instantiated as a Server different than the main one, because they are
-volatile nodes.
-
-We can configure a Discovery Server that is connected to the main Server using a similar
-configuration file than the one in the previous section.
-
-* :download:`XML Secondary Discovery Server configuration file <secondary_discovery_server_configuration_file.xml>`
+they need to be instantiated as a **Super Client** that connects to the **Server**.
 
 Following the previous configuration, build a simple system with a talker and a listener.
+First, run a **Server**:
 
 .. code-block:: console
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=discovery_server_configuration_file.xml
-    ros2 daemon stop
-    ros2 daemon start
+    fastdds discovery -i 0 -l 127.0.0.1 -p 11811
+
+Then, run the talker and listener is separate terminals:
 
 .. code-block:: console
 
@@ -427,17 +417,15 @@ Exporting ``ROS_DISCOVERY_SERVER`` is not needed as the remote server has been c
 
 .. code-block:: console
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=secondary_discovery_server_configuration_file.xml
+    export FASTRTPS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
     ros2 topic list --no-daemon
-    ros2 node info /talker --no-daemon
-    ros2 topic info /chatter --no-daemon
-    ros2 topic echo /chatter --no-daemon
+    ros2 node info /talker --no-daemon --spin-time 2
 
 
 Compare Discovery Server with Simple Discovery
 -----------------------------------------------
 
-In order to compare the ROS2 execution using *Simple Discovery* or *Discovery Service*, two scripts that
+In order to compare the ROS 2 execution using *Simple Discovery* or *Discovery Server*, two scripts that
 execute a talker and many listeners and analyze the network traffic during this time are provided.
 For this experiment, ``tshark`` is required to be installed on your system.
 The configuration file is mandatory in order to avoid using intra-process mode.
@@ -456,7 +444,7 @@ These scripts' functionalities are references for advance purpose and their stud
 
 * :download:`XML configuration <no_intraprocess_configuration.xml>`
 
-Run the bash script with the *setup* path to source ROS2 as argument.
+Run the bash script with the *setup* path to source ROS 2 as argument.
 This will generate the traffic trace for simple discovery.
 Executing the same script with second argument ``SERVER``, it will generates the trace for service discovery.
 

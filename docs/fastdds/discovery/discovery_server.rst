@@ -59,8 +59,8 @@ In this architecture there are several key concepts to understand:
   It is important to note that the discovery times will be negatively affected when using this type of *server*, since
   periodically writing to a file is an expensive operation.
 
-- A |CLIENT| is a participant that connects to one or more *servers* from which it receives the discovery information
-  they require to establish communication.
+- A |CLIENT| is a participant that connects to one or more *servers* from which it receives only the discovery
+  information they require to establish communication with matching endpoints.
 
 - *Clients* require a beforehand knowledge of the *servers* to which they want to link.
   Basically it is reduced to the *servers* identity (henceforth called |GuidPrefix_t-api|) and a list of locators
@@ -74,6 +74,9 @@ In this architecture there are several key concepts to understand:
     The |GuidPrefix_t-api| is used because the *server's* IP address may not be a reliable enough server identifier,
     since several *servers* can be hosted in the same machine, thus having the same IP, and also because multicast
     addresses are acceptable addresses.
+
+- A |SUPER_CLIENT| is a *client* that receives all the discovery information known by the *server*, in opposition to
+  *clients*, which only receive the information they need.
 
 - *Servers* do not require any beforehand knowledge of their *clients*, but their |GuidPrefix_t-api| and locator list
   (where they are listening) must match the one provided to the *clients*.
@@ -107,7 +110,7 @@ The examples below shows how to set this parameter both programmatically and usi
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->                                                             |
 |    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-17                                                                                                  |
+|    :lines: 2-3,5-18                                                                                                  |
 |    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 

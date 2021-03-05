@@ -729,6 +729,7 @@ void configuration_compilation_check()
         //CONF_SERVER_DISCOVERY_PROTOCOL
         DiscoverySettings& ds = participant_attr.rtps.builtin.discovery_config;
         ds.discoveryProtocol =  DiscoveryProtocol_t::CLIENT;
+        ds.discoveryProtocol =  DiscoveryProtocol_t::SUPER_CLIENT;
         ds.discoveryProtocol =  DiscoveryProtocol_t::SERVER;
         ds.discoveryProtocol =  DiscoveryProtocol_t::BACKUP;
         //!--

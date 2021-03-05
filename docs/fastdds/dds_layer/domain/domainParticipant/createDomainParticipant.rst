@@ -12,7 +12,7 @@ member function on the
 
 Mandatory arguments are:
 
- * The domainId that identifies the domain where the DomainParticipant will be created.
+ * The |DomainId-api| that identifies the domain where the DomainParticipant will be created.
 
  * The :ref:`dds_layer_domainParticipantQos` describing the behavior of the DomainParticipant.
    If the provided value is :class:`TOPIC_QOS_DEFAULT`, the value of the DomainParticipantQos is used.
@@ -31,9 +31,9 @@ Optional arguments are:
 
 .. warning::
    Following the `DDSI-RTPS V2.2`_ standard (Section 9.6.1.1), the default ports are calculated depending on the
-   domainId, as it is explained in section :ref:`listening_locators_defaultPorts`.
-   Thus, it is encouraged to use domainIds lower than 200
-   (over domainId 233 default port assign will fail consistently).
+   |DomainId-api|, as it is explained in section :ref:`listening_locators_defaultPorts`.
+   Thus, it is encouraged to use |DomainId-api| lower than 200
+   (over |DomainId-api| 233 default port assign will fail consistently).
 
 |DomainParticipantFactory::create_participant-api|
 will return a null pointer if there was an error during the operation, e.g.
@@ -58,8 +58,8 @@ member function on the :ref:`dds_layer_domainParticipantFactory` singleton.
 
 Mandatory arguments are:
 
- * The domainId that identifies the domain where the DomainParticipant will be created.
-   Do not use domainIds higher than 200 (see :ref:`dds_layer_domainParticipant_creation`).
+ * The |DomainId-api| that identifies the domain where the DomainParticipant will be created.
+   Do not use |DomainId-api| higher than 200 (see :ref:`dds_layer_domainParticipant_creation`).
 
 
  * The name of the profile to be applied to the DomainParticipant.

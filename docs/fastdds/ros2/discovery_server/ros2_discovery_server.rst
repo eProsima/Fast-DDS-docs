@@ -320,21 +320,22 @@ As most of ROS 2 CLI Introspection is executed by adding a node into the network
 and some create their own nodes), using Discovery Server v2 we will find that most of these functionalities are
 limited and do not have all the information.
 
-The Discovery Server v2 functionality allows every node running as a |SUPER_CLIENT|, a kind of *Participant type* that
-connects to a |SERVER| and receives all the discovery information from it (instead of just what it needs).
-In this sense, ROS 2 introspection tools can be configured as *super client*, thus being able to discover every entity
+The Discovery Server v2 functionality allows every node running as a |SUPER_CLIENT|, a kind of **Client** that
+connects to a |SERVER|, from which it receives all the available discovery information (instead of just what it needs).
+In this sense, ROS 2 introspection tools can be configured as **Super Client**, thus being able to discover every entity
 that is using the Discovery Server protocol within the network.
 
 
 Daemon's related commands
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ROS 2 Daemon is used in several ROS 2 CLI introspection commands. It adds a ROS 2 Node to the network in order
-to receive all the data sent.
-This section will explain how to use ROS 2 CLI with ROS 2 Daemon running as a **Super Client**.
-This will allow the Daemon to know all the Node's graph and to receive every topic and endpoint information.
-For this purpose, Fast DDS XML configuration can be used in order to configure every new node that is created
-when this configuration is exported.
+The ROS 2 Daemon is used in several ROS 2 CLI introspection commands.
+It adds a ROS 2 Node to the network in order to receive all the data sent.
+In order for the ROS 2 CLI to work when using Discover Server discovery mechanism, the ROS 2 Daemon needs to be
+configured as **Super Client**.
+Therefore, this section is devoted to explain how to use ROS 2 CLI with ROS 2 Daemon running as a **Super Client**.
+This will allow the Daemon to discovery the entire Node graph, and to receive every topic and endpoint information.
+To do so, a Fast DDS XML configuration file is used to configure the ROS 2 Daemon and CLI tools.
 
 .. warning::
     Although it is possible to run the ROS 2 Daemon as a **Server**, this is not recommended since the daemon will stop

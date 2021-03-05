@@ -142,9 +142,15 @@ This module can be configured using *Fast DDS* CMake arguments regarding the fol
         - ``AUTO``
     *   - :class:`LOG_NO_INFO`
         - Deactivates Info Log level. |br|
-          If *Fast DDS* is built in debug mode, the default value will be ``OFF``.
+          If *Fast DDS* is built in debug mode for Single-Config generators, |br|
+          the default value will be ``OFF``.
         - ``ON`` ``OFF``
         - ``ON``
+    *   - :class:`FASTDDS_ENFORCE_LOG_INFO`
+        - Enables Info Log level even on non ``Debug`` configurations. |br|
+          This may entail a significant performance hit.
+        - ``ON`` ``OFF``
+        - ``OFF``
     *   - :class:`LOG_NO_WARNING`
         - Deactivates Warning Log level.
         - ``ON`` ``OFF``

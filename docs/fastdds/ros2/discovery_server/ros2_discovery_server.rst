@@ -334,7 +334,7 @@ It adds a ROS 2 Node to the network in order to receive all the data sent.
 In order for the ROS 2 CLI to work when using Discover Server discovery mechanism, the ROS 2 Daemon needs to be
 configured as **Super Client**.
 Therefore, this section is devoted to explain how to use ROS 2 CLI with ROS 2 Daemon running as a **Super Client**.
-This will allow the Daemon to discovery the entire Node graph, and to receive every topic and endpoint information.
+This will allow the Daemon to discover the entire Node graph, and to receive every topic and endpoint information.
 To do so, a Fast DDS XML configuration file is used to configure the ROS 2 Daemon and CLI tools.
 
 .. warning::

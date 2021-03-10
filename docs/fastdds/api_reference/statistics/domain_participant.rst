@@ -8,4 +8,3 @@ DomainParticipant
 .. doxygenclass:: eprosima::fastdds::dds::statistics::DomainParticipant
     :project: FastDDS
     :members:
-    

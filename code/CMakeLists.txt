@@ -136,7 +136,7 @@ add_custom_target(doc-dirs
 file(GLOB_RECURSE HPP_FILES "${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/include/fastdds/**/*.h*")
 
 # Doxygen related variables
-set(DOXYGEN_INPUT_DIR "${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/include/fastdds ${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/include/statistics")
+set(DOXYGEN_INPUT_DIR "\"${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/include/fastdds\" \"${PROJECT_BINARY_DIR}/external/eprosima/src/fastdds/include/statistics\"")
 set(DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doxygen")
 set(DOXYGEN_INDEX_FILE "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml")
 set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/doxygen-config.in")

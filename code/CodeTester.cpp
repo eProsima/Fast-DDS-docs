@@ -21,8 +21,8 @@
 #include <fastrtps/log/FileConsumer.h>
 #include <fastrtps/subscriber/SampleInfo.h>
 #include <fastrtps/TopicDataType.h>
-#include <security/accesscontrol/GovernanceParser.h>
-#include <security/accesscontrol/PermissionsParser.h>
+// #include <fastdds/rtps/security/accesscontrol/GovernanceParser.h>
+// #include <fastdds/rtps/security/accesscontrol/PermissionsParser.h>
 
 #include <fstream>
 
@@ -2038,11 +2038,53 @@ void dynamictypes_configuration()
 
 }
 
+bool permissions_test(
+        std::string main_ca_file,
+        std::string appcert_file,
+        std::string appkey_file,
+        std::string governance_file,
+        std::string permissions_file)
+{
+    eprosima::fastrtps::ParticipantAttributes part_attr;
+
+    // Activate Auth:PKI-DH plugin
+    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.plugin",
+        "builtin.PKI-DH");
+
+    // Configure Auth:PKI-DH plugin
+    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
+        main_ca_file);
+    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
+        appcert_file);
+    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
+        appkey_file);
+
+    part_attr.rtps.properties.properties().emplace_back("dds.sec.access.plugin",
+        "builtin.Access-Permissions");
+
+    // Configure DDS:Access:Permissions plugin
+    part_attr.rtps.properties.properties().emplace_back(
+        "dds.sec.access.builtin.Access-Permissions.permissions_ca",
+        main_ca_file);
+    part_attr.rtps.properties.properties().emplace_back(
+        "dds.sec.access.builtin.Access-Permissions.governance",
+        governance_file);
+    part_attr.rtps.properties.properties().emplace_back(
+        "dds.sec.access.builtin.Access-Permissions.permissions",
+        permissions_file);
+
+    if (Domain::createParticipant(part_attr))
+    {
+        return true;
+    }
+    return false;
+}
+
 int main(
         int argc,
         const char** argv)
 {
-    if (argc != 2)
+    if (argc != 2 && argc != 6)
     {
         printf("Bad number of parameters\n");
         exit(-1);
@@ -2054,55 +2096,36 @@ int main(
     Log::ReportFilenames(true);
 
     int exit_code = 0;
-    if (strncmp(argv[1], "Governance", 10) == 0)
+    if (argc == 6)
     {
-        std::ifstream file;
-        file.open(argv[1]);
-        std::string content((std::istreambuf_iterator<char>(file)),
-                (std::istreambuf_iterator<char>()));
-
-        GovernanceParser parser;
-
-        if (!parser.parse_stream(content.c_str(), content.length()))
+        if (!permissions_test(argv[1], argv[2], argv[3], argv[4], argv[5]))
         {
-            printf("Error parsing xml file %s\n", argv[1]);
-            exit_code = -1;
-        }
-    }
-    else if (strncmp(argv[1], "Permissions", 11) == 0)
-    {
-        std::ifstream file;
-        file.open(argv[1]);
-        std::string content((std::istreambuf_iterator<char>(file)),
-                (std::istreambuf_iterator<char>()));
-
-        PermissionsParser parser;
-
-        if (!parser.parse_stream(content.c_str(), content.length()))
-        {
-            printf("Error parsing xml file %s\n", argv[1]);
-            exit_code = -1;
-        }
-    }
-    else if (strncmp(argv[1], "Static", 6) == 0)
-    {
-        XMLEndpointParser parser;
-        std::string file = argv[1];
-
-        if (parser.loadXMLFile(file) != XMLP_ret::XML_OK)
-        {
-            printf("Error parsing xml file %s\n", argv[1]);
+            printf("Error parsing persimission xml file\n");
             exit_code = -1;
         }
     }
     else
     {
-        XMLProfileManager parser;
-
-        if (parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
+        if (strncmp(argv[1], "Static", 6) == 0)
         {
-            printf("Error parsing xml file %s\n", argv[1]);
-            exit_code = -1;
+            XMLEndpointParser parser;
+            std::string file = argv[1];
+
+            if (parser.loadXMLFile(file) != XMLP_ret::XML_OK)
+            {
+                printf("Error parsing xml file %s\n", argv[1]);
+                exit_code = -1;
+            }
+        }
+        else
+        {
+            XMLProfileManager parser;
+
+            if (parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
+            {
+                printf("Error parsing xml file %s\n", argv[1]);
+                exit_code = -1;
+            }
         }
     }
 

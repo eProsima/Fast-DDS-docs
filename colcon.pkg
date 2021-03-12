@@ -1,0 +1,5 @@
+{
+    "name": "fastdds-docs",
+    "type": "cmake",
+    "build-dependencies": ["fastrtps"]
+}

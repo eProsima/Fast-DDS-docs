@@ -142,11 +142,9 @@ def configure_doxyfile(
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
 project_source_dir = os.path.abspath('{}/../code'.format(script_path))
-project_binary_dir = os.path.abspath('{}/../build/code'.format(script_path))
+project_binary_dir = os.path.abspath('{}/../build'.format(script_path))
 output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
 doxygen_html = os.path.abspath('{}/html/doxygen'.format(project_binary_dir))
-os.makedirs(os.path.dirname(output_dir), exist_ok=True)
-os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
 
 # Doxyfile
 doxyfile_in = os.path.abspath(
@@ -156,7 +154,7 @@ doxyfile_out = os.path.abspath('{}/doxygen-config'.format(project_binary_dir))
 
 # Header files
 input_dir = os.path.abspath(
-    '{}/external/eprosima/src/fastdds/include/fastdds'.format(
+    '{}/fastdds/include/fastdds'.format(
         project_binary_dir
     )
 )
@@ -167,7 +165,7 @@ if read_the_docs_build:
     print('Read the Docs environment detected!')
 
     fastdds_repo_name = os.path.abspath(
-        '{}/external/eprosima/src/fastdds'.format(
+        '{}/fastdds'.format(
             project_binary_dir
         )
     )
@@ -179,6 +177,10 @@ if read_the_docs_build:
 
     # Create necessary directory path
     os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
+    # Create a COLCON_IGNORE file just in case
+    open(
+        os.path.abspath('{}/COLCON_IGNORE'.format(project_binary_dir)), 'w'
+    ).close()
 
     # Clone repository
     print('Cloning Fast DDS')
@@ -215,6 +217,9 @@ if read_the_docs_build:
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
     fastdds.refs[fastdds_branch].checkout()
+
+    os.makedirs(os.path.dirname(output_dir), exist_ok=True)
+    os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
 
     # Configure Doxyfile
     configure_doxyfile(

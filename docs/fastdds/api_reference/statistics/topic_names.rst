@@ -53,3 +53,5 @@ Topic names
 .. doxygenvariable:: eprosima::fastdds::dds::statistics::SAMPLE_DATAS_TOPIC
     :project: FastDDS
 
+.. doxygenvariable:: eprosima::fastdds::dds::statistics::PHYSICAL_DATA_TOPIC
+    :project: FastDDS

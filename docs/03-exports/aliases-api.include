@@ -771,6 +771,7 @@
 .. |EDP_PACKETS_TOPIC| replace:: :cpp:member:`EDP_PACKETS_TOPIC <eprosima::fastdds::dds::statistics::EDP_PACKETS_TOPIC>`
 .. |DISCOVERY_TOPIC| replace:: :cpp:member:`DISCOVERY_TOPIC <eprosima::fastdds::dds::statistics::DISCOVERY_TOPIC>`
 .. |SAMPLE_DATAS_TOPIC| replace:: :cpp:member:`SAMPLE_DATAS_TOPIC <eprosima::fastdds::dds::statistics::SAMPLE_DATAS_TOPIC>`
+.. |PHYSICAL_DATA_TOPIC| replace:: :cpp:member:`PHYSICAL_DATA_TOPIC <eprosima::fastdds::dds::statistics::PHYSICAL_DATA_TOPIC>`
 
 .. |StatisticsDomainParticipant-api| replace:: :cpp:class:`DomainParticipant <eprosima::fastdds::dds::statistics::DomainParticipant>`
 .. |enable_statistics_datawriter| replace:: :cpp:func:`enable_statistics_datawriter() <eprosima::fastdds::dds::statistics::enable_statistics_datawriter>`

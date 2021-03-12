@@ -47,6 +47,8 @@ The following table shows the correlation between the topic name and the corresp
 +-------------------------------------------------+--------------------------------------------------------------------+
 | ``_fastdds_statistics_discovered_entity``       | |DISCOVERY_TOPIC|                                                  |
 +-------------------------------------------------+--------------------------------------------------------------------+
+| ``_fastdds_statistics_physical_data``           | |PHYSICAL_DATA_TOPIC|                                              |
++-------------------------------------------------+--------------------------------------------------------------------+
 
 |HISTORY_LATENCY_TOPIC|
 -----------------------
@@ -175,3 +177,9 @@ information).
 The ``_fastdds_statistics_discovered_entity`` statistics topic reports the time when each local |DomainParticipant-api|
 discovers any remote DDS entity (with the exception of those DDS entities related with the *Fast DDS Statistics
 module*).
+
+|PHYSICAL_DATA_TOPIC|
+---------------------
+
+The ``_fastdds_statistics_physical_data`` statistics topic reports the host, user and process where the
+*Fast DDS Statistics module* is running.

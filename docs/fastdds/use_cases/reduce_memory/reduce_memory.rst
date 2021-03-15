@@ -21,7 +21,7 @@ Limiting Resources
 ^^^^^^^^^^^^^^^^^^^^^^^
 The :ref:`resourcelimitsqospolicy` controls the resources that the service can use in order to meet the requirements
 imposed. It limits the amount of allocated memory per :ref:`dds_layer_publisher_dataWriter` or
-:ref:`_dds_layer_subscriber_dataReader`, as per the following parameters:
+:ref:`dds_layer_subscriber_dataReader`, as per the following parameters:
 
 * |max_samples|: Configures the maximum number of samples that the DataWriter or DataReader can manage across all the
   instances associated with it, i.e. it represents the maximum samples that the middleware can store for a DataReader or

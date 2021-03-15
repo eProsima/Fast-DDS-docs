@@ -21,12 +21,12 @@ Limiting Resources
 ^^^^^^^^^^^^^^^^^^^^^^^
 The :ref:`resourcelimitsqospolicy` controls the resources that the service can use in order to meet the requirements
 imposed. It limits the amount of allocated memory per :ref:`dds_layer_publisher_dataWriter` or
-:ref:`dds_layer_publisher_dataWriter`, as per the following parameters:
+:ref:`dds_layer_subscriber_dataReader`, as per the following parameters:
 
 * |max_samples|: Configures the maximum number of samples that the DataWriter or DataReader can manage across all the
   instances associated with it, i.e. it represents the maximum samples that the middleware can store for a DataReader or
   DataWriter.
-* |max_instances|: Configures the maximum number of instances that a DataWriter or DataWriter can manage.
+* |max_instances|: Configures the maximum number of instances that the DataWriter or DataReader can manage.
 * |max_samples_per_instance|: Controls the maximum number of samples within an instance  that the DataWriter or
   DataReader can manage.
 * |allocated_samples|: States the number of samples that will be allocated on initialization.

@@ -5,6 +5,6 @@
 DomainParticipant
 -----------------
 
-.. doxygenclass:: eprosima::fastdds::dds::statistics::DomainParticipant
+.. doxygenclass:: eprosima::fastdds::statistics::dds::DomainParticipant
     :project: FastDDS
     :members:

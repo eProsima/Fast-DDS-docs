@@ -5,9 +5,9 @@
 DataWriterQos
 -------------
 
-.. doxygenclass:: eprosima::fastdds::dds::statistics::DataWriterQos
+.. doxygenclass:: eprosima::fastdds::statistics::dds::DataWriterQos
     :project: FastDDS
     :members:
 
-.. doxygenvariable:: eprosima::fastdds::dds::statistics::STATISTICS_DATAWRITER_QOS
+.. doxygenvariable:: eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS
     :project: FastDDS

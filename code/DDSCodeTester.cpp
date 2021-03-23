@@ -525,6 +525,15 @@ void dds_domain_examples()
             "myLogFile.log");
         //!--
     }
+    {
+        // FASTDDS_STATISTICS_MODULE
+        DomainParticipantQos pqos;
+
+        // Activate Fast DDS Statistics module
+        pqos.properties().properties().emplace_back("fastdds.statistics",
+            "HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC");
+        //!--
+    }
 
     {
         // PULL_MODE_DATAWRITER

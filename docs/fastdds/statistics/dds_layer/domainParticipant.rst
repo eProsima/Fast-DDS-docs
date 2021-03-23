@@ -51,3 +51,45 @@ In order to obtain the pointer to the child |StatisticsDomainParticipant-api| wh
 
 Automatically enabling statistics DataWriters
 ---------------------------------------------
+
+The statistics DataWriters can be directly enabled using the |DomainParticipantQos|
+|DomainParticipantQos::properties-api| ``fastdds.statistics``.
+The value of this property is a semicolon separated list containing the
+:ref:`statistics topic name aliases<statistics_topic_names>` of those DataWriters that the user wants to enable.
+The property can be set programmatically, loading an XML file and setting the :ref:`env_vars_fastdds_statistics`
+environment variable as shown in the following examples:
+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: // FASTDDS_STATISTICS_MODULE                                                                        |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->                                                                  |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+
+| **Environment Variable Linux**                                                                                       |
++----------------------------------------------------------------------------------------------------------------------+
+| .. code-block:: bash                                                                                                 |
+|                                                                                                                      |
+|    export FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC           |
++----------------------------------------------------------------------------------------------------------------------+
+| **Environment Variable Windows**                                                                                     |
++----------------------------------------------------------------------------------------------------------------------+
+| .. code-block:: bash                                                                                                 |
+|                                                                                                                      |
+|    set FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC              |
++----------------------------------------------------------------------------------------------------------------------+
+
+For more information about the environment variable, please refer to :ref:`env_vars_fastdds_statistics`.
+This method is compatible with setting also the property through code or XML.
+The statistics DataWriters that will be enabled when the |DomainParticipant-api| is enabled would be the union between
+those specified in the |DomainParticipantQos::properties-api| ``fastdds.statistics`` and those included with the
+environment variable.

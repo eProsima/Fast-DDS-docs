@@ -8,7 +8,7 @@ Statistics Module DDS Layer
 ===========================
 
 This section explains the extended DDS API provided for the *Statistics Module*.
-First the Statistics Topic list is presented together with the corresponding collected data.
+First, the Statistics Topic list is presented together with the corresponding collected data.
 Next, the methods to enable/disable the corresponding DataWriters are explained.
 Finally, the recommended QoS for enabling the DataWriters and creating the user's
 DataReaders that subscribe to the Statistics topics are described.

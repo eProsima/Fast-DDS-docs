@@ -1,3 +1,5 @@
+.. _disc_phases:
+
 Discovery phases
 ----------------
 

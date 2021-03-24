@@ -755,28 +755,28 @@
 .. |DataReader::set_listener-api| replace:: :cpp:func:`DataReader::set_listener()<eprosima::fastdds::dds::DataReader::set_listener>`
 .. |Topic::set_listener-api| replace:: :cpp:func:`Topic::set_listener()<eprosima::fastdds::dds::Topic::set_listener>`
 
-.. |HISTORY_LATENCY_TOPIC| replace:: :cpp:member:`HISTORY_LATENCY_TOPIC <eprosima::fastdds::statistics::dds::HISTORY_LATENCY_TOPIC>`
-.. |NETWORK_LATENCY_TOPIC| replace:: :cpp:member:`NETWORK_LATENCY_TOPIC <eprosima::fastdds::statistics::dds::NETWORK_LATENCY_TOPIC>`
-.. |PUBLICATION_THROUGHPUT_TOPIC| replace:: :cpp:member:`PUBLICATION_THROUGHPUT_TOPIC <eprosima::fastdds::statistics::dds::PUBLICATION_THROUGHPUT_TOPIC>`
-.. |SUBSCRIPTION_THROUGHPUT_TOPIC| replace:: :cpp:member:`SUBSCRIPTION_THROUGHPUT_TOPIC <eprosima::fastdds::statistics::dds::SUBSCRIPTION_THROUGHPUT_TOPIC>`
-.. |RTPS_SENT_TOPIC| replace:: :cpp:member:`RTPS_SENT_TOPIC <eprosima::fastdds::statistics::dds::RTPS_SENT_TOPIC>`
-.. |RTPS_LOST_TOPIC| replace:: :cpp:member:`RTPS_LOST_TOPIC <eprosima::fastdds::statistics::dds::RTPS_LOST_TOPIC>`
-.. |RESENT_DATAS_TOPIC| replace:: :cpp:member:`RESENT_DATAS_TOPIC <eprosima::fastdds::statistics::dds::RESENT_DATAS_TOPIC>`
-.. |HEARTBEAT_COUNT_TOPIC| replace:: :cpp:member:`HEARTBEAT_COUNT_TOPIC <eprosima::fastdds::statistics::dds::HEARTBEAT_COUNT_TOPIC>`
-.. |ACKNACK_COUNT_TOPIC| replace:: :cpp:member:`ACKNACK_COUNT_TOPIC <eprosima::fastdds::statistics::dds::ACKNACK_COUNT_TOPIC>`
-.. |NACKFRAG_COUNT_TOPIC| replace:: :cpp:member:`NACKFRAG_COUNT_TOPIC <eprosima::fastdds::statistics::dds::NACKFRAG_COUNT_TOPIC>`
-.. |GAP_COUNT_TOPIC| replace:: :cpp:member:`GAP_COUNT_TOPIC <eprosima::fastdds::statistics::dds::GAP_COUNT_TOPIC>`
-.. |DATA_COUNT_TOPIC| replace:: :cpp:member:`DATA_COUNT_TOPIC <eprosima::fastdds::statistics::dds::DATA_COUNT_TOPIC>`
-.. |PDP_PACKETS_TOPIC| replace:: :cpp:member:`PDP_PACKETS_TOPIC <eprosima::fastdds::statistics::dds::PDP_PACKETS_TOPIC>`
-.. |EDP_PACKETS_TOPIC| replace:: :cpp:member:`EDP_PACKETS_TOPIC <eprosima::fastdds::statistics::dds::EDP_PACKETS_TOPIC>`
-.. |DISCOVERY_TOPIC| replace:: :cpp:member:`DISCOVERY_TOPIC <eprosima::fastdds::statistics::dds::DISCOVERY_TOPIC>`
-.. |SAMPLE_DATAS_TOPIC| replace:: :cpp:member:`SAMPLE_DATAS_TOPIC <eprosima::fastdds::statistics::dds::SAMPLE_DATAS_TOPIC>`
-.. |PHYSICAL_DATA_TOPIC| replace:: :cpp:member:`PHYSICAL_DATA_TOPIC <eprosima::fastdds::statistics::dds::PHYSICAL_DATA_TOPIC>`
+.. |HISTORY_LATENCY_TOPIC| replace:: :cpp:member:`HISTORY_LATENCY_TOPIC <eprosima::fastdds::statistics::HISTORY_LATENCY_TOPIC>`
+.. |NETWORK_LATENCY_TOPIC| replace:: :cpp:member:`NETWORK_LATENCY_TOPIC <eprosima::fastdds::statistics::NETWORK_LATENCY_TOPIC>`
+.. |PUBLICATION_THROUGHPUT_TOPIC| replace:: :cpp:member:`PUBLICATION_THROUGHPUT_TOPIC <eprosima::fastdds::statistics::PUBLICATION_THROUGHPUT_TOPIC>`
+.. |SUBSCRIPTION_THROUGHPUT_TOPIC| replace:: :cpp:member:`SUBSCRIPTION_THROUGHPUT_TOPIC <eprosima::fastdds::statistics::SUBSCRIPTION_THROUGHPUT_TOPIC>`
+.. |RTPS_SENT_TOPIC| replace:: :cpp:member:`RTPS_SENT_TOPIC <eprosima::fastdds::statistics::RTPS_SENT_TOPIC>`
+.. |RTPS_LOST_TOPIC| replace:: :cpp:member:`RTPS_LOST_TOPIC <eprosima::fastdds::statistics::RTPS_LOST_TOPIC>`
+.. |RESENT_DATAS_TOPIC| replace:: :cpp:member:`RESENT_DATAS_TOPIC <eprosima::fastdds::statistics::RESENT_DATAS_TOPIC>`
+.. |HEARTBEAT_COUNT_TOPIC| replace:: :cpp:member:`HEARTBEAT_COUNT_TOPIC <eprosima::fastdds::statistics::HEARTBEAT_COUNT_TOPIC>`
+.. |ACKNACK_COUNT_TOPIC| replace:: :cpp:member:`ACKNACK_COUNT_TOPIC <eprosima::fastdds::statistics::ACKNACK_COUNT_TOPIC>`
+.. |NACKFRAG_COUNT_TOPIC| replace:: :cpp:member:`NACKFRAG_COUNT_TOPIC <eprosima::fastdds::statistics::NACKFRAG_COUNT_TOPIC>`
+.. |GAP_COUNT_TOPIC| replace:: :cpp:member:`GAP_COUNT_TOPIC <eprosima::fastdds::statistics::GAP_COUNT_TOPIC>`
+.. |DATA_COUNT_TOPIC| replace:: :cpp:member:`DATA_COUNT_TOPIC <eprosima::fastdds::statisticss::DATA_COUNT_TOPIC>`
+.. |PDP_PACKETS_TOPIC| replace:: :cpp:member:`PDP_PACKETS_TOPIC <eprosima::fastdds::statistics::PDP_PACKETS_TOPIC>`
+.. |EDP_PACKETS_TOPIC| replace:: :cpp:member:`EDP_PACKETS_TOPIC <eprosima::fastdds::statistics::EDP_PACKETS_TOPIC>`
+.. |DISCOVERY_TOPIC| replace:: :cpp:member:`DISCOVERY_TOPIC <eprosima::fastdds::statistics::DISCOVERY_TOPIC>`
+.. |SAMPLE_DATAS_TOPIC| replace:: :cpp:member:`SAMPLE_DATAS_TOPIC <eprosima::fastdds::statistics::SAMPLE_DATAS_TOPIC>`
+.. |PHYSICAL_DATA_TOPIC| replace:: :cpp:member:`PHYSICAL_DATA_TOPIC <eprosima::fastdds::statistics::PHYSICAL_DATA_TOPIC>`
 
 .. |StatisticsDomainParticipant-api| replace:: :cpp:class:`DomainParticipant <eprosima::fastdds::statistics::dds::DomainParticipant>`
-.. |enable_statistics_datawriter| replace:: :cpp:func:`enable_statistics_datawriter() <eprosima::fastdds::statistics::dds::enable_statistics_datawriter>`
-.. |disable_statistics_datawriter| replace:: :cpp:func:`disable_statistics_datawriter() <eprosima::fastdds::statistics::dds::disable_statistics_datawriter>`
-.. |statistics_narrow| replace:: :cpp:func:`narrow() <eprosima::fastdds::statistics::dds::narrow>`
+.. |enable_statistics_datawriter| replace:: :cpp:func:`enable_statistics_datawriter() <eprosima::fastdds::statistics::dds::DomainParticipant::enable_statistics_datawriter>`
+.. |disable_statistics_datawriter| replace:: :cpp:func:`disable_statistics_datawriter() <eprosima::fastdds::statistics::dds::DomainParticipant::disable_statistics_datawriter>`
+.. |statistics_narrow| replace:: :cpp:func:`narrow() <eprosima::fastdds::statistics::dds::DomainParticipant::narrow>`
 
 .. |RTPSMessageGroup| replace:: :cpp:class:`RTPSMessageGroup <eprosima::fastrtps::rtps::RTPSMessageGroup>`
 .. |MessageReceiver| replace:: :cpp:class:`MessageReceiver <eprosima::fastrtps::rtps::MessageReceiver>`

@@ -16,3 +16,4 @@ Publish-Subscribe (RTPS) API that DDS implements for wired communications, as sp
    /fastdds/api_reference/dds_pim/dds_pim
    /fastdds/api_reference/rtps/rtps
    /fastdds/api_reference/log/log
+   /fastdds/api_reference/statistics/statistics

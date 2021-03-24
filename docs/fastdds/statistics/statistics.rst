@@ -4,10 +4,12 @@
 
 .. _statistics:
 
-Statistics
-==========
+Statistics Module
+=================
 
 .. include:: includes/intro.rst
 
 .. toctree::
    :maxdepth: 2
+
+   dds_layer/statistics_dds_layer

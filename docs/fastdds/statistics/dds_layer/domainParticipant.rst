@@ -35,11 +35,6 @@ This method requires as parameter:
 
 * Name of the statistics topic to be disabled (see :ref:`statistics_topic_names` for the statistics topic list).
 
-.. warning::
-    Before deleting the |StatisticsDomainParticipant-api|, remember to ensure that all statistics DataWriters have been
-    disabled. Otherwise, |DomainParticipantFactory::delete_participant-api| will return
-    ``RETCODE_PRECONDITION_NOT_MET``.
-
 Obtain pointer to the extended |StatisticsDomainParticipant-api| class
 ----------------------------------------------------------------------
 

@@ -766,7 +766,7 @@
 .. |ACKNACK_COUNT_TOPIC| replace:: :cpp:member:`ACKNACK_COUNT_TOPIC <eprosima::fastdds::statistics::ACKNACK_COUNT_TOPIC>`
 .. |NACKFRAG_COUNT_TOPIC| replace:: :cpp:member:`NACKFRAG_COUNT_TOPIC <eprosima::fastdds::statistics::NACKFRAG_COUNT_TOPIC>`
 .. |GAP_COUNT_TOPIC| replace:: :cpp:member:`GAP_COUNT_TOPIC <eprosima::fastdds::statistics::GAP_COUNT_TOPIC>`
-.. |DATA_COUNT_TOPIC| replace:: :cpp:member:`DATA_COUNT_TOPIC <eprosima::fastdds::statisticss::DATA_COUNT_TOPIC>`
+.. |DATA_COUNT_TOPIC| replace:: :cpp:member:`DATA_COUNT_TOPIC <eprosima::fastdds::statistics::DATA_COUNT_TOPIC>`
 .. |PDP_PACKETS_TOPIC| replace:: :cpp:member:`PDP_PACKETS_TOPIC <eprosima::fastdds::statistics::PDP_PACKETS_TOPIC>`
 .. |EDP_PACKETS_TOPIC| replace:: :cpp:member:`EDP_PACKETS_TOPIC <eprosima::fastdds::statistics::EDP_PACKETS_TOPIC>`
 .. |DISCOVERY_TOPIC| replace:: :cpp:member:`DISCOVERY_TOPIC <eprosima::fastdds::statistics::DISCOVERY_TOPIC>`

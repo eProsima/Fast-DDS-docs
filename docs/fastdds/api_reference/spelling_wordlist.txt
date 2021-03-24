@@ -20,11 +20,13 @@ Contructs
 datareader
 DataReader
 DataReaderListener
+DataReaderQos
 DataRepresentationQosPolicy
 DataSharingQosPolicy
 datawriter
 DataWriter
 datawriters
+DataWriterQos
 DeadlineQosPolicy
 deserialized
 destinated

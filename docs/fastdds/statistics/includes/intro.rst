@@ -9,6 +9,6 @@ For more information about Fast DDS compilation, see :ref:`linux_sources` and :r
 
 Besides enabling the *Statistics Module* compilation, the user must enable those DataWriters that are
 publishing data on those topics that may be of interest for the user's application.
-Therefore, the standard :ref:dds_layer has been extended.
+Therefore, the standard :ref:`dds_layer` has been extended.
 
 The following section explains this DDS extended API.

@@ -6,5 +6,5 @@
 Logging Module Settings
 -----------------------
 
-.. note::
+.. warning::
     This section is still under work.

@@ -15,4 +15,3 @@ This section contains the list of :ref:`propertypolicyqos` that can be set with 
     persistence.rst
     security.rst
     logging.rst
-    statistics.rst

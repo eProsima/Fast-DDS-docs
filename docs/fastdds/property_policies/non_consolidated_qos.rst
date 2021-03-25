@@ -14,11 +14,17 @@ to a different release version.
 ``PushMode`` QoS Policy
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note::
+.. warning::
     This section is still under work.
 
 Unique network flows QoS Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note::
+.. warning::
+    This section is still under work.
+
+Statistics Module Settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning::
     This section is still under work.

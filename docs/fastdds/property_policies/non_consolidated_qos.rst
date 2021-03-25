@@ -79,8 +79,40 @@ Unique network flows QoS Policy
 .. warning::
     This section is still under work.
 
+.. _property_policies_statistics:
+
 Statistics Module Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-    This section is still under work.
+Fast DDS Statistics Module uses the :ref:`propertypolicyqos` to indicate the statistics DataWriters that are enabled
+automatically (see :ref:`auto_enabling_statistics_datawriters`).
+In this case, the property value is a semicolon separated list containing the
+:ref:`statistics topic name aliases<statistics_topic_names>` of those DataWriters that the user wants to enable.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.statistics"``
+     - Semicolon separated list of :ref:`statistics topic name aliases<statistics_topic_names>`
+     - ``""``
+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: // FASTDDS_STATISTICS_MODULE                                                                        |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->                                                                  |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+

@@ -382,10 +382,8 @@ PropertyPolicyQos
 ^^^^^^^^^^^^^^^^^
 
 This additional QoS Policy (|PropertyPolicyQos-api|) stores name/value pairs that can be used to configure certain
-DDS settings that cannot
-be configured directly using an standard QoS Policy.
-In Fast DDS, it can be used to configure the security settings (See :ref:`security` for further details of the security
-functionality).
+DDS settings that cannot be configured directly using an standard QoS Policy.
+For the complete list of settings that can be configured with this QoS Policy, please refer to :ref:`property_policies`.
 
 Example
 """""""

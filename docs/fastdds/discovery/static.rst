@@ -217,7 +217,7 @@ This is done by setting the user ID on the |DataReaderQoS|/|DataWriterQoS|:
 |    :end-before: <!-->                                                                                                |
 +----------------------------------------------------------------------------------------------------------------------+
 
-On the local DomainParticipant, you can load STATIC EDP configuration content specifyin the file containing it.
+On the local DomainParticipant, you can load STATIC EDP configuration content specifying the file containing it.
 
 +------------------------------------------------------+
 | **C++**                                              |

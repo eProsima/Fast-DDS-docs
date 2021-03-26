@@ -1433,7 +1433,7 @@
             <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
         </simpleEDP>
 
-        <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
+        <static_edp_xml_content>file://filename.xml</static_edp_xml_content>
     </discovery_config>
 
     <avoid_builtin_multicast>true</avoid_builtin_multicast>
@@ -2341,7 +2341,7 @@
             <builtin>
                 <discovery_config>
                     <EDP>STATIC</EDP>
-                    <staticEndpointXMLFilename>HelloWorldSubscriber.xml</staticEndpointXMLFilename>
+                    <static_edp_xml_content>file://HelloWorldSubscriber.xml</static_edp_xml_content>
                 </discovery_config>
             </builtin>
         </rtps>
@@ -2367,7 +2367,7 @@
             <name>HelloWorldSubscriber</name>
             <builtin>
                 <discovery_config>
-                    <staticEndpointXMLFilename>HelloWorldPublisher.xml</staticEndpointXMLFilename>
+                    <static_edp_xml_content>file://HelloWorldPublisher.xml</static_edp_xml_content>
                 </discovery_config>
             </builtin>
         </rtps>
@@ -2522,13 +2522,13 @@
 </participant>
 <!--><-->
 
-<!-->CONF_STATIC_DISCOVERY_XML<-->
+<!-->CONF_STATIC_DISCOVERY_XML_FILE<-->
 <participant profile_name="participant_profile_static_load_xml">
     <rtps>
         <builtin>
             <discovery_config>
-                <staticEndpointXMLFilename>RemotePublisher.xml</staticEndpointXMLFilename>
-                <staticEndpointXMLFilename>RemoteSubscriber.xml</staticEndpointXMLFilename>
+                <static_edp_xml_content>file://RemotePublisher.xml</static_edp_xml_content>
+                <static_edp_xml_content>file://RemoteSubscriber.xml</static_edp_xml_content>
             </discovery_config>
         </builtin>
     </rtps>
@@ -3122,7 +3122,7 @@
                         <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
                     </simpleEDP>
 
-                    <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
+                    <static_edp_xml_content>file://filename.xml</static_edp_xml_content>
 
                 </discovery_config>
 

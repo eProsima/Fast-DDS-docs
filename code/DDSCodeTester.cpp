@@ -742,14 +742,6 @@ void dds_discovery_examples()
         //CONF_STATIC_DISCOVERY_XML_FILE
         DomainParticipantQos pqos;
 
-        pqos.wire_protocol().builtin.discovery_config.static_edp_xml_content("RemotePublisher.xml");
-        pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
-        //!--
-    }
-    {
-        //CONF_STATIC_DISCOVERY_XML_FILE
-        DomainParticipantQos pqos;
-
         pqos.wire_protocol().builtin.discovery_config.static_edp_xml_config("file://RemotePublisher.xml");
         pqos.wire_protocol().builtin.discovery_config.static_edp_xml_config("file://RemoteSubscriber.xml");
         //!--

@@ -55,8 +55,8 @@ This can be done either by code or using an XML configuration file:
 
 .. _`static_xml`:
 
-STATIC EDP XML Content Specification
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+STATIC EDP XML Configuration Specification
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Since activating STATIC EDP suppresses all EDP meta traffic, the information about the remote entities (DataWriters
 and DataReaders) must be statically specified, which is done using dedicated XML files.

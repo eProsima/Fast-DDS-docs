@@ -494,8 +494,8 @@ void configuration_compilation_check()
     //!--
 
     //CONF_QOS_STATIC_DISCOVERY_XML
-    participant_attr.rtps.builtin.discovery_config.static_edp_xml_content("file://RemotePublisher.xml");
-    participant_attr.rtps.builtin.discovery_config.static_edp_xml_content("file://RemoteSubscriber.xml");
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://RemotePublisher.xml");
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://RemoteSubscriber.xml");
     //!--
 
     {
@@ -652,7 +652,7 @@ void configuration_compilation_check()
         participant_attr.rtps.setName("HelloWorldPublisher");
         participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
-        participant_attr.rtps.builtin.discovery_config.static_edp_xml_content("file://HelloWorldSubscriber.xml");
+        participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://HelloWorldSubscriber.xml");
 
         // Publisher attributes
         publisher_attr.topic.topicName = "HelloWorldTopic";
@@ -668,7 +668,7 @@ void configuration_compilation_check()
         participant_attr.rtps.setName("HelloWorldSubscriber");
         participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
-        participant_attr.rtps.builtin.discovery_config.static_edp_xml_content("file://HelloWorldPublisher.xml");
+        participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://HelloWorldPublisher.xml");
 
         // Subscriber attributes
         subscriber_attr.topic.topicName = "HelloWorldTopic";
@@ -707,13 +707,13 @@ void configuration_compilation_check()
     participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
     //!--
 
-    //CONF_STATIC_DISCOVERY_XML
-    participant_attr.rtps.builtin.discovery_config.static_edp_xml_content("file://RemotePublisher.xml");
-    participant_attr.rtps.builtin.discovery_config.static_edp_xml_content("file://RemoteSubscriber.xml");
+    //CONF_STATIC_DISCOVERY_XML_FILE
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://RemotePublisher.xml");
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://RemoteSubscriber.xml");
     //!--
 
-    //CONF_STATIC_DISCOVERY_XML
-    participant_attr.rtps.builtin.discovery_config.static_edp_xml_content("data://<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+    //CONF_STATIC_DISCOVERY_XML_DATA
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("data://<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
             "<staticdiscovery><participant><name>RTPSParticipant</name></participant></staticdiscovery>");
     //!--
 

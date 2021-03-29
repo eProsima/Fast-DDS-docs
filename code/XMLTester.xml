@@ -1433,7 +1433,7 @@
             <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
         </simpleEDP>
 
-        <static_edp_xml_content>file://filename.xml</static_edp_xml_content>
+        <static_edp_xml_config>file://filename.xml</static_edp_xml_config>
     </discovery_config>
 
     <avoid_builtin_multicast>true</avoid_builtin_multicast>
@@ -2341,7 +2341,7 @@
             <builtin>
                 <discovery_config>
                     <EDP>STATIC</EDP>
-                    <static_edp_xml_content>file://HelloWorldSubscriber.xml</static_edp_xml_content>
+                    <static_edp_xml_config>file://HelloWorldSubscriber.xml</static_edp_xml_config>
                 </discovery_config>
             </builtin>
         </rtps>
@@ -2367,7 +2367,7 @@
             <name>HelloWorldSubscriber</name>
             <builtin>
                 <discovery_config>
-                    <static_edp_xml_content>file://HelloWorldPublisher.xml</static_edp_xml_content>
+                    <static_edp_xml_config>file://HelloWorldPublisher.xml</static_edp_xml_config>
                 </discovery_config>
             </builtin>
         </rtps>
@@ -2527,8 +2527,8 @@
     <rtps>
         <builtin>
             <discovery_config>
-                <static_edp_xml_content>file://RemotePublisher.xml</static_edp_xml_content>
-                <static_edp_xml_content>file://RemoteSubscriber.xml</static_edp_xml_content>
+                <static_edp_xml_config>file://RemotePublisher.xml</static_edp_xml_config>
+                <static_edp_xml_config>file://RemoteSubscriber.xml</static_edp_xml_config>
             </discovery_config>
         </builtin>
     </rtps>
@@ -3122,7 +3122,7 @@
                         <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
                     </simpleEDP>
 
-                    <static_edp_xml_content>file://filename.xml</static_edp_xml_content>
+                    <static_edp_xml_config>file://filename.xml</static_edp_xml_config>
 
                 </discovery_config>
 

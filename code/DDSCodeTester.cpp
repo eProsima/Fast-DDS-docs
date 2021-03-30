@@ -3817,7 +3817,7 @@ void dds_usecase_examples()
         participant_qos.name("HelloWorldPublisher");
         participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
-        participant_qos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldSubscriber.xml");
+        participant_qos.wire_protocol().builtin.discovery_config.static_edp_xml_config("HelloWorldSubscriber.xml");
 
         // DataWriter configuration
         DataWriterQos writer_qos;
@@ -3871,7 +3871,7 @@ void dds_usecase_examples()
         participant_qos.name("HelloWorldSubscriber");
         participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
-        participant_qos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldPublisher.xml");
+        participant_qos.wire_protocol().builtin.discovery_config.static_edp_xml_config("HelloWorldPublisher.xml");
 
         // DataWriter configuration
         DataWriterQos writer_qos;

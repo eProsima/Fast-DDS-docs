@@ -1,4 +1,3 @@
-
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
@@ -50,7 +49,7 @@ class CustomDomainParticipantListener : public DomainParticipantListener
 public:
 
     CustomDomainParticipantListener()
-    : DomainParticipantListener()
+        : DomainParticipantListener()
     {
     }
 
@@ -88,7 +87,7 @@ public:
         }
     }
 
-#endif
+#endif // if HAVE_SECURITY
 
     virtual void on_subscriber_discovery(
             DomainParticipant* /*participant*/,
@@ -149,6 +148,7 @@ public:
         (void)participant, (void)topic_name, (void)type_name, (void)type_information;
         std::cout << "New data type information received" << std::endl;
     }
+
 };
 //!--
 
@@ -201,7 +201,8 @@ void dds_domain_examples()
         // The value PARTICIPANT_QOS_DEFAULT is used to denote the default QoS.
         CustomDomainParticipantListener custom_listener;
         DomainParticipant* participant_with_default_qos_and_custom_listener =
-                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT, &custom_listener);
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT,
+                        &custom_listener);
         if (nullptr == participant_with_default_qos_and_custom_listener)
         {
             // Error
@@ -228,7 +229,8 @@ void dds_domain_examples()
         // CustomDomainParticipantListener inherits from DomainParticipantListener.
         CustomDomainParticipantListener custom_listener;
         DomainParticipant* participant_with_profile_and_custom_listener =
-                DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile", &custom_listener);
+                DomainParticipantFactory::get_instance()->create_participant_with_profile(0, "participant_profile",
+                        &custom_listener);
         if (nullptr == participant_with_profile_and_custom_listener)
         {
             // Error
@@ -284,7 +286,7 @@ void dds_domain_examples()
         }
 
         // The previous instruction is equivalent to the following:
-        if(participant->set_qos(DomainParticipantFactory::get_instance()->get_default_participant_qos())
+        if (participant->set_qos(DomainParticipantFactory::get_instance()->get_default_participant_qos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -325,7 +327,8 @@ void dds_domain_examples()
         // (...)
 
         // Set as the new default TopicQos
-        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (DomainParticipantFactory::get_instance()->set_default_participant_qos(qos_type1) !=
+                ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -347,7 +350,8 @@ void dds_domain_examples()
         // (...)
 
         // Set as the new default TopicQos
-        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (DomainParticipantFactory::get_instance()->set_default_participant_qos(qos_type2) !=
+                ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -363,7 +367,7 @@ void dds_domain_examples()
         }
 
         // Resetting the default DomainParticipantQos to the original default constructed values
-        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(PARTICIPANT_QOS_DEFAULT)
+        if (DomainParticipantFactory::get_instance()->set_default_participant_qos(PARTICIPANT_QOS_DEFAULT)
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -371,7 +375,7 @@ void dds_domain_examples()
         }
 
         // The previous instruction is equivalent to the following
-        if(DomainParticipantFactory::get_instance()->set_default_participant_qos(DomainParticipantQos())
+        if (DomainParticipantFactory::get_instance()->set_default_participant_qos(DomainParticipantQos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -387,7 +391,7 @@ void dds_domain_examples()
         // Setting autoenable_created_entities to true makes the created DomainParticipants
         // to be enabled upon creation
         qos.entity_factory().autoenable_created_entities = true;
-        if(DomainParticipantFactory::get_instance()->set_qos(qos) != ReturnCode_t::RETCODE_OK)
+        if (DomainParticipantFactory::get_instance()->set_qos(qos) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -406,7 +410,7 @@ void dds_domain_examples()
         // Setting autoenable_created_entities to false makes the created DomainParticipants
         // to be disabled upon creation
         qos.entity_factory().autoenable_created_entities = false;
-        if(DomainParticipantFactory::get_instance()->set_qos(qos) != ReturnCode_t::RETCODE_OK)
+        if (DomainParticipantFactory::get_instance()->set_qos(qos) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -429,7 +433,7 @@ void dds_domain_examples()
 
         // Activate DDS:Auth:PKI-DH plugin
         pqos.properties().properties().emplace_back("dds.sec.auth.plugin",
-            "builtin.PKI-DH");
+                "builtin.PKI-DH");
 
         // Configure DDS:Auth:PKI-DH plugin
         pqos.properties().properties().emplace_back(
@@ -455,7 +459,7 @@ void dds_domain_examples()
 
         // Activate DDS:Access:Permissions plugin
         pqos.properties().properties().emplace_back("dds.sec.access.plugin",
-            "builtin.Access-Permissions");
+                "builtin.Access-Permissions");
 
         // Configure DDS:Access:Permissions plugin
         pqos.properties().properties().emplace_back(
@@ -475,7 +479,7 @@ void dds_domain_examples()
 
         // Activate DDS:Crypto:AES-GCM-GMAC plugin
         pqos.properties().properties().emplace_back("dds.sec.crypto.plugin",
-            "builtin.AES-GCM-GMAC");
+                "builtin.AES-GCM-GMAC");
 
         // Only if DDS:Access:Permissions plugin is not enabled
         // Configure DDS:Crypto:AES-GCM-GMAC plugin
@@ -513,7 +517,7 @@ void dds_domain_examples()
 
         // Activate DDS:Logging:DDS_LogTopic plugin
         pqos.properties().properties().emplace_back("dds.sec.log.plugin",
-            "builtin.DDS_LogTopic");
+                "builtin.DDS_LogTopic");
 
         // Configure DDS:Logging:DDS_LogTopic plugin
         pqos.properties().properties().emplace_back(
@@ -593,7 +597,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
                 /* Process the case when a new subscriber was found in the domain */
                 std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
-                "' of type '" << info.info.typeName() << "' discovered";
+                    "' of type '" << info.info.typeName() << "' discovered";
                 break;
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
                 /* Process the case when a subscriber changed its QOS */
@@ -641,6 +645,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
         (void)participant, (void)request_sample_id, (void)topic, (void)identifier, (void)object, (void)dyn_type;
         std::cout << "New data type of topic '" << topic << "' discovered." << std::endl;
     }
+
 };
 //!--
 
@@ -662,7 +667,7 @@ void dds_discovery_examples()
         // Pass the listener on DomainParticipant creation.
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(
-                        0, pqos, plistener);
+            0, pqos, plistener);
         //!--
     }
     {
@@ -734,11 +739,20 @@ void dds_discovery_examples()
         //!--
     }
     {
-        //CONF_STATIC_DISCOVERY_XML
+        //CONF_STATIC_DISCOVERY_XML_FILE
         DomainParticipantQos pqos;
 
-        pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
-        pqos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
+        pqos.wire_protocol().builtin.discovery_config.static_edp_xml_config("file://RemotePublisher.xml");
+        pqos.wire_protocol().builtin.discovery_config.static_edp_xml_config("file://RemoteSubscriber.xml");
+        //!--
+    }
+    {
+        //CONF_STATIC_DISCOVERY_XML_DATA
+        DomainParticipantQos pqos;
+
+        pqos.wire_protocol().builtin.discovery_config.static_edp_xml_config(
+            "data://<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+            "<staticdiscovery><participant><name>RTPSParticipant</name></participant></staticdiscovery>");
         //!--
     }
     {
@@ -856,7 +870,7 @@ void dds_discovery_examples()
 
         // Create SERVER
         DomainParticipant* server =
-            DomainParticipantFactory::get_instance()->create_participant(0, server_qos);
+                DomainParticipantFactory::get_instance()->create_participant(0, server_qos);
         if (nullptr == server)
         {
             // Error
@@ -893,7 +907,7 @@ void dds_discovery_examples()
 
         // Create CLIENT
         DomainParticipant* client =
-            DomainParticipantFactory::get_instance()->create_participant(0, client_qos);
+                DomainParticipantFactory::get_instance()->create_participant(0, client_qos);
         if (nullptr == client)
         {
             // Error
@@ -910,7 +924,7 @@ class CustomTopicListener : public TopicListener
 public:
 
     CustomTopicListener()
-    : TopicListener()
+        : TopicListener()
     {
     }
 
@@ -925,6 +939,7 @@ public:
         (void)topic, (void)status;
         std::cout << "Inconsistent topic received discovered" << std::endl;
     }
+
 };
 //!--
 
@@ -983,6 +998,7 @@ public:
     {
         return true;
     }
+
 };
 
 void dds_topic_examples()
@@ -1136,7 +1152,7 @@ void dds_topic_examples()
         }
 
         // The previous instruction is equivalent to the following:
-        if(topic->set_qos(participant->get_default_topic_qos())
+        if (topic->set_qos(participant->get_default_topic_qos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1195,7 +1211,7 @@ void dds_topic_examples()
         // (...)
 
         // Set as the new default TopicQos
-        if(participant->set_default_topic_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_topic_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -1217,7 +1233,7 @@ void dds_topic_examples()
         // (...)
 
         // Set as the new default TopicQos
-        if(participant->set_default_topic_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_topic_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -1233,7 +1249,7 @@ void dds_topic_examples()
         }
 
         // Resetting the default TopicQos to the original default constructed values
-        if(participant->set_default_topic_qos(TOPIC_QOS_DEFAULT)
+        if (participant->set_default_topic_qos(TOPIC_QOS_DEFAULT)
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1241,7 +1257,7 @@ void dds_topic_examples()
         }
 
         // The previous instruction is equivalent to the following
-        if(participant->set_default_topic_qos(TopicQos())
+        if (participant->set_default_topic_qos(TopicQos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1324,7 +1340,6 @@ void dds_topic_examples()
         //!--
     }
 }
-
 
 class CustomPublisherListener : public PublisherListener
 {
@@ -1481,7 +1496,7 @@ void dds_publisher_examples()
         }
 
         // The previous instruction is equivalent to the following:
-        if(publisher->set_qos(participant->get_default_publisher_qos())
+        if (publisher->set_qos(participant->get_default_publisher_qos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1540,7 +1555,7 @@ void dds_publisher_examples()
         // (...)
 
         // Set as the new default PublisherQos
-        if(participant->set_default_publisher_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_publisher_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -1562,7 +1577,7 @@ void dds_publisher_examples()
         // (...)
 
         // Set as the new default PublisherQos
-        if(participant->set_default_publisher_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_publisher_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -1578,7 +1593,7 @@ void dds_publisher_examples()
         }
 
         // Resetting the default PublisherQos to the original default constructed values
-        if(participant->set_default_publisher_qos(PUBLISHER_QOS_DEFAULT)
+        if (participant->set_default_publisher_qos(PUBLISHER_QOS_DEFAULT)
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1586,7 +1601,7 @@ void dds_publisher_examples()
         }
 
         // The previous instruction is equivalent to the following
-        if(participant->set_default_publisher_qos(PublisherQos())
+        if (participant->set_default_publisher_qos(PublisherQos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1603,7 +1618,7 @@ class CustomDataWriterListener : public DataWriterListener
 public:
 
     CustomDataWriterListener()
-    : DataWriterListener()
+        : DataWriterListener()
     {
     }
 
@@ -1628,28 +1643,29 @@ public:
     }
 
     virtual void on_offered_deadline_missed(
-             DataWriter* writer,
-             const OfferedDeadlineMissedStatus& status)
+            DataWriter* writer,
+            const OfferedDeadlineMissedStatus& status)
     {
-         (void)writer, (void)status;
-         std::cout << "Some data could not be delivered on time" << std::endl;
+        (void)writer, (void)status;
+        std::cout << "Some data could not be delivered on time" << std::endl;
     }
 
     virtual void on_offered_incompatible_qos(
-         DataWriter* /*writer*/,
-         const OfferedIncompatibleQosStatus& status)
+            DataWriter* /*writer*/,
+            const OfferedIncompatibleQosStatus& status)
     {
         std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << status.last_policy_id <<
-                ")" <<std::endl;
+            ")" << std::endl;
     }
 
     virtual void on_liveliness_lost(
-         DataWriter* writer,
-         const LivelinessLostStatus& status)
+            DataWriter* writer,
+            const LivelinessLostStatus& status)
     {
         (void)writer, (void)status;
         std::cout << "Liveliness lost. Matched Subscribers will consider us offline" << std::endl;
     }
+
 };
 //!--
 
@@ -1776,7 +1792,7 @@ void dds_dataWriter_examples()
         }
 
         // The previous instruction is equivalent to the following:
-        if(data_writer->set_qos(publisher->get_default_datawriter_qos())
+        if (data_writer->set_qos(publisher->get_default_datawriter_qos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1817,7 +1833,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Set as the new default DataWriterQos
-        if(publisher->set_default_datawriter_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (publisher->set_default_datawriter_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -1839,7 +1855,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Set as the new default DataWriterQos
-        if(publisher->set_default_datawriter_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (publisher->set_default_datawriter_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -1855,7 +1871,7 @@ void dds_dataWriter_examples()
         }
 
         // Resetting the default DataWriterQos to the original default constructed values
-        if(publisher->set_default_datawriter_qos(DATAWRITER_QOS_DEFAULT)
+        if (publisher->set_default_datawriter_qos(DATAWRITER_QOS_DEFAULT)
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1863,7 +1879,7 @@ void dds_dataWriter_examples()
         }
 
         // The previous instruction is equivalent to the following
-        if(publisher->set_default_datawriter_qos(DataWriterQos())
+        if (publisher->set_default_datawriter_qos(DataWriterQos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -1915,35 +1931,35 @@ void dds_dataWriter_examples()
         //!--
 
         {
-        //DDS_DATAWRITER_LOAN_SAMPLES
-        // Borrow a data instance
-        void* data = nullptr;
-        if (ReturnCode_t::RETCODE_OK == data_writer->loan_sample(data))
-        {
-            bool error = false;
-
-            // Fill the data values
-            // (...)
-
-            if (error)
+            //DDS_DATAWRITER_LOAN_SAMPLES
+            // Borrow a data instance
+            void* data = nullptr;
+            if (ReturnCode_t::RETCODE_OK == data_writer->loan_sample(data))
             {
-                // Return the loan without publishing
-                data_writer->discard_loan(data);
-                return;
+                bool error = false;
+
+                // Fill the data values
+                // (...)
+
+                if (error)
+                {
+                    // Return the loan without publishing
+                    data_writer->discard_loan(data);
+                    return;
+                }
+
+                // Publish the new value
+                if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != ReturnCode_t::RETCODE_OK)
+                {
+                    // Error
+                    return;
+                }
             }
 
-            // Publish the new value
-            if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != ReturnCode_t::RETCODE_OK)
-            {
-                // Error
-                return;
-            }
-        }
-
-        // The data instance can be reused to publish new values,
-        // but delete it at the end to avoid leaks
-        custom_type_support->deleteData(data);
-        //!--
+            // The data instance can be reused to publish new values,
+            // but delete it at the end to avoid leaks
+            custom_type_support->deleteData(data);
+            //!--
         }
     }
 }
@@ -1955,7 +1971,7 @@ class CustomSubscriberListener : public SubscriberListener
 public:
 
     CustomSubscriberListener()
-    : SubscriberListener()
+        : SubscriberListener()
     {
     }
 
@@ -1969,6 +1985,7 @@ public:
         (void)sub;
         std::cout << "New data available" << std::endl;
     }
+
 };
 //!--
 
@@ -2123,7 +2140,7 @@ void dds_subscriber_examples()
         }
 
         // The previous instruction is equivalent to the following:
-        if(subscriber->set_qos(participant->get_default_subscriber_qos())
+        if (subscriber->set_qos(participant->get_default_subscriber_qos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -2182,7 +2199,7 @@ void dds_subscriber_examples()
         // (...)
 
         // Set as the new default SubscriberQos
-        if(participant->set_default_subscriber_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_subscriber_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -2204,7 +2221,7 @@ void dds_subscriber_examples()
         // (...)
 
         // Set as the new default SubscriberQos
-        if(participant->set_default_subscriber_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_subscriber_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -2220,7 +2237,7 @@ void dds_subscriber_examples()
         }
 
         // Resetting the default SubscriberQos to the original default constructed values
-        if(participant->set_default_subscriber_qos(SUBSCRIBER_QOS_DEFAULT)
+        if (participant->set_default_subscriber_qos(SUBSCRIBER_QOS_DEFAULT)
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -2228,7 +2245,7 @@ void dds_subscriber_examples()
         }
 
         // The previous instruction is equivalent to the following
-        if(participant->set_default_subscriber_qos(SubscriberQos())
+        if (participant->set_default_subscriber_qos(SubscriberQos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -2245,7 +2262,7 @@ class CustomDataReaderListener : public DataReaderListener
 public:
 
     CustomDataReaderListener()
-    : DataReaderListener()
+        : DataReaderListener()
     {
     }
 
@@ -2311,7 +2328,7 @@ public:
             const RequestedIncompatibleQosStatus& info)
     {
         std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << info.last_policy_id <<
-                ")" <<std::endl;
+            ")" << std::endl;
     }
 
     virtual void on_sample_lost(
@@ -2321,6 +2338,7 @@ public:
         (void)reader, (void)info;
         std::cout << "A data sample was lost and will not be received" << std::endl;
     }
+
 };
 //!--
 
@@ -2447,7 +2465,7 @@ void dds_dataReader_examples()
         }
 
         // The previous instruction is equivalent to the following:
-        if(data_reader->set_qos(subscriber->get_default_datareader_qos())
+        if (data_reader->set_qos(subscriber->get_default_datareader_qos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -2488,7 +2506,7 @@ void dds_dataReader_examples()
         // (...)
 
         // Set as the new default DataReaderQos
-        if(subscriber->set_default_datareader_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (subscriber->set_default_datareader_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -2510,7 +2528,7 @@ void dds_dataReader_examples()
         // (...)
 
         // Set as the new default DataReaderQos
-        if(subscriber->set_default_datareader_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (subscriber->set_default_datareader_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -2526,7 +2544,7 @@ void dds_dataReader_examples()
         }
 
         // Resetting the default DataReaderQos to the original default constructed values
-        if(subscriber->set_default_datareader_qos(DATAREADER_QOS_DEFAULT)
+        if (subscriber->set_default_datareader_qos(DATAREADER_QOS_DEFAULT)
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -2534,7 +2552,7 @@ void dds_dataReader_examples()
         }
 
         // The previous instruction is equivalent to the following
-        if(subscriber->set_default_datareader_qos(DataReaderQos())
+        if (subscriber->set_default_datareader_qos(DataReaderQos())
                 != ReturnCode_t::RETCODE_OK)
         {
             // Error
@@ -2558,7 +2576,7 @@ void dds_dataReader_examples()
         SampleInfo info;
 
         //Define a timeout of 5 seconds
-        eprosima::fastrtps::Duration_t timeout (5,0);
+        eprosima::fastrtps::Duration_t timeout (5, 0);
 
         // Loop reading data as it arrives
         // This will make the current threat to be dedicated exclusively to
@@ -2594,53 +2612,53 @@ void dds_dataReader_examples()
         //!--
 
         {
-        //DDS_DATAREADER_LOAN_SEQUENCES
-        // Sequences are automatically initialized to be empty (maximum == 0)
-        FooSeq data_seq;
-        SampleInfoSeq info_seq;
+            //DDS_DATAREADER_LOAN_SEQUENCES
+            // Sequences are automatically initialized to be empty (maximum == 0)
+            FooSeq data_seq;
+            SampleInfoSeq info_seq;
 
-        // with empty sequences, a take() or read() will return loaned
-        // sequence elements
-        ReturnCode_t ret_code = data_reader->take(data_seq, info_seq,
-                LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
-                ANY_VIEW_STATE, ANY_INSTANCE_STATE);
+            // with empty sequences, a take() or read() will return loaned
+            // sequence elements
+            ReturnCode_t ret_code = data_reader->take(data_seq, info_seq,
+                            LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
+                            ANY_VIEW_STATE, ANY_INSTANCE_STATE);
 
-        // process the returned data
-
-        // must return the loaned sequences when done processing
-        data_reader->return_loan(data_seq, info_seq);
-        //!--
-        }
-
-        {
-        //DDS_DATAREADER_PROCESS_DATA
-        // Sequences are automatically initialized to be empty (maximum == 0)
-        FooSeq data_seq;
-        SampleInfoSeq info_seq;
-
-        // with empty sequences, a take() or read() will return loaned
-        // sequence elements
-        ReturnCode_t ret_code = data_reader->take(data_seq, info_seq,
-                LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
-                ANY_VIEW_STATE, ANY_INSTANCE_STATE);
-
-        // process the returned data
-        if (ret_code == ReturnCode_t::RETCODE_OK)
-        {
-            // Both info_seq.length() and data_seq.length() will have the number of samples returned
-            for (FooSeq::size_type n = 0; n < info_seq.length(); ++n)
-            {
-                // Only samples for which valid_data is true should be accessed
-                if (info_seq[n].valid_data)
-                {
-                    // Do something with data_seq[n]
-                }
-            }
+            // process the returned data
 
             // must return the loaned sequences when done processing
             data_reader->return_loan(data_seq, info_seq);
+            //!--
         }
-        //!--
+
+        {
+            //DDS_DATAREADER_PROCESS_DATA
+            // Sequences are automatically initialized to be empty (maximum == 0)
+            FooSeq data_seq;
+            SampleInfoSeq info_seq;
+
+            // with empty sequences, a take() or read() will return loaned
+            // sequence elements
+            ReturnCode_t ret_code = data_reader->take(data_seq, info_seq,
+                            LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
+                            ANY_VIEW_STATE, ANY_INSTANCE_STATE);
+
+            // process the returned data
+            if (ret_code == ReturnCode_t::RETCODE_OK)
+            {
+                // Both info_seq.length() and data_seq.length() will have the number of samples returned
+                for (FooSeq::size_type n = 0; n < info_seq.length(); ++n)
+                {
+                    // Only samples for which valid_data is true should be accessed
+                    if (info_seq[n].valid_data)
+                    {
+                        // Do something with data_seq[n]
+                    }
+                }
+
+                // must return the loaned sequences when done processing
+                data_reader->return_loan(data_seq, info_seq);
+            }
+            //!--
         }
     }
 }
@@ -2652,7 +2670,7 @@ class CustomizedDataReaderListener : public DataReaderListener
 public:
 
     CustomizedDataReaderListener()
-    : DataReaderListener()
+        : DataReaderListener()
     {
     }
 
@@ -2685,6 +2703,7 @@ public:
             }
         }
     }
+
 };
 //!--
 
@@ -2901,7 +2920,8 @@ void dds_qos_examples()
         //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
         ParticipantResourceLimitsQos participant_limits;
         //Set the maximum size of participant resource limits collection to 3 and it allocation configuration to fixed size
-        participant_limits.participants = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        participant_limits.participants = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(
+            3u);
         //Set the maximum size of reader's resource limits collection to 2 and its allocation configuration to fixed size
         participant_limits.readers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
         //Set the maximum size of writer's resource limits collection to 1 and its allocation configuration to fixed size
@@ -2921,7 +2941,8 @@ void dds_qos_examples()
         //Add new property for the Auth:PKI-DH plugin
         property_policy.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
         //Add new property for the Access:Permissions plugin
-        property_policy.properties().emplace_back(eprosima::fastrtps::rtps::Property("dds.sec.access.plugin", "builtin.Access-Permissions"));
+        property_policy.properties().emplace_back(eprosima::fastrtps::rtps::Property("dds.sec.access.plugin",
+                "builtin.Access-Permissions"));
         //!--
     }
 
@@ -2938,7 +2959,8 @@ void dds_qos_examples()
         //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
         ReaderResourceLimitsQos reader_limits;
         //Set the maximum size for writer matched resource limits collection to 1 and its allocation configuration to fixed size
-        reader_limits.matched_publisher_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        reader_limits.matched_publisher_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 
@@ -2946,7 +2968,8 @@ void dds_qos_examples()
         //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
         WriterResourceLimitsQos writer_limits;
         //Set the maximum size for reader matched resource limits collection to 3 and its allocation configuration to fixed size
-        writer_limits.matched_subscriber_allocation = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        writer_limits.matched_subscriber_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
         //!--
     }
 
@@ -3026,7 +3049,8 @@ void dds_qos_examples()
         //Set the guid prefix
         std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> wire_protocol.prefix;
         //Configure Builtin Attributes
-        wire_protocol.builtin.discovery_config.discoveryProtocol = eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+        wire_protocol.builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
         //Add locator to unicast list
         eprosima::fastrtps::rtps::Locator_t server_locator;
         eprosima::fastrtps::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
@@ -3277,8 +3301,8 @@ void xml_profiles_examples()
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             DomainParticipant* participant =
-                DomainParticipantFactory::get_instance()->create_participant_with_profile(
-                        0, "participant_xml_profile");
+                    DomainParticipantFactory::get_instance()->create_participant_with_profile(
+                0, "participant_xml_profile");
             Publisher* publisher = participant->create_publisher_with_profile("publisher_xml_profile");
             Subscriber* subscriber = participant->create_subscriber_with_profile("subscriber_xml_profile");
         }
@@ -3309,12 +3333,12 @@ void xml_profiles_examples()
         else
         {
             std::cout << "Cannot open XML file \"types.xml\". "
-                    << "Please, set the correct path to the XML file"
-                    << std::endl;
+                      << "Please, set the correct path to the XML file"
+                      << std::endl;
         }
         //!--
     }
-        {
+    {
         std::string custom_name;
         //XML-MIX-WITH-CODE
         if (ReturnCode_t::RETCODE_OK ==
@@ -3322,8 +3346,8 @@ void xml_profiles_examples()
         {
             DomainParticipantQos participant_qos;
             DomainParticipantFactory::get_instance()->get_participant_qos_from_profile(
-                    "participant_xml_profile",
-                    participant_qos);
+                "participant_xml_profile",
+                participant_qos);
 
             // Name obtained in another section of the code
             participant_qos.name() = custom_name;
@@ -3333,8 +3357,8 @@ void xml_profiles_examples()
 
             // Create participant using the modified XML Qos
             DomainParticipant* participant =
-                DomainParticipantFactory::get_instance()->create_participant(
-                        0, participant_qos);
+                    DomainParticipantFactory::get_instance()->create_participant(
+                0, participant_qos);
         }
         //!--
     }
@@ -3793,7 +3817,7 @@ void dds_usecase_examples()
         participant_qos.name("HelloWorldPublisher");
         participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
-        participant_qos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldSubscriber.xml");
+        participant_qos.wire_protocol().builtin.discovery_config.static_edp_xml_config("HelloWorldSubscriber.xml");
 
         // DataWriter configuration
         DataWriterQos writer_qos;
@@ -3847,7 +3871,7 @@ void dds_usecase_examples()
         participant_qos.name("HelloWorldSubscriber");
         participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
-        participant_qos.wire_protocol().builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldPublisher.xml");
+        participant_qos.wire_protocol().builtin.discovery_config.static_edp_xml_config("HelloWorldPublisher.xml");
 
         // DataWriter configuration
         DataWriterQos writer_qos;
@@ -4144,17 +4168,17 @@ void dds_persistence_examples()
 {
     //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE
     /*
-    * In order for this example to be self-contained, all the entities are created programatically, including the data
-    * type and type support. This has been done using Fast DDS Dynamic Types API, but it could be substituted with a
-    * Fast DDS-Gen generated type support if an IDL file is available. The Dynamic Type created here is the equivalent
-    * of the following IDL:
-    *
-    *     struct persistence_topic_type
-    *     {
-    *         unsigned long index;
-    *         string message;
-    *     };
-    */
+     * In order for this example to be self-contained, all the entities are created programatically, including the data
+     * type and type support. This has been done using Fast DDS Dynamic Types API, but it could be substituted with a
+     * Fast DDS-Gen generated type support if an IDL file is available. The Dynamic Type created here is the equivalent
+     * of the following IDL:
+     *
+     *     struct persistence_topic_type
+     *     {
+     *         unsigned long index;
+     *         string message;
+     *     };
+     */
 
     // Configure persistence service plugin for DomainParticipant
     DomainParticipantQos pqos;
@@ -4163,16 +4187,16 @@ void dds_persistence_examples()
     DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
 
     /********************************************************************************************************
-     * CREATE TYPE AND TYPE SUPPORT
+    * CREATE TYPE AND TYPE SUPPORT
     *********************************************************************************************************
-     * This part could be replaced if IDL file and Fast DDS-Gen are available.
-     * The type is created with name "persistence_topic_type"
-     * Additionally, create a data object and populate it, just to show how to do it
+    * This part could be replaced if IDL file and Fast DDS-Gen are available.
+    * The type is created with name "persistence_topic_type"
+    * Additionally, create a data object and populate it, just to show how to do it
     ********************************************************************************************************/
     // Create a struct builder for a type with name "persistence_topic_type"
     const std::string topic_type_name = "persistence_topic_type";
     eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_type_builder(
-            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance()->create_struct_builder());
+        eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance()->create_struct_builder());
     struct_type_builder->set_name(topic_type_name);
 
     // The type consists of two members, and index and a message. Add members to the struct.
@@ -4194,7 +4218,7 @@ void dds_persistence_examples()
     dyn_helloworld->set_uint32_value(0, 0);
     dyn_helloworld->set_string_value("HelloWorld", 1);
     /********************************************************************************************************
-     * END CREATE TYPE AND TYPE SUPPORT
+    * END CREATE TYPE AND TYPE SUPPORT
     ********************************************************************************************************/
 
     // Create a topic
@@ -4354,9 +4378,9 @@ void dds_zero_copy_example()
             memcpy(data->message().data(), "LoanableHelloWorld ", 20);
 
             std::cout << "Sending sample (count=" << msgsent
-                    << ") at address " << &data << std::endl
-                    << "  index=" << data->index() << std::endl
-                    << "  message=" << data->message().data() << std::endl;
+                      << ") at address " << &data << std::endl
+                      << "  index=" << data->index() << std::endl
+                      << "  message=" << data->message().data() << std::endl;
 
             // Write the sample.
             // After this function returns, the middleware owns the sample.
@@ -4397,9 +4421,9 @@ void dds_zero_copy_example()
 
                             ++samples;
                             std::cout << "Sample received (count=" << samples
-                                    << ") at address " << &sample << std::endl
-                                    << "  index=" << sample.index() << std::endl
-                                    << "  message=" << sample.message().data() << std::endl;
+                                      << ") at address " << &sample << std::endl
+                                      << "  index=" << sample.index() << std::endl
+                                      << "  message=" << sample.message().data() << std::endl;
                         }
                     }
                     // Indicate to the DataReader that the application is done accessing the collection of
@@ -4408,6 +4432,7 @@ void dds_zero_copy_example()
                     reader->return_loan(data, infos);
                 }
             }
+
             //!--
 
             int matched = 0;

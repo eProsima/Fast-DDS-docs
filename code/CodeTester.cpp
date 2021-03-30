@@ -68,9 +68,10 @@ class HelloWorldPubSubType : public TopicDataType
     std::function<uint32_t()> getSerializedSizeProvider(
             void* data) override
     {
-        return [] {
+        return []
+               {
                    return 0;
-        };
+               };
     }
 
     void* createData() override
@@ -493,8 +494,8 @@ void configuration_compilation_check()
     //!--
 
     //CONF_QOS_STATIC_DISCOVERY_XML
-    participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
-    participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://RemotePublisher.xml");
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://RemoteSubscriber.xml");
     //!--
 
     {
@@ -651,7 +652,7 @@ void configuration_compilation_check()
         participant_attr.rtps.setName("HelloWorldPublisher");
         participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
-        participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldSubscriber.xml");
+        participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://HelloWorldSubscriber.xml");
 
         // Publisher attributes
         publisher_attr.topic.topicName = "HelloWorldTopic";
@@ -667,7 +668,7 @@ void configuration_compilation_check()
         participant_attr.rtps.setName("HelloWorldSubscriber");
         participant_attr.rtps.builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = false;
         participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
-        participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("HelloWorldPublisher.xml");
+        participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://HelloWorldPublisher.xml");
 
         // Subscriber attributes
         subscriber_attr.topic.topicName = "HelloWorldTopic";
@@ -706,9 +707,14 @@ void configuration_compilation_check()
     participant_attr.rtps.builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = true;
     //!--
 
-    //CONF_STATIC_DISCOVERY_XML
-    participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemotePublisher.xml");
-    participant_attr.rtps.builtin.discovery_config.setStaticEndpointXMLFilename("RemoteSubscriber.xml");
+    //CONF_STATIC_DISCOVERY_XML_FILE
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://RemotePublisher.xml");
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("file://RemoteSubscriber.xml");
+    //!--
+
+    //CONF_STATIC_DISCOVERY_XML_DATA
+    participant_attr.rtps.builtin.discovery_config.static_edp_xml_config("data://<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+            "<staticdiscovery><participant><name>RTPSParticipant</name></participant></staticdiscovery>");
     //!--
 
     {
@@ -803,7 +809,8 @@ class CustomParticipantListener : public eprosima::fastrtps::ParticipantListener
                 break;
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
                 /* Process the case when a subscriber was removed from the domain */
-                std::cout << "Subscriber for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
+                std::cout << "Subscriber for topic '" << info.info.topicName() << "' of type '" <<
+                    info.info.typeName() <<
                     "' left the domain.";
                 break;
         }
@@ -818,7 +825,8 @@ class CustomParticipantListener : public eprosima::fastrtps::ParticipantListener
         switch (info.status){
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::DISCOVERED_WRITER:
                 /* Process the case when a new publisher was found in the domain */
-                std::cout << "New publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
+                std::cout << "New publisher for topic '" << info.info.topicName() << "' of type '" <<
+                    info.info.typeName() <<
                     "' discovered";
                 break;
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::CHANGED_QOS_WRITER:
@@ -826,7 +834,8 @@ class CustomParticipantListener : public eprosima::fastrtps::ParticipantListener
                 break;
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo ::REMOVED_WRITER:
                 /* Process the case when a publisher was removed from the domain */
-                std::cout << "publisher for topic '" << info.info.topicName() << "' of type '" << info.info.typeName() <<
+                std::cout << "publisher for topic '" << info.info.topicName() << "' of type '" <<
+                    info.info.typeName() <<
                     "' left the domain.";
                 break;
         }
@@ -900,16 +909,16 @@ void rtps_api_example_create_entities()
 
     //RTPS_API_WRITE_SAMPLE
     //Request a change from the writer
-    CacheChange_t* change = writer->new_change([]() -> uint32_t {
-        return 255;
-    }, ALIVE);
+    CacheChange_t* change = writer->new_change([]() -> uint32_t
+                    {
+                        return 255;
+                    }, ALIVE);
     //Write serialized data into the change
     change->serializedPayload.length = sprintf((char*) change->serializedPayload.data, "My example string %d", 2) + 1;
     //Insert change into the history. The Writer takes care of the rest.
     history->add_change(change);
     //!--
 }
-
 
 void rtps_api_example_create_entities_with_custom_pool()
 {
@@ -980,6 +989,7 @@ void rtps_api_example_create_entities_with_custom_pool()
 
             return true;
         }
+
     };
 
     std::shared_ptr<CustomPayloadPool> payload_pool = std::make_shared<CustomPayloadPool>();
@@ -998,9 +1008,10 @@ void rtps_api_example_create_entities_with_custom_pool()
 
     // Write and Read operations work as usual, but take the Payloads from the pool.
     // Requesting a change to the Writer will provide one with an empty Payload taken from the pool
-    CacheChange_t* change = writer->new_change([]() -> uint32_t {
-        return 255;
-    }, ALIVE);
+    CacheChange_t* change = writer->new_change([]() -> uint32_t
+                    {
+                        return 255;
+                    }, ALIVE);
 
     // Write serialized data into the change and add it to the history
     change->serializedPayload.length = sprintf((char*) change->serializedPayload.data, "My example string %d", 2) + 1;
@@ -1206,7 +1217,7 @@ void pubsub_api_example_participant_configuration()
     }
 
     //PUBSUB_API_CONF_PUBSUB_SAMPLEINFO_USAGE
-    if ( (sample_info.sampleKind == ALIVE) & (sample_info.ownershipStrength > 25) )
+    if ((sample_info.sampleKind == ALIVE) & (sample_info.ownershipStrength > 25))
     {
         //Process data
     }
@@ -1425,8 +1436,8 @@ void xml_dyn_examples_check()
                 eprosima::fastrtps::xmlparser::XMLProfileManager::loadXMLFile("types.xml"))
         {
             std::cout << "Cannot open XML file \"types.xml\". "
-                    << "Please, set the correct path to the XML file"
-                    << std::endl;
+                      << "Please, set the correct path to the XML file"
+                      << std::endl;
         }
         // Create the "MyStructPubSubType"
         eprosima::fastrtps::types::DynamicPubSubType* pbType =
@@ -1434,7 +1445,7 @@ void xml_dyn_examples_check()
         // Create a "MyStruct" instance
         eprosima::fastrtps::types::DynamicData* data =
                 eprosima::fastrtps::types::DynamicDataFactory::get_instance()->create_data(
-                        pbType->GetDynamicType());
+            pbType->GetDynamicType());
         //!--
     }
 }
@@ -1650,10 +1661,12 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_BITSETS
         // Create bitfields with the appropriate type for their size
-        DynamicTypeBuilder_ptr base_type_byte_builder = DynamicTypeBuilderFactory::get_instance()->create_byte_builder();
+        DynamicTypeBuilder_ptr base_type_byte_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_byte_builder();
         auto base_type_byte = base_type_byte_builder->build();
 
-        DynamicTypeBuilder_ptr base_type_uint32_builder = DynamicTypeBuilderFactory::get_instance()->create_uint32_builder();
+        DynamicTypeBuilder_ptr base_type_uint32_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_uint32_builder();
         auto base_type_uint32 = base_type_uint32_builder->build();
 
         // Create the bitset with two bitfields

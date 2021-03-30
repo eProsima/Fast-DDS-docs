@@ -22,7 +22,7 @@ The STATIC discovery related settings are:
 +==============================+=======================================================================================+
 | :ref:`static_edp`            | It activates the STATIC discovery protocol.                                           |
 +------------------------------+---------------------------------------------------------------------------------------+
-| :ref:`static_xml`            | Specifies an XML file containing a description of the remote DataWriters and |br|     |
+| :ref:`static_xml`            | Specifies an XML content with a description of the remote DataWriters and |br|        |
 |                              | DataReaders.                                                                          |
 +------------------------------+---------------------------------------------------------------------------------------+
 | :ref:`Initial Announcements` | It defines the behavior of the DomainParticipant initial announcements (PDP phase).   |
@@ -55,8 +55,8 @@ This can be done either by code or using an XML configuration file:
 
 .. _`static_xml`:
 
-STATIC EDP XML Files Specification
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+STATIC EDP XML Configuration Specification
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Since activating STATIC EDP suppresses all EDP meta traffic, the information about the remote entities (DataWriters
 and DataReaders) must be statically specified, which is done using dedicated XML files.
@@ -217,22 +217,33 @@ This is done by setting the user ID on the |DataReaderQoS|/|DataWriterQoS|:
 |    :end-before: <!-->                                                                                                |
 +----------------------------------------------------------------------------------------------------------------------+
 
-On the local DomainParticipant, loading STATIC EDP configuration files is done by:
+On the local DomainParticipant, you can load STATIC EDP configuration content specifying the file containing it.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_STATIC_DISCOVERY_XML                                                                         |
-|    :end-before: //!                                                                                                  |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF_STATIC_DISCOVERY_XML                                                                      |
-|    :end-before: <!-->                                                                                                |
-+----------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------+
+| **C++**                                              |
++------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp       |
+|    :language: c++                                    |
+|    :start-after: //CONF_STATIC_DISCOVERY_XML_FILE    |
+|    :end-before: //!                                  |
+|    :dedent: 8                                        |
++------------------------------------------------------+
+| **XML**                                              |
++------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml           |
+|    :language: xml                                    |
+|    :start-after: <!-->CONF_STATIC_DISCOVERY_XML_FILE |
+|    :end-before: <!-->                                |
++------------------------------------------------------+
 
+Or you can specify the STATIC EDP configuration content directly.
+
++------------------------------------------------------+
+| **C++**                                              |
++------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp       |
+|    :language: c++                                    |
+|    :start-after: //CONF_STATIC_DISCOVERY_XML_DATA    |
+|    :end-before: //!                                  |
+|    :dedent: 8                                        |
++------------------------------------------------------+

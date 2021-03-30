@@ -16,13 +16,13 @@ two of the three public APIs:
 
 This release adds the following **features**:
 
-* Unique network flows
-* Discovery super-client
-* Statistics module API
-* New flow controller API
-* Static discovery configuration from raw string
-* Added reception timestamp to SampleInfo
-* Exposing get_unread_count on DataReader
+* :ref:`Unique network flows <use-case-unique-flows>`
+* :ref:`Discovery super-client <ros2-discovery-server-introspection>`
+* :ref:`Statistics module API <statistics>`
+* :ref:`New flow controller API <api_pim_publishmodeqospolicy>`
+* :ref:`Static discovery configuration from raw string <static_xml_load>`
+* :ref:`Added reception timestamp to SampleInfo <api_pim_sampleinfo>`
+* :ref:`Exposing get_unread_count on DataReader <api_pim_datareader>`
 
 It also includes the following **improvements**:
 

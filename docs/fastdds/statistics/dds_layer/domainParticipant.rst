@@ -93,3 +93,6 @@ This method is compatible with setting also the property through code or XML.
 The statistics DataWriters that will be enabled when the |DomainParticipant-api| is enabled would be the union between
 those specified in the |DomainParticipantQos::properties-api| ``fastdds.statistics`` and those included with the
 environment variable.
+
+Be aware that automatically enabling the statistics DataWriters using these methods implies using the recommended
+QoS profile |STATISTICS_DATAWRITER_QOS-api|. For more information, please refer to :ref:`statistics_datawriter_qos`.

@@ -304,6 +304,7 @@ partition from *Talker 2* and so it does not listen to it.
     Once two endpoints know each other, they do not need the server network between them to
     listen to each other messages.
 
+.. _ros2-discovery-server-introspection:
 
 ROS 2 Introspection
 -------------------

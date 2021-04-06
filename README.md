@@ -63,7 +63,6 @@ sudo apt install -y \
     python3 \
     python3-pip \
     python3-venv \
-    python3-sphinxcontrib.spelling \
     imagemagick
 ```
 
@@ -76,7 +75,8 @@ Create a virtual environment and install python3 dependencies.
 ```bash
 python3 -m venv fastdds-docs-venv
 source fastdds-docs-venv/bin/activate
-pip3 install -r src/fastdds-docs/docs/requirements.txt
+wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/master/docs/requirements.txt
+pip3 install -r requirements.txt
 cd fastdds-docs-venv/lib/<python-version>/site-packages
 curl https://patch-diff.githubusercontent.com/raw/sphinx-doc/sphinx/pull/7851.diff | git apply
 ```
@@ -110,12 +110,6 @@ building tools.
         libssl-dev
     ```
 
-1. This method uses [colcon](https://colcon.readthedocs.io/en/released/) to build both Fast DDS and Fast DDS-docs, so colcon needs to be installed:
-
-    ```bash
-    pip3 install -U colcon-common-extensions vcstool
-    ```
-
 1. Create a colcon workspace containing Fast DDS and Fast DDS-docs:
 
     ```bash
@@ -125,7 +119,7 @@ building tools.
     wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos
     vcs import src < fastrtps.repos
     cd src
-    git clone https://github.com/eProsima/Fast-RTPS-docs fastdds-docs
+    git clone https://github.com/eProsima/Fast-DDS-docs fastdds-docs
     ```
 
 1. [OPTIONAL]: You can checkout to different Fast DDS and Fast DDS-docs branches within the appropriate repositories located in `<path_to_ws>/fastdds-docs_ws/src`
@@ -157,7 +151,7 @@ It is up to the user to link to the appropriate Fast DDS installation using, for
 
 ```bash
 source <path_to_venv>/fastdds-docs-venv/bin/activate
-git clone https://github.com/eProsima/Fast-RTPS-docs fastdds-docs
+git clone https://github.com/eProsima/Fast-DDS-docs fastdds-docs
 cd fastdds-docs
 mkdir build
 cd build
@@ -202,34 +196,9 @@ READTHEDOCS=True FASTDDS_BRANCH=<branch> sphinx-build \
 
 ### Generating documentation in other formats
 
-The documentation can be generated in several formats such as HTML, PDF, LaTex, etc.
-The supported formats can be specified using CMake option `FASTDDS_DOCS_BUILDER`, which defaults to
-`html`
-
-| Format     | Output                                                     |
-|------------|------------------------------------------------------------|
-| html       | Generate standalone HTML files                             |
-| dirhtml    | Generate HTML files named index.html in directories        |
-| singlehtml | Generate a single large HTML file                          |
-| pickle     | Generate pickle files                                      |
-| json       | Generate JSON files                                        |
-| htmlhelp   | Generate HTML files and a HTML help project                |
-| qthelp     | Generate HTML files and a qthelp project                   |
-| applehelp  | Generate an Apple Help Book                                |
-| devhelp    | Generate HTML files and a Devhelp project                  |
-| epub       | Generate an epub                                           |
-| epub3      | Generate an epub3                                          |
-| latex      | Generate LaTeX files                                      |
-| latexpdf   | Generate LaTeX files and run them through pdflatex         |
-| latexpdfja | Generate LaTeX files and run them through platex/dvipdfmx  |
-| text       | Generate text files                                        |
-| man        | Generate manual pages                                      |
-| texinfo    | Generate Texinfo files                                     |
-| info       | Generate Texinfo files and run them through makeinfo       |
-| gettext    | Generate PO message catalogs                               |
-| changes    | Generate an overview of all changed/added/deprecated items |
-| xml        | Generate Docutils-native XML files                         |
-| pseudoxml  | Generate pseudoxml-XML files for display purposes          |
+Using either CMake or colcon, the documentation is built using Sphinx's `html` builder.
+However, Sphinx supports several other building formats, which are enabled through [Sphinx builders](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
+Once a builder is selected, the documentation can be built using the [Simulating Read the Docs](#simulating-read-the-docs) approach, specifying the appropriate builder with the `-b` CLI option
 
 ## Project structure
 

@@ -16,9 +16,9 @@
 # Generate smime files from security XMLs
 ####################################################################################################
 
-# OpenSSL is used to signed the security related XML configuration files. This is done in order to
-# be able to ckeck whether those XML files are correctly written. To do this, they are used to
-# create a participant, process which expects them signed, and that parses them.
+# OpenSSL is used to sign the security related XML configuration files. This is done in order to
+# be able to check whether those XML files are correctly written. To do this, they are used to
+# create a participant process which expects them to be signed, and consequently parses them.
 find_program(OPENSSL openssl DOC "path to OpenSSL executable")
 message(STATUS "OpenSSL found: ${OPENSSL}")
 if(OPENSSL)
@@ -131,7 +131,7 @@ if(${Python_FOUND} AND (${Python_VERSION} VERSION_GREATER "3.6"))
 endif()
 
 # Check docs style
-find_program(DOC8 docs.doc8 DOC "path to doc8 executable")
+find_program(DOC8 doc8 DOC "path to doc8 executable")
 message(STATUS "doc8 found: ${DOC8}")
 if(DOC8)
     add_test(NAME doc8-test COMMAND ${DOC8} --max-line-length 120 ${CMAKE_SOURCE_DIR}/docs)
@@ -139,14 +139,16 @@ else()
     message(FATAL_ERROR "Could not find doc8")
 endif()
 
-# Check that all cpp snippets are on the CPP files so they are compiled
+# Check that all cpp snippets are on the CPP files and not in the RST files.
+# This way, we are sure that the C++ is compiled
 add_test(NAME docs.code_block_check.cpp
     COMMAND
     ${Python_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
     --directory ${CMAKE_SOURCE_DIR}/docs
     --regex "code-block::.*c[+p][+p]")
 
-# Check that all XML snippets are on the XML files so they are tested
+# Check that all XML snippets are on the XML files and not in the RST files.
+# This way, we are sure that they are tested
 add_test(NAME docs.code_block_check.xml
     COMMAND
     ${Python_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py

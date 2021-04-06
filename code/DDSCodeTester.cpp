@@ -527,6 +527,17 @@ void dds_domain_examples()
     }
 
     {
+        // PULL_MODE_DATAWRITER
+        DataWriterQos wqos;
+
+        // Enable pull mode
+        wqos.properties().properties().emplace_back(
+            "pushMode",
+            "false");
+        //!--
+    }
+
+    {
         //CONF-QOS-PARTITIONS
         PublisherQos pub_11_qos;
         pub_11_qos.partition().push_back("Partition_1");

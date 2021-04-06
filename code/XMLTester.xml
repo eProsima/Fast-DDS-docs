@@ -2915,6 +2915,20 @@
 </participant>
 <!--><-->
 
+<!-->PULL_MODE_DATAWRITER<-->
+<data_writer profile_name="pull_mode_datawriter_xml_profile">
+    <propertiesPolicy>
+        <properties>
+            <!-- Enable pull mode -->
+            <property>
+                <name>pushMode</name>
+                <value>false</value>
+            </property>
+        </properties>
+    </propertiesPolicy>
+</data_writer>
+<!--><-->
+
 <!-->
 </profiles>
 <-->

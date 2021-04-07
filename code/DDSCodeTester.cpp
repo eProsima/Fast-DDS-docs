@@ -532,7 +532,7 @@ void dds_domain_examples()
 
         // Enable pull mode
         wqos.properties().properties().emplace_back(
-            "pushMode",
+            "fastdds.push_mode",
             "false");
         //!--
     }

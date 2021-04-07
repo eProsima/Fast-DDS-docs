@@ -13,7 +13,7 @@ to a different release version.
 
 .. _push_mode_qos_policy:
 
-``PushMode`` QoS Policy
+``Push Mode`` QoS Policy
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 By default, Fast DDS DataWriters are enabled using the ``push mode``.
@@ -38,7 +38,7 @@ Consequently, the publishing rate can be tuned setting the heartbeat period acco
    * - PropertyPolicyQos name
      - PropertyPolicyQos value
      - Default value
-   * - ``"pushMode"``
+   * - ``"fastdds.push_mode"``
      - ``"true"``/``"false"``
      - ``"true"``
 

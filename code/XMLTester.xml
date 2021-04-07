@@ -2921,7 +2921,7 @@
         <properties>
             <!-- Enable pull mode -->
             <property>
-                <name>pushMode</name>
+                <name>fastdds.push_mode</name>
                 <value>false</value>
             </property>
         </properties>

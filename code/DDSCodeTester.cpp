@@ -35,9 +35,6 @@
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
 #include <fastrtps/utils/IPLocator.h>
 
-#include <security/accesscontrol/GovernanceParser.h>
-#include <security/accesscontrol/PermissionsParser.h>
-
 #include <sstream>
 
 using namespace eprosima::fastdds::dds;
@@ -4469,5 +4466,72 @@ void dds_zero_copy_example()
 
         DataReader* reader = subscriber->create_datareader(topic, rqos, &datareader_listener);
         //!--
+    }
+}
+
+bool dds_permissions_test(
+        std::string main_ca_file,
+        std::string appcert_file,
+        std::string appkey_file,
+        std::string governance_file,
+        std::string permissions_file)
+{
+    DomainParticipantQos pqos;
+
+    // Activate Auth:PKI-DH plugin
+    pqos.properties().properties().emplace_back("dds.sec.auth.plugin",
+        "builtin.PKI-DH");
+
+    // Configure Auth:PKI-DH plugin
+    pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
+        main_ca_file);
+    pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
+        appcert_file);
+    pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
+        appkey_file);
+
+    pqos.properties().properties().emplace_back("dds.sec.access.plugin",
+        "builtin.Access-Permissions");
+
+    // Configure DDS:Access:Permissions plugin
+    pqos.properties().properties().emplace_back(
+        "dds.sec.access.builtin.Access-Permissions.permissions_ca",
+        main_ca_file);
+    pqos.properties().properties().emplace_back(
+        "dds.sec.access.builtin.Access-Permissions.governance",
+        governance_file);
+    pqos.properties().properties().emplace_back(
+        "dds.sec.access.builtin.Access-Permissions.permissions",
+        permissions_file);
+
+    DomainParticipant* domain_participant =
+        DomainParticipantFactory::get_instance()->create_participant(1, pqos);
+    if (nullptr != domain_participant)
+    {
+        return true;
+    }
+    return false;
+}
+
+int main(
+        int argc,
+        const char** argv)
+{
+    if (argc != 6)
+    {
+        printf("Bad number of parameters\n");
+        exit(-1);
+    }
+
+    // Also show log warnings to spot potential mistakes
+    Log::SetVerbosity(Log::Kind::Warning);
+    // Report filename and line number for debugging
+    Log::ReportFilenames(true);
+
+    int exit_code = 0;
+    if (!dds_permissions_test(argv[1], argv[2], argv[3], argv[4], argv[5]))
+    {
+        std::cout << "Error parsing persimission xml file" << std::endl;
+        exit_code = -1;
     }
 }

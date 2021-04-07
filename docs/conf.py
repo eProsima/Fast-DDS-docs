@@ -262,6 +262,7 @@ try:
 
     from sphinxcontrib.spelling.filters import ContractionFilter
     spelling_filters = [ContractionFilter]
+    spelling_ignore_contributor_names = False
 except ImportError:
     pass
 

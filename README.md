@@ -155,7 +155,7 @@ git clone https://github.com/eProsima/Fast-DDS-docs fastdds-docs
 cd fastdds-docs
 mkdir build
 cd build
-cmake ..  -DBUILD_DOCUMENTATION=ON -DCOMPILE_TESTS=ON -DFASTDDS_DOCS_BUILDER=html
+cmake ..  -DBUILD_DOCUMENTATION=ON -DCOMPILE_TESTS=ON
 cmake --build .
 ```
 

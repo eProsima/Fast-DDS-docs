@@ -18,7 +18,8 @@
 
 # OpenSSL is used to sign the security related XML configuration files. This is done in order to
 # be able to check whether those XML files are correctly written. To do this, they are used to
-# create a participant process which expects them to be signed, and consequently parses them.
+# create a participant because this process expects the XML files to be signed, and consequently
+# parses them.
 find_program(OPENSSL openssl DOC "path to OpenSSL executable")
 message(STATUS "OpenSSL found: ${OPENSSL}")
 if(OPENSSL)

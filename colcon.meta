@@ -11,7 +11,6 @@
             [
                 "-DBUILD_DOCUMENTATION=ON",
                 "-DCOMPILE_TESTS=ON",
-                "-DFASTDDS_DOCS_BUILDER=html",
             ]
         }
     }

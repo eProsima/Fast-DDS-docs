@@ -160,6 +160,8 @@ If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the Domain
 (sent and received) is traced to a file.
 The output file format is *tcpdump* hexadecimal text, and can be processed with protocol analyzer applications
 such as Wireshark.
+Specifically, to open the file using Wireshark, use the "Import from Hex Dump" option using the "Raw IPv4" encapsulation
+type.
 
 .. note::
 

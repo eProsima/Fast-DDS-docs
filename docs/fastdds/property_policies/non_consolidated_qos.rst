@@ -17,18 +17,17 @@ to a different release version.
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 By default, Fast DDS DataWriters are enabled using the ``push mode``.
-This implies that the DataWriters start publishing and sending data following its own logic, disregarding if there are
-any DataReaders matched in the same topic.
-Using the :ref:`propertypolicyqos` DataWriters can be enabled using the ``pull mode``.
-This entails that the DataWriters thus enabled will only send data upon the reception of acknack submessages coming from
-the matched DataReaders.
+This implies they will send new samples to matched readers inmediately after adding them to their queue.
+For writers that produce non periodic bursts of data, this may imply saturating the network with a lot of packets,
+increasing the possibility of losing them on unreliable (i.e. UDP) transports.
+Depending on their QoS, DataReaders may also have to ignore some received samples, so they will have to be resent.
 
-Enabling ``pull mode`` implies that the |DataWriter::write-api| operation will only include the sample in the
-DataWriter's History without notifying or sending the sample to any matched DataReader.
-Periodically, DataWriters send its status by means of a heartbeat.
-Upon reception of the heartbeat, DataReaders will be informed of samples on the DataWriter's History that are new.
-DataReaders will answer with an acknack submessage which will trigger the sending of the sample on the DataWriter's
-side.
+Configuring the DataWriters on ``pull mode`` offers an alternative by letting each reader pace its own data stream.
+It works by notifying the reader what it is missing, and wait for it to request only as much as it can handle.
+At the cost of greater latency, this model can deliver reliability while using far fewer packets than in ``push mode``.
+
+DataWriters periodically announce the state of their queue by means of a heartbeat.
+Upon reception of the heartbeat, DataReaders will request the DataWriter to send the samples they want to process.
 Consequently, the publishing rate can be tuned setting the heartbeat period accordingly.
 
 .. list-table::

@@ -59,7 +59,7 @@ Consequently, the publishing rate can be tuned setting the heartbeat period acco
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. note::
-    Communication to readers running on the same process will always use ``push mode``
+    Communication to readers running on the same process (:ref:`intraprocess-delivery`) will always use ``push mode``
 
 .. warning::
     It is inconsistent to enable the ``pull mode`` and also set the |ReliabilityQosPolicyKind-api| to

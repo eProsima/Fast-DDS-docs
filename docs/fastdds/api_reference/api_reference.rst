@@ -11,7 +11,7 @@ Publish-Subscribe (RTPS) API that DDS implements for wired communications, as sp
 `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_.
 
 This section presents the most commonly used APIs provided by *Fast DDS*.
-For a complete API reference, please refer to
+For more information about the API reference, please refer to
 `Fast DDS API reference <https://www.eprosima.com/docs/fast-rtps/latest/API>`_.
 
 .. toctree::

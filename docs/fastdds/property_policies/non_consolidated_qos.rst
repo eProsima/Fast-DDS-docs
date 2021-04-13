@@ -67,11 +67,10 @@ See :ref:`tuning-heartbeat-period` for more details.
     * Communication to |BEST_EFFORT_RELIABILITY_QOS-api| readers will always use ``push mode``.
 
 .. warning::
-    It is inconsistent to enable the ``pull mode`` and also set the |ReliabilityQosPolicyKind-api| to
-    |BEST_EFFORT_RELIABILITY_QOS-api|.
-
-    It is inconsistent to enable the ``pull mode`` and also set the |WriterTimes::heartbeatPeriod-api| to
-    |c_TimeInfinite-api|.
+    * It is inconsistent to enable the ``pull mode`` and also set the |ReliabilityQosPolicyKind-api| to
+      |BEST_EFFORT_RELIABILITY_QOS-api|.
+    * It is inconsistent to enable the ``pull mode`` and also set the |WriterTimes::heartbeatPeriod-api| to
+      |c_TimeInfinite-api|.
 
 
 Unique network flows QoS Policy

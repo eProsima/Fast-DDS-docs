@@ -2915,6 +2915,24 @@
 </participant>
 <!--><-->
 
+<!-->PULL_MODE_DATAWRITER<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+<data_writer profile_name="pull_mode_datawriter_xml_profile">
+    <propertiesPolicy>
+        <properties>
+            <!-- Enable pull mode -->
+            <property>
+                <name>fastdds.push_mode</name>
+                <value>false</value>
+            </property>
+        </properties>
+    </propertiesPolicy>
+</data_writer>
+<!--><-->
+
 <!-->
 </profiles>
 <-->

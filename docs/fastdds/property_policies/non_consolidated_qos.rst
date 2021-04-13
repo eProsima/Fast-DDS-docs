@@ -23,8 +23,8 @@ increasing the possibility of losing them on unreliable (i.e. UDP) transports.
 Depending on their QoS, DataReaders may also have to ignore some received samples, so they will have to be resent.
 
 Configuring the DataWriters on ``pull mode`` offers an alternative by letting each reader pace its own data stream.
-It works by the writer notifying the reader what it is available, and wait for it to request only as much as it can
-handle.
+It works by the writer notifying the reader what it is available, and waiting for it to request only as much as it
+can handle.
 At the cost of greater latency, this model can deliver reliability while using far fewer packets than ``push mode``.
 
 DataWriters periodically announce the state of their queue by means of a heartbeat.

@@ -13,8 +13,8 @@ to a different release version.
 
 .. _push_mode_qos_policy:
 
-``Push Mode`` QoS Policy
-^^^^^^^^^^^^^^^^^^^^^^^^
+``DataWriter operating mode`` QoS Policy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By default, *Fast DDS* |DataWriters| are enabled using ``push mode``.
 This implies they will send new samples to matched readers immediately after adding them to their queue.

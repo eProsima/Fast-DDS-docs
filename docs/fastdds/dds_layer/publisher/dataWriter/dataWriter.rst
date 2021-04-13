@@ -77,6 +77,14 @@ Internally it contains the following |QosPolicy-api| objects:
 | |DataSharingQosPolicy|           | |DataWriterQos::data_sharing-api|               | No       |
 +----------------------------------+-------------------------------------------------+----------+
 
+The following non-consolidated property-assigned QoS apply to DataWriters:
+
++----------------------------------+-------------------------------------------------+
+| Property name                    | Non-consolidated QoS                            |
++==================================+=================================================+
+| fastdds.push_mode                | :ref:`push_mode_qos_policy`                     |
++----------------------------------+-------------------------------------------------+
+
 Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
 default values.
 

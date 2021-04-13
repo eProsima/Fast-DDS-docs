@@ -16,15 +16,15 @@ to a different release version.
 ``Push Mode`` QoS Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Fast DDS DataWriters are enabled using the ``push mode``.
+By default, *Fast DDS* |DataWriters| are enabled using ``push mode``.
 This implies they will send new samples to matched readers immediately after adding them to their queue.
 For writers that produce non periodic bursts of data, this may imply saturating the network with a lot of packets,
 increasing the possibility of losing them on unreliable (i.e. UDP) transports.
 Depending on their QoS, DataReaders may also have to ignore some received samples, so they will have to be resent.
 
 Configuring the DataWriters on ``pull mode`` offers an alternative by letting each reader pace its own data stream.
-It works by notifying the reader what it is missing, and wait for it to request only as much as it can handle.
-At the cost of greater latency, this model can deliver reliability while using far fewer packets than in ``push mode``.
+It works by the writer notifying the reader what it is available, and wait for it to request only as much as it can handle.
+At the cost of greater latency, this model can deliver reliability while using far fewer packets than ``push mode``.
 
 DataWriters periodically announce the state of their queue by means of a heartbeat.
 Upon reception of the heartbeat, DataReaders will request the DataWriter to send the samples they want to process.

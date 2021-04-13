@@ -2916,6 +2916,10 @@
 <!--><-->
 
 <!-->PULL_MODE_DATAWRITER<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
 <data_writer profile_name="pull_mode_datawriter_xml_profile">
     <propertiesPolicy>
         <properties>

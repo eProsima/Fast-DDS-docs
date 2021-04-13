@@ -56,6 +56,8 @@ Consequently, the publishing rate can be tuned setting the heartbeat period acco
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->PULL_MODE_DATAWRITER<-->                                                                       |
 |    :end-before: <!--><-->                                                                                            |
+|    :lines: 2-3,5-                                                                                                    |
+|    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. note::

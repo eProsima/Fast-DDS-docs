@@ -63,7 +63,8 @@ See :ref:`tuning-heartbeat-period` for more details.
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. note::
-    Communication to readers running on the same process (:ref:`intraprocess-delivery`) will always use ``push mode``
+    * Communication to readers running on the same process (:ref:`intraprocess-delivery`) will always use ``push mode``.
+    * Communication to |BEST_EFFORT_RELIABILITY_QOS-api| readers will always use ``push mode``.
 
 .. warning::
     It is inconsistent to enable the ``pull mode`` and also set the |ReliabilityQosPolicyKind-api| to

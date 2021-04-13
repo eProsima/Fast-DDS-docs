@@ -30,6 +30,7 @@ At the cost of greater latency, this model can deliver reliability while using f
 DataWriters periodically announce the state of their queue by means of a heartbeat.
 Upon reception of the heartbeat, DataReaders will request the DataWriter to send the samples they want to process.
 Consequently, the publishing rate can be tuned setting the heartbeat period accordingly.
+See :ref:`tuning-heartbeat-period` for more details.
 
 .. list-table::
    :header-rows: 1

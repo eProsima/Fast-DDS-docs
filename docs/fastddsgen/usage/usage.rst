@@ -71,5 +71,7 @@ Where the option choices are:
 | -typeobject         | Generates `TypeObject` files for the IDL provided and modifies MyType constructor to |br|      |
 |                     | register the TypeObject representation into the factory.                                       |
 +---------------------+------------------------------------------------------------------------------------------------+
+| -typeros2           | Generates type naming compatible with ROS 2                                                    |
++---------------------+------------------------------------------------------------------------------------------------+
 
 Please refer to :ref:`dynamic-types` for more information on TypeObject representation.

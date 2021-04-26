@@ -46,3 +46,8 @@ The |DomainParticipant-api| is created using the |DomainParticipantFactory::crea
 This method returns a pointer to the DDS standard DomainParticipant created.
 In order to obtain the pointer to the child |StatisticsDomainParticipant-api| which extends the DDS API, the
 ``static`` method |statistics_narrow| is provided.
+
+.. _auto_enabling_statistics_datawriters:
+
+Automatically enabling statistics DataWriters
+---------------------------------------------

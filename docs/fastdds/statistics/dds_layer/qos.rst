@@ -19,6 +19,12 @@ Statistics DataWriter recommended QoS
 -------------------------------------
 
 The following table shows the recommended |DataWriterQos-api| profile for enabling the statistics DataWriters.
+This profile enables the ``pull mode`` :ref:`operating mode <push_mode_qos_policy>` on the statistics DataWriters.
+This entails that the DataWriters will only send information upon the reception of acknack submessages sent by the
+monitoring DataReader.
+This QoS profile is always used when the statistics DataWriters are
+:ref:`auto-enabled <auto_enabling_statistics_datawriters>`.
+The recommended profile can be accessed through the constant |STATISTICS_DATAWRITER_QOS-api|.
 
 .. list-table::
    :header-rows: 1
@@ -36,11 +42,14 @@ The following table shows the recommended |DataWriterQos-api| profile for enabli
      - |KEEP_LAST_HISTORY_QOS-api|
    * - |history_depth-api|
      - 100
+   * - |PropertyPolicyQos-api| name = value
+     - ``"fastdds.push_mode"`` = ``"false"``
 
 Statistics DataReader recommended QoS
 -------------------------------------
 
 The following table shows the recommended |DataReaderQos-api| profile for creating the monitoring DataReaders.
+The recommended profile can be accessed through constant |STATISTICS_DATAREADER_QOS-api|.
 
 .. list-table::
    :header-rows: 1

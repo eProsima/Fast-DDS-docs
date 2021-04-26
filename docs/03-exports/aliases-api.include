@@ -778,5 +778,8 @@
 .. |disable_statistics_datawriter| replace:: :cpp:func:`disable_statistics_datawriter() <eprosima::fastdds::statistics::dds::DomainParticipant::disable_statistics_datawriter>`
 .. |statistics_narrow| replace:: :cpp:func:`narrow() <eprosima::fastdds::statistics::dds::DomainParticipant::narrow>`
 
+.. |STATISTICS_DATAREADER_QOS-api| replace:: :cpp:member:`STATISTICS_DATAREADER_QOS <eprosima::fastdds::statistics::dds::STATISTICS_DATAREADER_QOS>`
+.. |STATISTICS_DATAWRITER_QOS-api| replace:: :cpp:member:`STATISTICS_DATAWRITER_QOS <eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS>`
+
 .. |RTPSMessageGroup| replace:: :cpp:class:`RTPSMessageGroup <eprosima::fastrtps::rtps::RTPSMessageGroup>`
 .. |MessageReceiver| replace:: :cpp:class:`MessageReceiver <eprosima::fastrtps::rtps::MessageReceiver>`

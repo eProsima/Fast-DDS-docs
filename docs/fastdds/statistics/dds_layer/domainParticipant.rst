@@ -38,6 +38,14 @@ This method returns a pointer to the DDS standard DomainParticipant created.
 In order to obtain the pointer to the child |StatisticsDomainParticipant-api| which extends the DDS API, the
 ``static`` method |statistics_narrow| is provided.
 
+The following example shows how to use the Statistics module extended DDS API:
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: // ENABLE_DISABLE_STATISTICS_DATAWRITER
+   :end-before: //!--
+   :dedent: 8
+
 .. _auto_enabling_statistics_datawriters:
 
 Automatically enabling statistics DataWriters
@@ -47,8 +55,21 @@ The statistics DataWriters can be directly enabled using the |DomainParticipantQ
 |DomainParticipantQos::properties-api| ``fastdds.statistics``.
 The value of this property is a semicolon separated list containing the
 :ref:`statistics topic name aliases<statistics_topic_names>` of those DataWriters that the user wants to enable.
-The property can be set programmatically, loading an XML file and setting the :ref:`env_vars_fastdds_statistics`
-environment variable as shown in the following examples:
+The property can be set either programmatically or loading an XML file.
+If the property is set in both ways, the priority would depend on the QoS profile provided to
+|DomainParticipantFactory::create_participant-api|.
+If the method is called using |PARTICIPANT_QOS_DEFAULT-api| the values coming from the XML file will be used if the
+``is_default_profile`` option is set to ``true`` (:ref:`domainparticipantattributes`).
+The XML file is also used when calling |DomainParticipantFactory::create_participant_with_profile-api| with a valid
+participant profile defined within the XML file.
+Otherwise, the property value set programmatically would be taken into account.
+
+Another way compatible with the previous one is setting the :ref:`env_vars_fastdds_statistics` environment variable.
+The statistics DataWriters that will be enabled when the |DomainParticipant-api| is enabled would be the union between
+those specified in the |DomainParticipantQos::properties-api| ``fastdds.statistics`` and those included with the
+environment variable.
+
+The following examples show how to use all the previous methods:
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
@@ -79,30 +100,29 @@ environment variable as shown in the following examples:
 |    set FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC              |
 +----------------------------------------------------------------------------------------------------------------------+
 
-For more information about the environment variable, please refer to :ref:`env_vars_fastdds_statistics`.
-This method is compatible with setting also the property through code or XML.
-The statistics DataWriters that will be enabled when the |DomainParticipant-api| is enabled would be the union between
-those specified in the |DomainParticipantQos::properties-api| ``fastdds.statistics`` and those included with the
-environment variable.
-
-Be aware that automatically enabling the statistics DataWriters using these methods implies using the recommended
+Be aware that automatically enabling the statistics DataWriters using all these methods implies using the recommended
 QoS profile |STATISTICS_DATAWRITER_QOS-api|. For more information, please refer to :ref:`statistics_datawriter_qos`.
 
 .. warning::
-    Currently, only the following :ref:`statistics topics <statistics_topic_names>` have been implemented:
+    Currently, the following :ref:`statistics topics <statistics_topic_names>` have not been implemented yet. They will
+    be available in future releases:
 
-        * |RTPS_SENT_TOPIC|
+        * |HISTORY_LATENCY_TOPIC|
 
-        * |HEARTBEAT_COUNT_TOPIC|
+        * |NETWORK_LATENCY_TOPIC|
 
-        * |ACKNACK_COUNT_TOPIC|
+        * |PUBLICATION_THROUGHPUT_TOPIC|
 
-        * |NACKFRAG_COUNT_TOPIC|
+        * |SUBSCRIPTION_THROUGHPUT_TOPIC|
 
-        * |GAP_COUNT_TOPIC|
+        * |RTPS_LOST_TOPIC|
 
-        * |DATA_COUNT_TOPIC|
+        * |RESENT_DATAS_TOPIC|
 
-        * |DISCOVERY_TOPIC|
+        * |SAMPLE_DATAS_TOPIC|
 
-    Other statistics topics will be implemented in further releases.
+        * |PDP_PACKETS_TOPIC|
+
+        * |EDP_PACKETS_TOPIC|
+
+        * |PHYSICAL_DATA_TOPIC|

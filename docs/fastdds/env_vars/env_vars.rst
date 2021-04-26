@@ -124,8 +124,8 @@ DataWriters which topics are contained in the list set in this environment varia
 The elements of the list should be separated by semicolons and match the
 :ref:`statistics topic name aliases<statistics_topic_names>`.
 
-For example, to enable the statistics DataWriters that measures the latency, the environment variable should be set as
-follows:
+For example, to enable the statistics DataWriters that report the latency measurements, the environment variable should
+be set as follows:
 
     +----------------------------------------------------------------------------+
     | **Linux**                                                                  |

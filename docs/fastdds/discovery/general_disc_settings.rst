@@ -146,6 +146,7 @@ The local DomainParticipant's liveliness is asserted on the remote DomainPartici
 DomainParticipant receives any kind of traffic from the local DomainParticipant.
 
 The lease duration is specified as a time expressed in seconds and nanosecond using a |Duration_t-api|.
+Is has a default value of 20 seconds.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
@@ -177,6 +178,7 @@ delay the discovery of late joiners.
 
 DomainParticipant's announcement period is specified as a time expressed in seconds and nanosecond using a
 |Duration_t-api|.
+It has a default value of 3 seconds.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |

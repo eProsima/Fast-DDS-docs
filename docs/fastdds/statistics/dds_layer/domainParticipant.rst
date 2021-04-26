@@ -15,9 +15,6 @@ For this purpose, *Fast DDS Statistics module* exposes an extended DDS |Statisti
 Enable statistics DataWriters
 -----------------------------
 
-.. warning::
-    This method will be implemented in future releases. For the moment it always returns ``RETCODE_UNSUPPORTED``.
-
 Statistics DataWriters are enabled using the method |enable_statistics_datawriter|.
 This method requires as parameters:
 
@@ -27,9 +24,6 @@ This method requires as parameters:
 Disable statistics DataWriters
 ------------------------------
 
-.. warning::
-    This method will be implemented in future releases. For the moment it always returns ``RETCODE_UNSUPPORTED``.
-
 Statistics DataWriters are disabled using the method |disable_statistics_datawriter|.
 This method requires as parameter:
 
@@ -37,9 +31,6 @@ This method requires as parameter:
 
 Obtain pointer to the extended |StatisticsDomainParticipant-api| class
 ----------------------------------------------------------------------
-
-.. warning::
-    This method will be implemented in future releases. For the moment it always returns ``nullptr``.
 
 The |DomainParticipant-api| is created using the |DomainParticipantFactory::create_participant-api| provided by the
 |DomainParticipantFactory-api|.
@@ -96,3 +87,22 @@ environment variable.
 
 Be aware that automatically enabling the statistics DataWriters using these methods implies using the recommended
 QoS profile |STATISTICS_DATAWRITER_QOS-api|. For more information, please refer to :ref:`statistics_datawriter_qos`.
+
+.. warning::
+    Currently, only the following :ref:`statistics topics <statistics_topic_names>` have been implemented:
+
+        * |RTPS_SENT_TOPIC|
+
+        * |HEARTBEAT_COUNT_TOPIC|
+
+        * |ACKNACK_COUNT_TOPIC|
+
+        * |NACKFRAG_COUNT_TOPIC|
+
+        * |GAP_COUNT_TOPIC|
+
+        * |DATA_COUNT_TOPIC|
+
+        * |DISCOVERY_TOPIC|
+
+    Other statistics topics will be implemented in further releases.

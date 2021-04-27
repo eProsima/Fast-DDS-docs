@@ -67,6 +67,10 @@ with distributed systems:
   This use case illustrates the APIs that allow for the request of unique network flows, and for the identification
   of those in use.
 
++ :ref:`statistics_module`.
+  This use case explains how to enable the Statistics module within the monitored application, and how to create a
+  statistics monitoring application.
+
 + :ref:`ros2`.
   Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,
   this documentation includes a whole independent section to show the use of the library in ROS 2,
@@ -83,3 +87,4 @@ with distributed systems:
     /fastdds/use_cases/reduce_memory/reduce_memory.rst
     /fastdds/use_cases/zero_copy/zero_copy.rst
     /fastdds/use_cases/unique_network_flows/unique_network_flows.rst
+    /fastdds/use_cases/statistics_module/statistics_module.rst

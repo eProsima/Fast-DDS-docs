@@ -56,15 +56,20 @@ The statistics DataWriters can be directly enabled using the |DomainParticipantQ
 The value of this property is a semicolon separated list containing the
 :ref:`statistics topic name aliases<statistics_topic_names>` of those DataWriters that the user wants to enable.
 The property can be set either programmatically or loading an XML file.
-If the property is set in both ways, the priority would depend on the QoS profile provided to
-|DomainParticipantFactory::create_participant-api|.
-If the method is called using |PARTICIPANT_QOS_DEFAULT-api| the values coming from the XML file will be used if the
-``is_default_profile`` option is set to ``true`` (:ref:`domainparticipantattributes`).
-The XML file is also used when calling |DomainParticipantFactory::create_participant_with_profile-api| with a valid
-participant profile defined within the XML file.
-Otherwise, the property value set programmatically would be taken into account.
+If the property is set in both ways, the priority would depend on the API and the QoS profile provided:
 
-Another way compatible with the previous one is setting the :ref:`env_vars_fastdds_statistics` environment variable.
+* XML settings have priority if |DomainParticipantFactory::create_participant_with_profile-api| is called with a valid
+  participant profile.
+
+* XML settings also have priority if |DomainParticipantFactory::create_participant-api| is called using
+  |PARTICIPANT_QOS_DEFAULT-api| and a participant profile exists in the XML file with the ``is_default_profile`` option
+  set to ``true`` (:ref:`domainparticipantattributes`).
+
+* The property set programmatically is used only when |DomainParticipantFactory::create_participant-api| is called with
+  the specific QoS.
+
+Another way of enabling statistics DataWriters, compatible with the previous one, is setting the
+:ref:`env_vars_fastdds_statistics` environment variable.
 The statistics DataWriters that will be enabled when the |DomainParticipant-api| is enabled would be the union between
 those specified in the |DomainParticipantQos::properties-api| ``fastdds.statistics`` and those included with the
 environment variable.

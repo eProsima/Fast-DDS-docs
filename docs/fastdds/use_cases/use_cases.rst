@@ -68,8 +68,8 @@ with distributed systems:
   of those in use.
 
 + :ref:`statistics_module`.
-  This use case explains how to enable the Statistics module within the monitored application and how to create the
-  monitoring application.
+  This use case explains how to enable the Statistics module within the monitored application, and how to create a
+  statistics monitoring application.
 
 + :ref:`ros2`.
   Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_,

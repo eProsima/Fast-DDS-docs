@@ -6,8 +6,11 @@ Statistics module
 =================
 
 *eProsima Fast DDS* :ref:`statistics` allows the user to monitor the data being exchanged by its application.
-In order to use this module, the user must enable it in the monitored application and create another application that
+In order to use this module, the user must enable it in the monitored application, and create another application that
 receives the data being published by the statistics DataWriters.
+The user can also use for the latter the
+`*eProsima Fast DDS Statistics Backend* <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_ which already
+implements the collection and aggregation of the data coming from the statistics topics.
 
 .. contents::
     :local:
@@ -18,7 +21,7 @@ Enable Statistics module
 ------------------------
 
 The Statistics module has to be enabled both at build and runtime.
-On one hand, :ref:`CMake option <cmake_options>` ``FASTDDS_STATISTICS`` must be enabled when building the library.
+On the one hand, :ref:`CMake option <cmake_options>` ``FASTDDS_STATISTICS`` must be enabled when building the library.
 On the other hand, the desired statistics DataWriters should be enabled using the :ref:`statistics_dds_layer`.
 
 The statistics DataWriters can be enabled automatically using the :ref:`propertypolicyqos` ``fastdds.statistics`` and

@@ -117,7 +117,7 @@ Main Features
   pluggable security at three levels: authentication of remote participants, access control of entities and encryption
   of data.
 
-* :ref:`**Statistics Module.** <statistics>` *eProsima Fast DDS* can be configured to gather and provide information
+* :ref:`Statistics Module. <statistics>` *eProsima Fast DDS* can be configured to gather and provide information
   about the data being exchanged by the user application.
 
 * **Throughput controllers.** We support user-configurable throughput controllers, that can be used to limit the amount

@@ -9,7 +9,7 @@ Statistics module
 In order to use this module, the user must enable it in the monitored application, and create another application that
 receives the data being published by the statistics DataWriters.
 The user can also use for the latter the
-`*eProsima Fast DDS Statistics Backend* <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_ which already
+`eProsima Fast DDS Statistics Backend <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_ which already
 implements the collection and aggregation of the data coming from the statistics topics.
 
 .. contents::

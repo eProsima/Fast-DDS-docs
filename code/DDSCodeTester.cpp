@@ -33,6 +33,11 @@
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPv6TransportDescriptor.h>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
+
+#include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
+#include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
+#include <fastdds/statistics/topic_names.hpp>
+
 #include <fastrtps/utils/IPLocator.h>
 
 #include <sstream>
@@ -523,6 +528,57 @@ void dds_domain_examples()
         pqos.properties().properties().emplace_back(
             "dds.sec.log.builtin.DDS_LogTopic.log_file",
             "myLogFile.log");
+        //!--
+    }
+    {
+        // FASTDDS_STATISTICS_MODULE
+        DomainParticipantQos pqos;
+
+        // Activate Fast DDS Statistics module
+        pqos.properties().properties().emplace_back("fastdds.statistics",
+            "HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC");
+        //!--
+    }
+    {
+        // ENABLE_DISABLE_STATISTICS_DATAWRITER
+        // Create a DomainParticipant
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Obtain pointer to child class
+        eprosima::fastdds::statistics::dds::DomainParticipant* statistics_participant =
+                eprosima::fastdds::statistics::dds::DomainParticipant::narrow(participant);
+
+        // Enable statistics DataWriter
+        if (statistics_participant->enable_statistics_datawriter(eprosima::fastdds::statistics::GAP_COUNT_TOPIC,
+                eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS) != ReturnCode_t::RETCODE_OK);
+        {
+            // Error
+            return;
+        }
+
+        // Use the DomainParticipant to communicate
+        // (...)
+
+        // Disable statistics DataWriter
+        if (statistics_participant->disable_statistics_datawriter(eprosima::fastdds::statistics::GAP_COUNT_TOPIC) !=
+                ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Delete DomainParticipant
+        if (DomainParticipantFactory::get_instance()->delete_participant(participant) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
         //!--
     }
 

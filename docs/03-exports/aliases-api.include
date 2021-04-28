@@ -190,9 +190,11 @@
 .. |SubscriberQos::SubscriberQos-api| replace:: :cpp:func:`SubscriberQos()<eprosima::fastdds::dds::SubscriberQos::SubscriberQos>`
 .. |Subscribers-api| replace:: :cpp:class:`Subscribers <eprosima::fastdds::dds::Subscriber>`
 .. |Topic-api| replace:: :cpp:class:`Topic <eprosima::fastdds::dds::Topic>`
+.. |Topics-api| replace:: :cpp:class:`Topics <eprosima::fastdds::dds::Topic>`
 .. |Topic::set_qos-api| replace:: :cpp:func:`Topic::set_qos()<eprosima::fastdds::dds::Topic::set_qos>`
 .. |Topic::get_inconsistent_topic_status-api| replace:: :cpp:func:`get_inconsistent_topic_status()<eprosima::fastdds::dds::Topic::get_inconsistent_topic_status>`
 .. |TopicDataType-api| replace:: :cpp:class:`TopicDataType<eprosima::fastdds::dds::TopicDataType>`
+.. |TopicDataTypes-api| replace:: :cpp:class:`TopicDataTypes<eprosima::fastdds::dds::TopicDataType>`
 .. |TopicDataType::getKey-api| replace:: :cpp:func:`getKey()<eprosima::fastdds::dds::TopicDataType::getKey>`
 .. |TopicDataType::is_bounded-api| replace:: :cpp:func:`is_bounded()<eprosima::fastdds::dds::TopicDataType::is_bounded>`
 .. |TopicDataType::m_isGetKeyDefined-api| replace:: :cpp:member:`m_isGetKeyDefined<eprosima::fastdds::dds::TopicDataType::m_isGetKeyDefined>`
@@ -777,6 +779,9 @@
 .. |enable_statistics_datawriter| replace:: :cpp:func:`enable_statistics_datawriter() <eprosima::fastdds::statistics::dds::DomainParticipant::enable_statistics_datawriter>`
 .. |disable_statistics_datawriter| replace:: :cpp:func:`disable_statistics_datawriter() <eprosima::fastdds::statistics::dds::DomainParticipant::disable_statistics_datawriter>`
 .. |statistics_narrow| replace:: :cpp:func:`narrow() <eprosima::fastdds::statistics::dds::DomainParticipant::narrow>`
+
+.. |STATISTICS_DATAREADER_QOS-api| replace:: :cpp:member:`STATISTICS_DATAREADER_QOS <eprosima::fastdds::statistics::dds::STATISTICS_DATAREADER_QOS>`
+.. |STATISTICS_DATAWRITER_QOS-api| replace:: :cpp:member:`STATISTICS_DATAWRITER_QOS <eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS>`
 
 .. |RTPSMessageGroup| replace:: :cpp:class:`RTPSMessageGroup <eprosima::fastrtps::rtps::RTPSMessageGroup>`
 .. |MessageReceiver| replace:: :cpp:class:`MessageReceiver <eprosima::fastrtps::rtps::MessageReceiver>`

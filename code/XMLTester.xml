@@ -2933,6 +2933,22 @@
 </data_writer>
 <!--><-->
 
+<!-->FASTDDS_STATISTICS_MODULE<-->
+<participant profile_name="statistics_domainparticipant_conf_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate Fast DDS Statistics Module -->
+                <property>
+                    <name>fastdds.statistics</name>
+                    <value>HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->
 </profiles>
 <-->

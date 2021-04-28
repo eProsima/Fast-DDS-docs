@@ -5,7 +5,7 @@ Version 2.3.1
 
 This release includes several **bugfixes** and **improvements**:
 
-* Added `FASTDDS_STATISTICS` module implementation
+* Added :ref:`Fast DDS Statistics Module <statistics>` implementation
 * Fixed alignment issues on generated code calculation of maximum serialized size
 * Fixed calculation of data-sharing domain id
 * Fixed issues on data-sharing with volatile writers

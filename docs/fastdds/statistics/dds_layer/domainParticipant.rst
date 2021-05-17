@@ -12,6 +12,11 @@ statistics DataWriter should be enabled.
 In fact, *Fast DDS Statistics module* can be enabled and disabled at runtime.
 For this purpose, *Fast DDS Statistics module* exposes an extended DDS |StatisticsDomainParticipant-api| API:
 
+.. contents::
+  :local:
+  :backlinks: none
+  :depth: 2
+
 Enable statistics DataWriters
 -----------------------------
 
@@ -37,6 +42,9 @@ The |DomainParticipant-api| is created using the |DomainParticipantFactory::crea
 This method returns a pointer to the DDS standard DomainParticipant created.
 In order to obtain the pointer to the child |StatisticsDomainParticipant-api| which extends the DDS API, the
 ``static`` method |statistics_narrow| is provided.
+
+Example
+-------
 
 The following example shows how to use the Statistics module extended DDS API:
 
@@ -107,27 +115,3 @@ The following examples show how to use all the previous methods:
 
 Be aware that automatically enabling the statistics DataWriters using all these methods implies using the recommended
 QoS profile |STATISTICS_DATAWRITER_QOS-api|. For more information, please refer to :ref:`statistics_datawriter_qos`.
-
-.. warning::
-    Currently, the following :ref:`statistics topics <statistics_topic_names>` have not been implemented yet. They will
-    be available in future releases:
-
-        * |HISTORY_LATENCY_TOPIC|
-
-        * |NETWORK_LATENCY_TOPIC|
-
-        * |PUBLICATION_THROUGHPUT_TOPIC|
-
-        * |SUBSCRIPTION_THROUGHPUT_TOPIC|
-
-        * |RTPS_LOST_TOPIC|
-
-        * |RESENT_DATAS_TOPIC|
-
-        * |SAMPLE_DATAS_TOPIC|
-
-        * |PDP_PACKETS_TOPIC|
-
-        * |EDP_PACKETS_TOPIC|
-
-        * |PHYSICAL_DATA_TOPIC|

@@ -13,7 +13,7 @@ It also includes the following **improvements**:
 * Improve Windows installers
 * Ease Google Fuzz integration
 * Improve Doxygen documentation on lifetime of pointers created with :class:`RTPSDomain`
-* Update Fast CDR submodule to v1.0.21
+* Update Fast CDR to v1.0.21
 
 This release includes the following **bugfixes**:
 

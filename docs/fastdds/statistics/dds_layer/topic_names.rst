@@ -60,40 +60,33 @@ Specifically, the measured latency corresponds to the time spent between the ins
 DataWriter's history and the time when the sample is added to the DataReader's history and the notification is issued to
 the corresponding user's callback.
 
-.. warning::
-    This statistics topic is not yet implemented.
-
 |NETWORK_LATENCY_TOPIC|
 -----------------------
 
-The ``_fastdds_statistics_network_latency`` statistics topic collects data related with the network latency between any
-two communicating locators.
+The ``_fastdds_statistics_network_latency`` statistics topic collects data related with the network latency (expressed
+in *ns*) between any two communicating locators.
 This measurement provides information about the transport layer latency.
 The measured latency corresponds to the time spent between the message being written in the |RTPSMessageGroup| until the
 message being received in the |MessageReceiver|.
 
-.. warning::
-    This statistics topic is not yet implemented.
+.. important::
+    In the case of :ref:`transport_tcp_tcp`, the reported latency also includes the time spent on the datagram's CRC
+    related operations.
+    Mind that is possible to disable CRC operations when defining the :ref:`transport_tcp_transportDescriptor`.
 
 |PUBLICATION_THROUGHPUT_TOPIC|
 ------------------------------
 
-The ``_fastdds_statistics_publication_throughput`` statistics topic collects the amount of data that is being sent by
-each DataWriter.
+The ``_fastdds_statistics_publication_throughput`` statistics topic collects the amount of data (expressed in *B/s*)
+that is being sent by each DataWriter.
 This measurement provides information about the publication's throughput.
-
-.. warning::
-    This statistics topic is not yet implemented.
 
 |SUBSCRIPTION_THROUGHPUT_TOPIC|
 -------------------------------
 
-The ``_fastdds_statistics_subscription_throughput`` statistics topic collects the amount of data that is being received
-by each DataReader.
+The ``_fastdds_statistics_subscription_throughput`` statistics topic collects the amount of data (expressed in *B/s*)
+that is being received by each DataReader.
 This measurement provides information about the subscription's throughput.
-
-.. warning::
-    This statistics topic is not yet implemented.
 
 |RTPS_SENT_TOPIC|
 -----------------
@@ -106,9 +99,6 @@ from each DDS entity to each locator.
 
 The ``_fastdds_statistics_rtps_lost`` statistics topic collects the number of RTPS packets and bytes that are being lost
 in the transport layer (dropped somewhere in between) in the communication between each DDS entity and locator.
-
-.. warning::
-    This statistics topic is not yet implemented.
 
 |HEARTBEAT_COUNT_TOPIC|
 -----------------------
@@ -162,9 +152,6 @@ fragments (in case that the message size is large enough to require RTPS fragmen
 resend by each user's DataWriter.
 This topic does not apply to builtin (related to :ref:`discovery`) and statistics DataWriters.
 
-.. warning::
-    This statistics topic is not yet implemented.
-
 |SAMPLE_DATAS_TOPIC|
 --------------------
 
@@ -172,9 +159,6 @@ The ``_fastdds_statistics_sample_datas`` statistics topic collects the number of
 in case that the message size is large enough to require RTPS fragmentation) that have been sent by the user's
 DataWriter to completely deliver a single sample.
 This topic does not apply to builtin (related to :ref:`discovery`) and statistics DataWriters.
-
-.. warning::
-    This statistics topic is not yet implemented.
 
 |PDP_PACKETS_TOPIC|
 -------------------
@@ -184,9 +168,6 @@ transmitted by each DDS |DomainParticipant-api|.
 PDP packets are the data messages exchanged during the PDP discovery phase (see :ref:`disc_phases` for more
 information).
 
-.. warning::
-    This statistics topic is not yet implemented.
-
 |EDP_PACKETS_TOPIC|
 -------------------
 
@@ -194,9 +175,6 @@ The ``_fastdds_statistics_edp_packets`` statistics topic collects the number of 
 transmitted by each DDS |DomainParticipant-api|.
 EDP packets are the data messages exchanged during the EDP discovery phase (see :ref:`disc_phases` for more
 information).
-
-.. warning::
-    This statistics topic is not yet implemented.
 
 |DISCOVERY_TOPIC|
 -----------------
@@ -210,6 +188,3 @@ module*).
 
 The ``_fastdds_statistics_physical_data`` statistics topic reports the host, user and process where the
 *Fast DDS Statistics module* is running.
-
-.. warning::
-    This statistics topic is not yet implemented.

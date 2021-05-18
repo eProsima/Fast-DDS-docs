@@ -1,0 +1,20 @@
+Version 2.3.1
+^^^^^^^^^^^^^
+
+This release includes several **bugfixes** and **improvements**:
+
+* Added :ref:`Fast DDS Statistics Module <statistics>` implementation
+* Fixed alignment issues on generated code calculation of maximum serialized size
+* Fixed calculation of data-sharing domain id
+* Fixed issues on data-sharing with volatile writers
+* Fixed build issues on old compilers
+* Fixed some tests when the library is built without security
+* Fixed and exposed pull mode on writers
+* Fixed handling of `--data_sharing` on latency test
+* Fixed calculation of memory pools sizes on debug builds
+* Correctly update memory policy on writers and readers
+
+.. note::
+    If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+    files using *fastddsgen*.
+    If you are upgrading from any older version, regenerating the code is *highly recommended*.

@@ -1,20 +1,23 @@
 .. _release_notes:
 
-Version 2.3.1
+Version 2.3.2
 =============
 
-This release includes several **bugfixes** and **improvements**:
+This release includes the following **feature**:
 
-* Added :ref:`Fast DDS Statistics Module <statistics>` implementation
-* Fixed alignment issues on generated code calculation of maximum serialized size
-* Fixed calculation of data-sharing domain id
-* Fixed issues on data-sharing with volatile writers
-* Fixed build issues on old compilers
-* Fixed some tests when the library is built without security
-* Fixed and exposed pull mode on writers
-* Fixed handling of `--data_sharing` on latency test
-* Fixed calculation of memory pools sizes on debug builds
-* Correctly update memory policy on writers and readers
+* Statistics Module
+
+It also includes the following **improvements**:
+
+* Update Asio submodule and avoid exporting Asio API
+* Improve Windows installers
+* Ease Google Fuzz integration
+* Improve Doxygen documentation on lifetime of pointers created with :class:`RTPSDomain`
+
+This release includes the following **bugfixes**:
+
+* Add a correct multicast address for UDPv6
+* Recover from out-of-sync TCP datagrams
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -24,6 +27,7 @@ This release includes several **bugfixes** and **improvements**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.3.1.rst
 .. include:: previous_versions/v2.3.0.rst
 .. include:: previous_versions/v2.2.0.rst
 .. include:: previous_versions/v2.1.0.rst

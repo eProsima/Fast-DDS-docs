@@ -9,5 +9,5 @@ This release included the following features:
 Also bug fixing.
 
 **Note:** If you are upgrading from an older version than 1.4.0, it is advisable to regenerate generated source from IDL
-files using *fastrtpsgen*.
+files using *fastddsgen*.
 

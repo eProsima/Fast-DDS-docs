@@ -67,7 +67,7 @@ By default, the installation will download all the available packages, namely:
 * :code:`fastcdr`, a C++ library that serializes according to the
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
-* :code:`fastrtpsgen`, a Java application that generates source code using the data types defined in an IDL file.
+* :code:`fastddsgen`, a Java application that generates source code using the data types defined in an IDL file.
 
 .. _env_vars_bw:
 

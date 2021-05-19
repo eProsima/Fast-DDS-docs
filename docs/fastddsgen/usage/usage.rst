@@ -21,17 +21,17 @@ the following commands:
 
     .. code-block:: bash
 
-        $ fastrtpsgen
+        $ fastddsgen
 
 -  Windows:
 
     .. code-block:: bash
 
-        > fastrtpsgen.bat
+        > fastddsgen.bat
 
 .. note::
 
-    In case the PATH has not been modified, these scripts can be found in the ``<fastrtpsgen_directory>/scripts``
+    In case the PATH has not been modified, these scripts can be found in the ``<fastddsgen_directory>/scripts``
     directory.
 
 
@@ -42,7 +42,7 @@ The expected argument list of the application is:
 
 .. code-block:: bash
 
-    fastrtpsgen [<options>] <IDL file> [<IDL file> ...]
+    fastddsgen [<options>] <IDL file> [<IDL file> ...]
 
 Where the option choices are:
 

@@ -23,13 +23,13 @@ The IDL file containing the data type definition is given with the ``<IDLfile>``
 +----------------------------------------------------------------------------------------------------------------------+
 | .. code-block:: bash                                                                                                 |
 |                                                                                                                      |
-|    fastddsgen [<options>] <IDLfile> [<IDLfile> ...]                                                                 |
+|    fastddsgen [<options>] <IDLfile> [<IDLfile> ...]                                                                  |
 +----------------------------------------------------------------------------------------------------------------------+
 | **Windows**                                                                                                          |
 +----------------------------------------------------------------------------------------------------------------------+
 | .. code-block:: bash                                                                                                 |
 |                                                                                                                      |
-|    fastddsgen.bat [<options>] <IDLfile> [<IDLfile> ...]                                                             |
+|    fastddsgen.bat [<options>] <IDLfile> [<IDLfile> ...]                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
 Among the available arguments defined in :ref:`fastddsgen_usage`, the main *Fast DDS-Gen* options for data type source

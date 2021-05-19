@@ -247,18 +247,18 @@ according to the following table:
 
 
 +--------------+--------------------------------------+----------------------------------------+
-| ROS entity   | *Fast DDS* entity in *Foxy*          | *Fast DDS* entity in *Eloquent & below*|
+| ROS entity   | *Fast DDS* entity after *Foxy*       | *Fast DDS* entity in *Eloquent & below*|
 +==============+======================================+========================================+
 | Context      | Participant                          | *Not DDS direct mapping*               |
 +--------------+--------------------------------------+----------------------------------------+
 | Node         | *Not DDS direct mapping*             | Participant                            |
 +--------------+--------------------------------------+----------------------------------------+
 
-This means that on *Foxy*, contexts can be configured using a ``<Participant>`` profile
+This means that on *Foxy* and later releases, contexts can be configured using a ``<Participant>`` profile
 with attribute ``is_default_profile="true"``.
 The same profile will be used in *Eloquent* and below to configure nodes.
 
-For example, a profile for a ROS 2 context on *Foxy* would be specified as:
+For example, a profile for a ROS 2 context on *Foxy* and later releases would be specified as:
 
 +---------------------------------------------------------+
 | **XML**                                                 |

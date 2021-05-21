@@ -247,7 +247,7 @@ according to the following table:
 
 
 +--------------+--------------------------------------+----------------------------------------+
-| ROS entity   | *Fast DDS* entity after *Foxy*       | *Fast DDS* entity in *Eloquent & below*|
+| ROS entity   | *Fast DDS* entity since *Foxy*       | *Fast DDS* entity in *Eloquent & below*|
 +==============+======================================+========================================+
 | Context      | Participant                          | *Not DDS direct mapping*               |
 +--------------+--------------------------------------+----------------------------------------+

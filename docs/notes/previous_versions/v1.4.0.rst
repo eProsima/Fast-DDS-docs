@@ -9,5 +9,5 @@ This release included the following:
 * Bug fixing.
 
 **Note:** After upgrading to this release, it is advisable to regenerate generated source from IDL files using
-*fastrtpsgen*.
+*fastddsgen*.
 

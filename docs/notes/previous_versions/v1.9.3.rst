@@ -23,4 +23,4 @@ It also includes the following bug fixes and improvements:
 
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
-from IDL files using *fastrtpsgen*.
+from IDL files using *fastddsgen*.

@@ -15,7 +15,7 @@ To learn about all the features that *Fast DDS* offers, please refer to :ref:`Fa
 Basic usage
 ^^^^^^^^^^^
 
-*Fast DDS* can be executed by calling *fastrtpsgen* on Linux or *fastrtpsgen.bat* on Windows.
+*Fast DDS* can be executed by calling *fastddsgen* on Linux or *fastddsgen.bat* on Windows.
 The IDL file containing the data type definition is given with the ``<IDLfile>`` argument.
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -23,13 +23,13 @@ The IDL file containing the data type definition is given with the ``<IDLfile>``
 +----------------------------------------------------------------------------------------------------------------------+
 | .. code-block:: bash                                                                                                 |
 |                                                                                                                      |
-|    fastrtpsgen [<options>] <IDLfile> [<IDLfile> ...]                                                                 |
+|    fastddsgen [<options>] <IDLfile> [<IDLfile> ...]                                                                  |
 +----------------------------------------------------------------------------------------------------------------------+
 | **Windows**                                                                                                          |
 +----------------------------------------------------------------------------------------------------------------------+
 | .. code-block:: bash                                                                                                 |
 |                                                                                                                      |
-|    fastrtpsgen.bat [<options>] <IDLfile> [<IDLfile> ...]                                                             |
+|    fastddsgen.bat [<options>] <IDLfile> [<IDLfile> ...]                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
 Among the available arguments defined in :ref:`fastddsgen_usage`, the main *Fast DDS-Gen* options for data type source

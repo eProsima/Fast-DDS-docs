@@ -37,7 +37,7 @@ To do this, run the following command from the ``src`` directory.
 
 .. code-block:: bash
 
-    <path/to/Fast DDS-Gen>/scripts/fastrtpsgen HelloWorld.idl
+    <path/to/Fast DDS-Gen>/scripts/fastddsgen HelloWorld.idl
 
 This must have generated the following files:
 

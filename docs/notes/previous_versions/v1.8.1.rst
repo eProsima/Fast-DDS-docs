@@ -13,7 +13,7 @@ It also adds the following bug fixes and improvements:
 * Fix for race conditions in SubscriberHistory, UDPTransportInterface and StatefulReader.
 * Fix for lroundl error on Windows in Time_t.
 * CDR & IDL submodules update.
-* Use of java 1.8 or greater for fastrtpsgen.jar generation.
+* Use of java 1.8 or greater for fastddsgen.jar generation.
 
 **Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
-from IDL files using *fastrtpsgen*.
+from IDL files using *fastddsgen*.

@@ -20,5 +20,5 @@ PRs in merge order:
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
-  files using *fastrtpsgen*.
+  files using *fastddsgen*.
   If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.

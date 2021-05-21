@@ -76,7 +76,7 @@ executables
 extensibility
 fastcdr
 fastdds
-fastrtpsgen
+fastddsgen
 foonathan
 GCM
 getter
@@ -170,6 +170,7 @@ Structs
 subfolder
 submessage
 submessages
+submodule
 submodules
 takeNextData
 TCP

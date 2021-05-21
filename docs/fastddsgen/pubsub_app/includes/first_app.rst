@@ -18,7 +18,7 @@ installation followed and the operating system.
 
     .. code:: bash
 
-        <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastddsgen -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen -example CMake HelloWorld.idl
 
     - For a **stand-alone installation**, run:
 
@@ -32,7 +32,7 @@ installation followed and the operating system.
 
     .. code:: bash
 
-        <path-to-Fast-DDS-workspace>/src/fastrtpsgen/scripts/fastddsgen.bat -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
     - For a **stand-alone installation**, run:
 
@@ -44,7 +44,7 @@ installation followed and the operating system.
 
     .. code:: bash
 
-        fastrtpsgen.bat -example CMake HelloWorld.idl
+        fastddsgen.bat -example CMake HelloWorld.idl
 
 .. warning::
 
@@ -53,7 +53,7 @@ installation followed and the operating system.
 
     .. code-block:: bash
 
-        cd <path-to-Fast-DDS-workspace>/src/fastrtpsgen
+        cd <path-to-Fast-DDS-workspace>/src/fastddsgen
         gradle assemble
 
 

@@ -76,6 +76,15 @@ In case your installation is using a Fast DDS version lower than v2.0.2 you coul
 You could update your repository to use a different Fast DDS version,
 or :ref:`set the discovery server by Fast-DDS XML QoS configuration <discovery_server>`.
 
+.. note::
+
+   This tutorial can also be run in *Galactic* exporting the environment variable that selects *Fast DDS* as the
+   middleware layer:
+
+   .. code-block:: console
+
+      export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+
 
 Run the demo
 ------------

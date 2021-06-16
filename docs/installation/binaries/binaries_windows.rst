@@ -95,7 +95,7 @@ in the CMake generator stage. If the variable is missing defaults to dynamic lin
 
 For example in order to build the examples statically linked to **Fast-DDS** do:
 
-   .. code-block:: cmd
+   .. code-block:: console
 
     > cmake -Bbuildexample -DFASTDDS_STATIC=ON .
     > cmake --build buildexample --target install

@@ -71,7 +71,7 @@ packages have been installed, :code:`/usr/local/lib/`. There are two possibiliti
       echo 'export LD_LIBRARY_PATH=/usr/local/lib/' >> ~/.bashrc
 
 
-.. _linking_bw:
+.. _linking_bl:
 
 Including Fast-DDS in a CMake project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

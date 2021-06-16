@@ -4,6 +4,7 @@ Version 2.3.3
 =============
 
 This release includes the following **improvements**:
+
 * Added more durability kinds in Static Discovery xml parser
 * Explicitly enable/disable data-sharing on performance tests
 * Allow fully qualified name in TypeDescriptor

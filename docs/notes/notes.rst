@@ -5,7 +5,7 @@ Version 2.3.3
 
 This release includes the following **improvements**:
 * Added more durability kinds in Static Discovery xml parser
-* Explicitly enable/disable datasharing on performace tests
+* Explicitly enable/disable data-sharing on performance tests
 * Allow fully qualified name in TypeDescriptor
 * Added missing DynamicData::get_union_id() method
 * Change log severity in DiscoveryServer first announcement

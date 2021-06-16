@@ -70,6 +70,25 @@ packages have been installed, :code:`/usr/local/lib/`. There are two possibiliti
 
       echo 'export LD_LIBRARY_PATH=/usr/local/lib/' >> ~/.bashrc
 
+
+.. _linking_bl:
+
+Including Fast-DDS in a CMake project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The installer deploys *CMake config* files that simplify to incorporate **Fast-DDS** to any CMake project via
+the *find_package* CMake API.
+
+By setting the CMake variable **FASTDDS_STATIC** is possible to choose the desired linkage (dynamic or static library)
+in the CMake generator stage. If the variable is missing defaults to dynamic linking.
+
+For example in order to build the examples statically linked to **Fast-DDS** do:
+
+   .. code-block:: bash
+
+    $ cmake -Bbuildexample -DFASTDDS_STATIC=ON .
+    $ cmake --build buildexample --target install
+
 .. _uninstall_bl:
 
 Uninstall

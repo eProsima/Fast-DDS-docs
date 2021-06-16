@@ -81,3 +81,21 @@ Environment variables
   appended to the ``PATH``.
 
 These variables are set automatically by checking the corresponding box during the installation process.
+
+.. _linking_bw:
+
+Including Fast-DDS in a CMake project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The installer deploys *CMake config* files that simplify to incorporate **Fast-DDS** to any CMake project via
+the *find_package* CMake API.
+
+By setting the CMake variable **FASTDDS_STATIC** is possible to choose the desired linkage (dynamic or static library)
+in the CMake generator stage. If the variable is missing defaults to dynamic linking.
+
+For example in order to build the examples statically linked to **Fast-DDS** do:
+
+   .. code-block:: cmd
+
+    > cmake -Bbuildexample -DFASTDDS_STATIC=ON .
+    > cmake --build buildexample --target install

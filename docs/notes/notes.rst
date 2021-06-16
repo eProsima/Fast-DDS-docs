@@ -3,6 +3,23 @@
 Version 2.3.3
 =============
 
+This release includes the following **improvements**:
+* Added more durability kinds in Static Discovery xml parser
+* Explicitly enable/disable datasharing on performace tests
+* Allow fully qualified name in TypeDescriptor
+* Added missing DynamicData::get_union_id() method
+* Change log severity in DiscoveryServer first announcement
+* Several corrections to README
+
+This release includes the following **bugfixes**:
+
+* Fixed warnings and segfaults on 32-bit platforms
+* Fixed UDPv6 behavior
+* Fixed persistence guid issue on statistics writers
+* Fixed static linking with open SSL
+* Fixed statistics header file inclusion
+* Fixed build on RedHat systems
+
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
   files using *fastddsgen*.

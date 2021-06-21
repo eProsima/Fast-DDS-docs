@@ -150,6 +150,10 @@ it has some constraints:
 *   Only plain types are supported.
 *   Suitable for |PREALLOCATED_MEMORY_MODE-api| and |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
     memory configurations only.
+*   Due to Datawriter's history is shared, Datareaders' history depth is subdued to the Datawriter's history depth.
+    Although the Datareader's history depth is larger than Datawriter's, this contract cannot be complied using this
+    technique.
+    As advise, use for Datareaders' history depth a value equal or minor than the Datawriter's.
 
 .. note::
     Zero-Copy transfer support for non-plain types may be implemented in future releases of *Fast DDS*.

@@ -54,14 +54,11 @@ This feature is available only if the following requirements are met:
 * The Topic :ref:`is not keyed<dds_layer_topic_keyed_data_types>`.
 * The DataWriter is configured with |PREALLOCATED_MEMORY_MODE-api| or |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|.
 
-Also there is a limitation with Datareaders's HistoryQos.
-Instead of each DDS entity having its own history, using Datasharing mechanism the Datawriter's history is shared
-with Datareaders.
-The depth of the shared history always is, as maximum, the Datawriter's HistoryQos depth.
-Then Datareaders' HistoryQos depth will be taken into account if its value is equal or less than Datawriter's
-HistoryQos depth.
-If the value is greater, then the real Datareader's HistoryQos depth will be the same as Datawriter's.
-To avoid confusions, use for Datareaders' history depth a value equal or less than the Datawriter's.
+There is also a limitation with the Datareaders's HistoryQos.
+Using Datasharing mechanism, the Datawriter's history is shared with the Datareaders.
+This means that the effective HistoryQos depth on the Datareader is, at most,
+the Datawriter's HistoryQos depth.
+To avoid confusions, set the Datareaders' history depth to a value equal or less than the Datawriter's.
 
 Data-sharing delivery configuration
 -----------------------------------

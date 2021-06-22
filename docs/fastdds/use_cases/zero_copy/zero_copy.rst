@@ -148,15 +148,7 @@ Although Zero-Copy can be used for one or several *Fast DDS* application process
 it has some constraints:
 
 *   Only plain types are supported.
-*   Suitable for |PREALLOCATED_MEMORY_MODE-api| and |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
-    memory configurations only.
-*   Instead of each DDS entity having its own history, using Datasharing mechanism the Datawriter's history is shared
-    with Datareaders.
-    The depth of the shared history always is, as maximum, the Datawriter's HistoryQos depth.
-    Then Datareaders' HistoryQos depth will be taken into account if its value is equal or less than Datawriter's
-    HistoryQos depth.
-    If the value is greater, then the real Datareader's HistoryQos depth will be the same as Datawriter's.
-    To avoid confusions, use for Datareaders' history depth a value equal or less than the Datawriter's.
+*   Constraints for :ref:`datasharing delivery<datasharing-delivery-constraints>` also apply.
 
 .. note::
     Zero-Copy transfer support for non-plain types may be implemented in future releases of *Fast DDS*.

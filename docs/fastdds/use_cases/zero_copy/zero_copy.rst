@@ -150,10 +150,13 @@ it has some constraints:
 *   Only plain types are supported.
 *   Suitable for |PREALLOCATED_MEMORY_MODE-api| and |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
     memory configurations only.
-*   Due to Datawriter's history is shared, Datareaders' history depth is subdued to the Datawriter's history depth.
-    Although the Datareader's history depth is larger than Datawriter's, this contract cannot be complied using this
-    technique.
-    As advise, use for Datareaders' history depth a value equal or minor than the Datawriter's.
+*   Instead of each DDS entity having its own history, using Datasharing mechanism the Datawriter's history is shared
+    with Datareaders.
+    The depth of the shared history always is, as maximum, the Datawriter's HistoryQos depth.
+    Then Datareaders' HistoryQos depth will be taken into account if its value is equal or less than Datawriter's
+    HistoryQos depth.
+    If the value is greater, then the real Datareader's HistoryQos depth will be the same as Datawriter's.
+    To avoid confusions, use for Datareaders' history depth a value equal or less than the Datawriter's.
 
 .. note::
     Zero-Copy transfer support for non-plain types may be implemented in future releases of *Fast DDS*.

@@ -264,12 +264,6 @@ List of status data members:
   Handle to the last instance that missed the deadline.
   If no deadline was ever missed, it will have value ``c_InstanceHandle_Unknown``.
 
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
-
 
 .. _dds_layer_core_status_requestedIncompatibleQosStatus:
 
@@ -582,12 +576,6 @@ List of status data members:
 * |DeadlineMissedStatus::last_instance_handle-api|:
   Handle to the last instance that missed the deadline.
   If no deadline was ever missed, it will have value |c_InstanceHandle_Unknown-api|.
-
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
 
 
 .. _dds_layer_core_status_offeredIncompatibleQosStatus:

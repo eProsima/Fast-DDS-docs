@@ -122,9 +122,9 @@ add_test(NAME xml.fastdds_permissions_test
 add_test(NAME xml.static_discovery COMMAND doctest StaticTester.xml)
 
 # Check that the helloworld example runs as expected
-find_package(Python COMPONENTS Interpreter Development)
-if(${Python_FOUND} AND (${Python_VERSION} VERSION_GREATER "3.6"))
-    add_test(NAME helloworld COMMAND ${Python_EXECUTABLE} helloworld_test.py)
+find_package(Python3 COMPONENTS Interpreter Development)
+if(${Python3_FOUND} AND (${Python3_VERSION} VERSION_GREATER "3.6"))
+    add_test(NAME helloworld COMMAND ${Python3_EXECUTABLE} helloworld_test.py)
     set_property(TEST helloworld
         APPEND PROPERTY ENVIRONMENT "HELLOWORLD_PUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldPublisher>")
     set_property(TEST helloworld

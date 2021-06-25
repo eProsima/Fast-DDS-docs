@@ -3,16 +3,16 @@
 Const values
 --------------------------------
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::c_ProtocolVersion_2_0
+.. doxygenvariable:: eprosima::fastrtps::rtps::c_ProtocolVersion_2_0
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::c_ProtocolVersion_2_1
+.. doxygenvariable:: eprosima::fastrtps::rtps::c_ProtocolVersion_2_1
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::c_ProtocolVersion_2_2
+.. doxygenvariable:: eprosima::fastrtps::rtps::c_ProtocolVersion_2_2
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::c_ProtocolVersion_2_3
+.. doxygenvariable:: eprosima::fastrtps::rtps::c_ProtocolVersion_2_3
     :project: FastDDS
 
 .. doxygenvariable:: eprosima::fastrtps::rtps::c_ProtocolVersion

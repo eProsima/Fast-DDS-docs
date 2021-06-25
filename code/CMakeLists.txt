@@ -122,9 +122,9 @@ add_test(NAME xml.fastdds_permissions_test
 add_test(NAME xml.static_discovery COMMAND doctest StaticTester.xml)
 
 # Check that the helloworld example runs as expected
-find_package(Python COMPONENTS Interpreter Development)
-if(${Python_FOUND} AND (${Python_VERSION} VERSION_GREATER "3.6"))
-    add_test(NAME helloworld COMMAND ${Python_EXECUTABLE} helloworld_test.py)
+find_package(Python3 COMPONENTS Interpreter Development)
+if(${Python3_FOUND} AND (${Python3_VERSION} VERSION_GREATER "3.6"))
+    add_test(NAME helloworld COMMAND ${Python3_EXECUTABLE} helloworld_test.py)
     set_property(TEST helloworld
         APPEND PROPERTY ENVIRONMENT "HELLOWORLD_PUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldPublisher>")
     set_property(TEST helloworld
@@ -144,7 +144,7 @@ endif()
 # This way, we are sure that the C++ is compiled
 add_test(NAME docs.code_block_check.cpp
     COMMAND
-    ${Python_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
+    ${Python3_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
     --directory ${CMAKE_SOURCE_DIR}/docs
     --regex "code-block::.*c[+p][+p]")
 
@@ -152,7 +152,7 @@ add_test(NAME docs.code_block_check.cpp
 # This way, we are sure that they are tested
 add_test(NAME docs.code_block_check.xml
     COMMAND
-    ${Python_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
+    ${Python3_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
     --directory ${CMAKE_SOURCE_DIR}/docs
     --regex "code-block::.*xml")
 

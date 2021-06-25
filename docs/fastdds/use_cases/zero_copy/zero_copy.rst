@@ -148,8 +148,7 @@ Although Zero-Copy can be used for one or several *Fast DDS* application process
 it has some constraints:
 
 *   Only plain types are supported.
-*   Suitable for |PREALLOCATED_MEMORY_MODE-api| and |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
-    memory configurations only.
+*   Constraints for :ref:`datasharing delivery<datasharing-delivery-constraints>` also apply.
 
 .. note::
     Zero-Copy transfer support for non-plain types may be implemented in future releases of *Fast DDS*.

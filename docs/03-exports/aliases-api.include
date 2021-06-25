@@ -389,9 +389,9 @@
 .. |EXCLUSIVE_OWNERSHIP_QOS-api| replace:: :cpp:enumerator:`EXCLUSIVE_OWNERSHIP_QOS<eprosima::fastdds::dds::OwnershipQosPolicyKind::EXCLUSIVE_OWNERSHIP_QOS>`
 
 .. |Duration_t-api| replace:: :cpp:type:`Duration_t<eprosima::fastrtps::Duration_t>`
-.. |c_TimeInfinite-api| replace:: :cpp:type:`c_TimeInfinite<eprosima::fastrtps::c_TimeInfinite>`
-.. |c_TimeZero-api| replace:: :cpp:type:`c_TimeZero<eprosima::fastrtps::c_TimeInfinite>`
-.. |c_TimeInvalid-api| replace:: :cpp:type:`c_TimeInvalid<eprosima::fastrtps::c_TimeInfinite>`
+.. |c_TimeInfinite-api| replace:: :cpp:var:`c_TimeInfinite<eprosima::fastrtps::c_TimeInfinite>`
+.. |c_TimeZero-api| replace:: :cpp:var:`c_TimeZero<eprosima::fastrtps::c_TimeInfinite>`
+.. |c_TimeInvalid-api| replace:: :cpp:var:`c_TimeInvalid<eprosima::fastrtps::c_TimeInfinite>`
 .. |LocatorList_t-api| replace:: :cpp:type:`LocatorList_t<eprosima::fastrtps::rtps::LocatorList_t>`
 .. |Locator_t-api| replace:: :cpp:class:`Locator_t<eprosima::fastrtps::rtps::Locator_t>`
 

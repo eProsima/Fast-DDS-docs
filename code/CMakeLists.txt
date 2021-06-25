@@ -144,7 +144,7 @@ endif()
 # This way, we are sure that the C++ is compiled
 add_test(NAME docs.code_block_check.cpp
     COMMAND
-    ${Python_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
+    ${Python3_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
     --directory ${CMAKE_SOURCE_DIR}/docs
     --regex "code-block::.*c[+p][+p]")
 
@@ -152,7 +152,7 @@ add_test(NAME docs.code_block_check.cpp
 # This way, we are sure that they are tested
 add_test(NAME docs.code_block_check.xml
     COMMAND
-    ${Python_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
+    ${Python3_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/grep.py
     --directory ${CMAKE_SOURCE_DIR}/docs
     --regex "code-block::.*xml")
 

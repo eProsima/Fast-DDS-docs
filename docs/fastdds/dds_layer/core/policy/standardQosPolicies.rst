@@ -659,7 +659,7 @@ Table with the possible combinations:
 | |MANUAL_BY_TOPIC_LIVELINESS_QOS-api|             | |MANUAL_BY_TOPIC_LIVELINESS_QOS-api|             | Yes            |
 +--------------------------------------------------+--------------------------------------------------+----------------+
 
-Additionally, the |LivelinessQosPolicy::lease_duration-api| of the DataWriter must also be greater than
+Additionally, the |LivelinessQosPolicy::lease_duration-api| of the DataWriter must not be greater than
 the |LivelinessQosPolicy::lease_duration-api| of the DataReader.
 
 Example

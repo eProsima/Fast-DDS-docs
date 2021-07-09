@@ -66,8 +66,11 @@ It is possible to activate them with the opportune
 `CMake configuration options <https://cmake.org/cmake/help/v3.6/manual/cmake.1.html#options>`_
 when calling colcon_ or CMake_.
 For more details, please refer to the :ref:`cmake_options` section.
-For a detailed description of the Gtest installation process, please refer to the
-`Gtest Installation Guide <https://github.com/google/googletest>`_.
+Also add the `Gtest repository <https://github.com/google/googletest>`_ into the workspace directory.
+
+.. code-block:: bash
+
+    git clone https://github.com/google/googletest src/googletest-distribution
 
 
 .. _dependencies_sl:

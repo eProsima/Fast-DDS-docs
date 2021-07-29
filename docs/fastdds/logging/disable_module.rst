@@ -36,10 +36,22 @@ for debugging purposes, thus preventing them to impact performance.
 ``INTERNAL_DEBUG`` CMake option activates log macros compilation, so the arguments of the macros are compiled.
 However:
 
-* it does not activate the log Warning and Error messages, i.e. the messages are not written in the log queue.
-* |logInfo| has a special behaviour to simplify working with Multi-Config capability IDEs. If |LOG_NO_INFO| is ``OFF``
-  or |HAVE_LOG_NO_INFO| is ``0`` the logging is enabled only for ``Debug`` configuration. By setting
-  |FASTDDS_ENFORCE_LOG_INFO| to ``ON`` the logging will always be enabled.
+* It does not activate the log Warning and Error messages, i.e. the messages are not written in the log queue.
+* |logInfo| has a special behaviour to simplify working with Multi-Config capability IDEs.
+  If CMake option |LOG_NO_INFO| is ``OFF``, or the C++ definition |HAVE_LOG_NO_INFO| is ``0``, then logging is enabled
+  only for ``Debug`` configuration.
+  In this scenario, setting |FASTDDS_ENFORCE_LOG_INFO| to ``ON`` will enable |logInfo| even on non ``Debug``
+  configurations.
+  This is specially useful when using the *Fast DDS*' logging module in an external application which links with
+  *Fast DDS* compiled in ``Release``.
+  In that case, applications wanting to use all three levels of logging can simply add the following code prior to
+  including any Fast DDS header:
+
+  .. code-block:: c
+
+     #define HAVE_LOG_NO_INFO 0
+     #define FASTDDS_ENFORCE_LOG_INFO 1
+
 
 .. warning::
 

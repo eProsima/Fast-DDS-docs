@@ -153,7 +153,9 @@ This module can be configured using *Fast DDS* CMake arguments regarding the fol
         - ``ON``
     *   - :class:`FASTDDS_ENFORCE_LOG_INFO`
         - Enables Info Log level even on non ``Debug`` configurations. |br|
-          This may entail a significant performance hit.
+          This option only takes action if :class:`LOG_NO_INFO` is set to ``OFF`` |br|
+          (see :ref:`dds_layer_log_disable`). |br|
+          Mind that this may entail a significant performance hit.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`LOG_NO_WARNING`

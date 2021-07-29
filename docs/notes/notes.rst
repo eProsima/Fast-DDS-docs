@@ -1,25 +1,36 @@
 .. _release_notes:
 
-Version 2.3.3
+Version 2.3.4
 =============
 
 This release includes the following **improvements**:
 
-* Added more durability kinds in Static Discovery xml parser
-* Explicitly enable/disable data-sharing on performance tests
-* Allow fully qualified name in TypeDescriptor
-* Added missing DynamicData::get_union_id() method
-* Change log severity in DiscoveryServer first announcement
-* Several corrections to README
+1. Limit :class:`SequenceNumberSet` number of bits on deserialization
+2. Validate sequence range on :class:`CDRMessage::readSequenceNumberSet`
+3. Support of googletest using colcon
+4. Network latency reports source participant
+5. Allow examples to build on QNX
+6. Accept Statistics DataWriters in Discovery Server
+7. Fix read/take behavior when a future change is found
+8. Correctly handle deserialization errors on ``read_next_sample()`` / ``take_next_sample()``
 
 This release includes the following **bugfixes**:
 
-* Fixed warnings and segfaults on 32-bit platforms
-* Fixed UDPv6 behavior
-* Fixed persistence guid issue on statistics writers
-* Fixed static linking with open SSL
-* Fixed statistics header file inclusion
-* Fixed build on RedHat systems
+1. Fix mutex lock count on :class:`PDPListener`
+1. Fix segmentation fault on discovery server
+1. Fix deadlock with security and timers
+1. Fix bug using not protected code in a test
+1. Fix deadlock with :class:`LivelinessManager`
+1. Fix interval loop on events
+1. Fix run event when was cancelled
+1. Fix subscription throughput data generation
+1. Fix code on SHM clean
+1. Fixing :class:`SequenceNumberSet_t` deserialization
+1. Proper history clean up when a reader unmatches a writer
+1. Unprotected code loaning samples
+1. Fix publication throughput statistic on volatile writers
+1. Fix Fast DDS CLI server name
+1. Several fixes in examples and tests
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -29,6 +40,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.3.3.rst
 .. include:: previous_versions/v2.3.2.rst
 .. include:: previous_versions/v2.3.1.rst
 .. include:: previous_versions/v2.3.0.rst

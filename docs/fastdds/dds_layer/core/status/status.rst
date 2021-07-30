@@ -264,7 +264,6 @@ List of status data members:
   Handle to the last instance that missed the deadline.
   If no deadline was ever missed, it will have value ``c_InstanceHandle_Unknown``.
 
-
 .. _dds_layer_core_status_requestedIncompatibleQosStatus:
 
 RequestedIncompatibleQosStatus
@@ -577,7 +576,6 @@ List of status data members:
   Handle to the last instance that missed the deadline.
   If no deadline was ever missed, it will have value |c_InstanceHandle_Unknown-api|.
 
-
 .. _dds_layer_core_status_offeredIncompatibleQosStatus:
 
 OfferedIncompatibleQosStatus
@@ -676,6 +674,5 @@ List of status data members:
   Handle to the last DataReader
   that matched the DataWriter.
   If no matching ever happened, it will have value |c_InstanceHandle_Unknown-api|.
-
 
 

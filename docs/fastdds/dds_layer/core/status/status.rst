@@ -264,13 +264,6 @@ List of status data members:
   Handle to the last instance that missed the deadline.
   If no deadline was ever missed, it will have value ``c_InstanceHandle_Unknown``.
 
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
-
-
 .. _dds_layer_core_status_requestedIncompatibleQosStatus:
 
 RequestedIncompatibleQosStatus
@@ -583,13 +576,6 @@ List of status data members:
   Handle to the last instance that missed the deadline.
   If no deadline was ever missed, it will have value |c_InstanceHandle_Unknown-api|.
 
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
-
-
 .. _dds_layer_core_status_offeredIncompatibleQosStatus:
 
 OfferedIncompatibleQosStatus
@@ -688,6 +674,5 @@ List of status data members:
   Handle to the last DataReader
   that matched the DataWriter.
   If no matching ever happened, it will have value |c_InstanceHandle_Unknown-api|.
-
 
 

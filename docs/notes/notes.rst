@@ -7,6 +7,7 @@ This release includes the following **improvements**:
 
 1. Support of googletest using colcon
 2. Network latency reports source participant
+3. Update Fast DDS Gen to v2.0.2
 
 This release includes the following **bugfixes**:
 

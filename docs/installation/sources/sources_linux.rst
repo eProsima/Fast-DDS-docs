@@ -323,6 +323,11 @@ Once the requirements above are met, compile *Fast DDS-Gen* by following the ste
 
 .. note::
 
+    If already installed FastDDS with colcon, you may skip the git clone command; *fastddsgen* can be found under
+    the :code:`src` directory of FastDDS colcon workspace.
+
+.. note::
+
     If errors occur during compilation or you do not wish to install gradle, an executable script is included which will
     download a gradle temporarily for the compilation step.
 
@@ -341,7 +346,7 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
   .. note::
 
       To make these scripts accessible from any shell session and directory, add the :code:`scripts` folder path to the
-      :code:`PATH` environment variable using the method described above.
+      :code:`PATH` environment variable.
 
 .. External links
 

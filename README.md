@@ -60,6 +60,7 @@ sudo apt install -y \
     curl \
     wget \
     doxygen \
+    doc8 \
     python3 \
     python3-pip \
     python3-venv \
@@ -78,7 +79,6 @@ source fastdds-docs-venv/bin/activate
 wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/master/docs/requirements.txt
 pip3 install -r requirements.txt
 cd fastdds-docs-venv/lib/<python-version>/site-packages
-curl https://patch-diff.githubusercontent.com/raw/sphinx-doc/sphinx/pull/7851.diff | git apply
 ```
 
 The version of python3 used in the virtual environment can be seen by running the following command within the virtual environment:
@@ -174,7 +174,7 @@ This means that it does not execute any colcon or CMake commands.
 Furthermore, Fast DDS is not available for API reference documentation generation.
 [conf.py](docs/conf.py) provides some extra logic to download Fast DDS and generate the Doxygen documentation when running on a Read the Docs environment.
 This is done by means of the environment variable `READTHEDOCS`.
-When this variable is set to `True`, [conf.py](docs/conf.py) will clone Fast DDS in `build/fastdds/` and will set it to a specific a branch according to the following criteria:
+When this variable is set to `True`, [conf.py](docs/conf.py) will clone Fast DDS in `build/fastdds/` and will set it to a specific branch according to the following criteria:
 
 1. Try to checkout to the branch specified by environment variable `FASTDDS_BRANCH`.
 1. If the variable is not set, or the branch does not exist, try to checkout to a branch with the same name as the current branch on this repository.
@@ -185,7 +185,7 @@ Then, set `READTHEDOCS` and `FASTDDS_BRANCH`, and run sphinx:
 
 ```bash
 source <path_to_venv>/fastdds-docs-venv/bin/activate
-cd <path_to_repo>/fastdds-docs
+cd <path_to_docs_repo>/fastdds-docs
 rm -rf build
 READTHEDOCS=True FASTDDS_BRANCH=<branch> sphinx-build \
     -b html \
@@ -223,7 +223,7 @@ The [docs](docs) directory contains:
 * [notes](docs/notes): Release notes.
 
 All new documentation must fall into one of these directories, with the exception of those contributions which are not related to any of the given descriptions.
-Keep in mind that this is an Sphinx based project, and as such, the all the documentation is written in `reStructuredText`.
+Keep in mind that this is an Sphinx based project, and as such, all the documentation is written in `reStructuredText`.
 
 All unrecognized words must be added to the [spelling_wordlist.txt](docs/spelling_wordlist.txt) dictionary in alphabetical order, with exception of the ones coming from the API reference documentation, which must be added to [docs/fastdds/api_reference/spelling_wordlist.txt](docs/fastdds/api_reference/spelling_wordlist.txt).
 

@@ -15,7 +15,7 @@ Fast DDS provides the following discovery mechanisms:
   data types, and Topics are known beforehand.
 
 - :ref:`Discovery Server <discovery_server>`: This discovery mechanism uses a centralized discovery architecture,
-  where a DomainParticipant, referred as Server, act as a hub for discovery meta traffic.
+  where a DomainParticipant, referred as Server, acts as a hub for meta traffic discovery.
 
 - **Manual Discovery**: This mechanism is only compatible with the RTPS layer.
   It disables the PDP, letting the user to manually match and unmatch |RTPSParticipants-api|, |RTPSReaders-api|, and

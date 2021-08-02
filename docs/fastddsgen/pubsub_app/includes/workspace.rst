@@ -7,7 +7,7 @@ The file ``build/HelloWorld`` is the generated *Fast DDS* application.
 .. code-block:: shell-session
 
     .
-    └── workspace_DDSHelloWorld
+    └── FastDDSGenHelloWorld
         ├── build
         │   ├── CMakeCache.txt
         │   ├── CMakeFiles

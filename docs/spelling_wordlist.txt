@@ -28,6 +28,7 @@ bitset
 bitsets
 boolean
 booleans
+cancelled
 Cannonical
 CDR
 centric
@@ -83,6 +84,7 @@ getter
 Github
 GMAC
 GMock
+googletest
 gradle
 gtest
 GTest
@@ -188,6 +190,7 @@ unicast
 unidimensional
 univocally
 unmatch
+unmatches
 unmatching
 Valgrind
 vcstool

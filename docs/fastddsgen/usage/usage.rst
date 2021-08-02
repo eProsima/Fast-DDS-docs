@@ -34,6 +34,7 @@ the following commands:
     In case the PATH has not been modified, these scripts can be found in the ``<fastddsgen_directory>/scripts``
     directory.
 
+.. _fastddsgen_supported_options:
 
 Supported options
 -------------------

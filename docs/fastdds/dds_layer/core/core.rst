@@ -18,3 +18,4 @@ definition of Entity class, QoS policies, and Statuses.
    /fastdds/dds_layer/core/entity/entity
    /fastdds/dds_layer/core/policy/policy
    /fastdds/dds_layer/core/status/status
+   /fastdds/dds_layer/core/waitsets/waitsets

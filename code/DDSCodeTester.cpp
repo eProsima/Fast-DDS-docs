@@ -1,3 +1,4 @@
+#include <fastdds/dds/core/condition/WaitSet.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
@@ -2635,6 +2636,12 @@ void dds_dataReader_examples()
             return;
         }
 
+        // Prepare a waitset to wait for data on the DataReader
+        WaitSet wait_set;
+        StatusCondition& condition = data_reader->get_statuscondition();
+        condition.set_enabled_statuses(StatusMask::data_available());
+        wait_set.attach_condition(condition);
+
         // Create a data and SampleInfo instance
         Foo data;
         SampleInfo info;
@@ -2643,13 +2650,14 @@ void dds_dataReader_examples()
         eprosima::fastrtps::Duration_t timeout (5, 0);
 
         // Loop reading data as it arrives
-        // This will make the current threat to be dedicated exclusively to
+        // This will make the current thread to be dedicated exclusively to
         // waiting and reading data until the remote DataWriter dies
         while (true)
         {
-            if (data_reader->wait_for_unread_message(timeout))
+            ConditionSeq active_conditions;
+            if (ReturnCode_t::RETCODE_OK == wait_set.wait(active_conditions, timeout))
             {
-                if (data_reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
+                while (ReturnCode_t::RETCODE_OK == data_reader->take_next_sample(&data, &info))
                 {
                     if (info.valid_data)
                     {

@@ -194,6 +194,9 @@ unmatches
 unmatching
 Valgrind
 vcstool
+waitset
+waitsets
+Waitsets
 wget
 whitelist
 whitelists

@@ -114,7 +114,7 @@ Accessing data with a waiting thread
 Instead of relying on the Listener to try and get new data values,
 the application can also dedicate a thread to wait until any new data is available on the
 DataReader.
-This can be done using a waitset to wait for a change on the `DataAvailable` status.
+This can be done using a wait-set to wait for a change on the `DataAvailable` status.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

@@ -2636,7 +2636,7 @@ void dds_dataReader_examples()
             return;
         }
 
-        // Prepare a waitset to wait for data on the DataReader
+        // Prepare a wait-set to wait for data on the DataReader
         WaitSet wait_set;
         StatusCondition& condition = data_reader->get_statuscondition();
         condition.set_enabled_statuses(StatusMask::data_available());

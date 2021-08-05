@@ -3,6 +3,6 @@
 
 .. _dds_layer_core_waitsets:
 
-Waitsets
-========
+Wait-sets
+=========
 

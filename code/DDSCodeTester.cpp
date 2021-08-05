@@ -2626,7 +2626,7 @@ void dds_dataReader_examples()
         //!--
     }
     {
-        //DDS_DATAREADER_READ_WAIT
+        //DDS_DATAREADER_READ_WAITSET
         // Create a DataReader
         DataReader* data_reader =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
@@ -2658,6 +2658,57 @@ void dds_dataReader_examples()
             if (ReturnCode_t::RETCODE_OK == wait_set.wait(active_conditions, timeout))
             {
                 while (ReturnCode_t::RETCODE_OK == data_reader->take_next_sample(&data, &info))
+                {
+                    if (info.valid_data)
+                    {
+                        // Do something with the data
+                        std::cout << "Received new data value for topic "
+                                  << topic->get_name()
+                                  << std::endl;
+                    }
+                    else
+                    {
+                        // If the remote writer is not alive, we exit the reading loop
+                        std::cout << "Remote writer for topic "
+                                  << topic->get_name()
+                                  << " is dead" << std::endl;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                std::cout << "No data this time" << std::endl;
+            }
+        }
+        //!--
+    }
+    {
+        //DDS_DATAREADER_READ_WAIT
+        // Create a DataReader
+        DataReader* data_reader =
+                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr == data_reader)
+        {
+            // Error
+            return;
+        }
+
+        // Create a data and SampleInfo instance
+        Foo data;
+        SampleInfo info;
+
+        //Define a timeout of 5 seconds
+        eprosima::fastrtps::Duration_t timeout (5, 0);
+
+        // Loop reading data as it arrives
+        // This will make the current thread to be dedicated exclusively to
+        // waiting and reading data until the remote DataWriter dies
+        while (true)
+        {
+            if (data_reader->wait_for_unread_message(timeout))
+            {
+                if (ReturnCode_t::RETCODE_OK == data_reader->take_next_sample(&data, &info))
                 {
                     if (info.valid_data)
                     {

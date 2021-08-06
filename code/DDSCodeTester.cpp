@@ -1,3 +1,4 @@
+#include <fastdds/dds/core/condition/GuardCondition.hpp>
 #include <fastdds/dds/core/condition/WaitSet.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
@@ -4593,6 +4594,143 @@ void dds_zero_copy_example()
         DataReader* reader = subscriber->create_datareader(topic, rqos, &datareader_listener);
         //!--
     }
+}
+
+void dds_waitset_example()
+{
+    auto create_dds_application = [](std::vector<DataReader*>&, std::vector<DataWriter*>&) -> ReturnCode_t
+    {
+        return ReturnCode_t::RETCODE_OK;
+    };
+
+    auto destroy_dds_application = []() -> void
+    {
+    };
+
+    //DDS_WAITSET_EXAMPLE
+    class ApplicationJob
+    {
+        WaitSet wait_set_;
+        GuardCondition terminate_condition_;
+        std::thread thread_;
+
+        void main_loop()
+        {
+            // Main loop is repeated until the terminate condition is triggered
+            while (false == terminate_condition_.get_trigger_value())
+            {
+                // Wait for any of the conditions to be triggered
+                ReturnCode_t ret_code;
+                ConditionSeq triggered_conditions;
+                ret_code = wait_set_.wait(triggered_conditions, fastrtps::c_TimeInfinite);
+                if (ReturnCode_t::RETCODE_OK != ret_code)
+                {
+                    // ... handle error
+                    continue;
+                }
+
+                // Process triggered conditions
+                for (Condition* cond : triggered_conditions)
+                {
+                    StatusCondition* status_cond = dynamic_cast<StatusCondition*>(cond);
+                    if (nullptr != status_cond)
+                    {
+                        Entity* entity = status_cond->get_entity();
+                        StatusMask changed_statuses = entity->get_status_changes();
+
+                        // Process status. Liveliness changed and data available are depicted as an example
+                        if (changed_statuses.is_active(StatusMask::liveliness_changed()))
+                        {
+                            std::cout << "Liveliness changed reported for entity " << entity->get_instance_handle() << std::endl;
+                        }
+
+                        if (changed_statuses.is_active(StatusMask::data_available()))
+                        {
+                            std::cout << "Data avilable on reader " << entity->get_instance_handle() << std::endl;
+
+                            FooSeq data_seq;
+                            SampleInfoSeq info_seq;
+                            DataReader* reader = static_cast<DataReader*>(entity);
+
+                            // Process all the samples until no one is returned
+                            while (ReturnCode_t::RETCODE_OK == reader->take(data_seq, info_seq,
+                                                        LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
+                                                        ANY_VIEW_STATE, ANY_INSTANCE_STATE))
+                            {
+                                // Both info_seq.length() and data_seq.length() will have the number of samples returned
+                                for (FooSeq::size_type n = 0; n < info_seq.length(); ++n)
+                                {
+                                    // Only samples for which valid_data is true should be accessed
+                                    if (info_seq[n].valid_data)
+                                    {
+                                        // Process sample on data_seq[n]
+                                    }
+                                }
+
+                                // must return the loaned sequences when done processing
+                                reader->return_loan(data_seq, info_seq);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    public:
+    
+        ApplicationJob(
+                const std::vector<DataReader*>& readers,
+                const std::vector<DataWriter*>& writers)
+        {
+            // Add a GuardCondition, so we can signal the processing thread to stop
+            wait_set_.attach_condition(terminate_condition_);
+
+            // Add the status condition of every reader and writer
+            for (DataReader* reader : readers)
+            {
+                wait_set_.attach_condition(reader->get_statuscondition());
+            }
+            for (DataWriter* writer : writers)
+            {
+                wait_set_.attach_condition(writer->get_statuscondition());
+            }
+            
+            thread_ = std::thread(&ApplicationJob::main_loop, this);            
+        }
+
+        ~ApplicationJob()
+        {
+            // Signal the GuardCondition to force the WaitSet to wake up
+            terminate_condition_.set_trigger_value(true);
+            // Wait for the thread to finish
+            thread_.join();
+        }
+    };
+
+    // Application initialization
+    ReturnCode_t ret_code;
+    std::vector<DataReader*> application_readers;
+    std::vector<DataWriter*> application_writers;
+
+    // Create the participant, topics, readers, and writers.
+    ret_code = create_dds_application(application_readers, application_writers);
+    if (ReturnCode_t::RETCODE_OK != ret_code)
+    {
+        // ... handle error
+        return;
+    }
+
+    {
+        ApplicationJob main_loop_thread(application_readers, application_writers);
+
+        // ... wait for application termination signaling (signal handler, user input, etc)
+
+        // ... Destructor of ApplicationJob takes care of stopping the processing thread
+    }
+
+    // Destroy readers, writers, topics, and participant
+    destroy_dds_application();
+    //!
 }
 
 bool dds_permissions_test(

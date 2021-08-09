@@ -103,13 +103,13 @@ diagram:
 
    The |SubscriberListener::on_data_on_readers-api| callback intercepts messages before
    |DataReaderListener::on_data_available-api|.
-   This implies that if |DomainParticipantListener-api| is enabled, the user should take into account that by default
+   This implies that if |DomainParticipantListener-api| is enabled, users should take into account that by default
    the listener uses |StatusMask::all-api|.
-   As the callback entity hierachy is kept, the |SubscriberListener::on_data_on_readers-api| is going to be called
+   As the callback entity hierarchy is kept, the |SubscriberListener::on_data_on_readers-api| is going to be called
    in this case.
-   If the user wants to use |DataReaderListener::on_data_available-api| instead, the corresponding bit of
+   If an application wants to use |DataReaderListener::on_data_available-api| instead, the corresponding bit of
    |StatusMask-api| should be disabled.
-   
+
 .. important::
 
    Using |StatusMask::none-api| when creating the |Entity-api| only disables the DDS standard callbacks.

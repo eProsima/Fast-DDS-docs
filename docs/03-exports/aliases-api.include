@@ -171,6 +171,8 @@
 .. |Publishers-api| replace:: :cpp:class:`Publishers <eprosima::fastdds::dds::Publisher>`
 .. |QosPolicy-api| replace:: :cpp:class:`QosPolicy <eprosima::fastdds::dds::QosPolicy>`
 .. |StatusMask-api| replace:: :cpp:class:`StatusMask <eprosima::fastdds::dds::StatusMask>`
+.. |StatusMask::all-api| replace:: :cpp:func:`StatusMask::all()<eprosima::fastdds::dds::StatusMask::all>`
+.. |StatusMask::none-api| replace:: :cpp:func:`StatusMask::none()<eprosima::fastdds::dds::StatusMask::none>`
 .. |Subscriber-api| replace:: :cpp:class:`Subscriber <eprosima::fastdds::dds::Subscriber>`
 .. |Subscriber::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::Subscriber::get_qos>`
 .. |Subscriber::set_qos-api| replace:: :cpp:func:`Subscriber::set_qos()<eprosima::fastdds::dds::Subscriber::set_qos>`

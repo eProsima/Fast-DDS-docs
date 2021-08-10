@@ -50,6 +50,10 @@ Additionally, DomainParticipantListener adds the following callbacks:
  * |DomainParticipantListener::onParticipantAuthentication-api|: Informs about the result of the authentication process
    of a remote DomainParticipant (either on failure or success).
 
+.. important::
+
+   Read more about callbacks and its hierarchy :ref:`here<dds_layer_core_entity_commonchars_listener>`
+
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_DOMAINPARTICIPANT_LISTENER_SPECIALIZATION

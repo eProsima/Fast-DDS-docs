@@ -49,6 +49,7 @@ eprosima
 expectsInlineQos
 fastrtps
 fragmentnumbers
+FlowController
 GenericDataQosPolicy
 getHistory
 getTypeDependencies

@@ -33,3 +33,7 @@ of the DomainParticipant.
    :start-after: //SET-DISCOVERY-CALLBACKS
    :end-before: //!--
    :dedent: 8
+
+.. important::
+
+   Read more about callbacks and its hierarchy :ref:`here<dds_layer_core_entity_commonchars_listener>`

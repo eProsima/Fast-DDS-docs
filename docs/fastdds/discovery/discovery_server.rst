@@ -289,6 +289,31 @@ Mind that this period also applies for those *servers* which connect to other *s
 |    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 
+.. _DS_modify_server_list:
+
+Modifying remote servers list at run time
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once a *server* or *client* is running, it is possible to programmatically modify the participant's list of remote
+*servers* to which the running *server* or *client* should connect.
+This is done by calling |DomainParticipant::set_qos-api| with a |DomainParticipantQos-api| which has a modified
+|WireProtocolConfigQos-api| (see :ref:`wireprotocolconfigqos`).
+
+.. important::
+     The list of remote *servers* can only be modified to add more *servers*, but not to remove any of the existing ones.
+     This means that the new list passed to |DomainParticipant::set_qos-api| must be a superset of the existing one.
+
++---------------------------------------------------------------------+
+| **C++**                                                             |
++---------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                      |
+|    :language: c++                                                   |
+|    :start-after: //CONF_SERVER_ADD_SERVERS                          |
+|    :end-before: //!--                                               |
+|    :dedent: 8                                                       |
+|                                                                     |
++---------------------------------------------------------------------+
+
 .. _DS_full_example:
 
 Full example

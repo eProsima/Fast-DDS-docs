@@ -907,8 +907,11 @@ List of QoS Policy data members:
 
 .. note::
      This QoS Policy concerns to DomainParticipant entities.
-     :raw-html:`<br />`
-     It cannot be changed on enabled entities.
+
+.. important::
+     The only mutable field on enabled entities is |m_DiscoveryServers|, which is contained in
+     |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
+     :ref:`DS_modify_server_list`).
 
 .. _throughputcontrollerdescriptor:
 

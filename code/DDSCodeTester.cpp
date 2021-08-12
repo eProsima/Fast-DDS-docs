@@ -926,6 +926,19 @@ void dds_discovery_examples()
             // Error
             return;
         }
+    }
+
+    {
+        //CONF_SERVER_DNS_LOCATORS
+        Locator_t locator;
+        auto response = eprosima::fastrtps::rtps::IPLocator::resolveNameDNS("localhost");
+        // Get the first returned IPv4
+        if (response.first.size() > 0)
+        {
+            IPLocator::setIPv4(locator, response.first.begin()->data());
+            locator.port = 11811;
+        }
+        // Use the locator to create server or client
         //!--
     }
 

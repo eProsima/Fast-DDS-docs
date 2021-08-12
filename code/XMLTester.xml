@@ -1675,6 +1675,11 @@
             <port>7400</port>
             <address>192.168.1.41</address>
         </udpv4>
+        <udpv4>
+            <!-- Access as physical, typical UDP usage -->
+            <port>7600</port>
+            <address>localhost</address>
+        </udpv4>
     </locator>
     <locator>
         <tcpv4>
@@ -1690,6 +1695,10 @@
         <udpv6>
             <port>8844</port>
             <address>::1</address>
+        </udpv6>
+        <udpv6>
+            <port>8888</port>
+            <address>localhost</address>
         </udpv6>
     </locator>
     <locator>
@@ -2675,6 +2684,29 @@
     </participant>
 <!--><-->
 
+<participant profile_name="part_ds_dns_locators">
+    <rtps>
+        <builtin>
+            <discovery_config>
+                <discoveryServersList>
+                    <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
+                        <metatrafficUnicastLocatorList>
+                            <!-->CONF_SERVER_DNS_LOCATORS<-->
+                            <locator>
+                                <udpv4>
+                                    <port>11811</port>
+                                    <address>localhost</address>
+                                </udpv4>
+                            </locator>
+                            <!--><-->
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>
+            </discovery_config>
+        </builtin>
+    </rtps>
+</participant>
+
 <!-->CONF_SERVER_FULL_EXAMPLE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -2688,13 +2720,13 @@
                 <!-- Set participant as SERVER -->
                 <discovery_config>
                     <discoveryProtocol>SERVER</discoveryProtocol>
-                    <!-- 
+                    <!--
                         Set a list of remote servers to which this server connects.
                         This list may contain one or more <RemoteServer> tags
                     -->
                     <discoveryServersList>
-                        <!-- 
-                            Set remote server configuration: 
+                        <!--
+                            Set remote server configuration:
                                 - Prefix
                                 - PDP listening locator
                         -->
@@ -2736,13 +2768,13 @@
                 <discovery_config>
                     <!-- Set participant as CLIENT -->
                     <discoveryProtocol>CLIENT</discoveryProtocol>
-                    <!-- 
+                    <!--
                         Set list of remote servers. This list may contain one or
                         more <RemoteServer> tags
                     -->
                     <discoveryServersList>
-                        <!-- 
-                            Set remote server configuration: 
+                        <!--
+                            Set remote server configuration:
                                 - Prefix
                                 - PDP listening locator
                         -->

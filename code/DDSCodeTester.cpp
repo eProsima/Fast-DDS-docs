@@ -901,6 +901,35 @@ void dds_discovery_examples()
     }
 
     {
+        DomainParticipant* client_or_server;
+        //CONF_SERVER_ADD_SERVERS
+        // Get existing QoS for the server or client
+        DomainParticipantQos client_or_server_qos;
+        client_or_server->get_qos(client_or_server_qos);
+
+        /* Create a new server entry to which the client or server should connect */
+        RemoteServerAttributes remote_server_att;
+
+        // Set server's GUID prefix
+        remote_server_att.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.42");
+
+        // Set server's listening locator for PDP
+        Locator_t locator;
+        IPLocator::setIPv4(locator, 127, 0, 0, 1);
+        locator.port = 11812;
+        remote_server_att.metatrafficUnicastLocatorList.push_back(locator);
+
+        /* Update list of remote servers for this client or server */
+        client_or_server_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
+        if (ReturnCode_t::RETCODE_OK != client_or_server->set_qos(client_or_server_qos))
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
         //CONF_SERVER_FULL_EXAMPLE
         // Get default participant QoS
         DomainParticipantQos server_qos = PARTICIPANT_QOS_DEFAULT;

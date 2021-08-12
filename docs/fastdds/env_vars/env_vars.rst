@@ -74,29 +74,37 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
   is |SERVER| or |BACKUP|, then the variable is used to add remote *servers* to the given *server*, leaving the
   :ref:`discovery protocol<discovery_protocol>` as |SERVER| or |BACKUP| respectively.
 
-* The value of the variable must list the locator of the server in the form of the IP address (e.g., '192.168.2.23')
+* The value of the variable must list the locator of the server in the form of the IPv4 address (e.g., '192.168.2.23')
   or IP-port pair (e.g., '192.168.2.23:24353').
+  Instead of an IPv4 address, a name can be specified (e.g., 'localhost', 'localhost:12345').
+  This name would be used to query known hosts and available DNS servers to try to resolve a valid IPv4 address (see
+  :ref:`DS_dns_name`).
 * If no port is specified, the default port 11811 is used.
 * To set more than one *server*'s address, they must be separated by semicolons.
 * The server's ID is determined by their position in the list.
   Two semicolons together means the corresponding ID is free.
 
 The following example shows how to set the address of two remote discovery servers with addresses
-'84.22.259.329:8888' and '81.41.17.102:1234' and IDs 0 and 2 respectively.
+'84.22.259.329:8888' and 'localhost:1234' and IDs 0 and 2 respectively.
 
     +----------------------------------------------------------------------------+
     | **Linux**                                                                  |
     +----------------------------------------------------------------------------+
     | .. code-block:: bash                                                       |
     |                                                                            |
-    |    export ROS_DISCOVERY_SERVER=84.22.259.329:8888;;81.41.17.102:1234       |
+    |    export ROS_DISCOVERY_SERVER=84.22.259.329:8888;;localhost:1234          |
     +----------------------------------------------------------------------------+
     | **Windows**                                                                |
     +----------------------------------------------------------------------------+
     | .. code-block:: bash                                                       |
     |                                                                            |
-    |    set ROS_DISCOVERY_SERVER=84.22.259.329:8888;;81.41.17.102:1234          |
+    |    set ROS_DISCOVERY_SERVER=84.22.259.329:8888;;localhost:1234             |
     +----------------------------------------------------------------------------+
+
+.. important::
+  IP addresses specified in ``ROS_DISCOVERY_SERVER`` must be either valid IPv4 addresses or names.
+  If a name which can be translated into an address is specified, the first valid IPv4 returned from the query will be
+  used.
 
 .. important::
     This environment variable is meant to be used in combination with :ref:`Fast DDS discovery CLI<cli_discovery>`.

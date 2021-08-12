@@ -926,6 +926,7 @@ void dds_discovery_examples()
             // Error
             return;
         }
+        //!--
     }
 
     {

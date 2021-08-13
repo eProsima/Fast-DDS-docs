@@ -76,7 +76,8 @@ Where the parameters are:
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-h  -help``            | Produce help message.                                                                     |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-l  --ip-address``     | IP address chosen to listen the clients. Defaults to any (0.0.0.0).                       |
+| ``-l  --ip-address``     | IPv4 address chosen to listen the clients. Defaults to any (0.0.0.0). Instead of an |br|  |
+|                          | address, a name can be specified (see :ref:`DS_dns_name`)                                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-p  --port``           | UDP port chosen to listen the clients. Defaults to '11811'.                               |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -164,7 +165,6 @@ Examples
     backup file. If the server crashes it will automatically restore its
     previous state when re-enacted.
 
-
     .. code-block:: bash
 
         fastdds discovery -i 3 -l 172.30.144.1 -p 12345 -b
@@ -179,6 +179,23 @@ Examples
           Server GUID prefix: 44.53.03.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[172.30.144.1]:12345
 
+5.  Launch a default server with id 0 (first on ``ROS_DISCOVERY_SERVER``)
+    listening on localhost with UDP port 14520. Only localhost clients
+    can reach the server defining as `ROS_DISCOVERY_SERVER=localhost:14520`.
+
+    .. code-block:: bash
+
+        fastdds discovery -i 0 -l localhost -p 14520
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+        Participant Type:   SERVER
+        Server ID:          0
+        Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+        Server Addresses:   UDPv4:[127.0.0.1]:14520
 
 .. _cli_shm:
 

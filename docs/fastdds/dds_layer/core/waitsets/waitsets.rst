@@ -7,7 +7,7 @@ Conditions and Wait-sets
 ========================
 
 Conditions (in conjunction with wait-sets) provide an alternative mechanism to allow the middleware
-to communicate communication status changes (including arrival of data) to the application.
+to notify communication status changes (including arrival of data) to the application.
 
 This mechanism is wait-based. Its general use pattern is as follows:
 
@@ -17,6 +17,7 @@ This mechanism is wait-based. Its general use pattern is as follows:
   true.
 * It then uses the result of the wait (i.e., the list of Condition objects with
   trigger_value == true) to actually get the information by calling:
+
   * get_status_changes and then get_<communication_status> on the relevant Entity, when the
     condition is a StatusCondition and the status changes refer to plain communication status.
   * get_status_changes and then get_datareaders on the relevant Subscriber, when the condition is a

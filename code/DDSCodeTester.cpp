@@ -2685,7 +2685,7 @@ void dds_dataReader_examples()
         //!--
     }
     {
-        //DDS_DATAREADER_READ_WAIT
+        //DDS_DATAREADER_WAIT_FOR_UNREAD
         // Create a DataReader
         DataReader* data_reader =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);

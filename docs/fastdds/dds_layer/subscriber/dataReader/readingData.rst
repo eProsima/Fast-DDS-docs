@@ -130,6 +130,6 @@ This function returning with value ``true`` means there is new data available on
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
-   :start-after: //DDS_DATAREADER_READ_WAIT
+   :start-after: //DDS_DATAREADER_WAIT_FOR_UNREAD
    :end-before: //!
    :dedent: 8

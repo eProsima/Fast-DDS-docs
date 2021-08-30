@@ -4622,7 +4622,7 @@ void dds_waitset_example()
                 // Wait for any of the conditions to be triggered
                 ReturnCode_t ret_code;
                 ConditionSeq triggered_conditions;
-                ret_code = wait_set_.wait(triggered_conditions, fastrtps::c_TimeInfinite);
+                ret_code = wait_set_.wait(triggered_conditions, eprosima::fastrtps::c_TimeInfinite);
                 if (ReturnCode_t::RETCODE_OK != ret_code)
                 {
                     // ... handle error

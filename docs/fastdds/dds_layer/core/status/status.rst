@@ -21,6 +21,12 @@ Beware that some statuses have data members that are reset every time the corres
 The only exception to this rule is when the entity has no listener attached, so the callback cannot be called.
 See the documentation of each status for details.
 
+:ref:`dds_layer_core_waitsets` provide the application with an alternative mechanism to make it aware of changes
+on status objects, by means of a :ref:`dds_layer_core_entity_commonchars_statuscondition`.
+The advantage of this mechanism is that the application can wait for changes on several entities at the same time.
+It will also help the determinism of your system, as the notification is not processed on an internal thread, as
+it is done when using listeners.
+
 The entities expose functions to access the value of its statuses.
 For a given status with name :class:`fooStatus`, the entity exposes a member function :func:`get_foo` to
 access the data in its :class:`fooStatus`.

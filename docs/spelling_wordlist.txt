@@ -52,6 +52,7 @@ cryptosystem
 datagram
 datagrams
 datarate
+datareaders
 deallocate
 deallocated
 deallocating
@@ -193,6 +194,8 @@ univocally
 unmatch
 unmatches
 unmatching
+unwakeup
+unwakening
 Valgrind
 vcstool
 wget

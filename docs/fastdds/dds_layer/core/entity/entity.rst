@@ -137,6 +137,14 @@ Listener callback to asynchronously inform the application.
 See :ref:`dds_layer_core_status` for a list of all the status objects and a description of their content.
 There you can also find which status applies to which entity type.
 
+.. _dds_layer_core_entity_commonchars_statuscondition:
+
+StatusCondition
+^^^^^^^^^^^^^^^
+Every entity owns a StatusCondition that will be notified whenever its enabled statuses change.
+The StatusCondition provides the link between an Entity and a Wait-set.
+See section :ref:`dds_layer_core_waitsets` for more information.
+
 .. _dds_layer_core_entity_commonchars_enabling:
 
 Enabling Entities

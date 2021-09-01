@@ -74,7 +74,7 @@ Where the option choices are:
 +---------------------+------------------------------------------------------------------------------------------------+
 | -typeros2           | Generates type naming compatible with ROS 2                                                    |
 +---------------------+------------------------------------------------------------------------------------------------+
-| -cs                 | Activates Case Sensitive                                                                       |
+| -cs                 | Enables Case Sensitiveity                                                                      |
 +---------------------+------------------------------------------------------------------------------------------------+
 
 Please refer to :ref:`dynamic-types` for more information on TypeObject representation.

@@ -34,6 +34,7 @@ the following commands:
     In case the PATH has not been modified, these scripts can be found in the ``<fastddsgen_directory>/scripts``
     directory.
 
+.. _fastddsgen_supported_options:
 
 Supported options
 -------------------
@@ -72,6 +73,8 @@ Where the option choices are:
 |                     | register the TypeObject representation into the factory.                                       |
 +---------------------+------------------------------------------------------------------------------------------------+
 | -typeros2           | Generates type naming compatible with ROS 2                                                    |
++---------------------+------------------------------------------------------------------------------------------------+
+| -cs                 | Enables Case Sensitivity                                                                       |
 +---------------------+------------------------------------------------------------------------------------------------+
 
 Please refer to :ref:`dynamic-types` for more information on TypeObject representation.

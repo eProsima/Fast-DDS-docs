@@ -15,6 +15,11 @@ data types using IDL files.
 Supported IDL types
 -------------------
 
+Be aware that *Fast DDS-Gen* is not case sensitive as it is specified in the
+`IDL specification <https://www.omg.org/spec/IDL/4.2/PDF>`_.
+To activate case sensitivity use option :code:`-cs` when running *Fast DDS-Gen* (see
+:ref:`fastddsgen_supported_options`).
+
 Primitive types
 ^^^^^^^^^^^^^^^
 

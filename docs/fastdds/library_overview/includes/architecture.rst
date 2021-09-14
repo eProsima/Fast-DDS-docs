@@ -31,7 +31,7 @@ Several key elements for communication are defined in the DDS layer of *Fast DDS
 The user will create these elements in their application, thus incorporating DDS application elements and creating a
 data-centric communication system.
 *Fast DDS*, following the DDS specification, defines these elements involved in communication as **Entities**.
-A DDS **Entity** is any object that supports Quality of Service configuration (QoS), and the implements listener.
+A DDS **Entity** is any object that supports Quality of Service configuration (QoS), and that implements a listener.
 
 * **QoS**.
   The mechanism by which the behavior of each of the entities is defined.

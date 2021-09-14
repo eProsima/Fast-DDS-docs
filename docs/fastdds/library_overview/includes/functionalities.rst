@@ -14,12 +14,12 @@ This applies at any point in the communication process.
 
 * **Simple Discovery**.
   This is the default discovery mechanism, which is defined in the
-  `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2>`_ and provides compatibility with other DDS implementations
+  `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2>`_ and provides compatibility with other DDS implementations.
   Here the DomainParticipants are discovered individually at an early stage to subsequently match the DataWriter and
   DataReader they implement.
 * **Discovery Server**.
-  This discovery mechanism uses a centralized discovery architecture, where servers act as a hubs for discovery meta
-  traffic.
+  This discovery mechanism uses a centralized discovery architecture, where servers act as hubs for meta traffic
+  discovery.
 * **Static Discovery**.
   This implements the discovery of DomainParticipants to each other but it is possible to skip the discovery of the
   entities contained in each DomainParticipant (DataReader/DataWriter) if these entities are known in advance by the

@@ -98,7 +98,7 @@ The application build can be used to spawn any number of publishers and subscrib
     HelloWorld.exe subscriber
 
 
-Each time <Enter\> is pressed on the Publisher, a new datagram is generated, sent over the network and receiver by
+Each time <Enter\> is pressed on the Publisher, a new datagram is generated, sent over the network and received by
 Subscribers currently online.
 If more than one subscriber is available, it can be seen that the message is equally received on all listening nodes.
 

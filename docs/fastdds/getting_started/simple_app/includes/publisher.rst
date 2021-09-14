@@ -43,7 +43,7 @@ The next block includes the C++ header files that allow the use of the Fast DDS 
     Provides the participant with the functions to serialize, deserialize and get the key of a
     specific data type.
 *   |Publisher-api|.
-    Is the object responsible for the creation of DataReaders.
+    It is the object responsible for the creation of DataWriters.
 *   |DataWriter-api|.
     Allows the application to set the value of the data to be published under a given Topic.
 *   |DataWriterListener-api|.

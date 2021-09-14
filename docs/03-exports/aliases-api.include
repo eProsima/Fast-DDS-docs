@@ -144,6 +144,7 @@
 .. |DomainParticipantQos::allocation-api| replace:: :cpp:func:`allocation()<eprosima::fastdds::dds::DomainParticipantQos::allocation>`
 .. |DomainParticipantQos::DomainParticipantQos-api| replace:: :cpp:func:`DomainParticipantQos() <eprosima::fastdds::dds::DomainParticipantQos::DomainParticipantQos>`
 .. |DomainParticipantQos::entity_factory-api| replace:: :cpp:func:`entity_factory()<eprosima::fastdds::dds::DomainParticipantQos::entity_factory>`
+.. |DomainParticipantQos::flow_controllers-api| replace:: :cpp:func:`flow_controllers()<eprosima::fastdds::dds::DomainParticipantQos::flow_controllers>`
 .. |DomainParticipantQos::properties-api| replace:: :cpp:func:`properties()<eprosima::fastdds::dds::DomainParticipantQos::properties>`
 .. |DomainParticipantQos::transport-api| replace:: :cpp:func:`transport()<eprosima::fastdds::dds::DomainParticipantQos::transport>`
 .. |DomainParticipantQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DomainParticipantQos::user_data>`

@@ -44,6 +44,8 @@ Internally it contains the following |QosPolicy-api| objects:
 +--------------------------------+----------------------------------------------+----------+
 | |TransportConfigQos|           | |DomainParticipantQos::transport-api|        | No       |
 +--------------------------------+----------------------------------------------+----------+
+| |FlowControllersQos|           | |DomainParticipantQos::flow_controllers-api| | No       |
++--------------------------------+----------------------------------------------+----------+
 
 Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.

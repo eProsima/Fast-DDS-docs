@@ -202,6 +202,15 @@ XML
     :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
     :end-before: <!--><-->
 
+
+.. _flowcontrollersqos:
+
+FlowControllersQos
+^^^^^^^^^^^^^^^^^^
+
+This QoS configures the list of flow controllers of a participant, so they can later be used on
+its DataWriters.
+
 .. _participantresourcelimitsqos:
 
 ParticipantResourceLimitsQos

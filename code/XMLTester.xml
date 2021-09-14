@@ -37,12 +37,12 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_TOPIC<-->
-<publisher profile_name="publisher_xml_conf_topic_profile">
+<data_writer profile_name="publisher_xml_conf_topic_profile">
     <topic>
         <dataType>HelloWorldType</dataType>
         <name>HelloWorldTopic</name>
     </topic>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_topic_profile">
     <topic>
@@ -53,9 +53,9 @@
 <!--><-->
 
 <!-->CONF_QOS_STATIC_DISCOVERY_USERID<-->
-<publisher profile_name="publisher_xml_conf_static_discovery">
+<data_writer profile_name="publisher_xml_conf_static_discovery">
     <userDefinedID>3</userDefinedID>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_static_discovery">
     <userDefinedID>5</userDefinedID>
@@ -63,13 +63,13 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_RELIABILITY<-->
-<publisher profile_name="publisher_xml_conf_reliability_profile">
+<data_writer profile_name="publisher_xml_conf_reliability_profile">
     <qos>
         <reliability>
             <kind>RELIABLE</kind>
         </reliability>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_reliability_profile">
     <qos>
@@ -81,13 +81,13 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_HISTORY<-->
-<publisher profile_name="publisher_xml_conf_history_profile">
+<data_writer profile_name="publisher_xml_conf_history_profile">
     <topic>
         <historyQos>
             <kind>KEEP_ALL</kind>
         </historyQos>
     </topic>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_history_profile">
     <topic>
@@ -100,13 +100,13 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_DURABILITY<-->
-<publisher profile_name="publisher_xml_conf_durability_profile">
+<data_writer profile_name="publisher_xml_conf_durability_profile">
     <qos>
         <durability>
             <kind>TRANSIENT_LOCAL</kind>
          </durability>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_durability_profile">
     <qos>
@@ -118,7 +118,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_LIFESPAN<-->
-<publisher profile_name="publisher_xml_conf_lifespan_profile">
+<data_writer profile_name="publisher_xml_conf_lifespan_profile">
     <qos>
         <lifespan>
             <duration>
@@ -126,7 +126,7 @@
             </duration>
         </lifespan>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_lifespan_profile">
     <qos>
@@ -140,7 +140,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS<-->
-<publisher profile_name="publisher_xml_conf_disable_positive_acks_profile">
+<data_writer profile_name="publisher_xml_conf_disable_positive_acks_profile">
     <qos>
         <disablePositiveAcks>
             <enabled>true</enabled>
@@ -149,7 +149,7 @@
             </duration>
         </disablePositiveAcks>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_disable_positive_acks_profile">
     <qos>
@@ -161,7 +161,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_DEADLINE<-->
-<publisher profile_name="publisher_xml_conf_deadline_profile">
+<data_writer profile_name="publisher_xml_conf_deadline_profile">
     <qos>
         <deadline>
             <period>
@@ -169,7 +169,7 @@
             </period>
         </deadline>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_deadline_profile">
     <qos>
@@ -183,7 +183,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_LIVELINESS<-->
-<publisher profile_name="publisher_xml_conf_liveliness_profile">
+<data_writer profile_name="publisher_xml_conf_liveliness_profile">
     <qos>
       <liveliness>
 	<announcement_period>
@@ -196,7 +196,7 @@
 	<kind>AUTOMATIC</kind>
       </liveliness>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_liveliness_profile">
     <qos>
@@ -211,13 +211,13 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS<-->
-<publisher profile_name="publisher_xml_conf_resource_limits_profile">
+<data_writer profile_name="publisher_xml_conf_resource_limits_profile">
     <topic>
         <resourceLimitsQos>
             <max_samples>200</max_samples>
         </resourceLimitsQos>
     </topic>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_resource_limits_profile">
     <topic>
@@ -229,7 +229,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_UNICAST_LOCATORS<-->
-<publisher profile_name="publisher_xml_conf_unicast_locators_profile">
+<data_writer profile_name="publisher_xml_conf_unicast_locators_profile">
     <unicastLocatorList>
         <locator>
             <udpv4>
@@ -237,7 +237,7 @@
             </udpv4>
         </locator>
     </unicastLocatorList>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_unicast_locators_profile">
     <unicastLocatorList>
@@ -251,7 +251,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_MULTICAST_LOCATORS<-->
-<publisher profile_name="publisher_xml_conf_multicast_locators_profile">
+<data_writer profile_name="publisher_xml_conf_multicast_locators_profile">
     <multicastLocatorList>
         <locator>
             <udpv4>
@@ -260,7 +260,7 @@
             </udpv4>
         </locator>
     </multicastLocatorList>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_multicast_locators_profile">
     <multicastLocatorList>
@@ -275,7 +275,7 @@
 <!--><-->
 
 <!-->CONF-QOS-DATASHARING<-->
-<publisher profile_name="publisher_profile_qos_datasharing">
+<data_writer profile_name="publisher_profile_qos_datasharing">
     <qos>
         <data_sharing>
             <kind>AUTOMATIC</kind>
@@ -285,7 +285,7 @@
             </domain_ids>
         </data_sharing>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_profile_qos_datasharing">
     <qos>
@@ -301,11 +301,11 @@
 <!--><-->
 
 <!-->CONF-QOS-KEY<-->
-<publisher profile_name="publisher_profile_qos_key">
+<data_writer profile_name="publisher_profile_qos_key">
     <topic>
         <kind>WITH_KEY</kind>
     </topic>
-</publisher>
+</data_writer>
 <!--><-->
 
 <!-->CONF-QOS-RESOURCELIMIT-INSTANCES<-->
@@ -324,7 +324,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <publisher profile_name="pub_11">
+    <data_writer profile_name="pub_11">
         <topic>
             <name>TopicName</name>
             <dataType>TopicDataTypeName</dataType>
@@ -337,9 +337,9 @@
                 </names>
             </partition>
         </qos>
-    </publisher>
+    </data_writer>
 
-    <publisher profile_name="pub_12">
+    <data_writer profile_name="pub_12">
         <topic>
             <name>TopicName</name>
             <dataType>TopicDataTypeName</dataType>
@@ -351,16 +351,16 @@
                 </names>
             </partition>
         </qos>
-    </publisher>
+    </data_writer>
 
-    <publisher profile_name="pub_21">
+    <data_writer profile_name="pub_21">
         <topic>
             <name>TopicName</name>
             <dataType>TopicDataTypeName</dataType>
         </topic>
-    </publisher>
+    </data_writer>
 
-    <publisher profile_name="pub_22">
+    <data_writer profile_name="pub_22">
         <topic>
             <name>TopicName</name>
             <dataType>TopicDataTypeName</dataType>
@@ -372,7 +372,7 @@
                 </names>
             </partition>
         </qos>
-    </publisher>
+    </data_writer>
 
     <subscriber profile_name="subs_31">
         <topic>
@@ -680,22 +680,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <publisher profile_name="publisher_profile_qos_flowcontroller">
+    <data_writer profile_name="publisher_profile_qos_flowcontroller">
         <throughputController>
             <bytesPerPeriod>300000</bytesPerPeriod>
             <periodMillisecs>1000</periodMillisecs>
         </throughputController>
-    </publisher>
+    </data_writer>
 <!--><-->
 
 <!-->CONF-QOS-PUBLISHMODE<-->
-<publisher profile_name="publisher_profile_qos_publishmode">
+<data_writer profile_name="publisher_profile_qos_publishmode">
     <qos>
         <publishMode>
             <kind>ASYNCHRONOUS</kind>
         </publishMode>
     </qos>
-</publisher>
+</data_writer>
 <!--><-->
 
 <!-->CONF-QOS-DISABLE-DISCOVERY<-->
@@ -879,7 +879,7 @@
 <!--><-->
 
 <!-->SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS<-->
-<publisher profile_name="secure_publisher_xml_profile">
+<data_writer profile_name="secure_publisher_xml_profile">
     <propertiesPolicy>
         <properties>
             <!-- Encrypt RTPS submessages -->
@@ -895,7 +895,7 @@
             </property>
         </properties>
     </propertiesPolicy>
-</publisher>
+</data_writer>
 <!--><-->
 
 <!-->SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS<-->
@@ -1133,9 +1133,9 @@
     </rtps>
 </participant>
 
-<publisher profile_name="publisher_profile">
+<data_writer profile_name="publisher_profile">
     <!-- ... -->
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_profile">
     <!-- ... -->
@@ -1488,7 +1488,7 @@
 <!--><-->
 
 <!-->XML-PUBLISHER-COMPARISON<-->
-<publisher profile_name="my_publisher_profile">
+<data_writer profile_name="my_publisher_profile">
     <topic>
         <!-- TOPIC_TYPE -->
     </topic>
@@ -1496,7 +1496,7 @@
         <!-- QOS -->
     </qos>
     <!-- Other elements -->
-</publisher>
+</data_writer>
 <!--><-->
 
 <!-->XML-DATAREADER-COMPARISON<-->
@@ -1826,7 +1826,7 @@
 <!--><-->
 </subscriber>
 
-<publisher profile_name="pub_durabilityservice">
+<data_writer profile_name="pub_durabilityservice">
 <qos>
 <!-->XML-DURABILITYSERVICE<-->
 <!--
@@ -1843,7 +1843,7 @@
 -->
 <!--><-->
 </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="sub_liveliness">
 <qos>
@@ -1938,14 +1938,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <publisher profile_name="writer_profile_qos_resource_limit">
+    <data_writer profile_name="writer_profile_qos_resource_limit">
         <!-- Limit to 3 matching readers -->
         <matchedSubscribersAllocation>
             <initial>3</initial>
             <maximum>3</maximum>
             <increment>0</increment>
         </matchedSubscribersAllocation>
-    </publisher>
+    </data_writer>
 <!--><-->
 
 <!-->CONF-ALLOCATION-QOS-READER<-->
@@ -1996,23 +1996,23 @@
         </rtps>
     </participant>
 
-    <publisher profile_name="alloc_qos_example_pub_for_topic_1">
+    <data_writer profile_name="alloc_qos_example_pub_for_topic_1">
         <!-- we know we will have three matching subscribers -->
         <matchedSubscribersAllocation>
             <initial>3</initial>
             <maximum>3</maximum>
             <increment>0</increment>
         </matchedSubscribersAllocation>
-    </publisher>
+    </data_writer>
 
-    <publisher profile_name="alloc_qos_example_pub_for_topic_2">
+    <data_writer profile_name="alloc_qos_example_pub_for_topic_2">
         <!-- we know we will have two matching subscribers -->
         <matchedSubscribersAllocation>
             <initial>2</initial>
             <maximum>2</maximum>
             <increment>0</increment>
         </matchedSubscribersAllocation>
-    </publisher>
+    </data_writer>
 
     <subscriber profile_name="alloc_qos_example_sub">
         <!-- we know we will only have one matching publisher -->
@@ -2356,14 +2356,14 @@
         </rtps>
     </participant>
 
-    <publisher profile_name="uc_publisher_xml_conf_static_discovery">
+    <data_writer profile_name="uc_publisher_xml_conf_static_discovery">
         <topic>
             <name>HelloWorldTopic</name>
             <dataType>HelloWorld</dataType>
         </topic>
         <userDefinedID>1</userDefinedID>
         <entityID>2</entityID>
-    </publisher>
+    </data_writer>
 <!--><-->
 
 <!-->STATIC_DISCOVERY_USE_CASE_SUB<-->
@@ -2404,23 +2404,23 @@
     </participant>
 
     <!-- Default publisher profile -->
-    <publisher profile_name="default publisher profile" is_default_profile="true">
+    <data_writer profile_name="default publisher profile" is_default_profile="true">
         <qos>
             <publishMode>
                 <kind>SYNCHRONOUS</kind>
             </publishMode>
         </qos>
         <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
-    </publisher>
+    </data_writer>
 
     <!-- Publisher profile for topic helloworld -->
-    <publisher profile_name="helloworld">
+    <data_writer profile_name="helloworld">
         <qos>
             <publishMode>
                 <kind>SYNCHRONOUS</kind>
             </publishMode>
         </qos>
-    </publisher>
+    </data_writer>
 
     <!-- Request subscriber profile for services -->
     <subscriber profile_name="service">
@@ -2428,13 +2428,13 @@
     </subscriber>
 
     <!-- Request publisher profile for clients -->
-    <publisher profile_name="client">
+    <data_writer profile_name="client">
         <qos>
             <publishMode>
                 <kind>ASYNCHRONOUS</kind>
             </publishMode>
         </qos>
-    </publisher>
+    </data_writer>
 
     <!-- Request subscriber profile for server of service "add_two_ints" -->
     <subscriber profile_name="rq/add_two_intsRequest">
@@ -2889,7 +2889,7 @@
 <!--><-->
 
 <!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER<-->
-<publisher profile_name="secure_datawriter_conf_crypto_plugin_xml_profile">
+<data_writer profile_name="secure_datawriter_conf_crypto_plugin_xml_profile">
     <propertiesPolicy>
         <properties>
             <!-- Only if DDS:Access:Permissions plugin is not enabled -->
@@ -2904,7 +2904,7 @@
             </property>
         </properties>
     </propertiesPolicy>
-</publisher>
+</data_writer>
 <!--><-->
 
 <!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER<-->
@@ -3343,7 +3343,7 @@
         </rtps>
     </participant>
 
-    <publisher profile_name="pub_profile_example">
+    <data_writer profile_name="pub_profile_example">
         <topic>
             <kind>WITH_KEY</kind>
             <name>TopicName</name>
@@ -3495,7 +3495,7 @@
         <userDefinedID>45</userDefinedID>
 
         <entityID>76</entityID>
-    </publisher>
+    </data_writer>
 
     <subscriber profile_name="sub_profile_example">
         <topic>
@@ -3764,7 +3764,7 @@
 <!-->QoS Examples<-->
 
 <!-->XML_DEADLINE<-->
-<publisher profile_name="publisher_xml_conf_deadline_profile">
+<data_writer profile_name="publisher_xml_conf_deadline_profile">
     <qos>
         <deadline>
             <period>
@@ -3773,7 +3773,7 @@
             </period>
         </deadline>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_deadline_profile">
     <qos>
@@ -3798,7 +3798,7 @@
 
 
 <!-->XML_LIFESPAN<-->
-<publisher profile_name="publisher_xml_conf_lifespan_profile">
+<data_writer profile_name="publisher_xml_conf_lifespan_profile">
     <qos>
         <lifespan>
             <duration>
@@ -3807,7 +3807,7 @@
             </duration>
         </lifespan>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_lifespan_profile">
     <qos>
@@ -3822,7 +3822,7 @@
 <!--><-->
 
 <!-->XML-PARTITION<-->
-<publisher profile_name="pub_partition_example">
+<data_writer profile_name="pub_partition_example">
 <qos>
     <partition>
         <names>
@@ -3831,7 +3831,7 @@
         </names>
     </partition>
 </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="sub_partition_example">
 <qos>
@@ -3846,7 +3846,7 @@
 <!--><-->
 
 <!-->XML_RELIABILITY<-->
-<publisher profile_name="publisher_xml_conf_reliability_profile">
+<data_writer profile_name="publisher_xml_conf_reliability_profile">
     <qos>
         <reliability>
             <kind>RELIABLE</kind>
@@ -3856,7 +3856,7 @@
             </max_blocking_time>
         </reliability>
     </qos>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_reliability_profile">
     <qos>
@@ -3868,7 +3868,7 @@
 <!--><-->
 
 <!-->XML_RESOURCE_LIMITS<-->
-<publisher profile_name="publisher_xml_conf_resource_limits_profile">
+<data_writer profile_name="publisher_xml_conf_resource_limits_profile">
     <topic>
         <resourceLimitsQos>
             <max_samples>200</max_samples>
@@ -3877,7 +3877,7 @@
             <allocated_samples>50</allocated_samples>
         </resourceLimitsQos>
     </topic>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_resource_limits_profile">
     <topic>
@@ -3925,18 +3925,18 @@
 <!--><-->
 
 <!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
-<publisher profile_name="alloc_qos_example_pub_for_topic_1">
+<data_writer profile_name="alloc_qos_example_pub_for_topic_1">
     <!-- we know we will have three matching subscribers -->
     <matchedSubscribersAllocation>
         <initial>3</initial>
         <maximum>3</maximum>
         <increment>0</increment>
     </matchedSubscribersAllocation>
-</publisher>
+</data_writer>
 <!--><-->
 
 <!-->XML_RTPS_ENDPOINT_QOS<-->
-<publisher profile_name="publisher_xml_conf_unicast_locators_profile">
+<data_writer profile_name="publisher_xml_conf_unicast_locators_profile">
     <userDefinedID>3</userDefinedID>
     <entityID>2</entityID> <!-- Int16 -->
     <unicastLocatorList>
@@ -3956,7 +3956,7 @@
     </multicastLocatorList>
     <!-- The history memory policy is changed to DYNAMIC_RESERVE -->
     <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
-</publisher>
+</data_writer>
 
 <subscriber profile_name="subscriber_xml_conf_unicast_locators_profile">
     <userDefinedID>5</userDefinedID>
@@ -3981,7 +3981,7 @@
 <!--><-->
 
 <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
-<publisher profile_name="pub_profile_name">
+<data_writer profile_name="pub_profile_name">
     <times> <!-- writerTimesType -->
         <initialHeartbeatDelay> <!-- DURATION -->
             <sec>0</sec>
@@ -4002,7 +4002,7 @@
     </times>
     <!--You can also change the values of DisablePositiveACKsQosPolicy.-->
     <!--See DisablePositiveACKsQosPolicy section for further details-->
-</publisher>
+</data_writer>
 <!--><-->
 
 <!-->XML_RTPS_RELIABLE_READER_QOS<-->

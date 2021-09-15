@@ -151,6 +151,12 @@
 .. |DomainParticipantQos::wire_protocol-api| replace:: :cpp:func:`wire_protocol()<eprosima::fastdds::dds::DomainParticipantQos::wire_protocol>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
 
+.. |FlowControllerDescriptor-api| replace:: :cpp:class:`FlowControllerDescriptor<eprosima::fastdds::rtps::FlowControllerDescriptor>`
+.. |FlowControllerDescriptor::name-api| replace:: :cpp:member:`name<eprosima::fastdds::rtps::FlowControllerDescriptor::name>`
+.. |FlowControllerDescriptor::scheduler-api| replace:: :cpp:member:`name<eprosima::fastdds::rtps::FlowControllerDescriptor::scheduler>`
+.. |FlowControllerDescriptor::max_bytes_per_period-api| replace:: :cpp:member:`name<eprosima::fastdds::rtps::FlowControllerDescriptor::max_bytes_per_period>`
+.. |FlowControllerDescriptor::period_ms-api| replace:: :cpp:member:`name<eprosima::fastdds::rtps::FlowControllerDescriptor::period_ms>`
+
 .. |LoanableSequence-api| replace:: :cpp:class:`LoanableSequence <eprosima::fastdds::dds::LoanableSequence>`
 
 .. |Publisher-api| replace:: :cpp:class:`Publisher <eprosima::fastdds::dds::Publisher>`

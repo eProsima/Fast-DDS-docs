@@ -210,6 +210,27 @@ FlowControllersQos
 
 This QoS configures the list of flow controllers of a participant, so they can later be used on
 its DataWriters.
+It consists of a vector of |FlowControllerDescriptor-api|, which has the following fields.
+
+Please refer to :ref:`flow-controllers` section for more information.
+
++------------------------------------------------------+-------------------------------------+-----------------------+
+| Data Member Name                                     | Type                                | Default Value         |
++======================================================+=====================================+=======================+
+| |FlowControllerDescriptor::name-api|                 | bool                                | ``false``             |
++------------------------------------------------------+-------------------------------------+-----------------------+
+| |FlowControllerDescriptor::scheduler-api|            | |FlowControllerSchedulerPolicy-api| | ``FIFO``              |
++------------------------------------------------------+-------------------------------------+-----------------------+
+| |FlowControllerDescriptor::max_bytes_per_period-api| | int32_t                             | ``0`` (i.e. infinite) |
++------------------------------------------------------+-------------------------------------+-----------------------+
+| |FlowControllerDescriptor::period_ms-api|            | uint64_t                            | ``100``               |
++------------------------------------------------------+-------------------------------------+-----------------------+
+
+.. note::
+     This QoS Policy concerns to DomainParticipant entities.
+     :raw-html:`<br />`
+     It cannot be changed on enabled entities.
+
 
 .. _participantresourcelimitsqos:
 

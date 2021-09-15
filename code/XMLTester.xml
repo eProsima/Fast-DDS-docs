@@ -681,6 +681,8 @@
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
     <data_writer profile_name="publisher_profile_qos_flowcontroller">
+        <!-- NOTE: This tag has been deprecated but doesn't have an
+             equivalent XML tag yet -->
         <throughputController>
             <bytesPerPeriod>300000</bytesPerPeriod>
             <periodMillisecs>1000</periodMillisecs>

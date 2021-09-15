@@ -951,6 +951,9 @@ List of structure members:
 * |ThroughputControllerDescriptor::periodMillisecs-api|:
   It specifies the window of time in which no more than `bytesPerPeriod` bytes are allowed.
 
+.. warning:
+    This has been deprecated in favor of |FlowControllersQos|
+
 Example
 """""""
 

@@ -473,7 +473,9 @@
 .. |OfferedIncompatibleQosStatus-api| replace:: :cpp:type:`OfferedIncompatibleQosStatus<eprosima::fastdds::dds::OfferedIncompatibleQosStatus>`
 
 .. |PublishModeQosPolicy-api| replace:: :cpp:class:`PublishModeQosPolicy<eprosima::fastdds::dds::PublishModeQosPolicy>`
+.. |PublishModeQosPolicy::flow_ctrl_name-api| replace:: :cpp:member:`flow_controller_name<eprosima::fastdds::dds::PublishModeQosPolicy::flow_controller_name>`
 .. |PublishModeQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::PublishModeQosPolicy::kind>`
+.. |FASTDDS_FLOW_CONTROLLER_DEFAULT-api| replace:: :cpp:var:`FASTDDS_FLOW_CONTROLLER_DEFAULT<eprosima::fastdds::rtps::FASTDDS_FLOW_CONTROLLER_DEFAULT>`
 
 .. |PublishModeQosPolicyKind-api| replace:: :cpp:enum:`PublishModeQosPolicyKind<eprosima::fastdds::dds::PublishModeQosPolicyKind>`
 .. |SYNCHRONOUS_PUBLISH_MODE-api| replace:: :cpp:enumerator:`SYNCHRONOUS_PUBLISH_MODE<eprosima::fastdds::dds::PublishModeQosPolicyKind::SYNCHRONOUS_PUBLISH_MODE>`

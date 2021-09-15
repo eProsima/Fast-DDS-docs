@@ -420,13 +420,19 @@ PublishModeQosPolicy
 This QoS Policy configures how the |DataWriter| sends the data.
 See |PublishModeQosPolicy-api|.
 
+It also configures the name of the flow controller to use when asynchronous publishing is used.
+It should be the name of a flow controller registered on the creation of the DomainParticipant.
+See |FlowControllersQos|.
+
 List of QoS Policy data members:
 
-+------------------------------------------+---------------------------------+-----------------------------------------+
-| Data Member Name                         | Type                            | Default Value                           |
-+==========================================+=================================+=========================================+
-| |PublishModeQosPolicy::kind-api|         | :ref:`publishmodeqospolicykind` | |SYNCHRONOUS_PUBLISH_MODE-api|          |
-+------------------------------------------+---------------------------------+-----------------------------------------+
++--------------------------------------------+---------------------------------+-----------------------------------------+
+| Data Member Name                           | Type                            | Default Value                           |
++============================================+=================================+=========================================+
+| |PublishModeQosPolicy::kind-api|           | :ref:`publishmodeqospolicykind` | |SYNCHRONOUS_PUBLISH_MODE-api|          |
++--------------------------------------------+---------------------------------+-----------------------------------------+
+| |PublishModeQosPolicy::flow_ctrl_name-api| | const char *                    | |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|   |
++--------------------------------------------+---------------------------------+-----------------------------------------+
 
 .. note::
      This QoS Policy concerns to DataWriter entities.

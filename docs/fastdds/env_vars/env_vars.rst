@@ -117,6 +117,11 @@ The following example shows how to set the address of two remote discovery serve
     ``44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41``.
     This prefix schema has been chosen for its ASCII translation: ``DS<id_in_hex>_EPROSIMA``.
 
+.. important::
+    This environment variable can be changed at runtime adding new remote servers to a |SERVER|, |BACKUP| or |CLIENT|
+    (that has been initialized with this environment variable previously) if loaded from an environment file using
+    :ref:`env_vars_fastdds_environment_file`.
+
 .. _env_vars_fastdds_statistics:
 
 ``FASTDDS_STATISTICS``
@@ -154,3 +159,24 @@ be set as follows:
     (for more information please refer to :ref:`auto_enabling_statistics_datawriters`).
     The statistics DataWriters that will be enabled is the union between the ones specified in the XML file (if loaded)
     and the ones stated in the environment variable (if set).
+
+.. _env_vars_fastdds_environment_file:
+
+``FASTDDS_ENVIRONMENT_FILE``
+----------------------------
+
+Setting this environment variable to an existing ``json`` file allows to load the environment variables from the file
+instead of from the environment.
+This allows to change the value of some environment variables at run time with just modifying and saving the changes to
+the file.
+The environment value can be either an absolute or relative path.
+The file format is as follows:
+
+.. literalinclude:: /../code/environment_file_format.json
+    :language: JSON
+
+.. important::
+    The environment variables set in the environment file have precedence over the environment.
+
+.. warning::
+    Currently only ``ROS_DISCOVERY_SERVER`` environment variable allows for changes at run time.

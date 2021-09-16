@@ -38,6 +38,8 @@ The recommended profile can be accessed through the constant |STATISTICS_DATAWRI
      - |TRANSIENT_LOCAL_DURABILITY_QOS-api|
    * - |PublishModeQosPolicyKind-api|
      - |ASYNCHRONOUS_PUBLISH_MODE-api|
+   * - |PublishModeQosPolicy::flow_ctrl_name-api|
+     - |FASTDDS_STATISTICS_FLOW_CONTROLLER_DEFAULT-api|
    * - |HistoryQosPolicyKind-api|
      - |KEEP_LAST_HISTORY_QOS-api|
    * - |history_depth-api|

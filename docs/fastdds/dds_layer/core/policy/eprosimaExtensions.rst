@@ -447,13 +447,19 @@ See |FlowControllersQos|.
 
 List of QoS Policy data members:
 
-+--------------------------------------------+---------------------------------+-----------------------------------------+
-| Data Member Name                           | Type                            | Default Value                           |
-+============================================+=================================+=========================================+
-| |PublishModeQosPolicy::kind-api|           | :ref:`publishmodeqospolicykind` | |SYNCHRONOUS_PUBLISH_MODE-api|          |
-+--------------------------------------------+---------------------------------+-----------------------------------------+
-| |PublishModeQosPolicy::flow_ctrl_name-api| | const char *                    | |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|   |
-+--------------------------------------------+---------------------------------+-----------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - |PublishModeQosPolicy::kind-api|
+     - :ref:`publishmodeqospolicykind`
+     - |SYNCHRONOUS_PUBLISH_MODE-api|
+   * - |PublishModeQosPolicy::flow_ctrl_name-api|
+     - const char *
+     - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::
      This QoS Policy concerns to DataWriter entities.

@@ -4114,7 +4114,7 @@ void dds_usecase_examples()
         // .... create participant and publisher
 
         // Link writer to the registered flow controller.
-        // Note that ASYNCHRONOUS_PUBLISH_MODE should be used
+        // Note that ASYNCHRONOUS_PUBLISH_MODE must be used
         DataWriterQos qos;
         qos.publish_mode().kind = ASYNCHRONOUS_PUBLISH_MODE;
         qos.publish_mode().flow_controller_name = flow_controller_name;

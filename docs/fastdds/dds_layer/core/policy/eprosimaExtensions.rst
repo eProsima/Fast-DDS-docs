@@ -210,9 +210,7 @@ FlowControllersQos
 
 This QoS configures the list of flow controllers of a participant, so they can later be used on
 its DataWriters.
-It consists of a vector of |FlowControllerDescriptor-api|, which has the following fields.
-
-Please refer to :ref:`flow-controllers` section for more information.
+It consists of a vector of |FlowControllerDescriptor-api|, which has the following fields:
 
 +------------------------------------------------------+-------------------------------------+-------------------------+
 | Data Member Name                                     | Type                                | Default Value           |
@@ -226,8 +224,11 @@ Please refer to :ref:`flow-controllers` section for more information.
 | |FlowControllerDescriptor::period_ms-api|            | uint64_t                            | ``100``                 |
 +------------------------------------------------------+-------------------------------------+-------------------------+
 
+Please refer to :ref:`flow-controllers` section for more information.
+
+
 .. note::
-     This QoS Policy concerns to DomainParticipant entities.
+     This QoS Policy concerns to |DomainParticipant| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -978,7 +979,7 @@ List of structure members:
 * |ThroughputControllerDescriptor::periodMillisecs-api|:
   It specifies the window of time in which no more than `bytesPerPeriod` bytes are allowed.
 
-.. warning:
+.. warning::
     This has been deprecated in favor of |FlowControllersQos|
 
 Example

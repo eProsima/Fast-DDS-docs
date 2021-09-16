@@ -158,7 +158,9 @@ Scheduling policy
 ^^^^^^^^^^^^^^^^^
 
 There are different kinds of flow controllers, depending on the scheduling policy used.
-All of them will limit the number of bytes sent to the network to no more than certain bytes during certain period.
+All of them will limit the number of bytes sent to the network to no more than
+|FlowControllerDescriptor::max_bytes_per_period-api| bytes during |FlowControllerDescriptor::period_ms-api|
+milliseconds.
 They only differ in the way they decide the order in which the samples are sent.
 
 * |FIFO_SCHED_POLICY-api| will output samples on a first come, first served order.

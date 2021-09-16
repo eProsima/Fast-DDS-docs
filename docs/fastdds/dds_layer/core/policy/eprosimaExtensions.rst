@@ -210,7 +210,7 @@ FlowControllersQos
 
 This QoS configures the list of flow controllers of a participant, so they can later be used on
 its DataWriters.
-It consists of a vector of |FlowControllerDescriptor-api|, which has the following fields:
+It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has the following fields:
 
 +------------------------------------------------------+-------------------------------------+-------------------------+
 | Data Member Name                                     | Type                                | Default Value           |

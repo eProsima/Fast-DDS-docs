@@ -152,7 +152,7 @@ DataWriters referencing the same flow controller.
 
 Flow controllers should be given a name so they can later on be referenced by the DataWriters.
 A default, unlimited, |FIFO_SCHED_POLICY-api| flow controller is always available with name
-|FASTDDS_FLOW_CONTROLLER_DEFAULT|.
+|FASTDDS_FLOW_CONTROLLER_DEFAULT-api|.
 
 Scheduling policy
 ^^^^^^^^^^^^^^^^^

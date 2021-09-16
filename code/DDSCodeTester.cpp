@@ -4101,8 +4101,9 @@ void dds_usecase_examples()
         //CONF-QOS-FLOWCONTROLLER
         // Limit to 300kb per second.
         static const char* flow_controller_name = "example_flow_controller";
-        fastdds::rtps::FlowControllerDescriptor flow_control_300k_per_sec;
+        eprosima::fastdds::rtps::FlowControllerDescriptor flow_control_300k_per_sec;
         flow_control_300k_per_sec.name = flow_controller_name;
+        flow_control_300k_per_sec.scheduler = eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::FIFO;
         flow_control_300k_per_sec.max_bytes_per_period = 300 * 1000;
         flow_control_300k_per_sec.period_ms = 1000;
         

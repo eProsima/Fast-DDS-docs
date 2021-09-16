@@ -157,6 +157,12 @@
 .. |FlowControllerDescriptor::max_bytes_per_period-api| replace:: :cpp:member:`name<eprosima::fastdds::rtps::FlowControllerDescriptor::max_bytes_per_period>`
 .. |FlowControllerDescriptor::period_ms-api| replace:: :cpp:member:`name<eprosima::fastdds::rtps::FlowControllerDescriptor::period_ms>`
 
+.. |FlowControllerSchedulerPolicy-api| replace:: :cpp:enum:`FlowControllerSchedulerPolicy<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy>`
+.. |FIFO_SCHED_POLICY-api| replace:: :cpp:enumerator:`FIFO<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::FIFO>`
+.. |ROUND_ROBIN_SCHED_POLICY-api| replace:: :cpp:enumerator:`ROUND_ROBIN<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::ROUND_ROBIN>`
+.. |HIGH_PRIORITY_SCHED_POLICY-api| replace:: :cpp:enumerator:`HIGH_PRIORITY<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::HIGH_PRIORITY>`
+.. |PRIORITY_WITH_RESERVATION_SCHED_POLICY-api| replace:: :cpp:enumerator:`PRIORITY_WITH_RESERVATION<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::PRIORITY_WITH_RESERVATION>`
+
 .. |LoanableSequence-api| replace:: :cpp:class:`LoanableSequence <eprosima::fastdds::dds::LoanableSequence>`
 
 .. |Publisher-api| replace:: :cpp:class:`Publisher <eprosima::fastdds::dds::Publisher>`

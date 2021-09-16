@@ -37,7 +37,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_TOPIC<-->
-<data_writer profile_name="publisher_xml_conf_topic_profile">
+<data_writer profile_name="writer_xml_conf_topic_profile">
     <topic>
         <dataType>HelloWorldType</dataType>
         <name>HelloWorldTopic</name>
@@ -53,7 +53,7 @@
 <!--><-->
 
 <!-->CONF_QOS_STATIC_DISCOVERY_USERID<-->
-<data_writer profile_name="publisher_xml_conf_static_discovery">
+<data_writer profile_name="writer_xml_conf_static_discovery">
     <userDefinedID>3</userDefinedID>
 </data_writer>
 
@@ -63,7 +63,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_RELIABILITY<-->
-<data_writer profile_name="publisher_xml_conf_reliability_profile">
+<data_writer profile_name="writer_xml_conf_reliability_profile">
     <qos>
         <reliability>
             <kind>RELIABLE</kind>
@@ -81,7 +81,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_HISTORY<-->
-<data_writer profile_name="publisher_xml_conf_history_profile">
+<data_writer profile_name="writer_xml_conf_history_profile">
     <topic>
         <historyQos>
             <kind>KEEP_ALL</kind>
@@ -100,7 +100,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_DURABILITY<-->
-<data_writer profile_name="publisher_xml_conf_durability_profile">
+<data_writer profile_name="writer_xml_conf_durability_profile">
     <qos>
         <durability>
             <kind>TRANSIENT_LOCAL</kind>
@@ -118,7 +118,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_LIFESPAN<-->
-<data_writer profile_name="publisher_xml_conf_lifespan_profile">
+<data_writer profile_name="writer_xml_conf_lifespan_profile">
     <qos>
         <lifespan>
             <duration>
@@ -140,7 +140,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS<-->
-<data_writer profile_name="publisher_xml_conf_disable_positive_acks_profile">
+<data_writer profile_name="writer_xml_conf_disable_positive_acks_profile">
     <qos>
         <disablePositiveAcks>
             <enabled>true</enabled>
@@ -161,7 +161,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_DEADLINE<-->
-<data_writer profile_name="publisher_xml_conf_deadline_profile">
+<data_writer profile_name="writer_xml_conf_deadline_profile">
     <qos>
         <deadline>
             <period>
@@ -183,7 +183,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_LIVELINESS<-->
-<data_writer profile_name="publisher_xml_conf_liveliness_profile">
+<data_writer profile_name="writer_xml_conf_liveliness_profile">
     <qos>
       <liveliness>
 	<announcement_period>
@@ -211,7 +211,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS<-->
-<data_writer profile_name="publisher_xml_conf_resource_limits_profile">
+<data_writer profile_name="writer_xml_conf_resource_limits_profile">
     <topic>
         <resourceLimitsQos>
             <max_samples>200</max_samples>
@@ -229,7 +229,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_UNICAST_LOCATORS<-->
-<data_writer profile_name="publisher_xml_conf_unicast_locators_profile">
+<data_writer profile_name="writer_xml_conf_unicast_locators_profile">
     <unicastLocatorList>
         <locator>
             <udpv4>
@@ -251,7 +251,7 @@
 <!--><-->
 
 <!-->PUBSUB_API_CONF_PUBSUB_MULTICAST_LOCATORS<-->
-<data_writer profile_name="publisher_xml_conf_multicast_locators_profile">
+<data_writer profile_name="writer_xml_conf_multicast_locators_profile">
     <multicastLocatorList>
         <locator>
             <udpv4>
@@ -275,7 +275,7 @@
 <!--><-->
 
 <!-->CONF-QOS-DATASHARING<-->
-<data_writer profile_name="publisher_profile_qos_datasharing">
+<data_writer profile_name="writer_profile_qos_datasharing">
     <qos>
         <data_sharing>
             <kind>AUTOMATIC</kind>
@@ -301,7 +301,7 @@
 <!--><-->
 
 <!-->CONF-QOS-KEY<-->
-<data_writer profile_name="publisher_profile_qos_key">
+<data_writer profile_name="writer_profile_qos_key">
     <topic>
         <kind>WITH_KEY</kind>
     </topic>
@@ -680,7 +680,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <data_writer profile_name="publisher_profile_qos_flowcontroller">
+    <data_writer profile_name="writer_profile_qos_flowcontroller">
         <!-- NOTE: This tag has been deprecated but doesn't have an
              equivalent XML tag yet -->
         <throughputController>
@@ -691,7 +691,7 @@
 <!--><-->
 
 <!-->CONF-QOS-PUBLISHMODE<-->
-<data_writer profile_name="publisher_profile_qos_publishmode">
+<data_writer profile_name="writer_profile_qos_publishmode">
     <qos>
         <publishMode>
             <kind>ASYNCHRONOUS</kind>
@@ -1135,7 +1135,7 @@
     </rtps>
 </participant>
 
-<data_writer profile_name="publisher_profile">
+<data_writer profile_name="writer_profile">
     <!-- ... -->
 </data_writer>
 
@@ -3766,7 +3766,7 @@
 <!-->QoS Examples<-->
 
 <!-->XML_DEADLINE<-->
-<data_writer profile_name="publisher_xml_conf_deadline_profile">
+<data_writer profile_name="writer_xml_conf_deadline_profile">
     <qos>
         <deadline>
             <period>
@@ -3800,7 +3800,7 @@
 
 
 <!-->XML_LIFESPAN<-->
-<data_writer profile_name="publisher_xml_conf_lifespan_profile">
+<data_writer profile_name="writer_xml_conf_lifespan_profile">
     <qos>
         <lifespan>
             <duration>
@@ -3848,7 +3848,7 @@
 <!--><-->
 
 <!-->XML_RELIABILITY<-->
-<data_writer profile_name="publisher_xml_conf_reliability_profile">
+<data_writer profile_name="writer_xml_conf_reliability_profile">
     <qos>
         <reliability>
             <kind>RELIABLE</kind>
@@ -3870,7 +3870,7 @@
 <!--><-->
 
 <!-->XML_RESOURCE_LIMITS<-->
-<data_writer profile_name="publisher_xml_conf_resource_limits_profile">
+<data_writer profile_name="writer_xml_conf_resource_limits_profile">
     <topic>
         <resourceLimitsQos>
             <max_samples>200</max_samples>
@@ -3938,7 +3938,7 @@
 <!--><-->
 
 <!-->XML_RTPS_ENDPOINT_QOS<-->
-<data_writer profile_name="publisher_xml_conf_unicast_locators_profile">
+<data_writer profile_name="writer_xml_conf_unicast_locators_profile">
     <userDefinedID>3</userDefinedID>
     <entityID>2</entityID> <!-- Int16 -->
     <unicastLocatorList>

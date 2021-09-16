@@ -254,7 +254,7 @@
         </rtps>
     </participant>
 
-    <data_writer profile_name="part_profile_name">
+    <data_writer profile_name="writer_profile_name">
         <topic> <!-- topicAttributesType -->
             <kind>NO_KEY</kind> <!-- string NO_KEY | WITH_KEY-->
             <name>TopicName</name> <!-- string -->

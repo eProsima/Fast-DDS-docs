@@ -142,13 +142,46 @@ For receiving sockets, the command is:
 Flow Controllers
 ----------------
 
-*eProsima Fast DDS* provides a mechanism to limit the rate at which the data is sent by a
-DataWriter.
-These controllers can be configured at DataWriter or DomainParticipant
-level.
-On the DomainParticipant the throughput controller is configured on the |DomainParticipantQos::wire_protocol-api|
-member function, while the :ref:`dds_layer_publisher_dataWriterQos` uses the
-|DataWriterQos::throughput_controller-api| member function.
+*eProsima Fast DDS* provides a mechanism to limit the rate at which the data is sent by a DataWriter.
+These controllers should be registered on the creation of the DomainParticipant using |FlowControllersQos|, and
+then referenced on the creation of the DataWriter using |PublishModeQosPolicy|.
+
+A new thread is spawned the first time a flow controller is referenced by an asynchronous DataWriter.
+This thread will be responsible for arbitrating the network output of the samples being transmitted by all the
+DataWriters referencing the same flow controller.
+
+Flow controllers should be given a name so they can later on be referenced by the DataWriters.
+A default, unlimited, |FIFO_SCHED_POLICY-api| flow controller is always available with name
+|FASTDDS_FLOW_CONTROLLER_DEFAULT|.
+
+Scheduling policy
+^^^^^^^^^^^^^^^^^
+
+There are different kinds of flow controllers, depending on the scheduling policy used.
+All of them will limit the number of bytes sent to the network to no more than certain bytes during certain period.
+They only differ in the way they decide the order in which the samples are sent.
+
+* |FIFO_SCHED_POLICY-api| will output samples on a first come, first served order.
+
+* |ROUND_ROBIN_SCHED_POLICY-api| will output one sample from each DataWriter in circular order.
+
+* |HIGH_PRIORITY_SCHED_POLICY-api| will output samples from DataWriters with the highest priority first.
+  The priority of a DataWriter is configured using property ``fastdds.sfc.priority``.
+  Allowed values are from -10 (highest priority) to 10 (lowest priority).
+  If the property is not present, it will be set to the lowest priority.
+  Samples for DataWriters with the same priority are handled with FIFO order.
+
+* |ROUND_ROBIN_SCHED_POLICY-api| works as the previous one, but allows the DataWriters to reserve part of the
+  output bandwidth.
+  This is done with the property ``fastdds.sfc.bandwidth_reservation``.
+  Allowed values are from 0 to 100, and express a percentage of the total flow controller limit.
+  If the property is not present, it will be set to 0 (no bandwidth is reserved for the DataWriter).
+  After the reserved bandwidth has been consumed, the rest of the samples will be handled with the rules of
+  |HIGH_PRIORITY_SCHED_POLICY-api|.
+
+
+Example configuration
+^^^^^^^^^^^^^^^^^^^^^
 
 +------------------------------------------------+
 | **C++**                                        |
@@ -161,17 +194,15 @@ member function, while the :ref:`dds_layer_publisher_dataWriterQos` uses the
 +------------------------------------------------+
 | **XML**                                        |
 +------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml     |
-|    :language: xml                              |
-|    :start-after: <!-->CONF-QOS-FLOWCONTROLLER  |
-|    :end-before: <!--><-->                      |
-|    :lines: 2-3,5-                              |
-|    :append: </profiles>                        |
+| There is currently no way of configuring flow  |
+| controllers with XML.                          |
+| This will be added in future releases of the   |
+| product                                        |
 +------------------------------------------------+
 
 .. Warning::
 
-   Specifying a throughput controller with a size smaller than the transport buffer size
+   Specifying a flow controller with a size smaller than the transport buffer size
    can cause the messages to never be sent.
 
 

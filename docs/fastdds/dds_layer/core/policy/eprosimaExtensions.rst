@@ -405,7 +405,7 @@ XML
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
-    :end-before: <publisher
+    :end-before: <data_writer
 
 .. _propertypolicyqos:
 

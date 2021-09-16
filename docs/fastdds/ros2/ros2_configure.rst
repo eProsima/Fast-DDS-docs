@@ -189,9 +189,9 @@ Creating publishers/subscribers with different profiles
   If such profile is not defined, *rmw_fastrtps* attempts to load the ``<publisher>`` profile
   with attribute ``is_default_profile="true"``.
 
-* To configure a subscriber, define a ``<subscriber>`` profile
+* To configure a subscriber, define a ``<data_reader>`` profile
   with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic before mangling.
-  If such profile is not defined, *rmw_fastrtps* attempts to load the ``<subscriber>`` profile
+  If such profile is not defined, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile
   with attribute ``is_default_profile="true"``.
 
 
@@ -201,13 +201,13 @@ Creating services with different profiles
 ROS 2 services contain a subscriber for receiving requests, and a publisher to reply to them.
 *rmw_fastrtps* allows for configuring each of these endpoints separately in the following manner:
 
-* To configure the request subscriber, define a ``<subscriber>`` profile with attribute ``profile_name=topic_name``,
+* To configure the request subscriber, define a ``<data_reader>`` profile with attribute ``profile_name=topic_name``,
   where ``topic_name`` is the name of the service after mangling.
   For more information on name mangling, please refer to
   `Topic and Service name mapping to DDS <https://design.ros2.org/articles/topic_and_service_names.html>`_.
-  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<subscriber>`` profile
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_reader>`` profile
   with attribute ``profile_name="service"``.
-  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<subscriber>`` profile
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile
   with attribute ``is_default_profile="true"``.
 
 * To configure the reply publisher, define a ``<publisher>`` profile with attribute ``profile_name=topic_name``,
@@ -231,11 +231,11 @@ ROS 2 clients contain a publisher to send requests, and a subscription to receiv
   If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<publisher>`` profile
   with attribute ``is_default_profile="true"``.
 
-* To configure the reply subscription, define a ``<subscriber>`` profile with ``attribute profile_name=topic_name``,
+* To configure the reply subscription, define a ``<data_reader>`` profile with ``attribute profile_name=topic_name``,
   where ``topic_name`` is the name of the service after mangling.
-  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<subscriber>`` profile
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_reader>`` profile
   with attribute ``profile_name="client"``.
-  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<subscriber>`` profile
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile
   with attribute ``is_default_profile="true"``.
 
 

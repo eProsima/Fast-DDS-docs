@@ -10,3 +10,6 @@ FlowControllerDescriptor
 
 .. doxygenvariable:: eprosima::fastdds::rtps::FASTDDS_FLOW_CONTROLLER_DEFAULT
     :project: FastDDS
+
+.. doxygenvariable:: eprosima::fastdds::rtps::FASTDDS_STATISTICS_FLOW_CONTROLLER_DEFAULT
+    :project: FastDDS

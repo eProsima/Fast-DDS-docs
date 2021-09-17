@@ -173,8 +173,8 @@ They only differ in the way they decide the order in which the samples are sent.
   If the property is not present, it will be set to the lowest priority.
   Samples for DataWriters with the same priority are handled with FIFO order.
 
-* |PRIORITY_WITH_RESERVATION_SCHED_POLICY-api| works as the previous one, but allows the DataWriters to reserve part of the
-  output bandwidth.
+* |PRIORITY_WITH_RESERVATION_SCHED_POLICY-api| works as the previous one, but allows the DataWriters to reserve
+  part of the output bandwidth.
   This is done with the property ``fastdds.sfc.bandwidth_reservation``.
   Allowed values are from 0 to 100, and express a percentage of the total flow controller limit.
   If the property is not present, it will be set to 0 (no bandwidth is reserved for the DataWriter).

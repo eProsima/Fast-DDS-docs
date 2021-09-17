@@ -215,7 +215,7 @@ It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has t
 +------------------------------------------------------+-------------------------------------+-------------------------+
 | Data Member Name                                     | Type                                | Default Value           |
 +======================================================+=====================================+=========================+
-| |FlowControllerDescriptor::name-api|                 | bool                                | ``false``               |
+| |FlowControllerDescriptor::name-api|                 | const char *                        |                         |
 +------------------------------------------------------+-------------------------------------+-------------------------+
 | |FlowControllerDescriptor::scheduler-api|            | |FlowControllerSchedulerPolicy-api| | |FIFO_SCHED_POLICY-api| |
 +------------------------------------------------------+-------------------------------------+-------------------------+

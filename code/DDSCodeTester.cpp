@@ -4100,10 +4100,24 @@ void dds_usecase_examples()
     {
         //CONF-QOS-FLOWCONTROLLER
         // Limit to 300kb per second.
-        ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000};
+        static const char* flow_controller_name = "example_flow_controller";
+        auto flow_control_300k_per_sec = std::make_shared<eprosima::fastdds::rtps::FlowControllerDescriptor>();
+        flow_control_300k_per_sec->name = flow_controller_name;
+        flow_control_300k_per_sec->scheduler = eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::FIFO;
+        flow_control_300k_per_sec->max_bytes_per_period = 300 * 1000;
+        flow_control_300k_per_sec->period_ms = 1000;
+        
+        // Register flow controller on participant
+        DomainParticipantQos participant_qos;
+        participant_qos.flow_controllers().push_back(flow_control_300k_per_sec);
+        
+        // .... create participant and publisher
 
+        // Link writer to the registered flow controller.
+        // Note that ASYNCHRONOUS_PUBLISH_MODE must be used
         DataWriterQos qos;
-        qos.throughput_controller(slowPublisherThroughputController);
+        qos.publish_mode().kind = ASYNCHRONOUS_PUBLISH_MODE;
+        qos.publish_mode().flow_controller_name = flow_controller_name;
         //!--
     }
 

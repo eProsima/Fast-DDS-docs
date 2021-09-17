@@ -144,11 +144,24 @@
 .. |DomainParticipantQos::allocation-api| replace:: :cpp:func:`allocation()<eprosima::fastdds::dds::DomainParticipantQos::allocation>`
 .. |DomainParticipantQos::DomainParticipantQos-api| replace:: :cpp:func:`DomainParticipantQos() <eprosima::fastdds::dds::DomainParticipantQos::DomainParticipantQos>`
 .. |DomainParticipantQos::entity_factory-api| replace:: :cpp:func:`entity_factory()<eprosima::fastdds::dds::DomainParticipantQos::entity_factory>`
+.. |DomainParticipantQos::flow_controllers-api| replace:: :cpp:func:`flow_controllers()<eprosima::fastdds::dds::DomainParticipantQos::flow_controllers>`
 .. |DomainParticipantQos::properties-api| replace:: :cpp:func:`properties()<eprosima::fastdds::dds::DomainParticipantQos::properties>`
 .. |DomainParticipantQos::transport-api| replace:: :cpp:func:`transport()<eprosima::fastdds::dds::DomainParticipantQos::transport>`
 .. |DomainParticipantQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DomainParticipantQos::user_data>`
 .. |DomainParticipantQos::wire_protocol-api| replace:: :cpp:func:`wire_protocol()<eprosima::fastdds::dds::DomainParticipantQos::wire_protocol>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
+
+.. |FlowControllerDescriptor-api| replace:: :cpp:class:`FlowControllerDescriptor<eprosima::fastdds::rtps::FlowControllerDescriptor>`
+.. |FlowControllerDescriptor::name-api| replace:: :cpp:member:`name<eprosima::fastdds::rtps::FlowControllerDescriptor::name>`
+.. |FlowControllerDescriptor::scheduler-api| replace:: :cpp:member:`scheduler<eprosima::fastdds::rtps::FlowControllerDescriptor::scheduler>`
+.. |FlowControllerDescriptor::max_bytes_per_period-api| replace:: :cpp:member:`max_bytes_per_period<eprosima::fastdds::rtps::FlowControllerDescriptor::max_bytes_per_period>`
+.. |FlowControllerDescriptor::period_ms-api| replace:: :cpp:member:`period_ms<eprosima::fastdds::rtps::FlowControllerDescriptor::period_ms>`
+
+.. |FlowControllerSchedulerPolicy-api| replace:: :cpp:enum:`FlowControllerSchedulerPolicy<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy>`
+.. |FIFO_SCHED_POLICY-api| replace:: :cpp:enumerator:`FIFO<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::FIFO>`
+.. |ROUND_ROBIN_SCHED_POLICY-api| replace:: :cpp:enumerator:`ROUND_ROBIN<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::ROUND_ROBIN>`
+.. |HIGH_PRIORITY_SCHED_POLICY-api| replace:: :cpp:enumerator:`HIGH_PRIORITY<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::HIGH_PRIORITY>`
+.. |PRIORITY_WITH_RESERVATION_SCHED_POLICY-api| replace:: :cpp:enumerator:`PRIORITY_WITH_RESERVATION<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::PRIORITY_WITH_RESERVATION>`
 
 .. |LoanableSequence-api| replace:: :cpp:class:`LoanableSequence <eprosima::fastdds::dds::LoanableSequence>`
 
@@ -472,7 +485,9 @@
 .. |OfferedIncompatibleQosStatus-api| replace:: :cpp:type:`OfferedIncompatibleQosStatus<eprosima::fastdds::dds::OfferedIncompatibleQosStatus>`
 
 .. |PublishModeQosPolicy-api| replace:: :cpp:class:`PublishModeQosPolicy<eprosima::fastdds::dds::PublishModeQosPolicy>`
+.. |PublishModeQosPolicy::flow_ctrl_name-api| replace:: :cpp:member:`flow_controller_name<eprosima::fastdds::dds::PublishModeQosPolicy::flow_controller_name>`
 .. |PublishModeQosPolicy::kind-api| replace:: :cpp:member:`kind<eprosima::fastdds::dds::PublishModeQosPolicy::kind>`
+.. |FASTDDS_FLOW_CONTROLLER_DEFAULT-api| replace:: :cpp:var:`FASTDDS_FLOW_CONTROLLER_DEFAULT<eprosima::fastdds::rtps::FASTDDS_FLOW_CONTROLLER_DEFAULT>`
 
 .. |PublishModeQosPolicyKind-api| replace:: :cpp:enum:`PublishModeQosPolicyKind<eprosima::fastdds::dds::PublishModeQosPolicyKind>`
 .. |SYNCHRONOUS_PUBLISH_MODE-api| replace:: :cpp:enumerator:`SYNCHRONOUS_PUBLISH_MODE<eprosima::fastdds::dds::PublishModeQosPolicyKind::SYNCHRONOUS_PUBLISH_MODE>`

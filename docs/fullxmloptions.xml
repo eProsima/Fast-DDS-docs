@@ -254,7 +254,7 @@
         </rtps>
     </participant>
 
-    <publisher profile_name="part_profile_name">
+    <data_writer profile_name="writer_profile_name">
         <topic> <!-- topicAttributesType -->
             <kind>NO_KEY</kind> <!-- string NO_KEY | WITH_KEY-->
             <name>TopicName</name> <!-- string -->
@@ -393,9 +393,9 @@
         <userDefinedID>45</userDefinedID> <!-- Int16 -->
 
         <entityID>76</entityID> <!-- Int16 -->
-    </publisher>
+    </data_writer>
 
-    <subscriber profile_name="part_profile_name">
+    <data_reader profile_name="reader_profile_name">
         <topic>
             <!-- topicAttributesType -->
         </topic>
@@ -506,5 +506,5 @@
         <userDefinedID>55</userDefinedID> <!-- Int16 -->
 
         <entityID>66</entityID> <!-- Int16 -->
-    </subscriber>
+    </data_reader>
 </profiles>

@@ -392,6 +392,12 @@ It contains two child elements which are explained in the following table.
 |                       | are allowed.                                              |               |                  |
 +-----------------------+-----------------------------------------------------------+---------------+------------------+
 
+.. warning::
+
+    This tag has been deprecated but does not have an equivalent tag yet.
+    It will create a FIFO flow controller with the bandwidth limitation specified on this tag.
+    See |FlowControllersQos| for more information.
+
 **Example**
 
 .. literalinclude:: /../code/XMLTester.xml

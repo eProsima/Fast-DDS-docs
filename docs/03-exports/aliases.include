@@ -24,6 +24,7 @@
 .. |Entities| replace:: :ref:`Entities<dds_layer_core_entity>`
 .. |Entity| replace:: :ref:`Entity<dds_layer_core_entity>`
 .. |EntityFactoryQosPolicy| replace:: :ref:`EntityFactoryQosPolicy<entityfactoryqospolicy>`
+.. |FlowControllersQos| replace:: :ref:`FlowControllersQos<flowcontrollersqos>`
 .. |GroupDataQosPolicy| replace:: :ref:`GroupDataQosPolicy<groupqospolicy>`
 .. |HistoryQosPolicy| replace:: :ref:`HistoryQosPolicy<historyqospolicy>`
 .. |InconsistentTopicStatus| replace:: :ref:`InconsistentTopicStatus<dds_layer_core_status_inconsistentTopicStatus>`

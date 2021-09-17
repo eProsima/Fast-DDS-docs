@@ -202,6 +202,37 @@ XML
     :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
     :end-before: <!--><-->
 
+
+.. _flowcontrollersqos:
+
+FlowControllersQos
+^^^^^^^^^^^^^^^^^^
+
+This QoS configures the list of flow controllers of a participant, so they can later be used on
+its DataWriters.
+It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has the following fields:
+
++------------------------------------------------------+-------------------------------------+-------------------------+
+| Data Member Name                                     | Type                                | Default Value           |
++======================================================+=====================================+=========================+
+| |FlowControllerDescriptor::name-api|                 | bool                                | ``false``               |
++------------------------------------------------------+-------------------------------------+-------------------------+
+| |FlowControllerDescriptor::scheduler-api|            | |FlowControllerSchedulerPolicy-api| | |FIFO_SCHED_POLICY-api| |
++------------------------------------------------------+-------------------------------------+-------------------------+
+| |FlowControllerDescriptor::max_bytes_per_period-api| | int32_t                             | ``0`` (i.e. infinite)   |
++------------------------------------------------------+-------------------------------------+-------------------------+
+| |FlowControllerDescriptor::period_ms-api|            | uint64_t                            | ``100``                 |
++------------------------------------------------------+-------------------------------------+-------------------------+
+
+Please refer to :ref:`flow-controllers` section for more information.
+
+
+.. note::
+     This QoS Policy concerns to |DomainParticipant| entities.
+     :raw-html:`<br />`
+     It cannot be changed on enabled entities.
+
+
 .. _participantresourcelimitsqos:
 
 ParticipantResourceLimitsQos
@@ -374,7 +405,7 @@ XML
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
-    :end-before: <publisher
+    :end-before: <data_writer
 
 .. _propertypolicyqos:
 
@@ -411,13 +442,25 @@ PublishModeQosPolicy
 This QoS Policy configures how the |DataWriter| sends the data.
 See |PublishModeQosPolicy-api|.
 
+It also configures the name of the flow controller to use when asynchronous publishing is used.
+It should be the name of a flow controller registered on the creation of the DomainParticipant.
+See |FlowControllersQos|.
+
 List of QoS Policy data members:
 
-+------------------------------------------+---------------------------------+-----------------------------------------+
-| Data Member Name                         | Type                            | Default Value                           |
-+==========================================+=================================+=========================================+
-| |PublishModeQosPolicy::kind-api|         | :ref:`publishmodeqospolicykind` | |SYNCHRONOUS_PUBLISH_MODE-api|          |
-+------------------------------------------+---------------------------------+-----------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - |PublishModeQosPolicy::kind-api|
+     - :ref:`publishmodeqospolicykind`
+     - |SYNCHRONOUS_PUBLISH_MODE-api|
+   * - |PublishModeQosPolicy::flow_ctrl_name-api|
+     - const char *
+     - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::
      This QoS Policy concerns to DataWriter entities.
@@ -935,6 +978,9 @@ List of structure members:
   This member states the number of bytes that this controller will allow in a given period.
 * |ThroughputControllerDescriptor::periodMillisecs-api|:
   It specifies the window of time in which no more than `bytesPerPeriod` bytes are allowed.
+
+.. warning::
+    This has been deprecated in favor of |FlowControllersQos|
 
 Example
 """""""

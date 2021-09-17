@@ -12,6 +12,7 @@ This section contains the list of :ref:`propertypolicyqos` that can be set with 
     :maxdepth: 2
 
     non_consolidated_qos.rst
+    flow_control.rst
     persistence.rst
     security.rst
     logging.rst

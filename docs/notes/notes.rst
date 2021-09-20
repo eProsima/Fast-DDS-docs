@@ -1,37 +1,48 @@
 .. _release_notes:
 
-Version 2.3.4
+Version 2.4.0
 =============
 
-This release includes the following **improvements**:
+This minor release is API compatible with the previous minor release, but introduces **ABI breaks** on
+two of the three public APIs:
 
-1. Support of googletest using colcon
-2. Network latency reports source participant
-3. Update Fast DDS Gen to v2.0.2
+* Methods and attributes have been added on several classes of the DDS-PIM high-level API, so indexes of
+  symbols on dynamic libraries may have changed.
 
-This release includes the following **bugfixes**:
+* Methods and attributes have been added on several classes of the RTPS low-level API, so indexes of
+  symbols on dynamic libraries may have changed.
 
-1. Fix mutex lock count on :class:`PDPListener`
-2. Limit :class:`SequenceNumberSet` number of bits on deserialization
-3. Fix segmentation fault on discovery server
-4. Fix deadlock with security and timers
-5. Fix bug using not protected code in a test
-6. Fix deadlock with :class:`LivelinessManager`
-7. Fix interval loop on events
-8. Fix run event when was cancelled
-9. Validate sequence range on :class:`CDRMessage::readSequenceNumberSet`
-10. Fix subscription throughput data generation
-11. Allow examples to build on QNX
-12. Fix code on SHM clean
-13. Accept Statistics DataWriters in Discovery Server
-14. Fix read/take behavior when a future change is found
-15. Correctly handle deserialization errors on ``read_next_sample()`` / ``take_next_sample()``
-16. Fixing :class:`SequenceNumberSet_t` deserialization
-17. Proper history clean up when a reader unmatches a writer
-18. Unprotected code loaning samples
-19. Fix publication throughput statistic on volatile writers
-20. Fix Fast DDS CLI server name
-21. Several fixes in examples and tests
+* Old Fast-RTPS high-level API remains ABI compatible.
+
+This minor release includes the following **features**:
+
+* :ref:`Conditions and Wait-sets <dds_layer_core_waitsets>` implementation.
+* :ref:`Flow controllers <flow-controllers>`.
+* :ref:`Configure Discovery Server locators using names <DS_dns_name>`.
+* :ref:`Modifying remote servers list at run time <DS_modify_server_list>`.
+* :ref:`Environment file override <env_vars_fastdds_environment_file>`.
+
+It also includes the following **improvements**:
+
+* Allow setting custom folder for :ref:`data-sharing <datasharing-delivery>` files.
+* Allow setting persistence guid with static discovery.
+* Check for NDEBUG in logInfo.
+* Removed old unused CMake code.
+* Fixed TLS behavior on TCP example.
+* Prepare API for easy integration of python bindings.
+* Improved statistics performance.
+
+Some important **bugfixes** are also included:
+
+* Fixed order of returned samples on topics with keys.
+* Allow updating partitions to an empty set.
+* Correctly propagate DomainParticipantQos updates.
+* Avoid a volatile data-sharing reader to block a writer.
+* Correctly give priority to intra-process over data-sharing.
+* Fixed reallocation issue on LivelinessManager.
+* Fixed deadline issue on volatile DataWriter
+* Fixed STRICT_REALTIME silently not active with Unix POSIX systems.
+* Fixed build errors with OpenSSL 3.0
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -41,6 +52,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.3.4.rst
 .. include:: previous_versions/v2.3.3.rst
 .. include:: previous_versions/v2.3.2.rst
 .. include:: previous_versions/v2.3.1.rst

@@ -151,12 +151,6 @@ Configuring a user-defined directory may be useful in some scenarios:
 * To select a file system with Huge TLB enabled for the memory-mapped files.
 * To allow data-sharing delivery between containers that mount the same container.
 
-.. warning::
-
-    Currently the configuration of shared memory directory is not supported.
-    As a result, any directory set by the user will be discarded,
-    and the default directory configured for the current system is used.
-
 
 DataReader and DataWriter history coupling
 ------------------------------------------

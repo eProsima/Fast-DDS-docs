@@ -303,6 +303,10 @@ This is done by calling |DomainParticipant::set_qos-api| with a |DomainParticipa
      The list of remote *servers* can only be modified to add more *servers*, but not to remove any of the existing ones.
      This means that the new list passed to |DomainParticipant::set_qos-api| must be a superset of the existing one.
 
+.. note::
+    The remote server list can also be modified using the ``ROS_DISCOVERY_SERVER`` environment variable.
+    Please refer to :ref:`env_vars_fastdds_environment_file` for more information.
+
 +---------------------------------------------------------------------+
 | **C++**                                                             |
 +---------------------------------------------------------------------+

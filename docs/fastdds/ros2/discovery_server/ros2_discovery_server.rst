@@ -125,7 +125,7 @@ In a new terminal, set the environment variable ``ROS_DISCOVERY_SERVER`` to use 
 
 .. code-block:: console
 
-    export ROS_DISCOVERY_SERVER=127.0.0.1:11811
+    export ROS_DISCOVERY_SERVER="127.0.0.1:11811!"
 
 Afterwards, launch the listener node. Use the argument ``--remap __node:=listener_discovery_server``
 to change the node's name for future purpose.
@@ -145,7 +145,7 @@ Open a new terminal and set the environment variable as before, so the node rais
 
 .. code-block:: console
 
-    export ROS_DISCOVERY_SERVER=127.0.0.1:11811
+    export ROS_DISCOVERY_SERVER="127.0.0.1:11811!"
     ros2 run demo_nodes_cpp talker --ros-args --remap __node:=talker_discovery_server
 
 Now, we should see the talker publishing *Hello World* messages, and the listener receiving these messages.

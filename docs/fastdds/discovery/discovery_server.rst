@@ -342,6 +342,10 @@ Full example
 ^^^^^^^^^^^^
 
 The following constitutes a full example on how to configure *server* and *client* both programmatically and using XML.
+You may also have a look at the *eProsima Fast DDS* Github repository, which contains an example similar to the one
+discussed in this section, as well as multiple other examples for different use cases. The example for Discovery Server
+mechanism can be found
+`here <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/DiscoveryServerExample>`_.
 
 Server side setup
 """""""""""""""""

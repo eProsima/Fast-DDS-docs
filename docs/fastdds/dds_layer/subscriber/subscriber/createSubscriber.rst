@@ -83,6 +83,16 @@ Deleting a Subscriber
 A Subscriber can be deleted with the |DomainParticipant::delete_subscriber-api| member function on the
 DomainParticipant instance where the Subscriber was created.
 
+.. note::
+
+   A Subscriber can only be deleted if all Entities belonging to the Subscriber
+   (DataReaders) have already been deleted.
+   Otherwise, the function will issue an error and the Subscriber will not be deleted.
+   This can be performed by using the |Subscriber::delete_contained_entities-api| member function of the 
+   :ref:`dds_layer_subscriber_subscriber`.
+
+
+
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_DELETE_SUBSCRIBER

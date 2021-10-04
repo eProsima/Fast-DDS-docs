@@ -313,6 +313,13 @@ void dds_domain_examples()
         // Use the DomainParticipant to communicate
         // (...)
 
+        // Delete entities created by the DomainParticipant
+        if (participant->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
+        {
+            // DomainParticipant failed to delete the entities it created. 
+            return;
+        }
+
         // Delete the DomainParticipant
         if (DomainParticipantFactory::get_instance()->delete_participant(participant) != ReturnCode_t::RETCODE_OK)
         {
@@ -1637,6 +1644,13 @@ void dds_publisher_examples()
         // Use the Publisher to communicate
         // (...)
 
+        // Delete the entities the Publisher created.
+        if (publisher->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
+        {
+            // Publisher failed to delete the entities it created.
+            return;
+        }
+
         // Delete the Publisher
         if (participant->delete_publisher(publisher) != ReturnCode_t::RETCODE_OK)
         {
@@ -2281,6 +2295,13 @@ void dds_subscriber_examples()
         // Use the Subscriber to communicate
         // (...)
 
+        // Delete the entities the subscriber created
+        if (subscriber->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
+        {
+            // Subscriber failed to delete the entities it created
+            return;
+        }
+
         // Delete the Subscriber
         if (participant->delete_subscriber(subscriber) != ReturnCode_t::RETCODE_OK)
         {
@@ -2596,6 +2617,13 @@ void dds_dataReader_examples()
 
         // Use the DataReader to communicate
         // (...)
+
+        // Delete the entities the DataReader created
+        if (data_reader->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
+        {
+            // DataReader failed to delete the entities it created. 
+            return;
+        }
 
         // Delete the DataReader
         if (subscriber->delete_datareader(data_reader) != ReturnCode_t::RETCODE_OK)

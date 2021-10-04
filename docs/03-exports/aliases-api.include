@@ -19,6 +19,8 @@
 .. |DataReader::get_sample_rejected_status-api| replace:: :cpp:func:`get_sample_rejected_status()<eprosima::fastdds::dds::DataReader::get_sample_rejected_status>`
 .. |DataReader::get_sample_lost_status-api| replace:: :cpp:func:`get_sample_lost_status()<eprosima::fastdds::dds::DataReader::get_sample_lost_status>`
 .. |DataReader::get_subscription_matched_status-api| replace:: :cpp:func:`get_subscription_matched_status()<eprosima::fastdds::dds::DataReader::get_subscription_matched_status>`
+.. |DataReader::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::DataReader::delete_contained_entities>`
+
 
 .. |DataReaderListener::on_data_available-api| replace:: :cpp:func:`on_data_available()<eprosima::fastdds::dds::DataReaderListener::on_data_available>`
 .. |DataReaderListener::on_subscription_matched-api| replace:: :cpp:func:`on_subscription_matched()<eprosima::fastdds::dds::DataReaderListener::on_subscription_matched>`
@@ -115,6 +117,7 @@
 .. |DomainParticipant::get_subscriber_qos_from_profile| replace:: :cpp::func`get_subscriber_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_subscriber_qos_from_profile>`
 .. |DomainParticipant::get_topic_qos_from_profile| replace:: :cpp::func`get_topic_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_topic_qos_from_profile>`
 .. |DomainParticipant::set_qos-api| replace:: :cpp:func:`DomainParticipant::set_qos()<eprosima::fastdds::dds::DomainParticipant::set_qos>`
+.. |DomainParticipant::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::DomainParticipant::delete_contained_entities>`
 
 .. |DomainParticipantFactory-api| replace:: :cpp:class:`DomainParticipantFactory<eprosima::fastdds::dds::DomainParticipantFactory>`
 .. |DomainParticipantFactory::create_participant_with_profile-api| replace:: :cpp:func:`create_participant_with_profile()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile>`
@@ -174,6 +177,7 @@
 .. |Publisher::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::Publisher::get_qos>`
 .. |Publisher::set_default_datawriter_qos-api| replace:: :cpp:func:`set_default_datawriter_qos()<eprosima::fastdds::dds::Publisher::set_default_datawriter_qos>`
 .. |Publisher::set_qos-api| replace:: :cpp:func:`Publisher::set_qos()<eprosima::fastdds::dds::Publisher::set_qos>`
+.. |Publisher::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::Publisher::delete_contained_entities>`
 .. |PublisherListener-api| replace:: :cpp:class:`PublisherListener <eprosima::fastdds::dds::PublisherListener>`
 .. |PublisherQos-api| replace:: :cpp:class:`PublisherQos <eprosima::fastdds::dds::PublisherQos>`
 .. |PublisherQos::entity_factory-api| replace:: :cpp:func:`entity_factory()<eprosima::fastdds::dds::PublisherQos::entity_factory>`
@@ -195,6 +199,7 @@
 .. |Subscriber::create_datareader-api| replace:: :cpp:func:`create_datareader()<eprosima::fastdds::dds::Subscriber::create_datareader>`
 .. |Subscriber::delete_datareader-api| replace:: :cpp:func:`delete_datareader()<eprosima::fastdds::dds::Subscriber::delete_datareader>`
 .. |Subscriber::create_datareader_with_profile-api| replace:: :cpp:func:`create_datareader_with_profile()<eprosima::fastdds::dds::Subscriber::create_datareader_with_profile>`
+.. |Subscriber::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::Subscriber::delete_contained_entities>`
 .. |SubscriberListener-api| replace:: :cpp:class:`SubscriberListener <eprosima::fastdds::dds::SubscriberListener>`
 .. |SubscriberListener::on_data_on_readers-api| replace:: :cpp:func:`on_data_on_readers()<eprosima::fastdds::dds::SubscriberListener::on_data_on_readers>`
 .. |SubscriberQos-api| replace:: :cpp:class:`SubscriberQos <eprosima::fastdds::dds::SubscriberQos>`

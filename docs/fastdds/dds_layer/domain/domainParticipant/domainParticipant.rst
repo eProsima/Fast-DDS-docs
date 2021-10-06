@@ -48,7 +48,7 @@ Internally it contains the following |QosPolicy-api| objects:
 +--------------------------------+----------------------------------------------+----------+
 
 .. Important::
-    The |WireProtocolConfigQos| only mutable field is |m_DiscoveryServers|, which is contained in
+    The only mutable field in |WireProtocolConfigQos| is |m_DiscoveryServers|, which is contained in
     |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
     :ref:`DS_modify_server_list`).
 

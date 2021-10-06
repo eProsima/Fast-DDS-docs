@@ -40,12 +40,17 @@ Internally it contains the following |QosPolicy-api| objects:
 +--------------------------------+----------------------------------------------+----------+
 | |PropertyPolicyQos|            | |DomainParticipantQos::properties-api|       | No       |
 +--------------------------------+----------------------------------------------+----------+
-| |WireProtocolConfigQos|        | |DomainParticipantQos::wire_protocol-api|    | No       |
+| |WireProtocolConfigQos|        | |DomainParticipantQos::wire_protocol-api|    | No*      |
 +--------------------------------+----------------------------------------------+----------+
 | |TransportConfigQos|           | |DomainParticipantQos::transport-api|        | No       |
 +--------------------------------+----------------------------------------------+----------+
 | |FlowControllersQos|           | |DomainParticipantQos::flow_controllers-api| | No       |
 +--------------------------------+----------------------------------------------+----------+
+
+.. Important::
+    The only mutable field in |WireProtocolConfigQos| is |m_DiscoveryServers|, which is contained in
+    |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
+    :ref:`DS_modify_server_list`).
 
 Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.

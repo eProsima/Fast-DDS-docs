@@ -3,11 +3,8 @@ platform. It can be downloaded from `eProsima's downloads page <https://eprosima
 
 This Docker image was built for Ubuntu 20.04 (Focal Fossa).
 
-To run this containers you need Docker installed. From a terminal run
+To run this container you need Docker installed. From a terminal run
 
 .. code-block:: bash
 
     $ sudo apt install docker.io
-
-
-

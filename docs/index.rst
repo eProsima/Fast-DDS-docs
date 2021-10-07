@@ -52,7 +52,6 @@
    /fastdds/use_cases/use_cases
    /fastdds/ros2/ros2
    /fastdds/api_reference/api_reference
-   /fastdds/docker/docker
 
 .. _index_gen:
 
@@ -76,6 +75,16 @@
    :hidden:
 
    /fastddscli/cli/cli
+
+.. _index_docker:
+
+.. toctree::
+   :caption: Docker Images
+   :maxdepth: 2
+   :numbered: 5
+   :hidden:
+
+   /docker/docker
 
 .. _index_notes:
 

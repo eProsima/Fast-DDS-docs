@@ -4,8 +4,8 @@
 
 .. _docker:
 
-eProsima Docker Images
-======================
+eProsima Docker Image
+=====================
 
 .. include:: includes/intro.rst
 
@@ -13,6 +13,4 @@ eProsima Docker Images
    :maxdepth: 2
 
    docker_demo/fast_dds_suite
-   docker_demo/fast_dds_examples
-
 

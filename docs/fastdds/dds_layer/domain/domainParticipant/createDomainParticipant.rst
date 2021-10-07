@@ -98,9 +98,11 @@ A DomainParticipant can be deleted with the |DomainParticipantFactory::delete_pa
 
 .. note::
 
-   A DomainParticipant can only be deleted if all domain Entities belonging to the participant
+   A DomainParticipant can only be deleted if all Entities belonging to the participant
    (Publisher, Subscriber or Topic) have already been deleted.
    Otherwise, the function will issue an error and the DomainParticipant will not be deleted.
+   This can be performed by using the |DomainParticipant::delete_contained_entities-api| member function of the
+   :ref:`dds_layer_domainParticipant`.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

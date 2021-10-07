@@ -21,7 +21,6 @@
 .. |DataReader::get_subscription_matched_status-api| replace:: :cpp:func:`get_subscription_matched_status()<eprosima::fastdds::dds::DataReader::get_subscription_matched_status>`
 .. |DataReader::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::DataReader::delete_contained_entities>`
 
-
 .. |DataReaderListener::on_data_available-api| replace:: :cpp:func:`on_data_available()<eprosima::fastdds::dds::DataReaderListener::on_data_available>`
 .. |DataReaderListener::on_subscription_matched-api| replace:: :cpp:func:`on_subscription_matched()<eprosima::fastdds::dds::DataReaderListener::on_subscription_matched>`
 .. |DataReaderListener::on_requested_deadline_missed-api| replace:: :cpp:func:`on_requested_deadline_missed()<eprosima::fastdds::dds::DataReaderListener::on_requested_deadline_missed>`

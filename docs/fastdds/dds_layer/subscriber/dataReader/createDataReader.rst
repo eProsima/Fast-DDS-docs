@@ -92,10 +92,8 @@ A DataReader can be deleted with the |Subscriber::delete_datareader-api| member 
    A DataReader can only be deleted if all Entities belonging to the DataReader
    (QueryConditions) have already been deleted.
    Otherwise, the function will issue an error and the DataReader will not be deleted.
-   This can be performed by using the |DataReader::delete_contained_entities-api| member function of the 
+   This can be performed by using the |DataReader::delete_contained_entities-api| member function of the
    :ref:`dds_layer_subscriber_dataReader`.
-
-
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

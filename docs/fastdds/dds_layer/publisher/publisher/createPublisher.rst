@@ -88,13 +88,11 @@ DomainParticipant instance where the Publisher was created.
    A Publisher can only be deleted if all Entities belonging to the Publisher
    (DataWriters) have already been deleted.
    Otherwise, the function will issue an error and the Publisher will not be deleted.
-   This can be performed by using the |Publisher::delete_contained_entities-api| member function of the 
+   This can be performed by using the |Publisher::delete_contained_entities-api| member function of the
    :ref:`dds_layer_publisher_publisher`.
-
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_DELETE_PUBLISHER
    :end-before: //!
    :dedent: 8
-

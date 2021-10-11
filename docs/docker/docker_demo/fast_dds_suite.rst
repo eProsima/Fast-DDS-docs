@@ -26,7 +26,7 @@ This Docker image contains the complete Fast DDS suite. This includes:
   compute in real time statistical measurements on these parameters (mean, variance, standard deviation, etc.).
 
   You can read more about this application on the `Fast DDS Monitor documentation page
-  <https://eprosima-shapes-demo.readthedocs.io/>`_.
+  <https://fast-dds-monitor.readthedocs.io/>`_.
 
 
 To load this image into your Docker repository, from a terminal run

@@ -92,7 +92,7 @@ The following example shows how to set the address of two remote discovery serve
     +----------------------------------------------------------------------------+
     | .. code-block:: bash                                                       |
     |                                                                            |
-    |    export ROS_DISCOVERY_SERVER=84.22.259.329:8888;;localhost:1234          |
+    |    export ROS_DISCOVERY_SERVER="84.22.259.329:8888;;localhost:1234"        |
     +----------------------------------------------------------------------------+
     | **Windows**                                                                |
     +----------------------------------------------------------------------------+
@@ -145,7 +145,7 @@ be set as follows:
     +----------------------------------------------------------------------------+
     | .. code-block:: bash                                                       |
     |                                                                            |
-    |    export FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC   |
+    |    export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC" |
     +----------------------------------------------------------------------------+
     | **Windows**                                                                |
     +----------------------------------------------------------------------------+

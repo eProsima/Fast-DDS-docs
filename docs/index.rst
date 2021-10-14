@@ -76,6 +76,16 @@
 
    /fastddscli/cli/cli
 
+.. _index_docker:
+
+.. toctree::
+   :caption: Docker Image
+   :maxdepth: 2
+   :numbered: 5
+   :hidden:
+
+   /docker/docker
+
 .. _index_notes:
 
 .. toctree::

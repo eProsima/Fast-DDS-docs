@@ -307,6 +307,10 @@ This is done by calling |DomainParticipant::set_qos-api| with a |DomainParticipa
     The remote server list can also be modified using the ``ROS_DISCOVERY_SERVER`` environment variable.
     Please refer to :ref:`env_vars_fastdds_environment_file` for more information.
 
+.. warning::
+    It is strongly advised to use either the API or the environment file.
+    Using both at the same time may cause undefined behavior.
+
 +---------------------------------------------------------------------+
 | **C++**                                                             |
 +---------------------------------------------------------------------+

@@ -179,4 +179,5 @@ The file format is as follows:
     The environment variables set in the environment file have precedence over the environment.
 
 .. warning::
-    Currently only ``ROS_DISCOVERY_SERVER`` environment variable allows for changes at run time.
+    Currently only ``ROS_DISCOVERY_SERVER`` environment variable allows for changes at run time. (see
+    :ref:`DS_modify_server_list`)

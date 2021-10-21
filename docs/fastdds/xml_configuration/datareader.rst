@@ -8,7 +8,7 @@ DataReader profiles
 -------------------
 
 The DataReader profiles allow declaring |DataReaders| from an XML file.
-These profiles are defined within the ``<data_reader>`` or ``<data_reader>`` XML tags.
+These profiles are defined within the ``<data_reader>`` or ``<subscriber>`` XML tags.
 Thus, the following XML codes are equivalent.
 
 +----------------------------------------------------------+-----------------------------------------------------------+
@@ -22,8 +22,8 @@ Thus, the following XML codes are equivalent.
 
 .. important::
 
-    The ``<data_reader>`` and ``<data_reader>`` XML tags are equivalent.
-    Therefore, XML profiles in which the DataReaders are defined with the ``<data_reader>`` tag are fully compatible
+    The ``<data_reader>`` and ``<subscriber>`` XML tags are equivalent.
+    Therefore, XML profiles in which the DataReaders are defined with the ``<subscriber>`` tag are fully compatible
     with *Fast DDS*.
 
 

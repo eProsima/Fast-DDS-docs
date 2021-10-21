@@ -127,6 +127,7 @@ Nackfrag
 Nagle
 namespace
 Namespaces
+namespaces
 nanosec
 nupkg
 offsetd
@@ -142,6 +143,7 @@ preallocated
 preallocates
 preallocation
 preconfigure
+prepended
 preprocessor
 programmatically
 QoS

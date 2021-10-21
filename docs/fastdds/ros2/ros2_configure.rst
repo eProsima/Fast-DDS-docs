@@ -184,16 +184,46 @@ Creating publishers/subscribers with different profiles
 .......................................................
 
 * To configure a publisher, define a ``<data_writer>`` profile
-  with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic before mangling,
-  i.e., the topic name used to create the publisher.
+  with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic
+  prepended by the node namespace (which defaults to "" if not specified),
+  i.e. the node's namespace followed by topic name used to create the publisher.
+  Mind that topic names always start with / (it is added when creating the topic if not present),
+  and that namespace and topic name are always separated by one /.
   If such profile is not defined, *rmw_fastrtps* attempts to load the ``<data_writer>`` profile
   with attribute ``is_default_profile="true"``.
 
 * To configure a subscriber, define a ``<data_reader>`` profile
-  with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic before mangling.
+  with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic
+  prepended by the node namespace (which defaults to "" if not specified),
+  i.e. the node's namespace followed by topic name used to create the subscriber.
+  Mind that topic names always start with / (it is added when creating the topic if not present),
+  and that namespace and topic name are always separated by one /.
   If such profile is not defined, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile
   with attribute ``is_default_profile="true"``.
 
+The following table presents different combinations of node namespaces and user specified topic names,
+as well as the resulting topic names and the suitable profile names:
+
++---------------------------+-----------------+-------------------------+-------------------------+
+| User specified topic name | Node namespace  | Final topic name        | Profile name            |
++===========================+=================+=========================+=========================+
+| chatter                   | DEFAULT ("")    | /chatter                | /chatter                |
++---------------------------+-----------------+-------------------------+-------------------------+
+| chatter                   | test_namespace  | /test_namespace/chatter | /test_namespace/chatter |
++---------------------------+-----------------+-------------------------+-------------------------+
+| chatter                   | /test_namespace | /test_namespace/chatter | /test_namespace/chatter |
++---------------------------+-----------------+-------------------------+-------------------------+
+| /chatter                  | test_namespace  | /chatter                | /chatter                |
++---------------------------+-----------------+-------------------------+-------------------------+
+| /chatter                  | /test_namespace | /chatter                | /chatter                |
++---------------------------+-----------------+-------------------------+-------------------------+
+
+.. important::
+
+    Node namespaces are NOT prepended to user specified topic names starting with /,
+    a.k.a Fully Qualified Names (FQN).
+    For a complete description of topic name remapping please refer to
+    `Remapping Names <http://design.ros2.org/articles/static_remapping.html>`_.
 
 Creating services with different profiles
 .........................................

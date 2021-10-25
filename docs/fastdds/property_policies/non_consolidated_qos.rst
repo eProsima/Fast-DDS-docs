@@ -123,14 +123,15 @@ Endpoint Partitions
 ^^^^^^^^^^^^^^^^^^^
 
 Fast DDS uses this :ref:`propertypolicyqos` to define which partitions does an endpoint belong to. This property
-follows the same logic regarding matching as the |PartitionQosPolicy| that can be defined for Publishers and Subscribers.
+follows the same logic regarding matching as the |PartitionQosPolicy| that can be defined for Publishers and
+Subscribers.
 
 This property's value is a semicolon separated list containing the partition names the user wants this endpoint
 to belong to.
 
 .. important::
      If both a Publisher and one of its DataWriters have conflicting partition configuration, this is, a DataWriter
-     has this property defined while the Publisher has the |PartitionQosPolicy| defined the DataWriter
+     has this property defined while the Publisher has the |PartitionQosPolicy| defined, the DataWriter
      configuration takes precedence and the Publisher |PartitionQosPolicy| is ignored for this endpoint. This applies
      to Subscribers and their DataReaders as well.
 

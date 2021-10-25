@@ -829,7 +829,7 @@ List of QoS Policy data members:
      This QoS Policy concerns to Publisher and Subscriber entities.
      :raw-html:`<br />`
      Partitions can also be explicitly defined at the endpoint level to override this configuration. Information
-     to do so can be found :ref:`here<property_policies_partitions>`. 
+     to do so can be found :ref:`here<property_policies_partitions>`.
      :raw-html:`<br />`
      It can be changed on enabled Publishers and Subscribers.
 

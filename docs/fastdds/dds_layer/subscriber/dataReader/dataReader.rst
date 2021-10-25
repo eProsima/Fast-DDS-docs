@@ -79,6 +79,14 @@ Internally it contains the following |QosPolicy-api| objects:
 | ``boolean``                                   | |DataReaderQos::expects_inline_qos-api|     | Yes      |
 +-----------------------------------------------+---------------------------------------------+----------+
 
+The following non-consolidated property-assigned QoS apply to DataReaders:
+
++----------------------------------+-------------------------------------------------+
+| Property name                    | Non-consolidated QoS                            |
++==================================+=================================================+
+| partitions                       | :ref:`property_policies_partitions`             |
++----------------------------------+-------------------------------------------------+
+
 Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
 default values.
 

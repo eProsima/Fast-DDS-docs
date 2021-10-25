@@ -116,3 +116,51 @@ In this case, the property value is a semicolon separated list containing the
 |    :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->                                                                  |
 |    :end-before: <!--><-->                                                                                            |
 +----------------------------------------------------------------------------------------------------------------------+
+
+.. _property_policies_partitions:
+
+Endpoint Partitions
+^^^^^^^^^^^^^^^^^^^
+
+Fast DDS uses this :ref:`propertypolicyqos` to define which partitions does an endpoint belong to. This property
+follows the same logic regarding matching as the |PartitionQosPolicy| that can be defined for Publishers and Subscribers.
+
+This property's value is a semicolon separated list containing the partition names the user wants this endpoint
+to belong to.
+
+.. important::
+     If both a Publisher and one of its DataWriters have conflicting partition configuration, this is, a DataWriter
+     has this property defined while the Publisher has the |PartitionQosPolicy| defined the DataWriter
+     configuration takes precedence and the Publisher |PartitionQosPolicy| is ignored for this endpoint. This applies
+     to Subscribers and their DataReaders as well.
+
+     This property will be automatically set when creating DataReaders and DataWriters using the create_with_profile
+     functions. It cannot be changed after the entity has been created.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"partitions"``
+     - Semicolon separated list of partition names
+     - ``""``
+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: // PARTITION-ON-ENDPOINT                                                                            |
+|    :end-before: //!--                                                                                                |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+
+| **XML**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+|    :language: xml                                                                                                    |
+|    :start-after: <!-->XML-PARTITION                                                                                  |
+|    :end-before: <!--><-->                                                                                            |
++----------------------------------------------------------------------------------------------------------------------+

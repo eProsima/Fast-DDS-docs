@@ -84,6 +84,8 @@ The following non-consolidated property-assigned QoS apply to DataWriters:
 +==================================+=================================================+
 | fastdds.push_mode                | :ref:`push_mode_qos_policy`                     |
 +----------------------------------+-------------------------------------------------+
+| partitions                       | :ref:`property_policies_partitions`             |
++----------------------------------+-------------------------------------------------+
 
 Refer to the detailed description of each |QosPolicy-api| class for more information about their usage and
 default values.

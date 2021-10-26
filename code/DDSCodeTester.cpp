@@ -630,6 +630,24 @@ void dds_domain_examples()
         //No partitions defined for subs_34
         //!--
     }
+
+    {
+        // PARTITION-ON-ENDPOINT
+        DataWriterQos wqos;
+
+        // Add partitions
+        wqos.properties().properties().emplace_back(
+            "partitions",
+            "part1;part2");
+
+        DataReaderQos rqos;
+
+        // Add partitions
+        rqos.properties().properties().emplace_back(
+            "partitions",
+            "part1;part2");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

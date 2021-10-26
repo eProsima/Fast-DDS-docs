@@ -3825,25 +3825,25 @@
 
 <!-->XML-PARTITION<-->
 <data_writer profile_name="pub_partition_example">
-<qos>
-    <partition>
-        <names>
-            <name>part1</name>
-            <name>part2</name>
-        </names>
-    </partition>
-</qos>
+    <qos>
+        <partition>
+            <names>
+                <name>part1</name>
+                <name>part2</name>
+            </names>
+        </partition>
+    </qos>
 </data_writer>
 
 <data_reader profile_name="sub_partition_example">
-<qos>
-    <partition>
-        <names>
-            <name>part1</name>
-            <name>part2</name>
-        </names>
-    </partition>
-</qos>
+    <qos>
+        <partition>
+            <names>
+                <name>part1</name>
+                <name>part2</name>
+            </names>
+        </partition>
+    </qos>
 </data_reader>
 <!--><-->
 

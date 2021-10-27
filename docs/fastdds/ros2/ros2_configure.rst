@@ -187,8 +187,8 @@ Creating publishers/subscribers with different profiles
   with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic
   prepended by the node namespace (which defaults to "" if not specified),
   i.e. the node's namespace followed by topic name used to create the publisher.
-  Mind that topic names always start with / (it is added when creating the topic if not present),
-  and that namespace and topic name are always separated by one /.
+  Mind that topic names always start with ``/`` (it is added when creating the topic if not present),
+  and that namespace and topic name are always separated by one ``/``.
   If such profile is not defined, *rmw_fastrtps* attempts to load the ``<data_writer>`` profile
   with attribute ``is_default_profile="true"``.
 
@@ -196,8 +196,8 @@ Creating publishers/subscribers with different profiles
   with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic
   prepended by the node namespace (which defaults to "" if not specified),
   i.e. the node's namespace followed by topic name used to create the subscriber.
-  Mind that topic names always start with / (it is added when creating the topic if not present),
-  and that namespace and topic name are always separated by one /.
+  Mind that topic names always start with ``/`` (it is added when creating the topic if not present),
+  and that namespace and topic name are always separated by one ``/``.
   If such profile is not defined, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile
   with attribute ``is_default_profile="true"``.
 

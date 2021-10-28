@@ -141,6 +141,13 @@ By default *eProsima Fast DDS* uses as initial peers the Metatraffic Multicast L
 The following constitutes an example configuring an Initial Peers list with one peer on host 192.168.10.13 with
 DomainParticipant ID 1 in domain 0.
 
+.. note::
+   There is also the possibility of not defining the initial peer port.
+   In this case, the discovery information would be sent to every port ranging from `participantID` zero to the
+   ``maxInitialPeersRange`` value set in the :ref:`transport_transportApi_transportDescriptor`.
+   Consequently, setting this value to at least the maximum expected number of DomainParticipants will ensure discovery
+   and communication.
+
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+

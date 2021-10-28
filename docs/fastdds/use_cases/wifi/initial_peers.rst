@@ -16,6 +16,10 @@ on host ``192.168.10.13`` with participant ID ``1`` in domain ``0``.
     the `RTPS v2.2 standard`_.
     Refer to :ref:`listening_locators_defaultPorts` to learn about these standard port numbers.
 
+    If the participant ID is not known, setting :ref:`transport_transportApi_transportDescriptor`
+    ``maxInitialPeersRange`` to at least the maximum expected number of DomainParticipants will ensure discovery and
+    communication.
+
 
 +---------------------------------------------------------+
 | **C++**                                                 |

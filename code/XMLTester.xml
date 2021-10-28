@@ -1490,7 +1490,7 @@
 <!--><-->
 
 <!-->XML-PUBLISHER-COMPARISON<-->
-<data_writer profile_name="my_publisher_profile">
+<publisher profile_name="my_publisher_profile">
     <topic>
         <!-- TOPIC_TYPE -->
     </topic>
@@ -1498,7 +1498,7 @@
         <!-- QOS -->
     </qos>
     <!-- Other elements -->
-</data_writer>
+</publisher>
 <!--><-->
 
 <!-->XML-DATAREADER-COMPARISON<-->
@@ -1514,7 +1514,7 @@
 <!--><-->
 
 <!-->XML-SUBSCRIBER-COMPARISON<-->
-<data_reader profile_name="my_subscriber_profile">
+<subscriber profile_name="my_subscriber_profile">
     <topic>
         <!-- TOPIC_TYPE -->
     </topic>
@@ -1522,7 +1522,7 @@
         <!-- QOS -->
     </qos>
     <!-- Other elements -->
-</data_reader>
+</subscriber>
 <!--><-->
 
 <!-->XML-DATAWRITER<-->

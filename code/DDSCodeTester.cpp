@@ -3516,8 +3516,14 @@ void xml_profiles_examples()
             DomainParticipant* participant =
                     DomainParticipantFactory::get_instance()->create_participant_with_profile(
                 0, "participant_xml_profile");
+
+            Topic* topic =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+
             Publisher* publisher = participant->create_publisher_with_profile("publisher_xml_profile");
+            DataWriter* datawriter = publisher->create_datawriter_with_profile(topic, "datawriter_xml_profile");
             Subscriber* subscriber = participant->create_subscriber_with_profile("subscriber_xml_profile");
+            DataReader* datareader = subscriber->create_datareader_with_profile(topic, "datareader_xml_profile");
         }
         //!--
     }

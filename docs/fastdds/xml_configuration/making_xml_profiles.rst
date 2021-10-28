@@ -44,7 +44,8 @@ In case the user defines the |Entity-api| profiles via XML files, it is required
 XML files using the |DomainParticipantFactory::load_XML_profiles_file-api| public member function before creating any
 entity.
 Moreover, |DomainParticipantFactory::create_participant_with_profile-api|,
-|DomainParticipant::create_publisher_with_profile-api|, and |DomainParticipant::create_subscriber_with_profile-api|
+|DomainParticipant::create_publisher_with_profile-api|, |DomainParticipant::create_subscriber_with_profile-api|,
+|Publisher::create_datawriter_with_profile-api|, and |Subscriber::create_datareader_with_profile-api|
 member functions expect a profile name as an argument.
 *Fast DDS* searches the given profile name over all the loaded XML profiles, applying the profile to the entity
 if founded.

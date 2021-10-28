@@ -98,9 +98,9 @@
 .. |DataWriters-api| replace:: :cpp:class:`DataWriters <eprosima::fastdds::dds::DataWriter>`
 
 .. |DomainParticipant-api| replace:: :cpp:class:`DomainParticipant <eprosima::fastdds::dds::DomainParticipant>`
-.. |DomainParticipant::create_publisher_with_profile-api| replace:: :cpp:func:`create_publisher()<eprosima::fastdds::dds::DomainParticipant::create_publisher>`
+.. |DomainParticipant::create_publisher_with_profile-api| replace:: :cpp:func:`create_publisher_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_publisher_with_profile>`
 .. |DomainParticipant::create_publisher-api| replace:: :cpp:func:`create_publisher()<eprosima::fastdds::dds::DomainParticipant::create_publisher>`
-.. |DomainParticipant::create_subscriber_with_profile-api| replace:: :cpp:func:`create_subscriber()<eprosima::fastdds::dds::DomainParticipant::create_subscriber>`
+.. |DomainParticipant::create_subscriber_with_profile-api| replace:: :cpp:func:`create_subscriber_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_subscriber_with_profile>`
 .. |DomainParticipant::create_subscriber-api| replace:: :cpp:func:`create_subscriber()<eprosima::fastdds::dds::DomainParticipant::create_subscriber>`
 .. |DomainParticipant::create_topic-api| replace:: :cpp:func:`create_topic()<eprosima::fastdds::dds::DomainParticipant::create_topic>`
 .. |DomainParticipant::delete_publisher-api| replace:: :cpp:func:`delete_publisher()<eprosima::fastdds::dds::DomainParticipant::delete_publisher>`

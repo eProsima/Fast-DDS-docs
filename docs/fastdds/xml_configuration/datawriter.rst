@@ -8,7 +8,7 @@ DataWriter profiles
 -------------------
 
 The DataWriter profiles allow for configuring |DataWriters| from an XML file.
-These profiles are defined within the ``<data_writer>`` or ``<data_writer>`` XML tags.
+These profiles are defined within the ``<data_writer>`` or ``<publisher>`` XML tags.
 Thus, the following XML code snippets are equivalent.
 
 +----------------------------------------------------------+-----------------------------------------------------------+
@@ -22,8 +22,8 @@ Thus, the following XML code snippets are equivalent.
 
 .. important::
 
-    The ``<data_writer>`` and ``<data_writer>`` XML tags are equivalent.
-    Therefore, XML profiles in which the DataWriters are defined with the ``<data_writer>``
+    The ``<data_writer>`` and ``<publisher>`` XML tags are equivalent.
+    Therefore, XML profiles in which the DataWriters are defined with the ``<publisher>``
     tag are fully compatible with *Fast DDS*.
 
 DataWriter XML attributes

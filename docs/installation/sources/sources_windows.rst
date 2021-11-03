@@ -147,6 +147,25 @@ For example:
 
    OPENSSL_ROOT_DIR=C:\Program Files\OpenSSL-Win64
 
+.. _libp11_sw:
+
+Libp11 and SoftHSM libraries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Libp11 provides PKCS#11 support for OpenSSL. This is an optional dependency,
+that is needed only when *eprosima Fast DDS* is used with security and PKCS#11 URIs.
+
+Download the latest libp11_ version for Windows from this
+`repository <https://github.com/OpenSC/libp11>`_
+and follow the `installation instructions <https://github.com/OpenSC/libp11/blob/master/INSTALL.md>`_
+
+SoftHSM is a software implementation of an HSM (Hardware Security Module).
+If *eProsima Fast DDS* tests are activated and *libp11* is installed
+on the system, SoftHSM is additioanlly required to run tests of PKCS#11 features.
+
+Download the SoftHSM_ for Windows installer from this
+`repository <https://github.com/disig/SoftHSM2-for-Windows>`_.
+Execute the installer and follow the installation instructions.
 
 .. _colcon_installation_windows:
 
@@ -369,3 +388,5 @@ The ``Fast-DDS-Gen`` folder contains the following packages:
 .. _git: https://git-scm.com/
 .. _vcstool: https://pypi.org/project/vcstool/
 .. _Gtest: https://github.com/google/googletest
+.. _libp11: https://github.com/OpenSC/libp11/
+.. _SoftHSM: https://www.opendnssec.org/softhsm/

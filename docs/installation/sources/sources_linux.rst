@@ -72,7 +72,6 @@ Also add the `Gtest repository <https://github.com/google/googletest>`_ into the
 
     git clone https://github.com/google/googletest src/googletest-distribution
 
-
 .. _dependencies_sl:
 
 Dependencies
@@ -110,6 +109,34 @@ For example, on Ubuntu use the command:
 .. code-block:: bash
 
    sudo apt install libssl-dev
+
+.. _libp11_sl:
+
+Libp11 and SoftHSM libraries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Libp11 provides PKCS#11 support for OpenSSL. This is an optional dependency,
+that is needed only when *eprosima Fast DDS* is used with security and PKCS#11 URIs.
+
+Install libp11_ using the package manager of the appropriate Linux distribution.
+For example, on Ubuntu use the command:
+
+.. code-block:: bash
+
+   sudo apt install libp11-dev libengine-pkcs11-openssl
+
+SoftHSM is a software implementation of an HSM (Hardware Security Module).
+If *eProsima Fast DDS* tests are activated and *libp11* is installed
+on the system, SoftHSM is additioanlly required to run tests of PKCS#11 features.
+
+To install SoftHSM_, download the repository and follow the installation instructions:
+
+.. code-block:: bash
+
+   git clone https://github.com/opendnssec/SoftHSMv2.git
+   cd SoftHSMv2 && ./autogen.sh
+   ./configure --with-crypto-backend=openssl --disable-non-paged-memory
+   make && sudo make install
 
 
 .. _colcon_installation_linux:
@@ -358,3 +385,5 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
 .. _OpenSSL: https://www.openssl.org/
 .. _Gtest: https://github.com/google/googletest
 .. _vcstool: https://pypi.org/project/vcstool/
+.. _libp11: https://github.com/OpenSC/libp11/
+.. _SoftHSM: https://www.opendnssec.org/softhsm/

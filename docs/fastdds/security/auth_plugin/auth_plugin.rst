@@ -50,11 +50,12 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
        Supported URI schemes: file.
    * - private_key
      - URI to access the private Private Key for the Participant. |br|
-       Supported URI schemes: file.
+       Supported URI schemes: file, PKCS#11.
    * - password *(optional)*
      - A password used to decrypt the *private_key*.  |br|
        If the *password* property is not present, then the value supplied in the |br|
-       *private_key* property must contain the decrypted private key.
+       *private_key* property must contain the decrypted private key. |br|
+       The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.
 
 .. note::
   All listed properties have "dds.sec.auth.builtin.PKI-DH." prefix.

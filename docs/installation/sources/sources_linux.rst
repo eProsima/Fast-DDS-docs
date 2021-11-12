@@ -127,16 +127,14 @@ For example, on Ubuntu use the command:
 
 SoftHSM is a software implementation of an HSM (Hardware Security Module).
 If *eProsima Fast DDS* tests are activated and *libp11* is installed
-on the system, SoftHSM is additioanlly required to run tests of PKCS#11 features.
+on the system, SoftHSM is additionally required to run tests of PKCS#11 features.
 
-To install SoftHSM_, download the repository and follow the installation instructions:
+Install SoftHSM_ using the package manager of the appropriate Linux distribution.
+For example, on Ubuntu use the command:
 
 .. code-block:: bash
 
-   git clone https://github.com/opendnssec/SoftHSMv2.git
-   cd SoftHSMv2 && ./autogen.sh
-   ./configure --with-crypto-backend=openssl --disable-non-paged-memory
-   make && sudo make install
+   sudo apt install softhsm2
 
 
 .. _colcon_installation_linux:

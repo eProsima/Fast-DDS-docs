@@ -161,7 +161,7 @@ and follow the `installation instructions <https://github.com/OpenSC/libp11/blob
 
 SoftHSM is a software implementation of an HSM (Hardware Security Module).
 If *eProsima Fast DDS* tests are activated and *libp11* is installed
-on the system, SoftHSM is additioanlly required to run tests of PKCS#11 features.
+on the system, SoftHSM is additionally required to run tests of PKCS#11 features.
 
 Download the SoftHSM_ for Windows installer from this
 `repository <https://github.com/disig/SoftHSM2-for-Windows>`_.

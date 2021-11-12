@@ -16,7 +16,7 @@ This library provides a PKCS#11 engine for OpenSSL that acts as a proxy between 
 and the HSM driver provided by the manufacturer.
 To make OpenSSL aware of the new engine, the OpenSSL configuration file must be updated.
 This file is usually located at */etc/ssl/openssl.cnf* in UNIX systems, and at *c:/{path to openSSL}/bin/openssl.cfg*
-on windows systems.
+on Windows systems.
 
 Add the following line to the top of the configuration file, before any section is defined:
 
@@ -27,6 +27,7 @@ Add the following line to the top of the configuration file, before any section 
 Then add the following sections at the bottom:
 
 .. code-block::
+
    [openssl_init]
    engines=engine_section
 
@@ -43,9 +44,10 @@ The *dynamic_path* value refers to the library provided by *libp11*,
 while the *MODULE_PATH* value refers to the PKCS#11 compatible library
 provided by the HSM manufacturer.
 
-For example, on a linux machine with *libp11* and *SoftHSM* installed on the default paths:
+For example, on a Linux machine with *libp11* and *SoftHSM* installed on the default paths:
 
 .. code-block::
+
    [openssl_init]
    engines=engine_section
 

@@ -1,48 +1,34 @@
 .. _release_notes:
 
-Version 2.4.0
+Version 2.4.1
 =============
 
-This minor release is API compatible with the previous minor release, but introduces **ABI breaks** on
-two of the three public APIs:
+This release includes the following **improvements**:
 
-* Methods and attributes have been added on several classes of the DDS-PIM high-level API, so indexes of
-  symbols on dynamic libraries may have changed.
+1. Fixed several flaky tests
+2. Improved bandwidth usage of GAPs and HEARTBEATs
+3. Correctly implement delete_contained_entities
+4. Use native inter-process on Windows
+5. Improved performance of unregister_instance
+6. Improved OSS-fuzz integration
+7. Support for partitions on DataWriterQoS and DataReaderQoS
+8. Some documentation improvements
+9. Removed unused macro to avoid naming clashes
 
-* Methods and attributes have been added on several classes of the RTPS low-level API, so indexes of
-  symbols on dynamic libraries may have changed.
+This release includes the following **bugfixes**:
 
-* Old Fast-RTPS high-level API remains ABI compatible.
-
-This minor release includes the following **features**:
-
-* :ref:`Conditions and Wait-sets <dds_layer_core_waitsets>` implementation.
-* :ref:`Flow controllers <flow-controllers>`.
-* :ref:`Configure Discovery Server locators using names <DS_dns_name>`.
-* :ref:`Modifying remote servers list at run time <DS_modify_server_list>`.
-* :ref:`Environment file override <env_vars_fastdds_environment_file>`.
-
-It also includes the following **improvements**:
-
-* Allow setting custom folder for :ref:`data-sharing <datasharing-delivery>` files.
-* Allow setting persistence guid with static discovery.
-* Check for NDEBUG in logInfo.
-* Removed old unused CMake code.
-* Fixed TLS behavior on TCP example.
-* Prepare API for easy integration of python bindings.
-* Improved statistics performance.
-
-Some important **bugfixes** are also included:
-
-* Fixed order of returned samples on topics with keys.
-* Allow updating partitions to an empty set.
-* Correctly propagate DomainParticipantQos updates.
-* Avoid a volatile data-sharing reader to block a writer.
-* Correctly give priority to intra-process over data-sharing.
-* Fixed reallocation issue on LivelinessManager.
-* Fixed deadline issue on volatile DataWriter
-* Fixed STRICT_REALTIME silently not active with Unix POSIX systems.
-* Fixed build errors with OpenSSL 3.0
+1. Avoid bad_node_size exception when cross building
+2. Fixed build on old compilers
+3. Fixed buffers exhaustion when compiled with statistics
+4. Fixed runtime addition of Discovery Servers
+5. Fixed dangling sample references with big data
+6. Fixed history record issues with persistence
+7. Correctly disable DataReader on destruction
+8. Fixed alignment issues on XTypes QoS policies serialization
+9. Fixed reconnection to Discovery Server
+10. Correctly use builtin publisher for statistics DataWriters
+11. Fixed various GCC-11 warnings
+12. Use only public APIs from foonathan::memory
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -52,6 +38,7 @@ Some important **bugfixes** are also included:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.4.0.rst
 .. include:: previous_versions/v2.3.4.rst
 .. include:: previous_versions/v2.3.3.rst
 .. include:: previous_versions/v2.3.2.rst

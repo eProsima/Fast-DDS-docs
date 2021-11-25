@@ -5,7 +5,7 @@ Version 2.4.1
 
 This release includes the following **improvements**:
 
-1. Fixed several flakey tests
+1. Fixed several flaky tests
 2. Improved bandwidth usage of GAPs and HEARTBEATs
 3. Correctly implement delete_contained_entities
 4. Use native interprocess on Windows

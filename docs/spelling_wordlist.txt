@@ -80,6 +80,7 @@ fastcdr
 fastdds
 fastddsgen
 foonathan
+GCC
 GCM
 getter
 Github
@@ -132,6 +133,7 @@ nanosec
 nupkg
 offsetd
 oneway
+OSS
 persistency
 PKI
 pluggable
@@ -151,6 +153,7 @@ QosPolicyCount
 quadratically
 readNextData
 reconfigurations
+reconnection
 redistributable
 replier
 repos

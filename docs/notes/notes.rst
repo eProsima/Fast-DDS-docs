@@ -30,6 +30,7 @@ This release includes the following **bugfixes**:
 11. Fixed various GCC-11 warnings
 12. Use only public APIs from foonathan::memory
 13. Fixed installation directories for DDS examples
+14. Fixed read after free on security code
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

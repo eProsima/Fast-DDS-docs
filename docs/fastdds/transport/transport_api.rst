@@ -194,8 +194,8 @@ However, :class:`IPLocator` allows to manage them if needed.
 Chaining of transports
 ----------------------
 
-There are use cases where the user needs to preprocess outcomming information before being sent to network and also
-the incomming information after being received.
+There are use cases where the user needs to pre-process out-coming information before being sent to network and also
+the incoming information after being received.
 *Transport API* offers two interfaces for implementing this kind of functionality: :class:`ChainingTransportDescriptor`
 and :class:`ChainingTransport`.
 
@@ -234,17 +234,17 @@ and :class:`ChainingTransport`.
 
 
 These extensions allow to implement a new Transport which depends on another one (called here as *low level transport*).
-The user can override the `sent()` function, preprocessing the outcomming buffer before calling the associated
+The user can override the `sent()` function, pre-processing the out-coming buffer before calling the associated
 *low level transport*.
-Also, when a incomming buffer arrives to the *low level transport*, this one calls the overriden `receive()`
+Also, when a incoming buffer arrives to the *low level transport*, this one calls the overridden `receive()`
 function to
-allow to preprocess the buffer.
+allow to pre-process the buffer.
 
 ChainingTransportDescriptor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Implementing :class:`ChainingTransportDescriptor` allows to configure the new Transport and set the *low level
-transport* in which depends on. The associated *low level transport* can be any transport which inherates from
+transport* in which depends on. The associated *low level transport* can be any transport which inherits from
 :class:`TransportInterface` (including another :class:`ChainingTransport`).
 
 
@@ -268,7 +268,7 @@ ChainingTransport
 ^^^^^^^^^^^^^^^^^
 
 This interface forces the user to implement `sent()` and `receive()` functions.
-The idea is to preprocess the buffer and after, call to the next level.
+The idea is to pre-process the buffer and after, call to the next level.
 
 .. literalinclude:: ../../../code/DDSCodeTester.cpp
    :language: c++

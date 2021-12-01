@@ -249,6 +249,7 @@ breathe_default_project = 'FastDDS'
 # ones.
 extensions = [
     'breathe',
+    'sphinxcontrib.plantuml',
 ]
 try:
     import sphinxcontrib.spelling  # noqa: F401
@@ -267,6 +268,8 @@ try:
 except ImportError:
     pass
 
+plantuml = '/usr/bin/plantuml -Djava.awt.headless=true '
+plantuml_output_format = "svg"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

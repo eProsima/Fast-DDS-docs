@@ -112,6 +112,7 @@
 .. |DomainParticipant::set_default_publisher_qos-api| replace:: :cpp:func:`set_default_publisher_qos()<eprosima::fastdds::dds::DomainParticipant::set_default_publisher_qos>`
 .. |DomainParticipant::set_default_subscriber_qos-api| replace:: :cpp:func:`set_default_subscriber_qos()<eprosima::fastdds::dds::DomainParticipant::set_default_subscriber_qos>`
 .. |DomainParticipant::set_default_topic_qos-api| replace:: :cpp:func:`set_default_topic_qos()<eprosima::fastdds::dds::DomainParticipant::set_default_topic_qos>`
+.. |DomainParticipant::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::DomainParticipant::get_qos>`
 .. |DomainParticipant::get_publisher_qos_from_profile| replace:: :cpp::func`get_publisher_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_publisher_qos_from_profile>`
 .. |DomainParticipant::get_subscriber_qos_from_profile| replace:: :cpp::func`get_subscriber_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_subscriber_qos_from_profile>`
 .. |DomainParticipant::get_topic_qos_from_profile| replace:: :cpp::func`get_topic_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_topic_qos_from_profile>`
@@ -704,6 +705,8 @@
 .. |RemoteServerAttributes::guidPrefix-api| replace:: :cpp:member:`guidPrefix<eprosima::fastrtps::rtps::RemoteServerAttributes::guidPrefix>`
 .. |BuiltinAttributes-api| replace:: :cpp:class:`BuiltinAttributes<eprosima::fastrtps::rtps::BuiltinAttributes>`
 .. |BuiltinAttributes::discovery_config-api| replace:: :cpp:member:`discovery_config<eprosima::fastrtps::rtps::BuiltinAttributes::discovery_config>`
+.. |BuiltinAttributes::metatrafficUnicastLocatorList-api| replace:: :cpp:member:`metatrafficUnicastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficUnicastLocatorList>`
+.. |BuiltinAttributes::metatrafficMulticastLocatorList-api| replace:: :cpp:member:`metatrafficMulticastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficMulticastLocatorList>`
 
 .. |Property-api| replace:: :cpp:class:`Property<eprosima::fastrtps::rtps::Property>`
 

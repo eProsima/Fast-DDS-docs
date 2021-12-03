@@ -67,6 +67,10 @@ with distributed systems:
   This use case illustrates the APIs that allow for the request of unique network flows, and for the identification
   of those in use.
 
++ :ref:`dynamic-network-interfaces`.
+  If the network interfaces are expected to change while the application is running, *Fast DDS* provides an easy way
+  of re-scanning the available interfaces and including them.
+
 + :ref:`statistics_module`.
   This use case explains how to enable the Statistics module within the monitored application, and how to create a
   statistics monitoring application.
@@ -89,3 +93,4 @@ with distributed systems:
     /fastdds/use_cases/zero_copy/zero_copy.rst
     /fastdds/use_cases/unique_network_flows/unique_network_flows.rst
     /fastdds/use_cases/statistics_module/statistics_module.rst
+    /fastdds/use_cases/dynamic_network_interfaces/dynamic_network_interfaces.rst

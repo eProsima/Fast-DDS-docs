@@ -43,6 +43,8 @@ Loading and applying profiles
 In case the user defines the |Entity-api| profiles via XML files, it is required to load these
 XML files using the |DomainParticipantFactory::load_XML_profiles_file-api| public member function before creating any
 entity.
+It is also possible to load directly the XML information as a string data buffer using the
+|DomainParticipantFactory::load_XML_profiles_string-api| public member function.
 Moreover, |DomainParticipantFactory::create_participant_with_profile-api|,
 |DomainParticipant::create_publisher_with_profile-api|, |DomainParticipant::create_subscriber_with_profile-api|,
 |Publisher::create_datawriter_with_profile-api|, and |Subscriber::create_datareader_with_profile-api|

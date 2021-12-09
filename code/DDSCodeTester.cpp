@@ -3525,6 +3525,17 @@ void xml_profiles_examples()
             Subscriber* subscriber = participant->create_subscriber_with_profile("subscriber_xml_profile");
             DataReader* datareader = subscriber->create_datareader_with_profile(topic, "datareader_xml_profile");
         }
+
+        // Load XML as string data buffer
+        std::ifstream t("my_profiles.xml");
+        std::stringstream buffer;
+        buffer << t.rdbuf();
+        if (ReturnCode_t::RETCODE_OK ==
+                DomainParticipantFactory::get_instance()->load_XML_profiles_string(buffer.str().c_str(),
+                buffer.str().length()))
+        {
+            // Create DDS entities with profiles
+        }
         //!--
     }
     {

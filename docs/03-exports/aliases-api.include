@@ -127,6 +127,7 @@
 .. |DomainParticipant::get_participant_qos_from_profile| replace:: :cpp::func`get_participant_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_participant_qos_from_profile>`
 .. |DomainParticipantFactory::get_instance-api| replace:: :cpp:func:`get_instance()<eprosima::fastdds::dds::DomainParticipantFactory::get_instance>`
 .. |DomainParticipantFactory::load_XML_profiles_file-api| replace:: :cpp:func:`load_XML_profiles_file()<eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_file>`
+.. |DomainParticipantFactory::load_XML_profiles_string-api| replace:: :cpp:func:`load_XML_profiles_string()<eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_string>`
 .. |DomainParticipantFactory::set_default_participant_qos-api| replace:: :cpp:func:`set_default_participant_qos()<eprosima::fastdds::dds::DomainParticipantFactory::set_default_participant_qos>`
 .. |DomainParticipantFactory::set_qos-api| replace:: :cpp:func:`DomainParticipantFactory::set_qos()<eprosima::fastdds::dds::DomainParticipantFactory::set_qos>`
 

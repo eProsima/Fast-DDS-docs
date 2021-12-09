@@ -15,6 +15,9 @@ InstanceHandle_t Operators
 .. doxygenfunction:: eprosima::fastrtps::rtps::operator<<(std::ostream &output, const InstanceHandle_t &iHandle)
     :project: FastDDS
 
+.. doxygenfunction:: eprosima::fastrtps::rtps::operator>>(std::istream &input, InstanceHandle_t &iHandle)
+    :project: FastDDS
+
 .. doxygenfunction:: eprosima::fastrtps::rtps::iHandle2GUID(GUID_t &guid, const InstanceHandle_t &ihandle) noexcept
     :project: FastDDS
 

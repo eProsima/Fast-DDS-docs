@@ -88,7 +88,7 @@ public:
             const std::chrono::steady_clock::time_point& timeout) override
     {
         //
-        // Preprocess outcomming buffer.
+        // Preprocess outcoming buffer.
         //
 
         // Call low level transport
@@ -104,7 +104,7 @@ public:
             const eprosima::fastrtps::rtps::Locator_t& remote_locator) override
     {
         //
-        // Preprocess incomming buffer.
+        // Preprocess incoming buffer.
         //
 
         // Call upper level

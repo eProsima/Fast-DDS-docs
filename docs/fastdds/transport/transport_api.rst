@@ -234,7 +234,7 @@ and :class:`ChainingTransport`.
 
 
 These extensions allow to implement a new Transport which depends on another one (called here as *low level transport*).
-The user can override the `sent()` function, pre-processing the out-coming buffer before calling the associated
+The user can override the `send()` function, pre-processing the out-coming buffer before calling the associated
 *low level transport*.
 Also, when a incoming buffer arrives to the *low level transport*, this one calls the overridden `receive()`
 function to
@@ -244,7 +244,8 @@ ChainingTransportDescriptor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Implementing :class:`ChainingTransportDescriptor` allows to configure the new Transport and set the *low level
-transport* in which depends on. The associated *low level transport* can be any transport which inherits from
+transport* on which it depends.
+The associated *low level transport* can be any transport which inherits from
 :class:`TransportInterface` (including another :class:`ChainingTransport`).
 
 
@@ -267,7 +268,7 @@ User has to specify the *low level tranport* in the definition of its new custom
 ChainingTransport
 ^^^^^^^^^^^^^^^^^
 
-This interface forces the user to implement `sent()` and `receive()` functions.
+This interface forces the user to implement `send()` and `receive()` functions.
 The idea is to pre-process the buffer and after, call to the next level.
 
 .. literalinclude:: ../../../code/DDSCodeTester.cpp

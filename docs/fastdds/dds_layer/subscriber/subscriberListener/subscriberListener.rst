@@ -32,6 +32,10 @@ Additionally, SubscriberListener adds the following callback:
    If the application is retrieving the received data on this callback, it must keep
    :ref:`reading data<dds_layer_subscriber_accessreceived>` until no new changes are left.
 
+.. important::
+
+   For more information about callbacks and its hierarchy, please refer to
+   :ref:`dds_layer_core_entity_commonchars_listener`.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

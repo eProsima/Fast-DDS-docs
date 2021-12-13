@@ -52,7 +52,8 @@ Additionally, DomainParticipantListener adds the following callbacks:
 
 .. important::
 
-   Read more about callbacks and its hierarchy :ref:`here<dds_layer_core_entity_commonchars_listener>`
+   For more information about callbacks and its hierarchy, please refer to
+   :ref:`dds_layer_core_entity_commonchars_listener`.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

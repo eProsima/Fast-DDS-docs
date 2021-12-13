@@ -129,6 +129,9 @@ XML
 DisablePositiveACKsQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+DisablePositiveACKsQosPolicy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 This additional QoS allows reducing network traffic when strict reliable communication is not required and bandwidth is
 limited.
 It consists in changing the default behavior by which positive acks are sent from readers to writers.
@@ -712,12 +715,18 @@ List of QoS Policy data members:
 +--------------------------------------------------------------------------------+-------------------------------------+
 | |RTPSReliableWriterQos::disable_positive_acks-api|                             | :ref:`disablepositiveacksqospolicy` |
 +--------------------------------------------------------------------------------+-------------------------------------+
+| |RTPSReliableWriterQos::disable_heartbeat_piggyback-api|                       | :ref:`disableheartbeatpiggyback`    |
++--------------------------------------------------------------------------------+-------------------------------------+
 
 * |RTPSReliableWriterQos::times-api|:
-  Defines the duration of the RTPSWriter events. See :ref:`writertimes` for further details.
+  Defines the duration of the RTPSWriter events.
+  See :ref:`writertimes` for further details.
 * |RTPSReliableWriterQos::disable_positive_acks-api|:
   Configures the settings to disable the positive acks.
   See :ref:`disablepositiveacksqospolicy` for further details.
+* |RTPSReliableWriterQos::disable_heartbeat_piggyback-api|:
+  Configures the settings to disable the heartbeat piggyback mechanism.
+  See :ref:`disableheartbeatpiggyback` for further details.
 
 .. note::
      This QoS Policy concerns to |DataWriter| entities.
@@ -754,6 +763,23 @@ List of structure members:
 * |WriterTimes::nackSupressionDuration-api|:
   The RTPSWriter ignores the nack messages received after sending the data until the
   duration time elapses.
+
+.. _disableheartbeatpiggyback:
+
+DisableHeartbeatPiggyback
+"""""""""""""""""""""""""
+
+Besides sending heartbeats periodically using the |WriterTimes::heartbeatPeriod-api| (see :ref:`writertimes`), reliable
+DataWriters also use a mechanism to append a heartbeat submessage in the same message where data is being delivery to
+the DataReaders.
+This mechanism acts in specific situations where the states of reliable communication must be up to date to maintain
+optimal communication.
+
+- When the DataWriter sends so much number of bytes to the *socket* as the length of the *socket* buffer, a heartbeat
+  submessage is appended after the last data.
+- When the DataWriter's history is full, the DataWriter starts to append heartbeat submessages after each data.
+
+This mechanism can be disabled using this policy.
 
 Example
 """""""

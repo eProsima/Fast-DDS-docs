@@ -4002,8 +4002,12 @@
             <nanosec>20</nanosec>
         </nackSupressionDuration>
     </times>
+
     <!--You can also change the values of DisablePositiveACKsQosPolicy.-->
     <!--See DisablePositiveACKsQosPolicy section for further details-->
+
+    <!--Disable heartbeat piggyback mechanism.-->
+    <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
 </data_writer>
 <!--><-->
 

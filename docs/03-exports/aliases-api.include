@@ -475,6 +475,7 @@
 .. |RTPSReliableWriterQos-api| replace:: :cpp:class:`RTPSReliableWriterQos<eprosima::fastdds::dds::RTPSReliableWriterQos>`
 .. |RTPSReliableWriterQos::times-api| replace:: :cpp:member:`times<eprosima::fastdds::dds::RTPSReliableWriterQos::times>`
 .. |RTPSReliableWriterQos::disable_positive_acks-api| replace:: :cpp:member:`disable_positive_acks<eprosima::fastdds::dds::RTPSReliableWriterQos::disable_positive_acks>`
+.. |RTPSReliableWriterQos::disable_heartbeat_piggyback-api| replace:: :cpp:member:`disable_heartbeat_piggyback<eprosima::fastdds::dds::RTPSReliableWriterQos::disable_heartbeat_piggyback>`
 
 .. |VariableLengthDataLimits-api| replace:: :cpp:struct:`VariableLengthDataLimits<eprosima::fastrtps::rtps::VariableLengthDataLimits>`
 .. |VariableLengthDataLimits::max_user_data-api| replace:: :cpp:member:`max_user_data<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_user_data>`

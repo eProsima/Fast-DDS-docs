@@ -68,6 +68,9 @@ DataReaderListener defines the following callbacks:
    |DataReaderListener::on_sample_lost-api|
    is not implemented (it will never be called), and will be implemented on a future release of Fast DDS.
 
+.. important::
+
+   Read more about callbacks and its hierarchy :ref:`here<dds_layer_core_entity_commonchars_listener>`
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
   :language: c++

@@ -643,8 +643,6 @@ void dds_domain_examples()
         if (statistics_participant->enable_statistics_datawriter(eprosima::fastdds::statistics::GAP_COUNT_TOPIC,
                 eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS) != ReturnCode_t::RETCODE_OK)
         {
-        }
-        {
             // Error
             return;
         }

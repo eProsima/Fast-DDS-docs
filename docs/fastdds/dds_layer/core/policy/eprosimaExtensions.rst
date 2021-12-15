@@ -770,12 +770,12 @@ DisableHeartbeatPiggyback
 """""""""""""""""""""""""
 
 Besides sending heartbeats periodically using the |WriterTimes::heartbeatPeriod-api| (see :ref:`writertimes`), reliable
-DataWriters also use a mechanism to append a heartbeat submessage in the same message where data is being delivery to
+DataWriters also use a mechanism to append a heartbeat submessage in the same message where data is being delivered to
 the DataReaders.
-This mechanism acts in specific situations where the states of reliable communication must be up to date to maintain
-optimal communication.
+This mechanism acts in specific situations where the reliable communication state must be up to date to maintain
+optimal communication:
 
-- When the DataWriter sends so much number of bytes to the *socket* as the length of the *socket* buffer, a heartbeat
+- When the DataWriter sends as many bytes to the *socket* as the length of the *socket* buffer, a heartbeat
   submessage is appended after the last data.
 - When the DataWriter's history is full, the DataWriter starts to append heartbeat submessages after each data.
 

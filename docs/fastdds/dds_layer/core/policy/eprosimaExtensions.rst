@@ -129,9 +129,6 @@ XML
 DisablePositiveACKsQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-DisablePositiveACKsQosPolicy
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 This additional QoS allows reducing network traffic when strict reliable communication is not required and bandwidth is
 limited.
 It consists in changing the default behavior by which positive acks are sent from readers to writers.

@@ -4395,6 +4395,24 @@ void dds_usecase_examples()
         }
         //!--
     }
+
+    {
+        //DYNAMIC_NETWORK_INTERFACES_USE_CASE
+        // Create the DomainParticipant
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // User application
+
+        // Notify Fast DDS a new network interface is available
+        participant->set_qos(PARTICIPANT_QOS_DEFAULT);
+        //!--
+    }
 }
 
 void dds_persistence_examples()

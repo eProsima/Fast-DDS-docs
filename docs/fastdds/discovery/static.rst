@@ -77,54 +77,88 @@ A full example of such file can be found in :ref:`static_xml_example`.
 .. |transientlocal| replace:: |TRANSIENT_LOCAL_DURABILITY_QOS-api|
 .. |transient| replace:: |TRANSIENT_DURABILITY_QOS-api|
 
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| Name                   | Description                                      | Values                 | Default         |
-+========================+==================================================+========================+=================+
-| ``<userId>``           | Mandatory. |br|                                  | ``uint16_t``           | 0               |
-|                        | Uniquely identifies the DataReader/DataWriter.   |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<entityID>``         | EntityId of the DataReader/DataWriter.           | ``uint16_t``           | 0               |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<expectsInlineQos>`` | It indicates if QOS is expected inline  |br|     | ``bool``               | ``false``       |
-|                        | (DataReader **only**).                           |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<topicName>``        | Mandatory. |br|                                  | ``string_255``         |                 |
-|                        | The topic of the remote DataReader/DataWriter.   |                        |                 |
-|                        | |br| Should match with one of the topics of the  |                        |                 |
-|                        | local |br| DataReaders/DataWriters.              |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<topicDataType>``    | Mandatory. |br|                                  | ``string_255``         |                 |
-|                        | The data type of the topic.                      |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<topicKind>``        | The kind of topic.                               | :class:`NO_KEY`        | :class:`NO_KEY` |
-|                        |                                                  +------------------------+                 |
-|                        |                                                  | :class:`WITH_KEY`      |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<partitionQos>``     | The name of a partition of the remote peer. |br| | ``string``             |                 |
-|                        | Repeat to configure several partitions.          |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<unicastLocator>``   | Unicast locator of the DomainParticipant. |br|   |                        |                 |
-|                        | See :ref:`staticLocators`.                       |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<multicastLocator>`` | Multicast locator of the DomainParticipant. |br| |                        |                 |
-|                        | See :ref:`staticLocators`.                       |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<reliabilityQos>``   | See the :ref:`reliabilityqospolicy` section.     | |besteffort|           | |besteffort|    |
-|                        |                                                  +------------------------+                 |
-|                        |                                                  | |reliable|             |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<durabilityQos>``    | See the :ref:`durabilityqospolicy` section.      | |volatile|             | |volatile|      |
-|                        |                                                  +------------------------+                 |
-|                        |                                                  | |transientlocal|       |                 |
-|                        |                                                  +------------------------+                 |
-|                        |                                                  | |transient|            |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<ownershipQos>``     | See :ref:`ownershipQos`.                         |                        |                 |
-|                        |                                                  |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
-| ``<livelinessQos>``    | Defines the liveliness of the remote peer. |br|  |                        |                 |
-|                        | See :ref:`livelinessQos`.                        |                        |                 |
-+------------------------+--------------------------------------------------+------------------------+-----------------+
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<userId>``
+     - Mandatory.
+       Uniquely identifies the DataReader/DataWriter.
+     - ``uint16_t``
+     - 0
+   * - ``<entityID>``
+     - EntityId of the DataReader/DataWriter.
+     - ``uint16_t``
+     - 0
+   * - ``<expectsInlineQos>``
+     - It indicates if QOS is expected inline (DataReader **only**).
+     - ``bool``
+     - ``false``
+   * - ``<topicName>``
+     - Mandatory.
+       The topic of the remote DataReader/DataWriter.
+       Should match with one of the topics of the local DataReaders/DataWriters.
+     - ``string_255``
+     -
+   * - ``<topicDataType>``
+     - Mandatory.
+       The data type of the topic.
+     - ``string_255``
+     -
+   * - ``<topicKind>``
+     - The kind of topic.
+     - :class:`NO_KEY`
+       :class:`WITH_KEY`
+     - :class:`NO_KEY`
+   * - ``<partitionQos>``
+     - The name of a partition of the remote peer.
+       Repeat to configure several partitions.
+     - ``string``
+     -
+   * - ``<unicastLocator>``
+     - Unicast locator of the DomainParticipant.
+       See :ref:`staticLocators`.
+     -
+     -
+   * - ``<multicastLocator>``
+     - Multicast locator of the DomainParticipant.
+       See :ref:`staticLocators`.
+     -
+     -
+   * - ``<reliabilityQos>``
+     - See the :ref:`reliabilityqospolicy` section.
+     - |besteffort|
+       |reliable|
+     - |besteffort|
+   * - ``<durabilityQos>``
+     - See the :ref:`durabilityqospolicy` section.
+     - |volatile|
+       |transientlocal|
+       |transient|
+     - |volatile|
+   * - ``<ownershipQos>``
+     - See :ref:`ownershipQos`.
+     -
+     -
+   * - ``<livelinessQos>``
+     - Defines the liveliness of the remote peer.
+       See :ref:`livelinessQos`.
+     -
+     -
+   * - ``<livelinessQos>``
+     - Defines the liveliness of the remote peer.
+       See :ref:`livelinessQos`.
+     -
+     -
+   * - ``<disablePositiveAcks>``
+     - See :ref:`disablepositiveacksqospolicy`.
+     - See :ref:`xml_disablepositiveacks`
+     -
 
 .. _staticLocators:
 

@@ -10,10 +10,31 @@ Transport API
 The following diagram presents the classes defined on the transport API of *eProsima Fast DDS*.
 It shows the abstract API interfaces, and the classes required to implement a transport.
 
-.. figure:: /01-figures/transport_api_class_diagram.svg
+.. uml::
+    :caption: Transport API diagram
     :align: center
 
-    Transport API diagram
+    hide empty members
+    interface TransportDescriptorInterface
+    {
+        +uint32_t maxMessageSize
+        +uint32_t maxInitialPeersRange
+    }
+    interface TransportInterface
+    {
+        #int32_t transport_kind_
+    }
+    class Locator
+    {
+        +int32_t kind
+        +uint32_t port
+        +octet[16] address
+    }
+    TransportDescriptorInterface <|-- CustomTransportDescriptor
+    TransportInterface <|-- CustomTransport
+    CustomTransport <--right CustomTransportDescriptor : create
+    Locator <--right TransportInterface
+
 
 .. contents::
     :local:
@@ -169,3 +190,88 @@ However, :class:`IPLocator` allows to manage them if needed.
     :end-before: //!--
     :dedent: 8
 
+
+Chaining of transports
+----------------------
+
+There are use cases where the user needs to pre-process out-coming information before being sent to network and also
+the incoming information after being received.
+*Transport API* offers two interfaces for implementing this kind of functionality: :class:`ChainingTransportDescriptor`
+and :class:`ChainingTransport`.
+
+.. uml::
+    :align: center
+
+    hide empty members
+    interface TransportDescriptorInterface
+    {
+        +uint32_t maxMessageSize
+        +uint32_t maxInitialPeersRange
+    }
+    interface TransportInterface
+    {
+        #int32_t transport_kind_
+    }
+    interface ChainingTransportDescriptor
+    {
+        +std::shared_ptr<TransportDescriptorInterface> low_level_descriptor
+    }
+    interface ChainingTransport
+    {
+        #std::unique_ptr<TransportInterface> low_level_transport_
+        {abstract} bool send(...)
+        {abstract} void receive(...)
+    }
+    TransportDescriptorInterface <|-- ChainingTransportDescriptor
+    TransportInterface <|-- ChainingTransport
+    ChainingTransportDescriptor <|-- CustomChainingTransportDescriptor
+    ChainingTransport <|-- CustomChainingTransport
+    CustomChainingTransport <-- CustomChainingTransportDescriptor : create
+    CustomChainingTransportDescriptor "1" *-- "1" TransportDescriptorInterface : contains
+    CustomChainingTransport "1" *-- "1" TransportInterface : contains
+    CustomChainingTransportDescriptor --- UDPv4TransportDescriptor : example
+    CustomChainingTransport ---  UDPv4Transport : example
+
+
+These extensions allow to implement a new Transport which depends on another one (called here as *low level transport*).
+The user can override the `send()` function, pre-processing the out-coming buffer before calling the associated
+*low level transport*.
+Also, when a incoming buffer arrives to the *low level transport*, this one calls the overridden `receive()`
+function to
+allow to pre-process the buffer.
+
+ChainingTransportDescriptor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementing :class:`ChainingTransportDescriptor` allows to configure the new Transport and set the *low level
+transport* on which it depends.
+The associated *low level transport* can be any transport which inherits from
+:class:`TransportInterface` (including another :class:`ChainingTransport`).
+
+
+The :class:`ChainingTransportDescriptor` defines the following data members:
+
++--------------------------+---------------------------------------------------+----------------------------------+
+| Member                   | Data type                                         | Description                      |
++==========================+===================================================+==================================+
+| ``low_level_descriptor`` | ``std::shared_ptr<TransportDescriptorInterface>`` | Transport descriptor of the *low |
+|                          |                                                   | level transport*                 |
++--------------------------+---------------------------------------------------+----------------------------------+
+
+User has to specify the *low level tranport* in the definition of its new custom transport.
+
+.. literalinclude:: ../../../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //CONF-CUSTOM-CHAINING-TRANSPORT-SETTING
+   :end-before: //!
+
+ChainingTransport
+^^^^^^^^^^^^^^^^^
+
+This interface forces the user to implement `send()` and `receive()` functions.
+The idea is to pre-process the buffer and after, call to the next level.
+
+.. literalinclude:: ../../../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //CHAINING_TRANSPORT_OVERRIDE
+   :end-before: //!

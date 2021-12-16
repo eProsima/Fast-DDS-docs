@@ -35,6 +35,8 @@
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPv6TransportDescriptor.h>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
+#include <fastdds/rtps/transport/ChainingTransportDescriptor.h>
+#include <fastdds/rtps/transport/ChainingTransport.h>
 
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
@@ -45,6 +47,80 @@
 #include <sstream>
 
 using namespace eprosima::fastdds::dds;
+
+class CustomChainingTransportDescriptor : public eprosima::fastdds::rtps::ChainingTransportDescriptor
+{
+public:
+
+    CustomChainingTransportDescriptor(
+            std::shared_ptr<eprosima::fastdds::rtps::TransportDescriptorInterface> low_level)
+        : ChainingTransportDescriptor(low_level)
+    {
+    }
+
+    eprosima::fastdds::rtps::TransportInterface* create_transport() const override;
+};
+
+//CHAINING_TRANSPORT_OVERRIDE
+class CustomChainingTransport : public eprosima::fastdds::rtps::ChainingTransport
+{
+
+public:
+
+    CustomChainingTransport(
+            const CustomChainingTransportDescriptor& descriptor)
+        : ChainingTransport(descriptor)
+        , descriptor_(descriptor)
+    {
+    }
+
+    eprosima::fastdds::rtps::TransportDescriptorInterface* get_configuration()
+    {
+        return &descriptor_;
+    }
+
+    bool send(
+            eprosima::fastrtps::rtps::SenderResource* low_sender_resource,
+            const eprosima::fastrtps::rtps::octet* send_buffer,
+            uint32_t send_buffer_size,
+            eprosima::fastrtps::rtps::LocatorsIterator* destination_locators_begin,
+            eprosima::fastrtps::rtps::LocatorsIterator* destination_locators_end,
+            const std::chrono::steady_clock::time_point& timeout) override
+    {
+        //
+        // Preprocess outcoming buffer.
+        //
+
+        // Call low level transport
+        return low_sender_resource->send(send_buffer, send_buffer_size, destination_locators_begin,
+                       destination_locators_end, timeout);
+    }
+
+    void receive(
+            eprosima::fastdds::rtps::TransportReceiverInterface* next_receiver,
+            const eprosima::fastrtps::rtps::octet* receive_buffer,
+            uint32_t receive_buffer_size,
+            const eprosima::fastrtps::rtps::Locator_t& local_locator,
+            const eprosima::fastrtps::rtps::Locator_t& remote_locator) override
+    {
+        //
+        // Preprocess incoming buffer.
+        //
+
+        // Call upper level
+        next_receiver->OnDataReceived(receive_buffer, receive_buffer_size, local_locator, remote_locator);
+    }
+
+private:
+
+    CustomChainingTransportDescriptor descriptor_;
+};
+//!--
+
+eprosima::fastdds::rtps::TransportInterface* CustomChainingTransportDescriptor::create_transport() const
+{
+    return new CustomChainingTransport(*this);
+}
 
 //DDS_DOMAINPARTICIPANT_LISTENER_SPECIALIZATION
 class CustomDomainParticipantListener : public DomainParticipantListener
@@ -316,7 +392,7 @@ void dds_domain_examples()
         // Delete entities created by the DomainParticipant
         if (participant->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
         {
-            // DomainParticipant failed to delete the entities it created. 
+            // DomainParticipant failed to delete the entities it created.
             return;
         }
 
@@ -545,7 +621,7 @@ void dds_domain_examples()
 
         // Activate Fast DDS Statistics module
         pqos.properties().properties().emplace_back("fastdds.statistics",
-            "HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC");
+                "HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC");
         //!--
     }
     {
@@ -565,7 +641,7 @@ void dds_domain_examples()
 
         // Enable statistics DataWriter
         if (statistics_participant->enable_statistics_datawriter(eprosima::fastdds::statistics::GAP_COUNT_TOPIC,
-                eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS) != ReturnCode_t::RETCODE_OK);
+                eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS) != ReturnCode_t::RETCODE_OK)
         {
             // Error
             return;
@@ -2639,7 +2715,7 @@ void dds_dataReader_examples()
         // Delete the entities the DataReader created
         if (data_reader->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
         {
-            // DataReader failed to delete the entities it created. 
+            // DataReader failed to delete the entities it created.
             return;
         }
 
@@ -3518,7 +3594,7 @@ void xml_profiles_examples()
                 0, "participant_xml_profile");
 
             Topic* topic =
-                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+                    participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
 
             Publisher* publisher = participant->create_publisher_with_profile("publisher_xml_profile");
             DataWriter* datawriter = publisher->create_datawriter_with_profile(topic, "datawriter_xml_profile");
@@ -3832,6 +3908,24 @@ void dds_transport_examples ()
         Locator_t initial_peer;
         IPLocator::setIPv4(initial_peer, 192, 168, 0, 1);
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer);
+        //!--
+    }
+
+    {
+        //CONF-CUSTOM-CHAINING-TRANSPORT-SETTING
+        DomainParticipantQos qos;
+
+        auto udp_transport = std::make_shared<UDPv4TransportDescriptor>();
+
+        // Create a descriptor for the new transport.
+        // The low level transport will be a UDPv4Transport.
+        auto custom_transport = std::make_shared<CustomChainingTransportDescriptor>(udp_transport);
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(custom_transport);
+
+        // Avoid using the default transport
+        qos.transport().use_builtin_transports = false;
         //!--
     }
 }
@@ -4158,11 +4252,11 @@ void dds_usecase_examples()
         flow_control_300k_per_sec->scheduler = eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::FIFO;
         flow_control_300k_per_sec->max_bytes_per_period = 300 * 1000;
         flow_control_300k_per_sec->period_ms = 1000;
-        
+
         // Register flow controller on participant
         DomainParticipantQos participant_qos;
         participant_qos.flow_controllers().push_back(flow_control_300k_per_sec);
-        
+
         // .... create participant and publisher
 
         // Link writer to the registered flow controller.
@@ -4708,13 +4802,13 @@ void dds_zero_copy_example()
 void dds_waitset_example()
 {
     auto create_dds_application = [](std::vector<DataReader*>&, std::vector<DataWriter*>&) -> ReturnCode_t
-    {
-        return ReturnCode_t::RETCODE_OK;
-    };
+            {
+                return ReturnCode_t::RETCODE_OK;
+            };
 
     auto destroy_dds_application = []() -> void
-    {
-    };
+            {
+            };
 
     //DDS_WAITSET_EXAMPLE
     class ApplicationJob
@@ -4750,7 +4844,8 @@ void dds_waitset_example()
                         // Process status. Liveliness changed and data available are depicted as an example
                         if (changed_statuses.is_active(StatusMask::liveliness_changed()))
                         {
-                            std::cout << "Liveliness changed reported for entity " << entity->get_instance_handle() << std::endl;
+                            std::cout << "Liveliness changed reported for entity " << entity->get_instance_handle() <<
+                                std::endl;
                         }
 
                         if (changed_statuses.is_active(StatusMask::data_available()))
@@ -4763,8 +4858,8 @@ void dds_waitset_example()
 
                             // Process all the samples until no one is returned
                             while (ReturnCode_t::RETCODE_OK == reader->take(data_seq, info_seq,
-                                                        LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
-                                                        ANY_VIEW_STATE, ANY_INSTANCE_STATE))
+                                    LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
+                                    ANY_VIEW_STATE, ANY_INSTANCE_STATE))
                             {
                                 // Both info_seq.length() and data_seq.length() will have the number of samples returned
                                 for (FooSeq::size_type n = 0; n < info_seq.length(); ++n)
@@ -4786,7 +4881,7 @@ void dds_waitset_example()
         }
 
     public:
-    
+
         ApplicationJob(
                 const std::vector<DataReader*>& readers,
                 const std::vector<DataWriter*>& writers)
@@ -4803,8 +4898,8 @@ void dds_waitset_example()
             {
                 wait_set_.attach_condition(writer->get_statuscondition());
             }
-            
-            thread_ = std::thread(&ApplicationJob::main_loop, this);            
+
+            thread_ = std::thread(&ApplicationJob::main_loop, this);
         }
 
         ~ApplicationJob()
@@ -4814,6 +4909,7 @@ void dds_waitset_example()
             // Wait for the thread to finish
             thread_.join();
         }
+
     };
 
     // Application initialization
@@ -4853,18 +4949,18 @@ bool dds_permissions_test(
 
     // Activate Auth:PKI-DH plugin
     pqos.properties().properties().emplace_back("dds.sec.auth.plugin",
-        "builtin.PKI-DH");
+            "builtin.PKI-DH");
 
     // Configure Auth:PKI-DH plugin
     pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
-        main_ca_file);
+            main_ca_file);
     pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
-        appcert_file);
+            appcert_file);
     pqos.properties().properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
-        appkey_file);
+            appkey_file);
 
     pqos.properties().properties().emplace_back("dds.sec.access.plugin",
-        "builtin.Access-Permissions");
+            "builtin.Access-Permissions");
 
     // Configure DDS:Access:Permissions plugin
     pqos.properties().properties().emplace_back(
@@ -4878,7 +4974,7 @@ bool dds_permissions_test(
         permissions_file);
 
     DomainParticipant* domain_participant =
-        DomainParticipantFactory::get_instance()->create_participant(1, pqos);
+            DomainParticipantFactory::get_instance()->create_participant(1, pqos);
     if (nullptr != domain_participant)
     {
         return true;

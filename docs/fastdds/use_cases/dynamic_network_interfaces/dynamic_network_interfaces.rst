@@ -8,8 +8,8 @@ Dynamic network interfaces
 ==========================
 
 DDS :ref:`Simple Discovery <simple_disc_settings>` relies on well-known multicast addresses and ports to relay the
-Participant announcement messages (:ref:`disc_phases`).
-Such Participant announcement includes information about the unicast addresses and ports (locators) where the
+Participant announcement messages (see :ref:`disc_phases`).
+Such Participant announcement includes information about the unicast address-port pairs (a.k.a locators) where the
 Participant is expecting to receive incoming metatraffic data.
 The list with these unicast locators is automatically initialized taking into account the network interfaces that are
 available when the *Fast DDS* DomainParticipant is enabled.
@@ -19,7 +19,7 @@ in order to initialize an unicast locator in said network, so communication can 
 Dynamic network interface addition at run-time
 ----------------------------------------------
 
-In case that the user wants to include new network interfaces at run-time some prerequisites have to be fulfilled.
+In case that the user wants to include new network interfaces at run-time, some prerequisites have to be fulfilled.
 Then, once the interfaces are available, the user may notify Fast DDS so these interfaces are also used in the
 communication.
 

@@ -1048,7 +1048,7 @@ List of QoS Policy data members:
      It cannot be changed on enabled entities.
 
 .. important::
-    Setting this QoS Policy to |BEST_EFFORT_RELIABILITY_QOS-api| affects to the :ref:`durabilityqospolicy` making the
+    Setting this QoS Policy to |BEST_EFFORT_RELIABILITY_QOS-api| affects to the :ref:`durabilityqospolicy`, making the
     endpoints behave as |VOLATILE_DURABILITY_QOS-api|.
 
 .. warning::

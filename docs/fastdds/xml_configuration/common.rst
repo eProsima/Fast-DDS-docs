@@ -383,7 +383,7 @@ DisableHeartbeatPiggyback
 +------+---------------------------------------+--------------+-----------+
 | Name | Description                           | Values       | Default   |
 +======+=======================================+==============+===========+
-|      | See :ref:`disableheartbeatpiggyback`. | ``BoolType`` | ``false`` |
+|      | See :ref:`disableheartbeatpiggyback`. | ``bool`` | ``false`` |
 +------+---------------------------------------+--------------+-----------+
 
 .. _Throughput:

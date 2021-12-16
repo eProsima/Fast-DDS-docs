@@ -1824,6 +1824,14 @@
     <disablePositiveAcks>
         <enabled>true</enabled>
     </disablePositiveAcks>
+
+    <latencyBudget>
+        <duration>
+            <sec>1</sec>
+        </duration>
+    </latencyBudget>
+
+    <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
 </qos>
 <!--><-->
 </data_reader>

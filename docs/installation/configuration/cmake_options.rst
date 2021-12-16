@@ -53,8 +53,6 @@ dependency on other options.
             - :class:`THIRDPARTY_Asio` is set to ``ON`` if it was not set to ``FORCE``.
             - :class:`THIRDPARTY_TinyXML2` is set to ``ON`` if it was not set to ``FORCE``.
             - :class:`THIRDPARTY_android-ifaddrs` is set to ``ON`` if it was not set to ``FORCE``.
-            - :class:`EPROSIMA_GTEST` is set to ``ON`` if GoogleTest (GTest) library was found.
-            - :class:`EPROSIMA_GMOCK` is set to ``ON`` if GoogleMock (GMock) library was found.
             - :class:`EPROSIMA_BUILD_TESTS` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
 
         - ``ON`` ``OFF``
@@ -269,17 +267,6 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
           implemented using the GoogleTest framework. However, the test are compiled |br|
           if :class:`EPROSIMA_BUILD` is set to ``ON``. Therefore, if :class:`GTEST_INDIVIDUAL` is ``OFF`` and |br|
           :class:`EPROSIMA_BUILD` is ``ON``, the tests are processed as a single major test.
-        - ``ON`` ``OFF``
-        - ``OFF``
-    *   - :class:`EPROSIMA_GTEST`
-        - Activates special set of GTEST_ROOT, i.e. the root directory of the GoogleTest |br|
-          installation.
-        - ``ON`` ``OFF``
-        - ``OFF``
-    *   - :class:`EPROSIMA_GMOCK`
-        - Activates special set of GMOCK_ROOT, i.e. the root directory of the GoogleTest C++ |br|
-          mocking framework installation. In the latest version of GoogleTest, GoogleMock is |br|
-          integrated into it.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`FASTRTPS_API_TESTS`

@@ -188,6 +188,10 @@ List of QoS Policy data members:
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
+.. important::
+    In order to receive past samples in the DataReader, besides setting this Qos Policy, it is required that the
+    :ref:`reliabilityqospolicy` is set to |RELIABLE_RELIABILITY_QOS-api|.
+
 .. warning::
     For DataWriters and DataReaders to match, they must follow the compatibility rule.
     See :ref:`durability_compatibilityrule` for further details.

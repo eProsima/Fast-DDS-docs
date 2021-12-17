@@ -1762,7 +1762,7 @@
 </rtps>
 </participant>
 
-<data_reader profile_name="sub_topic_qos">
+<data_writer profile_name="pub_topic_qos">
 <!-->XML-TOPIC<-->
 <topic>
     <kind>NO_KEY</kind>
@@ -1781,7 +1781,7 @@
 </topic>
 <!--><-->
 <!-->XML-QOS<-->
-<qos> <!-- readerQosPoliciesType -->
+<qos> <!-- writerQosPoliciesType -->
     <durability>
         <kind>VOLATILE</kind>
     </durability>
@@ -1834,7 +1834,7 @@
     <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
 </qos>
 <!--><-->
-</data_reader>
+</data_writer>
 
 <data_writer profile_name="pub_durabilityservice">
 <qos>

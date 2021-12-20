@@ -14,9 +14,10 @@ When a PKCS#11 URI is given, the *private key* is never taken out of the HSM, pr
 Support for PKCS#11 URIs is provided by the `libp11 <https://github.com/OpenSC/libp11>`_ library.
 This library provides a PKCS#11 engine for OpenSSL that acts as a proxy between OpenSSL
 and the HSM driver provided by the manufacturer.
-To make OpenSSL aware of the new engine, the OpenSSL configuration file must be updated.
+To make OpenSSL aware of the new engine, the OpenSSL configuration file might need to be updated.
 This file is usually located at */etc/ssl/openssl.cnf* in UNIX systems, and at *c:/{path to OpenSSL}/bin/openssl.cfg*
 on Windows systems.
+In Ubuntu systems, if `libp11` has been installed from binaries (using `apt`), this configuration is not required.
 
 Add the following line to the top of the configuration file, before any section is defined:
 
@@ -56,6 +57,8 @@ For example, on a Linux machine with *libp11* and *SoftHSM* installed on the def
 
    [pkcs11_section]
    dynamic_path = /usr/lib/x86_64-linux-gnu/engines-1.1/libpkcs11.so
-   MODULE_PATH = /usr/local/lib/softhsm/libsofthsm2.so
+   MODULE_PATH = /usr/lib/softhsm/libsofthsm2.so
    init = 0
 
+.. important::
+    PKCS#11 support is only guaranteed in Windows and Linux platforms.

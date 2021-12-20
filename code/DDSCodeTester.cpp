@@ -3532,8 +3532,7 @@ void xml_profiles_examples()
             <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
             <dds>\
                 <profiles xmlns=\"http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles\" >\
-                    <publisher profile_name=\"test_publisher_profile\"\
-                    is_default_profile=\"true\">\
+                    <publisher profile_name=\"test_publisher_profile\" is_default_profile=\"true\">\
                         <qos>\
                             <durability>\
                                 <kind>TRANSIENT_LOCAL</kind>\

@@ -3527,18 +3527,25 @@ void xml_profiles_examples()
         }
 
         // Load XML as string data buffer
-        const char* xml_profile =
-                "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
-                <dds xmlns=\"http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles\">\
-                    <profiles>\
-                        <participant profile_name=\"domainparticipant_profile\" is_default_profile=true>\
-                            <domainId>2</domainId>\
-                        </participant>\
-                    </profiles>\
-                </dds>\
-                ";
+        std::string xml_profile =
+            "\
+            <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
+            <dds>\
+                <profiles xmlns=\"http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles\" >\
+                    <publisher profile_name=\"test_publisher_profile\"\
+                    is_default_profile=\"true\">\
+                        <qos>\
+                            <durability>\
+                                <kind>TRANSIENT_LOCAL</kind>\
+                            </durability>\
+                        </qos>\
+                    </publisher>\
+                </profiles>\
+            </dds>\
+            ";
         if (ReturnCode_t::RETCODE_OK ==
-                DomainParticipantFactory::get_instance()->load_XML_profiles_string(xml_profile, strlen(xml_profile)))
+                DomainParticipantFactory::get_instance()->load_XML_profiles_string(xml_profile.c_str(),
+                xml_profile.length()))
         {
             // Create DDS entities with profiles
         }

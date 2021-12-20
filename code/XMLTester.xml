@@ -1762,7 +1762,7 @@
 </rtps>
 </participant>
 
-<data_reader profile_name="sub_topic_qos">
+<data_writer profile_name="pub_topic_qos">
 <!-->XML-TOPIC<-->
 <topic>
     <kind>NO_KEY</kind>
@@ -1781,7 +1781,7 @@
 </topic>
 <!--><-->
 <!-->XML-QOS<-->
-<qos> <!-- readerQosPoliciesType -->
+<qos> <!-- writerQosPoliciesType -->
     <durability>
         <kind>VOLATILE</kind>
     </durability>
@@ -1824,9 +1824,17 @@
     <disablePositiveAcks>
         <enabled>true</enabled>
     </disablePositiveAcks>
+
+    <latencyBudget>
+        <duration>
+            <sec>1</sec>
+        </duration>
+    </latencyBudget>
+
+    <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
 </qos>
 <!--><-->
-</data_reader>
+</data_writer>
 
 <data_writer profile_name="pub_durabilityservice">
 <qos>
@@ -4002,8 +4010,12 @@
             <nanosec>20</nanosec>
         </nackSupressionDuration>
     </times>
+
     <!--You can also change the values of DisablePositiveACKsQosPolicy.-->
     <!--See DisablePositiveACKsQosPolicy section for further details-->
+
+    <!--Disable heartbeat piggyback mechanism.-->
+    <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
 </data_writer>
 <!--><-->
 

@@ -3301,6 +3301,9 @@ void dds_qos_examples()
         reliable_writer_qos.times.nackSupressionDuration = {0, 20};
         //You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
         reliable_writer_qos.disable_positive_acks.enabled = true;
+        //The RTPSReliableWriterQos is default constructed with disable_heartbeat_piggyback = false
+        //Disable the heartbeat piggyback mechanism.
+        reliable_writer_qos.disable_heartbeat_piggyback = true;
         //!--
     }
 

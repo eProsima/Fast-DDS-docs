@@ -237,7 +237,7 @@ Local installation
 
    .. code-block:: bash
 
-       mkdir ~\Fast-DDS
+       mkdir %USERPROFILE%\Fast-DDS
 
 #. Clone the following dependencies and compile them using CMake_.
 
@@ -245,33 +245,35 @@ Local installation
 
      .. code-block:: bash
 
-         cd ~\Fast-DDS
+         cd %USERPROFILE%\Fast-DDS
          git clone https://github.com/eProsima/foonathan_memory_vendor.git
          cd foonathan_memory_vendor
          mkdir build && cd build
-         cmake ..  -DBUILD_SHARED_LIBS=ON
+         cmake -DCMAKE_INSTALL_PREFIX=%USERPROFILE%/Fast-DDS/install ^
+            -DBUILD_SHARED_LIBS=OFF -DFOONATHAN_MEMORY_BUILD_TOOLS=ON ^
+            -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DFOONATHAN_MEMORY_BUILD_TESTS=OFF ..
          cmake --build . --target install
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
      .. code-block:: bash
 
-         cd ~\Fast-DDS
+         cd %USERPROFILE%\Fast-DDS
          git clone https://github.com/eProsima/Fast-CDR.git
          cd Fast-CDR
          mkdir build && cd build
-         cmake ..
+         cmake -DCMAKE_INSTALL_PREFIX=%USERPROFILE%/Fast-DDS/install ..
          cmake --build . --target install
 
 #. Once all dependencies are installed, install *eProsima Fast DDS*:
 
    .. code-block:: bash
 
-       cd ~\Fast-DDS
+       cd %USERPROFILE%\Fast-DDS
        git clone https://github.com/eProsima/Fast-DDS.git
        cd Fast-DDS
        mkdir build && cd build
-       cmake ..
+       cmake -DCMAKE_INSTALL_PREFIX=%USERPROFILE%/Fast-DDS/install ..
        cmake --build . --target install
 
 .. _global_installation_sw:
@@ -279,7 +281,7 @@ Local installation
 Global installation
 ^^^^^^^^^^^^^^^^^^^
 
-To install *eProsima Fast DDS* system-wide instead of locally, remove all the flags that
+To install *eProsima Fast DDS* system-wide instead of locally, remove the ``CMAKE_INSTALL_PREFIX`` flags that
 appear in the configuration steps of ``Fast-CDR`` and ``Fast-DDS``.
 
 .. note::

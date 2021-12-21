@@ -17,6 +17,7 @@ upon initialization.
     (see :ref:`env_vars_fastrtps_default_profiles_file`).
 *   Load the configuration parameters directly from the classes' definitions without looking for the
     *DEFAULT_FASTRTPS_PROFILES.xml* in the working directory (see :ref:`env_vars_skip_default_xml`).
+*   Load directly the XML as a string data buffer.
 
 An XML profile is defined by a unique name that is used to reference the XML profile
 during the creation of an |Entity|, the :ref:`Trasport <comm-transports-configuration>` configuration, or the

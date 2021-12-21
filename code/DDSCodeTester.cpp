@@ -3604,6 +3604,29 @@ void xml_profiles_examples()
             Subscriber* subscriber = participant->create_subscriber_with_profile("subscriber_xml_profile");
             DataReader* datareader = subscriber->create_datareader_with_profile(topic, "datareader_xml_profile");
         }
+
+        // Load XML as string data buffer
+        std::string xml_profile =
+            "\
+            <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
+            <dds>\
+                <profiles xmlns=\"http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles\" >\
+                    <publisher profile_name=\"test_publisher_profile\" is_default_profile=\"true\">\
+                        <qos>\
+                            <durability>\
+                                <kind>TRANSIENT_LOCAL</kind>\
+                            </durability>\
+                        </qos>\
+                    </publisher>\
+                </profiles>\
+            </dds>\
+            ";
+        if (ReturnCode_t::RETCODE_OK ==
+                DomainParticipantFactory::get_instance()->load_XML_profiles_string(xml_profile.c_str(),
+                xml_profile.length()))
+        {
+            // Create DDS entities with profiles
+        }
         //!--
     }
     {

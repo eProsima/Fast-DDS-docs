@@ -217,7 +217,7 @@ A proper set up can be verified using OpenSSL command line tool:
 
 .. code-block:: console
 
-    openssl engine pkcs11 -t  
+    openssl engine pkcs11 -t
 
 .. _colcon_installation_windows:
 

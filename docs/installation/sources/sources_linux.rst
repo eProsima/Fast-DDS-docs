@@ -143,7 +143,7 @@ location.
 
 This configuration step can be avoided using p11kit_ which allows OpenSSL to find PKCS#11
 devices on runtime without static configuration. This kit is often available through
-the distro package manager. On Ubuntu **apt**, for example: 
+the Linux distribution package manager. On Ubuntu, for example:
 
 .. code-block:: bash
 

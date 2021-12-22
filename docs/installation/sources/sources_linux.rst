@@ -159,7 +159,7 @@ In order to check if OpenSSL is able to access PKCS#11 engine use:
 
 .. code-block:: bash
 
-    openssl engine pkcs11 -t  
+    openssl engine pkcs11 -t
 
 .. _colcon_installation_linux:
 

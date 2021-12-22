@@ -74,6 +74,10 @@ Where the option choices are:
 +---------------------+------------------------------------------------------------------------------------------------+
 | -typeros2           | Generates type naming compatible with ROS 2                                                    |
 +---------------------+------------------------------------------------------------------------------------------------+
+| -python             | Generates source code and a CMake solution to compile a library containing the data types |br| |
+|                     | Python bindings required to run a *Fast DDS* Python-based application. This option is    |br|  |
+|                     | incompatible with the `-example` one. Only Ubuntu support is guaranteed.                       |
++---------------------+------------------------------------------------------------------------------------------------+
 | -cs                 | Enables Case Sensitivity                                                                       |
 +---------------------+------------------------------------------------------------------------------------------------+
 

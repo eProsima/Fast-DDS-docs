@@ -171,7 +171,7 @@ OpenSSL access HSM and other hardware devices through its engine functionality. 
 to set up a new engine the OpenSSL configuration files must be updated specifying the
 libp11_ and hardware module (here SoftHSM_) dynamic libraries location.
 
-OpenSSL on windows references its default configuration file through the `OPENSSL_CONF`
+OpenSSL on Windows references its default configuration file through the `OPENSSL_CONF`
 environment variable. By default OpenSSL installs two identical default configuration files:
  
 * `C:\\Program Files\\OpenSSL-Win64\\bin\\cnf\\openssl.cnf` mimics the linux distributions one. 

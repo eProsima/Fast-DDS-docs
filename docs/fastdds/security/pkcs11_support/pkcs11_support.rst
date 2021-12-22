@@ -16,7 +16,7 @@ This library provides a PKCS#11 engine for OpenSSL that acts as a proxy between 
 and the HSM driver provided by the manufacturer.
 To make OpenSSL aware of the new engine, the OpenSSL configuration file might need to be updated.
 For details on how to set up the PKCS#11 engine in different platforms follow the
-devoted documentation:
+dedicated documentation:
 
-* :ref:`libp11_sw` on windows.
-* :ref:`libp11_sl` on linux distributions
+* :ref:`libp11_sw` on Windows.
+* :ref:`libp11_sl` on Linux distributions

@@ -340,6 +340,7 @@ In order to compile *Fast DDS-Gen*, the following packages need to be installed 
 
 * :ref:`java_sl`
 * :ref:`gradle_sl`
+* :ref:`swig_sl`
 
 .. _java_sl:
 
@@ -357,6 +358,24 @@ Gradle
 
 Gradle is an open-source build automation tool.
 Download and install the last stable version of `Gradle <https://gradle.org/install>`_ in the preferred way.
+
+.. _swig_sl:
+
+SWIG
+^^^^
+
+`SWIG <http://www.swig.org/>`_ is a development tool that allows connecting programs written in C/C++ with a variety of
+other programming languages, among them Python.
+This dependency is optional and only required if the option `-python` is going to be used, as it is required to build
+the generated solution.
+Please refer to :ref:`fastddsgen_python_bindings` for more information.
+
+SWIG can be installed directly from the package manager of the appropriate Linux distribution.
+For Ubuntu, please run:
+
+.. code-block:: bash
+
+    sudo apt install swig
 
 Compiling Fast DDS-Gen
 ----------------------

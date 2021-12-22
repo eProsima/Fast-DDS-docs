@@ -1,3 +1,5 @@
+.. _fastddsgen_pubsub_app_workspace:
+
 Create the application workspace
 ------------------------------------
 

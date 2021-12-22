@@ -38,6 +38,8 @@ The main feature of *eProsima Fast DDS-Gen* is to facilitate the implementation 
 knowledge of serialization or deserialization mechanisms.
 With *Fast DDS-Gen* it is also possible to generate the source code of a DDS application with a publisher and a
 subscriber that uses the *eProsima Fast DDS* library (see :ref:`fastddsgen_pubsub_app`).
+*Fast DDS-Gen* can also generate Python bindings for the data types in order to use them within a Python-based
+*Fast DDS* application (see :ref:`fastddsgen_python_bindings`).
 
 For installing *Fast DDS-Gen*, please refer to :ref:`Linux installation of Fast DDS-Gen <fastddsgen_sl>` or to
-:ref:`Window installation of Fast DDS-Gen <fastddsgen_sw>`.
+:ref:`Windows installation of Fast DDS-Gen <fastddsgen_sw>`.

@@ -72,7 +72,6 @@ Also add the `Gtest repository <https://github.com/google/googletest>`_ into the
 
     git clone https://github.com/google/googletest src/googletest-distribution
 
-
 .. _dependencies_sl:
 
 Dependencies
@@ -111,6 +110,56 @@ For example, on Ubuntu use the command:
 
    sudo apt install libssl-dev
 
+.. _libp11_sl:
+
+Libp11 and SoftHSM libraries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Libp11 provides PKCS#11 support for OpenSSL. This is an optional dependency,
+that is needed only when *eprosima Fast DDS* is used with security and PKCS#11 URIs.
+
+Install libp11_ using the package manager of the appropriate Linux distribution.
+For example, on Ubuntu use the command:
+
+.. code-block:: bash
+
+   sudo apt install libp11-dev libengine-pkcs11-openssl
+
+SoftHSM is a software implementation of an HSM (Hardware Security Module).
+If *eProsima Fast DDS* tests are activated and *libp11* is installed
+on the system, SoftHSM is additionally required to run tests of PKCS#11 features.
+
+Install SoftHSM_ using the package manager of the appropriate Linux distribution.
+For example, on Ubuntu use the command:
+
+.. code-block:: bash
+
+   sudo apt install softhsm2
+
+OpenSSL access HSM and other hardware devices through its engine functionality.
+In order to set up a new engine the OpenSSL configuration files (usually `/etc/ssl/openssl.cnf`)
+must be updated specifying the libp11_ and hardware module (here SoftHSM_) dynamic libraries
+location.
+
+This configuration step can be avoided using p11kit_ which allows OpenSSL to find PKCS#11
+devices on runtime without static configuration. This kit is often available through
+the Linux distribution package manager. On Ubuntu, for example:
+
+.. code-block:: bash
+
+   sudo apt install libengine-pkcs11-openssl
+
+Once installed, to check p11kit_ is able to find the SoftHSM_ module use:
+
+.. code-block:: bash
+
+   p11-kit list-modules
+
+In order to check if OpenSSL is able to access PKCS#11 engine use:
+
+.. code-block:: bash
+
+    openssl engine pkcs11 -t
 
 .. _colcon_installation_linux:
 
@@ -358,3 +407,6 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
 .. _OpenSSL: https://www.openssl.org/
 .. _Gtest: https://github.com/google/googletest
 .. _vcstool: https://pypi.org/project/vcstool/
+.. _libp11: https://github.com/OpenSC/libp11/
+.. _SoftHSM: https://www.opendnssec.org/softhsm/
+.. _p11kit: https://github.com/p11-glue/p11-kit

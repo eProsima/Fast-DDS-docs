@@ -147,6 +147,77 @@ For example:
 
    OPENSSL_ROOT_DIR=C:\Program Files\OpenSSL-Win64
 
+.. _libp11_sw:
+
+Libp11 and SoftHSM libraries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Libp11 provides PKCS#11 support for OpenSSL. This is an optional dependency,
+that is needed only when *eprosima Fast DDS* is used with security and PKCS#11 URIs.
+
+Download the latest libp11_ version for Windows from this
+`repository <https://github.com/OpenSC/libp11>`__
+and follow the `installation instructions <https://github.com/OpenSC/libp11/blob/master/INSTALL.md>`_
+
+SoftHSM is a software implementation of an HSM (Hardware Security Module).
+If *eProsima Fast DDS* tests are activated and *libp11* is installed
+on the system, SoftHSM is additionally required to run tests of PKCS#11 features.
+
+Download the SoftHSM_ for Windows installer from this
+`repository <https://github.com/disig/SoftHSM2-for-Windows>`__.
+Execute the installer and follow the installation instructions.
+
+OpenSSL access HSM and other hardware devices through its engine functionality.  In order
+to set up a new engine the OpenSSL configuration files must be updated specifying the
+libp11_ and hardware module (here SoftHSM_) dynamic libraries location.
+
+OpenSSL on Windows references its default configuration file through the `OPENSSL_CONF`
+environment variable. By default OpenSSL installs two identical default configuration files:
+
+* `C:\\Program Files\\OpenSSL-Win64\\bin\\cnf\\openssl.cnf` mimics the Linux distributions one.
+
+* `C:\\Program Files\\OpenSSL-Win64\\bin\\openssl.cfg` kept for backward compatibility.
+
+Neither of them are loaded by default. In order to direct OpenSSL to load one of them or
+any other we must set the variable:
+
+.. code-block:: console
+
+   cmd> set OPENSSL_CONF=C:\Program Files\OpenSSL-Win64\bin\cnf\openssl.cnf
+   powershell> $Env:OPENSSL_CONF="C:\Program Files\OpenSSL-Win64\bin\cnf\openssl.cnf"
+
+Once we have hinted OpenSSL the configuration file to use we must modify it to set up the
+new PKCS#11 engine following the
+`OpenSSL guidelines <https://www.openssl.org/docs/man1.1.1/man5/config.html#Engine-Configuration-Module>`_
+replacing the binaries path with the proper ones. For example, before any section in the
+configuration file we introduce:
+
+.. code-block:: idl
+
+    openssl_conf = openssl_init
+
+at the end of the file we include the engine devoted sections. Note to use POSIX path
+separator instead of the windows one.
+
+.. code-block:: idl
+
+    [openssl_init]
+        engines = engine_section
+
+    [engine_section]
+        pkcs11 = pkcs11_section
+
+        [pkcs11_section]
+        engine_id = pkcs11
+        dynamic_path = C:/Program Files/libp11/src/pkcs11.dll
+        MODULE_PATH = C:/Program Files (x86)/SoftHSM2/lib/softhsm2-x64.dll
+        init = 0
+
+A proper set up can be verified using OpenSSL command line tool:
+
+.. code-block:: console
+
+    openssl engine pkcs11 -t
 
 .. _colcon_installation_windows:
 
@@ -371,3 +442,5 @@ The ``Fast-DDS-Gen`` folder contains the following packages:
 .. _git: https://git-scm.com/
 .. _vcstool: https://pypi.org/project/vcstool/
 .. _Gtest: https://github.com/google/googletest
+.. _libp11: https://github.com/OpenSC/libp11/
+.. _SoftHSM: https://www.opendnssec.org/softhsm/

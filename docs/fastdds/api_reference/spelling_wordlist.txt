@@ -16,6 +16,7 @@ changeKind
 cond
 config
 const
+ContentFilteredTopic
 Contructs
 datareader
 DataReader
@@ -48,6 +49,7 @@ Enum
 eprosima
 expectsInlineQos
 fastrtps
+filteredX
 fragmentnumbers
 FlowController
 GenericDataQosPolicy
@@ -81,6 +83,7 @@ maxMessageSize
 md
 msg
 mutex
+myFilterFactory
 nackResponseDelay
 nackSupressionDuration
 NoOpDomainParticipantListener
@@ -164,6 +167,7 @@ Unknown
 unreceived
 unregister
 unregistering
+unregistration
 untaken
 untyped
 UserAllocatedSequence

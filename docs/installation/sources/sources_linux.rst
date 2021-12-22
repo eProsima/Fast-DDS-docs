@@ -136,6 +136,30 @@ For example, on Ubuntu use the command:
 
    sudo apt install softhsm2
 
+OpenSSL access HSM and other hardware devices through its engine functionality.
+In order to set up a new engine the OpenSSL configuration files (usually `/etc/ssl/openssl.cnf`)
+must be updated specifying the libp11_ and hardware module (here SoftHSM_) dynamic libraries
+location.
+
+This configuration step can be avoided using p11kit_ which allows OpenSSL to find PKCS#11
+devices on runtime without static configuration. This kit is often available through
+the distro package manager. On Ubuntu **apt**, for example: 
+
+.. code-block:: bash
+
+   sudo apt install libengine-pkcs11-openssl
+
+Once installed, to check p11kit_ is able to find the SoftHSM_ module use:
+
+.. code-block:: bash
+
+   p11-kit list-modules
+
+In order to check if OpenSSL is able to access PKCS#11 engine use:
+
+.. code-block:: bash
+
+    openssl engine pkcs11 -t  
 
 .. _colcon_installation_linux:
 
@@ -385,3 +409,4 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
 .. _vcstool: https://pypi.org/project/vcstool/
 .. _libp11: https://github.com/OpenSC/libp11/
 .. _SoftHSM: https://www.opendnssec.org/softhsm/
+.. _p11kit: https://github.com/p11-glue/p11-kit

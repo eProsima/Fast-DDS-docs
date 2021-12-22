@@ -173,8 +173,8 @@ libp11_ and hardware module (here SoftHSM_) dynamic libraries location.
 
 OpenSSL on Windows references its default configuration file through the `OPENSSL_CONF`
 environment variable. By default OpenSSL installs two identical default configuration files:
- 
-* `C:\\Program Files\\OpenSSL-Win64\\bin\\cnf\\openssl.cnf` mimics the linux distributions one. 
+
+* `C:\\Program Files\\OpenSSL-Win64\\bin\\cnf\\openssl.cnf` mimics the Linux distributions one.
 
 * `C:\\Program Files\\OpenSSL-Win64\\bin\\openssl.cfg` kept for backward compatibility.
 

@@ -16,13 +16,13 @@ two of the three public APIs:
 
 This minor release includes the following **features**:
 
-1. Support for PKCS#11 format URIs for private keys
+1. :ref:`Support for PKCS#11 <pkcs11-support>` format URIs for private keys
 2. Added interfaces for content filter APIs
-3. Allow new network interfaces to be detected at runtime
-4. New API on DataWriter to wait for a specific instance to be acknowledged
-5. Added interfaces for concatenation of transports
-6. Allow XML profiles to be loaded from a string
-7. Allow disabling piggyback heartbeat on XML and DataWriter QoS
+3. Allow new :ref:`network interfaces to be detected at runtime <dynamic-network-interfaces>`
+4. New API on :ref:`DataWriter <api_pim_datawriter>` to wait for a specific instance to be acknowledged
+5. Added interfaces for :ref:`concatenation of transports <transport_transportApi_chaining>`
+6. Allow :ref:`XML profiles to be loaded from a string <loadingapplyingprofiles>`
+7. Allow :ref:`disabling piggyback heartbeat <xml_disableheartbeatpiggyback>` on XML and DataWriter QoS
 8. New basic configuration example
 
 It also includes the following **improvements**:

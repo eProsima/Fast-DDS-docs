@@ -190,6 +190,7 @@ However, :class:`IPLocator` allows to manage them if needed.
     :end-before: //!--
     :dedent: 8
 
+.. _transport_transportApi_chaining:
 
 Chaining of transports
 ----------------------

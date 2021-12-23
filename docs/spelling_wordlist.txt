@@ -60,6 +60,7 @@ deallocation
 decrypt
 decrypted
 dependant
+dereference
 deserialization
 deserialize
 deserialized
@@ -104,8 +105,8 @@ Intra
 IPv
 kB
 latencies
-libs
 Libp
+libs
 lifecycle
 localhost
 LogTopic
@@ -128,8 +129,8 @@ nackfrag
 Nackfrag
 Nagle
 namespace
-Namespaces
 namespaces
+Namespaces
 nanosec
 nupkg
 offsetd
@@ -200,8 +201,8 @@ univocally
 unmatch
 unmatches
 unmatching
-unwakeup
 unwakening
+unwakeup
 Valgrind
 vcstool
 wget

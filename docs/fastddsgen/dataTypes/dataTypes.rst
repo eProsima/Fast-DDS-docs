@@ -132,7 +132,7 @@ The equivalence between types is handled in the same way as for sequences_.
 
 .. note::
 
-    Only :ref:`primitive_types` are supported currently.
+    Only :ref:`idl_primitive_types` are currently supported.
 
 Structures
 ^^^^^^^^^^

@@ -20,6 +20,8 @@ Be aware that *Fast DDS-Gen* is not case sensitive as it is specified in the
 To activate case sensitivity use option :code:`-cs` when running *Fast DDS-Gen* (see
 :ref:`fastddsgen_supported_options`).
 
+.. _idl_primitive_types:
+
 Primitive types
 ^^^^^^^^^^^^^^^
 
@@ -127,6 +129,10 @@ The equivalence between types is handled in the same way as for sequences_.
 +===============================+=================================+
 | map<char, unsigned long long> |    std::map<char, uint64_T>     |
 +-------------------------------+---------------------------------+
+
+.. note::
+
+    Only :ref:`idl_primitive_types` are currently supported.
 
 Structures
 ^^^^^^^^^^

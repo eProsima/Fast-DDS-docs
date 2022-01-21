@@ -1,7 +1,7 @@
 .. _api_reference:
 
-API Reference
-=============
+C++ API Reference
+=================
 
 *Fast DDS*, as a Data Distribution Service (DDS) standard implementation, exposes the DDS Data-Centric Publish-Subscribe
 (DCPS) Platform Independent Model (PIM) API, as specified in the

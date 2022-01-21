@@ -5,6 +5,13 @@
                 "-DSECURITY=ON",
             ]
         },
+        "fastdds_python":
+        {
+            "cmake-args":
+            [
+                "-DBUILD_DOCUMENTATION=ON",
+            ]
+        },
         "fastdds-docs":
         {
             "cmake-args":

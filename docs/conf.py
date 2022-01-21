@@ -22,11 +22,14 @@ import os
 import pathlib
 import shutil
 import subprocess
+import sys
 
 import git
 
 import requests
 
+def setup(app):
+    app.add_config_value('fastdds_python_imported_location', None, '')
 
 def download_css(html_css_dir):
     """
@@ -238,6 +241,11 @@ breathe_projects = {
 }
 breathe_default_project = 'FastDDS'
 
+fastdds_python_imported_location = None
+
+if fastdds_python_imported_location:
+    sys.path.insert(0, fastdds_python_imported_location)
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -250,6 +258,7 @@ breathe_default_project = 'FastDDS'
 extensions = [
     'breathe',
     'sphinxcontrib.plantuml',
+    'sphinx.ext.autodoc'
 ]
 try:
     import sphinxcontrib.spelling  # noqa: F401

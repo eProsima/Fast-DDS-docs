@@ -148,6 +148,7 @@ project_source_dir = os.path.abspath('{}/../code'.format(script_path))
 project_binary_dir = os.path.abspath('{}/../build'.format(script_path))
 output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
 doxygen_html = os.path.abspath('{}/html/doxygen'.format(project_binary_dir))
+fastdds_python_imported_location = None
 
 # Doxyfile
 doxyfile_in = os.path.abspath(
@@ -173,19 +174,27 @@ if read_the_docs_build:
         )
     )
 
+    fastdds_python_repo_name = os.path.abspath(
+        '{}/fastdds_python'.format(
+            project_binary_dir
+        )
+    )
+
     # Remove repository if exists
     if os.path.isdir(fastdds_repo_name):
         print('Removing existing repository in {}'.format(fastdds_repo_name))
         shutil.rmtree(fastdds_repo_name)
+    if os.path.isdir(fastdds_python_repo_name):
+        print('Removing existing repository in {}'.format(fastdds_python_repo_name))
+        shutil.rmtree(fastdds_python_repo_name)
 
     # Create necessary directory path
     os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
-    # Create a COLCON_IGNORE file just in case
-    open(
-        os.path.abspath('{}/COLCON_IGNORE'.format(project_binary_dir)), 'w'
-    ).close()
+    os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
 
-    # Clone repository
+    # Clone repositories
+
+    ## Fast DDS
     print('Cloning Fast DDS')
     fastdds = git.Repo.clone_from(
         'https://github.com/eProsima/Fast-DDS.git',
@@ -221,6 +230,38 @@ if read_the_docs_build:
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
     fastdds.refs[fastdds_branch].checkout()
 
+    ## Fast DDS Python Bindings
+    print('Cloning Fast DDS Python Bindings')
+    fastdds_python = git.Repo.clone_from(
+        'https://github.com/eProsima/Fast-DDS-python.git',
+        fastdds_python_repo_name,
+    )
+
+    # User specified Fast DDS branch
+    fastdds_python_branch = os.environ.get('FASTDDS_PYTHON_BRANCH', None)
+
+    # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
+    # Else try with current documentation branch
+    # Else checkout to master
+    if (fastdds_python_branch and
+            fastdds_python.refs.__contains__('origin/{}'.format(fastdds_python_branch))):
+        fastdds_python_branch = 'origin/{}'.format(fastdds_python_branch)
+    elif (docs_branch and
+            fastdds_python.refs.__contains__('origin/{}'.format(docs_branch))):
+        fastdds_python_branch = 'origin/{}'.format(docs_branch)
+    else:
+        print(
+            'Fast DDS Python does not have either "{}" or "{}" branches'.format(
+                fastdds_python_branch,
+                docs_branch
+            )
+        )
+        fastdds_python_branch = 'origin/master'
+
+    # Actual checkout
+    print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))
+    fastdds_python.refs[fastdds_python_branch].checkout()
+
     os.makedirs(os.path.dirname(output_dir), exist_ok=True)
     os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
 
@@ -236,14 +277,27 @@ if read_the_docs_build:
     # Generate doxygen documentation
     subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
 
+    # Generate SWIG code.
+    subprocess.call('swig -python -doxygen -I{}/include -outdir {}/fastdds_python/src/swig -c++ -interface \
+            _fastdds_python -o {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
+            {}/fastdds_python/src/swig/fastdds.i'.format(
+                fastdds_repo_name,
+                fastdds_python_repo_name,
+                fastdds_python_repo_name,
+                fastdds_python_repo_name
+                ), shell=True)
+    fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(fastdds_python_repo_name)
+    autodoc_mock_imports = ["_fastdds_python"]
+
+
+
 breathe_projects = {
     'FastDDS': os.path.abspath('{}/xml'.format(output_dir))
 }
 breathe_default_project = 'FastDDS'
 
-fastdds_python_imported_location = None
-
 if fastdds_python_imported_location:
+    print('AUTO {}'.format(fastdds_python_imported_location))
     sys.path.insert(0, fastdds_python_imported_location)
 
 # -- General configuration ------------------------------------------------

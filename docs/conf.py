@@ -28,6 +28,7 @@ import git
 
 import requests
 
+# Add configuration variables which can be set when calling sphinx.
 def setup(app):
     app.add_config_value('fastdds_python_imported_location', None, '')
 
@@ -296,6 +297,7 @@ breathe_projects = {
 }
 breathe_default_project = 'FastDDS'
 
+# Tell `autodoc` where is the Pydoc documentation if it was set.
 if fastdds_python_imported_location:
     sys.path.insert(0, fastdds_python_imported_location)
 
@@ -311,7 +313,7 @@ if fastdds_python_imported_location:
 extensions = [
     'breathe',
     'sphinxcontrib.plantuml',
-    'sphinx.ext.autodoc'
+    'sphinx.ext.autodoc' # Document Pydoc documentation from Python bindings.
 ]
 
 try:
@@ -331,6 +333,7 @@ try:
 except ImportError:
     pass
 
+# Default behaviour for `autodoc`: always show documented members.
 autodoc_default_options = {
         'members': True,
         'undoc-members': False,
@@ -428,8 +431,11 @@ suppress_warnings = [
     'cpp.parse_function_declaration'
 ]
 
+# Check if we are checking the spelling. In this case...
 if 'spelling' in sys.argv:
+    # Exclude Python API Reference because `autodoc` shows warnings.
     exclude_patterns.append('fastdds/python_api_reference/dds_pim/*')
+    # Avoid the warning of a wrong reference in the TOC entries, because fails the Python API Reference reference.
     suppress_warnings.append('toc.excluded')
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.

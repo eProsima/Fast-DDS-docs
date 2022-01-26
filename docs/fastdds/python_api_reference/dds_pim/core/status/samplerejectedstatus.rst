@@ -6,4 +6,3 @@ SampleRejectedStatus
 --------------------
 
 .. autoclass:: fastdds.SampleRejectedStatus
-    :members:

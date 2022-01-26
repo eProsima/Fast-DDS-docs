@@ -6,4 +6,3 @@ TypeInformation
 ---------------
 
 .. autoclass:: fastdds.TypeInformation
-    :members:

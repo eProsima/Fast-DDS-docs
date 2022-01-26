@@ -6,4 +6,3 @@ TopicDataType
 -------------
 
 .. autoclass:: fastdds.TopicDataType
-    :members:

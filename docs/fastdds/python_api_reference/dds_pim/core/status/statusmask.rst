@@ -6,4 +6,3 @@ StatusMask
 ----------
 
 .. autoclass:: fastdds.StatusMask
-    :members:

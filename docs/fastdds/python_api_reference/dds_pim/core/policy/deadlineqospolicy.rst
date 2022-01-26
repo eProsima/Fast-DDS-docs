@@ -6,5 +6,3 @@ DeadlineQosPolicy
 -----------------
 
 .. autoclass:: fastdds.DeadlineQosPolicy
-    :members:
-

@@ -7,4 +7,3 @@ LoanableArray
 
 .. TODO
    .. autoclass:: fastdds.LoanableArray
-    :members:

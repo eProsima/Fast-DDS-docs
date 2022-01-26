@@ -6,4 +6,3 @@ Entity
 ------
 
 .. autoclass:: fastdds.Entity
-    :members:

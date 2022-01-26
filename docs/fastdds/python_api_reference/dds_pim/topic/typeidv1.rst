@@ -6,5 +6,3 @@ TypeIdV1
 --------
 
 .. autoclass:: fastdds.TypeIdV1
-    :members:
-

@@ -6,5 +6,3 @@ WireProtocolConfigQos
 ---------------------
 
 .. autoclass:: fastdds.WireProtocolConfigQos
-    :members:
-

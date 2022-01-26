@@ -7,4 +7,3 @@ LoanableSequence
 
 .. TODO
    .. autoclass:: fastdds.LoanableSequence
-    :members:

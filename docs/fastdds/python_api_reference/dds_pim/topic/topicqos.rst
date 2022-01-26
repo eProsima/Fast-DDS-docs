@@ -6,6 +6,5 @@ TopicQos
 --------
 
 .. autoclass:: fastdds.TopicQos
-    :members:
 
 .. autoclass:: fastdds.TOPIC_QOS_DEFAULT

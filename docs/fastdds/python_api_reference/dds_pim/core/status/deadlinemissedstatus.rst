@@ -6,4 +6,3 @@ DeadlineMissedStatus
 --------------------
 
 .. autoclass:: fastdds.DeadlineMissedStatus
-    :members:

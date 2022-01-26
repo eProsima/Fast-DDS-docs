@@ -6,4 +6,3 @@ TopicDataQosPolicy
 ------------------
 
 .. autoclass:: fastdds.TopicDataQosPolicy
-    :members:

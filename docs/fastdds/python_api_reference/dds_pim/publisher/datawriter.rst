@@ -6,4 +6,3 @@ DataWriter
 ----------
 
 .. autoclass:: fastdds.DataWriter
-    :members:

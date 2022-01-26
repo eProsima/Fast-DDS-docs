@@ -7,4 +7,3 @@ DomainEntity
 ------------
 
 .. autoclass:: fastdds.DomainEntity
-    :members:

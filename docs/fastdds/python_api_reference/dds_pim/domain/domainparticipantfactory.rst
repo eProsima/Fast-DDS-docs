@@ -6,4 +6,3 @@ DomainParticipantFactory
 ------------------------
 
 .. autoclass:: fastdds.DomainParticipantFactory
-    :members:

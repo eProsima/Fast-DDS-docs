@@ -7,5 +7,3 @@ PropertyPolicyQos
 
 .. TODO
    .. autoclass:: fastdds.PropertyPolicyQos
-   :members:
-

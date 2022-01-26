@@ -6,5 +6,3 @@ DataRepresentationQosPolicy
 ---------------------------
 
 .. autoclass:: fastdds.DataRepresentationQosPolicy
-    :members:
-

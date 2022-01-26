@@ -6,5 +6,3 @@ WriterResourceLimitsQos
 -----------------------
 
 .. autoclass:: fastdds.WriterResourceLimitsQos
-    :members:
-

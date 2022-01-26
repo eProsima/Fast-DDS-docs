@@ -6,4 +6,3 @@ BaseStatus
 ----------
 
 .. autoclass:: fastdds.BaseStatus
-    :members:

@@ -297,7 +297,6 @@ breathe_projects = {
 breathe_default_project = 'FastDDS'
 
 if fastdds_python_imported_location:
-    print('AUTO {}'.format(fastdds_python_imported_location))
     sys.path.insert(0, fastdds_python_imported_location)
 
 # -- General configuration ------------------------------------------------
@@ -314,6 +313,7 @@ extensions = [
     'sphinxcontrib.plantuml',
     'sphinx.ext.autodoc'
 ]
+
 try:
     import sphinxcontrib.spelling  # noqa: F401
     extensions.append('sphinxcontrib.spelling')
@@ -330,6 +330,11 @@ try:
     spelling_verbose = True
 except ImportError:
     pass
+
+autodoc_default_options = {
+        'members': True,
+        'undoc-members': False,
+        }
 
 plantuml = '/usr/bin/plantuml -Djava.awt.headless=true '
 plantuml_output_format = "svg"
@@ -422,6 +427,10 @@ suppress_warnings = [
     'cpp.duplicate_declaration',
     'cpp.parse_function_declaration'
 ]
+
+if 'spelling' in sys.argv:
+    exclude_patterns.append('fastdds/python_api_reference/dds_pim/*')
+    suppress_warnings.append('toc.excluded')
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False

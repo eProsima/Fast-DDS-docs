@@ -6,5 +6,3 @@ PublishModeQosPolicy
 --------------------
 
 .. autoclass:: fastdds.PublishModeQosPolicy
-    :members:
-

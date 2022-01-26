@@ -6,5 +6,3 @@ DestinationOrderQosPolicy
 -------------------------
 
 .. autoclass:: fastdds.DestinationOrderQosPolicy
-    :members:
-

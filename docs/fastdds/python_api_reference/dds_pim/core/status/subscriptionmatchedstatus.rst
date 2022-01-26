@@ -6,4 +6,3 @@ SubscriptionMatchedStatus
 -------------------------
 
 .. autoclass:: fastdds.SubscriptionMatchedStatus
-    :members:

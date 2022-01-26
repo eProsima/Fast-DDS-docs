@@ -6,5 +6,3 @@ WriterDataLifecycleQosPolicy
 ----------------------------
 
 .. autoclass:: fastdds.WriterDataLifecycleQosPolicy
-    :members:
-

@@ -6,4 +6,3 @@ TypeSupport
 -----------
 
 .. autoclass:: fastdds.TypeSupport
-    :members:

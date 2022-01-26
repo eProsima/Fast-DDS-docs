@@ -6,4 +6,3 @@ PublicationMatchedStatus
 ------------------------
 
 .. autoclass:: fastdds.PublicationMatchedStatus
-    :members:

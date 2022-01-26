@@ -6,4 +6,3 @@ Publisher
 ---------
 
 .. autoclass:: fastdds.Publisher
-    :members:

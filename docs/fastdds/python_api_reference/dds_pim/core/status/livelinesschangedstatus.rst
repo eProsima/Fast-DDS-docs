@@ -6,4 +6,3 @@ LivelinessChangedStatus
 -----------------------
 
 .. autoclass:: fastdds.LivelinessChangedStatus
-    :members:

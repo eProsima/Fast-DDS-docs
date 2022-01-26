@@ -6,5 +6,3 @@ RTPSEndpointQos
 ---------------
 
 .. autoclass:: fastdds.RTPSEndpointQos
-    :members:
-

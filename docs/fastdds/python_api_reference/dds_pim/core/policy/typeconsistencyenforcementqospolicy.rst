@@ -6,5 +6,3 @@ TypeConsistencyEnforcementQosPolicy
 -----------------------------------
 
 .. autoclass:: fastdds.TypeConsistencyEnforcementQosPolicy
-    :members:
-

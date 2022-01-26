@@ -6,4 +6,3 @@ UserDataQosPolicy
 -----------------
 
 .. autoclass:: fastdds.UserDataQosPolicy
-    :members:

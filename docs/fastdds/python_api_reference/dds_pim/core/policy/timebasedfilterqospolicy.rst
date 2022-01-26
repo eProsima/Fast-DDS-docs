@@ -6,5 +6,3 @@ TimeBasedFilterQosPolicy
 ------------------------
 
 .. autoclass:: fastdds.TimeBasedFilterQosPolicy
-    :members:
-

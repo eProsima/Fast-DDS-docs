@@ -6,4 +6,3 @@ Topic
 -----
 
 .. autoclass:: fastdds.Topic
-    :members:

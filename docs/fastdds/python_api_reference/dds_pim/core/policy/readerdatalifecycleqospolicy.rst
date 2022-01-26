@@ -6,5 +6,3 @@ ReaderDataLifecycleQosPolicy
 ----------------------------
 
 .. autoclass:: fastdds.ReaderDataLifecycleQosPolicy
-    :members:
-

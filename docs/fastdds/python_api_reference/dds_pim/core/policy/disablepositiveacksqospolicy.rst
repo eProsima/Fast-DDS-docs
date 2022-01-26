@@ -6,5 +6,3 @@ DisablePositiveACKsQosPolicy
 ----------------------------
 
 .. autoclass:: fastdds.DisablePositiveACKsQosPolicy
-    :members:
-

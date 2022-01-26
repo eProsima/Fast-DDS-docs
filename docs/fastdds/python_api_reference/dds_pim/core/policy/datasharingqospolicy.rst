@@ -6,4 +6,3 @@ DataSharingQosPolicy
 --------------------
 
 .. autoclass:: fastdds.DataSharingQosPolicy
-    :members:

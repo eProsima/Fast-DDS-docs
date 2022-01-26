@@ -6,5 +6,3 @@ PresentationQosPolicy
 ---------------------
 
 .. autoclass:: fastdds.PresentationQosPolicy
-    :members:
-

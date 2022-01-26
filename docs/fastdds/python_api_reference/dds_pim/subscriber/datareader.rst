@@ -6,4 +6,3 @@ DataReader
 ----------
 
 .. autoclass:: fastdds.DataReader
-    :members:

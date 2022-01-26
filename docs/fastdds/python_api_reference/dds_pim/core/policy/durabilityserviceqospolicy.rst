@@ -6,4 +6,3 @@ DurabilityServiceQosPolicy
 --------------------------
 
 .. autoclass:: fastdds.DurabilityServiceQosPolicy
-    :members:

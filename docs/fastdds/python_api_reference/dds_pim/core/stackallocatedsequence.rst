@@ -7,4 +7,3 @@ StackAllocatedSequence
 
 .. TODO
    .. autoclass:: fastdds.StackAllocatedSequence
-    :members:

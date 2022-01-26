@@ -6,6 +6,5 @@ DataWriterQos
 -------------
 
 .. autoclass:: fastdds.DataWriterQos
-    :members:
 
 .. autoclass:: fastdds.DATAWRITER_QOS_DEFAULT

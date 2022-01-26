@@ -6,5 +6,3 @@ EntityFactoryQosPolicy
 ----------------------
 
 .. autoclass:: fastdds.EntityFactoryQosPolicy
-    :members:
-

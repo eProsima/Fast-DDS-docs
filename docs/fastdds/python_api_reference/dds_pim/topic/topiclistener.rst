@@ -6,4 +6,3 @@ TopicListener
 -------------
 
 .. autoclass:: fastdds.TopicListener
-    :members:

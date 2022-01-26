@@ -6,6 +6,5 @@ SubscriberQos
 -------------
 
 .. autoclass:: fastdds.SubscriberQos
-    :members:
 
 .. autoclass:: fastdds.SUBSCRIBER_QOS_DEFAULT

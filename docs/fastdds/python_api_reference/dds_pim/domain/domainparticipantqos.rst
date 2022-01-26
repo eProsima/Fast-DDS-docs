@@ -6,7 +6,6 @@ DomainParticipantQos
 --------------------
 
 .. autoclass:: fastdds.DomainParticipantQos
-    :members:
 
 
 .. TODO

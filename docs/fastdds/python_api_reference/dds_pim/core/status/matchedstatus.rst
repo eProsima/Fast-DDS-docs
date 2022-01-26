@@ -6,4 +6,3 @@ MatchedStatus
 -------------
 
 .. autoclass:: fastdds.MatchedStatus
-    :members:

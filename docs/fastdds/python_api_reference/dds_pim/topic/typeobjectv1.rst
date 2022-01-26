@@ -6,5 +6,3 @@ TypeObjectV1
 ------------
 
 .. autoclass:: fastdds.TypeObjectV1
-    :members:
-

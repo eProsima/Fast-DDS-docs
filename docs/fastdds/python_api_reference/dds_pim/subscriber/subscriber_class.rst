@@ -6,4 +6,3 @@ Subscriber
 ----------
 
 .. autoclass:: fastdds.Subscriber
-    :members:

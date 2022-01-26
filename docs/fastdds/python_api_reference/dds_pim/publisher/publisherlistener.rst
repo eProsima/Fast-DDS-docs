@@ -6,4 +6,3 @@ PublisherListener
 -----------------
 
 .. autoclass:: fastdds.PublisherListener
-    :members:

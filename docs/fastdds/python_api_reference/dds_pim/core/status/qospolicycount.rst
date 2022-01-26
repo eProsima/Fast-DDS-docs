@@ -6,4 +6,3 @@ QosPolicyCount
 --------------
 
 .. autoclass:: fastdds.QosPolicyCount
-    :members:

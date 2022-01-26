@@ -6,5 +6,3 @@ GenericDataQosPolicy
 --------------------
 
 .. autoclass:: fastdds.GenericDataQosPolicy
-    :members:
-

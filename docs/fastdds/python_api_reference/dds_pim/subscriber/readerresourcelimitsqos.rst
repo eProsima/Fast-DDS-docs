@@ -6,4 +6,3 @@ ReaderResourceLimitsQos
 -----------------------
 
 .. autoclass:: fastdds.ReaderResourceLimitsQos
-    :members:

@@ -6,5 +6,3 @@ Partition_t
 -----------
 
 .. autoclass:: fastdds.Partition_t
-    :members:
-

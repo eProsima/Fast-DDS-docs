@@ -6,4 +6,3 @@ QosPolicy
 ---------
 
 .. autoclass:: fastdds.QosPolicy
-    :members:

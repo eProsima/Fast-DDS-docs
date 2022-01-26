@@ -6,5 +6,3 @@ ResourceLimitsQosPolicy
 -----------------------
 
 .. autoclass:: fastdds.ResourceLimitsQosPolicy
-    :members:
-

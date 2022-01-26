@@ -6,5 +6,3 @@ TransportPriorityQosPolicy
 --------------------------
 
 .. autoclass:: fastdds.TransportPriorityQosPolicy
-    :members:
-

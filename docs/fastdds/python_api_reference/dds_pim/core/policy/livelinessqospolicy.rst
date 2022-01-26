@@ -6,5 +6,3 @@ LivelinessQosPolicy
 -------------------
 
 .. autoclass:: fastdds.LivelinessQosPolicy
-    :members:
-

@@ -6,4 +6,3 @@ SampleInfo
 ----------
 
 .. autoclass:: fastdds.SampleInfo
-    :members:

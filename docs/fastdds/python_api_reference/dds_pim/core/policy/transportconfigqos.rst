@@ -6,5 +6,3 @@ TransportConfigQos
 ------------------
 
 .. autoclass:: fastdds.TransportConfigQos
-    :members:
-

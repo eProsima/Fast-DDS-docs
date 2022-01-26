@@ -6,5 +6,3 @@ LatencyBudgetQosPolicy
 ----------------------
 
 .. autoclass:: fastdds.LatencyBudgetQosPolicy
-    :members:
-

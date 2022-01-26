@@ -6,5 +6,3 @@ HistoryQosPolicy
 ----------------
 
 .. autoclass:: fastdds.HistoryQosPolicy
-    :members:
-

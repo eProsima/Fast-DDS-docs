@@ -6,5 +6,3 @@ LifespanQosPolicy
 -----------------
 
 .. autoclass:: fastdds.LifespanQosPolicy
-    :members:
-

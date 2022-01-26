@@ -6,4 +6,3 @@ DomainParticipant
 -----------------
 
 .. autoclass:: fastdds.DomainParticipant
-    :members:

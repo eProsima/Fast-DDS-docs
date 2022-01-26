@@ -6,4 +6,3 @@ DomainParticipantListener
 -------------------------
 
 .. autoclass:: fastdds.DomainParticipantListener
-    :members:

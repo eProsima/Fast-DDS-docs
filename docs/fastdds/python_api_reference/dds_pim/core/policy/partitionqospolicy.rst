@@ -6,5 +6,3 @@ PartitionQosPolicy
 ------------------
 
 .. autoclass:: fastdds.PartitionQosPolicy
-    :members:
-

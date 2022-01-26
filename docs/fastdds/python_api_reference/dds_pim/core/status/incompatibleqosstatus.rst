@@ -6,4 +6,3 @@ IncompatibleQosStatus
 ---------------------
 
 .. autoclass:: fastdds.IncompatibleQosStatus
-    :members:

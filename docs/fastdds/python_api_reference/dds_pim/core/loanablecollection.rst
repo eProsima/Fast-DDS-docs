@@ -6,4 +6,3 @@ LoanableCollection
 ------------------
 
 .. autoclass:: fastdds.LoanableCollection
-    :members:

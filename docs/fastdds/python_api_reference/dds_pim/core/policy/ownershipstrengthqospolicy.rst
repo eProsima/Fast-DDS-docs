@@ -6,5 +6,3 @@ OwnershipStrengthQosPolicy
 --------------------------
 
 .. autoclass:: fastdds.OwnershipStrengthQosPolicy
-    :members:
-

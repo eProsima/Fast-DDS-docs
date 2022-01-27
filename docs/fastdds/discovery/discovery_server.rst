@@ -328,30 +328,7 @@ Configure Discovery Server locators using names
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All the examples provided in :ref:`discovery_server` use IPv4 addresses to specify the servers' listening locators.
-However, *Fast DDS* also allows to specify locator addresses using names.
-When an address is specified by a name, *Fast DDS* will query the known hosts and available DNS servers to try to
-resolve the IP address.
-This address will in turn be used to create the listening locator in the case of *server*, or as the address of the
-remote *server* in the case of *clients* (and *servers* that connect to other *servers*).
-
-+---------------------------------------------------------------------+
-| **C++**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                      |
-|    :language: c++                                                   |
-|    :start-after: //CONF_SERVER_DNS_LOCATORS                         |
-|    :end-before: //!--                                               |
-|    :dedent: 8                                                       |
-|                                                                     |
-+---------------------------------------------------------------------+
-| **XML**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                          |
-|    :language: xml                                                   |
-|    :start-after: <!-->CONF_SERVER_DNS_LOCATORS<-->                  |
-|    :end-before: <!--><-->                                           |
-|    :dedent: 28                                                      |
-+---------------------------------------------------------------------+
+However, *Fast DDS* also allows to :ref:`specify locator addresses using names <transport_transportApi_ipLocator>`.
 
 .. _DS_full_example:
 

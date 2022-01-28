@@ -80,15 +80,12 @@ in the DomainParticipant.
 
 Then, the :class:`PubListener` class is defined by inheriting from the |DataWriterListener-api| class.
 This class overrides the default DataWriter listener callbacks, which allow us to execute routines in case of an event.
-The overridden callback
-:cpp:func:`on_publication_matched <eprosima::fastdds::dds::DataWriterListener::on_publication_matched>`
+The overridden callback |DataWriterListener::on_publication_matched-api|
 allows you to define a series of actions when a new DataReader
 is detected listening to the topic under which the DataWriter is publishing.
 The :func:`info.current_count_change` detects these changes of DataReaders that are matched to the
 DataWriter.
-This is a member in the
-:cpp:struct:`MatchedStatus <eprosima::fastdds::dds::MatchedStatus>` structure that allows you to track changes in the
-status of subscriptions.
+This is a member in the |MatchedStatus-api| structure that allows you to track changes in the status of subscriptions.
 Finally, the ``listener_`` object of the class is defined as an instance of :class:`PubListener`.
 
 

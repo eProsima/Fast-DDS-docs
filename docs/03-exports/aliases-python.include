@@ -1,0 +1,11 @@
+.. |DataReaderListener::on_data_available-python-api| replace:: :py:func:`on_data_available()<fastdds.DataReaderListener.on_data_available>`
+.. |DataReaderListener::on_subscription_matched-python-api| replace:: :py:func:`on_subscription_matched()<fastdds.DataReaderListener.on_subscription_matched>`
+
+.. |DataWriterListener-python-api| replace:: :py:class:`DataWriterListener<fastdds.DataWriterListener>`
+.. |DataWriterListener::on_publication_matched-python-api| replace:: :py:func:`on_publication_matched()<fastdds.DataWriterListener.on_publication_matched>`
+
+.. |DomainParticipantFactory-api| replace:: :py:class:`DomainParticipantFactory<fastdds.DomainParticipantFactory>`
+
+.. |MatchedStatus-python-api| replace:: :py:class:`MatchedStatus<fastdds.MatchedStatus>`
+
+.. |SampleInfo-python-api| replace:: :py:class:`SampleInfo<fastdds.SampleInfo>`

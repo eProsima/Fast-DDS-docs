@@ -55,18 +55,15 @@ The private data members of the class will be the participant, the subscriber, t
 data type.
 As it was the case with the data writer, the listener implements the callbacks to be executed in case an event
 occurs.
-The first overridden callback of the SubListener is the
-:cpp:func:`on_subscription_matched <eprosima::fastdds::dds::DataReaderListener::on_subscription_matched>`, which is the
-analog of the :cpp:func:`on_publication_matched <eprosima::fastdds::dds::DataWriterListener::on_publication_matched>`
-callback of the DataWriter.
+The first overridden callback of the SubListener is the |DataReaderListener::on_subscription_matched-api|, which is the
+analog of the |DataWriterListener::on_publication_matched-api| callback of the DataWriter.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
     :lines: 60-77
     :dedent: 8
 
-The second overridden callback is
-:cpp:func:`on_data_available <eprosima::fastdds::dds::DataReaderListener::on_data_available>`.
+The second overridden callback is |DataReaderListener::on_data_available-api|.
 In this, the next received sample that the data reader can access is taken and processed to display its content.
 It is here that the object of the |SampleInfo-api| class is defined, which determines whether a sample has already
 been read or taken.

@@ -15,6 +15,7 @@
 HelloWorld Publisher
 """
 from threading import Condition
+import time
 
 import fastdds
 import HelloWorld
@@ -95,7 +96,8 @@ class Writer:
     def run(self):
         self.wait_discovery()
         for x in range(10) :
-          self.write()
+            time.sleep(1)
+            self.write()
         self.delete()
 
 

@@ -11,7 +11,7 @@ Finally, from the build directory, run the publisher and subscriber applications
 .. raw:: html
 
     <video autoplay loop>
-        <source src="../../../_static/simple_pubsub.mp4">
+        <source src="../../../_static/simple_python_pubsub.mp4">
         Your browser does not support the video tag.
     </video>
 

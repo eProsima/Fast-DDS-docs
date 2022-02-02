@@ -1,3 +1,5 @@
+.. include:: release_support.rst
+
 .. _release_notes:
 
 Version 2.5.0

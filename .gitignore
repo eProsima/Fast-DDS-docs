@@ -23,3 +23,7 @@ compile_commands.json
 # Common CSS
 
 docs/_static/css/eprosima_rtd_theme.css
+
+# Imported rst file
+
+docs/notes/release_support.rst

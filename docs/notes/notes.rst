@@ -1,6 +1,7 @@
-.. include:: release_support.rst
-
 .. _release_notes:
+
+Information about the release lifecycle can be found
+`here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
 Version 2.5.0
 =============

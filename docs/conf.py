@@ -591,12 +591,3 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
 # texinfo_no_detailmenu = False
-
-# -- Copy the modules documentation
-
-from urllib.request import urlretrieve
-
-urlretrieve (
-    "https://raw.githubusercontent.com/eProsima/Fast-DDS/master/RELEASE_SUPPORT.rst",
-    "notes/release_support.rst"
-)

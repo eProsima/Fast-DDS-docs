@@ -13,10 +13,10 @@ of that given type, as shown in the figure below.
 .. figure:: /01-figures/instances.png
     :align: center
 
-The different instances gathered under the same topic are distingishable by means of some data fields that form the key
+The different instances gathered under the same topic are distinguishable by means of some data fields that form the key
 to that data set.
 The key description has to be indicated to the middleware.
-The rule is simple: different data values with the same key value represent succesive values for the same instance,
+The rule is simple: different data values with the same key value represent successive values for the same instance,
 while different data values with different keys represent different instances.
 If no key is provided, the data set associated with the Topic is restricted to a single instance.
 Please refer to :ref:`dds_layer_topic_keyed_data_types` for more information about how to set the key in

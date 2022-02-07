@@ -171,6 +171,7 @@ sequencenumbers
 shm
 simpleEDP
 sqlite
+statechart
 stateful
 stderr
 struct

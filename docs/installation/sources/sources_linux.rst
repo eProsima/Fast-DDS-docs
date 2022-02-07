@@ -175,6 +175,12 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
        pip3 install -U colcon-common-extensions vcstool
 
+#. After this step colcon and vcstoll will be in $HOME/.local/bin and have to be added in the PATH. For example, on Ubuntu use:
+
+   .. code-block:: bash
+   
+       echo "export PATH="$HOME/.local/bin:$PATH"" >> ~/.bashrc
+
    .. note::
 
        If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip3` installation command.
@@ -348,8 +354,11 @@ Java JDK
 ^^^^^^^^
 
 The JDK is a development environment for building applications and components using the Java language.
-Download and install it at the following the steps given in the
-`Oracle website <https://www.oracle.com/java/technologies/javase-downloads.html>`_.
+The version of Java to use must be 8.0.0. Download and install it. For example, on Ubuntu use the command: 
+
+   .. code-block:: bash
+   
+    sudo apt install openjdk-8-jdk
 
 .. _gradle_sl:
 
@@ -382,17 +391,17 @@ Compiling Fast DDS-Gen
 
 Once the requirements above are met, compile *Fast DDS-Gen* by following the steps below:
 
+.. note::
+
+    If already installed FastDDS with colcon, you may skip the git clone command; *fastddsgen* can be found under
+    the :code:`src` directory of FastDDS colcon workspace.
+
 .. code-block:: bash
 
     cd ~
     git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git
     cd Fast-DDS-Gen
     gradle assemble
-
-.. note::
-
-    If already installed FastDDS with colcon, you may skip the git clone command; *fastddsgen* can be found under
-    the :code:`src` directory of FastDDS colcon workspace.
 
 .. note::
 

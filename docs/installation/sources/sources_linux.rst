@@ -175,7 +175,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
        pip3 install -U colcon-common-extensions vcstool
 
-#. After this step colcon and vcstoll will be in $HOME/.local/bin and have to be added in the PATH. For example, on Ubuntu use:
+#. After this step colcon and vcstool will be in $HOME/.local/bin and have to be added in the PATH. For example, on Ubuntu use:
 
    .. code-block:: bash
    

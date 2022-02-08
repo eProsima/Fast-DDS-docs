@@ -68,6 +68,32 @@ the information published by each plane DataWriter in the same Topic using this 
 Once the flight has landed, the instance can be disposed (no updates are expected); and if the flight is returned to the
 hangar, the instance is unregistered.
 
+The following IDL may define the data model of this specific example:
+
+.. code-block:: idl
+
+    struct FlightPosition
+    {
+        // Unique ID: airline name
+        @key
+        string<256> airline_name;
+
+        // Unique ID: flight number
+        int flight_number;
+
+        // Coordinates
+        double latitude;
+        double longitude;
+        double altitude;
+    };
+
+Then, writing to an specific instance will be done as below:
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //INSTANCES
+   :end-before: //!
+
 Instances could also be used as a relational database.
 The instance key is analogous to the primary key in the database (unique identifier of something within the data).
 In this scenario, writing a new sample to the instance is similar to insert/update the database; and disposing the

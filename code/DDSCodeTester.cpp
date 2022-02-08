@@ -2178,6 +2178,56 @@ void dds_dataWriter_examples()
             custom_type_support->deleteData(data);
             //!--
         }
+
+        {
+            struct FlightPosition
+            {
+                std::string airline_name_;
+                int flight_number_;
+                double latitude_;
+                double longitude_;
+                double altitude_;
+
+                void airline_name(
+                        std::string)
+                {
+                }
+                void flight_number(
+                        int)
+                {
+                }
+                void latitude(
+                        double)
+                {
+                }
+                void longitude(
+                        double)
+                {
+                }
+                void altitude(
+                        double)
+                {
+                }
+            };
+
+            FlightPosition flight_position;
+
+            //INSTANCES
+            // Create data sample
+
+            // Specify the flight instance
+            flight_position.airline_name("IBERIA");
+            flight_position.flight_number(1234);
+
+            // Position value sent by the plane
+            flight_position.latitude(39.08);
+            flight_position.longitude(-84.21);
+            flight_position.altitude(1500);
+
+            // Write sample to the instance
+            data_writer->write(&flight_position);
+            //!
+        }
     }
 }
 

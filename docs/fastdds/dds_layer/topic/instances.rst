@@ -60,6 +60,9 @@ Practical applications
 
 This section provides a couple of examples to help clarify the use of DDS instances.
 
+Commercial flights tracking
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 For example, instances could be used to track commercial flights.
 The key identifying the instances could be the airline name and the flight number, while the sample data would be the
 location of each flight being tracked at any given time.
@@ -93,6 +96,9 @@ Then, writing to an specific instance will be done as below:
    :dedent: 12
    :start-after: //INSTANCES
    :end-before: //!
+
+Relational databases
+^^^^^^^^^^^^^^^^^^^^
 
 Instances could also be used as a relational database.
 The instance key is analogous to the primary key in the database (unique identifier of something within the data).

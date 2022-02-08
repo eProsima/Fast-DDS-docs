@@ -46,10 +46,6 @@ It can take one of these values:
 * **READ**: This is the first time this data sample has been retrieved.
 * **NOT_READ**: The data sample has already been *read* or *taken* previously.
 
-.. note::
-   Currently the |SampleInfo::sample_state-api| is not implemented, and its value is always set to **NOT_READ**.
-   It will be implemented on a future release of *Fast DDS*.
-
 .. _dds_layer_subscriber_sampleInfo_viewstate:
 
 view_state
@@ -60,10 +56,6 @@ It can take one of these values:
 
 * **NEW**: This is the first time a sample of this instance is retrieved.
 * **NOT_NEW**: Other samples of this instance have been retrieved previously.
-
-.. note::
-   Currently the |SampleInfo::view_state-api| is not implemented, and its value is always set to **NOT_NEW**.
-   It will be implemented on a future release of *Fast DDS*.
 
 .. _dds_layer_subscriber_sampleInfo_instancestate:
 
@@ -79,11 +71,6 @@ It can take one of these values:
 * **NOT_ALIVE_NO_WRITERS**: The DataReader disposed the instance because no remote
   DataWriter that was publishing the instance is *alive*.
 
-.. note::
-   Currently the |SampleInfo::instance_state-api| is partially implemented, and the value **NOT_ALIVE_NO_WRITERS** will
-   never be set.
-   It will be fully implemented on a future release of *Fast DDS*.
-
 .. _dds_layer_subscriber_sampleInfo_disposedgenerationcount:
 
 disposed_generation_count
@@ -91,20 +78,12 @@ disposed_generation_count
 |SampleInfo::disposed_generation_count-api| indicates the number of times the instance had become alive after it was
 disposed.
 
-.. note::
-   Currently the |SampleInfo::disposed_generation_count-api| is not implemented, and its value is always set to ``0``.
-   It will be implemented on a future release of *Fast DDS*.
-
 .. _dds_layer_subscriber_sampleInfo_nowritersgenerationcount:
 
 no_writers_generation_count
 ---------------------------
 |SampleInfo::no_writers_generation_count-api| indicates the number of times the instance had become alive after it was
 disposed as ``NOT_ALIVE_NO_WRITERS``.
-
-.. note::
-   Currently the |SampleInfo::no_writers_generation_count-api| is not implemented, and its value is always set to ``1``.
-   It will be implemented on a future release of *Fast DDS*.
 
 .. _dds_layer_subscriber_sampleInfo_samplerank:
 

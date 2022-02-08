@@ -87,6 +87,7 @@ myFilterFactory
 nackResponseDelay
 nackSupressionDuration
 NoOpDomainParticipantListener
+NonConstEnabler
 nullptr
 Num
 OfferedDeadlineMissedStatus

@@ -75,11 +75,10 @@ The following IDL may define the data model of this specific example:
     struct FlightPosition
     {
         // Unique ID: airline name
-        @key
-        string<256> airline_name;
+        @key string<256> airline_name;
 
         // Unique ID: flight number
-        int flight_number;
+        @key short flight_number;
 
         // Coordinates
         double latitude;
@@ -91,6 +90,7 @@ Then, writing to an specific instance will be done as below:
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
+   :dedent: 8
    :start-after: //INSTANCES
    :end-before: //!
 

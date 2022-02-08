@@ -90,7 +90,7 @@ Then, writing to an specific instance will be done as below:
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
-   :dedent: 8
+   :dedent: 12
    :start-after: //INSTANCES
    :end-before: //!
 

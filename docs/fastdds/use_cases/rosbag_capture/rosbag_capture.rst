@@ -7,6 +7,9 @@
 How to use eProsima DDS Record and Replay (ROSBAG2 and DDS)
 ===========================================================
 
+.. warning::
+    This section is still under work.
+
 eProsima DDS Record and Replay allows the user to monitor the ROS 2 traffic in real time continuously,
 and to play it back at any given time. This highly contributes to facilitating simulation of real life
 conditions, application testing, optimizing data analysis and general troubleshooting.
@@ -134,7 +137,7 @@ DataType names for this generated types are structured like (using the previous 
 "new_typesupport::idl::HelloWorld". It's easier however to use the accessor provided to this value during
 the create_topic call. Something similar to:
 
--- code-block:: cpp
+-- code-block:: bash
 
    topic = participant->create_topic("rt/HelloWorldTopic", type->getName(), TOPIC_QOS_DEFAULT);
 

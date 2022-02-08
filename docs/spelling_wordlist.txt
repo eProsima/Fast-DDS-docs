@@ -9,6 +9,7 @@ acknowledgement
 acks
 AES
 allocator
+ament
 ami
 appendable
 asio
@@ -83,6 +84,7 @@ fastddsgen
 foonathan
 GCC
 GCM
+getName
 getter
 Github
 GMAC
@@ -92,10 +94,12 @@ gradle
 gtest
 GTest
 helloworld
+HelloWorldTopic
 homebrew
 Homebrew
 hostid
 IDL
+idl
 ifaddrs
 ignoreParticipantFlags
 initializations
@@ -160,6 +164,8 @@ redistributable
 replier
 repos
 retransmission
+rosbag
+Rosbag
 rtps
 runtime
 sanitizers
@@ -184,6 +190,7 @@ submessages
 submodule
 submodules
 superset
+syntaxes
 takeNextData
 TCP
 tcpdump
@@ -192,6 +199,7 @@ topologies
 Topologies
 typeobject
 TypeObject
+typesupprt
 typeros
 typeros2
 uint

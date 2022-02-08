@@ -4,9 +4,12 @@
 
 .. _rosbag_capture:
 
-Record and Replay Fast DDS Data
-===============================
+How to use eProsima DDS Record and Replay (ROSBAG2 and DDS)
+===========================================================
 
+eProsima DDS Record and Replay allows the user to monitor the ROS 2 traffic in real time continuously,
+and to play it back at any given time. This highly contributes to facilitating simulation of real life
+conditions, application testing, optimizing data analysis and general troubleshooting.
 Rosbag2 is a ROS 2 application that can be used to capture DDS messages and store them on an sqlite database.
 This allows inspecting and replaying said messages at a later time.
 
@@ -157,4 +160,4 @@ used to replay the recorded messages. Open a subscriber application for the same
    source new_typesupport/install/setup.bash
    ros2 bag play <path-to-db-file>
 
-The recorded messages will be sent by rosbag at their original rate and the subscriber will receive them as such. 
+The recorded messages will be sent by rosbag at their original rate and the subscriber will receive them as such.

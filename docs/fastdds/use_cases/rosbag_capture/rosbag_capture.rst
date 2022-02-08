@@ -50,6 +50,9 @@ such as ROS 2 messages would use "msg") in that order, for instance:
 
 TypeSupport Generation
 ^^^^^^^^^^^^^^^^^^^^^^
+.. warning::
+    This section is still under work.
+
 Rosbag by default can only recognize Topics of the types ROS has already defined in its different TypeSupport
 libraries. We need to create a new library containing our custom types and have rosbag find it and use it to
 parse our message contents. To do so, start by creating a new package. Assuming that the ROS distribution
@@ -115,6 +118,9 @@ and scripts for ROS2 applications to use your new type.
 Fast DDS Application required modifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. warning::
+    This section is still under work.
+
 Using the same IDL files used earlier Fast-DDS-Gen can generate the required code to handle the new type in
 Fast DDS. Generate this code by running:
 
@@ -135,7 +141,6 @@ the create_topic call. Something similar to:
 
 Rosbag Record and Play
 ^^^^^^^^^^^^^^^^^^^^^^
-
 Using the overlay created earlier one can make ROS applications aware of our custom type. Sourcing the type
 support package and then launching rosbag2 will allow our messages to be captured.
 

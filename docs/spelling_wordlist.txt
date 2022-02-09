@@ -94,6 +94,7 @@ gradle
 gtest
 GTest
 helloworld
+HelloWorld
 HelloWorldTopic
 homebrew
 Homebrew
@@ -199,7 +200,7 @@ topologies
 Topologies
 typeobject
 TypeObject
-typesupprt
+typesupport
 typeros
 typeros2
 uint

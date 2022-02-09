@@ -36,7 +36,8 @@ IDL files
 ^^^^^^^^^
 IDL files used to generate types for the application need to have the types nested inside both the module name
 (new_typesupport in our example) and the "idl" module (which defines the kind of generator to use. Other syntaxes
-such as ROS 2 messages would use "msg") in that order, for instance:
+such as ROS 2 messages would use "msg") in that order. As an example, thee could be the contents of an example
+HelloWorld.idl file that we will be using for the next steps of this guide:
 
 .. code-block:: idl
 
@@ -68,22 +69,30 @@ that was downloaded in a previous step is ROS 2 Galactic the commands to create 
 
 This will create a new_typesupport folder. This will create a folder structure similar to the following:
 
-| new_typesupport
-| ├── include
-| │   └── new_typesupport
-| ├── CMakeLists.txt
-| └── package.xml
+.. code-block:: shell-session
+
+    .
+    └── new_typesupport
+        ├── include
+        │   └── new_typesupport
+        ├── src
+        ├── CMakeLists.txt
+        └── package.xml
 
 ROS2 code generators expect IDL files inside their own idl folder, so the final folder structure would be
 like this:
 
-| new_typesupport
-| ├── idl
-| │   └── HelloWorld.idl
-| ├── include
-| │   └── new_typesupport
-| ├── CMakeLists.txt
-| └── package.xml
+.. code-block:: shell-session
+
+    .
+    └── new_typesupport
+        ├── idl
+        │   └── HelloWorld.idl
+        ├── include
+        │   └── new_typesupport
+        ├── src
+        ├── CMakeLists.txt
+        └── package.xml
 
 Now add the following to your CMakeLists.txt file just before the ament_package() statement so ROS's
 generators get called on your IDL files.
@@ -125,33 +134,63 @@ Fast DDS Application required modifications
     This section is still under work.
 
 Using the same IDL files used earlier Fast-DDS-Gen can generate the required code to handle the new type in
-Fast DDS. Generate this code by running:
+Fast DDS. The required changes to make so rosbag can see your application are going to be illustrated via the
+Publisher/Subscriber example generated automatically from an IDL using Fast DDS Gen:
+
+Create a new folder outside the new_typesupport folder created previously, go inside it and run fastdds to generate
+the types and examples:
 
 .. code-block:: bash
 
-   fastddsgen -typeros2 new_typesupport/idl/HelloWorld.idl
+    mkdir HelloWorldExample
+    cd HelloWorldExample
+    cp ../new_typesupport/idl/HelloWorld.idl .
+    fastddsgen -example CMake -typeros2 HelloWorld.idl
+
+This will populate the current folder with several header and source files for both a Publisher and a Subscriber
+application.
+
+.. code-block:: shell-session
+
+    └── HelloWorldExample
+        ├── CMakeLists.txt
+        ├── HelloWorld.cxx
+        ├── HelloWorld.h
+        ├── HelloWorld.idl
+        ├── HelloWorldPublisher.cxx
+        ├── HelloWorldPublisher.h
+        ├── HelloWorldPubSubMain.cxx
+        ├── HelloWorldPubSubTypes.cxx
+        ├── HelloWorldPubSubTypes.h
+        ├── HelloWorldSubscriber.cxx
+        └── HelloWorldSubscriber.h
+
 
 ROS2 adds special tokens to the topic names depending on the vendor and the kind of topic.
 In this case the token "rt/" is added to all topic names so it needs to be added to the topic name.
 DataType names for this generated types are structured like (using the previous IDL as example)
 "new_typesupport::idl::HelloWorld". It's easier however to use the accessor provided to this value during
-the create_topic call. Something similar to:
+the create_topic call. Both of these modifications can be seen here (Line 86 on the HelloWorldPublisher.cxx
+generated file):
 
--- code-block:: bash
-
-   topic = participant->create_topic("rt/HelloWorldTopic", type->getName(), TOPIC_QOS_DEFAULT);
-
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: c++
+    :start-after: //CREATE THE TOPIC FOR ROSBAG
+    :end-before: //!
+    :dedent: 4
 
 Rosbag Record and Play
 ^^^^^^^^^^^^^^^^^^^^^^
 Using the overlay created earlier one can make ROS applications aware of our custom type. Sourcing the type
-support package and then launching rosbag2 will allow our messages to be captured.
+support package and then launching rosbag2 will allow our messages to be captured. The topic name used in the
+rosbag calls should not have the /rt token discussed earlier. It has to, however, keep the leading forward slash.
+Keeping the Topic name from our example, the calls would be:
 
 .. code-block:: bash
 
    export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
    source new_typesupport/install/setup.bash
-   ros2 bag record /TopicNameWithoutRT
+   ros2 bag record /HelloWorldTopic
 
 Launch your publisher application and you will see a discovery on the rosbag log:
 

@@ -67,6 +67,9 @@
 .. |DataWriter::get_offered_incompatible_qos_status-api| replace:: :cpp:func:`get_offered_incompatible_qos_status()<eprosima::fastdds::dds::DataWriter::get_offered_incompatible_qos_status>`
 .. |DataWriter::get_publication_matched_status-api| replace:: :cpp:func:`get_publication_matched_status()<eprosima::fastdds::dds::DataWriter::get_publication_matched_status>`
 .. |DataWriter::get_liveliness_lost_status-api| replace:: :cpp:func:`get_liveliness_lost_status()<eprosima::fastdds::dds::DataWriter::get_liveliness_lost_status>`
+.. |DataWriter::register_instance-api| replace:: :cpp:func:`register_instance()<eprosima::fastdds::dds::DataWriter::register_instance>`
+.. |DataWriter::unregister_instance-api| replace:: :cpp:func:`unregister_instance()<eprosima::fastdds::dds::DataWriter::unregister_instance>`
+.. |DataWriter::dispose-api| replace:: :cpp:func:`dispose()<eprosima::fastdds::dds::DataWriter::dispose>`
 .. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
 
 .. |DataWriterQos-api| replace:: :cpp:class:`DataWriterQos <eprosima::fastdds::dds::DataWriterQos>`

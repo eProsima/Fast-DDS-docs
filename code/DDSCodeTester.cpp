@@ -2210,22 +2210,59 @@ void dds_dataWriter_examples()
                 }
             };
 
-            FlightPosition flight_position;
 
-            //INSTANCES
+            //REGISTER-INSTANCE
             // Create data sample
+            FlightPosition first_flight_position;
 
             // Specify the flight instance
-            flight_position.airline_name("IBERIA");
-            flight_position.flight_number(1234);
+            first_flight_position.airline_name("IBERIA");
+            first_flight_position.flight_number(1234);
 
-            // Position value sent by the plane
-            flight_position.latitude(39.08);
-            flight_position.longitude(-84.21);
-            flight_position.altitude(1500);
+            // Register instance
+            eprosima::fastrtps::rtps::InstanceHandle_t first_flight_handle =
+                    data_writer->register_instance(&first_flight_position);
+            //!
+
+            //WRITE-REGISTERED-INSTANCE
+            // Update position value received from the plane
+            first_flight_position.latitude(39.08);
+            first_flight_position.longitude(-84.21);
+            first_flight_position.altitude(1500);
 
             // Write sample to the instance
-            data_writer->write(&flight_position);
+            data_writer->write(&first_flight_position, first_flight_handle);
+            //!
+
+            //WRITE-NON-REGISTERED-INSTANCE
+            // New data sample
+            FlightPosition second_flight_position;
+
+            // New instance
+            second_flight_position.airline_name("RYANAIR");
+            second_flight_position.flight_number(4321);
+
+            // Update plane location
+            second_flight_position.latitude(40.02);
+            second_flight_position.longitude(-84.32);
+            second_flight_position.altitude(5000);
+
+            // Write sample directly without registering the instance
+            data_writer->write(&second_flight_position);
+            //!
+
+            //WRONG-INSTANCE-UPDATE
+            data_writer->write(&second_flight_position, first_flight_handle);
+            //!
+
+            //UNREGISTER-INSTANCE
+            data_writer->unregister_instance(&first_flight_position, first_flight_handle);
+            data_writer->unregister_instance(&second_flight_position, HANDLE_NIL);
+            //!
+
+            //DISPOSE-INSTANCE
+            data_writer->dispose(&first_flight_position, first_flight_handle);
+            data_writer->dispose(&second_flight_position, HANDLE_NIL);
             //!
         }
     }
@@ -2949,6 +2986,27 @@ void dds_dataReader_examples()
             }
         }
         //!--
+
+        {
+            //READING-INSTANCE
+            if (ReturnCode_t::RETCODE_OK == data_reader->take_next_sample(&data, &info))
+            {
+                if (info.valid_data)
+                {
+                    // Data sample has been received
+                }
+                else if (info.instance_state == ALIVE_INSTANCE_STATE)
+                {
+                    // Remote DataWriter has disposed the instance
+                }
+                else if (info.instance_state == NOT_ALIVE_NO_WRITERS_INSTANCE_STATE)
+                {
+                    // None of the matched DataWriters is writing in the instance.
+                    // The instance can be safely disposed.
+                }
+            }
+            //!
+        }
 
         {
             //DDS_DATAREADER_LOAN_SEQUENCES

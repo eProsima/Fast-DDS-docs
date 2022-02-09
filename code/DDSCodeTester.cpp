@@ -5710,4 +5710,18 @@ int main(
         std::cout << "Error parsing persimission xml file" << std::endl;
         exit_code = -1;
     }
+    else
+    {
+        if (strncmp(argv[1], "Static", 6) == 0)
+        {
+            std::string file = argv[1];
+            DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
+            if (factory->check_xml_static_discovery(file) != ReturnCode_t::RETCODE_OK)
+            {
+                printf("Error parsing xml file %s\n", argv[1]);
+                exit_code = -1;
+            }
+        }
+        else {};
+    }
 }

@@ -11,7 +11,6 @@
 #include <fastrtps/rtps/history/WriterHistory.h>
 #include <fastrtps/rtps/history/ReaderHistory.h>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
-#include <fastrtps/xmlparser/XMLEndpointParser.h>
 #include <fastrtps/transport/UDPv4TransportDescriptor.h>
 #include <fastrtps/transport/TCPv4TransportDescriptor.h>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
@@ -2103,27 +2102,13 @@ int main(
         }
     }
     else
-    {
-        if (strncmp(argv[1], "Static", 6) == 0)
-        {
-            XMLEndpointParser parser;
-            std::string file = argv[1];
+    {        
+        XMLProfileManager parser;
 
-            if (parser.loadXMLFile(file) != XMLP_ret::XML_OK)
-            {
-                printf("Error parsing xml file %s\n", argv[1]);
-                exit_code = -1;
-            }
-        }
-        else
+        if (parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
         {
-            XMLProfileManager parser;
-
-            if (parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
-            {
-                printf("Error parsing xml file %s\n", argv[1]);
-                exit_code = -1;
-            }
+            printf("Error parsing xml file %s\n", argv[1]);
+            exit_code = -1;
         }
     }
 

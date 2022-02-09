@@ -119,7 +119,7 @@ add_test(NAME xml.fastdds_permissions_test
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/GovernanceTester.smime"
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/PermissionsTester.smime")
 # Check validity of Static discovery XML file
-add_test(NAME xml.static_discovery COMMAND doctest StaticTester.xml)
+add_test(NAME xml.static_discovery COMMAND dds-doctest StaticTester.xml)
 
 # Check that the helloworld example runs as expected
 find_package(Python3 COMPONENTS Interpreter Development)

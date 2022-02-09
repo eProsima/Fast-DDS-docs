@@ -179,6 +179,21 @@ generated file):
     :end-before: //!
     :dedent: 4
 
+To build this example run the following commands:
+
+.. code-block:: bash
+
+    mkdir build && cd build
+    cmake ..
+    make
+
+This will create a HelloWorld binary file inside the build directory that can be used to launch both a Publisher and a
+Subscriber.
+
+.. code-block:: bash
+
+    ./HelloWorld publisher|subscriber
+
 Rosbag Record and Play
 ^^^^^^^^^^^^^^^^^^^^^^
 Using the overlay created earlier one can make ROS applications aware of our custom type. Sourcing the type

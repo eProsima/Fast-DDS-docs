@@ -5079,20 +5079,11 @@ bool dds_permissions_test(
 bool dds_rosbag_example()
 {
     //CREATE THE PARTICIPANT
-    DomainParticipantQos pqos;
     DomainParticipant* participant_;
     Topic* topic_;
     TypeSupport type_;
 
-    pqos.name("Participant_pub");
-    participant_ = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
-    if (participant_ == nullptr)
-    {
-        return false;
-    }
-
-    //REGISTER THE TYPE
-    type_.register_type(participant_);
+    participant_ = DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
 
     //CREATE THE TOPIC FOR ROSBAG
     topic_ = participant_->create_topic(

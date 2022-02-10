@@ -84,7 +84,6 @@ fastddsgen
 foonathan
 GCC
 GCM
-getName
 getter
 Github
 GMAC
@@ -166,7 +165,6 @@ replier
 repos
 retransmission
 rosbag
-Rosbag
 rtps
 runtime
 sanitizers
@@ -191,7 +189,6 @@ submessages
 submodule
 submodules
 superset
-syntaxes
 takeNextData
 TCP
 tcpdump

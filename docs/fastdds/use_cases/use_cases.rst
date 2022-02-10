@@ -82,8 +82,8 @@ with distributed systems:
   and how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2 project.
 
 + :ref:`rosbag_capture`.
-  Instructions on how to tune your application to be able to record and replay your DDS messages using ROS 2 Bag.
-
+  Instructions on how to tune your application to be able to record and replay your DDS messages using ROS 2 rosbag2
+  package.
 
 .. toctree::
     :maxdepth: 2

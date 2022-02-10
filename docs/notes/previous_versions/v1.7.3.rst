@@ -1,0 +1,10 @@
+Version 1.7.3 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **bugfixes**:
+
+1. Remove inline specifier from public method not defined in header file.
+2. Fix FastRTPS-Gen version generation
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastddsgen*.

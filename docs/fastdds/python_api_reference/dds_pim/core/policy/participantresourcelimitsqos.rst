@@ -4,5 +4,4 @@ ParticipantResourceLimitsQos
 ----------------------------
 
 .. TODO
-
-.. autoclass:: ParticipantResourceLimitsQos
+        .. autoclass:: ParticipantResourceLimitsQos

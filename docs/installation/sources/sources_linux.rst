@@ -141,7 +141,7 @@ to grant access to the HSM module a user must belong to this group.
 
 .. code-block:: bash
 
-   sudo usermod -a -G visualros <user>
+   sudo usermod -a -G softhsm <user>
 
 OpenSSL access HSM and other hardware devices through its engine functionality.
 In order to set up a new engine the OpenSSL configuration files (usually `/etc/ssl/openssl.cnf`)

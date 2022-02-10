@@ -6,7 +6,6 @@ DDS DCPS PIM
 Data Distribution Service (DDS) Data-Centric Publish-Subscribe (DCPS) Platform Independent Model (PIM) API
 
 .. toctree::
-    :orphan:
 
    /fastdds/python_api_reference/dds_pim/core/core.rst
    /fastdds/python_api_reference/dds_pim/domain/domain.rst

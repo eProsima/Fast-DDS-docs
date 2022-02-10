@@ -136,7 +136,7 @@ For example, on Ubuntu use the command:
 
    sudo apt install softhsm2
 
-Note that the *softhsm2* package creates a new group called *softhsm2*. In order
+Note that the *softhsm2* package creates a new group called *softhsm*. In order
 to grant access to the HSM module a user must belong to this group.
 
 .. code-block:: bash

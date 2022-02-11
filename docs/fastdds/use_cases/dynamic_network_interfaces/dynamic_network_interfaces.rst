@@ -32,6 +32,12 @@ Consequently, both |BuiltinAttributes::metatrafficUnicastLocatorList-api| and
 These attributes are set within the `builtin` member of |DomainParticipantQos::wire_protocol-api| contained in the
 |DomainParticipantQos-api| (please refer to :ref:`dds_layer_domainParticipantQos`).
 
+.. note::
+
+   Be aware of the remote locators' collections limits set within the |DomainParticipantQoS| (please refer to
+   :ref:`remotelocatorsallocationattributes`).
+   It is recommended to use the highest number of local addresses found on all the systems belonging to the same domain.
+
 Notify *Fast DDS*
 ^^^^^^^^^^^^^^^^^
 
@@ -51,3 +57,7 @@ Find below a brief snippet of how to use this feature:
    :start-after: //DYNAMIC_NETWORK_INTERFACES_USE_CASE
    :end-before: //!--
    :dedent: 8
+
+.. important::
+
+   This feature is still under development and only officially supported for UDPv4 Transport without whitelisting.

@@ -74,6 +74,7 @@ Previous versions
 .. include:: previous_versions/v1.9.2.rst
 .. include:: previous_versions/v1.9.1.rst
 .. include:: previous_versions/v1.9.0.rst
+.. include:: previous_versions/v1.8.5.rst
 .. include:: previous_versions/v1.8.4.rst
 .. include:: previous_versions/v1.8.3.rst
 .. include:: previous_versions/v1.8.2.rst

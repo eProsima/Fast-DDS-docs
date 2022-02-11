@@ -1,5 +1,5 @@
-Version 1.8.0
-^^^^^^^^^^^^^
+Version 1.8.0 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release included the following features:
 

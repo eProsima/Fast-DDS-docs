@@ -1,0 +1,11 @@
+Version 1.8.5 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **bugfixes**:
+
+1. Fix Subscriber History to correctly notify late-joiners in case of KEEP_LAST, RELIABLE, and TRANSIENT_LOCAL.
+2. Fix Writer History behavior when there are no matched readers.
+3. Fix heartbeat and ACK issues.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastddsgen*.

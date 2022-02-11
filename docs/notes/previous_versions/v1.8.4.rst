@@ -1,5 +1,5 @@
-Version 1.8.4
-^^^^^^^^^^^^^
+Version 1.8.4 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release adds the following **feature**:
 

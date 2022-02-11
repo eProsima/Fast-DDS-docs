@@ -60,5 +60,4 @@ Find below a brief snippet of how to use this feature:
 
 .. important::
 
-   This feature is still under development and currently it is only officially supported for UDPv4 Transport without
-   whitelisting.
+   This feature is still under development and only officially supported for UDPv4 Transport without whitelisting.

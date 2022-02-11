@@ -1,5 +1,5 @@
-Version 1.8.3
-^^^^^^^^^^^^^
+Version 1.8.3 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release adds the following bug fixes and improvements:
 

@@ -130,13 +130,13 @@ libraries and scripts for the ROS 2 applications to use te type defined in the I
 Fast DDS Application tuning
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ROS2 adds special tokens to the topic names depending on the ROS 2 subsystem the topic belongs to.
+ROS 2 adds special tokens to the topic names depending on the ROS 2 subsystem the topic belongs to.
 More information on this topic can be found `on ROS 2 design documentation
 <https://design.ros2.org/articles/topic_and_service_names.html#examples-of-ros-names-to-dds-concepts>`_ .
 
-Using the same IDL files defined earlier, Fast DDS-Gen can generate the required code to handle the new type in
+Using the same IDL file defined earlier, Fast DDS-Gen can generate the required code to handle the new type in
 Fast DDS.
-The required changes to make so rosbag can see your application are going to be illustrated via the
+The changes required in the Fast-DDS application so rosbag2 can communicate with it are going to be illustrated via the
 Publisher/Subscriber example generated automatically from an IDL using Fast DDS-Gen.
 An in-depth guide to Fast DDS-Gen can be found
 `here <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/fastddsgen/fastddsgen.html>`_.
@@ -179,7 +179,7 @@ applied by ROS 2 so communication can be established with rosbag2.
 Having used the ``-typeros2`` Fast DDS-Gen option when generating the TypeSupport, the generated type
 name would already include the ROS 2 naming rule mangling.
 However, the topic name must be modified manually both in the Publisher and Subscriber applications.
-Look for the `create_topic`` command in both the ``HelloWorldPublisher.cxx`` and the ``HelloWorldSubscriber.cxx``
+Look for the ``create_topic`` command in both the ``HelloWorldPublisher.cxx`` and the ``HelloWorldSubscriber.cxx``
 files and modify the topic name:
 
 .. literalinclude:: /../code/DDSCodeTester.cpp

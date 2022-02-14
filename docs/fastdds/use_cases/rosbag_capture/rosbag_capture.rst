@@ -4,10 +4,10 @@
 
 .. _rosbag_capture:
 
-How to use eProsima DDS Record and Replay (ROSBAG2 and DDS)
+How to use eProsima DDS Record and Replay (rosbag2 and DDS)
 ===========================================================
 
-eProsima DDS Record and Replay allows the user to continuously monitor the ROS 2 traffic in real time,
+*eProsima DDS Record and Replay* allows the user to continuously monitor the ROS 2 traffic in real time,
 and to play it back at any given time.
 This highly contributes to facilitating simulation of real life conditions,
 application testing, optimizing data analysis and general troubleshooting.
@@ -24,15 +24,15 @@ modifications.
 Prerequisites
 ^^^^^^^^^^^^^
 
-A Fast DDS installation, either binary or from sources is required. Fast DDS-Gen is also required for generating
-the examples and Fast DDS TypeSupport from the IDL file.
+A Fast DDS installation, either binary or from sources is required.
+Fast DDS-Gen is also required for generating the examples and Fast DDS TypeSupport from the IDL file.
 A ROS 2 installation with the rosbag2 package is needed as well.
 
 DDS IDL interoperability with ROS 2 messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 DDS uses IDLs to define the data model being exchanged by the applications.
-While ROS 2 can use IDL files to define the messages there are some rules that these IDL files must follow so
+While ROS 2 can use IDL files to define the messages, there are some rules that these IDL files must follow so
 compatibility between ROS 2 and Fast DDS native applications can be achieved.
 Specifically, the type definition must be nested inside the type module name and then the generator to be used.
 For ROS 2 messages, the generator would be ``msg``, whereas in this case, the ``idl`` generator must be used.
@@ -54,7 +54,7 @@ This IDL file will be the one used in the following steps.
         };
    };
 
-By default, rosbag2 can only recognize those Topics which types ROS has already defined in its different TypeSupport
+By default, rosbag2 can only recognize those Topics which types ROS 2 has already defined in its different TypeSupport
 libraries.
 Therefore, a new ROS 2 TypeSupport module library generated with the previously defined types must be created,
 so rosbag2 would be able to parse the message contents coming from the Fast DDS application.
@@ -130,18 +130,20 @@ libraries and scripts for the ROS 2 applications to use te type defined in the I
 Fast DDS Application tuning
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ROS2 adds special tokens to the topic names depending on the ROS subsystem the topic belongs to. More information
-on this topic can be found `on ROS 2 design documentation
+ROS2 adds special tokens to the topic names depending on the ROS 2 subsystem the topic belongs to.
+More information on this topic can be found `on ROS 2 design documentation
 <https://design.ros2.org/articles/topic_and_service_names.html#examples-of-ros-names-to-dds-concepts>`_ .
 
-Using the same IDL files used earlier Fast DDS-Gen can generate the required code to handle the new type in
-Fast DDS. The required changes to make so rosbag can see your application are going to be illustrated via the
-Publisher/Subscriber example generated automatically from an IDL using Fast DDS Gen. An in-depth guide to Fast DDS-Gen
-can be found `here <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/fastddsgen/fastddsgen.html>`_.
+Using the same IDL files defined earlier, Fast DDS-Gen can generate the required code to handle the new type in
+Fast DDS.
+The required changes to make so rosbag can see your application are going to be illustrated via the
+Publisher/Subscriber example generated automatically from an IDL using Fast DDS-Gen.
+An in-depth guide to Fast DDS-Gen can be found
+`here <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/fastddsgen/fastddsgen.html>`_.
 
-In the case of plain topics, the namespace "rt/" is added to all topic names so it needs to be added.
-DataType names for this generated types are structured like (using the previous IDL as example)
-"fastdds_record_typesupport::idl::HelloWorld".
+In the case of plain topics, the namespace "rt/" is added by ROS 2 to the DDS topic name.
+DataType names for ROS 2 generated types are structured concatenating the modules names.
+For the IDL being used in this example the data type name would be "fastdds_record_typesupport::idl::HelloWorld".
 
 Create a new workspace different from the ROS 2 one used previously.
 Copy inside the same IDL file and run Fast DDS-Gen to generate
@@ -151,7 +153,7 @@ the TypeSupport and the example source files:
 
     mkdir HelloWorldExample
     cd HelloWorldExample
-    cp ../fastdds_record_typesupport/idl/HelloWorld.idl .
+    cp <PATH_TO_ROS2_WORKSPACE>/fastdds_record_typesupport/idl/HelloWorld.idl .
     fastddsgen -example CMake -typeros2 HelloWorld.idl
 
 This command will populate the current folder with the required header and source files to build the TypeSupport,
@@ -172,13 +174,12 @@ and the Publisher and Subscriber applications.
         ├── HelloWorldSubscriber.cxx
         └── HelloWorldSubscriber.h
 
-
 The Fast DDS-Gen example should be modified taking into account the topic and type name mangling
 applied by ROS 2 so communication can be established with rosbag2.
-Having used the -typeros2 Fast DDS-Gen option when generating the TypeSupport, the generated type
+Having used the ``-typeros2`` Fast DDS-Gen option when generating the TypeSupport, the generated type
 name would already include the ROS 2 naming rule mangling.
 However, the topic name must be modified manually both in the Publisher and Subscriber applications.
-Look for the create_topic command in both the HelloWorldPublisher.cxx and the HelloWorldSubscriber.cxx
+Look for the `create_topic`` command in both the ``HelloWorldPublisher.cxx`` and the ``HelloWorldSubscriber.cxx``
 files and modify the topic name:
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -204,15 +205,14 @@ Run each application in a terminal and confirm that the communication is establi
     ./HelloWorld publisher|subscriber
 
 
-eProsima DDS Record and Play
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+eProsima DDS Record and Replay
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to use the generated ROS 2 TypeSupport package, the ROS 2 workspace should be sourced besides the
 ROS 2 installation.
 This allows rosbag2 to record the data types used in this example.
 To start recording the traffic being exchanged between the Publisher/Subscriber applications the corresponding
-ROS 2 Topic
-name has to be passed to rosbag2 (not to be mistaken with the DDS Topic name).
+ROS 2 Topic name has to be passed to rosbag2 (not to be mistaken with the DDS Topic name).
 Remember also to ensure that Fast DDS is the ROS 2 middleware being used by setting the environment variable
 ``RMW_IMPLEMENTATION``.
 

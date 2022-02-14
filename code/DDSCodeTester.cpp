@@ -21,6 +21,7 @@
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
 #include <fastdds/dds/topic/TopicListener.hpp>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
+
 #include <fastrtps/types/DynamicTypePtr.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastdds/dds/log/Log.hpp>
@@ -1183,6 +1184,15 @@ void dds_discovery_examples()
         {
             // Error
             return;
+        }
+        //!--
+        
+        // Check XML static discovery file
+        std::string file = "static_Discovery.xml";
+        DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
+        if (factory->check_xml_static_discovery(file) != ReturnCode_t::RETCODE_OK)
+        {
+            printf("Error parsing xml file %s\n", file);
         }
         //!--
     }
@@ -5722,6 +5732,14 @@ int main(
                 exit_code = -1;
             }
         }
-        else {};
+        else
+        {
+            eprosima::fastrtps::xmlparser::XMLProfileManager parser;
+            if (parser.loadXMLFile(argv[1]) != eprosima::fastrtps::xmlparser::XMLP_ret::XML_OK)
+            {
+                printf("Error parsing xml file %s\n", argv[1]);
+                exit_code = -1;
+            }
+        }
     }
 }

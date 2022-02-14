@@ -25,7 +25,6 @@
 
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
-using namespace ::xmlparser;
 using namespace ::security;
 using namespace ::types;
 using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
@@ -2098,16 +2097,6 @@ int main(
         if (!permissions_test(argv[1], argv[2], argv[3], argv[4], argv[5]))
         {
             printf("Error parsing persimission xml file\n");
-            exit_code = -1;
-        }
-    }
-    else
-    {        
-        XMLProfileManager parser;
-
-        if (parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
-        {
-            printf("Error parsing xml file %s\n", argv[1]);
             exit_code = -1;
         }
     }

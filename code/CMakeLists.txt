@@ -98,10 +98,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grep.py
     ${CMAKE_CURRENT_BINARY_DIR}/grep.py COPYONLY)
 
-# Check validity of XML profiles snippets
-add_test(NAME xml.profiles COMMAND doctest XMLTester.xml)
-# Check validity of XML full example
-add_test(NAME xml.example COMMAND doctest XMLTesterExample.xml)
+
 # Check validity of Permissions and Governance XML files using Fast RTPS API
 add_test(NAME xml.fastrtps_permissions_test
     COMMAND doctest
@@ -110,6 +107,11 @@ add_test(NAME xml.fastrtps_permissions_test
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/appkey.pem"
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/GovernanceTester.smime"
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/PermissionsTester.smime")
+
+# Check validity of XML profiles snippets
+add_test(NAME xml.profiles COMMAND dds-doctest XMLTester.xml)
+# Check validity of XML full example
+add_test(NAME xml.example COMMAND dds-doctest XMLTesterExample.xml)
 # Check validity of Permissions and Governance XML files using Fast DDS API
 add_test(NAME xml.fastdds_permissions_test
     COMMAND dds-doctest

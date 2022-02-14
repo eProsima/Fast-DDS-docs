@@ -280,3 +280,20 @@ Or you can specify the STATIC EDP configuration content directly.
 |    :end-before: //!                                  |
 |    :dedent: 8                                        |
 +------------------------------------------------------+
+
+Checking STATIC EDP XML Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before Load an static EDP xml file, it would be usefull to check its validaty and make sure the file would be 
+successfully loaded. This verification can be performed on DomainParticipantFactory using check_xml_static_discovery 
+as in the example below.
+
++----------------------------------------------------------------------------------------------------------------------+
+| **C++**                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------+
+| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
+|    :language: c++                                                                                                    |
+|    :start-after: // Check XML static discovery file                                                                  |
+|    :end-before: //!                                                                                                  |
+|    :dedent: 8                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------+

@@ -181,14 +181,20 @@ When this variable is set to `True`, [conf.py](docs/conf.py) will clone Fast DDS
 1. If the variable is not set, or the branch does not exist, try to checkout to a branch with the same name as the current branch on this repository.
 1. If the previous fails, fallback to `master`.
 
+Also Fast DDS Python bindings is cloned and follows a similar criteria:
+
+1. Try to checkout to the branch specified by environment variable `FASTDDS_PYTHON_BRANCH`.
+1. If the variable is not set, or the branch does not exist, try to checkout to a branch with the same name as the current branch on this repository.
+1. If the previous fails, fallback to `main`.
+
 To simulate ReadTheDocs operation, make sure you do not have a `build` directory.
-Then, set `READTHEDOCS` and `FASTDDS_BRANCH`, and run sphinx:
+Then, set `READTHEDOCS`, `FASTDDS_BRANCH` and `FASTDDS_PYTHON_BRANCH` and run sphinx:
 
 ```bash
 source <path_to_venv>/fastdds-docs-venv/bin/activate
 cd <path_to_docs_repo>/fastdds-docs
 rm -rf build
-READTHEDOCS=True FASTDDS_BRANCH=<branch> sphinx-build \
+READTHEDOCS=True FASTDDS_BRANCH=<branch> FASTDDS_PYTHON_BRANCH=<branch> sphinx-build \
     -b html \
     -D breathe_projects.FastDDS=<abs_path_to_docs_repo>/fastdds-docs/build/doxygen/xml \
     -d <abs_path_to_docs_repo>/fastdds-docs/build/doctrees \

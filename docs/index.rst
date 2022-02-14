@@ -52,6 +52,7 @@
    /fastdds/use_cases/use_cases
    /fastdds/ros2/ros2
    /fastdds/api_reference/api_reference
+   /fastdds/python_api_reference/python_api_reference
 
 .. _index_gen:
 

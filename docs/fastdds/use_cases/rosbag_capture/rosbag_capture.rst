@@ -136,7 +136,7 @@ More information on this topic can be found `on ROS 2 design documentation
 
 Using the same IDL file defined earlier, Fast DDS-Gen can generate the required code to handle the new type in
 Fast DDS.
-The changes required in the Fast-DDS application so rosbag2 can communicate with it are going to be illustrated via the
+The changes required in the Fast DDS application so rosbag2 can communicate with it are going to be illustrated via the
 Publisher/Subscriber example generated automatically from an IDL using Fast DDS-Gen.
 An in-depth guide to Fast DDS-Gen can be found
 `here <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/fastddsgen/fastddsgen.html>`_.

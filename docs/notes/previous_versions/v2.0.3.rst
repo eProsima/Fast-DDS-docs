@@ -1,0 +1,27 @@
+Version 2.0.3 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+It also includes the following **improvements**:
+
+1. Increased uniqueness of GUID prefix (#1648)
+2. Upgrade Fast CDR to v1.0.20 (#1793)
+
+This release includes the following **bugfixes**:
+
+1. Fixed some race conditions (#1540, #2023)
+2. Fixed SHM issues (#1644, #1895, #2266)
+3. Fixed some interoperability issues (#1624, #1752, #1849)
+4. Fixed Discovery Server 2.0 issues (#1639, #1651, #1761, #1796)
+5. Fixed several issues on QNX systems (#1744, #1773, #1776)
+6. Fix singleton destruction order (#1758)
+7. Fix heartbeat and ACK issues (#1865)
+8. Fix issues in LivelinessManager (#1872, #2147)
+9. Fix multicast issues (#1966, #1905)
+10. Fix TCP reception synchronization (#1981)
+11. XTypes standard compliance and fixes (#2006, #2278)
+12. Other minor fixes (#1558, #1734, #1814, #1935, #1978, #2121)
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.

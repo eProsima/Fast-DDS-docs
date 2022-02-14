@@ -8,7 +8,7 @@ Interface Description Language (IDL) file.
 This application can do two different things:
 
 1. Generate C++ definitions for your custom topic.
-2. Generate `SWIG`_ inteface files to generate the Python bindings for your custom topic.
+2. Generate `SWIG`_ interface files to generate the Python bindings for your custom topic.
 
 For this project, we will use the Fast DDS-Gen application to define the data type of the messages that will be sent
 by the publishers and received by the subscribers.

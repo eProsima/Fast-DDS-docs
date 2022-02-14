@@ -1,5 +1,5 @@
 Write the Fast DDS subscriber
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 From the workspace, run the following command to download the HelloWorldPublisher.py file.
 
@@ -34,8 +34,8 @@ which is the analog of the |DataWriterListener::on_publication_matched-python-ap
 
 The second overridden callback is |DataReaderListener::on_data_available-python-api|.
 In this, the next received sample that the data reader can access is taken and processed to display its content.
-It is here that the object of the |SampleInfo-python-api| class is defined, which determines whether a sample has already
-been read or taken.
+It is here that the object of the |SampleInfo-python-api| class is defined, which determines whether a sample has
+already been read or taken.
 
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
     :language: python

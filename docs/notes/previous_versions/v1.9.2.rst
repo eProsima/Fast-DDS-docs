@@ -1,5 +1,5 @@
-Version 1.9.2
-^^^^^^^^^^^^^
+Version 1.9.2 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release includes the following feature:
 

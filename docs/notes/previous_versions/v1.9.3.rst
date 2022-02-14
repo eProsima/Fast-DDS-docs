@@ -1,5 +1,5 @@
-Version 1.9.3
-^^^^^^^^^^^^^
+Version 1.9.3 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release adds the following features:
 

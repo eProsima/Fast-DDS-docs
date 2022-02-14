@@ -4,89 +4,97 @@
 
 .. _rosbag_capture:
 
-How to use eProsima DDS Record and Replay (ROSBAG2 and DDS)
+How to use eProsima DDS Record and Replay (rosbag2 and DDS)
 ===========================================================
 
-.. warning::
-    This section is still under work.
+*eProsima DDS Record and Replay* allows the user to continuously monitor the ROS 2 traffic in real time,
+and to play it back at any given time.
+This highly contributes to facilitating simulation of real life conditions,
+application testing, optimizing data analysis and general troubleshooting.
+`rosbag2 <https://github.com/ros2/rosbag2>`_ is a ROS 2 application that can be used to capture DDS messages
+and store them on an SQLite database which allows inspecting and replaying said messages at a later time.
 
-eProsima DDS Record and Replay allows the user to monitor the ROS 2 traffic in real time continuously,
-and to play it back at any given time. This highly contributes to facilitating simulation of real life
-conditions, application testing, optimizing data analysis and general troubleshooting.
-Rosbag2 is a ROS 2 application that can be used to capture DDS messages and store them on an sqlite database.
-This allows inspecting and replaying said messages at a later time.
-
-Rosbag2 interactions with a native Fast DDS application
+rosbag2 interactions with a native Fast DDS application
 -------------------------------------------------------
 
-Using rosbag2 to capture traffic between ROS talkers and listeners is straightforward.
-Using it to record and replay messages sent by Fast DDS participants outside ROS2 ecosystem requires some
+Using rosbag2 to capture traffic between ROS 2 talkers and listeners is straightforward.
+However, recording and replaying messages sent by Fast DDS participants outside ROS 2 ecosystem requires some
 modifications.
 
 Prerequisites
 ^^^^^^^^^^^^^
-Being a ROS 2 application, to install rosbag requires to have the ROS 2 repository for the ROS 2 distribution of
-choice set up in your sources file. Instructions on how to do so can be found on the `ROS 2 documentation
-<https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html#add-the-ros-2-apt-repository>`_
 
-Rosbag2 can then be installed following the instructions on their `Github repository
-<https://github.com/ros2/rosbag2>`_
+A Fast DDS installation, either binary or from sources is required.
+Fast DDS-Gen is also required for generating the examples and Fast DDS TypeSupport from the IDL file.
+A ROS 2 installation with the rosbag2 package is needed as well.
 
-IDL files
-^^^^^^^^^
-IDL files used to generate types for the application need to have the types nested inside both the module name
-(new_typesupport in our example) and the "idl" module (which defines the kind of generator to use. Other syntaxes
-such as ROS 2 messages would use "msg") in that order, for instance:
+DDS IDL interoperability with ROS 2 messages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+DDS uses IDLs to define the data model being exchanged by the applications.
+While ROS 2 can use IDL files to define the messages, there are some rules that these IDL files must follow so
+compatibility between ROS 2 and Fast DDS native applications can be achieved.
+Specifically, the type definition must be nested inside the type module name and then the generator to be used.
+For ROS 2 messages, the generator would be ``msg``, whereas in this case, the ``idl`` generator must be used.
+Assuming that the type module name selected is ``fastdds_record_typesupport`` the following ``HelloWorld.idl``
+file could be defined.
+This IDL file will be the one used in the following steps.
 
 .. code-block:: idl
 
-   module new_typesupport{
-     module idl {
-         struct HelloWorld
-           {
-               unsigned long index;
-               string message;
-           };
-     };
+   module fastdds_record_typesupport
+   {
+        module idl
+        {
+            struct HelloWorld
+            {
+                unsigned long index;
+                string message;
+            };
+        };
    };
 
-
-TypeSupport Generation
-^^^^^^^^^^^^^^^^^^^^^^
-.. warning::
-    This section is still under work.
-
-Rosbag by default can only recognize Topics of the types ROS has already defined in its different TypeSupport
-libraries. We need to create a new library containing our custom types and have rosbag find it and use it to
-parse our message contents. To do so, start by creating a new package. Assuming that the ROS distribution
-that was downloaded in a previous step is ROS 2 Galactic the commands to create a new package would be:
+By default, rosbag2 can only recognize those Topics which types ROS 2 has already defined in its different TypeSupport
+libraries.
+Therefore, a new ROS 2 TypeSupport module library generated with the previously defined types must be created,
+so rosbag2 would be able to parse the message contents coming from the Fast DDS application.
+First, the new ROS 2 TypeSupport package should be created.
+Follow the instructions below, after having sourced your ROS 2 installation:
 
 .. code-block:: bash
 
-   source /opt/ros/galactic/setup.bash
-   ros2 pkg create --build-type ament_cmake new_typesupport
+   ros2 pkg create --build-type ament_cmake fastdds_record_typesupport
 
-This will create a new_typesupport folder. This will create a folder structure similar to the following:
+This command will create a new ROS 2 package named ``fastdds_record_typesupport`` with the following folder structure:
 
-| new_typesupport
-| ├── include
-| │   └── new_typesupport
-| ├── CMakeLists.txt
-| └── package.xml
+.. code-block:: shell-session
 
-ROS2 code generators expect IDL files inside their own idl folder, so the final folder structure would be
+    .
+    └── fastdds_record_typesupport
+        ├── include
+        │   └── fastdds_record_typesupport
+        ├── src
+        ├── CMakeLists.txt
+        └── package.xml
+
+ROS 2 TypeSupport code generators expect IDL files inside their own idl folder, so the final folder structure would be
 like this:
 
-| new_typesupport
-| ├── idl
-| │   └── HelloWorld.idl
-| ├── include
-| │   └── new_typesupport
-| ├── CMakeLists.txt
-| └── package.xml
+.. code-block:: shell-session
 
-Now add the following to your CMakeLists.txt file just before the ament_package() statement so ROS's
-generators get called on your IDL files.
+    .
+    └── fastdds_record_typesupport
+        ├── idl
+        │   └── HelloWorld.idl
+        ├── include
+        │   └── fastdds_record_typesupport
+        ├── src
+        ├── CMakeLists.txt
+        └── package.xml
+
+In order to generate the TypeSupport interfaces required, the CMakeLists.txt file should be modified accordingly so the
+ROS 2 TypeSupport generator is called.
+Please add the following lines to the CMakeLists.txt file before calling ``ament_package()``:
 
 .. code-block:: cmake
 
@@ -100,8 +108,8 @@ generators get called on your IDL files.
      ${idl_files}
    )
 
-Similarly, we need to add the ROS generators to the package.xml file so colcon can keep track of this
-dependency. Add the following to the package.xml file after the ament_cmake build_depend tags:
+Similarly, the ``package.xml`` file should be modified adding the ROS 2 TypeSupport generator dependency.
+Add the following lines to the ``package.xml`` file after the ``buildtool_depend`` tags:
 
 .. code-block:: bash
 
@@ -109,63 +117,131 @@ dependency. Add the following to the package.xml file after the ament_cmake buil
   <exec_depend>rosidl_default_runtime</exec_depend>
   <member_of_group>rosidl_interface_packages</member_of_group>
 
-The last step would be to build the package. From the new_typesupport folder, the command to run is:
+The last step would be to build the package.
+Run the following command within the ``fastdds_record_typesupport`` folder:
 
 .. code-block:: bash
 
-   colcon build
+   RMW_IMPLEMENTATION=rmw_fastrtps_cpp colcon build
 
-The build process will create inside the install folder a new ROS2 overlay with all the required libraries
-and scripts for ROS2 applications to use your new type.
+The build process will create inside the install folder a new ROS 2 overlay with all the required
+libraries and scripts for the ROS 2 applications to use te type defined in the IDL file.
 
-Fast DDS Application required modifications
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Fast DDS Application tuning
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-    This section is still under work.
+ROS 2 adds special tokens to the topic names depending on the ROS 2 subsystem the topic belongs to.
+More information on this topic can be found `on ROS 2 design documentation
+<https://design.ros2.org/articles/topic_and_service_names.html#examples-of-ros-names-to-dds-concepts>`_ .
 
-Using the same IDL files used earlier Fast-DDS-Gen can generate the required code to handle the new type in
-Fast DDS. Generate this code by running:
+Using the same IDL file defined earlier, Fast DDS-Gen can generate the required code to handle the new type in
+Fast DDS.
+The changes required in the Fast DDS application so rosbag2 can communicate with it are going to be illustrated via the
+Publisher/Subscriber example generated automatically from an IDL using Fast DDS-Gen.
+An in-depth guide to Fast DDS-Gen can be found
+`here <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/fastddsgen/fastddsgen.html>`_.
+
+In the case of plain topics, the namespace "rt/" is added by ROS 2 to the DDS topic name.
+DataType names for ROS 2 generated types are structured concatenating the modules names.
+For the IDL being used in this example the data type name would be "fastdds_record_typesupport::idl::HelloWorld".
+
+Create a new workspace different from the ROS 2 one used previously.
+Copy inside the same IDL file and run Fast DDS-Gen to generate
+the TypeSupport and the example source files:
 
 .. code-block:: bash
 
-   fastddsgen -typeros2 new_typesupport/idl/HelloWorld.idl
+    mkdir HelloWorldExample
+    cd HelloWorldExample
+    cp <PATH_TO_ROS2_WORKSPACE>/fastdds_record_typesupport/idl/HelloWorld.idl .
+    fastddsgen -example CMake -typeros2 HelloWorld.idl
 
-ROS2 adds special tokens to the topic names depending on the vendor and the kind of topic.
-In this case the token "rt/" is added to all topic names so it needs to be added to the topic name.
-DataType names for this generated types are structured like (using the previous IDL as example)
-"new_typesupport::idl::HelloWorld". It's easier however to use the accessor provided to this value during
-the create_topic call. Something similar to:
+This command will populate the current folder with the required header and source files to build the TypeSupport,
+and the Publisher and Subscriber applications.
 
--- code-block:: bash
+.. code-block:: shell-session
 
-   topic = participant->create_topic("rt/HelloWorldTopic", type->getName(), TOPIC_QOS_DEFAULT);
+    └── HelloWorldExample
+        ├── CMakeLists.txt
+        ├── HelloWorld.cxx
+        ├── HelloWorld.h
+        ├── HelloWorld.idl
+        ├── HelloWorldPublisher.cxx
+        ├── HelloWorldPublisher.h
+        ├── HelloWorldPubSubMain.cxx
+        ├── HelloWorldPubSubTypes.cxx
+        ├── HelloWorldPubSubTypes.h
+        ├── HelloWorldSubscriber.cxx
+        └── HelloWorldSubscriber.h
+
+The Fast DDS-Gen example should be modified taking into account the topic and type name mangling
+applied by ROS 2 so communication can be established with rosbag2.
+Having used the ``-typeros2`` Fast DDS-Gen option when generating the TypeSupport, the generated type
+name would already include the ROS 2 naming rule mangling.
+However, the topic name must be modified manually both in the Publisher and Subscriber applications.
+Look for the ``create_topic`` command in both the ``HelloWorldPublisher.cxx`` and the ``HelloWorldSubscriber.cxx``
+files and modify the topic name:
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: c++
+    :start-after: //CREATE THE TOPIC FOR ROSBAG
+    :end-before: //!
+    :dedent: 4
+
+To build this example run the following commands:
+
+.. code-block:: bash
+
+    mkdir build && cd build
+    cmake ..
+    make
+
+This will create a HelloWorld binary file inside the build directory that can be used to launch both the Publisher
+and the Subscriber applications.
+Run each application in a terminal and confirm that the communication is established.
+
+.. code-block:: bash
+
+    ./HelloWorld publisher|subscriber
 
 
-Rosbag Record and Play
-^^^^^^^^^^^^^^^^^^^^^^
-Using the overlay created earlier one can make ROS applications aware of our custom type. Sourcing the type
-support package and then launching rosbag2 will allow our messages to be captured.
+eProsima DDS Record and Replay
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order to use the generated ROS 2 TypeSupport package, the ROS 2 workspace should be sourced besides the
+ROS 2 installation.
+This allows rosbag2 to record the data types used in this example.
+To start recording the traffic being exchanged between the Publisher/Subscriber applications the corresponding
+ROS 2 Topic name has to be passed to rosbag2 (not to be mistaken with the DDS Topic name).
+Remember also to ensure that Fast DDS is the ROS 2 middleware being used by setting the environment variable
+``RMW_IMPLEMENTATION``.
 
 .. code-block:: bash
 
    export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-   source new_typesupport/install/setup.bash
-   ros2 bag record /TopicNameWithoutRT
+   source <PATH_TO_ROS2_WORKSPACE>/fastdds_record_typesupport/install/setup.bash
+   ros2 bag record /HelloWorldTopic
 
-Launch your publisher application and you will see a discovery on the rosbag log:
+Having the Publisher application running already, the following rosbag2 log discovery info would be shown:
 
 .. code-block:: bash
 
+   [INFO] [1644320308.422161532] [rosbag2_recorder]: Subscribed to topic '/HelloWorldTopic'
    [INFO] [1644320308.422292205] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...
 
-Rosbag will proceed to create a folder with an SQLite database inside. The path to this database file can be
-used to replay the recorded messages. Open a subscriber application for the same topic and run:
+rosbag2 will proceed to create a folder named ``rosbag2_<DATE>`` with an SQLite database inside (``db3`` extension)
+where the received messages will be recorded.
+Within the folder a ``YAML`` file provides metadata information about the record: type and topic name, number of
+messages recorded, record duration, etc.
+The path to this database file can be used to replay the recorded messages.
+Having the Subscriber application running, the previously recorded traffic will be replayed.
+After stopping the rosbag2 application, rerun it in replay mode running the following command.
+The recorded messages will be published by rosbag2 at their original publishing rate and the Subscriber application
+will receive them:
 
 .. code-block:: bash
 
    export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-   source new_typesupport/install/setup.bash
+   source <PATH_TO_ROS2_WORKSPACE>/fastdds_record_typesupport/install/setup.bash
    ros2 bag play <path-to-db-file>
 
-The recorded messages will be sent by rosbag at their original rate and the subscriber will receive them as such.

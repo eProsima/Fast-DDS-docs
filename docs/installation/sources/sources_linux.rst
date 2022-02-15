@@ -334,10 +334,10 @@ This section provides the instructions for installing *Fast DDS Python bindings*
 Therefore, its installation is an extension of the installation of :ref:`Fast DDS <fastdds_lib_sl>`.
 
 *Fast DDS Python bindings* source code consists on several `.i` files which will be processed by SWIG_.
-Then C++ files (for connexion between C++ and Python) and Python files (Python module for Fast DDS) will be generated.
+Then C++ files (for connecting C++ and Python) and Python files (Python module for Fast DDS) will be generated.
 
 First of all, the :ref:`requirements_python_sl` and :ref:`dependencies_python_sl` detailed below need to be met.
-Afterwards, the user can choose wheter to follow either the :ref:`colcon <colcon_installation_python_linux>` or the
+Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_python_linux>` or the
 :ref:`CMake <cmake_installation_python_linux>` installation instructions.
 
 .. _requirements_python_sl:

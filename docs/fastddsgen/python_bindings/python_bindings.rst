@@ -12,7 +12,7 @@ The proper Python binding is generated building the provided solution using SWIG
 
 Calling *eProsima Fast DDS-Gen* with the option `-python` will generated these files.
 *eProsima Fast DDS-Gen* will generate a `.i` file which will be processed by SWIG_ and a CMake project to call SWIG_
-generating C++ files (for connexion between C++ and Python) and Python files (Python module for your type), and
+generating C++ files (for connecting C++ and Python) and Python files (Python module for your type), and
 compiling the C++ sources.
 
 Before calling CMake, the :ref:`fastddsgen_python_build` process needs several :ref:`fastddsgen_python_deps` to be met.

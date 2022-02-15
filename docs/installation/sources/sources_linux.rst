@@ -27,8 +27,8 @@ sources. The following packages will be installed:
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
 
 First of all, the :ref:`requirements_sl` and :ref:`dependencies_sl` detailed below need to be met.
-Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_linux>`)
-or the :ref:`CMake <cmake_installation_linux>`) installation instructions.
+Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_linux>`
+or the :ref:`CMake <cmake_installation_linux>` installation instructions.
 
 .. _requirements_sl:
 
@@ -40,7 +40,6 @@ The installation of *eProsima Fast DDS* in a Linux environment from sources requ
 installed in the system:
 
 * :ref:`cmake_gcc_pip3_wget_git_sl`
-* :ref:`gtest_sl` [optional]
 
 .. _cmake_gcc_pip3_wget_git_sl:
 
@@ -55,32 +54,17 @@ Linux distribution. For example, on Ubuntu use the command:
 
     sudo apt install cmake g++ python3-pip wget git
 
-.. _gtest_sl:
-
-Gtest
-^^^^^
-
-GTest is a unit testing library for C++.
-By default, *eProsima Fast DDS* does not compile tests.
-It is possible to activate them with the opportune
-`CMake configuration options <https://cmake.org/cmake/help/v3.6/manual/cmake.1.html#options>`_
-when calling colcon_ or CMake_.
-For more details, please refer to the :ref:`cmake_options` section.
-Also add the `Gtest repository <https://github.com/google/googletest>`_ into the workspace directory.
-
-.. code-block:: bash
-
-    git clone https://github.com/google/googletest src/googletest-distribution
-
 .. _dependencies_sl:
 
 Dependencies
 ------------
 
-*eProsima Fast DDS* has the following dependencies, when installed from binaries in a Linux environment:
+*eProsima Fast DDS* has the following dependencies, when installed from sources in a Linux environment:
 
 * :ref:`asiotinyxml2_sl`
 * :ref:`openssl_sl`
+* :ref:`libp11_sl`
+* :ref:`gtest_sl` [optional]
 
 .. _asiotinyxml2_sl:
 
@@ -160,6 +144,23 @@ In order to check if OpenSSL is able to access PKCS#11 engine use:
 .. code-block:: bash
 
     openssl engine pkcs11 -t
+
+.. _gtest_sl:
+
+Gtest
+^^^^^
+
+GTest is a unit testing library for C++.
+By default, *eProsima Fast DDS* does not compile tests.
+It is possible to activate them with the opportune
+`CMake configuration options <https://cmake.org/cmake/help/v3.6/manual/cmake.1.html#options>`_
+when calling colcon_ or CMake_.
+For more details, please refer to the :ref:`cmake_options` section.
+Also add the `Gtest repository <https://github.com/google/googletest>`_ into the workspace directory.
+
+.. code-block:: bash
+
+    git clone https://github.com/google/googletest src/googletest-distribution
 
 .. _colcon_installation_linux:
 

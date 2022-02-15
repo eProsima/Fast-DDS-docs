@@ -2995,13 +2995,13 @@ void dds_dataReader_examples()
                 {
                     // Data sample has been received
                 }
-                else if (info.instance_state == ALIVE_INSTANCE_STATE)
+                else if (info.instance_state == NOT_ALIVE_DISPOSED_INSTANCE_STATE)
                 {
-                    // Remote DataWriter has disposed the instance
+                    // A remote DataWriter has disposed the instance
                 }
                 else if (info.instance_state == NOT_ALIVE_NO_WRITERS_INSTANCE_STATE)
                 {
-                    // None of the matched DataWriters is writing in the instance.
+                    // None of the matched DataWriters are writing in the instance.
                     // The instance can be safely disposed.
                 }
             }

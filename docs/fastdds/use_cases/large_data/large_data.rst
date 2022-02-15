@@ -139,6 +139,41 @@ For receiving sockets, the command is:
 
 .. _flow-controllers:
 
+Increasing the Transmit Queue Length of an interface
+----------------------------------------------------
+The Transmit Queue Length (``txqueuelen``) is a TCP/UDP/IP stack network interface value that sets the number of packets allowed per kernel transmit queue of a network interface device. By default, the ``txqueuelen`` value for Ethernet interfaces is set to ``1000`` in Linux. This value is adequate for most Gigabit network devices. However, in some specific cases, the txqueuelen setting should be increased to avoid overflows that drop packets. Similarly, choosing a value that is too large can cause added overhead resulting in higher network latencies.
+
+Note that this information only applies to the 'sending' side, and not the receiving side. Also increasing the `txqueuelen` should go together with increasing the buffer sizes of the UDP and/or TCP buffer (this does apply for the sending and receiving side).
+
+You can view your setting for your adapter with the following command:
+
+.. code-block:: bash
+
+    ifconfig ${interface}
+    
+| This will display the configuration of your adapter, and also the ``txqueuelen`` parameter.
+| This parameter can be a value between a 1000 and 20000.
+The ``txqueuelen`` can be modified for one time (reset after reboot) by using the following command:
+
+.. code-block:: bash
+
+    ifconfig ${interface} txqueuelen ${size}
+    
+But, setting the txqueuelen permanently for an adapter
+
+Edit ``/etc/rc.locale``:
+    
+.. code-block:: bash
+
+    vi /etc/rc.local
+    
+Then add the following line to this file:
+
+.. code-block::
+
+    /sbin/ifconfig ${interface} txqueuelen ${size}
+    
+    
 Flow Controllers
 ----------------
 

@@ -321,8 +321,7 @@ Local installation
          cd foonathan_memory_vendor
          mkdir build && cd build
          cmake -DCMAKE_INSTALL_PREFIX=%USERPROFILE%/Fast-DDS/install ^
-            -DBUILD_SHARED_LIBS=OFF -DFOONATHAN_MEMORY_BUILD_TOOLS=ON ^
-            -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DFOONATHAN_MEMORY_BUILD_TESTS=OFF ..
+            -DBUILD_SHARED_LIBS=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
          cmake --build . --target install
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_

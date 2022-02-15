@@ -38,7 +38,7 @@ allows you to define a series of actions when a new DataReader
 is detected listening to the topic under which the DataWriter is publishing.
 The :func:`info.current_count_change` detects these changes of DataReaders that are matched to the
 DataWriter.
-This is a member in the |MatchedStatus-api| structure that allows you to track changes in the status of subscriptions.
+This is a member in the |MatchedStatus-python-api| structure that allows you to track changes in the status of subscriptions.
 
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldPublisher.py
     :language: python

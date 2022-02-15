@@ -4,7 +4,7 @@
 .. |DataWriterListener-python-api| replace:: :py:class:`DataWriterListener<fastdds.DataWriterListener>`
 .. |DataWriterListener::on_publication_matched-python-api| replace:: :py:func:`on_publication_matched()<fastdds.DataWriterListener.on_publication_matched>`
 
-.. |DomainParticipantFactory-api| replace:: :py:class:`DomainParticipantFactory<fastdds.DomainParticipantFactory>`
+.. |DomainParticipantFactory-python-api| replace:: :py:class:`DomainParticipantFactory<fastdds.DomainParticipantFactory>`
 
 .. |MatchedStatus-python-api| replace:: :py:class:`MatchedStatus<fastdds.MatchedStatus>`
 

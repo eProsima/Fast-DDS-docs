@@ -1,0 +1,29 @@
+Version 2.2.0 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Data-sharing delivery internal refactor.
+2. Performance tests refactored to use DDS-PIM high-level API.
+3. Discovery server improvements.
+
+This release includes the following **bugfixes**:
+
+1. Fixed reference counting on internal pools.
+2. Fixed singleton destruction order.
+3. Fixed default multicast locators.
+4. Fixed interoperability issues with x-types information.
+5. Fixed Reader history issues.
+6. Fixed data races issues.
+7. Fixed shared memory issues.
+8. Fixed heartbeat and ACK issues.
+9. Fixed LivelinessManager issues.
+10. Fixed TCP reception synchronization.
+11. Fixed build issues on old compilers.
+12. Allow modifying Partition QoS in enabled entities.
+13. Other minor fixes and improvements.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

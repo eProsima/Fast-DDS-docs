@@ -87,7 +87,7 @@ A full example of such file can be found in :ref:`static_xml_example`.
      - Values
      - Default
    * - ``<userId>``
-     - Mandatory.
+     - Mandatory. |br|
        Uniquely identifies the DataReader/DataWriter.
      - ``uint16_t``
      - 0
@@ -100,13 +100,13 @@ A full example of such file can be found in :ref:`static_xml_example`.
      - ``bool``
      - ``false``
    * - ``<topicName>``
-     - Mandatory.
+     - Mandatory. |br|
        The topic of the remote DataReader/DataWriter.
        Should match with one of the topics of the local DataReaders/DataWriters.
      - ``string_255``
      -
    * - ``<topicDataType>``
-     - Mandatory.
+     - Mandatory. |br|
        The data type of the topic.
      - ``string_255``
      -
@@ -143,11 +143,6 @@ A full example of such file can be found in :ref:`static_xml_example`.
      - |volatile|
    * - ``<ownershipQos>``
      - See :ref:`ownershipQos`.
-     -
-     -
-   * - ``<livelinessQos>``
-     - Defines the liveliness of the remote peer.
-       See :ref:`livelinessQos`.
      -
      -
    * - ``<livelinessQos>``

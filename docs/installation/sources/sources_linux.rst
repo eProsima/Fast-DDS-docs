@@ -3,7 +3,7 @@
 Linux installation from sources
 ===============================
 
-The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`,
+The instructions for installing the :ref:`Fast DDS library <fastdds_lib_sl>`,
 the :ref:`Fast DDS Python bindings <fastdds_python_sl>`
 and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources are provided in this page.
 It is organized as follows:
@@ -345,7 +345,7 @@ Afterwards, the user can choose whether to follow either the :ref:`colcon <colco
 Requirements
 ------------
 
-The installation of *Fast DDS Python bindings* in a Linux environment from sources required the following tools to be
+The installation of *Fast DDS Python bindings* in a Linux environment from sources requires the following tools to be
 installed in the system:
 
 - :ref:`Fast DDS requirements <requirements_sl>`

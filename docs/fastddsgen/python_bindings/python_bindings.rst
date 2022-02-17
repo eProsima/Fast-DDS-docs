@@ -10,10 +10,10 @@ allow the use of the IDL defined data types within a *Fast DDS* Python-based app
 Each IDL file will result in a new Python module that will contain all the data types defined in the file.
 The proper Python binding is generated building the provided solution using SWIG_.
 
-Calling *eProsima Fast DDS-Gen* with the option `-python` will generated these files.
+Calling *eProsima Fast DDS-Gen* with the option `-python` will generate these files.
 *eProsima Fast DDS-Gen* will generate a `.i` file which will be processed by SWIG_ and a CMake project to call SWIG_
-generating C++ files (for connecting C++ and Python) and Python files (Python module for your type), and
-compiling the C++ sources.
+first generating C++ files (for connecting C++ and Python) and Python files (Python module for your type) and
+then compiling the C++ sources.
 
 Before calling CMake, the :ref:`fastddsgen_python_build` process needs several :ref:`fastddsgen_python_deps` to be met.
 

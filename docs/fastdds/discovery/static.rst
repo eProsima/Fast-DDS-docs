@@ -80,7 +80,6 @@ A full example of such file can be found in :ref:`static_xml_example`.
 
 .. list-table::
    :header-rows: 1
-   :align: left
 
    * - Name
      - Description
@@ -96,7 +95,8 @@ A full example of such file can be found in :ref:`static_xml_example`.
      - ``uint16_t``
      - 0
    * - ``<expectsInlineQos>``
-     - It indicates if QOS is expected inline (DataReader **only**).
+     - It indicates if QOS is expected inline |br|
+       (DataReader **only**).
      - ``bool``
      - ``false``
    * - ``<topicName>``
@@ -112,21 +112,21 @@ A full example of such file can be found in :ref:`static_xml_example`.
      -
    * - ``<topicKind>``
      - The kind of topic.
-     - :class:`NO_KEY`
-       :class:`WITH_KEY`
-     - :class:`NO_KEY`
+     - :class:`NO_KEY` |br|
+       :class:`WITH_KEY` |br|
+     - :class:`NO_KEY` |br|
    * - ``<partitionQos>``
-     - The name of a partition of the remote peer.
+     - The name of a partition of the remote peer. |br|
        Repeat to configure several partitions.
      - ``string``
      -
    * - ``<unicastLocator>``
-     - Unicast locator of the DomainParticipant.
+     - Unicast locator of the DomainParticipant. |br|
        See :ref:`staticLocators`.
      -
      -
    * - ``<multicastLocator>``
-     - Multicast locator of the DomainParticipant.
+     - Multicast locator of the DomainParticipant. |br|
        See :ref:`staticLocators`.
      -
      -
@@ -146,7 +146,7 @@ A full example of such file can be found in :ref:`static_xml_example`.
      -
      -
    * - ``<livelinessQos>``
-     - Defines the liveliness of the remote peer.
+     - Defines the liveliness of the remote peer. |br|
        See :ref:`livelinessQos`.
      -
      -

@@ -101,7 +101,7 @@ A full example of such file can be found in :ref:`static_xml_example`.
      - ``false``
    * - ``<topicName>``
      - Mandatory. |br|
-       The topic of the remote DataReader/DataWriter.
+       The topic of the remote DataReader/DataWriter. |br|
        Should match with one of the topics of the local DataReaders/DataWriters.
      - ``string_255``
      -
@@ -132,13 +132,13 @@ A full example of such file can be found in :ref:`static_xml_example`.
      -
    * - ``<reliabilityQos>``
      - See the :ref:`reliabilityqospolicy` section.
-     - |besteffort|
+     - |besteffort| |br|
        |reliable|
      - |besteffort|
    * - ``<durabilityQos>``
      - See the :ref:`durabilityqospolicy` section.
-     - |volatile|
-       |transientlocal|
+     - |volatile| |br|
+       |transientlocal| |br|
        |transient|
      - |volatile|
    * - ``<ownershipQos>``

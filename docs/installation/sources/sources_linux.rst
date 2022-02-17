@@ -200,7 +200,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
 .. note::
 
-    Being based on CMake_, it is possible to pass the CMake configuration options to the :code:`colcon build`
+    Being based on CMake_, it is possible to pass CMake configuration options to the :code:`colcon build`
     command. For more information on the specific syntax, please refer to the
     `CMake specific arguments <https://colcon.readthedocs.io/en/released/reference/verb/build.html#cmake-specific-arguments>`_
     page of the colcon_ manual.
@@ -410,7 +410,7 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
 
 .. note::
 
-    Being based on CMake_, it is possible to pass the CMake configuration options to the :code:`colcon build`
+    Being based on CMake_, it is possible to pass CMake configuration options to the :code:`colcon build`
     command. For more information on the specific syntax, please refer to the
     `CMake specific arguments <https://colcon.readthedocs.io/en/released/reference/verb/build.html#cmake-specific-arguments>`_
     page of the colcon_ manual.

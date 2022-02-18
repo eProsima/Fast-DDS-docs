@@ -258,7 +258,7 @@ Local installation
          mkdir foonathan_memory_vendor/build
          cd foonathan_memory_vendor/build
          cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DBUILD_SHARED_LIBS=ON
-         sudo cmake --build . --target install
+         cmake --build . --target install
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
@@ -269,7 +269,7 @@ Local installation
          mkdir Fast-CDR/build
          cd Fast-CDR/build
          cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install
-         sudo cmake --build . --target install
+         cmake --build . --target install
 
 #. Once all dependencies are installed, install *eProsima Fast DDS*:
 
@@ -280,7 +280,7 @@ Local installation
        mkdir Fast-DDS/build
        cd Fast-DDS/build
        cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install
-       sudo cmake --build . --target install
+       cmake --build . --target install
 
 .. note::
 
@@ -301,6 +301,12 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
+.. note:: Installation on system directories may need of permissions. Maybe permissions have to be granted through
+   :code:`sudo`.
+
+   .. code-block:: bash
+
+       sudo cmake --build . --target install
 
 .. _run_app_cmake_sl:
 
@@ -466,7 +472,7 @@ Local installation
          mkdir foonathan_memory_vendor/build
          cd foonathan_memory_vendor/build
          cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install -DBUILD_SHARED_LIBS=ON
-         sudo cmake --build . --target install
+         cmake --build . --target install
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
@@ -477,7 +483,7 @@ Local installation
          mkdir Fast-CDR/build
          cd Fast-CDR/build
          cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install
-         sudo cmake --build . --target install
+         cmake --build . --target install
 
    * `Fast DDS <https://github.com/eProsima/Fast-DDS.git>`_
 
@@ -487,8 +493,8 @@ Local installation
          git clone https://github.com/eProsima/Fast-DDS.git
          mkdir Fast-DDS/build
          cd Fast-DDS/build
-         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install
-         sudo cmake --build . --target install
+         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install
+         cmake --build . --target install
 
 #. Once all dependencies are installed, install *Fast DDS Python bindings*:
 
@@ -496,10 +502,10 @@ Local installation
 
        cd ~/Fast-DDS-python
        git clone https://github.com/eProsima/Fast-DDS-python.git
-       mkdir Fast-DDS-python/build
-       cd Fast-DDS-python/build
-       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install -DCMAKE_PREFIX_PATH=~/Fast-DDS-python/install
-       sudo cmake --build . --target install
+       mkdir -p Fast-DDS-python/fastdds_python/build
+       cd Fast-DDS-python/fastdds_python/build
+       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install
+       cmake --build . --target install
 
 .. _global_installation_python_sl:
 
@@ -513,6 +519,13 @@ first in the configuration step of :code:`foonathan_memory_vendor` to the follow
 .. code-block:: bash
 
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
+
+.. note:: Installation on system directories may need of permissions. Maybe permissions have to be granted through
+   :code:`sudo`.
+
+   .. code-block:: bash
+
+       sudo cmake --build . --target install
 
 Run an application
 ^^^^^^^^^^^^^^^^^^

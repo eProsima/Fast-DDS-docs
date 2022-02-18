@@ -28,9 +28,9 @@ import git
 
 import requests
 
-# Add configuration variables which can be set when calling sphinx.
 def setup(app):
-    app.add_config_value('fastdds_python_imported_location', None, '')
+    # Add property to avoid warning.
+    app.add_config_value('skip_python', None, '')
 
 def download_css(html_css_dir):
     """
@@ -432,7 +432,7 @@ suppress_warnings = [
 ]
 
 # Check if we are checking the spelling. In this case...
-if 'spelling' in sys.argv:
+if 'spelling' in sys.argv or 'skip_python=' in sys.argv:
     # Exclude Python API Reference because `autodoc` shows warnings.
     exclude_patterns.append('fastdds/python_api_reference/dds_pim/*')
     # Avoid the warning of a wrong reference in the TOC entries, because fails the Python API Reference reference.

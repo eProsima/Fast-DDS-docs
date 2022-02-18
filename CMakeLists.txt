@@ -41,10 +41,6 @@ project(fastdds-docs VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 find_package(fastrtps REQUIRED)
 get_target_property(FAST_INCLUDE_DIR fastrtps INTERFACE_INCLUDE_DIRECTORIES)
 
-find_package(fastdds_python REQUIRED)
-get_target_property(FASTDDS_PYTHON_IMPORTED_LOCATION fastdds_python "LOCATION")
-get_filename_component (FASTDDS_PYTHON_IMPORTED_LOCATION ${FASTDDS_PYTHON_IMPORTED_LOCATION} DIRECTORY)
-
 message(STATUS "Fast DDS include directories: ${FAST_INCLUDE_DIR}")
 file(GLOB_RECURSE HPP_FILES "${FAST_INCLUDE_DIR}/fastdds/**/*.h*")
 
@@ -102,6 +98,13 @@ set(SPHINX_SOURCE "${CMAKE_SOURCE_DIR}/docs")
 # while developing, since generating the documentation from the RSTs takes quite some time.
 option(BUILD_DOCUMENTATION "Generate documentation" ON)
 if (BUILD_DOCUMENTATION)
+    # Check there is Python bindings accessible and configure sphinx depending on that.
+    find_package(fastdds_python QUIET)
+    set(PYTHON_EXTRA_FLAG "")
+    if(NOT fastdds_python_FOUND)
+        list(APPEND PYTHON_EXTRA_FLAG "-D;skip_python=")
+    endif()
+
     # CMake project always build the documentaion using HTML builder. Users can always build with
     # other builders using sphinx directly
     set(FASTDDS_DOCS_BUILDER html)
@@ -112,7 +115,7 @@ if (BUILD_DOCUMENTATION)
         ${SPHINX_EXECUTABLE} -b ${FASTDDS_DOCS_BUILDER}
         # Tell Breathe where to find the Doxygen output
         -D breathe_projects.FastDDS=${DOXYGEN_OUTPUT_DIR}/xml
-        -D fastdds_python_imported_location=${FASTDDS_PYTHON_IMPORTED_LOCATION}
+        ${PYTHON_EXTRA_FLAG}
         -d "${PROJECT_BINARY_DIR}/doctrees"
         ${SPHINX_SOURCE}
         ${PROJECT_BINARY_DIR}/${FASTDDS_DOCS_BUILDER}

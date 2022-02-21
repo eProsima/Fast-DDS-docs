@@ -1,5 +1,5 @@
 Create the application workspace
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The application workspace will have the following structure at the end of the project.
 Files ``HelloWorldPublisher.py`` and ``HelloWorldSubscriber.py`` are the Publisher application and

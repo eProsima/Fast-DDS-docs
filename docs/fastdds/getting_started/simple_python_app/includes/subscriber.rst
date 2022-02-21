@@ -8,7 +8,7 @@ From the workspace, run the following command to download the HelloWorldPublishe
     wget -O HelloWorldPublisher.py \
         https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
 
-Now you have the subscriber's source code.
+This is the Python source code for the subscriber application.
 The application runs a subscriber until the user press *Ctrl+C* receiving samples under the topic HelloWorldTopic.
 
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
@@ -18,11 +18,9 @@ The application runs a subscriber until the user press *Ctrl+C* receiving sample
 Examining the code
 """"""""""""""""""
 
-As you have noticed, the source code to implement the subscriber is practically identical to the source code implemented
-by the publisher.
-Therefore, we will focus on the main differences between them, without explaining all the code again.
+Since the source code of both the publisher and subscriber applications is mostly identical, this document will focus on the main differences between them, omitting the parts of the code that have already been explained. 
 
-Following the same structure as in the publisher explanation, we start with the implementation of the data reader
+Following the same structure as in the publisher explanation, the first step is the implementation of the data reader
 listener.
 The first overridden callback of the ReaderListener is the |DataReaderListener::on_subscription_matched-python-api|,
 which is the analog of the |DataWriterListener::on_publication_matched-python-api| callback of the DataWriter.
@@ -49,7 +47,7 @@ The next line defines the :class:`Reader` class that implements a subscriber.
     :lines: 51
 
 
-We have the subscriber initialization public member function.
+Next comes the subscriber initialization public member function.
 This is the same as the initialization public member function defined for the :class:`Writer`.
 
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py

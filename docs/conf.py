@@ -28,9 +28,11 @@ import git
 
 import requests
 
+
 def setup(app):
     # Add property to avoid warning.
     app.add_config_value('skip_python', None, '')
+
 
 def download_css(html_css_dir):
     """
@@ -186,7 +188,8 @@ if read_the_docs_build:
         print('Removing existing repository in {}'.format(fastdds_repo_name))
         shutil.rmtree(fastdds_repo_name)
     if os.path.isdir(fastdds_python_repo_name):
-        print('Removing existing repository in {}'.format(fastdds_python_repo_name))
+        print('Removing existing repository in {}'.format(
+            fastdds_python_repo_name))
         shutil.rmtree(fastdds_python_repo_name)
 
     # Create necessary directory path
@@ -195,7 +198,7 @@ if read_the_docs_build:
 
     # Clone repositories
 
-    ## Fast DDS
+    # - Fast DDS
     print('Cloning Fast DDS')
     fastdds = git.Repo.clone_from(
         'https://github.com/eProsima/Fast-DDS.git',
@@ -231,7 +234,7 @@ if read_the_docs_build:
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
     fastdds.refs[fastdds_branch].checkout()
 
-    ## Fast DDS Python Bindings
+    # - Fast DDS Python Bindings
     print('Cloning Fast DDS Python Bindings')
     fastdds_python = git.Repo.clone_from(
         'https://github.com/eProsima/Fast-DDS-python.git',
@@ -245,22 +248,21 @@ if read_the_docs_build:
     # Else try with current documentation branch
     # Else checkout to master
     if (fastdds_python_branch and
-            fastdds_python.refs.__contains__('origin/{}'.format(fastdds_python_branch))):
+            fastdds_python.refs.__contains__(
+                'origin/{}'.format(fastdds_python_branch))):
         fastdds_python_branch = 'origin/{}'.format(fastdds_python_branch)
     elif (docs_branch and
             fastdds_python.refs.__contains__('origin/{}'.format(docs_branch))):
         fastdds_python_branch = 'origin/{}'.format(docs_branch)
     else:
         print(
-            'Fast DDS Python does not have either "{}" or "{}" branches'.format(
-                fastdds_python_branch,
-                docs_branch
-            )
-        )
+            'Fast DDS Python does not have either "{}" or "{}" branches'
+            .format(fastdds_python_branch, docs_branch))
         fastdds_python_branch = 'origin/main'
 
     # Actual checkout
-    print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))
+    print('Checking out Fast DDS Python branch "{}"'.format(
+        fastdds_python_branch))
     fastdds_python.refs[fastdds_python_branch].checkout()
 
     os.makedirs(os.path.dirname(output_dir), exist_ok=True)
@@ -279,17 +281,19 @@ if read_the_docs_build:
     subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
 
     # Generate SWIG code.
-    subprocess.call('swig -python -doxygen -I{}/include -outdir {}/fastdds_python/src/swig -c++ -interface \
-            _fastdds_python -o {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
+    subprocess.call('swig -python -doxygen -I{}/include \
+            -outdir {}/fastdds_python/src/swig -c++ -interface \
+            _fastdds_python -o \
+            {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
             {}/fastdds_python/src/swig/fastdds.i'.format(
                 fastdds_repo_name,
                 fastdds_python_repo_name,
                 fastdds_python_repo_name,
                 fastdds_python_repo_name
                 ), shell=True)
-    fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(fastdds_python_repo_name)
+    fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(
+            fastdds_python_repo_name)
     autodoc_mock_imports = ["_fastdds_python"]
-
 
 
 breathe_projects = {
@@ -313,7 +317,7 @@ if fastdds_python_imported_location:
 extensions = [
     'breathe',
     'sphinxcontrib.plantuml',
-    'sphinx.ext.autodoc' # Document Pydoc documentation from Python bindings.
+    'sphinx.ext.autodoc'  # Document Pydoc documentation from Python bindings.
 ]
 
 try:
@@ -435,7 +439,8 @@ suppress_warnings = [
 if 'spelling' in sys.argv or 'skip_python=' in sys.argv:
     # Exclude Python API Reference because `autodoc` shows warnings.
     exclude_patterns.append('fastdds/python_api_reference/dds_pim/*')
-    # Avoid the warning of a wrong reference in the TOC entries, because fails the Python API Reference reference.
+    # Avoid the warning of a wrong reference in the TOC entries,
+    # because fails the Python API Reference reference.
     suppress_warnings.append('toc.excluded')
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.

@@ -8,8 +8,9 @@ From the `src` directory in the workspace, execute the following command to down
     wget -O HelloWorldSubscriber.cpp \
         https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
 
-Now you have the subscriber's source code. The application runs a subscriber until it receives 10 samples under the
-topic HelloWorldTopic. At this point the subscriber stops.
+This is the C++ source code for the subscriber application.
+The application runs a subscriber until it receives 10 samples under the topic `HelloWorldTopic`.
+At this point the subscriber stops.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
@@ -18,11 +19,10 @@ topic HelloWorldTopic. At this point the subscriber stops.
 Examining the code
 """"""""""""""""""
 
-As you have noticed, the source code to implement the subscriber is practically identical to the source code implemented
-by the publisher.
-Therefore, we will focus on the main differences between them, without explaining all the code again.
+Since the source code of both the publisher and subscriber applications is mostly identical, this document will focus
+on the main differences between them, omitting the parts of the code that have already been explained.
 
-Following the same structure as in the publisher explanation, we start with the includes of the C++ header files.
+Following the same structure as in the publisher explanation, the first step is the includes of the C++ header files.
 In these, the files that include the publisher class are replaced by the subscriber class and the data writer class by
 the data reader class.
 
@@ -81,7 +81,7 @@ The public constructor and destructor of the class is defined below.
     :lines: 102-126
     :dedent: 4
 
-Then we have the subscriber initialization public member function.
+Next comes the subscriber initialization public member function.
 This is the same as the initialization public member function defined for the :class:`HelloWorldPublisher`.
 The QoS configuration for all entities, except for the participant's name, is the default QoS
 (|PARTICIPANT_QOS_DEFAULT-api|, |SUBSCRIBER_QOS_DEFAULT-api|, |TOPIC_QOS_DEFAULT-api|, |DATAREADER_QOS_DEFAULT-api|).
@@ -119,7 +119,7 @@ files needed to build the executable, and links the executable and the library t
     :language: bash
     :lines: 50-51
 
-At this point you can build, compile and run the subscriber application.
+At this point the project is ready for building, compiling and running the subscriber application.
 From the build directory in the workspace, run the following commands.
 
 .. code-block:: bash

@@ -1,5 +1,5 @@
 Import linked libraries and its dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The DDS application requires the Fast DDS, Fast CDR and Fast DDS Python bindings libraries.
 Depending on the installation procedure followed the process of making these libraries available for our DDS application will be slightly different.

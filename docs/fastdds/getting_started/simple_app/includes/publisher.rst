@@ -8,7 +8,8 @@ From the `src` directory in the workspace, run the following command to download
     wget -O HelloWorldPublisher.cpp \
         https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
 
-Now you have the publisher's source code. The publisher is going to send 10 publications under the topic HelloWorld.
+This is the C++ source code for the publisher application.
+It is going to send 10 publications under the topic `HelloWorldTopic`.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
   :language: C++
@@ -79,13 +80,14 @@ in the DomainParticipant.
     :lines: 33-45
 
 Then, the :class:`PubListener` class is defined by inheriting from the |DataWriterListener-api| class.
-This class overrides the default DataWriter listener callbacks, which allow us to execute routines in case of an event.
+This class overrides the default DataWriter listener callbacks, which allows the execution of  routines in case of an
+event.
 The overridden callback |DataWriterListener::on_publication_matched-api|
-allows you to define a series of actions when a new DataReader
+allows the definition of a series of actions when a new DataReader
 is detected listening to the topic under which the DataWriter is publishing.
 The :func:`info.current_count_change` detects these changes of DataReaders that are matched to the
 DataWriter.
-This is a member in the |MatchedStatus-api| structure that allows you to track changes in the status of subscriptions.
+This is a member in the |MatchedStatus-api| structure that allows tracking changes in the status of subscriptions.
 Finally, the ``listener_`` object of the class is defined as an instance of :class:`PubListener`.
 
 
@@ -138,7 +140,7 @@ This is simply the `writing` of a change by the DataWriter object.
     :lines: 157-167
     :dedent: 4
 
-The public run function executes the action of publishing a given number of times, waiting for 1 second between
+The public *run* function executes the action of publishing a given number of times, waiting for 1 second between
 publications.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
@@ -162,8 +164,8 @@ files needed to build the executable, and links the executable and the library t
     :language: bash
     :lines: 47-48
 
-At this point you can build, compile and run the publisher application. From the build directory in the workspace, run
-the following commands.
+At this point the project is ready for building, compiling and running the publisher application.
+From the build directory in the workspace, run the following commands.
 
 .. code-block:: bash
 

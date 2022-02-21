@@ -6,7 +6,7 @@
 Writing a simple C++ publisher and subscriber application
 ---------------------------------------------------------
 
-This section details how to create an simple Fast DDS application with a publisher and a subscriber
+This section details how to create a simple Fast DDS application with a publisher and a subscriber
 using C++ API step by step.
 It is also possible to self-generate a similar example to the one implemented in this section by using the
 *eProsima Fast DDS-Gen* tool.

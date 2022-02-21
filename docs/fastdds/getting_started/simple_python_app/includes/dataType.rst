@@ -1,7 +1,7 @@
 .. _writing_pubsub_python_datatype:
 
 Build the topic data type
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *eProsima Fast DDS-Gen* is a Java application that generates source code using the data types defined in an
 Interface Description Language (IDL) file.
@@ -20,7 +20,7 @@ In the workspace directory, execute the following commands:
     touch HelloWorld.idl
 
 This creates the HelloWorld.idl file.
-Open the file in your favorite text editor and copy and paste the following snippet of code.
+Open the file in a text editor and copy and paste the following snippet of code.
 
 .. code-block:: idl
 

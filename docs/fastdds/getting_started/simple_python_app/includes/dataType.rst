@@ -54,7 +54,7 @@ This must have generated the following files:
 
 CMakeLists.txt
 """"""""""""""
-At this point you can build, compile and generate Python bindings for your data types.
+At this point the project is ready for building, compiling and generating Python bindings for this data type.
 From the workspace, run the following commands.
 
 .. code-block:: bash

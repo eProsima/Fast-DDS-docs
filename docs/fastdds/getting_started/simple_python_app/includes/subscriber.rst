@@ -18,7 +18,7 @@ The application runs a subscriber until the user press *Ctrl+C* receiving sample
 Examining the code
 """"""""""""""""""
 
-Since the source code of both the publisher and subscriber applications is mostly identical, this document will focus on the main differences between them, omitting the parts of the code that have already been explained. 
+Since the source code of both the publisher and subscriber applications is mostly identical, this document will focus on the main differences between them, omitting the parts of the code that have already been explained.
 
 Following the same structure as in the publisher explanation, the first step is the implementation of the data reader
 listener.
@@ -45,6 +45,7 @@ The next line defines the :class:`Reader` class that implements a subscriber.
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
     :language: python
     :lines: 51
+
 Next comes the subscriber initialization public member function.
 This is the same as the initialization public member function defined for the :class:`Writer`.
 

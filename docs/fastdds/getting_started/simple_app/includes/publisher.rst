@@ -80,7 +80,7 @@ in the DomainParticipant.
     :lines: 33-45
 
 Then, the :class:`PubListener` class is defined by inheriting from the |DataWriterListener-api| class.
-This class overrides the default DataWriter listener callbacks, which allows the execution of  routines in case of an
+This class overrides the default DataWriter listener callbacks, which allows the execution of routines in case of an
 event.
 The overridden callback |DataWriterListener::on_publication_matched-api|
 allows the definition of a series of actions when a new DataReader

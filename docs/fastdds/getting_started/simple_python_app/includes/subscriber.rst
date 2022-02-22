@@ -45,8 +45,6 @@ The next line defines the :class:`Reader` class that implements a subscriber.
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
     :language: python
     :lines: 51
-
-
 Next comes the subscriber initialization public member function.
 This is the same as the initialization public member function defined for the :class:`Writer`.
 

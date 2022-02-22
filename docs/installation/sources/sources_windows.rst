@@ -312,7 +312,10 @@ Local installation
 
 #. Clone the following dependencies and compile them using CMake_.
 
-   * `Foonathan memory <https://github.com/foonathan/memory>`_
+   * Fast DDS depends on `Foonathan memory <https://github.com/foonathan/memory>`_.
+     To ease the dependency management, *eProsima* provides a vendor package
+     `Foonathan memory vendor <https://github.com/eProsima/foonathan_memory_vendor>`_, which downloads and builds a
+     specific revision of *Foonathan memory* if the library is not found in the system.
 
      .. code-block:: bash
 
@@ -320,9 +323,7 @@ Local installation
          git clone https://github.com/eProsima/foonathan_memory_vendor.git
          cd foonathan_memory_vendor
          mkdir build && cd build
-         cmake -DCMAKE_INSTALL_PREFIX=%USERPROFILE%/Fast-DDS/install ^
-            -DBUILD_SHARED_LIBS=OFF -DFOONATHAN_MEMORY_BUILD_TOOLS=ON ^
-            -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DFOONATHAN_MEMORY_BUILD_TESTS=OFF ..
+         cmake -DCMAKE_INSTALL_PREFIX=%USERPROFILE%/Fast-DDS/install ..
          cmake --build . --target install
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_

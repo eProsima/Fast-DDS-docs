@@ -278,7 +278,7 @@ Local installation
        git clone https://github.com/eProsima/Fast-DDS.git
        mkdir Fast-DDS/build
        cd Fast-DDS/build
-       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DCMAKE_PREFIX_PATH=~/Fast-DDS/install
+       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install
        sudo cmake --build . --target install
 
 .. note::

@@ -3,7 +3,8 @@
 Linux installation from sources
 ===============================
 
-The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
+The instructions for installing the :ref:`Fast DDS library <fastdds_lib_sl>`,
+the :ref:`Fast DDS Python bindings <fastdds_python_sl>`
 and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources are provided in this page.
 It is organized as follows:
 
@@ -199,7 +200,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
 .. note::
 
-    Being based on CMake_, it is possible to pass the CMake configuration options to the :code:`colcon build`
+    Being based on CMake_, it is possible to pass CMake configuration options to the :code:`colcon build`
     command. For more information on the specific syntax, please refer to the
     `CMake specific arguments <https://colcon.readthedocs.io/en/released/reference/verb/build.html#cmake-specific-arguments>`_
     page of the colcon_ manual.
@@ -257,7 +258,7 @@ Local installation
          mkdir foonathan_memory_vendor/build
          cd foonathan_memory_vendor/build
          cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install -DBUILD_SHARED_LIBS=ON
-         sudo cmake --build . --target install
+         cmake --build . --target install
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
@@ -268,7 +269,7 @@ Local installation
          mkdir Fast-CDR/build
          cd Fast-CDR/build
          cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install
-         sudo cmake --build . --target install
+         cmake --build . --target install
 
 #. Once all dependencies are installed, install *eProsima Fast DDS*:
 
@@ -279,7 +280,7 @@ Local installation
        mkdir Fast-DDS/build
        cd Fast-DDS/build
        cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS/install
-       sudo cmake --build . --target install
+       cmake --build . --target install
 
 .. note::
 
@@ -300,6 +301,12 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
+.. note:: Installation on system directories may need of permissions. Maybe permissions have to be granted through
+   :code:`sudo`.
+
+   .. code-block:: bash
+
+       sudo cmake --build . --target install
 
 .. _run_app_cmake_sl:
 
@@ -323,6 +330,222 @@ There are two possibilities:
 
       echo 'export LD_LIBRARY_PATH=/usr/local/lib/' >> ~/.bashrc
 
+.. _fastdds_python_sl:
+
+Fast DDS Python bindings installation
+"""""""""""""""""""""""""""""""""""""
+
+This section provides the instructions for installing *Fast DDS Python bindings* in a Linux environment from sources.
+*Fast DDS Python bindings* is an extension of *Fast DDS* which provides access to the Fast DDS API through Python.
+Therefore, its installation is an extension of the installation of :ref:`Fast DDS <fastdds_lib_sl>`.
+
+*Fast DDS Python bindings* source code consists on several `.i` files which will be processed by SWIG_.
+Then C++ files (for connecting C++ and Python) and Python files (Python module for Fast DDS) will be generated.
+
+First of all, the :ref:`requirements_python_sl` and :ref:`dependencies_python_sl` detailed below need to be met.
+Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_python_linux>` or the
+:ref:`CMake <cmake_installation_python_linux>` installation instructions.
+
+.. _requirements_python_sl:
+
+Requirements
+------------
+
+The installation of *Fast DDS Python bindings* in a Linux environment from sources requires the following tools to be
+installed in the system:
+
+- :ref:`Fast DDS requirements <requirements_sl>`
+- :ref:`swig_python_sl`
+- :ref:`libpython_dev_sl`
+
+.. _swig_python_sl:
+
+.. include:: ../../04-common/python_requirements.rst
+   :start-after: .. begin-swig
+   :end-before: .. end-swig
+
+.. _libpython_dev_sl:
+
+.. include:: ../../04-common/python_requirements.rst
+   :start-after: .. begin-libpython-dev
+   :end-before: .. end-libpython-dev
+
+.. _dependencies_python_sl:
+
+Dependencies
+------------
+
+*Fast DDS Python bindings* has the following dependencies, when installed from sources in a Linux environment:
+
+- :ref:`Fast DDS dependencies <dependencies_sl>`
+
+.. _colcon_installation_python_linux:
+
+Colcon installation
+-------------------
+
+colcon_ is a command line tool based on CMake_ aimed at building sets of software packages.
+This section explains how to use it to compile *Fast DDS Python bindings* and its dependencies.
+
+#. Install the ROS 2 development tools (colcon_ and vcstool_) by executing the following command:
+
+   .. code-block:: bash
+
+       pip3 install -U colcon-common-extensions vcstool
+
+   .. note::
+
+       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip3` installation command.
+
+#. Create a :code:`Fast-DDS-python` directory and download the repos file that will be used to install
+   *Fast DDS Python bindings* and its dependencies:
+
+   .. code-block:: bash
+
+       mkdir ~/Fast-DDS-python
+       cd ~/Fast-DDS-python
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/main/fastdds_python.repos
+       mkdir src
+       vcs import src < fastdds_python.repos
+
+#. Build the packages:
+
+   .. code-block:: bash
+
+       colcon build
+
+.. note::
+
+    Being based on CMake_, it is possible to pass CMake configuration options to the :code:`colcon build`
+    command. For more information on the specific syntax, please refer to the
+    `CMake specific arguments <https://colcon.readthedocs.io/en/released/reference/verb/build.html#cmake-specific-arguments>`_
+    page of the colcon_ manual.
+
+Run an application
+^^^^^^^^^^^^^^^^^^
+
+When running an instance of an application using *Fast DDS Python bindings*, the colcon overlay built in the
+dedicated :code:`Fast-DDS-python` directory must be sourced.
+There are two possibilities:
+
+* Every time a new shell is opened, prepare the environment locally by typing the
+  command:
+
+  .. code-block:: bash
+
+      source ~/Fast-DDS-python/install/setup.bash
+
+* Add the sourcing of the colcon overlay permanently to the :code:`PATH`, by typing the following:
+
+  .. code-block:: bash
+
+      echo 'source ~/Fast-DDS-python/install/setup.bash' >> ~/.bashrc
+
+.. _cmake_installation_python_linux:
+
+CMake installation
+------------------
+
+This section explains how to compile *Fast DDS Python bindings* with CMake_, either
+:ref:`locally <local_installation_python_sl>` or :ref:`globally <global_installation_python_sl>`.
+
+.. _local_installation_python_sl:
+
+Local installation
+^^^^^^^^^^^^^^^^^^
+
+#. Create a :code:`Fast-DDS-python` directory where to download and build *Fast DDS Python bindings* and its
+   dependencies:
+
+   .. code-block:: bash
+
+       mkdir ~/Fast-DDS-python
+
+#. Clone the following dependencies and compile them using CMake_.
+
+   * `Foonathan memory <https://github.com/foonathan/memory>`_
+
+     .. code-block:: bash
+
+         cd ~/Fast-DDS-python
+         git clone https://github.com/eProsima/foonathan_memory_vendor.git
+         mkdir foonathan_memory_vendor/build
+         cd foonathan_memory_vendor/build
+         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install -DBUILD_SHARED_LIBS=ON
+         cmake --build . --target install
+
+   * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
+
+     .. code-block:: bash
+
+         cd ~/Fast-DDS-python
+         git clone https://github.com/eProsima/Fast-CDR.git
+         mkdir Fast-CDR/build
+         cd Fast-CDR/build
+         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install
+         cmake --build . --target install
+
+   * `Fast DDS <https://github.com/eProsima/Fast-DDS.git>`_
+
+     .. code-block:: bash
+
+         cd ~/Fast-DDS-python
+         git clone https://github.com/eProsima/Fast-DDS.git
+         mkdir Fast-DDS/build
+         cd Fast-DDS/build
+         cmake .. -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install
+         cmake --build . --target install
+
+#. Once all dependencies are installed, install *Fast DDS Python bindings*:
+
+   .. code-block:: bash
+
+       cd ~/Fast-DDS-python
+       git clone https://github.com/eProsima/Fast-DDS-python.git
+       mkdir -p Fast-DDS-python/fastdds_python/build
+       cd Fast-DDS-python/fastdds_python/build
+       cmake ..  -DCMAKE_INSTALL_PREFIX=~/Fast-DDS-python/install
+       cmake --build . --target install
+
+.. _global_installation_python_sl:
+
+Global installation
+^^^^^^^^^^^^^^^^^^^
+
+To install *Fast DDS Python bindings* system-wide instead of locally, remove all the flags that
+appear in the configuration steps of :code:`Fast-CDR`, :code:`Fast-DDS` and :code:`Fast-DDS-python`, and change the
+first in the configuration step of :code:`foonathan_memory_vendor` to the following:
+
+.. code-block:: bash
+
+    -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
+
+.. note:: Installation on system directories may need of permissions. Maybe permissions have to be granted through
+   :code:`sudo`.
+
+   .. code-block:: bash
+
+       sudo cmake --build . --target install
+
+Run an application
+^^^^^^^^^^^^^^^^^^
+
+When running an instance of an application using *Fast DDS Python bindings*, it must be linked with the library where
+the packages have been installed, which in the case of system-wide installation is: :code:`/usr/local/lib/` (if local
+installation is used, adjust for the correct directory).
+There are two possibilities:
+
+* Prepare the environment locally by typing the command:
+
+  .. code-block:: bash
+
+      export LD_LIBRARY_PATH=/usr/local/lib/
+
+* Add it permanently it to the :code:`PATH`, by typing:
+
+  .. code-block:: bash
+
+      echo 'export LD_LIBRARY_PATH=/usr/local/lib/' >> ~/.bashrc
 
 .. _fastddsgen_sl:
 
@@ -341,7 +564,6 @@ In order to compile *Fast DDS-Gen*, the following packages need to be installed 
 
 * :ref:`java_sl`
 * :ref:`gradle_sl`
-* :ref:`swig_sl`
 
 .. _java_sl:
 
@@ -359,24 +581,6 @@ Gradle
 
 Gradle is an open-source build automation tool.
 Download and install the last stable version of `Gradle <https://gradle.org/install>`_ in the preferred way.
-
-.. _swig_sl:
-
-SWIG
-^^^^
-
-`SWIG <http://www.swig.org/>`_ is a development tool that allows connecting programs written in C/C++ with a variety of
-other programming languages, among them Python.
-This dependency is optional and only required if the option `-python` is going to be used, as it is required to build
-the generated solution.
-Please refer to :ref:`fastddsgen_python_bindings` for more information.
-
-SWIG can be installed directly from the package manager of the appropriate Linux distribution.
-For Ubuntu, please run:
-
-.. code-block:: bash
-
-    sudo apt install swig
 
 Compiling Fast DDS-Gen
 ----------------------
@@ -430,3 +634,4 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
 .. _libp11: https://github.com/OpenSC/libp11/
 .. _SoftHSM: https://www.opendnssec.org/softhsm/
 .. _p11kit: https://github.com/p11-glue/p11-kit
+.. _SWIG: http://www.swig.org/

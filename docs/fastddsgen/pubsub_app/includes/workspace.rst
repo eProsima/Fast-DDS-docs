@@ -1,7 +1,7 @@
 .. _fastddsgen_pubsub_app_workspace:
 
 Create the application workspace
-------------------------------------
+--------------------------------
 
 The application workspace will have the following structure at the end of the project.
 The file ``build/HelloWorld`` is the generated *Fast DDS* application.

@@ -1,5 +1,5 @@
 Import linked libraries and its dependencies
-----------------------------------------------
+--------------------------------------------
 
 The DDS application requires the *Fast DDS* and *Fast CDR* libraries.
 The way of making these accessible from the
@@ -19,7 +19,7 @@ If the installation from binaries has been followed, these libraries are already
     The compiled libraries of both can be found in the directory ``C:\Program Files\eProsima\fastrtps 2.0.0\lib\``.
 
 Colcon installation
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 If the Colcon installation has been followed, there are several ways to import the libraries.
 To make these accessible only from the current shell session, run one of the following two commands.

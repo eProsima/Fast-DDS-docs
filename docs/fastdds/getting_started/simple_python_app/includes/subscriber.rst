@@ -18,7 +18,8 @@ The application runs a subscriber until the user press *Ctrl+C* receiving sample
 Examining the code
 """"""""""""""""""
 
-Since the source code of both the publisher and subscriber applications is mostly identical, this document will focus on the main differences between them, omitting the parts of the code that have already been explained.
+Since the source code of both the publisher and subscriber applications is mostly identical, this document will focus on
+the main differences between them, omitting the parts of the code that have already been explained.
 
 Following the same structure as in the publisher explanation, the first step is the implementation of the data reader
 listener.

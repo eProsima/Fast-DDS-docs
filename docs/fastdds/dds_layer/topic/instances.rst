@@ -211,9 +211,9 @@ Thus, the airspace traffic management center can keep the latest update for each
 In this case, every time a new sample is received, the corresponding instance entry in the database will be updated with
 the latest known location.
 Disposing the instance may translate in erasing the corresponding data from the database.
-In this scenario, registering and unregistering the instances do not reflect in the database, although if the
-|SampleInfo::instance_state-api| and |SampleInfo::view_state-api| are also saved into the database the instance
-lifecycle could be tracked as well.
+In this scenario, registering and unregistering the instances does not reflect in the database, although if the
+|SampleInfo::instance_state-api| and |SampleInfo::view_state-api| are also persisted, then the instance lifecycle could
+be tracked as well.
 A DataWriter communicating that it is going to be publishing data about a specific instance is of no interest to the
 database until a new data is received and then an insert is directly done with the new discovered instance.
 

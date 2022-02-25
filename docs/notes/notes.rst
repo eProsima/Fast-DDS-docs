@@ -14,23 +14,23 @@ This release includes the following **improvements**:
 This release includes the following **bugfixes**:
 
 1. XML parser fixes.
-3. Discovery Server fixes.
-4. Fix DataSharing sample validation.
-5. PKCS#11 support fixes.
-6. Test fixes.
-7. Doxygen documentation fixes.
-8. GAP message fix.
-9. Enable memory protection on DataSharing readers.
-10. TCP reconnection issues.
-11. Fix dynamic network interfaces feature.
-12. Several Security module fixes.
-13. STRICT_REALTIME fix.
-14. Suppress OpenSSL 3.0 warnings.
-15. Move optionparser to thirdparty.
-16. Thread-safe access to endpoints collections.
-17. MemberDescriptor fully qualified name.
-18. Setting QoS fix.
-19. Other minor fixes and improvements.
+2. Discovery Server fixes.
+3. Fix DataSharing sample validation.
+4. PKCS#11 support fixes.
+5. Test fixes.
+6. Doxygen documentation fixes.
+7. GAP message fix.
+8. Enable memory protection on DataSharing readers.
+9. TCP reconnection issues.
+10. Fix dynamic network interfaces feature.
+11. Several Security module fixes.
+12. STRICT_REALTIME fix.
+13. Suppress OpenSSL 3.0 warnings.
+14. Move optionparser to thirdparty.
+15. Thread-safe access to endpoints collections.
+16. MemberDescriptor fully qualified name.
+17. Setting QoS fix.
+18. Other minor fixes and improvements.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

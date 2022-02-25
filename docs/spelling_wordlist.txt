@@ -140,6 +140,7 @@ nanosec
 nupkg
 offsetd
 oneway
+optionparser
 OSS
 persistency
 PKI
@@ -193,6 +194,7 @@ superset
 takeNextData
 TCP
 tcpdump
+thirdparty
 tinyxml
 topologies
 Topologies

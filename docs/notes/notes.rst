@@ -3,50 +3,34 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.5.0
+Version 2.5.1
 =============
 
-This minor release is API compatible with the previous minor release, but introduces **ABI breaks** on
-two of the three public APIs:
+This release includes the following **improvements**:
 
-* Methods and attributes have been added on several classes of the DDS-PIM high-level API, so indexes of
-  symbols on dynamic libraries may have changed.
+1. ContentFilterTopic filtering at the DataReader side.
+2. Release lifecycle.
 
-* Methods and attributes have been added on several classes of the RTPS low-level API, so indexes of
-  symbols on dynamic libraries may have changed.
+This release includes the following **bugfixes**:
 
-* Old Fast-RTPS high-level API remains ABI compatible.
-
-This minor release includes the following **features**:
-
-1. :ref:`Support for PKCS#11 <pkcs11-support>` format URIs for private keys
-2. Added interfaces for content filter APIs
-3. Allow new :ref:`network interfaces to be detected at runtime <dynamic-network-interfaces>`
-4. New API on :ref:`DataWriter <api_pim_datawriter>` to wait for a specific instance to be acknowledged
-5. Added interfaces for :ref:`concatenation of transports <transport_transportApi_chaining>`
-6. Allow :ref:`XML profiles to be loaded from a string <loadingapplyingprofiles>`
-7. Allow :ref:`disabling piggyback heartbeat <xml_disableheartbeatpiggyback>` on XML and DataWriter QoS
-8. New basic configuration example
-
-It also includes the following **improvements**:
-
-1. Working implementation of instance_state and view_state
-2. Allow zero-valued keys
-3. Made some type aliases public to ease python bindings integration
-4. Improved performance by avoiding unnecessary payload copies for samples that are going to be rejected
-5. Removed unnecessary headers from Log module public headers
-6. Add support for Key annotation in TypeObjectFactory
-7. Only export public symbols on non-windows platforms
-8. Some documentation improvements
-
-Some important **bugfixes** are also included:
-
-1. Fixed payload pool handling on EDPSimple destructor
-2. Fixed null dereference on XML parser
-3. Correctly export XTypes related methods on Windows
-4. Ensure correct boost singleton destruction order
-5. Avoid warning when environment file filename is empty
-6. Correctly set GUID of DataWriter and DataReader upon creation
+1. XML parser fixes.
+3. Discovery Server fixes.
+4. Fix DataSharing sample validation.
+5. PKCS#11 support fixes.
+6. Test fixes.
+7. Doxygen documentation fixes.
+8. GAP message fix.
+9. Enable memory protection on DataSharing readers.
+10. TCP reconnection issues.
+11. Fix dynamic network interfaces feature.
+12. Several Security module fixes.
+13. STRICT_REALTIME fix.
+14. Suppress OpenSSL 3.0 warnings.
+15. Move optionparser to thirdparty.
+16. Thread-safe access to endpoints collections.
+17. MemberDescriptor fully qualified name.
+18. Setting QoS fix.
+19. Other minor fixes and improvements.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -56,6 +40,7 @@ Some important **bugfixes** are also included:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.5.0.rst
 .. include:: previous_versions/v2.4.1.rst
 .. include:: previous_versions/v2.4.0.rst
 .. include:: previous_versions/v2.3.4.rst

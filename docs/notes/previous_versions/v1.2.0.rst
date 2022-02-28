@@ -1,5 +1,5 @@
-Version 1.2.0
-^^^^^^^^^^^^^
+Version 1.2.0 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release introduced two important new features:
 

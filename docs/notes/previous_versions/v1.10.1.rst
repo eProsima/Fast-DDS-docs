@@ -1,0 +1,18 @@
+Version 1.10.1 (EOL)
+^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Add new CMake option: SHM_TRANSPORT_DEFAULT. Shared Memory (SHM) Transport disabled by default.
+2. Comply with the RTPS standard concerning PID_SENTINEL.
+3. Support for OpenSSL 1.1.1d.
+
+This release includes the following bugfixes:
+
+1. Fix crash when there are no network interfaces.
+2. Several Shared Memory Transport fixes.
+3. Other minor fixes.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastddsgen*.
+If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.

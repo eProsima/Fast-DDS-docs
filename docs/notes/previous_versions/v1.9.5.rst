@@ -1,0 +1,27 @@
+Version 1.9.5 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Propagate serialization error when reading samples from Subscriber History.
+2. Improvements in test suite.
+3. Improvements to reduce memory consumption.
+4. Update CMake (3.5) using newer policies.
+5. Improve PDP StatefulWriter announcement.
+6. Performance improvements.
+7. Message receiver improvements.
+8. QoS Policies improvements.
+
+This release includes the following bugfixes:
+
+1. Fix compiler warnings in Windows when building the test suite.
+2. Fix several data races.
+3. Fix History issues.
+4. Fix errors when sending data fragments.
+5. Fix strict real-time behavior.
+6. Fix in Discovery Server.
+7. Fix CMake option.
+8. Fix interoperability issues.
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastddsgen*.

@@ -29,6 +29,7 @@ bitset
 bitsets
 boolean
 booleans
+bugfixes
 cancelled
 Cannonical
 CDR

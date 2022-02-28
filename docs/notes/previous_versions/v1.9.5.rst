@@ -18,7 +18,7 @@ This release includes the following bugfixes:
 2. Fix several data races.
 3. Fix History issues.
 4. Fix errors when sending data fragments.
-5. Fix strict realtime behavior.
+5. Fix strict real-time behavior.
 6. Fix in Discovery Server.
 7. Fix CMake option.
 8. Fix interoperability issues.

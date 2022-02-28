@@ -12,7 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         dest_branch:
-          - '2.5.x'
           - '2.6.x'
     steps:
     - name: Mirror action step

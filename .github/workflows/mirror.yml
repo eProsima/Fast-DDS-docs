@@ -6,7 +6,7 @@ on:
 
 jobs:
   mirror_job:
-    name: Mirror master branch to latest minor branch
+    name: Mirror master branch to latest minor branches
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

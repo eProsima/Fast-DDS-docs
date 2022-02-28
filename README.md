@@ -116,8 +116,8 @@ building tools.
     ```bash
     mkdir -p <path_to_ws>/fastdds-docs_ws/src
     cd <path_to_ws>/fastdds-docs_ws
-    wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/master/colcon.meta
-    wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos
+    wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/<version>/colcon.meta
+    wget https://raw.githubusercontent.com/eProsima/Fast-DDS/<version>/fastrtps.repos
     vcs import src < fastrtps.repos
     cd src
     git clone https://github.com/eProsima/Fast-DDS-docs fastdds-docs

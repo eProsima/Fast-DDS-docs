@@ -19,6 +19,9 @@
             <durabilityQos>VOLATILE_DURABILITY_QOS</durabilityQos>
             <ownershipQos kind="SHARED_OWNERSHIP_QOS"/>
             <livelinessQos kind="AUTOMATIC_LIVELINESS_QOS" leaseDuration_ms="1000"/>
+            <disablePositiveAcks>
+                <enabled>true</enabled>
+            </disablePositiveAcks>
         </reader>
     </participant>
     <participant>
@@ -38,6 +41,12 @@
             <durabilityQos>VOLATILE_DURABILITY_QOS</durabilityQos>
             <ownershipQos kind="SHARED_OWNERSHIP_QOS" strength="50"/>
             <livelinessQos kind="AUTOMATIC_LIVELINESS_QOS" leaseDuration_ms="1000"/>
+            <disablePositiveAcks>
+                <enabled>true</enabled>
+                <duration>
+                    <sec>300</sec>
+                </duration>
+            </disablePositiveAcks>
         </writer>
     </participant>
 </staticdiscovery>

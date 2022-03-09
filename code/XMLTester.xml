@@ -2002,6 +2002,8 @@
                 <max_partitions>256</max_partitions>
                 <max_user_data>256</max_user_data>
                 <max_properties>512</max_properties>
+                
+                <!-- content_filter cannot be configured using XML (yet) -->
             </allocation>
         </rtps>
     </participant>

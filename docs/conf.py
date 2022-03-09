@@ -317,8 +317,12 @@ if fastdds_python_imported_location:
 extensions = [
     'breathe',
     'sphinxcontrib.plantuml',
-    'sphinx.ext.autodoc'  # Document Pydoc documentation from Python bindings.
+    'sphinx.ext.autodoc',  # Document Pydoc documentation from Python bindings.
+    'sphinx_tabs.tabs'
 ]
+
+sphinx_tabs_disable_css_loading = False
+sphinx_tabs_disable_tab_closing = True
 
 try:
     import sphinxcontrib.spelling  # noqa: F401

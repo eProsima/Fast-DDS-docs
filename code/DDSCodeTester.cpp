@@ -625,6 +625,55 @@ void dds_domain_examples()
         //!--
     }
     {
+        // FASTDDS_PHYSICAL_PROPERTIES
+        /* Create participant which announces default physical properties */
+        DomainParticipantQos pqos_default_physical;
+        // NOTE: If FASTDDS_STATISTICS is defined, then setting the properties to "" is not necessary
+        pqos_default_physical.properties().properties().emplace_back("fastdds.physical_data.host", "");
+        pqos_default_physical.properties().properties().emplace_back("fastdds.physical_data.user", "");
+        pqos_default_physical.properties().properties().emplace_back("fastdds.physical_data.process", "");
+        DomainParticipant* participant_with_physical = DomainParticipantFactory::get_instance()->create_participant(0,
+                        pqos_default_physical);
+
+        /* Create participant which announces custom physical properties */
+        DomainParticipantQos pqos_custom_physical;
+        // NOTE: If FASTDDS_STATISTICS is defined, then clear the properties before setting them
+        // pqos_custom_physical.properties().properties().clear()
+        pqos_custom_physical.properties().properties().emplace_back("fastdds.physical_data.host", "custom_hostname");
+        pqos_custom_physical.properties().properties().emplace_back("fastdds.physical_data.user", "custom_username");
+        pqos_custom_physical.properties().properties().emplace_back("fastdds.physical_data.process", "custom_process");
+        DomainParticipant* participant_custom_physical = DomainParticipantFactory::get_instance()->create_participant(0,
+                        pqos_custom_physical);
+
+        /* Create participant which does not announce physical properties */
+        DomainParticipantQos pqos_no_physical;
+        pqos_no_physical.properties().properties().clear();
+        DomainParticipant* participant_without_physical = DomainParticipantFactory::get_instance()->create_participant(
+            0, pqos_no_physical);
+
+        /* Load physical properties from default XML file */
+        DomainParticipantFactory::get_instance()->load_profiles();
+        DomainParticipantQos pqos_default_xml_physical =
+                DomainParticipantFactory::get_instance()->get_default_participant_qos();
+        DomainParticipant* participant_default_xml_physical =
+                DomainParticipantFactory::get_instance()->create_participant(0, pqos_default_xml_physical);
+
+        /* Load physical properties from specific XML file */
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("somefile.xml");
+        DomainParticipantFactory::get_instance()->load_profiles();
+        DomainParticipantQos pqos_custom_xml_physical =
+                DomainParticipantFactory::get_instance()->get_default_participant_qos();
+        DomainParticipant* participant_custom_xml_physical =
+                DomainParticipantFactory::get_instance()->create_participant(0, pqos_custom_xml_physical);
+        //!--
+
+        DomainParticipantFactory::get_instance()->delete_participant(participant_with_physical);
+        DomainParticipantFactory::get_instance()->delete_participant(participant_custom_physical);
+        DomainParticipantFactory::get_instance()->delete_participant(participant_without_physical);
+        DomainParticipantFactory::get_instance()->delete_participant(participant_default_xml_physical);
+        DomainParticipantFactory::get_instance()->delete_participant(participant_custom_xml_physical);
+    }
+    {
         // ENABLE_DISABLE_STATISTICS_DATAWRITER
         // Create a DomainParticipant
         DomainParticipant* participant =
@@ -2192,22 +2241,27 @@ void dds_dataWriter_examples()
                         std::string)
                 {
                 }
+
                 void flight_number(
                         int)
                 {
                 }
+
                 void latitude(
                         double)
                 {
                 }
+
                 void longitude(
                         double)
                 {
                 }
+
                 void altitude(
                         double)
                 {
                 }
+
             };
 
 
@@ -3715,20 +3769,20 @@ void xml_profiles_examples()
 
         // Load XML as string data buffer
         std::string xml_profile =
-            "\
-            <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
-            <dds>\
-                <profiles xmlns=\"http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles\" >\
-                    <publisher profile_name=\"test_publisher_profile\" is_default_profile=\"true\">\
-                        <qos>\
-                            <durability>\
-                                <kind>TRANSIENT_LOCAL</kind>\
-                            </durability>\
-                        </qos>\
-                    </publisher>\
-                </profiles>\
-            </dds>\
-            ";
+                "\
+                <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
+                <dds>\
+                    <profiles xmlns=\"http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles\" >\
+                        <publisher profile_name=\"test_publisher_profile\" is_default_profile=\"true\">\
+                            <qos>\
+                                <durability>\
+                                    <kind>TRANSIENT_LOCAL</kind>\
+                                </durability>\
+                            </qos>\
+                        </publisher>\
+                    </profiles>\
+                </dds>\
+                ";
         if (ReturnCode_t::RETCODE_OK ==
                 DomainParticipantFactory::get_instance()->load_XML_profiles_string(xml_profile.c_str(),
                 xml_profile.length()))

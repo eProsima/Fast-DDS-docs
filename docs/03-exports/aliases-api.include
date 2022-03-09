@@ -550,6 +550,7 @@
 
 .. |WriterResourceLimitsQos-api| replace:: :cpp:class:`WriterResourceLimitsQos<eprosima::fastdds::dds::WriterResourceLimitsQos>`
 .. |WriterResourceLimitsQos::matched_subscriber_allocation-api| replace:: :cpp:member:`matched_subscriber_allocation<eprosima::fastdds::dds::WriterResourceLimitsQos::matched_subscriber_allocation>`
+.. |WriterResourceLimitsQos::reader_filters_allocation-api| replace:: :cpp:member:`reader_filters_allocation<eprosima::fastdds::dds::WriterResourceLimitsQos::reader_filters_allocation>`
 
 .. |DataRepresentationQosPolicy-api| replace:: :cpp:class:`DataRepresentationQosPolicy<eprosima::fastdds::dds::DataRepresentationQosPolicy>`
 .. |DataRepresentationQosPolicy::m_value-api| replace:: :cpp:member:`m_value<eprosima::fastdds::dds::DataRepresentationQosPolicy::m_value>`

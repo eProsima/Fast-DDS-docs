@@ -146,21 +146,23 @@ By default, a full dynamic behavior is used.
 Parameters on the DataWriter
 ----------------------------
 
-Every DataWriter holds an internal collection with information about every
+Every DataWriter holds internal collections with information about every
 DataReader to which it matches.
-By default, this collection is fully dynamic, meaning that new memory is allocated when a new
+By default, these collections are fully dynamic, meaning that new memory is allocated when a new
 DataReader is matched.
 However, :ref:`dds_layer_publisher_dataWriterQos` has a data member |DataWriterQos::writer_resource_limits-api|,
 of type :ref:`writerresourcelimitsqos`, that allows configuring
 the memory allocation behavior on the DataWriter.
 
-:ref:`writerresourcelimitsqos` provides a data member |WriterResourceLimitsQos::matched_subscriber_allocation-api|
-of type :ref:`resourcelimitedcontainerconfig` that allows configuring
+:ref:`writerresourcelimitsqos` provides data members |WriterResourceLimitsQos::matched_subscriber_allocation-api|
+and |WriterResourceLimitsQos::reader_filters_allocation-api|
+of type :ref:`resourcelimitedcontainerconfig` that allow configuring
 the maximum expected size of the collection of matched DataReader,
-so that it can be preallocated during the initialization of the DataWriter,
+and the collecion of writer side content filters,
+so they can be preallocated during the initialization of the DataWriter,
 as shown in the example below.
 Please, refer to :ref:`resourcelimitedcontainerconfig` for a complete description of additional configuration
-alternatives given by this data member.
+alternatives given by these data members.
 
 
 +--------------------------------------------------------+

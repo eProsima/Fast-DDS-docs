@@ -4461,6 +4461,10 @@ void dds_usecase_examples()
         // This will effectively preallocate the memory during initialization
         qos.writer_resource_limits().matched_subscriber_allocation =
                 eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        // Fix the size of writer side content filters to 1
+        // This will effectively preallocate the memory during initialization
+        qos.writer_resource_limits().reader_filters_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 

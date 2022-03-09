@@ -1039,6 +1039,8 @@ List of QoS Policy data members:
 +=============================================================================+========================================+
 | |WriterResourceLimitsQos::matched_subscriber_allocation-api|                | :ref:`resourcelimitedcontainerconfig`  |
 +-----------------------------------------------------------------------------+----------------------------------------+
+| |WriterResourceLimitsQos::reader_filters_allocation-api|                    | :ref:`resourcelimitedcontainerconfig`  |
++-----------------------------------------------------------------------------+----------------------------------------+
 
 .. note::
      This QoS Policy concerns to DataWriter entities.

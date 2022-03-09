@@ -110,11 +110,21 @@ to configure the allocation behavior of custom parameters:
   of octets.
 * |VariableLengthDataLimits::max_partitions-api| limits the size of :ref:`propertypolicyqos` to the given number
   of octets.
-
+  
 If these sizes are configured to something different than zero, enough memory will be allocated for them
 for each participant and endpoint.
 A value of zero implies no size limitation, and memory will be dynamically allocated as needed.
 By default, a full dynamic behavior is used.
+
+|ParticipantResourceLimitsQos::content_filter-api| inside :ref:`participantresourcelimitsqos` provides members
+to configure the allocation behavior of content filter discovery information:
+
+* |ContentFilterProperty::AllocationConfiguration::expression_initial_size-api| sets the preallocated size of
+  the filter expression.
+* |ContentFilterProperty::AllocationConfiguration::expression_parameters-api| controls the allocation behavior
+  for the list of expression parameters. Refer to :ref:`resourcelimitedcontainerconfig` for a complete description
+  of the alternatives. Receiving information about a content filter with more parameters than the maximum
+  configured here, will make the filtering happen on the reader side.
 
 +--------------------------------------------------------+
 | **C++**                                                |

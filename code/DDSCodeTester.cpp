@@ -4458,6 +4458,11 @@ void dds_usecase_examples()
         qos.allocation().data_limits.max_partitions = 256u;
         // Fix the size of the complete properties field to 512 octets
         qos.allocation().data_limits.max_properties = 512u;
+        // Set the preallocated filter expression size to 512 characters
+        qos.allocation().content_filter.expression_initial_size = 512u;
+        // Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
+        qos.allocation().content_filter.expression_parameters =
+            eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
         //!--
     }
 

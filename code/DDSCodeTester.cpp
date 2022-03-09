@@ -3329,6 +3329,11 @@ void dds_qos_examples()
         participant_limits.data_limits.max_user_data = 256u;
         //Set the maximum size of the properties data to 512
         participant_limits.data_limits.max_properties = 512u;
+        //Set the preallocated filter expression size to 512
+        participant_limits.content_filter.expression_initial_size = 512u;
+        //Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
+        participant_limits.content_filter.expression_parameters =
+            eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
         //!--
     }
 

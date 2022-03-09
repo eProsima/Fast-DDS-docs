@@ -459,6 +459,7 @@
 .. |ParticipantResourceLimitsQos::writers-api| replace:: :cpp:member:`writers<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::writers>`
 .. |ParticipantResourceLimitsQos::send_buffers-api| replace:: :cpp:member:`send_buffers<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::send_buffers>`
 .. |ParticipantResourceLimitsQos::data_limits-api| replace:: :cpp:member:`data_limits<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::data_limits>`
+.. |ParticipantResourceLimitsQos::content_filter-api| replace:: :cpp:member:`content_filter<eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes::content_filter>`
 
 .. |RemoteLocatorsAllocationAttributes-api| replace:: :cpp:struct:`RemoteLocatorsAllocationAttributes<eprosima::fastrtps::rtps::RemoteLocatorsAllocationAttributes>`
 .. |RemoteLocatorsAllocationAttributes::max_unicast_locators-api| replace:: :cpp:member:`max_unicast_locators<eprosima::fastrtps::rtps::RemoteLocatorsAllocationAttributes::max_unicast_locators>`
@@ -486,6 +487,10 @@
 .. |VariableLengthDataLimits::max_user_data-api| replace:: :cpp:member:`max_user_data<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_user_data>`
 .. |VariableLengthDataLimits::max_properties-api| replace:: :cpp:member:`max_properties<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_properties>`
 .. |VariableLengthDataLimits::max_partitions-api| replace:: :cpp:member:`max_partitions<eprosima::fastrtps::rtps::VariableLengthDataLimits::max_partitions>`
+
+.. |ContentFilterProperty::AllocationConfiguration-api| replace:: :cpp:struct:`ContentFilterProperty::AllocationConfiguration<eprosima::fastdds::rtps::ContentFilterProperty::AllocationConfiguration>`
+.. |ContentFilterProperty::AllocationConfiguration::expression_initial_size-api| replace:: :cpp:member:`expression_initial_size<eprosima::fastdds::rtps::ContentFilterProperty::AllocationConfiguration::expression_initial_size>`
+.. |ContentFilterProperty::AllocationConfiguration::expression_parameters-api| replace:: :cpp:member:`expression_parameters<eprosima::fastdds::rtps::ContentFilterProperty::AllocationConfiguration::expression_parameters>`
 
 .. |PropertyPolicyQos-api| replace:: :cpp:type:`PropertyPolicyQos<eprosima::fastdds::dds::PropertyPolicyQos>`
 .. |RequestedDeadlineMissedStatus-api| replace:: :cpp:type:`RequestedDeadlineMissedStatus<eprosima::fastdds::dds::RequestedDeadlineMissedStatus>`

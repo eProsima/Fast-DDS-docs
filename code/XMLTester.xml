@@ -3942,6 +3942,8 @@
         <maximum>3</maximum>
         <increment>0</increment>
     </matchedSubscribersAllocation>
+    
+    <!-- reader_filters_allocation cannot be configured using XML (yet) -->
 </data_writer>
 <!--><-->
 

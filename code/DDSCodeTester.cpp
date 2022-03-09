@@ -3372,6 +3372,9 @@ void dds_qos_examples()
         //Set the maximum size for reader matched resource limits collection to 3 and its allocation configuration to fixed size
         writer_limits.matched_subscriber_allocation =
                 eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        // Set the maximum number of writer side content filters to 1 and its allocation configuration to fixed size
+        writer_limits.reader_filters_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 

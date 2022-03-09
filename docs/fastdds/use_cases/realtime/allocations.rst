@@ -158,7 +158,7 @@ the memory allocation behavior on the DataWriter.
 and |WriterResourceLimitsQos::reader_filters_allocation-api|
 of type :ref:`resourcelimitedcontainerconfig` that allow configuring
 the maximum expected size of the collection of matched DataReader,
-and the collecion of writer side content filters,
+and the collection of writer side content filters,
 so they can be preallocated during the initialization of the DataWriter,
 as shown in the example below.
 Please, refer to :ref:`resourcelimitedcontainerconfig` for a complete description of additional configuration

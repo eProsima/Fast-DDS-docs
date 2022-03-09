@@ -65,6 +65,7 @@ InconsistentTopicStatus
 infos
 initialAcknackDelay
 initialHeartbeatDelay
+inlined
 instanceHandle
 InstanceHandle
 LatencyBudgetQosPolicy

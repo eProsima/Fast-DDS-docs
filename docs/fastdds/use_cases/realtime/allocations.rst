@@ -110,7 +110,7 @@ to configure the allocation behavior of custom parameters:
   of octets.
 * |VariableLengthDataLimits::max_partitions-api| limits the size of :ref:`propertypolicyqos` to the given number
   of octets.
-  
+
 If these sizes are configured to something different than zero, enough memory will be allocated for them
 for each participant and endpoint.
 A value of zero implies no size limitation, and memory will be dynamically allocated as needed.

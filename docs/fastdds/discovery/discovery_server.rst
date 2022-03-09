@@ -168,6 +168,9 @@ Thus, the following section may also apply.
      DomainParticipants run in separate processes.
      For more information, please refer to :ref:`intraprocess_delivery_guids`.
 
+.. warning::
+    Launching more than one server using the same GUID prefix is undefined behavior.
+
 Client side setup
 """""""""""""""""
 
@@ -298,9 +301,12 @@ Once a *server* or *client* is running, it is possible to programmatically modif
 *servers* to which the running *server* or *client* should connect.
 This is done by calling |DomainParticipant::set_qos-api| with a |DomainParticipantQos-api| which has a modified
 |WireProtocolConfigQos-api| (see :ref:`wireprotocolconfigqos`).
+This feature allows to include a new remote server into the Discovery Server network or modify the remote server locator
+in case that the remote server is relaunched with a different listening locator.
 
 .. important::
-     The list of remote *servers* can only be modified to add more *servers*, but not to remove any of the existing ones.
+     The list of remote *servers* can only be modified to either add more *servers*, or modify the remote server
+     locator, but not to remove any of the existing ones.
      This means that the new list passed to |DomainParticipant::set_qos-api| must be a superset of the existing one.
 
 .. note::

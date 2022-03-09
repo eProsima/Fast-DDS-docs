@@ -176,12 +176,20 @@ transmitted by each DDS |DomainParticipant-api|.
 EDP packets are the data messages exchanged during the EDP discovery phase (see :ref:`disc_phases` for more
 information).
 
+.. _statistics_topic_names_discovery:
+
 |DISCOVERY_TOPIC|
 -----------------
 
 The ``_fastdds_statistics_discovered_entity`` statistics topic reports the time when each local |DomainParticipant-api|
 discovers any remote DDS entity (with the exception of those DDS entities related with the *Fast DDS Statistics
 module*).
+This topic also carries the |PHYSICAL_DATA_TOPIC| information for the case of discovered |DomainParticipant-api|; if the
+discovered entity is either a |DataReader-api| or |DataWriter-api|, then the physical information is empty (see
+:ref:`property_policies_physical_data` for more information about how to configure the physical data conveyed on the
+discovery messages).
+
+.. _statistics_topic_names_physical:
 
 |PHYSICAL_DATA_TOPIC|
 ---------------------

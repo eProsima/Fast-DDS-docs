@@ -22,3 +22,10 @@ Discovery phases
    This information contains, among other things, the |Topic-api| and data type (see :ref:`dds_layer_topic`).
    For two endpoints to match, their topic and data type must coincide.
    Once DataWriter and DataReader have matched, they are ready for sending/receiving user data traffic.
+
+.. important::
+
+   It is possible to use the PDP phase to transmit information about the host, user, and process (physical information)
+   in which the |DomainParticipant-api| is running.
+   Please refer to :ref:`property_policies_physical_data` for more information about how to configure the transmitted
+   physical data.

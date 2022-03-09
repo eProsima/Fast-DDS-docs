@@ -67,3 +67,5 @@ The recommended profile can be accessed through constant |STATISTICS_DATAREADER_
      - |KEEP_LAST_HISTORY_QOS-api|
    * - |history_depth-api|
      - 100
+   * - |MemoryManagementPolicy-api|
+     - |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|

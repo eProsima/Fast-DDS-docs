@@ -1,5 +1,6 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _property_policies_non_consolidated_qos:
 
@@ -116,6 +117,96 @@ In this case, the property value is a semicolon separated list containing the
 |    :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->                                                                  |
 |    :end-before: <!--><-->                                                                                            |
 +----------------------------------------------------------------------------------------------------------------------+
+
+.. _property_policies_physical_data:
+
+Physical Data in Discovery Information
+""""""""""""""""""""""""""""""""""""""
+
+It is possible to include the information conveyed in the :ref:`statistics_topic_names_physical` into the participant
+discovery message, a.k.a *DATA[p]* (see :ref:`disc_phases`).
+This is done by setting the following properties within the :ref:`propertypolicyqos`:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value without |br| ``FASTDDS_STATISTICS``
+     - Default value with |br| ``FASTDDS_STATISTICS``
+   * - ``"fastdds.physical_data.host"``
+     - Name of the host computer in which |br| the application runs
+     - Not set
+     - ``""``
+   * - ``"fastdds.physical_data.user"``
+     - Name of the user running the application
+     - Not set
+     - ``""``
+   * - ``"fastdds.physical_data.process"``
+     - Name of the process running the application
+     - Not set
+     - ``""``
+
+Whenever any of these properties is defined within the |DomainParticipantQos-api|, the |DomainParticipant-api| *DATA[p]*
+will contained the set value.
+Furthermore, if any of these properties is set to a value of ``""``, which is the default when ``FASTDDS_STATISTICS`` is
+defined (see :ref:`cmake_options`), *Fast DDS* will automatically populate the value using the following convention:
+
+* ``"fastdds.physical_data.host"``: Host name as returned by `asio::ip::host_name() <https://think-async.com/Asio/asio-1.22.0/doc/asio/reference/ip__host_name.html>`_,
+  followed by ``":<default data sharing domain id>"``
+* ``"fastdds.physical_data.user"``: Name of the user running the application, or ``"unknown"`` if it could not be
+  retrieved.
+* ``"fastdds.physical_data.process"``: The process ID of the process in which the application is running.
+
+All the previous entails that adding physical information to the *DATA[p]* can be done regardless of whether
+``FASTDDS_STATISTICS`` is defined, and that it is possible to let *Fast DDS* set some default values into the
+reported ``host``, ``user``, and ``process``:
+
+1. If ``FASTDDS_STATISTICS`` is defined, and the user does not specify otherwise, *Fast DDS* will set default values to
+   the physical properties of the *DATA[p]*.
+
+2. If ``FASTDDS_STATISTICS`` is defined, and the user sets values to the properties, the user settings are honored.
+
+3. If ``FASTDDS_STATISTICS`` is defined, and the user removes the physical properties from the
+   |DomainParticipantQos-api|, then no physical information is transmitted in the *DATA[p]*.
+
+4. If ``FASTDDS_STATISTICS`` is not defined, it is still possible to transmit physical information in the *DATA[p]* by
+   setting the aforementioned properties:
+
+   a) If set to ``""``, then *Fast DDS* will populate their value according to the described rules.
+   b) If set to something other than ``""``, then the set value will be transmitted in the *DATA[p]* as-is.
+
+In case ``FASTDDS_STATISTICS`` is defined, and the reporting of statistics over the ``DISCOVERY_TOPIC`` is enabled (see
+:ref:`property_policies_statistics`), then the physical information included in the *DATA[p]* is also transmitted over
+the ``DISCOVERY_TOPIC`` (see :ref:`statistics_topic_names_physical`) whenever one |DomainParticipant-api| discovers
+another one.
+
+.. tabs::
+
+  .. tab:: c++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: // FASTDDS_PHYSICAL_PROPERTIES
+       :end-before: //!--
+       :dedent: 8
+
+  .. tab:: xml
+
+   .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->FASTDDS_PHYSICAL_PROPERTIES<-->
+      :end-before: <!--><-->
+      :lines: 2-4,6-25,27-28
+
+.. important::
+
+  The properties set using XML override those in the default QoS, which means that it is possible to set the physical
+  properties using XML regardless of whether ``FASTDDS_STATISTICS`` is defined.
+  However, it is not possible to remove the properties using XML, meaning that an application using *Fast DDS* with
+  ``FASTDDS_STATISTICS`` enabled which does not want for the physical information to be transmitted in the
+  |DomainParticipant-api| *DATA[p]* must remove the properties using the aforementioned `C++` API.
 
 .. _property_policies_partitions:
 

@@ -124,7 +124,7 @@ Physical Data in Discovery Information
 """"""""""""""""""""""""""""""""""""""
 
 It is possible to include the information conveyed in the :ref:`statistics_topic_names_physical` into the participant
-discovery message, a.k.a *DATA[p]*.
+discovery message, a.k.a *DATA[p]* (see :ref:`disc_phases`).
 This is done by setting the following properties within the :ref:`propertypolicyqos`:
 
 .. list-table::
@@ -150,8 +150,8 @@ This is done by setting the following properties within the :ref:`propertypolicy
 
 Whenever any of these properties is defined within the |DomainParticipantQos-api|, the |DomainParticipant-api| *DATA[p]*
 will contained the set value.
-Furthermore, if any of these properties is set to a value of ``""`` (the default when ``FASTDDS_STATISTICS`` is
-defined), *Fast DDS* will automatically populate the value using the following convention:
+Furthermore, if any of these properties is set to a value of ``""``, which is the default when ``FASTDDS_STATISTICS`` is
+defined (see :ref:`cmake_options`), *Fast DDS* will automatically populate the value using the following convention:
 
 * ``"fastdds.physical_data.host"``: Host name as returned by `asio::ip::host_name() <https://think-async.com/Asio/asio-1.22.0/doc/asio/reference/ip__host_name.html>`_,
   followed by ``":<default data sharing domain id>"``

@@ -1397,6 +1397,8 @@
     <max_user_data>256</max_user_data>
 
     <max_properties>512</max_properties>
+
+    <!-- content_filter cannot be configured using XML (yet) -->
 </allocation>
 <!--><-->
 </rtps>
@@ -1596,6 +1598,8 @@
                 <maximum>0</maximum>
                 <increment>1</increment>
             </matchedSubscribersAllocation>
+
+            <!-- reader_filters_allocation cannot be configured using XML (yet) -->
         </data_writer>
 <!-->
     </profiles>
@@ -1938,6 +1942,8 @@
                 <max_partitions>256</max_partitions>
                 <max_user_data>256</max_user_data>
                 <max_properties>512</max_properties>
+
+                <!-- content_filter cannot be configured using XML (yet) -->
             </allocation>
         </rtps>
     </participant>
@@ -1955,6 +1961,8 @@
             <maximum>3</maximum>
             <increment>0</increment>
         </matchedSubscribersAllocation>
+        
+        <!-- reader_filters_allocation cannot be configured using XML (yet) -->
     </data_writer>
 <!--><-->
 
@@ -2002,7 +2010,7 @@
                 <max_partitions>256</max_partitions>
                 <max_user_data>256</max_user_data>
                 <max_properties>512</max_properties>
-                
+
                 <!-- content_filter cannot be configured using XML (yet) -->
             </allocation>
         </rtps>
@@ -2015,6 +2023,8 @@
             <maximum>3</maximum>
             <increment>0</increment>
         </matchedSubscribersAllocation>
+
+        <!-- reader_filters_allocation cannot be configured using XML (yet) -->
     </data_writer>
 
     <data_writer profile_name="alloc_qos_example_pub_for_topic_2">
@@ -2024,6 +2034,8 @@
             <maximum>2</maximum>
             <increment>0</increment>
         </matchedSubscribersAllocation>
+
+        <!-- reader_filters_allocation cannot be configured using XML (yet) -->
     </data_writer>
 
     <data_reader profile_name="alloc_qos_example_sub">
@@ -3312,6 +3324,7 @@
                 <max_partitions>256</max_partitions>
                 <max_user_data>256</max_user_data>
                 <max_properties>512</max_properties>
+                <!-- content_filter cannot be configured using XML (yet) -->
             </allocation>
 
             <port>

@@ -1,3 +1,5 @@
+.. include:: ../../03-exports/aliases-api.include
+
 .. _listening_locators:
 
 Listening Locators
@@ -53,107 +55,105 @@ Locator.
 
 Metatraffic Multicast Locators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Users can set their own metatraffic multicast locators
-using the field ``wire_protocol().builtin.metatrafficMulticastLocatorList``.
+Users can set their own metatraffic multicast locators within the :ref:`wireprotocolconfigqos`:
+|BuiltinAttributes::metatrafficMulticastLocatorList-qos-api|.
 
-+-----------------------------------------------------------+
-| **C++**                                                   |
-+-----------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp            |
-|    :language: c++                                         |
-|    :start-after: //CONF-TRANSPORT_METAMULTICASTLOCATOR    |
-|    :end-before: //!--                                     |
-|    :dedent: 8                                             |
-+-----------------------------------------------------------+
-| **XML**                                                   |
-+-----------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                |
-|    :language: xml                                         |
-|    :start-after: <!-->CONF-TRANSPORT_METAMULTICASTLOCATOR |
-|    :end-before: <!--><-->                                 |
-|    :lines: 2-3,5-                                         |
-|    :append: </profiles>                                   |
-+-----------------------------------------------------------+
+.. tabs::
+
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF-TRANSPORT_METAMULTICASTLOCATOR
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->CONF-TRANSPORT_METAMULTICASTLOCATOR
+      :end-before: <!--><-->
+      :lines: 2-3,5-
+      :append: </profiles>
 
 .. _listening_locators_metaUnicast:
 
 Metatraffic Unicast Locators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Users can set their own metatraffic unicast locators
-using the field ``wire_protocol().builtin.metatrafficUnicastLocatorList``.
+Users can set their own metatraffic unicast locators within the :ref:`wireprotocolconfigqos`:
+|BuiltinAttributes::metatrafficUnicastLocatorList-qos-api|.
 
-+-----------------------------------------------------------+
-| **C++**                                                   |
-+-----------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp            |
-|    :language: c++                                         |
-|    :start-after: //CONF-TRANSPORT_METAUNICASTLOCATOR      |
-|    :end-before: //!--                                     |
-|    :dedent: 8                                             |
-+-----------------------------------------------------------+
-| **XML**                                                   |
-+-----------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                |
-|    :language: xml                                         |
-|    :start-after: <!-->CONF-TRANSPORT_METAUNICASTLOCATOR   |
-|    :end-before: <!--><-->                                 |
-|    :lines: 2-3,5-                                         |
-|    :append: </profiles>                                   |
-+-----------------------------------------------------------+
+.. tabs::
+
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF-TRANSPORT_METAUNICASTLOCATOR
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->CONF-TRANSPORT_METAUNICASTLOCATOR
+      :end-before: <!--><-->
+      :lines: 2-3,5-
+      :append: </profiles>
 
 .. _listening_locators_userMulticast:
 
 User-traffic Multicast Locators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Users can set their own user-traffic multicast locators
-using the field ``wire_protocol().default_multicast_locator_list``.
+Users can set their own user-traffic multicast locators within the :ref:`wireprotocolconfigqos`:
+|WireProtocolConfigQos::default_multicast_locator_list-api|.
 
-+-----------------------------------------------------------+
-| **C++**                                                   |
-+-----------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp            |
-|    :language: c++                                         |
-|    :start-after: //CONF-TRANSPORT_USERMULTICASTLOCATOR    |
-|    :end-before: //!--                                     |
-|    :dedent: 8                                             |
-+-----------------------------------------------------------+
-| **XML**                                                   |
-+-----------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                |
-|    :language: xml                                         |
-|    :start-after: <!-->CONF-TRANSPORT_USERMULTICASTLOCATOR |
-|    :end-before: <!--><-->                                 |
-|    :lines: 2-3,5-                                         |
-|    :append: </profiles>                                   |
-+-----------------------------------------------------------+
+.. tabs::
 
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF-TRANSPORT_USERMULTICASTLOCATOR
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->CONF-TRANSPORT_USERMULTICASTLOCATOR
+      :end-before: <!--><-->
+      :lines: 2-3,5-
+      :append: </profiles>
 
 .. _listening_locators_userUnicast:
 
 User-traffic Unicast Locators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Users can set their own user-traffic unicast locators
-using the field ``wire_protocol().default_unicast_locator_list``.
+Users can set their own user-traffic unicast locators within the :ref:`wireprotocolconfigqos`:
+|WireProtocolConfigQos::default_unicast_locator_list-api|.
 
-+-----------------------------------------------------------+
-| **C++**                                                   |
-+-----------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp            |
-|    :language: c++                                         |
-|    :start-after: //CONF-TRANSPORT_USERUNICASTLOCATOR      |
-|    :end-before: //!--                                     |
-|    :dedent: 8                                             |
-+-----------------------------------------------------------+
-| **XML**                                                   |
-+-----------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                |
-|    :language: xml                                         |
-|    :start-after: <!-->CONF-TRANSPORT_USERUNICASTLOCATOR   |
-|    :end-before: <!--><-->                                 |
-|    :lines: 2-3,5-                                         |
-|    :append: </profiles>                                   |
-+-----------------------------------------------------------+
+.. tabs::
 
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF-TRANSPORT_USERUNICASTLOCATOR
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->CONF-TRANSPORT_USERUNICASTLOCATOR
+      :end-before: <!--><-->
+      :lines: 2-3,5-
+      :append: </profiles>
 
 .. _listening_locators_default:
 
@@ -188,11 +188,8 @@ Well Known Ports
 ----------------
 
 The `DDSI-RTPS V2.2`_ standard (Section 9.6.1.1) defines a set of rules to calculate well-known
-ports for default Locators, so that
-DomainParticipants can communicate with these
-default Locators.
-Well-known ports are also selected automatically by *Fast DDS* when a Locator
-is configured with port number `0`.
+ports for default Locators, so that DomainParticipants can communicate with these default Locators.
+Well-known ports are also selected automatically by *Fast DDS* when a Locator is configured with port number `0`.
 
 Well-known ports are calculated using the following predefined rules:
 
@@ -202,17 +199,18 @@ Well-known ports are calculated using the following predefined rules:
    * - Traffic type
      - Well-known port expression
    * - Metatraffic multicast
-     - PB + DG * *domainId* + offsetd0
+     - ``PB`` + ``DG`` * *domainId* + ``offsetd0``
    * - Metatraffic unicast
-     - PB + DG * *domainId* + offsetd1 + PG * *participantId*
+     - ``PB`` + ``DG`` * *domainId* + ``offsetd1`` + ``PG`` * *participantId*
    * - User multicast
-     - PB + DG * *domainId* + offsetd2
+     - ``PB`` + ``DG`` * *domainId* + ``offsetd2``
    * - User unicast
-     - PB + DG * *domainId* + offsetd3 + PG * *participantId*
+     - ``PB`` + ``DG`` * *domainId* + ``offsetd3`` + ``PG`` * *participantId*
 
 
 The values used in these rules are explained on the following table.
-The default values can be modified using the corresponding field on the :ref:`dds_layer_domainParticipantQos`.
+The default values can be modified using the |WireProtocolConfigQos::port-api| member of the
+:ref:`wireprotocolconfigqos` on the :ref:`dds_layer_domainParticipantQos`.
 
 .. list-table:: Values used in the rules to calculate well-known ports
    :header-rows: 1
@@ -224,31 +222,28 @@ The default values can be modified using the corresponding field on the :ref:`dd
    * - ``DG``
      - DomainID gain
      - ``250``
-     - ``wire_protocol().port.domainIDGain``
+     - |PortParameters::domainIDGain-qos-api|
    * - ``PG``
      - ParticipantId gain
      - ``2``
-     - ``wire_protocol().port.participantIDGain``
+     - |PortParameters::participantIDGain-qos-api|
    * - ``PB``
      - Port Base number
      - ``7400``
-     - ``wire_protocol().port.portBase``
+     - |PortParameters::portBase-qos-api|
    * - ``offsetd0``
      - Additional offset
      - ``0``
-     - ``wire_protocol().port.offsetd0``
+     - |PortParameters::offsetd0-qos-api|
    * - ``offsetd1``
      - Additional offset
      - ``10``
-     - ``wire_protocol().port.offsetd1``
+     - |PortParameters::offsetd1-qos-api|
    * - ``offsetd2``
      - Additional offset
      - ``1``
-     - ``wire_protocol().port.offsetd2``
+     - |PortParameters::offsetd2-qos-api|
    * - ``offsetd3``
      - Additional offset
      - ``11``
-     - ``wire_protocol().port.offsetd3``
-
-
-
+     - |PortParameters::offsetd3-qos-api|

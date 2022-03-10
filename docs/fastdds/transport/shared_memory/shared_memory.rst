@@ -1,3 +1,4 @@
+.. include:: ../../../03-exports/aliases-api.include
 .. include:: ../includes/aliases.rst
 
 .. _transport_sharedMemory_sharedMemory:
@@ -135,25 +136,25 @@ the TransportDescriptor for Shared Memory defines the following ones:
     *   - ``segment_size_``
         - ``uint32_t``
         - ``512*1024``
-        - :func:`segment_size`
+        - |SharedMemTransportDescriptor::segment_size-api|
         - Size of the shared memory segment |br|
           (in octets).
     *   - ``port_queue_capacity_``
         - ``uint32_t``
         - ``512``
-        - :func:`port_queue_capacity`
+        - |SharedMemTransportDescriptor::port_queue_capacity-api|
         - The size of the listening port |br|
           (in messages).
     *   - ``healthy_check_timeout_ms_``
         - ``uint32_t``
         - ``1000``
-        - :func:`healthy_check_timeout_ms`
+        - |SharedMemTransportDescriptor::healthy_check_timeout_ms-api|
         - Timeout for the health check of ports |br|
           (in milliseconds).
     *   - ``rtps_dump_file_``
         - ``string``
         - Empty
-        - :func:`rtps_dump_file`
+        - |SharedMemTransportDescriptor::rtps_dump_file-api|
         - Full path of the protocol dump file.
 
 If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the DomainParticipant
@@ -165,13 +166,13 @@ type.
 
 .. note::
 
-   The *kind* value for a SharedMemTransportDescriptor is given by the value
-   ``eprosima::fastrtps::rtps::LOCATOR_KIND_SHM``
+   The |TransportInterface::kind-api| value for a |SharedMemTransportDescriptor-api| is given by the value
+   |LOCATOR_KIND_SHM-api|.
 
 .. warning::
 
-    Setting a ``<segment_size>`` close to or smaller than the data size poses a high risk of data loss, since the
-    write operation will overwrite the buffer during a single send operation.
+    Setting a |SharedMemTransportDescriptor::segment_size-api| close to or smaller than the data size poses a high risk
+    of data loss, since the write operation will overwrite the buffer during a single send operation.
 
 .. _transport_sharedMemory_enabling:
 
@@ -186,26 +187,26 @@ and add it to the user transport list of the :ref:`dds_layer_domainParticipant`.
 
 The examples below show this procedure in both C++ code and XML file.
 
-+--------------------------------------------------+
-| **C++**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp   |
-|    :language: c++                                |
-|    :start-after: //CONF-SHM-TRANSPORT-SETTING    |
-|    :end-before: //!--                            |
-|    :dedent: 8                                    |
-+--------------------------------------------------+
-| **XML**                                          |
-+--------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml       |
-|    :language: xml                                |
-|    :start-after: <!-->CONF-SHM-TRANSPORT-SETTING |
-|    :end-before: <!--><-->                        |
-|    :lines: 2-3,5-                                |
-|    :append: </profiles>                          |
-+--------------------------------------------------+
+.. tabs::
 
-.. note:
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF-SHM-TRANSPORT-SETTING
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->CONF-SHM-TRANSPORT-SETTING
+      :end-before: <!--><-->
+      :lines: 2-3,5-
+      :append: </profiles>
+
+.. note::
 
   When two participants on the same machine have SHM transport enabled, all communications between them are
   automatically performed by SHM transport only.
@@ -217,6 +218,6 @@ The examples below show this procedure in both C++ code and XML file.
 HelloWorldExampleSharedMem
 --------------------------
 
-A Shared Memory version of helloworld example can be found in the ``examples/C++/DDS/HelloWorldExampleSharedMem``
-folder.
+A Shared Memory version of helloworld example can be found in the
+`HelloWorldExampleSharedMem folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/DDS/HelloWorldExampleSharedMem>`_.
 It shows a publisher and a subscriber that communicate through Shared Memory.

@@ -122,9 +122,10 @@ to configure the allocation behavior of content filter discovery information:
 * |ContentFilterProperty::AllocationConfiguration::expression_initial_size-api| sets the preallocated size of
   the filter expression.
 * |ContentFilterProperty::AllocationConfiguration::expression_parameters-api| controls the allocation behavior
-  for the list of expression parameters. Refer to :ref:`resourcelimitedcontainerconfig` for a complete description
-  of the alternatives. Receiving information about a content filter with more parameters than the maximum
-  configured here, will make the filtering happen on the reader side.
+  for the list of expression parameters.
+  Refer to :ref:`resourcelimitedcontainerconfig` for a complete description of the alternatives.
+  Receiving information about a content filter with more parameters than the maximum configured here, will make
+  the filtering happen on the reader side.
 
 +--------------------------------------------------------+
 | **C++**                                                |

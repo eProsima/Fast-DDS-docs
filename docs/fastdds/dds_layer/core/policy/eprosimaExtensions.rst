@@ -258,6 +258,8 @@ List of QoS Policy data members:
 +--------------------------------------------------------------------------+-------------------------------------------+
 | |ParticipantResourceLimitsQos::data_limits-api|                          | :ref:`variablelengthdatalimits`           |
 +--------------------------------------------------------------------------+-------------------------------------------+
+| |ParticipantResourceLimitsQos::content_filter-api|                       | :ref:`contentfilterlimits`                |
++--------------------------------------------------------------------------+-------------------------------------------+
 
 * |ParticipantResourceLimitsQos::locators-api|:
   Defines the limits for collections of remote locators.
@@ -274,6 +276,8 @@ List of QoS Policy data members:
   Defines the allocation behavior and limits for the send buffer manager.
 * |ParticipantResourceLimitsQos::data_limits-api|:
   States the limits for variable-length data.
+* |ParticipantResourceLimitsQos::content_filter-api|:
+  States the limits for content-filter discovery information.
 
 .. note::
      This QoS Policy concerns to |DomainParticipant| entities.
@@ -388,6 +392,35 @@ List of structure members:
   Establishes the maximum size, in octets, of the user data in the local or remote participant.
 * |VariableLengthDataLimits::max_partitions-api|:
   States the maximum size, in octets, of the partitions data in the local or remote participant.
+
+.. _contentfilterlimits:
+
+ContentFilterProperty::AllocationConfiguration
+""""""""""""""""""""""""""""""""""""""""""""""
+
+This structure holds the limits for content-filter related discovery information.
+See |ContentFilterProperty::AllocationConfiguration-api|.
+
+List of structure members:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Member Name
+     - Type
+     - Default Value
+   * - |ContentFilterProperty::AllocationConfiguration::expression_initial_size-api|
+     - ``size_t``
+     - 0
+   * - |ContentFilterProperty::AllocationConfiguration::expression_parameters-api|
+     - :ref:`resourcelimitedcontainerconfig`
+     - ``{0, 100, 1}``
+
+* |ContentFilterProperty::AllocationConfiguration::expression_initial_size-api|:
+  Preallocated size of the filter expression.
+* |ContentFilterProperty::AllocationConfiguration::expression_parameters-api|:
+  Allocation configuration for the list of expression parameters.
 
 Example
 """""""
@@ -1038,6 +1071,8 @@ List of QoS Policy data members:
 | Data Member Name                                                            | Type                                   |
 +=============================================================================+========================================+
 | |WriterResourceLimitsQos::matched_subscriber_allocation-api|                | :ref:`resourcelimitedcontainerconfig`  |
++-----------------------------------------------------------------------------+----------------------------------------+
+| |WriterResourceLimitsQos::reader_filters_allocation-api|                    | :ref:`resourcelimitedcontainerconfig`  |
 +-----------------------------------------------------------------------------+----------------------------------------+
 
 .. note::

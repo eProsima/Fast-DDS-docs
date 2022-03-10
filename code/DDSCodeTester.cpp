@@ -3383,6 +3383,11 @@ void dds_qos_examples()
         participant_limits.data_limits.max_user_data = 256u;
         //Set the maximum size of the properties data to 512
         participant_limits.data_limits.max_properties = 512u;
+        //Set the preallocated filter expression size to 512
+        participant_limits.content_filter.expression_initial_size = 512u;
+        //Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
+        participant_limits.content_filter.expression_parameters =
+            eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
         //!--
     }
 
@@ -3421,6 +3426,9 @@ void dds_qos_examples()
         //Set the maximum size for reader matched resource limits collection to 3 and its allocation configuration to fixed size
         writer_limits.matched_subscriber_allocation =
                 eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        // Set the maximum number of writer side content filters to 1 and its allocation configuration to fixed size
+        writer_limits.reader_filters_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 
@@ -4504,6 +4512,11 @@ void dds_usecase_examples()
         qos.allocation().data_limits.max_partitions = 256u;
         // Fix the size of the complete properties field to 512 octets
         qos.allocation().data_limits.max_properties = 512u;
+        // Set the preallocated filter expression size to 512 characters
+        qos.allocation().content_filter.expression_initial_size = 512u;
+        // Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
+        qos.allocation().content_filter.expression_parameters =
+            eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
         //!--
     }
 
@@ -4515,6 +4528,10 @@ void dds_usecase_examples()
         // This will effectively preallocate the memory during initialization
         qos.writer_resource_limits().matched_subscriber_allocation =
                 eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        // Fix the size of writer side content filters to 1
+        // This will effectively preallocate the memory during initialization
+        qos.writer_resource_limits().reader_filters_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 
@@ -4551,15 +4568,21 @@ void dds_usecase_examples()
         participant_qos.allocation().data_limits.max_user_data = 256u;
         // We know the maximum size of properties data
         participant_qos.allocation().data_limits.max_properties = 512u;
-
+        
+        // Content filtering is not being used
+        participant_qos.allocation().content_filter.expression_initial_size = 0u;
+        participant_qos.allocation().content_filter.expression_parameters =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
         // DataWriter configuration for Topic 1
         ///////////////////////////////////////
         DataWriterQos writer1_qos;
 
-        // We know we will only have three matching subscribers
+        // We know we will only have three matching subscribers, and no content filters
         writer1_qos.writer_resource_limits().matched_subscriber_allocation =
                 eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        writer1_qos.writer_resource_limits().reader_filters_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
         // DataWriter configuration for Topic 2
         ///////////////////////////////////////
@@ -4568,6 +4591,8 @@ void dds_usecase_examples()
         // We know we will only have two matching subscribers
         writer2_qos.writer_resource_limits().matched_subscriber_allocation =
                 eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+        writer2_qos.writer_resource_limits().reader_filters_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
 
         // DataReader configuration for both Topics

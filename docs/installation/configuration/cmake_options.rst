@@ -120,6 +120,12 @@ dependency on other options.
           and therefore the :ref:`persistence_service`.
         - ``ON`` ``OFF``
         - ``ON``
+    *   - :class:`APPEND_PROJECT_NAME_TO_INCLUDEDIR`
+        - When ``ON`` headers are installed to a path ending with a folder called ``fastrtps``.
+          This avoids include directory search order issues when overriding this package from a
+          merged catkin, ament, or colcon workspace.
+        - ``ON`` ``OFF``
+        - ``OFF``
 
 Log options
 ^^^^^^^^^^^

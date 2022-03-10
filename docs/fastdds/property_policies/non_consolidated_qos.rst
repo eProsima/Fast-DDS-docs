@@ -184,7 +184,7 @@ another one.
 
 .. tabs::
 
-  .. tab:: c++
+  .. tab:: C++
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
        :language: c++
@@ -192,7 +192,7 @@ another one.
        :end-before: //!--
        :dedent: 8
 
-  .. tab:: xml
+  .. tab:: XML
 
    .. literalinclude:: /../code/XMLTester.xml
       :language: xml

@@ -284,7 +284,7 @@ Given a system with the following topology:
 * All the DataReaders
   match exactly with 1 DataWriter.
 
-We will also limit the size of the parameters:
+We will assume that content filtering is not being used, and will also limit the size of the parameters:
 
 * Maximum :ref:`partitionqospolicy` size: 256
 * Maximum :ref:`userdataqospolicy` size: 256

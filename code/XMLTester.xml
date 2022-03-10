@@ -2017,7 +2017,7 @@
     </participant>
 
     <data_writer profile_name="alloc_qos_example_pub_for_topic_1">
-        <!-- we know we will have three matching subscribers -->
+        <!-- we know we will have three matching subscribers and no content filter -->
         <matchedSubscribersAllocation>
             <initial>3</initial>
             <maximum>3</maximum>
@@ -2028,7 +2028,7 @@
     </data_writer>
 
     <data_writer profile_name="alloc_qos_example_pub_for_topic_2">
-        <!-- we know we will have two matching subscribers -->
+        <!-- we know we will have two matching subscribers and no content filter -->
         <matchedSubscribersAllocation>
             <initial>2</initial>
             <maximum>2</maximum>

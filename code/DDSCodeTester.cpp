@@ -4514,15 +4514,21 @@ void dds_usecase_examples()
         participant_qos.allocation().data_limits.max_user_data = 256u;
         // We know the maximum size of properties data
         participant_qos.allocation().data_limits.max_properties = 512u;
-
+        
+        // Content filtering is not being used
+        participant_qos.allocation().content_filter.expression_initial_size = 0u;
+        participant_qos.allocation().content_filter.expression_parameters =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
         // DataWriter configuration for Topic 1
         ///////////////////////////////////////
         DataWriterQos writer1_qos;
 
-        // We know we will only have three matching subscribers
+        // We know we will only have three matching subscribers, and no content filters
         writer1_qos.writer_resource_limits().matched_subscriber_allocation =
                 eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        writer1_qos.writer_resource_limits().reader_filters_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
         // DataWriter configuration for Topic 2
         ///////////////////////////////////////
@@ -4531,6 +4537,8 @@ void dds_usecase_examples()
         // We know we will only have two matching subscribers
         writer2_qos.writer_resource_limits().matched_subscriber_allocation =
                 eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+        writer2_qos.writer_resource_limits().reader_filters_allocation =
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
 
         // DataReader configuration for both Topics

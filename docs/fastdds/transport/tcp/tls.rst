@@ -219,7 +219,7 @@ The role can take the following values:
    * - Value
      - Description
    * - |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::DEFAULT-api|
-     - Configured as client if connector, and as server if acceptor 
+     - Configured as client if connector, and as server if acceptor
    * - |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::CLIENT-api|
      - Configured as client.
    * - |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::SERVER-api|

@@ -249,7 +249,7 @@ The following examples show how to configure the DomainParticipant both in C++ a
 .. tabs::
 
   .. tab:: C++
-  
+
     .. literalinclude:: /../code/DDSCodeTester.cpp
       :language: c++
       :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER
@@ -293,7 +293,7 @@ with the **public** IP address and |TCPTransportDescriptor::listening_ports-api|
 HelloWorldExampleTCP
 --------------------
 
-A TCP version of helloworld example can be found in the 
+A TCP version of helloworld example can be found in the
 `HelloWorldExampleTCP folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/DDS/HelloWorldExampleTCP>`_.
 It shows a publisher and a subscriber that communicate through TCP.
 The publisher is configured as *TCP server* while the Subscriber is acting as *TCP client*.

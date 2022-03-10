@@ -9,6 +9,7 @@ RTPS
 
 
     /fastdds/api_reference/rtps/attributes/attributes
+    /fastdds/api_reference/rtps/builtin/data/data
     /fastdds/api_reference/rtps/common/common
     /fastdds/api_reference/rtps/Endpoint
     /fastdds/api_reference/rtps/exceptions/exceptions

@@ -3,7 +3,7 @@
 LOG
 ===
 
-Data Distribution Service (DDS) Data-Centric Publish-Subscribe (DCPS) Platform Independent Model (PIM) API
+*eProsima Fast DDS* Logging Module API
 
 .. toctree::
 

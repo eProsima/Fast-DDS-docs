@@ -4168,6 +4168,14 @@
 <!--><-->
 
 <!-->XML_CHANGE_USER_DATA_QOS_POLICY<-->
+<participant profile_name="participant_xml_conf_userdata_profile">
+    <rtps>
+        <userData>
+            <value>3.a</value>
+        </userData>
+    </rtps>
+</participant>
+
 <data_writer profile_name="writer_xml_conf_userdata_profile">
     <qos>
         <userData>

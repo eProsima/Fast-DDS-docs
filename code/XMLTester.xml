@@ -1356,14 +1356,16 @@
             <allocation>
                 <!-- ALLOCATION -->
             </allocation>
+
+            <userData>
+                <value>13.40.37.00.CE</value>
+            </userData>
         </rtps>
     </participant>
 <!--
 </profiles>
 -->
 <!--><-->
-    <!-- Not Used at the moment -->
-    <!-- <userData>148875 </userData> -->
 
 <participant profile_name="part_allocation_example">
 <rtps>
@@ -4127,6 +4129,60 @@
         </defaultMulticastLocatorList>
     </rtps>
 </participant>
+<!--><-->
+
+<!-->XML_CHANGE_GROUP_DATA_QOS_POLICY<-->
+<data_writer profile_name="writer_xml_conf_groupdata_profile">
+    <qos>
+        <groupData>
+            <value>3.a</value>
+        </groupData>
+    </qos>
+</data_writer>
+
+<data_reader profile_name="reader_xml_conf_groupdata_profile">
+    <qos>
+        <groupData>
+            <value>3.a</value>
+        </groupData>
+    </qos>
+</data_reader>
+<!--><-->
+
+<!-->XML_CHANGE_TOPIC_DATA_QOS_POLICY<-->
+<data_writer profile_name="writer_xml_conf_topicdata_profile">
+    <qos>
+        <topicData>
+            <value>3.a</value>
+        </topicData>
+    </qos>
+</data_writer>
+
+<data_reader profile_name="reader_xml_conf_topicdata_profile">
+    <qos>
+        <topicData>
+            <value>3.a</value>
+        </topicData>
+    </qos>
+</data_reader>
+<!--><-->
+
+<!-->XML_CHANGE_USER_DATA_QOS_POLICY<-->
+<data_writer profile_name="writer_xml_conf_userdata_profile">
+    <qos>
+        <userData>
+            <value>3.a</value>
+        </userData>
+    </qos>
+</data_writer>
+
+<data_reader profile_name="reader_xml_conf_userdata_profile">
+    <qos>
+        <userData>
+            <value>3.a</value>
+        </userData>
+    </qos>
+</data_reader>
 <!--><-->
 
 <!--XML_PROFILES_SECTION-->

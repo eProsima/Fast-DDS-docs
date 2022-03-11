@@ -218,7 +218,9 @@
                 <offsetd3>3</offsetd3> <!-- uint16 -->
             </port>
 
-            <!--<userData>  octetVector (string) </userData> -->
+            <userData>
+                <value>13.40.37.00.CE</value>
+            </userData>
 
             <participantID>99</participantID>   <!-- int32 -->
 
@@ -317,7 +319,6 @@
                     <sec>DURATION_INFINITY</sec>
                 </duration>
             </lifespan>
-            <!--<userData>  octetVector (string) </userData> -->
             <timeBasedFilter>
                 <minimum_separation>
                     <sec>DURATION_INFINITY</sec>
@@ -344,11 +345,14 @@
                 </names>
             </partition>
             <topicData>
-                <value> <!-- octetVector (string) --> </value>
+                <value>11.40.37.00.CE</value>
             </topicData>
             <groupData>
-                <value> <!-- octetVector (string) --> </value>
+                <value>12.40.37.00.CE</value>
             </groupData>
+            <userData>
+                <value>13.40.37.00.CE</value>
+            </userData>
             <publishMode>
                 <kind>SYNCHRONOUS</kind> <!-- string SYNCHRONOUS | ASYNCHRONOUS-->
             </publishMode>
@@ -445,7 +449,6 @@
                     <sec>DURATION_INFINITY</sec>
                 </duration>
             </lifespan>
-            <!--<userData>  octetVector (string) </userData> -->
             <timeBasedFilter>
                 <minimum_separation>
                       <sec>DURATION_INFINITY</sec>
@@ -469,11 +472,14 @@
                 </names>
             </partition>
             <topicData>
-                <value> <!-- octetVector (string) --> </value>
+                <value>11.40.37.00.CE</value>
             </topicData>
             <groupData>
-                <value> <!-- octetVector (string) --> </value>
+                <value>12.40.37.00.CE</value>
             </groupData>
+            <userData>
+                <value>13.40.37.00.CE</value>
+            </userData>
         </qos>
 
         <times> <!-- readerTimesType -->

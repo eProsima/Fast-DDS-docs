@@ -3197,7 +3197,7 @@ void dds_qos_examples()
         std::vector<eprosima::fastrtps::rtps::octet> vec;
         vec = group_data.data_vec(); // Getter function
 
-        //Add two new octets to topic data vector
+        //Add two new octets to group data vector
         eprosima::fastrtps::rtps::octet val = 3;
         vec.push_back(val);
         val = 10;
@@ -3330,7 +3330,7 @@ void dds_qos_examples()
         std::vector<eprosima::fastrtps::rtps::octet> vec;
         vec = user_data.data_vec(); // Getter Function
 
-        //Add two new octets to topic data vector
+        //Add two new octets to user data vector
         eprosima::fastrtps::rtps::octet val = 3;
         vec.push_back(val);
         val = 10;

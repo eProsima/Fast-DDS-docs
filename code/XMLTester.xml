@@ -753,7 +753,7 @@
 <!--><-->
 
 <!-->XML-DS-CLI-XML-CONF<-->
-<participant profile_name="participant_profile_discovery_server_cli">
+<participant profile_name="participant_profile_discovery_server_cli" is_default_profile="true">
     <rtps>
         <prefix>44.53.01.5f.45.50.52.4f.53.49.4d.41</prefix>
         <builtin>
@@ -763,8 +763,33 @@
             <metatrafficUnicastLocatorList>
                 <locator>
                     <udpv4>
-                        <address>127.0.0.1</address>
+                        <address>localhost</address>
                         <port>14520</port>
+                    </udpv4>
+                </locator>
+            </metatrafficUnicastLocatorList>
+        </builtin>
+    </rtps>
+</participant>
+
+<participant profile_name="second_participant_profile_discovery_server_cli">
+    <rtps>
+        <prefix>44.53.02.5f.45.50.52.4f.53.49.4d.41</prefix>
+        <builtin>
+            <discovery_config>
+                <discoveryProtocol>SERVER</discoveryProtocol>
+            </discovery_config>
+            <metatrafficUnicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.36.34</address>
+                        <port>8783</port>
+                    </udpv4>
+                </locator>
+                <locator>
+                    <udpv4>
+                        <address>172.20.96.1</address>
+                        <port>51083</port>
                     </udpv4>
                 </locator>
             </metatrafficUnicastLocatorList>

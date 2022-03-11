@@ -86,8 +86,9 @@ Where the parameters are:
 | ``-b  --backup``         | Creates a BACKUP *server* (see :ref:`discovery_protocol`)                                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-x  --xml-file``       | XML configuration file (see :ref:`xml_profiles`). In this case, the default |br|          |
-|                          | configuration file is not loaded. The CLI options overrides XML configuration for |br|    |
-|                          | that specific parameter.                                                                  |
+|                          | configuration file is not loaded. The CLI options override XML configuration for |br|     |
+|                          | that specific parameter. The default profile in the XML file is loaded except if |br|     |
+|                          | a specific profile name is specified: ``profile_name@xml_file``                           |
 +--------------------------+-------------------------------------------------------------------------------------------+
 
 The output is:
@@ -176,6 +177,12 @@ Examples
           Server GUID prefix: 44.53.02.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[192.168.36.34]:8783
                               UDPv4:[172.20.96.1]:51083
+
+    Using the same XML configuration file of the previous example, the same output can be obtained loading a specific
+
+    .. code-block:: bash
+
+        fastdds discovery -x second_participant_profile_discovery_server_cli@[PATH_TO_FILE]/DiscoveryServerCLI.xml
 
 4.  Launch a default server with id 3 (fourth on ``ROS_DISCOVERY_SERVER``)
     listening on 172.30.144.1 with UDP port 12345 and provided with a

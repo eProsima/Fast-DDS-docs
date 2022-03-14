@@ -136,7 +136,7 @@ For receiving sockets, the command is:
     C:\> reg add HKLM\SYSTEM\CurrentControlSet\services\AFD\Parameters /v DefaultReceiveWindow /t REG_DWORD /d 12582912
 
 
-Increasing the Transmit Queue Length of an interface (Only Linux)
+Increasing the Transmit Queue Length of an interface (Linux only)
 -----------------------------------------------------------------
 
 The Transmit Queue Length (``txqueuelen``) is a TCP/UDP/IP stack network interface value.
@@ -154,17 +154,17 @@ The settings for a specific network adapter can be viewed using the one of the f
 
 .. tabs::
 
+  .. tab:: ``ip``
+
+    .. code-block:: bash
+
+      ip link show ${interface}
+
   .. tab:: ``ifconfig``
 
     .. code-block:: bash
 
         ifconfig ${interface}
-
-  .. tab:: ``ip``
-
-    .. code-block:: bash
-
-      ip link
 
 This will display the configuration of the adapter, and among the parameters the ``txqueuelen``.
 This parameter can be a value between a 1000 and 20000.
@@ -178,17 +178,17 @@ However, take into account that after rebooting the default values will be confi
 
 .. tabs::
 
-  .. tab:: ``ifconfig``
-
-    .. code-block:: bash
-
-      ifconfig ${interface} txqueuelen ${size}
-
   .. tab:: ``ip``
 
     .. code-block:: bash
 
       ip link set txqueuelen ${value} dev ${interface}
+
+  .. tab:: ``ifconfig``
+
+    .. code-block:: bash
+
+      ifconfig ${interface} txqueuelen ${size}
 
 .. _flow-controllers:
 

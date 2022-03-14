@@ -3197,7 +3197,10 @@ void dds_qos_examples()
         std::vector<eprosima::fastrtps::rtps::octet> vec;
         vec = group_data.data_vec(); // Getter function
 
+        //Add two new octets to group data vector
         eprosima::fastrtps::rtps::octet val = 3;
+        vec.push_back(val);
+        val = 10;
         vec.push_back(val);
         group_data.data_vec(vec); //Setter function
         //!--
@@ -3310,8 +3313,10 @@ void dds_qos_examples()
         std::vector<eprosima::fastrtps::rtps::octet> vec;
         vec = topic_data.data_vec(); // Getter Function
 
-        //Add new octet to topic data vector
+        //Add two new octets to topic data vector
         eprosima::fastrtps::rtps::octet val = 3;
+        vec.push_back(val);
+        val = 10;
         vec.push_back(val);
         topic_data.data_vec(vec); //Setter Function
         //!--
@@ -3325,8 +3330,10 @@ void dds_qos_examples()
         std::vector<eprosima::fastrtps::rtps::octet> vec;
         vec = user_data.data_vec(); // Getter Function
 
-        //Add new octet to topic data vector
+        //Add two new octets to user data vector
         eprosima::fastrtps::rtps::octet val = 3;
+        vec.push_back(val);
+        val = 10;
         vec.push_back(val);
         user_data.data_vec(vec); //Setter Function
         //!--
@@ -3387,7 +3394,7 @@ void dds_qos_examples()
         participant_limits.content_filter.expression_initial_size = 512u;
         //Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
         participant_limits.content_filter.expression_parameters =
-            eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
         //!--
     }
 
@@ -4516,7 +4523,7 @@ void dds_usecase_examples()
         qos.allocation().content_filter.expression_initial_size = 512u;
         // Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
         qos.allocation().content_filter.expression_parameters =
-            eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
+                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
         //!--
     }
 
@@ -4568,7 +4575,7 @@ void dds_usecase_examples()
         participant_qos.allocation().data_limits.max_user_data = 256u;
         // We know the maximum size of properties data
         participant_qos.allocation().data_limits.max_properties = 512u;
-        
+
         // Content filtering is not being used
         participant_qos.allocation().content_filter.expression_initial_size = 0u;
         participant_qos.allocation().content_filter.expression_parameters =

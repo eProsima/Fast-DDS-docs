@@ -256,3 +256,28 @@ to belong to.
 |    :start-after: <!-->XML-PARTITION                                                                                  |
 |    :end-before: <!--><-->                                                                                            |
 +----------------------------------------------------------------------------------------------------------------------+
+
+.. _property_policies_edp_exchange_format:
+
+Static Discovery's Exchange Format
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Static Discovery exchanges data in the Participant Discovery Phase (PDP).
+Currently there are two different exchange formats which can be selected using the property
+``dds.discovery.static_edp.exchange_format``.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos value
+     - Default
+     - Description
+   * - ``"v1"``
+     - ✅
+     - Standard exchange format for Static Discovery.
+   * - ``"v1_Reduced"``
+     -
+     - Format which reduces the necessary network bandwidth to transmit Static Discovery's information in the
+       Participant Discovery Phayse (PDP).
+

@@ -44,8 +44,9 @@ dependency on other options.
         - ``OFF``
     *   - :class:`EPROSIMA_BUILD`
         - Activates internal *Fast DDS* builds.
-          It is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``ON``. |br|
-          Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other options:
+          It is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is |br|
+          ``ON``. Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other |br|
+          options:
 
             - :class:`INTERNAL_DEBUG` is set to ``ON``.
             - :class:`COMPILE_EXAMPLES` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
@@ -58,36 +59,36 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`BUILD_SHARED_LIBS`
-        - Builds internal libraries as shared libraries, i.e. cause :func:`add_library` CMake function |br|
-          to create shared libraries if on. All libraries are built shared unless the library was |br|
-          explicitly added as a static library.
+        - Builds internal libraries as shared libraries, i.e. cause :func:`add_library` CMake |br|
+          function to create shared libraries if on. All libraries are built shared unless the |br|
+          library was explicitly added as a static library.
         - ``ON`` ``OFF``
         - ``ON``
     *   - :class:`SECURITY`
-        - Activates the *Fast DDS* security module. Please refer to :ref:`security` for more information |br|
-          on security module.
+        - Activates the *Fast DDS* security module. Please refer to :ref:`security` for more |br|
+          information on security module.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`NO_TLS`
-        - Disables Transport Layer Security (TLS) Support. Please refer to :ref:`transport_tcp_tls` for |br|
-          more information on *Fast DDS* TLS configuration.
+        - Disables Transport Layer Security (TLS) Support. Please refer to :ref:`transport_tcp_tls` |br|
+          for more information on *Fast DDS* TLS configuration.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`SHM_TRANSPORT_DEFAULT`
         - Adds Shared Memory transport (SHM) to the default transports.
-          Please refer to :ref:`SHM <transport_sharedMemory_sharedMemory>` section |br|
-          for more information on *Fast DDS* SHM transport.
+          Please refer to |br|
+          :ref:`SHM <transport_sharedMemory_sharedMemory>` section for more information on *Fast DDS* SHM transport.
         - ``ON`` ``OFF``
         - ``ON``
     *   - :class:`FASTDDS_STATISTICS`
-        - Enables the *Fast DDS* Statistics module. Please refer to :ref:`statistics` for more |br|
-          information on this module.
+        - Enables the *Fast DDS* Statistics module. Please refer to :ref:`statistics` for |br|
+          more information on this module.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`COMPILE_EXAMPLES`
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
-          :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the
-          `eProsima Fast DDS <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_ |br|
+          :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the |br|
+          `eProsima Fast DDS <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_
           `GitHub repository <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_.
         - ``ON`` ``OFF``
         - ``OFF``
@@ -98,8 +99,8 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`BUILD_DOCUMENTATION`
-        - Uses doxygen to create the *Fast DDS* API reference documentation. It is set to ``ON`` |br|
-          if :class:`EPROSIMA_INSTALLER` is ``ON`` or if :class:`CHECK_DOCUMENTATION` is ``ON``.
+        - Uses doxygen to create the *Fast DDS* API reference documentation. It is set to |br|
+          ``ON`` if :class:`EPROSIMA_INSTALLER` is ``ON`` or if :class:`CHECK_DOCUMENTATION` is ``ON``.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`CHECK_DOCUMENTATION`
@@ -120,6 +121,12 @@ dependency on other options.
           and therefore the :ref:`persistence_service`.
         - ``ON`` ``OFF``
         - ``ON``
+    *   - :class:`APPEND_PROJECT_NAME_TO_INCLUDEDIR`
+        - When ``ON`` headers are installed to a path ending with a folder called ``fastrtps``. |br|
+          This avoids include directory search order issues when overriding this package |br|
+          from a merged catkin, ament, or colcon workspace.
+        - ``ON`` ``OFF``
+        - ``OFF``
 
 Log options
 ^^^^^^^^^^^

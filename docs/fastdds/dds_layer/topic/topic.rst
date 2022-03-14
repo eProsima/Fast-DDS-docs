@@ -13,7 +13,7 @@ A Topic serves this purpose, allowing publications and subscriptions that share 
 Topic to match and start communicating.
 In that sense, the Topic acts as a description for a data flow.
 
-Publications are always linked to a single Topic, while subscriptions are linked to a
+Publications are always linked to a single :ref:`dds_layer_topic_topic`, while subscriptions are linked to a
 broader concept of :ref:`dds_layer_topic_topicDescription`.
 
 .. figure:: /01-figures/topic_class_diagram.svg

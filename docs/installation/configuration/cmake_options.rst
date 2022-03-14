@@ -44,8 +44,8 @@ dependency on other options.
         - ``OFF``
     *   - :class:`EPROSIMA_BUILD`
         - Activates internal *Fast DDS* builds.
-          It is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is. |br|
-          ``ON`` Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other |br|
+          It is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is |br|
+          ``ON``. Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other |br|
           options:
 
             - :class:`INTERNAL_DEBUG` is set to ``ON``.

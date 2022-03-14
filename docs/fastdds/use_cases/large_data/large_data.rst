@@ -136,6 +136,59 @@ For receiving sockets, the command is:
     C:\> reg add HKLM\SYSTEM\CurrentControlSet\services\AFD\Parameters /v DefaultReceiveWindow /t REG_DWORD /d 12582912
 
 
+Increasing the Transmit Queue Length of an interface (Linux only)
+-----------------------------------------------------------------
+
+The Transmit Queue Length (``txqueuelen``) is a TCP/UDP/IP stack network interface value.
+This value sets the number of packets allowed per kernel transmit queue of a network interface device.
+By default, the ``txqueuelen`` value for Ethernet interfaces is set to ``1000`` in Linux.
+This value is adequate for most Gigabit network devices.
+However, in some specific cases, the ``txqueuelen`` setting should be increased to avoid overflows that drop packets.
+Similarly, choosing a value that is too large can cause added overhead resulting in higher network latencies.
+
+Note that this information only applies to the `sending` side, and not the `receiving` side.
+Also increasing the ``txqueuelen`` should go together with increasing the buffer sizes of the UDP and/or TCP buffers.
+(this must be applied for both the `sending` and `receiving` sides).
+
+The settings for a specific network adapter can be viewed using the one of the following commands:
+
+.. tabs::
+
+  .. tab:: ``ip``
+
+    .. code-block:: bash
+
+      ip link show ${interface}
+
+  .. tab:: ``ifconfig``
+
+    .. code-block:: bash
+
+        ifconfig ${interface}
+
+This will display the configuration of the adapter, and among the parameters the ``txqueuelen``.
+This parameter can be a value between a 1000 and 20000.
+
+.. important::
+
+  If the ``ip`` command is used, the Transmit Queue Length parameter is called ``qlen``.
+
+The ``txqueuelen`` can be modified for the current session using either the ``ifconfig`` or ``ip`` commands.
+However, take into account that after rebooting the default values will be configured again.
+
+.. tabs::
+
+  .. tab:: ``ip``
+
+    .. code-block:: bash
+
+      ip link set txqueuelen ${value} dev ${interface}
+
+  .. tab:: ``ifconfig``
+
+    .. code-block:: bash
+
+      ifconfig ${interface} txqueuelen ${size}
 
 .. _flow-controllers:
 
@@ -289,4 +342,3 @@ samples.
 Losing one or two samples per second at 50 fps is more acceptable than freezing the video waiting for the retransmission
 of lost samples.
 Therefore, in this case |BEST_EFFORT_RELIABILITY_QOS-api| can be appropriate.
-

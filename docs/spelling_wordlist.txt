@@ -204,6 +204,7 @@ TypeObject
 typesupport
 typeros
 typeros2
+txqueuelen
 uint
 uncheck
 unicast

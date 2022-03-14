@@ -53,7 +53,8 @@ For more information on the different *Fast DDS* discovery mechanisms and how to
 
 .. important::
     It is possible to interconnect *servers* (or *backup* servers) instantiated with ``fastdds discovery`` using
-    environment variable ``ROS_DISCOVERY_SERVER`` (see :ref:`env_vars_ros_discovery_server`).
+    environment variable ``ROS_DISCOVERY_SERVER`` (see :ref:`env_vars_ros_discovery_server`) or a XML configuration
+    file.
 
 .. _cli_discovery_run:
 
@@ -71,8 +72,9 @@ Where the parameters are:
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
 +==========================+===========================================================================================+
-| ``-i  --server-id``      | **Mandatory** unique server identifier. Specifies zero based server position in |br|      |
-|                          | ``ROS_DISCOVERY_SERVER`` environment variable. Must be an integer in range [0, 255]       |
+| ``-i  --server-id``      | Unique server identifier. Specifies zero based server position in |br|                    |
+|                          | ``ROS_DISCOVERY_SERVER`` environment variable. Must be an integer in range [0, 255] |br|  |
+|                          | If not specified, it must be defined using a XML configuration file.                      |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-h  -help``            | Produce help message.                                                                     |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -82,6 +84,11 @@ Where the parameters are:
 | ``-p  --port``           | UDP port chosen to listen the clients. Defaults to '11811'.                               |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-b  --backup``         | Creates a BACKUP *server* (see :ref:`discovery_protocol`)                                 |
++--------------------------+-------------------------------------------------------------------------------------------+
+| ``-x  --xml-file``       | XML configuration file (see :ref:`xml_profiles`). In this case, the default |br|          |
+|                          | configuration file is not loaded. The CLI options override XML configuration for |br|     |
+|                          | that specific parameter. The default profile in the XML file is loaded except if |br|     |
+|                          | a specific profile name is specified: ``profile_name@xml_file``                           |
 +--------------------------+-------------------------------------------------------------------------------------------+
 
 The output is:
@@ -140,6 +147,17 @@ Examples
           Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[127.0.0.1]:14520
 
+    This same output can be obtained loading the following XML configuration file ``DiscoveryServerCLI.xml``:
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML-DS-CLI-XML-CONF<-->
+        :end-before: <!--><-->
+
+    .. code-block:: bash
+
+        fastdds discovery -x [PATH_TO_FILE]/DiscoveryServerCLI.xml
+
 3.  Launch a default server with id 2 (third on ``ROS_DISCOVERY_SERVER``)
     listening on WiFi (192.168.36.34) and Ethernet (172.20.96.1) local
     interfaces with UDP ports 8783 and 51083 respectively
@@ -159,6 +177,12 @@ Examples
           Server GUID prefix: 44.53.02.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[192.168.36.34]:8783
                               UDPv4:[172.20.96.1]:51083
+
+    Using the same XML configuration file of the previous example, the same output can be obtained loading a specific
+
+    .. code-block:: bash
+
+        fastdds discovery -x second_participant_profile_discovery_server_cli@[PATH_TO_FILE]/DiscoveryServerCLI.xml
 
 4.  Launch a default server with id 3 (fourth on ``ROS_DISCOVERY_SERVER``)
     listening on 172.30.144.1 with UDP port 12345 and provided with a

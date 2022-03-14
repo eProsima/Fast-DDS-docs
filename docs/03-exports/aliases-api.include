@@ -1,3 +1,5 @@
+.. |ContentFilteredTopic-api| replace:: :cpp:class:`ContentFilteredTopic <eprosima::fastdds::dds::ContentFilteredTopic>`
+
 .. |DataReader-api| replace:: :cpp:class:`DataReader <eprosima::fastdds::dds::DataReader>`
 .. |DataReader::get_listening_locators-api| replace:: :cpp:func:`get_listening_locators()<eprosima::fastdds::dds::DataReader::get_listening_locators>`
 .. |DataReader::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::DataReader::get_qos>`

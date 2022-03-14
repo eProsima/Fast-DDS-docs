@@ -271,13 +271,29 @@ Currently there are two different exchange formats which can be selected using t
    :align: left
 
    * - PropertyPolicyQos value
-     - Default
      - Description
+     - Default
    * - ``"v1"``
-     - ✅
      - Standard exchange format for Static Discovery.
+     - ✅
    * - ``"v1_Reduced"``
+     - Format which reduces the necessary network bandwidth to transmit Static Discovery's information in the |br|
+       Participant Discovery Phase (PDP).
      -
-     - Format which reduces the necessary network bandwidth to transmit Static Discovery's information in the
-       Participant Discovery Phayse (PDP).
 
+.. tabs::
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //DDS-STATIC-DISCOVERY-FORMAT
+           :end-before: //!--
+           :dedent: 8
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+           :language: xml
+           :start-after: <!-->XML-STATIC-DISCOVERY-FORMAT
+           :end-before: <!--><-->

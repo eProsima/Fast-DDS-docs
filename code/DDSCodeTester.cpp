@@ -773,6 +773,16 @@ void dds_domain_examples()
             "part1;part2");
         //!--
     }
+
+    {
+        //DDS-STATIC-DISCOVERY-FORMAT
+        DomainParticipantQos participant_qos;
+        participant_qos.properties().properties().emplace_back(
+            "dds.discovery.static_edp.exchange_format",
+            "v1_Reduced"
+            );
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

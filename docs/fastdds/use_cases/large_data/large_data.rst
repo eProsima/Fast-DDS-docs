@@ -342,5 +342,3 @@ samples.
 Losing one or two samples per second at 50 fps is more acceptable than freezing the video waiting for the retransmission
 of lost samples.
 Therefore, in this case |BEST_EFFORT_RELIABILITY_QOS-api| can be appropriate.
-
-

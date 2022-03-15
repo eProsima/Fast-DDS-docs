@@ -4240,6 +4240,21 @@
 </data_reader>
 <!--><-->
 
+<!-->XML-STATIC-DISCOVERY-FORMAT<-->
+<participant profile_name="participant_xml_conf_static_discovery_format_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <property>
+                    <name>dds.discovery.static_edp.exchange_format</name>
+                    <value>v1_Reduced</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!--XML_PROFILES_SECTION-->
 
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->

@@ -76,8 +76,8 @@ with distributed systems:
   statistics monitoring application.
 
 + :ref:`ros2`.
-  Since *Fast DDS* is the default middleware implementation in the `OSRF`_ `Robot Operation System 2 (ROS 2)`_ until and
-  including the latest long term release *Foxy*,
+  Since *Fast DDS* is the default middleware implementation in every `OSRF`_ `Robot Operation System 2 (ROS 2)`_
+  long term (LTS) releases and most of the non-LTS releases,
   this documentation includes a whole independent section to show the use of the library in ROS 2,
   and how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2 project.
 

@@ -277,8 +277,8 @@ Currently there are two different exchange formats which can be selected using t
      - Standard exchange format for Static Discovery.
      - ✅
    * - ``"v1_Reduced"``
-     - Format which reduces the necessary network bandwidth to transmit Static Discovery's information in the |br|
-       Participant Discovery Phase (PDP).
+     - Format which reduces the necessary network bandwidth to transmit Static |br|
+       Discovery's information in the Participant Discovery Phase (PDP).
      -
 
 .. tabs::

@@ -54,7 +54,7 @@ This can be done either by code or using an XML configuration file:
 +----------------------------------------------------------------------------------------------------------------------+
 
 Currently two different formats of exchanging information in the Participant Discovery Phase (PDP) are supported:
-the default one and another that reduces the used network bandwidth.
+the default one and another that reduces the network bandwidth used.
 :ref:`property_policies_edp_exchange_format` explains how to change this.
 
 .. _`static_xml`:

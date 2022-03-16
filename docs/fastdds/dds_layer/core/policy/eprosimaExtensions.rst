@@ -141,7 +141,7 @@ List of QoS Policy data members:
 +-------------------------------------------------------------+------------------------------+-------------------------+
 | Data Member Name                                            | Type                         | Default Value           |
 +=============================================================+==============================+=========================+
-| |DisablePositiveACKsQosPolicy::enabled-api|                 | bool                         | ``false``               |
+| |DisablePositiveACKsQosPolicy::enabled-api|                 | ``bool``                     | ``false``               |
 +-------------------------------------------------------------+------------------------------+-------------------------+
 | |DisablePositiveACKsQosPolicy::duration-api|                | |Duration_t-api|             | |c_TimeInfinite-api|    |
 +-------------------------------------------------------------+------------------------------+-------------------------+
@@ -215,13 +215,13 @@ It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has t
 +------------------------------------------------------+-------------------------------------+-------------------------+
 | Data Member Name                                     | Type                                | Default Value           |
 +======================================================+=====================================+=========================+
-| |FlowControllerDescriptor::name-api|                 | const char *                        |                         |
+| |FlowControllerDescriptor::name-api|                 | ``const char *``                    |                         |
 +------------------------------------------------------+-------------------------------------+-------------------------+
 | |FlowControllerDescriptor::scheduler-api|            | |FlowControllerSchedulerPolicy-api| | |FIFO_SCHED_POLICY-api| |
 +------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::max_bytes_per_period-api| | int32_t                             | ``0`` (i.e. infinite)   |
+| |FlowControllerDescriptor::max_bytes_per_period-api| | ``int32_t``                         | 0 (i.e. infinite)       |
 +------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::period_ms-api|            | uint64_t                            | ``100``                 |
+| |FlowControllerDescriptor::period_ms-api|            | ``uint64_t``                        | 100                     |
 +------------------------------------------------------+-------------------------------------+-------------------------+
 
 Please refer to :ref:`flow-controllers` section for more information.
@@ -492,7 +492,7 @@ List of QoS Policy data members:
      - :ref:`publishmodeqospolicykind`
      - |SYNCHRONOUS_PUBLISH_MODE-api|
    * - |PublishModeQosPolicy::flow_ctrl_name-api|
-     - const char *
+     - ``const char *``
      - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::

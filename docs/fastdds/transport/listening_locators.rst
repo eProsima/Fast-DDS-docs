@@ -221,29 +221,29 @@ The default values can be modified using the |WireProtocolConfigQos::port-api| m
      - QoS field
    * - ``DG``
      - DomainID gain
-     - ``250``
+     - 250
      - |PortParameters::domainIDGain-qos-api|
    * - ``PG``
      - ParticipantId gain
-     - ``2``
+     - 2
      - |PortParameters::participantIDGain-qos-api|
    * - ``PB``
      - Port Base number
-     - ``7400``
+     - 7400
      - |PortParameters::portBase-qos-api|
    * - ``offsetd0``
      - Additional offset
-     - ``0``
+     - 0
      - |PortParameters::offsetd0-qos-api|
    * - ``offsetd1``
      - Additional offset
-     - ``10``
+     - 10
      - |PortParameters::offsetd1-qos-api|
    * - ``offsetd2``
      - Additional offset
-     - ``1``
+     - 1
      - |PortParameters::offsetd2-qos-api|
    * - ``offsetd3``
      - Additional offset
-     - ``11``
+     - 11
      - |PortParameters::offsetd3-qos-api|

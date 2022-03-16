@@ -122,17 +122,17 @@ Currently the following identifiers are used in *Fast DDS*:
 +-----------------------------------+----------+-----------------------------------------------------------------------+
 | Identifier                        | Value    | Transport type                                                        |
 +===================================+==========+=======================================================================+
-| |LOCATOR_KIND_RESERVED-api|       | ``0``    | None. Reserved value for internal use.                                |
+| |LOCATOR_KIND_RESERVED-api|       |   0      | None. Reserved value for internal use.                                |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| |LOCATOR_KIND_UDPv4-api|          | ``1``    | :ref:`transport_udp_udp` over IPv4.                                   |
+| |LOCATOR_KIND_UDPv4-api|          |   1      | :ref:`transport_udp_udp` over IPv4.                                   |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| |LOCATOR_KIND_UDPv6-api|          | ``2``    | :ref:`transport_udp_udp` over IPv6.                                   |
+| |LOCATOR_KIND_UDPv6-api|          |   2      | :ref:`transport_udp_udp` over IPv6.                                   |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| |LOCATOR_KIND_TCPv4-api|          | ``4``    | :ref:`transport_tcp_tcp` over IPv4.                                   |
+| |LOCATOR_KIND_TCPv4-api|          |   4      | :ref:`transport_tcp_tcp` over IPv4.                                   |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| |LOCATOR_KIND_TCPv6-api|          | ``8``    | :ref:`transport_tcp_tcp` over IPv6.                                   |
+| |LOCATOR_KIND_TCPv6-api|          |   8      | :ref:`transport_tcp_tcp` over IPv6.                                   |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| |LOCATOR_KIND_SHM-api|            | ``16``   | :ref:`transport_sharedMemory_sharedMemory`.                           |
+| |LOCATOR_KIND_SHM-api|            |   16     | :ref:`transport_sharedMemory_sharedMemory`.                           |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
 
 

@@ -38,11 +38,11 @@ The following table describes the common data members for both UDPv4 and UDPv6.
      - Description
    * - |SocketTransportDescriptor::sendBufferSize-api|
      - ``uint32_t``
-     - ``0``
+     - 0
      - Size of the sending buffer of the socket (octets).
    * - |SocketTransportDescriptor::receiveBufferSize-api|
      - ``uint32_t``
-     - ``0``
+     - 0
      - Size of the receiving buffer of the socket (octets).
    * - |SocketTransportDescriptor::interfaceWhiteList-api|
      - ``vector<string>``
@@ -51,11 +51,11 @@ The following table describes the common data members for both UDPv4 and UDPv6.
        See |InterfaceWhitelist|.
    * - |SocketTransportDescriptor::TTL-api|
      - ``uint8_t``
-     - ``1``
+     - 1
      - Time to live, in number of hops.
    * - |UDPTransportDescriptor::m_output_udp_socket-api|
      - ``uint16_t``
-     - ``0``
+     - 0
      - Port number for the outgoing messages.
    * - |UDPTransportDescriptor::non_blocking_send-api|
      - ``bool``

@@ -52,11 +52,11 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - Description
   * - |SocketTransportDescriptor::sendBufferSize-api|
     - ``uint32_t``
-    - ``0``
+    - 0
     - Size of the sending buffer of the socket (octets).
   * - |SocketTransportDescriptor::receiveBufferSize-api|
     - ``uint32_t``
-    - ``0``
+    - 0
     - Size of the receiving buffer of the socket (octets).
   * - |SocketTransportDescriptor::interfaceWhiteList-api|
     - ``vector<string>``
@@ -65,7 +65,7 @@ The following table describes the common data members for both TCPv4 and TCPv6.
       See |InterfaceWhitelist|.
   * - |SocketTransportDescriptor::TTL-api|
     - ``uint8_t``
-    - ``1``
+    - 1
     - Time to live, in number of hops.
   * - |TCPTransportDescriptor::listening_ports-api|
     - ``vector<uint16_t>``

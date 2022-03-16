@@ -112,7 +112,7 @@ The following table describes the data members that are configurable on |TCPTran
        See |TLSOptions|.
    * - |TCPTransportDescriptor::TLSConfig::verify_paths-api|
      - ``vector<string>``
-     - Empty Vector
+     - Empty vector
      - Paths where the system will look for verification files.
    * - |TCPTransportDescriptor::TLSConfig::verify_depth-api|
      - ``int32_t``

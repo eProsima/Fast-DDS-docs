@@ -136,7 +136,7 @@ The following table describes the data members that are exclusive for |TCPv4Tran
     - Description
   * - |TCPv4TransportDescriptor::wan_addr-api|
     - ``octet[4]``
-    - Empty List
+    - [0, 0, 0, 0]
     - Configuration for WAN. See |WANconfig|.
 
 .. note::

@@ -418,13 +418,16 @@
 .. |c_TimeInvalid-api| replace:: :cpp:var:`c_TimeInvalid<eprosima::fastrtps::c_TimeInfinite>`
 .. |LocatorList_t-api| replace:: :cpp:type:`LocatorList_t<eprosima::fastrtps::rtps::LocatorList_t>`
 .. |Locator_t-api| replace:: :cpp:class:`Locator_t<eprosima::fastrtps::rtps::Locator_t>`
+.. |Locator_t::kind-api| replace:: :cpp:var:`kind<eprosima::fastrtps::rtps::Locator_t::kind>`
+.. |Locator_t::address-api| replace:: :cpp:var:`address<eprosima::fastrtps::rtps::Locator_t::address>`
+.. |Locator_t::port-api| replace:: :cpp:var:`port<eprosima::fastrtps::rtps::Locator_t::port>`
 
-.. |LOCATOR_KIND_RESERVED-api| replace:: :cpp:type:`LOCATOR_KIND_RESERVED<LOCATOR_KIND_RESERVED>`
-.. |LOCATOR_KIND_UDPv4-api| replace:: :cpp:type:`LOCATOR_KIND_UDPv4<LOCATOR_KIND_UDPv4>`
-.. |LOCATOR_KIND_UDPv6-api| replace:: :cpp:type:`LOCATOR_KIND_UDPv6<LOCATOR_KIND_UDPv6>`
-.. |LOCATOR_KIND_TCPv4-api| replace:: :cpp:type:`LOCATOR_KIND_TCPv4<LOCATOR_KIND_TCPv4>`
-.. |LOCATOR_KIND_TCPv6-api| replace:: :cpp:type:`LOCATOR_KIND_TCPv6<LOCATOR_KIND_TCPv6>`
-.. |LOCATOR_KIND_SHM-api| replace:: :cpp:type:`LOCATOR_KIND_SHM<LOCATOR_KIND_SHM>`
+.. |LOCATOR_KIND_RESERVED-api| replace:: :c:macro:`LOCATOR_KIND_RESERVED<LOCATOR_KIND_RESERVED>`
+.. |LOCATOR_KIND_UDPv4-api| replace:: :c:macro:`LOCATOR_KIND_UDPv4<LOCATOR_KIND_UDPv4>`
+.. |LOCATOR_KIND_UDPv6-api| replace:: :c:macro:`LOCATOR_KIND_UDPv6<LOCATOR_KIND_UDPv6>`
+.. |LOCATOR_KIND_TCPv4-api| replace:: :c:macro:`LOCATOR_KIND_TCPv4<LOCATOR_KIND_TCPv4>`
+.. |LOCATOR_KIND_TCPv6-api| replace:: :c:macro:`LOCATOR_KIND_TCPv6<LOCATOR_KIND_TCPv6>`
+.. |LOCATOR_KIND_SHM-api| replace:: :c:macro:`LOCATOR_KIND_SHM<LOCATOR_KIND_SHM>`
 
 
 .. |SerializedPayload_t-api| replace:: :cpp:struct:`SerializedPayload_t<eprosima::fastrtps::rtps::SerializedPayload_t>`
@@ -532,10 +535,92 @@
 .. |TransportConfigQos::send_socket_buffer_size-api| replace:: :cpp:member:`send_socket_buffer_size<eprosima::fastdds::dds::TransportConfigQos::send_socket_buffer_size>`
 .. |TransportConfigQos::listen_socket_buffer_size-api| replace:: :cpp:member:`listen_socket_buffer_size<eprosima::fastdds::dds::TransportConfigQos::listen_socket_buffer_size>`
 
-
-.. |TransportDescriptorInterface-api| replace:: :cpp:class:`TransportDescriptorInterface<eprosima::fastdds::rtps::TransportDescriptorInterface>`
+.. |TransportDescriptorInterface-api| replace:: :cpp:struct:`TransportDescriptorInterface<eprosima::fastdds::rtps::TransportDescriptorInterface>`
 .. |TransportDescriptorInterface::maxMessageSize-api| replace:: :cpp:member:`maxMessageSize<eprosima::fastdds::rtps::TransportDescriptorInterface::maxMessageSize>`
 .. |TransportDescriptorInterface::maxInitialPeersRange-api| replace:: :cpp:member:`maxInitialPeersRange<eprosima::fastdds::rtps::TransportDescriptorInterface::maxInitialPeersRange>`
+.. |TransportDescriptorInterface::create_transport-api| replace:: :cpp:func:`create_transport<eprosima::fastdds::rtps::TransportDescriptorInterface::create_transport>`
+
+.. |TransportInterface-api| replace:: :cpp:class:`TransportInterface<eprosima::fastdds::rtps::TransportInterface>`
+.. |TransportInterface::kind-api| replace:: :cpp:func:`kind<eprosima::fastdds::rtps::TransportInterface::kind>`
+
+.. |ChainingTransportDescriptor-api| replace:: :cpp:struct:`ChainingTransportDescriptor<eprosima::fastdds::rtps::ChainingTransportDescriptor>`
+.. |ChainingTransportDescriptor::low_level_descriptor-api| replace:: :cpp:var:`low_level_descriptor<eprosima::fastdds::rtps::ChainingTransportDescriptor::low_level_descriptor>`
+.. |ChainingTransport-api| replace:: :cpp:class:`ChainingTransport<eprosima::fastdds::rtps::ChainingTransport>`
+.. |ChainingTransport::send-api| replace:: :cpp:func:`send()<eprosima::fastdds::rtps::ChainingTransport::send>`
+.. |ChainingTransport::receive-api| replace:: :cpp:func:`receive()<eprosima::fastdds::rtps::ChainingTransport::receive>`
+
+.. |SocketTransportDescriptor::sendBufferSize-api| replace:: :cpp:var:`sendBufferSize<eprosima::fastdds::rtps::SocketTransportDescriptor::sendBufferSize>`
+.. |SocketTransportDescriptor::receiveBufferSize-api| replace:: :cpp:var:`receiveBufferSize<eprosima::fastdds::rtps::SocketTransportDescriptor::receiveBufferSize>`
+.. |SocketTransportDescriptor::interfaceWhiteList-api| replace:: :cpp:var:`interfaceWhiteList<eprosima::fastdds::rtps::SocketTransportDescriptor::interfaceWhiteList>`
+.. |SocketTransportDescriptor::TTL-api| replace:: :cpp:var:`TTL<eprosima::fastdds::rtps::SocketTransportDescriptor::TTL>`
+
+.. |UDPTransportDescriptor::m_output_udp_socket-api| replace:: :cpp:var:`m_output_udp_socket<eprosima::fastdds::rtps::UDPTransportDescriptor::m_output_udp_socket>`
+.. |UDPTransportDescriptor::non_blocking_send-api| replace:: :cpp:var:`non_blocking_send<eprosima::fastdds::rtps::UDPTransportDescriptor::non_blocking_send>`
+.. |UDPv4TransportDescriptor-api| replace:: :cpp:struct:`UDPv4TransportDescriptor<eprosima::fastdds::rtps::UDPv4TransportDescriptor>`
+.. |UDPv6TransportDescriptor-api| replace:: :cpp:struct:`UDPv6TransportDescriptor<eprosima::fastdds::rtps::UDPv6TransportDescriptor>`
+
+.. |TCPTransportDescriptor-api| replace:: :cpp:struct:`TCPTransportDescriptor<eprosima::fastdds::rtps::TCPTransportDescriptor>`
+.. |TCPTransportDescriptor::listening_ports-api| replace:: :cpp:var:`listening_ports<eprosima::fastdds::rtps::TCPTransportDescriptor::listening_ports>`
+.. |TCPTransportDescriptor::keep_alive_frequency_ms-api| replace:: :cpp:var:`keep_alive_frequency_ms<eprosima::fastdds::rtps::TCPTransportDescriptor::keep_alive_frequency_ms>`
+.. |TCPTransportDescriptor::keep_alive_timeout_ms-api| replace:: :cpp:var:`keep_alive_timeout_ms<eprosima::fastdds::rtps::TCPTransportDescriptor::keep_alive_timeout_ms>`
+.. |TCPTransportDescriptor::max_logical_port-api| replace:: :cpp:var:`max_logical_port<eprosima::fastdds::rtps::TCPTransportDescriptor::max_logical_port>`
+.. |TCPTransportDescriptor::logical_port_range-api| replace:: :cpp:var:`logical_port_range<eprosima::fastdds::rtps::TCPTransportDescriptor::logical_port_range>`
+.. |TCPTransportDescriptor::logical_port_increment-api| replace:: :cpp:var:`logical_port_increment<eprosima::fastdds::rtps::TCPTransportDescriptor::logical_port_increment>`
+.. |TCPTransportDescriptor::enable_tcp_nodelay-api| replace:: :cpp:var:`enable_tcp_nodelay<eprosima::fastdds::rtps::TCPTransportDescriptor::enable_tcp_nodelay>`
+.. |TCPTransportDescriptor::calculate_crc-api| replace:: :cpp:var:`calculate_crc<eprosima::fastdds::rtps::TCPTransportDescriptor::calculate_crc>`
+.. |TCPTransportDescriptor::check_crc-api| replace:: :cpp:var:`check_crc<eprosima::fastdds::rtps::TCPTransportDescriptor::check_crc>`
+.. |TCPTransportDescriptor::apply_security-api| replace:: :cpp:var:`apply_security<eprosima::fastdds::rtps::TCPTransportDescriptor::apply_security>`
+.. |TCPTransportDescriptor::tls_config-api| replace:: :cpp:var:`tls_config<eprosima::fastdds::rtps::TCPTransportDescriptor::tls_config>`
+
+.. |TCPTransportDescriptor::TLSConfig-api| replace:: :cpp:struct:`TLSConfig<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig>`
+.. |TCPTransportDescriptor::TLSConfig::add_verify_mode-api| replace:: :cpp:func:`add_verify_mode()<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::add_verify_mode>`
+.. |TCPTransportDescriptor::TLSConfig::add_option-api| replace:: :cpp:func:`add_option()<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::add_option>`
+.. |TCPTransportDescriptor::TLSConfig::password-api| replace:: :cpp:var:`password<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::password>`
+.. |TCPTransportDescriptor::TLSConfig::private_key_file-api| replace:: :cpp:var:`private_key_file<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::private_key_file>`
+.. |TCPTransportDescriptor::TLSConfig::rsa_private_key_file-api| replace:: :cpp:var:`rsa_private_key_file<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::rsa_private_key_file>`
+.. |TCPTransportDescriptor::TLSConfig::cert_chain_file-api| replace:: :cpp:var:`cert_chain_file<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::cert_chain_file>`
+.. |TCPTransportDescriptor::TLSConfig::tmp_dh_file-api| replace:: :cpp:var:`tmp_dh_file<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::tmp_dh_file>`
+.. |TCPTransportDescriptor::TLSConfig::verify_file-api| replace:: :cpp:var:`verify_file<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::verify_file>`
+.. |TCPTransportDescriptor::TLSConfig::verify_mode-api| replace:: :cpp:var:`verify_mode<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::verify_mode>`
+.. |TCPTransportDescriptor::TLSConfig::options-api| replace:: :cpp:var:`options<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::options>`
+.. |TCPTransportDescriptor::TLSConfig::verify_paths-api| replace:: :cpp:var:`verify_paths<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::verify_paths>`
+.. |TCPTransportDescriptor::TLSConfig::verify_depth-api| replace:: :cpp:var:`verify_depth<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::verify_depth>`
+.. |TCPTransportDescriptor::TLSConfig::default_verify_path-api| replace:: :cpp:var:`default_verify_path<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::default_verify_path>`
+.. |TCPTransportDescriptor::TLSConfig::handshake_role-api| replace:: :cpp:var:`handshake_role<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::handshake_role>`
+
+.. |TCPTransportDescriptor::TLSConfig::TLSVerifyMode-api| replace:: :cpp:enum:`TLSVerifyMode<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode>`
+.. |TCPTransportDescriptor::TLSConfig::TLSVerifyMode::UNUSED-api| replace:: :cpp:enumerator:`TLSVerifyMode::UNUSED<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode::UNUSED>`
+.. |TCPTransportDescriptor::TLSConfig::TLSVerifyMode::VERIFY_NONE-api| replace:: :cpp:enumerator:`TLSVerifyMode::VERIFY_NONE<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode::VERIFY_NONE>`
+.. |TCPTransportDescriptor::TLSConfig::TLSVerifyMode::VERIFY_PEER-api| replace:: :cpp:enumerator:`TLSVerifyMode::VERIFY_PEER<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode::VERIFY_PEER>`
+.. |TCPTransportDescriptor::TLSConfig::TLSVerifyMode::VERIFY_FAIL_IF_NO_PEER_CERT-api| replace:: :cpp:enumerator:`TLSVerifyMode::VERIFY_FAIL_IF_NO_PEER_CERT<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode::VERIFY_FAIL_IF_NO_PEER_CERT>`
+.. |TCPTransportDescriptor::TLSConfig::TLSVerifyMode::VERIFY_CLIENT_ONCE-api| replace:: :cpp:enumerator:`TLSVerifyMode::VERIFY_CLIENT_ONCE<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode::VERIFY_CLIENT_ONCE>`
+
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions-api| replace:: :cpp:enum:`TLSOptions<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::NONE-api| replace:: :cpp:enumerator:`TLSOptions::NONE<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::NONE>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::DEFAULT_WORKAROUNDS-api| replace:: :cpp:enumerator:`TLSOptions::DEFAULT_WORKAROUNDS<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::DEFAULT_WORKAROUNDS>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::NO_COMPRESSION-api| replace:: :cpp:enumerator:`TLSOptions::NO_COMPRESSION<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::NO_COMPRESSION>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::NO_SSLV2-api| replace:: :cpp:enumerator:`TLSOptions::NO_SSLV2<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::NO_SSLV2>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::NO_SSLV3-api| replace:: :cpp:enumerator:`TLSOptions::NO_SSLV3<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::NO_SSLV3>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::NO_TLSV1-api| replace:: :cpp:enumerator:`TLSOptions::NO_TLSV1<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::NO_TLSV1>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::NO_TLSV1_1-api| replace:: :cpp:enumerator:`TLSOptions::NO_TLSV1_1<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::NO_TLSV1_1>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::NO_TLSV1_2-api| replace:: :cpp:enumerator:`TLSOptions::NO_TLSV1_2<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::NO_TLSV1_2>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::NO_TLSV1_3-api| replace:: :cpp:enumerator:`TLSOptions::NO_TLSV1_3<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::NO_TLSV1_3>`
+.. |TCPTransportDescriptor::TLSConfig::TLSOptions::SINGLE_DH_USE-api| replace:: :cpp:enumerator:`TLSOptions::SINGLE_DH_USE<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions::SINGLE_DH_USE>`
+
+.. |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole-api| replace:: :cpp:enum:`TLSHandShakeRole<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSHandShakeRole>`
+.. |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::DEFAULT-api| replace:: :cpp:enumerator:`TLSHandShakeRole::DEFAULT<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::DEFAULT>`
+.. |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::CLIENT-api| replace:: :cpp:enumerator:`TLSHandShakeRole::CLIENT<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::CLIENT>`
+.. |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::SERVER-api| replace:: :cpp:enumerator:`TLSHandShakeRole::SERVER<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::SERVER>`
+
+.. |TCPv4TransportDescriptor-api| replace:: :cpp:struct:`TCPv4TransportDescriptor<eprosima::fastdds::rtps::TCPv4TransportDescriptor>`
+.. |TCPv4TransportDescriptor::wan_addr-api| replace:: :cpp:var:`wan_addr<eprosima::fastdds::rtps::TCPv4TransportDescriptor::wan_addr>`
+.. |TCPv6TransportDescriptor-api| replace:: :cpp:struct:`TCPv6TransportDescriptor<eprosima::fastdds::rtps::TCPv6TransportDescriptor>`
+
+.. |SharedMemTransportDescriptor-api| replace:: :cpp:struct:`SharedMemTransportDescriptor<eprosima::fastdds::rtps::SharedMemTransportDescriptor>`
+.. |SharedMemTransportDescriptor::segment_size-api| replace:: :cpp:func:`segment_size()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::segment_size>`
+.. |SharedMemTransportDescriptor::port_queue_capacity-api| replace:: :cpp:func:`port_queue_capacity()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::port_queue_capacity>`
+.. |SharedMemTransportDescriptor::healthy_check_timeout_ms-api| replace:: :cpp:func:`healthy_check_timeout_ms()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::healthy_check_timeout_ms>`
+.. |SharedMemTransportDescriptor::rtps_dump_file-api| replace:: :cpp:func:`rtps_dump_file()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::rtps_dump_file>`
 
 .. |TypeConsistencyQos-api| replace:: :cpp:class:`TypeConsistencyQos<eprosima::fastdds::dds::TypeConsistencyQos>`
 .. |TypeConsistencyQos::type_consistency-api| replace:: :cpp:member:`type_consistency<eprosima::fastdds::dds::TypeConsistencyQos::type_consistency>`
@@ -545,9 +630,19 @@
 .. |WireProtocolConfigQos::prefix-api| replace:: :cpp:member:`prefix<eprosima::fastdds::dds::WireProtocolConfigQos::prefix>`
 .. |WireProtocolConfigQos::participant_id-api| replace:: :cpp:member:`participant_id<eprosima::fastdds::dds::WireProtocolConfigQos::participant_id>`
 .. |WireProtocolConfigQos::builtin-api| replace:: :cpp:member:`builtin<eprosima::fastdds::dds::WireProtocolConfigQos::builtin>`
+.. |WireProtocolConfigQos::port-api| replace:: :cpp:member:`port<eprosima::fastdds::dds::WireProtocolConfigQos::port>`
 .. |WireProtocolConfigQos::throughput_controller-api| replace:: :cpp:member:`throughput_controller<eprosima::fastdds::dds::WireProtocolConfigQos::throughput_controller>`
 .. |WireProtocolConfigQos::default_unicast_locator_list-api| replace:: :cpp:member:`default_unicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_unicast_locator_list>`
 .. |WireProtocolConfigQos::default_multicast_locator_list-api| replace:: :cpp:member:`default_multicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_multicast_locator_list>`
+
+.. |PortParameters-api| replace:: :cpp:class:`PortParameters<eprosima::fastrtps::rtps::PortParameters>`
+.. |PortParameters::domainIDGain-qos-api| replace:: :cpp:member:`wire_protocol().port.domainIDGain<eprosima::fastrtps::rtps::PortParameters::domainIDGain>`
+.. |PortParameters::participantIDGain-qos-api| replace:: :cpp:member:`wire_protocol().port.participantIDGain<eprosima::fastrtps::rtps::PortParameters::participantIDGain>`
+.. |PortParameters::portBase-qos-api| replace:: :cpp:member:`wire_protocol().port.portBase<eprosima::fastrtps::rtps::PortParameters::portBase>`
+.. |PortParameters::offsetd0-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd0<eprosima::fastrtps::rtps::PortParameters::offsetd0>`
+.. |PortParameters::offsetd1-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd1<eprosima::fastrtps::rtps::PortParameters::offsetd1>`
+.. |PortParameters::offsetd2-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd2<eprosima::fastrtps::rtps::PortParameters::offsetd2>`
+.. |PortParameters::offsetd3-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd3<eprosima::fastrtps::rtps::PortParameters::offsetd3>`
 
 .. |ThroughputControllerDescriptor-api| replace:: :cpp:struct:`ThroughputControllerDescriptor<eprosima::fastrtps::rtps::ThroughputControllerDescriptor>`
 .. |ThroughputControllerDescriptor::bytesPerPeriod-api| replace:: :cpp:member:`bytesPerPeriod<eprosima::fastrtps::rtps::ThroughputControllerDescriptor::bytesPerPeriod>`
@@ -717,7 +812,10 @@
 .. |BuiltinAttributes-api| replace:: :cpp:class:`BuiltinAttributes<eprosima::fastrtps::rtps::BuiltinAttributes>`
 .. |BuiltinAttributes::discovery_config-api| replace:: :cpp:member:`discovery_config<eprosima::fastrtps::rtps::BuiltinAttributes::discovery_config>`
 .. |BuiltinAttributes::metatrafficUnicastLocatorList-api| replace:: :cpp:member:`metatrafficUnicastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficUnicastLocatorList>`
+.. |BuiltinAttributes::metatrafficUnicastLocatorList-qos-api| replace:: :cpp:member:`builtin.metatrafficUnicastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficUnicastLocatorList>`
 .. |BuiltinAttributes::metatrafficMulticastLocatorList-api| replace:: :cpp:member:`metatrafficMulticastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficMulticastLocatorList>`
+.. |BuiltinAttributes::metatrafficMulticastLocatorList-qos-api| replace:: :cpp:member:`builtin.metatrafficMulticastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficMulticastLocatorList>`
+.. |BuiltinAttributes::initialPeersList-api| replace:: :cpp:member:`initialPeersList<eprosima::fastrtps::rtps::BuiltinAttributes::initialPeersList>`
 
 .. |Property-api| replace:: :cpp:class:`Property<eprosima::fastrtps::rtps::Property>`
 
@@ -758,9 +856,9 @@
 .. |std::fstream::open-api| replace:: :cpp:func:`std::fstream::open()`
 .. |std::ostream-api| replace:: :cpp:class:`std::ostream`
 
-.. |logInfo| replace:: :cpp:type:`logInfo <logInfo>`
-.. |logWarning| replace:: :cpp:type:`logWarning <logWarning>`
-.. |logError| replace:: :cpp:type:`logError <logError>`
+.. |logInfo| replace:: :c:macro:`logInfo <logInfo>`
+.. |logWarning| replace:: :c:macro:`logWarning <logWarning>`
+.. |logError| replace:: :c:macro:`logError <logError>`
 
 .. |FASTDDS_ENFORCE_LOG_INFO| replace:: :cpp:type:`FASTDDS_ENFORCE_LOG_INFO`
 .. |LOG_NO_INFO| replace:: :cpp:type:`LOG_NO_INFO`

@@ -111,6 +111,7 @@ PublisherListener
 qos
 QosPolicyCount
 rdata
+ReceiverResource
 ReliabilityQosPolicy
 ReplyPubSubType
 ReplyTypeSupport
@@ -151,6 +152,7 @@ timepoint
 TimeZero
 TopicDataType
 TopicListener
+TransportDescriptor
 TransportPriorityQosPolicy
 TypeConsistencyEnforcementQosPolicy
 TypeConsistencyQos
@@ -164,6 +166,7 @@ TypeLookup
 TypeLookupReplyListener
 TypeLookupRequestListener
 TypeObjectV
+UDPv
 Unary
 Unknown
 unreceived

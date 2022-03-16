@@ -47,23 +47,29 @@ It shows the abstract API interfaces, and the classes required to implement a tr
 TransportDescriptorInterface
 ----------------------------
 
-Any class that implements the :class:`TransportDescriptorInterface` is known as a :class:`TransportDescriptor`.
+Any class that implements the |TransportDescriptorInterface-api| is known as a :class:`TransportDescriptor`.
 It acts as a *builder* for a given transport, meaning that is allows to configure the transport,
 and then a new :ref:`Transport <transport_transportApi_transport>` can be built according to this configuration
-using its :func:`create_transport` factory member function.
+using its |TransportDescriptorInterface::create_transport-api| factory member function.
 
 Data members
 ^^^^^^^^^^^^
 
 The TransportDescriptorInterface defines the following data members:
 
-+--------------------------+------------------+-----------------------------------------------------------------------+
-| Member                   | Data type        | Description                                                           |
-+==========================+==================+=======================================================================+
-| ``maxMessageSize``       | ``uint32_t``     | Maximum size of a single message in the transport.                    |
-+--------------------------+------------------+-----------------------------------------------------------------------+
-| ``maxInitialPeersRange`` | ``uint32_t``     | Number of channels opened with each initial remote peer               |
-+--------------------------+------------------+-----------------------------------------------------------------------+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Member
+      - Data type
+      - Description
+    * - |TransportDescriptorInterface::maxMessageSize-api|
+      - ``uint32_t``
+      - Maximum size of a single message in the transport.
+    * - |TransportDescriptorInterface::maxInitialPeersRange-api|
+      - ``uint32_t``
+      - Number of channels opened with each initial remote peer.
 
 Any implementation of :ref:`transport_transportApi_transportDescriptor` should add as many
 data members as required to full configure the transport it describes.
@@ -74,10 +80,10 @@ data members as required to full configure the transport it describes.
 TransportInterface
 ------------------
 
-A :class:`Transport` is any class that implements the :class:`TransportInterface`.
+A :class:`Transport` is any class that implements the |TransportInterface-api|.
 It is the object that actually performs the message distribution over a physical transport.
 
-Each :class:`Transport` class defines its own ``transport_kind``, a unique identifier that is used to
+Each :class:`Transport` class defines its own |TransportInterface::kind-api|, a unique identifier that is used to
 check the compatibility of a :ref:`transport_transportApi_locator` with a Transport, i.e.,
 determine whether a Locator refers to a Transport or not.
 
@@ -116,17 +122,17 @@ Currently the following identifiers are used in *Fast DDS*:
 +-----------------------------------+----------+-----------------------------------------------------------------------+
 | Identifier                        | Value    | Transport type                                                        |
 +===================================+==========+=======================================================================+
-| ``LOCATOR_KIND_RESERVED-api``     | ``0``    | None. Reserved value for internal use.                                |
+| |LOCATOR_KIND_RESERVED-api|       |   0      | None. Reserved value for internal use.                                |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_UDPv4-api``        | ``1``    | :ref:`transport_udp_udp` over IPv4.                                   |
+| |LOCATOR_KIND_UDPv4-api|          |   1      | :ref:`transport_udp_udp` over IPv4.                                   |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_UDPv6-api``        | ``2``    | :ref:`transport_udp_udp` over IPv6.                                   |
+| |LOCATOR_KIND_UDPv6-api|          |   2      | :ref:`transport_udp_udp` over IPv6.                                   |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_TCPv4-api``        | ``4``    | :ref:`transport_tcp_tcp` over IPv4.                                   |
+| |LOCATOR_KIND_TCPv4-api|          |   4      | :ref:`transport_tcp_tcp` over IPv4.                                   |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_TCPv6-api``        | ``8``    | :ref:`transport_tcp_tcp` over IPv6.                                   |
+| |LOCATOR_KIND_TCPv6-api|          |   8      | :ref:`transport_tcp_tcp` over IPv6.                                   |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
-| ``LOCATOR_KIND_SHM-api``          | ``16``   | :ref:`transport_sharedMemory_sharedMemory`.                           |
+| |LOCATOR_KIND_SHM-api|            |   16     | :ref:`transport_sharedMemory_sharedMemory`.                           |
 +-----------------------------------+----------+-----------------------------------------------------------------------+
 
 
@@ -141,8 +147,10 @@ of the remote peer.
 
 The Locator class is not abstract, and no specializations are implemented for each transport type.
 Instead, transports should map the data members of the Locator class to their own channel identification
-concepts. For example, on :ref:`transport_sharedMemory_sharedMemory` the ``address`` contains a unique ID
-for the local host, and the ``port`` represents the shared ring buffer used to communicate buffer descriptors.
+concepts.
+For example, on :ref:`transport_sharedMemory_sharedMemory` the |Locator_t::address-api| contains a unique ID
+for the local host, and the |Locator_t::port-api| represents the shared ring buffer used to communicate buffer
+descriptors.
 
 Please refer to :ref:`listening_locators` for more information about how to configure
 DomainParticipant to listen to incoming traffic.
@@ -152,25 +160,32 @@ Data members
 
 The Locator defines the following data members:
 
-+--------------+------------------+-----------------------------------------------------------------------+
-| Member       | Data type        | Description                                                           |
-+==============+==================+=======================================================================+
-| ``kind``     | ``int32_t``      | Unique identifier of the transport type.                              |
-+--------------+------------------+-----------------------------------------------------------------------+
-| ``port``     | ``uint32_t``     | The channel *port*.                                                   |
-+--------------+------------------+-----------------------------------------------------------------------+
-| ``address``  | ``octet[16]``    | The channel *address*.                                                |
-+--------------+------------------+-----------------------------------------------------------------------+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Member
+      - Data type
+      - Description
+    * - |Locator_t::kind-api|
+      - ``int32_t``
+      - Unique identifier of the transport type.
+    * - |Locator_t::port-api|
+      - ``uint32_t``
+      - The channel *port*.
+    * - |Locator_t::address-api|
+      - ``octet[16]``
+      - The channel *address*.
 
 In TCP, the port of the locator is divided into a physical and a logical port.
 
 * The *physical port* is the port used by the network device, the real port that the operating system understands.
-  It is stored in the two least significant bytes of the member ``port``.
+  It is stored in the two least significant bytes of the member |Locator_t::port-api|.
 * The *logical port* is the RTPS port.
-  It is stored in the two most significant bytes of the member ``port``.
+  It is stored in the two most significant bytes of the member |Locator_t::port-api|.
 
 In UDP there is only the *physical port*, which is also the RTPS port, and is stored in the two least significant bytes
-of the member ``port``.
+of the member |Locator_t::port-api|.
 
 .. _transport_transportApi_ipLocator:
 
@@ -196,24 +211,23 @@ resolve the IP address.
 This address will in turn be used to create the listening locator in the case of *server*, or as the address of the
 remote *server* in the case of *clients* (and *servers* that connect to other *servers*).
 
-+---------------------------------------------------------------------+
-| **C++**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                      |
-|    :language: c++                                                   |
-|    :start-after: //CONF_SERVER_DNS_LOCATORS                         |
-|    :end-before: //!--                                               |
-|    :dedent: 8                                                       |
-|                                                                     |
-+---------------------------------------------------------------------+
-| **XML**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                          |
-|    :language: xml                                                   |
-|    :start-after: <!-->CONF_SERVER_DNS_LOCATORS<-->                  |
-|    :end-before: <!--><-->                                           |
-|    :dedent: 28                                                      |
-+---------------------------------------------------------------------+
+.. tabs::
+
+    .. tab:: C++
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+         :language: c++
+         :start-after: //CONF_SERVER_DNS_LOCATORS
+         :end-before: //!--
+         :dedent: 8
+
+    .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+         :language: xml
+         :start-after: <!-->CONF_SERVER_DNS_LOCATORS<-->
+         :end-before: <!--><-->
+         :dedent: 28
 
 .. warning::
 
@@ -226,8 +240,8 @@ Chaining of transports
 
 There are use cases where the user needs to pre-process out-coming information before being sent to network and also
 the incoming information after being received.
-*Transport API* offers two interfaces for implementing this kind of functionality: :class:`ChainingTransportDescriptor`
-and :class:`ChainingTransport`.
+*Transport API* offers two interfaces for implementing this kind of functionality: |ChainingTransportDescriptor-api|
+and |ChainingTransport-api|.
 
 .. uml::
     :align: center
@@ -263,32 +277,36 @@ and :class:`ChainingTransport`.
     CustomChainingTransport ---  UDPv4Transport : example
 
 
-These extensions allow to implement a new Transport which depends on another one (called here as *low level transport*).
-The user can override the `send()` function, pre-processing the out-coming buffer before calling the associated
-*low level transport*.
-Also, when a incoming buffer arrives to the *low level transport*, this one calls the overridden `receive()`
-function to
-allow to pre-process the buffer.
+These extensions allow to implement a new Transport which depends on another one (called here as
+``low_level_transport_``).
+The user can override the |ChainingTransport::send-api| function, pre-processing the out-coming buffer before calling
+the associated ``low_level_transport_``.
+Also, when a incoming buffer arrives to the ``low_level_transport_``, this one calls the overridden
+|ChainingTransport::receive-api| function to allow to pre-process the buffer.
 
 ChainingTransportDescriptor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Implementing :class:`ChainingTransportDescriptor` allows to configure the new Transport and set the *low level
-transport* on which it depends.
-The associated *low level transport* can be any transport which inherits from
-:class:`TransportInterface` (including another :class:`ChainingTransport`).
+Implementing |ChainingTransportDescriptor-api| allows to configure the new Transport and set the
+``low_level_transport_`` on which it depends.
+The associated ``low_level_transport_`` can be any transport which inherits from
+|TransportInterface-api| (including another |ChainingTransport-api|).
 
 
-The :class:`ChainingTransportDescriptor` defines the following data members:
+The |ChainingTransportDescriptor-api| defines the following data members:
 
-+--------------------------+---------------------------------------------------+----------------------------------+
-| Member                   | Data type                                         | Description                      |
-+==========================+===================================================+==================================+
-| ``low_level_descriptor`` | ``std::shared_ptr<TransportDescriptorInterface>`` | Transport descriptor of the *low |
-|                          |                                                   | level transport*                 |
-+--------------------------+---------------------------------------------------+----------------------------------+
+.. list-table::
+    :header-rows: 1
+    :align: left
 
-User has to specify the *low level tranport* in the definition of its new custom transport.
+    * - Member
+      - Data type
+      - Description
+    * - |ChainingTransportDescriptor::low_level_descriptor-api|
+      - ``std::shared_ptr<TransportDescriptorInterface>``
+      - Transport descriptor of the ``low_level_transport_``.
+
+User has to specify the ``low_level_transport_`` in the definition of its new custom transport.
 
 .. literalinclude:: ../../../code/DDSCodeTester.cpp
    :language: c++
@@ -298,7 +316,8 @@ User has to specify the *low level tranport* in the definition of its new custom
 ChainingTransport
 ^^^^^^^^^^^^^^^^^
 
-This interface forces the user to implement `send()` and `receive()` functions.
+This interface forces the user to implement |ChainingTransport::send-api| and |ChainingTransport::receive-api|
+functions.
 The idea is to pre-process the buffer and after, call to the next level.
 
 .. literalinclude:: ../../../code/DDSCodeTester.cpp

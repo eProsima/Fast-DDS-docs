@@ -1,3 +1,5 @@
+.. include:: ../../03-exports/aliases-api.include
+
 .. _transport_disableMulticast:
 
 Disabling all Multicast Traffic
@@ -12,29 +14,28 @@ avoiding the creation of the default metatraffic multicast and unicast locators.
 This prevents the DomainParticipant from listening to any discovery data from
 multicast sources.
 
-Consideration should be given to the assignment of the ports in the ``metatrafficUnicastLocatorList``,
-avoiding the assignment of ports that are not available or do not match the address-port
-listed in the publisher participant Initial Peers List.
+Consideration should be given to the assignment of the ports in the
+|BuiltinAttributes::metatrafficUnicastLocatorList-api|, avoiding the assignment of ports that are not available or do
+not match the address-port listed in the publisher participant Initial Peers List.
 
 The following is an example of how to disable all multicast traffic configuring one
 *metatraffic unicast* locator.
 
-+------------------------------------------------+
-| **C++**                                        |
-+------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp |
-|    :language: c++                              |
-|    :start-after: //CONF-DISABLE-MULTICAST      |
-|    :end-before: //!--                          |
-|    :dedent: 8                                  |
-+------------------------------------------------+
-| **XML**                                        |
-+------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml     |
-|    :language: xml                              |
-|    :start-after: <!-->CONF-DISABLE-MULTICAST   |
-|    :end-before: <!--><-->                      |
-|    :lines: 2-3,5-                              |
-|    :append: </profiles>                        |
-+------------------------------------------------+
+.. tabs::
 
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF-DISABLE-MULTICAST
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->CONF-DISABLE-MULTICAST
+      :end-before: <!--><-->
+      :lines: 2-3,5-
+      :append: </profiles>

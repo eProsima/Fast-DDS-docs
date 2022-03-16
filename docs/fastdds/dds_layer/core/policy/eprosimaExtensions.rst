@@ -141,7 +141,7 @@ List of QoS Policy data members:
 +-------------------------------------------------------------+------------------------------+-------------------------+
 | Data Member Name                                            | Type                         | Default Value           |
 +=============================================================+==============================+=========================+
-| |DisablePositiveACKsQosPolicy::enabled-api|                 | bool                         | ``false``               |
+| |DisablePositiveACKsQosPolicy::enabled-api|                 | ``bool``                     | ``false``               |
 +-------------------------------------------------------------+------------------------------+-------------------------+
 | |DisablePositiveACKsQosPolicy::duration-api|                | |Duration_t-api|             | |c_TimeInfinite-api|    |
 +-------------------------------------------------------------+------------------------------+-------------------------+
@@ -215,13 +215,13 @@ It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has t
 +------------------------------------------------------+-------------------------------------+-------------------------+
 | Data Member Name                                     | Type                                | Default Value           |
 +======================================================+=====================================+=========================+
-| |FlowControllerDescriptor::name-api|                 | const char *                        |                         |
+| |FlowControllerDescriptor::name-api|                 | ``const char *``                    |                         |
 +------------------------------------------------------+-------------------------------------+-------------------------+
 | |FlowControllerDescriptor::scheduler-api|            | |FlowControllerSchedulerPolicy-api| | |FIFO_SCHED_POLICY-api| |
 +------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::max_bytes_per_period-api| | int32_t                             | ``0`` (i.e. infinite)   |
+| |FlowControllerDescriptor::max_bytes_per_period-api| | ``int32_t``                         | 0 (i.e. infinite)       |
 +------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::period_ms-api|            | uint64_t                            | ``100``                 |
+| |FlowControllerDescriptor::period_ms-api|            | ``uint64_t``                        | 100                     |
 +------------------------------------------------------+-------------------------------------+-------------------------+
 
 Please refer to :ref:`flow-controllers` section for more information.
@@ -492,7 +492,7 @@ List of QoS Policy data members:
      - :ref:`publishmodeqospolicykind`
      - |SYNCHRONOUS_PUBLISH_MODE-api|
    * - |PublishModeQosPolicy::flow_ctrl_name-api|
-     - const char *
+     - ``const char *``
      - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::
@@ -971,21 +971,34 @@ See |WireProtocolConfigQos-api|.
 
 List of QoS Policy data members:
 
-+--------------------------------------------------------------+---------------------------------------+---------------+
-| Data Member Name                                             | Type                                  | Default Value |
-+==============================================================+=======================================+===============+
-| |WireProtocolConfigQos::prefix-api|                          | fastrtps::rtps::GuidPrefix_t          | 0             |
-+--------------------------------------------------------------+---------------------------------------+---------------+
-| |WireProtocolConfigQos::participant_id-api|                  | int32_t                               | -1            |
-+--------------------------------------------------------------+---------------------------------------+---------------+
-| |WireProtocolConfigQos::builtin-api|                         | |BuiltinAttributes-api|               |               |
-+--------------------------------------------------------------+---------------------------------------+---------------+
-| |WireProtocolConfigQos::throughput_controller-api|           | :ref:`throughputcontrollerdescriptor` |               |
-+--------------------------------------------------------------+---------------------------------------+---------------+
-| |WireProtocolConfigQos::default_unicast_locator_list-api|    | |LocatorList_t-api|                   | Empty List    |
-+--------------------------------------------------------------+---------------------------------------+---------------+
-| |WireProtocolConfigQos::default_multicast_locator_list-api|  | |LocatorList_t-api|                   | Empty List    |
-+--------------------------------------------------------------+---------------------------------------+---------------+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Data Member Name
+      - Type
+      - Default Value
+    * - |WireProtocolConfigQos::prefix-api|
+      - |GuidPrefix_t-api|
+      - 0
+    * - |WireProtocolConfigQos::participant_id-api|
+      - ``int32_t``
+      - -1
+    * - |WireProtocolConfigQos::builtin-api|
+      - |BuiltinAttributes-api|
+      -
+    * - |WireProtocolConfigQos::port-api|
+      - |PortParameters-api|
+      -
+    * - |WireProtocolConfigQos::throughput_controller-api|
+      - :ref:`throughputcontrollerdescriptor`
+      -
+    * - |WireProtocolConfigQos::default_unicast_locator_list-api|
+      - |LocatorList_t-api|
+      - Empty List
+    * - |WireProtocolConfigQos::default_multicast_locator_list-api|
+      - |LocatorList_t-api|
+      - Empty List
 
 * |WireProtocolConfigQos::prefix-api|:
   This data member allows the user to set manually the GUID prefix.
@@ -993,6 +1006,9 @@ List of QoS Policy data members:
   It sets the participant identifier. By default, it will be automatically generated by the Domain.
 * |WireProtocolConfigQos::builtin-api|:
   This data member allows the configuration of the built-in parameters.
+* |WireProtocolConfigQos::port-api|:
+  This data member allows the configuration of the port parameters and gains related to the RTPS protocol
+  (:ref:`listening_locators_defaultPorts`).
 * |WireProtocolConfigQos::throughput_controller-api|:
   It allows the configuration of the throughput settings.
 * |WireProtocolConfigQos::default_unicast_locator_list-api|:

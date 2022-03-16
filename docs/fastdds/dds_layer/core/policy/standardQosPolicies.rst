@@ -293,13 +293,13 @@ List of QoS Policy data members:
 +----------------------------------------------------+-----------------------------------+-----------------------------+
 | |history_kind-api|                                 | :ref:`historyqospolicykind`       | |KEEP_LAST_HISTORY_QOS-api| |
 +----------------------------------------------------+-----------------------------------+-----------------------------+
-| |history_depth-api|                                | int32_t                           | 1                           |
+| |history_depth-api|                                | ``int32_t``                       | 1                           |
 +----------------------------------------------------+-----------------------------------+-----------------------------+
-| |max_samples-api|                                  | int32_t                           | -1 (Length Unlimited)       |
+| |max_samples-api|                                  | ``int32_t``                       | -1 (Length Unlimited)       |
 +----------------------------------------------------+-----------------------------------+-----------------------------+
-| |max_instances-api|                                | int32_t                           | -1 (Length Unlimited)       |
+| |max_instances-api|                                | ``int32_t``                       | -1 (Length Unlimited)       |
 +----------------------------------------------------+-----------------------------------+-----------------------------+
-| |max_samples_per_instance-api|                     | int32_t                           | -1 (Length Unlimited)       |
+| |max_samples_per_instance-api|                     | ``int32_t``                       | -1 (Length Unlimited)       |
 +----------------------------------------------------+-----------------------------------+-----------------------------+
 
 * |service_cleanup_delay-api|: It controls when the service can remove all the information regarding a data instance.
@@ -340,11 +340,11 @@ to ``false``, the new entities will be created disabled (see |EntityFactoryQosPo
 
 List of QoS Policy data members:
 
-+-------------------------------------------------------------------------------+------+-------------------+
-| Data Member Name                                                              | Type | Default Value     |
-+===============================================================================+======+===================+
-| |autoenable_created_entities-api|                                             | bool | ``true``          |
-+-------------------------------------------------------------------------------+------+-------------------+
++---------------------------------------------------------------------------+----------+-------------------+
+| Data Member Name                                                          | Type     | Default Value     |
++===========================================================================+==========+===================+
+| |autoenable_created_entities-api|                                         | ``bool`` | ``true``          |
++---------------------------------------------------------------------------+----------+-------------------+
 
 .. note::
      This QoS Policy concerns to |DomainParticipantFactory| (as factory for |DomainParticipant|), DomainParticipant
@@ -429,7 +429,7 @@ List of QoS Policy data members:
 +==============================================+===============================+=======================================+
 | |HistoryQosPolicy::kind-api|                 | :ref:`historyqospolicykind`   | |KEEP_LAST_HISTORY_QOS-api|           |
 +----------------------------------------------+-------------------------------+---------------------------------------+
-| |HistoryQosPolicy::depth-api|                | int32_t                       | 1                                     |
+| |HistoryQosPolicy::depth-api|                | ``int32_t``                   | 1                                     |
 +----------------------------------------------+-------------------------------+---------------------------------------+
 
 * |HistoryQosPolicy::kind-api|: Controls if the service should deliver only the most recent values, all the
@@ -826,7 +826,7 @@ List of QoS Policy data members:
 +---------------------------------------+---------------------------------------------+--------------------------------+
 | Data Member Name                      | Type                                        | Default Value                  |
 +=======================================+=============================================+================================+
-| |PartitionQosPolicy::max_size-api|    | uint32_t                                    | 0 (Length Unlimited)           |
+| |PartitionQosPolicy::max_size-api|    | ``uint32_t``                                | 0 (Length Unlimited)           |
 +---------------------------------------+---------------------------------------------+--------------------------------+
 | |PartitionQosPolicy::names-api|       | |SerializedPayload_t-api|                   | Empty List                     |
 +---------------------------------------+---------------------------------------------+--------------------------------+
@@ -881,9 +881,9 @@ List of QoS Policy data members:
 +==================================+=============================================+=====================================+
 | |access_scope-api|               | :ref:`presentationqospolicyaccessscopekind` | |INSTANCE_PRESENTATION_QOS-api|     |
 +----------------------------------+---------------------------------------------+-------------------------------------+
-| |coherent_access-api|            | bool                                        | ``false``                           |
+| |coherent_access-api|            | ``bool``                                    | ``false``                           |
 +----------------------------------+---------------------------------------------+-------------------------------------+
-| |ordered_access-api|             | bool                                        | ``false``                           |
+| |ordered_access-api|             | ``bool``                                    | ``false``                           |
 +----------------------------------+---------------------------------------------+-------------------------------------+
 
 * |access_scope-api|: Determines the largest scope spanning the entities for which the order and coherency can be
@@ -1374,7 +1374,7 @@ List of QoS Policy data members:
 +--------------------------------------------------------------------------------------+-----------+-------------------+
 | Data Member Name                                                                     | Type      | Default Value     |
 +======================================================================================+===========+===================+
-| |WriterDataLifecycleQosPolicy::autodispose_unregistered_instances-api|               | bool      | ``true``          |
+| |WriterDataLifecycleQosPolicy::autodispose_unregistered_instances-api|               | ``bool``  | ``true``          |
 +--------------------------------------------------------------------------------------+-----------+-------------------+
 
 .. note::

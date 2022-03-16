@@ -3,7 +3,7 @@
 Transport
 =========
 
-*eProsima Fast DDS* transport layer API.
+*eProsima Fast DDS* Transport Layer API.
 
 .. toctree::
 

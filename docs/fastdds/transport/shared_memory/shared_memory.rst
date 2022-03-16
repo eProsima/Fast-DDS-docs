@@ -153,7 +153,7 @@ the TransportDescriptor for Shared Memory defines the following ones:
           (in milliseconds).
     *   - ``rtps_dump_file_``
         - ``string``
-        - Empty
+        - ``""``
         - |SharedMemTransportDescriptor::rtps_dump_file-api|
         - Full path of the protocol dump file.
 

@@ -1007,7 +1007,7 @@ List of QoS Policy data members:
 * |WireProtocolConfigQos::builtin-api|:
   This data member allows the configuration of the built-in parameters.
 * |WireProtocolConfigQos::port-api|:
-  This data member allows the configuration of the port parameters and gains related with the RTPS protocol
+  This data member allows the configuration of the port parameters and gains related to the RTPS protocol
   (:ref:`listening_locators_defaultPorts`).
 * |WireProtocolConfigQos::throughput_controller-api|:
   It allows the configuration of the throughput settings.

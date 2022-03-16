@@ -77,28 +77,28 @@ The following table describes the data members that are configurable on |TCPTran
      - Description
    * - |TCPTransportDescriptor::TLSConfig::password-api|
      - ``string``
-     - empty
+     - ``""``
      - Password of the |TCPTransportDescriptor::TLSConfig::private_key_file-api| or
        |TCPTransportDescriptor::TLSConfig::rsa_private_key_file-api|.
    * - |TCPTransportDescriptor::TLSConfig::private_key_file-api|
      - ``string``
-     - empty
+     - ``""``
      - Path to the private key certificate file.
    * - |TCPTransportDescriptor::TLSConfig::rsa_private_key_file-api|
      - ``string``
-     - empty
+     - ``""``
      - Path to the private key RSA certificate file.
    * - |TCPTransportDescriptor::TLSConfig::cert_chain_file-api|
      - ``string``
-     - empty
+     - ``""``
      - Path to the public certificate chain file.
    * - |TCPTransportDescriptor::TLSConfig::tmp_dh_file-api|
      - ``string``
-     - empty
+     - ``""``
      - Path to the Diffie-Hellman parameters file.
    * - |TCPTransportDescriptor::TLSConfig::verify_file-api|
      - ``string``
-     - empty
+     - ``""``
      - Path to the CA (Certification- Authority) file.
    * - |TCPTransportDescriptor::TLSConfig::verify_mode-api|
      - |TCPTransportDescriptor::TLSConfig::TLSVerifyMode-api|
@@ -112,7 +112,7 @@ The following table describes the data members that are configurable on |TCPTran
        See |TLSOptions|.
    * - |TCPTransportDescriptor::TLSConfig::verify_paths-api|
      - ``vector<string>``
-     - empty
+     - ``""``
      - Paths where the system will look for verification files.
    * - |TCPTransportDescriptor::TLSConfig::verify_depth-api|
      - ``int32_t``

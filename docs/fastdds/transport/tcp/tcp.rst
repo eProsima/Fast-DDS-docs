@@ -60,7 +60,7 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - Size of the receiving buffer of the socket (octets).
   * - |SocketTransportDescriptor::interfaceWhiteList-api|
     - ``vector<string>``
-    - empty
+    - ``""``
     - List of allowed interfaces
       See |InterfaceWhitelist|.
   * - |SocketTransportDescriptor::TTL-api|
@@ -69,7 +69,7 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - Time to live, in number of hops.
   * - |TCPTransportDescriptor::listening_ports-api|
     - ``vector<uint16_t>``
-    - empty
+    - ``""``
     - List of ports to listen as *server*.
   * - |TCPTransportDescriptor::keep_alive_frequency_ms-api|
     - ``uint32_t``
@@ -136,7 +136,7 @@ The following table describes the data members that are exclusive for |TCPv4Tran
     - Description
   * - |TCPv4TransportDescriptor::wan_addr-api|
     - ``octet[4]``
-    - empty
+    - ``""``
     - Configuration for WAN. See |WANconfig|.
 
 .. note::

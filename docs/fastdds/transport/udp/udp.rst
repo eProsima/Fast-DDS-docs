@@ -46,7 +46,7 @@ The following table describes the common data members for both UDPv4 and UDPv6.
      - Size of the receiving buffer of the socket (octets).
    * - |SocketTransportDescriptor::interfaceWhiteList-api|
      - ``vector<string>``
-     - ``""``
+     - Empty vector
      - List of allowed interfaces.
        See |InterfaceWhitelist|.
    * - |SocketTransportDescriptor::TTL-api|

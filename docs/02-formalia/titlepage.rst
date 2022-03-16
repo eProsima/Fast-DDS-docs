@@ -30,8 +30,8 @@ distributed network paradigm that neatly allows separation of the publisher and 
 
 
 For all the above, *eProsima Fast DDS* has been chosen as the default middleware supported by the
-`Robot Operating System 2 (ROS 2) <https://index.ros.org/doc/ros2/>`__ until and including last long term
-release Foxy Fitzroy.
+`Robot Operating System 2 (ROS 2) <https://index.ros.org/doc/ros2/>`__ in every long term (LTS) releases and most of the
+non-LTS releases.
 
 DDS API
 ^^^^^^^

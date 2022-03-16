@@ -3,8 +3,6 @@
 Building Python auxiliary libraries
 ===================================
 
-.. note:: Currently only supported in Linux environments.
-
 *eProsima Fast DDS-Gen* can generate the required source files and CMake project to build the Python modules that
 allow the use of the IDL defined data types within a *Fast DDS* Python-based application.
 Each IDL file will result in a new Python module that will contain all the data types defined in the file.

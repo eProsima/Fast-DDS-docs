@@ -71,7 +71,8 @@ visit :ref:`discovery_server`.
 Prerequisites
 -------------
 
-This tutorial assumes you have a `working Foxy ROS 2 installation <https://index.ros.org/doc/ros2/Installation/>`__.
+This tutorial assumes you have at least a
+`working Foxy ROS 2 installation <https://index.ros.org/doc/ros2/Installation/>`__.
 In case your installation is using a Fast DDS version lower than v2.0.2 you could not use the ``fastdds`` tool.
 You could update your repository to use a different Fast DDS version,
 or :ref:`set the discovery server by Fast-DDS XML QoS configuration <discovery_server>`.

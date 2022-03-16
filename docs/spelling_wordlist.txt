@@ -118,6 +118,7 @@ localhost
 LogTopic
 loopback
 lroundl
+LTS
 macOS
 mandatorily
 md

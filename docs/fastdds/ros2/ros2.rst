@@ -8,8 +8,8 @@ ROS 2 using Fast DDS middleware
 
 *Fast DDS* is the default middleware implementation in the
 `Open Source Robotic Fundation (OSRF) <https://www.openrobotics.org/>`_
-`Robot Operating System ROS 2 <https://index.ros.org/doc/ros2/>`_ until and including the latest long term release
-*Foxy*.
+`Robot Operating System ROS 2 <https://index.ros.org/doc/ros2/>`_ in every long term (LTS) releases and most of the
+non-LTS releases.
 
 **ROS 2** is a state-of-the-art software for robot engineering which
 consists of a set of `free software libraries <https://github.com/ros2>`__ and tools for building robot applications.

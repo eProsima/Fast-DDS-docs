@@ -47,6 +47,11 @@ It is advisable to check that the returned value is a valid pointer.
    :dedent: 8
 
 
+.. _dds_layer_topic_contentFilteredTopic_update:
+
+Updating the filter expression and parameters
+---------------------------------------------
+
 .. _dds_layer_topic_contentFilteredTopic_deletion:
 
 Deleting a ContentFilteredTopic

@@ -1,4 +1,9 @@
 .. |ContentFilteredTopic-api| replace:: :cpp:class:`ContentFilteredTopic <eprosima::fastdds::dds::ContentFilteredTopic>`
+.. |ContentFilteredTopic::get_related_topic-api| replace:: :cpp:func:`get_related_topic()<eprosima::fastdds::dds::ContentFilteredTopic::get_related_topic>`
+.. |ContentFilteredTopic::get_filter_expression-api| replace:: :cpp:func:`get_filter_expression()<eprosima::fastdds::dds::ContentFilteredTopic::get_filter_expression>`
+.. |ContentFilteredTopic::get_expression_parameters-api| replace:: :cpp:func:`get_expression_parameters()<eprosima::fastdds::dds::ContentFilteredTopic::get_expression_parameters>`
+.. |ContentFilteredTopic::set_expression_parameters-api| replace:: :cpp:func:`set_expression_parameters()<eprosima::fastdds::dds::ContentFilteredTopic::set_expression_parameters>`
+.. |ContentFilteredTopic::set_filter_expression-api| replace:: :cpp:func:`set_filter_expression()<eprosima::fastdds::dds::ContentFilteredTopic::set_filter_expression>`
 
 .. |DataReader-api| replace:: :cpp:class:`DataReader <eprosima::fastdds::dds::DataReader>`
 .. |DataReader::get_listening_locators-api| replace:: :cpp:func:`get_listening_locators()<eprosima::fastdds::dds::DataReader::get_listening_locators>`
@@ -108,9 +113,14 @@
 .. |DomainParticipant::create_subscriber_with_profile-api| replace:: :cpp:func:`create_subscriber_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_subscriber_with_profile>`
 .. |DomainParticipant::create_subscriber-api| replace:: :cpp:func:`create_subscriber()<eprosima::fastdds::dds::DomainParticipant::create_subscriber>`
 .. |DomainParticipant::create_topic-api| replace:: :cpp:func:`create_topic()<eprosima::fastdds::dds::DomainParticipant::create_topic>`
+.. |DomainParticipant::create_contentfilteredtopic-api| replace:: :cpp:func:`create_contentfilteredtopic()<eprosima::fastdds::dds::DomainParticipant::create_contentfilteredtopic>`
 .. |DomainParticipant::delete_publisher-api| replace:: :cpp:func:`delete_publisher()<eprosima::fastdds::dds::DomainParticipant::delete_publisher>`
 .. |DomainParticipant::delete_subscriber-api| replace:: :cpp:func:`delete_subscriber()<eprosima::fastdds::dds::DomainParticipant::delete_subscriber>`
 .. |DomainParticipant::delete_topic-api| replace:: :cpp:func:`delete_topic()<eprosima::fastdds::dds::DomainParticipant::delete_topic>`
+.. |DomainParticipant::delete_contentfilteredtopic-api| replace:: :cpp:func:`delete_contentfilteredtopic()<eprosima::fastdds::dds::DomainParticipant::delete_contentfilteredtopic>`
+.. |DomainParticipant::register_content_filter_factory-api| replace:: :cpp:func:`register_content_filter_factory()<eprosima::fastdds::dds::DomainParticipant::register_content_filter_factory>`
+.. |DomainParticipant::lookup_content_filter_factory-api| replace:: :cpp:func:`lookup_content_filter_factory()<eprosima::fastdds::dds::DomainParticipant::lookup_content_filter_factory>`
+.. |DomainParticipant::unregister_content_filter_factory-api| replace:: :cpp:func:`unregister_content_filter_factory()<eprosima::fastdds::dds::DomainParticipant::unregister_content_filter_factory>`
 .. |DomainParticipant::get_default_publisher_qos-api| replace:: :cpp:func:`get_default_publisher_qos()<eprosima::fastdds::dds::DomainParticipant::get_default_publisher_qos>`
 .. |DomainParticipant::get_default_subscriber_qos-api| replace:: :cpp:func:`get_default_subscriber_qos()<eprosima::fastdds::dds::DomainParticipant::get_default_subscriber_qos>`
 .. |DomainParticipant::get_default_topic_qos-api| replace:: :cpp:func:`get_default_topic_qos()<eprosima::fastdds::dds::DomainParticipant::get_default_topic_qos>`

@@ -1680,6 +1680,48 @@ void dds_content_filtered_topic_examples()
         }
         //!--
     }
+
+    {
+        //DDS_DELETE_CONTENT_FILTERED_TOPIC
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic
+        Topic* topic =
+                participant->create_topic("HelloWorldTopic", "HelloWorldTopic", TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create a ContentFilteredTopic
+        ContentFilteredTopic* filter_topic =
+                participant->create_contentfilteredtopic("HelloWorldFilteredTopic", topic, "index > 10", {});
+        if (nullptr == filter_topic)
+        {
+            // Error
+            return;
+        }
+
+        // Use the ContentFilteredTopic on DataReader objects.
+        // (...)
+
+        // Delete the ContentFilteredTopic
+        if (participant->delete_contentfilteredtopic(filter_topic) != ReturnCode_t::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
 }
 
 class CustomPublisherListener : public PublisherListener

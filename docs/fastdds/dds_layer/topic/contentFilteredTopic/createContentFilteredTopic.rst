@@ -45,3 +45,19 @@ It is advisable to check that the returned value is a valid pointer.
    :start-after: //DDS_CREATE_CONTENT_FILTERED_TOPIC
    :end-before: //!
    :dedent: 8
+
+
+.. _dds_layer_topic_contentFilteredTopic_deletion:
+
+Deleting a ContentFilteredTopic
+-------------------------------
+
+A ContentFilteredTopic can be deleted with the |DomainParticipant::delete_contentfilteredtopic-api| member function
+on the DomainParticipant instance where the ContentFilteredTopic was created.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_DELETE_CONTENT_FILTERED_TOPIC
+   :end-before: //!
+   :dedent: 8
+

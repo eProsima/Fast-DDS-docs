@@ -52,6 +52,26 @@ It is advisable to check that the returned value is a valid pointer.
 Updating the filter expression and parameters
 ---------------------------------------------
 
+A ContentFilteredTopic provides several member functions for the management of the filter expression and
+the expression parameters:
+
+ * The filter expression can be retrieved with the |ContentFilteredTopic::get_filter_expression-api| member function.
+
+ * The expression parameters can be retrieved with the |ContentFilteredTopic::get_expression_parameters-api| member
+   function.
+
+ * The expression parameters can be modified using the |ContentFilteredTopic::set_expression_parameters-api| member
+   function.
+
+ * The filter expression can be modified along with the expression parameters using the
+   |ContentFilteredTopic::set_filter_expression-api| member function.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_UPDATE_CONTENT_FILTERED_TOPIC
+   :end-before: //!
+   :dedent: 8
+
 .. _dds_layer_topic_contentFilteredTopic_deletion:
 
 Deleting a ContentFilteredTopic

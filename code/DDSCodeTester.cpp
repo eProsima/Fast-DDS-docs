@@ -1682,6 +1682,86 @@ void dds_content_filtered_topic_examples()
     }
 
     {
+        //DDS_UPDATE_CONTENT_FILTERED_TOPIC
+        
+        // This lambda prints all the information of a ContentFilteredTopic
+        auto print_filter_info = [](
+                const ContentFilteredTopic* filter_topic)
+        {
+            std::cout << "ContentFilteredTopic info for '" << filter_topic->get_name() << "':" << std::endl;
+            std::cout << "  - Related Topic: " << filter_topic->get_related_topic()->get_name() << std::endl;
+            std::cout << "  - Expression:    " << filter_topic->get_filter_expression() << std::endl;
+            std::cout << "  - Parameters:" << std::endl;
+            
+            std::vector<std::string> parameters;
+            filter_topic->get_expression_parameters(parameters);
+            size_t i = 0;
+            for (const std::string& parameter : parameters)
+            {
+                std::cout << "    " << i++ << ": " << parameter << std::endl;
+            }
+        };
+        
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a Topic
+        Topic* topic =
+                participant->create_topic("HelloWorldTopic", "HelloWorldTopic", TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create a ContentFilteredTopic
+        ContentFilteredTopic* filter_topic =
+                participant->create_contentfilteredtopic("HelloWorldFilteredTopic", topic, "index > 10", {});
+        if (nullptr == filter_topic)
+        {
+            // Error
+            return;
+        }
+        
+        // Print the information
+        print_filter_info(filter_topic);
+
+        // Use the ContentFilteredTopic on DataReader objects.
+        // (...)
+
+        // Update the expression
+        if (ReturnCode_t::RETCODE_OK !=
+                filter_topic->set_filter_expression("message like %0 or index > %1", {"'Hello*'", "15"}))
+        {
+            // Error
+            return;
+        }
+
+        // Print the updated information
+        print_filter_info(filter_topic);
+
+        // Update the parameters
+        if (ReturnCode_t::RETCODE_OK !=
+                filter_topic->set_expression_parameters({"'*world*'", "222"}))
+        {
+            // Error
+            return;
+        }
+
+        // Print the updated information
+        print_filter_info(filter_topic);
+
+        //!--
+    }
+
+
+    {
         //DDS_DELETE_CONTENT_FILTERED_TOPIC
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
@@ -1721,7 +1801,6 @@ void dds_content_filtered_topic_examples()
         }
         //!--
     }
-
 }
 
 class CustomPublisherListener : public PublisherListener

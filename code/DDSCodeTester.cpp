@@ -1610,6 +1610,78 @@ void dds_topic_examples()
     }
 }
 
+void dds_content_filtered_topic_examples()
+{
+    {
+        //DDS_CREATE_CONTENT_FILTERED_TOPIC
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Topic.
+        Topic* topic =
+                participant->create_topic("HelloWorldTopic", "HelloWorld", TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create a ContentFilteredTopic using an expression with no parameters
+        std::string expression = "message like 'Hello*'";
+        std::vector<std::string> parameters;
+        ContentFilteredTopic* filter_topic =
+                participant->create_contentfilteredtopic("HelloWorldFilteredTopic1", topic, expression, parameters);
+        if (nullptr == filter_topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create a ContentFilteredTopic using an expression with parameters
+        expression = "message like %0 or index > %1";
+        parameters.push_back("'*world*'");
+        parameters.push_back("20");
+        ContentFilteredTopic* filter_topic_with_parameters =
+                participant->create_contentfilteredtopic("HelloWorldFilteredTopic2", topic, expression, parameters);
+        if (nullptr == filter_topic_with_parameters)
+        {
+            // Error
+            return;
+        }
+
+        // The ContentFilteredTopic instances can then be used to create DataReader objects.
+        Subscriber* subscriber =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr == subscriber)
+        {
+            // Error
+            return;
+        }
+        
+        DataReader* reader_on_filter = subscriber->create_datareader(filter_topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr == reader_on_filter)
+        {
+            // Error
+            return;
+        }
+        
+        DataReader* reader_on_filter_with_parameters =
+                subscriber->create_datareader(filter_topic_with_parameters, DATAREADER_QOS_DEFAULT);
+        if (nullptr == reader_on_filter_with_parameters)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+}
+
 class CustomPublisherListener : public PublisherListener
 {
 };

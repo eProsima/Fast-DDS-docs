@@ -27,6 +27,7 @@ bitmask
 bitmasks
 bitset
 bitsets
+BNF
 boolean
 booleans
 bugfixes
@@ -147,6 +148,7 @@ OSS
 persistency
 PKI
 pluggable
+postfixed
 ppDisable
 ppPath
 pre

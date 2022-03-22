@@ -1663,14 +1663,14 @@ void dds_content_filtered_topic_examples()
             // Error
             return;
         }
-        
+
         DataReader* reader_on_filter = subscriber->create_datareader(filter_topic, DATAREADER_QOS_DEFAULT);
         if (nullptr == reader_on_filter)
         {
             // Error
             return;
         }
-        
+
         DataReader* reader_on_filter_with_parameters =
                 subscriber->create_datareader(filter_topic_with_parameters, DATAREADER_QOS_DEFAULT);
         if (nullptr == reader_on_filter_with_parameters)
@@ -1683,25 +1683,25 @@ void dds_content_filtered_topic_examples()
 
     {
         //DDS_UPDATE_CONTENT_FILTERED_TOPIC
-        
+
         // This lambda prints all the information of a ContentFilteredTopic
         auto print_filter_info = [](
-                const ContentFilteredTopic* filter_topic)
-        {
-            std::cout << "ContentFilteredTopic info for '" << filter_topic->get_name() << "':" << std::endl;
-            std::cout << "  - Related Topic: " << filter_topic->get_related_topic()->get_name() << std::endl;
-            std::cout << "  - Expression:    " << filter_topic->get_filter_expression() << std::endl;
-            std::cout << "  - Parameters:" << std::endl;
-            
-            std::vector<std::string> parameters;
-            filter_topic->get_expression_parameters(parameters);
-            size_t i = 0;
-            for (const std::string& parameter : parameters)
-            {
-                std::cout << "    " << i++ << ": " << parameter << std::endl;
-            }
-        };
-        
+            const ContentFilteredTopic* filter_topic)
+                {
+                    std::cout << "ContentFilteredTopic info for '" << filter_topic->get_name() << "':" << std::endl;
+                    std::cout << "  - Related Topic: " << filter_topic->get_related_topic()->get_name() << std::endl;
+                    std::cout << "  - Expression:    " << filter_topic->get_filter_expression() << std::endl;
+                    std::cout << "  - Parameters:" << std::endl;
+
+                    std::vector<std::string> parameters;
+                    filter_topic->get_expression_parameters(parameters);
+                    size_t i = 0;
+                    for (const std::string& parameter : parameters)
+                    {
+                        std::cout << "    " << i++ << ": " << parameter << std::endl;
+                    }
+                };
+
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
@@ -1728,7 +1728,7 @@ void dds_content_filtered_topic_examples()
             // Error
             return;
         }
-        
+
         // Print the information
         print_filter_info(filter_topic);
 
@@ -1757,6 +1757,14 @@ void dds_content_filtered_topic_examples()
         // Print the updated information
         print_filter_info(filter_topic);
 
+        //!--
+
+
+        //DDS_CONTENT_FILTERED_TOPIC_SQL_EXAMPLE
+        ContentFilteredTopic* sql_filter_topic =
+                participant->create_contentfilteredtopic("Shape", topic,
+                        "x < 23 AND y > 50 AND width BETWEEN %0 AND %1",
+                        {"10", "20"});
         //!--
     }
 

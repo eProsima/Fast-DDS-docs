@@ -1802,7 +1802,7 @@ void dds_content_filtered_topic_examples()
         // (...)
 
         // Delete the ContentFilteredTopic
-        if (participant->delete_contentfilteredtopic(filter_topic) != ReturnCode_t::RETCODE_OK)
+        if (ReturnCode_t::RETCODE_OK != participant->delete_contentfilteredtopic(filter_topic))
         {
             // Error
             return;

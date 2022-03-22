@@ -37,8 +37,8 @@ It is advisable to check that the returned value is a valid pointer.
 .. note::
     Different filter classes may impose different requirements on the related topic, the expression, or the parameters.
     The default filter class, in particular, requires that a TypeObject for the related topic's type has been registered.
-    When using fastddsgen to generate your type support code, remember to include the ``-typeobject`` option so the
-    TypeObject registration code is generated.
+    When using :ref:`fastddsgen <fastddsgen_supported_options>` to generate your type support code, remember to include
+    the ``-typeobject`` option so the TypeObject registration code is generated.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

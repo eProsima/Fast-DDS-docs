@@ -1624,6 +1624,15 @@ void dds_content_filtered_topic_examples()
         }
 
         // Create the Topic.
+        /* IDL
+         *
+         * struct HelloWorld
+         * {
+         *     long index;
+         *     string message;
+         * }
+         *
+         */
         Topic* topic =
                 participant->create_topic("HelloWorldTopic", "HelloWorld", TOPIC_QOS_DEFAULT);
         if (nullptr == topic)
@@ -1712,6 +1721,15 @@ void dds_content_filtered_topic_examples()
         }
 
         // Create a Topic
+        /* IDL
+         *
+         * struct HelloWorld
+         * {
+         *     long index;
+         *     string message;
+         * }
+         *
+         */
         Topic* topic =
                 participant->create_topic("HelloWorldTopic", "HelloWorldTopic", TOPIC_QOS_DEFAULT);
         if (nullptr == topic)
@@ -1781,6 +1799,15 @@ void dds_content_filtered_topic_examples()
         }
 
         // Create a Topic
+        /* IDL
+         *
+         * struct HelloWorld
+         * {
+         *     long index;
+         *     string message;
+         * }
+         *
+         */
         Topic* topic =
                 participant->create_topic("HelloWorldTopic", "HelloWorldTopic", TOPIC_QOS_DEFAULT);
         if (nullptr == topic)

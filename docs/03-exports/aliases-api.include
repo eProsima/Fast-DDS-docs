@@ -182,6 +182,12 @@
 .. |HIGH_PRIORITY_SCHED_POLICY-api| replace:: :cpp:enumerator:`HIGH_PRIORITY<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::HIGH_PRIORITY>`
 .. |PRIORITY_WITH_RESERVATION_SCHED_POLICY-api| replace:: :cpp:enumerator:`PRIORITY_WITH_RESERVATION<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::PRIORITY_WITH_RESERVATION>`
 
+.. |IContentFilter-api| replace:: :cpp:class:`IContentFilter<eprosima::fastdds::dds::IContentFilter>`
+.. |IContentFilter::evaluate-api| replace:: :cpp:func:`evaluate()<eprosima::fastdds::dds::IContentFilter::evaluate>`
+.. |IContentFilterFactory-api| replace:: :cpp:class:`IContentFilterFactory<eprosima::fastdds::dds::IContentFilterFactory>`
+.. |IContentFilterFactory::create_content_filter-api| replace:: :cpp:func:`create_content_filter()<eprosima::fastdds::dds::IContentFilterFactory::create_content_filter>`
+.. |IContentFilterFactory::delete_content_filter-api| replace:: :cpp:func:`delete_content_filter()<eprosima::fastdds::dds::IContentFilterFactory::delete_content_filter>`
+
 .. |LoanableSequence-api| replace:: :cpp:class:`LoanableSequence <eprosima::fastdds::dds::LoanableSequence>`
 
 .. |Publisher-api| replace:: :cpp:class:`Publisher <eprosima::fastdds::dds::Publisher>`

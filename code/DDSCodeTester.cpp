@@ -44,6 +44,8 @@
 
 #include <fastrtps/utils/IPLocator.h>
 
+#include <fastcdr/Cdr.h>
+
 #include <sstream>
 
 using namespace eprosima::fastdds::dds;
@@ -1830,6 +1832,211 @@ void dds_content_filtered_topic_examples()
 
         // Delete the ContentFilteredTopic
         if (ReturnCode_t::RETCODE_OK != participant->delete_contentfilteredtopic(filter_topic))
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+}
+
+void dds_custom_filters_examples()
+{
+    //DDS_CUSTOM_FILTER_CLASS
+    class MyCustomFilter : public IContentFilter
+    {
+    public:
+
+        MyCustomFilter(
+                int low_mark,
+                int high_mark)
+            : low_mark_(low_mark)
+            , high_mark_(high_mark)
+        {
+        }
+
+        bool evaluate(
+                const SerializedPayload& payload,
+                const FilterSampleInfo& sample_info,
+                const GUID_t& reader_guid) const override
+        {
+            // Deserialize the `index` field from the serialized sample.
+            /* IDL
+             *
+             * struct HelloWorld
+             * {
+             *     long index;
+             *     string message;
+             * }
+             */
+            eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload.data), payload.length);
+            eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN,
+                    eprosima::fastcdr::Cdr::DDS_CDR);
+            // Deserialize encapsulation.
+            deser.read_encapsulation();
+            int index = 0;
+
+            // Deserialize `index` field.
+            try
+            {
+                deser >> index;
+            }
+            catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+            {
+                return false;
+            }
+
+            // Custom filter: reject samples where index > low_mark_ and index < high_mark_.
+            if (index > low_mark_ && index < high_mark_)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+    private:
+
+        int low_mark_ = 0;
+        int high_mark_ = 0;
+
+    };
+    //!--
+
+
+    //DDS_CUSTOM_FILTER_FACTORY_CLASS
+    class MyCustomFilterFactory : public IContentFilterFactory
+    {
+    public:
+
+        ReturnCode_t create_content_filter(
+                const char* filter_class_name, // My custom filter class name is 'MY_CUSTOM_FILTER'.
+                const char* type_name, // This custom filter only supports one type: 'HelloWorld'.
+                const TopicDataType* /*data_type*/, // Not used in this implementation.
+                const char* filter_expression, // This Custom Filter doesn't implement a filter expression.
+                const ParameterSeq& filter_parameters, // Always need two parameters to be set: low_mark and high_mark.
+                IContentFilter*& filter_instance) override
+        {
+            // Check the ContentFilteredTopic should be created by my factory.
+            if (0 != strcmp(filter_class_name, "MY_CUSTOM_FILTER"))
+            {
+                return ReturnCode_t::RETCODE_BAD_PARAMETER;
+            }
+
+            // Check the ContentFilteredTopic is created for the unique type this Custom Filter supports.
+            if (0 != strcmp(type_name, "HelloWorld"))
+            {
+                return ReturnCode_t::RETCODE_BAD_PARAMETER;
+            }
+
+            // Checks there were set the two mandatory filter parameters.
+            if (2 != filter_parameters.length())
+            {
+                return ReturnCode_t::RETCODE_BAD_PARAMETER;
+            }
+
+            // If there is an update, delete previous instance.
+            if (nullptr != filter_instance)
+            {
+                delete(filter_instance);
+            }
+
+            // Instantiation of the Custom Filter.
+            filter_instance = new MyCustomFilter(std::stoi(filter_parameters[0]), std::stoi(filter_parameters[1]));
+
+            return ReturnCode_t::RETCODE_OK;
+        }
+
+        ReturnCode_t delete_content_filter(
+                const char* filter_class_name,
+                IContentFilter* filter_instance) override
+        {
+            // Check the ContentFilteredTopic should be created by my factory.
+            if (0 != strcmp(filter_class_name, "MY_CUSTOM_FILTER"))
+            {
+                return ReturnCode_t::RETCODE_BAD_PARAMETER;
+            }
+
+            // Deletion of the Custom Filter.
+            delete(filter_instance);
+
+            return ReturnCode_t::RETCODE_OK;
+        }
+
+    };
+    //!--
+
+    {
+        //DDS_CUSTOM_FILTER_REGISTER_FACTORY
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create Custom Filter Factory
+        MyCustomFilterFactory* factory = new MyCustomFilterFactory();
+
+
+        // Registration of the factory
+        if (ReturnCode_t::RETCODE_OK !=
+                participant->register_content_filter_factory("MY_CUSTOM_FILTER", factory))
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+
+    {
+        //DDS_CUSTOM_FILTER_CREATE_TOPIC
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create the Topic.
+        Topic* topic =
+                participant->create_topic("HelloWorldTopic", "HelloWorld", TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create a ContentFilteredTopic selecting the Custom Filter and using no expression with two parameters
+        std::string expression = "";
+        std::vector<std::string> parameters;
+        parameters.push_back("10"); // Parameter for low_mark
+        parameters.push_back("20"); // Parameter for low_mark
+        ContentFilteredTopic* filter_topic =
+                participant->create_contentfilteredtopic("HelloWorldFilteredTopic1", topic, expression, parameters,
+                        "MY_CUSTOM_FILTER");
+        if (nullptr == filter_topic)
+        {
+            // Error
+            return;
+        }
+
+        // The ContentFilteredTopic instances can then be used to create DataReader objects.
+        Subscriber* subscriber =
+                participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr == subscriber)
+        {
+            // Error
+            return;
+        }
+
+        DataReader* reader_on_filter = subscriber->create_datareader(filter_topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr == reader_on_filter)
         {
             // Error
             return;

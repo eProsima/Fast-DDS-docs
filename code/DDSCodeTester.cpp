@@ -1938,7 +1938,7 @@ void dds_custom_filters_examples()
             // If there is an update, delete previous instance.
             if (nullptr != filter_instance)
             {
-                delete(filter_instance);
+                delete(dynamic_cast<MyCustomFilter*>(filter_instance));
             }
 
             // Instantiation of the Custom Filter.
@@ -1958,7 +1958,7 @@ void dds_custom_filters_examples()
             }
 
             // Deletion of the Custom Filter.
-            delete(filter_instance);
+            delete(dynamic_cast<MyCustomFilter*>(filter_instance));
 
             return ReturnCode_t::RETCODE_OK;
         }

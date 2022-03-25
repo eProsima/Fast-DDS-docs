@@ -1,7 +1,5 @@
 .. include:: ../../../../03-exports/aliases.include
 .. include:: ../../../../03-exports/aliases-api.include
-.. include:: ../../../../03-exports/roles.include
-
 
 .. _dds_layer_topic_contentFilteredTopic_default_filter:
 
@@ -9,9 +7,8 @@ The default SQL-like filter
 ===========================
 
 Filter expressions used by :ref:`dds_layer_topic_contentFilteredTopic` API may use a subset of SQL syntax, extended with
-the possibility to use program variables in the SQL expression. |br|
-This section shows this default SQL-like syntax and how to use it.
-
+the possibility to use program variables in the SQL expression. This section shows this default SQL-like syntax and how
+to use it.
 
 * :ref:`default_sql_filter_grammar`
 * :ref:`default_sql_filter_like`
@@ -29,7 +26,7 @@ The allowed SQL expressions are defined with the BNF-grammar below.
 The following conventions are made:
 
 - "Terminals" are quoted.
-- ``TOKENS`` are typeset in code block and small caps.
+- ``TOKENS`` are typeset in code block with black font color.
 
 .. productionlist::
     Expression: FilterExpression
@@ -40,8 +37,9 @@ The following conventions are made:
     BetweenPredicate: FIELDNAME "BETWEEN" Range | FIELDNAME "NOT BETWEEN" Range
     RelOp: "=" | ">" | ">=" | "<" | "<=" | "<>" | "!=" | `like` | `match`
     Range: Parameter "AND" Parameter
-    Parameter: INTEGERVALUE | CHARVALUE | FLOATVALUE | STRINGVALUE | ENUMERATEDVALUE | PARAMETER
+    Parameter: BOOLEANVALUE | INTEGERVALUE | CHARVALUE | FLOATVALUE | STRINGVALUE | ENUMERATEDVALUE | PARAMETER
 
+"Terminals" and ``TOKENS`` are case sensitive but both uppercase and lowercase are supported.
 
 The syntax and meaning of the tokens used in the SQL grammar is described as follows:
 
@@ -55,7 +53,7 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
       FIELDNAME: FieldNamePart ( "." FieldNamePart )*
       FieldNamePart: Identifier ( "[" Integer "]" )?
 
-  An example of FIELDNAME:
+  An example of FIELDNAMEs:
 
   .. tabs::
 
@@ -82,9 +80,8 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
                   Color color;
               };
 
-
 - **INTEGERVALUE**: Any series of digits, optionally preceded by a plus or minus sign, representing a decimal integer
-  value within the range of the system. A hexadecimal number is preceded by 0x and must be a valid hexadecimal
+  value within the range of the system. A hexadecimal number is preceded by ``0x`` and must be a valid hexadecimal
   expression.
 
   .. productionlist::
@@ -110,16 +107,16 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
       value = 'c'
 
 - **FLOATVALUE**: Any series of digits, optionally preceded by a plus or minus sign and optionally including a floating
-  point (‘.’).
-  A power-of-ten expression may be postfixed, which has the syntax en, where n is a number, optionally preceded by a
-  plus or minus sign.
+  point (``.``).
+  A power-of-ten expression may be postfixed, which has the syntax e:sup:`n`, where ``n`` is a number, optionally
+  preceded by a plus or minus sign.
 
   .. productionlist::
-      FLOATVALUE: (["+"], "-"])? Integer Exponent | (["+"], "-"])? Integer Fractional | | (["+"], "-"])? Integer Fractional Exponent
-      Fractional: "." Integer | "." Integer
+      FLOATVALUE: (["+"], "-"])? (Integer Exponent | Integer Fractional | Integer Fractional Exponent)
+      Fractional: "." Integer
       Exponent: ["e","E"] (["+"], "-"])? Integer
 
-  An example of CHARVALUE:
+  An example of FLOATVALUE:
 
   .. code::
 
@@ -172,6 +169,10 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
                   MyEnum value;
               };
 
+- **BOOLEANVALUE**: Can either be `true` of `false`, case sensitive.
+
+  .. productionlist::
+      BOOLEANVALUE: ["TRUE", "true", "FALSE", "false"]
 
 - **PARAMETER**: A parameter is of the form ``%n``, where ``n`` represents a natural number (zero included) smaller than
   100.
@@ -194,7 +195,7 @@ Like condition
 
 The ``like`` operator is similar as the one defined by SQL.
 This operator only can be used with strings.
-There are two wildcards could be used in conjunction with this operator
+There are two wildcards that could be used in conjunction with this operator
 
 - The percent sign ``%`` (or its alias ``*``) represents zero, one, or multiple characters.
 - The underscore sign ``_`` (or its alias ``?``) represents one single character.
@@ -220,7 +221,7 @@ An example of ``like`` operator
                 string str;
             };
 
-where string "There are birds flying" will be return ``true``.
+where string ``There are birds flying`` will be return ``true``.
 
 .. _default_sql_filter_match:
 
@@ -228,9 +229,8 @@ Match condition
 ---------------
 
 The ``match`` operator performs a full-text search using a regular expression.
-It uses the Basic Regular Expression (BRE) defined by POSIX.
-More information can be found
-`here <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_03>`_
+This operator only can be used with strings.
+It uses the `Basic Regular Expression (BRE) defined by POSIX`_.
 
 An example of ``match`` operator
 
@@ -251,7 +251,7 @@ An example of ``match`` operator
                 string str;
             };
 
-where string "There are birds flying" will be return ``true``.
+where string ``There are birds flying`` will be return ``true``.
 
 .. _default_sql_filter_type_comparisons:
 
@@ -321,7 +321,7 @@ For the supported operators in the grammar, next table shows the type compatibil
 Example
 -------
 
-Assuming Topic "Shape" has next IDL definition.
+Assuming Topic ``Shape`` has next IDL definition.
 
 .. code:: IDL
 
@@ -350,9 +350,13 @@ A :ref:`dds_layer_topic_contentFilteredTopic` may be created using this filter e
    :dedent: 8
 
 In this example parameters are used.
-Internally the :ref:`dds_layer_topic_contentFilteredTopic` will be created with next filter expression, after settings
-the provided parameters.
+Internally the :ref:`dds_layer_topic_contentFilteredTopic` will be created with the filter expression below, after
+setting the provided parameters.
 
 .. code::
 
     "x < 23 AND y > 50 AND width BETWEEN 10 AND 20"
+
+
+.. _Basic Regular Expression (BRE) defined by POSIX:
+   https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_03

@@ -20,15 +20,15 @@ Required steps for using a Custom Filter are:
 Creating the Custom Filter
 --------------------------
 
-A custom filter must be implemented by a class which inherates from |IContentFilter-api|.
-There is only one function must be implemented, overriding |IContentFilter::evaluate-api|.
+A custom filter must be implemented by a class which inherits from |IContentFilter-api|.
+Only one function must be implemented, overriding |IContentFilter::evaluate-api|.
 Each time a sample is received by a |DataReader-api|, this function is called with next arguments.
 
 - ``payload`` - The serialized payload of the sample which the custom filter has to evaluate.
 - ``sample_info`` - The extra information which accompanies the sample.
 - ``reader_guid`` - The GUID of the reader for which the filter is being evaluated.
 
-The function returns a boolean where ``true`` implies the samples is accepted and ``false`` rejects the sample.
+The function returns a boolean where ``true`` implies the sample is accepted and ``false`` rejects the sample.
 
 Next snippet code shows an example of Custom Filter which deserialize the ``index`` field from a serialized sample and
 rejects samples where ``index`` > ``low_mark_`` and ``index`` < ``high_mark_``.
@@ -45,34 +45,33 @@ Creating the Factory for the Custom Filter
 ------------------------------------------
 
 Fast DDS creates filters through a factory.
-Therefore a factory which provides instantiation of a Custom Filter must be implememented.
+Therefore a factory which provides instantiating of a Custom Filter must be implemented.
 
-A Custom Filter's factory has to inherites from |IContentFilterFactory-api|.
-This interface contains only two function to be implemented.
+A Custom Filter's factory has to inherit from |IContentFilterFactory-api|.
+This interface requires two function to be implemented.
 
-Each time a Custom Filter has to be created or updated, |DomainParticipant-api| calls
-|IContentFilterFactory::create_content_filter-api| with next arguments.
+Each time a Custom Filter has to be created or updated, |DomainParticipant::create_contentfilteredtopic-api| calls
+internally |IContentFilterFactory::create_content_filter-api| with these arguments:
 
 - ``filter_class_name`` - Filter class name for which the factory is being called.
-  Allows using the same factory for different filter classes.
+  It allows using the same factory for different filter classes.
 - ``type_name`` - Type name of the topic being filtered.
 - ``data_type`` - Type support object of the topic being filtered.
 - ``filter_expression`` - Custom filter expression.
 - ``filter_parameters`` - Values to set for the filter parameters (where custom filter expression has its pattern to
-  sustitutes them).
-- ``filter_instance`` - When a filter is being created, it will be nullptr on input, and will have the pointer to the
-  created filter instance on output.
+  substitute them).
+- ``filter_instance`` - When a filter is being created, it will be ``nullptr`` on input, and will have the pointer to
+  the created filter instance on output.
   When a filter is being updated, it will have a previously returned pointer on input.
 
-This function should return the results of the operation.
+This function should return the result of the operation.
 
-
-When a Custom Filter should be removed, |DomainParticipant-api| calls
+When a Custom Filter should be removed, |DomainParticipant::delete_contentfilteredtopic-api| calls internally
 |IContentFilterFactory::delete_content_filter-api|.
 The factory must remove the provided Custom Filter's instance.
 
 Next snippet code shows an example of Custom Filter's factory which manages instances of the Custom Filter implemented
-in previous section.
+in the previous section.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
@@ -86,7 +85,8 @@ Registering the Factory
 -----------------------
 
 To be able to use the Custom Filter in an application, the Custom Filter's factory must be registered in the
-|DomainParticipant-api|. Next snippet code shows how to register a factory through API funciton
+|DomainParticipant-api|.
+Next snippet code shows how to register a factory through API function
 |DomainParticipant::register_content_filter_factory-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp

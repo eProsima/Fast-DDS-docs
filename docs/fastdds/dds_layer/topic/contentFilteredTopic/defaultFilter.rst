@@ -81,8 +81,8 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
               };
 
 - **INTEGERVALUE**: Any series of digits, optionally preceded by a plus or minus sign, representing a decimal integer
-  value within the range of the system. A hexadecimal number is preceded by ``0x`` and must be a valid hexadecimal
-  expression.
+  value within the range of the system.
+  A hexadecimal number is preceded by ``0x`` and must be a valid hexadecimal expression.
 
   .. productionlist::
       INTEGERVALUE: (["+","-"])? Integer
@@ -193,7 +193,7 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
 Like condition
 --------------
 
-The ``like`` operator is similar as the one defined by SQL.
+The `like <https://www.w3schools.com/sql/sql_like.asp>`_ operator is similar as the one defined by SQL.
 This operator only can be used with strings.
 There are two wildcards that could be used in conjunction with this operator
 

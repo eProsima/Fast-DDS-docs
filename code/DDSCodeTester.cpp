@@ -1929,7 +1929,7 @@ void dds_custom_filters_examples()
                 return ReturnCode_t::RETCODE_BAD_PARAMETER;
             }
 
-            // Checks there were set the two mandatory filter parameters.
+            // Checks that the two mandatory filter parameters are set.
             if (2 != filter_parameters.length())
             {
                 return ReturnCode_t::RETCODE_BAD_PARAMETER;

@@ -48,7 +48,7 @@ Fast DDS creates filters through a factory.
 Therefore a factory which provides instantiating of a Custom Filter must be implemented.
 
 A Custom Filter's factory has to inherit from |IContentFilterFactory-api|.
-This interface requires two function to be implemented.
+This interface requires two functions to be implemented.
 
 Each time a Custom Filter has to be created or updated, |DomainParticipant::create_contentfilteredtopic-api| calls
 internally |IContentFilterFactory::create_content_filter-api| with these arguments:
@@ -111,3 +111,7 @@ Next snippet code shows how to create a |ContentFilteredTopic-api| using the Cus
    :start-after: //DDS_CUSTOM_FILTER_CREATE_TOPIC
    :end-before: //!
    :dedent: 8
+
+.. note::
+   Deleting a ContentFilteredTopic which uses a Custom Filter is done exactly in the same manner explained in
+   :ref:`dds_layer_topic_contentFilteredTopic_deletion`.

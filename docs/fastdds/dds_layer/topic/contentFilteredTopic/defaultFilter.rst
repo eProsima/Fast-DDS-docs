@@ -7,8 +7,8 @@ The default SQL-like filter
 ===========================
 
 Filter expressions used by :ref:`dds_layer_topic_contentFilteredTopic` API may use a subset of SQL syntax, extended with
-the possibility to use program variables in the SQL expression. This section shows this default SQL-like syntax and how
-to use it.
+the possibility to use program variables in the SQL expression.
+This section shows this default SQL-like syntax and how to use it.
 
 * :ref:`default_sql_filter_grammar`
 * :ref:`default_sql_filter_like`
@@ -79,6 +79,11 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
                   long points[4];
                   Color color;
               };
+
+- **BOOLEANVALUE**: Can either be `true` of `false`, case sensitive.
+
+  .. productionlist::
+      BOOLEANVALUE: ["TRUE", "true", "FALSE", "false"]
 
 - **INTEGERVALUE**: Any series of digits, optionally preceded by a plus or minus sign, representing a decimal integer
   value within the range of the system.
@@ -169,11 +174,6 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
                   MyEnum value;
               };
 
-- **BOOLEANVALUE**: Can either be `true` of `false`, case sensitive.
-
-  .. productionlist::
-      BOOLEANVALUE: ["TRUE", "true", "FALSE", "false"]
-
 - **PARAMETER**: A parameter is of the form ``%n``, where ``n`` represents a natural number (zero included) smaller than
   100.
   It refers to the ``n + 1 th`` argument in the given context.
@@ -194,7 +194,7 @@ Like condition
 --------------
 
 The `like <https://www.w3schools.com/sql/sql_like.asp>`_ operator is similar as the one defined by SQL.
-This operator only can be used with strings.
+This operator can only be used with strings.
 There are two wildcards that could be used in conjunction with this operator
 
 - The percent sign ``%`` (or its alias ``*``) represents zero, one, or multiple characters.
@@ -221,7 +221,7 @@ An example of ``like`` operator
                 string str;
             };
 
-where string ``There are birds flying`` will be return ``true``.
+where string ``There are birds flying`` will return ``true``.
 
 .. _default_sql_filter_match:
 
@@ -229,7 +229,7 @@ Match condition
 ---------------
 
 The ``match`` operator performs a full-text search using a regular expression.
-This operator only can be used with strings.
+This operator can only be used with strings.
 It uses the `Basic Regular Expression (BRE) defined by POSIX`_.
 
 An example of ``match`` operator
@@ -251,7 +251,7 @@ An example of ``match`` operator
                 string str;
             };
 
-where string ``There are birds flying`` will be return ``true``.
+where string ``There are birds flying`` will return ``true``.
 
 .. _default_sql_filter_type_comparisons:
 

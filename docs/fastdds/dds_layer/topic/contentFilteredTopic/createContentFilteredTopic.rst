@@ -1,6 +1,8 @@
 .. include:: ../../../../03-exports/aliases.include
 .. include:: ../../../../03-exports/aliases-api.include
 
+.. _dds_layer_topic_filtering_data_on_topic:
+
 Filtering data on a Topic
 =========================
 

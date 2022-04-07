@@ -8,7 +8,7 @@ ContentFilteredTopic
 
 A |ContentFilteredTopic-api| is a specialization of the broader concept of :ref:`dds_layer_topic_topicDescription`.
 A ContentFilteredTopic is a Topic with filtering properties.
-It makes it possible to subscribe to a Topic and at the same time specifying interest on a subset of the Topic's data.
+It makes it possible to subscribe to a Topic while at the same time specify interest on a subset of the Topic's data.
 
 .. important::
   Note that a ContentFilteredTopic can only be used to create a DataReader, not a DataWriter.

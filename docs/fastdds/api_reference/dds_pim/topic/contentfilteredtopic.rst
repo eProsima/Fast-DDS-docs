@@ -8,3 +8,6 @@ ContentFilteredTopic
 .. doxygenclass:: eprosima::fastdds::dds::ContentFilteredTopic
     :project: FastDDS
     :members:
+
+.. doxygendefine:: FASTDDS_SQLFILTER_NAME
+    :project: FastDDS

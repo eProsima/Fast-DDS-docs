@@ -114,7 +114,7 @@ Next snippet code shows how to create a |ContentFilteredTopic-api| using the Cus
 
 .. important::
    Even though this specific custom filtering example is not using the filter expression, mind that the expression
-   cannot be an empty string because that means that no filtering is being done as explained in
+   cannot be an empty string as that disables filtering as explained in
    :ref:`dds_layer_topic_contentFilteredTopic_creation`.
 
 .. note::

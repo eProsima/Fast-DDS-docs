@@ -31,16 +31,28 @@ The following conventions are made:
 .. productionlist::
     Expression: FilterExpression
     FilterExpression: Condition
-    Condition: Predicate | Condition "AND" Condition | Condition "OR" Condition |
-             : "NOT" Condition | "(" Condition ")"
-    Predicate: ComparisonPredicate | BetweenPredicate
-    ComparisonPredicate: FIELDNAME RelOp Parameter | Parameter RelOp FIELDNAME |
+    Condition: Predicate |
+             : Condition "AND" Condition |
+             : Condition "OR" Condition |
+             : "NOT" Condition |
+             : "(" Condition ")"
+    Predicate: ComparisonPredicate |
+             : BetweenPredicate
+    ComparisonPredicate: FIELDNAME RelOp Parameter |
+                       : Parameter RelOp FIELDNAME |
                        : FIELDNAME RelOp FIELDNAME
-    BetweenPredicate: FIELDNAME "BETWEEN" Range | FIELDNAME "NOT BETWEEN" Range
-    RelOp: "=" | ">" | ">=" | "<" | "<=" | "<>" | "!=" | `like` | `match`
+    BetweenPredicate: FIELDNAME "BETWEEN" Range |
+                    : FIELDNAME "NOT BETWEEN" Range
+    RelOp: "=" | ">" | ">=" | "<" | "<=" |
+         : "<>" | "!=" | `like` | `match`
     Range: Parameter "AND" Parameter
-    Parameter: BOOLEANVALUE | INTEGERVALUE | CHARVALUE | FLOATVALUE | STRINGVALUE |
-             : ENUMERATEDVALUE | PARAMETER
+    Parameter: BOOLEANVALUE |
+             : INTEGERVALUE |
+             : CHARVALUE |
+             : FLOATVALUE |
+             : STRINGVALUE |
+             : ENUMERATEDVALUE |
+             : PARAMETER
 
 "Terminals" and ``TOKENS`` are case sensitive but both uppercase and lowercase are supported.
 

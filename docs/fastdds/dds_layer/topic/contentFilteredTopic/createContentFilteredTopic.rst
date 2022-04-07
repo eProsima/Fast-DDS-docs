@@ -28,8 +28,14 @@ Mandatory arguments are:
 Optional arguments are:
 
  * A string with the name of the filter class to use for the filter creation.
-   This allows the user to create filters different from the standard SQL like one.
+   This allows the user to create filters different from the standard SQL like one
+   (please refer to :ref:`dds_layer_topic_contentFilteredTopic_custom_filters`).
    Defaults to ``FASTDDS_SQLFILTER_NAME``.
+
+.. important::
+    An empty string as filter expression means that currently there is no filtering being done.
+    This could be of interest to enable/disable the DataReader filtering capabilities by simply
+    :ref:`updating the filter expression <dds_layer_topic_contentFilteredTopic_update>`.
 
 |DomainParticipant::create_contentfilteredtopic-api| will return a null pointer if there was an error during the
 operation, e.g. if the related topic belongs to a different participant, a topic with the same name already exists,

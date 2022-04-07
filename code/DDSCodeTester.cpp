@@ -2013,7 +2013,8 @@ void dds_custom_filters_examples()
         }
 
         // Create a ContentFilteredTopic selecting the Custom Filter and using no expression with two parameters
-        std::string expression = "";
+        // Filter expression cannot be an empty one even though it is not used by the custom filter
+        std::string expression = " ";
         std::vector<std::string> parameters;
         parameters.push_back("10"); // Parameter for low_mark
         parameters.push_back("20"); // Parameter for low_mark

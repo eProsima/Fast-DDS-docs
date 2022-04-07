@@ -30,7 +30,7 @@ Optional arguments are:
  * A string with the name of the filter class to use for the filter creation.
    This allows the user to create filters different from the standard SQL like one
    (please refer to :ref:`dds_layer_topic_contentFilteredTopic_custom_filters`).
-   Defaults to |FASTDDS_SQLFILTER_NAME-api|.
+   Defaults to |FASTDDS_SQLFILTER_NAME-api| (``DDSSQL``).
 
 .. important::
     Setting an empty string as filter expression results in the disabling of the filtering.
@@ -38,13 +38,14 @@ Optional arguments are:
     :ref:`updating the filter expression <dds_layer_topic_contentFilteredTopic_update>`.
 
 |DomainParticipant::create_contentfilteredtopic-api| will return a null pointer if there was an error during the
-operation, e.g. if the related Topic belongs to a different participant, a Topic with the same name already exists,
-syntax errors on the filter expression, or missing parameter values.
+operation, e.g. if the related Topic belongs to a different DomainParticipant, a Topic with the same name already
+exists, syntax errors on the filter expression, or missing parameter values.
 It is advisable to check that the returned value is a valid pointer.
 
 .. note::
     Different filter classes may impose different requirements on the related Topic, the expression, or the parameters.
-    The default filter class, in particular, requires that a TypeObject for the related Topic's type has been registered.
+    The default filter class, in particular, requires that a TypeObject for the related Topic's type has been
+    registered.
     When using :ref:`fastddsgen <fastddsgen_supported_options>` to generate your type support code, remember to include
     the ``-typeobject`` option so the TypeObject registration code is generated.
 

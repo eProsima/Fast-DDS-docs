@@ -27,6 +27,7 @@ bitmask
 bitmasks
 bitset
 bitsets
+BNF
 boolean
 booleans
 bugfixes
@@ -70,6 +71,7 @@ deserializes
 destructor
 diffie
 domainId
+downcasted
 doxygen
 DurabilityKind
 eClock
@@ -147,6 +149,7 @@ OSS
 persistency
 PKI
 pluggable
+postfixed
 ppDisable
 ppPath
 pre

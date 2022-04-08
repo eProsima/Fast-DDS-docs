@@ -22,6 +22,7 @@ or modified later with the |Topic::set_qos-api| member function.
 Like other Entities, Topic accepts a Listener that will be notified of
 status changes on the Topic.
 
+Please refer to :ref:`dds_layer_topic_creation` for more information about how to create a |Topic-api|.
 
 .. _dds_layer_topic_topicQos:
 

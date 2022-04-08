@@ -13,7 +13,7 @@ A Topic serves this purpose, allowing publications and subscriptions that share 
 Topic to match and start communicating.
 In that sense, the Topic acts as a description for a data flow.
 
-Publications are always linked to a single Topic, while subscriptions are linked to a
+Publications are always linked to a single :ref:`dds_layer_topic_topic`, while subscriptions are linked to a
 broader concept of :ref:`dds_layer_topic_topicDescription`.
 
 .. figure:: /01-figures/topic_class_diagram.svg
@@ -26,8 +26,12 @@ broader concept of :ref:`dds_layer_topic_topicDescription`.
     /fastdds/dds_layer/topic/instances
     /fastdds/dds_layer/topic/topicDescription/topicDescription
     /fastdds/dds_layer/topic/topic/topic
+    /fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic
     /fastdds/dds_layer/topic/topicListener/topicListener
     /fastdds/dds_layer/topic/typeSupport/typeSupport
     /fastdds/dds_layer/topic/topic/createTopic
+    /fastdds/dds_layer/topic/contentFilteredTopic/createContentFilteredTopic
+    /fastdds/dds_layer/topic/contentFilteredTopic/defaultFilter
+    /fastdds/dds_layer/topic/contentFilteredTopic/customFilters
     /fastdds/dds_layer/topic/fastddsgen/fastddsgen
 

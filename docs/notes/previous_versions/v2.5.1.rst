@@ -3,7 +3,7 @@ Version 2.5.1
 
 This release includes the following **improvements**:
 
-1. ContentFilterTopic filtering at the DataReader side.
+1. :ref:`ContentFilterTopic filtering at the DataReader side <dds_layer_topic_filtering_data_on_topic>`.
 2. Release lifecycle.
 
 This release includes the following **bugfixes**:

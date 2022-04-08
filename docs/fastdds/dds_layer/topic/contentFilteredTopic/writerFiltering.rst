@@ -32,3 +32,20 @@ Filtering will otherwise be performed by the DataReader.
   - If the DataWriter is evaluating filters for *writer_resource_limits.reader_filters_allocation.maximum*
     DataReaders, and a new filtered DataReader is created, then the filter for the newly created DataReader
     will be evaluated on the reader side.
+
+.. _dds_layer_topic_contentFilteredTopic_writer_race_condition:
+
+Discovery race condition
+------------------------
+
+On applications where the filter expression and/or the expression parameters are updated, there may be a
+situation where the DataWriter will apply the old version of the filter until it receives updated information
+through discovery.
+
+This may imply that a publication made a short time after the DataReader updated the filter, but before the
+updated discovery information is received by the DataWriter, may not be sent to the DataReader, even if the
+new filter would have told otherwise.
+Publications made after the updated discovery information is received will use the updated filter.
+
+For topics on which the application consider this may be of critical importance, filtering on the writer side
+can be disabled by setting the maximum value on |WriterResourceLimitsQos::reader_filters_allocation-api| to 0.

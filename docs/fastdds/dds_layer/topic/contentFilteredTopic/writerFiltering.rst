@@ -20,16 +20,18 @@ A DataWriter will perform filter evaluation for a DataReader when all of the fol
 Filtering will otherwise be performed by the DataReader.
 
 - The DataWriter has infinite liveliness. See |LivelinessQosPolicy|.
-- Communication with the DataReader is neither intra-process nor data-sharing.
-- The DataReader is not using multicast.
+- Communication with the DataReader is neither :ref:`intra-process <intraprocess-delivery>` nor
+  :ref:`data-sharing <datasharing-delivery>`.
+- The DataReader is not using :ref:`multicast <transport_disableMulticast>`.
 - The DataWriter is filtering for no more DataReaders than the maximum value set on
   |WriterResourceLimitsQos::reader_filters_allocation-api|.
-  - There is a resource-limit policy on |DataWriterQos| that controls the allocation behavior of
-    writer-side filtering resources.
+
+  - There is a :ref:`resource-limit policy <writerresourcelimitsqos>` on |DataWriterQos| that controls the allocation
+    behavior of writer-side filtering resources.
     Setting a maximum value of 0 disables filter evaluation on the writer side.
     A maximum value of 32 (the default value) means the writer will perform filter evaluation for
     up to 32 readers.
-  - If the DataWriter is evaluating filters for *writer_resource_limits.reader_filters_allocation.maximum*
+  - If the DataWriter is evaluating filters for ``writer_resource_limits.reader_filters_allocation.maximum``
     DataReaders, and a new filtered DataReader is created, then the filter for the newly created DataReader
     will be evaluated on the reader side.
 

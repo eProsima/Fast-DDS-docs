@@ -28,6 +28,16 @@ This Docker image contains the complete Fast DDS suite. This includes:
   You can read more about this application on the `Fast DDS Monitor documentation page
   <https://fast-dds-monitor.readthedocs.io/>`_.
 
+- :ref:`DDS Router <fast_dds_suite_dds_router>`: eProsima DDS Router is an end-user software application that enables
+  the connection of distributed DDS networks.
+  That is, DDS entities such as publishers and subscribers deployed in one geographic location and using a dedicated
+  local network will be able to communicate with other DDS entities deployed in different geographic areas on their own
+  dedicated local networks as if they were all on the same network through the use of eProsima DDS Router.
+  This is achieved by deploying a DDS Router on an edge device of each local network so that the DDS Router routes DDS
+  traffic from one network to the other through WAN communication.
+
+  You can read more about this application on the
+  `DDS Router documentation website <https://eprosima-dds-router.readthedocs.io>`_.
 
 To load this image into your Docker repository, from a terminal run
 
@@ -137,5 +147,40 @@ To launch the Fast DDS Monitor, from a terminal run
 
  $ fastdds_monitor
 
-eProsima Fast DDS Monitor User Manual can be located on the `Fast DDS Monitor documentation
+eProsima Fast DDS Monitor user manual can be found on the `Fast DDS Monitor documentation
 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/user_manual/initialize_monitoring.html>`_.
+
+.. _fast_dds_suite_dds_router:
+
+DDS Router
+----------
+This example configures a DDS Router to communicate a publisher and subscriber running in different DDS Domains.
+
+Run the following command to create the DDS Router *yaml* configuration file (``/config.yml``).
+
+.. code-block:: bash
+
+    echo "version: v2.0
+    participants:
+      - name: simple_dds_participant_0
+        kind: local
+        domain: 0
+      - name: simple_dds_participant_1
+        kind: local
+        domain: 1" > /config.yml
+
+Then execute the following command to run the Publisher in Domain 0, the Subscriber in Domain 1, and the
+DDS Router communicating both Domains.
+
+.. code-block:: bash
+
+    goToExamples
+    cd DDS/BasicConfigurationExample/bin
+    tmux new-session \
+        "ddsrouter --config-path /config.yml" \; \
+        split-window -h "./BasicConfigurationExample publisher --domain 0 --interval 1000 --transport udp" \; \
+        split-window -v "./BasicConfigurationExample subscriber --domain 1 --transport udp"
+
+eProsima DDS Router usage information can be found on the `DDS Router documentation
+<https://eprosima-dds-router.readthedocs.io/en/latest/rst/getting_started/project_overview.html>`_.
+

@@ -28,8 +28,8 @@ This Docker image contains the complete Fast DDS suite. This includes:
   You can read more about this application on the `Fast DDS Monitor documentation page
   <https://fast-dds-monitor.readthedocs.io/>`_.
 
-- :ref:`DDS Router <fast_dds_suite_dds_router>`: eProsima DDS Router is an end-user software application that enables the
-  connection of distributed DDS networks.
+- :ref:`DDS Router <fast_dds_suite_dds_router>`: eProsima DDS Router is an end-user software application that enables
+  the connection of distributed DDS networks.
   That is, DDS entities such as publishers and subscribers deployed in one geographic location and using a dedicated
   local network will be able to communicate with other DDS entities deployed in different geographic areas on their own
   dedicated local networks as if they were all on the same network through the use of eProsima DDS Router.

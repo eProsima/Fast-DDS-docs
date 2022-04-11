@@ -47,6 +47,8 @@ The recommended profile can be accessed through the constant |STATISTICS_DATAWRI
    * - |PropertyPolicyQos-api| name = value
      - ``"fastdds.push_mode"`` = ``"false"``
 
+.. _statistics_datareader_qos:
+
 Statistics DataReader recommended QoS
 -------------------------------------
 

@@ -26,5 +26,6 @@ A DataReader created with a ContentFilteredTopic will use the QoS from the relat
 Multiple DataReaders can be created for the same ContentFilteredTopic, and changing the filter properties of a
 ContentFilteredTopic will affect all DataReaders using it.
 
-Please refer to :ref:`dds_layer_topic_filtering_data_on_topic` for more information about how to use
+Please refer to :ref:`dds_layer_topic_filtering_data_on_topic` and
+:ref:`dds_layer_topic_contentFilteredTopic_writer_side` for more information about how to use
 |ContentFilteredTopic-api|.

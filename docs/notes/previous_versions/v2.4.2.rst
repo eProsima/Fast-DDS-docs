@@ -12,7 +12,7 @@ This release includes the following bugfixes:
 
 1. Fix and refactor EDPSimple destructor
 2. Fix several build warnings on certain platforms
-3. Fix oss fuzz issues
+3. Fix OSS fuzz issues
 4. Fix :ref:`TCP <transport_tcp_tcp>` synchronization issues
 5. Correct reporting of :ref:`MatchedStatus <dds_layer_core_status>` ``last_*_handle``
 6. Ensure correct boost singleton destruction order

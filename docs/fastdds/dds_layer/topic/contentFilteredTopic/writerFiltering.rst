@@ -22,7 +22,7 @@ Filtering will otherwise be performed by the DataReader.
 - The DataWriter has infinite liveliness. See |LivelinessQosPolicy|.
 - Communication with the DataReader is neither :ref:`intra-process <intraprocess-delivery>` nor
   :ref:`data-sharing <datasharing-delivery>`.
-- The DataReader is not using :ref:`multicast <transport_disableMulticast>`.
+- The DataReader is not using multicast.
 - The DataWriter is filtering for no more DataReaders than the maximum value set on
   |WriterResourceLimitsQos::reader_filters_allocation-api|.
 

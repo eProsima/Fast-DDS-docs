@@ -1,0 +1,22 @@
+Version 2.4.2 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Enable memory protection on :ref:`DataSharing <datasharing-delivery>` readers
+2. Add const overload of ``DataReader::guid()``
+3. Set recommended statistics :ref:`DataReaderQos <statistics_datareader_qos>` to ``PREALLOCATED_WITH_REALLOC``
+4. Allow fully qualified name on :ref:`MemberDescriptor <dynamictypes_overview_memberdescriptor>`
+
+This release includes the following bugfixes:
+
+1. Fix and refactor EDPSimple destructor
+2. Fix several build warnings on certain platforms
+3. Fix OSS fuzz issues
+4. Fix :ref:`TCP <transport_tcp_tcp>` synchronization issues
+5. Correct reporting of :ref:`MatchedStatus <dds_layer_core_status>` ``last_*_handle``
+6. Ensure correct boost singleton destruction order
+7. Fix inserting minimum CacheChange_t in GAP message
+
+**Note:** If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source
+from IDL files using *fastddsgen*.

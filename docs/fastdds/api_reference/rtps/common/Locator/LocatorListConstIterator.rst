@@ -3,5 +3,5 @@
 LocatorListConstIterator
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::LocatorListConstIterator
+.. doxygentypedef:: eprosima::fastdds::rtps::LocatorListConstIterator
     :project: FastDDS

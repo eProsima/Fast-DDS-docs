@@ -13,4 +13,5 @@ Locator
     /fastdds/api_reference/rtps/common/Locator/LocatorListConstIterator
     /fastdds/api_reference/rtps/common/Locator/LocatorListIterator
     /fastdds/api_reference/rtps/common/Locator/LocatorsIterator
+    /fastdds/api_reference/rtps/common/Locator/Locators
     /fastdds/api_reference/rtps/common/Locator/operators

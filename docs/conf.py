@@ -303,6 +303,7 @@ breathe_projects = {
     'FastDDS': os.path.abspath('{}/xml'.format(output_dir))
 }
 breathe_default_project = 'FastDDS'
+breathe_show_define_initializer = True
 
 # Tell `autodoc` where is the Pydoc documentation if it was set.
 if fastdds_python_imported_location:

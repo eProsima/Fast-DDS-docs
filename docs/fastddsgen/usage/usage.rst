@@ -76,7 +76,7 @@ Where the option choices are:
 +---------------------+------------------------------------------------------------------------------------------------+
 | -python             | Generates source code and a CMake solution to compile a library containing the data types |br| |
 |                     | Python bindings required to run a *Fast DDS* Python-based application. This option is    |br|  |
-|                     | incompatible with the `-example` one. Only Ubuntu support is guaranteed.                       |
+|                     | incompatible with the `-example` and `-typeobject` ones.                                       |
 +---------------------+------------------------------------------------------------------------------------------------+
 | -cs                 | Enables Case Sensitivity                                                                       |
 +---------------------+------------------------------------------------------------------------------------------------+

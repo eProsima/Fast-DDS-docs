@@ -223,5 +223,5 @@ HelloWorldExampleSharedMem
 --------------------------
 
 A Shared Memory version of helloworld example can be found in the
-`HelloWorldExampleSharedMem folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/DDS/HelloWorldExampleSharedMem>`_.
+`HelloWorldExampleSharedMem folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/HelloWorldExampleSharedMem>`_.
 It shows a publisher and a subscriber that communicate through Shared Memory.

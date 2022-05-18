@@ -389,13 +389,6 @@ List of status data members:
   the last time |DataReaderListener::on_sample_lost-api| was called or the status was read.
   It can only be positive or zero.
 
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
-
-
 .. _dds_layer_core_status_sampleRejectedStatus:
 
 SampleRejectedStatus
@@ -429,9 +422,6 @@ A rejected sample may be accepted in the future.
   This situation occurs at DDS layer, in the DataReader's history, when it is configured with |KEEP_ALL_HISTORY_QOS-api|
   and the instance's resources reach |max_instances-api|.
 
-
-
-
 List of status data members:
 
 +----------------------------------------------------------------------------+-----------------------------------------+
@@ -463,13 +453,6 @@ List of status data members:
 * |SampleRejectedStatus::last_instance_handle-api|:
   Handle to the last instance whose sample was rejected.
   If no sample was ever rejected, it will have value ``c_InstanceHandle_Unknown``.
-
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
-
 
 .. _dds_layer_core_status_sampleRejectedStatusKind:
 

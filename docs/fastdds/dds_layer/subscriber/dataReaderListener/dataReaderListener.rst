@@ -54,19 +54,11 @@ DataReaderListener defines the following callbacks:
 
 * |DataReaderListener::on_sample_rejected-api|:
   A received data sample was rejected.
-
-.. warning::
-   Currently
-   |DataReaderListener::on_sample_rejected-api|
-   is not implemented (it will never be called), and will be implemented on a future release of Fast DDS.
+  See :ref:`dds_layer_core_status_sampleRejectedStatus` for further information.
 
 * |DataReaderListener::on_sample_lost-api|:
   A data sample was lost and will never be received.
-
-.. warning::
-   Currently
-   |DataReaderListener::on_sample_lost-api|
-   is not implemented (it will never be called), and will be implemented on a future release of Fast DDS.
+  See :ref:`dds_layer_core_status_sampleLostStatus` for further information.
 
 .. important::
 

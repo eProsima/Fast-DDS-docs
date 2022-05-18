@@ -405,6 +405,33 @@ This status changes every time an incoming data sample is rejected by the DataRe
 The reason for the rejection is stored as a :ref:`dds_layer_core_status_sampleRejectedStatusKind`.
 See |SampleRejectedStatus-api|.
 
+Samples are rejected due to resource limits.
+But this doesn't mean they are lost.
+A rejected sample may be accepted in the future.
+
+|SampleRejectedStatusKind-api| specifies the reason of the rejection:
+
+* |NOT_REJECTED| specifies the samples were not rejected.
+
+* |REJECTED_BY_SAMPLES_LIMIT| specifies the samples were rejected because there is no enough resources to stored them
+  and the system should guarantee the free resources are available for other samples.
+  This situation occurs at lower RTPS communication layer and it happens when there are still samples with lower
+  sequence number without being received and there is no enough resources for all of them because |max_samples-api| was
+  reached.
+
+* |REJECTED_BY_INSTANCES_LIMIT| specifies the samples were rejected because there is no enough resources to allocate
+  their instances.
+  This situation occurs at DDS layer, in the DataReader's history, when it is configured with |KEEP_ALL_HISTORY_QOS-api|
+  and it should reserve resources for new instances, but the history's resources reach |max_samples_per_instance-api|.
+
+* |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| specifies the samples were rejected because there is no enough resources in
+  their instance to stored them.
+  This situation occurs at DDS layer, in the DataReader's history, when it is configured with |KEEP_ALL_HISTORY_QOS-api|
+  and the instance's resources reach |max_instances-api|.
+
+
+
+
 List of status data members:
 
 +----------------------------------------------------------------------------+-----------------------------------------+

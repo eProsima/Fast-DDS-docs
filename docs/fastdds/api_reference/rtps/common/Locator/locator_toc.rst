@@ -10,8 +10,8 @@ Locator
     /fastdds/api_reference/rtps/common/Locator/IsLocatorValid
     /fastdds/api_reference/rtps/common/Locator/Locator_t
     /fastdds/api_reference/rtps/common/Locator/LocatorList
-    /fastdds/api_reference/rtps/common/Locator/LocatorList_t
     /fastdds/api_reference/rtps/common/Locator/LocatorListConstIterator
     /fastdds/api_reference/rtps/common/Locator/LocatorListIterator
     /fastdds/api_reference/rtps/common/Locator/LocatorsIterator
+    /fastdds/api_reference/rtps/common/Locator/Locators
     /fastdds/api_reference/rtps/common/Locator/operators

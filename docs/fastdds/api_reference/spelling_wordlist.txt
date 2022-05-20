@@ -77,6 +77,7 @@ LivelinessQosPolicy
 LoanableTypedCollection
 loc
 LocatorList
+locatorN
 logError
 logInfo
 logWarning

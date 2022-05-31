@@ -372,7 +372,8 @@ Depending on the |DataReaderQos::reliability-api|, "lose a sample" meaning:
 * On |RELIABLE_RELIABILITY_QOS-api|, a sample is lost when it was not received and the DataWriter informs through a
   HEARTBEAT that it is not more available.
 
-Also for |VOLATILE_DURABILITY_QOS-api| late-joiner |DataReaders|, all previous samples to the matching are considered lost.
+Also for |VOLATILE_DURABILITY_QOS-api| late-joiner |DataReaders|, all previous samples to the matching are considered
+lost.
 
 List of status data members:
 
@@ -437,9 +438,9 @@ List of status data members:
 SampleRejectedStatusKind
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Samples are rejected due to resource limits.
-But this doesn't mean they are lost.
-A rejected sample may be accepted in the future.
+In Fast DDS, samples can be rejected due to resource limit reasons.
+However, the fact that the samples are rejected does not imply that they are lost, i.e. a rejected sample may be
+accepted in the future.
 
 |SampleRejectedStatusKind-api| specifies the reason of the rejection:
 

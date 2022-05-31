@@ -372,7 +372,7 @@ Depending on the |DataReaderQos::reliability-api|, "lose a sample" meaning:
 * On |RELIABLE_RELIABILITY_QOS-api|, a sample is lost when it was not received and the DataWriter informs through a
   HEARTBEAT that it is not more available.
 
-Also for |VOLATILE_DURABILITY_QOS-api| late-joiner readers, all previous samples to the matching are considered lost.
+Also for |VOLATILE_DURABILITY_QOS-api| late-joiner |DataReaders|, all previous samples to the matching are considered lost.
 
 List of status data members:
 
@@ -453,8 +453,8 @@ A rejected sample may be accepted in the future.
 
 * |REJECTED_BY_INSTANCES_LIMIT| specifies the samples were rejected because there is no enough resources to allocate
   their instances.
-  This situation occurs at DDS layer, in the DataReader's history, when and it should reserve resources for new
-  instances, but the history's resources reach |max_instances-api|.
+  This situation occurs at DDS layer, in the DataReader's history, when it should reserve resources for new
+  instances but the history's resources reach |max_instances-api|.
 
 * |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| specifies the samples were rejected because there is no enough resources in
   their instance to stored them.

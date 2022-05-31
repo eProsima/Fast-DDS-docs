@@ -454,12 +454,12 @@ A rejected sample may be accepted in the future.
 * |REJECTED_BY_INSTANCES_LIMIT| specifies the samples were rejected because there is no enough resources to allocate
   their instances.
   This situation occurs at DDS layer, in the DataReader's history, when and it should reserve resources for new
-  instances, but the history's resources reach |max_samples_per_instance-api|.
+  instances, but the history's resources reach |max_instances-api|.
 
 * |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| specifies the samples were rejected because there is no enough resources in
   their instance to stored them.
   This situation occurs at DDS layer, in the DataReader's history, when it is configured with |KEEP_ALL_HISTORY_QOS-api|
-  and the instance's resources reach |max_instances-api|.
+  and the instance's resources reach |max_samples_per_instance-api|.
 
 .. _dds_layer_core_status_subscriptionMatchedStatus:
 

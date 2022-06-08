@@ -1,3 +1,5 @@
+.. include:: ../../03-exports/roles.include
+
 .. _fastddsgen_idl_datatypes:
 
 Defining a data type via IDL
@@ -383,59 +385,66 @@ User annotations will be passed to TypeObject generated code if the ``-typeobjec
 
 Additionally, the following standard annotations are builtin (recognized and passed to TypeObject when unimplemented).
 
-+-------------------------+-------------------------------------------------------------------------+
-| Annotation              | Implemented behavior                                                    |
-+=========================+=========================================================================+
-| @id                     | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @autoid                 | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @optional               | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @extensibility          | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @final                  | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @appendable             | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @mutable                | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @position               | Used by bitmasks_.                                                      |
-+-------------------------+-------------------------------------------------------------------------+
-| @value                  | Allows to set a constant value to any element.                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @key                    | Alias for eProsima's @Key annotation.                                   |
-+-------------------------+-------------------------------------------------------------------------+
-| @must_understand        | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @default_literal        | Allows selecting one member as the default within a collection.         |
-+-------------------------+-------------------------------------------------------------------------+
-| @default                | Allows specifying the default value of the annotated element.           |
-+-------------------------+-------------------------------------------------------------------------+
-| @range                  | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @min                    | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @max                    | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @unit                   | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @bit_bound              | Allows setting a size to a bitmasks_.                                   |
-+-------------------------+-------------------------------------------------------------------------+
-| @external               | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @nested                 | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @verbatim               | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @service                | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @oneway                 | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @ami                    | Unimplemented.                                                          |
-+-------------------------+-------------------------------------------------------------------------+
-| @non_serialized         | The annotated member will be omitted from serialization.                |
-+-------------------------+-------------------------------------------------------------------------+
++-------------------------+--------------------------------------------------------------------------------------------+
+| Annotation              | Implemented behavior                                                                       |
++=========================+============================================================================================+
+| @id                     | [Unimplemented] Assign a 32-bit integer identifier to an element.                          |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @autoid                 | [Unimplemented] Automatically allocate identifiers to the elements.                        |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @optional               | [Unimplemented] Setting an element as optional.                                            |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @extensibility          | [Unimplemented] Applied to any element which is constructed. Allow specifying how the |br| |
+|                         | element is allowed to evolve.                                                              |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @final                  | [Unimplemented] Shortcut for `@extensibility(FINAL)`                                       |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @appendable             | [Unimplemented] Shortcut for `@extensibility(APPENDABLE)`                                  |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @mutable                | [Unimplemented] Shortcut for `@extensibility(MUTABLE)`                                     |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @position               | Setting a position to an element or group of elements. Used by bitmasks_.                  |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @value                  | [Unimplemented] Allow setting a constant value to any element.                             |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @key                    | Alias for eProsima's @Key annotation. Indicate that a data member is part of the key |br|  |
+|                         | (please refer to :ref:`dds_layer_topic_instances` for more information).                   |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @must_understand        | [Unimplemented] Indicate that the data member must be understood by any application |br|   |
+|                         | making use of that piece of data.                                                          |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @default_literal        | [Unimplemented] Allow selecting one member as the default within a collection.             |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @default                | Allow specifying the default value of the annotated element.                               |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @range                  | [Unimplemented] Allow specifying a range of allowed values for the annotated element.      |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @min                    | [Unimplemented] Allow specifying a minimum value for the annotated element.                |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @max                    | [Unimplemented] Allow specifying a maximum value for the annotated element.                |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @unit                   | [Unimplemented] Allow specifying a unit of measurement for the annotated element.          |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @bit_bound              | Allow setting a size to a bitmasks_.                                                       |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @external               | [Unimplemented] Force the annotated element to be placed in a dedicated data space.        |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @nested                 | [Unimplemented] Allow indicating that the objects from the type under annotation will |br| |
+|                         | always be nested within another one.                                                       |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @verbatim               | [Unimplemented] Allow injecting some user-provided information into what the compiler |br| |
+|                         | will generate.                                                                             |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @service                | [Unimplemented] Allow indicating that an interface is to be treated as a service.          |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @oneway                 | [Unimplemented] Allow indicating that an operation is one way only, meaning that |br|      |
+|                         | related information flow will go from client to server but not back.                       |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @ami                    | [Unimplemented] Allow indicating that an interface or an operation is to be made |br|      |
+|                         | callable asynchronously.                                                                   |
++-------------------------+--------------------------------------------------------------------------------------------+
+| @non_serialized         | The annotated member will be omitted from serialization.                                   |
++-------------------------+--------------------------------------------------------------------------------------------+
 
 Most unimplemented annotations are related to Extended Types.
 

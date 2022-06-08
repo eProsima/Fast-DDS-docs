@@ -367,8 +367,10 @@ See |SampleLostStatus-api|.
 
 There are two different criteria for considering a sample as lost depending on the |DataReaderQos::reliability-api|:
 
-* When using |BEST_EFFORT_RELIABILITY_QOS-api|, a not yet received sample is considered lost whenever a sample with a greater sequence number is received.
-* When using |RELIABLE_RELIABILITY_QOS-api|, a not yet received sample is considered lost whenever the :class:`DataWriter` informs, through an RTPS ``HEARTBEAT`` submessage, that the sample is not available anymore.
+* When using |BEST_EFFORT_RELIABILITY_QOS-api|, a not yet received sample is considered lost whenever a sample with a
+  greater sequence number is received.
+* When using |RELIABLE_RELIABILITY_QOS-api|, a not yet received sample is considered lost whenever the
+  :class:`DataWriter` informs, through an RTPS ``HEARTBEAT`` submessage, that the sample is not available anymore.
 
 List of status data members:
 

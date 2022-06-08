@@ -186,7 +186,10 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. note::
 
-       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip3` installation command.
+       Mind that under non-root users, :code:`pip3` may install python :code:`colcon` and :code:`vcs` executables in
+       :code:`$HOME/.local/bin`, for instance when running with :code:`--user`.
+       To be able to run these applications, make sure that :code:`pip3` binary installation directory is in your
+       :code:`$PATH` (:code:`$HOME/.local/bin` is normally introduced while login on an interactive non-root shell).
 
 #. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
    *eProsima Fast DDS* and its dependencies:

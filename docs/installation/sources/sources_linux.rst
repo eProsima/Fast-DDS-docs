@@ -186,7 +186,10 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. note::
 
-       If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip3` installation command.
+       Mind that under non-root users, :code:`pip3` may install python :code:`colcon` and :code:`vcs` executables in
+       :code:`$HOME/.local/bin`, for instance when running with :code:`--user`.
+       To be able to run these applications, make sure that :code:`pip3` binary installation directory is in your
+       :code:`$PATH` (:code:`$HOME/.local/bin` is normally introduced while login on an interactive non-root shell).
 
 #. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
    *eProsima Fast DDS* and its dependencies:
@@ -578,8 +581,11 @@ Java JDK
 ^^^^^^^^
 
 The JDK is a development environment for building applications and components using the Java language.
-Download and install it at the following the steps given in the
-`Oracle website <https://www.oracle.com/java/technologies/javase-downloads.html>`_.
+To install Java JDK, run:
+
+.. code-block:: bash
+
+    sudo apt install openjdk-8-jdk
 
 .. _gradle_sl:
 
@@ -594,17 +600,17 @@ Compiling Fast DDS-Gen
 
 Once the requirements above are met, compile *Fast DDS-Gen* by following the steps below:
 
+.. note::
+
+    If Fast DDS has already been installed following :ref:`colcon_installation_linux`, skip cloning *Fast DDS-Gen*'s
+    repository, as it can be already be found under the :code:`src` directory within the colcon workspace.
+
 .. code-block:: bash
 
     cd ~
     git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git
     cd Fast-DDS-Gen
     gradle assemble
-
-.. note::
-
-    If already installed FastDDS with colcon, you may skip the git clone command; *fastddsgen* can be found under
-    the :code:`src` directory of FastDDS colcon workspace.
 
 .. note::
 

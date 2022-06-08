@@ -365,12 +365,10 @@ SampleLostStatus
 This status changes every time a new data sample is lost and will never be received.
 See |SampleLostStatus-api|.
 
-Depending on the |DataReaderQos::reliability-api|, "lose a sample" meaning:
+There are two different criteria for considering a sample as lost depending on the |DataReaderQos::reliability-api|:
 
-* On |BEST_EFFORT_RELIABILITY_QOS-api|, each not received sample is lost when there is received a sample with a greater
-  sequence number.
-* On |RELIABLE_RELIABILITY_QOS-api|, a sample is lost when it was not received and the DataWriter informs through a
-  HEARTBEAT that it is not more available.
+* When using |BEST_EFFORT_RELIABILITY_QOS-api|, a not yet received sample is considered lost whenever a sample with a greater sequence number is received.
+* When using |RELIABLE_RELIABILITY_QOS-api|, a not yet received sample is considered lost whenever the :class:`DataWriter` informs, through an RTPS ``HEARTBEAT`` submessage, that the sample is not available anymore.
 
 List of status data members:
 

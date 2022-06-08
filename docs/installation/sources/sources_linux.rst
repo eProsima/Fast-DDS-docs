@@ -184,13 +184,6 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
        pip3 install -U colcon-common-extensions vcstool
 
-#. After this step colcon and vcstool will be in $HOME/.local/bin and have to be added in the PATH.
-   For example, on Ubuntu use:
-
-   .. code-block:: bash
-
-       echo "export PATH="$HOME/.local/bin:$PATH"" >> ~/.bashrc
-
    .. note::
 
        If this fails due to an Environment Error, add the :code:`--user` flag to the :code:`pip3` installation command.
@@ -585,9 +578,9 @@ Java JDK
 ^^^^^^^^
 
 The JDK is a development environment for building applications and components using the Java language.
-The version of Java to use must be 8.0.0. Download and install it. For example, on Ubuntu use the command:
+To install Java JDK, run:
 
-   .. code-block:: bash
+.. code-block:: bash
 
     sudo apt install openjdk-8-jdk
 
@@ -606,8 +599,8 @@ Once the requirements above are met, compile *Fast DDS-Gen* by following the ste
 
 .. note::
 
-    If already installed FastDDS with colcon, you may skip the git clone command; *fastddsgen* can be found under
-    the :code:`src` directory of FastDDS colcon workspace.
+    If Fast DDS has already been installed following :ref:`colcon_installation_linux`, skip cloning *Fast DDS-Gen*'s
+    repository, as it can be already be found under the :code:`src` directory within the colcon workspace.
 
 .. code-block:: bash
 

@@ -365,6 +365,13 @@ SampleLostStatus
 This status changes every time a new data sample is lost and will never be received.
 See |SampleLostStatus-api|.
 
+There are two different criteria for considering a sample as lost depending on the |DataReaderQos::reliability-api|:
+
+* When using |BEST_EFFORT_RELIABILITY_QOS-api|, a not yet received sample is considered lost whenever a sample with a
+  greater sequence number is received.
+* When using |RELIABLE_RELIABILITY_QOS-api|, a not yet received sample is considered lost whenever the
+  :class:`DataWriter` informs, through an RTPS ``HEARTBEAT`` submessage, that the sample is not available anymore.
+
 List of status data members:
 
 +----------------------------------------------------------------------------+-----------------------------------------+
@@ -381,13 +388,6 @@ List of status data members:
 * |BaseStatus::total_count_change-api|: The change in |BaseStatus::total_count-api| since
   the last time |DataReaderListener::on_sample_lost-api| was called or the status was read.
   It can only be positive or zero.
-
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
-
 
 .. _dds_layer_core_status_sampleRejectedStatus:
 

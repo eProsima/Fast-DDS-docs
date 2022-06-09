@@ -1,0 +1,46 @@
+Version 2.6.0
+^^^^^^^^^^^^^
+
+This minor release is API compatible with the previous minor release, but introduces **ABI breaks** on two of the three
+public APIs:
+
+* Methods and attributes have been added on several classes of the DDS-PIM high-level API, so indexes of symbols on
+  dynamic libraries may have changed. Some API is also being deprecated.
+* Methods and attributes have been added on several classes of the RTPS low-level API, so indexes of symbols on dynamic
+  libraries may have changed.
+* Old Fast-RTPS high-level API remains ABI compatible.
+
+This minor release includes the following **features**:
+
+1. :ref:`Allow modifying remote server locators at runtime <DS_modify_server_list>`
+2. :ref:`Add statistics physical information to DATA[p] using properties <property_policies_physical_data>`
+3. :ref:`Content filter discovery information RTPS API <contentfilterlimits>`
+4. Endpoint discovery RTPS API
+5. ``on_sample_lost`` RTPS API
+6. Transport layer API extension
+7. :ref:`XML support for Fast DDS CLI <cli_discovery_run>`
+8. :ref:`New exchange format to reduce bandwidth in Static Discovery <property_policies_edp_exchange_format>`
+
+It also includes the following **improvements**:
+
+1. Support lowercase keywords on SQL filter
+2. Separate initialization and enabling of BuiltinProtocols
+3. Add ``disable_positive_acks`` to Static Discovery XML
+4. Several updates in the DDS-PIM API
+5. Support for octet vectors on XML parser
+6. Update README and roadmap
+7. Update Fast-CDR submodule to v1.0.24
+8. Add new CMake option ``APPEND_PROJECT_NAME_TO_INCLUDEDIR``
+
+Some **bugfixes** are also included:
+
+1. Fix MatchedStatus ``last_*_handle``
+2. Fix recommended statistics DataReaderQos to enable backwards compatibility
+3. Fixes for supporting Python bindings in Windows platforms
+4. Fix publishing physical data on statistics topic
+5. Other minor fixes and improvements
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

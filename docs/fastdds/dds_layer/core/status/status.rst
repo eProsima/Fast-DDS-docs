@@ -443,11 +443,11 @@ accepted in the future.
 
 * |NOT_REJECTED| specifies that the samples were not rejected.
 
-* |REJECTED_BY_SAMPLES_LIMIT| specifies the samples were rejected because there is no enough resources to stored them
-  and the system should guarantee the free resources are available for other samples.
-  This situation occurs at lower RTPS communication layer and it happens when there are still samples with lower
-  sequence number without being received and there is no enough resources for all of them because |max_samples-api| was
-  reached.
+* |REJECTED_BY_SAMPLES_LIMIT| specifies that the samples were rejected because there were not enough resources to stored them.
+  This can happen even when there are free resources if those resources must be guaranteed to be available for other samples.
+  This situation, which arises in the RTPS layer, occurs when there are yet to be received samples with lower
+  sequence number and there is not enough resources for all of them (because |max_samples-api| has been
+  reached).
 
 * |REJECTED_BY_INSTANCES_LIMIT| specifies that the samples were rejected because there were not enough resources to allocate
   the samples' instances.

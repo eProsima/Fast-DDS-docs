@@ -443,21 +443,25 @@ accepted in the future.
 
 * |NOT_REJECTED| specifies that the samples were not rejected.
 
-* |REJECTED_BY_SAMPLES_LIMIT| specifies that the samples were rejected because there were not enough resources to stored them.
-  This can happen even when there are free resources if those resources must be guaranteed to be available for other samples.
+* |REJECTED_BY_SAMPLES_LIMIT| specifies that the samples were rejected because there were not enough resources to
+  stored them.
+  This can happen even when there are free resources if those resources must be guaranteed to be available for
+  other samples.
   This situation, which arises in the RTPS layer, occurs when there are yet to be received samples with lower
   sequence number and there is not enough resources for all of them (because |max_samples-api| has been
   reached).
 
-* |REJECTED_BY_INSTANCES_LIMIT| specifies that the samples were rejected because there were not enough resources to allocate
-  the samples' instances.
-  This situation, which arises in the DDS layer, more precisely in the in the :class:`DataReader`'s history, 
- occurs when the sample corresponds to a new instance for which the middleware should reserve resources but the history's number of instances has already reached |max_instances-api|.
+* |REJECTED_BY_INSTANCES_LIMIT| specifies that the samples were rejected because there were not enough resources
+  to allocate the samples' instances.
+  This situation, which arises in the DDS layer, more precisely in the in the :class:`DataReader`'s history,
+  occurs when the sample corresponds to a new instance for which the middleware should reserve resources but the
+  history's number of instances has already reached |max_instances-api|.
 
-* |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| specifies that the samples were rejected because there were not enough resources within
-  their instance to stored them.
-  This situation, which arises in the DDS layer, more precisely in the :class:`DataReader`'s history, occurs when the :class:`DataReader` is configured with |KEEP_ALL_HISTORY_QOS-api|
-  and the instance's number of samples has reached |max_samples_per_instance-api|.
+* |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| specifies that the samples were rejected because there were not
+  enough resources within their instance to stored them.
+  This situation, which arises in the DDS layer, more precisely in the :class:`DataReader`'s history, occurs
+  when the :class:`DataReader` is configured with |KEEP_ALL_HISTORY_QOS-api| and the instance's number of samples
+  has reached |max_samples_per_instance-api|.
 
 .. _dds_layer_core_status_subscriptionMatchedStatus:
 

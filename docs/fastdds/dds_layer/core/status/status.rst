@@ -441,7 +441,7 @@ accepted in the future.
 
 |SampleRejectedStatusKind-api| specifies the reason of the rejection:
 
-* |NOT_REJECTED| specifies the samples were not rejected.
+* |NOT_REJECTED| specifies that the samples were not rejected.
 
 * |REJECTED_BY_SAMPLES_LIMIT| specifies the samples were rejected because there is no enough resources to stored them
   and the system should guarantee the free resources are available for other samples.
@@ -449,15 +449,15 @@ accepted in the future.
   sequence number without being received and there is no enough resources for all of them because |max_samples-api| was
   reached.
 
-* |REJECTED_BY_INSTANCES_LIMIT| specifies the samples were rejected because there is no enough resources to allocate
-  their instances.
-  This situation occurs at DDS layer, in the DataReader's history, when it should reserve resources for new
-  instances but the history's resources reach |max_instances-api|.
+* |REJECTED_BY_INSTANCES_LIMIT| specifies that the samples were rejected because there were not enough resources to allocate
+  the samples' instances.
+  This situation, which arises in the DDS layer, more precisely in the in the :class:`DataReader`'s history, 
+ occurs when the sample corresponds to a new instance for which the middleware should reserve resources but the history's number of instances has already reached |max_instances-api|.
 
-* |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| specifies the samples were rejected because there is no enough resources in
+* |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| specifies that the samples were rejected because there were not enough resources within
   their instance to stored them.
-  This situation occurs at DDS layer, in the DataReader's history, when it is configured with |KEEP_ALL_HISTORY_QOS-api|
-  and the instance's resources reach |max_samples_per_instance-api|.
+  This situation, which arises in the DDS layer, more precisely in the :class:`DataReader`'s history, occurs when the :class:`DataReader` is configured with |KEEP_ALL_HISTORY_QOS-api|
+  and the instance's number of samples has reached |max_samples_per_instance-api|.
 
 .. _dds_layer_core_status_subscriptionMatchedStatus:
 

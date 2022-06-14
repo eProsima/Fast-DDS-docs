@@ -395,8 +395,8 @@ SampleRejectedStatus
 --------------------
 
 This status changes every time an incoming data sample is rejected by the DataReader.
-The reason for the rejection is stored as a :ref:`dds_layer_core_status_sampleRejectedStatusKind`.
-See |SampleRejectedStatus-api|.
+The reason for the rejection is defined by :ref:`dds_layer_core_status_sampleRejectedStatusKind`.
+For further information see |SampleRejectedStatus-api|.
 
 List of status data members:
 
@@ -430,33 +430,38 @@ List of status data members:
   Handle to the last instance whose sample was rejected.
   If no sample was ever rejected, it will have value ``c_InstanceHandle_Unknown``.
 
-.. warning::
-
-    Currently this status is not supported and will be implemented in future releases.
-    As a result, trying to access this status will return ``NOT_SUPPORTED``
-    and the corresponding listener will never be called.
-
-
 .. _dds_layer_core_status_sampleRejectedStatusKind:
 
 SampleRejectedStatusKind
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-There are four possible values (see |SampleRejectedStatusKind-api|):
+In Fast DDS, samples can be rejected due to resource limit reasons.
+However, the fact that the samples are rejected does not imply that they are lost, i.e. a rejected sample may be
+accepted in the future.
 
-* |NOT_REJECTED|:
-  It means there have been no rejections so far on this DataReader.
-  The rejection reason will have this value only while the total count of rejections is zero.
-* |REJECTED_BY_INSTANCES_LIMIT|:
-  The sample was rejected because the
-  :ref:`max_instances<resourcelimitsqospolicy>` limit was reached.
-* |REJECTED_BY_SAMPLES_LIMIT|:
-  The sample was rejected because the
-  :ref:`max_samples<resourcelimitsqospolicy>` limit was reached.
-* |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT|:
-  The sample was rejected because the
-  :ref:`max_samples_per_instance<resourcelimitsqospolicy>` limit was reached.
+|SampleRejectedStatusKind-api| specifies the reason of the rejection:
 
+* |NOT_REJECTED| specifies that the samples were not rejected.
+
+* |REJECTED_BY_SAMPLES_LIMIT| specifies that the samples were rejected because there were not enough resources to
+  stored them.
+  This can happen even when there are free resources if those resources must be guaranteed to be available for
+  other samples.
+  This situation, which arises in the RTPS layer, occurs when there are yet to be received samples with lower
+  sequence number and there is not enough resources for all of them (because |max_samples-api| has been
+  reached).
+
+* |REJECTED_BY_INSTANCES_LIMIT| specifies that the samples were rejected because there were not enough resources
+  to allocate the samples' instances.
+  This situation, which arises in the DDS layer, more precisely in the in the :class:`DataReader`'s history,
+  occurs when the sample corresponds to a new instance for which the middleware should reserve resources but the
+  history's number of instances has already reached |max_instances-api|.
+
+* |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| specifies that the samples were rejected because there were not
+  enough resources within their instance to stored them.
+  This situation, which arises in the DDS layer, more precisely in the :class:`DataReader`'s history, occurs
+  when the :class:`DataReader` is configured with |KEEP_ALL_HISTORY_QOS-api| and the instance's number of samples
+  has reached |max_samples_per_instance-api|.
 
 .. _dds_layer_core_status_subscriptionMatchedStatus:
 

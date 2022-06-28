@@ -606,6 +606,7 @@
 .. |TCPTransportDescriptor::TLSConfig::verify_depth-api| replace:: :cpp:var:`verify_depth<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::verify_depth>`
 .. |TCPTransportDescriptor::TLSConfig::default_verify_path-api| replace:: :cpp:var:`default_verify_path<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::default_verify_path>`
 .. |TCPTransportDescriptor::TLSConfig::handshake_role-api| replace:: :cpp:var:`handshake_role<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::handshake_role>`
+.. |TCPTransportDescriptor::TLSConfig::server_name-api| replace:: :cpp:var:`server_name<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::server_name>`
 
 .. |TCPTransportDescriptor::TLSConfig::TLSVerifyMode-api| replace:: :cpp:enum:`TLSVerifyMode<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode>`
 .. |TCPTransportDescriptor::TLSConfig::TLSVerifyMode::UNUSED-api| replace:: :cpp:enumerator:`TLSVerifyMode::UNUSED<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode::UNUSED>`

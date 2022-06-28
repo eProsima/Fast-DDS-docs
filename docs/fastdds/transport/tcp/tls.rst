@@ -1,4 +1,5 @@
 .. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _transport_tcp_tls:
 
@@ -78,7 +79,7 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::password-api|
      - ``string``
      - ``""``
-     - Password of the |TCPTransportDescriptor::TLSConfig::private_key_file-api| or
+     - Password of the |TCPTransportDescriptor::TLSConfig::private_key_file-api| or |br|
        |TCPTransportDescriptor::TLSConfig::rsa_private_key_file-api|.
    * - |TCPTransportDescriptor::TLSConfig::private_key_file-api|
      - ``string``
@@ -103,12 +104,12 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::verify_mode-api|
      - |TCPTransportDescriptor::TLSConfig::TLSVerifyMode-api|
      - |TCPTransportDescriptor::TLSConfig::TLSVerifyMode::UNUSED-api|
-     - Establishes the verification mode mask.
+     - Establishes the verification mode mask. |br|
        See |TLSVerifyMode|.
    * - |TCPTransportDescriptor::TLSConfig::options-api|
      - |TCPTransportDescriptor::TLSConfig::TLSOptions-api|
      - |TCPTransportDescriptor::TLSConfig::TLSOptions::NONE-api|
-     - Establishes the SSL Context options mask.
+     - Establishes the SSL Context options mask. |br|
        See |TLSOptions|.
    * - |TCPTransportDescriptor::TLSConfig::verify_paths-api|
      - ``vector<string>``
@@ -117,7 +118,8 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::verify_depth-api|
      - ``int32_t``
      - -1
-     - Maximum allowed depth for verifying intermediate certificates.
+     - Maximum allowed depth for verifying intermediate |br|
+       certificates.
    * - |TCPTransportDescriptor::TLSConfig::default_verify_path-api|
      - ``bool``
      - ``false``
@@ -125,8 +127,14 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::handshake_role-api|
      - |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole-api|
      - |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::DEFAULT-api|
-     - Role that the transport will take on handshaking.
+     - Role that the transport will take on handshaking. |br|
        See |TLSRole|.
+   * - |TCPTransportDescriptor::TLSConfig::server_name-api|
+     - ``string``
+     - ``""``
+     - [UNIMPLEMENTED] Server name or host name  |br|
+       required in case Server Name Indication (SNI) |br|
+       is used.
 
 .. note::
 

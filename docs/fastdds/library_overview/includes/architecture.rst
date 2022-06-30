@@ -52,7 +52,7 @@ section.
   It is the entity that allows the creation of the previous entities it contains, as well as the configuration of their
   behavior.
 * **Publisher**.
-  The Publisher publishes data under a topic using a DataWriter, which reads the data from the transport.
+  The Publisher publishes data under a topic using a DataWriter, which writes the data to the transport.
   It is the entity that creates and configures the DataWriter entities it contains, and may contain one or more
   of them.
 * **DataWriter**.

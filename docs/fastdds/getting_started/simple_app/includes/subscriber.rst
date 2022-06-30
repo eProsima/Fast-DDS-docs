@@ -125,5 +125,5 @@ From the build directory in the workspace, run the following commands.
 .. code-block:: bash
 
     cmake ..
-    make clean && make
+    cmake --build .
     ./DDSHelloWorldSubscriber

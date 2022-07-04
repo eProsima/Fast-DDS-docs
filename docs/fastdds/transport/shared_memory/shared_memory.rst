@@ -208,8 +208,12 @@ The examples below show this procedure in both C++ code and XML file.
 
 .. note::
 
-  When two participants on the same machine have SHM transport enabled, all communications between them are
-  automatically performed by SHM transport only.
+  In case that several transports are enabled, the discovery traffic is always performed using the UDP/TCP transport,
+  even if the SHM transport is enabled in both participants running in the same machine.
+  This may cause discovery issues if one or several of the participants only has SHM enabled and other participants use
+  some other transport at the same time.
+  Also, when two participants on the same machine have SHM transport enabled, the user data communication between them
+  is automatically performed by SHM transport only.
   The rest of the enabled transports are not used between those two participants.
 
 

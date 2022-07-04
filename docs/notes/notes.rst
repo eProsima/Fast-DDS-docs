@@ -21,8 +21,8 @@ This release includes the following **improvements**:
 
 Some **bugfixes** are also included:
 
-1. Deadlocks and dataraces
-2. Move deprecated openssl cleanup function to match the right version
+1. Deadlocks and data races
+2. Move deprecated OpenSSL cleanup function to match the right version
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

@@ -145,6 +145,7 @@ nupkg
 offsetd
 oneway
 optionparser
+OpenSSL
 OSS
 persistency
 PKI

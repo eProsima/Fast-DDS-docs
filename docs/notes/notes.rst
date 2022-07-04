@@ -10,11 +10,11 @@ This release includes the following **improvements**:
 
 1. Support for :ref:`DDS SampleRejectedStatus API <dds_layer_core_status_sampleRejectedStatus>`
 2. Support for DDS DataWriter methods:
-   + `DataWriter::write_w_timestamp()<eprosima::fastdds::dds::DataWriter::write_w_timestamp>`
-   + `DataWriter::register_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp>`
-   + `DataWriter::unregister_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp>`
-   + `DataWriter::dispose_w_timestamp()<eprosima::fastdds::dds::DataWriter::dispose_w_timestamp>`
-3. Support for DDS `DomainParticipant::find_topic()<eprosima::fastdds::dds::DomainParticipant::find_topic>`
+   + |DataWriter::write_w_timestamp|
+   + |DataWriter::register_instance_w_timestamp|
+   + |DataWriter::unregister_instance_w_timestamp|
+   + |DataWriter::dispose_w_timestamp|
+3. Support for DDS |DomainParticipant::find_topic|
 4. Support for GCC 12
 5. Upgrade CMake minimum requirement to 3.16.3
 6. Add Windows DLL support to Dynamic Types API

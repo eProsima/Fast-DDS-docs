@@ -3,25 +3,26 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.1
+Version 2.7.0
 =============
 
 This release includes the following **improvements**:
 
-1. Support for :ref:`writer side content filtering <dds_layer_topic_contentFilteredTopic_writer_side>`
-2. Support hexadecimal values on SQL filter
-3. Support for :cpp:func:`DataWriter::get_key_value()<eprosima::fastdds::dds::DataWriter::get_key_value>`
-4. Support for :cpp:func:`DataReader::lookup_instance()<eprosima::fastdds::dds::DataReader::lookup_instance>`
-5. Support for SampleLostStatus on DataReader
-6. Improved doxygen documentation
+1. Support of :ref:`DDS SampleRejectedStatus API <dds_layer_core_status_sampleRejectedStatus>`
+2. Support of DDS DataWriter methods:
+   + `DataWriter::write_w_timestamp()<eprosima::fastdds::dds::DataWriter::write_w_timestamp>`
+   + `DataWriter::register_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp>`
+   + `DataWriter::unregister_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp>`
+   + `DataWriter::dispose_w_timestamp()<eprosima::fastdds::dds::DataWriter::dispose_w_timestamp>`
+3. Support of DDS `DomainParticipant::find_topic()<eprosima::fastdds::dds::DomainParticipant::find_topic>`
+4. Support for GCC 12
+5. Upgrade CMake minimum requirement to 3.16.3
+6. Add Windows DLL support to Dynamic Types API
 
 Some **bugfixes** are also included:
 
-1. Fixed several lock order inversion issues
-2. Fixed data race when closing UDP channels
-3. Fixed empty partition validation checks
-4. Fixed corner case with reliable writers and samples with a huge number of fragments
-5. Other minor fixes and improvements
+1. Deadlocks and dataraces
+2. Move deprecated openssl cleanup function to match the right version
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -31,6 +32,7 @@ Some **bugfixes** are also included:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.1.rst
 .. include:: previous_versions/v2.6.0.rst
 .. include:: previous_versions/v2.5.1.rst
 .. include:: previous_versions/v2.5.0.rst

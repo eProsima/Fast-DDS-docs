@@ -78,6 +78,11 @@
 .. |DataWriter::register_instance-api| replace:: :cpp:func:`register_instance()<eprosima::fastdds::dds::DataWriter::register_instance>`
 .. |DataWriter::unregister_instance-api| replace:: :cpp:func:`unregister_instance()<eprosima::fastdds::dds::DataWriter::unregister_instance>`
 .. |DataWriter::dispose-api| replace:: :cpp:func:`dispose()<eprosima::fastdds::dds::DataWriter::dispose>`
+.. |DataWriter::write_w_timestamp| replace:: :cpp:func:`DataWriter::write_w_timestamp()<eprosima::fastdds::dds::DataWriter::write_w_timestamp>`
+.. |DataWriter::register_instance_w_timestamp| replace:: :cpp:func:`DataWriter::register_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp>`
+.. |DataWriter::unregister_instance_w_timestamp| replace:: :cpp:func:`DataWriter::unregister_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp>`
+.. |DataWriter::dispose_w_timestamp| replace:: :cpp:func:`DataWriter::dispose_w_timestamp()<eprosima::fastdds::dds::DataWriter::dispose_w_timestamp>`
+
 .. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
 
 .. |DataWriterQos-api| replace:: :cpp:class:`DataWriterQos <eprosima::fastdds::dds::DataWriterQos>`
@@ -131,14 +136,15 @@
 .. |DomainParticipant::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::DomainParticipant::get_qos>`
 .. |DomainParticipant::get_publisher_qos_from_profile| replace:: :cpp::func`get_publisher_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_publisher_qos_from_profile>`
 .. |DomainParticipant::get_subscriber_qos_from_profile| replace:: :cpp::func`get_subscriber_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_subscriber_qos_from_profile>`
-.. |DomainParticipant::get_topic_qos_from_profile| replace:: :cpp::func`get_topic_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_topic_qos_from_profile>`
+.. |DomainParticipant::get_topic_qos_from_profile| replace:: :cpp::func:`get_topic_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_topic_qos_from_profile>`
 .. |DomainParticipant::set_qos-api| replace:: :cpp:func:`DomainParticipant::set_qos()<eprosima::fastdds::dds::DomainParticipant::set_qos>`
 .. |DomainParticipant::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::DomainParticipant::delete_contained_entities>`
+.. |DomainParticipant::create_topic_with_profile-api| replace:: :cpp:func:`create_topic_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_topic_with_profile>`
+.. |DomainParticipant::find_topic| replace:: :cpp:func:`find_topic()<eprosima::fastdds::dds::DomainParticipant::find_topic>`
 
 .. |DomainParticipantFactory-api| replace:: :cpp:class:`DomainParticipantFactory<eprosima::fastdds::dds::DomainParticipantFactory>`
 .. |DomainParticipantFactory::create_participant_with_profile-api| replace:: :cpp:func:`create_participant_with_profile()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile>`
 .. |DomainParticipantFactory::create_participant-api| replace:: :cpp:func:`create_participant()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant>`
-.. |DomainParticipant::create_topic_with_profile-api| replace:: :cpp:func:`create_topic_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_topic_with_profile>`
 .. |DomainParticipantFactory::delete_participant-api| replace:: :cpp:func:`delete_participant()<eprosima::fastdds::dds::DomainParticipantFactory::delete_participant>`
 .. |DomainParticipantFactory::get_default_participant_qos-api| replace:: :cpp:func:`get_default_participant_qos()<eprosima::fastdds::dds::DomainParticipantFactory::get_default_participant_qos>`
 .. |DomainParticipant::get_participant_qos_from_profile| replace:: :cpp::func`get_participant_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_participant_qos_from_profile>`

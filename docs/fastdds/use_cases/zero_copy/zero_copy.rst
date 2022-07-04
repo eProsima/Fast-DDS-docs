@@ -158,4 +158,4 @@ Next steps
 
 The *eProsima Fast DDS* Github repository contains the complete example discussed in this section, as well as
 multiple other examples for different use cases. The example implementing Zero-Copy transfers can be found
-`here <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/DDS/ZeroCopyExample>`_.
+`here <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/ZeroCopyExample>`_.

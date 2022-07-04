@@ -48,7 +48,7 @@ each other, so they can start sharing user data right away, avoiding the EDP pha
 
 A complete description of the feature can be found at :ref:`discovery_static`.
 There is also a fully functional helloworld example implementing STATIC EDP in the
-`examples/C++/DDS/StaticHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/master/examples/C%2B%2B/DDS/StaticHelloWorldExample>`_
+`examples/cpp/dds/StaticHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/StaticHelloWorldExample>`_
 folder.
 
 The following subsections present an example configuration where a Publisher in

@@ -78,7 +78,7 @@ This is a minimal example that will perform a Publisher/Subscriber match and sta
 .. code-block:: bash
 
  $ goToExamples
- $ cd HelloWorldExample/bin
+ $ cd dds/HelloWorldExample/bin
  $ tmux new-session "./HelloWorldExample publisher 0 1000" \; \
  split-window "./HelloWorldExample subscriber" \; \
  select-layout even-vertical
@@ -89,7 +89,7 @@ container to check the communication between them by running the following from 
 .. code-block:: bash
 
  $ goToExamples
- $ cd HelloWorldExample/bin
+ $ cd dds/HelloWorldExample/bin
  $ ./HelloWorldExample publisher
 
 or
@@ -97,7 +97,7 @@ or
 .. code-block:: bash
 
  $ goToExamples
- $ cd HelloWorldExample/bin
+ $ cd dds/HelloWorldExample/bin
  $ ./HelloWorldExample subscriber
 
 Benchmark Example
@@ -111,7 +111,7 @@ On the subscriber side, run:
 .. code-block:: bash
 
  $ goToExamples
- $ cd Benchmark/bin
+ $ cd dds/Benchmark/bin
  $ ./Benchmark subscriber udp
 
 On the publisher side, run:
@@ -119,7 +119,7 @@ On the publisher side, run:
 .. code-block:: bash
 
  $ goToExamples
- $ cd Benchmark/bin
+ $ cd dds/Benchmark/bin
  $ ./Benchmark publisher udp
 
 .. _fast_dds_suite_shapes_demo:
@@ -175,7 +175,7 @@ DDS Router communicating both Domains.
 .. code-block:: bash
 
     goToExamples
-    cd DDS/BasicConfigurationExample/bin
+    cd dds/BasicConfigurationExample/bin
     tmux new-session \
         "ddsrouter --config-path /config.yml" \; \
         split-window -h "./BasicConfigurationExample publisher --domain 0 --interval 1000 --transport udp" \; \

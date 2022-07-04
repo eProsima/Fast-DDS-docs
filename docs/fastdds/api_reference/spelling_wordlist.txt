@@ -78,6 +78,7 @@ LoanableTypedCollection
 loc
 LocatorList
 locatorN
+LocatorWithMask
 logError
 logInfo
 logWarning

@@ -184,3 +184,15 @@ DDS Router communicating both Domains.
 eProsima DDS Router usage information can be found on the `DDS Router documentation
 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/getting_started/project_overview.html>`_.
 
+
+PlotJuggler eProsima Edition
+----------------------------
+
+To launch the PlotJuggler eProsima Edition, from a terminal run
+
+.. code-block:: bash
+
+ $ plotjuggler
+
+eProsima PlotJuggler eProsima Edition usage information can be located on the `PlotJuggler eProsima Edition User Manual
+<https://plotjuggler-fastdds-plugins.readthedocs.io/en/latest/>`_.

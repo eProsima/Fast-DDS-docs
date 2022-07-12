@@ -1,11 +1,11 @@
 Write the Fast DDS subscriber
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-From the workspace, run the following command to download the HelloWorldPublisher.py file.
+From the workspace, run the following command to download the HelloWorldSubscriber.py file.
 
 .. code-block:: bash
 
-    wget -O HelloWorldPublisher.py \
+    wget -O HelloWorldSubscriber.py \
         https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
 
 This is the Python source code for the subscriber application.

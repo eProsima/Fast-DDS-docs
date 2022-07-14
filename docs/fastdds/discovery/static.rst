@@ -282,18 +282,26 @@ Or you can specify the STATIC EDP configuration content directly.
 +------------------------------------------------------+
 
 Checking STATIC EDP XML Files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before Load an static EDP xml file, it would be usefull to check its validaty and make sure the file would be 
-successfully loaded. This verification can be performed on DomainParticipantFactory using check_xml_static_discovery 
-as in the example below.
+Before Load a static EDP xml file, it would be useful to check its validity and make sure the file would be
+successfully loaded. This verification can be performed on DomainParticipantFactory using check_xml_static_discovery,
+using either xml files or the configuration directly, as in the examples below.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // Check XML static discovery file                                                                  |
-|    :end-before: //!                                                                                                  |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tabs::
+
+    .. tab:: File
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: // Check XML static discovery from file
+           :end-before: //!--
+           :dedent: 8
+
+    .. tab:: Data
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: // Check XML static discovery from data
+           :end-before: //!--
+           :dedent: 8

@@ -11,20 +11,21 @@ to notify communication status changes (including arrival of data) to the applic
 
 This mechanism is wait-based. Its general use pattern is as follows:
 
-* The application indicates which relevant information it wants to get, by means of Condition
-  objects (GuardCondition, StatusCondition, or ReadCondition) and attaching them to a wait-set.
-* It then waits on that wait-set until the trigger value of one or several Condition objects become
-  true.
-* It then uses the result of the wait (i.e., the list of Condition objects with
+* The application indicates which relevant information it wants to get, by means of :ref:`api_pim_condition`
+  objects (:ref:`api_pim_guardcondition`, :ref:`api_pim_statuscondition`, or ReadCondition)
+  and attaching them to a :ref:`api_pim_waitset`.
+* It then waits on that :ref:`api_pim_waitset` until the trigger value of one or several :ref:`api_pim_condition`
+  objects become true.
+* It then uses the result of the wait (i.e., the list of :ref:`api_pim_condition` objects with
   trigger_value == true) to actually get the information by calling:
 
-  * get_status_changes and then get_<communication_status> on the relevant Entity, when the
+  * |StatusCondition::get_status_changed-api| and then get_<communication_status> on the relevant Entity, when the
     condition is a StatusCondition and the status changes refer to plain communication status.
-  * get_status_changes and then get_datareaders on the relevant Subscriber, when the condition is a
+  * |StatusCondition::get_status_changed-api| and then get_datareaders on the relevant Subscriber, when the condition is a
     StatusCondition and the status changes refer to DataOnReaders.
-  * get_status_changes and then read/take on the relevant DataReader, when the condition is a
+  * |StatusCondition::get_status_changed-api| and then read/take on the relevant DataReader, when the condition is a
     StatusCondition and the status changes refer to DataAvailable.
-  * Directly read_w_condition/take_w_condition on the DataReader with the Condition as a parameter,
+  * Directly read_w_condition/take_w_condition on the DataReader with the :ref:`api_pim_condition` as a parameter,
     when it is a ReadCondition
 
 The first step is usually done in an initialization phase, while the others are put in the
@@ -36,9 +37,9 @@ application main loop.
    :end-before: //!
    :dedent: 4
 
-Calling the wait operation on the wait-set will block the calling thread if the trigger value of
-all the conditions attached to it are false.
-The thread will wake up, and the wait operation will return OK, whenever the trigger value of any
+Calling the |WaitSet::wait-api| operation on the :ref:`api_pim_waitset` will block the calling thread
+if the trigger value of all the conditions attached to it are false.
+The thread will wake up, and the |WaitSet::wait-api| operation will return OK, whenever the trigger value of any
 of the attached conditions becomes true.
 
 GuardCondition
@@ -65,12 +66,12 @@ For example, if all samples are taken, any ReadCondition associated with the Dat
 triggered before, will see their trigger value changed to false.
 Note that this does not guarantee that WaitSet objects that were separately attached to those
 conditions will not be woken up.
-Once we have trigger_value == true on a condition, it may wake up the attached wait-set.
-The condition transitioning to trigger_value == false does not necessarily ‘unwakeup’ the wait-set,
+Once we have trigger_value == true on a condition, it may wake up the attached :ref:`api_pim_waitset`.
+The condition transitioning to trigger_value == false does not necessarily ‘unwakeup’ the :ref:`api_pim_waitset`,
 as ‘unwakening’ may not be possible in general.
-The consequence is that an application blocked on a wait-set may return from the wait with a list
+The consequence is that an application blocked on a :ref:`api_pim_waitset` may return from the wait with a list
 of conditions, some of which are no longer triggered.
-This is unavoidable if multiple threads are concurrently waiting on separate wait-set objects and
+This is unavoidable if multiple threads are concurrently waiting on separate :ref:`api_pim_waitset` objects and
 taking data associated with the same DataReader entity.
 
 To elaborate further, consider the following example:

@@ -2,8 +2,8 @@
 
 .. rst-class:: api-ref
 
-Waitset
--------
+Wait-set
+--------
 
 .. doxygenclass:: eprosima::fastdds::dds::WaitSet
     :project: FastDDS

@@ -745,6 +745,11 @@
 .. |REJECTED_BY_SAMPLES_LIMIT| replace:: :cpp:enumerator:`REJECTED_BY_SAMPLES_LIMIT<eprosima::fastdds::dds::SampleRejectedStatusKind::REJECTED_BY_SAMPLES_LIMIT>`
 .. |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| replace:: :cpp:enumerator:`REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT<eprosima::fastdds::dds::SampleRejectedStatusKind::REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT>`
 
+.. |GuardCondition::set_trigger_value-api| replace:: :cpp:func:`set_trigger_value()<eprosima::fastdds::dds::GuardCondition::set_trigger_value>`
+.. |StatusCondition::get_status_changed-api| replace:: :cpp:func:`get_status_changed()<eprosima::fastdds::dds::StatusCondition::get_status_changed>`
+.. |StatusCondition::set_enabled_statuses-api| replace:: :cpp:func:`set_enabled_statuses()<eprosima::fastdds::dds::StatusCondition::set_enabled_statuses>`
+.. |WaitSet::wait-api| replace:: :cpp:func:`wait()<eprosima::fastdds::dds::WaitSet::wait>`
+
 .. |SubscriptionMatchedStatus-api| replace:: :cpp:struct:`SubscriptionMatchedStatus<eprosima::fastdds::dds::SubscriptionMatchedStatus>`
 .. |SubscriptionMatchedStatus::last_publication_handle-api| replace:: :cpp:member:`last_publication_handle<eprosima::fastdds::dds::SubscriptionMatchedStatus::last_publication_handle>`
 

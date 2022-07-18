@@ -127,6 +127,11 @@ dependency on other options.
           from a merged catkin, ament, or colcon workspace.
         - ``ON`` ``OFF``
         - ``OFF``
+    *   - :class:`USE_THIRDPARTY_SHARED_MUTEX`
+        - When ``ON`` a boost-like implementation of ``shared_mutex`` is used instead of the STL one. |br|
+          This flag prevents thread sanitizer reports on gcc/clang STL implementations.
+        - ``ON`` ``OFF``
+        - ``OFF``
 
 Log options
 ^^^^^^^^^^^

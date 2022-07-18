@@ -39,6 +39,7 @@ Centric
 cerr
 chocolatey
 ciphertext
+Clang
 cmake
 CMake
 colcon

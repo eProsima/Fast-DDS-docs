@@ -129,7 +129,7 @@ dependency on other options.
         - ``OFF``
     *   - :class:`USE_THIRDPARTY_SHARED_MUTEX`
         - When ``ON`` a Boost-like implementation of ``shared_mutex`` is used instead of the STL one. |br|
-          This flag prevents thread sanitizer reports on gcc/clang STL implementations.
+          This flag prevents thread sanitizer reports on GCC/Clang STL implementations.
         - ``ON`` ``OFF``
         - ``OFF``
 

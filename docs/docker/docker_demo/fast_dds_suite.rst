@@ -39,6 +39,18 @@ This Docker image contains the complete Fast DDS suite. This includes:
   You can read more about this application on the
   `DDS Router documentation website <https://eprosima-dds-router.readthedocs.io>`_.
 
+- :ref:`Plotjuggler eProsima Edition <fast_dds_suite_plotjuggler>`: eProsima Fast DDS Visualizer Plugin is a plugin
+  for the *PlotJuggler* application.
+  PlotJuggler is a graphical desktop application providing visualization features
+  of data series, time series, X-Y plots.
+  It also adds data management features, such as
+  data import and export, custom and built-in data manipulation functions,
+  data series merges, etc.
+  Also, this software supports many different layouts, with dynamic, rich and user-friendly customization.
+
+  You can read more about this application on the
+  `Plotjuggler eProsima Edition documentation website <https://plotjuggler-fastdds-plugins.readthedocs.io/en/latest/>`_.
+
 To load this image into your Docker repository, from a terminal run
 
 .. code-block:: bash
@@ -184,6 +196,7 @@ DDS Router communicating both Domains.
 eProsima DDS Router usage information can be found on the `DDS Router documentation
 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/getting_started/project_overview.html>`_.
 
+.. _fast_dds_suite_plotjuggler:
 
 PlotJuggler eProsima Edition
 ----------------------------

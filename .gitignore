@@ -1,4 +1,3 @@
-build/
 
 # Created by https://www.gitignore.io/api/vim
 
@@ -23,3 +22,9 @@ compile_commands.json
 # Common CSS
 
 docs/_static/css/eprosima_rtd_theme.css
+
+# Colcon
+
+build/
+install/
+log/

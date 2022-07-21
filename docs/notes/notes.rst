@@ -3,34 +3,22 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.5.1
-=============
+Version 2.5.2 (EOL)
+===================
 
 This release includes the following **improvements**:
 
-1. ContentFilterTopic filtering at the DataReader side.
-2. Release lifecycle.
+1. Support lowercase keywords and hexadecimal values on SQL filter.
+2. Support for GCC 12.
 
 This release includes the following **bugfixes**:
 
-1. XML parser fixes.
-2. Discovery Server fixes.
-3. Fix DataSharing sample validation.
-4. PKCS#11 support fixes.
-5. Test fixes.
-6. Doxygen documentation fixes.
-7. GAP message fix.
-8. Enable memory protection on DataSharing readers.
-9. TCP reconnection issues.
-10. Fix dynamic network interfaces feature.
-11. Several Security module fixes.
-12. STRICT_REALTIME fix.
-13. Suppress OpenSSL 3.0 warnings.
-14. Move optionparser to thirdparty.
-15. Thread-safe access to endpoints collections.
-16. MemberDescriptor fully qualified name.
-17. Setting QoS fix.
-18. Other minor fixes and improvements.
+1. Fix MatchedStatus `last_*_handle`.
+2. Fix recommended statistics DataReaderQos to enable backwards compatibility.
+3. Fix deadlocks and data races.
+4. Fix empty partition validation checks.
+5. Fix corner case with reliable writers and samples with a huge number of fragments.
+6. Other minor fixes and improvements.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -40,6 +28,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.5.1.rst
 .. include:: previous_versions/v2.5.0.rst
 .. include:: previous_versions/v2.4.1.rst
 .. include:: previous_versions/v2.4.0.rst

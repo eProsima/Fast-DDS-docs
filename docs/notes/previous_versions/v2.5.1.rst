@@ -1,5 +1,5 @@
-Version 2.5.1
-^^^^^^^^^^^^^
+Version 2.5.1 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **improvements**:
 

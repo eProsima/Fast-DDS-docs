@@ -38,6 +38,7 @@ Previous versions
 
 .. include:: previous_versions/v2.6.1.rst
 .. include:: previous_versions/v2.6.0.rst
+.. include:: previous_versions/v2.5.2.rst
 .. include:: previous_versions/v2.5.1.rst
 .. include:: previous_versions/v2.5.0.rst
 .. include:: previous_versions/v2.4.2.rst

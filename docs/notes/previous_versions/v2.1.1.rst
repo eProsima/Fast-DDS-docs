@@ -1,0 +1,20 @@
+Version 2.1.2
+^^^^^^^^^^^^^
+
+This release includes the following bugfixes:
+
+* Fixed race condition on security handshake
+* Fixed SHM data corruption when using both payload and sub-message protection
+* Fixed some interoperability issues
+* Fixed race condition on timed-events thread
+* Fixed usage of SHM on QNX systems
+
+It also includes the following improvements:
+
+* Increased uniqueness of GUID prefix
+* Discovery server improvements
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.

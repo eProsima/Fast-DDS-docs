@@ -21,7 +21,7 @@ This release also includes the following **bugfixes**:
 1. Avoid bad_node_size exception when cross-building.
 1. Fixed order of returned samples on topics with keys.
 1. Allow updating partitions to an empty set.
-1. Supress OpenSSL 3.0 warnings.
+1. Suppress OpenSSL 3.0 warnings.
 1. MemberDescriptor fully qualified name.
 1. Fixed history record issues with persistence.
 1. Fixed reconnection to Discovery Server.

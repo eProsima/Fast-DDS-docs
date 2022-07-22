@@ -1,37 +1,41 @@
 .. _release_notes:
 
-Version 2.3.4
+Version 2.3.5
 =============
 
 This release includes the following **improvements**:
 
-1. Support of googletest using colcon
-2. Network latency reports source participant
-3. Update Fast DDS Gen to v2.0.2
+1. Fixed several flaky tests.
+2. Use native inter-process on Windows.
+3. Support for partitions on DataWriterQoS and DataReaderQoS.
+4. Support for GCC 12.
+5. Correctly implement delete_contained_entities.
 
-This release includes the following **bugfixes**:
+This release also includes the following **bugfixes**:
 
-1. Fix mutex lock count on :class:`PDPListener`
-2. Limit :class:`SequenceNumberSet` number of bits on deserialization
-3. Fix segmentation fault on discovery server
-4. Fix deadlock with security and timers
-5. Fix bug using not protected code in a test
-6. Fix deadlock with :class:`LivelinessManager`
-7. Fix interval loop on events
-8. Fix run event when was cancelled
-9. Validate sequence range on :class:`CDRMessage::readSequenceNumberSet`
-10. Fix subscription throughput data generation
-11. Allow examples to build on QNX
-12. Fix code on SHM clean
-13. Accept Statistics DataWriters in Discovery Server
-14. Fix read/take behavior when a future change is found
-15. Correctly handle deserialization errors on ``read_next_sample()`` / ``take_next_sample()``
-16. Fixing :class:`SequenceNumberSet_t` deserialization
-17. Proper history clean up when a reader unmatches a writer
-18. Unprotected code loaning samples
-19. Fix publication throughput statistic on volatile writers
-20. Fix Fast DDS CLI server name
-21. Several fixes in examples and tests
+1.Fixed deadline issue on volatile DataWriter.
+2. Allow updating partitions to an empty set.
+3. Fixed order of returned samples on topics with keys.
+4. Fixed issues in LivelinessManager.
+5. Correctly give priority to intra-process over data-sharing.
+6. Avoid bad_node_size exception when cross-building.
+7. Fixed build errors with OpenSSL 3.0.
+8. Avoid a volatile data-sharing reader to block a writer.
+9. Fixed history record issues with persistence.
+10. Correctly disable DataReader on destruction.
+11. Fixed various GCC 11 warnings.
+12. Fixed payload pool handling on EDPSimple destructor.
+13. Fixed read after free on security code.
+14. Fixed null dereference on XML parser.
+15. Ensure correct boost singleton destruction order.
+16. Enable memory protection on DataSharing readers.
+17. TCP reconnection issues.
+18. MemberDescriptor fully qualified name.
+19. Fix recommended statistics DataReaderQos to enable backwards compatibility.
+20. Fixed dangling sample references with big data.
+21. Fixed deadlocks and data races.
+22. Fixed reconnection to Discovery Server.
+23. Other minor fixes.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -41,6 +45,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.3.4.rst
 .. include:: previous_versions/v2.3.3.rst
 .. include:: previous_versions/v2.3.2.rst
 .. include:: previous_versions/v2.3.1.rst

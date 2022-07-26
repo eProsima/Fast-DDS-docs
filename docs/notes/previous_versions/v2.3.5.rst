@@ -11,7 +11,7 @@ This release includes the following **improvements**:
 
 This release also includes the following **bugfixes**:
 
-1.Fixed deadline issue on volatile DataWriter.
+1. Fixed deadline issue on volatile DataWriter.
 2. Allow updating partitions to an empty set.
 3. Fixed order of returned samples on topics with keys.
 4. Fixed issues in LivelinessManager.

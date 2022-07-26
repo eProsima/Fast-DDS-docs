@@ -28,6 +28,7 @@ bitset
 bitsets
 boolean
 booleans
+bugfixes
 Cannonical
 CDR
 centric
@@ -82,6 +83,7 @@ getter
 Github
 GMAC
 GMock
+googletest
 gradle
 gtest
 GTest
@@ -140,6 +142,7 @@ QosPolicyCount
 quadratically
 readNextData
 reconfigurations
+reconnection
 redistributable
 replier
 repos

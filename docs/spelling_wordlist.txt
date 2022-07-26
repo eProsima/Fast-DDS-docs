@@ -120,6 +120,7 @@ lifecycle
 localhost
 LogTopic
 loopback
+lossy
 lroundl
 LTS
 macOS

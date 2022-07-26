@@ -1,0 +1,22 @@
+Version 2.6.2
+^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Support for GCC 12 (#2756)
+2. Overload `DataReader::get_unread_count` (#2843)
+3. Improve read/take performance when using topic with a great number of keys (#2848, #2854)
+4. Improve rediscovery on lossy environments (#2858)
+
+This release includes the following **bugfixes**:
+
+1. Fixed several deadlocks and data races (#2771, #2818, #2791, #2774, #2840)
+2. Fixed validation on ParameterPropertyList_t (#2855)
+3. Fixed wrong usage of std::remove_if (#2861)
+4. Fixed acknowledge in DataSharing (#2860)
+5. Other minor fixes (#2749, #2812, #2834)
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

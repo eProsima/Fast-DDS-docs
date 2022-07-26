@@ -59,6 +59,7 @@ deallocation
 decrypt
 decrypted
 dependant
+dereference
 deserialization
 deserialize
 deserialized
@@ -148,6 +149,7 @@ QosPolicyCount
 quadratically
 readNextData
 reconfigurations
+reconnection
 redistributable
 replier
 repos

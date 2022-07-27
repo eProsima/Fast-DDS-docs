@@ -284,7 +284,7 @@ Or you can specify the STATIC EDP configuration content directly.
 Checking STATIC EDP XML Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before Load a static EDP xml file, it would be useful to check its validity and make sure the file would be
+Before loading a static EDP XML file, it would be useful to check its validity and make sure the file will be
 successfully loaded. This verification can be performed on DomainParticipantFactory using check_xml_static_discovery,
 using either xml files or the configuration directly, as in the examples below.
 

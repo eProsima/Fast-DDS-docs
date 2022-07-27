@@ -1188,7 +1188,8 @@ void dds_discovery_examples()
         //!--
 
         // Check XML static discovery from file
-        std::string file = "file://static_Discovery.xml";        // The (file://) flag is optional.
+        // The (file://) flag is optional.
+        std::string file = "file://static_Discovery.xml";   
         DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
         if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(file))
         {
@@ -1197,6 +1198,7 @@ void dds_discovery_examples()
         //!--
 
         // Check XML static discovery from data
+        // The (data://) flag is required to load the configuration directly.
         std::string fileData = "data://<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
                 "<staticdiscovery>" \
                 "<participant>" \

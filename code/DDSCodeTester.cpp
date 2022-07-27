@@ -21,6 +21,7 @@
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
 #include <fastdds/dds/topic/TopicListener.hpp>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
+
 #include <fastrtps/types/DynamicTypePtr.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastdds/dds/log/Log.hpp>
@@ -1183,6 +1184,36 @@ void dds_discovery_examples()
         {
             // Error
             return;
+        }
+        //!--
+
+        // Check XML static discovery from file
+        // The (file://) flag is optional.
+        std::string file = "file://static_Discovery.xml";   
+        DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
+        if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(file))
+        {
+            std::cout << "Error parsing xml file " << file << std::endl;
+        }
+        //!--
+
+        // Check XML static discovery from data
+        // The (data://) flag is required to load the configuration directly.
+        std::string fileData = "data://<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+                "<staticdiscovery>" \
+                "<participant>" \
+                "<name>HelloWorldPublisher</name>" \
+                "<writer>" \
+                "<userId>1</userId>" \
+                "<entityID>2</entityID>" \
+                "<topicName>HelloWorldTopic</topicName>" \
+                "<topicDataType>HelloWorld</topicDataType>" \
+                "</writer>" \
+                "</participant>" \
+                "</staticdiscovery>";
+        if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(fileData))
+        {
+            std::cout << "Error parsing xml file data:" << std::endl << fileData << std::endl;
         }
         //!--
     }
@@ -5693,21 +5724,65 @@ int main(
         int argc,
         const char** argv)
 {
-    if (argc != 6)
-    {
-        printf("Bad number of parameters\n");
-        exit(-1);
-    }
-
     // Also show log warnings to spot potential mistakes
     Log::SetVerbosity(Log::Kind::Warning);
     // Report filename and line number for debugging
     Log::ReportFilenames(true);
 
     int exit_code = 0;
-    if (!dds_permissions_test(argv[1], argv[2], argv[3], argv[4], argv[5]))
+    if (argc == 6)
     {
-        std::cout << "Error parsing persimission xml file" << std::endl;
+        if (!dds_permissions_test(argv[1], argv[2], argv[3], argv[4], argv[5]))
+        {
+            std::cout << "Error parsing permissions xml file" << std::endl;
+            exit_code = -1;
+        }
+    }
+    else if (argc == 2)
+    {
+        if (strncmp(argv[1], "Static", 6) == 0)
+        {
+            std::string file = argv[1];
+            DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
+            if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(file))
+            {
+                printf("Error parsing xml file %s\n", argv[1]);
+                exit_code = -1;
+            }
+
+            std::string fileData = "data://<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
+                    "<staticdiscovery>" \
+                    "<participant>" \
+                    "<name>HelloWorldPublisher</name>" \
+                    "<writer>" \
+                    "<userId>1</userId>" \
+                    "<entityID>2</entityID>" \
+                    "<topicName>HelloWorldTopic</topicName>" \
+                    "<topicDataType>HelloWorld</topicDataType>" \
+                    "</writer>" \
+                    "</participant>" \
+                    "</staticdiscovery>";
+            if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(fileData))
+            {
+                printf("Error parsing xml file %s\n", argv[1]);
+                exit_code = -1;
+            }
+        }
+        else
+        {
+            eprosima::fastrtps::xmlparser::XMLProfileManager parser;
+            if (parser.loadXMLFile(argv[1]) != eprosima::fastrtps::xmlparser::XMLP_ret::XML_OK)
+            {
+                printf("Error parsing xml file %s\n", argv[1]);
+                exit_code = -1;
+            }
+        }
+    }
+    else
+    {
+        printf("Bad number of parameters\n");
         exit_code = -1;
     }
+
+    exit(exit_code);
 }

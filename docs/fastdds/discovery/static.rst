@@ -204,6 +204,33 @@ It takes no value, and the configuration is done using tag elements:
 
 .. _static_xml_example:
 
+Checking STATIC EDP XML Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before loading a static EDP XML file, it would be useful to check its validity and make sure the file will be
+successfully loaded.
+This verification can be performed on :ref:`dds_layer_domainParticipantFactory` using
+|DomainParticipantFactory::check_xml_static_discovery-api|, using either XML files or the configuration directly,
+as in the examples below.
+
+.. tabs::
+
+    .. tab:: File
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: // Check XML static discovery from file
+           :end-before: //!--
+           :dedent: 8
+
+    .. tab:: Data
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: // Check XML static discovery from data
+           :end-before: //!--
+           :dedent: 8
+
 STATIC EDP XML Example
 """"""""""""""""""""""
 

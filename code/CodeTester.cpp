@@ -11,7 +11,6 @@
 #include <fastrtps/rtps/history/WriterHistory.h>
 #include <fastrtps/rtps/history/ReaderHistory.h>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
-#include <fastrtps/xmlparser/XMLEndpointParser.h>
 #include <fastrtps/transport/UDPv4TransportDescriptor.h>
 #include <fastrtps/transport/TCPv4TransportDescriptor.h>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
@@ -26,7 +25,6 @@
 
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
-using namespace ::xmlparser;
 using namespace ::security;
 using namespace ::types;
 using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
@@ -2100,30 +2098,6 @@ int main(
         {
             printf("Error parsing persimission xml file\n");
             exit_code = -1;
-        }
-    }
-    else
-    {
-        if (strncmp(argv[1], "Static", 6) == 0)
-        {
-            XMLEndpointParser parser;
-            std::string file = argv[1];
-
-            if (parser.loadXMLFile(file) != XMLP_ret::XML_OK)
-            {
-                printf("Error parsing xml file %s\n", argv[1]);
-                exit_code = -1;
-            }
-        }
-        else
-        {
-            XMLProfileManager parser;
-
-            if (parser.loadXMLFile(argv[1]) != XMLP_ret::XML_OK)
-            {
-                printf("Error parsing xml file %s\n", argv[1]);
-                exit_code = -1;
-            }
         }
     }
 

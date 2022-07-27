@@ -286,7 +286,7 @@ Checking STATIC EDP XML Files
 
 Before loading a static EDP XML file, it would be useful to check its validity and make sure the file will be
 successfully loaded. This verification can be performed on DomainParticipantFactory using check_xml_static_discovery,
-using either xml files or the configuration directly, as in the examples below.
+using either XML files or the configuration directly, as in the examples below.
 
 .. tabs::
 

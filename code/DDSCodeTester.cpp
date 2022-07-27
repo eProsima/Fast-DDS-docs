@@ -5732,7 +5732,7 @@ int main(
     {
         if (!dds_permissions_test(argv[1], argv[2], argv[3], argv[4], argv[5]))
         {
-            std::cout << "Error parsing persimission xml file" << std::endl;
+            std::cout << "Error parsing permissions xml file" << std::endl;
             exit_code = -1;
         }
     }

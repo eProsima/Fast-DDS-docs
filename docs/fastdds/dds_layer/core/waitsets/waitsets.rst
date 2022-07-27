@@ -13,7 +13,7 @@ This mechanism is wait-based. Its general use pattern is as follows:
 
 * The application indicates which relevant information it wants to get, by means of :ref:`api_pim_condition`
   objects (:ref:`api_pim_guardcondition`, :ref:`api_pim_statuscondition`, or :ref:`api_pim_readcondition`)
-  and attaching them t
+  and attaching them to a :ref:`api_pim_waitset` via the |WaitSet::attach_condition-api| call.
 * It then waits on that :ref:`api_pim_waitset` via the |WaitSet::wait-api|
   call until the trigger value of one or several :ref:`api_pim_condition` objects become true.
 * It then uses the result of the |WaitSet::wait-api| (i.e., the list of :ref:`api_pim_condition` objects with
@@ -22,7 +22,7 @@ This mechanism is wait-based. Its general use pattern is as follows:
   * |Entity::get_status_changes-api|, then checking if any of the changes is relevant using the |StatusMask::is_active-api|
     method on the result and finally calling get_<communication_status> on the relevant Entity, when the condition is a StatusCondition and the status changes refer to plain communication status.
     Refer to :ref:`dds_layer_core_status` for additional information on the different statuses that can be queried.
-  * |Entity::get_status_changes-api| and then get_datareaders on the relevant Subscriber, when the condition is a
+  * |Entity::get_status_changes-api| and then |Subscriber::get_datareaders-api| on the relevant Subscriber, when the condition is a
     StatusCondition and the status changes refer to DataOnReaders.
   * |Entity::get_status_changes-api| and then |DataReader::read-api|/|DataReader::take-api| on the relevant DataReader, when the condition is a
     StatusCondition and the status changes refer to DataAvailable.
@@ -31,7 +31,6 @@ This mechanism is wait-based. Its general use pattern is as follows:
 
 * When a Condition is no longer relevant it can be detached from a :ref:`api_pim_waitset` via the
   |WaitSet::detach_condition-api| call.
-
 
 The first step is usually done in an initialization phase, while the others are put in the
 application main loop.
@@ -50,14 +49,14 @@ of the attached conditions becomes true.
 GuardCondition
 --------------
 A condition for which the trigger value is completely controlled by the application via its
-set_trigger_value operation.
+|GuardCondition::set_trigger_value-api| operation.
 
 StatusCondition
 ---------------
 A condition that triggers whenever there are changes on the communication statuses of an Entity.
 
-The sensitivity of the StatusCondition to a particular communication status is controlled by the
-list of enabled_statuses set on the condition by means of the set_enabled_statuses operation.
+The sensitivity of the :ref:`api_pim_statuscondition` to a particular communication status is controlled by the
+list of enabled_statuses set on the condition by means of the |StatusCondition::set_enabled_statuses-api| operation.
 
 ReadCondition
 -------------
@@ -76,8 +75,8 @@ The condition transitioning to trigger_value == false does not necessarily ‘un
 as ‘unwakening’ may not be possible in general.
 The consequence is that an application blocked on a :ref:`api_pim_waitset` may return from the wait with a list
 of conditions, some of which are no longer triggered.
-This also may be the consequence of user actions. A user manually calling |GuardCondition::set_trigger_value-api|
-could potentially trigger the same behavior.
+This also may be the consequence of user actions.
+A user manually calling |GuardCondition::set_trigger_value-api| could potentially trigger the same behavior.
 This is unavoidable if multiple threads are concurrently waiting on separate :ref:`api_pim_waitset` objects and
 taking data associated with the same DataReader entity.
 

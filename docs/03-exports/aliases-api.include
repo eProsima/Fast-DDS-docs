@@ -225,6 +225,7 @@
 .. |Subscriber-api| replace:: :cpp:class:`Subscriber <eprosima::fastdds::dds::Subscriber>`
 .. |Subscriber::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::Subscriber::get_qos>`
 .. |Subscriber::set_qos-api| replace:: :cpp:func:`Subscriber::set_qos()<eprosima::fastdds::dds::Subscriber::set_qos>`
+.. |Subscriber::get_datareaders-api| replace:: :cpp:func:`Subscriber::get_datareaders()<eprosima::fastdds::dds::Subscriber::get_datareaders>`
 .. |Subscriber::get_default_datareader_qos-api| replace:: :cpp:func:`get_default_datareader_qos()<eprosima::fastdds::dds::Subscriber::get_default_datareader_qos>`
 .. |Subscriber::set_default_datareader_qos-api| replace:: :cpp:func:`set_default_datareader_qos()<eprosima::fastdds::dds::Subscriber::set_default_datareader_qos>`
 .. |Subscriber::get_datareader_qos_from_profile| replace:: :cpp:func:`get_datareader_qos_from_profile()<eprosima::fastdds::dds::Subscriber::get_datareader_qos_from_profile>`

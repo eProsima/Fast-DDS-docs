@@ -12,21 +12,26 @@ to notify communication status changes (including arrival of data) to the applic
 This mechanism is wait-based. Its general use pattern is as follows:
 
 * The application indicates which relevant information it wants to get, by means of :ref:`api_pim_condition`
-  objects (:ref:`api_pim_guardcondition`, :ref:`api_pim_statuscondition`, or ReadCondition)
-  and attaching them to a :ref:`api_pim_waitset`.
-* It then waits on that :ref:`api_pim_waitset` until the trigger value of one or several :ref:`api_pim_condition`
-  objects become true.
-* It then uses the result of the wait (i.e., the list of :ref:`api_pim_condition` objects with
+  objects (:ref:`api_pim_guardcondition`, :ref:`api_pim_statuscondition`, or :ref:`api_pim_readcondition`)
+  and attaching them t
+* It then waits on that :ref:`api_pim_waitset` via the |WaitSet::wait-api|
+  call until the trigger value of one or several :ref:`api_pim_condition` objects become true.
+* It then uses the result of the |WaitSet::wait-api| (i.e., the list of :ref:`api_pim_condition` objects with
   trigger_value == true) to actually get the information by calling:
 
-  * |StatusCondition::get_status_changed-api| and then get_<communication_status> on the relevant Entity, when the
-    condition is a StatusCondition and the status changes refer to plain communication status.
-  * |StatusCondition::get_status_changed-api| and then get_datareaders on the relevant Subscriber, when the condition is a
+  * |Entity::get_status_changes-api|, then checking if any of the changes is relevant using the |StatusMask::is_active-api|
+    method on the result and finally calling get_<communication_status> on the relevant Entity, when the condition is a StatusCondition and the status changes refer to plain communication status.
+    Refer to :ref:`dds_layer_core_status` for additional information on the different statuses that can be queried.
+  * |Entity::get_status_changes-api| and then get_datareaders on the relevant Subscriber, when the condition is a
     StatusCondition and the status changes refer to DataOnReaders.
-  * |StatusCondition::get_status_changed-api| and then read/take on the relevant DataReader, when the condition is a
+  * |Entity::get_status_changes-api| and then |DataReader::read-api|/|DataReader::take-api| on the relevant DataReader, when the condition is a
     StatusCondition and the status changes refer to DataAvailable.
-  * Directly read_w_condition/take_w_condition on the DataReader with the :ref:`api_pim_condition` as a parameter,
+  * Directly |DataReader::read_w_condition-api|/|DataReader::take_w_condition-api| on the DataReader with the :ref:`api_pim_condition` as a parameter,
     when it is a ReadCondition
+
+* When a Condition is no longer relevant it can be detached from a :ref:`api_pim_waitset` via the
+  |WaitSet::detach_condition-api| call.
+
 
 The first step is usually done in an initialization phase, while the others are put in the
 application main loop.
@@ -39,7 +44,7 @@ application main loop.
 
 Calling the |WaitSet::wait-api| operation on the :ref:`api_pim_waitset` will block the calling thread
 if the trigger value of all the conditions attached to it are false.
-The thread will wake up, and the |WaitSet::wait-api| operation will return OK, whenever the trigger value of any
+The thread will wake up, and the |WaitSet::wait-api| operation will return RETCODE_OK, whenever the trigger value of any
 of the attached conditions becomes true.
 
 GuardCondition
@@ -71,6 +76,8 @@ The condition transitioning to trigger_value == false does not necessarily ‘un
 as ‘unwakening’ may not be possible in general.
 The consequence is that an application blocked on a :ref:`api_pim_waitset` may return from the wait with a list
 of conditions, some of which are no longer triggered.
+This also may be the consequence of user actions. A user manually calling |GuardCondition::set_trigger_value-api|
+could potentially trigger the same behavior.
 This is unavoidable if multiple threads are concurrently waiting on separate :ref:`api_pim_waitset` objects and
 taking data associated with the same DataReader entity.
 
@@ -83,3 +90,4 @@ However, if the same ReadCondition had a sample_state_mask = {READ, NOT_READ}, t
 trigger_value would only become false once all the newly-arrived samples are taken (it is not
 sufficient to read them as that would only change the SampleState to READ which overlaps the mask
 on the ReadCondition).
+

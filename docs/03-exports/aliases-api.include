@@ -14,10 +14,12 @@
 .. |DataReader::read_instance-api| replace:: :cpp:func:`DataReader::read_instance()<eprosima::fastdds::dds::DataReader::read_instance>`
 .. |DataReader::read_next_instance-api| replace:: :cpp:func:`DataReader::read_next_instance()<eprosima::fastdds::dds::DataReader::read_next_instance>`
 .. |DataReader::read_next_sample-api| replace:: :cpp:func:`DataReader::read_next_sample()<eprosima::fastdds::dds::DataReader::read_next_sample>`
+.. |DataReader::read_w_condition-api| replace:: :cpp:func:`DataReader::read_w_condition()<eprosima::fastdds::dds::DataReader::read_w_condition>`
 .. |DataReader::take-api| replace:: :cpp:func:`DataReader::take()<eprosima::fastdds::dds::DataReader::take>`
 .. |DataReader::take_instance-api| replace:: :cpp:func:`DataReader::take_instance()<eprosima::fastdds::dds::DataReader::take_instance>`
 .. |DataReader::take_next_instance-api| replace:: :cpp:func:`DataReader::take_next_instance()<eprosima::fastdds::dds::DataReader::take_next_instance>`
 .. |DataReader::take_next_sample-api| replace:: :cpp:func:`DataReader::take_next_sample()<eprosima::fastdds::dds::DataReader::take_next_sample>`
+.. |DataReader::take_w_condition-api| replace:: :cpp:func:`DataReader::take_w_condition()<eprosima::fastdds::dds::DataReader::take_w_condition>`
 .. |DataReader::return_loan-api| replace:: :cpp:func:`DataReader::return_loan()<eprosima::fastdds::dds::DataReader::return_loan>`
 .. |DataReaderListener-api| replace:: :cpp:class:`DataReaderListener <eprosima::fastdds::dds::DataReaderListener>`
 
@@ -218,6 +220,7 @@
 .. |QosPolicy-api| replace:: :cpp:class:`QosPolicy <eprosima::fastdds::dds::QosPolicy>`
 .. |StatusMask-api| replace:: :cpp:class:`StatusMask <eprosima::fastdds::dds::StatusMask>`
 .. |StatusMask::all-api| replace:: :cpp:func:`StatusMask::all()<eprosima::fastdds::dds::StatusMask::all>`
+.. |StatusMask::is_active-api| replace:: :cpp:func:`StatusMask::is_active()<eprosima::fastdds::dds::StatusMask::is_active>`
 .. |StatusMask::none-api| replace:: :cpp:func:`StatusMask::none()<eprosima::fastdds::dds::StatusMask::none>`
 .. |Subscriber-api| replace:: :cpp:class:`Subscriber <eprosima::fastdds::dds::Subscriber>`
 .. |Subscriber::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::Subscriber::get_qos>`
@@ -290,6 +293,7 @@
 
 .. |Entity-api| replace:: :cpp:class:`Entity<eprosima::fastdds::dds::Entity>`
 .. |Entity::get_instance_handle-api| replace:: :cpp:func:`get_instance_handle()<eprosima::fastdds::dds::Entity::get_instance_handle>`
+.. |Entity::get_status_changes-api| replace:: :cpp:func:`get_status_changes()<eprosima::fastdds::dds::Entity::get_status_changes>`
 
 .. |DestinationOrderQosPolicyKind-api| replace:: :cpp:enum:`DestinationOrderQosPolicyKind<eprosima::fastdds::dds::DestinationOrderQosPolicyKind>`
 .. |BY_RECEPTION_TIMESTAMP| replace:: :cpp:enumerator:`BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS<eprosima::fastdds::dds::DestinationOrderQosPolicyKind::BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS>`
@@ -746,8 +750,9 @@
 .. |REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT| replace:: :cpp:enumerator:`REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT<eprosima::fastdds::dds::SampleRejectedStatusKind::REJECTED_BY_SAMPLES_PER_INSTANCE_LIMIT>`
 
 .. |GuardCondition::set_trigger_value-api| replace:: :cpp:func:`set_trigger_value()<eprosima::fastdds::dds::GuardCondition::set_trigger_value>`
-.. |StatusCondition::get_status_changed-api| replace:: :cpp:func:`get_status_changed()<eprosima::fastdds::dds::StatusCondition::get_status_changed>`
 .. |StatusCondition::set_enabled_statuses-api| replace:: :cpp:func:`set_enabled_statuses()<eprosima::fastdds::dds::StatusCondition::set_enabled_statuses>`
+.. |WaitSet::attach_condition-api| replace:: :cpp:func:`attach_condition()<eprosima::fastdds::dds::WaitSet::attach_condition>`
+.. |WaitSet::detach_condition-api| replace:: :cpp:func:`detach_condition()<eprosima::fastdds::dds::WaitSet::detach_condition>`
 .. |WaitSet::wait-api| replace:: :cpp:func:`wait()<eprosima::fastdds::dds::WaitSet::wait>`
 
 .. |SubscriptionMatchedStatus-api| replace:: :cpp:struct:`SubscriptionMatchedStatus<eprosima::fastdds::dds::SubscriptionMatchedStatus>`

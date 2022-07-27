@@ -5762,7 +5762,7 @@ int main(
                     "</staticdiscovery>";
             if (factory->check_xml_static_discovery(fileData) != ReturnCode_t::RETCODE_OK)
             {
-                printf("2Error parsing xml file %s\n", argv[1]);
+                printf("Error parsing xml file %s\n", argv[1]);
                 exit_code = -1;
             }
         }

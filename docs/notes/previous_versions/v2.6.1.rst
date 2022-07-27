@@ -1,0 +1,24 @@
+Version 2.6.1
+^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Support for :ref:`writer side content filtering <dds_layer_topic_contentFilteredTopic_writer_side>`
+2. Support hexadecimal values on SQL filter
+3. Support for :cpp:func:`DataWriter::get_key_value()<eprosima::fastdds::dds::DataWriter::get_key_value>`
+4. Support for :cpp:func:`DataReader::lookup_instance()<eprosima::fastdds::dds::DataReader::lookup_instance>`
+5. Support for SampleLostStatus on DataReader
+6. Improved doxygen documentation
+
+Some **bugfixes** are also included:
+
+1. Fixed several lock order inversion issues
+2. Fixed data race when closing UDP channels
+3. Fixed empty partition validation checks
+4. Fixed corner case with reliable writers and samples with a huge number of fragments
+5. Other minor fixes and improvements
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

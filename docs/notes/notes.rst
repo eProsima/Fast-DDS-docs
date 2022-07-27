@@ -3,25 +3,23 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.1
+Version 2.6.2
 =============
 
 This release includes the following **improvements**:
 
-1. Support for :ref:`writer side content filtering <dds_layer_topic_contentFilteredTopic_writer_side>`
-2. Support hexadecimal values on SQL filter
-3. Support for :cpp:func:`DataWriter::get_key_value()<eprosima::fastdds::dds::DataWriter::get_key_value>`
-4. Support for :cpp:func:`DataReader::lookup_instance()<eprosima::fastdds::dds::DataReader::lookup_instance>`
-5. Support for SampleLostStatus on DataReader
-6. Improved doxygen documentation
+1. Support for GCC 12.
+2. Overload :cpp:func:`DataReader::get_unread_count()<eprosima::fastdds::dds::DataReader::get_unread_count>`.
+3. Improve read/take performance when using topic with a great number of keys.
+4. Improve rediscovery on lossy environments.
 
-Some **bugfixes** are also included:
+This release includes the following **bugfixes**:
 
-1. Fixed several lock order inversion issues
-2. Fixed data race when closing UDP channels
-3. Fixed empty partition validation checks
-4. Fixed corner case with reliable writers and samples with a huge number of fragments
-5. Other minor fixes and improvements
+1. Fixed several deadlocks and data races.
+2. Fixed validation on :class:`ParameterPropertyList_t`.
+3. Fixed wrong usage of :class:`std::remove_if`.
+4. Fixed acknowledgement in DataSharing.
+5. Other minor fixes.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -31,6 +29,7 @@ Some **bugfixes** are also included:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.1.rst
 .. include:: previous_versions/v2.6.0.rst
 .. include:: previous_versions/v2.5.1.rst
 .. include:: previous_versions/v2.5.0.rst

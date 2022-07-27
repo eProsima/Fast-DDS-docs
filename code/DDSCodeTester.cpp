@@ -5771,7 +5771,7 @@ int main(
             eprosima::fastrtps::xmlparser::XMLProfileManager parser;
             if (parser.loadXMLFile(argv[1]) != eprosima::fastrtps::xmlparser::XMLP_ret::XML_OK)
             {
-                printf("3Error parsing xml file %s\n", argv[1]);
+                printf("Error parsing xml file %s\n", argv[1]);
                 exit_code = -1;
             }
         }

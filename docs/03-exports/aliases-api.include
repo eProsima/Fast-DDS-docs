@@ -153,6 +153,7 @@
 .. |DomainParticipantFactory::load_XML_profiles_string-api| replace:: :cpp:func:`load_XML_profiles_string()<eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_string>`
 .. |DomainParticipantFactory::set_default_participant_qos-api| replace:: :cpp:func:`set_default_participant_qos()<eprosima::fastdds::dds::DomainParticipantFactory::set_default_participant_qos>`
 .. |DomainParticipantFactory::set_qos-api| replace:: :cpp:func:`DomainParticipantFactory::set_qos()<eprosima::fastdds::dds::DomainParticipantFactory::set_qos>`
+.. |DomainParticipantFactory::check_xml_static_discovery-api| replace:: :cpp:func:`DomainParticipantFactory::check_xml_static_discovery()<eprosima::fastdds::dds::DomainParticipantFactory::check_xml_static_discovery>`
 
 .. |DomainParticipantFactoryQos-api| replace:: :cpp:class:`DomainParticipantFactoryQos<eprosima::fastdds::dds::DomainParticipantFactoryQos>`
 .. |DomainParticipantFactoryQos::entity_factory-api| replace:: :cpp:func:`entity_factory()<eprosima::fastdds::dds::DomainParticipantFactoryQos::entity_factory>`

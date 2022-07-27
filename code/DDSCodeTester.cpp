@@ -1190,7 +1190,7 @@ void dds_discovery_examples()
         // Check XML static discovery from file
         std::string file = "file://static_Discovery.xml";// The (file://) flag it is optional.
         DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
-        if (factory->check_xml_static_discovery(file) != ReturnCode_t::RETCODE_OK)
+        if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(file))
         {
             std::cout << "Error parsing xml file " << file << std::endl;
         }
@@ -1209,7 +1209,7 @@ void dds_discovery_examples()
                 "</writer>" \
                 "</participant>" \
                 "</staticdiscovery>";
-        if (factory->check_xml_static_discovery(fileData) != ReturnCode_t::RETCODE_OK)
+        if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(fileData))
         {
             std::cout << "Error parsing xml file data:" << std::endl << fileData << std::endl;
         }
@@ -5742,9 +5742,9 @@ int main(
         {
             std::string file = argv[1];
             DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
-            if (factory->check_xml_static_discovery(file) != ReturnCode_t::RETCODE_OK)
+            if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(file))
             {
-                printf("1Error parsing xml file %s\n", argv[1]);
+                printf("Error parsing xml file %s\n", argv[1]);
                 exit_code = -1;
             }
 
@@ -5760,7 +5760,7 @@ int main(
                     "</writer>" \
                     "</participant>" \
                     "</staticdiscovery>";
-            if (factory->check_xml_static_discovery(fileData) != ReturnCode_t::RETCODE_OK)
+            if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(fileData))
             {
                 printf("Error parsing xml file %s\n", argv[1]);
                 exit_code = -1;

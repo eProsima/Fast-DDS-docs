@@ -27,6 +27,7 @@
 .. |DataReader::get_sample_rejected_status-api| replace:: :cpp:func:`get_sample_rejected_status()<eprosima::fastdds::dds::DataReader::get_sample_rejected_status>`
 .. |DataReader::get_sample_lost_status-api| replace:: :cpp:func:`get_sample_lost_status()<eprosima::fastdds::dds::DataReader::get_sample_lost_status>`
 .. |DataReader::get_subscription_matched_status-api| replace:: :cpp:func:`get_subscription_matched_status()<eprosima::fastdds::dds::DataReader::get_subscription_matched_status>`
+.. |DataReader::get_unread_count-api| replace:: :cpp:func:`get_unread_count()<eprosima::fastdds::dds::DataReader::get_unread_count>`
 .. |DataReader::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::DataReader::delete_contained_entities>`
 
 .. |DataReaderListener::on_data_available-api| replace:: :cpp:func:`on_data_available()<eprosima::fastdds::dds::DataReaderListener::on_data_available>`

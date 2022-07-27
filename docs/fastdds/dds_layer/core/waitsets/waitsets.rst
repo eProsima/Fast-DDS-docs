@@ -53,6 +53,8 @@ A condition that triggers whenever there are changes on the communication status
 The sensitivity of the StatusCondition to a particular communication status is controlled by the
 list of enabled_statuses set on the condition by means of the set_enabled_statuses operation.
 
+.. _dds_layer_core_readcondition:
+
 ReadCondition
 -------------
 A condition that triggers whenever the DataReader that created it contains at least a sample with

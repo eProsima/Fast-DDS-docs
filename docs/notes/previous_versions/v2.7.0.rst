@@ -1,0 +1,27 @@
+Version 2.7.0
+^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Support for :ref:`DDS SampleRejectedStatus API <dds_layer_core_status_sampleRejectedStatus>`
+2. Support for DDS DataWriter methods:
+
+  1. :cpp:func:`DataWriter::write_w_timestamp()<eprosima::fastdds::dds::DataWriter::write_w_timestamp>`
+  2. :cpp:func:`DataWriter::register_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp>`
+  3. :cpp:func:`DataWriter::unregister_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp>`
+  4. :cpp:func:`DataWriter::dispose_w_timestamp()<eprosima::fastdds::dds::DataWriter::dispose_w_timestamp>`
+
+3. Support for DDS :cpp:func:`find_topic()<eprosima::fastdds::dds::DomainParticipant::find_topic>`
+4. Support for GCC 12
+5. Upgrade CMake minimum requirement to 3.16.3
+6. Add Windows DLL support to Dynamic Types API
+
+Some **bugfixes** are also included:
+
+1. Deadlocks and data races
+2. Move deprecated OpenSSL cleanup function to match the right version
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

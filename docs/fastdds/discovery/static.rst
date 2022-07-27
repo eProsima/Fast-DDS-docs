@@ -202,7 +202,7 @@ It takes no value, and the configuration is done using tag elements:
   The special value :class:`INF` can be used to indicate infinite lease duration.
   If not specified, default value is :class:`INF`
 
-.. _static_xml_example:
+.. _check_static_xml_file:
 
 Checking STATIC EDP XML Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -230,6 +230,8 @@ as in the examples below.
            :start-after: // Check XML static discovery from data
            :end-before: //!--
            :dedent: 8
+
+.. _static_xml_example:
 
 STATIC EDP XML Example
 """"""""""""""""""""""

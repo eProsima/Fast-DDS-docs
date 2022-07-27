@@ -4,16 +4,16 @@ Version 2.6.2
 This release includes the following **improvements**:
 
 1. Support for GCC 12.
-2. Overload `DataReader::get_unread_count`.
+2. Overload :cpp:func:`DataReader::get_unread_count()<eprosima::fastdds::dds::DataReader::get_unread_count>`.
 3. Improve read/take performance when using topic with a great number of keys.
 4. Improve rediscovery on lossy environments.
 
 This release includes the following **bugfixes**:
 
 1. Fixed several deadlocks and data races.
-2. Fixed validation on ParameterPropertyList_t.
-3. Fixed wrong usage of std::remove_if.
-4. Fixed acknowledge in DataSharing.
+2. Fixed validation on :class:`ParameterPropertyList_t`.
+3. Fixed wrong usage of :class:`std::remove_if`.
+4. Fixed acknowledgement in DataSharing.
 5. Other minor fixes.
 
 .. note::

@@ -7,6 +7,7 @@ Subscriber
    /fastdds/api_reference/dds_pim/subscriber/datareaderlistener.rst
    /fastdds/api_reference/dds_pim/subscriber/datareaderqos.rst
    /fastdds/api_reference/dds_pim/subscriber/instancestatekind.rst
+   /fastdds/api_reference/dds_pim/subscriber/readcondition.rst
    /fastdds/api_reference/dds_pim/subscriber/readerresourcelimitsqos.rst
    /fastdds/api_reference/dds_pim/subscriber/rtpsreliablereaderqos.rst
    /fastdds/api_reference/dds_pim/subscriber/sampleinfo.rst

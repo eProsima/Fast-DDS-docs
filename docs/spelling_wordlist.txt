@@ -173,6 +173,7 @@ reconnection
 redistributable
 replier
 repos
+RETCODE_OK
 retransmission
 roadmap
 rosbag

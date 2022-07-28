@@ -96,6 +96,7 @@ nullptr
 Num
 OfferedDeadlineMissedStatus
 OfferedIncompatibleQosStatus
+ok
 OStream
 OwnershipQosPolicy
 OwnershipStrengthQosPolicy
@@ -114,6 +115,7 @@ PublisherListener
 qos
 QosPolicyCount
 rdata
+ReadCondition
 ReceiverResource
 ReliabilityQosPolicy
 ReplyPubSubType
@@ -179,6 +181,7 @@ unregistration
 untaken
 untyped
 UserAllocatedSequence
+wakeup
 wdata
 WLPListener
 xml

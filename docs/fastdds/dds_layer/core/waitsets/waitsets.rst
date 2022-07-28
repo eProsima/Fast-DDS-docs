@@ -58,6 +58,8 @@ A condition that triggers whenever there are changes on the communication status
 The sensitivity of the :ref:`api_pim_statuscondition` to a particular communication status is controlled by the
 list of enabled_statuses set on the condition by means of the |StatusCondition::set_enabled_statuses-api| operation.
 
+.. _dds_layer_core_readcondition:
+
 ReadCondition
 -------------
 A condition that triggers whenever the DataReader that created it contains at least a sample with

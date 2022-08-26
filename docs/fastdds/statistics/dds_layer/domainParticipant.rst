@@ -20,11 +20,34 @@ For this purpose, *Fast DDS Statistics module* exposes an extended DDS |Statisti
 Enable statistics DataWriters
 -----------------------------
 
-Statistics DataWriters are enabled using the method |enable_statistics_datawriter|.
-This method requires as parameters:
+Statistics DataWriters can be enabled in different ways.
+First, the built-in creation option, by which, if a statistics topic is defined either on the `fastdds.statistics`
+property policy, or on the `FASTDDS_STATISTICS_ENVIRONMENT_VARIABLE` environment variable.
+If a statistics topic is defined on either of those ways, when creating a DomainParticipant with `auto-enable` option,
+the associate DataWriters will automatically be enabled, with the recommended statistic QoS.
+It is possible to define specific desired QoS trough DataWriter profile on the `FASTRTPS_DEFAULT_PROFILES_FILE`
+(see :ref:`xml_profiles`).
+
+Statistics DataWriters can be enabled at run time using one of two methods: |enable_statistics_datawriter| or
+|enable_statistics_datawriter_with_profile|.
+
+|enable_statistics_datawriter| method requires as parameters:
 
 * Name of the statistics topic to be enabled (see :ref:`statistics_topic_names` for the statistics topic list).
 * DataWriter QoS profile (see :ref:`statistics_datawriter_qos` for the recommended profile).
+
+|enable_statistics_datawriter_with_profile| method enables a DataWriter by searching a specific DataWriter XML profile.
+On that profile, specific QoS can be set for each statistics DataWriter.
+The method requires as parameter:
+
+* Name for the profile to be used. (see :ref:`statistics_topic_names` for the statistics topic list).
+
+.. note::
+
+    When defined on property policy or on environment variable, the statistics DataWriters are created with recommended statistics QoS.
+
+    Instead, when a statistics DataWriter is activated through an XML profile, desired QoS can be set,
+    but the default QoS used are the eProsima's default QoS, not the recommended statistics QoS.
 
 Disable statistics DataWriters
 ------------------------------

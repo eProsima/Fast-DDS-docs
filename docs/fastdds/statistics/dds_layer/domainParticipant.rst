@@ -21,33 +21,35 @@ Enable statistics DataWriters
 -----------------------------
 
 Statistics DataWriters can be enabled in different ways.
-First, the built-in creation option, by which, if a statistics topic is defined either on the `fastdds.statistics`
-property policy, or on the `FASTDDS_STATISTICS_ENVIRONMENT_VARIABLE` environment variable.
-If a statistics topic is defined on either of those ways, when creating a DomainParticipant with `auto-enable` option,
-the associate DataWriters will automatically be enabled, with the recommended statistic QoS.
-It is possible to define specific desired QoS trough DataWriter profile on the `FASTRTPS_DEFAULT_PROFILES_FILE`
-(see :ref:`xml_profiles`).
-
-Statistics DataWriters can be enabled at run time using one of two methods: |enable_statistics_datawriter| or
-|enable_statistics_datawriter_with_profile|.
+It can be done automatically (see :ref:`auto_enabling_statistics_datawriters`).
+Alternatively, Statistics DataWriters can be enabled at run time using one of two methods:
+|enable_statistics_datawriter| or |enable_statistics_datawriter_with_profile|.
 
 |enable_statistics_datawriter| method requires as parameters:
 
 * Name of the statistics topic to be enabled (see :ref:`statistics_topic_names` for the statistics topic list).
 * DataWriter QoS profile (see :ref:`statistics_datawriter_qos` for the recommended profile).
 
-|enable_statistics_datawriter_with_profile| method enables a DataWriter by searching a specific DataWriter XML profile.
-On that profile, specific QoS can be set for each statistics DataWriter.
-The method requires as parameter:
+It is possible to define specific desired QoS trough DataWriter profile on the `FASTRTPS_DEFAULT_PROFILES_FILE`
+(see :ref:`xml_profiles`).
+|enable_statistics_datawriter_with_profile| method enables a DataWriter by searching a specific DataWriter XML profile,
+or a generic statistics DataWriter profile.
+On those profiles, specific QoS can be set.
+For the creation of a Datawriter, the priority for setting its QoS is the following:
 
-* Name for the profile to be used. (see :ref:`statistics_topic_names` for the statistics topic list).
+* First, if a specific profile exists for the statistics topic, that one is applied.
+* If that is not the case but a generic profile for statistics DataWriters exists, that one is applied.
+* If no profile is defined in XML file, the recommended statistics QoS are applied.
 
 .. note::
 
-    When defined on property policy or on environment variable, the statistics DataWriters are created with recommended statistics QoS.
+    The generic DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named as
+    `GENERIC_STATISTICS_PROFILE`.
 
-    Instead, when a statistics DataWriter is activated through an XML profile, desired QoS can be set,
-    but the default QoS used are the eProsima's default QoS, not the recommended statistics QoS.
+|enable_statistics_datawriter_with_profile| method requires as parameters:
+
+* Name of the XML profile to use to fill the QoS structure of the DataWriter.
+* Name of the statistics topic name to be enabled. (see :ref:`statistics_topic_names` for the statistics topic list).
 
 Disable statistics DataWriters
 ------------------------------
@@ -146,3 +148,7 @@ The following examples show how to use all the previous methods:
 
 Be aware that automatically enabling the statistics DataWriters using all these methods implies using the recommended
 QoS profile |STATISTICS_DATAWRITER_QOS-api|. For more information, please refer to :ref:`statistics_datawriter_qos`.
+However, if an XML profile is defined, the QoS applied are those defined in the profile,
+and for those QoS that are not specified in that profile, the default library QoS are applied
+(see :ref:`dds_layer_publisher_dataWriterQos` for the standard eProsima's DataWriter QoS)
+, and not the recommended QoS for the Statistics DataWriters.

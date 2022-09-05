@@ -139,8 +139,8 @@ Be aware that automatically enabling the statistics DataWriters using all these 
 QoS profile |STATISTICS_DATAWRITER_QOS-api|. For more information, please refer to :ref:`statistics_datawriter_qos`.
 However, if an XML profile is defined, the QoS applied are those defined in the profile,
 and for those QoS that are not specified in that profile, the default library QoS are applied
-(see :ref:`dds_layer_publisher_dataWriterQos` for the standard eProsima's DataWriter QoS)
-, and not the recommended QoS for the Statistics DataWriters.
+(see :ref:`dds_layer_publisher_dataWriterQos` for the standard eProsima's DataWriter QoS),
+and not the recommended QoS for the Statistics DataWriters.
 
 For the creation of an automatically enabled Datawriter, the priority for setting its QoS is the following:
 

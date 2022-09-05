@@ -32,19 +32,8 @@ Alternatively, Statistics DataWriters can be enabled at run time using one of tw
 
 It is possible to define specific desired QoS trough DataWriter profile on the `FASTRTPS_DEFAULT_PROFILES_FILE`
 (see :ref:`xml_profiles`).
-|enable_statistics_datawriter_with_profile| method enables a DataWriter by searching a specific DataWriter XML profile,
-or a generic statistics DataWriter profile.
+|enable_statistics_datawriter_with_profile| method enables a DataWriter by searching a specific DataWriter XML profile.
 On those profiles, specific QoS can be set.
-For the creation of a Datawriter, the priority for setting its QoS is the following:
-
-* First, if a specific profile exists for the statistics topic, that one is applied.
-* If that is not the case but a generic profile for statistics DataWriters exists, that one is applied.
-* If no profile is defined in XML file, the recommended statistics QoS are applied.
-
-.. note::
-
-    The generic DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named as
-    `GENERIC_STATISTICS_PROFILE`.
 
 |enable_statistics_datawriter_with_profile| method requires as parameters:
 
@@ -152,3 +141,14 @@ However, if an XML profile is defined, the QoS applied are those defined in the 
 and for those QoS that are not specified in that profile, the default library QoS are applied
 (see :ref:`dds_layer_publisher_dataWriterQos` for the standard eProsima's DataWriter QoS)
 , and not the recommended QoS for the Statistics DataWriters.
+
+For the creation of an automatically enabled Datawriter, the priority for setting its QoS is the following:
+
+* First, if a specific profile exists for the statistics topic, that one is applied.
+* If that is not the case but a generic profile for statistics DataWriters exists, that one is applied.
+* If no profile is defined in XML file, the recommended statistics QoS are applied.
+
+.. note::
+
+    The generic DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named as
+    `GENERIC_STATISTICS_PROFILE`.

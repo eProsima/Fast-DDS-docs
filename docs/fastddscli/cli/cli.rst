@@ -78,8 +78,8 @@ Where the parameters are:
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-h  -help``            | Produce help message.                                                                     |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-l  --ip-address``     | IPv4 address chosen to listen the clients. Defaults to any (0.0.0.0). Instead of an |br|  |
-|                          | address, a name can be specified (see :ref:`DS_dns_name`)                                 |
+| ``-l  --ip-address``     | IPv4/IPv6 address chosen to listen the clients. Defaults to any (0.0.0.0/::0). |br|       |
+|                          | Instead of an address, a DNS domain name can be specified.                                |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-p  --port``           | UDP port chosen to listen the clients. Defaults to '11811'.                               |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -100,7 +100,7 @@ The output is:
       Server ID:          <server-id>
       Server GUID prefix: 44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
       Server Addresses:   UDPv4:[<ip-address>]:<port>
-                          UDPv4:[<ip-address>]:<port>
+                          UDPv6:[<ip-address>]:<port>
 
 Once the *server* is instantiated, the *clients* can be configured either programmatically or by XML (see
 :ref:`discovery_server`), or using environment variable ``ROS_DISCOVERY_SERVER`` (see
@@ -158,7 +158,24 @@ Examples
 
         fastdds discovery -x [PATH_TO_FILE]/DiscoveryServerCLI.xml
 
-3.  Launch a default server with id 2 (third on ``ROS_DISCOVERY_SERVER``)
+3.  Launch a default server with id 1 (second on ``ROS_DISCOVERY_SERVER``)
+    listening on IPv6 address ``2a02:ec80:600:ed1a::3`` with UDP port 14520.
+
+    .. code-block:: bash
+
+        fast-discovery-serverd-1.0.1.exe -i 1 -l 2a02:ec80:600:ed1a::3 -p 14520
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type:   SERVER
+          Server ID:          1
+          Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   UDPv6:[2a02:ec80:600:ed1a::3]:14520
+
+4.  Launch a default server with id 2 (third on ``ROS_DISCOVERY_SERVER``)
     listening on WiFi (192.168.36.34) and Ethernet (172.20.96.1) local
     interfaces with UDP ports 8783 and 51083 respectively
     (addresses and ports are made up for the example).
@@ -178,13 +195,13 @@ Examples
           Server Addresses:   UDPv4:[192.168.36.34]:8783
                               UDPv4:[172.20.96.1]:51083
 
-    Using the same XML configuration file of the previous example, the same output can be obtained loading a specific
+    Using the same XML configuration file from the second example, the same output can be obtained loading a specific
 
     .. code-block:: bash
 
         fastdds discovery -x second_participant_profile_discovery_server_cli@[PATH_TO_FILE]/DiscoveryServerCLI.xml
 
-4.  Launch a default server with id 3 (fourth on ``ROS_DISCOVERY_SERVER``)
+5.  Launch a default server with id 3 (fourth on ``ROS_DISCOVERY_SERVER``)
     listening on 172.30.144.1 with UDP port 12345 and provided with a
     backup file. If the server crashes it will automatically restore its
     previous state when re-enacted.
@@ -203,7 +220,7 @@ Examples
           Server GUID prefix: 44.53.03.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[172.30.144.1]:12345
 
-5.  Launch a default server with id 0 (first on ``ROS_DISCOVERY_SERVER``)
+6.  Launch a default server with id 0 (first on ``ROS_DISCOVERY_SERVER``)
     listening on localhost with UDP port 14520. Only localhost clients
     can reach the server defining as `ROS_DISCOVERY_SERVER=localhost:14520`.
 

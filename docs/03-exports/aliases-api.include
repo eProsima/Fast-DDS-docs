@@ -21,6 +21,7 @@
 .. |DataReader::take_next_sample-api| replace:: :cpp:func:`DataReader::take_next_sample()<eprosima::fastdds::dds::DataReader::take_next_sample>`
 .. |DataReader::take_w_condition-api| replace:: :cpp:func:`DataReader::take_w_condition()<eprosima::fastdds::dds::DataReader::take_w_condition>`
 .. |DataReader::return_loan-api| replace:: :cpp:func:`DataReader::return_loan()<eprosima::fastdds::dds::DataReader::return_loan>`
+.. |DataReader::wait_for_unread_message()| replace:: :cpp:func:`DataReader::wait_for_unread_message()<eprosima::fastdds::dds::DataReader::wait_for_unread_mesage>`
 .. |DataReaderListener-api| replace:: :cpp:class:`DataReaderListener <eprosima::fastdds::dds::DataReaderListener>`
 
 .. |DataReader::get_requested_deadline_missed_status-api| replace:: :cpp:func:`get_requested_deadline_missed_status()<eprosima::fastdds::dds::DataReader::get_requested_deadline_missed_status>`

@@ -111,6 +111,9 @@ These callbacks can be used to retrieve the newly arrived data, as in the follow
 Accessing data with a waiting thread
 ------------------------------------
 
+Wait-sets and DataAvailable status condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Instead of relying on the Listener to try and get new data values,
 the application can also dedicate a thread to wait until any new data is available on the
 DataReader.
@@ -122,7 +125,10 @@ This can be done using a wait-set to wait for a change on the `DataAvailable` st
    :end-before: //!
    :dedent: 8
 
-The same could be achieved using the :func:`wait_for_unread_message` member function,
+DataReader non-blocking calls
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The same could be achieved using the |DataReader::wait_for_unread_message()| member function,
 that blocks until a new data sample is available or the given timeout expires.
 If no new data was available after the timeout expired, it will return with value ``false``.
 This function returning with value ``true`` means there is new data available on the

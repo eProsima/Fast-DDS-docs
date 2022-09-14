@@ -156,4 +156,7 @@ For the creation of an automatically enabled Datawriter, the priority for settin
     `GENERIC_STATISTICS_PROFILE`.
 
     The specific DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named using the
-    statistic topic alias (see :ref:`statistics_topic_names` for the alias corresponding to each statistic topic).
+    same statistic topic alias or name (see :ref:`statistics_topic_names` for the alias corresponding to each statistic
+    topic) that has been used in the |DomainParticipantQos| |DomainParticipantQos::properties-api| ``fastdds.statistics``
+    or the :ref:`env_vars_fastdds_statistics` environment variable, where the enabling of the corresponding statistics
+    topic has been set.

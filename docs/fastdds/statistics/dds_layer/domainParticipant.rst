@@ -154,3 +154,6 @@ For the creation of an automatically enabled Datawriter, the priority for settin
 
     The generic DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named as
     `GENERIC_STATISTICS_PROFILE`.
+
+    The specific DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named using the
+    statistic topic alias (see :ref:`statistics_topic_names` for the alias corresponding to each statistic topic).

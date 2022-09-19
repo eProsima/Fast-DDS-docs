@@ -20,11 +20,25 @@ For this purpose, *Fast DDS Statistics module* exposes an extended DDS |Statisti
 Enable statistics DataWriters
 -----------------------------
 
-Statistics DataWriters are enabled using the method |enable_statistics_datawriter|.
-This method requires as parameters:
+Statistics DataWriters can be enabled in different ways.
+It can be done automatically (see :ref:`auto_enabling_statistics_datawriters`).
+Alternatively, Statistics DataWriters can be enabled at run time using one of two methods:
+|enable_statistics_datawriter| or |enable_statistics_datawriter_with_profile|.
+
+|enable_statistics_datawriter| method requires as parameters:
 
 * Name of the statistics topic to be enabled (see :ref:`statistics_topic_names` for the statistics topic list).
 * DataWriter QoS profile (see :ref:`statistics_datawriter_qos` for the recommended profile).
+
+It is possible to define specific desired QoS through DataWriter profile on the `FASTRTPS_DEFAULT_PROFILES_FILE`
+(see :ref:`xml_profiles`).
+|enable_statistics_datawriter_with_profile| method enables a DataWriter by searching a specific DataWriter XML profile.
+On those profiles, specific QoS can be set.
+
+|enable_statistics_datawriter_with_profile| method requires as parameters:
+
+* Name of the XML profile to use to fill the QoS structure of the DataWriter.
+* Name of the statistics topic name to be enabled. (see :ref:`statistics_topic_names` for the statistics topic list).
 
 Disable statistics DataWriters
 ------------------------------
@@ -121,5 +135,29 @@ The following examples show how to use all the previous methods:
 
         HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC;PUBLICATION_THROUGHPUT_TOPIC;SUBSCRIPTION_THROUGHPUT_TOPIC;RTPS_SENT_TOPIC;RTPS_LOST_TOPIC;HEARTBEAT_COUNT_TOPIC;ACKNACK_COUNT_TOPIC;NACKFRAG_COUNT_TOPIC;GAP_COUNT_TOPIC;DATA_COUNT_TOPIC;RESENT_DATAS_TOPIC;SAMPLE_DATAS_TOPIC;PDP_PACKETS_TOPIC;EDP_PACKETS_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC
 
-Be aware that automatically enabling the statistics DataWriters using all these methods implies using the recommended
-QoS profile |STATISTICS_DATAWRITER_QOS-api|. For more information, please refer to :ref:`statistics_datawriter_qos`.
+.. note::
+
+    Be aware that automatically enabling the statistics DataWriters using all these methods implies using the recommended
+    QoS profile |STATISTICS_DATAWRITER_QOS-api|. For more information, please refer to :ref:`statistics_datawriter_qos`.
+    However, if an XML profile is defined, the QoS applied are those defined in the profile,
+    and for those QoS that are not specified in that profile, the default library QoS are applied
+    (see :ref:`dds_layer_publisher_dataWriterQos` for the standard eProsima's DataWriter QoS),
+    and not the recommended QoS for the Statistics DataWriters.
+
+For the creation of an automatically enabled Datawriter, the priority for setting its QoS is the following:
+
+* First, if a specific profile exists for the statistics topic, that one is applied.
+* If that is not the case but a generic profile for statistics DataWriters exists, that one is applied.
+* If no profile is defined in XML file, the recommended statistics QoS are applied.
+
+.. note::
+
+    The generic DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named as
+    `GENERIC_STATISTICS_PROFILE`.
+
+    The specific DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named using the
+    same statistic topic alias or name (see :ref:`statistics_topic_names` for the alias corresponding to each statistic
+    topic) that has been used in the |DomainParticipantQos| |DomainParticipantQos::properties-api| ``fastdds.statistics``
+    (see :ref:`property_policies_statistics`) or the :ref:`env_vars_fastdds_statistics` environment variable,
+    where the enabling of the corresponding statistics
+    topic has been set.

@@ -951,6 +951,7 @@
 
 .. |StatisticsDomainParticipant-api| replace:: :cpp:class:`DomainParticipant <eprosima::fastdds::statistics::dds::DomainParticipant>`
 .. |enable_statistics_datawriter| replace:: :cpp:func:`enable_statistics_datawriter() <eprosima::fastdds::statistics::dds::DomainParticipant::enable_statistics_datawriter>`
+.. |enable_statistics_datawriter_with_profile| replace:: :cpp:func:`enable_statistics_datawriter_with_profile() <eprosima::fastdds::statistics::dds::DomainParticipant::enable_statistics_datawriter_with_profile>`
 .. |disable_statistics_datawriter| replace:: :cpp:func:`disable_statistics_datawriter() <eprosima::fastdds::statistics::dds::DomainParticipant::disable_statistics_datawriter>`
 .. |statistics_narrow| replace:: :cpp:func:`narrow() <eprosima::fastdds::statistics::dds::DomainParticipant::narrow>`
 

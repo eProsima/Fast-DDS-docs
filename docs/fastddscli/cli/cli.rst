@@ -195,7 +195,8 @@ Examples
           Server Addresses:   UDPv4:[192.168.36.34]:8783
                               UDPv4:[172.20.96.1]:51083
 
-    Using the same XML configuration file from the second example, the same output can be obtained loading a specific
+    Using the same XML configuration file from the second example, the same
+    output can be obtained loading a specific profile: `second_participant_profile_discovery_server_cli`.
 
     .. code-block:: bash
 

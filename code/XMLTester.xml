@@ -210,6 +210,34 @@
 </data_reader>
 <!--><-->
 
+<!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP<-->
+<data_writer profile_name="writer_xml_conf_ownership_profile">
+    <qos>
+      <ownership>
+	        <kind>EXCLUSIVE</kind>
+      </ownership>
+    </qos>
+</data_writer>
+
+<data_reader profile_name="reader_xml_conf_ownership_profile">
+    <qos>
+        <ownership>
+	        <kind>EXCLUSIVE</kind>
+        </ownership>
+    </qos>
+</data_reader>
+<!--><-->
+
+<!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP_STRENGTH<-->
+<data_writer profile_name="writer_xml_conf_ownership_strength_profile">
+    <qos>
+      <ownershipStrength>
+	        <value>10</value>
+      </ownershipStrength>
+    </qos>
+</data_writer>
+<!--><-->
+
 <!-->PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS<-->
 <data_writer profile_name="writer_xml_conf_resource_limits_profile">
     <topic>

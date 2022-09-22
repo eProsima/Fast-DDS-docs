@@ -74,11 +74,21 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
   is |SERVER| or |BACKUP|, then the variable is used to add remote *servers* to the given *server*, leaving the
   :ref:`discovery protocol<discovery_protocol>` as |SERVER| or |BACKUP| respectively.
 
-* The value of the variable must list the locator of the server in the form of the IPv4 address (e.g., '192.168.2.23')
-  or IP-port pair (e.g., '192.168.2.23:24353').
-  Instead of an IPv4 address, a name can be specified (e.g., 'localhost', 'localhost:12345').
-  This name would be used to query known hosts and available DNS servers to try to resolve a valid IPv4 address (see
-  :ref:`DS_dns_name`).
+* The value of the variable must list the locator of the server in the form of:
+
+    + An IPv4 address like ``192.168.2.23``. The UDP port can be appended using `:` as in ``192.168.2.23:35665``.
+    + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again a UDP port can be
+      appended like in ``[1080::8:800:200C:417A]:35665``. Note the use of square brackets to avoid ambiguities.
+    + A DNS name can be specified. This name will be used to query known hosts and available DNS servers to try to
+      resolve valid IP addresses. Several formats are acceptable:
+
+        - Plain domain name: ``eprosima.com``. This will include all available IP addresses.
+        - Domain name + port: ``eprosima.com:35665``. As above but using a specific port.
+        - UDPv4 specifier + domain name: ``UDPv4:[eprosima.com]``. Only the first IPv4 address resolved will be used.
+        - UDPv4 specifier + domain name + port: ``UDPv4:[eprosima.com]:35665``. As above but using a specific port.
+        - UDPv6 specifier + domain name: ``UDPv6:[eprosima.com]``. Only the first IPv6 address resolved will be used.
+        - UDPv6 specifier + domain name + port: ``UDPv6:[eprosima.com]:35665``. As above but using a specific port.
+
 * If no port is specified, the default port 11811 is used.
 * To set more than one *server*'s address, they must be separated by semicolons.
 * The server's ID is determined by their position in the list.
@@ -102,9 +112,9 @@ The following example shows how to set the address of two remote discovery serve
     +----------------------------------------------------------------------------+
 
 .. important::
-  IP addresses specified in ``ROS_DISCOVERY_SERVER`` must be either valid IPv4 addresses or names.
-  If a name which can be translated into an address is specified, the first valid IPv4 returned from the query will be
-  used.
+    IP addresses specified in ``ROS_DISCOVERY_SERVER`` must be either valid IPv4/IPv6 addresses or domain names.
+    If a name can be resolved into several addresses it is possible to either use them all or restrict the selection to
+    the first IPv4 or IPv6 address using the `UDPv4:` and `UDPv6:` prefixes respectively.
 
 .. important::
     This environment variable is meant to be used in combination with :ref:`Fast DDS discovery CLI<cli_discovery>`.
@@ -181,3 +191,5 @@ The file format is as follows:
 .. warning::
     Currently only ``ROS_DISCOVERY_SERVER`` environment variable allows for changes at run time. (see
     :ref:`DS_modify_server_list`)
+
+.. _RFC3513: https://www.rfc-editor.org/rfc/rfc3513

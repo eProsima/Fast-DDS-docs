@@ -214,7 +214,7 @@
 <data_writer profile_name="writer_xml_conf_ownership_profile">
     <qos>
       <ownership>
-	        <kind>EXCLUSIVE</kind>
+	    <kind>EXCLUSIVE</kind>
       </ownership>
     </qos>
 </data_writer>
@@ -222,7 +222,7 @@
 <data_reader profile_name="reader_xml_conf_ownership_profile">
     <qos>
         <ownership>
-	        <kind>EXCLUSIVE</kind>
+	    <kind>EXCLUSIVE</kind>
         </ownership>
     </qos>
 </data_reader>
@@ -231,9 +231,9 @@
 <!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP_STRENGTH<-->
 <data_writer profile_name="writer_xml_conf_ownership_strength_profile">
     <qos>
-      <ownershipStrength>
-	        <value>10</value>
-      </ownershipStrength>
+        <ownershipStrength>
+	    <value>10</value>
+        </ownershipStrength>
     </qos>
 </data_writer>
 <!--><-->

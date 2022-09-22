@@ -769,7 +769,10 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML for the moment.
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP
+    :end-before: <!--><-->
 
 .. _ownershipstrengthqospolicy:
 
@@ -807,7 +810,11 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML for the moment.
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP_STRENGTH
+    :end-before: <!--><-->
+
 
 .. _partitionqospolicy:
 

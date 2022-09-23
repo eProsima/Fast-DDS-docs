@@ -733,6 +733,8 @@ There are two possible values (see |OwnershipQosPolicyKind-api|):
   The owner can be changed dynamically according to the highest `strength` between the alive DataWriters, which has not
   violated the deadline contract concerning the data instances.
   That `strength` can be changed using the :ref:`ownershipstrengthqospolicy`.
+  In case two DataWriters have the same `strength` value,
+  the DataWriter with minimum `GUID` value would be the owner of the topic.
 
 .. _ownership_compatibilityrule:
 

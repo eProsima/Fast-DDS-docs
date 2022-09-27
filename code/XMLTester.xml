@@ -1902,6 +1902,14 @@
         </duration>
     </lifespan>
 
+    <ownership>
+        <kind>EXCLUSIVE</kind>
+    </ownership>
+
+    <ownershipStrength>
+        <value>50</value>
+    </ownershipStrength>
+
     <disablePositiveAcks>
         <enabled>true</enabled>
     </disablePositiveAcks>

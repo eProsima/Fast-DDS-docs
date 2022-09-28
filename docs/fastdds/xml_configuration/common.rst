@@ -25,6 +25,8 @@ This section aims to explain these common elements.
     -   :ref:`xml_partition`
     -   :ref:`xml_deadline`
     -   :ref:`xml_lifespan`
+    -   :ref:`xml_ownership`
+    -   :ref:`xml_ownershipstrength`
     -   :ref:`xml_disablepositiveacks`
     -   :ref:`xml_latencybudget`
     -   :ref:`xml_disableheartbeatpiggyback`
@@ -249,6 +251,10 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
 +-----------------------------------+------------------------------------------+--------------------------------------+
 | ``<lifespan>``                    | See :ref:`lifespanqospolicy`.            | :ref:`xml_lifespan`                  |
 +-----------------------------------+------------------------------------------+--------------------------------------+
+| ``<ownership>``                   | See :ref:`ownershipqospolicy`.           | :ref:`xml_ownership`                 |
++-----------------------------------+------------------------------------------+--------------------------------------+
+| ``<ownershipStrength>``           | See :ref:`ownershipstrengthqospolicy`.   | :ref:`xml_ownershipstrength`         |
++-----------------------------------+------------------------------------------+--------------------------------------+
 | ``<disablePositiveAcks>``         | See :ref:`disablepositiveacksqospolicy`. | :ref:`xml_disablepositiveacks`       |
 +-----------------------------------+------------------------------------------+--------------------------------------+
 | ``<latencyBudget>``               | See :ref:`latencybudgetqospolicy`.       | :ref:`xml_latencybudget`             |
@@ -350,6 +356,31 @@ Lifespan
 +===========================+==================================+=====================+=================================+
 | ``<duration>``            | See :ref:`lifespanqospolicy`.    | :ref:`DurationType` | |c_TimeInfinite-api|            |
 +---------------------------+----------------------------------+---------------------+---------------------------------+
+
+.. _xml_ownership:
+
+Ownership
+"""""""""
+
++------------------+-----------------------------------+-------------------------------+-------------------------------+
+| Name             | Description                       | Values                        | Default                       |
++==================+===================================+===============================+===============================+
+| ``<kind>``       | See                               | |SHARED_OWNERSHIP_QOS-api|    | |SHARED_OWNERSHIP_QOS-api|    |
+|                  | :ref:`ownershipqospolicykind`.    +-------------------------------+                               |
+|                  |                                   | |EXCLUSIVE_OWNERSHIP_QOS-api| |                               |
++------------------+-----------------------------------+-------------------------------+-------------------------------+
+
+.. _xml_ownershipstrength:
+
+Ownership Strength
+""""""""""""""""""
+
++------------------+----------------------------------------+--------------------------------------+-------------------+
+| Name             | Description                            | Values                               | Default           |
++==================+========================================+======================================+===================+
+| ``<value>``      | See                                    | ``uint32_t``                         | 0                 |
+|                  | :ref:`ownershipstrengthqospolicy`.     |                                      |                   |
++------------------+----------------------------------------+--------------------------------------+-------------------+
 
 .. _xml_disablepositiveacks:
 

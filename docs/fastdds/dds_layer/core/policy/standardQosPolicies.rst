@@ -733,6 +733,8 @@ There are two possible values (see |OwnershipQosPolicyKind-api|):
   The owner can be changed dynamically according to the highest `strength` between the alive DataWriters, which has not
   violated the deadline contract concerning the data instances.
   That `strength` can be changed using the :ref:`ownershipstrengthqospolicy`.
+  In case two DataWriters have the same `strength` value,
+  the DataWriter with a lower `GUID` value would be the owner of the topic.
 
 .. _ownership_compatibilityrule:
 
@@ -769,7 +771,10 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML for the moment.
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP
+    :end-before: <!--><-->
 
 .. _ownershipstrengthqospolicy:
 
@@ -807,7 +812,11 @@ C++
 
 XML
 ***
-This QoS Policy cannot be configured using XML for the moment.
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP_STRENGTH
+    :end-before: <!--><-->
+
 
 .. _partitionqospolicy:
 

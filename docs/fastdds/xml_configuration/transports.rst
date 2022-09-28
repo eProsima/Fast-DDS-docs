@@ -230,6 +230,10 @@ protocol are listed in the following table:
 |                           | |br| connectors as                | :cpp:concept:`CLIENT`                  |             |
 |                           | :cpp:concept:`CLIENT`.            |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
+| ``<server_name>``         | server name or host name required | ``string``                             |             |
+|                           | in case Server Name Indication    |                                        |             |
+|                           | (SNI) is used.                    |                                        |             |
++---------------------------+-----------------------------------+----------------------------------------+-------------+
 
 An example of TLS protocol parameter configuration is shown below.
 

@@ -1189,7 +1189,7 @@ void dds_discovery_examples()
 
         // Check XML static discovery from file
         // The (file://) flag is optional.
-        std::string file = "file://static_Discovery.xml";   
+        std::string file = "file://static_Discovery.xml";
         DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
         if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(file))
         {
@@ -4556,6 +4556,7 @@ void dds_transport_examples ()
         tls_transport->tls_config.add_option(TLSOptions::DEFAULT_WORKAROUNDS);
         tls_transport->tls_config.add_option(TLSOptions::SINGLE_DH_USE);
         tls_transport->tls_config.add_option(TLSOptions::NO_SSLV2);
+        tls_transport->tls_config.server_name = "my_server.com";
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tls_transport);

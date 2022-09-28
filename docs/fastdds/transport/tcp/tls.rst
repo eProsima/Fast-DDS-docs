@@ -132,9 +132,8 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::server_name-api|
      - ``string``
      - ``""``
-     - [UNIMPLEMENTED] Server name or host name  |br|
-       required in case Server Name Indication (SNI) |br|
-       is used.
+     - Server name or host name required in case |br|
+       Server Name Indication (SNI) is used.
 
 .. note::
 

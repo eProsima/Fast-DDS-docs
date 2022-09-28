@@ -449,6 +449,9 @@ This additional QoS Policy (|PropertyPolicyQos-api|) stores name/value pairs tha
 DDS settings that cannot be configured directly using an standard QoS Policy.
 For the complete list of settings that can be configured with this QoS Policy, please refer to :ref:`property_policies`.
 
+This QoS also allows to add custom user properties that could be sent to the external entities.
+This could be done by setting as :code:`true` the :code:`propagate` value of the Property.
+
 Example
 """""""
 

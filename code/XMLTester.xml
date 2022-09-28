@@ -4013,6 +4013,13 @@
                     <name>dds.sec.access.plugin</name>
                     <value>builtin.Access-Permissions</value>
                 </property>
+
+                <!-- User Custom Property to send externally -->
+                <property>
+                    <name>Custom Property Name</name>
+                    <value>Custom value</value>
+                    <propagate>true</propagate>
+                </property>
             </properties>
         </propertiesPolicy>
     </rtps>

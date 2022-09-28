@@ -4,8 +4,8 @@
 
 .. _fast_dds_suite:
 
-Fast DDS Suite
-==============
+Fast DDS Suite Image
+====================
 
 This Docker image contains the complete Fast DDS suite. This includes:
 

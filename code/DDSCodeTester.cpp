@@ -3884,6 +3884,9 @@ void dds_qos_examples()
         //Add new property for the Access:Permissions plugin
         property_policy.properties().emplace_back(eprosima::fastrtps::rtps::Property("dds.sec.access.plugin",
                 "builtin.Access-Permissions"));
+
+        //Add new user custom property to send to external Participants
+        property_policy.properties().emplace_back("Custom Property Name", "Custom value", true);
         //!--
     }
 

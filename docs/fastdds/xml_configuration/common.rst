@@ -25,6 +25,8 @@ This section aims to explain these common elements.
     -   :ref:`xml_partition`
     -   :ref:`xml_deadline`
     -   :ref:`xml_lifespan`
+    -   :ref:`xml_ownership`
+    -   :ref:`xml_ownershipstrength`
     -   :ref:`xml_disablepositiveacks`
     -   :ref:`xml_latencybudget`
     -   :ref:`xml_disableheartbeatpiggyback`

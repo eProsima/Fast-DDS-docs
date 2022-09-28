@@ -610,6 +610,7 @@
                     <option>SINGLE_DH_USE</option>
                     <option>NO_SSLV2</option>
                 </options>
+                <server_name>my_server.com</server_name>
             </tls>
         </transport_descriptor>
     </transport_descriptors>
@@ -2010,7 +2011,7 @@
             <maximum>3</maximum>
             <increment>0</increment>
         </matchedSubscribersAllocation>
-        
+
         <!-- reader_filters_allocation cannot be configured using XML (yet) -->
     </data_writer>
 <!--><-->
@@ -4038,7 +4039,7 @@
         <maximum>3</maximum>
         <increment>0</increment>
     </matchedSubscribersAllocation>
-    
+
     <!-- reader_filters_allocation cannot be configured using XML (yet) -->
 </data_writer>
 <!--><-->

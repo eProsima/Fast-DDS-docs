@@ -125,3 +125,6 @@
 .. |TopicDataTypes| replace:: :ref:`TopicDataTypes<dds_layer_definition_data_types>`
 
 .. |Fast DDS-Gen| replace:: :ref:`Fast DDS-Gen<fastddsgen_intro>`
+
+.. |StatisticsDomainParticipant| replace:: _ref_`Statistics Domain Participant`<statistics_domainparticipant>
+.. |StatisticsQosTroubleshooting| replace:: _ref_`Statistics QoS Troubleshooting`<statistics_qos_warning>

@@ -72,6 +72,7 @@ deserializes
 destructor
 diffie
 domainId
+domainparticipant
 downcasted
 doxygen
 DurabilityKind

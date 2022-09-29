@@ -11,3 +11,10 @@ Besides enabling the *Statistics Module* compilation, the user must enable those
 the topics of interest for the user's application.
 Therefore, the standard :ref:`dds_layer` has been extended.
 The following section explains this DDS extended API.
+
+.. note::
+     It may happen that the default QoS settings for statistics DataWriters are not enough to handle deployments with
+     several DomainParticipants with the *Statistics module* enabled resulting in statistics data loss.
+
+     Please refer to the |StatisticsQosTroubleshooting| section of the Statistics Recommended QoS page for more
+     information on how to mitigate this issue.

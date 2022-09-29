@@ -102,7 +102,7 @@ container to check the communication between them by running the following from 
 
  $ goToExamples
  $ cd dds/HelloWorldExample/bin
- $ ./HelloWorldExample publisher
+ $ ./DDSHelloWorldExample publisher
 
 or
 
@@ -110,7 +110,7 @@ or
 
  $ goToExamples
  $ cd dds/HelloWorldExample/bin
- $ ./HelloWorldExample subscriber
+ $ ./DDSHelloWorldExample subscriber
 
 Benchmark Example
 ^^^^^^^^^^^^^^^^^
@@ -124,7 +124,7 @@ On the subscriber side, run:
 
  $ goToExamples
  $ cd dds/Benchmark/bin
- $ ./Benchmark subscriber udp
+ $ ./DDSBenchmark subscriber udp
 
 On the publisher side, run:
 
@@ -132,7 +132,7 @@ On the publisher side, run:
 
  $ goToExamples
  $ cd dds/Benchmark/bin
- $ ./Benchmark publisher udp
+ $ ./DDSBenchmark publisher udp
 
 .. _fast_dds_suite_shapes_demo:
 

@@ -81,7 +81,7 @@
 .. _index_docker:
 
 .. toctree::
-   :caption: Docker Image
+   :caption: Docker Images
    :maxdepth: 2
    :numbered: 5
    :hidden:

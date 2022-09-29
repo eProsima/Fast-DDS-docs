@@ -4,8 +4,8 @@
 
 .. _fast_dds_suite:
 
-Fast DDS Suite
-==============
+Fast DDS Suite Image
+====================
 
 This Docker image contains the complete Fast DDS suite. This includes:
 
@@ -55,15 +55,15 @@ To load this image into your Docker repository, from a terminal run
 
 .. code-block:: bash
 
- $ docker load -i ubuntu-fastdds-suite:<FastDDS-Version>.tar
+    docker load -i "ubuntu-fastdds-suite <FastDDS-Version>.tar"
 
 You can run this Docker container as follows
 
 .. code-block:: bash
 
- $ xhost local:root
- $ docker run -it --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
- ubuntu-fastdds-suite:<FastDDS-Version>
+    xhost local:root
+    docker run -it --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
+    ubuntu-fastdds-suite:<FastDDS-Version>
 
 From the resulting Bash Shell you can run each feature.
 
@@ -77,7 +77,7 @@ Fast DDS libraries. These examples' path can be accessed from a terminal by typi
 
 .. code-block:: bash
 
- $ goToExamples
+    goToExamples
 
 From this folder you can access all examples, both for DDS and RTPS. We detail the steps to launch two such
 examples below.
@@ -89,28 +89,28 @@ This is a minimal example that will perform a Publisher/Subscriber match and sta
 
 .. code-block:: bash
 
- $ goToExamples
- $ cd dds/HelloWorldExample/bin
- $ tmux new-session "./HelloWorldExample publisher 0 1000" \; \
- split-window "./HelloWorldExample subscriber" \; \
- select-layout even-vertical
+    goToExamples
+    cd dds/HelloWorldExample/bin
+    tmux new-session "./DDSHelloWorldExample publisher 0 1000" \; \
+        split-window "./DDSHelloWorldExample subscriber" \; \
+        select-layout even-vertical
 
 This example is not constrained to the current instance. It's possible to run several instances of this
 container to check the communication between them by running the following from each container.
 
 .. code-block:: bash
 
- $ goToExamples
- $ cd dds/HelloWorldExample/bin
- $ ./HelloWorldExample publisher
+    goToExamples
+    cd dds/HelloWorldExample/bin
+    ./DDSHelloWorldExample publisher
 
 or
 
 .. code-block:: bash
 
- $ goToExamples
- $ cd dds/HelloWorldExample/bin
- $ ./HelloWorldExample subscriber
+    goToExamples
+    cd dds/HelloWorldExample/bin
+    ./DDSHelloWorldExample subscriber
 
 Benchmark Example
 ^^^^^^^^^^^^^^^^^
@@ -122,17 +122,17 @@ On the subscriber side, run:
 
 .. code-block:: bash
 
- $ goToExamples
- $ cd dds/Benchmark/bin
- $ ./Benchmark subscriber udp
+    goToExamples
+    cd dds/Benchmark/bin
+    ./DDSBenchmark subscriber udp
 
 On the publisher side, run:
 
 .. code-block:: bash
 
- $ goToExamples
- $ cd dds/Benchmark/bin
- $ ./Benchmark publisher udp
+    goToExamples
+    cd dds/Benchmark/bin
+    ./DDSBenchmark publisher udp
 
 .. _fast_dds_suite_shapes_demo:
 
@@ -143,7 +143,7 @@ To launch the Shapes Demo, from a terminal run
 
 .. code-block:: bash
 
- $ ShapesDemo
+    ShapesDemo
 
 eProsima Shapes Demo usage information can be found on the `Shapes Demo documentation
 <https://eprosima-shapes-demo.readthedocs.io/en/latest/first_steps/first_steps.html>`_.
@@ -157,7 +157,7 @@ To launch the Fast DDS Monitor, from a terminal run
 
 .. code-block:: bash
 
- $ fastdds_monitor
+    fastdds_monitor
 
 eProsima Fast DDS Monitor user manual can be found on the `Fast DDS Monitor documentation
 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/user_manual/initialize_monitoring.html>`_.
@@ -205,7 +205,7 @@ To launch the PlotJuggler eProsima Edition, from a terminal run
 
 .. code-block:: bash
 
- $ plotjuggler
+     plotjuggler
 
 eProsima PlotJuggler eProsima Edition usage information can be located on the `PlotJuggler eProsima Edition User Manual
 <https://plotjuggler-fastdds-plugins.readthedocs.io/en/latest/>`_.

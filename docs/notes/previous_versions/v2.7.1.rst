@@ -1,17 +1,15 @@
-.. include:: ../../03-exports/aliases-api.include
-
 Version 2.7.1
 ^^^^^^^^^^^^^
 
 This release includes the following **features** in an ABI compatible way:
 
-1. :ref:`check_static_xml_file` by means of |DomainParticipantFactory::check_xml_static_discovery-api|.
+1. :ref:`check_static_xml_file` by means of :cpp:func:`DomainParticipantFactory::check_xml_static_discovery()<eprosima::fastdds::dds::DomainParticipantFactory::check_xml_static_discovery>`.
 2. :ref:`dds_layer_core_readcondition` implementation.
 
 This release includes the following **improvements**:
 
 1. Thread sanitizer CI.
-2. Overload |DataReader::get_unread_count-api|.
+2. Overload :cpp:func:`get_unread_count()<eprosima::fastdds::dds::DataReader::get_unread_count>`.
 3. Improve read/take performance when using topic with a great number of keys.
 4. Improve rediscovery on lossy environments.
 5. New :ref:`CMake option<cmake_options>` `USE_THIRDPARTY_SHARED_MUTEX`.

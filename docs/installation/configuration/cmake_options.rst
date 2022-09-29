@@ -314,5 +314,13 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
         - Disables UDPv6 tests.
         - ``ON`` ``OFF``
         - ``OFF``
+    *   - :class:`INSTALL_ANDROID_TESTS`
+        - Android cross-compilation only. Marks the tests for installation on the connected device/emulator.
+        - ``ON`` ``OFF``
+        - ``OFF``
+    *   - :class:`ANDROID_TESTING_ROOT`
+        - Android cross-compilation only. Path on the Android device/emulator to use for installing and running the tests.
+        - ``Valid Unix filesystem path string``
+        - ``""``
 
 

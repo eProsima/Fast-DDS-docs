@@ -55,7 +55,7 @@ To load this image into your Docker repository, from a terminal run
 
 .. code-block:: bash
 
- $ docker load -i ubuntu-fastdds-suite:<FastDDS-Version>.tar
+ $ docker load -i "ubuntu-fastdds-suite <FastDDS-Version>.tar"
 
 You can run this Docker container as follows
 
@@ -91,8 +91,8 @@ This is a minimal example that will perform a Publisher/Subscriber match and sta
 
  $ goToExamples
  $ cd dds/HelloWorldExample/bin
- $ tmux new-session "./HelloWorldExample publisher 0 1000" \; \
- split-window "./HelloWorldExample subscriber" \; \
+ $ tmux new-session "./DDSHelloWorldExample publisher 0 1000" \; \
+ split-window "./DDSHelloWorldExample subscriber" \; \
  select-layout even-vertical
 
 This example is not constrained to the current instance. It's possible to run several instances of this

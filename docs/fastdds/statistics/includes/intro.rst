@@ -14,7 +14,7 @@ The following section explains this DDS extended API.
 
 .. note::
      It may happen that the default QoS settings for statistics DataWriters are not enough to handle deployments with
-     several DomainParticipants with the *Statistics module* enabled resulting in statistics data loss. 
+     several DomainParticipants with the *Statistics module* enabled resulting in statistics data loss.
 
      Please refer to the |StatisticsQosTroubleshooting| section of the Statistics Recommended QoS page for more
      information on how to mitigate this issue.

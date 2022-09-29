@@ -73,7 +73,7 @@ or
  $ cd dds/HelloWorldExample/bin
  $ ./DDSHelloWorldExample subscriber
 
- Benchmark Example
+Benchmark Example
 ^^^^^^^^^^^^^^^^^
 
 This example creates either a Publisher or a Subscriber and on a successful match starts sending samples. After a

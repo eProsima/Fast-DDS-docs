@@ -71,19 +71,3 @@ The recommended profile can be accessed through constant |STATISTICS_DATAREADER_
      - 100
    * - |MemoryManagementPolicy-api|
      - |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
-
-.. _statistics_qos_warning:
-
-Statistics QoS Troubleshooting
-------------------------------
-
-Some statistics intensive deployments may face statistics' data loss due to the default QoS settings for the statistics
-DataWriter being insufficient to hold the amount of samples pending to be sent leading to sample overwrites.
-This can be mitigated or avoided altogether by increasing the value of the statistics DataWriters's History
-depth QoS settings.
-
-Keep in mind that altering this value will increase memory usage.
-
-Statistics entities' QoS configuration via profiles is detailed at the |StatisticsDomainParticipant| page.
-
-

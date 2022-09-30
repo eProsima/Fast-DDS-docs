@@ -17,6 +17,8 @@ For this purpose, *Fast DDS Statistics module* exposes an extended DDS |Statisti
   :backlinks: none
   :depth: 2
 
+.. _statistics_enable_datawriters:
+
 Enable statistics DataWriters
 -----------------------------
 

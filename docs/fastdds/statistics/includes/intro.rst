@@ -13,8 +13,4 @@ Therefore, the standard :ref:`dds_layer` has been extended.
 The following section explains this DDS extended API.
 
 .. note::
-     It may happen that the default QoS settings for statistics DataWriters are not enough to handle deployments with
-     several DomainParticipants with the *Statistics module* enabled resulting in statistics data loss.
-
-     Please refer to the |StatisticsQosTroubleshooting| section of the Statistics Recommended QoS page for more
-     information on how to mitigate this issue.
+     Please refer to |StatisticsQosTroubleshooting| for any problems related to the statistics module.

@@ -1923,6 +1923,10 @@
     </latencyBudget>
 
     <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
+
+    <publishMode>
+        <kind>ASYNCHRONOUS</kind>
+    </publishMode>
 </qos>
 <!--><-->
 </data_writer>
@@ -3090,6 +3094,124 @@
         </propertiesPolicy>
     </rtps>
 </participant>
+<!--><-->
+
+<!-->FASTDDS_STATISTICS_TROUBLESHOOTING_GENERIC<-->
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <participant profile_name="statistics_domainparticipant_conf_xml_general_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <!-- Activate various Fast DDS Statistics Module DataWriters -->
+                        <property>
+                            <name>fastdds.statistics</name>
+                            <value>HISTORY_LATENCY_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+
+        <!-- Generic profile for all the statistics DataWriter -->
+        <data_writer profile_name="GENERIC_STATISTICS_PROFILE">
+            <!-- Configure History QoS as KEEP_LAST 10 -->
+            <topic>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>10</depth>
+                </historyQos>
+            </topic>
+            <!-- Enable pull mode -->
+            <propertiesPolicy>
+                <properties>
+                    <property>
+                        <name>fastdds.push_mode</name>
+                        <value>false</value>
+                    </property>
+                </properties>
+            </propertiesPolicy>
+            <!-- Set durability, reliability, and publication mode -->
+            <qos>
+                <durability>
+                    <kind>TRANSIENT_LOCAL</kind>
+                </durability>
+
+                <reliability>
+                    <kind>RELIABLE</kind>
+                </reliability>
+
+                <publishMode>
+                    <kind>ASYNCHRONOUS</kind>
+                </publishMode>
+            </qos>
+        </data_writer>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+<!-->FASTDDS_STATISTICS_TROUBLESHOOTING_SINGLE_TOPIC<-->
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <participant profile_name="statistics_domainparticipant_conf_xml_specific_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <!-- Activate various Fast DDS Statistics Module DataWriters -->
+                        <property>
+                            <name>fastdds.statistics</name>
+                            <value>HISTORY_LATENCY_TOPIC</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+
+        <!-- Generic profile for a specific statistics DataWriters -->
+        <data_writer profile_name="HISTORY_LATENCY_TOPIC">
+            <!-- Configure History QoS as KEEP_LAST 10 -->
+            <topic>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>10</depth>
+                </historyQos>
+            </topic>
+            <!-- Enable pull mode -->
+            <propertiesPolicy>
+                <properties>
+                    <property>
+                        <name>fastdds.push_mode</name>
+                        <value>false</value>
+                    </property>
+                </properties>
+            </propertiesPolicy>
+            <!-- Set durability, reliability, and publication mode -->
+            <qos>
+                <durability>
+                    <kind>TRANSIENT_LOCAL</kind>
+                </durability>
+
+                <reliability>
+                    <kind>RELIABLE</kind>
+                </reliability>
+
+                <publishMode>
+                    <kind>ASYNCHRONOUS</kind>
+                </publishMode>
+            </qos>
+        </data_writer>
+<!--
+    </profiles>
+</dds>
+-->
 <!--><-->
 
 <!-->FASTDDS_PHYSICAL_PROPERTIES<-->

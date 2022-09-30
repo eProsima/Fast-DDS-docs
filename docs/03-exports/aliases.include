@@ -127,4 +127,4 @@
 .. |Fast DDS-Gen| replace:: :ref:`Fast DDS-Gen<fastddsgen_intro>`
 
 .. |StatisticsDomainParticipant| replace:: :ref:`Statistics Domain Participant<statistics_domainparticipant>`
-.. |StatisticsQosTroubleshooting| replace:: :ref:`Statistics QoS Troubleshooting<statistics_qos_warning>`
+.. |StatisticsQosTroubleshooting| replace:: :ref:`Statistics QoS Troubleshooting<statistics_troubleshooting>`

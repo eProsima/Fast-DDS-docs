@@ -1923,6 +1923,10 @@
     </latencyBudget>
 
     <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
+
+    <publishMode>
+        <kind>ASYNCHRONOUS</kind>
+    </publishMode>
 </qos>
 <!--><-->
 </data_writer>

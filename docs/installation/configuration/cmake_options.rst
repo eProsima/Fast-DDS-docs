@@ -126,11 +126,22 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`USE_THIRDPARTY_SHARED_MUTEX`
-        - When ``ON`` a Boost-like implementation of ``shared_mutex`` is used instead of |br|
-          the STL one. This flag prevents thread sanitizer reports on GCC/Clang STL |br|
-          implementations.
+        - When ``ON`` a custom implementation of ``shared_mutex`` is used instead of the STL one. |br|
+          The C++ Standard has not yet (C++20) imposed any requirements on ``shared_mutex`` priority policies
+          implementation, as POSIX_ does, thus each platform made its own choices:
+          + Windows & Boost defaults to ``PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP``.
+          + Linux & Mac defaults to ``PTHREAD_RWLOCK_PREFER_READER_NP``.
+          Fast-DDS requires the use of ``PTHREAD_RWLOCK_PREFER_READER_NP`` which is the one enforced in
+          its deadlock prevention logic.
+          Fast-DDS will test the framework STL implementation (if available) and will only use it if
+          it enforces ``PTHREAD_RWLOCK_PREFER_READER_NP``. Otherwise it will automatically fallback to a custom
+          implementation.
+          This flag will enforce the use of the custom implementation in all cases.
+          Note that setting the flag ``OFF`` will not prevent the use of the custom implementation in those
+          frameworks that default to ``PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP``.
+          This flag prevents thread sanitizer reports on GCC/Clang STL implementations.
         - ``ON`` ``OFF``
-        - ``OFF``
+        - ``OFF`` (linux & Mac), ``ON`` (Windows)
     *   - :class:`SANITIZER`
         - Adds run-time instrumentation to the code. Supported options are:
 
@@ -138,6 +149,9 @@ dependency on other options.
             - ``Address`` enables Address Sanitizer.
         - ``OFF`` |br| ``Address`` |br| ``Thread``
         - ``OFF``
+
+.. _POSIX: https://man7.org/linux/man-pages/man3/pthread_rwlockattr_setkind_np.3.html
+>>>>>>> 1eb7e19d (Refs 15766: update shared_mutex docs)
 
 Log options
 ^^^^^^^^^^^

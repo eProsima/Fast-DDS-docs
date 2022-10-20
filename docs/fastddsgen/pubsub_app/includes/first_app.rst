@@ -54,7 +54,7 @@ installation followed and the operating system.
     .. code-block:: bash
 
         cd <path-to-Fast-DDS-workspace>/src/fastddsgen
-        gradle assemble
+        ./gradlew assemble
 
 
 Build the Fast DDS application

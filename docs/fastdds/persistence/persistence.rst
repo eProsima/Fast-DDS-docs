@@ -116,7 +116,7 @@ from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles
 |     :language: xml                                                                                                   |
 |     :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->                                                  |
 |     :end-before: <!--><-->                                                                                           |
-|     :lines: 2-4, 6-47, 49-50                                                                                         |
+|     :lines: 2-4, 6-61, 63-64                                                                                         |
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. note::

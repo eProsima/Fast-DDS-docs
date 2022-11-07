@@ -68,6 +68,7 @@ initialHeartbeatDelay
 inlined
 instanceHandle
 InstanceHandle
+intraprocess
 LatencyBudgetQosPolicy
 lifecycle
 LifespanQosPolicy

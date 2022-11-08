@@ -84,6 +84,19 @@ The DataWriter configuration is performed through the XML elements listed in the
        It expects a :ref:`LocatorListType`.
      - ``<locator>``
      -
+   * - ``<external_unicast_locators>``
+     - List of :ref:`external_locators` |br|
+       to announce for the communication |br|
+       with this DataWriter.
+     - :ref:`externalLocatorListType`
+     -
+   * - ``<ignore_non_matching_locators>``
+     - Whether to ignore locators received on |br|
+       announcements from other entities when |br|
+       they don't match with any of the locators |br|
+       announced by this DataWriter.
+     - ``bool``
+     - false
    * - ``<throughputController>``
      - Limits the output bandwidth of the |br|
        DataWriter.

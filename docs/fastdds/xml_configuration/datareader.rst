@@ -86,6 +86,19 @@ The DataReader configuration is performed through the XML elements listed in the
        It expects a :ref:`LocatorListType`.
      - List of :ref:`LocatorListType`
      -
+   * - ``<external_unicast_locators>``
+     - List of :ref:`external_locators` |br|
+       to announce for the communication |br|
+       with this DataReader.
+     - :ref:`externalLocatorListType`
+     -
+   * - ``<ignore_non_matching_locators>``
+     - Whether to ignore locators received on |br|
+       announcements from other entities when |br|
+       they don't match with any of the locators |br|
+       announced by this DataReader.
+     - ``bool``
+     - false
    * - ``<expectsInlineQos>``
      - It indicates if QoS is expected inline.
      - ``bool``

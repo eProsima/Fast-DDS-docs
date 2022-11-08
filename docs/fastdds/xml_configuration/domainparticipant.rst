@@ -95,6 +95,19 @@ These elements allow the user to define the DomainParticipant configuration.
        It expects a :ref:`LocatorListType`.
      - ``<locator>``
      -
+   * - ``<default_external_unicast_locators>``
+     - List of :ref:`external_locators` |br|
+       to announce for the default user traffic of |br|
+       this participant.
+     - :ref:`externalLocatorListType`
+     -
+   * - ``<ignore_non_matching_locators>``
+     - Whether to ignore locators received on |br|
+       announcements from other participants when |br|
+       they don't match with any of the locators |br|
+       announced by this participant.
+     - ``bool``
+     - false
    * - ``<sendSocketBufferSize>``
      - Size in bytes of the send socket buffer. |br|
        If the value is zero then *Fast DDS* will |br|
@@ -346,6 +359,12 @@ This section specifies the available XML members for the configuration of this
        communicate. See |br|
        :ref:`Simple Initial Peers`
      - A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
+     -
+   * - ``<metatraffic_external_unicast_locators>``
+     - List of :ref:`external_locators` |br|
+       to announce for the metatraffic of |br|
+       this participant.
+     - :ref:`externalLocatorListType`
      -
    * - ``<DataReaderHistoryMemoryPolicy>``
      - Memory policy for DataReaders. |br|

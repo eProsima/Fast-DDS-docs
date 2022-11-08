@@ -305,60 +305,80 @@ class.
 This section specifies the available XML members for the configuration of this
 |WireProtocolConfigQos::builtin-api| parameters.
 
-.. Some large words outside of table. Then table fit maximum line length
+.. list-table::
+   :header-rows: 1
+   :align: left
 
-.. |loclist| replace:: A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
-.. |mempol| replace:: :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
-.. |mempoldefault| replace:: |PREALLOCATED-xml-api|
-
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| Name                                  | Description                          | Values              | Default         |
-+=======================================+======================================+=====================+=================+
-| ``<discovery_config>``                | This is the main element within |br| | :ref:`dconf`        |                 |
-|                                       | which discovery-related  |br|        |                     |                 |
-|                                       | settings can be configured. |br|     |                     |                 |
-|                                       | See :ref:`discovery`.                |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<avoid_builtin_multicast>``         | Restricts multicast metatraffic |br| | ``bool``            | :class:`true`   |
-|                                       | to PDP only.                         |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<use_WriterLivelinessProtocol>``    | Indicates whether to use the |br|    | ``bool``            | :class:`true`   |
-|                                       | DataWriterLiveliness protocol.       |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<metatrafficUnicastLocatorList>``   | Metatraffic Unicast Locator List.    | |loclist|           |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<metatrafficMulticastLocatorList>`` | Metatraffic Multicast Locator List.  | |loclist|           |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<initialPeersList>``                | The list of IP-port address |br|     | |loclist|           |                 |
-|                                       | pairs of all other |br|              |                     |                 |
-|                                       | |DomainParticipants| with which |br| |                     |                 |
-|                                       | a |DomainParticipant| will |br|      |                     |                 |
-|                                       | communicate. See |br|                |                     |                 |
-|                                       | :ref:`Simple Initial Peers`          |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<DataReaderHistoryMemoryPolicy>``   | Memory policy for DataReaders. |br|  | |mempol|            | |mempoldefault| |
-|                                       | See :ref:`historyqospolicykind`.     |                     |                 |
-|                                       |                                      |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<DataWriterHistoryMemoryPolicy>``   | Memory policy for DataWriters. |br|  | |mempol|            | |mempoldefault| |
-|                                       | See :ref:`historyqospolicykind`.     |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<readerPayloadSize>``               | Maximum DataReader's History |br|    | ``uint32_t``        | 512             |
-|                                       | payload size. Allows to reserve |br| |                     |                 |
-|                                       | all the required memory at |br|      |                     |                 |
-|                                       | DataReader initialization. |br|      |                     |                 |
-|                                       | See :ref:`memorymanagementpolicy`.   |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<writerPayloadSize>``               | Maximum DataWriter's History |br|    | ``uint32_t``        | 512             |
-|                                       | payload size. Allows to reserve |br| |                     |                 |
-|                                       | all the required memory at |br|      |                     |                 |
-|                                       | DataWriter initialization. |br|      |                     |                 |
-|                                       | See :ref:`memorymanagementpolicy`.   |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
-| ``<mutation_tries>``                  | Number of different ports |br|       | ``uint32_t``        | 100             |
-|                                       | to try if DataReader's physical |br| |                     |                 |
-|                                       | port is already in use.              |                     |                 |
-+---------------------------------------+--------------------------------------+---------------------+-----------------+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<discovery_config>``
+     - This is the main element within |br|
+       which discovery-related |br|
+       settings can be configured. |br|
+       See :ref:`discovery`.
+     - :ref:`dconf`
+     -
+   * - ``<avoid_builtin_multicast>``
+     - Restricts multicast metatraffic |br|
+       to PDP only.
+     - ``bool``
+     - :class:`true`
+   * - ``<use_WriterLivelinessProtocol>``
+     - Indicates whether to use the |br|
+       DataWriterLiveliness protocol.
+     - ``bool``
+     - :class:`true`
+   * - ``<metatrafficUnicastLocatorList>``
+     - Metatraffic Unicast Locator List.
+     - A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
+     -
+   * - ``<metatrafficMulticastLocatorList>``
+     - Metatraffic Multicast Locator List.
+     - A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
+     -
+   * - ``<initialPeersList>``
+     - The list of IP-port address |br|
+       pairs of all other |br|
+       |DomainParticipants| with which |br|
+       a |DomainParticipant| will |br|
+       communicate. See |br|
+       :ref:`Simple Initial Peers`
+     - A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
+     -
+   * - ``<DataReaderHistoryMemoryPolicy>``
+     - Memory policy for DataReaders. |br|
+       See :ref:`historyqospolicykind`.
+     - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
+     - |PREALLOCATED-xml-api|
+   * - ``<DataWriterHistoryMemoryPolicy>``
+     - Memory policy for DataWriters. |br|
+       See :ref:`historyqospolicykind`.
+     - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
+     - |PREALLOCATED-xml-api|
+   * - ``<readerPayloadSize>``
+     - Maximum DataReader's History |br|
+       payload size. Allows to reserve |br|
+       all the required memory at |br|
+       DataReader initialization. |br|
+       See :ref:`memorymanagementpolicy`.
+     - ``uint32_t``
+     - 512
+   * - ``<writerPayloadSize>``
+     - Maximum DataWriter's History |br|
+       payload size. Allows to reserve |br|
+       all the required memory at |br|
+       DataWriter initialization. |br|
+       See :ref:`memorymanagementpolicy`.
+     - ``uint32_t``
+     - 512
+   * - ``<mutation_tries>``
+     - Number of different ports |br|
+       to try if DataReader's physical |br|
+       port is already in use.
+     - ``uint32_t``
+     - 100
 
 
 **Example**

@@ -56,6 +56,7 @@ The figure below shows a comparison between the different transports available i
     /fastdds/transport/intraprocess.rst
     /fastdds/transport/tcp/tls.rst
     /fastdds/transport/listening_locators.rst
+    /fastdds/transport/announced_locators.rst
     /fastdds/transport/whitelist.rst
     /fastdds/transport/disabling_multicast.rst
 

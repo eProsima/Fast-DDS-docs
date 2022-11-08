@@ -11,6 +11,7 @@ The preceding XML profiles define some XML elements that are common to several p
 This section aims to explain these common elements.
 
 *   :ref:`LocatorListType`
+*   :ref:`externalLocatorListType`
 *   :ref:`PropertiesPolicyType`
 *   :ref:`DurationType`
 *   :ref:`TopicType`
@@ -81,6 +82,43 @@ The following example shows the implementation of one locator of each transport 
     :language: xml
     :start-after: <!-->XML-LOCATOR-LIST<-->
     :end-before: <!--><-->
+
+.. _externalLocatorListType:
+
+ExternalLocatorListType
+^^^^^^^^^^^^^^^^^^^^^^^
+
+It represents a list of external locator entries.
+Each entry can be a ``<udpv4>`` or a ``<udpv6>`` tag.
+These tags can be configured with the following attributes:
+
++---------------------+--------------------------------------------------------+--------------------+------------------+
+| Name                | Description                                            | Values             | Default          |
++=====================+========================================================+====================+==================+
+| ``externality``     | Number of hops from the participant's host to the      | ``uint8_t``        | 1                |
+|                     | LAN represented by the external locator.               |                    |                  |
+|                     | Valid values: from 1 to 255.                           |                    |                  |
++---------------------+--------------------------------------------------------+--------------------+------------------+
+| ``cost``            | Communication cost relative to other locators on the   | ``uint8_t``        | 0                |
+|                     | same externality level.                                |                    |                  |
+|                     | Valid values: from 0 to 255.                           |                    |                  |
++---------------------+--------------------------------------------------------+--------------------+------------------+
+| ``mask``            | Number of significant bits on the LAN represented by   | ``uint8_t``        | 24               |
+|                     | the external locator.                                  |                    |                  |
+|                     | Valid values: from 1 to 31 (UDPv4) or 127 (UDPv6)      |                    |                  |
++---------------------+--------------------------------------------------------+--------------------+------------------+
+
+They should contain the following tags:
+
++---------------------+--------------------------------------------------------+--------------------+
+| Name                | Description                                            | Values             |
++=====================+========================================================+====================+
+| ``<port>``          | UDP port number of the locator. |br|                   | ``uint32_t``       |
+|                     | Should have a valid UDP port number.                   |                    |
++---------------------+--------------------------------------------------------+--------------------+
+| ``<address>``       | IP address of the locator.                             | ``string``         |
+|                     |                                                        | (IPv4/IPv6 format) |
++---------------------+--------------------------------------------------------+--------------------+
 
 .. _PropertiesPolicyType:
 

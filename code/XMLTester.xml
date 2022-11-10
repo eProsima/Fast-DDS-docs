@@ -1387,6 +1387,16 @@
                 </locator>
             </defaultMulticastLocatorList>
 
+            <default_external_unicast_locators>
+                <!-- EXTERNAL_LOCATOR_LIST -->
+                <udpv4 externaliy="1" cost="0" mask="24">
+                    <address>100.100.100.10</address>
+                    <port>23456</port>
+                </udpv4>
+            </default_external_unicast_locators>
+
+            <ignore_non_matching_locators>true</ignore_non_matching_locators>
+
             <sendSocketBufferSize>8192</sendSocketBufferSize>
 
             <listenSocketBufferSize>8192</listenSocketBufferSize>
@@ -1544,6 +1554,14 @@
         </locator>
     </initialPeersList>
 
+    <metatraffic_external_unicast_locators>
+        <!-- EXTERNAL_LOCATOR_LIST -->
+        <udpv4 externaliy="1" cost="0" mask="24">
+            <address>100.100.100.10</address>
+            <port>34567</port>
+        </udpv4>
+    </metatraffic_external_unicast_locators>
+
     <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
 
     <readerPayloadSize>512</readerPayloadSize>
@@ -1657,6 +1675,16 @@
                 </locator>
             </multicastLocatorList>
 
+            <external_unicast_locators>
+                <!-- EXTERNAL_LOCATOR_LIST -->
+                <udpv4 externaliy="1" cost="0" mask="24">
+                    <address>100.100.100.10</address>
+                    <port>12345</port>
+                </udpv4>
+            </external_unicast_locators>
+
+            <ignore_non_matching_locators>true</ignore_non_matching_locators>
+
             <throughputController>
                 <bytesPerPeriod>8192</bytesPerPeriod>
                 <periodMillisecs>1000</periodMillisecs>
@@ -1725,6 +1753,16 @@
                     <udpv4/>
                 </locator>
             </multicastLocatorList>
+
+            <external_unicast_locators>
+                <!-- EXTERNAL_LOCATOR_LIST -->
+                <udpv4 externaliy="1" cost="0" mask="24">
+                    <address>100.100.100.10</address>
+                    <port>12345</port>
+                </udpv4>
+            </external_unicast_locators>
+
+            <ignore_non_matching_locators>true</ignore_non_matching_locators>
 
             <expectsInlineQos>true</expectsInlineQos>
 

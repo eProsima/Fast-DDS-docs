@@ -132,11 +132,13 @@ The DataWriter configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-DATAWRITER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-71, 73-74
+    :lines: 2-4, 6-81, 83-84
 
 .. note::
 
     - :class:`LOCATOR_LIST` means a :ref:`LocatorListType` is expected.
+
+    - :class:`EXTERNAL_LOCATOR_LIST` means a :ref:`externalLocatorListType` is expected.
 
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
 

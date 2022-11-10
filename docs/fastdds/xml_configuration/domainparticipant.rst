@@ -174,11 +174,13 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-76, 78
+    :lines: 2-3, 5-86, 88
 
 .. note::
 
     - :class:`LOCATOR_LIST` means a :ref:`LocatorListType` is expected.
+
+    - :class:`EXTERNAL_LOCATOR_LIST` means a :ref:`externalLocatorListType` is expected.
 
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
 

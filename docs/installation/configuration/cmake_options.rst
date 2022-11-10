@@ -39,7 +39,6 @@ dependency on other options.
             - :class:`EPROSIMA_BUILD` is set to ``ON``.
             - :class:`BUILD_DOCUMENTATION` is set to ``ON``.
             - :class:`INSTALL_EXAMPLES` is set to ``ON``.
-
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`EPROSIMA_BUILD`
@@ -55,7 +54,6 @@ dependency on other options.
             - :class:`THIRDPARTY_TinyXML2` is set to ``ON`` if it was not set to ``FORCE``.
             - :class:`THIRDPARTY_android-ifaddrs` is set to ``ON`` if it was not set to ``FORCE``.
             - :class:`EPROSIMA_BUILD_TESTS` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
-
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`BUILD_SHARED_LIBS`
@@ -128,9 +126,17 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`USE_THIRDPARTY_SHARED_MUTEX`
-        - When ``ON`` a Boost-like implementation of ``shared_mutex`` is used instead of the STL one. |br|
-          This flag prevents thread sanitizer reports on GCC/Clang STL implementations.
+        - When ``ON`` a Boost-like implementation of ``shared_mutex`` is used instead of |br|
+          the STL one. This flag prevents thread sanitizer reports on GCC/Clang STL |br|
+          implementations.
         - ``ON`` ``OFF``
+        - ``OFF``
+    *   - :class:`SANITIZER`
+        - Adds run-time instrumentation to the code. Supported options are:
+
+            - ``Thread`` enables Thread Sanitizer. |br|
+            - ``Address`` enables Address Sanitizer.
+        - ``OFF`` |br| ``Address`` |br| ``Thread``
         - ``OFF``
 
 Log options
@@ -177,7 +183,8 @@ This module can be configured using *Fast DDS* CMake arguments regarding the fol
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`INTERNAL_DEBUG`
-        - Activates compilation of log messages (See :ref:`dds_layer_log_disable`). |br|
+        - Activates compilation of log messages |br|
+          (See :ref:`dds_layer_log_disable`). |br|
           Moreover, :class:`INTERNAL_DEBUG` is set to ``ON`` if |br|
           :class:`EPROSIMA_BUILD` is ``ON``.
         - ``ON`` ``OFF``
@@ -315,11 +322,13 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`INSTALL_ANDROID_TESTS`
-        - Android cross-compilation only. Marks the tests for installation on the connected device/emulator.
+        - Android cross-compilation only. Marks the tests for installation on the |br|
+          connected device/emulator.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`ANDROID_TESTING_ROOT`
-        - Android cross-compilation only. Path on the Android device/emulator to use for installing and running the tests.
+        - Android cross-compilation only. Path on the Android device/emulator to |br|
+          use for installing and running the tests.
         - ``Valid Unix filesystem path string``
         - ``""``
 

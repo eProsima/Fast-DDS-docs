@@ -27,7 +27,7 @@ fixes.
 This release includes the following **features**:
 
 1. Full :ref:`Ownership<ownershipqospolicy>` and :ref:`OwnershipStrength<ownershipstrengthqospolicy>` QoS support
-2. External locators
+2. :ref:`External locators<external_locators>`
 3. UDPv6 support for :ref:`fast-discovery-server tool<cli_discovery>` and
    :ref:`ROS_DISCOVERY_SERVER<env_vars_ros_discovery_server>`
 4. :ref:`XML configuration support for statistics DataWriters QoS<statistics_enable_datawriters>`

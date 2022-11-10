@@ -122,7 +122,6 @@ latencies
 Libp
 libs
 lifecycle
-linux
 localhost
 localtime
 LogTopic

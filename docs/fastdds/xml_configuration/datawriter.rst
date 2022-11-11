@@ -132,7 +132,7 @@ The DataWriter configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-DATAWRITER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-81, 83-84
+    :lines: 2-4, 6-83, 85-86
 
 .. note::
 

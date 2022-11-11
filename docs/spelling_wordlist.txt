@@ -85,6 +85,7 @@ eProsima
 ethernet
 executables
 extensibility
+externality
 fastcdr
 fastdds
 fastddsgen

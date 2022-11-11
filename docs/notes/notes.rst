@@ -22,7 +22,7 @@ This release includes the following **bugfixes**:
     2. Fixes reported by address sanitizer.
 
 1. Synchronization fixes:
-    1. Fix dataraces when creating DataWriters.
+    1. Fix data races when creating DataWriters.
     2. Ensure ``shared_mutex`` implementation is consistent throughout supported platforms.
 
 1. Other fixes:

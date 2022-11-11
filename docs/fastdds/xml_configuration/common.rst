@@ -95,16 +95,16 @@ These tags can be configured with the following attributes:
 +---------------------+--------------------------------------------------------+--------------------+------------------+
 | Name                | Description                                            | Values             | Default          |
 +=====================+========================================================+====================+==================+
-| ``externality``     | Number of hops from the participant's host to the      | ``uint8_t``        | 1                |
-|                     | LAN represented by the external locator.               |                    |                  |
+| ``externality``     | Number of hops from the participant's host to the |br| | ``uint8_t``        | 1                |
+|                     | LAN represented by the external locator. |br|          |                    |                  |
 |                     | Valid values: from 1 to 255.                           |                    |                  |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``cost``            | Communication cost relative to other locators on the   | ``uint8_t``        | 0                |
-|                     | same externality level.                                |                    |                  |
+| ``cost``            | Communication cost relative to other locators on |br|  | ``uint8_t``        | 0                |
+|                     | the same externality level. |br|                       |                    |                  |
 |                     | Valid values: from 0 to 255.                           |                    |                  |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``mask``            | Number of significant bits on the LAN represented by   | ``uint8_t``        | 24               |
-|                     | the external locator.                                  |                    |                  |
+| ``mask``            | Number of significant bits on the LAN represented |br| | ``uint8_t``        | 24               |
+|                     | by the external locator. |br|                          |                    |                  |
 |                     | Valid values: from 1 to 31 (UDPv4) or 127 (UDPv6)      |                    |                  |
 +---------------------+--------------------------------------------------------+--------------------+------------------+
 

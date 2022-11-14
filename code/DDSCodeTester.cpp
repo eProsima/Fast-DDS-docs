@@ -3932,6 +3932,14 @@ void dds_qos_examples()
         eprosima::fastrtps::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
         new_multicast_locator.port = 7900;
         endpoint.multicast_locator_list.push_back(new_multicast_locator);
+        // Add an external locator with IP 100.100.100.10, port 12345, mask 24, externality 1, and cost 0
+        fastdds::rtps::LocatorWithMask external_locator;
+        external_locator.kind = LOCATOR_KIND_UDPv4;
+        external_locator.port = 12345;
+        external_locator.mask(24);
+        endpoint.external_unicast_locators[1][0].push_back(external_locator);
+        // Drop non matching locators
+        endpoint.ignore_non_matching_locators = true;
         //Set 3 as user defined id
         endpoint.user_defined_id = 3;
         //Set 4 as entity id

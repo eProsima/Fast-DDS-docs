@@ -4267,6 +4267,13 @@
             </udpv4>
         </locator>
     </multicastLocatorList>
+    <external_unicast_locators>
+        <udpv4 externaliy="1" cost="0" mask="24">
+            <address>100.100.100.10</address>
+            <port>12345</port>
+        </udpv4>
+    </external_unicast_locators>
+    <ignore_non_matching_locators>true</ignore_non_matching_locators>
     <!-- The history memory policy is changed to DYNAMIC_RESERVE -->
     <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 </data_writer>
@@ -4289,6 +4296,13 @@
             </udpv4>
         </locator>
     </multicastLocatorList>
+    <external_unicast_locators>
+        <udpv4 externaliy="1" cost="0" mask="24">
+            <address>100.100.100.10</address>
+            <port>12345</port>
+        </udpv4>
+    </external_unicast_locators>
+    <ignore_non_matching_locators>true</ignore_non_matching_locators>
     <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
 </data_reader>
 <!--><-->

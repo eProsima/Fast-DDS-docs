@@ -450,6 +450,7 @@
 .. |c_TimeZero-api| replace:: :cpp:var:`c_TimeZero<eprosima::fastrtps::c_TimeInfinite>`
 .. |c_TimeInvalid-api| replace:: :cpp:var:`c_TimeInvalid<eprosima::fastrtps::c_TimeInfinite>`
 .. |LocatorList_t-api| replace:: :cpp:type:`LocatorList<eprosima::fastdds::rtps::LocatorList>`
+.. |ExternalLocators-api| replace:: :cpp:type:`ExternalLocators<eprosima::fastdds::rtps::ExternalLocators>`
 .. |Locator_t-api| replace:: :cpp:class:`Locator_t<eprosima::fastrtps::rtps::Locator_t>`
 .. |Locator_t::kind-api| replace:: :cpp:var:`kind<eprosima::fastrtps::rtps::Locator_t::kind>`
 .. |Locator_t::address-api| replace:: :cpp:var:`address<eprosima::fastrtps::rtps::Locator_t::address>`

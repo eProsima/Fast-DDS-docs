@@ -10,6 +10,7 @@ Attributes
     /fastdds/api_reference/rtps/attributes/DiscoveryProtocol
     /fastdds/api_reference/rtps/attributes/DiscoverySettings
     /fastdds/api_reference/rtps/attributes/EndpointAttributes
+    /fastdds/api_reference/rtps/attributes/ExternalLocators
     /fastdds/api_reference/rtps/attributes/HistoryAttributes
     /fastdds/api_reference/rtps/attributes/InitialAnnouncementConfig
     /fastdds/api_reference/rtps/attributes/ParticipantFilteringFlags

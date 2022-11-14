@@ -16,6 +16,7 @@ Common
     /fastdds/api_reference/rtps/common/Locator/locator_toc
     /fastdds/api_reference/rtps/common/LocatorSelectorEntry/LocatorSelectorEntry
     /fastdds/api_reference/rtps/common/LocatorSelector/LocatorSelector
+    /fastdds/api_reference/rtps/common/LocatorWithMask/LocatorWithMask
     /fastdds/api_reference/rtps/common/MatchingInfo/matchinginfo_toc
     /fastdds/api_reference/rtps/common/PortParameters/PortParameters
     /fastdds/api_reference/rtps/common/Property/property_toc

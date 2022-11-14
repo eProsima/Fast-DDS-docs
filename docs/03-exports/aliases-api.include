@@ -671,6 +671,8 @@
 .. |WireProtocolConfigQos::throughput_controller-api| replace:: :cpp:member:`throughput_controller<eprosima::fastdds::dds::WireProtocolConfigQos::throughput_controller>`
 .. |WireProtocolConfigQos::default_unicast_locator_list-api| replace:: :cpp:member:`default_unicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_unicast_locator_list>`
 .. |WireProtocolConfigQos::default_multicast_locator_list-api| replace:: :cpp:member:`default_multicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_multicast_locator_list>`
+.. |WireProtocolConfigQos::default_external_unicast_locators-api| replace:: :cpp:member:`default_external_unicast_locators<eprosima::fastdds::dds::WireProtocolConfigQos::default_external_unicast_locators>`
+.. |WireProtocolConfigQos::ignore_non_matching_locators-api| replace:: :cpp:member:`ignore_non_matching_locators<eprosima::fastdds::dds::WireProtocolConfigQos::ignore_non_matching_locators>`
 
 .. |PortParameters-api| replace:: :cpp:class:`PortParameters<eprosima::fastrtps::rtps::PortParameters>`
 .. |PortParameters::domainIDGain-qos-api| replace:: :cpp:member:`wire_protocol().port.domainIDGain<eprosima::fastrtps::rtps::PortParameters::domainIDGain>`

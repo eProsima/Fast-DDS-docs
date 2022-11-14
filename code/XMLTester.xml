@@ -4369,6 +4369,12 @@
                     </udpv4>
                 </locator>
             </metatrafficUnicastLocatorList>
+            <metatraffic_external_unicast_locators>
+                <udpv4 externaliy="1" cost="0" mask="24">
+                    <address>100.100.100.10</address>
+                    <port>34567</port>
+                </udpv4>
+            </metatraffic_external_unicast_locators>
         </builtin>
         <throughputController>
             <bytesPerPeriod>300000</bytesPerPeriod>
@@ -4393,6 +4399,15 @@
                 </udpv4>
             </locator>
         </defaultMulticastLocatorList>
+
+        <default_external_unicast_locators>
+            <udpv4 externaliy="1" cost="0" mask="24">
+                <address>100.100.100.10</address>
+                <port>23456</port>
+            </udpv4>
+        </default_external_unicast_locators>
+
+        <ignore_non_matching_locators>true</ignore_non_matching_locators>
     </rtps>
 </participant>
 <!--><-->

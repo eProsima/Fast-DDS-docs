@@ -1022,6 +1022,12 @@ List of QoS Policy data members:
     * - |WireProtocolConfigQos::default_multicast_locator_list-api|
       - |LocatorList_t-api|
       - Empty List
+    * - |WireProtocolConfigQos::default_external_unicast_locators-api|
+      - |ExternalLocators-api|
+      - Empty
+    * - |WireProtocolConfigQos::ignore_non_matching_locators-api|
+      - ``bool``
+      - false
 
 * |WireProtocolConfigQos::prefix-api|:
   This data member allows the user to set manually the GUID prefix.
@@ -1042,6 +1048,12 @@ List of QoS Policy data members:
   Stores the default list of multicast locators to be used for any endpoint defined
   inside the RTPSParticipant in the case that it was defined without multicast locators. This list is usually left
   empty.
+* |WireProtocolConfigQos::default_external_unicast_locators-api|:
+  Defines the :ref:`external_locators` to be used for any endpoint defined inside the participant in the case that
+  it was defined without unicast locators.
+* |WireProtocolConfigQos::ignore_non_matching_locators-api|:
+  Defines whether to ignore locators received on announcements from other DDS participants when they don't match with
+  any of the locators announced by this DDS participant.
 
 .. note::
      This QoS Policy concerns to DomainParticipant entities.

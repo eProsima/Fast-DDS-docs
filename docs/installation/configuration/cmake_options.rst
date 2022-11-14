@@ -126,11 +126,24 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`USE_THIRDPARTY_SHARED_MUTEX`
-        - When ``ON`` a Boost-like implementation of ``shared_mutex`` is used instead of |br|
-          the STL one. This flag prevents thread sanitizer reports on GCC/Clang STL |br|
-          implementations.
+        - When ``ON`` a custom implementation of ``shared_mutex`` is used instead of the STL one. |br|
+          The C++ Standard has not yet (C++20) imposed any requirements on ``shared_mutex`` |br|
+          priority policies implementation, as POSIX_ does, thus each platform made its own choices: |br| |br|
+
+          - Windows & Boost defaults to ``PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP``.
+          - Linux & Mac defaults to ``PTHREAD_RWLOCK_PREFER_READER_NP``.
+
+          Fast-DDS requires the use of ``PTHREAD_RWLOCK_PREFER_READER_NP`` which is the one enforced |br|
+          in its deadlock prevention logic. |br| |br|
+          Fast-DDS will test the framework STL implementation (if available) and will only use it if |br|
+          it enforces ``PTHREAD_RWLOCK_PREFER_READER_NP``. Otherwise it will automatically fallback to |br|
+          a custom implementation. |br| |br|
+          This flag will enforce the use of the custom implementation in all cases. |br| |br|
+          Note that setting the flag ``OFF`` will not prevent the use of the custom implementation |br|
+          in those frameworks that default to ``PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP``. |br| |br|
+          This flag prevents spurious thread sanitizer reports on *GCC/Clang* STL implementations. |br|
         - ``ON`` ``OFF``
-        - ``OFF``
+        - ``OFF`` (Linux & Mac), ``ON`` (Windows)
     *   - :class:`SANITIZER`
         - Adds run-time instrumentation to the code. Supported options are:
 
@@ -138,6 +151,8 @@ dependency on other options.
             - ``Address`` enables Address Sanitizer.
         - ``OFF`` |br| ``Address`` |br| ``Thread``
         - ``OFF``
+
+.. _POSIX: https://man7.org/linux/man-pages/man3/pthread_rwlockattr_setkind_np.3.html
 
 Log options
 ^^^^^^^^^^^
@@ -331,5 +346,3 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
           use for installing and running the tests.
         - ``Valid Unix filesystem path string``
         - ``""``
-
-

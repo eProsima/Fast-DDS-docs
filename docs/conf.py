@@ -86,10 +86,10 @@ def select_css(html_css_dir):
     common_css = '_static/css/eprosima_rtd_theme.css'
     local_css = '_static/css/fiware_readthedocs.css'
     if download_css(html_css_dir):
-        print('Appliying common CSS style file: {}'.format(common_css))
+        print('Applying common CSS style file: {}'.format(common_css))
         ret.append(common_css)
     else:
-        print('Appliying local CSS style file: {}'.format(local_css))
+        print('Applying local CSS style file: {}'.format(local_css))
         ret.append(local_css)
 
     return ret

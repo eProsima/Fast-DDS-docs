@@ -3933,7 +3933,7 @@ void dds_qos_examples()
         new_multicast_locator.port = 7900;
         endpoint.multicast_locator_list.push_back(new_multicast_locator);
         // Add an external locator with IP 100.100.100.10, port 12345, mask 24, externality 1, and cost 0
-        fastdds::rtps::LocatorWithMask external_locator;
+        eprosima::fastdds::rtps::LocatorWithMask external_locator;
         external_locator.kind = LOCATOR_KIND_UDPv4;
         external_locator.port = 12345;
         external_locator.mask(24);
@@ -4015,7 +4015,7 @@ void dds_qos_examples()
         server_locator.port = 56542;
         wire_protocol.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
         // Add a metatraffix external locator with IP 100.100.100.10, port 34567, mask 24, externality 1, and cost 0
-        fastdds::rtps::LocatorWithMask meta_external_locator;
+        eprosima::fastdds::rtps::LocatorWithMask meta_external_locator;
         meta_external_locator.kind = LOCATOR_KIND_UDPv4;
         meta_external_locator.port = 34567;
         meta_external_locator.mask(24);
@@ -4034,7 +4034,7 @@ void dds_qos_examples()
         multicast_locator.port = 7400;
         wire_protocol.default_multicast_locator_list.push_back(multicast_locator);
         // Add a default external locator with IP 100.100.100.10, port 23456, mask 24, externality 1, and cost 0
-        fastdds::rtps::LocatorWithMask external_locator;
+        eprosima::fastdds::rtps::LocatorWithMask external_locator;
         external_locator.kind = LOCATOR_KIND_UDPv4;
         external_locator.port = 23456;
         external_locator.mask(24);

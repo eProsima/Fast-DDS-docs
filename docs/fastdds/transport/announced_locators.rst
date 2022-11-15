@@ -17,7 +17,12 @@ have been correspondingly set up.
 Default Announced Locators
 --------------------------
 
-TODO: Add explanation on default announced locators
+The default list of announced locators will be constructed from the :ref:`listening locators<listening_locators>`,
+as follows:
+
+* If the address field of the locator is a null address (i.e. 0.0.0.0 for UDPv4), a locator of the same kind and port
+  will be announced for each of the addresses of the network interfaces of the host.
+* If the address field of the locator is not a null address, a single locator with that address will be announced.
 
 .. _external_locators:
 

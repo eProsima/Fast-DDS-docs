@@ -860,6 +860,8 @@
 .. |BuiltinAttributes::metatrafficUnicastLocatorList-qos-api| replace:: :cpp:member:`builtin.metatrafficUnicastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficUnicastLocatorList>`
 .. |BuiltinAttributes::metatrafficMulticastLocatorList-api| replace:: :cpp:member:`metatrafficMulticastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficMulticastLocatorList>`
 .. |BuiltinAttributes::metatrafficMulticastLocatorList-qos-api| replace:: :cpp:member:`builtin.metatrafficMulticastLocatorList<eprosima::fastrtps::rtps::BuiltinAttributes::metatrafficMulticastLocatorList>`
+.. |BuiltinAttributes::metatraffic_external_unicast_locators-api| replace:: :cpp:member:`metatraffic_external_unicast_locators<eprosima::fastrtps::rtps::BuiltinAttributes::metatraffic_external_unicast_locators>`
+.. |BuiltinAttributes::metatraffic_external_unicast_locators-qos-api| replace:: :cpp:member:`builtin.metatraffic_external_unicast_locators<eprosima::fastrtps::rtps::BuiltinAttributes::metatraffic_external_unicast_locators>`
 .. |BuiltinAttributes::initialPeersList-api| replace:: :cpp:member:`initialPeersList<eprosima::fastrtps::rtps::BuiltinAttributes::initialPeersList>`
 
 .. |Property-api| replace:: :cpp:class:`Property<eprosima::fastrtps::rtps::Property>`

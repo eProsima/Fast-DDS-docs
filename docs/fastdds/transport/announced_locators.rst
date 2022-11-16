@@ -29,4 +29,10 @@ as follows:
 External Locators
 -----------------
 
-TODO: Add explanation on external locators
+The user can configure a set of external locators for each of the lists of unicast locators.
+An external locator is made up of the standard locator fields (kind, address, and port), plus the following attributes:
+
+* An *externality* that indicates the number of hops from the host where the application is running to the LAN
+  represented by the external locator.
+* A *cost* indicating the communication cost relative to other locators on the same externality level.
+* A *mask* with the number of significant bits on the LAN represented by the external locator.

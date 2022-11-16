@@ -36,3 +36,25 @@ An external locator is made up of the standard locator fields (kind, address, an
   represented by the external locator.
 * A *cost* indicating the communication cost relative to other locators on the same externality level.
 * A *mask* with the number of significant bits on the LAN represented by the external locator.
+
+Externality levels
+^^^^^^^^^^^^^^^^^^
+
+The main purpose of the external locators is to enable communication accross different levels of interconnected LANs.
+Communication will be performed using the locators of the innermost LAN available.
+
+As an example, consider a network topology where the application is running on a host connected to a LAN of an office,
+which in turn connects to a LAN for all the offices in the same floor, which in turn connects to a LAN for the
+building.
+
+With the default configuration, communication will only occur between hosts on the LAN for the office.
+This is considered the externality level 0, which is reserved for the LANs directly connected to the network interfaces
+of the host where the application is running.
+This is the externality level that will be used on the matching algorithm for the
+:ref:`default announced locators<default_announced_locators>`.
+
+The floor LAN will be configured as externality level 1.
+The building LAN will be configured as externality level 2.
+
+Note that in order for the communication to be successful, routing rules should most probably need to be added to the
+different network routers.

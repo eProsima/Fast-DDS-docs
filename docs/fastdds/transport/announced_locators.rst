@@ -64,6 +64,26 @@ The building LAN will be configured as externality level 2.
 Note that in order for the communication to be successful, routing rules should most probably need to be added to the
 different network routers.
 
+Matching algorithm
+^^^^^^^^^^^^^^^^^^
+
+When a remote entity is discovered, its list of announced locators is processed to select the ones on the innermost
+externality level where the communication can be established.
+
+The highest externality level is checked first.
+
+If the discovered addresses for one level are equal to the ones announced by the local entity, it means they are on
+the same host at that level, and the algorithm proceeds to an inner level.
+If the discovered addresses are not equal to the ones announced by the local entity, processing stops at the current
+level.
+
+When the externality level on which the communication will be established has been decided, the algorithm will:
+* Remove locators that match with addresses on any other externality level.
+* Keep locators that match with the selected externality level.
+* For the locators with an address that does not match with any of the locators announced by the local entity:
+  * Keep them when ``ignore_non_matching_locators`` is ``false`` (default behavior)
+  * Remove them when ``ignore_non_matching_locators`` is ``true``
+
 Additional considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 

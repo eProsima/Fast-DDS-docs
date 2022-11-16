@@ -29,7 +29,12 @@ as follows:
 External Locators
 -----------------
 
-The user can configure a set of external locators for each of the lists of unicast locators.
+The user can configure a set of external locators for each of the lists of unicast locators:
+
+* |BuiltinAttributes::metatrafficMulticastLocatorList-qos-api| on :ref:`wireprotocolconfigqos`
+* |WireProtocolConfigQos::default_external_unicast_locators-api| on :ref:`wireprotocolconfigqos`
+* |RTPSEndpointQos::external_unicast_locators-api| on :ref:`rtpsendpointqos`
+
 An external locator is made up of the standard locator fields (kind, address, and port), plus the following attributes:
 
 * An *externality* that indicates the number of hops from the host where the application is running to the LAN

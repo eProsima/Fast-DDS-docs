@@ -58,3 +58,14 @@ The building LAN will be configured as externality level 2.
 
 Note that in order for the communication to be successful, routing rules should most probably need to be added to the
 different network routers.
+
+Additional considerations
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Since using external locators increases the number of locators announced, the
+:ref:`allocation limits for locators discovery<remotelocatorsallocationattributes>` would need to be adjusted for
+your application.
+
+Participants running on the same host, but using different addresses on their
+|BuiltinAttributes::metatrafficMulticastLocatorList-qos-api| will discard shared memory transport locators.
+Data sharing communication is not affected by this limitation.

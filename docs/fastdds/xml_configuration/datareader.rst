@@ -86,6 +86,19 @@ The DataReader configuration is performed through the XML elements listed in the
        It expects a :ref:`LocatorListType`.
      - List of :ref:`LocatorListType`
      -
+   * - ``<external_unicast_locators>``
+     - List of :ref:`external_locators` |br|
+       to announce for the communication |br|
+       with this DataReader.
+     - :ref:`externalLocatorListType`
+     -
+   * - ``<ignore_non_matching_locators>``
+     - Whether to ignore locators received on |br|
+       announcements from other entities when |br|
+       they don't match with any of the locators |br|
+       announced by this DataReader.
+     - ``bool``
+     - false
    * - ``<expectsInlineQos>``
      - It indicates if QoS is expected inline.
      - ``bool``
@@ -119,11 +132,13 @@ The DataReader configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-SUBSCRIBER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-58, 60-61
+    :lines: 2-4, 6-68, 70-71
 
 .. note::
 
     - :class:`LOCATOR_LIST` means it expects a :ref:`LocatorListType`.
+
+    - :class:`EXTERNAL_LOCATOR_LIST` means a :ref:`externalLocatorListType` is expected.
 
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
 

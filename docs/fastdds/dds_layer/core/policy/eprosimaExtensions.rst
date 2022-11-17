@@ -584,21 +584,36 @@ See |RTPSEndpointQos-api|.
 
 List of QoS Policy data members:
 
-+-----------------------------------------------+-------------------------------+--------------------------------------+
-| Data Member Name                              | Type                          | Default Value                        |
-+===============================================+===============================+======================================+
-| |RTPSEndpointQos::unicast_locator_list-api|   | |LocatorList_t-api|           | Empty List                           |
-+-----------------------------------------------+-------------------------------+--------------------------------------+
-| |RTPSEndpointQos::multicast_locator_list-api| | |LocatorList_t-api|           | Empty List                           |
-+-----------------------------------------------+-------------------------------+--------------------------------------+
-| |RTPSEndpointQos::remote_locator_list-api|    | |LocatorList_t-api|           | Empty List                           |
-+-----------------------------------------------+-------------------------------+--------------------------------------+
-| |RTPSEndpointQos::user_defined_id-api|        | ``int16_t``                   | -1                                   |
-+-----------------------------------------------+-------------------------------+--------------------------------------+
-| |RTPSEndpointQos::entity_id-api|              | ``int16_t``                   | -1                                   |
-+-----------------------------------------------+-------------------------------+--------------------------------------+
-| |RTPSEndpointQos::history_memory_policy-api|  | :ref:`memorymanagementpolicy` | |PREALLOCATED_MEMORY_MODE-api|       |
-+-----------------------------------------------+-------------------------------+--------------------------------------+
+.. list-table::
+   :header-rows: 1
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - |RTPSEndpointQos::unicast_locator_list-api|
+     - |LocatorList_t-api|
+     - Empty List
+   * - |RTPSEndpointQos::multicast_locator_list-api|
+     - |LocatorList_t-api|
+     - Empty List
+   * - |RTPSEndpointQos::remote_locator_list-api|
+     - |LocatorList_t-api|
+     - Empty List
+   * - |RTPSEndpointQos::external_unicast_locators-api|
+     - |ExternalLocators-api|
+     - Empty
+   * - |RTPSEndpointQos::ignore_non_matching_locators-api|
+     - ``bool``
+     - false
+   * - |RTPSEndpointQos::user_defined_id-api|
+     - ``int16_t``
+     - -1
+   * - |RTPSEndpointQos::entity_id-api|
+     - ``int16_t``
+     - -1
+   * - |RTPSEndpointQos::history_memory_policy-api|
+     - :ref:`memorymanagementpolicy`
+     - |PREALLOCATED_MEMORY_MODE-api|
 
 * |RTPSEndpointQos::unicast_locator_list-api|:
   Defines the list of unicast locators associated to the DDS Entity.
@@ -609,6 +624,11 @@ List of QoS Policy data members:
   By default, DataReaders and DataWriters do not use any multicast locator, but it can be changed by means of this QoS.
 * |RTPSEndpointQos::remote_locator_list-api|:
   States the list of remote locators associated to the DDS Entity.
+* |RTPSEndpointQos::external_unicast_locators-api|:
+  Defines the :ref:`external_locators` to announce for the communication with this DDS Entity.
+* |RTPSEndpointQos::ignore_non_matching_locators-api|:
+  Defines whether to ignore locators received on announcements from other DDS entities when they don't match with any
+  of the locators announced by this DDS Entity.
 * |RTPSEndpointQos::user_defined_id-api|:
   Establishes the unique identifier used for StaticEndpointDiscovery.
 * |RTPSEndpointQos::entity_id-api|:
@@ -1002,6 +1022,12 @@ List of QoS Policy data members:
     * - |WireProtocolConfigQos::default_multicast_locator_list-api|
       - |LocatorList_t-api|
       - Empty List
+    * - |WireProtocolConfigQos::default_external_unicast_locators-api|
+      - |ExternalLocators-api|
+      - Empty
+    * - |WireProtocolConfigQos::ignore_non_matching_locators-api|
+      - ``bool``
+      - false
 
 * |WireProtocolConfigQos::prefix-api|:
   This data member allows the user to set manually the GUID prefix.
@@ -1022,6 +1048,12 @@ List of QoS Policy data members:
   Stores the default list of multicast locators to be used for any endpoint defined
   inside the RTPSParticipant in the case that it was defined without multicast locators. This list is usually left
   empty.
+* |WireProtocolConfigQos::default_external_unicast_locators-api|:
+  Defines the :ref:`external_locators` to be used for any endpoint defined inside the participant in the case that
+  it was defined without unicast locators.
+* |WireProtocolConfigQos::ignore_non_matching_locators-api|:
+  Defines whether to ignore locators received on announcements from other DDS participants when they don't match with
+  any of the locators announced by this DDS participant.
 
 .. note::
      This QoS Policy concerns to DomainParticipant entities.

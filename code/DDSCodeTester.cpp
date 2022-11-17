@@ -3932,6 +3932,14 @@ void dds_qos_examples()
         eprosima::fastrtps::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
         new_multicast_locator.port = 7900;
         endpoint.multicast_locator_list.push_back(new_multicast_locator);
+        // Add an external locator with IP 100.100.100.10, port 12345, mask 24, externality 1, and cost 0
+        eprosima::fastdds::rtps::LocatorWithMask external_locator;
+        external_locator.kind = LOCATOR_KIND_UDPv4;
+        external_locator.port = 12345;
+        external_locator.mask(24);
+        endpoint.external_unicast_locators[1][0].push_back(external_locator);
+        // Drop non matching locators
+        endpoint.ignore_non_matching_locators = true;
         //Set 3 as user defined id
         endpoint.user_defined_id = 3;
         //Set 4 as entity id
@@ -4006,6 +4014,12 @@ void dds_qos_examples()
         eprosima::fastrtps::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
         server_locator.port = 56542;
         wire_protocol.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+        // Add a metatraffix external locator with IP 100.100.100.10, port 34567, mask 24, externality 1, and cost 0
+        eprosima::fastdds::rtps::LocatorWithMask meta_external_locator;
+        meta_external_locator.kind = LOCATOR_KIND_UDPv4;
+        meta_external_locator.port = 34567;
+        meta_external_locator.mask(24);
+        wire_protocol.builtin.metatraffic_external_unicast_locators[1][0].push_back(meta_external_locator);
         // Limit to 300kb per second.
         eprosima::fastrtps::rtps::ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000};
         wire_protocol.throughput_controller = slowPublisherThroughputController;
@@ -4019,6 +4033,14 @@ void dds_qos_examples()
         eprosima::fastrtps::rtps::IPLocator::setIPv4(multicast_locator, 192, 168, 1, 41);
         multicast_locator.port = 7400;
         wire_protocol.default_multicast_locator_list.push_back(multicast_locator);
+        // Add a default external locator with IP 100.100.100.10, port 23456, mask 24, externality 1, and cost 0
+        eprosima::fastdds::rtps::LocatorWithMask external_locator;
+        external_locator.kind = LOCATOR_KIND_UDPv4;
+        external_locator.port = 23456;
+        external_locator.mask(24);
+        wire_protocol.default_external_unicast_locators[1][0].push_back(external_locator);
+        // Drop non matching locators
+        wire_protocol.ignore_non_matching_locators = true;
         //!--
     }
 

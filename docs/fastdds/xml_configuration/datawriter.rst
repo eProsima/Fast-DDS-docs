@@ -84,6 +84,19 @@ The DataWriter configuration is performed through the XML elements listed in the
        It expects a :ref:`LocatorListType`.
      - ``<locator>``
      -
+   * - ``<external_unicast_locators>``
+     - List of :ref:`external_locators` |br|
+       to announce for the communication |br|
+       with this DataWriter.
+     - :ref:`externalLocatorListType`
+     -
+   * - ``<ignore_non_matching_locators>``
+     - Whether to ignore locators received on |br|
+       announcements from other entities when |br|
+       they don't match with any of the locators |br|
+       announced by this DataWriter.
+     - ``bool``
+     - false
    * - ``<throughputController>``
      - Limits the output bandwidth of the |br|
        DataWriter.
@@ -119,11 +132,13 @@ The DataWriter configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-DATAWRITER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-71, 73-74
+    :lines: 2-4, 6-83, 85-86
 
 .. note::
 
     - :class:`LOCATOR_LIST` means a :ref:`LocatorListType` is expected.
+
+    - :class:`EXTERNAL_LOCATOR_LIST` means a :ref:`externalLocatorListType` is expected.
 
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
 

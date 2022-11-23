@@ -62,7 +62,7 @@ application's needs. Below is an example of a configuration for the minimum reso
 
 Set Dynamic Allocation
 ^^^^^^^^^^^^^^^^^^^^^^
-By default :ref:`memorymanagementpolicy` is set to |PREALLOCATED_MEMORY_MODE-api|, meaning that the amount of memory
+By default :ref:`memorymanagementpolicy` is set to |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|, meaning that the amount of memory
 required by the configured :ref:`resourcelimitsqospolicy` will be allocated at initialization.
 
 Using the dynamic settings of the :ref:`rtpsendpointqos` will prevent unnecessary allocations. Lowest footprint is

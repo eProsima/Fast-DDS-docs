@@ -2,7 +2,7 @@ eProsima provides the Fast DDS and the Fast DDS Suite Docker images for those wh
 platform.
 They can be downloaded from `eProsima's downloads page <https://eprosima.com/index.php/downloads-all>`_.
 
-This Docker images were built for Ubuntu 20.04 (Focal Fossa).
+This Docker images were built for Ubuntu 22.04 (Jammy Jellyfish).
 
 To run a container you need Docker installed. From a terminal, run:
 

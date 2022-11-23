@@ -4147,9 +4147,9 @@ void dds_dynamic_types_examples ()
 void log_examples()
 {
     //LOG_MESSAGES
-    logInfo(DOCUMENTATION_CATEGORY, "This is an info message");
-    logWarning(DOCUMENTATION_CATEGORY, "This is an warning message");
-    logError(DOCUMENTATION_CATEGORY, "This is an error message");
+    EPROSIMA_LOG_INFO(DOCUMENTATION_CATEGORY, "This is an info message");
+    EPROSIMA_LOG_WARNING(DOCUMENTATION_CATEGORY, "This is an warning message");
+    EPROSIMA_LOG_ERROR(DOCUMENTATION_CATEGORY, "This is an error message");
     //!--
 
     //LOG_SET_GET_VERBOSITY

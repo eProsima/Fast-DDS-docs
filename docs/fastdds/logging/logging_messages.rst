@@ -10,9 +10,9 @@ Logging Messages
 The logging of messages is handled by three dedicated macros, one for each available verbosity level (see
 :ref:`dds_layer_log_verbosity_level`):
 
-* |logInfo|: Logs messages with |Log::Kind::Info-api| verbosity.
-* |logWarning|: Logs messages with |Log::Kind::Warning-api| verbosity.
-* |logError|: Logs messages with |Log::Kind::Error-api| verbosity.
+* |EPROSIMA_LOG_INFO|: Logs messages with |Log::Kind::Info-api| verbosity.
+* |EPROSIMA_LOG_WARNING|: Logs messages with |Log::Kind::Warning-api| verbosity.
+* |EPROSIMA_LOG_ERROR|: Logs messages with |Log::Kind::Error-api| verbosity.
 
 Said macros take exactly two arguments, a category and a message, and produce a log entry showing the message itself
 plus some meta information depending on the module's configuration (see :ref:`dds_layer_log_logging_spec` and
@@ -23,6 +23,11 @@ plus some meta information depending on the module's configuration (see :ref:`dd
     :start-after: //LOG_MESSAGES
     :end-before: //!--
     :dedent: 4
+
+There exist some old log macros used in previous versions: :code:`logInfo`, :code:`logWarning` and :code:`logError`.
+These macros are still available for library users as long as they are not disable by CMake option
+:code:`ENABLE_EPROSIMA_LOG_MACROS` or in-site macro :code:`ENABLE_EPROSIMA_LOG_MACROS_` before including *Log* module.
+See section :ref:`old_log_macros_disable` for more information.
 
 .. warning::
 

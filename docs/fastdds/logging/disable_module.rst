@@ -12,18 +12,18 @@ entry's level has lower importance than the set one.
 This check is performed when calling the macros defined in :ref:`dds_layer_log_logging`.
 However, it is possible to fully disable each macro (and therefore each verbosity level individually) at build time.
 
-* |logInfo| is fully disabled by either:
+* |EPROSIMA_LOG_INFO| is fully disabled by either:
 
     * Setting CMake option |LOG_NO_INFO| to ``ON`` (default for Single-Config generators if ``CMAKE_BUILD_TYPE``
       is other than ``Debug``).
     * Defining macro |HAVE_LOG_NO_INFO| to ``1``.
 
-* |logWarning| is fully disabled by either:
+* |EPROSIMA_LOG_WARNING| is fully disabled by either:
 
     * Setting CMake option |LOG_NO_WARNING| to ``ON``.
     * Defining macro |HAVE_LOG_NO_WARNING| to ``1``.
 
-* |logError| is fully disabled by either:
+* |EPROSIMA_LOG_ERROR| is fully disabled by either:
 
     * Setting CMake option |LOG_NO_ERROR| to ``ON``.
     * Defining macro |HAVE_LOG_NO_ERROR| to ``1``.
@@ -37,10 +37,10 @@ for debugging purposes, thus preventing them to impact performance.
 However:
 
 * It does not activate the log Warning and Error messages, i.e. the messages are not written in the log queue.
-* |logInfo| has a special behaviour to simplify working with Multi-Config capability IDEs.
+* |EPROSIMA_LOG_INFO| has a special behaviour to simplify working with Multi-Config capability IDEs.
   If CMake option |LOG_NO_INFO| is ``OFF``, or the C++ definition |HAVE_LOG_NO_INFO| is ``0``, then logging is enabled
   only for ``Debug`` configuration.
-  In this scenario, setting |FASTDDS_ENFORCE_LOG_INFO| to ``ON`` will enable |logInfo| even on non ``Debug``
+  In this scenario, setting |FASTDDS_ENFORCE_LOG_INFO| to ``ON`` will enable |EPROSIMA_LOG_INFO| even on non ``Debug``
   configurations.
   This is specially useful when using the *Fast DDS*' logging module in an external application which links with
   *Fast DDS* compiled in ``Release``.
@@ -56,3 +56,21 @@ However:
 .. warning::
 
     ``INTERNAL_DEBUG`` can be automatically set to ``ON`` if CMake option ``EPROSIMA_BUILD`` is set to ``ON``.
+
+
+.. _old_log_macros_disable:
+
+Old Log macros disable
+======================
+
+Before version 2.8.2, Fast DDS project used log macros: :code:`logInfo`, :code:`logWarning` and
+:code:`logError`, that may collision with other libraries.
+This log macros have been replaced by new ones with a more specific format: (e.g. :code:`EPROSIMA_LOG_INFO`).
+In order to disable old macros compilation, use CMake option :code:`ENABLE_EPROSIMA_LOG_MACROS = ON`
+or define :code:`ENABLE_EPROSIMA_LOG_MACROS_ 0` before including the log module
+:code:`#include <fastdds/dds/log/Log.hpp>`.
+
+.. warning::
+
+    In future versions of Fast DDS, these macros will be deprecated.
+    The use of the new format ones is encouraged.

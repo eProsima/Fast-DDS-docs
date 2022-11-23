@@ -903,9 +903,9 @@
 .. |std::fstream::open-api| replace:: :cpp:func:`std::fstream::open()`
 .. |std::ostream-api| replace:: :cpp:class:`std::ostream`
 
-.. |logInfo| replace:: :c:macro:`logInfo <logInfo>`
-.. |logWarning| replace:: :c:macro:`logWarning <logWarning>`
-.. |logError| replace:: :c:macro:`logError <logError>`
+.. |EPROSIMA_LOG_INFO| replace:: :c:macro:`EPROSIMA_LOG_INFO <EPROSIMA_LOG_INFO>`
+.. |EPROSIMA_LOG_WARNING| replace:: :c:macro:`EPROSIMA_LOG_WARNING <EPROSIMA_LOG_WARNING>`
+.. |EPROSIMA_LOG_ERROR| replace:: :c:macro:`EPROSIMA_LOG_ERROR <EPROSIMA_LOG_ERROR>`
 
 .. |FASTDDS_ENFORCE_LOG_INFO| replace:: :cpp:type:`FASTDDS_ENFORCE_LOG_INFO`
 .. |LOG_NO_INFO| replace:: :cpp:type:`LOG_NO_INFO`

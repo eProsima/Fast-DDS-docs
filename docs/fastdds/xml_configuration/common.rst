@@ -507,10 +507,10 @@ Data-Sharing
      - Default
    * - ``<kind>``
      - See :ref:`datasharingkind`
-     - |DATASHARING_AUTO-api| |br|
+     - |DATASHARING_AUTO-xml-api| |br|
        |DATASHARING_ON-api| |br|
        |DATASHARING_OFF-api| |br|
-     - |DATASHARING_AUTO-api|
+     - |DATASHARING_AUTO-xml-api|
    * - ``<shared_dir>``
      - Directory used for the memory-mapped files.
      - ``string``
@@ -585,7 +585,7 @@ Indicates the way the memory is managed in terms of dealing with the CacheChange
     - Description
     - Values
     - Default
-  * - ``historyMemoryPolicy``
+  * - ``<historyMemoryPolicy>``
     - Four different options as described |br|
       in :ref:`memorymanagementpolicy`.
     - |PREALLOCATED-xml-api| |br|

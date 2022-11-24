@@ -332,6 +332,7 @@
 .. |DATASHARING_AUTO-api| replace:: :cpp:enumerator:`AUTO<eprosima::fastdds::dds::DataSharingKind::AUTO>`
 .. |DATASHARING_ON-api| replace:: :cpp:enumerator:`ON<eprosima::fastdds::dds::DataSharingKind::ON>`
 .. |DATASHARING_OFF-api| replace:: :cpp:enumerator:`OFF<eprosima::fastdds::dds::DataSharingKind::OFF>`
+.. |DATASHARING_AUTO-xml-api| replace:: :cpp:enumerator:`AUTOMATIC<eprosima::fastdds::dds::DataSharingKind::AUTO>`
 
 .. |DataSharingQosPolicy-api| replace:: :cpp:class:`DataSharingQosPolicy<eprosima::fastdds::dds::DataSharingQosPolicy>`
 .. |DataSharingQosPolicy::kind-api| replace:: :cpp:func:`kind()<eprosima::fastdds::dds::DataSharingQosPolicy::kind>`

@@ -36,6 +36,7 @@ This section aims to explain these common elements.
     -   :ref:`xml_datasharing`
 
 *   :ref:`Throughput`
+*   :ref:`historymemorypoliciesXML`
 *   :ref:`CommonAlloc`
 
 
@@ -571,27 +572,27 @@ It contains two child elements which are explained in the following table.
 
 .. _historymemorypoliciesXML:
 
-.. |MemManagment| replace:: ``<historyMemoryPolicy>``
-
-
 HistoryMemoryPolicy
 ^^^^^^^^^^^^^^^^^^^
 
 Indicates the way the memory is managed in terms of dealing with the CacheChanges of the :ref:`rtpsendpointqos`.
 
-+----------------+--------------------------------------+-------------------------------------+------------------------+
-| Name           | Description                          | Values                              | Default                |
-+================+======================================+=====================================+========================+
-| |MemManagment| |  Four different options as described | |PREALLOCATED-xml-api|              |                        |
-|                |  |br| in                             +-------------------------------------+                        |
-|                |  :ref:`memorymanagementpolicy`.      | |PREALLOCATED_WITH_REALLOC-xml-api| |                        |
-|                |                                      +-------------------------------------+                        |
-|                |                                      | |DYNAMIC-xml-api|                   | |PREALLOCATED-xml-api| |
-|                |                                      +-------------------------------------+                        |
-|                |                                      | |DYNAMIC_REUSABLE-xml-api|          |                        |
-|                |                                      |                                     |                        |
-|                |                                      |                                     |                        |
-+----------------+--------------------------------------+-------------------------------------+------------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``historyMemoryPolicy``
+    - Four different options as described |br|
+      in :ref:`memorymanagementpolicy`.
+    - |PREALLOCATED-xml-api| |br|
+      |PREALLOCATED_WITH_REALLOC-xml-api| |br|
+      |DYNAMIC-xml-api| |br|
+      |DYNAMIC_REUSABLE-xml-api|
+    - |PREALLOCATED-xml-api|
 
 **Example**
 

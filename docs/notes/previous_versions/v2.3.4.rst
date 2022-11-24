@@ -1,5 +1,5 @@
-Version 2.3.4
-^^^^^^^^^^^^^
+Version 2.3.4 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **improvements**:
 

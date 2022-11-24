@@ -1,0 +1,21 @@
+Version 2.3.6 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Improve rediscovery on lossy environments.
+2. Upgrade CMake minimum requirement to 3.13.
+3. Improve :cpp:struct:`Guid_t<eprosima::fastrtps::rtps::Guid_t>` operator < performance.
+
+This release includes the following **bugfixes**:
+
+1. Fixed validation on ``ParameterPropertyList_t``.
+2. Add python3 dependency to package.xml.
+3. Fix null references and uncaught exceptions on XML parser.
+4. Install Statistics IDL file.
+5. Fix data races when creating DataWriters.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

@@ -16,7 +16,6 @@ This release includes the following **bugfixes**:
 3. Fix null references and uncaught exceptions on XML parser.
 4. Install Statistics IDL file.
 5. Fix data races when creating DataWriters.
-23. Other minor fixes.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

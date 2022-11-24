@@ -23,6 +23,7 @@ This section aims to explain these common elements.
 
     -   :ref:`xml_durability`
     -   :ref:`xml_liveliness`
+    -   :ref:`xml_reliability`
     -   :ref:`xml_partition`
     -   :ref:`xml_deadline`
     -   :ref:`xml_lifespan`
@@ -31,6 +32,8 @@ This section aims to explain these common elements.
     -   :ref:`xml_disablepositiveacks`
     -   :ref:`xml_latencybudget`
     -   :ref:`xml_disableheartbeatpiggyback`
+    -   :ref:`xml_publishmode`
+    -   :ref:`xml_datasharing`
 
 *   :ref:`Throughput`
 *   :ref:`CommonAlloc`
@@ -273,34 +276,52 @@ The Quality of Service (QoS) is used to specify the behavior of the Service, all
 |Entity| will behave.
 Please refer to the :ref:`dds_layer_core_policy` section for more information on QoS.
 
+.. list-table::
+  :header-rows: 1
+  :align: left
 
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| Name                              | Description                              | Values                               |
-+===================================+==========================================+======================================+
-| ``<durability>``                  | See :ref:`durabilityqospolicy`.          | :ref:`xml_durability`                |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<liveliness>``                  | See :ref:`livelinessqospolicy`.          | :ref:`xml_liveliness`                |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<reliability>``                 | See :ref:`reliabilityqospolicy`.         | :ref:`xml_reliability`               |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<partition>``                   | See :ref:`partitionqospolicy`.           | :ref:`xml_partition`                 |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<deadline>``                    | See :ref:`deadlineqospolicy`.            | :ref:`xml_deadline`                  |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<lifespan>``                    | See :ref:`lifespanqospolicy`.            | :ref:`xml_lifespan`                  |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<ownership>``                   | See :ref:`ownershipqospolicy`.           | :ref:`xml_ownership`                 |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<ownershipStrength>``           | See :ref:`ownershipstrengthqospolicy`.   | :ref:`xml_ownershipstrength`         |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<disablePositiveAcks>``         | See :ref:`disablepositiveacksqospolicy`. | :ref:`xml_disablepositiveacks`       |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<latencyBudget>``               | See :ref:`latencybudgetqospolicy`.       | :ref:`xml_latencybudget`             |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<disable_heartbeat_piggyback>`` | See :ref:`disableheartbeatpiggyback`.    | :ref:`xml_disableheartbeatpiggyback` |
-+-----------------------------------+------------------------------------------+--------------------------------------+
-| ``<publishMode>``                 | See :ref:`publishmodeqospolicy`.         | :ref:`xml_publishmode`               |
-+-----------------------------------+------------------------------------------+--------------------------------------+
+  * - Name
+    - Description
+    - Values
+  * - ``<durability>``
+    - See :ref:`durabilityqospolicy`.
+    - :ref:`xml_durability`
+  * - ``<liveliness>``
+    - See :ref:`livelinessqospolicy`.
+    - :ref:`xml_liveliness`
+  * - ``<reliability>``
+    - See :ref:`reliabilityqospolicy`.
+    - :ref:`xml_reliability`
+  * - ``<partition>``
+    - See :ref:`partitionqospolicy`.
+    - :ref:`xml_partition`
+  * - ``<deadline>``
+    - See :ref:`deadlineqospolicy`.
+    - :ref:`xml_deadline`
+  * - ``<lifespan>``
+    - See :ref:`lifespanqospolicy`.
+    - :ref:`xml_lifespan`
+  * - ``<ownership>``
+    - See :ref:`ownershipqospolicy`.
+    - :ref:`xml_ownership`
+  * - ``<ownershipStrength>``
+    - See :ref:`ownershipstrengthqospolicy`.
+    - :ref:`xml_ownershipstrength`
+  * - ``<disablePositiveAcks>``
+    - See :ref:`disablepositiveacksqospolicy`.
+    - :ref:`xml_disablepositiveacks`
+  * - ``<latencyBudget>``
+    - See :ref:`latencybudgetqospolicy`.
+    - :ref:`xml_latencybudget`
+  * - ``<disable_heartbeat_piggyback>``
+    - See :ref:`disableheartbeatpiggyback`.
+    - :ref:`xml_disableheartbeatpiggyback`
+  * - ``<publishMode>``
+    - See :ref:`publishmodeqospolicy`.
+    - :ref:`xml_publishmode`
+  * - ``data_sharing``
+    - See :ref:`datasharingqospolicy`
+    - :ref:`xml_datasharing`
 
 **Example**
 
@@ -469,6 +490,51 @@ PublishMode
 |                       |                                       +------------------+                  |
 |                       |                                       | ``SYNCHRONOUS``  |                  |
 +-----------------------+---------------------------------------+------------------+------------------+
+
+.. _xml_datasharing:
+
+Data-Sharing
+""""""""""""
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<kind>``
+     - See :ref:`datasharingkind`
+     - |DATASHARING_AUTO-api| |br|
+       |DATASHARING_ON-api| |br|
+       |DATASHARING_OFF-api| |br|
+     - |DATASHARING_AUTO-api|
+   * - ``<shared_dir>``
+     - Directory used for the memory-mapped files.
+     - ``string``
+     - Empty
+   * - ``<max_domains>``
+     - Maximum number of Data-Sharing domain IDs |br|
+       in the local or remote endpoints.
+     - ``uint32_t``
+     - 0 (unlimited)
+   * - ``<domain_ids>``
+     - List of Data-Sharing domain IDs configured |br|
+       for the current endpoint.
+     - ``<domainId>``
+     - Empty list
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+   * - ``domainId``
+     - Domain ID to be used by the endpoint for Data-Sharing.
+     - ``uint32_t``
 
 .. _Throughput:
 

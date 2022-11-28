@@ -4181,11 +4181,11 @@ void log_examples()
     Log::SetCategoryFilter(std::regex("(CATEGORY_1)|(CATEGORY_2)"));
 
     // Would be consumed
-    logError(CATEGORY_1, "First log entry");
+    EPROSIMA_LOG_ERROR(CATEGORY_1, "First log entry");
     // Would be consumed
-    logError(CATEGORY_2, "Second log entry");
+    EPROSIMA_LOG_ERROR(CATEGORY_2, "Second log entry");
     // Would NOT be consumed
-    logError(CATEGORY_3, "Third log entry");
+    EPROSIMA_LOG_ERROR(CATEGORY_3, "Third log entry");
     //!--
 
     //LOG_FILENAME_FILTER
@@ -4197,21 +4197,21 @@ void log_examples()
     // Set filter using regular expression so filename must match "example"
     Log::SetFilenameFilter(std::regex("example"));
     // Would be consumed
-    logError(CATEGORY, "First log entry");
+    EPROSIMA_LOG_ERROR(CATEGORY, "First log entry");
 
     // Set filter using regular expression so filename must match "other"
     Log::SetFilenameFilter(std::regex("other"));
     // Would NOT be consumed
-    logError(CATEGORY, "Second log entry");
+    EPROSIMA_LOG_ERROR(CATEGORY, "Second log entry");
     //!--
 
     //LOG_CONTENT_FILTER
     // Set filter using regular expression so message component must match "First"
     Log::SetErrorStringFilter(std::regex("First"));
     // Would be consumed
-    logError(CATEGORY, "First log entry");
+    EPROSIMA_LOG_ERROR(CATEGORY, "First log entry");
     // Would NOT be consumed
-    logError(CATEGORY, "Second log entry");
+    EPROSIMA_LOG_ERROR(CATEGORY, "Second log entry");
     //!--
 
     //LOG_REGISTER_CONSUMER

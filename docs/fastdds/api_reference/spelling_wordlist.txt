@@ -88,6 +88,7 @@ maxMessageSize
 md
 msg
 mutex
+mutexes
 myFilterFactory
 nackResponseDelay
 nackSupressionDuration

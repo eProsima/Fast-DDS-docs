@@ -25,8 +25,8 @@ plus some meta information depending on the module's configuration (see :ref:`dd
     :dedent: 4
 
 There exist some old log macros used in previous versions: :code:`logInfo`, :code:`logWarning` and :code:`logError`.
-These macros are still available for library users as long as they are not disable by CMake option
-:code:`ENABLE_EPROSIMA_LOG_MACROS` or in-site macro :code:`ENABLE_EPROSIMA_LOG_MACROS_` before including *Log* module.
+These macros are still available as long as user does not manually disable them by :code:`ENABLE_EPROSIMA_LOG_MACROS`
+CMake option or in-site macro :code:`ENABLE_EPROSIMA_LOG_MACROS_` before including *Log* module.
 See section :ref:`old_log_macros_disable` for more information.
 
 .. warning::

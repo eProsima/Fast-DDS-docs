@@ -1,7 +1,7 @@
 .. _api_log_log_warning:
 
-logWarning
-----------
+EPROSIMA_LOG_WARNING
+--------------------
 
-.. doxygendefine:: logWarning
+.. doxygendefine:: EPROSIMA_LOG_WARNING
     :project: FastDDS

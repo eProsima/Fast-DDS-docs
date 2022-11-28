@@ -66,8 +66,8 @@ Old Log macros disable
 Before version 2.8.2, Fast DDS project used log macros: :code:`logInfo`, :code:`logWarning` and
 :code:`logError`, which may collide with other libraries.
 These log macros have been replaced by new ones with a more specific format: (e.g. :code:`EPROSIMA_LOG_INFO`).
-In order to disable old macros compilation, use CMake option :code:`ENABLE_EPROSIMA_LOG_MACROS = ON`
-or define :code:`ENABLE_EPROSIMA_LOG_MACROS_ 0` before including the log module
+In order to disable old macros compilation, use CMake option :code:`ENABLE_OLD_LOG_MACROS = ON`
+or define :code:`ENABLE_OLD_LOG_MACROS_ 0` before including the log module
 :code:`#include <fastdds/dds/log/Log.hpp>`.
 
 .. warning::

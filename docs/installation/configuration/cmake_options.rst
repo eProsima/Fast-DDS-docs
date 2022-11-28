@@ -204,7 +204,7 @@ This module can be configured using *Fast DDS* CMake arguments regarding the fol
           :class:`EPROSIMA_BUILD` is ``ON``.
         - ``ON`` ``OFF``
         - ``OFF``
-    *   - :class:`ENABLE_EPROSIMA_LOG_MACROS`
+    *   - :class:`ENABLE_OLD_LOG_MACROS`
         - Enable old log macros |br|
           (See :ref:`old_log_macros_disable`). |br|
         - ``ON`` ``OFF``

@@ -1965,6 +1965,16 @@
     <publishMode>
         <kind>ASYNCHRONOUS</kind>
     </publishMode>
+
+    <data_sharing>
+        <kind>AUTOMATIC</kind>
+        <shared_dir>/home</shared_dir>
+        <max_domains>10</max_domains>
+        <domain_ids>
+            <domainId>0</domainId>
+            <domainId>11</domainId>
+        </domain_ids>
+    </data_sharing>
 </qos>
 <!--><-->
 </data_writer>

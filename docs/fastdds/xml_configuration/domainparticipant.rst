@@ -368,12 +368,12 @@ This section specifies the available XML members for the configuration of this
        this participant.
      - :ref:`externalLocatorListType`
      -
-   * - ``<DataReaderHistoryMemoryPolicy>``
+   * - ``<readerHistoryMemoryPolicy>``
      - Memory policy for DataReaders. |br|
        See :ref:`historyqospolicykind`.
      - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
      - |PREALLOCATED-xml-api|
-   * - ``<DataWriterHistoryMemoryPolicy>``
+   * - ``<writerHistoryMemoryPolicy>``
      - Memory policy for DataWriters. |br|
        See :ref:`historyqospolicykind`.
      - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`

@@ -25,6 +25,11 @@ This release includes the following **bugfixes**:
 10. Ensure ``shared_mutex`` implementation is consistent throughout supported platforms.
 11. Other minor fixes and improvements.
 
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.
+
 Previous versions
 =================
 

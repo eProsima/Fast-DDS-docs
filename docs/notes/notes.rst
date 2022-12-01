@@ -3,7 +3,7 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.2
+Version 2.6.3
 =============
 
 This release includes the following **improvements**:

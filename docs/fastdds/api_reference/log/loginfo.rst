@@ -1,7 +1,7 @@
 .. _api_log_log_info:
 
-logInfo
--------
+EPROSIMA_LOG_INFO
+-----------------
 
-.. doxygendefine:: logInfo
+.. doxygendefine:: EPROSIMA_LOG_INFO
     :project: FastDDS

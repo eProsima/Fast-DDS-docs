@@ -54,7 +54,8 @@ Logging
 
 *Fast DDS* provides an extensible Logging system.
 :class:`Log` class is the entry point of the Logging system.
-It exposes three macro definitions to ease its usage: ``logInfo``, ``logWarning`` and ``logError``.
+It exposes three macro definitions to ease its usage:
+``EPROSIMA_LOG_INFO``, ``EPROSIMA_LOG_WARNING`` and ``EPROSIMA_LOG_ERROR``.
 Moreover, it allows the definition of new categories, in addition to those already available
 (:class:`INFO_MSG`, :class:`WARN_MSG` and :class:`ERROR_MSG`).
 It provides filtering by category using regular expressions, as well as control of the verbosity of the Logging system.

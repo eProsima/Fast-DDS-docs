@@ -81,7 +81,7 @@ those are:
 * |Log::Kind::Info-api|: Used to log error, warning, and info messages.
 
 The logging module's verbosity level defaults to |Log::Kind::Error-api|, which means that only messages logged with
-|logError| would be consumed.
+|EPROSIMA_LOG_ERROR| would be consumed.
 The verbosity level can be set and retrieved using member functions |Log::SetVerbosity-api| and |Log::GetVerbosity-api|
 respectively.
 

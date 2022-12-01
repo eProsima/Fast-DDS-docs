@@ -1,7 +1,7 @@
 .. _api_log_log_error:
 
-logError
---------
+EPROSIMA_LOG_ERROR
+------------------
 
-.. doxygendefine:: logError
+.. doxygendefine:: EPROSIMA_LOG_ERROR
     :project: FastDDS

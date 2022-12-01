@@ -3,23 +3,27 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.2
+Version 2.6.3
 =============
 
 This release includes the following **improvements**:
 
-1. Support for GCC 12.
-2. Overload :cpp:func:`DataReader::get_unread_count()<eprosima::fastdds::dds::DataReader::get_unread_count>`.
-3. Improve read/take performance when using topic with a great number of keys.
-4. Improve rediscovery on lossy environments.
+1. Upgrade CMake minimum requirement to 3.13.
+2. Improve :cpp:struct:`Guid_t<eprosima::fastrtps::rtps::Guid_t>` operator ``<`` performance.
 
 This release includes the following **bugfixes**:
 
-1. Fixed several deadlocks and data races.
-2. Fixed validation on :class:`ParameterPropertyList_t`.
-3. Fixed wrong usage of :class:`std::remove_if`.
-4. Fixed acknowledgement in DataSharing.
-5. Other minor fixes.
+1. Add python3 dependency to package.xml.
+2. Fix complex member printing for DynamicDataHelper.
+3. Fix selection of output locators.
+4. Fix null references on XML parser.
+5. Fix data races when creating DataWriters.
+6. Send GAPs correctly when using separate sending.
+7. Install Statistics IDL file.
+8. Fixes for building in older compilers.
+9. Fix deadlock when removing DomainParticipant when using SECURITY.
+10. Ensure ``shared_mutex`` implementation is consistent throughout supported platforms.
+11. Other minor fixes and improvements.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -29,6 +33,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.2.rst
 .. include:: previous_versions/v2.6.1.rst
 .. include:: previous_versions/v2.6.0.rst
 .. include:: previous_versions/v2.5.1.rst

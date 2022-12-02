@@ -107,6 +107,10 @@ Once the *server* is instantiated, the *clients* can be configured either progra
 :ref:`discovery_server`), or using environment variable ``ROS_DISCOVERY_SERVER`` (see
 :ref:`env_vars_ros_discovery_server`)
 
+.. note::
+  The :ref:`security` configuration of the discovery server should be done through XML.
+  See example below.
+
 .. _cli_discovery_examples:
 
 Examples

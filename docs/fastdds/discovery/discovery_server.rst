@@ -389,3 +389,13 @@ Client side setup
 |    :lines: 2-3,5-40                                                 |
 |    :append: </profiles>                                             |
 +---------------------------------------------------------------------+
+
+.. _DS_security:
+
+Security
+^^^^^^^^
+
+Configuring :ref:`security` on *servers* and *clients* is done the same way as for any other participant.
+This section depicts the limitations imposed by the security enforcement on the communication between
+*clients* and *servers*, and which discovery information is propagated by a *server* depending on the security
+configuration of the *clients* and *servers* to which it is connected.

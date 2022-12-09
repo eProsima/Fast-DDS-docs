@@ -52,6 +52,14 @@ Internally it contains the following |QosPolicy-api| objects:
     |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
     :ref:`DS_modify_server_list`).
 
+
+.. warning::
+
+    When a DomainParticipant has enabled statistics (which are enabled by default), and if, after
+    creation of that DomainParticipant, user needs to change any QosPolicy, it needs to call
+    |DomainParticipant::get_qos-api| member function to obtain the right QoS object to modify before
+    calling |DomainParticipant::set_qos-api| member function.
+
 Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.
 

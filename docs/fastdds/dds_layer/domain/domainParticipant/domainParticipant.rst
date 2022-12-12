@@ -55,7 +55,7 @@ Internally it contains the following |QosPolicy-api| objects:
 
 .. important::
 
-    Upon then call to |DomainParticipantFactory::create_participant-api|, if Fast DDS is compiled with statistics support
+    Upon the call to |DomainParticipantFactory::create_participant-api|, if Fast DDS is compiled with statistics support
     (enabled by default, see :ref:`cmake_options`), the internal |DomainParticipantQos-api| may differ from the input
     |DomainParticipantQos-api| (see :ref:`property_policies_statistics`).
     This entails that applications willing to further modify the |DomainParticipantQos-api| after

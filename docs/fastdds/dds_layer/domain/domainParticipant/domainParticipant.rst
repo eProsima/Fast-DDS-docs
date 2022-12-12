@@ -53,12 +53,17 @@ Internally it contains the following |QosPolicy-api| objects:
     :ref:`DS_modify_server_list`).
 
 
-.. warning::
+.. important::
 
-    When a DomainParticipant has enabled statistics (which are enabled by default), and if, after
-    creation of that DomainParticipant, user needs to change any QosPolicy, it needs to call
-    |DomainParticipant::get_qos-api| member function to obtain the right QoS object to modify before
-    calling |DomainParticipant::set_qos-api| member function.
+    Upon then call to |DomainParticipantFactory::create_participant-api|, if Fast DDS is compiled with statistics support
+    (enabled by default, see :ref:`cmake_options`), the internal |DomainParticipantQos-api| may differ from the input
+    |DomainParticipantQos-api| (see :ref:`property_policies_statistics`).
+    This entails that applications willing to further modify the |DomainParticipantQos-api| after
+    |DomainParticipant-api| creation should:
+
+         1. Retrieve the internal |DomainParticipantQos-api| by the means of |DomainParticipant::get_qos-api|.
+         2. Perform the desired modifications.
+         3. Update the |DomainParticipantQos-api| by the means of |DomainParticipant::set_qos-api|.
 
 Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.

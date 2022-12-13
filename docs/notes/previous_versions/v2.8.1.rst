@@ -1,0 +1,36 @@
+Version 2.8.1
+^^^^^^^^^^^^^
+
+This release includes the following **bugfixes**:
+
+1. Statistics module fixes:
+    1. Increase statistics DataWriter history.
+    2. Fix Statistics module CI.
+    3. Install Statistics IDL file.
+    4. Fix for building in old compilers.
+    5. Fix core dumped in
+       :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::DomainParticipant::delete_contained_entities>`.
+
+1. Address sanitizer fixes:
+    1. Add ASAN CI job and ``SANITIZE`` :ref:`CMake option <cmake_options>`.
+    2. Fixes reported by address sanitizer.
+
+1. Synchronization fixes:
+    1. Fix data races when creating DataWriters.
+    2. Ensure ``shared_mutex`` implementation is consistent throughout supported platforms.
+
+1. Other fixes:
+    1. Include missing ReadCondition header.
+    2. Fix selection of output locators.
+    3. Fix null-dereference on ``parseXMLEnumDynamicType``.
+    4. Include ``2.8.x`` branch release support.
+    5. Send GAPs correctly when using separate sending.
+    6. Fixes for building in old compilers.
+    7. Fix :cpp:func:`DataReader::read_next_instance()<eprosima::fastdds::dds::DataReader::read_next_instance>`
+       and :cpp:func:`DataReader::take_next_instance()<eprosima::fastdds::dds::DataReader::take_next_instance>`
+       implementation.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

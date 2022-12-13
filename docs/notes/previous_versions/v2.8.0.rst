@@ -13,9 +13,9 @@ fixes.
 
 .. note::
     It is also advisable to regenerate the type support from the IDL files using
-    [Fast DDS-Gen v2.2.0](https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.2.0).
+    `Fast DDS-Gen v2.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.2.0>`_.
     Furthermore, if upgrading to v2.8.0, it is also recommended to upgrade Fast CDR to
-    [v1.0.25](https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.25)
+    `v1.0.25 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.25>`_.
 
 This release includes the following **features**:
 

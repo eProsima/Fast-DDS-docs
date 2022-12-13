@@ -43,7 +43,7 @@ The recommended profile can be accessed through the constant |STATISTICS_DATAWRI
    * - |HistoryQosPolicyKind-api|
      - |KEEP_LAST_HISTORY_QOS-api|
    * - |history_depth-api|
-     - 1
+     - 10
    * - |PropertyPolicyQos-api| name = value
      - ``"fastdds.push_mode"`` = ``"false"``
 

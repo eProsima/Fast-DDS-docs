@@ -82,7 +82,7 @@ dependency on other options.
         - Enables the *Fast DDS* Statistics module. Please refer to :ref:`statistics` for |br|
           more information on this module.
         - ``ON`` ``OFF``
-        - ``OFF``
+        - ``ON``
     *   - :class:`COMPILE_EXAMPLES`
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
           :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the |br|

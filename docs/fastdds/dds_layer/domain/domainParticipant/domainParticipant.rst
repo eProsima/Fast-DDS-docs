@@ -52,6 +52,19 @@ Internally it contains the following |QosPolicy-api| objects:
     |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
     :ref:`DS_modify_server_list`).
 
+
+.. important::
+
+    Upon the call to |DomainParticipantFactory::create_participant-api|, if Fast DDS is compiled with statistics support
+    (enabled by default, see :ref:`cmake_options`), the internal |DomainParticipantQos-api| may differ from the input
+    |DomainParticipantQos-api| (see :ref:`property_policies_statistics`).
+    This entails that applications willing to further modify the |DomainParticipantQos-api| after
+    |DomainParticipant-api| creation should:
+
+         1. Retrieve the internal |DomainParticipantQos-api| by the means of |DomainParticipant::get_qos-api|.
+         2. Perform the desired modifications.
+         3. Update the |DomainParticipantQos-api| by the means of |DomainParticipant::set_qos-api|.
+
 Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.
 

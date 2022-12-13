@@ -21,7 +21,8 @@ Enable Statistics module
 ------------------------
 
 The Statistics module has to be enabled both at build and runtime.
-On the one hand, :ref:`CMake option <cmake_options>` ``FASTDDS_STATISTICS`` must be enabled when building the library.
+On the one hand, :ref:`CMake option <cmake_options>` ``FASTDDS_STATISTICS`` must be enabled when building the library
+(since Fast DDS v2.9.0 this CMake option is enabled by default).
 On the other hand, the desired statistics DataWriters should be enabled using the :ref:`statistics_dds_layer`.
 
 The statistics DataWriters can be enabled automatically using the :ref:`propertypolicyqos` ``fastdds.statistics`` and

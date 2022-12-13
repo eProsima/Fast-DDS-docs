@@ -613,7 +613,7 @@ List of QoS Policy data members:
      - -1
    * - |RTPSEndpointQos::history_memory_policy-api|
      - :ref:`memorymanagementpolicy`
-     - |PREALLOCATED_MEMORY_MODE-api|
+     - |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
 
 * |RTPSEndpointQos::unicast_locator_list-api|:
   Defines the list of unicast locators associated to the DDS Entity.

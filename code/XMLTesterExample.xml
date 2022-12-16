@@ -2,12 +2,12 @@
 <dds>
     <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
         <transport_descriptors>
+            <!-- TCP sample transport descriptor -->
             <transport_descriptor>
                 <transport_id>ExampleTransportId1</transport_id>
                 <type>TCPv4</type>
                 <sendBufferSize>8192</sendBufferSize>
                 <receiveBufferSize>8192</receiveBufferSize>
-                <TTL>250</TTL>
                 <maxMessageSize>16384</maxMessageSize>
                 <maxInitialPeersRange>100</maxInitialPeersRange>
                 <interfaceWhiteList>
@@ -24,10 +24,18 @@
                     <port>5100</port>
                     <port>5200</port>
                 </listening_ports>
+                <tls><!-- TLS Section --></tls>
+                <calculate_crc>false</calculate_crc>
+                <check_crc>false</check_crc>
+                <enable_tcp_nodelay>false</enable_tcp_nodelay>
             </transport_descriptor>
+            <!-- UDP sample transport descriptor. Several options are common with TCP -->
             <transport_descriptor>
                 <transport_id>ExampleTransportId2</transport_id>
                 <type>UDPv6</type>
+                <TTL>250</TTL>
+                <non_blocking_send>false</non_blocking_send>
+                <output_port>5101</output_port>
             </transport_descriptor>
             <!-- SHM sample transport descriptor -->
             <transport_descriptor>

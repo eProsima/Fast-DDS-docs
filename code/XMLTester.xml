@@ -4515,16 +4515,16 @@
                 <type>UDPv4</type>
                 <sendBufferSize>8192</sendBufferSize>
                 <receiveBufferSize>8192</receiveBufferSize>
-                <TTL>250</TTL>
-                <non_blocking_send>false</non_blocking_send>
                 <maxMessageSize>16384</maxMessageSize>
                 <maxInitialPeersRange>100</maxInitialPeersRange>
                 <interfaceWhiteList>
                     <address>192.168.1.41</address>
                     <address>127.0.0.1</address>
                 </interfaceWhiteList>
-                <wan_addr>80.80.55.44</wan_addr>
+                <TTL>250</TTL>
+                <non_blocking_send>false</non_blocking_send>
                 <output_port>5101</output_port>
+                <wan_addr>80.80.55.44</wan_addr>
                 <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
                 <keep_alive_timeout_ms>25000</keep_alive_timeout_ms>
                 <max_logical_port>9000</max_logical_port>
@@ -4534,10 +4534,10 @@
                     <port>5100</port>
                     <port>5200</port>
                 </listening_ports>
+                <tls><!-- TLS Section --></tls>
                 <calculate_crc>false</calculate_crc>
                 <check_crc>false</check_crc>
                 <enable_tcp_nodelay>false</enable_tcp_nodelay>
-                <tls><!-- TLS Section --></tls>
                 <segment_size>262144</segment_size>
                 <port_queue_capacity>512</port_queue_capacity>
                 <healthy_check_timeout_ms>1000</healthy_check_timeout_ms>

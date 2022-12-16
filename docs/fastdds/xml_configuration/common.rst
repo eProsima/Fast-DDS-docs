@@ -58,24 +58,37 @@ The table presented below outlines each possible Locator's field.
     :ref:`SHM transport <transport_sharedMemory_sharedMemory>` locators cannot be configured as they are
     automatically handled by SHM.
 
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| Name                | Description                                            | Values             | Default          |
-+=====================+========================================================+====================+==================+
-| ``<port>``          | RTPS port number of the locator. |br|                  | ``uint32_t``       | 0                |
-|                     | *Physical port* in UDP,                                |                    |                  |
-|                     | *logical port* in TCP.                                 |                    |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<physical_port>`` | TCP's *physical port*.                                 | ``uint32_t``       | 0                |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<address>``       | IP address of the locator.                             | ``string``         | ""               |
-|                     |                                                        | (IPv4/IPv6 format) |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<unique_lan_id>`` | The LAN ID uniquely identifies the LAN the |br|        | ``string``         |                  |
-|                     | locator belongs to (**TCPv4 only**).                   | (16 bytes)         |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<wan_address>``   | WAN IPv4 address (**TCPv4 only**).                     | ``string``         | ``0.0.0.0``      |
-|                     |                                                        | (IPv4 format)      |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<port>``
+    - RTPS port number of the locator. |br|
+      *Physical port* in UDP, *logical port* in TCP.
+    - ``uint32_t``
+    - 0
+  * - ``physical_port``
+    - TCP's *physical port*.
+    - ``uint32_t``
+    - 0
+  * - ``address``
+    - IP address of the locator.
+    - ``string`` (IPv4/IPv6 format |br|
+      or DNS name)
+    - Empty
+  * - ``<unique_lan_id>``
+    - The LAN ID uniquely identifies the LAN the |br|
+      locator belongs to (**TCPv4 only**).
+    - ``string`` (16 bytes)
+    - Empty
+  * - ``<wan_address>``
+    - WAN IPv4 address (**TCPv4 only**).
+    - ``string`` (IPv4 format)
+    - ``0.0.0.0``
 
 **Example**
 

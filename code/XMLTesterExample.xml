@@ -24,7 +24,30 @@
                     <port>5100</port>
                     <port>5200</port>
                 </listening_ports>
-                <tls><!-- TLS Section --></tls>
+                <tls>
+                    <password>Password</password>
+                    <private_key_file>Key_file.pem</private_key_file>
+                    <rsa_private_key_file>RSA_file.pem</rsa_private_key_file>
+                    <cert_chain_file>Chain.pem</cert_chain_file>
+                    <tmp_dh_file>DH.pem</tmp_dh_file>
+                    <verify_file>verify.pem</verify_file>
+                    <verify_mode>
+                        <verify>VERIFY_PEER</verify>
+                    </verify_mode>
+                    <options>
+                        <option>NO_TLSV1</option>
+                        <option>NO_TLSV1_1</option>
+                    </options>
+                    <verify_paths>
+                        <verify_path>Path1</verify_path>
+                        <verify_path>Path2</verify_path>
+                        <verify_path>Path3</verify_path>
+                    </verify_paths>
+                    <verify_depth>55</verify_depth>
+                    <default_verify_path>true</default_verify_path>
+                    <handshake_role>SERVER</handshake_role>
+                    <server_name>my_server.com</server_name>
+                </tls>
                 <calculate_crc>false</calculate_crc>
                 <check_crc>false</check_crc>
                 <enable_tcp_nodelay>false</enable_tcp_nodelay>

@@ -141,6 +141,8 @@
                     </udpv6>
                 </default_external_unicast_locators>
 
+                <ignore_non_matching_locators>true</ignore_non_matching_locators>
+
                 <sendSocketBufferSize>8192</sendSocketBufferSize>
 
                 <listenSocketBufferSize>8192</listenSocketBufferSize>
@@ -150,6 +152,8 @@
 
                         <discoveryProtocol>NONE</discoveryProtocol>
 
+                        <ignoreParticipantFlags>FILTER_DIFFERENT_PROCESS|FILTER_SAME_PROCESS</ignoreParticipantFlags>
+                
                         <EDP>SIMPLE</EDP>
 
                         <leaseDuration>

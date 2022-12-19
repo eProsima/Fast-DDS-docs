@@ -129,6 +129,18 @@
                     </locator>
                 </defaultMulticastLocatorList>
 
+                <default_external_unicast_locators>
+                    <!-- EXTERNAL_LOCATOR_LIST -->
+                    <udpv4 externality="1" cost="0" mask="24">
+                        <address>100.100.100.10</address>
+                        <port>23456</port>
+                    </udpv4>
+                    <udpv6 externality="1" cost="1" mask="48">
+                        <address>localhost</address>
+                        <port>1234</port>
+                    </udpv6>
+                </default_external_unicast_locators>
+
                 <sendSocketBufferSize>8192</sendSocketBufferSize>
 
                 <listenSocketBufferSize>8192</listenSocketBufferSize>

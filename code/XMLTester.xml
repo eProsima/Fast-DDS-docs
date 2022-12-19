@@ -1834,6 +1834,18 @@
     </locator>
 </defaultUnicastLocatorList>
 <!--><-->
+<!-->XML-EXTERNAL-LOCATOR-LIST<-->
+<default_external_unicast_locators>
+    <udpv4 externality="1" cost="0" mask="24">
+        <address>100.100.100.10</address>
+        <port>23456</port>
+    </udpv4>
+    <udpv6 externality="2" cost="0" mask="48">
+        <address>localhost</address>
+        <port>1234</port>
+    </updv6>
+</default_external_unicast_locators>
+<!--><-->
 </rtps>
 </participant>
 

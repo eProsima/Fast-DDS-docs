@@ -109,33 +109,60 @@ It represents a list of external locator entries.
 Each entry can be a ``<udpv4>`` or a ``<udpv6>`` tag.
 These tags can be configured with the following attributes:
 
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| Name                | Description                                            | Values             | Default          |
-+=====================+========================================================+====================+==================+
-| ``externality``     | Number of hops from the participant's host to the |br| | ``uint8_t``        | 1                |
-|                     | LAN represented by the external locator. |br|          |                    |                  |
-|                     | Valid values: from 1 to 255.                           |                    |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``cost``            | Communication cost relative to other locators on |br|  | ``uint8_t``        | 0                |
-|                     | the same externality level. |br|                       |                    |                  |
-|                     | Valid values: from 0 to 255.                           |                    |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``mask``            | Number of significant bits on the LAN represented |br| | ``uint8_t``        | 24               |
-|                     | by the external locator. |br|                          |                    |                  |
-|                     | Valid values: from 1 to 31 (UDPv4) or 127 (UDPv6)      |                    |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``externality``
+    - Number of hops from the participant's host to the |br|
+      LAN represented by the external locator. |br|
+      Valid values: from 1 to 255.
+    - ``uint8_t``
+    - 1
+  * - ``cost``
+    - Communication cost relative to other locators on |br|
+      the same externality level. |br|
+      Valid values: from 0 to 255.
+    - ``uint8_t``
+    - 0
+  * - ``mask``
+    - Number of significant bits on the LAN represented |br|
+      by the external locator. |br|
+      Valid values: from 1 to 31 (UDPv4) or 127 (UDPv6)
+    - ``uint8_t``
+    - 24
 
 They should contain the following tags:
 
-+---------------------+--------------------------------------------------------+--------------------+
-| Name                | Description                                            | Values             |
-+=====================+========================================================+====================+
-| ``<port>``          | UDP port number of the locator. |br|                   | ``uint32_t``       |
-|                     | Should have a valid UDP port number.                   |                    |
-+---------------------+--------------------------------------------------------+--------------------+
-| ``<address>``       | IP address of the locator.                             | ``string``         |
-|                     |                                                        | (IPv4/IPv6 format) |
-+---------------------+--------------------------------------------------------+--------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+  * - ``<port>``
+    - UDP port number of the locator. |br|
+      The UDP port number should be valid.
+    - ``uint32_t``
+  * - ``<address>``
+    - IP address of the locator.
+    - ``string`` (IPv4/IPv6 format |br|
+      or DNS name)
+
+**Example**
+
+The following example shows the implementation of one locator of each transport protocol in
+``<default_external_unicast_locators>``.
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-EXTERNAL-LOCATOR-LIST<-->
+    :end-before: <!--><-->
 
 .. _PropertiesPolicyType:
 

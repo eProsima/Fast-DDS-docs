@@ -1505,6 +1505,11 @@
 
         <EDP>SIMPLE</EDP>
 
+        <simpleEDP>
+            <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
+            <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
+        </simpleEDP>
+
         <leaseDuration>
             <!-- DURATION -->
             <sec>20</sec>
@@ -1520,11 +1525,6 @@
         <initialAnnouncements>
             <!-- INITIAL_ANNOUNCEMENTS -->
         </initialAnnouncements>
-
-        <simpleEDP>
-            <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
-            <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
-        </simpleEDP>
 
         <static_edp_xml_config>file://filename.xml</static_edp_xml_config>
     </discovery_config>

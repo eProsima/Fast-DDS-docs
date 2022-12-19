@@ -1389,7 +1389,7 @@
 
             <default_external_unicast_locators>
                 <!-- EXTERNAL_LOCATOR_LIST -->
-                <udpv4 externaliy="1" cost="0" mask="24">
+                <udpv4 externality="1" cost="0" mask="24">
                     <address>100.100.100.10</address>
                     <port>23456</port>
                 </udpv4>
@@ -1556,7 +1556,7 @@
 
     <metatraffic_external_unicast_locators>
         <!-- EXTERNAL_LOCATOR_LIST -->
-        <udpv4 externaliy="1" cost="0" mask="24">
+        <udpv4 externality="1" cost="0" mask="24">
             <address>100.100.100.10</address>
             <port>34567</port>
         </udpv4>
@@ -1677,7 +1677,7 @@
 
             <external_unicast_locators>
                 <!-- EXTERNAL_LOCATOR_LIST -->
-                <udpv4 externaliy="1" cost="0" mask="24">
+                <udpv4 externality="1" cost="0" mask="24">
                     <address>100.100.100.10</address>
                     <port>12345</port>
                 </udpv4>
@@ -1756,7 +1756,7 @@
 
             <external_unicast_locators>
                 <!-- EXTERNAL_LOCATOR_LIST -->
-                <udpv4 externaliy="1" cost="0" mask="24">
+                <udpv4 externality="1" cost="0" mask="24">
                     <address>100.100.100.10</address>
                     <port>12345</port>
                 </udpv4>
@@ -4292,7 +4292,7 @@
         </locator>
     </multicastLocatorList>
     <external_unicast_locators>
-        <udpv4 externaliy="1" cost="0" mask="24">
+        <udpv4 externality="1" cost="0" mask="24">
             <address>100.100.100.10</address>
             <port>12345</port>
         </udpv4>
@@ -4321,7 +4321,7 @@
         </locator>
     </multicastLocatorList>
     <external_unicast_locators>
-        <udpv4 externaliy="1" cost="0" mask="24">
+        <udpv4 externality="1" cost="0" mask="24">
             <address>100.100.100.10</address>
             <port>12345</port>
         </udpv4>
@@ -4394,7 +4394,7 @@
                 </locator>
             </metatrafficUnicastLocatorList>
             <metatraffic_external_unicast_locators>
-                <udpv4 externaliy="1" cost="0" mask="24">
+                <udpv4 externality="1" cost="0" mask="24">
                     <address>100.100.100.10</address>
                     <port>34567</port>
                 </udpv4>
@@ -4425,7 +4425,7 @@
         </defaultMulticastLocatorList>
 
         <default_external_unicast_locators>
-            <udpv4 externaliy="1" cost="0" mask="24">
+            <udpv4 externality="1" cost="0" mask="24">
                 <address>100.100.100.10</address>
                 <port>23456</port>
             </udpv4>

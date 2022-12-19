@@ -188,138 +188,11 @@ These elements allow the user to define the DomainParticipant configuration.
 
     - :class:`EXTERNAL_LOCATOR_LIST` means a :ref:`externalLocatorListType` is expected.
 
-    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
-
     - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
 
+    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
+
     - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
-
-.. _Port:
-
-Port Configuration
-******************
-
-According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the
-|RTPSParticipants-api|' discovery traffic unicast listening ports are calculated using the following equation:
-:math:`7400 + 250 * DomainId + 10 + 2 * ParticipantId`.
-Therefore the following parameters can be specified:
-
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| Name                         | Description                                          | Values          | Default      |
-+==============================+======================================================+=================+==============+
-| ``<portBase>``               | Base ``port``.                                       | ``uint16_t``    | 7400         |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<domainIDGain>``           | Gain in DomainId.                                    | ``uint16_t``    | 250          |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<participantIDGain>``      | Gain in |WireProtocolConfigQos::participant_id-api|. | ``uint16_t``    | 2            |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd0>``               | Multicast metadata offset.                           | ``uint16_t``    | 0            |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd1>``               | Unicast metadata offset.                             | ``uint16_t``    | 10           |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd2>``               | Multicast user data offset.                          | ``uint16_t``    | 1            |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd3>``               | Unicast user data offset.                            | ``uint16_t``    | 11           |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-
-.. warning::
-
-  Changing these default parameters may break compatibility with other RTPS compliant implementations, as well as
-  with other *Fast DDS* applications with default port settings.
-
-.. _ParticipantAllocationType:
-
-ParticipantAllocationType
-****************************
-
-The ``ParticipantAllocationType`` defines the ``<allocation>`` element, which allows setting of the parameters
-related with the allocation behavior on the DomainParticipant.
-Please refer to :ref:`participantresourcelimitsqos` for a detailed documentation on DomainParticipants allocation
-configuration.
-
-.. list-table::
-   :header-rows: 1
-   :align: left
-
-   * - Name
-     - Description
-     - Values
-     - Default
-   * - ``<remote_locators>``
-     - Defines the limits for the remote locators' collections. |br|
-       See :ref:`remotelocatorsallocationattributes`.
-     - :ref:`remote_locators_allocations`
-     -
-   * - ``<total_participants>``
-     - DomainParticipant :ref:`CommonAlloc` to specify the |br|
-       total number of DomainParticipants in the domain |br|
-       (local and remote). See |br|
-       :ref:`ResourceLimitedContainerConfig`.
-     - :ref:`CommonAlloc`
-     -
-   * - ``<total_readers>``
-     - DomainParticipant :ref:`CommonAlloc` to specify the |br|
-       total number of DataReader on each DomainParticipant |br|
-       (local and remote). See |br|
-       :ref:`ResourceLimitedContainerConfig`.
-     - :ref:`CommonAlloc`
-     -
-   * - ``<total_writers>``
-     - DomainParticipant :ref:`CommonAlloc` related to the |br|
-       total number of DataWriters on each DomainParticipant |br|
-       (local and remote).
-       See :ref:`resourcelimitedcontainerconfig`.
-     - :ref:`CommonAlloc`
-     -
-   * - ``<max_partitions>``
-     - Maximum size of the partitions submessage. |br|
-       Set to zero for no limit. |br|
-       See :ref:`sendbuffersallocationattributes`.
-     - ``uint32_t``
-     -
-   * - ``<max_user_data>``
-     - Maximum size of the user data submessage. |br|
-       Set to zero for no limit. See |br|
-       :ref:`sendbuffersallocationattributes`.
-     - ``uint32_t``
-     -
-   * - ``<max_properties>``
-     - Maximum size of the properties submessage. |br|
-       Set to zero for no limit. See |br|
-       :ref:`sendbuffersallocationattributes`.
-     - ``uint32_t``
-     -
-
-**Example**
-
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML-PARTICIPANT-ALLOCATION<-->
-    :end-before: <!--><-->
-
-.. _remote_locators_allocations:
-
-Remote Locators Allocations
-###########################
-
-.. list-table::
-   :header-rows: 1
-   :align: left
-
-   * - ``<max_unicast_locators>``
-     - Maximum number of unicast locators expected on a |br|
-       remote  entity. It is recommended to use the maximum |br|
-       number of network interfaces available on the machine |br|
-       on which DomainParticipant is running. |br|
-       See :ref:`remotelocatorsallocationattributes`.
-     - ``uint32_t``
-     - 4
-   * - ``<max_multicast_locators>``
-     - Maximum number of multicast locators expected on a |br|
-       remote entity. May be set to zero to disable multicast |br|
-       traffic. See :ref:`remotelocatorsallocationattributes`.
-     - ``uint32_t``
-     - 1
 
 .. _builtin:
 
@@ -537,3 +410,130 @@ Initial Announcements
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
 | ``<period>`` | The period for the DomainParticipant to send its discovery messages.  | :ref:`DurationType` | 100 ms  |
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
+
+.. _Port:
+
+Port Configuration
+******************
+
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the
+|RTPSParticipants-api|' discovery traffic unicast listening ports are calculated using the following equation:
+:math:`7400 + 250 * DomainId + 10 + 2 * ParticipantId`.
+Therefore the following parameters can be specified:
+
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| Name                         | Description                                          | Values          | Default      |
++==============================+======================================================+=================+==============+
+| ``<portBase>``               | Base ``port``.                                       | ``uint16_t``    | 7400         |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<domainIDGain>``           | Gain in DomainId.                                    | ``uint16_t``    | 250          |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<participantIDGain>``      | Gain in |WireProtocolConfigQos::participant_id-api|. | ``uint16_t``    | 2            |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<offsetd0>``               | Multicast metadata offset.                           | ``uint16_t``    | 0            |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<offsetd1>``               | Unicast metadata offset.                             | ``uint16_t``    | 10           |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<offsetd2>``               | Multicast user data offset.                          | ``uint16_t``    | 1            |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<offsetd3>``               | Unicast user data offset.                            | ``uint16_t``    | 11           |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+
+.. warning::
+
+  Changing these default parameters may break compatibility with other RTPS compliant implementations, as well as
+  with other *Fast DDS* applications with default port settings.
+
+.. _ParticipantAllocationType:
+
+ParticipantAllocationType
+****************************
+
+The ``ParticipantAllocationType`` defines the ``<allocation>`` element, which allows setting of the parameters
+related with the allocation behavior on the DomainParticipant.
+Please refer to :ref:`participantresourcelimitsqos` for a detailed documentation on DomainParticipants allocation
+configuration.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<remote_locators>``
+     - Defines the limits for the remote locators' collections. |br|
+       See :ref:`remotelocatorsallocationattributes`.
+     - :ref:`remote_locators_allocations`
+     -
+   * - ``<total_participants>``
+     - DomainParticipant :ref:`CommonAlloc` to specify the |br|
+       total number of DomainParticipants in the domain |br|
+       (local and remote). See |br|
+       :ref:`ResourceLimitedContainerConfig`.
+     - :ref:`CommonAlloc`
+     -
+   * - ``<total_readers>``
+     - DomainParticipant :ref:`CommonAlloc` to specify the |br|
+       total number of DataReader on each DomainParticipant |br|
+       (local and remote). See |br|
+       :ref:`ResourceLimitedContainerConfig`.
+     - :ref:`CommonAlloc`
+     -
+   * - ``<total_writers>``
+     - DomainParticipant :ref:`CommonAlloc` related to the |br|
+       total number of DataWriters on each DomainParticipant |br|
+       (local and remote).
+       See :ref:`resourcelimitedcontainerconfig`.
+     - :ref:`CommonAlloc`
+     -
+   * - ``<max_partitions>``
+     - Maximum size of the partitions submessage. |br|
+       Set to zero for no limit. |br|
+       See :ref:`sendbuffersallocationattributes`.
+     - ``uint32_t``
+     -
+   * - ``<max_user_data>``
+     - Maximum size of the user data submessage. |br|
+       Set to zero for no limit. See |br|
+       :ref:`sendbuffersallocationattributes`.
+     - ``uint32_t``
+     -
+   * - ``<max_properties>``
+     - Maximum size of the properties submessage. |br|
+       Set to zero for no limit. See |br|
+       :ref:`sendbuffersallocationattributes`.
+     - ``uint32_t``
+     -
+
+**Example**
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-PARTICIPANT-ALLOCATION<-->
+    :end-before: <!--><-->
+
+.. _remote_locators_allocations:
+
+Remote Locators Allocations
+###########################
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - ``<max_unicast_locators>``
+     - Maximum number of unicast locators expected on a |br|
+       remote  entity. It is recommended to use the maximum |br|
+       number of network interfaces available on the machine |br|
+       on which DomainParticipant is running. |br|
+       See :ref:`remotelocatorsallocationattributes`.
+     - ``uint32_t``
+     - 4
+   * - ``<max_multicast_locators>``
+     - Maximum number of multicast locators expected on a |br|
+       remote entity. May be set to zero to disable multicast |br|
+       traffic. See :ref:`remotelocatorsallocationattributes`.
+     - ``uint32_t``
+     - 1

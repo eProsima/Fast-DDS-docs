@@ -371,12 +371,12 @@ This section specifies the available XML members for the configuration of this
    * - ``<readerHistoryMemoryPolicy>``
      - Memory policy for DataReaders. |br|
        See :ref:`historyqospolicykind`.
-     - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
+     - :ref:`historymemorypoliciesXML`
      - |PREALLOCATED-xml-api|
    * - ``<writerHistoryMemoryPolicy>``
      - Memory policy for DataWriters. |br|
        See :ref:`historyqospolicykind`.
-     - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
+     - :ref:`historymemorypoliciesXML`
      - |PREALLOCATED-xml-api|
    * - ``<readerPayloadSize>``
      - Maximum DataReader's History |br|

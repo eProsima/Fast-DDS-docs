@@ -181,6 +181,8 @@
 
                     </discovery_config>
 
+                    <avoid_builtin_multicast>true</avoid_builtin_multicast>
+
                     <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>
 
                     <metatrafficUnicastLocatorList>
@@ -261,9 +263,22 @@
                         </locator>
                     </initialPeersList>
 
+                    <metatraffic_external_unicast_locators>
+                        <udpv4 externality="1" cost="0" mask="24">
+                            <address>100.100.100.10</address>
+                            <port>34567</port>
+                        </udpv4>
+                    </metatraffic_external_unicast_locators>
+
                     <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
 
                     <writerHistoryMemoryPolicy>PREALLOCATED</writerHistoryMemoryPolicy>
+
+                    <readerPayloadSize>512</readerPayloadSize>
+
+                    <writerPayloadSize>512</writerPayloadSize>
+
+                    <mutation_tries>55</mutation_tries>
                 </builtin>
 
                 <allocation>

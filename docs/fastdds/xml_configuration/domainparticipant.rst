@@ -248,25 +248,8 @@ configuration.
    * - ``<remote_locators>``
      - Defines the limits for the remote locators' collections. |br|
        See :ref:`remotelocatorsallocationattributes`.
-     - ``<max_unicast_locators>`` |br|
-       ``<max_multicast_locators>``
+     - :ref:`remote_locators_allocations`
      -
-   * - ``<max_unicast_locators>``
-     - Child element of ``<remote_locators>``. |br|
-       Maximum number of unicast locators expected on a |br|
-       remote  entity. It is recommended to use the maximum |br|
-       number of network interfaces available on the machine |br|
-       on which DomainParticipant is running. |br|
-       See :ref:`remotelocatorsallocationattributes`.
-     - ``uint32_t``
-     - 4
-   * - ``<max_multicast_locators>``
-     - Child element of ``<remote_locators>``. |br|
-       Maximum number of multicast locators expected on a |br|
-       remote entity. May be set to zero to disable multicast |br|
-       traffic. See :ref:`remotelocatorsallocationattributes`.
-     - ``uint32_t``
-     - 1
    * - ``<total_participants>``
      - DomainParticipant :ref:`CommonAlloc` to specify the |br|
        total number of DomainParticipants in the domain |br|
@@ -313,6 +296,30 @@ configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT-ALLOCATION<-->
     :end-before: <!--><-->
+
+.. _remote_locators_allocations:
+
+Remote Locators Allocations
+###########################
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - ``<max_unicast_locators>``
+     - Maximum number of unicast locators expected on a |br|
+       remote  entity. It is recommended to use the maximum |br|
+       number of network interfaces available on the machine |br|
+       on which DomainParticipant is running. |br|
+       See :ref:`remotelocatorsallocationattributes`.
+     - ``uint32_t``
+     - 4
+   * - ``<max_multicast_locators>``
+     - Maximum number of multicast locators expected on a |br|
+       remote entity. May be set to zero to disable multicast |br|
+       traffic. See :ref:`remotelocatorsallocationattributes`.
+     - ``uint32_t``
+     - 1
 
 .. _builtin:
 

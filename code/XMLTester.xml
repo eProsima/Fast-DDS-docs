@@ -1524,6 +1524,10 @@
 
         <initialAnnouncements>
             <!-- INITIAL_ANNOUNCEMENTS -->
+            <count>10</count>
+            <period>
+                <nanosec>50</nanosec>
+            </period>
         </initialAnnouncements>
 
         <static_edp_xml_config>file://filename.xml</static_edp_xml_config>

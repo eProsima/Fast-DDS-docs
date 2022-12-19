@@ -156,6 +156,11 @@
                 
                         <EDP>SIMPLE</EDP>
 
+                        <simpleEDP>
+                            <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
+                            <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
+                        </simpleEDP>
+
                         <leaseDuration>
                             <sec>DURATION_INFINITY</sec>
                         </leaseDuration>
@@ -165,10 +170,12 @@
                             <nanosec>856000</nanosec>
                         </leaseAnnouncement>
 
-                        <simpleEDP>
-                            <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
-                            <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
-                        </simpleEDP>
+                        <initialAnnouncements>
+                            <count>10</count>
+                            <period>
+                                <nanosec>50</nanosec>
+                            </period>
+                        </initialAnnouncements>
 
                         <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
 

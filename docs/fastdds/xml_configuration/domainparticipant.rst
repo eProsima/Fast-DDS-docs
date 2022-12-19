@@ -158,7 +158,7 @@ These elements allow the user to define the DomainParticipant configuration.
      - true
    * - ``<propertiesPolicy>``
      - Additional configuration properties. |br|
-       It expects a |PolicyType|.
+       See :ref:`propertypolicyqos`.
      - |PolicyType|
      -
    * - ``<allocation>``
@@ -167,6 +167,12 @@ These elements allow the user to define the DomainParticipant configuration.
        |PartAlloc|.
      - |PartAlloc|
      -
+   * - ``userData``
+     - Additional information attached to the DomainParticipant |br|
+       and transmitted with the discovery information. |br|
+       See :ref:`userdataqospolicy`.
+     - ``string``
+     - Empty
 
 **Example**
 

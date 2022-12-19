@@ -198,17 +198,26 @@ DurationType
 
 DurationType expresses a period of time and it is commonly used inside other XML elements, such as in
 ``<leaseAnnouncement>`` or ``<leaseDuration>``.
-A DurationType is defined by two mandatory elements ``<sec>`` plus ``<nanosec>``.
+A DurationType is defined by at least one mandatory element of two possible ones: ``<sec>`` plus ``<nanosec>``.
 An infinite value can be specified by using the values :cpp:concept:`DURATION_INFINITY`,
 :cpp:concept:`DURATION_INFINITE_SEC` and :cpp:concept:`DURATION_INFINITE_NSEC`.
 
-+-----------------------+---------------------------------------------------------+-------------------+----------------+
-| Name                  | Description                                             | Values            | Default        |
-+=======================+=========================================================+===================+================+
-| ``<sec>``             | Number of seconds.                                      | ``int32_t``       | 0              |
-+-----------------------+---------------------------------------------------------+-------------------+----------------+
-| ``<nanosec>``         | Number of nanoseconds.                                  | ``uint32_t``      | 0              |
-+-----------------------+---------------------------------------------------------+-------------------+----------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<sec>``
+    - Number of seconds.
+    - ``int32_t``
+    - 0
+  * - ``<nanosec>``
+    - Number of nanoseconds.
+    - ``uint32_t``
+    - 0
 
 **Example**
 

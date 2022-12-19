@@ -1881,8 +1881,7 @@
     </leaseDuration>
 
     <leaseDuration>
-        <sec>500</sec>
-        <nanosec>0</nanosec>
+        <nanosec>856000</nanosec>
     </leaseDuration>
 
     <leaseAnnouncement>

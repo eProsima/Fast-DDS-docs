@@ -474,22 +474,24 @@ configurable settings.
 ignoreParticipantFlags
 ++++++++++++++++++++++
 
-+----------------------------------------------------+-----------------------------------------------------------------+
-| Possible values                                    | Description                                                     |
-+====================================================+=================================================================+
-| |NO_FILTER|                                        | All Discovery traffic is processed.                             |
-+----------------------------------------------------+-----------------------------------------------------------------+
-| |FILTER_DIFFERENT_HOST|                            | Discovery traffic from another host is discarded.               |
-+----------------------------------------------------+-----------------------------------------------------------------+
-| |FILTER_DIFFERENT_PROCESS|                         | Discovery traffic from another process on the same host is |br| |
-|                                                    | discarded.                                                      |
-+----------------------------------------------------+-----------------------------------------------------------------+
-| |FILTER_SAME_PROCESS|                              | Discovery traffic from DomainParticipant's own process is |br|  |
-|                                                    | discarded.                                                      |
-+----------------------------------------------------+-----------------------------------------------------------------+
-| |FILTER_DIFFERENT_PROCESS| | |FILTER_SAME_PROCESS| | Discovery traffic from DomainParticipant's own host is |br|     |
-|                                                    | discarded.                                                      |
-+----------------------------------------------------+-----------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+  * - Possible values
+    - Description
+  * - |NO_FILTER|
+    - All Discovery traffic is processed.
+  * - |FILTER_DIFFERENT_HOST|
+    - Discovery traffic from another host is discarded.
+  * - |FILTER_DIFFERENT_PROCESS|
+    - Discovery traffic from another process on the same host is discarded.
+  * - |FILTER_SAME_PROCESS|
+    - Discovery traffic from DomainParticipant's own process is discarded.
+
+This option also supports the OR (``|``) operator to filter discovery traffic from other configurations.
+For instance, ``FILTER_DIFFERENT_PROCESS|FILTER_SAME_PROCESS`` value discards discovery traffic from the
+DomainParticipant's own host.
 
 .. _sedp:
 

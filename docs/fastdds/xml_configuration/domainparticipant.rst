@@ -138,11 +138,6 @@ These elements allow the user to define the DomainParticipant configuration.
        |DomainParticipantFactory|.
      - ``int32_t``
      - 0
-   * - ``<throughputController>``
-     - Limits middleware's bandwidth usage. |br|
-       See the :ref:`Throughput` section.
-     - :ref:`Throughput`
-     -
    * - ``<userTransports>``
      - Transport descriptors to be used by the |br|
        DomainParticipant. See |br|
@@ -180,7 +175,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-92, 94
+    :lines: 2-3, 5-87, 89
 
 .. note::
 

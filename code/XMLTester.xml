@@ -1417,11 +1417,6 @@
 
             <participantID>99</participantID>
 
-            <throughputController>
-                <bytesPerPeriod>8192</bytesPerPeriod>
-                <periodMillisecs>1000</periodMillisecs>
-            </throughputController>
-
             <userTransports>
                 <transport_id>TransportId1</transport_id>
                 <transport_id>TransportId2</transport_id>

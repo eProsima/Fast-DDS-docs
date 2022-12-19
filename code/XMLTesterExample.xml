@@ -281,6 +281,40 @@
                     <mutation_tries>55</mutation_tries>
                 </builtin>
 
+                <port>
+                    <portBase>7400</portBase>
+                    <domainIDGain>200</domainIDGain>
+                    <participantIDGain>10</participantIDGain>
+                    <offsetd0>0</offsetd0>
+                    <offsetd1>1</offsetd1>
+                    <offsetd2>2</offsetd2>
+                    <offsetd3>3</offsetd3>
+                </port>
+
+                <participantID>99</participantID>
+
+                <userTransports>
+                    <transport_id>ExampleTransportId1</transport_id>
+                    <transport_id>ExampleTransportId1</transport_id>
+                </userTransports>
+
+                <useBuiltinTransports>false</useBuiltinTransports>
+
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>Property1Name</name>
+                            <value>Property1Value</value>
+                            <propagate>false</propagate>
+                        </property>
+                        <property>
+                            <name>Property2Name</name>
+                            <value>Property2Value</value>
+                            <propagate>false</propagate>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+
                 <allocation>
                     <remote_locators>
                         <max_unicast_locators>4</max_unicast_locators> <!-- uint32 -->
@@ -305,45 +339,6 @@
                     <max_user_data>256</max_user_data>
                     <max_properties>512</max_properties>
                 </allocation>
-
-                <port>
-                    <portBase>7400</portBase>
-                    <domainIDGain>200</domainIDGain>
-                    <participantIDGain>10</participantIDGain>
-                    <offsetd0>0</offsetd0>
-                    <offsetd1>1</offsetd1>
-                    <offsetd2>2</offsetd2>
-                    <offsetd3>3</offsetd3>
-                </port>
-
-                <participantID>99</participantID>
-
-                <throughputController>
-                    <bytesPerPeriod>8192</bytesPerPeriod>
-                    <periodMillisecs>1000</periodMillisecs>
-                </throughputController>
-
-                <userTransports>
-                    <transport_id>ExampleTransportId1</transport_id>
-                    <transport_id>ExampleTransportId1</transport_id>
-                </userTransports>
-
-                <useBuiltinTransports>false</useBuiltinTransports>
-
-                <propertiesPolicy>
-                    <properties>
-                        <property>
-                            <name>Property1Name</name>
-                            <value>Property1Value</value>
-                            <propagate>false</propagate>
-                        </property>
-                        <property>
-                            <name>Property2Name</name>
-                            <value>Property2Value</value>
-                            <propagate>false</propagate>
-                        </property>
-                    </properties>
-                </propertiesPolicy>
             </rtps>
         </participant>
 

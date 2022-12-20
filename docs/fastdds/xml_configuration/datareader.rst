@@ -57,7 +57,7 @@ The DataReader configuration is performed through the XML elements listed in the
    * - ``<times>``
      - It allows configuring some time related |br|
        parameters of the DataReader.
-     - :ref:`Times <subtimes>`
+     - :ref:`ReaderTimes <subtimes>`
      -
    * - ``<unicastLocatorList>``
      - List of input unicast locators. |br|
@@ -131,8 +131,10 @@ The DataReader configuration is performed through the XML elements listed in the
 
 .. _subtimes:
 
-Times
-""""""
+ReaderTimes
+"""""""""""
+
+These parameters are included within :ref:`rtpsreliablereaderqos` in the :ref:`readertimes` structure.
 
 +------------------------------+-------------------------------------------------------+---------------------+---------+
 | Name                         | Description                                           | Values              | Default |

@@ -1272,9 +1272,23 @@
 <!-->XML-GENERIC<-->
 <struct name="primitive_types_example">
     <!-- Primitive type definitions inside a struct -->
-    <member name="my_long" type="int64"/>
     <member name="my_bool" type="boolean"/>
+    <member name="my_char" type="char8"/>
+    <member name="my_wchar" type="char16"/>
+    <member name="my_byte" type="byte"/>
+    <member name="my_octet" type="octet"/>
+    <member name="my_uint8" type="uint8"/>
+    <member name="my_short" type="int16"/>
+    <member name="my_long" type="int32"/>
+    <member name="my_unsignedshort" type="uint16"/>
+    <member name="my_unsignedlong" type="uint32"/>
+    <member name="my_longlong" type="int64"/>
+    <member name="my_unsignedlonglong" type="uint64"/>
+    <member name="my_float" type="float32"/>
+    <member name="my_double" type="float64"/>
+    <member name="my_longdouble" type="float128"/>
     <member name="my_string" type="string"/>
+    <member name="my_wstring" type="wstring"/>
 </struct>
 <!--><-->
 <struct name="MembersExample">

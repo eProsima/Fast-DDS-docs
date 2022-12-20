@@ -38,12 +38,6 @@ Below, the types supported by *Fast DDS* are presented .
 For further information about the supported |DynamicTypes|, please, refer to :ref:`dynamictypes_supportedtypes`.
 For each of the types detailed below, an example of how to build the type's XML profile is provided.
 
-*   `Enum`_
-*   `Typedef`_
-*   `Struct`_
-*   `Union`_
-*   `Bitset`_
-*   `Bitmask`_
 *   `Member types`_
 
     -  `Primitive types`_
@@ -51,8 +45,95 @@ For each of the types detailed below, an example of how to build the type's XML 
     -  `Sequences`_
     -  `Maps`_
 
+*   `Enum`_
+*   `Typedef`_
+*   `Struct`_
+*   `Union`_
+*   `Bitset`_
+*   `Bitmask`_
 *   `Complex types`_
 
+Member types
+""""""""""""
+
+Member types are defined as any type that can belong to a `Struct`_ or a `Union`_, or be aliased by a
+`Typedef`_.
+These can be defined by the ``<member>`` XML tag.
+
+Primitive types
+***************
+
+The identifiers of the available basic types are listed in the table below.
+Please, refer to :ref:`dynamictypes_supportedtypes_primitive` for more information on the primitive types.
+
+.. list-table::
+
+  * - ``boolean``
+    - ``char8``
+    - ``char16``
+  * - ``byte``
+    - ``octet``
+    - ``uint8``
+  * - ``int8``
+    - ``int16``
+    - ``int32``
+  * - ``uint16``
+    - ``uint32``
+    - ``int64``
+  * - ``uint64``
+    - ``float32``
+    - ``float64``
+  * - ``float128``
+    - ``string``
+    - ``wstring``
+
+All of them are defined as follows:
+
+.. literalinclude:: /../code/XMLTester.xml
+  :language: xml
+  :start-after: <!-->XML-GENERIC<-->
+  :end-before: <!--><-->
+
+Arrays
+******
+
+Arrays are defined in the same way as any other member type but they add the attribute ``arrayDimensions``.
+The format of the ``arrayDimensions`` attribute value is the size of each dimension separated by commas.
+Please, refer to :ref:`dynamictypes_supportedtypes_array` explanation for more information on array type.
+
+.. literalinclude:: /../code/XMLTester.xml
+  :language: xml
+  :start-after: <!-->XML-ARRAYS<-->
+  :end-before: <!--><-->
+
+Sequences
+*********
+
+The sequence type is implemented by setting three attributes: ``name``, the ``type``, and the
+``sequenceMaxLength``.
+The type of its content should be defined by the ``type`` attribute.
+The following example shows the implementation of a sequence of maximum length equal to 3.
+In turn, this is a sequence of sequences of maximum length of 2 and contents of type ``int32``.
+Please, refer to :ref:`dynamictypes_supportedtypes_sequence` section for more information on sequence type.
+
+.. literalinclude:: /../code/XMLTester.xml
+  :language: xml
+  :start-after: <!-->XML-SEQUENCES<-->
+  :end-before: <!--><-->
+
+Maps
+****
+
+Maps are similar to sequences, but they need to define two content types.
+The ``key_type`` defines the type of the map key, while the ``type`` defines the map value type.
+Again, both types can be defined as attributes of a ``<typedef>`` element, or as a ``<member>`` child element of a
+``<struct>`` or ``<union>`` elements.
+See section :ref:`dynamictypes_supportedtypes_map` for more information on map type.
+
+.. literalinclude:: /../code/XMLTester.xml
+  :language: xml
+  :start-after: <!-->XML-MAPS<-->
+  :end-before: <!--><-->
 
 Enum
 """"
@@ -155,79 +236,6 @@ Please, refer to :ref:`dynamictypes_supportedtypes_bitmask` for more information
   :start-after: <!-->XML-BITMASK<-->
   :end-before: <!--><-->
 
-Member types
-""""""""""""
-
-Member types are defined as any type that can belong to a ``<struct>`` or a ``<union>``, or be aliased by a
-``<typedef>``.
-These can be defined by the ``<member>`` XML tag.
-
-Primitive types
-***************
-
-The identifiers of the available basic types are listed in the table below.
-Please, refer to :ref:`dynamictypes_supportedtypes_primitive` for more information on the primitive types.
-
-+--------------------------------------+---------------------------------------+---------------------------------------+
-| ``bool``                             | ``int32_t``                           | ``float32``                           |
-+--------------------------------------+---------------------------------------+---------------------------------------+
-| ``byte``                             | ``int64_t``                           | ``float64``                           |
-+--------------------------------------+---------------------------------------+---------------------------------------+
-| ``char``                             | ``uint16_t``                          | ``float128``                          |
-+--------------------------------------+---------------------------------------+---------------------------------------+
-| ``wchar``                            | ``uint32_t``                          | ``string``                            |
-+--------------------------------------+---------------------------------------+---------------------------------------+
-| ``int16_t``                          | ``uint64_t``                          | ``wstring``                           |
-+--------------------------------------+---------------------------------------+---------------------------------------+
-
-All of them are defined as follows:
-
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-GENERIC<-->
-  :end-before: <!--><-->
-
-Arrays
-******
-
-Arrays are defined in the same way as any other member type but they add the attribute ``arrayDimensions``.
-The format of the ``arrayDimensions`` attribute value is the size of each dimension separated by commas.
-Please, refer to :ref:`dynamictypes_supportedtypes_array` explanation for more information on array type.
-
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-ARRAYS<-->
-  :end-before: <!--><-->
-
-Sequences
-*********
-
-The sequence type is implemented by setting three attributes: ``name``, the ``type``, and the
-``sequenceMaxLength``.
-The type of its content should be defined by the ``type`` attribute.
-The following example shows the implementation of a sequence of maximum length equal to 3.
-In turn, this is a sequence of sequences of maximum length of 2 and contents of type ``int32``.
-Please, refer to :ref:`dynamictypes_supportedtypes_sequence` section for more information on sequence type.
-
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-SEQUENCES<-->
-  :end-before: <!--><-->
-
-Maps
-****
-
-Maps are similar to sequences, but they need to define two content types.
-The ``key_type`` defines the type of the map key, while the ``type`` defines the map value type.
-Again, both types can be defined as attributes of a ``<typedef>`` element, or as a ``<member>`` child element of a
-``<struct>`` or ``<union>`` elements.
-See section :ref:`dynamictypes_supportedtypes_map` for more information on map type.
-
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-MAPS<-->
-  :end-before: <!--><-->
-
 Complex types
 """""""""""""
 
@@ -260,13 +268,14 @@ these attributes are then defined in the following table.
         - Name of the complex type. Only applies if the ``type`` attribute is set to ``nonBasic``.
     *   - ``arrayDimensions``
         - Dimensions of an array.
+    *   - ``stringMaxLength``
+        - Maximum length of a string.
     *   - ``sequenceMaxLength``
         - Maximum length of a `Sequences`_.
     *   - ``mapMaxLength``
         - Maximum length of a `Maps`_.
     *   - ``key_type``
         - Data type of a map key.
-
 
 .. _Usage:
 

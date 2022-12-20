@@ -727,6 +727,14 @@
         </consumer>
 
         <consumer>
+            <class>StdoutErrConsumer</class>
+            <property>
+                <name>stderr_threshold</name>
+                <value>Log::Kind::Warning</value>
+            </property>
+        </consumer>
+
+        <consumer>
             <class>FileConsumer</class>
             <property>
                 <name>filename</name>

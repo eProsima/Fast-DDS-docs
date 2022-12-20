@@ -224,11 +224,6 @@
 
             <participantID>99</participantID>   <!-- int32 -->
 
-            <throughputController>
-                <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
-                <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
-            </throughputController>
-
             <userTransports>
                 <id>TransportId1</id> <!-- string -->
                 <id>TransportId2</id> <!-- string -->
@@ -384,11 +379,6 @@
         <outLocatorList>
             <!-- LOCATOR_LIST -->
         </outLocatorList>
-
-        <throughputController>
-            <bytesPerPeriod>8192</bytesPerPeriod> <!-- uint32 -->
-            <periodMillisecs>1000</periodMillisecs> <!-- uint32 -->
-        </throughputController>
 
         <historyMemoryPolicy>PREALLOCATED</historyMemoryPolicy> <!-- historyMemoryPolicyType PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC | DYNAMIC_REUSABLE -->
 

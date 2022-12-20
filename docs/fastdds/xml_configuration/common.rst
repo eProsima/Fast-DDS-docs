@@ -35,7 +35,6 @@ This section aims to explain these common elements.
     -   :ref:`xml_publishmode`
     -   :ref:`xml_datasharing`
 
-*   :ref:`Throughput`
 *   :ref:`historymemorypoliciesXML`
 *   :ref:`CommonAlloc`
 
@@ -585,39 +584,6 @@ Data-Sharing
    * - ``domainId``
      - Domain ID to be used by the endpoint for Data-Sharing.
      - ``uint32_t``
-
-.. _Throughput:
-
-Throughput Configuration
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-The ``<throughputController>`` element allows to limit the output bandwidth.
-It contains two child elements which are explained in the following table.
-
-+-----------------------+-----------------------------------------------------------+---------------+------------------+
-| Name                  | Description                                               | Values        | Default          |
-+=======================+===========================================================+===============+==================+
-| ``<bytesPerPeriod>``  | Packet size in bytes that the throughput controller       | ``uint32_t``  | 4294967295 bytes |
-|                       | will allow to send |br|                                   |               |                  |
-|                       | in a given period.                                        |               |                  |
-+-----------------------+-----------------------------------------------------------+---------------+------------------+
-| ``<periodMillisecs>`` | Window of time in which no more than ``<bytesPerPeriod>`` | ``uint32_t``  | 0                |
-|                       | bytes |br|                                                |               |                  |
-|                       | are allowed.                                              |               |                  |
-+-----------------------+-----------------------------------------------------------+---------------+------------------+
-
-.. warning::
-
-    This tag has been deprecated but does not have an equivalent tag yet.
-    It will create a FIFO flow controller with the bandwidth limitation specified on this tag.
-    See |FlowControllersQos| for more information.
-
-**Example**
-
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->CONF-THROUGHPUT-EXAMPLE<-->
-    :end-before: <!--><-->
 
 .. _historymemorypoliciesXML:
 

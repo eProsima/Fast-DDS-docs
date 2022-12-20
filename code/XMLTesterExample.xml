@@ -475,11 +475,6 @@
                 </locator>
             </multicastLocatorList>
 
-            <throughputController>
-                <bytesPerPeriod>8192</bytesPerPeriod>
-                <periodMillisecs>1000</periodMillisecs>
-            </throughputController>
-
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
             <matchedSubscribersAllocation>

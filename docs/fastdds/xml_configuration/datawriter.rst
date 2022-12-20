@@ -97,11 +97,6 @@ The DataWriter configuration is performed through the XML elements listed in the
        announced by this DataWriter.
      - ``bool``
      - false
-   * - ``<throughputController>``
-     - Limits the output bandwidth of the |br|
-       DataWriter.
-     - :ref:`Throughput`
-     -
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for DataWriter's |br|
        history. See :ref:`historyqospolicykind`.
@@ -132,7 +127,7 @@ The DataWriter configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-DATAWRITER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-83, 85-86
+    :lines: 2-4, 6-78, 80-81
 
 .. note::
 

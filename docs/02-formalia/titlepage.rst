@@ -121,7 +121,7 @@ Main Features
 * :ref:`Statistics Module. <statistics>` *eProsima Fast DDS* can be configured to gather and provide information
   about the data being exchanged by the user application.
 
-* **Throughput controllers.** We support user-configurable throughput controllers, that can be used to limit the amount
+* **Flow controllers.** We support user-configurable flow controllers, that can be used to limit the amount
   of data to be sent under certain conditions.
 
 * **Plug-and-play Connectivity.** New applications and services are automatically discovered, and can join and leave

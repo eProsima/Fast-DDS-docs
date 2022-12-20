@@ -72,8 +72,6 @@ Internally it contains the following |QosPolicy-api| objects:
 +----------------------------------+-------------------------------------------------+----------+
 | |WriterResourceLimitsQos|        | |DataWriterQos::writer_resource_limits-api|     | Yes      |
 +----------------------------------+-------------------------------------------------+----------+
-| |ThroughputControllerDescriptor| | |DataWriterQos::throughput_controller-api|      | Yes      |
-+----------------------------------+-------------------------------------------------+----------+
 | |DataSharingQosPolicy|           | |DataWriterQos::data_sharing-api|               | No       |
 +----------------------------------+-------------------------------------------------+----------+
 

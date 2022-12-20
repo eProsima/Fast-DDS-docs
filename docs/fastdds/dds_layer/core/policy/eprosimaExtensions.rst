@@ -1013,9 +1013,6 @@ List of QoS Policy data members:
     * - |WireProtocolConfigQos::port-api|
       - |PortParameters-api|
       -
-    * - |WireProtocolConfigQos::throughput_controller-api|
-      - :ref:`throughputcontrollerdescriptor`
-      -
     * - |WireProtocolConfigQos::default_unicast_locator_list-api|
       - |LocatorList_t-api|
       - Empty List
@@ -1038,8 +1035,6 @@ List of QoS Policy data members:
 * |WireProtocolConfigQos::port-api|:
   This data member allows the configuration of the port parameters and gains related to the RTPS protocol
   (:ref:`listening_locators_defaultPorts`).
-* |WireProtocolConfigQos::throughput_controller-api|:
-  It allows the configuration of the throughput settings.
 * |WireProtocolConfigQos::default_unicast_locator_list-api|:
   States the default list of unicast locators to be used for any endpoint defined
   inside the RTPSParticipant in the case that it was defined without unicast locators. This list should include at
@@ -1062,32 +1057,6 @@ List of QoS Policy data members:
      The only mutable field on enabled entities is |m_DiscoveryServers|, which is contained in
      |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
      :ref:`DS_modify_server_list`).
-
-.. _throughputcontrollerdescriptor:
-
-ThroughputControllerDescriptor
-"""""""""""""""""""""""""""""""
-
-This structure allows to limit the output bandwidth.
-See |ThroughputControllerDescriptor-api|.
-
-List of structure members:
-
-+-------------------------------------------------------------------------------------------------+--------------------+
-| Member Name                                                                                     | Type               |
-+=================================================================================================+====================+
-| |ThroughputControllerDescriptor::bytesPerPeriod-api|                                            | ``uint32_t``       |
-+-------------------------------------------------------------------------------------------------+--------------------+
-| |ThroughputControllerDescriptor::periodMillisecs-api|                                           | ``uint32_t``       |
-+-------------------------------------------------------------------------------------------------+--------------------+
-
-* |ThroughputControllerDescriptor::bytesPerPeriod-api|:
-  This member states the number of bytes that this controller will allow in a given period.
-* |ThroughputControllerDescriptor::periodMillisecs-api|:
-  It specifies the window of time in which no more than `bytesPerPeriod` bytes are allowed.
-
-.. warning::
-    This has been deprecated in favor of |FlowControllersQos|
 
 Example
 """""""

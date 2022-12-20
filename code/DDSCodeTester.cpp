@@ -884,7 +884,6 @@ void dds_discovery_examples()
     using RemoteServerAttributes = eprosima::fastrtps::rtps::RemoteServerAttributes;
     using IPLocator = eprosima::fastrtps::rtps::IPLocator;
     using DiscoveryProtocol_t = eprosima::fastrtps::rtps::DiscoveryProtocol_t;
-    using ThroughputControllerDescriptor = eprosima::fastrtps::rtps::ThroughputControllerDescriptor;
     using ParticipantFilteringFlags_t = eprosima::fastrtps::rtps::ParticipantFilteringFlags_t;
     {
         //SET-DISCOVERY-CALLBACKS
@@ -4014,15 +4013,12 @@ void dds_qos_examples()
         eprosima::fastrtps::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
         server_locator.port = 56542;
         wire_protocol.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
-        // Add a metatraffix external locator with IP 100.100.100.10, port 34567, mask 24, externality 1, and cost 0
+        // Add a metatraffic external locator with IP 100.100.100.10, port 34567, mask 24, externality 1, and cost 0
         eprosima::fastdds::rtps::LocatorWithMask meta_external_locator;
         meta_external_locator.kind = LOCATOR_KIND_UDPv4;
         meta_external_locator.port = 34567;
         meta_external_locator.mask(24);
         wire_protocol.builtin.metatraffic_external_unicast_locators[1][0].push_back(meta_external_locator);
-        // Limit to 300kb per second.
-        eprosima::fastrtps::rtps::ThroughputControllerDescriptor slowPublisherThroughputController{300000, 1000};
-        wire_protocol.throughput_controller = slowPublisherThroughputController;
         //Add locator to default unicast locator list
         eprosima::fastrtps::rtps::Locator_t unicast_locator;
         eprosima::fastrtps::rtps::IPLocator::setIPv4(unicast_locator, 192, 168, 1, 41);
@@ -4643,7 +4639,6 @@ void dds_usecase_examples()
     using RemoteServerAttributes = eprosima::fastrtps::rtps::RemoteServerAttributes;
     using IPLocator = eprosima::fastrtps::rtps::IPLocator;
     using DiscoveryProtocol_t = eprosima::fastrtps::rtps::DiscoveryProtocol_t;
-    using ThroughputControllerDescriptor = eprosima::fastrtps::rtps::ThroughputControllerDescriptor;
 
     {
         //CONF_INITIAL_PEERS_BASIC

@@ -552,9 +552,41 @@
             </topic>
 
             <qos> <!-- dataReaderQosPoliciesType -->
+                <data_sharing>
+                    <kind>AUTOMATIC</kind>
+                    <shared_dir>/home</shared_dir>
+                    <max_domains>10</max_domains>
+                    <domain_ids>
+                        <domainId>0</domainId>
+                        <domainId>11</domainId>
+                    </domain_ids>
+                </data_sharing>
+                <deadline>
+                    <period>
+                        <sec>1</sec>
+                    </period>
+                </deadline>
+                <disablePositiveAcks>
+                    <enabled>true</enabled>
+                    <duration>
+                        <sec>1</sec>
+                    </duration>
+                </disablePositiveAcks>
                 <durability>
                     <kind>PERSISTENT</kind>
                 </durability>
+                <!-- QoS policy pending implementation -->
+                <latencyBudget>
+                    <duration>
+                        <sec>1</sec>
+                    </duration>
+                </latencyBudget>
+                <lifespan>
+                    <duration>
+                        <sec>5</sec>
+                        <nanosec>0</nanosec>
+                    </duration>
+                </lifespan>
                 <liveliness>
                     <kind>MANUAL_BY_PARTICIPANT</kind>
                     <lease_duration>
@@ -566,6 +598,15 @@
                         <nanosec>856000</nanosec>
                     </announcement_period>
                 </liveliness>
+                <ownership>
+                    <kind>EXCLUSIVE</kind>
+                </ownership>
+                <partition>
+                    <names>
+                        <name>part1</name>
+                        <name>part2</name>
+                    </names>
+                </partition>
                 <reliability>
                     <kind>BEST_EFFORT</kind>
                     <max_blocking_time>
@@ -573,18 +614,6 @@
                         <nanosec>856000</nanosec>
                     </max_blocking_time>
                 </reliability>
-                <lifespan>
-                    <duration>
-                        <sec>5</sec>
-                        <nanosec>0</nanosec>
-                    </duration>
-                </lifespan>
-                <partition>
-                    <names>
-                        <name>part1</name>
-                        <name>part2</name>
-                    </names>
-                </partition>
             </qos>
 
             <times>
@@ -650,15 +679,18 @@
                 </locator>
             </multicastLocatorList>
 
+            <external_unicast_locators>
+                <udpv4 externality="1" cost="0" mask="24">
+                    <address>100.100.100.10</address>
+                    <port>12345</port>
+                </udpv4>
+            </external_unicast_locators>
+
+            <ignore_non_matching_locators>true</ignore_non_matching_locators>
+
             <expectsInlineQos>true</expectsInlineQos>
 
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
-
-            <matchedPublishersAllocation>
-                <initial>1</initial>
-                <maximum>1</maximum>
-                <increment>0</increment>
-            </matchedPublishersAllocation>
 
             <propertiesPolicy>
                 <properties>
@@ -678,6 +710,12 @@
             <userDefinedID>55</userDefinedID>
 
             <entityID>66</entityID>
+
+            <matchedPublishersAllocation>
+                <initial>1</initial>
+                <maximum>1</maximum>
+                <increment>0</increment>
+            </matchedPublishersAllocation>
         </data_reader>
     </profiles>
 

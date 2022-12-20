@@ -352,6 +352,7 @@
                     <max_instances>2</max_instances>
                     <max_samples_per_instance>1</max_samples_per_instance>
                     <allocated_samples>20</allocated_samples>
+                    <extra_samples>10</extra_samples>
                 </resourceLimitsQos>
             </topic>
 
@@ -510,6 +511,7 @@
                     <max_instances>2</max_instances>
                     <max_samples_per_instance>1</max_samples_per_instance>
                     <allocated_samples>20</allocated_samples>
+                    <extra_samples>10</extra_samples>
                 </resourceLimitsQos>
             </topic>
 

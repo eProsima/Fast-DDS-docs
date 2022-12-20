@@ -356,8 +356,8 @@ ignoreParticipantFlags
 ++++++++++++++++++++++
 
 .. list-table::
-   :header-rows: 1
-   :align: left
+  :header-rows: 1
+  :align: left
 
   * - Possible values
     - Description
@@ -518,6 +518,10 @@ Remote Locators Allocations
    :header-rows: 1
    :align: left
 
+   * - Name
+     - Description
+     - Values
+     - Default
    * - ``<max_unicast_locators>``
      - Maximum number of unicast locators expected on a |br|
        remote  entity. It is recommended to use the maximum |br|

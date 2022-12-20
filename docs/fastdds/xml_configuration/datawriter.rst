@@ -56,7 +56,7 @@ The DataWriter configuration is performed through the XML elements listed in the
      -
    * - ``<times>``
      - It configures some time related parameters |br| of the DataWriter.
-     - :ref:`Times <pubtimes>`
+     - :ref:`WriterTimes <pubtimes>`
      -
    * - ``<unicastLocatorList>``
      - List of input unicast locators. |br|
@@ -127,8 +127,10 @@ The DataWriter configuration is performed through the XML elements listed in the
 
 .. _pubtimes:
 
-Times
-""""""
+WriterTimes
+"""""""""""
+
+These parameters are included within :ref:`rtpsreliablewriterqos` in the :ref:`writertimes` structure.
 
 +------------------------------+-------------------------------------------------------+---------------------+---------+
 | Name                         | Description                                           | Values              | Default |
@@ -143,4 +145,3 @@ Times
 |                              | messages for a given period of time right after |br|  |                     |         |
 |                              | the data has been sent.                               |                     |         |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
-

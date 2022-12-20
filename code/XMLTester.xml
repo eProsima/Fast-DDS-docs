@@ -1836,9 +1836,6 @@
 <data_writer profile_name="pub_topic_qos">
 <!-->XML-TOPIC<-->
 <topic>
-    <kind>NO_KEY</kind>
-    <name>TopicName</name>
-    <dataType>TopicDataTypeName</dataType>
     <historyQos>
         <kind>KEEP_LAST</kind>
         <depth>20</depth>

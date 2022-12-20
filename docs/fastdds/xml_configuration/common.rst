@@ -233,32 +233,25 @@ TopicType
 The |Topic| name and data type are used to determine whether Datawriters and DataReaders can exchange messages.
 Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the |Topic| class.
 
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| Name                    | Description                                   | Values                   | Default         |
-+=========================+===============================================+==========================+=================+
-| ``<kind>``              | It defines the Topic's key kind. See |br|     |                          |                 |
-|                         | :ref:`dds_layer_definition_data_types`.       |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<name>``              | It defines the Topic's name. It must |br|     | ``string_255``           |                 |
-|                         | be unique.                                    |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<dataType>``          | It references the Topic's data type.          | ``string_255``           |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<historyQos>``        | It controls the behavior of *Fast DDS* |br|   | :ref:`hQos`              |                 |
-|                         | when the value of an instance changes  |br|   |                          |                 |
-|                         | before it is finally communicated to |br|     |                          |                 |
-|                         | some of its existing DataReaders. |br|        |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<resourceLimitsQos>`` | It controls the resources that *Fast DDS*     | :ref:`rLsQos`            |                 |
-|                         | |br| can use in order to meet the |br|        |                          |                 |
-|                         | requirements imposed by the application |br|  |                          |                 |
-|                         | and other QoS settings.                       |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
 
-.. warning::
-
-    The ``<kind>`` child element is only used if the Topic is defined using the *Fast DDS* RTPS-layer API, and will
-    be ignored if the Topic is defined via the *Fast DDS* DDS-layer API.
+  * - Name
+    - Description
+    - Values
+  * - ``<historyQos>``
+    - It controls the behavior of *Fast DDS* |br|
+      when the value of an instance changes  |br|
+      before it is finally communicated to |br|
+      some of its existing DataReaders. |br|
+    - :ref:`hQos`
+  * - ``<resourceLimitsQos>``
+    - It controls the resources that *Fast DDS* |br|
+      can use in order to meet the |br|
+      requirements imposed by the application |br|
+      and other QoS settings.
+    - :ref:`rLsQos`
 
 **Example**
 

@@ -41,25 +41,8 @@ The ``<participant>`` element has two attributes defined: ``profile_name`` and `
 DomainParticipant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``<participant>`` element has two child elements: ``<domain_id>`` and ``<rtps>``.
-All the DomainParticipant configuration options belong to the ``<rtps>`` element, except for the DDS |DomainId-api|
-which is defined by the ``<domain_id>`` element.
-Below a list with the configuration XML elements is presented:
-
-+----------------+----------------------------------------------------------------------------+--------------+---------+
-| Name           | Description                                                                | Values       | Default |
-+================+============================================================================+==============+=========+
-| ``<domainId>`` | DomainId to be used by the DomainParticipant.                              | ``uint32_t`` | 0       |
-+----------------+----------------------------------------------------------------------------+--------------+---------+
-| ``<rtps>``     | *Fast DDS* DomainParticipant configurations. |br|                          |  :ref:`RTPS` |         |
-|                | See :ref:`RTPS`.                                                           |              |         |
-+----------------+----------------------------------------------------------------------------+--------------+---------+
-
-.. _RTPS:
-
-RTPS element type
-"""""""""""""""""
-
+The ``<participant>`` element has as child element ``<rtps>`` under which all the DomainParticipant configuration
+options belong.
 The following is a list with all the possible child XML elements of the ``<rtps>`` element.
 These elements allow the user to define the DomainParticipant configuration.
 
@@ -175,7 +158,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-87, 89
+    :lines: 2-3, 5-85, 87
 
 .. note::
 
@@ -192,7 +175,7 @@ These elements allow the user to define the DomainParticipant configuration.
 .. _builtin:
 
 Builtin parameters
-********************
+""""""""""""""""""
 
 By calling the |DomainParticipantQos::wire_protocol-api| member function of the |DomainParticipantQos-api|,
 it is possible to
@@ -293,7 +276,7 @@ This section specifies the available XML members for the configuration of this
 .. _dconf:
 
 discovery_config
-################
+****************
 
 Through the ``<discovery_config>`` element, *Fast DDS* allows the configuration of the discovery mechanism via an XML
 file.
@@ -353,7 +336,7 @@ configurable settings.
 .. _partfiltering:
 
 ignoreParticipantFlags
-++++++++++++++++++++++
+######################
 
 .. list-table::
   :header-rows: 1
@@ -377,7 +360,7 @@ DomainParticipant's own host.
 .. _sedp:
 
 simpleEDP
-++++++++++
+#########
 
 +---------------------------+------------------------------------------------------------+-------------+---------------+
 | Name                      | Description                                                | Values      | Default       |
@@ -392,7 +375,7 @@ simpleEDP
 .. _InitAnnounce:
 
 Initial Announcements
-+++++++++++++++++++++
+#####################
 
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
 | Name         | Description                                                           | Values              | Default |
@@ -409,7 +392,7 @@ Initial Announcements
 .. _Port:
 
 Port Configuration
-******************
+""""""""""""""""""
 
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the
 |RTPSParticipants-api|' discovery traffic unicast listening ports are calculated using the following equation:
@@ -442,7 +425,7 @@ Therefore the following parameters can be specified:
 .. _ParticipantAllocationType:
 
 ParticipantAllocationType
-****************************
+"""""""""""""""""""""""""
 
 The ``ParticipantAllocationType`` defines the ``<allocation>`` element, which allows setting of the parameters
 related with the allocation behavior on the DomainParticipant.
@@ -512,7 +495,7 @@ configuration.
 .. _remote_locators_allocations:
 
 Remote Locators Allocations
-###########################
+***************************
 
 .. list-table::
    :header-rows: 1

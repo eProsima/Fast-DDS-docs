@@ -1357,8 +1357,6 @@
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
     <participant profile_name="domainparticipant_profile_name">
-        <domainId>80</domainId>
-
         <rtps>
             <name>DomainParticipant Name</name>
 
@@ -1569,54 +1567,6 @@
 <!--><-->
 </rtps>
 </participant>
-
-<!-->XML-DATAWRITER-COMPARISON<-->
-<data_writer profile_name="my_datawriter_profile">
-    <topic>
-        <!-- TOPIC_TYPE -->
-    </topic>
-    <qos>
-        <!-- QOS -->
-    </qos>
-    <!-- Other elements -->
-</data_writer>
-<!--><-->
-
-<!-->XML-PUBLISHER-COMPARISON<-->
-<publisher profile_name="my_publisher_profile">
-    <topic>
-        <!-- TOPIC_TYPE -->
-    </topic>
-    <qos>
-        <!-- QOS -->
-    </qos>
-    <!-- Other elements -->
-</publisher>
-<!--><-->
-
-<!-->XML-DATAREADER-COMPARISON<-->
-<data_reader profile_name="my_datareader_profile">
-    <topic>
-        <!-- TOPIC_TYPE -->
-    </topic>
-    <qos>
-        <!-- QOS -->
-    </qos>
-    <!-- Other elements -->
-</data_reader>
-<!--><-->
-
-<!-->XML-SUBSCRIBER-COMPARISON<-->
-<subscriber profile_name="my_subscriber_profile">
-    <topic>
-        <!-- TOPIC_TYPE -->
-    </topic>
-    <qos>
-        <!-- QOS -->
-    </qos>
-    <!-- Other elements -->
-</subscriber>
-<!--><-->
 
 <!-->XML-DATAWRITER<-->
 <!-->

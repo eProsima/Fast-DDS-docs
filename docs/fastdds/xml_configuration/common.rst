@@ -231,7 +231,7 @@ TopicType
 ^^^^^^^^^
 
 The |Topic| name and data type are used to determine whether Datawriters and DataReaders can exchange messages.
-Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the |Topic| class.
+This XML element allows the configuration of the :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy`.
 
 .. list-table::
   :header-rows: 1

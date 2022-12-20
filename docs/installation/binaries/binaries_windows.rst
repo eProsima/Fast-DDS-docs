@@ -91,9 +91,32 @@ Including Fast-DDS in a CMake project
 The installer deploys *CMake config* files that simplify to incorporate **Fast-DDS** to any CMake project via
 the *find_package* CMake API.
 
-By setting the CMake variable **BUILD_SHARED_LIBS** is possible to choose the desired linkage (dynamic or static
-library) in the CMake generator stage.
-If the variable is missing the build process will default to static linking.
+Shared and static libraries are provided by the installer. The user can select which one will be used in the CMake
+project using next mechanisms.
+
+1. Through CMake package components when calling `find_package()`.
+
+   .. code-block:: cmake
+
+       find_package(fastrtps shared) # Load shared library target
+       find_package(fastrtps static) # Load static library target
+
+2. Through the custom CMake variable `fastrtps_SHARED_LIBS`.
+
+   .. code-block:: cmake
+
+       cmake -Dfastrtps_SHARED_LIBS=ON .. # Load shared library target
+       cmake -Dfastrtps_SHARED_LIBS=OFF .. # Load static library target
+
+3. Through the built-in CMake variable `BUILD_SHARED_LIBS`.
+
+   .. code-block:: cmake
+
+       cmake -DBUILD_SHARED_LIBS=ON .. # Load shared library target
+       cmake -DBUILD_SHARED_LIBS=OFF .. # Load static library target
+
+4. In case no previous mechanism is used, CMake will try to load static library target.
+   If it fails then CMake will try to load shared library target.
 
 For example in order to build the examples dynamically linked to **Fast-DDS** do:
 

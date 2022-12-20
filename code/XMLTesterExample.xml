@@ -357,9 +357,42 @@
             </topic>
 
             <qos> <!-- dataWriterQosPoliciesType -->
+                <data_sharing>
+                    <kind>AUTOMATIC</kind>
+                    <shared_dir>/home</shared_dir>
+                    <max_domains>10</max_domains>
+                    <domain_ids>
+                        <domainId>0</domainId>
+                        <domainId>11</domainId>
+                    </domain_ids>
+                </data_sharing>
+                <deadline>
+                    <period>
+                        <sec>1</sec>
+                    </period>
+                </deadline>
+                <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
+                <disablePositiveAcks>
+                    <enabled>true</enabled>
+                    <duration>
+                        <sec>1</sec>
+                    </duration>
+                </disablePositiveAcks>
                 <durability>
                     <kind>VOLATILE</kind>
                 </durability>
+                <!-- QoS policy pending implementation -->
+                <latencyBudget>
+                    <duration>
+                        <sec>1</sec>
+                    </duration>
+                </latencyBudget>
+                <lifespan>
+                    <duration>
+                        <sec>5</sec>
+                        <nanosec>0</nanosec>
+                    </duration>
+                </lifespan>
                 <liveliness>
                     <kind>AUTOMATIC</kind>
                     <lease_duration>
@@ -371,19 +404,12 @@
                         <nanosec>856000</nanosec>
                     </announcement_period>
                 </liveliness>
-                <reliability>
-                    <kind>BEST_EFFORT</kind>
-                    <max_blocking_time>
-                        <sec>1</sec>
-                        <nanosec>856000</nanosec>
-                    </max_blocking_time>
-                </reliability>
-                <lifespan>
-                    <duration>
-                        <sec>5</sec>
-                        <nanosec>0</nanosec>
-                    </duration>
-                </lifespan>
+                <ownership>
+                    <kind>EXCLUSIVE</kind>
+                </ownership>
+                <ownershipStrength>
+                    <value>50</value>
+                </ownershipStrength>
                 <partition>
                     <names>
                         <name>part1</name>
@@ -393,12 +419,13 @@
                 <publishMode>
                     <kind>ASYNCHRONOUS</kind>
                 </publishMode>
-                <disablePositiveAcks>
-                    <enabled>true</enabled>
-                        <duration>
+                <reliability>
+                    <kind>BEST_EFFORT</kind>
+                    <max_blocking_time>
                         <sec>1</sec>
-                    </duration>
-                </disablePositiveAcks>
+                        <nanosec>856000</nanosec>
+                    </max_blocking_time>
+                </reliability>
             </qos>
 
             <times>

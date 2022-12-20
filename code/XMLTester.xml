@@ -1881,6 +1881,7 @@
         <kind>VOLATILE</kind>
     </durability>
 
+    <!-- QoS policy pending implementation -->
     <latencyBudget>
         <duration>
             <sec>1</sec>

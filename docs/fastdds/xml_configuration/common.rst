@@ -413,7 +413,7 @@ Data-Sharing
    * - Name
      - Description
      - Values
-   * - ``domainId``
+   * - ``<domainId>``
      - Domain ID to be used by the endpoint for Data-Sharing.
      - ``uint32_t``
 
@@ -456,17 +456,22 @@ DisablePositiveAcks
 Durability
 """"""""""
 
-+------------+----------------------------+--------------------------------------+-------------------------------------+
-| Name       | Description                | Values                               | Default                             |
-+============+============================+======================================+=====================================+
-| ``<kind>`` | See :ref:`durabilitykind`. | |VOLATILE-xml-api|                   | |VOLATILE-xml-api|                  |
-|            |                            +--------------------------------------+                                     |
-|            |                            | |TRANSIENT_LOCAL-xml-api|            |                                     |
-|            |                            +--------------------------------------+                                     |
-|            |                            | |TRANSIENT-xml-api|                  |                                     |
-|            |                            +--------------------------------------+                                     |
-|            |                            | |PERSISTENT-xml-api|                 |                                     |
-+------------+----------------------------+--------------------------------------+-------------------------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<kind>``
+    - See :ref:`durabilitykind`.
+    - |VOLATILE-xml-api| |br|
+      |TRANSIENT_LOCAL-xml-api| |br|
+      |TRANSIENT-xml-api| |br|
+      |PERSISTENT-xml-api|
+    - DataReaders: |VOLATILE-xml-api| |br|
+      DataWriters: |TRANSIENT_LOCAL-xml-api| |br|
 
 .. _xml_latencybudget:
 
@@ -514,13 +519,19 @@ Liveliness
 Ownership
 """""""""
 
-+------------------+-----------------------------------+-------------------------------+-------------------------------+
-| Name             | Description                       | Values                        | Default                       |
-+==================+===================================+===============================+===============================+
-| ``<kind>``       | See                               | |SHARED_OWNERSHIP_QOS-api|    | |SHARED_OWNERSHIP_QOS-api|    |
-|                  | :ref:`ownershipqospolicykind`.    +-------------------------------+                               |
-|                  |                                   | |EXCLUSIVE_OWNERSHIP_QOS-api| |                               |
-+------------------+-----------------------------------+-------------------------------+-------------------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<kind>``
+    - See :ref:`ownershipqospolicykind`.
+    - |SHARED-xml-api| |br|
+    - |EXCLUSIVE-xml-api|
+    - |SHARED-xml-api|
 
 .. _xml_ownershipstrength:
 

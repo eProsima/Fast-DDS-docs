@@ -499,13 +499,16 @@
                 </locator>
             </multicastLocatorList>
 
-            <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+            <external_unicast_locators>
+                <udpv4 externality="1" cost="0" mask="24">
+                    <address>100.100.100.10</address>
+                    <port>12345</port>
+                </udpv4>
+            </external_unicast_locators>
 
-            <matchedSubscribersAllocation>
-                <initial>3</initial>
-                <maximum>3</maximum>
-                <increment>0</increment>
-            </matchedSubscribersAllocation>
+            <ignore_non_matching_locators>true</ignore_non_matching_locators>
+
+            <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
             <propertiesPolicy>
                 <properties>
@@ -525,6 +528,12 @@
             <userDefinedID>45</userDefinedID>
 
             <entityID>76</entityID>
+
+            <matchedSubscribersAllocation>
+                <initial>3</initial>
+                <maximum>3</maximum>
+                <increment>0</increment>
+            </matchedSubscribersAllocation>
         </data_writer>
 
         <data_reader profile_name="datareader_profile_example">

@@ -1851,9 +1851,47 @@
 <!--><-->
 <!-->XML-QOS<-->
 <qos> <!-- writerQosPoliciesType -->
+    <data_sharing>
+        <kind>AUTOMATIC</kind>
+        <shared_dir>/home</shared_dir>
+        <max_domains>10</max_domains>
+        <domain_ids>
+            <domainId>0</domainId>
+            <domainId>11</domainId>
+        </domain_ids>
+    </data_sharing>
+
+    <deadline>
+        <period>
+            <sec>1</sec>
+        </period>
+    </deadline>
+
+    <!-- DataWriter specific QoS -->
+    <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
+
+    <disablePositiveAcks>
+        <enabled>true</enabled>
+        <duration>
+            <sec>1</sec>
+        </duration>
+    </disablePositiveAcks>
+
     <durability>
         <kind>VOLATILE</kind>
     </durability>
+
+    <latencyBudget>
+        <duration>
+            <sec>1</sec>
+        </duration>
+    </latencyBudget>
+
+    <lifespan>
+        <duration>
+            <sec>1</sec>
+        </duration>
+    </lifespan>
 
     <liveliness>
         <kind>AUTOMATIC</kind>
@@ -1867,9 +1905,14 @@
         </announcement_period>
     </liveliness>
 
-    <reliability>
-        <kind>BEST_EFFORT</kind>
-    </reliability>
+    <ownership>
+        <kind>EXCLUSIVE</kind>
+    </ownership>
+
+    <!-- DataWriter specific QoS -->
+    <ownershipStrength>
+        <value>50</value>
+    </ownershipStrength>
 
     <partition>
         <names>
@@ -1878,51 +1921,17 @@
         </names>
     </partition>
 
-    <deadline>
-        <period>
-            <sec>1</sec>
-        </period>
-    </deadline>
-
-    <lifespan>
-        <duration>
-            <sec>1</sec>
-        </duration>
-    </lifespan>
-
-    <ownership>
-        <kind>EXCLUSIVE</kind>
-    </ownership>
-
-    <ownershipStrength>
-        <value>50</value>
-    </ownershipStrength>
-
-    <disablePositiveAcks>
-        <enabled>true</enabled>
-    </disablePositiveAcks>
-
-    <latencyBudget>
-        <duration>
-            <sec>1</sec>
-        </duration>
-    </latencyBudget>
-
-    <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
-
+    <!-- DataWriter specific QoS -->
     <publishMode>
         <kind>ASYNCHRONOUS</kind>
     </publishMode>
 
-    <data_sharing>
-        <kind>AUTOMATIC</kind>
-        <shared_dir>/home</shared_dir>
-        <max_domains>10</max_domains>
-        <domain_ids>
-            <domainId>0</domainId>
-            <domainId>11</domainId>
-        </domain_ids>
-    </data_sharing>
+    <reliability>
+        <kind>BEST_EFFORT</kind>
+        <max_blocking_time>
+            <sec>1</sec>
+        </max_blocking_time>
+    </reliability>
 </qos>
 <!--><-->
 </data_writer>

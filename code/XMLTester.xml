@@ -1234,13 +1234,16 @@
 <enum name="MyEnum">
     <enumerator name="A" value="0"/>
     <enumerator name="B" value="1"/>
-    <enumerator name="C" value="2"/>
+    <enumerator name="C"/>
 </enum>
 <!--><-->
 
 <!-->XML-TYPEDEF<-->
 <typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
 <typedef name="MyAliasArray" type="int32" arrayDimension="2,2"/>
+<!--Previously defined map without intermediate "my_map_inner" member defined-->
+<typedef name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
+<member name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
 <!--><-->
 
 <!-->XML-STRUCT<-->
@@ -1294,36 +1297,29 @@
 <struct name="MembersExample">
 <!-->XML-BOUNDEDSTRINGS<-->
 <member name="my_large_string" type="string" stringMaxLength="41925"/>
-
 <member name="my_large_wstring" type="wstring" stringMaxLength="20925"/>
 <!--><-->
-</struct>
-
-<!-->XML-ARRAYS<-->
-<struct name="arrays_example">
-    <member name="long_array" type="int32" arrayDimensions="2,3,4"/>
-</struct>
-<!--><-->
-
-
 <!-->XML-SEQUENCES<-->
-<typedef name="my_sequence_inner" type="int32" sequenceMaxLength="2"/>
-<struct name="SeqSeqStruct">
-    <member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="my_sequence_inner" sequenceMaxLength="3"/>
-</struct>
+<member name="short_sequence" sequenceMaxLength="5" type="int16"/>
+<!--><-->
+<!-->XML-ARRAYS<-->
+<member name="long_array" type="int32" arrayDimensions="2,3,4"/>
 <!--><-->
 <!-->XML-MAPS<-->
-<typedef name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
-<struct name="MapMapStruct">
-    <member name="my_map_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
-</struct>
+<member name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
 <!--><-->
+</struct>
+
 <!-->XML-COMPLEX<-->
-<struct name="OtherStruct">
-    <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-    <member name="my_struct" type="nonBasic" nonBasicTypeName="MyStruct" arrayDimensions="5"/>
+<struct name="ComplexTypeStruct">
+    <member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="short_sequence" sequenceMaxLength="3"/>
+
+    <member name="my_map_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
+
+    <member name="my_complex_struct" type="nonBasic" nonBasicTypeName="primitive_types_example" arrayDimensions="5"/>
 </struct>
 <!--><-->
+
 <!-->XML-BITSET<-->
 <bitset name="MyBitSet">
     <bitfield name="a" bit_bound="3"/>

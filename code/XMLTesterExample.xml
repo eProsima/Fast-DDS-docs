@@ -782,47 +782,38 @@
                 <!-- wstring my_boundedWString[41925] -->
                 <member name="my_boundedWString" type="wstring" stringMaxLength="41925"/>
 
+                <!-- short short_sequence[5]; -->
+                <member name="short_sequence" sequenceMaxLength="5" type="int16"/>
+
                 <!-- long long_array[2][3][4]; -->
                 <member name="long_array" arrayDimensions="2,3,4" type="int32"/>
 
-                <!-- map<long,map<long,long,2>,2> my_map_map; -->
-                <member name="my_map_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
+                <!-- map<long,long,2> my_map_inner -->
+                <member name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
 
                 <!-- Complex types -->
                 <member name="my_other_struct" type="nonBasic" nonBasicTypeName="OtherStruct"/>
+                <!-- map<long,map<long,long,2>,2> my_map_map; -->
+                <member name="my_map_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
             </struct>
 
             <enum name="MyEnum">
                 <enumerator name="A" value="0"/>
                 <enumerator name="B" value="1"/>
-                <enumerator name="C" value="2"/>
+                <enumerator name="C"/>
             </enum>
 
             <typedef name="MyAlias1" type="nonBasic" nonBasicTypeName="MyEnum"/>
-
             <typedef name="MyAlias2" type="int32" arrayDimensions="2,2"/>
-
-            <typedef name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
-
-            <bitset name="MyBitSet">
-                <bitfield name="a" bit_bound="3"/>
-                <bitfield name="b" bit_bound="10"/>
-                <bitfield name="c" bit_bound="12" type="int16"/>
-            </bitset>
-
-            <bitmask name="MyBitMask" bit_bound="8">
-                <bit_value name="flag0" position="0"/>
-                <bit_value name="flag1"/>
-            </bitmask>
 
             <struct name="MyStruct">
                 <member name="first" type="int32"/>
                 <member name="second" type="int64"/>
             </struct>
 
-            <struct name="OtherStruct">
+            <struct name="OtherInheritedStruct" baseType="MyStruct">
                 <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-                <member name="my_struct" type="nonBasic" nonBasicTypeName="MyStruct" arrayDimensions="5"/>
+                <member name="my_struct" type="nonBasic" nonBasicTypeName="MyFullStruct" arrayDimensions="5"/>
             </struct>
 
             <union name="MyUnion1">
@@ -842,6 +833,21 @@
                 </case>
             </union>
 
+            <bitset name="MyBitSet">
+                <bitfield name="a" bit_bound="3"/>
+                <bitfield name="b" bit_bound="10"/>
+                <bitfield name="c" bit_bound="12" type="int16"/>
+            </bitset>
+
+            <bitset name="OtherInheritedBitSet" baseType="MyBitSet">
+                <bitfield bit_bound="8"/>
+                <bitfield name="d" bit_bound="16"/>
+            </bitset>
+
+            <bitmask name="MyBitMask" bit_bound="8">
+                <bit_value name="flag0" position="0"/>
+                <bit_value name="flag1"/>
+            </bitmask>
         </type>
     </types>
 </dds>

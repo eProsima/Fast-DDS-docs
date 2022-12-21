@@ -530,7 +530,7 @@ Ownership
   * - ``<kind>``
     - See :ref:`ownershipqospolicykind`.
     - |SHARED-xml-api| |br|
-    - |EXCLUSIVE-xml-api|
+      |EXCLUSIVE-xml-api|
     - |SHARED-xml-api|
 
 .. _xml_ownershipstrength:

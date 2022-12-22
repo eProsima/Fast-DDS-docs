@@ -46,7 +46,7 @@ For each of the types detailed below, an example of how to build the type's XML 
     -  `Arrays`_
     -  `Maps`_
 
-*   `Enum`_
+*   `Enumerations`_
 *   `Typedef`_
 *   `Struct`_
 *   `Union`_
@@ -153,11 +153,8 @@ The ``type`` in this case is ``nonBasic`` (not a `Primitive types`_) and the nam
 given in the ``nonBasicTypeName`` attribute.
 Please, refer to :ref:`dynamictypes_complextypes` section for more information on complex types.
 
-The following example shows a new structure with:
-
-* The implementation of a sequence of sequences using the ``short_sequence`` defined in the `Sequences`_ example.
-* A map with an ``int32`` key and the ``my_map_inner`` defined as example in `Maps`_ section as element.
-* The ``primitive_types_example`` struct defined in `Primitive types`_ example.
+The following example shows a new structure with the ``primitive_types_example`` struct defined in `Primitive types`_
+example.
 
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
@@ -193,6 +190,21 @@ these attributes are then defined in the following table.
     *   - ``mapMaxLength``
         - Maximum length of a `Maps`_.
 
+Typedef
+"""""""
+
+The ``<typedef>`` XML element is defined by a ``name`` and a ``type`` mandatory attributes, and any of the optional
+attributes presented in `Complex types attributes`_ section.
+This element allows for defining complex types without the need to define them previously as members.
+Maps, arrays and sequences can be elements within another container using ``typedef``.
+The ``<typedef>`` element corresponds to :ref:`dynamictypes_supportedtypes_alias` in :ref:`dynamictypes_supportedtypes`
+section.
+
+.. literalinclude:: /../code/XMLTester.xml
+  :language: xml
+  :start-after: <!-->XML-TYPEDEF<-->
+  :end-before: <!--><-->
+
 Enumerations
 """"""""""""
 
@@ -203,21 +215,6 @@ Please, refer to :ref:`dynamictypes_supportedtypes_enumeration` for more informa
 .. literalinclude:: /../code/XMLTester.xml
   :language: xml
   :start-after: <!-->XML-DYN-ENUM<-->
-  :end-before: <!--><-->
-
-Typedef
-"""""""
-
-The ``<typedef>`` XML element is defined by a ``name`` and a ``type`` mandatory attributes, and any of the optional
-attributes presented in `Complex types attributes`_ section.
-This element allows for defining complex types without the need to define them previously as members as is shown in the
-example below where the same complex map is defined without using an intermediate member.
-The ``<typedef>`` element corresponds to :ref:`dynamictypes_supportedtypes_alias` in :ref:`dynamictypes_supportedtypes`
-section.
-
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-TYPEDEF<-->
   :end-before: <!--><-->
 
 Struct

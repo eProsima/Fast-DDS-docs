@@ -5541,6 +5541,150 @@ void dds_zero_copy_example()
     }
 }
 
+class RequestType
+{
+};
+
+class ReplyType
+{
+};
+
+void dds_request_reply_example_client()
+{
+    class Listener : public eprosima::fastdds::dds::DataReaderListener
+    {
+    public:
+
+        //REQUEST_REPLY_EXAMPLE_CLIENT_RECEIVE_REPLY
+        void on_data_available(
+                eprosima::fastdds::dds::DataReader* reader) override
+        {
+            ReplyType reply;
+            eprosima::fastdds::dds::SampleInfo sample_info;
+
+            reader->take_next_sample(&reply, &sample_info);
+
+            if (eprosima::fastdds::dds::InstanceStateKind::ALIVE_INSTANCE_STATE == sample_info.instance_state)
+            {
+                if (sample_info.related_sample_identity == my_request_sample_identity)
+                {
+                    // Work to do
+                }
+            }
+        }
+
+        //!
+
+        eprosima::fastrtps::rtps::SampleIdentity my_request_sample_identity;
+
+    }
+    listener;
+
+    eprosima::fastdds::dds::DomainParticipantQos participant_qos;
+    eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->get_default_participant_qos(participant_qos);
+
+    DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, participant_qos);
+
+    TypeSupport request_type;
+    TypeSupport reply_type;
+
+    Publisher* publisher = participant->create_publisher(eprosima::fastdds::dds::PUBLISHER_QOS_DEFAULT);
+    Subscriber* subscriber = participant->create_subscriber(eprosima::fastdds::dds::SUBSCRIBER_QOS_DEFAULT);
+
+    //REQUEST_REPLY_EXAMPLE_CLIENT_CREATE_ENTITIES
+    participant->register_type(request_type);
+    participant->register_type(reply_type);
+
+    Topic* request_topic = participant->create_topic("CalculatorRequest",
+                    request_type.get_type_name(), TOPIC_QOS_DEFAULT);
+
+    Topic* reply_topic = participant->create_topic("CalculatorReply", reply_type.get_type_name(), TOPIC_QOS_DEFAULT);
+
+    DataWriter* request_writer = publisher->create_datawriter(request_topic, DATAWRITER_QOS_DEFAULT);
+
+    DataReader* reply_reader = subscriber->create_datareader(reply_topic, DATAREADER_QOS_DEFAULT, &listener);
+    //!
+
+    //REQUEST_REPLY_EXAMPLE_CLIENT_RETRIEVE_ID
+    eprosima::fastrtps::rtps::SampleIdentity my_request_sample_identity;
+    RequestType request;
+
+    // Fill the request
+
+    // Publish request
+    eprosima::fastrtps::rtps::WriteParams write_params;
+    request_writer->write(static_cast<void*>(&request), write_params);
+
+    // Store sample identity
+    my_request_sample_identity = write_params.sample_identity();
+    //!
+}
+
+void dds_request_reply_example_server()
+{
+    class Listener : public eprosima::fastdds::dds::DataReaderListener
+    {
+    public:
+
+        //REQUEST_REPLY_EXAMPLE_SERVER_GET_ID
+        void on_data_available(
+                eprosima::fastdds::dds::DataReader* reader) override
+        {
+            RequestType request;
+            eprosima::fastdds::dds::SampleInfo sample_info;
+
+            reader->take_next_sample(&request, &sample_info);
+
+            if (eprosima::fastdds::dds::InstanceStateKind::ALIVE_INSTANCE_STATE == sample_info.instance_state)
+            {
+                // Store the request identity.
+                eprosima::fastrtps::rtps::SampleIdentity client_request_identity = sample_info.sample_identity;
+            }
+        }
+
+        //!
+    }
+    listener;
+
+    eprosima::fastdds::dds::DomainParticipantQos participant_qos;
+    eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->get_default_participant_qos(participant_qos);
+
+    DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, participant_qos);
+
+    TypeSupport request_type;
+    TypeSupport reply_type;
+
+    Publisher* publisher = participant->create_publisher(eprosima::fastdds::dds::PUBLISHER_QOS_DEFAULT);
+
+    Subscriber* subscriber = participant->create_subscriber(eprosima::fastdds::dds::SUBSCRIBER_QOS_DEFAULT);
+
+    //REQUEST_REPLY_EXAMPLE_SERVER_CREATE_ENTITIES
+    participant->register_type(request_type);
+    participant->register_type(reply_type);
+
+    Topic* request_topic = participant->create_topic("CalculatorRequest",
+                    request_type.get_type_name(), TOPIC_QOS_DEFAULT);
+
+    Topic* reply_topic = participant->create_topic("CalculatorReply", reply_type.get_type_name(), TOPIC_QOS_DEFAULT);
+
+    DataWriter* reply_writer = publisher->create_datawriter(reply_topic, DATAWRITER_QOS_DEFAULT);
+
+    DataReader* request_reader = subscriber->create_datareader(request_topic, DATAREADER_QOS_DEFAULT, &listener);
+    //!
+
+    eprosima::fastrtps::rtps::SampleIdentity client_request_identity;
+    //REQUEST_REPLY_EXAMPLE_SERVER_SEND_REPLY
+    ReplyType reply;
+
+    // Fill reply
+
+    // Send reply associating it with the client request.
+    eprosima::fastrtps::rtps::WriteParams write_params;
+    write_params.related_sample_identity() = client_request_identity;
+    reply_writer->write(reinterpret_cast<void*>(&reply), write_params);
+    //!
+}
+
 void dds_waitset_example()
 {
     auto create_dds_application = [](std::vector<DataReader*>&, std::vector<DataWriter*>&) -> ReturnCode_t

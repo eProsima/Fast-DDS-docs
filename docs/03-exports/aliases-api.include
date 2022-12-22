@@ -278,6 +278,7 @@
 .. |TypeObjectFactory-api| replace:: :cpp:class:`TypeObjectFactory <eprosima::fastrtps::types::TypeObjectFactory>`
 .. |TypeSupport-api| replace:: :cpp:class:`TypeSupport<eprosima::fastdds::dds::TypeSupport>`
 .. |TypeSupport::register_type-api| replace:: :cpp:func:`register_type() <eprosima::fastdds::dds::TypeSupport::register_type>`
+.. |SampleIdentity-api| replace:: :cpp:class:`SampleIdentity<eprosima::fastrtps::rtps::SampleIdentity>`
 .. |SampleInfo-api| replace:: :cpp:class:`SampleInfo<eprosima::fastdds::dds::SampleInfo>`
 
 .. |SampleInfo::sample_state-api| replace:: :cpp:member:`sample_state<eprosima::fastdds::dds::SampleInfo::sample_state>`
@@ -968,3 +969,7 @@
 
 .. |RTPSMessageGroup| replace:: :cpp:class:`RTPSMessageGroup <eprosima::fastrtps::rtps::RTPSMessageGroup>`
 .. |MessageReceiver| replace:: :cpp:class:`MessageReceiver <eprosima::fastrtps::rtps::MessageReceiver>`
+
+.. |WriteParams-api| replace:: :cpp:class:`WriteParams <eprosima::fastrtps::rtps::WriteParams>`
+.. |WriteParams-sample_identity-api| replace:: :cpp:func:`sample_identity() <eprosima::fastrtps::rtps::WriteParams::sample_identity>`
+.. |WriteParams-related_sample_identity-api| replace:: :cpp:func:`related_sample_identity() <eprosima::fastrtps::rtps::WriteParams::related_sample_identity>`

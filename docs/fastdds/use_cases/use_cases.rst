@@ -85,6 +85,11 @@ with distributed systems:
   Instructions on how to tune your application to be able to record and replay your DDS messages using ROS 2 rosbag2
   package.
 
++ :ref:`use-case-request-reply`.
+  Although *Fast DDS* provides a *Publisher-Subscriber* communication protocol, it offers a mechanism to use
+  *Request-Reply* communications.
+  This use case explains how to use the APIs to communicate two application using *Request-Reply*.
+
 .. toctree::
     :maxdepth: 2
 
@@ -99,3 +104,4 @@ with distributed systems:
     /fastdds/use_cases/statistics_module/statistics_module.rst
     /fastdds/use_cases/dynamic_network_interfaces/dynamic_network_interfaces.rst
     /fastdds/use_cases/rosbag_capture/rosbag_capture.rst
+    /fastdds/use_cases/request_reply/request_reply.rst

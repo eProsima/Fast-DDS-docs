@@ -84,6 +84,20 @@ set(CPACK_COMPONENT_EXAMPLES_DESCRIPTION
     "eProsima Fast DDS doxygen documetation")
 set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} doxygen)
 
+
+####################################################################################################
+# Compile code used in documentation
+####################################################################################################
+# Option to compile documentation tests
+option(COMPILE_TESTS "Compile Fast DDS-docs tests" ON)
+if(COMPILE_TESTS)
+    # CTest needs to be included here, otherwise it is not possible to run the tests from the root
+    # of the build directory
+    enable_testing()
+    include(CTest)
+    add_subdirectory(code)
+endif()
+
 ####################################################################################################
 # Build Sphinx documentation
 ####################################################################################################
@@ -132,14 +146,4 @@ if (BUILD_DOCUMENTATION)
     set(CPACK_COMPONENT_EXAMPLES_DESCRIPTION
         "eProsima Fast DDS documetation in ${FASTDDS_DOCS_BUILDER} format")
     set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} ${FASTDDS_DOCS_BUILDER})
-endif()
-
-# Option to compile documentation tests
-option(COMPILE_TESTS "Compile Fast DDS-docs tests" ON)
-if(COMPILE_TESTS)
-    # CTest needs to be included here, otherwise it is not possible to run the tests from the root
-    # of the build directory
-    enable_testing()
-    include(CTest)
-    add_subdirectory(code)
 endif()

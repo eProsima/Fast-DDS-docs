@@ -81,7 +81,7 @@
                         <udpv4>
                             <!-- Access as physical, like UDP -->
                             <port>7400</port>
-                            <address>192.168.1.41</address>
+                            <address>localhost</address>
                         </udpv4>
                     </locator>
                     <locator>
@@ -135,7 +135,7 @@
                         <port>23456</port>
                     </udpv4>
                     <udpv6 externality="1" cost="1" mask="48">
-                        <address>localhost</address>
+                        <address>::1</address>
                         <port>1234</port>
                     </udpv6>
                 </default_external_unicast_locators>
@@ -294,7 +294,7 @@
 
                 <userTransports>
                     <transport_id>ExampleTransportId1</transport_id>
-                    <transport_id>ExampleTransportId1</transport_id>
+                    <transport_id>ExampleTransportId2</transport_id>
                 </userTransports>
 
                 <useBuiltinTransports>false</useBuiltinTransports>
@@ -752,7 +752,7 @@
             <enum name="MyAloneEnumType">
                 <enumerator name="A" value="0"/>
                 <enumerator name="B" value="1"/>
-                <enumerator name="C" value="2"/>
+                <enumerator name="C"/>
             </enum>
         </type>
         <type>
@@ -789,12 +789,15 @@
                 <member name="long_array" arrayDimensions="2,3,4" type="int32"/>
 
                 <!-- map<long,long,2> my_map_inner -->
-                <member name="my_map_inner" type="int32" key_type="int32" mapMaxLength="2"/>
+                <member name="my_map" type="int32" key_type="int32" mapMaxLength="2"/>
+            </struct>
 
+            <typedef name="inner_map" type="char8" key_type="int16"/>
+            <struct name="MyComplexStruct">
                 <!-- Complex types -->
-                <member name="my_other_struct" type="nonBasic" nonBasicTypeName="OtherStruct"/>
+                <member name="my_other_struct" type="nonBasic" nonBasicTypeName="MyFullStruct"/>
                 <!-- map<long,map<long,long,2>,2> my_map_map; -->
-                <member name="my_map_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
+                <member name="my_map_map" type="nonBasic" nonBasicTypeName="inner_map" key_type="int32" mapMaxLength="2"/>
             </struct>
 
             <enum name="MyEnum">
@@ -841,7 +844,7 @@
 
             <bitset name="OtherInheritedBitSet" baseType="MyBitSet">
                 <bitfield bit_bound="8"/>
-                <bitfield name="d" bit_bound="16"/>
+                <bitfield bit_bound="15" type="byte"/>
             </bitset>
 
             <bitmask name="MyBitMask" bit_bound="8">

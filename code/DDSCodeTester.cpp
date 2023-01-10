@@ -208,7 +208,12 @@ public:
             const eprosima::fastrtps::types::TypeObject* object,
             eprosima::fastrtps::types::DynamicType_ptr dyn_type)
     {
-        (void)participant, (void)request_sample_id, (void)topic, (void)identifier, (void)object, (void)dyn_type;
+        static_cast<void>(participant);
+        static_cast<void>(request_sample_id);
+        static_cast<void>(topic);
+        static_cast<void>(identifier);
+        static_cast<void>(object);
+        static_cast<void>(dyn_type);
         std::cout << "New data type discovered" << std::endl;
 
     }
@@ -218,7 +223,9 @@ public:
             const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
             const eprosima::fastrtps::types::TypeIdentifierWithSizeSeq& dependencies)
     {
-        (void)participant, (void)request_sample_id, (void)dependencies;
+        static_cast<void>(participant);
+        static_cast<void>(request_sample_id);
+        static_cast<void>(dependencies);
         std::cout << "Answer to a request for type dependencies was received" << std::endl;
     }
 
@@ -228,7 +235,10 @@ public:
             const eprosima::fastrtps::string_255 type_name,
             const eprosima::fastrtps::types::TypeInformation& type_information)
     {
-        (void)participant, (void)topic_name, (void)type_name, (void)type_information;
+        static_cast<void>(participant);
+        static_cast<void>(topic_name);
+        static_cast<void>(type_name);
+        static_cast<void>(type_information);
         std::cout << "New data type information received" << std::endl;
     }
 
@@ -796,7 +806,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             DomainParticipant* participant,
             eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info)
     {
-        (void)participant;
+        static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
                 /* Process the case when a new DomainParticipant was found in the domain */
@@ -821,7 +831,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             DomainParticipant* participant,
             eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info)
     {
-        (void)participant;
+        static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
                 /* Process the case when a new subscriber was found in the domain */
@@ -844,7 +854,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             DomainParticipant* participant,
             eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info)
     {
-        (void)participant;
+        static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
                 /* Process the case when a new publisher was found in the domain */
@@ -871,7 +881,12 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             const eprosima::fastrtps::types::TypeObject* object,
             eprosima::fastrtps::types::DynamicType_ptr dyn_type)
     {
-        (void)participant, (void)request_sample_id, (void)topic, (void)identifier, (void)object, (void)dyn_type;
+        static_cast<void>(participant);
+        static_cast<void>(request_sample_id);
+        static_cast<void>(topic);
+        static_cast<void>(identifier);
+        static_cast<void>(object);
+        static_cast<void>(dyn_type);
         std::cout << "New data type of topic '" << topic << "' discovered." << std::endl;
     }
 
@@ -1238,7 +1253,8 @@ public:
             Topic* topic,
             InconsistentTopicStatus status)
     {
-        (void)topic, (void)status;
+        static_cast<void>(topic);
+        static_cast<void>(status);
         std::cout << "Inconsistent topic received discovered" << std::endl;
     }
 
@@ -2374,8 +2390,7 @@ public:
             DataWriter* writer,
             const PublicationMatchedStatus& info)
     {
-        (void)writer
-        ;
+        static_cast<void>(writer);
         if (info.current_count_change == 1)
         {
             std::cout << "Matched a remote Subscriber for one of our Topics" << std::endl;
@@ -2390,7 +2405,8 @@ public:
             DataWriter* writer,
             const OfferedDeadlineMissedStatus& status)
     {
-        (void)writer, (void)status;
+        static_cast<void>(writer);
+        static_cast<void>(status);
         std::cout << "Some data could not be delivered on time" << std::endl;
     }
 
@@ -2406,8 +2422,18 @@ public:
             DataWriter* writer,
             const LivelinessLostStatus& status)
     {
-        (void)writer, (void)status;
+        static_cast<void>(writer);
+        static_cast<void>(status);
         std::cout << "Liveliness lost. Matched Subscribers will consider us offline" << std::endl;
+    }
+
+    virtual void on_unacknowledged_sample_removed(
+            DataWriter* writer,
+            const InstanceHandle_t& instance)
+    {
+        static_cast<void>(writer);
+        static_cast<void>(instance);
+        std::cout << "Sample removed unacknowledged" << std::endl;
     }
 
 };
@@ -2818,7 +2844,7 @@ public:
     virtual void on_data_on_readers(
             Subscriber* sub)
     {
-        (void)sub;
+        static_cast<void>(sub);
         std::cout << "New data available" << std::endl;
     }
 
@@ -3116,7 +3142,7 @@ public:
     virtual void on_data_available(
             DataReader* reader)
     {
-        (void)reader;
+        static_cast<void>(reader);
         std::cout << "Received new data message" << std::endl;
     }
 
@@ -3124,7 +3150,7 @@ public:
             DataReader* reader,
             const SubscriptionMatchedStatus& info)
     {
-        (void)reader;
+        static_cast<void>(reader);
         if (info.current_count_change == 1)
         {
             std::cout << "Matched a remote DataWriter" << std::endl;
@@ -3139,7 +3165,8 @@ public:
             DataReader* reader,
             const eprosima::fastrtps::RequestedDeadlineMissedStatus& info)
     {
-        (void)reader, (void)info;
+        static_cast<void>(reader);
+        static_cast<void>(info);
         std::cout << "Some data was not received on time" << std::endl;
     }
 
@@ -3147,7 +3174,7 @@ public:
             DataReader* reader,
             const eprosima::fastrtps::LivelinessChangedStatus& info)
     {
-        (void)reader;
+        static_cast<void>(reader);
         if (info.alive_count_change == 1)
         {
             std::cout << "A matched DataWriter has become active" << std::endl;
@@ -3162,7 +3189,8 @@ public:
             DataReader* reader,
             const eprosima::fastrtps::SampleRejectedStatus& info)
     {
-        (void)reader, (void)info;
+        static_cast<void>(reader);
+        static_cast<void>(info);
         std::cout << "A received data sample was rejected" << std::endl;
     }
 
@@ -3178,7 +3206,8 @@ public:
             DataReader* reader,
             const SampleLostStatus& info)
     {
-        (void)reader, (void)info;
+        static_cast<void>(reader);
+        static_cast<void>(info);
         std::cout << "A data sample was lost and will not be received" << std::endl;
     }
 

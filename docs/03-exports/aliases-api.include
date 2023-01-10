@@ -36,7 +36,6 @@
 .. |DataReaderListener::on_data_available-api| replace:: :cpp:func:`on_data_available()<eprosima::fastdds::dds::DataReaderListener::on_data_available>`
 .. |DataReaderListener::on_subscription_matched-api| replace:: :cpp:func:`on_subscription_matched()<eprosima::fastdds::dds::DataReaderListener::on_subscription_matched>`
 .. |DataReaderListener::on_requested_deadline_missed-api| replace:: :cpp:func:`on_requested_deadline_missed()<eprosima::fastdds::dds::DataReaderListener::on_requested_deadline_missed>`
-
 .. |DataReaderListener::on_requested_incompatible_qos-api| replace:: :cpp:func:`on_requested_incompatible_qos()<eprosima::fastdds::dds::DataReaderListener::on_requested_incompatible_qos>`
 .. |DataReaderListener::on_liveliness_changed-api| replace:: :cpp:func:`on_liveliness_changed()<eprosima::fastdds::dds::DataReaderListener::on_liveliness_changed>`
 .. |DataReaderListener::on_sample_rejected-api| replace:: :cpp:func:`on_sample_rejected()<eprosima::fastdds::dds::DataReaderListener::on_sample_rejected>`
@@ -720,6 +719,7 @@
 .. |DataWriterListener::on_offered_deadline_missed-api| replace:: :cpp:func:`on_offered_deadline_missed()<eprosima::fastdds::dds::DataWriterListener::on_offered_deadline_missed>`
 .. |DataWriterListener::on_offered_incompatible_qos-api| replace:: :cpp:func:`on_offered_incompatible_qos()<eprosima::fastdds::dds::DataWriterListener::on_offered_incompatible_qos>`
 .. |DataWriterListener::on_liveliness_lost-api| replace:: :cpp:func:`on_liveliness_lost()<eprosima::fastdds::dds::DataWriterListener::on_liveliness_lost>`
+.. |DataWriterListener::on_unacknowledged_sample_removed-api| replace:: :cpp:func:`on_unacknowledged_sample_removed()<eprosima::fastdds::dds::DataWriterListener::on_unacknowledged_sample_removed>`
 
 .. |LivelinessChangedStatus-api| replace:: :cpp:struct:`LivelinessChangedStatus<eprosima::fastdds::dds::LivelinessChangedStatus>`
 .. |LivelinessChangedStatus::alive_count-api| replace:: :cpp:member:`alive_count<eprosima::fastdds::dds::LivelinessChangedStatus::alive_count>`

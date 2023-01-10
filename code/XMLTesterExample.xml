@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+    <profiles>
         <transport_descriptors>
             <!-- TCP sample transport descriptor -->
             <transport_descriptor>
@@ -155,6 +155,7 @@
                         </simpleEDP>
                         <leaseDuration>
                             <sec>DURATION_INFINITY</sec>
+                            <nanosec>0</nanosec>
                         </leaseDuration>
                         <leaseAnnouncement>
                             <sec>1</sec>
@@ -163,6 +164,7 @@
                         <initialAnnouncements>
                             <count>10</count>
                             <period>
+                                <sec>0</sec>
                                 <nanosec>50</nanosec>
                             </period>
                         </initialAnnouncements>
@@ -353,6 +355,7 @@
                 <deadline>
                     <period>
                         <sec>1</sec>
+                        <nanosec>0</nanosec>
                     </period>
                 </deadline>
                 <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
@@ -360,6 +363,7 @@
                     <enabled>true</enabled>
                     <duration>
                         <sec>1</sec>
+                        <nanosec>0</nanosec>
                     </duration>
                 </disablePositiveAcks>
                 <durability>
@@ -369,6 +373,7 @@
                 <latencyBudget>
                     <duration>
                         <sec>1</sec>
+                        <nanosec>0</nanosec>
                     </duration>
                 </latencyBudget>
                 <lifespan>
@@ -546,12 +551,14 @@
                 <deadline>
                     <period>
                         <sec>1</sec>
+                        <nanosec>0</nanosec>
                     </period>
                 </deadline>
                 <disablePositiveAcks>
                     <enabled>true</enabled>
                     <duration>
                         <sec>1</sec>
+                        <nanosec>0</nanosec>
                     </duration>
                 </disablePositiveAcks>
                 <durability>
@@ -561,6 +568,7 @@
                 <latencyBudget>
                     <duration>
                         <sec>1</sec>
+                        <nanosec>0</nanosec>
                     </duration>
                 </latencyBudget>
                 <lifespan>
@@ -699,7 +707,7 @@
     </profiles>
 
     <log>
-        <use_default>FALSE</use_default>
+        <use_default>false</use_default>
 
         <consumer>
             <class>StdoutConsumer</class>

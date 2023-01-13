@@ -39,7 +39,7 @@ Callbacks that are not overridden will maintain their empty implementation.
   DataReader entities will consider the DataWriter
   as no longer *active*.
 
-* |DataWriterListener::on_unacknowledged_sample_removed-api|: The Datawriter has removed samples that has not been
+* |DataWriterListener::on_unacknowledged_sample_removed-api|: The Datawriter has removed a sample that has not been
   acknowledged by every matched DataReader.
 
 .. _dds_layer_publisher_dataWriterListener_on_unack_sample_removed:

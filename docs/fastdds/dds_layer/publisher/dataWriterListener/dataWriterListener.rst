@@ -25,10 +25,6 @@ Callbacks that are not overridden will maintain their empty implementation.
   It will be called for each deadline period and data instance for which the
   DataWriter failed to provide data.
 
-.. warning::
-   Currently *on_offered_deadline_missed* is not implemented (it will never be called), and will be implemented
-   on a future release of Fast DDS.
-
 * |DataWriterListener::on_offered_incompatible_qos-api|: The DataWriter has found a
   DataReader that matches the Topic and has
   a common partition, but with a requested QoS that is incompatible with the one defined on the

@@ -1,0 +1,13 @@
+Version 2.6.4
+^^^^^^^^^^^^^
+
+This release includes the following **bugfixes**:
+
+1. Fix communication with asymmetric :ref:`discovery_ignore_flags`.
+2. Fix deadlock in Writer Liveliness Protocol when using intraprocess.
+3. Fix notification lost.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

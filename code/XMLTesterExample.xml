@@ -141,47 +141,35 @@
                 </default_external_unicast_locators>
 
                 <ignore_non_matching_locators>true</ignore_non_matching_locators>
-
                 <sendSocketBufferSize>8192</sendSocketBufferSize>
-
                 <listenSocketBufferSize>8192</listenSocketBufferSize>
 
                 <builtin>
                     <discovery_config>
-
                         <discoveryProtocol>NONE</discoveryProtocol>
-
                         <ignoreParticipantFlags>FILTER_DIFFERENT_PROCESS|FILTER_SAME_PROCESS</ignoreParticipantFlags>
-                
                         <EDP>SIMPLE</EDP>
-
                         <simpleEDP>
                             <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
                             <PUBREADER_SUBWRITER>true</PUBREADER_SUBWRITER>
                         </simpleEDP>
-
                         <leaseDuration>
                             <sec>DURATION_INFINITY</sec>
                         </leaseDuration>
-
                         <leaseAnnouncement>
                             <sec>1</sec>
                             <nanosec>856000</nanosec>
                         </leaseAnnouncement>
-
                         <initialAnnouncements>
                             <count>10</count>
                             <period>
                                 <nanosec>50</nanosec>
                             </period>
                         </initialAnnouncements>
-
                         <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
-
                     </discovery_config>
 
                     <avoid_builtin_multicast>true</avoid_builtin_multicast>
-
                     <use_WriterLivelinessProtocol>false</use_WriterLivelinessProtocol>
 
                     <metatrafficUnicastLocatorList>
@@ -270,13 +258,9 @@
                     </metatraffic_external_unicast_locators>
 
                     <readerHistoryMemoryPolicy>PREALLOCATED_WITH_REALLOC</readerHistoryMemoryPolicy>
-
                     <writerHistoryMemoryPolicy>PREALLOCATED</writerHistoryMemoryPolicy>
-
                     <readerPayloadSize>512</readerPayloadSize>
-
                     <writerPayloadSize>512</writerPayloadSize>
-
                     <mutation_tries>55</mutation_tries>
                 </builtin>
 
@@ -507,7 +491,6 @@
             </external_unicast_locators>
 
             <ignore_non_matching_locators>true</ignore_non_matching_locators>
-
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
             <propertiesPolicy>
@@ -526,7 +509,6 @@
             </propertiesPolicy>
 
             <userDefinedID>45</userDefinedID>
-
             <entityID>76</entityID>
 
             <matchedSubscribersAllocation>
@@ -687,9 +669,7 @@
             </external_unicast_locators>
 
             <ignore_non_matching_locators>true</ignore_non_matching_locators>
-
             <expectsInlineQos>true</expectsInlineQos>
-
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
             <propertiesPolicy>
@@ -708,7 +688,6 @@
             </propertiesPolicy>
 
             <userDefinedID>55</userDefinedID>
-
             <entityID>66</entityID>
 
             <matchedPublishersAllocation>

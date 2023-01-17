@@ -36,11 +36,6 @@ DataReaderListener defines the following callbacks:
   It will be called for each deadline period and data instance for which the
   DataReader missed data.
 
-.. warning::
-   Currently
-   |DataReaderListener::on_requested_deadline_missed-api|
-   is not implemented (it will never be called), and will be implemented on a future release of Fast DDS.
-
 * |DataReaderListener::on_requested_incompatible_qos-api|:
   The DataReader has found a
   DataWriter that matches the Topic and has

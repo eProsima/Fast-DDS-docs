@@ -64,7 +64,6 @@
 .. |SubscriberQos| replace:: :ref:`SubscriberQos<dds_layer_subscriber_subscriberQos>`
 .. |Subscribers| replace:: :ref:`Subscribers<dds_layer_subscriber_subscriber>`
 .. |SubscriptionMatchedStatus| replace:: :ref:`SubscriptionMatchedStatus<dds_layer_core_status_subscriptionMatchedStatus>`
-.. |ThroughputControllerDescriptor| replace:: :ref:`ThroughputControllerDescriptor<throughputcontrollerdescriptor>`
 .. |TimeBasedFilterQosPolicy| replace:: :ref:`RTPSEndpoinTimeBasedFilterQosPolicytQos<timebasedfilterqospolicy>`
 .. |Topic| replace:: :ref:`Topic<dds_layer_topic>`
 .. |TopicDataQosPolicy| replace:: :ref:`TopicDataQosPolicy<topicdataqospolicy>`

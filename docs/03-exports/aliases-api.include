@@ -109,7 +109,6 @@
 .. |DataWriterQos::reliable_writer_qos-api| replace:: :cpp:func:`reliable_writer_qos()<eprosima::fastdds::dds::DataWriterQos::reliable_writer_qos>`
 .. |DataWriterQos::representation-api| replace:: :cpp:func:`representation()<eprosima::fastdds::dds::DataWriterQos::representation>`
 .. |DataWriterQos::resource_limits-api| replace:: :cpp:func:`resource_limits()<eprosima::fastdds::dds::DataWriterQos::resource_limits>`
-.. |DataWriterQos::throughput_controller-api| replace:: :cpp:func:`throughput_controller()<eprosima::fastdds::dds::DataWriterQos::throughput_controller>`
 .. |DataWriterQos::transport_priority-api| replace:: :cpp:func:`transport_priority()<eprosima::fastdds::dds::DataWriterQos::transport_priority>`
 .. |DataWriterQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DataWriterQos::user_data>`
 .. |DataWriterQos::writer_data_lifecycle-api| replace:: :cpp:func:`writer_data_lifecycle()<eprosima::fastdds::dds::DataWriterQos::writer_data_lifecycle>`
@@ -446,6 +445,9 @@
 .. |SHARED_OWNERSHIP_QOS-api| replace:: :cpp:enumerator:`SHARED_OWNERSHIP_QOS<eprosima::fastdds::dds::OwnershipQosPolicyKind::SHARED_OWNERSHIP_QOS>`
 .. |EXCLUSIVE_OWNERSHIP_QOS-api| replace:: :cpp:enumerator:`EXCLUSIVE_OWNERSHIP_QOS<eprosima::fastdds::dds::OwnershipQosPolicyKind::EXCLUSIVE_OWNERSHIP_QOS>`
 
+.. |SHARED-xml-api| replace:: :cpp:enumerator:`SHARED<eprosima::fastdds::dds::OwnershipQosPolicyKind::SHARED_OWNERSHIP_QOS>`
+.. |EXCLUSIVE-xml-api| replace:: :cpp:enumerator:`EXCLUSIVE<eprosima::fastdds::dds::OwnershipQosPolicyKind::EXCLUSIVE_OWNERSHIP_QOS>`
+
 .. |Duration_t-api| replace:: :cpp:type:`Duration_t<eprosima::fastrtps::Duration_t>`
 .. |c_TimeInfinite-api| replace:: :cpp:var:`c_TimeInfinite<eprosima::fastrtps::c_TimeInfinite>`
 .. |c_TimeZero-api| replace:: :cpp:var:`c_TimeZero<eprosima::fastrtps::c_TimeInfinite>`
@@ -669,7 +671,6 @@
 .. |WireProtocolConfigQos::participant_id-api| replace:: :cpp:member:`participant_id<eprosima::fastdds::dds::WireProtocolConfigQos::participant_id>`
 .. |WireProtocolConfigQos::builtin-api| replace:: :cpp:member:`builtin<eprosima::fastdds::dds::WireProtocolConfigQos::builtin>`
 .. |WireProtocolConfigQos::port-api| replace:: :cpp:member:`port<eprosima::fastdds::dds::WireProtocolConfigQos::port>`
-.. |WireProtocolConfigQos::throughput_controller-api| replace:: :cpp:member:`throughput_controller<eprosima::fastdds::dds::WireProtocolConfigQos::throughput_controller>`
 .. |WireProtocolConfigQos::default_unicast_locator_list-api| replace:: :cpp:member:`default_unicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_unicast_locator_list>`
 .. |WireProtocolConfigQos::default_multicast_locator_list-api| replace:: :cpp:member:`default_multicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_multicast_locator_list>`
 .. |WireProtocolConfigQos::default_external_unicast_locators-api| replace:: :cpp:member:`default_external_unicast_locators<eprosima::fastdds::dds::WireProtocolConfigQos::default_external_unicast_locators>`
@@ -683,10 +684,6 @@
 .. |PortParameters::offsetd1-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd1<eprosima::fastrtps::rtps::PortParameters::offsetd1>`
 .. |PortParameters::offsetd2-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd2<eprosima::fastrtps::rtps::PortParameters::offsetd2>`
 .. |PortParameters::offsetd3-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd3<eprosima::fastrtps::rtps::PortParameters::offsetd3>`
-
-.. |ThroughputControllerDescriptor-api| replace:: :cpp:struct:`ThroughputControllerDescriptor<eprosima::fastrtps::rtps::ThroughputControllerDescriptor>`
-.. |ThroughputControllerDescriptor::bytesPerPeriod-api| replace:: :cpp:member:`bytesPerPeriod<eprosima::fastrtps::rtps::ThroughputControllerDescriptor::bytesPerPeriod>`
-.. |ThroughputControllerDescriptor::periodMillisecs-api| replace:: :cpp:member:`periodMillisecs<eprosima::fastrtps::rtps::ThroughputControllerDescriptor::periodMillisecs>`
 
 .. |WriterResourceLimitsQos-api| replace:: :cpp:class:`WriterResourceLimitsQos<eprosima::fastdds::dds::WriterResourceLimitsQos>`
 .. |WriterResourceLimitsQos::matched_subscriber_allocation-api| replace:: :cpp:member:`matched_subscriber_allocation<eprosima::fastdds::dds::WriterResourceLimitsQos::matched_subscriber_allocation>`

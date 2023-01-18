@@ -21,21 +21,20 @@ This section aims to explain these common elements.
 
 *   :ref:`CommonQOS`
 
-    -   :ref:`xml_durability`
-    -   :ref:`xml_liveliness`
-    -   :ref:`xml_reliability`
-    -   :ref:`xml_partition`
+    -   :ref:`xml_datasharing`
     -   :ref:`xml_deadline`
+    -   :ref:`xml_disableheartbeatpiggyback`
+    -   :ref:`xml_disablepositiveacks`
+    -   :ref:`xml_durability`
+    -   :ref:`xml_latencybudget`
     -   :ref:`xml_lifespan`
+    -   :ref:`xml_liveliness`
+    -   :ref:`xml_partition`
     -   :ref:`xml_ownership`
     -   :ref:`xml_ownershipstrength`
-    -   :ref:`xml_disablepositiveacks`
-    -   :ref:`xml_latencybudget`
-    -   :ref:`xml_disableheartbeatpiggyback`
     -   :ref:`xml_publishmode`
-    -   :ref:`xml_datasharing`
+    -   :ref:`xml_reliability`
 
-*   :ref:`Throughput`
 *   :ref:`historymemorypoliciesXML`
 *   :ref:`CommonAlloc`
 
@@ -58,24 +57,37 @@ The table presented below outlines each possible Locator's field.
     :ref:`SHM transport <transport_sharedMemory_sharedMemory>` locators cannot be configured as they are
     automatically handled by SHM.
 
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| Name                | Description                                            | Values             | Default          |
-+=====================+========================================================+====================+==================+
-| ``<port>``          | RTPS port number of the locator. |br|                  | ``uint32_t``       | 0                |
-|                     | *Physical port* in UDP,                                |                    |                  |
-|                     | *logical port* in TCP.                                 |                    |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<physical_port>`` | TCP's *physical port*.                                 | ``uint32_t``       | 0                |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<address>``       | IP address of the locator.                             | ``string``         | ""               |
-|                     |                                                        | (IPv4/IPv6 format) |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<unique_lan_id>`` | The LAN ID uniquely identifies the LAN the |br|        | ``string``         |                  |
-|                     | locator belongs to (**TCPv4 only**).                   | (16 bytes)         |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``<wan_address>``   | WAN IPv4 address (**TCPv4 only**).                     | ``string``         | ``0.0.0.0``      |
-|                     |                                                        | (IPv4 format)      |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<port>``
+    - RTPS port number of the locator. |br|
+      *Physical port* in UDP, *logical port* in TCP.
+    - ``uint32_t``
+    - 0
+  * - ``physical_port``
+    - TCP's *physical port*.
+    - ``uint32_t``
+    - 0
+  * - ``address``
+    - IP address of the locator.
+    - ``string`` (IPv4/IPv6 format |br|
+      or DNS name)
+    - Empty
+  * - ``<unique_lan_id>``
+    - The LAN ID uniquely identifies the LAN the |br|
+      locator belongs to (**TCPv4 only**).
+    - ``string`` (16 bytes)
+    - Empty
+  * - ``<wan_address>``
+    - WAN IPv4 address (**TCPv4 only**).
+    - ``string`` (IPv4 format)
+    - ``0.0.0.0``
 
 **Example**
 
@@ -96,33 +108,60 @@ It represents a list of external locator entries.
 Each entry can be a ``<udpv4>`` or a ``<udpv6>`` tag.
 These tags can be configured with the following attributes:
 
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| Name                | Description                                            | Values             | Default          |
-+=====================+========================================================+====================+==================+
-| ``externality``     | Number of hops from the participant's host to the |br| | ``uint8_t``        | 1                |
-|                     | LAN represented by the external locator. |br|          |                    |                  |
-|                     | Valid values: from 1 to 255.                           |                    |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``cost``            | Communication cost relative to other locators on |br|  | ``uint8_t``        | 0                |
-|                     | the same externality level. |br|                       |                    |                  |
-|                     | Valid values: from 0 to 255.                           |                    |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
-| ``mask``            | Number of significant bits on the LAN represented |br| | ``uint8_t``        | 24               |
-|                     | by the external locator. |br|                          |                    |                  |
-|                     | Valid values: from 1 to 31 (UDPv4) or 127 (UDPv6)      |                    |                  |
-+---------------------+--------------------------------------------------------+--------------------+------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``externality``
+    - Number of hops from the participant's host to the |br|
+      LAN represented by the external locator. |br|
+      Valid values: from 1 to 255.
+    - ``uint8_t``
+    - 1
+  * - ``cost``
+    - Communication cost relative to other locators on |br|
+      the same externality level. |br|
+      Valid values: from 0 to 255.
+    - ``uint8_t``
+    - 0
+  * - ``mask``
+    - Number of significant bits on the LAN represented |br|
+      by the external locator. |br|
+      Valid values: from 1 to 31 (UDPv4) or 127 (UDPv6)
+    - ``uint8_t``
+    - 24
 
 They should contain the following tags:
 
-+---------------------+--------------------------------------------------------+--------------------+
-| Name                | Description                                            | Values             |
-+=====================+========================================================+====================+
-| ``<port>``          | UDP port number of the locator. |br|                   | ``uint32_t``       |
-|                     | Should have a valid UDP port number.                   |                    |
-+---------------------+--------------------------------------------------------+--------------------+
-| ``<address>``       | IP address of the locator.                             | ``string``         |
-|                     |                                                        | (IPv4/IPv6 format) |
-+---------------------+--------------------------------------------------------+--------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+  * - ``<port>``
+    - UDP port number of the locator. |br|
+      The UDP port number should be valid.
+    - ``uint32_t``
+  * - ``<address>``
+    - IP address of the locator.
+    - ``string`` (IPv4/IPv6 format |br|
+      or DNS name)
+
+**Example**
+
+The following example shows the implementation of one locator of each transport protocol in
+``<default_external_unicast_locators>``.
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-EXTERNAL-LOCATOR-LIST<-->
+    :end-before: <!--><-->
 
 .. _PropertiesPolicyType:
 
@@ -158,17 +197,26 @@ DurationType
 
 DurationType expresses a period of time and it is commonly used inside other XML elements, such as in
 ``<leaseAnnouncement>`` or ``<leaseDuration>``.
-A DurationType is defined by two mandatory elements ``<sec>`` plus ``<nanosec>``.
+A DurationType is defined by at least one mandatory element of two possible ones: ``<sec>`` plus ``<nanosec>``.
 An infinite value can be specified by using the values :cpp:concept:`DURATION_INFINITY`,
 :cpp:concept:`DURATION_INFINITE_SEC` and :cpp:concept:`DURATION_INFINITE_NSEC`.
 
-+-----------------------+---------------------------------------------------------+-------------------+----------------+
-| Name                  | Description                                             | Values            | Default        |
-+=======================+=========================================================+===================+================+
-| ``<sec>``             | Number of seconds.                                      | ``int32_t``       | 0              |
-+-----------------------+---------------------------------------------------------+-------------------+----------------+
-| ``<nanosec>``         | Number of nanoseconds.                                  | ``uint32_t``      | 0              |
-+-----------------------+---------------------------------------------------------+-------------------+----------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<sec>``
+    - Number of seconds.
+    - ``int32_t``
+    - 0
+  * - ``<nanosec>``
+    - Number of nanoseconds.
+    - ``uint32_t``
+    - 0
 
 **Example**
 
@@ -183,34 +231,27 @@ TopicType
 ^^^^^^^^^
 
 The |Topic| name and data type are used to determine whether Datawriters and DataReaders can exchange messages.
-Please refer to :ref:`dds_layer_topic` section for a a deeper explanation on the |Topic| class.
+This XML element allows the configuration of the :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy`.
 
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| Name                    | Description                                   | Values                   | Default         |
-+=========================+===============================================+==========================+=================+
-| ``<kind>``              | It defines the Topic's key kind. See |br|     |                          |                 |
-|                         | :ref:`dds_layer_definition_data_types`.       |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<name>``              | It defines the Topic's name. It must |br|     | ``string_255``           |                 |
-|                         | be unique.                                    |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<dataType>``          | It references the Topic's data type.          | ``string_255``           |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<historyQos>``        | It controls the behavior of *Fast DDS* |br|   | :ref:`hQos`              |                 |
-|                         | when the value of an instance changes  |br|   |                          |                 |
-|                         | before it is finally communicated to |br|     |                          |                 |
-|                         | some of its existing DataReaders. |br|        |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
-| ``<resourceLimitsQos>`` | It controls the resources that *Fast DDS*     | :ref:`rLsQos`            |                 |
-|                         | |br| can use in order to meet the |br|        |                          |                 |
-|                         | requirements imposed by the application |br|  |                          |                 |
-|                         | and other QoS settings.                       |                          |                 |
-+-------------------------+-----------------------------------------------+--------------------------+-----------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
 
-.. warning::
-
-    The ``<kind>`` child element is only used if the Topic is defined using the *Fast DDS* RTPS-layer API, and will
-    be ignored if the Topic is defined via the *Fast DDS* DDS-layer API.
+  * - Name
+    - Description
+    - Values
+  * - ``<historyQos>``
+    - It controls the behavior of *Fast DDS* |br|
+      when the value of an instance changes  |br|
+      before it is finally communicated to |br|
+      some of its existing DataReaders. |br|
+    - :ref:`hQos`
+  * - ``<resourceLimitsQos>``
+    - It controls the resources that *Fast DDS* |br|
+      can use in order to meet the |br|
+      requirements imposed by the application |br|
+      and other QoS settings.
+    - :ref:`rLsQos`
 
 **Example**
 
@@ -284,45 +325,45 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - Name
     - Description
     - Values
-  * - ``<durability>``
-    - See :ref:`durabilityqospolicy`.
-    - :ref:`xml_durability`
-  * - ``<liveliness>``
-    - See :ref:`livelinessqospolicy`.
-    - :ref:`xml_liveliness`
-  * - ``<reliability>``
-    - See :ref:`reliabilityqospolicy`.
-    - :ref:`xml_reliability`
-  * - ``<partition>``
-    - See :ref:`partitionqospolicy`.
-    - :ref:`xml_partition`
+  * - ``<data_sharing>``
+    - See :ref:`datasharingqospolicy`
+    - :ref:`xml_datasharing`
   * - ``<deadline>``
     - See :ref:`deadlineqospolicy`.
     - :ref:`xml_deadline`
+  * - ``<disable_heartbeat_piggyback>``
+    - See :ref:`disableheartbeatpiggyback`.
+    - :ref:`xml_disableheartbeatpiggyback`
+  * - ``<disablePositiveAcks>``
+    - See :ref:`disablepositiveacksqospolicy`.
+    - :ref:`xml_disablepositiveacks`
+  * - ``<durability>``
+    - See :ref:`durabilityqospolicy`.
+    - :ref:`xml_durability`
+  * - ``<latencyBudget>``
+    - See :ref:`latencybudgetqospolicy`.
+    - :ref:`xml_latencybudget`
   * - ``<lifespan>``
     - See :ref:`lifespanqospolicy`.
     - :ref:`xml_lifespan`
+  * - ``<liveliness>``
+    - See :ref:`livelinessqospolicy`.
+    - :ref:`xml_liveliness`
   * - ``<ownership>``
     - See :ref:`ownershipqospolicy`.
     - :ref:`xml_ownership`
   * - ``<ownershipStrength>``
     - See :ref:`ownershipstrengthqospolicy`.
     - :ref:`xml_ownershipstrength`
-  * - ``<disablePositiveAcks>``
-    - See :ref:`disablepositiveacksqospolicy`.
-    - :ref:`xml_disablepositiveacks`
-  * - ``<latencyBudget>``
-    - See :ref:`latencybudgetqospolicy`.
-    - :ref:`xml_latencybudget`
-  * - ``<disable_heartbeat_piggyback>``
-    - See :ref:`disableheartbeatpiggyback`.
-    - :ref:`xml_disableheartbeatpiggyback`
+  * - ``<partition>``
+    - See :ref:`partitionqospolicy`.
+    - :ref:`xml_partition`
   * - ``<publishMode>``
     - See :ref:`publishmodeqospolicy`.
     - :ref:`xml_publishmode`
-  * - ``data_sharing``
-    - See :ref:`datasharingqospolicy`
-    - :ref:`xml_datasharing`
+  * - ``<reliability>``
+    - See :ref:`reliabilityqospolicy`.
+    - :ref:`xml_reliability`
 
 **Example**
 
@@ -330,167 +371,6 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
     :language: xml
     :start-after: <!-->XML-QOS<-->
     :end-before: <!--><-->
-
-
-.. _xml_durability:
-
-Durability
-""""""""""
-
-+------------+----------------------------+--------------------------------------+-------------------------------------+
-| Name       | Description                | Values                               | Default                             |
-+============+============================+======================================+=====================================+
-| ``<kind>`` | See :ref:`durabilitykind`. | |VOLATILE-xml-api|                   | |VOLATILE-xml-api|                  |
-|            |                            +--------------------------------------+                                     |
-|            |                            | |TRANSIENT_LOCAL-xml-api|            |                                     |
-|            |                            +--------------------------------------+                                     |
-|            |                            | |TRANSIENT-xml-api|                  |                                     |
-|            |                            +--------------------------------------+                                     |
-|            |                            | |PERSISTENT-xml-api|                 |                                     |
-+------------+----------------------------+--------------------------------------+-------------------------------------+
-
-.. _xml_liveliness:
-
-Liveliness
-""""""""""
-
-+---------------------------+---------------------------------+---------------------------------+----------------------+
-| Name                      | Description                     | Values                          | Default              |
-+===========================+=================================+=================================+======================+
-| ``<kind>``                | See                             | |AUTOMATIC-xml-api|             | |AUTOMATIC-xml-api|  |
-|                           | :ref:`livelinessqospolicykind`. +---------------------------------+                      |
-|                           |                                 | |MANUAL_BY_PARTICIPANT-xml-api| |                      |
-|                           |                                 +---------------------------------+                      |
-|                           |                                 | |MANUAL_BY_TOPIC-xml-api|       |                      |
-+---------------------------+---------------------------------+---------------------------------+----------------------+
-| ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`             | |c_TimeInfinite-api| |
-+---------------------------+---------------------------------+---------------------------------+----------------------+
-| ``<announcement_period>`` | See :ref:`livelinessqospolicy`. |                                 | |c_TimeInfinite-api| |
-+---------------------------+---------------------------------+---------------------------------+----------------------+
-
-.. _xml_reliability:
-
-ReliabilityQosPolicy
-""""""""""""""""""""
-
-.. |max_block| replace:: ``<max_blocking_time>``
-
-+------------------+-----------------------------------+-------------------------+-------------------------------------+
-| Name             | Description                       | Values                  | Default                             |
-+==================+===================================+=========================+=====================================+
-| ``<kind>``       | See                               | |BEST_EFFORT-xml-api|   | DataReaders: |BEST_EFFORT-xml-api|  |
-|                  | :ref:`reliabilityqospolicykind`.  +-------------------------+ |br|                                |
-|                  |                                   | |RELIABLE-xml-api|      | DataWriters: |RELIABLE-xml-api|     |
-+------------------+-----------------------------------+-------------------------+-------------------------------------+
-| |max_block|      | See :ref:`reliabilityqospolicy`.  | :ref:`DurationType`     | 100 ms                              |
-+------------------+-----------------------------------+-------------------------+-------------------------------------+
-
-.. _xml_partition:
-
-Partition
-"""""""""
-
-+---------------------------+-----------------------------------------------------------------------------+------------+
-| Name                      | Description                                                                 | Values     |
-+===========================+=============================================================================+============+
-| ``<names>``               | It comprises a set of ``<name>`` elements containing the name of each       | ``<name>`` |
-|                           | partition. |br| See :ref:`partitionqospolicy`.                              |            |
-|                           |                                                                             |            |
-+---------------------------+-----------------------------------------------------------------------------+------------+
-
-.. _xml_deadline:
-
-Deadline
-""""""""
-+---------------------------+----------------------------------+---------------------+---------------------------------+
-| Name                      | Description                      | Values              | Default                         |
-+===========================+==================================+=====================+=================================+
-| ``<period>``              | See :ref:`deadlineqospolicy`.    | :ref:`DurationType` | |c_TimeInfinite-api|            |
-+---------------------------+----------------------------------+---------------------+---------------------------------+
-
-.. _xml_lifespan:
-
-Lifespan
-""""""""
-
-+---------------------------+----------------------------------+---------------------+---------------------------------+
-| Name                      | Description                      | Values              | Default                         |
-+===========================+==================================+=====================+=================================+
-| ``<duration>``            | See :ref:`lifespanqospolicy`.    | :ref:`DurationType` | |c_TimeInfinite-api|            |
-+---------------------------+----------------------------------+---------------------+---------------------------------+
-
-.. _xml_ownership:
-
-Ownership
-"""""""""
-
-+------------------+-----------------------------------+-------------------------------+-------------------------------+
-| Name             | Description                       | Values                        | Default                       |
-+==================+===================================+===============================+===============================+
-| ``<kind>``       | See                               | |SHARED_OWNERSHIP_QOS-api|    | |SHARED_OWNERSHIP_QOS-api|    |
-|                  | :ref:`ownershipqospolicykind`.    +-------------------------------+                               |
-|                  |                                   | |EXCLUSIVE_OWNERSHIP_QOS-api| |                               |
-+------------------+-----------------------------------+-------------------------------+-------------------------------+
-
-.. _xml_ownershipstrength:
-
-Ownership Strength
-""""""""""""""""""
-
-+------------------+----------------------------------------+--------------------------------------+-------------------+
-| Name             | Description                            | Values                               | Default           |
-+==================+========================================+======================================+===================+
-| ``<value>``      | See                                    | ``uint32_t``                         | 0                 |
-|                  | :ref:`ownershipstrengthqospolicy`.     |                                      |                   |
-+------------------+----------------------------------------+--------------------------------------+-------------------+
-
-.. _xml_disablepositiveacks:
-
-DisablePositiveAcks
-"""""""""""""""""""
-
-+--------------------+------------------------------------------+---------------------+--------------------------------+
-| Name               | Description                              | Values              | Default                        |
-+====================+==========================================+=====================+================================+
-| ``<enabled>``      | See :ref:`disablepositiveacksqospolicy`. | ``bool``            | ``false``                      |
-+--------------------+------------------------------------------+---------------------+--------------------------------+
-| ``<duration>``     | See :ref:`disablepositiveacksqospolicy`. | :ref:`DurationType` | |c_TimeInfinite-api|           |
-+--------------------+------------------------------------------+---------------------+--------------------------------+
-
-.. _xml_latencybudget:
-
-LatencyBudget
-"""""""""""""
-
-+---------------------------+-------------------------------------------------+---------------------+------------------+
-| Name                      | Description                                     | Values              | Default          |
-+===========================+=================================================+=====================+==================+
-| ``<duration>``            | See :ref:`latencybudgetqospolicy`.              | :ref:`DurationType` | 0                |
-+---------------------------+-------------------------------------------------+---------------------+------------------+
-
-.. _xml_disableheartbeatpiggyback:
-
-DisableHeartbeatPiggyback
-"""""""""""""""""""""""""
-
-+----------------------------------------------+---------------------------------------+----------+-----------+
-| Name                                         | Description                           | Values   | Default   |
-+==============================================+=======================================+==========+===========+
-| ``<disable_heartbeat_piggyback>``            | See :ref:`disableheartbeatpiggyback`. | ``bool`` | ``false`` |
-+----------------------------------------------+---------------------------------------+----------+-----------+
-
-.. _xml_publishmode:
-
-PublishMode
-"""""""""""
-
-+-----------------------+---------------------------------------+------------------+------------------+
-| Name                  | Description                           | Values           | Default          |
-+=======================+=======================================+==================+==================+
-| ``<publishMode>``     | See :ref:`publishmodeqospolicy`.      | ``ASYNCHRONOUS`` | ``ASYNCHRONOUS`` |
-|                       |                                       +------------------+                  |
-|                       |                                       | ``SYNCHRONOUS``  |                  |
-+-----------------------+---------------------------------------+------------------+------------------+
 
 .. _xml_datasharing:
 
@@ -533,42 +413,180 @@ Data-Sharing
    * - Name
      - Description
      - Values
-   * - ``domainId``
+   * - ``<domainId>``
      - Domain ID to be used by the endpoint for Data-Sharing.
      - ``uint32_t``
 
-.. _Throughput:
+.. _xml_deadline:
 
-Throughput Configuration
-^^^^^^^^^^^^^^^^^^^^^^^^
+Deadline
+""""""""
++---------------------------+----------------------------------+---------------------+---------------------------------+
+| Name                      | Description                      | Values              | Default                         |
++===========================+==================================+=====================+=================================+
+| ``<period>``              | See :ref:`deadlineqospolicy`.    | :ref:`DurationType` | |c_TimeInfinite-api|            |
++---------------------------+----------------------------------+---------------------+---------------------------------+
 
-The ``<throughputController>`` element allows to limit the output bandwidth.
-It contains two child elements which are explained in the following table.
+.. _xml_disableheartbeatpiggyback:
 
-+-----------------------+-----------------------------------------------------------+---------------+------------------+
-| Name                  | Description                                               | Values        | Default          |
-+=======================+===========================================================+===============+==================+
-| ``<bytesPerPeriod>``  | Packet size in bytes that the throughput controller       | ``uint32_t``  | 4294967295 bytes |
-|                       | will allow to send |br|                                   |               |                  |
-|                       | in a given period.                                        |               |                  |
-+-----------------------+-----------------------------------------------------------+---------------+------------------+
-| ``<periodMillisecs>`` | Window of time in which no more than ``<bytesPerPeriod>`` | ``uint32_t``  | 0                |
-|                       | bytes |br|                                                |               |                  |
-|                       | are allowed.                                              |               |                  |
-+-----------------------+-----------------------------------------------------------+---------------+------------------+
+DisableHeartbeatPiggyback
+"""""""""""""""""""""""""
 
-.. warning::
++----------------------------------------------+---------------------------------------+----------+-----------+
+| Name                                         | Description                           | Values   | Default   |
++==============================================+=======================================+==========+===========+
+| ``<disable_heartbeat_piggyback>``            | See :ref:`disableheartbeatpiggyback`. | ``bool`` | ``false`` |
++----------------------------------------------+---------------------------------------+----------+-----------+
 
-    This tag has been deprecated but does not have an equivalent tag yet.
-    It will create a FIFO flow controller with the bandwidth limitation specified on this tag.
-    See |FlowControllersQos| for more information.
+.. _xml_disablepositiveacks:
 
-**Example**
+DisablePositiveAcks
+"""""""""""""""""""
 
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->CONF-THROUGHPUT-EXAMPLE<-->
-    :end-before: <!--><-->
++--------------------+------------------------------------------+---------------------+--------------------------------+
+| Name               | Description                              | Values              | Default                        |
++====================+==========================================+=====================+================================+
+| ``<enabled>``      | See :ref:`disablepositiveacksqospolicy`. | ``bool``            | ``false``                      |
++--------------------+------------------------------------------+---------------------+--------------------------------+
+| ``<duration>``     | See :ref:`disablepositiveacksqospolicy`. | :ref:`DurationType` | |c_TimeInfinite-api|           |
++--------------------+------------------------------------------+---------------------+--------------------------------+
+
+.. _xml_durability:
+
+Durability
+""""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<kind>``
+    - See :ref:`durabilitykind`.
+    - |VOLATILE-xml-api| |br|
+      |TRANSIENT_LOCAL-xml-api| |br|
+      |TRANSIENT-xml-api| |br|
+      |PERSISTENT-xml-api|
+    - DataReaders: |VOLATILE-xml-api| |br|
+      DataWriters: |TRANSIENT_LOCAL-xml-api| |br|
+
+.. _xml_latencybudget:
+
+LatencyBudget
+"""""""""""""
+
++---------------------------+-------------------------------------------------+---------------------+------------------+
+| Name                      | Description                                     | Values              | Default          |
++===========================+=================================================+=====================+==================+
+| ``<duration>``            | See :ref:`latencybudgetqospolicy`.              | :ref:`DurationType` | 0                |
++---------------------------+-------------------------------------------------+---------------------+------------------+
+
+.. _xml_lifespan:
+
+Lifespan
+""""""""
+
++---------------------------+----------------------------------+---------------------+---------------------------------+
+| Name                      | Description                      | Values              | Default                         |
++===========================+==================================+=====================+=================================+
+| ``<duration>``            | See :ref:`lifespanqospolicy`.    | :ref:`DurationType` | |c_TimeInfinite-api|            |
++---------------------------+----------------------------------+---------------------+---------------------------------+
+
+.. _xml_liveliness:
+
+Liveliness
+""""""""""
+
++---------------------------+---------------------------------+---------------------------------+----------------------+
+| Name                      | Description                     | Values                          | Default              |
++===========================+=================================+=================================+======================+
+| ``<kind>``                | See                             | |AUTOMATIC-xml-api|             | |AUTOMATIC-xml-api|  |
+|                           | :ref:`livelinessqospolicykind`. +---------------------------------+                      |
+|                           |                                 | |MANUAL_BY_PARTICIPANT-xml-api| |                      |
+|                           |                                 +---------------------------------+                      |
+|                           |                                 | |MANUAL_BY_TOPIC-xml-api|       |                      |
++---------------------------+---------------------------------+---------------------------------+----------------------+
+| ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`             | |c_TimeInfinite-api| |
++---------------------------+---------------------------------+---------------------------------+----------------------+
+| ``<announcement_period>`` | See :ref:`livelinessqospolicy`. |                                 | |c_TimeInfinite-api| |
++---------------------------+---------------------------------+---------------------------------+----------------------+
+
+.. _xml_ownership:
+
+Ownership
+"""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<kind>``
+    - See :ref:`ownershipqospolicykind`.
+    - |SHARED-xml-api| |br|
+      |EXCLUSIVE-xml-api|
+    - |SHARED-xml-api|
+
+.. _xml_ownershipstrength:
+
+Ownership Strength
+""""""""""""""""""
+
++------------------+----------------------------------------+--------------------------------------+-------------------+
+| Name             | Description                            | Values                               | Default           |
++==================+========================================+======================================+===================+
+| ``<value>``      | See                                    | ``uint32_t``                         | 0                 |
+|                  | :ref:`ownershipstrengthqospolicy`.     |                                      |                   |
++------------------+----------------------------------------+--------------------------------------+-------------------+
+
+.. _xml_partition:
+
+Partition
+"""""""""
+
++---------------------------+-----------------------------------------------------------------------------+------------+
+| Name                      | Description                                                                 | Values     |
++===========================+=============================================================================+============+
+| ``<names>``               | It comprises a set of ``<name>`` elements containing the name of each       | ``<name>`` |
+|                           | partition. |br| See :ref:`partitionqospolicy`.                              |            |
+|                           |                                                                             |            |
++---------------------------+-----------------------------------------------------------------------------+------------+
+
+.. _xml_publishmode:
+
+PublishMode
+"""""""""""
+
++-----------------------+---------------------------------------+------------------+------------------+
+| Name                  | Description                           | Values           | Default          |
++=======================+=======================================+==================+==================+
+| ``<publishMode>``     | See :ref:`publishmodeqospolicy`.      | ``ASYNCHRONOUS`` | ``ASYNCHRONOUS`` |
+|                       |                                       +------------------+                  |
+|                       |                                       | ``SYNCHRONOUS``  |                  |
++-----------------------+---------------------------------------+------------------+------------------+
+
+.. _xml_reliability:
+
+ReliabilityQosPolicy
+""""""""""""""""""""
+
+.. |max_block| replace:: ``<max_blocking_time>``
+
++------------------+-----------------------------------+-------------------------+-------------------------------------+
+| Name             | Description                       | Values                  | Default                             |
++==================+===================================+=========================+=====================================+
+| ``<kind>``       | See                               | |BEST_EFFORT-xml-api|   | DataReaders: |BEST_EFFORT-xml-api|  |
+|                  | :ref:`reliabilityqospolicykind`.  +-------------------------+ |br|                                |
+|                  |                                   | |RELIABLE-xml-api|      | DataWriters: |RELIABLE-xml-api|     |
++------------------+-----------------------------------+-------------------------+-------------------------------------+
+| |max_block|      | See :ref:`reliabilityqospolicy`.  | :ref:`DurationType`     | 100 ms                              |
++------------------+-----------------------------------+-------------------------+-------------------------------------+
 
 .. _historymemorypoliciesXML:
 

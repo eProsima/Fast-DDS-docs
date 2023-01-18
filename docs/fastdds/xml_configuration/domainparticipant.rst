@@ -41,25 +41,8 @@ The ``<participant>`` element has two attributes defined: ``profile_name`` and `
 DomainParticipant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``<participant>`` element has two child elements: ``<domain_id>`` and ``<rtps>``.
-All the DomainParticipant configuration options belong to the ``<rtps>`` element, except for the DDS |DomainId-api|
-which is defined by the ``<domain_id>`` element.
-Below a list with the configuration XML elements is presented:
-
-+----------------+----------------------------------------------------------------------------+--------------+---------+
-| Name           | Description                                                                | Values       | Default |
-+================+============================================================================+==============+=========+
-| ``<domainId>`` | DomainId to be used by the DomainParticipant.                              | ``uint32_t`` | 0       |
-+----------------+----------------------------------------------------------------------------+--------------+---------+
-| ``<rtps>``     | *Fast DDS* DomainParticipant configurations. |br|                          |  :ref:`RTPS` |         |
-|                | See :ref:`RTPS`.                                                           |              |         |
-+----------------+----------------------------------------------------------------------------+--------------+---------+
-
-.. _RTPS:
-
-RTPS element type
-"""""""""""""""""
-
+The ``<participant>`` element has as child element ``<rtps>`` under which all the DomainParticipant configuration
+options belong.
 The following is a list with all the possible child XML elements of the ``<rtps>`` element.
 These elements allow the user to define the DomainParticipant configuration.
 
@@ -138,11 +121,6 @@ These elements allow the user to define the DomainParticipant configuration.
        |DomainParticipantFactory|.
      - ``int32_t``
      - 0
-   * - ``<throughputController>``
-     - Limits middleware's bandwidth usage. |br|
-       See the :ref:`Throughput` section.
-     - :ref:`Throughput`
-     -
    * - ``<userTransports>``
      - Transport descriptors to be used by the |br|
        DomainParticipant. See |br|
@@ -158,7 +136,7 @@ These elements allow the user to define the DomainParticipant configuration.
      - true
    * - ``<propertiesPolicy>``
      - Additional configuration properties. |br|
-       It expects a |PolicyType|.
+       See :ref:`propertypolicyqos`.
      - |PolicyType|
      -
    * - ``<allocation>``
@@ -167,6 +145,12 @@ These elements allow the user to define the DomainParticipant configuration.
        |PartAlloc|.
      - |PartAlloc|
      -
+   * - ``userData``
+     - Additional information attached to the DomainParticipant |br|
+       and transmitted with the discovery information. |br|
+       See :ref:`userdataqospolicy`.
+     - ``string``
+     - Empty
 
 **Example**
 
@@ -174,7 +158,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-92, 94
+    :lines: 2-3, 5-85, 87
 
 .. note::
 
@@ -182,136 +166,16 @@ These elements allow the user to define the DomainParticipant configuration.
 
     - :class:`EXTERNAL_LOCATOR_LIST` means a :ref:`externalLocatorListType` is expected.
 
-    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
-
     - For :class:`BUILTIN` details, please refer to :ref:`builtin`.
 
+    - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
+
     - For :class:`ALLOCATION` details, please refer to :ref:`ParticipantAllocationType`.
-
-.. _Port:
-
-Port Configuration
-******************
-
-According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the
-|RTPSParticipants-api|' discovery traffic unicast listening ports are calculated using the following equation:
-:math:`7400 + 250 * DomainId + 10 + 2 * ParticipantId`.
-Therefore the following parameters can be specified:
-
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| Name                         | Description                                          | Values          | Default      |
-+==============================+======================================================+=================+==============+
-| ``<portBase>``               | Base ``port``.                                       | ``uint16_t``    | 7400         |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<domainIDGain>``           | Gain in DomainId.                                    | ``uint16_t``    | 250          |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<participantIDGain>``      | Gain in |WireProtocolConfigQos::participant_id-api|. | ``uint16_t``    | 2            |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd0>``               | Multicast metadata offset.                           | ``uint16_t``    | 0            |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd1>``               | Unicast metadata offset.                             | ``uint16_t``    | 10           |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd2>``               | Multicast user data offset.                          | ``uint16_t``    | 1            |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-| ``<offsetd3>``               | Unicast user data offset.                            | ``uint16_t``    | 11           |
-+------------------------------+------------------------------------------------------+-----------------+--------------+
-
-.. warning::
-
-  Changing these default parameters may break compatibility with other RTPS compliant implementations, as well as
-  with other *Fast DDS* applications with default port settings.
-
-.. _ParticipantAllocationType:
-
-ParticipantAllocationType
-****************************
-
-The ``ParticipantAllocationType`` defines the ``<allocation>`` element, which allows setting of the parameters
-related with the allocation behavior on the DomainParticipant.
-Please refer to :ref:`participantresourcelimitsqos` for a detailed documentation on DomainParticipants allocation
-configuration.
-
-.. list-table::
-   :header-rows: 1
-   :align: left
-
-   * - Name
-     - Description
-     - Values
-     - Default
-   * - ``<remote_locators>``
-     - Defines the limits for the remote locators' collections. |br|
-       See :ref:`remotelocatorsallocationattributes`.
-     - ``<max_unicast_locators>`` |br|
-       ``<max_multicast_locators>``
-     -
-   * - ``<max_unicast_locators>``
-     - Child element of ``<remote_locators>``. |br|
-       Maximum number of unicast locators expected on a |br|
-       remote  entity. It is recommended to use the maximum |br|
-       number of network interfaces available on the machine |br|
-       on which DomainParticipant is running. |br|
-       See :ref:`remotelocatorsallocationattributes`.
-     - ``uint32_t``
-     - 4
-   * - ``<max_multicast_locators>``
-     - Child element of ``<remote_locators>``. |br|
-       Maximum number of multicast locators expected on a |br|
-       remote entity. May be set to zero to disable multicast |br|
-       traffic. See :ref:`remotelocatorsallocationattributes`.
-     - ``uint32_t``
-     - 1
-   * - ``<total_participants>``
-     - DomainParticipant :ref:`CommonAlloc` to specify the |br|
-       total number of DomainParticipants in the domain |br|
-       (local and remote). See |br|
-       :ref:`ResourceLimitedContainerConfig`.
-     - :ref:`CommonAlloc`
-     -
-   * - ``<total_readers>``
-     - DomainParticipant :ref:`CommonAlloc` to specify the |br|
-       total number of DataReader on each DomainParticipant |br|
-       (local and remote). See |br|
-       :ref:`ResourceLimitedContainerConfig`.
-     - :ref:`CommonAlloc`
-     -
-   * - ``<total_writers>``
-     - DomainParticipant :ref:`CommonAlloc` related to the |br|
-       total number of DataWriters on each DomainParticipant |br|
-       (local and remote).
-       See :ref:`resourcelimitedcontainerconfig`.
-     - :ref:`CommonAlloc`
-     -
-   * - ``<max_partitions>``
-     - Maximum size of the partitions submessage. |br|
-       Set to zero for no limit. |br|
-       See :ref:`sendbuffersallocationattributes`.
-     - ``uint32_t``
-     -
-   * - ``<max_user_data>``
-     - Maximum size of the user data submessage. |br|
-       Set to zero for no limit. See |br|
-       :ref:`sendbuffersallocationattributes`.
-     - ``uint32_t``
-     -
-   * - ``<max_properties>``
-     - Maximum size of the properties submessage. |br|
-       Set to zero for no limit. See |br|
-       :ref:`sendbuffersallocationattributes`.
-     - ``uint32_t``
-     -
-
-**Example**
-
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML-PARTICIPANT-ALLOCATION<-->
-    :end-before: <!--><-->
 
 .. _builtin:
 
 Builtin parameters
-********************
+""""""""""""""""""
 
 By calling the |DomainParticipantQos::wire_protocol-api| member function of the |DomainParticipantQos-api|,
 it is possible to
@@ -371,12 +235,12 @@ This section specifies the available XML members for the configuration of this
    * - ``<readerHistoryMemoryPolicy>``
      - Memory policy for DataReaders. |br|
        See :ref:`historyqospolicykind`.
-     - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
+     - :ref:`historymemorypoliciesXML`
      - |PREALLOCATED-xml-api|
    * - ``<writerHistoryMemoryPolicy>``
      - Memory policy for DataWriters. |br|
        See :ref:`historyqospolicykind`.
-     - :ref:`HistoryMemoryPolicy <memorymanagementpolicy>`
+     - :ref:`historymemorypoliciesXML`
      - |PREALLOCATED-xml-api|
    * - ``<readerPayloadSize>``
      - Maximum DataReader's History |br|
@@ -412,7 +276,7 @@ This section specifies the available XML members for the configuration of this
 .. _dconf:
 
 discovery_config
-################
+****************
 
 Through the ``<discovery_config>`` element, *Fast DDS* allows the configuration of the discovery mechanism via an XML
 file.
@@ -472,29 +336,31 @@ configurable settings.
 .. _partfiltering:
 
 ignoreParticipantFlags
-++++++++++++++++++++++
+######################
 
-+----------------------------------------------------+-----------------------------------------------------------------+
-| Possible values                                    | Description                                                     |
-+====================================================+=================================================================+
-| |NO_FILTER|                                        | All Discovery traffic is processed.                             |
-+----------------------------------------------------+-----------------------------------------------------------------+
-| |FILTER_DIFFERENT_HOST|                            | Discovery traffic from another host is discarded.               |
-+----------------------------------------------------+-----------------------------------------------------------------+
-| |FILTER_DIFFERENT_PROCESS|                         | Discovery traffic from another process on the same host is |br| |
-|                                                    | discarded.                                                      |
-+----------------------------------------------------+-----------------------------------------------------------------+
-| |FILTER_SAME_PROCESS|                              | Discovery traffic from DomainParticipant's own process is |br|  |
-|                                                    | discarded.                                                      |
-+----------------------------------------------------+-----------------------------------------------------------------+
-| |FILTER_DIFFERENT_PROCESS| | |FILTER_SAME_PROCESS| | Discovery traffic from DomainParticipant's own host is |br|     |
-|                                                    | discarded.                                                      |
-+----------------------------------------------------+-----------------------------------------------------------------+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Possible values
+    - Description
+  * - |NO_FILTER|
+    - All Discovery traffic is processed.
+  * - |FILTER_DIFFERENT_HOST|
+    - Discovery traffic from another host is discarded.
+  * - |FILTER_DIFFERENT_PROCESS|
+    - Discovery traffic from another process on the same host is discarded.
+  * - |FILTER_SAME_PROCESS|
+    - Discovery traffic from DomainParticipant's own process is discarded.
+
+This option also supports the OR (``|``) operator to filter discovery traffic from other configurations.
+For instance, ``FILTER_DIFFERENT_PROCESS|FILTER_SAME_PROCESS`` value discards discovery traffic from the
+DomainParticipant's own host.
 
 .. _sedp:
 
 simpleEDP
-++++++++++
+#########
 
 +---------------------------+------------------------------------------------------------+-------------+---------------+
 | Name                      | Description                                                | Values      | Default       |
@@ -509,7 +375,7 @@ simpleEDP
 .. _InitAnnounce:
 
 Initial Announcements
-######################
+#####################
 
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
 | Name         | Description                                                           | Values              | Default |
@@ -522,3 +388,134 @@ Initial Announcements
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
 | ``<period>`` | The period for the DomainParticipant to send its discovery messages.  | :ref:`DurationType` | 100 ms  |
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
+
+.. _Port:
+
+Port Configuration
+""""""""""""""""""
+
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the
+|RTPSParticipants-api|' discovery traffic unicast listening ports are calculated using the following equation:
+:math:`7400 + 250 * DomainId + 10 + 2 * ParticipantId`.
+Therefore the following parameters can be specified:
+
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| Name                         | Description                                          | Values          | Default      |
++==============================+======================================================+=================+==============+
+| ``<portBase>``               | Base ``port``.                                       | ``uint16_t``    | 7400         |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<domainIDGain>``           | Gain in DomainId.                                    | ``uint16_t``    | 250          |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<participantIDGain>``      | Gain in |WireProtocolConfigQos::participant_id-api|. | ``uint16_t``    | 2            |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<offsetd0>``               | Multicast metadata offset.                           | ``uint16_t``    | 0            |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<offsetd1>``               | Unicast metadata offset.                             | ``uint16_t``    | 10           |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<offsetd2>``               | Multicast user data offset.                          | ``uint16_t``    | 1            |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+| ``<offsetd3>``               | Unicast user data offset.                            | ``uint16_t``    | 11           |
++------------------------------+------------------------------------------------------+-----------------+--------------+
+
+.. warning::
+
+  Changing these default parameters may break compatibility with other RTPS compliant implementations, as well as
+  with other *Fast DDS* applications with default port settings.
+
+.. _ParticipantAllocationType:
+
+ParticipantAllocationType
+"""""""""""""""""""""""""
+
+The ``ParticipantAllocationType`` defines the ``<allocation>`` element, which allows setting of the parameters
+related with the allocation behavior on the DomainParticipant.
+Please refer to :ref:`participantresourcelimitsqos` for a detailed documentation on DomainParticipants allocation
+configuration.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<remote_locators>``
+     - Defines the limits for the remote locators' collections. |br|
+       See :ref:`remotelocatorsallocationattributes`.
+     - :ref:`remote_locators_allocations`
+     -
+   * - ``<total_participants>``
+     - DomainParticipant :ref:`CommonAlloc` to specify the |br|
+       total number of DomainParticipants in the domain |br|
+       (local and remote). See |br|
+       :ref:`ResourceLimitedContainerConfig`.
+     - :ref:`CommonAlloc`
+     -
+   * - ``<total_readers>``
+     - DomainParticipant :ref:`CommonAlloc` to specify the |br|
+       total number of DataReader on each DomainParticipant |br|
+       (local and remote). See |br|
+       :ref:`ResourceLimitedContainerConfig`.
+     - :ref:`CommonAlloc`
+     -
+   * - ``<total_writers>``
+     - DomainParticipant :ref:`CommonAlloc` related to the |br|
+       total number of DataWriters on each DomainParticipant |br|
+       (local and remote).
+       See :ref:`resourcelimitedcontainerconfig`.
+     - :ref:`CommonAlloc`
+     -
+   * - ``<max_partitions>``
+     - Maximum size of the partitions submessage. |br|
+       Set to zero for no limit. |br|
+       See :ref:`sendbuffersallocationattributes`.
+     - ``uint32_t``
+     -
+   * - ``<max_user_data>``
+     - Maximum size of the user data submessage. |br|
+       Set to zero for no limit. See |br|
+       :ref:`sendbuffersallocationattributes`.
+     - ``uint32_t``
+     -
+   * - ``<max_properties>``
+     - Maximum size of the properties submessage. |br|
+       Set to zero for no limit. See |br|
+       :ref:`sendbuffersallocationattributes`.
+     - ``uint32_t``
+     -
+
+**Example**
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-PARTICIPANT-ALLOCATION<-->
+    :end-before: <!--><-->
+
+.. _remote_locators_allocations:
+
+Remote Locators Allocations
+***************************
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<max_unicast_locators>``
+     - Maximum number of unicast locators expected on a |br|
+       remote  entity. It is recommended to use the maximum |br|
+       number of network interfaces available on the machine |br|
+       on which DomainParticipant is running. |br|
+       See :ref:`remotelocatorsallocationattributes`.
+     - ``uint32_t``
+     - 4
+   * - ``<max_multicast_locators>``
+     - Maximum number of multicast locators expected on a |br|
+       remote entity. May be set to zero to disable multicast |br|
+       traffic. See :ref:`remotelocatorsallocationattributes`.
+     - ``uint32_t``
+     - 1

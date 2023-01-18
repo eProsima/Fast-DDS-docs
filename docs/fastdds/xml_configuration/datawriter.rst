@@ -8,23 +8,7 @@ DataWriter profiles
 -------------------
 
 The DataWriter profiles allow for configuring |DataWriters| from an XML file.
-These profiles are defined within the ``<data_writer>`` or ``<publisher>`` XML tags.
-Thus, the following XML code snippets are equivalent.
-
-+----------------------------------------------------------+-----------------------------------------------------------+
-| **DataWriter profile** - Definition method 1             | **DataWriter profile** - Definition method 2              |
-+----------------------------------------------------------+-----------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml               | .. literalinclude:: /../code/XMLTester.xml                |
-|   :language: xml                                         |   :language: xml                                          |
-|   :start-after: <!-->XML-DATAWRITER-COMPARISON<-->       |   :start-after: <!-->XML-PUBLISHER-COMPARISON<-->         |
-|   :end-before: <!--><-->                                 |   :end-before: <!--><-->                                  |
-+----------------------------------------------------------+-----------------------------------------------------------+
-
-.. important::
-
-    The ``<data_writer>`` and ``<publisher>`` XML tags are equivalent.
-    Therefore, XML profiles in which the DataWriters are defined with the ``<publisher>``
-    tag are fully compatible with *Fast DDS*.
+These profiles are defined within the ``<data_writer>`` XML tags.
 
 DataWriter XML attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -72,7 +56,7 @@ The DataWriter configuration is performed through the XML elements listed in the
      -
    * - ``<times>``
      - It configures some time related parameters |br| of the DataWriter.
-     - :ref:`Times <pubtimes>`
+     - :ref:`WriterTimes <pubtimes>`
      -
    * - ``<unicastLocatorList>``
      - List of input unicast locators. |br|
@@ -97,11 +81,6 @@ The DataWriter configuration is performed through the XML elements listed in the
        announced by this DataWriter.
      - ``bool``
      - false
-   * - ``<throughputController>``
-     - Limits the output bandwidth of the |br|
-       DataWriter.
-     - :ref:`Throughput`
-     -
    * - ``<historyMemoryPolicy>``
      - Memory allocation kind for DataWriter's |br|
        history. See :ref:`historyqospolicykind`.
@@ -132,7 +111,7 @@ The DataWriter configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-DATAWRITER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-83, 85-86
+    :lines: 2-4, 6-78, 80-81
 
 .. note::
 
@@ -148,8 +127,10 @@ The DataWriter configuration is performed through the XML elements listed in the
 
 .. _pubtimes:
 
-Times
-""""""
+WriterTimes
+"""""""""""
+
+These parameters are included within :ref:`rtpsreliablewriterqos` in the :ref:`writertimes` structure.
 
 +------------------------------+-------------------------------------------------------+---------------------+---------+
 | Name                         | Description                                           | Values              | Default |
@@ -164,4 +145,3 @@ Times
 |                              | messages for a given period of time right after |br|  |                     |         |
 |                              | the data has been sent.                               |                     |         |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
-

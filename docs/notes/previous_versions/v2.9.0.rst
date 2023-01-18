@@ -1,0 +1,69 @@
+Version 2.9.0
+^^^^^^^^^^^^^
+
+This minor release includes several new features (new log macros to avoid conflicts with external libraries), behavior
+change (default memory management policy is no longer
+:cpp:enumerator:`PREALLOCATED_MEMORY_MODE<eprosima::fastrtps::rtps::MemoryManagementPolicy::PREALLOCATED_MEMORY_MODE>`,
+enable by default Fast DDS Statistics module but only taking statistics metrics if the corresponding Statistics
+DataWriter is enabled), performance improvements, CI improvements (including address sanitizer jobs), and several bug
+fixes.
+
+.. note::
+    Mind that, even though this release is API compatible with previous v2.x versions, it is *NOT* ABI compatible with
+    previous versions.
+    This means that applications upgrading Fast DDS to v2.9.0 will require recompilation, though not source code
+    modification.
+
+.. note::
+    It is also advisable to regenerate the type support from the IDL files using
+    `Fast DDS-Gen v2.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.3.0>`_.
+    Furthermore, if upgrading to v2.9.0, it is also recommended to upgrade Fast CDR to
+    `v1.0.26 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.26>`_.
+
+This release includes the following **features**:
+
+1. New log macros :c:macro:`EPROSIMA_LOG_INFO <EPROSIMA_LOG_INFO>`,
+   :c:macro:`EPROSIMA_LOG_WARNING <EPROSIMA_LOG_WARNING>` and :c:macro:`EPROSIMA_LOG_ERROR <EPROSIMA_LOG_ERROR>`.
+2. Add ``ENABLE_OLD_LOG_MACROS`` CMake option to support
+   :ref:`disabling the compilation of previous log macros <old_log_macros_disable>`.
+
+This release includes the following **behavior changes**:
+
+1. Default :ref:`memory management policy <memorymanagementpolicy>` set to
+   :cpp:enumerator:`PREALLOCATED_WITH_REALLOC_MEMORY_MODE<eprosima::fastrtps::rtps::MemoryManagementPolicy::PREALLOCATED_WITH_REALLOC_MEMORY_MODE>`.
+2. Statistics metrics are only calculated/accumulated when their corresponding DataWriter is enabled in
+   :ref:`Fast DDS Statistics Module <statistics_enable_datawriters>`.
+3. Enable ``FASTDDS_STATISTICS`` :ref:`CMake option <cmake_options>` by default.
+
+This release includes the following **improvements**:
+
+1. CI improvements:
+    1. Add address sanitizer job for Fast DDS library.
+    2. Add address sanitizer job for Discovery Server test suite.
+2. Upgrade Fast CDR submodule.
+
+This release includes the following **bugfixes**:
+
+1. Synchronization fixes:
+    1. Fix deadlock when removing remote DomainParticipants by expired liveliness when using Security.
+    2. Protect :cpp:func:`DomainParticipant::set_listener()<eprosima::fastdds::dds::DomainParticipant::set_listener>`
+       avoiding null reference.
+    3. Fix data race on ``WriterProxy::stop`` while TimedEvent is being triggered.
+    4. Protect creation/destruction of Boost's ``named_mutex``.
+2. CI fixes:
+    1. Fix Statistics Module test suite.
+    2. Fix recurring data races in test suite.
+    3. Fix thread sanitizer job keeping Ubuntu 20.04.
+3. Other:
+    1. Fix Topic creation when registering a type name different from the internal TypeSupport name.
+    2. Fix communication with asymmetric :ref:`discovery_ignore_flags`.
+    3. Several dependencies fixes upgrading to Ubuntu 22.04.
+    4. Disable error logged when DomainParticipant profile is not found.
+    5. Fix CMake for Fast DDS use as submodule.
+    6. Upgrade internal type supports generated with Fast DDS-Gen v2.3.0.
+    7. Other minor fixes.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

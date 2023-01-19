@@ -33,6 +33,7 @@ booleans
 bugfixes
 cancelled
 Cannonical
+CCache
 CDR
 centric
 Centric
@@ -90,6 +91,7 @@ fastcdr
 fastdds
 fastddsgen
 foonathan
+fuzzer
 GCC
 GCM
 getter

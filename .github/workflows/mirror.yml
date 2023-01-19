@@ -13,6 +13,7 @@ jobs:
       matrix:
         dest_branch:
           - '2.9.x'
+          - '2.10.x'
     steps:
     - name: Mirror action step
       id: mirror

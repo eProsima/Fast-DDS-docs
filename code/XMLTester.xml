@@ -566,7 +566,11 @@
         <rtps>
             <builtin>
                 <metatrafficUnicastLocatorList>
-                    <locator/>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.0.1</address>
+                        </udpv4>
+                    </locator>
                 </metatrafficUnicastLocatorList>
                 <initialPeersList>
                     <locator>
@@ -1506,21 +1510,27 @@
     <metatrafficUnicastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <udpv4/>
+            <udpv4>
+                <address>192.168.0.1</address>
+            </udpv4>
         </locator>
     </metatrafficUnicastLocatorList>
 
     <metatrafficMulticastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <udpv4/>
+            <udpv4>
+                <address>192.168.0.1</address>
+            </udpv4>
         </locator>
     </metatrafficMulticastLocatorList>
 
     <initialPeersList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <udpv4/>
+            <udpv4>
+                <address>192.168.0.1</address>
+            </udpv4>
         </locator>
     </initialPeersList>
 
@@ -1582,14 +1592,18 @@
             <unicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
-                    <udpv4/>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </unicastLocatorList>
 
             <multicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
-                    <udpv4/>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </multicastLocatorList>
 
@@ -1652,14 +1666,18 @@
             <unicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
-                    <udpv4/>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </unicastLocatorList>
 
             <multicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
-                    <udpv4/>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </multicastLocatorList>
 
@@ -2627,7 +2645,9 @@
                     <discoveryServersList>
                         <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
                             <metatrafficUnicastLocatorList>
-                                <locator/>
+                                <locator>
+                                    <updv4/>
+                                </locator>
                             </metatrafficUnicastLocatorList>
                         </RemoteServer>
                     </discoveryServersList>

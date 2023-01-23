@@ -3,7 +3,6 @@
 <profiles>
 <!-->PUBSUB_API_CONF_PARTICIPANT<-->
 <participant profile_name="participant_xml_conf_profile">
-    <domainId>80</domainId>
     <rtps>
         <name>my_participant</name>
     </rtps>
@@ -20,7 +19,6 @@
 
 <!-->PUBSUB_API_CONF_PARTICIPANT_DOMAIN<-->
 <participant profile_name="participant_xml_conf_domain_profile">
-    <domainId>80</domainId>
     <rtps>
     </rtps>
 </participant>
@@ -308,8 +306,8 @@
         <data_sharing>
             <kind>AUTOMATIC</kind>
             <domain_ids>
-                <domainId>0x1234</domainId>
-                <domainId>0xABCD</domainId>
+                <domainId>123</domainId>
+                <domainId>098</domainId>
             </domain_ids>
         </data_sharing>
     </qos>
@@ -320,8 +318,8 @@
         <data_sharing>
             <kind>AUTOMATIC</kind>
             <domain_ids>
-                <domainId>0x1234</domainId>
-                <domainId>0xABCD</domainId>
+                <domainId>123</domainId>
+                <domainId>098</domainId>
             </domain_ids>
         </data_sharing>
     </qos>
@@ -1563,7 +1561,6 @@
 </participant>
 
 <participant profile_name="part_builtin_example">
-<domainId>4</domainId> <!-- uint32 -->
 <rtps>
 <!-->XML-BUILTIN<-->
 <builtin>

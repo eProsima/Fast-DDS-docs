@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
-
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<profiles>
 <!-->PUBSUB_API_CONF_PARTICIPANT<-->
 <participant profile_name="participant_xml_conf_profile">
     <domainId>80</domainId>
@@ -3399,60 +3399,6 @@
 -->
 <!--><-->
 
-
-</profiles>
-
-<!-->LOG-CONFIG<-->
-<!--
-<?xml version="1.0" encoding="UTF-8" ?>
-<dds>
--->
-    <log>
-        <!--
-        Clear consumers
-        -->
-        <use_default>FALSE</use_default>
-
-        <!--
-        StdoutConsumer does not have any properties
-        -->
-        <consumer>
-            <class>StdoutConsumer</class>
-        </consumer>
-
-        <!--
-        StdoutErrConsumer with threshold set to Log::Kind::Error
-        -->
-        <consumer>
-            <class>StdoutErrConsumer</class>
-            <property>
-                <name>stderr_threshold</name>
-                <value>Log::Kind::Error</value>
-            </property>
-        </consumer>
-
-        <!--
-        FileConsumer openning "execution.log" in append mode
-        -->
-        <consumer>
-            <class>FileConsumer</class>
-            <property>
-                <name>filename</name>
-                <value>execution.log</value>
-            </property>
-            <property>
-                <name>append</name>
-                <value>TRUE</value>
-            </property>
-        </consumer>
-    </log>
-<!--
-</dds>
--->
-<!--><-->
-
-
-
 <!-->QoS Examples<-->
 
 <!-->XML_DEADLINE<-->
@@ -3957,42 +3903,6 @@
 <-->
 <!--><-->
 
-<!-->ROOTED_TYPES_START<-->
-<!-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-<-->
-    <types>
-        <type>
-            <!-- Type definition -->
-        </type>
-
-        <type>
-            <!-- Type definition -->
-            <!-- Type definition -->
-        </type>
-    </types>
-<!-->
-</dds>
-<-->
-<!-->ROOTED_TYPES_END<-->
-
-<!-->STANDALONE_TYPES_START<-->
-<!-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<-->
-<types>
-    <type>
-        <!-- Type definition -->
-    </type>
-
-    <type>
-        <!-- Type definition -->
-        <!-- Type definition -->
-    </type>
-</types>
-<!-->STANDALONE_TYPES_END<-->
-
 <!-->DDS_MULTICAST_DELIVERY<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -4009,3 +3919,93 @@
         </multicastLocatorList>
     </data_reader>
 <!--><-->
+
+
+
+</profiles>
+
+<!-->LOG-CONFIG<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <log>
+        <!--
+        Clear consumers
+        -->
+        <use_default>FALSE</use_default>
+
+        <!--
+        StdoutConsumer does not have any properties
+        -->
+        <consumer>
+            <class>StdoutConsumer</class>
+        </consumer>
+
+        <!--
+        StdoutErrConsumer with threshold set to Log::Kind::Error
+        -->
+        <consumer>
+            <class>StdoutErrConsumer</class>
+            <property>
+                <name>stderr_threshold</name>
+                <value>Log::Kind::Error</value>
+            </property>
+        </consumer>
+
+        <!--
+        FileConsumer openning "execution.log" in append mode
+        -->
+        <consumer>
+            <class>FileConsumer</class>
+            <property>
+                <name>filename</name>
+                <value>execution.log</value>
+            </property>
+            <property>
+                <name>append</name>
+                <value>TRUE</value>
+            </property>
+        </consumer>
+    </log>
+<!--
+</dds>
+-->
+<!--><-->
+
+<!-->ROOTED_TYPES_START<-->
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<-->
+    <types>
+        <type>
+            <!-- Type definition -->
+        </type>
+
+        <type>
+            <!-- Type definition -->
+            <!-- Type definition -->
+        </type>
+<!-->
+    </types>
+</dds>
+<-->
+<!-->ROOTED_TYPES_END<-->
+
+<!-->STANDALONE_TYPES_START<-->
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<types xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<-->
+    <type>
+        <!-- Type definition -->
+    </type>
+
+    <type>
+        <!-- Type definition -->
+        <!-- Type definition -->
+    </type>
+</types>
+<!-->STANDALONE_TYPES_END<-->
+</dds>

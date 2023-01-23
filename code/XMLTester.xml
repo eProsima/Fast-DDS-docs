@@ -1151,8 +1151,8 @@
 <!-->XML-TCP-TLS<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
         <transport_descriptors>
             <transport_descriptor>
@@ -1581,8 +1581,8 @@
 <!-->XML-DATAWRITER<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
         <data_writer profile_name="datawriter_profile_name">
             <topic>
@@ -1659,14 +1659,14 @@
         </data_writer>
 <!-->
     </profiles>
-<dds>
+</dds>
 <-->
 <!--><-->
 <!-->XML-SUBSCRIBER<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
         <data_reader profile_name="sub_profile_name">
             <topic>
@@ -1733,7 +1733,7 @@
         </data_reader>
 <!-->
     </profiles>
-<dds>
+</dds>
 <-->
 <!--><-->
 
@@ -3263,8 +3263,8 @@
 <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 -->
         <!-- DomainParticipant configuration -->
         <participant profile_name="persistence_service_participant">
@@ -3753,8 +3753,8 @@
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
         <transport_descriptors>
             <transport_descriptor>
@@ -3800,8 +3800,8 @@
 <!-->CREATING_XML_PROFILES<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
         <participant profile_name="participant_profile">
             <!-- ... -->

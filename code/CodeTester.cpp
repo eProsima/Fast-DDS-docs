@@ -150,18 +150,6 @@ void configuration_compilation_check()
     PublisherAttributes publisher_attr;
     SubscriberAttributes subscriber_attr;
 
-    //CONF-QOS-KEY
-    // Publisher-Subscriber Layer configuration.
-    publisher_attr.topic.topicKind = WITH_KEY;
-    //!--
-
-    //CONF-QOS-RESOURCELIMIT-INSTANCES
-    // Set the subscriber to remember and store up to 3 different keys.
-    subscriber_attr.topic.resourceLimitsQos.max_instances = 3;
-    // Hold a maximum of 20 samples per key.
-    subscriber_attr.topic.resourceLimitsQos.max_samples_per_instance = 20;
-    //!--
-
     {
         //CONF-QOS-PARTITIONS
         PublisherAttributes pub_11_attr;
@@ -1113,25 +1101,10 @@ void pubsub_api_example_participant_configuration()
         //!--
     }
 
-    //PUBSUB_API_CONF_PUBSUB_TOPIC
-    publisher_attr.topic.topicDataType = "HelloWorldType";
-    publisher_attr.topic.topicName = "HelloWorldTopic";
-
-    subscriber_attr.topic.topicDataType = "HelloWorldType";
-    subscriber_attr.topic.topicName = "HelloWorldTopic";
-    //!--
-
     //PUBSUB_API_CONF_PUBSUB_RELIABILITY
     publisher_attr.qos.m_reliability.kind = RELIABLE_RELIABILITY_QOS;
 
     subscriber_attr.qos.m_reliability.kind = BEST_EFFORT_RELIABILITY_QOS;
-    //!--
-
-    //PUBSUB_API_CONF_PUBSUB_HISTORY
-    publisher_attr.topic.historyQos.kind = KEEP_ALL_HISTORY_QOS;
-
-    subscriber_attr.topic.historyQos.kind =   KEEP_LAST_HISTORY_QOS;
-    subscriber_attr.topic.historyQos.depth = 5;
     //!--
 
     //PUBSUB_API_CONF_PUBSUB_DURABILITY
@@ -1166,12 +1139,6 @@ void pubsub_api_example_participant_configuration()
 
     subscriber_attr.qos.m_liveliness.lease_duration = 1;
     subscriber_attr.qos.m_liveliness.kind = AUTOMATIC_LIVELINESS_QOS;
-    //!--
-
-    //PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS
-    publisher_attr.topic.resourceLimitsQos.max_samples = 200;
-
-    subscriber_attr.topic.resourceLimitsQos.max_samples = 200;
     //!--
 
     //PUBSUB_API_CONF_PUBSUB_UNICAST_LOCATORS

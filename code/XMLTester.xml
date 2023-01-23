@@ -34,22 +34,6 @@
 </participant>
 <!--><-->
 
-<!-->PUBSUB_API_CONF_PUBSUB_TOPIC<-->
-<data_writer profile_name="writer_xml_conf_topic_profile">
-    <topic>
-        <dataType>HelloWorldType</dataType>
-        <name>HelloWorldTopic</name>
-    </topic>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_topic_profile">
-    <topic>
-        <dataType>HelloWorldType</dataType>
-        <name>HelloWorldTopic</name>
-    </topic>
-</data_reader>
-<!--><-->
-
 <!-->CONF_QOS_STATIC_DISCOVERY_USERID<-->
 <data_writer profile_name="writer_xml_conf_static_discovery">
     <userDefinedID>3</userDefinedID>
@@ -75,25 +59,6 @@
             <kind>BEST_EFFORT</kind>
         </reliability>
     </qos>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_HISTORY<-->
-<data_writer profile_name="writer_xml_conf_history_profile">
-    <topic>
-        <historyQos>
-            <kind>KEEP_ALL</kind>
-        </historyQos>
-    </topic>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_history_profile">
-    <topic>
-        <historyQos>
-            <kind>KEEP_LAST</kind>
-            <depth>5</depth>
-        </historyQos>
-    </topic>
 </data_reader>
 <!--><-->
 
@@ -236,24 +201,6 @@
 </data_writer>
 <!--><-->
 
-<!-->PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS<-->
-<data_writer profile_name="writer_xml_conf_resource_limits_profile">
-    <topic>
-        <resourceLimitsQos>
-            <max_samples>200</max_samples>
-        </resourceLimitsQos>
-    </topic>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_resource_limits_profile">
-    <topic>
-        <resourceLimitsQos>
-            <max_samples>200</max_samples>
-        </resourceLimitsQos>
-    </topic>
-</data_reader>
-<!--><-->
-
 <!-->PUBSUB_API_CONF_PUBSUB_UNICAST_LOCATORS<-->
 <data_writer profile_name="writer_xml_conf_unicast_locators_profile">
     <unicastLocatorList>
@@ -326,35 +273,12 @@
 </data_reader>
 <!--><-->
 
-<!-->CONF-QOS-KEY<-->
-<data_writer profile_name="writer_profile_qos_key">
-    <topic>
-        <kind>WITH_KEY</kind>
-    </topic>
-</data_writer>
-<!--><-->
-
-<!-->CONF-QOS-RESOURCELIMIT-INSTANCES<-->
-<data_reader profile_name="reader_profile_qos_resourcelimit">
-    <topic>
-        <resourceLimitsQos>
-            <max_instances>3</max_instances>
-            <max_samples_per_instance>20</max_samples_per_instance>
-        </resourceLimitsQos>
-    </topic>
-</data_reader>
-<!--><-->
-
 <!-->CONF-QOS-PARTITIONS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
     <data_writer profile_name="pub_11">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -366,10 +290,6 @@
     </data_writer>
 
     <data_writer profile_name="pub_12">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -379,18 +299,7 @@
         </qos>
     </data_writer>
 
-    <data_writer profile_name="pub_21">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
-    </data_writer>
-
     <data_writer profile_name="pub_22">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -401,10 +310,6 @@
     </data_writer>
 
     <data_reader profile_name="subs_31">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -415,10 +320,6 @@
     </data_reader>
 
     <data_reader profile_name="subs_32">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -429,10 +330,6 @@
     </data_reader>
 
     <data_reader profile_name="subs_33">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -440,13 +337,6 @@
                 </names>
             </partition>
         </qos>
-    </data_reader>
-
-    <data_reader profile_name="subs_34">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
     </data_reader>
 <!--><-->
 
@@ -1653,10 +1543,6 @@
     <profiles>
 <-->
         <data_writer profile_name="datawriter_profile_name">
-            <topic>
-                <!-- TOPIC_TYPE -->
-            </topic>
-
             <qos>
                 <!-- QOS -->
             </qos>
@@ -1737,10 +1623,6 @@
     <profiles>
 <-->
         <data_reader profile_name="sub_profile_name">
-            <topic>
-                <!-- TOPIC_TYPE -->
-            </topic>
-
             <qos>
                 <!-- QOS -->
             </qos>
@@ -1911,9 +1793,8 @@
 </rtps>
 </participant>
 
-<data_writer profile_name="pub_topic_qos">
 <!-->XML-TOPIC<-->
-<topic>
+<topic profile_name="topic_example">
     <historyQos>
         <kind>KEEP_LAST</kind>
         <depth>20</depth>
@@ -1927,7 +1808,9 @@
     </resourceLimitsQos>
 </topic>
 <!--><-->
+
 <!-->XML-QOS<-->
+<data_writer profile_name="pub_topic_qos">
 <qos> <!-- writerQosPoliciesType -->
     <data_sharing>
         <kind>AUTOMATIC</kind>
@@ -2217,35 +2100,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <data_writer profile_name="data_writer_min_samples">
-        <topic>
-            <historyQos>
-                <kind>KEEP_LAST</kind>
-                <depth>1</depth>
-            </historyQos>
-            <resourceLimitsQos>
-                <max_samples>1</max_samples>
-                <max_instances>1</max_instances>
-                <max_samples_per_instance>1</max_samples_per_instance>
-                <allocated_samples>0</allocated_samples>
-            </resourceLimitsQos>
-        </topic>
-    </data_writer>
-
-    <data_reader profile_name="data_writer_min_samples">
-        <topic>
-            <historyQos>
-                <kind>KEEP_LAST</kind>
-                <depth>1</depth>
-            </historyQos>
-            <resourceLimitsQos>
-                <max_samples>1</max_samples>
-                <max_instances>1</max_instances>
-                <max_samples_per_instance>1</max_samples_per_instance>
-                <allocated_samples>0</allocated_samples>
-            </resourceLimitsQos>
-        </topic>
-    </data_reader>
+    <topic profile_name="topic_min_samples">
+        <historyQos>
+            <kind>KEEP_LAST</kind>
+            <depth>1</depth>
+        </historyQos>
+        <resourceLimitsQos>
+            <max_samples>1</max_samples>
+            <max_instances>1</max_instances>
+            <max_samples_per_instance>1</max_samples_per_instance>
+            <allocated_samples>0</allocated_samples>
+        </resourceLimitsQos>
+    </topic>
 <!--><-->
 
 <!-->CONF-MEMORY-QOS-ENDPOINTS<-->
@@ -2544,11 +2410,12 @@
         </rtps>
     </participant>
 
+    <topic profile_name="uc_topic_xml_conf_static_discovery">
+        <name>HelloWorldTopic</name>
+        <dataType>HelloWorld</dataType>
+    </topic>
+
     <data_writer profile_name="uc_publisher_xml_conf_static_discovery">
-        <topic>
-            <name>HelloWorldTopic</name>
-            <dataType>HelloWorld</dataType>
-        </topic>
         <userDefinedID>1</userDefinedID>
         <entityID>2</entityID>
     </data_writer>
@@ -2570,11 +2437,12 @@
         </rtps>
     </participant>
 
+    <topic profile_name="uc_topic_xml_conf_static_discovery">
+        <name>HelloWorldTopic</name>
+        <dataType>HelloWorld</dataType>
+    </topic>
+
     <data_reader profile_name="uc_subscriber_xml_conf_static_discovery">
-        <topic>
-            <name>HelloWorldTopic</name>
-            <dataType>HelloWorld</dataType>
-        </topic>
         <userDefinedID>3</userDefinedID>
         <entityID>4</entityID>
     </data_reader>
@@ -3189,16 +3057,17 @@
             </rtps>
         </participant>
 
+        <!-- Configure History QoS as KEEP_LAST 20 -->
+        <!-- History depth depends on the user application constraints (publication rate for instance) -->
+        <topic profile_name="GENERIC_STATISTICS_TOPIC_PROFILE">
+            <historyQos>
+                <kind>KEEP_LAST</kind>
+                <depth>20</depth>
+            </historyQos>
+        </topic>
+
         <!-- Generic profile for all the statistics DataWriter -->
-        <data_writer profile_name="GENERIC_STATISTICS_PROFILE">
-            <!-- Configure History QoS as KEEP_LAST 20 -->
-            <!-- History depth depends on the user application constraints (publication rate for instance) -->
-            <topic>
-                <historyQos>
-                    <kind>KEEP_LAST</kind>
-                    <depth>20</depth>
-                </historyQos>
-            </topic>
+        <data_writer profile_name="GENERIC_STATISTICS_WRITER_PROFILE">
             <!-- Enable pull mode -->
             <propertiesPolicy>
                 <properties>
@@ -3249,16 +3118,17 @@
             </rtps>
         </participant>
 
+        <!-- Configure History QoS as KEEP_LAST 20 -->
+        <!-- History depth depends on the user application constraints (publication rate for instance) -->
+        <topic profile_name="HISTORY_LATENCY_TOPIC">
+            <historyQos>
+                <kind>KEEP_LAST</kind>
+                <depth>20</depth>
+            </historyQos>
+        </topic>
+
         <!-- Generic profile for a specific statistics DataWriters -->
-        <data_writer profile_name="HISTORY_LATENCY_TOPIC">
-            <!-- Configure History QoS as KEEP_LAST 20 -->
-            <!-- History depth depends on the user application constraints (publication rate for instance) -->
-            <topic>
-                <historyQos>
-                    <kind>KEEP_LAST</kind>
-                    <depth>20</depth>
-                </historyQos>
-            </topic>
+        <data_writer profile_name="HISTORY_LATENCY_WRITER">
             <!-- Enable pull mode -->
             <propertiesPolicy>
                 <properties>
@@ -3423,7 +3293,7 @@
 <!--><-->
 
 <!-->XML-HISTORY<-->
-<topic>
+<topic profile_name="topic_history_qos">
     <historyQos>
         <kind>KEEP_LAST</kind> <!-- string -->
         <depth>20</depth> <!-- uint32 -->
@@ -3503,27 +3373,14 @@
 <!--><-->
 
 <!-->XML_RESOURCE_LIMITS<-->
-<data_writer profile_name="writer_xml_conf_resource_limits_profile">
-    <topic>
-        <resourceLimitsQos>
-            <max_samples>200</max_samples>
-            <max_instances>20</max_instances>
-            <max_samples_per_instance>100</max_samples_per_instance>
-            <allocated_samples>50</allocated_samples>
-        </resourceLimitsQos>
-    </topic>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_resource_limits_profile">
-    <topic>
-        <resourceLimitsQos>
-            <max_samples>200</max_samples>
-            <max_instances>20</max_instances>
-            <max_samples_per_instance>100</max_samples_per_instance>
-            <allocated_samples>50</allocated_samples>
-        </resourceLimitsQos>
-    </topic>
-</data_reader>
+<topic profile_name="topic_xml_conf_resource_limits_profile">
+    <resourceLimitsQos>
+        <max_samples>200</max_samples>
+        <max_instances>20</max_instances>
+        <max_samples_per_instance>100</max_samples_per_instance>
+        <allocated_samples>50</allocated_samples>
+    </resourceLimitsQos>
+</topic>
 <!--><-->
 
 <!-->XML_PROPERTY_POLICY<-->

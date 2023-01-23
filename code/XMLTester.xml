@@ -86,6 +86,7 @@
         <lifespan>
             <duration>
                 <sec>1</sec>
+                <nanosec>0</nanosec>
             </duration>
         </lifespan>
     </qos>
@@ -96,6 +97,7 @@
         <lifespan>
             <duration>
                 <sec>1</sec>
+                <nanosec>0</nanosec>
             </duration>
         </lifespan>
     </qos>
@@ -109,6 +111,7 @@
             <enabled>true</enabled>
             <duration>
                 <sec>1</sec>
+                <nanosec>0</nanosec>
             </duration>
         </disablePositiveAcks>
     </qos>
@@ -129,6 +132,7 @@
         <deadline>
             <period>
                 <sec>1</sec>
+                <nanosec>0</nanosec>
             </period>
         </deadline>
     </qos>
@@ -139,6 +143,7 @@
         <deadline>
             <period>
                 <sec>1</sec>
+                <nanosec>0</nanosec>
             </period>
         </deadline>
     </qos>
@@ -148,16 +153,17 @@
 <!-->PUBSUB_API_CONF_PUBSUB_LIVELINESS<-->
 <data_writer profile_name="writer_xml_conf_liveliness_profile">
     <qos>
-      <liveliness>
-	<announcement_period>
-	  <sec>0</sec>
-	  <nanosec>1000000</nanosec>
-	</announcement_period>
-        <lease_duration>
-          <sec>1</sec>
-        </lease_duration>
-	<kind>AUTOMATIC</kind>
-      </liveliness>
+        <liveliness>
+            <announcement_period>
+                <sec>0</sec>
+                <nanosec>1000000</nanosec>
+            </announcement_period>
+            <lease_duration>
+                <sec>1</sec>
+                <nanosec>0</nanosec>
+            </lease_duration>
+            <kind>AUTOMATIC</kind>
+        </liveliness>
     </qos>
 </data_writer>
 
@@ -166,6 +172,7 @@
         <liveliness>
             <lease_duration>
                 <sec>1</sec>
+                <nanosec>0</nanosec>
             </lease_duration>
 	    <kind>AUTOMATIC</kind>
         </liveliness>
@@ -786,9 +793,11 @@
             <discovery_config>
                 <leaseDuration>
                     <sec>5</sec>
+                    <nanosec>0</nanosec>
                 </leaseDuration>
                 <leaseAnnouncement>
                     <sec>2</sec>
+                    <nanosec>0</nanosec>
                 </leaseAnnouncement>
             </discovery_config>
         </builtin>
@@ -1482,6 +1491,7 @@
             <!-- INITIAL_ANNOUNCEMENTS -->
             <count>10</count>
             <period>
+                <sec>0</sec>
                 <nanosec>50</nanosec>
             </period>
         </initialAnnouncements>
@@ -1777,12 +1787,8 @@
 <discovery_config>
     <leaseDuration>
         <sec>DURATION_INFINITY</sec>
+        <nanosec>0</nanosec>
     </leaseDuration>
-
-    <leaseDuration>
-        <nanosec>856000</nanosec>
-    </leaseDuration>
-
     <leaseAnnouncement>
         <sec>1</sec>
         <nanosec>856000</nanosec>
@@ -1825,6 +1831,7 @@
     <deadline>
         <period>
             <sec>1</sec>
+            <nanosec>0</nanosec>
         </period>
     </deadline>
 
@@ -1835,6 +1842,7 @@
         <enabled>true</enabled>
         <duration>
             <sec>1</sec>
+            <nanosec>0</nanosec>
         </duration>
     </disablePositiveAcks>
 
@@ -1846,12 +1854,14 @@
     <latencyBudget>
         <duration>
             <sec>1</sec>
+            <nanosec>0</nanosec>
         </duration>
     </latencyBudget>
 
     <lifespan>
         <duration>
             <sec>1</sec>
+            <nanosec>0</nanosec>
         </duration>
     </lifespan>
 
@@ -1860,10 +1870,12 @@
 
         <lease_duration>
             <sec>1</sec>
+            <nanosec>0</nanosec>
         </lease_duration>
 
         <announcement_period>
             <sec>1</sec>
+            <nanosec>0</nanosec>
         </announcement_period>
     </liveliness>
 
@@ -1892,6 +1904,7 @@
         <kind>BEST_EFFORT</kind>
         <max_blocking_time>
             <sec>1</sec>
+            <nanosec>0</nanosec>
         </max_blocking_time>
     </reliability>
 </qos>
@@ -1924,9 +1937,11 @@
     <kind>AUTOMATIC</kind>
     <lease_duration>
         <sec>DURATION_INFINITY</sec>
+        <nanosec>0</nanosec>
     </lease_duration>
     <announcement_period>
         <sec>DURATION_INFINITY</sec>
+        <nanosec>0</nanosec>
     </announcement_period>
 </liveliness>
 <!--><-->
@@ -2732,6 +2747,7 @@
                 <discovery_config>
                     <clientAnnouncementPeriod>
                         <!-- change default to 250 ms -->
+                        <sec>0</sec>
                         <nanosec>250000000</nanosec>
                     </clientAnnouncementPeriod>
                 </discovery_config>
@@ -2848,6 +2864,7 @@
                     </discoveryServersList>
                     <!-- Set ping period to 250 ms -->
                     <clientAnnouncementPeriod>
+                        <sec>0</sec>
                         <nanosec>250000000</nanosec>
                     </clientAnnouncementPeriod>
                 </discovery_config>

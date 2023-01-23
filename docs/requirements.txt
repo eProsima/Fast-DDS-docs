@@ -12,3 +12,4 @@ sphinxcontrib-imagehelper==1.1.1
 sphinxcontrib-plantuml==0.22
 sphinxcontrib.spelling==7.2.1
 vcstool==0.3.0
+xmlschema==2.1.1

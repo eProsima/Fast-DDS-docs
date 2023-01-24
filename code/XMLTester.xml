@@ -1551,8 +1551,14 @@
 
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
+            <!-- PROPERTIES_POLICY -->
             <propertiesPolicy>
-                <!-- PROPERTIES_POLICY -->
+                <properties>
+                    <property>
+                        <name>PropertyName</name>
+                        <value>PropertyValue</value>
+                    </property>
+                </properties>
             </propertiesPolicy>
 
             <userDefinedID>55</userDefinedID>
@@ -1627,8 +1633,14 @@
 
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
+            <!-- PROPERTIES_POLICY -->
             <propertiesPolicy>
-                <!-- PROPERTIES_POLICY -->
+                <properties>
+                    <property>
+                        <name>PropertyName</name>
+                        <value>PropertyValue</value>
+                    </property>
+                </properties>
             </propertiesPolicy>
 
             <userDefinedID>55</userDefinedID>

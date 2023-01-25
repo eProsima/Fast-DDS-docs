@@ -201,7 +201,7 @@
                     <!-- LOCATOR_LIST -->
                 </initialPeersList>
 
-                <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename> <!-- string -->
+                <static_edp_xml_config>filename.xml</static_edp_xml_config> <!-- string -->
 
                 <readerHistoryMemoryPolicy>PREALLOCATED</readerHistoryMemoryPolicy> <!-- historyMemoryPolicyType PREALLOCATED | PREALLOCATED_WITH_REALLOC | DYNAMIC | DYNAMIC_REUSABLE -->
 

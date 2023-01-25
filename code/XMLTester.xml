@@ -1432,7 +1432,7 @@
             </period>
         </initialAnnouncements>
 
-        <staticEndpointXMLFilename>file://filename.xml</staticEndpointXMLFilename>
+        <static_edp_xml_config>file://filename.xml</static_edp_xml_config>
     </discovery_config>
 
     <avoid_builtin_multicast>true</avoid_builtin_multicast>
@@ -2381,7 +2381,7 @@
             <builtin>
                 <discovery_config>
                     <EDP>STATIC</EDP>
-                    <staticEndpointXMLFilename>file://HelloWorldSubscriber.xml</staticEndpointXMLFilename>
+                    <static_edp_xml_config>file://HelloWorldSubscriber.xml</static_edp_xml_config>
                 </discovery_config>
             </builtin>
         </rtps>
@@ -2408,7 +2408,7 @@
             <name>HelloWorldSubscriber</name>
             <builtin>
                 <discovery_config>
-                    <staticEndpointXMLFilename>file://HelloWorldPublisher.xml</staticEndpointXMLFilename>
+                    <static_edp_xml_config>file://HelloWorldPublisher.xml</static_edp_xml_config>
                 </discovery_config>
             </builtin>
         </rtps>
@@ -2569,8 +2569,8 @@
     <rtps>
         <builtin>
             <discovery_config>
-                <staticEndpointXMLFilename>file://RemotePublisher.xml</staticEndpointXMLFilename>
-                <staticEndpointXMLFilename>file://RemoteSubscriber.xml</staticEndpointXMLFilename>
+                <static_edp_xml_config>file://RemotePublisher.xml</static_edp_xml_config>
+                <static_edp_xml_config>file://RemoteSubscriber.xml</static_edp_xml_config>
             </discovery_config>
         </builtin>
     </rtps>

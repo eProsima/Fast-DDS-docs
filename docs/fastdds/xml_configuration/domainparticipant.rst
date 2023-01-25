@@ -305,7 +305,7 @@ configurable settings.
 |                                 | If set to ``STATIC``, |EDPStatic| will be |br| | ``STATIC``          |             |
 |                                 | performed, configured with the contents |br|   |                     |             |
 |                                 | of the XML file set in                         |                     |             |
-|                                 | ``<staticEndpointXMLFilename>``. |br|          |                     |             |
+|                                 | ``<static_edp_xml_config>``. |br|              |                     |             |
 |                                 | See :ref:`discovery`.                          |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<simpleEDP>``                 | Attributes of the Simple Discovery |br|        | :ref:`sedp`         |             |
@@ -327,7 +327,7 @@ configurable settings.
 |                                 | |br| discovery messages.                       |                     |             |
 |                                 | See :ref:`Initial Announcements`.              |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<staticEndpointXMLFilename>`` | The XML filename with the static EDP |br|      | ``string``          |             |
+| ``<static_edp_xml_config>``     | The XML filename with the static EDP |br|      | ``string``          |             |
 |                                 | configuration. Only necessary if |br|          |                     |             |
 |                                 | the ``<EDP>`` member is set to |br|            |                     |             |
 |                                 | ``STATIC``. See :ref:`discovery_static`.       |                     |             |

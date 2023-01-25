@@ -168,7 +168,7 @@
                                 <nanosec>50</nanosec>
                             </period>
                         </initialAnnouncements>
-                        <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
+                        <static_edp_xml_config>filename.xml</static_edp_xml_config>
                     </discovery_config>
 
                     <avoid_builtin_multicast>true</avoid_builtin_multicast>

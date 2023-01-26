@@ -328,20 +328,6 @@
         </participant>
 
         <data_writer profile_name="datawriter_profile_example">
-            <topic>
-                <historyQos>
-                    <kind>KEEP_LAST</kind>
-                    <depth>20</depth>
-                </historyQos>
-                <resourceLimitsQos>
-                    <max_samples>5</max_samples>
-                    <max_instances>2</max_instances>
-                    <max_samples_per_instance>1</max_samples_per_instance>
-                    <allocated_samples>20</allocated_samples>
-                    <extra_samples>10</extra_samples>
-                </resourceLimitsQos>
-            </topic>
-
             <qos> <!-- dataWriterQosPoliciesType -->
                 <data_sharing>
                     <kind>AUTOMATIC</kind>
@@ -524,20 +510,6 @@
         </data_writer>
 
         <data_reader profile_name="datareader_profile_example">
-            <topic>
-                <historyQos>
-                    <kind>KEEP_LAST</kind>
-                    <depth>20</depth>
-                </historyQos>
-                <resourceLimitsQos>
-                    <max_samples>5</max_samples>
-                    <max_instances>2</max_instances>
-                    <max_samples_per_instance>1</max_samples_per_instance>
-                    <allocated_samples>20</allocated_samples>
-                    <extra_samples>10</extra_samples>
-                </resourceLimitsQos>
-            </topic>
-
             <qos> <!-- dataReaderQosPoliciesType -->
                 <data_sharing>
                     <kind>AUTOMATIC</kind>
@@ -704,6 +676,20 @@
                 <increment>0</increment>
             </matchedPublishersAllocation>
         </data_reader>
+
+        <topic profile_name="topic_profile_example">
+            <historyQos>
+                <kind>KEEP_LAST</kind>
+                <depth>20</depth>
+            </historyQos>
+            <resourceLimitsQos>
+                <max_samples>5</max_samples>
+                <max_instances>2</max_instances>
+                <max_samples_per_instance>1</max_samples_per_instance>
+                <allocated_samples>20</allocated_samples>
+                <extra_samples>10</extra_samples>
+            </resourceLimitsQos>
+        </topic>
     </profiles>
 
     <log>

@@ -105,6 +105,7 @@ lifecycle
 localhost
 LogTopic
 loopback
+lossy
 lroundl
 macOS
 mandatorily

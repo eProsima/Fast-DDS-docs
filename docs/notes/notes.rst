@@ -1,31 +1,20 @@
 .. _release_notes:
 
-Version 2.1.2
+Version 2.1.3
 =============
 
 This release includes the following **improvements**:
 
-1. Allow fully qualified name in TypeDescriptor.
-1. Use native inter-process on Windows.
-1. Support for GCC 12.
-1. Support of googletest using colcon.
+1. Improve rediscovery on lossy environments.
 
-This release also includes the following **bugfixes**:
+This release includes the following **bugfixes**:
 
-1. Fixed recovery of shared memory buffers.
-1. Fixed issues in LivelinessManager.
-1. Fixed default multicast locators.
-1. Fixed TCP issues.
-1. Fixed deadlocks and data races.
-1. Fixed deadline issue on volatile DataWriter.
-1. Avoid bad_node_size exception when cross-building.
-1. Fixed order of returned samples on topics with keys.
-1. Allow updating partitions to an empty set.
-1. Suppress OpenSSL 3.0 warnings.
-1. MemberDescriptor fully qualified name.
-1. Fixed history record issues with persistence.
-1. Fixed reconnection to Discovery Server.
-1. Other minor fixes.
+1. Fixed validation on ``ParameterPropertyList_t``.
+2. Fixed `SequenceNumberSet_t` deserialization.
+3. Add python3 dependency to package.xml.
+4. Fix data races when creating DataWriters.
+5. Fix deadlock when removing remote DomainParticipants by expired liveliness when using Security.
+6. Fix communication with asymmetric :ref:`discovery_ignore_flags`.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -35,6 +24,7 @@ This release also includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.1.2.rst
 .. include:: previous_versions/v2.1.1.rst
 .. include:: previous_versions/v2.1.0.rst
 .. include:: previous_versions/v2.0.2.rst

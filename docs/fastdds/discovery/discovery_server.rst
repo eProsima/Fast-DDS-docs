@@ -154,7 +154,7 @@ The examples below show how to manage the corresponding enum data member and XML
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->                                                                  |
 |    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-11                                                                                                  |
+|    :lines: 2-3,5-                                                                                                    |
 |    :append: </profiles>                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
 

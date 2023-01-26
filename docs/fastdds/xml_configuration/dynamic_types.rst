@@ -24,6 +24,7 @@ Below, an example of a stand-alone types definition via XML is shown.
     :language: xml
     :start-after: <!--STAND_ALONE_TYPES_START-->
     :end-before: <!--STAND_ALONE_TYPES_END-->
+    :lines: 2, 4-10, 12
 
 .. note::
 

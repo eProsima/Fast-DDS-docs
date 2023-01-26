@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
 <profiles>
-<!-->PUBSUB_API_CONF_PARTICIPANT<-->
-<participant profile_name="participant_xml_conf_profile">
-    <rtps>
-        <name>my_participant</name>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PARTICIPANT_NAME<-->
-<participant profile_name="participant_xml_conf_name_profile">
-    <rtps>
-        <name>my_participant</name>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PARTICIPANT_DOMAIN<-->
-<participant profile_name="participant_xml_conf_domain_profile">
-    <rtps>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PARTICIPANT_MUTATION_TRIES<-->
-<participant profile_name="participant_xml_conf_mutation_tries_profile">
-    <rtps>
-        <builtin>
-            <mutation_tries>55</mutation_tries>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
 
 <!-->CONF_QOS_STATIC_DISCOVERY_USERID<-->
 <data_writer profile_name="writer_xml_conf_static_discovery">
@@ -41,24 +9,6 @@
 
 <data_reader profile_name="reader_xml_conf_static_discovery">
     <userDefinedID>5</userDefinedID>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_RELIABILITY<-->
-<data_writer profile_name="writer_xml_conf_reliability_profile">
-    <qos>
-        <reliability>
-            <kind>RELIABLE</kind>
-        </reliability>
-    </qos>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_reliability_profile">
-    <qos>
-        <reliability>
-            <kind>BEST_EFFORT</kind>
-        </reliability>
-    </qos>
 </data_reader>
 <!--><-->
 
@@ -76,30 +26,6 @@
         <durability>
             <kind>VOLATILE</kind>
         </durability>
-    </qos>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_LIFESPAN<-->
-<data_writer profile_name="writer_xml_conf_lifespan_profile">
-    <qos>
-        <lifespan>
-            <duration>
-                <sec>1</sec>
-                <nanosec>0</nanosec>
-            </duration>
-        </lifespan>
-    </qos>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_lifespan_profile">
-    <qos>
-        <lifespan>
-            <duration>
-                <sec>1</sec>
-                <nanosec>0</nanosec>
-            </duration>
-        </lifespan>
     </qos>
 </data_reader>
 <!--><-->
@@ -122,30 +48,6 @@
         <disablePositiveAcks>
             <enabled>true</enabled>
         </disablePositiveAcks>
-    </qos>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_DEADLINE<-->
-<data_writer profile_name="writer_xml_conf_deadline_profile">
-    <qos>
-        <deadline>
-            <period>
-                <sec>1</sec>
-                <nanosec>0</nanosec>
-            </period>
-        </deadline>
-    </qos>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_deadline_profile">
-    <qos>
-        <deadline>
-            <period>
-                <sec>1</sec>
-                <nanosec>0</nanosec>
-            </period>
-        </deadline>
     </qos>
 </data_reader>
 <!--><-->
@@ -206,52 +108,6 @@
         </ownershipStrength>
     </qos>
 </data_writer>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_UNICAST_LOCATORS<-->
-<data_writer profile_name="writer_xml_conf_unicast_locators_profile">
-    <unicastLocatorList>
-        <locator>
-            <udpv4>
-                <port>7800</port>
-            </udpv4>
-        </locator>
-    </unicastLocatorList>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_unicast_locators_profile">
-    <unicastLocatorList>
-        <locator>
-            <udpv4>
-                <port>7800</port>
-            </udpv4>
-        </locator>
-    </unicastLocatorList>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_MULTICAST_LOCATORS<-->
-<data_writer profile_name="writer_xml_conf_multicast_locators_profile">
-    <multicastLocatorList>
-        <locator>
-            <udpv4>
-                <address>239.255.0.4</address>
-                <port>7900</port>
-            </udpv4>
-        </locator>
-    </multicastLocatorList>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_multicast_locators_profile">
-    <multicastLocatorList>
-        <locator>
-            <udpv4>
-                <address>239.255.0.4</address>
-                <port>7900</port>
-            </udpv4>
-        </locator>
-    </multicastLocatorList>
-</data_reader>
 <!--><-->
 
 <!-->CONF-QOS-DATASHARING<-->
@@ -584,25 +440,6 @@
     </participant>
 <!--><-->
 
-<!-->CONF-NON-BLOCKING-WRITE<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>non_blocking_transport</transport_id>
-        <type>UDPv4</type>
-        <non_blocking_send>false</non_blocking_send>
-    </transport_descriptor>
-</transport_descriptors>
-
-<participant profile_name="non_blocking_transport">
-    <rtps>
-        <userTransports>
-            <transport_id>non_blocking_transport</transport_id>
-        </userTransports>
-        <useBuiltinTransports>false</useBuiltinTransports>
-    </rtps>
-</participant>
-<!--><-->
-
 <!-->CONF-QOS-FLOWCONTROLLER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -623,18 +460,6 @@
 </data_writer>
 <!--><-->
 
-<!-->CONF-QOS-DISABLE-DISCOVERY<-->
-<participant profile_name="participant_profile_qos_disable_discovery">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>NONE</discoveryProtocol>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
-
 <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES<-->
 <participant profile_name="participant_profile_qos_discovery_edp">
     <rtps>
@@ -645,30 +470,6 @@
                     <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
                     <PUBREADER_SUBWRITER>false</PUBREADER_SUBWRITER>
                 </simpleEDP>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->CONF-QOS-DISCOVERY-SERVERLIST<-->
-<participant profile_name="participant_profile_qos_discovery_serverlist">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>CLIENT</discoveryProtocol>
-                <discoveryServersList>
-                    <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.2.65</address>
-                                    <port>5574</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                </discoveryServersList>
             </discovery_config>
         </builtin>
     </rtps>
@@ -721,27 +522,7 @@
 </participant>
 <!--><-->
 
-
-<!-->CONF-QOS-DISCOVERY-LEASEDURATION<-->
-<participant profile_name="participant_profile_qos_discovery_lease">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <leaseDuration>
-                    <sec>5</sec>
-                    <nanosec>0</nanosec>
-                </leaseDuration>
-                <leaseAnnouncement>
-                    <sec>2</sec>
-                    <nanosec>0</nanosec>
-                </leaseAnnouncement>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->CONF-QOS-INCREASE-SOCKETBUFFERS<-->
+<!--><CONF-QOS-INCREASE-SOCKETBUFFERS><-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
@@ -752,138 +533,6 @@
             <listenSocketBufferSize>4194304</listenSocketBufferSize>
         </rtps>
     </participant>
-<!--><-->
-
-<!-->SECURITY_CONF_ALL_PLUGINS<-->
-<participant profile_name="secure_participant_conf_all_plugin_xml_profile">
-    <rtps>
-        <propertiesPolicy>
-            <properties>
-                <!-- Activate Auth:PKI-DH plugin -->
-                <property>
-                    <name>dds.sec.auth.plugin</name>
-                    <value>builtin.PKI-DH</value>
-                </property>
-
-                <!-- Configure Auth:PKI-DH plugin -->
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
-                    <value>file://maincacert.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
-                    <value>file://appcert.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
-                    <value>file://appkey.pem</value>
-                </property>
-
-                <!-- Activate Access:Permissions plugin -->
-                <property>
-                    <name>dds.sec.access.plugin</name>
-                    <value>builtin.Access-Permissions</value>
-                </property>
-
-                <!-- Configure Access:Permissions plugin -->
-                <property>
-                    <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>
-                    <value>file://maincacet.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.access.builtin.Access-Permissions.governance</name>
-                    <value>file://governance.smime</value>
-                </property>
-                <property>
-                    <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
-                    <value>file://permissions.smime</value>
-                </property>
-
-                <!-- Activate Crypto:AES-GCM-GMAC plugin -->
-                <property>
-                    <name>dds.sec.crypto.plugin</name>
-                    <value>builtin.AES-GCM-GMAC</value>
-                </property>
-            </properties>
-        </propertiesPolicy>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->SECURITY_CONF_AUTH_AND_CRYPT_PLUGINS<-->
-<participant profile_name="secure_participant_conf_no_access_control_xml_profile">
-    <rtps>
-        <propertiesPolicy>
-            <properties>
-                <!-- Activate Auth:PKI-DH plugin -->
-                <property>
-                    <name>dds.sec.auth.plugin</name>
-                    <value>builtin.PKI-DH</value>
-                </property>
-
-                <!-- Configure Auth:PKI-DH plugin -->
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
-                    <value>file://maincacert.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
-                    <value>file://appcert.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
-                    <value>file://appkey.pem</value>
-                </property>
-
-                <!-- Activate Crypto:AES-GCM-GMAC plugin -->
-                <property>
-                    <name>dds.sec.crypto.plugin</name>
-                    <value>builtin.AES-GCM-GMAC</value>
-                </property>
-
-                <!-- Encrypt all RTPS submessages -->
-                <property>
-                    <name>rtps.participant.rtps_protection_kind</name>
-                    <value>ENCRYPT</value>
-                </property>
-            </properties>
-        </propertiesPolicy>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS<-->
-<data_writer profile_name="secure_publisher_xml_profile">
-    <propertiesPolicy>
-        <properties>
-            <!-- Encrypt RTPS submessages -->
-            <property>
-                <name>rtps.endpoint.submessage_protection_kind</name>
-                <value>ENCRYPT</value>
-            </property>
-
-            <!-- Encrypt payload -->
-            <property>
-                <name>rtps.endpoint.payload_protection_kind</name>
-                <value>ENCRYPT</value>
-            </property>
-        </properties>
-    </propertiesPolicy>
-</data_writer>
-<!--><-->
-
-<!-->SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS<-->
-<data_reader profile_name="secure_publisher_xml_profile">
-   <propertiesPolicy>
-      <properties>
-         <!-- Encrypt RTPS submessages -->
-         <property>
-            <name>rtps.endpoint.submessage_protection_kind</name>
-            <value>ENCRYPT</value>
-         </property>
-      </properties>
-   </propertiesPolicy>
-</data_reader>
 <!--><-->
 
 <!-->TRANSPORT-DESCRIPTORS<-->
@@ -1735,24 +1384,6 @@
 <!--><-->
 </qos>
 </data_writer>
-
-<data_reader profile_name="sub_liveliness">
-<qos>
-<!-->XML-LIVELINESS<-->
-<liveliness>
-    <kind>AUTOMATIC</kind>
-    <lease_duration>
-        <sec>DURATION_INFINITY</sec>
-        <nanosec>0</nanosec>
-    </lease_duration>
-    <announcement_period>
-        <sec>DURATION_INFINITY</sec>
-        <nanosec>0</nanosec>
-    </announcement_period>
-</liveliness>
-<!--><-->
-</qos>
-</data_reader>
 
 <!-->CONF-HISTORYMEMORYPOLICY-EXAMPLE<-->
     <data_writer profile_name="data_writer_historyMemoryPolicy">

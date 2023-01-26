@@ -1,0 +1,31 @@
+Version 2.1.2
+^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Allow fully qualified name in TypeDescriptor.
+2. Use native inter-process on Windows.
+3. Support for GCC 12.
+4. Support of googletest using colcon.
+
+This release also includes the following **bugfixes**:
+
+1. Fixed recovery of shared memory buffers.
+2. Fixed issues in LivelinessManager.
+3. Fixed default multicast locators.
+4. Fixed TCP issues.
+5. Fixed deadlocks and data races.
+6. Fixed deadline issue on volatile DataWriter.
+7. Avoid bad_node_size exception when cross-building.
+8. Fixed order of returned samples on topics with keys.
+9. Allow updating partitions to an empty set.
+10. Suppress OpenSSL 3.0 warnings.
+11. MemberDescriptor fully qualified name.
+12. Fixed history record issues with persistence.
+13. Fixed reconnection to Discovery Server.
+14. Other minor fixes.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.

@@ -3613,7 +3613,7 @@
         <!--
         Clear consumers
         -->
-        <use_default>FALSE</use_default>
+        <use_default>false</use_default>
 
         <!--
         StdoutConsumer does not have any properties
@@ -3644,7 +3644,7 @@
             </property>
             <property>
                 <name>append</name>
-                <value>TRUE</value>
+                <value>true</value>
             </property>
         </consumer>
     </log>
@@ -3661,11 +3661,20 @@
     <types>
         <type>
             <!-- Type definition -->
+            <enum name="MyFirstEnum">
+                <enumerator name="A" value="0"/>
+            </enum>
         </type>
 
         <type>
             <!-- Type definition -->
+            <enum name="MySecondEnum">
+                <enumerator name="B" value="1"/>
+            </enum>
             <!-- Type definition -->
+            <enum name="MyThirdEnum">
+                <enumerator name="C"/>
+            </enum>
         </type>
 <!-->
     </types>
@@ -3680,11 +3689,20 @@
 <-->
     <type>
         <!-- Type definition -->
+        <enum name="MyFirstEnum">
+            <enumerator name="A" value="0"/>
+        </enum>
     </type>
 
     <type>
         <!-- Type definition -->
+        <enum name="MySecondEnum">
+            <enumerator name="B" value="1"/>
+        </enum>
         <!-- Type definition -->
+        <enum name="MyThirdEnum">
+            <enumerator name="C"/>
+        </enum>
     </type>
 <!-->
 </types>
@@ -3697,10 +3715,19 @@
 <-->
     <type>
         <!-- Type definition -->
+        <enum name="MyFirstEnum">
+            <enumerator name="A" value="0"/>
+        </enum>
     </type>
     <type>
         <!-- Type definition -->
+        <enum name="MySecondEnum">
+            <enumerator name="B" value="1"/>
+        </enum>
         <!-- Type definition -->
+        <enum name="MyThirdEnum">
+            <enumerator name="C"/>
+        </enum>
     </type>
 <!-->
 </types>
@@ -3718,7 +3745,7 @@
 
 <!-->XML-TYPEDEF<-->
 <typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-<typedef name="MyAliasArray" type="int32" arrayDimension="2,2"/>
+<typedef name="MyAliasArray" type="int32" arrayDimensions="2,2"/>
 <!--Complex map-->
 <typedef name="my_map_inner" type="int32" key_type="int32"/>
 <struct name="StructComplexMap">

@@ -2455,9 +2455,10 @@
         </rtps>
     </participant>
 
-    <topic profile_name="uc_topic_xml_conf_static_discovery">
-        <name>HelloWorldTopic</name>
-        <dataType>HelloWorld</dataType>
+    <topic profile_name="HelloWorldTopic">
+        <historyQos>
+            <kind>KEEP_LAST</kind>
+        </historyQos>
     </topic>
 
     <data_writer profile_name="uc_publisher_xml_conf_static_discovery">
@@ -2482,9 +2483,10 @@
         </rtps>
     </participant>
 
-    <topic profile_name="uc_topic_xml_conf_static_discovery">
-        <name>HelloWorldTopic</name>
-        <dataType>HelloWorld</dataType>
+    <topic profile_name="HelloWorldTopic">
+        <historyQos>
+            <kind>KEEP_LAST</kind>
+        </historyQos>
     </topic>
 
     <data_reader profile_name="uc_subscriber_xml_conf_static_discovery">
@@ -2658,7 +2660,9 @@
                         <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
                             <metatrafficUnicastLocatorList>
                                 <locator>
-                                    <updv4/>
+                                    <udpv4>
+                                        <address>192.168.0.1</address>
+                                    </udpv4>
                                 </locator>
                             </metatrafficUnicastLocatorList>
                         </RemoteServer>
@@ -2676,9 +2680,7 @@
 -->
     <participant profile_name="participant_server_guidprefix" >
         <rtps>
-            <prefix>
-                44.53.00.5f.45.50.52.4f.53.49.4d.41
-            </prefix>
+            <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
         </rtps>
     </participant>
 <!--><-->
@@ -2690,9 +2692,7 @@
 -->
     <participant profile_name="participant_guidprefix" >
         <rtps>
-            <prefix>
-                77.73.71.85.69.76.95.66.65.82.82.79
-            </prefix>
+            <prefix>77.73.71.85.69.76.95.66.65.82.82.79</prefix>
         </rtps>
     </participant>
 <!--><-->

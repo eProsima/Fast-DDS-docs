@@ -25,7 +25,7 @@ The following sections will show implementation examples for each of these profi
     :language: xml
     :start-after: <!-->CREATING_XML_PROFILES<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-28, 30-31
+    :lines: 2-4, 6-20, 22-31
 
 .. note::
 
@@ -92,7 +92,7 @@ approaches.
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->STANDALONE_TYPES_START<-->                                                                     |
 |    :end-before: <!-->STANDALONE_TYPES_END<-->                                                                        |
-|    :lines: 2-3, 4-                                                                                                     |
+|    :lines: 2-3, 5-12, 14                                                                                             |
 +----------------------------------------------------------------------------------------------------------------------+
 | **Rooted**                                                                                                           |
 +----------------------------------------------------------------------------------------------------------------------+
@@ -100,7 +100,7 @@ approaches.
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->ROOTED_TYPES_START<-->                                                                         |
 |    :end-before: <!-->ROOTED_TYPES_END<-->                                                                            |
-|    :lines: 2-3, 5-13, 15-16                                                                                             |
+|    :lines: 2-3, 5-13, 15-16                                                                                          |
 +----------------------------------------------------------------------------------------------------------------------+
 
 Modifying predefined XML profiles

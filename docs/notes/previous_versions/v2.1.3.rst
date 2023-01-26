@@ -1,0 +1,20 @@
+Version 2.1.3
+^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Improve rediscovery on lossy environments.
+
+This release includes the following **bugfixes**:
+
+1. Fixed validation on ``ParameterPropertyList_t``.
+2. Fixed ``SequenceNumberSet_t`` deserialization.
+3. Add python3 dependency to package.xml.
+4. Fix dataraces when creating DataWriters.
+5. Fix deadlock when removing remote DomainParticipants by expired liveliness when using Security.
+6. Fix communication with asymmetric :ref:`discovery_ignore_flags`.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.

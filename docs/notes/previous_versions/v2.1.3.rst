@@ -10,7 +10,7 @@ This release includes the following **bugfixes**:
 1. Fixed validation on ``ParameterPropertyList_t``.
 2. Fixed ``SequenceNumberSet_t`` deserialization.
 3. Add python3 dependency to package.xml.
-4. Fix dataraces when creating DataWriters.
+4. Fix data races when creating DataWriters.
 5. Fix deadlock when removing remote DomainParticipants by expired liveliness when using Security.
 6. Fix communication with asymmetric :ref:`discovery_ignore_flags`.
 

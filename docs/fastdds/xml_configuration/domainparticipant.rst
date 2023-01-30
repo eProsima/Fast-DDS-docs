@@ -151,6 +151,15 @@ These elements allow the user to define the DomainParticipant configuration.
        See :ref:`userdataqospolicy`.
      - ``List <string>``
      - Empty
+   * - ``<prefix>``
+     - |DomainParticipant|'s |GuidPrefix_t-api| identifies peers |br|
+       running in the same process. Two participants with identical |br|
+       8 first bytes on the |GuidPrefix_t-api| are considered to be |br|
+       running in the same process, and therefore intra-process |br|
+       delivery is used. See :ref:`intraprocess-delivery`.
+     - ``string``
+     - Empty
+
 
 **Example**
 
@@ -158,7 +167,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-85, 87
+    :lines: 2-3, 5-87, 89
 
 .. note::
 
@@ -288,13 +297,19 @@ configurable settings.
 +=================================+================================================+=====================+=============+
 | ``<discoveryProtocol>``         | Indicates which discovery protocol |br|        | |SIMPLE|            | |SIMPLE|    |
 |                                 | the DomainParticipant will use. |br|           +---------------------+             |
-|                                 | See :ref:`disc_mechanisms`.                    | |CLIENT|            |             |
-|                                 |                                                +---------------------+             |
-|                                 |                                                | |SERVER|            |             |
+|                                 | See :ref:`disc_mechanisms`. If set to  |br|    | |CLIENT|            |             |
+|                                 | |CLIENT|, ``<discoveryServersList>`` |br|      +---------------------+             |
+|                                 | element would be used.                         | |SERVER|            |             |
 |                                 |                                                +---------------------+             |
 |                                 |                                                | |BACKUP|            |             |
 |                                 |                                                +---------------------+             |
 |                                 |                                                | |NONE|              |             |
++---------------------------------+------------------------------------------------+---------------------+-------------+
+| ``<discoveryServersList>``      | Describes servers from which it receives |br|  | :ref:`discserverlst`|             |
+|                                 | only the discovery information they |br|       |                     |             |
+|                                 | require to establish communication with |br|   |                     |             |
+|                                 | matching endpoints. |br|                       |                     |             |
+|                                 | See :ref:`discovery_server` (**|CLIENT| only**)|                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<ignoreParticipantFlags>``    | Restricts metatraffic using several |br|       | :ref:`partfiltering`| |NO_FILTER| |
 |                                 | filtering criteria.                            |                     |             |
@@ -332,6 +347,54 @@ configurable settings.
 |                                 | the ``<EDP>`` member is set to |br|            |                     |             |
 |                                 | ``STATIC``. See :ref:`discovery_static`.       |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
+
+
+.. _discserverlst:
+
+discoveryServersList
+####################
+
+Contains a list of ``<RemoteServer>`` (*server*) elements, which are defined by the |GuidPrefix_t-api| and their own locator
+list which must be populated with |RemoteServerAttributes-api|. The DomainParticipant set as *client* would discover the
+*servers* described in this section.
+
+
+**Server attributes**
+
+The ``<RemoteServer>`` element has a mandatory attribute defined: ``prefix``.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Use
+   * - ``prefix``
+     - RTPS standard participant unique identifier, a 12-byte chain. |br|
+       This identifier allows clients to assess whether they are |br|
+       receiving messages from the right server.
+     - Mandatory
+
+**RemoteServer configuration**
+
+Each *client* must keep a list of locators associated to the *servers* to which it wants to link.
+Those locator would be defined as ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``.
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+   * - ``<metatrafficUnicastLocatorList>``
+     - Metatraffic Unicast Locator List.
+     - A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
+   * - ``<metatrafficMulticastLocatorList>``
+     - Metatraffic Multicast Locator List.
+     - A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
+
 
 .. _partfiltering:
 

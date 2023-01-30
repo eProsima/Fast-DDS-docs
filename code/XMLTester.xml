@@ -910,6 +910,8 @@
             <userData>
                 <value>13.40.37.00.CE</value>
             </userData>
+
+            <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
         </rtps>
     </participant>
 <!--
@@ -3265,6 +3267,14 @@
             <!-- ... -->
         </data_reader>
 
+        <topic profile_name="topic_profile">
+            <!-- ... -->
+        </topic>
+
+        <library_settings>
+            <!-- ... -->
+        </library_settings>
+
         <transport_descriptors>
             <!-- ... -->
         </transport_descriptors>
@@ -3272,11 +3282,15 @@
     </profiles>
 
     <log>
-
+<-->
+        <!-- ... -->
+<!-->
     </log>
 
     <types>
-
+<-->
+        <!-- ... -->
+<!-->
     </types>
 </dds>
 <-->

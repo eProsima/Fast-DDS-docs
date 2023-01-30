@@ -10,6 +10,10 @@ Creating an XML profiles file
 An XML file can contain several XML profiles.
 These XML profiles are defined within the ``<dds>`` element, and in turn, within the ``<profiles>`` XML elements.
 The possible topologies for the definition of XML profiles are specified in :ref:`rootedvsstandalone`.
+
+It is worth mentioning that the first element of the xml profile must have the ``xmlns`` tag with the
+link ``xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"``, in both rooted or standalone definitions.
+
 The available profile types are:
 
 * :ref:`participantprofiles`,
@@ -104,6 +108,11 @@ approaches.
 |    :end-before: <!-->ROOTED_TYPES_END<-->                                                                            |
 |    :lines: 2-3, 5-22, 24-25                                                                                          |
 +----------------------------------------------------------------------------------------------------------------------+
+
+.. note::
+
+    Make sure that the first element of the xml profile must have the ``xmlns`` tag with the link
+    ``xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"``, in both rooted or standalone definitions.
 
 Modifying predefined XML profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

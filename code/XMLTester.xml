@@ -3368,7 +3368,7 @@
 
 <!--STAND_ALONE_TYPES_START-->
 <!-->
-<types>
+<types xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 <-->
     <type>
         <!-- Type definition -->

@@ -66,6 +66,7 @@ Dependencies
 * :ref:`openssl_sl`
 * :ref:`libp11_sl`
 * :ref:`gtest_sl` [optional]
+* :ref:`pythonreq_sl` [optional]
 
 .. _asiotinyxml2_sl:
 
@@ -169,6 +170,20 @@ Also add the `Gtest repository <https://github.com/google/googletest>`_ into the
 .. code-block:: bash
 
     git clone https://github.com/google/googletest src/googletest-distribution
+
+
+.. _pythonreq_sl:
+
+XML validation tool
+^^^^^^^^^^^^^^^^^^^
+XML validation is a new command introduced to validate the XML profiles against an XSD schema.
+That ensures the proper characterization of the entities through the xml profiles.
+
+For more details, please refer to the :ref:`cli_xml` section.
+
+.. code-block:: bash
+
+    pip3 install xmlschema
 
 .. _colcon_installation_linux:
 

@@ -1307,6 +1307,10 @@
         <kind>VOLATILE</kind>
     </durability>
 
+    <groupData>
+        <value>1.a.2</value>
+    </groupData>
+
     <!-- QoS policy pending implementation -->
     <latencyBudget>
         <duration>
@@ -1364,6 +1368,14 @@
             <nanosec>0</nanosec>
         </max_blocking_time>
     </reliability>
+
+    <topicData>
+        <value>2.b.1</value>
+    </topicData>
+
+    <userData>
+        <value>3.c.0</value>
+    </userData>
 </qos>
 <!--><-->
 </data_writer>

@@ -309,7 +309,7 @@ configurable settings.
 |                                 | only the discovery information they |br|       |                     |             |
 |                                 | require to establish communication with |br|   |                     |             |
 |                                 | matching endpoints. |br|                       |                     |             |
-|                                 | See :ref:`discovery_server` (**|CLIENT| only**)|                     |             |
+|                                 | See :ref:`discovery_server` (**CLIENT only**)  |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<ignoreParticipantFlags>``    | Restricts metatraffic using several |br|       | :ref:`partfiltering`| |NO_FILTER| |
 |                                 | filtering criteria.                            |                     |             |
@@ -388,13 +388,21 @@ Those locator would be defined as ``metatrafficUnicastLocatorList`` or ``metatra
   * - Name
     - Description
     - Values
-   * - ``<metatrafficUnicastLocatorList>``
-     - Metatraffic Unicast Locator List.
-     - A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
-   * - ``<metatrafficMulticastLocatorList>``
-     - Metatraffic Multicast Locator List.
-     - A set of ``<locator>`` |br| members. |br| See :ref:`LocatorListType`
+  * - ``<metatrafficUnicastLocatorList>``
+    - Metatraffic Unicast Locator List.
+    - A set of ``<locator>`` members. |br| See :ref:`LocatorListType`
+  * - ``<metatrafficMulticastLocatorList>``
+    - Metatraffic Multicast Locator List.
+    - A set of ``<locator>`` members. |br| See :ref:`LocatorListType`
 
+**Example**
+
+.. literalinclude:: /../code/XMLTester.xml
+   :language: xml
+   :start-after: <!-->CONF_DS_MAIN_SCENARIO_CLIENT<-->
+   :end-before: <!--><-->
+   :lines: 2-3,5-
+   :append: </profiles>
 
 .. _partfiltering:
 

@@ -304,6 +304,9 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - ``<durability>``
     - See :ref:`durabilityqospolicy`.
     - :ref:`xml_durability`
+  * - ``<groupData>``
+    - See :ref:`groupqospolicy`.
+    - :ref:`xml_groupData`
   * - ``<latencyBudget>``
     - See :ref:`latencybudgetqospolicy`.
     - :ref:`xml_latencybudget`
@@ -328,6 +331,12 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - ``<reliability>``
     - See :ref:`reliabilityqospolicy`.
     - :ref:`xml_reliability`
+  * - ``<topicData>``
+    - See :ref:`topicdataqospolicy`.
+    - :ref:`xml_topicData`
+  * - ``<userData>``
+    - See :ref:`userdataqospolicy`.
+    - :ref:`xml_userData`
 
 **Example**
 
@@ -437,6 +446,25 @@ Durability
     - DataReaders: |VOLATILE-xml-api| |br|
       DataWriters: |TRANSIENT_LOCAL-xml-api| |br|
 
+
+.. _xml_groupData:
+
+GroupData
+"""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<value>``
+    - See :ref:`groupqospolicy`.
+    - ``string`` (std::vector<|octet-api|>)
+    - Empty
+
 .. _xml_latencybudget:
 
 LatencyBudget
@@ -535,6 +563,7 @@ PublishMode
 |                       |                                       | ``SYNCHRONOUS``  |                  |
 +-----------------------+---------------------------------------+------------------+------------------+
 
+
 .. _xml_reliability:
 
 ReliabilityQosPolicy
@@ -551,6 +580,46 @@ ReliabilityQosPolicy
 +------------------+-----------------------------------+-------------------------+-------------------------------------+
 | |max_block|      | See :ref:`reliabilityqospolicy`.  | :ref:`DurationType`     | 100 ms                              |
 +------------------+-----------------------------------+-------------------------+-------------------------------------+
+
+
+.. _xml_topicData:
+
+TopicData
+"""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<value>``
+    - See :ref:`topicdataqospolicy`.
+    - ``string`` (std::vector<|octet-api|>)
+    - Empty
+
+
+.. _xml_userData:
+
+UserData
+""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<value>``
+    - See :ref:`userdataqospolicy`.
+    - ``string`` (std::vector<|octet-api|>)
+    - Empty
+
+
 
 .. _historymemorypoliciesXML:
 

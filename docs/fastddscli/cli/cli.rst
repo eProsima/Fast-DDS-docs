@@ -339,3 +339,4 @@ structure. For further information see :ref:`making_xml_profiles`.
 .. code-block:: bash
 
     fastdds xml validate my_profile.xml -x fastRTPS_profiles.xsd
+

@@ -7,7 +7,8 @@
 Intra-process delivery profiles
 -------------------------------
 
-This section defines the XML elements available for configuring the :ref:`intraprocess-delivery` settings parameters in *Fast DDS*.
+This section defines the XML elements available for configuring the :ref:`intraprocess-delivery` settings
+parameters in *Fast DDS*.
 These elements are defined within the XML tag ``<library_settings>``.
 
 
@@ -38,3 +39,4 @@ The Intra-process delivery configuration is performed through the XML elements l
     :language: xml
     :start-after: <!-->CONF-LIBRARY-SETTINGS<-->
     :end-before: <!--><-->
+

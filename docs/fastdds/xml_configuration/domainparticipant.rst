@@ -354,9 +354,9 @@ configurable settings.
 discoveryServersList
 ####################
 
-Contains a list of ``<RemoteServer>`` (*server*) elements, which are defined by the |GuidPrefix_t-api| and their own locator
-list which must be populated with |RemoteServerAttributes-api|. The DomainParticipant set as *client* would discover the
-*servers* described in this section.
+Contains a list of ``<RemoteServer>`` (*server*) elements, which are defined by the |GuidPrefix_t-api| and their own
+locator list which must be populated with |RemoteServerAttributes-api|.
+The DomainParticipant set as *client* would discover the *servers* described in this section.
 
 
 **Server attributes**

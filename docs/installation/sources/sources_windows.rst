@@ -43,6 +43,7 @@ installed in the system:
 * :ref:`chocolatey_sw`
 * :ref:`cmake_pip3_wget_git_sw`
 * :ref:`gtest_sw` [optional]
+* :ref:`pythonreq_sw` [optional]
 
 .. _visual_studio_sw:
 
@@ -98,6 +99,20 @@ and add next argument to the `colcon` call
 .. code-block:: bash
 
     colcon build --cmake-args -Dgtest_force_shared_crt=ON
+
+
+.. _pythonreq_sw:
+
+XML validation tool
+^^^^^^^^^^^^^^^^^^^
+XML validation is a new command introduced to validate the XML profiles against an XSD schema.
+That ensures the proper characterization of the entities through the xml profiles.
+
+For more details, please refer to the :ref:`cli_xml` section.
+
+.. code-block:: bash
+
+    pip3 install xmlschema
 
 
 .. _dependencies_sw:

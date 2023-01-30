@@ -32,6 +32,8 @@ the :code:`install.sh` script with administrative privileges:
     By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the :ref:`linux_sources`
     page.
 
+    To use the :ref:`cli_xml` validation tool, please refer to the :ref:`linux_sources` page.
+
 .. _contents_bl:
 
 Contents

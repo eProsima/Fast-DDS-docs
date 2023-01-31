@@ -86,7 +86,7 @@ For *Request-Reply* communication perform the following steps:
            long long z;
        };
 
-2. In the client application creates a DataWriter for the request and a DataReader for the reply.
+2. In the client application, create a DataWriter for the request and a DataReader for the reply.
 
     .. literalinclude:: ../../../../code/DDSCodeTester.cpp
        :language: c++
@@ -94,7 +94,7 @@ For *Request-Reply* communication perform the following steps:
        :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_CREATE_ENTITIES
        :end-before: //!
 
-3. In the server application creates a DataWriter for the reply and a DataReader for the request.
+3. In the server application, create a DataWriter for the reply and a DataReader for the request.
 
     .. literalinclude:: ../../../../code/DDSCodeTester.cpp
        :language: c++
@@ -142,7 +142,7 @@ Identifying the reply for the client
 ------------------------------------
 
 When the client application receives a reply (for example through |DataReaderListener::on_data_available-api|),
-the client application should identify which reply is an answer for its request.
+the client application should identify if the received reply is the one expected for its request.
 For this the client application has to compare the stored |SampleIdentity-api| with the incoming
 |SampleInfo::related_sample_identity-api|.
 

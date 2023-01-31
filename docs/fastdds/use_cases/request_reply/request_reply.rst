@@ -129,8 +129,8 @@ it has to retrieve the request's identifier using |SampleInfo::sample_identity-a
    :start-after: //REQUEST_REPLY_EXAMPLE_SERVER_GET_ID
    :end-before: //!
 
-After processing the request, the server should send the reply and it have to be associated with the requestt assigning
-the stored identifier in |WriteParams-related_sample_identity-api|.
+After processing the request, the server should send the reply to the client with the related request attached.
+This is done assigning the stored identifier in |WriteParams-related_sample_identity-api|.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
    :language: c++
@@ -143,7 +143,7 @@ Identifying the reply for the client
 
 When the client application receives a reply (for example through |DataReaderListener::on_data_available-api|),
 the client application should identify which reply is an answer for its request.
-For this the client application have to compare the stored |SampleIdentity-api| with the incomming
+For this the client application has to compare the stored |SampleIdentity-api| with the incoming
 |SampleInfo::related_sample_identity-api|.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp

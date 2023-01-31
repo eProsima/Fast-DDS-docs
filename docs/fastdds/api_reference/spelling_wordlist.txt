@@ -35,6 +35,7 @@ DestinationOrderQosPolicy
 Destructor
 DisablePositiveACKsQosPolicy
 DiscoveryProtocol
+discoveryServersList
 DomainParticipant
 DomainParticipantListener
 doxygenfunction

@@ -9,7 +9,7 @@ This release includes the following **features** in an ABI compatible way:
 This release includes the following **improvements**:
 
 1. Thread sanitizer CI.
-2. Overload |DataReader::get_unread_count-api|.
+2. Overload :cpp:func:`get_unread_count()<eprosima::fastdds::dds::DataReader::get_unread_count>`.
 3. Improve read/take performance when using topic with a great number of keys.
 4. Improve rediscovery on lossy environments.
 5. New :ref:`CMake option<cmake_options>` `USE_THIRDPARTY_SHARED_MUTEX`.

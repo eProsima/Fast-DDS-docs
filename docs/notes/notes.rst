@@ -18,7 +18,7 @@ This release also includes the following **bugfixes**:
 1. Fix complex member printing for DynamicDataHelper.
 2. Add python3 dependency.
 3. Fix selection of output locators.
-4. Fix dataraces when creating DataWriters.
+4. Fix data races when creating DataWriters.
 5. Fix null dereferences on XML parser.
 6. Send GAPs correctly when using separate sending.
 7. Install Statistics IDL file.

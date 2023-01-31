@@ -908,7 +908,7 @@
             </allocation>
 
             <userData>
-                <value>13.40.37.00.CE</value>
+                <value>3.4.7.0.C</value>
             </userData>
 
             <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
@@ -1058,6 +1058,12 @@
     <profiles>
 <-->
         <data_writer profile_name="datawriter_profile_name">
+            <topic>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                </historyQos>
+            </topic>
+
             <qos>
                 <!-- QOS -->
             </qos>
@@ -1148,6 +1154,12 @@
     <profiles>
 <-->
         <data_reader profile_name="sub_profile_name">
+            <topic>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                </historyQos>
+            </topic>
+
             <qos>
                 <!-- QOS -->
             </qos>
@@ -1324,8 +1336,9 @@
 </rtps>
 </participant>
 
+<data_writer profile_name="topic_example">
 <!-->XML-TOPIC<-->
-<topic profile_name="topic_example">
+<topic>
     <historyQos>
         <kind>KEEP_LAST</kind>
         <depth>20</depth>
@@ -1339,6 +1352,7 @@
     </resourceLimitsQos>
 </topic>
 <!--><-->
+</data_writer>
 
 <!-->XML-QOS<-->
 <data_writer profile_name="pub_topic_qos">
@@ -1634,18 +1648,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <topic profile_name="topic_min_samples">
-        <historyQos>
-            <kind>KEEP_LAST</kind>
-            <depth>1</depth>
-        </historyQos>
-        <resourceLimitsQos>
-            <max_samples>1</max_samples>
-            <max_instances>1</max_instances>
-            <max_samples_per_instance>1</max_samples_per_instance>
-            <allocated_samples>0</allocated_samples>
-        </resourceLimitsQos>
-    </topic>
+    <data_writer profile_name="data_writer_min_samples">
+        <topic>
+            <historyQos>
+                <kind>KEEP_LAST</kind>
+                <depth>1</depth>
+            </historyQos>
+            <resourceLimitsQos>
+                <max_samples>1</max_samples>
+                <max_instances>1</max_instances>
+                <max_samples_per_instance>1</max_samples_per_instance>
+                <allocated_samples>0</allocated_samples>
+            </resourceLimitsQos>
+        </topic>
+    </data_writer>
+
+    <data_reader profile_name="data_reader_min_samples">
+        <topic>
+            <historyQos>
+                <kind>KEEP_LAST</kind>
+                <depth>1</depth>
+            </historyQos>
+            <resourceLimitsQos>
+                <max_samples>1</max_samples>
+                <max_instances>1</max_instances>
+                <max_samples_per_instance>1</max_samples_per_instance>
+                <allocated_samples>0</allocated_samples>
+            </resourceLimitsQos>
+        </topic>
+    </data_reader>
 <!--><-->
 
 <!-->CONF-MEMORY-QOS-ENDPOINTS<-->
@@ -1944,12 +1975,6 @@
         </rtps>
     </participant>
 
-    <topic profile_name="HelloWorldTopic">
-        <historyQos>
-            <kind>KEEP_LAST</kind>
-        </historyQos>
-    </topic>
-
     <data_writer profile_name="uc_publisher_xml_conf_static_discovery">
         <userDefinedID>1</userDefinedID>
         <entityID>2</entityID>
@@ -1971,12 +1996,6 @@
             </builtin>
         </rtps>
     </participant>
-
-    <topic profile_name="HelloWorldTopic">
-        <historyQos>
-            <kind>KEEP_LAST</kind>
-        </historyQos>
-    </topic>
 
     <data_reader profile_name="uc_subscriber_xml_conf_static_discovery">
         <userDefinedID>3</userDefinedID>
@@ -2595,17 +2614,16 @@
             </rtps>
         </participant>
 
-        <!-- Configure History QoS as KEEP_LAST 20 -->
-        <!-- History depth depends on the user application constraints (publication rate for instance) -->
-        <topic profile_name="GENERIC_STATISTICS_TOPIC_PROFILE">
-            <historyQos>
-                <kind>KEEP_LAST</kind>
-                <depth>20</depth>
-            </historyQos>
-        </topic>
-
         <!-- Generic profile for all the statistics DataWriter -->
         <data_writer profile_name="GENERIC_STATISTICS_WRITER_PROFILE">
+            <!-- Configure History QoS as KEEP_LAST 20 -->
+            <!-- History depth depends on the user application constraints (publication rate for instance) -->
+            <topic>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>20</depth>
+                </historyQos>
+            </topic>
             <!-- Enable pull mode -->
             <propertiesPolicy>
                 <properties>
@@ -2656,17 +2674,16 @@
             </rtps>
         </participant>
 
-        <!-- Configure History QoS as KEEP_LAST 20 -->
-        <!-- History depth depends on the user application constraints (publication rate for instance) -->
-        <topic profile_name="HISTORY_LATENCY_TOPIC">
-            <historyQos>
-                <kind>KEEP_LAST</kind>
-                <depth>20</depth>
-            </historyQos>
-        </topic>
-
         <!-- Generic profile for a specific statistics DataWriters -->
         <data_writer profile_name="HISTORY_LATENCY_WRITER">
+            <!-- Configure History QoS as KEEP_LAST 20 -->
+            <!-- History depth depends on the user application constraints (publication rate for instance) -->
+            <topic>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>20</depth>
+                </historyQos>
+            </topic>
             <!-- Enable pull mode -->
             <propertiesPolicy>
                 <properties>
@@ -2830,14 +2847,16 @@
 </data_reader>
 <!--><-->
 
+<data_writer profile_name="writer_xml_history_qos_profile">
 <!-->XML-HISTORY<-->
-<topic profile_name="topic_history_qos">
+<topic>
     <historyQos>
         <kind>KEEP_LAST</kind> <!-- string -->
         <depth>20</depth> <!-- uint32 -->
     </historyQos>
 </topic>
 <!--><-->
+</data_writer>
 
 
 <!-->XML_LIFESPAN<-->
@@ -2911,14 +2930,27 @@
 <!--><-->
 
 <!-->XML_RESOURCE_LIMITS<-->
-<topic profile_name="topic_xml_conf_resource_limits_profile">
-    <resourceLimitsQos>
-        <max_samples>200</max_samples>
-        <max_instances>20</max_instances>
-        <max_samples_per_instance>100</max_samples_per_instance>
-        <allocated_samples>50</allocated_samples>
-    </resourceLimitsQos>
-</topic>
+<data_writer profile_name="writer_xml_conf_resource_limits_profile">
+    <topic>
+        <resourceLimitsQos>
+            <max_samples>200</max_samples>
+            <max_instances>20</max_instances>
+            <max_samples_per_instance>100</max_samples_per_instance>
+            <allocated_samples>50</allocated_samples>
+        </resourceLimitsQos>
+    </topic>
+</data_writer>
+
+<data_reader profile_name="reader_xml_conf_resource_limits_profile">
+    <topic>
+        <resourceLimitsQos>
+            <max_samples>200</max_samples>
+            <max_instances>20</max_instances>
+            <max_samples_per_instance>100</max_samples_per_instance>
+            <allocated_samples>50</allocated_samples>
+        </resourceLimitsQos>
+    </topic>
+</data_reader>
 <!--><-->
 
 <!-->XML_PROPERTY_POLICY<-->
@@ -3278,10 +3310,6 @@
         <data_reader profile_name="datareader_profile">
             <!-- ... -->
         </data_reader>
-
-        <topic profile_name="topic_profile">
-            <!-- ... -->
-        </topic>
 
         <library_settings>
             <!-- ... -->

@@ -19,7 +19,6 @@ The available profile types are:
 * :ref:`participantprofiles`,
 * :ref:`publisherprofiles`,
 * :ref:`subscriberprofiles`,
-* :ref:`TopicType`,
 * :ref:`library_settings`,
 * :ref:`transportdescriptors`,
 * :ref:`logprofiles`, and
@@ -31,7 +30,7 @@ The following sections will show implementation examples for each of these profi
     :language: xml
     :start-after: <!-->CREATING_XML_PROFILES<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-28, 30-32, 34, 36-38, 40, 42-43
+    :lines: 2-4, 6-24, 26-28, 30, 32-34, 36, 38-39
 
 .. note::
 
@@ -85,7 +84,7 @@ Rooted vs Standalone profiles definition
     Elements ``<dds>``, ``<profiles>``, ``<types>``, and ``<log>`` can be defined in a stand-alone manner.
 *   Rooted:
     The element defining the XML profile is the child element of another element.
-    For example, the ``<participant>``, ``<data_reader>``, ``<data_writer>``, ``<topic>``, ``<library_settings>``,
+    For example, the ``<participant>``, ``<data_reader>``, ``<data_writer>``, ``<library_settings>``,
     and ``<transport_descriptors>`` elements must be defined as child elements of the ``<profiles>`` element.
 
 The following is an example of the definition of the ``<types>`` XML profile using the two previously discussed

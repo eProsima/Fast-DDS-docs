@@ -14,6 +14,7 @@ This section aims to explain these common elements.
 *   :ref:`externalLocatorListType`
 *   :ref:`PropertiesPolicyType`
 *   :ref:`DurationType`
+*   :ref:`TopicType`
 
     -   :ref:`hQos`
     -   :ref:`rLsQos`
@@ -223,6 +224,43 @@ An infinite value can be specified by using the values :cpp:concept:`DURATION_IN
     :language: xml
     :start-after: <!-->XML-DURATION<-->
     :end-before: <!--><-->
+
+
+.. _TopicType:
+
+TopicType
+^^^^^^^^^
+
+The |Topic| name and data type are used to determine whether Datawriters and DataReaders can exchange messages.
+This XML element allows the configuration of the :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy`.
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+  * - ``<historyQos>``
+    - It controls the behavior of *Fast DDS* |br|
+      when the value of an instance changes  |br|
+      before it is finally communicated to |br|
+      some of its existing DataReaders. |br|
+    - :ref:`hQos`
+  * - ``<resourceLimitsQos>``
+    - It controls the resources that *Fast DDS* |br|
+      can use in order to meet the |br|
+      requirements imposed by the application |br|
+      and other QoS settings.
+    - :ref:`rLsQos`
+
+**Example**
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->XML-TOPIC<-->
+    :end-before: <!--><-->
+
 
 .. _hQos:
 

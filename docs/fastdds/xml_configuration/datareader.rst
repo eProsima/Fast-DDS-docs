@@ -46,6 +46,10 @@ The DataReader configuration is performed through the XML elements listed in the
      - Description
      - Values
      - Default
+   * - ``<topic>``
+     - :ref:`TopicType` configuration of the DataReader.
+     - :ref:`TopicType`
+     -
    * - ``<qos>``
      - Subscriber :ref:`CommonQOS` configuration.
      - :ref:`CommonQOS`
@@ -111,7 +115,7 @@ The DataReader configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-SUBSCRIBER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-68, 70-71
+    :lines: 2-4, 6-80, 82-83
 
 .. note::
 
@@ -122,6 +126,8 @@ The DataReader configuration is performed through the XML elements listed in the
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
 
     - For :class:`QOS` details, please refer to :ref:`CommonQOS`.
+
+    - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
 .. _subtimes:
 

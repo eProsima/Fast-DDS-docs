@@ -46,6 +46,10 @@ The DataWriter configuration is performed through the XML elements listed in the
      - Description
      - Values
      - Default
+   * - ``<topic>``
+     - :ref:`TopicType` configuration of the DataWriter.
+     - :ref:`TopicType`
+     -
    * - ``<qos>``
      - DataWriter :ref:`CommonQOS` configuration.
      - :ref:`CommonQOS`
@@ -107,7 +111,7 @@ The DataWriter configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-DATAWRITER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-78, 80-81
+    :lines: 2-4, 6-90, 92-93
 
 .. note::
 
@@ -118,6 +122,8 @@ The DataWriter configuration is performed through the XML elements listed in the
     - :class:`PROPERTIES_POLICY` means that the label is a :ref:`PropertiesPolicyType` block.
 
     - For :class:`QOS` details, please refer to :ref:`CommonQOS`.
+
+    - :class:`TOPIC_TYPE` is detailed in section :ref:`TopicType`.
 
 .. _pubtimes:
 

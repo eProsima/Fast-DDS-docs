@@ -68,6 +68,7 @@ decrypt
 decrypted
 dependant
 dereference
+dereferences
 deserialization
 deserialize
 deserialized

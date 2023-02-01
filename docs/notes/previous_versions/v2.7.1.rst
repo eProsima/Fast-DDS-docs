@@ -1,5 +1,5 @@
-Version 2.7.1
-^^^^^^^^^^^^^
+Version 2.7.1 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **features** in an ABI compatible way:
 

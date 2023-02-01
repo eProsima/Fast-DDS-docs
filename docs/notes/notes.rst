@@ -5,33 +5,34 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.7.1
-=============
-
-This release includes the following **features** in an ABI compatible way:
-
-1. :ref:`check_static_xml_file` by means of |DomainParticipantFactory::check_xml_static_discovery-api|.
-2. :ref:`dds_layer_core_readcondition` implementation.
+Version 2.7.2 (EOL)
+===================
 
 This release includes the following **improvements**:
 
-1. Thread sanitizer CI.
-2. Overload |DataReader::get_unread_count-api|.
-3. Improve read/take performance when using topic with a great number of keys.
-4. Improve rediscovery on lossy environments.
-5. New :ref:`CMake option<cmake_options>` `USE_THIRDPARTY_SHARED_MUTEX`.
-6. Notify changes in bulk in RTPS readers.
+1. Skip ``writer_removed`` processing for unaccounted instances.
+2. Improve ``GUID_t`` operator ``<`` performance.
 
-This release includes the following **bugfixes**:
+This release also includes the following **bugfixes**:
 
-1. Fix Fast CDR submodule update to v1.0.24.
-2. Fix access to some pointers.
-3. Fixed validation on :class:`ParameterPropertyList_t`.
-4. Fixed acknowledgement in DataSharing.
-5. Fixed wrong usage of :class:`std::remove_if`.
-6. Suppress OpenSSL 3.0 warnings.
-7. Fixed race condition in Logging module.
-8. Other minor fixes and improvements.
+1. Fix complex member printing for DynamicDataHelper.
+2. Add python3 dependency.
+3. Fix selection of output locators.
+4. Fix data races when creating DataWriters.
+5. Fix null dereferences on XML parser.
+6. Send GAPs correctly when using separate sending.
+7. Install Statistics IDL file.
+8. Fixes for building in old compilers.
+9. Fix several deadlocks.
+10. Fix communication with asymmetric :ref:`discovery_ignore_flags`.
+11. Fix notification lost.
+12. Fix StatelessWriter ACK check.
+13. Fix ``total_read_`` to be consistent with Reader's History after
+    :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>`.
+14. Fix doxygen documentation adding deprecated to ``ThroughputControllerDescriptor``.
+15. Several dependencies fixes upgrading to Ubuntu 22.04.
+16. Ensure ``shared_mutex`` implementation is consistent throughout supported platforms.
+17. Fix StatisticsSubmessageData unaligned access.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -41,6 +42,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.7.1.rst
 .. include:: previous_versions/v2.7.0.rst
 .. include:: previous_versions/v2.6.2.rst
 .. include:: previous_versions/v2.6.1.rst

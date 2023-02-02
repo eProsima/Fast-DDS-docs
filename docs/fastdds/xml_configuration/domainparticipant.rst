@@ -145,7 +145,7 @@ These elements allow the user to define the DomainParticipant configuration.
        |PartAlloc|.
      - |PartAlloc|
      -
-   * - ``userData``
+   * - ``<userData>``
      - Additional information attached to the DomainParticipant |br|
        and transmitted with the discovery information. |br|
        See :ref:`userdataqospolicy`.

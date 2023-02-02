@@ -1153,7 +1153,7 @@
 <dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
     <profiles>
 <-->
-        <data_reader profile_name="sub_profile_name">
+        <data_reader profile_name="data_reader_profile_name">
             <topic>
                 <historyQos>
                     <kind>KEEP_LAST</kind>
@@ -1611,7 +1611,7 @@
         </rtps>
     </participant>
 
-    <data_writer profile_name="alloc_qos_example_pub_for_topic_1">
+    <data_writer profile_name="allocation_qos_example_pub_for_topic_1">
         <!-- we know we will have three matching subscribers and no content filter -->
         <matchedSubscribersAllocation>
             <initial>3</initial>
@@ -1622,7 +1622,7 @@
         <!-- reader_filters_allocation cannot be configured using XML (yet) -->
     </data_writer>
 
-    <data_writer profile_name="alloc_qos_example_pub_for_topic_2">
+    <data_writer profile_name="allocation_qos_example_pub_for_topic_2">
         <!-- we know we will have two matching subscribers and no content filter -->
         <matchedSubscribersAllocation>
             <initial>2</initial>
@@ -1633,7 +1633,7 @@
         <!-- reader_filters_allocation cannot be configured using XML (yet) -->
     </data_writer>
 
-    <data_reader profile_name="alloc_qos_example_sub">
+    <data_reader profile_name="allocation_qos_example_sub">
         <!-- we know we will only have one matching publisher -->
         <matchedPublishersAllocation>
             <initial>1</initial>
@@ -3113,7 +3113,7 @@
 <!--><-->
 
 <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
-<participant profile_name="UDP SERVER" is_default_profile="true">
+<participant profile_name="UDP SERVER WP" is_default_profile="true">
     <rtps>
         <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
         <builtin>
@@ -3254,7 +3254,7 @@
 <-->
         <transport_descriptors>
             <transport_descriptor>
-                <transport_id>TransportId1</transport_id>
+                <transport_id>my_udpv4_transport</transport_id>
                 <type>UDPv4</type>
                 <sendBufferSize>8192</sendBufferSize>
                 <receiveBufferSize>8192</receiveBufferSize>
@@ -3289,49 +3289,6 @@
         </transport_descriptors>
 <!-->
     </profiles>
-</dds>
-<-->
-<!--><-->
-
-<!-->CREATING_XML_PROFILES<-->
-<!-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-    <profiles>
-<-->
-        <participant profile_name="participant_profile">
-            <!-- ... -->
-        </participant>
-
-        <data_writer profile_name="datawriter_profile">
-            <!-- ... -->
-        </data_writer>
-
-        <data_reader profile_name="datareader_profile">
-            <!-- ... -->
-        </data_reader>
-
-        <library_settings>
-            <!-- ... -->
-        </library_settings>
-
-        <transport_descriptors>
-            <!-- ... -->
-        </transport_descriptors>
-<!-->
-    </profiles>
-
-    <log>
-<-->
-        <!-- ... -->
-<!-->
-    </log>
-
-    <types>
-<-->
-        <!-- ... -->
-<!-->
-    </types>
 </dds>
 <-->
 <!--><-->
@@ -3406,61 +3363,7 @@
 -->
 <!--><-->
 
-<!-->ROOTED_TYPES_START<-->
-<!-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-<-->
-    <types>
-        <type>
-            <!-- Type definition -->
-            <enum name="MyFirstEnum">
-                <enumerator name="A" value="0"/>
-            </enum>
-        </type>
-
-        <type>
-            <!-- Type definition -->
-            <enum name="MySecondEnum">
-                <enumerator name="B" value="1"/>
-            </enum>
-            <!-- Type definition -->
-            <enum name="MyThirdEnum">
-                <enumerator name="C"/>
-            </enum>
-        </type>
-<!-->
-    </types>
-</dds>
-<-->
-<!-->ROOTED_TYPES_END<-->
-
-<!-->STANDALONE_TYPES_START<-->
-<!-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<types xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-<-->
-    <type>
-        <!-- Type definition -->
-        <enum name="MyFirstEnum">
-            <enumerator name="A" value="0"/>
-        </enum>
-    </type>
-
-    <type>
-        <!-- Type definition -->
-        <enum name="MySecondEnum">
-            <enumerator name="B" value="1"/>
-        </enum>
-        <!-- Type definition -->
-        <enum name="MyThirdEnum">
-            <enumerator name="C"/>
-        </enum>
-    </type>
-<!-->
-</types>
-<-->
-<!-->STANDALONE_TYPES_END<-->
+<types>
 
 <!--STAND_ALONE_TYPES_START-->
 <!-->

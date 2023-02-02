@@ -74,6 +74,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTester.xml
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTesterExample.xml
     ${CMAKE_CURRENT_BINARY_DIR}/XMLTesterExample.xml COPYONLY)
 
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTesterSkipValidation.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/XMLTesterSkipValidation.xml COPYONLY)
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/certs/maincacert.pem
     ${CMAKE_CURRENT_BINARY_DIR}/certs/maincacert.pem COPYONLY)
 

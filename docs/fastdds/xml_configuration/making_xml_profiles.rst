@@ -26,11 +26,10 @@ The available profile types are:
 
 The following sections will show implementation examples for each of these profiles.
 
-.. literalinclude:: /../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTesterSkipValidation.xml
     :language: xml
     :start-after: <!-->CREATING_XML_PROFILES<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-24, 26-28, 30, 32-34, 36, 38-39
 
 .. note::
 
@@ -93,19 +92,17 @@ approaches.
 +----------------------------------------------------------------------------------------------------------------------+
 | **Stand-alone**                                                                                                      |
 +----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+| .. literalinclude:: /../code/XMLTesterSkipValidation.xml                                                             |
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->STANDALONE_TYPES_START<-->                                                                     |
 |    :end-before: <!-->STANDALONE_TYPES_END<-->                                                                        |
-|    :lines: 2-3, 5-21, 23                                                                                             |
 +----------------------------------------------------------------------------------------------------------------------+
 | **Rooted**                                                                                                           |
 +----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+| .. literalinclude:: /../code/XMLTesterSkipValidation.xml                                                             |
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->ROOTED_TYPES_START<-->                                                                         |
 |    :end-before: <!-->ROOTED_TYPES_END<-->                                                                            |
-|    :lines: 2-3, 5-22, 24-25                                                                                          |
 +----------------------------------------------------------------------------------------------------------------------+
 
 .. note::

@@ -1,0 +1,64 @@
+<!-->CREATING_XML_PROFILES<-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+        <participant profile_name="participant_profile">
+            <!-- ... -->
+        </participant>
+
+        <data_writer profile_name="datawriter_profile">
+            <!-- ... -->
+        </data_writer>
+
+        <data_reader profile_name="datareader_profile">
+            <!-- ... -->
+        </data_reader>
+
+        <library_settings>
+            <!-- ... -->
+        </library_settings>
+
+        <transport_descriptors>
+            <!-- ... -->
+        </transport_descriptors>
+    </profiles>
+
+    <log>
+        <!-- ... -->
+    </log>
+
+    <types>
+        <!-- ... -->
+    </types>
+</dds>
+<!--><-->
+
+<!-->ROOTED_TYPES_START<-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <types>
+        <type>
+            <!-- Type definition -->
+        </type>
+
+        <type>
+            <!-- Type definition -->
+            <!-- Type definition -->
+        </type>
+    </types>
+</dds>
+<!-->ROOTED_TYPES_END<-->
+
+<!-->STANDALONE_TYPES_START<-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<types xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <type>
+        <!-- Type definition -->
+    </type>
+
+    <type>
+        <!-- Type definition -->
+        <!-- Type definition -->
+    </type>
+</types>
+<!-->STANDALONE_TYPES_END<-->

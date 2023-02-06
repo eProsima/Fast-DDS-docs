@@ -181,7 +181,7 @@ That ensures the proper characterization of the entities using the xml profiles.
 
 For more details, please refer to the :ref:`cli_xml` section.
 
-Install the xmlschema_ dependency for the optional tool.
+Install the xmlschema_ dependency to be able to use this optional tool.
 
 .. _colcon_installation_linux:
 

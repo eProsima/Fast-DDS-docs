@@ -225,7 +225,6 @@ An infinite value can be specified by using the values :cpp:concept:`DURATION_IN
     :start-after: <!-->XML-DURATION<-->
     :end-before: <!--><-->
 
-
 .. _TopicType:
 
 TopicType
@@ -260,7 +259,6 @@ This XML element allows the configuration of the :ref:`historyqospolicy` and :re
     :language: xml
     :start-after: <!-->XML-TOPIC<-->
     :end-before: <!--><-->
-
 
 .. _hQos:
 
@@ -484,7 +482,6 @@ Durability
     - DataReaders: |VOLATILE-xml-api| |br|
       DataWriters: |TRANSIENT_LOCAL-xml-api| |br|
 
-
 .. _xml_groupData:
 
 GroupData
@@ -601,7 +598,6 @@ PublishMode
 |                       |                                       | ``SYNCHRONOUS``  |                  |
 +-----------------------+---------------------------------------+------------------+------------------+
 
-
 .. _xml_reliability:
 
 ReliabilityQosPolicy
@@ -618,7 +614,6 @@ ReliabilityQosPolicy
 +------------------+-----------------------------------+-------------------------+-------------------------------------+
 | |max_block|      | See :ref:`reliabilityqospolicy`.  | :ref:`DurationType`     | 100 ms                              |
 +------------------+-----------------------------------+-------------------------+-------------------------------------+
-
 
 .. _xml_topicData:
 
@@ -638,7 +633,6 @@ TopicData
     - ``string`` (std::vector<|octet-api|>)
     - Empty
 
-
 .. _xml_userData:
 
 UserData
@@ -656,8 +650,6 @@ UserData
     - See :ref:`userdataqospolicy`.
     - ``string`` (std::vector<|octet-api|>)
     - Empty
-
-
 
 .. _historymemorypoliciesXML:
 

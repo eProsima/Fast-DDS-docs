@@ -160,7 +160,6 @@ These elements allow the user to define the DomainParticipant configuration.
      - ``string``
      - Empty
 
-
 **Example**
 
 .. literalinclude:: /../code/XMLTester.xml

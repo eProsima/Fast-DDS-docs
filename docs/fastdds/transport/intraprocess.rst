@@ -13,7 +13,7 @@ Instead, the :ref:`dds_layer_publisher_publisher` directly calls the reception f
 This not only avoids the copy or send operations of the transport, but also ensures the message is received by the
 Subscriber, avoiding the acknowledgement mechanism.
 
-This feature is enabled by default, and can be configured using :ref:`xml_profiles`.
+This feature is enabled by default, and can be configured using :ref:`xml_profiles` (see :ref:`intra_process_delivery_xml_profile`).
 Currently the following options are available:
 
 * **INTRAPROCESS_OFF**: The feature is disabled.

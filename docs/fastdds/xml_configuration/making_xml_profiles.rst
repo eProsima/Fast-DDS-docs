@@ -19,7 +19,7 @@ The available profile types are:
 * :ref:`participantprofiles`,
 * :ref:`publisherprofiles`,
 * :ref:`subscriberprofiles`,
-* :ref:`library_settings`,
+* :ref:`intra_process_delivery_xml_profile`,
 * :ref:`transportdescriptors`,
 * :ref:`logprofiles`, and
 * :ref:`xmldynamictypes`.

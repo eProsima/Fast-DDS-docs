@@ -2,7 +2,7 @@
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
-.. _library_settings:
+.. _intra_process_delivery_xml_profile:
 
 Intra-process delivery profiles
 -------------------------------

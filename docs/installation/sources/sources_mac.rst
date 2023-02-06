@@ -101,15 +101,12 @@ Also add the `Gtest repository <https://github.com/google/googletest>`_ into the
 
 XML validation tool
 ^^^^^^^^^^^^^^^^^^^
-XML validation is a new command introduced to validate the XML profiles against an XSD schema.
-That ensures the proper characterization of the entities through the xml profiles.
+XML validation is a new command introduced to validate the XML profiles against an XSD schema through Fast DDS CLI.
+That ensures the proper characterization of the entities using the xml profiles.
 
 For more details, please refer to the :ref:`cli_xml` section.
 
-.. code-block:: bash
-
-    pip3 install xmlschema
-
+Install the xmlschema_ dependency for the optional tool.
 
 .. _dependencies_sm:
 
@@ -396,3 +393,4 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
 .. _OpenSSL: https://www.openssl.org/
 .. _Gtest: https://github.com/google/googletest
 .. _vcstool: https://pypi.org/project/vcstool/
+.. _xmlschema: https://pypi.org/project/xmlschema/

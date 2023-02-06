@@ -105,15 +105,12 @@ and add next argument to the `colcon` call
 
 XML validation tool
 ^^^^^^^^^^^^^^^^^^^
-XML validation is a new command introduced to validate the XML profiles against an XSD schema.
-That ensures the proper characterization of the entities through the xml profiles.
+XML validation is a new command introduced to validate the XML profiles against an XSD schema through Fast DDS CLI.
+That ensures the proper characterization of the entities using the xml profiles.
 
 For more details, please refer to the :ref:`cli_xml` section.
 
-.. code-block:: bash
-
-    pip3 install xmlschema
-
+Install the xmlschema_ dependency for the optional tool.
 
 .. _dependencies_sw:
 
@@ -460,3 +457,4 @@ The ``Fast-DDS-Gen`` folder contains the following packages:
 .. _Gtest: https://github.com/google/googletest
 .. _libp11: https://github.com/OpenSC/libp11/
 .. _SoftHSM: https://www.opendnssec.org/softhsm/
+.. _xmlschema: https://pypi.org/project/xmlschema/

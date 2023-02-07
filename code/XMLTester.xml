@@ -37,7 +37,6 @@
             <enabled>true</enabled>
             <duration>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </duration>
         </disablePositiveAcks>
     </qos>
@@ -57,12 +56,10 @@
     <qos>
         <liveliness>
             <announcement_period>
-                <sec>0</sec>
                 <nanosec>1000000</nanosec>
             </announcement_period>
             <lease_duration>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </lease_duration>
             <kind>AUTOMATIC</kind>
         </liveliness>
@@ -74,7 +71,6 @@
         <liveliness>
             <lease_duration>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </lease_duration>
 	    <kind>AUTOMATIC</kind>
         </liveliness>
@@ -977,20 +973,17 @@
         <leaseDuration>
             <!-- DURATION -->
             <sec>20</sec>
-            <nanosec>0</nanosec>
         </leaseDuration>
 
         <leaseAnnouncement>
             <!-- DURATION -->
             <sec>3</sec>
-            <nanosec>0</nanosec>
         </leaseAnnouncement>
 
         <initialAnnouncements>
             <!-- INITIAL_ANNOUNCEMENTS -->
             <count>10</count>
             <period>
-                <sec>0</sec>
                 <nanosec>50</nanosec>
             </period>
         </initialAnnouncements>
@@ -1070,23 +1063,19 @@
 
             <times> <!-- writerTimesType -->
                 <initialHeartbeatDelay>
-                    <sec>0</sec>
                     <nanosec>12</nanosec>
                 </initialHeartbeatDelay>
 
                 <heartbeatPeriod>
                     <sec>3</sec>
-                    <nanosec>0</nanosec>
                 </heartbeatPeriod>
 
                 <nackResponseDelay>
-                    <sec>0</sec>
                     <nanosec>5</nanosec>
                 </nackResponseDelay>
 
                 <nackSupressionDuration>
                     <sec>0</sec>
-                    <nanosec>0</nanosec>
                 </nackSupressionDuration>
             </times>
 
@@ -1166,12 +1155,10 @@
 
             <times> <!-- readerTimesType -->
                 <initialAcknackDelay>
-                    <sec>0</sec>
                     <nanosec>70</nanosec>
                 </initialAcknackDelay>
 
                 <heartbeatResponseDelay>
-                    <sec>0</sec>
                     <nanosec>5</nanosec>
                 </heartbeatResponseDelay>
             </times>
@@ -1324,7 +1311,6 @@
 <discovery_config>
     <leaseDuration>
         <sec>DURATION_INFINITY</sec>
-        <nanosec>0</nanosec>
     </leaseDuration>
     <leaseAnnouncement>
         <sec>1</sec>
@@ -1370,7 +1356,6 @@
     <deadline>
         <period>
             <sec>1</sec>
-            <nanosec>0</nanosec>
         </period>
     </deadline>
 
@@ -1381,7 +1366,6 @@
         <enabled>true</enabled>
         <duration>
             <sec>1</sec>
-            <nanosec>0</nanosec>
         </duration>
     </disablePositiveAcks>
 
@@ -1397,14 +1381,12 @@
     <latencyBudget>
         <duration>
             <sec>1</sec>
-            <nanosec>0</nanosec>
         </duration>
     </latencyBudget>
 
     <lifespan>
         <duration>
             <sec>1</sec>
-            <nanosec>0</nanosec>
         </duration>
     </lifespan>
 
@@ -1413,12 +1395,10 @@
 
         <lease_duration>
             <sec>1</sec>
-            <nanosec>0</nanosec>
         </lease_duration>
 
         <announcement_period>
             <sec>1</sec>
-            <nanosec>0</nanosec>
         </announcement_period>
     </liveliness>
 
@@ -1447,7 +1427,6 @@
         <kind>BEST_EFFORT</kind>
         <max_blocking_time>
             <sec>1</sec>
-            <nanosec>0</nanosec>
         </max_blocking_time>
     </reliability>
 
@@ -2120,7 +2099,6 @@
                 <initialAnnouncements>
                     <count>5</count>
                     <period>
-                        <sec>0</sec>
                         <nanosec>100000000</nanosec>
                     </period>
                 </initialAnnouncements>
@@ -2287,7 +2265,6 @@
                 <discovery_config>
                     <clientAnnouncementPeriod>
                         <!-- change default to 250 ms -->
-                        <sec>0</sec>
                         <nanosec>250000000</nanosec>
                     </clientAnnouncementPeriod>
                 </discovery_config>
@@ -2404,7 +2381,6 @@
                     </discoveryServersList>
                     <!-- Set ping period to 250 ms -->
                     <clientAnnouncementPeriod>
-                        <sec>0</sec>
                         <nanosec>250000000</nanosec>
                     </clientAnnouncementPeriod>
                 </discovery_config>
@@ -2829,7 +2805,6 @@
         <deadline>
             <period>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </period>
         </deadline>
     </qos>
@@ -2840,7 +2815,6 @@
         <deadline>
             <period>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </period>
         </deadline>
     </qos>
@@ -2865,7 +2839,6 @@
         <lifespan>
             <duration>
                 <sec>5</sec>
-                <nanosec>0</nanosec>
             </duration>
         </lifespan>
     </qos>
@@ -2876,7 +2849,6 @@
         <lifespan>
             <duration>
                 <sec>5</sec>
-                <nanosec>0</nanosec>
             </duration>
         </lifespan>
     </qos>
@@ -2914,7 +2886,6 @@
             <kind>RELIABLE</kind>
             <max_blocking_time>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </max_blocking_time>
         </reliability>
     </qos>
@@ -3069,19 +3040,15 @@
 <data_writer profile_name="pub_profile_name">
     <times> <!-- writerTimesType -->
         <initialHeartbeatDelay> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>20</nanosec>
         </initialHeartbeatDelay>
         <heartbeatPeriod> <!-- DURATION -->
             <sec>5</sec>
-            <nanosec>0</nanosec>
         </heartbeatPeriod>
         <nackResponseDelay> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>10</nanosec>
         </nackResponseDelay>
         <nackSupressionDuration> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>20</nanosec>
         </nackSupressionDuration>
     </times>
@@ -3099,11 +3066,9 @@
 <data_reader profile_name="sub_profile_name">
     <times> <!-- readerTimesType -->
         <initialAcknackDelay> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>70</nanosec>
         </initialAcknackDelay>
         <heartbeatResponseDelay> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>5</nanosec>
         </heartbeatResponseDelay>
     </times>
@@ -3364,32 +3329,6 @@
 <!--><-->
 
 <types>
-
-<!--STAND_ALONE_TYPES_START-->
-<!-->
-<types xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-<-->
-    <type>
-        <!-- Type definition -->
-        <enum name="MyFirstEnum">
-            <enumerator name="A" value="0"/>
-        </enum>
-    </type>
-    <type>
-        <!-- Type definition -->
-        <enum name="MySecondEnum">
-            <enumerator name="B" value="1"/>
-        </enum>
-        <!-- Type definition -->
-        <enum name="MyThirdEnum">
-            <enumerator name="C"/>
-        </enum>
-    </type>
-<!-->
-</types>
-<-->
-<!--STAND_ALONE_TYPES_END-->
-
 <type>
 <!-->XML-DYN-ENUM<-->
 <enum name="MyEnum">

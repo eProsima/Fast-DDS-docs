@@ -62,3 +62,15 @@
     </type>
 </types>
 <!-->STANDALONE_TYPES_END<-->
+
+<!--STAND_ALONE_TYPES_START-->
+<types xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <type>
+        <!-- Type definition -->
+    </type>
+    <type>
+        <!-- Type definition -->
+        <!-- Type definition -->
+    </type>
+</types>
+<!--STAND_ALONE_TYPES_END-->

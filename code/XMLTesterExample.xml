@@ -155,7 +155,6 @@
                         </simpleEDP>
                         <leaseDuration>
                             <sec>DURATION_INFINITY</sec>
-                            <nanosec>0</nanosec>
                         </leaseDuration>
                         <leaseAnnouncement>
                             <sec>1</sec>
@@ -164,7 +163,6 @@
                         <initialAnnouncements>
                             <count>10</count>
                             <period>
-                                <sec>0</sec>
                                 <nanosec>50</nanosec>
                             </period>
                         </initialAnnouncements>
@@ -354,7 +352,6 @@
                 <deadline>
                     <period>
                         <sec>1</sec>
-                        <nanosec>0</nanosec>
                     </period>
                 </deadline>
                 <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
@@ -362,7 +359,6 @@
                     <enabled>true</enabled>
                     <duration>
                         <sec>1</sec>
-                        <nanosec>0</nanosec>
                     </duration>
                 </disablePositiveAcks>
                 <durability>
@@ -372,13 +368,11 @@
                 <latencyBudget>
                     <duration>
                         <sec>1</sec>
-                        <nanosec>0</nanosec>
                     </duration>
                 </latencyBudget>
                 <lifespan>
                     <duration>
                         <sec>5</sec>
-                        <nanosec>0</nanosec>
                     </duration>
                 </lifespan>
                 <liveliness>
@@ -549,14 +543,12 @@
                 <deadline>
                     <period>
                         <sec>1</sec>
-                        <nanosec>0</nanosec>
                     </period>
                 </deadline>
                 <disablePositiveAcks>
                     <enabled>true</enabled>
                     <duration>
                         <sec>1</sec>
-                        <nanosec>0</nanosec>
                     </duration>
                 </disablePositiveAcks>
                 <durability>
@@ -566,13 +558,11 @@
                 <latencyBudget>
                     <duration>
                         <sec>1</sec>
-                        <nanosec>0</nanosec>
                     </duration>
                 </latencyBudget>
                 <lifespan>
                     <duration>
                         <sec>5</sec>
-                        <nanosec>0</nanosec>
                     </duration>
                 </lifespan>
                 <liveliness>

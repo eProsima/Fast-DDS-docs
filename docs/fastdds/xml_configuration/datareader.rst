@@ -115,7 +115,7 @@ The DataReader configuration is performed through the XML elements listed in the
     :language: xml
     :start-after: <!-->XML-SUBSCRIBER<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-80, 82-83
+    :lines: 2-4, 6-78, 80-81
 
 .. note::
 

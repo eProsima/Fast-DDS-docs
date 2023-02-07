@@ -308,7 +308,8 @@ xml
 ---
 
 Checks if a given xml profile is well formed, by matching it against a XSD schema.
-If the given input to the command is a path to a folder instead of a path to a file, all xml files contained in the folder will be validated.
+If the given input to the command is a path to a folder instead of a path to a file,all xml files contained in the
+folder will be validated.
 
 This validation consists in checking the lack of parameters, values bounds, expected values data types and main profile
 structure. For further information see :ref:`making_xml_profiles`.

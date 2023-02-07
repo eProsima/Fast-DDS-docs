@@ -11,8 +11,9 @@ An XML file can contain several XML profiles.
 These XML profiles are defined within the ``<dds>`` element, and in turn, within the ``<profiles>`` XML elements.
 The possible topologies for the definition of XML profiles are specified in :ref:`rootedvsstandalone`.
 
-It is worth mentioning that the first element of the xml profile must have the ``xmlns`` tag with the
-link ``xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"``, in both rooted or standalone definitions.
+It is worth mentioning that the first element of the xml profile must have the ``xmlns`` attribute with the link
+``xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"``, in both rooted or standalone definitions.
+That link defines the reference of the xsd schema that the xml document complies with.
 
 The available profile types are:
 

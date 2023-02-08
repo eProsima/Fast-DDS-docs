@@ -84,6 +84,11 @@ set(CPACK_COMPONENT_EXAMPLES_DESCRIPTION
     "eProsima Fast DDS doxygen documetation")
 set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} doxygen)
 
+####################################################################################################
+# Find Sphinx
+####################################################################################################
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/code/cmake" ${CMAKE_MODULE_PATH})
+find_package(Sphinx REQUIRED)
 
 ####################################################################################################
 # Compile code used in documentation
@@ -101,15 +106,9 @@ endif()
 ####################################################################################################
 # Build Sphinx documentation
 ####################################################################################################
-
-# Find sphinx
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/code/cmake" ${CMAKE_MODULE_PATH})
-find_package(Sphinx REQUIRED)
-
-set(SPHINX_SOURCE "${CMAKE_SOURCE_DIR}/docs")
-
 # It is possible to build and run tests without generating the documentation output. This saves time
 # while developing, since generating the documentation from the RSTs takes quite some time.
+set(SPHINX_SOURCE "${CMAKE_SOURCE_DIR}/docs")
 option(BUILD_DOCUMENTATION "Generate documentation" ON)
 if (BUILD_DOCUMENTATION)
     # Check there is Python bindings accessible and configure sphinx depending on that.

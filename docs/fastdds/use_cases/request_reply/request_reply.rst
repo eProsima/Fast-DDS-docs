@@ -52,7 +52,7 @@ The DDS communication schema will be:
     [Reply DataWriter] --> [Reply DataReader] : Reply Topic
 
 The key for making *Request-Reply* work is relating the Request with the Reply in the client's side.
-*Fast DDS* API provides |SampleIdentity-api| to achive this.
+*Fast DDS* API provides |SampleIdentity-api| to achieve this.
 
 A full example can be found in `Fast DDS repository`_.
 

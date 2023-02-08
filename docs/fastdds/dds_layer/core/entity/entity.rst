@@ -112,8 +112,32 @@ diagram:
 
 .. important::
 
-   Using |StatusMask::none-api| when creating the |Entity-api| only disables the DDS standard callbacks.
-   Any callback specific to *Fast DDS* is always enabled.
+   Using |StatusMask::none-api| when creating the |Entity-api| only disables the DDS standard callbacks:
+
+   * |DataReaderListener::on_sample_rejected-api|
+   * |DataReaderListener::on_liveliness_changed-api|
+   * |DataReaderListener::on_requested_deadline_missed-api|
+   * |DataReaderListener::on_requested_incompatible_qos-api|
+   * |DataReaderListener::on_data_available-api|
+   * |DataReaderListener::on_subscription_matched-api|
+   * |DataReaderListener::on_sample_lost-api|
+   * |DataWriterListener::on_offered_incompatible_qos-api|
+   * |DataWriterListener::on_offered_deadline_missed-api|
+   * |DataWriterListener::on_liveliness_lost-api|
+   * |DataWriterListener::on_publication_matched-api|
+   * |TopicListener::on_inconsistent_topic-api|
+   * |SubscriberListener::on_data_on_readers-api|
+
+   Any callback specific to *Fast DDS* is always enabled:
+
+   * |DomainParticipantListener::on_participant_discovery-api|
+   * |DomainParticipantListener::onParticipantAuthentication-api|
+   * |DomainParticipantListener::on_subscriber_discovery-api|
+   * |DomainParticipantListener::on_publisher_discovery-api|
+   * |DomainParticipantListener::on_type_discovery-api|
+   * |DomainParticipantListener::on_type_dependencies_reply-api|
+   * |DomainParticipantListener::on_type_information_received-api|
+   * |DataWriterListener::on_unacknowledged_sample_removed-api|
 
 .. warning::
 

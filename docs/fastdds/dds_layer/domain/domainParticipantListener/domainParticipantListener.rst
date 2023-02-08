@@ -24,7 +24,7 @@ either because it has no Listener attached,
 or because the callback is disabled by the |StatusMask-api| on the Entity.
 
 
-Additionally, DomainParticipantListener adds the following callbacks:
+Additionally, DomainParticipantListener adds the following non-standard callbacks:
 
  * |DomainParticipantListener::on_participant_discovery-api|: A new DomainParticipant is discovered in the same domain,
    a previously known DomainParticipant has been removed, or some DomainParticipant

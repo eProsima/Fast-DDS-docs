@@ -35,6 +35,44 @@ Callbacks that are not overridden will maintain their empty implementation.
   DataReader entities will consider the DataWriter
   as no longer *active*.
 
+* |DataWriterListener::on_unacknowledged_sample_removed-api|: The Datawriter has removed a sample that has not been
+  acknowledged by every matched DataReader.
+
+.. _dds_layer_publisher_dataWriterListener_on_unack_sample_removed:
+
+on_unacknowledged_sample_removed callback
+-----------------------------------------
+
+|DataWriterListener::on_unacknowledged_sample_removed-api| non-standard callback notifies the user when a sample has
+been removed without being sent/received by the matched DataReaders.
+This could happen in constrained networks or if the publication throughput is too demanding.
+This callback can be used to detect these situations so the publishing application can apply some solution to ease this
+issue like reducing the publication rate.
+
+The criteria to consider that a sample has been removed without being acknowledged depends on the
+:ref:`reliabilityqospolicy`:
+
+* |BEST_EFFORT_RELIABILITY_QOS-api| DataWriters will notify that a sample has been removed while unacknowledged if the
+  sample has not been sent through the transport.
+* |RELIABLE_RELIABILITY_QOS-api| DataWriters consider samples to have been removed unacknowledged if not every matched
+  DataReader has confirmed its reception by sending the corresponding meta-traffic ``ACK`` message.
+  Consequently, a sample that is notified as removed unacknowledged might be received by one or more DataReaders, but
+  not by every matched one, or at least, the ``ACK`` message has not been received at the moment of sample removal.
+  A race condition is inevitable in this case, because when the sample is removed, the ``ACK`` from some matched
+  DataReader is missing, but that means that it might have been lost in the transmission or that the message is still
+  coming through and it will be received after the sample removal.
+  Thus, this criteria may include false positives, but from the user's point of view, it is more meaningful to know when
+  the sample has not been acknowledged by every matched DataReader even if some samples are erroneously notified.
+
+A specific case must be considered for reliable DataWriters with :ref:`disablepositiveacksqospolicy` enabled.
+This policy disables the sending of positive ``ACK`` messages, unless the sample has been lost in which case the matched
+DataReader notifies the loss with a negative ``NACK`` message.
+If no ``NACK`` has been received in the time defined in the QoS policy, the sample is considered to be received.
+Again, this is prone to race conditions because the ``NACK`` message might be on its way or have been lost in the
+network.
+For this specific case, where ``ACK`` messages are not going to be received, the reliable DataWriter uses the same
+criteria as the best effort DataWriter.
+
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //DDS_DATAWRITER_LISTENER_SPECIALIZATION

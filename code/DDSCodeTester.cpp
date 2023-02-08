@@ -140,9 +140,9 @@ public:
     {
     }
 
-    virtual void on_participant_discovery(
+    void on_participant_discovery(
             DomainParticipant* /*participant*/,
-            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info)
+            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info) override
     {
         if (info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT)
         {
@@ -156,9 +156,9 @@ public:
     }
 
 #if HAVE_SECURITY
-    virtual void onParticipantAuthentication(
+    void onParticipantAuthentication(
             DomainParticipant* /*participant*/,
-            eprosima::fastrtps::rtps::ParticipantAuthenticationInfo&& info)
+            eprosima::fastrtps::rtps::ParticipantAuthenticationInfo&& info) override
     {
         if (info.status == eprosima::fastrtps::rtps::ParticipantAuthenticationInfo::AUTHORIZED_PARTICIPANT)
         {
@@ -172,9 +172,9 @@ public:
 
 #endif // if HAVE_SECURITY
 
-    virtual void on_subscriber_discovery(
+    void on_subscriber_discovery(
             DomainParticipant* /*participant*/,
-            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info)
+            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info) override
     {
         if (info.status == eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER)
         {
@@ -186,9 +186,9 @@ public:
         }
     }
 
-    virtual void on_publisher_discovery(
+    void on_publisher_discovery(
             DomainParticipant* /*participant*/,
-            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info)
+            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info) override
     {
         if (info.status == eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER)
         {
@@ -200,35 +200,45 @@ public:
         }
     }
 
-    virtual void on_type_discovery(
+    void on_type_discovery(
             DomainParticipant* participant,
             const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
             const eprosima::fastrtps::string_255& topic,
             const eprosima::fastrtps::types::TypeIdentifier* identifier,
             const eprosima::fastrtps::types::TypeObject* object,
-            eprosima::fastrtps::types::DynamicType_ptr dyn_type)
+            eprosima::fastrtps::types::DynamicType_ptr dyn_type) override
     {
-        (void)participant, (void)request_sample_id, (void)topic, (void)identifier, (void)object, (void)dyn_type;
+        static_cast<void>(participant);
+        static_cast<void>(request_sample_id);
+        static_cast<void>(topic);
+        static_cast<void>(identifier);
+        static_cast<void>(object);
+        static_cast<void>(dyn_type);
         std::cout << "New data type discovered" << std::endl;
 
     }
 
-    virtual void on_type_dependencies_reply(
+    void on_type_dependencies_reply(
             DomainParticipant* participant,
             const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
-            const eprosima::fastrtps::types::TypeIdentifierWithSizeSeq& dependencies)
+            const eprosima::fastrtps::types::TypeIdentifierWithSizeSeq& dependencies) override
     {
-        (void)participant, (void)request_sample_id, (void)dependencies;
+        static_cast<void>(participant);
+        static_cast<void>(request_sample_id);
+        static_cast<void>(dependencies);
         std::cout << "Answer to a request for type dependencies was received" << std::endl;
     }
 
-    virtual void on_type_information_received(
+    void on_type_information_received(
             DomainParticipant* participant,
             const eprosima::fastrtps::string_255 topic_name,
             const eprosima::fastrtps::string_255 type_name,
-            const eprosima::fastrtps::types::TypeInformation& type_information)
+            const eprosima::fastrtps::types::TypeInformation& type_information) override
     {
-        (void)participant, (void)topic_name, (void)type_name, (void)type_information;
+        static_cast<void>(participant);
+        static_cast<void>(topic_name);
+        static_cast<void>(type_name);
+        static_cast<void>(type_information);
         std::cout << "New data type information received" << std::endl;
     }
 
@@ -792,11 +802,11 @@ void dds_domain_examples()
 class DiscoveryDomainParticipantListener : public DomainParticipantListener
 {
     /* Custom Callback on_participant_discovery */
-    virtual void on_participant_discovery(
+    void on_participant_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info)
+            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info) override
     {
-        (void)participant;
+        static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
                 /* Process the case when a new DomainParticipant was found in the domain */
@@ -817,11 +827,11 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     }
 
     /* Custom Callback on_subscriber_discovery */
-    virtual void on_subscriber_discovery(
+    void on_subscriber_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info)
+            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info) override
     {
-        (void)participant;
+        static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
                 /* Process the case when a new subscriber was found in the domain */
@@ -840,11 +850,11 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     }
 
     /* Custom Callback on_publisher_discovery */
-    virtual void on_publisher_discovery(
+    void on_publisher_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info)
+            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info) override
     {
-        (void)participant;
+        static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
                 /* Process the case when a new publisher was found in the domain */
@@ -863,15 +873,20 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     }
 
     /* Custom Callback on_type_discovery */
-    virtual void on_type_discovery(
+    void on_type_discovery(
             DomainParticipant* participant,
             const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
             const eprosima::fastrtps::string_255& topic,
             const eprosima::fastrtps::types::TypeIdentifier* identifier,
             const eprosima::fastrtps::types::TypeObject* object,
-            eprosima::fastrtps::types::DynamicType_ptr dyn_type)
+            eprosima::fastrtps::types::DynamicType_ptr dyn_type) override
     {
-        (void)participant, (void)request_sample_id, (void)topic, (void)identifier, (void)object, (void)dyn_type;
+        static_cast<void>(participant);
+        static_cast<void>(request_sample_id);
+        static_cast<void>(topic);
+        static_cast<void>(identifier);
+        static_cast<void>(object);
+        static_cast<void>(dyn_type);
         std::cout << "New data type of topic '" << topic << "' discovered." << std::endl;
     }
 
@@ -1233,11 +1248,12 @@ public:
     {
     }
 
-    virtual void on_inconsistent_topic(
+    void on_inconsistent_topic(
             Topic* topic,
-            InconsistentTopicStatus status)
+            InconsistentTopicStatus status) override
     {
-        (void)topic, (void)status;
+        static_cast<void>(topic);
+        static_cast<void>(status);
         std::cout << "Inconsistent topic received discovered" << std::endl;
     }
 
@@ -2369,12 +2385,11 @@ public:
     {
     }
 
-    virtual void on_publication_matched(
+    void on_publication_matched(
             DataWriter* writer,
-            const PublicationMatchedStatus& info)
+            const PublicationMatchedStatus& info) override
     {
-        (void)writer
-        ;
+        static_cast<void>(writer);
         if (info.current_count_change == 1)
         {
             std::cout << "Matched a remote Subscriber for one of our Topics" << std::endl;
@@ -2385,28 +2400,39 @@ public:
         }
     }
 
-    virtual void on_offered_deadline_missed(
+    void on_offered_deadline_missed(
             DataWriter* writer,
-            const OfferedDeadlineMissedStatus& status)
+            const OfferedDeadlineMissedStatus& status) override
     {
-        (void)writer, (void)status;
+        static_cast<void>(writer);
+        static_cast<void>(status);
         std::cout << "Some data could not be delivered on time" << std::endl;
     }
 
-    virtual void on_offered_incompatible_qos(
+    void on_offered_incompatible_qos(
             DataWriter* /*writer*/,
-            const OfferedIncompatibleQosStatus& status)
+            const OfferedIncompatibleQosStatus& status) override
     {
         std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << status.last_policy_id <<
             ")" << std::endl;
     }
 
-    virtual void on_liveliness_lost(
+    void on_liveliness_lost(
             DataWriter* writer,
-            const LivelinessLostStatus& status)
+            const LivelinessLostStatus& status) override
     {
-        (void)writer, (void)status;
+        static_cast<void>(writer);
+        static_cast<void>(status);
         std::cout << "Liveliness lost. Matched Subscribers will consider us offline" << std::endl;
+    }
+
+    void on_unacknowledged_sample_removed(
+            DataWriter* writer,
+            const InstanceHandle_t& instance) override
+    {
+        static_cast<void>(writer);
+        static_cast<void>(instance);
+        std::cout << "Sample removed unacknowledged" << std::endl;
     }
 
 };
@@ -2817,7 +2843,7 @@ public:
     virtual void on_data_on_readers(
             Subscriber* sub)
     {
-        (void)sub;
+        static_cast<void>(sub);
         std::cout << "New data available" << std::endl;
     }
 
@@ -3112,18 +3138,18 @@ public:
     {
     }
 
-    virtual void on_data_available(
-            DataReader* reader)
+    void on_data_available(
+            DataReader* reader) override
     {
-        (void)reader;
+        static_cast<void>(reader);
         std::cout << "Received new data message" << std::endl;
     }
 
-    virtual void on_subscription_matched(
+    void on_subscription_matched(
             DataReader* reader,
-            const SubscriptionMatchedStatus& info)
+            const SubscriptionMatchedStatus& info) override
     {
-        (void)reader;
+        static_cast<void>(reader);
         if (info.current_count_change == 1)
         {
             std::cout << "Matched a remote DataWriter" << std::endl;
@@ -3134,19 +3160,20 @@ public:
         }
     }
 
-    virtual void on_requested_deadline_missed(
+    void on_requested_deadline_missed(
             DataReader* reader,
-            const eprosima::fastrtps::RequestedDeadlineMissedStatus& info)
+            const eprosima::fastrtps::RequestedDeadlineMissedStatus& info) override
     {
-        (void)reader, (void)info;
+        static_cast<void>(reader);
+        static_cast<void>(info);
         std::cout << "Some data was not received on time" << std::endl;
     }
 
-    virtual void on_liveliness_changed(
+    void on_liveliness_changed(
             DataReader* reader,
-            const eprosima::fastrtps::LivelinessChangedStatus& info)
+            const eprosima::fastrtps::LivelinessChangedStatus& info) override
     {
-        (void)reader;
+        static_cast<void>(reader);
         if (info.alive_count_change == 1)
         {
             std::cout << "A matched DataWriter has become active" << std::endl;
@@ -3157,27 +3184,29 @@ public:
         }
     }
 
-    virtual void on_sample_rejected(
+    void on_sample_rejected(
             DataReader* reader,
-            const eprosima::fastrtps::SampleRejectedStatus& info)
+            const eprosima::fastrtps::SampleRejectedStatus& info) override
     {
-        (void)reader, (void)info;
+        static_cast<void>(reader);
+        static_cast<void>(info);
         std::cout << "A received data sample was rejected" << std::endl;
     }
 
-    virtual void on_requested_incompatible_qos(
+    void on_requested_incompatible_qos(
             DataReader* /*reader*/,
-            const RequestedIncompatibleQosStatus& info)
+            const RequestedIncompatibleQosStatus& info) override
     {
         std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << info.last_policy_id <<
             ")" << std::endl;
     }
 
-    virtual void on_sample_lost(
+    void on_sample_lost(
             DataReader* reader,
-            const SampleLostStatus& info)
+            const SampleLostStatus& info) override
     {
-        (void)reader, (void)info;
+        static_cast<void>(reader);
+        static_cast<void>(info);
         std::cout << "A data sample was lost and will not be received" << std::endl;
     }
 
@@ -3606,8 +3635,8 @@ public:
     {
     }
 
-    virtual void on_data_available(
-            DataReader* reader)
+    void on_data_available(
+            DataReader* reader) override
     {
         // Create a data and SampleInfo instance
         Foo data;
@@ -5463,7 +5492,7 @@ void dds_zero_copy_example()
 
             //LOANABLE_HELLOWORLD_EXAMPLE_LISTENER_READER
             void on_data_available(
-                    eprosima::fastdds::dds::DataReader* reader)
+                    eprosima::fastdds::dds::DataReader* reader) override
             {
                 // Declare a LoanableSequence for a data type
                 FASTDDS_SEQUENCE(DataSeq, LoanableHelloWorld);

@@ -196,7 +196,7 @@ Typedef
 The ``<typedef>`` XML element is defined by a ``name`` and a ``type`` mandatory attributes, and any of the optional
 attributes presented in `Complex types attributes`_ section.
 This element allows for defining complex types without the need to define them previously as members.
-Maps, arrays and sequences can be elements within another container using ``typedef``.
+Maps, arrays and sequences can be elements within another container using ``<typedef>``.
 The ``<typedef>`` element corresponds to :ref:`dynamictypes_supportedtypes_alias` in :ref:`dynamictypes_supportedtypes`
 section.
 
@@ -243,9 +243,9 @@ Union
 
 The ``<union>`` type is defined by a ``name`` attribute, a ``<discriminator>`` child element and a set of ``<case>``
 child elements.
-The ``discriminator`` must define its ``type``
+The ``<discriminator>`` must define its ``type``
 Each ``<case>`` element has one or more ``<caseDiscriminator>`` elements, which type must be consistent with the
-``discriminator`` type, and a unique ``<member>`` element.
+``<discriminator>`` type, and a unique ``<member>`` element.
 Please, refer to :ref:`dynamictypes_supportedtypes_union` for more information on the ``<union>`` type.
 
 .. literalinclude:: /../code/XMLTester.xml

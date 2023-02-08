@@ -70,11 +70,11 @@ The table presented below outlines each possible Locator's field.
       *Physical port* in UDP, *logical port* in TCP.
     - ``uint32_t``
     - 0
-  * - ``physical_port``
+  * - ``<physical_port>``
     - TCP's *physical port*.
     - ``uint32_t``
     - 0
-  * - ``address``
+  * - ``<address>``
     - IP address of the locator.
     - ``string`` (IPv4/IPv6 format |br|
       or DNS name)

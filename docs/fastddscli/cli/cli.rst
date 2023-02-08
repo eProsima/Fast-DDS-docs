@@ -332,12 +332,12 @@ structure. For further information see :ref:`making_xml_profiles`.
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-d  --debug``          | Print debug information (disabled by default)                                             |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-x  --xsd_file``       | XSD schema for validation (path required, None by default)                                |
+| ``-x  --xsd_file``       | XSD schema for validation (not required, Fast DDS schema is used by default)              |
 +--------------------------+-------------------------------------------------------------------------------------------+
 
 **Example**
 
 .. code-block:: bash
 
-    fastdds xml validate my_profile.xml -x fastRTPS_profiles.xsd
+    fastdds xml validate my_profile.xml
 

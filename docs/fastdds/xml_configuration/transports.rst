@@ -211,7 +211,7 @@ protocol are listed in the following table:
 |                           |                                   +----------------------------------------+             |
 |                           |                                   | :cpp:concept:`SINGLE_DH_USE`           |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
-| ``<verify_paths>``        | Paths where the system will       |  ``string``                            |             |
+| ``<verify_paths>``        | Paths where the system will       |  ``List <string>``                     |             |
 |                           | look for verification |br| files. |                                        |             |
 +---------------------------+-----------------------------------+----------------------------------------+-------------+
 | ``<verify_depth>``        | Maximum allowed depth to          | ``uint32_t``                           |             |

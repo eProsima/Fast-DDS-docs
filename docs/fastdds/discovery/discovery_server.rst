@@ -389,3 +389,33 @@ Client side setup
 |    :lines: 2-3,5-40                                                 |
 |    :append: </profiles>                                             |
 +---------------------------------------------------------------------+
+
+.. _DS_security:
+
+Security
+^^^^^^^^
+
+Configuring :ref:`security` on *servers* and *clients* is done the same way as for any other participant.
+This section depicts the limitations imposed by the security enforcement on the communication between
+*clients* and *servers*, and which discovery information is propagated by a *server* depending on the security
+configuration of the *clients* and *servers* to which it is connected.
+
+It is important to note that for enabling a secure discovery when using Discovery Server, *Fast DDS* must be compiled
+with security support (see :ref:`cmake_options`), and the :ref:`domain_governance_doc` must explicitly encrypt the
+discovery.
+
+As in SDP, when using this feature, the Domain Governance Document of all *clients* and *servers* connecting to a
+*server* must match that of the *server*, which implies that all |DomainParticipants| belonging to the same Discovery
+Sever network must configure the discovery protection in the same manner.
+
+Although the *server* mediates the discovery process and creates connections between *clients*, the *clients* themselves
+still go through the PKI (Public Key Infrastructure) exchange in order to have a secure communication between them.
+
+.. important::
+
+  In order to keep the behavior consistent with the QoS Policies, the *server* does not check the
+  :ref:`domainparticipant_permissions_doc` of the |DomainParticipants| that it is connecting.
+
+.. important::
+
+  Security support for Discovery Server is only supported from Fast DDS v2.10.0 onward.

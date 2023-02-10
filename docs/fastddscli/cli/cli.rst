@@ -97,6 +97,7 @@ The output is:
 
     ### Server is running ###
       Participant Type:   <SERVER|BACKUP>
+      Security:           <YES|NO>
       Server ID:          <server-id>
       Server GUID prefix: 44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
       Server Addresses:   UDPv4:[<ip-address>]:<port>
@@ -105,6 +106,10 @@ The output is:
 Once the *server* is instantiated, the *clients* can be configured either programmatically or by XML (see
 :ref:`discovery_server`), or using environment variable ``ROS_DISCOVERY_SERVER`` (see
 :ref:`env_vars_ros_discovery_server`)
+
+.. note::
+  The :ref:`security` configuration of the discovery server should be done through XML.
+  See example below.
 
 .. _cli_discovery_examples:
 
@@ -125,6 +130,7 @@ Examples
 
         ### Server is running ###
           Participant Type:   SERVER
+          Security:           NO
           Server ID:          0
           Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[0.0.0.0]:11811
@@ -143,6 +149,7 @@ Examples
 
         ### Server is running ###
           Participant Type:   SERVER
+          Security:           NO
           Server ID:          1
           Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[127.0.0.1]:14520
@@ -171,6 +178,7 @@ Examples
 
         ### Server is running ###
           Participant Type:   SERVER
+          Security:           NO
           Server ID:          1
           Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv6:[2a02:ec80:600:ed1a::3]:14520
@@ -190,6 +198,7 @@ Examples
 
         ### Server is running ###
           Participant Type    SERVER
+          Security:           NO
           Server ID:          2
           Server GUID prefix: 44.53.02.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[192.168.36.34]:8783
@@ -217,6 +226,7 @@ Examples
 
         ### Server is running ###
           Participant Type    BACKUP
+          Security:           NO
           Server ID:          3
           Server GUID prefix: 44.53.03.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[172.30.144.1]:12345
@@ -234,10 +244,29 @@ Examples
     .. code-block:: bash
 
         ### Server is running ###
-        Participant Type:   SERVER
-        Server ID:          0
-        Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
-        Server Addresses:   UDPv4:[127.0.0.1]:14520
+          Participant Type:   SERVER
+          Security:           NO
+          Server ID:          0
+          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   UDPv4:[127.0.0.1]:14520
+
+7.  Launch a secure server with id 0 (first on ``ROS_DISCOVERY_SERVER``)
+    listening on all available interfaces on UDP port '11811'.
+
+    .. code-block:: bash
+
+        fastdds discovery -x secure_discovery_server_cli@[PATH_TO_FILE]/DiscoveryServerCLI.xml
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type:   SERVER
+          Security:           YES
+          Server ID:          0
+          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   UDPv4:[0.0.0.0]:11811
 
 .. _cli_shm:
 

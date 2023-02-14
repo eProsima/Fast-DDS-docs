@@ -511,7 +511,7 @@ Liveliness
 +---------------------------+---------------------------------+---------------------------------+----------------------+
 | ``<lease_duration>``      | See :ref:`livelinessqospolicy`. | :ref:`DurationType`             | |c_TimeInfinite-api| |
 +---------------------------+---------------------------------+---------------------------------+----------------------+
-| ``<announcement_period>`` | See :ref:`livelinessqospolicy`. |                                 | |c_TimeInfinite-api| |
+| ``<announcement_period>`` | See :ref:`livelinessqospolicy`. | :ref:`DurationType`             | |c_TimeInfinite-api| |
 +---------------------------+---------------------------------+---------------------------------+----------------------+
 
 .. _xml_ownership:

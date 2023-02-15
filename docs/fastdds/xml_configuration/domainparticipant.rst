@@ -149,7 +149,7 @@ These elements allow the user to define the DomainParticipant configuration.
      - Additional information attached to the DomainParticipant |br|
        and transmitted with the discovery information. |br|
        See :ref:`userdataqospolicy`.
-     - ``string``
+     - ``List <string>``
      - Empty
 
 **Example**

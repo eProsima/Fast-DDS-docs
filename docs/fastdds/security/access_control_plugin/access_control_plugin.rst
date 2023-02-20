@@ -36,7 +36,7 @@ in detail below.
 
 The DDS\:Access\:Permissions authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|
-``dds.sec.auth.plugin`` with the value ``builtin.Access-Permissions``.
+``dds.sec.access.plugin`` with the value ``builtin.Access-Permissions``.
 The following table outlines the properties used for the DDS\:Access\:Permissions plugin configuration.
 
 .. list-table::

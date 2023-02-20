@@ -36,7 +36,7 @@ The ``<participant>`` element has two attributes defined: ``profile_name`` and `
        DomainParticipant's creation.
      - Optional
 
-.. _domainparticipantconfig:
+.. _domainparticipantconfig: 
 
 DomainParticipant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

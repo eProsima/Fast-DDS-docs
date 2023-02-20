@@ -955,6 +955,7 @@
 </participant>
 
 <participant profile_name="part_builtin_example">
+<domainId>4</domainId> <!-- uint32 -->
 <rtps>
 <!-->XML-BUILTIN<-->
 <builtin>

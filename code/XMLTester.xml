@@ -828,6 +828,7 @@
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
     <participant profile_name="domainparticipant_profile_name">
+        <domainId>4</domainId>
         <rtps>
             <name>DomainParticipant Name</name>
 
@@ -955,7 +956,6 @@
 </participant>
 
 <participant profile_name="part_builtin_example">
-<domainId>4</domainId> <!-- uint32 -->
 <rtps>
 <!-->XML-BUILTIN<-->
 <builtin>

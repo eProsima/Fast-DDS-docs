@@ -36,12 +36,12 @@ The ``<participant>`` element has two attributes defined: ``profile_name`` and `
        DomainParticipant's creation.
      - Optional
 
-.. _domainparticipantconfig: 
+.. _domainparticipantconfig:
 
 DomainParticipant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``<participant>`` element has two child elements: ``<domain_id>`` and ``<rtps>``.
+The ``<participant>`` element has two child elements: ``<domainId>`` and ``<rtps>``.
 All the DomainParticipant configuration options belong to the ``<rtps>`` element, except for the DDS |DomainId-api|
 which is defined by the ``<domainId>`` element.
 Below a list with the configuration XML elements is presented:
@@ -184,7 +184,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-87, 89
+    :lines: 2-3, 5-88, 90
 
 .. note::
 

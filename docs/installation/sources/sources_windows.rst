@@ -43,6 +43,7 @@ installed in the system:
 * :ref:`chocolatey_sw`
 * :ref:`cmake_pip3_wget_git_sw`
 * :ref:`gtest_sw` [optional]
+* :ref:`pythonreq_sw` [optional]
 
 .. _visual_studio_sw:
 
@@ -99,6 +100,17 @@ and add next argument to the `colcon` call
 
     colcon build --cmake-args -Dgtest_force_shared_crt=ON
 
+
+.. _pythonreq_sw:
+
+XML validation tool
+^^^^^^^^^^^^^^^^^^^
+XML validation is a new command introduced to validate the XML profiles against an XSD schema through Fast DDS CLI.
+That ensures the proper characterization of the entities using the xml profiles.
+
+For more details, please refer to the :ref:`cli_xml` section.
+
+Install the xmlschema_ dependency to be able to use this optional tool.
 
 .. _dependencies_sw:
 
@@ -445,3 +457,4 @@ The ``Fast-DDS-Gen`` folder contains the following packages:
 .. _Gtest: https://github.com/google/googletest
 .. _libp11: https://github.com/OpenSC/libp11/
 .. _SoftHSM: https://www.opendnssec.org/softhsm/
+.. _xmlschema: https://pypi.org/project/xmlschema/

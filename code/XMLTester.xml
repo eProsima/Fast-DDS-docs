@@ -1,56 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
-
-<!-->PUBSUB_API_CONF_PARTICIPANT<-->
-<participant profile_name="participant_xml_conf_profile">
-    <domainId>80</domainId>
-    <rtps>
-        <name>my_participant</name>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PARTICIPANT_NAME<-->
-<participant profile_name="participant_xml_conf_name_profile">
-    <rtps>
-        <name>my_participant</name>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PARTICIPANT_DOMAIN<-->
-<participant profile_name="participant_xml_conf_domain_profile">
-    <domainId>80</domainId>
-    <rtps>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PARTICIPANT_MUTATION_TRIES<-->
-<participant profile_name="participant_xml_conf_mutation_tries_profile">
-    <rtps>
-        <builtin>
-            <mutation_tries>55</mutation_tries>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_TOPIC<-->
-<data_writer profile_name="writer_xml_conf_topic_profile">
-    <topic>
-        <dataType>HelloWorldType</dataType>
-        <name>HelloWorldTopic</name>
-    </topic>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_topic_profile">
-    <topic>
-        <dataType>HelloWorldType</dataType>
-        <name>HelloWorldTopic</name>
-    </topic>
-</data_reader>
-<!--><-->
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<profiles>
 
 <!-->CONF_QOS_STATIC_DISCOVERY_USERID<-->
 <data_writer profile_name="writer_xml_conf_static_discovery">
@@ -59,43 +9,6 @@
 
 <data_reader profile_name="reader_xml_conf_static_discovery">
     <userDefinedID>5</userDefinedID>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_RELIABILITY<-->
-<data_writer profile_name="writer_xml_conf_reliability_profile">
-    <qos>
-        <reliability>
-            <kind>RELIABLE</kind>
-        </reliability>
-    </qos>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_reliability_profile">
-    <qos>
-        <reliability>
-            <kind>BEST_EFFORT</kind>
-        </reliability>
-    </qos>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_HISTORY<-->
-<data_writer profile_name="writer_xml_conf_history_profile">
-    <topic>
-        <historyQos>
-            <kind>KEEP_ALL</kind>
-        </historyQos>
-    </topic>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_history_profile">
-    <topic>
-        <historyQos>
-            <kind>KEEP_LAST</kind>
-            <depth>5</depth>
-        </historyQos>
-    </topic>
 </data_reader>
 <!--><-->
 
@@ -113,28 +26,6 @@
         <durability>
             <kind>VOLATILE</kind>
         </durability>
-    </qos>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_LIFESPAN<-->
-<data_writer profile_name="writer_xml_conf_lifespan_profile">
-    <qos>
-        <lifespan>
-            <duration>
-                <sec>1</sec>
-            </duration>
-        </lifespan>
-    </qos>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_lifespan_profile">
-    <qos>
-        <lifespan>
-            <duration>
-                <sec>1</sec>
-            </duration>
-        </lifespan>
     </qos>
 </data_reader>
 <!--><-->
@@ -160,41 +51,18 @@
 </data_reader>
 <!--><-->
 
-<!-->PUBSUB_API_CONF_PUBSUB_DEADLINE<-->
-<data_writer profile_name="writer_xml_conf_deadline_profile">
-    <qos>
-        <deadline>
-            <period>
-                <sec>1</sec>
-            </period>
-        </deadline>
-    </qos>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_deadline_profile">
-    <qos>
-        <deadline>
-            <period>
-                <sec>1</sec>
-            </period>
-        </deadline>
-    </qos>
-</data_reader>
-<!--><-->
-
 <!-->PUBSUB_API_CONF_PUBSUB_LIVELINESS<-->
 <data_writer profile_name="writer_xml_conf_liveliness_profile">
     <qos>
-      <liveliness>
-	<announcement_period>
-	  <sec>0</sec>
-	  <nanosec>1000000</nanosec>
-	</announcement_period>
-        <lease_duration>
-          <sec>1</sec>
-        </lease_duration>
-	<kind>AUTOMATIC</kind>
-      </liveliness>
+        <liveliness>
+            <announcement_period>
+                <nanosec>1000000</nanosec>
+            </announcement_period>
+            <lease_duration>
+                <sec>1</sec>
+            </lease_duration>
+            <kind>AUTOMATIC</kind>
+        </liveliness>
     </qos>
 </data_writer>
 
@@ -238,78 +106,14 @@
 </data_writer>
 <!--><-->
 
-<!-->PUBSUB_API_CONF_PUBSUB_RESOURCE_LIMITS<-->
-<data_writer profile_name="writer_xml_conf_resource_limits_profile">
-    <topic>
-        <resourceLimitsQos>
-            <max_samples>200</max_samples>
-        </resourceLimitsQos>
-    </topic>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_resource_limits_profile">
-    <topic>
-        <resourceLimitsQos>
-            <max_samples>200</max_samples>
-        </resourceLimitsQos>
-    </topic>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_UNICAST_LOCATORS<-->
-<data_writer profile_name="writer_xml_conf_unicast_locators_profile">
-    <unicastLocatorList>
-        <locator>
-            <udpv4>
-                <port>7800</port>
-            </udpv4>
-        </locator>
-    </unicastLocatorList>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_unicast_locators_profile">
-    <unicastLocatorList>
-        <locator>
-            <udpv4>
-                <port>7800</port>
-            </udpv4>
-        </locator>
-    </unicastLocatorList>
-</data_reader>
-<!--><-->
-
-<!-->PUBSUB_API_CONF_PUBSUB_MULTICAST_LOCATORS<-->
-<data_writer profile_name="writer_xml_conf_multicast_locators_profile">
-    <multicastLocatorList>
-        <locator>
-            <udpv4>
-                <address>239.255.0.4</address>
-                <port>7900</port>
-            </udpv4>
-        </locator>
-    </multicastLocatorList>
-</data_writer>
-
-<data_reader profile_name="reader_xml_conf_multicast_locators_profile">
-    <multicastLocatorList>
-        <locator>
-            <udpv4>
-                <address>239.255.0.4</address>
-                <port>7900</port>
-            </udpv4>
-        </locator>
-    </multicastLocatorList>
-</data_reader>
-<!--><-->
-
 <!-->CONF-QOS-DATASHARING<-->
 <data_writer profile_name="writer_profile_qos_datasharing">
     <qos>
         <data_sharing>
             <kind>AUTOMATIC</kind>
             <domain_ids>
-                <domainId>0x1234</domainId>
-                <domainId>0xABCD</domainId>
+                <domainId>123</domainId>
+                <domainId>098</domainId>
             </domain_ids>
         </data_sharing>
     </qos>
@@ -320,30 +124,11 @@
         <data_sharing>
             <kind>AUTOMATIC</kind>
             <domain_ids>
-                <domainId>0x1234</domainId>
-                <domainId>0xABCD</domainId>
+                <domainId>123</domainId>
+                <domainId>098</domainId>
             </domain_ids>
         </data_sharing>
     </qos>
-</data_reader>
-<!--><-->
-
-<!-->CONF-QOS-KEY<-->
-<data_writer profile_name="writer_profile_qos_key">
-    <topic>
-        <kind>WITH_KEY</kind>
-    </topic>
-</data_writer>
-<!--><-->
-
-<!-->CONF-QOS-RESOURCELIMIT-INSTANCES<-->
-<data_reader profile_name="reader_profile_qos_resourcelimit">
-    <topic>
-        <resourceLimitsQos>
-            <max_instances>3</max_instances>
-            <max_samples_per_instance>20</max_samples_per_instance>
-        </resourceLimitsQos>
-    </topic>
 </data_reader>
 <!--><-->
 
@@ -353,10 +138,6 @@
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
     <data_writer profile_name="pub_11">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -368,10 +149,6 @@
     </data_writer>
 
     <data_writer profile_name="pub_12">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -381,18 +158,7 @@
         </qos>
     </data_writer>
 
-    <data_writer profile_name="pub_21">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
-    </data_writer>
-
     <data_writer profile_name="pub_22">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -403,10 +169,6 @@
     </data_writer>
 
     <data_reader profile_name="subs_31">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -417,10 +179,6 @@
     </data_reader>
 
     <data_reader profile_name="subs_32">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -431,10 +189,6 @@
     </data_reader>
 
     <data_reader profile_name="subs_33">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
         <qos>
             <partition>
                 <names>
@@ -442,13 +196,6 @@
                 </names>
             </partition>
         </qos>
-    </data_reader>
-
-    <data_reader profile_name="subs_34">
-        <topic>
-            <name>TopicName</name>
-            <dataType>TopicDataTypeName</dataType>
-        </topic>
     </data_reader>
 <!--><-->
 
@@ -671,7 +418,11 @@
         <rtps>
             <builtin>
                 <metatrafficUnicastLocatorList>
-                    <locator/>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.0.1</address>
+                        </udpv4>
+                    </locator>
                 </metatrafficUnicastLocatorList>
                 <initialPeersList>
                     <locator>
@@ -683,25 +434,6 @@
             </builtin>
         </rtps>
     </participant>
-<!--><-->
-
-<!-->CONF-NON-BLOCKING-WRITE<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>non_blocking_transport</transport_id>
-        <type>UDPv4</type>
-        <non_blocking_send>false</non_blocking_send>
-    </transport_descriptor>
-</transport_descriptors>
-
-<participant profile_name="non_blocking_transport">
-    <rtps>
-        <userTransports>
-            <transport_id>non_blocking_transport</transport_id>
-        </userTransports>
-        <useBuiltinTransports>false</useBuiltinTransports>
-    </rtps>
-</participant>
 <!--><-->
 
 <!-->CONF-QOS-FLOWCONTROLLER<-->
@@ -724,18 +456,6 @@
 </data_writer>
 <!--><-->
 
-<!-->CONF-QOS-DISABLE-DISCOVERY<-->
-<participant profile_name="participant_profile_qos_disable_discovery">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>NONE</discoveryProtocol>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
-
 <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES<-->
 <participant profile_name="participant_profile_qos_discovery_edp">
     <rtps>
@@ -746,30 +466,6 @@
                     <PUBWRITER_SUBREADER>true</PUBWRITER_SUBREADER>
                     <PUBREADER_SUBWRITER>false</PUBREADER_SUBWRITER>
                 </simpleEDP>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->CONF-QOS-DISCOVERY-SERVERLIST<-->
-<participant profile_name="participant_profile_qos_discovery_serverlist">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>CLIENT</discoveryProtocol>
-                <discoveryServersList>
-                    <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <udpv4>
-                                    <address>192.168.2.65</address>
-                                    <port>5574</port>
-                                </udpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                </discoveryServersList>
             </discovery_config>
         </builtin>
     </rtps>
@@ -890,25 +586,7 @@
 </participant>
 <!--><-->
 
-
-<!-->CONF-QOS-DISCOVERY-LEASEDURATION<-->
-<participant profile_name="participant_profile_qos_discovery_lease">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <leaseDuration>
-                    <sec>5</sec>
-                </leaseDuration>
-                <leaseAnnouncement>
-                    <sec>2</sec>
-                </leaseAnnouncement>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->CONF-QOS-INCREASE-SOCKETBUFFERS<-->
+<!-->CONF-QOS-INCREASE-SOCKETBUFFERS><-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
@@ -919,138 +597,6 @@
             <listenSocketBufferSize>4194304</listenSocketBufferSize>
         </rtps>
     </participant>
-<!--><-->
-
-<!-->SECURITY_CONF_ALL_PLUGINS<-->
-<participant profile_name="secure_participant_conf_all_plugin_xml_profile">
-    <rtps>
-        <propertiesPolicy>
-            <properties>
-                <!-- Activate Auth:PKI-DH plugin -->
-                <property>
-                    <name>dds.sec.auth.plugin</name>
-                    <value>builtin.PKI-DH</value>
-                </property>
-
-                <!-- Configure Auth:PKI-DH plugin -->
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
-                    <value>file://maincacert.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
-                    <value>file://appcert.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
-                    <value>file://appkey.pem</value>
-                </property>
-
-                <!-- Activate Access:Permissions plugin -->
-                <property>
-                    <name>dds.sec.access.plugin</name>
-                    <value>builtin.Access-Permissions</value>
-                </property>
-
-                <!-- Configure Access:Permissions plugin -->
-                <property>
-                    <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>
-                    <value>file://maincacet.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.access.builtin.Access-Permissions.governance</name>
-                    <value>file://governance.smime</value>
-                </property>
-                <property>
-                    <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
-                    <value>file://permissions.smime</value>
-                </property>
-
-                <!-- Activate Crypto:AES-GCM-GMAC plugin -->
-                <property>
-                    <name>dds.sec.crypto.plugin</name>
-                    <value>builtin.AES-GCM-GMAC</value>
-                </property>
-            </properties>
-        </propertiesPolicy>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->SECURITY_CONF_AUTH_AND_CRYPT_PLUGINS<-->
-<participant profile_name="secure_participant_conf_no_access_control_xml_profile">
-    <rtps>
-        <propertiesPolicy>
-            <properties>
-                <!-- Activate Auth:PKI-DH plugin -->
-                <property>
-                    <name>dds.sec.auth.plugin</name>
-                    <value>builtin.PKI-DH</value>
-                </property>
-
-                <!-- Configure Auth:PKI-DH plugin -->
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
-                    <value>file://maincacert.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
-                    <value>file://appcert.pem</value>
-                </property>
-                <property>
-                    <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
-                    <value>file://appkey.pem</value>
-                </property>
-
-                <!-- Activate Crypto:AES-GCM-GMAC plugin -->
-                <property>
-                    <name>dds.sec.crypto.plugin</name>
-                    <value>builtin.AES-GCM-GMAC</value>
-                </property>
-
-                <!-- Encrypt all RTPS submessages -->
-                <property>
-                    <name>rtps.participant.rtps_protection_kind</name>
-                    <value>ENCRYPT</value>
-                </property>
-            </properties>
-        </propertiesPolicy>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS<-->
-<data_writer profile_name="secure_publisher_xml_profile">
-    <propertiesPolicy>
-        <properties>
-            <!-- Encrypt RTPS submessages -->
-            <property>
-                <name>rtps.endpoint.submessage_protection_kind</name>
-                <value>ENCRYPT</value>
-            </property>
-
-            <!-- Encrypt payload -->
-            <property>
-                <name>rtps.endpoint.payload_protection_kind</name>
-                <value>ENCRYPT</value>
-            </property>
-        </properties>
-    </propertiesPolicy>
-</data_writer>
-<!--><-->
-
-<!-->SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS<-->
-<data_reader profile_name="secure_publisher_xml_profile">
-   <propertiesPolicy>
-      <properties>
-         <!-- Encrypt RTPS submessages -->
-         <property>
-            <name>rtps.endpoint.submessage_protection_kind</name>
-            <value>ENCRYPT</value>
-         </property>
-      </properties>
-   </propertiesPolicy>
-</data_reader>
 <!--><-->
 
 <!-->TRANSPORT-DESCRIPTORS<-->
@@ -1221,8 +767,8 @@
 <!-->XML-TCP-TLS<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
         <transport_descriptors>
             <transport_descriptor>
@@ -1261,14 +807,6 @@
 <!--><-->
 
 <!--PROFILES-->
-<types>
-    <type>
-        <struct name="struct_profile">
-            <!-- ... -->
-        </struct>
-    </type>
-</types>
-
 <participant profile_name="participant_profile">
     <rtps>
     <!-- ... -->
@@ -1283,154 +821,6 @@
     <!-- ... -->
 </data_reader>
 <!--><-->
-
-<!--STAND_ALONE_TYPES_START-->
-<types>
-    <type>
-        <!-- Type definition -->
-    </type>
-    <type>
-        <!-- Type definition -->
-        <!-- Type definition -->
-    </type>
-</types>
-<!--STAND_ALONE_TYPES_END-->
-
-<types>
-<type>
-<!-->XML-DYN-ENUM<-->
-<enum name="MyEnum">
-    <enumerator name="A" value="0"/>
-    <enumerator name="B" value="1"/>
-    <enumerator name="C"/>
-</enum>
-<!--><-->
-
-<!-->XML-TYPEDEF<-->
-<typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-<typedef name="MyAliasArray" type="int32" arrayDimension="2,2"/>
-<!--Complex map-->
-<typedef name="my_map_inner" type="int32" key_type="int32"/>
-<struct name="StructComplexMap">
-    <member name="my_complex_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
-</struct>
-<!--Complex sequence-->
-<typedef name="long_sequence" sequenceMaxLength="10" type="int32"/>
-<struct name="StructComplexSequence">
-    <member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="long_sequence" sequenceMaxLength="3"/>
-</struct>
-<!--><-->
-
-<!-->XML-STRUCT<-->
-<struct name="MyStruct">
-    <member name="first" type="int32"/>
-    <member name="second" type="int64"/>
-</struct>
-<!--><-->
-
-<!-->XML-UNION<-->
-<union name="MyUnion">
-    <discriminator type="byte"/>
-    <case>
-        <caseDiscriminator value="0"/>
-        <caseDiscriminator value="1"/>
-        <member name="first" type="int32"/>
-    </case>
-    <case>
-        <caseDiscriminator value="2"/>
-        <member name="second" type="nonBasic" nonBasicTypeName="MyStruct"/>
-    </case>
-    <case>
-        <caseDiscriminator value="default"/>
-        <member name="third" type="nonBasic" nonBasicTypeName="int64"/>
-    </case>
-</union>
-<!--><-->
-
-<!-->XML-GENERIC<-->
-<struct name="primitive_types_example">
-    <!-- Primitive type definitions inside a struct -->
-    <member name="my_bool" type="boolean"/>
-    <member name="my_char" type="char8"/>
-    <member name="my_wchar" type="char16"/>
-    <member name="my_byte" type="byte"/>
-    <member name="my_octet" type="octet"/>
-    <member name="my_uint8" type="uint8"/>
-    <member name="my_short" type="int16"/>
-    <member name="my_long" type="int32"/>
-    <member name="my_unsignedshort" type="uint16"/>
-    <member name="my_unsignedlong" type="uint32"/>
-    <member name="my_longlong" type="int64"/>
-    <member name="my_unsignedlonglong" type="uint64"/>
-    <member name="my_float" type="float32"/>
-    <member name="my_double" type="float64"/>
-    <member name="my_longdouble" type="float128"/>
-    <member name="my_string" type="string"/>
-    <member name="my_wstring" type="wstring"/>
-</struct>
-<!--><-->
-<struct name="MembersExample">
-<!-->XML-BOUNDEDSTRINGS<-->
-<member name="my_large_string" type="string" stringMaxLength="41925"/>
-<member name="my_large_wstring" type="wstring" stringMaxLength="20925"/>
-<!--><-->
-<!-->XML-SEQUENCES<-->
-<member name="short_sequence" sequenceMaxLength="5" type="int16"/>
-<!--><-->
-<!-->XML-ARRAYS<-->
-<member name="long_array" type="int32" arrayDimensions="2,3,4"/>
-<!--><-->
-<!-->XML-MAPS<-->
-<member name="long_long_map" type="int32" key_type="int32" mapMaxLength="2"/>
-<!--><-->
-</struct>
-
-<!-->XML-COMPLEX<-->
-<struct name="ComplexTypeStruct">
-    <member name="my_complex_struct" type="nonBasic" nonBasicTypeName="primitive_types_example" arrayDimensions="5"/>
-</struct>
-<!--><-->
-
-<!-->XML-BITSET<-->
-<bitset name="MyBitSet">
-    <bitfield name="a" bit_bound="3"/>
-    <bitfield name="b" bit_bound="1"/>
-    <bitfield bit_bound="4"/>
-    <bitfield name="c" bit_bound="10"/>
-    <bitfield name="d" bit_bound="12" type="int16"/>
-</bitset>
-<!--><-->
-<!-->XML-BITMASK<-->
-<bitmask name="MyBitMask" bit_bound="8">
-    <bit_value name="flag0" position="0"/>
-    <bit_value name="flag1"/>
-    <bit_value name="flag2" position="2"/>
-    <bit_value name="flag5" position="5"/>
-</bitmask>
-<!--><-->
-<!-->XML-BITSET-INHERIT<-->
-<bitset name="ParentBitSet">
-    <bitfield name="a" bit_bound="10"/>
-    <bitfield name="b" bit_bound="15"/>
-</bitset>
-
-<bitset name="ChildBitSet" baseType="ParentBitSet">
-    <bitfield bit_bound="1"/>
-    <bitfield bit_bound="5" type="uint16"/>
-</bitset>
-<!--><-->
-<!-->XML-STRUCT-INHERIT<-->
-<struct name="ParentStruct">
-    <member name="first" type="int32"/>
-    <member name="second" type="int64"/>
-</struct>
-<struct name="ChildStruct" baseType="ParentStruct">
-    <member name="third" type="int32"/>
-    <member name="fourth" type="int64"/>
-</struct>
-<!--><-->
-</type>
-</types>
 
 <!-->XML-PARTICIPANT<-->
 <!--
@@ -1514,8 +904,10 @@
             </allocation>
 
             <userData>
-                <value>13.40.37.00.CE</value>
+                <value>3.4.7.0.C</value>
             </userData>
+
+            <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
         </rtps>
     </participant>
 <!--
@@ -1563,7 +955,6 @@
 </participant>
 
 <participant profile_name="part_builtin_example">
-<domainId>4</domainId> <!-- uint32 -->
 <rtps>
 <!-->XML-BUILTIN<-->
 <builtin>
@@ -1582,13 +973,11 @@
         <leaseDuration>
             <!-- DURATION -->
             <sec>20</sec>
-            <nanosec>0</nanosec>
         </leaseDuration>
 
         <leaseAnnouncement>
             <!-- DURATION -->
             <sec>3</sec>
-            <nanosec>0</nanosec>
         </leaseAnnouncement>
 
         <initialAnnouncements>
@@ -1609,21 +998,27 @@
     <metatrafficUnicastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <udpv4/>
+            <udpv4>
+                <address>192.168.0.1</address>
+            </udpv4>
         </locator>
     </metatrafficUnicastLocatorList>
 
     <metatrafficMulticastLocatorList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <udpv4/>
+            <udpv4>
+                <address>192.168.0.1</address>
+            </udpv4>
         </locator>
     </metatrafficMulticastLocatorList>
 
     <initialPeersList>
         <!-- LOCATOR_LIST -->
         <locator>
-            <udpv4/>
+            <udpv4>
+                <address>192.168.0.1</address>
+            </udpv4>
         </locator>
     </initialPeersList>
 
@@ -1652,12 +1047,14 @@
 <!-->XML-DATAWRITER<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
         <data_writer profile_name="datawriter_profile_name">
             <topic>
-                <!-- TOPIC_TYPE -->
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                </historyQos>
             </topic>
 
             <qos>
@@ -1666,37 +1063,37 @@
 
             <times> <!-- writerTimesType -->
                 <initialHeartbeatDelay>
-                    <sec>0</sec>
                     <nanosec>12</nanosec>
                 </initialHeartbeatDelay>
 
                 <heartbeatPeriod>
                     <sec>3</sec>
-                    <nanosec>0</nanosec>
                 </heartbeatPeriod>
 
                 <nackResponseDelay>
-                    <sec>0</sec>
                     <nanosec>5</nanosec>
                 </nackResponseDelay>
 
                 <nackSupressionDuration>
                     <sec>0</sec>
-                    <nanosec>0</nanosec>
                 </nackSupressionDuration>
             </times>
 
             <unicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
-                    <udpv4/>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </unicastLocatorList>
 
             <multicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
-                    <udpv4/>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </multicastLocatorList>
 
@@ -1712,8 +1109,14 @@
 
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
+            <!-- PROPERTIES_POLICY -->
             <propertiesPolicy>
-                <!-- PROPERTIES_POLICY -->
+                <properties>
+                    <property>
+                        <name>PropertyName</name>
+                        <value>PropertyValue</value>
+                    </property>
+                </properties>
             </propertiesPolicy>
 
             <userDefinedID>55</userDefinedID>
@@ -1730,18 +1133,20 @@
         </data_writer>
 <!-->
     </profiles>
-<dds>
+</dds>
 <-->
 <!--><-->
 <!-->XML-SUBSCRIBER<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
-        <data_reader profile_name="sub_profile_name">
+        <data_reader profile_name="data_reader_profile_name">
             <topic>
-                <!-- TOPIC_TYPE -->
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                </historyQos>
             </topic>
 
             <qos>
@@ -1750,12 +1155,10 @@
 
             <times> <!-- readerTimesType -->
                 <initialAcknackDelay>
-                    <sec>0</sec>
                     <nanosec>70</nanosec>
                 </initialAcknackDelay>
 
                 <heartbeatResponseDelay>
-                    <sec>0</sec>
                     <nanosec>5</nanosec>
                 </heartbeatResponseDelay>
             </times>
@@ -1763,14 +1166,18 @@
             <unicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
-                    <udpv4/>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </unicastLocatorList>
 
             <multicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
-                    <udpv4/>
+                    <udpv4>
+                        <address>192.168.0.1</address>
+                    </udpv4>
                 </locator>
             </multicastLocatorList>
 
@@ -1788,8 +1195,14 @@
 
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
+            <!-- PROPERTIES_POLICY -->
             <propertiesPolicy>
-                <!-- PROPERTIES_POLICY -->
+                <properties>
+                    <property>
+                        <name>PropertyName</name>
+                        <value>PropertyValue</value>
+                    </property>
+                </properties>
             </propertiesPolicy>
 
             <userDefinedID>55</userDefinedID>
@@ -1804,7 +1217,7 @@
         </data_reader>
 <!-->
     </profiles>
-<dds>
+</dds>
 <-->
 <!--><-->
 
@@ -1899,11 +1312,6 @@
     <leaseDuration>
         <sec>DURATION_INFINITY</sec>
     </leaseDuration>
-
-    <leaseDuration>
-        <nanosec>856000</nanosec>
-    </leaseDuration>
-
     <leaseAnnouncement>
         <sec>1</sec>
         <nanosec>856000</nanosec>
@@ -1914,7 +1322,7 @@
 </rtps>
 </participant>
 
-<data_writer profile_name="pub_topic_qos">
+<data_writer profile_name="topic_example">
 <!-->XML-TOPIC<-->
 <topic>
     <historyQos>
@@ -1930,7 +1338,10 @@
     </resourceLimitsQos>
 </topic>
 <!--><-->
+</data_writer>
+
 <!-->XML-QOS<-->
+<data_writer profile_name="pub_topic_qos">
 <qos> <!-- writerQosPoliciesType -->
     <data_sharing>
         <kind>AUTOMATIC</kind>
@@ -1961,6 +1372,10 @@
     <durability>
         <kind>VOLATILE</kind>
     </durability>
+
+    <groupData>
+        <value>1.a.2</value>
+    </groupData>
 
     <!-- QoS policy pending implementation -->
     <latencyBudget>
@@ -2014,6 +1429,14 @@
             <sec>1</sec>
         </max_blocking_time>
     </reliability>
+
+    <topicData>
+        <value>2.b.1</value>
+    </topicData>
+
+    <userData>
+        <value>3.c.0</value>
+    </userData>
 </qos>
 <!--><-->
 </data_writer>
@@ -2036,22 +1459,6 @@
 <!--><-->
 </qos>
 </data_writer>
-
-<data_reader profile_name="sub_liveliness">
-<qos>
-<!-->XML-LIVELINESS<-->
-<liveliness>
-    <kind>AUTOMATIC</kind>
-    <lease_duration>
-        <sec>DURATION_INFINITY</sec>
-    </lease_duration>
-    <announcement_period>
-        <sec>DURATION_INFINITY</sec>
-    </announcement_period>
-</liveliness>
-<!--><-->
-</qos>
-</data_reader>
 
 <!-->CONF-HISTORYMEMORYPOLICY-EXAMPLE<-->
     <data_writer profile_name="data_writer_historyMemoryPolicy">
@@ -2183,7 +1590,7 @@
         </rtps>
     </participant>
 
-    <data_writer profile_name="alloc_qos_example_pub_for_topic_1">
+    <data_writer profile_name="allocation_qos_example_pub_for_topic_1">
         <!-- we know we will have three matching subscribers and no content filter -->
         <matchedSubscribersAllocation>
             <initial>3</initial>
@@ -2194,7 +1601,7 @@
         <!-- reader_filters_allocation cannot be configured using XML (yet) -->
     </data_writer>
 
-    <data_writer profile_name="alloc_qos_example_pub_for_topic_2">
+    <data_writer profile_name="allocation_qos_example_pub_for_topic_2">
         <!-- we know we will have two matching subscribers and no content filter -->
         <matchedSubscribersAllocation>
             <initial>2</initial>
@@ -2205,7 +1612,7 @@
         <!-- reader_filters_allocation cannot be configured using XML (yet) -->
     </data_writer>
 
-    <data_reader profile_name="alloc_qos_example_sub">
+    <data_reader profile_name="allocation_qos_example_sub">
         <!-- we know we will only have one matching publisher -->
         <matchedPublishersAllocation>
             <initial>1</initial>
@@ -2235,7 +1642,7 @@
         </topic>
     </data_writer>
 
-    <data_reader profile_name="data_writer_min_samples">
+    <data_reader profile_name="data_reader_min_samples">
         <topic>
             <historyQos>
                 <kind>KEEP_LAST</kind>
@@ -2548,10 +1955,6 @@
     </participant>
 
     <data_writer profile_name="uc_publisher_xml_conf_static_discovery">
-        <topic>
-            <name>HelloWorldTopic</name>
-            <dataType>HelloWorld</dataType>
-        </topic>
         <userDefinedID>1</userDefinedID>
         <entityID>2</entityID>
     </data_writer>
@@ -2574,10 +1977,6 @@
     </participant>
 
     <data_reader profile_name="uc_subscriber_xml_conf_static_discovery">
-        <topic>
-            <name>HelloWorldTopic</name>
-            <dataType>HelloWorld</dataType>
-        </topic>
         <userDefinedID>3</userDefinedID>
         <entityID>4</entityID>
     </data_reader>
@@ -2700,7 +2099,6 @@
                 <initialAnnouncements>
                     <count>5</count>
                     <period>
-                        <sec>0</sec>
                         <nanosec>100000000</nanosec>
                     </period>
                 </initialAnnouncements>
@@ -2747,7 +2145,11 @@
                     <discoveryServersList>
                         <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
                             <metatrafficUnicastLocatorList>
-                                <locator/>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.0.1</address>
+                                    </udpv4>
+                                </locator>
                             </metatrafficUnicastLocatorList>
                         </RemoteServer>
                     </discoveryServersList>
@@ -2764,9 +2166,7 @@
 -->
     <participant profile_name="participant_server_guidprefix" >
         <rtps>
-            <prefix>
-                44.53.00.5f.45.50.52.4f.53.49.4d.41
-            </prefix>
+            <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
         </rtps>
     </participant>
 <!--><-->
@@ -2778,9 +2178,7 @@
 -->
     <participant profile_name="participant_guidprefix" >
         <rtps>
-            <prefix>
-                77.73.71.85.69.76.95.66.65.82.82.79
-            </prefix>
+            <prefix>77.73.71.85.69.76.95.66.65.82.82.79</prefix>
         </rtps>
     </participant>
 <!--><-->
@@ -3193,7 +2591,7 @@
         </participant>
 
         <!-- Generic profile for all the statistics DataWriter -->
-        <data_writer profile_name="GENERIC_STATISTICS_PROFILE">
+        <data_writer profile_name="GENERIC_STATISTICS_WRITER_PROFILE">
             <!-- Configure History QoS as KEEP_LAST 20 -->
             <!-- History depth depends on the user application constraints (publication rate for instance) -->
             <topic>
@@ -3253,7 +2651,7 @@
         </participant>
 
         <!-- Generic profile for a specific statistics DataWriters -->
-        <data_writer profile_name="HISTORY_LATENCY_TOPIC">
+        <data_writer profile_name="HISTORY_LATENCY_WRITER">
             <!-- Configure History QoS as KEEP_LAST 20 -->
             <!-- History depth depends on the user application constraints (publication rate for instance) -->
             <topic>
@@ -3334,8 +2732,8 @@
 <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 -->
         <!-- DomainParticipant configuration -->
         <participant profile_name="persistence_service_participant">
@@ -3399,60 +2797,6 @@
 -->
 <!--><-->
 
-
-</profiles>
-
-<!-->LOG-CONFIG<-->
-<!--
-<?xml version="1.0" encoding="UTF-8" ?>
-<dds>
--->
-    <log>
-        <!--
-        Clear consumers
-        -->
-        <use_default>FALSE</use_default>
-
-        <!--
-        StdoutConsumer does not have any properties
-        -->
-        <consumer>
-            <class>StdoutConsumer</class>
-        </consumer>
-
-        <!--
-        StdoutErrConsumer with threshold set to Log::Kind::Error
-        -->
-        <consumer>
-            <class>StdoutErrConsumer</class>
-            <property>
-                <name>stderr_threshold</name>
-                <value>Log::Kind::Error</value>
-            </property>
-        </consumer>
-
-        <!--
-        FileConsumer openning "execution.log" in append mode
-        -->
-        <consumer>
-            <class>FileConsumer</class>
-            <property>
-                <name>filename</name>
-                <value>execution.log</value>
-            </property>
-            <property>
-                <name>append</name>
-                <value>TRUE</value>
-            </property>
-        </consumer>
-    </log>
-<!--
-</dds>
--->
-<!--><-->
-
-
-
 <!-->QoS Examples<-->
 
 <!-->XML_DEADLINE<-->
@@ -3461,7 +2805,6 @@
         <deadline>
             <period>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </period>
         </deadline>
     </qos>
@@ -3472,13 +2815,13 @@
         <deadline>
             <period>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </period>
         </deadline>
     </qos>
 </data_reader>
 <!--><-->
 
+<data_writer profile_name="writer_xml_history_qos_profile">
 <!-->XML-HISTORY<-->
 <topic>
     <historyQos>
@@ -3487,6 +2830,7 @@
     </historyQos>
 </topic>
 <!--><-->
+</data_writer>
 
 
 <!-->XML_LIFESPAN<-->
@@ -3495,7 +2839,6 @@
         <lifespan>
             <duration>
                 <sec>5</sec>
-                <nanosec>0</nanosec>
             </duration>
         </lifespan>
     </qos>
@@ -3506,7 +2849,6 @@
         <lifespan>
             <duration>
                 <sec>5</sec>
-                <nanosec>0</nanosec>
             </duration>
         </lifespan>
     </qos>
@@ -3544,7 +2886,6 @@
             <kind>RELIABLE</kind>
             <max_blocking_time>
                 <sec>1</sec>
-                <nanosec>0</nanosec>
             </max_blocking_time>
         </reliability>
     </qos>
@@ -3699,28 +3040,25 @@
 <data_writer profile_name="pub_profile_name">
     <times> <!-- writerTimesType -->
         <initialHeartbeatDelay> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>20</nanosec>
         </initialHeartbeatDelay>
         <heartbeatPeriod> <!-- DURATION -->
             <sec>5</sec>
-            <nanosec>0</nanosec>
         </heartbeatPeriod>
         <nackResponseDelay> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>10</nanosec>
         </nackResponseDelay>
         <nackSupressionDuration> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>20</nanosec>
         </nackSupressionDuration>
     </times>
 
     <!--You can also change the values of DisablePositiveACKsQosPolicy.-->
     <!--See DisablePositiveACKsQosPolicy section for further details-->
-
-    <!--Disable heartbeat piggyback mechanism.-->
-    <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
+    <qos>
+        <!--Disable heartbeat piggyback mechanism.-->
+        <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
+    </qos>
 </data_writer>
 <!--><-->
 
@@ -3728,11 +3066,9 @@
 <data_reader profile_name="sub_profile_name">
     <times> <!-- readerTimesType -->
         <initialAcknackDelay> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>70</nanosec>
         </initialAcknackDelay>
         <heartbeatResponseDelay> <!-- DURATION -->
-            <sec>0</sec>
             <nanosec>5</nanosec>
         </heartbeatResponseDelay>
     </times>
@@ -3742,7 +3078,7 @@
 <!--><-->
 
 <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
-<participant profile_name="UDP SERVER" is_default_profile="true">
+<participant profile_name="UDP SERVER WP" is_default_profile="true">
     <rtps>
         <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
         <builtin>
@@ -3878,12 +3214,12 @@
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 <-->
         <transport_descriptors>
             <transport_descriptor>
-                <transport_id>TransportId1</transport_id>
+                <transport_id>my_udpv4_transport</transport_id>
                 <type>UDPv4</type>
                 <sendBufferSize>8192</sendBufferSize>
                 <receiveBufferSize>8192</receiveBufferSize>
@@ -3922,77 +3258,6 @@
 <-->
 <!--><-->
 
-<!-->CREATING_XML_PROFILES<-->
-<!-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
-<-->
-        <participant profile_name="participant_profile">
-            <!-- ... -->
-        </participant>
-
-        <data_writer profile_name="datawriter_profile">
-            <!-- ... -->
-        </data_writer>
-
-        <data_reader profile_name="datareader_profile">
-            <!-- ... -->
-        </data_reader>
-
-        <transport_descriptors>
-            <!-- ... -->
-        </transport_descriptors>
-
-        <log>
-            <!-- ... -->
-        </log>
-
-        <types>
-            <!-- ... -->
-        </types>
-<!-->
-    </profiles>
-</dds>
-<-->
-<!--><-->
-
-<!-->ROOTED_TYPES_START<-->
-<!-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-<-->
-    <types>
-        <type>
-            <!-- Type definition -->
-        </type>
-
-        <type>
-            <!-- Type definition -->
-            <!-- Type definition -->
-        </type>
-    </types>
-<!-->
-</dds>
-<-->
-<!-->ROOTED_TYPES_END<-->
-
-<!-->STANDALONE_TYPES_START<-->
-<!-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<-->
-<types>
-    <type>
-        <!-- Type definition -->
-    </type>
-
-    <type>
-        <!-- Type definition -->
-        <!-- Type definition -->
-    </type>
-</types>
-<!-->STANDALONE_TYPES_END<-->
-
 <!-->DDS_MULTICAST_DELIVERY<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -4009,3 +3274,195 @@
         </multicastLocatorList>
     </data_reader>
 <!--><-->
+
+
+
+</profiles>
+
+<!-->LOG-CONFIG<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <log>
+        <!--
+        Clear consumers
+        -->
+        <use_default>false</use_default>
+
+        <!--
+        StdoutConsumer does not have any properties
+        -->
+        <consumer>
+            <class>StdoutConsumer</class>
+        </consumer>
+
+        <!--
+        StdoutErrConsumer with threshold set to Log::Kind::Error
+        -->
+        <consumer>
+            <class>StdoutErrConsumer</class>
+            <property>
+                <name>stderr_threshold</name>
+                <value>Log::Kind::Error</value>
+            </property>
+        </consumer>
+
+        <!--
+        FileConsumer openning "execution.log" in append mode
+        -->
+        <consumer>
+            <class>FileConsumer</class>
+            <property>
+                <name>filename</name>
+                <value>execution.log</value>
+            </property>
+            <property>
+                <name>append</name>
+                <value>true</value>
+            </property>
+        </consumer>
+    </log>
+<!--
+</dds>
+-->
+<!--><-->
+
+<types>
+<type>
+<!-->XML-DYN-ENUM<-->
+<enum name="MyEnum">
+    <enumerator name="A" value="0"/>
+    <enumerator name="B" value="1"/>
+    <enumerator name="C"/>
+</enum>
+<!--><-->
+
+<!-->XML-TYPEDEF<-->
+<typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
+<typedef name="MyAliasArray" type="int32" arrayDimensions="2,2"/>
+<!--Complex map-->
+<typedef name="my_map_inner" type="int32" key_type="int32"/>
+<struct name="StructComplexMap">
+    <member name="my_complex_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
+</struct>
+<!--Complex sequence-->
+<typedef name="long_sequence" sequenceMaxLength="10" type="int32"/>
+<struct name="StructComplexSequence">
+    <member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="long_sequence" sequenceMaxLength="3"/>
+</struct>
+<!--><-->
+
+<!-->XML-STRUCT<-->
+<struct name="MyStruct">
+    <member name="first" type="int32"/>
+    <member name="second" type="int64"/>
+</struct>
+<!--><-->
+
+<!-->XML-UNION<-->
+<union name="MyUnion">
+    <discriminator type="byte"/>
+    <case>
+        <caseDiscriminator value="0"/>
+        <caseDiscriminator value="1"/>
+        <member name="first" type="int32"/>
+    </case>
+    <case>
+        <caseDiscriminator value="2"/>
+        <member name="second" type="nonBasic" nonBasicTypeName="MyStruct"/>
+    </case>
+    <case>
+        <caseDiscriminator value="default"/>
+        <member name="third" type="nonBasic" nonBasicTypeName="int64"/>
+    </case>
+</union>
+<!--><-->
+
+<!-->XML-GENERIC<-->
+<struct name="primitive_types_example">
+    <!-- Primitive type definitions inside a struct -->
+    <member name="my_bool" type="boolean"/>
+    <member name="my_char" type="char8"/>
+    <member name="my_wchar" type="char16"/>
+    <member name="my_byte" type="byte"/>
+    <member name="my_octet" type="octet"/>
+    <member name="my_uint8" type="uint8"/>
+    <member name="my_short" type="int16"/>
+    <member name="my_long" type="int32"/>
+    <member name="my_unsignedshort" type="uint16"/>
+    <member name="my_unsignedlong" type="uint32"/>
+    <member name="my_longlong" type="int64"/>
+    <member name="my_unsignedlonglong" type="uint64"/>
+    <member name="my_float" type="float32"/>
+    <member name="my_double" type="float64"/>
+    <member name="my_longdouble" type="float128"/>
+    <member name="my_string" type="string"/>
+    <member name="my_wstring" type="wstring"/>
+</struct>
+<!--><-->
+<struct name="MembersExample">
+<!-->XML-BOUNDEDSTRINGS<-->
+<member name="my_large_string" type="string" stringMaxLength="41925"/>
+<member name="my_large_wstring" type="wstring" stringMaxLength="20925"/>
+<!--><-->
+<!-->XML-SEQUENCES<-->
+<member name="short_sequence" sequenceMaxLength="5" type="int16"/>
+<!--><-->
+<!-->XML-ARRAYS<-->
+<member name="long_array" type="int32" arrayDimensions="2,3,4"/>
+<!--><-->
+<!-->XML-MAPS<-->
+<member name="long_long_map" type="int32" key_type="int32" mapMaxLength="2"/>
+<!--><-->
+</struct>
+
+<!-->XML-COMPLEX<-->
+<struct name="ComplexTypeStruct">
+    <member name="my_complex_struct" type="nonBasic" nonBasicTypeName="primitive_types_example" arrayDimensions="5"/>
+</struct>
+<!--><-->
+
+<!-->XML-BITSET<-->
+<bitset name="MyBitSet">
+    <bitfield name="a" bit_bound="3"/>
+    <bitfield name="b" bit_bound="1"/>
+    <bitfield bit_bound="4"/>
+    <bitfield name="c" bit_bound="10"/>
+    <bitfield name="d" bit_bound="12" type="int16"/>
+</bitset>
+<!--><-->
+<!-->XML-BITMASK<-->
+<bitmask name="MyBitMask" bit_bound="8">
+    <bit_value name="flag0" position="0"/>
+    <bit_value name="flag1"/>
+    <bit_value name="flag2" position="2"/>
+    <bit_value name="flag5" position="5"/>
+</bitmask>
+<!--><-->
+<!-->XML-BITSET-INHERIT<-->
+<bitset name="ParentBitSet">
+    <bitfield name="a" bit_bound="10"/>
+    <bitfield name="b" bit_bound="15"/>
+</bitset>
+
+<bitset name="ChildBitSet" baseType="ParentBitSet">
+    <bitfield bit_bound="1"/>
+    <bitfield bit_bound="5" type="uint16"/>
+</bitset>
+<!--><-->
+<!-->XML-STRUCT-INHERIT<-->
+<struct name="ParentStruct">
+    <member name="first" type="int32"/>
+    <member name="second" type="int64"/>
+</struct>
+<struct name="ChildStruct" baseType="ParentStruct">
+    <member name="third" type="int32"/>
+    <member name="fourth" type="int64"/>
+</struct>
+<!--><-->
+</type>
+</types>
+
+
+</dds>

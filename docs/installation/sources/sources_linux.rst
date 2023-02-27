@@ -66,6 +66,7 @@ Dependencies
 * :ref:`openssl_sl`
 * :ref:`libp11_sl`
 * :ref:`gtest_sl` [optional]
+* :ref:`pythonreq_sl` [optional]
 
 .. _asiotinyxml2_sl:
 
@@ -169,6 +170,18 @@ Also add the `Gtest repository <https://github.com/google/googletest>`_ into the
 .. code-block:: bash
 
     git clone https://github.com/google/googletest src/googletest-distribution
+
+
+.. _pythonreq_sl:
+
+XML validation tool
+^^^^^^^^^^^^^^^^^^^
+XML validation is a new command introduced to validate the XML profiles against an XSD schema through Fast DDS CLI.
+That ensures the proper characterization of the entities using the xml profiles.
+
+For more details, please refer to the :ref:`cli_xml` section.
+
+Install the xmlschema_ dependency to be able to use this optional tool.
 
 .. _colcon_installation_linux:
 
@@ -648,3 +661,4 @@ The :code:`Fast-DDS-Gen` folder contains the following packages:
 .. _SoftHSM: https://www.opendnssec.org/softhsm/
 .. _p11kit: https://github.com/p11-glue/p11-kit
 .. _SWIG: http://www.swig.org/
+.. _xmlschema: https://pypi.org/project/xmlschema/

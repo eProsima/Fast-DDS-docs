@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+    <profiles>
         <transport_descriptors>
             <!-- TCP sample transport descriptor -->
             <transport_descriptor>
@@ -166,7 +166,7 @@
                                 <nanosec>50</nanosec>
                             </period>
                         </initialAnnouncements>
-                        <staticEndpointXMLFilename>filename.xml</staticEndpointXMLFilename>
+                        <static_edp_xml_config>filename.xml</static_edp_xml_config>
                     </discovery_config>
 
                     <avoid_builtin_multicast>true</avoid_builtin_multicast>
@@ -339,7 +339,6 @@
                     <extra_samples>10</extra_samples>
                 </resourceLimitsQos>
             </topic>
-
             <qos> <!-- dataWriterQosPoliciesType -->
                 <data_sharing>
                     <kind>AUTOMATIC</kind>
@@ -374,7 +373,6 @@
                 <lifespan>
                     <duration>
                         <sec>5</sec>
-                        <nanosec>0</nanosec>
                     </duration>
                 </lifespan>
                 <liveliness>
@@ -532,7 +530,6 @@
                     <extra_samples>10</extra_samples>
                 </resourceLimitsQos>
             </topic>
-
             <qos> <!-- dataReaderQosPoliciesType -->
                 <data_sharing>
                     <kind>AUTOMATIC</kind>
@@ -566,7 +563,6 @@
                 <lifespan>
                     <duration>
                         <sec>5</sec>
-                        <nanosec>0</nanosec>
                     </duration>
                 </lifespan>
                 <liveliness>
@@ -699,7 +695,7 @@
     </profiles>
 
     <log>
-        <use_default>FALSE</use_default>
+        <use_default>false</use_default>
 
         <consumer>
             <class>StdoutConsumer</class>

@@ -10,22 +10,27 @@ Creating an XML profiles file
 An XML file can contain several XML profiles.
 These XML profiles are defined within the ``<dds>`` element, and in turn, within the ``<profiles>`` XML elements.
 The possible topologies for the definition of XML profiles are specified in :ref:`rootedvsstandalone`.
+
+It is worth mentioning that the first element of the xml profile must have the ``xmlns`` attribute with the link
+``xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"``, in both rooted or standalone definitions.
+That link defines the reference of the ``xsd`` schema that the ``xml`` document complies with.
+
 The available profile types are:
 
 * :ref:`participantprofiles`,
 * :ref:`publisherprofiles`,
 * :ref:`subscriberprofiles`,
+* :ref:`intra_process_delivery_xml_profile`,
 * :ref:`transportdescriptors`,
 * :ref:`logprofiles`, and
 * :ref:`xmldynamictypes`.
 
 The following sections will show implementation examples for each of these profiles.
 
-.. literalinclude:: /../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTesterSkipValidation.xml
     :language: xml
     :start-after: <!-->CREATING_XML_PROFILES<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-28, 30-31
 
 .. note::
 
@@ -79,8 +84,8 @@ Rooted vs Standalone profiles definition
     Elements ``<dds>``, ``<profiles>``, ``<types>``, and ``<log>`` can be defined in a stand-alone manner.
 *   Rooted:
     The element defining the XML profile is the child element of another element.
-    For example, the ``<participant>``, ``<data_reader>``, ``<data_writer>``, and ``<transport_descriptors>`` elements
-    must be defined as child elements of the ``<profiles>`` element.
+    For example, the ``<participant>``, ``<data_reader>``, ``<data_writer>``, ``<library_settings>``,
+    and ``<transport_descriptors>`` elements must be defined as child elements of the ``<profiles>`` element.
 
 The following is an example of the definition of the ``<types>`` XML profile using the two previously discussed
 approaches.
@@ -88,20 +93,23 @@ approaches.
 +----------------------------------------------------------------------------------------------------------------------+
 | **Stand-alone**                                                                                                      |
 +----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+| .. literalinclude:: /../code/XMLTesterSkipValidation.xml                                                             |
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->STANDALONE_TYPES_START<-->                                                                     |
 |    :end-before: <!-->STANDALONE_TYPES_END<-->                                                                        |
-|    :lines: 2, 4-                                                                                                     |
 +----------------------------------------------------------------------------------------------------------------------+
 | **Rooted**                                                                                                           |
 +----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
+| .. literalinclude:: /../code/XMLTesterSkipValidation.xml                                                             |
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->ROOTED_TYPES_START<-->                                                                         |
 |    :end-before: <!-->ROOTED_TYPES_END<-->                                                                            |
-|    :lines: 2-3, 5-14, 16                                                                                             |
 +----------------------------------------------------------------------------------------------------------------------+
+
+.. note::
+
+    Make sure that the first element of the xml profile must have the ``xmlns`` tag with the link
+    ``xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"``, in both rooted or standalone definitions.
 
 Modifying predefined XML profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

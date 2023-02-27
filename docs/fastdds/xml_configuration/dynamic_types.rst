@@ -20,7 +20,7 @@ Defining several types within a ``<types>`` element or a single type for each ``
 result.
 Below, an example of a stand-alone types definition via XML is shown.
 
-.. literalinclude:: /../code/XMLTester.xml
+.. literalinclude:: /../code/XMLTesterSkipValidation.xml
     :language: xml
     :start-after: <!--STAND_ALONE_TYPES_START-->
     :end-before: <!--STAND_ALONE_TYPES_END-->

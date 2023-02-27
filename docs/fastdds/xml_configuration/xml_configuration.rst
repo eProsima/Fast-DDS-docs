@@ -36,6 +36,7 @@ to create complete XML files.
     /fastdds/xml_configuration/domainparticipant
     /fastdds/xml_configuration/datawriter
     /fastdds/xml_configuration/datareader
+    /fastdds/xml_configuration/library_settings
     /fastdds/xml_configuration/transports
     /fastdds/xml_configuration/log
     /fastdds/xml_configuration/dynamic_types

@@ -74,13 +74,16 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTester.xml
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTesterExample.xml
     ${CMAKE_CURRENT_BINARY_DIR}/XMLTesterExample.xml COPYONLY)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTesterSkipValidation.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/XMLTesterSkipValidation.xml COPYONLY)
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/certs/maincacert.pem
     ${CMAKE_CURRENT_BINARY_DIR}/certs/maincacert.pem COPYONLY)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/certs/appcert.pem
     ${CMAKE_CURRENT_BINARY_DIR}/certs/appcert.pem COPYONLY)
 
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/certs/appkey.pem
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/certs/appkey.pem
     ${CMAKE_CURRENT_BINARY_DIR}/certs/appkey.pem COPYONLY)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/GovernanceTester.xml
@@ -98,6 +101,8 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grep.py
     ${CMAKE_CURRENT_BINARY_DIR}/grep.py COPYONLY)
 
+configure_file(${FAST_INCLUDE_DIR}/../share/fastRTPS_profiles.xsd
+    ${CMAKE_CURRENT_BINARY_DIR}/fastRTPS_profiles.xsd COPYONLY)
 
 # Check validity of Permissions and Governance XML files using Fast RTPS API
 add_test(NAME xml.fastrtps_permissions_test
@@ -112,6 +117,10 @@ add_test(NAME xml.fastrtps_permissions_test
 add_test(NAME xml.profiles COMMAND dds-doctest XMLTester.xml)
 # Check validity of XML full example
 add_test(NAME xml.example COMMAND dds-doctest XMLTesterExample.xml)
+# Validate XML full example against XSD schema
+add_test(NAME xml.validate COMMAND fastdds xml validate XMLTesterExample.xml -x fastRTPS_profiles.xsd)
+# Validate XML snippets doc against XSD schema
+add_test(NAME xml.snippets COMMAND fastdds xml validate XMLTester.xml -x fastRTPS_profiles.xsd)
 # Check validity of Permissions and Governance XML files using Fast DDS API
 add_test(NAME xml.fastdds_permissions_test
     COMMAND dds-doctest

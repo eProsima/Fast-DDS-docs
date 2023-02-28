@@ -41,8 +41,26 @@ The ``<participant>`` element has two attributes defined: ``profile_name`` and `
 DomainParticipant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``<participant>`` element has as child element ``<rtps>`` under which all the DomainParticipant configuration
-options belong.
+The ``<participant>`` element has two child elements: ``<domainId>`` and ``<rtps>``.
+All the DomainParticipant configuration options belong to the ``<rtps>`` element, except for the DDS |DomainId-api|
+which is defined by the ``<domainId>`` element.
+Below a list with the configuration XML elements is presented:
+
++----------------+----------------------------------------------------------------------------+--------------+---------+
+| Name           | Description                                                                | Values       | Default |
++================+============================================================================+==============+=========+
+| ``<domainId>`` | DomainId to be used by the DomainParticipant.                              | ``uint32_t`` | 0       |
+|                | See :ref:`dds_layer_domainParticipant_creation_profile`.                   |              |         |
++----------------+----------------------------------------------------------------------------+--------------+---------+
+| ``<rtps>``     | *Fast DDS* DomainParticipant configurations. |br|                          |  :ref:`RTPS` |         |
+|                | See :ref:`RTPS`.                                                           |              |         |
++----------------+----------------------------------------------------------------------------+--------------+---------+
+
+.. _RTPS:
+
+RTPS element type
+"""""""""""""""""
+
 The following is a list with all the possible child XML elements of the ``<rtps>`` element.
 These elements allow the user to define the DomainParticipant configuration.
 
@@ -166,7 +184,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-87, 89
+    :lines: 2-3, 5-88, 90
 
 .. note::
 

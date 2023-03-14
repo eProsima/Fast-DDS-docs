@@ -960,7 +960,28 @@
 <!-->XML-BUILTIN<-->
 <builtin>
     <discovery_config>
-        <discoveryProtocol>NONE</discoveryProtocol>
+        <discoveryProtocol>CLIENT</discoveryProtocol>
+
+        <discoveryServersList>
+            <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.57</address>
+                            <port>56542</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+                <metatrafficMulticastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.58</address>
+                            <port>24565</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficMulticastLocatorList>
+            </RemoteServer>
+        </discoveryServersList>
 
         <ignoreParticipantFlags>FILTER_DIFFERENT_HOST</ignoreParticipantFlags>
 
@@ -1764,6 +1785,14 @@
                                     </udpv4>
                                 </locator>
                             </metatrafficUnicastLocatorList>
+                            <metatrafficMulticastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.58</address>
+                                        <port>24565</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficMulticastLocatorList>
                         </RemoteServer>
                     </discoveryServersList>
                 </discovery_config>

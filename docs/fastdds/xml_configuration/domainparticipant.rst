@@ -326,7 +326,7 @@ configurable settings.
 |                                 | only the discovery information they |br|       |                     |             |
 |                                 | require to establish communication with |br|   |                     |             |
 |                                 | matching endpoints. |br|                       |                     |             |
-|                                 | See :ref:`discovery_server` (**CLIENT only**)  |                     |             |
+|                                 | See :ref:`discovery_server`                    |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<ignoreParticipantFlags>``    | Restricts metatraffic using several |br|       | :ref:`partfiltering`| |NO_FILTER| |
 |                                 | filtering criteria.                            |                     |             |
@@ -399,7 +399,7 @@ The ``<RemoteServer>`` element has a mandatory attribute defined: ``prefix``.
 
 **RemoteServer configuration**
 
-Each *client* must keep a list of locators associated to the *servers* to which it wants to link.
+Each *client* (or other *server*) must keep a list of locators associated to the *servers* to which it wants to link.
 Those locator would be defined as ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``.
 
 .. list-table::

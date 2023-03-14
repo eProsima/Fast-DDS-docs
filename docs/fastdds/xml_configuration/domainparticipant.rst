@@ -359,6 +359,10 @@ configurable settings.
 |                                 | |br| discovery messages.                       |                     |             |
 |                                 | See :ref:`Initial Announcements`.              |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
+| ``<clientAnnouncementPeriod>``  | The period for the DomainParticipant to |br|   | :ref:`DurationType` | 450 ms      |
+|                                 | send its Discovery Message to its servers |br| |                     |             |
+|                                 | and check for EDP endpoints matching.          |                     |             |
++---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<static_edp_xml_config>``     | The XML filename(s) with the static EDP |br|   | ``List <string>``   |             |
 |                                 | configuration. Only necessary if |br|          |                     |             |
 |                                 | the ``<EDP>`` member is set to |br|            |                     |             |

@@ -560,7 +560,7 @@ configuration.
      -
    * - ``<max_partitions>``
      - Maximum size of the partitions submessage. |br|
-       Set to zero for no limit. 
+       Set to zero for no limit.
      - ``uint32_t``
      -
    * - ``<max_user_data>``

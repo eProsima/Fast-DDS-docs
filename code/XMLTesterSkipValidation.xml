@@ -14,14 +14,14 @@
             <!-- ... -->
         </data_reader>
 
-        <library_settings>
-            <!-- ... -->
-        </library_settings>
-
         <transport_descriptors>
             <!-- ... -->
         </transport_descriptors>
     </profiles>
+
+    <library_settings>
+        <!-- ... -->
+    </library_settings>
 
     <log>
         <!-- ... -->

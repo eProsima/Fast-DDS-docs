@@ -20,6 +20,7 @@ The available profile types are:
 * :ref:`participantprofiles`,
 * :ref:`publisherprofiles`,
 * :ref:`subscriberprofiles`,
+* :ref:`Topic`,
 * :ref:`transportdescriptors`,
 * :ref:`intra_process_delivery_xml_profile`,
 * :ref:`logprofiles`, and
@@ -85,8 +86,8 @@ Rooted vs Standalone profiles definition
     stand-alone manner.
 *   Rooted:
     The element defining the XML profile is the child element of another element.
-    For example, the ``<participant>``, ``<data_reader>``, ``<data_writer>``, and ``<transport_descriptors>``
-    elements must be defined as child elements of the ``<profiles>`` element.
+    For example, the ``<participant>``, ``<data_reader>``, ``<data_writer>``, ``<topic>``, and
+    ``<transport_descriptors>`` elements must be defined as child elements of the ``<profiles>`` element.
 
 The following is an example of the definition of the ``<types>`` XML profile using the two previously discussed
 approaches.

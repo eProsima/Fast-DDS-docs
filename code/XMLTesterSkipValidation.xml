@@ -14,6 +14,10 @@
             <!-- ... -->
         </data_reader>
 
+        <topic profile_name="topic_profile">
+            <!-- ... -->
+        </topic>
+
         <transport_descriptors>
             <!-- ... -->
         </transport_descriptors>

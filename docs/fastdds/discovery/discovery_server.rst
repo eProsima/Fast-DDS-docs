@@ -192,7 +192,7 @@ Note that ``prefix`` is an element of the ``RemoteServer`` tag.
 +----------------------------------------------------------------------------------------------------------------------+
 | **XML**                                                                                                              |
 +----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTesterSkipValidation.xml                                                                           |
+| .. literalinclude:: /../code/XMLTesterSkipValidation.xml                                                             |
 |    :language: xml                                                                                                    |
 |    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX<-->                                                                  |
 |    :end-before: <!--><-->                                                                                            |

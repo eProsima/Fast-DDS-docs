@@ -949,6 +949,11 @@
 
     <max_properties>512</max_properties>
 
+    <send_buffers>
+        <preallocated_number>127</preallocated_number>
+        <dynamic>true</dynamic>
+    </send_buffers>
+
     <!-- content_filter cannot be configured using XML (yet) -->
 </allocation>
 <!--><-->

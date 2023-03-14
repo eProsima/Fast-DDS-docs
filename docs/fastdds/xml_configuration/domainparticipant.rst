@@ -560,21 +560,23 @@ configuration.
      -
    * - ``<max_partitions>``
      - Maximum size of the partitions submessage. |br|
-       Set to zero for no limit. |br|
-       See :ref:`sendbuffersallocationattributes`.
+       Set to zero for no limit. 
      - ``uint32_t``
      -
    * - ``<max_user_data>``
      - Maximum size of the user data submessage. |br|
-       Set to zero for no limit. See |br|
-       :ref:`sendbuffersallocationattributes`.
+       Set to zero for no limit.
      - ``uint32_t``
      -
    * - ``<max_properties>``
      - Maximum size of the properties submessage. |br|
-       Set to zero for no limit. See |br|
-       :ref:`sendbuffersallocationattributes`.
+       Set to zero for no limit.
      - ``uint32_t``
+     -
+   * - ``<send_buffers>``
+     - Allocation behaviour for the send buffer |br|
+       manager.
+     - :ref:`SendBuffers`
      -
 
 **Example**
@@ -611,3 +613,27 @@ Remote Locators Allocations
        traffic. See :ref:`remotelocatorsallocationattributes`.
      - ``uint32_t``
      - 1
+
+.. _SendBuffers:
+
+Send buffers
+************
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<preallocated_number>``
+     - Initial number of send buffers to allocate. See |br|
+       :ref:`sendbuffersallocationattributes`.
+     - ``uint32_t``
+     - 0
+   * - ``<dynamic>``
+     - Whether the number of send buffers is allowed to grow. |br|
+       See :ref:`sendbuffersallocationattributes`.
+     - ``bool``
+     - false

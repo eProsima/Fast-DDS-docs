@@ -359,7 +359,7 @@ configurable settings.
 |                                 | |br| discovery messages.                       |                     |             |
 |                                 | See :ref:`Initial Announcements`.              |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<static_edp_xml_config>``     | The XML filename with the static EDP |br|      | ``string``          |             |
+| ``<static_edp_xml_config>``     | The XML filename(s) with the static EDP |br|   | ``List <string>``   |             |
 |                                 | configuration. Only necessary if |br|          |                     |             |
 |                                 | the ``<EDP>`` member is set to |br|            |                     |             |
 |                                 | ``STATIC``. See :ref:`discovery_static`.       |                     |             |

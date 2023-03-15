@@ -638,3 +638,8 @@ Send buffers
        See :ref:`sendbuffersallocationattributes`.
      - ``bool``
      - false
+
+.. note::
+    The default value ``0`` of ``<preallocated_number>`` will perform an initial guess of the number of buffers
+    required, based on the number of threads from which a send operation could be started.
+    So it does not mean there are no buffers, instead it would use the maximum amount of buffers available.

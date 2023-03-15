@@ -399,7 +399,8 @@ The ``<RemoteServer>`` element has a mandatory attribute defined: ``prefix``.
 
 **RemoteServer configuration**
 
-Each *client* (or other *server*) must keep a list of locators associated to the *servers* to which it wants to link.
+Each *client* (or a *server* connecting to another *server*) must keep a list of locators associated to the *servers*
+to which it wants to link.
 Those locator would be defined as ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``.
 
 .. list-table::

@@ -270,6 +270,7 @@ Fine tuning discovery server handshake
 As explained :ref:`above <DS_key_concepts>` the *clients* send discovery messages to the *servers* at regular
 intervals (ping period) until they receive message reception acknowledgement.
 Mind that this period also applies for those *servers* which connect to other *servers*.
+The default value for this period is 450 ms.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **C++**                                                                                                              |

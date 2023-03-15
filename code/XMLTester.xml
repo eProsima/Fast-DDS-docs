@@ -1015,7 +1015,13 @@
             </period>
         </initialAnnouncements>
 
-        <static_edp_xml_config>file://filename.xml</static_edp_xml_config>
+        <clientAnnouncementPeriod>
+            <nanosec>250000000</nanosec>
+        </clientAnnouncementPeriod>
+
+        <static_edp_xml_config>file://filename1.xml</static_edp_xml_config>
+        <static_edp_xml_config>file://filename2.xml</static_edp_xml_config>
+        <static_edp_xml_config>file://filename3.xml</static_edp_xml_config>
     </discovery_config>
 
     <avoid_builtin_multicast>true</avoid_builtin_multicast>

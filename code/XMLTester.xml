@@ -3300,7 +3300,6 @@
     </data_reader>
 <!--><-->
 
-
 <!-- NON_VALIDATION SNIPPETS -->
 <!-->CONF-SERVER-CLIENT-PREFIX<-->
 <!--
@@ -3332,8 +3331,6 @@
 </profiles>
 -->
 <!--><-->
-
-
 </profiles>
 
 <!-->CONF-LIBRARY-SETTINGS<-->
@@ -3526,7 +3523,4 @@
 <!--><-->
 </type>
 </types>
-
-
-
 </dds>

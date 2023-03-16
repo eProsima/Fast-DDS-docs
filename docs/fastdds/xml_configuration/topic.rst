@@ -35,8 +35,9 @@ The ``<topic>`` element has two attributes defined: ``profile_name`` and ``is_de
 Topic configuration
 ^^^^^^^^^^^^^^^^^^^
 
-This XML element allows the configuration of the :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy` as
-the default QoS for any entity that contains those policies.
+This XML element allows the configuration of the :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy` in
+the |Topic|.
+See :ref:`TopicType`.
 
 .. list-table::
   :header-rows: 1

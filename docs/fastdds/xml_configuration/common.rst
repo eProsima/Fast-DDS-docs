@@ -230,8 +230,8 @@ An infinite value can be specified by using the values :cpp:concept:`DURATION_IN
 TopicType
 ^^^^^^^^^
 
-The |Topic| name and data type are used to determine whether Datawriters and DataReaders can exchange messages.
-This XML element allows the configuration of the :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy`.
+This XML element allows the configuration of the specific :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy`
+QoS of the Datawriters and DataReaders in which this element is defined inside of.
 
 .. list-table::
   :header-rows: 1

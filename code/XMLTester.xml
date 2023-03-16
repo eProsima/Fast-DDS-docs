@@ -3301,6 +3301,38 @@
 <!--><-->
 
 
+<!-- NON_VALIDATION SNIPPETS -->
+<!-->CONF-SERVER-CLIENT-PREFIX<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="participant_profile_discovery_client_prefix">
+        <rtps>
+            <builtin>
+                <discovery_config>
+                    <discoveryServersList>
+                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
+                            <!-- Metatraffic locators -->
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.57</address>
+                                        <port>56542</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
+                </discovery_config>
+            </builtin>
+        </rtps>
+    </participant>
+<!--
+</profiles>
+-->
+<!--><-->
+
 
 </profiles>
 
@@ -3494,6 +3526,7 @@
 <!--><-->
 </type>
 </types>
+
 
 
 </dds>

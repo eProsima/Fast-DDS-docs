@@ -78,22 +78,3 @@
     </type>
 </types>
 <!--STAND_ALONE_TYPES_END-->
-
-<!-->CONF-SERVER-CLIENT-PREFIX<-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-    <participant profile_name="participant_profile_discovery_client_prefix">
-        <rtps>
-            <builtin>
-                <discovery_config>
-                    <discoveryServersList>
-                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                            <!-- Metatraffic locators -->
-                        </RemoteServer>
-                    </discoveryServersList>
-                </discovery_config>
-            </builtin>
-        </rtps>
-    </participant>
-</profiles>
-<!--><-->

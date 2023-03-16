@@ -68,11 +68,11 @@ The table presented below outlines each possible Locator's field.
   * - ``<port>``
     - RTPS port number of the locator. |br|
       *Physical port* in UDP, *logical port* in TCP.
-    - ``uint32_t``
+    - ``uint16_t``
     - 0
   * - ``<physical_port>``
     - TCP's *physical port*.
-    - ``uint32_t``
+    - ``uint16_t``
     - 0
   * - ``<address>``
     - IP address of the locator.
@@ -147,7 +147,7 @@ They should contain the following tags:
   * - ``<port>``
     - UDP port number of the locator. |br|
       The UDP port number should be valid.
-    - ``uint32_t``
+    - ``uint16_t``
   * - ``<address>``
     - IP address of the locator.
     - ``string`` (IPv4/IPv6 format |br|

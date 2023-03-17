@@ -14,14 +14,18 @@
             <!-- ... -->
         </data_reader>
 
-        <library_settings>
+        <topic profile_name="topic_profile">
             <!-- ... -->
-        </library_settings>
+        </topic>
 
         <transport_descriptors>
             <!-- ... -->
         </transport_descriptors>
     </profiles>
+
+    <library_settings>
+        <!-- ... -->
+    </library_settings>
 
     <log>
         <!-- ... -->

@@ -28,3 +28,7 @@ docs/_static/css/eprosima_rtd_theme.css
 build/
 install/
 log/
+
+# Visual Studio Code
+
+.vscode/

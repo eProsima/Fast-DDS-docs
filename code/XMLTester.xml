@@ -949,6 +949,11 @@
 
     <max_properties>512</max_properties>
 
+    <send_buffers>
+        <preallocated_number>127</preallocated_number>
+        <dynamic>true</dynamic>
+    </send_buffers>
+
     <!-- content_filter cannot be configured using XML (yet) -->
 </allocation>
 <!--><-->
@@ -960,7 +965,28 @@
 <!-->XML-BUILTIN<-->
 <builtin>
     <discovery_config>
-        <discoveryProtocol>NONE</discoveryProtocol>
+        <discoveryProtocol>CLIENT</discoveryProtocol>
+
+        <discoveryServersList>
+            <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.57</address>
+                            <port>56542</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+                <metatrafficMulticastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.10.58</address>
+                            <port>24565</port>
+                        </udpv4>
+                    </locator>
+                </metatrafficMulticastLocatorList>
+            </RemoteServer>
+        </discoveryServersList>
 
         <ignoreParticipantFlags>FILTER_DIFFERENT_HOST</ignoreParticipantFlags>
 
@@ -989,7 +1015,13 @@
             </period>
         </initialAnnouncements>
 
-        <static_edp_xml_config>file://filename.xml</static_edp_xml_config>
+        <clientAnnouncementPeriod>
+            <nanosec>250000000</nanosec>
+        </clientAnnouncementPeriod>
+
+        <static_edp_xml_config>file://filename1.xml</static_edp_xml_config>
+        <static_edp_xml_config>file://filename2.xml</static_edp_xml_config>
+        <static_edp_xml_config>file://filename3.xml</static_edp_xml_config>
     </discovery_config>
 
     <avoid_builtin_multicast>true</avoid_builtin_multicast>
@@ -1323,9 +1355,26 @@
 </rtps>
 </participant>
 
-<data_writer profile_name="topic_example">
 <!-->XML-TOPIC<-->
-<topic>
+<data_writer profile_name="dataWriter_topic_example">
+    <topic>
+        <historyQos>
+            <kind>KEEP_LAST</kind>
+            <depth>20</depth>
+        </historyQos>
+        <resourceLimitsQos>
+            <max_samples>5</max_samples>
+            <max_instances>2</max_instances>
+            <max_samples_per_instance>1</max_samples_per_instance>
+            <allocated_samples>20</allocated_samples>
+            <extra_samples>10</extra_samples>
+        </resourceLimitsQos>
+    </topic>
+</data_writer>
+<!--><-->
+
+<!-->XML-TOPIC-PROFILE<-->
+<topic profile_name="topic_example">
     <historyQos>
         <kind>KEEP_LAST</kind>
         <depth>20</depth>
@@ -1339,7 +1388,6 @@
     </resourceLimitsQos>
 </topic>
 <!--><-->
-</data_writer>
 
 <!-->XML-QOS<-->
 <data_writer profile_name="pub_topic_qos">
@@ -1764,6 +1812,14 @@
                                     </udpv4>
                                 </locator>
                             </metatrafficUnicastLocatorList>
+                            <metatrafficMulticastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.58</address>
+                                        <port>24565</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficMulticastLocatorList>
                         </RemoteServer>
                     </discoveryServersList>
                 </discovery_config>
@@ -2132,32 +2188,6 @@
         </builtin>
     </rtps>
 </participant>
-<!--><-->
-
-<!-->CONF-SERVER-CLIENT-PREFIX<-->
-<!--
-<?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
--->
-    <participant profile_name="participant_profile_discovery_client_prefix">
-        <rtps>
-            <builtin>
-                <discovery_config>
-                    <discoveryServersList>
-                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.0.1</address>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
-                    </discoveryServersList>
-                </discovery_config>
-            </builtin>
-        </rtps>
-    </participant>
 <!--><-->
 
 <!-->CONF-SERVER-SERVER-PREFIX<-->
@@ -2723,12 +2753,6 @@
 -->
 <!--><-->
 
-<!-->CONF-LIBRARY-SETTINGS<-->
-    <library_settings>
-        <intraprocess_delivery>FULL</intraprocess_delivery> <!-- OFF | USER_DATA_ONLY | FULL -->
-    </library_settings>
-<!--><-->
-
 
 <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
 <!--
@@ -3276,9 +3300,44 @@
     </data_reader>
 <!--><-->
 
-
-
+<!-- NON_VALIDATION SNIPPETS -->
+<!-->CONF-SERVER-CLIENT-PREFIX<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="participant_profile_discovery_client_prefix">
+        <rtps>
+            <builtin>
+                <discovery_config>
+                    <discoveryServersList>
+                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
+                            <!-- Metatraffic locators -->
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <address>192.168.10.57</address>
+                                        <port>56542</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
+                </discovery_config>
+            </builtin>
+        </rtps>
+    </participant>
+<!--
 </profiles>
+-->
+<!--><-->
+</profiles>
+
+<!-->CONF-LIBRARY-SETTINGS<-->
+    <library_settings>
+        <intraprocess_delivery>FULL</intraprocess_delivery> <!-- OFF | USER_DATA_ONLY | FULL -->
+    </library_settings>
+<!--><-->
 
 <!-->LOG-CONFIG<-->
 <!--
@@ -3464,6 +3523,4 @@
 <!--><-->
 </type>
 </types>
-
-
 </dds>

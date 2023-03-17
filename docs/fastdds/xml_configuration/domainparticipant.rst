@@ -326,7 +326,7 @@ configurable settings.
 |                                 | only the discovery information they |br|       |                     |             |
 |                                 | require to establish communication with |br|   |                     |             |
 |                                 | matching endpoints. |br|                       |                     |             |
-|                                 | See :ref:`discovery_server` (**CLIENT only**)  |                     |             |
+|                                 | See :ref:`discovery_server`                    |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<ignoreParticipantFlags>``    | Restricts metatraffic using several |br|       | :ref:`partfiltering`| |NO_FILTER| |
 |                                 | filtering criteria.                            |                     |             |
@@ -359,7 +359,11 @@ configurable settings.
 |                                 | |br| discovery messages.                       |                     |             |
 |                                 | See :ref:`Initial Announcements`.              |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<static_edp_xml_config>``     | The XML filename with the static EDP |br|      | ``string``          |             |
+| ``<clientAnnouncementPeriod>``  | The period for the DomainParticipant to |br|   | :ref:`DurationType` | 450 ms      |
+|                                 | send its Discovery Message to its servers |br| |                     |             |
+|                                 | and check for EDP endpoints matching.          |                     |             |
++---------------------------------+------------------------------------------------+---------------------+-------------+
+| ``<static_edp_xml_config>``     | The XML filename(s) with the static EDP |br|   | ``List <string>``   |             |
 |                                 | configuration. Only necessary if |br|          |                     |             |
 |                                 | the ``<EDP>`` member is set to |br|            |                     |             |
 |                                 | ``STATIC``. See :ref:`discovery_static`.       |                     |             |
@@ -395,7 +399,8 @@ The ``<RemoteServer>`` element has a mandatory attribute defined: ``prefix``.
 
 **RemoteServer configuration**
 
-Each *client* must keep a list of locators associated to the *servers* to which it wants to link.
+Each *client* (or a *server* connecting to another *server*) must keep a list of locators associated to the *servers*
+to which it wants to link.
 Those locator would be defined as ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``.
 
 .. list-table::
@@ -556,21 +561,23 @@ configuration.
      -
    * - ``<max_partitions>``
      - Maximum size of the partitions submessage. |br|
-       Set to zero for no limit. |br|
-       See :ref:`sendbuffersallocationattributes`.
+       Set to zero for no limit.
      - ``uint32_t``
      -
    * - ``<max_user_data>``
      - Maximum size of the user data submessage. |br|
-       Set to zero for no limit. See |br|
-       :ref:`sendbuffersallocationattributes`.
+       Set to zero for no limit.
      - ``uint32_t``
      -
    * - ``<max_properties>``
      - Maximum size of the properties submessage. |br|
-       Set to zero for no limit. See |br|
-       :ref:`sendbuffersallocationattributes`.
+       Set to zero for no limit.
      - ``uint32_t``
+     -
+   * - ``<send_buffers>``
+     - Allocation behaviour for the send buffer |br|
+       manager.
+     - :ref:`SendBuffers`
      -
 
 **Example**
@@ -607,3 +614,32 @@ Remote Locators Allocations
        traffic. See :ref:`remotelocatorsallocationattributes`.
      - ``uint32_t``
      - 1
+
+.. _SendBuffers:
+
+Send buffers
+************
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<preallocated_number>``
+     - Initial number of send buffers to allocate. See |br|
+       :ref:`sendbuffersallocationattributes`.
+     - ``uint32_t``
+     - 0
+   * - ``<dynamic>``
+     - Whether the number of send buffers is allowed to grow. |br|
+       See :ref:`sendbuffersallocationattributes`.
+     - ``bool``
+     - false
+
+.. note::
+    The default value ``0`` of ``<preallocated_number>`` will perform an initial guess of the number of buffers
+    required, based on the number of threads from which a send operation could be started.
+    So it does not mean there are no buffers, instead it would use the maximum amount of buffers available.

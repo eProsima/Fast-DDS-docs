@@ -68,11 +68,11 @@ The table presented below outlines each possible Locator's field.
   * - ``<port>``
     - RTPS port number of the locator. |br|
       *Physical port* in UDP, *logical port* in TCP.
-    - ``uint32_t``
+    - ``uint16_t``
     - 0
   * - ``<physical_port>``
     - TCP's *physical port*.
-    - ``uint32_t``
+    - ``uint16_t``
     - 0
   * - ``<address>``
     - IP address of the locator.
@@ -147,7 +147,7 @@ They should contain the following tags:
   * - ``<port>``
     - UDP port number of the locator. |br|
       The UDP port number should be valid.
-    - ``uint32_t``
+    - ``uint16_t``
   * - ``<address>``
     - IP address of the locator.
     - ``string`` (IPv4/IPv6 format |br|
@@ -230,8 +230,9 @@ An infinite value can be specified by using the values :cpp:concept:`DURATION_IN
 TopicType
 ^^^^^^^^^
 
-The |Topic| name and data type are used to determine whether Datawriters and DataReaders can exchange messages.
-This XML element allows the configuration of the :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy`.
+This XML element allows the configuration of the specific :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy`
+QoS of the Datawriters and DataReaders in which this element is defined inside of.
+Also, it sets the :ref:`dds_layer_topic_topicQos` configuration with the policies detailed.
 
 .. list-table::
   :header-rows: 1

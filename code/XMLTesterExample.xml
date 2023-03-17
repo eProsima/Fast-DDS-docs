@@ -148,6 +148,44 @@
                 <builtin>
                     <discovery_config>
                         <discoveryProtocol>NONE</discoveryProtocol>
+                        <discoveryServersList>
+                            <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
+                                <metatrafficUnicastLocatorList>
+                                    <locator>
+                                        <udpv4>
+                                            <address>192.168.10.57</address>
+                                            <port>56542</port>
+                                        </udpv4>
+                                    </locator>
+                                </metatrafficUnicastLocatorList>
+                                <metatrafficMulticastLocatorList>
+                                    <locator>
+                                        <udpv4>
+                                            <address>192.168.10.58</address>
+                                            <port>24565</port>
+                                        </udpv4>
+                                    </locator>
+                                </metatrafficMulticastLocatorList>
+                            </RemoteServer>
+                            <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.75">
+                                <metatrafficUnicastLocatorList>
+                                    <locator>
+                                        <udpv4>
+                                            <address>192.168.10.59</address>
+                                            <port>56543</port>
+                                        </udpv4>
+                                    </locator>
+                                </metatrafficUnicastLocatorList>
+                                <metatrafficMulticastLocatorList>
+                                    <locator>
+                                        <udpv4>
+                                            <address>192.168.10.60</address>
+                                            <port>34565</port>
+                                        </udpv4>
+                                    </locator>
+                                </metatrafficMulticastLocatorList>
+                            </RemoteServer>
+                        </discoveryServersList>
                         <ignoreParticipantFlags>FILTER_DIFFERENT_PROCESS|FILTER_SAME_PROCESS</ignoreParticipantFlags>
                         <EDP>SIMPLE</EDP>
                         <simpleEDP>
@@ -167,7 +205,12 @@
                                 <nanosec>50</nanosec>
                             </period>
                         </initialAnnouncements>
-                        <static_edp_xml_config>filename.xml</static_edp_xml_config>
+                        <clientAnnouncementPeriod>
+                            <nanosec>250000000</nanosec>
+                        </clientAnnouncementPeriod>
+                        <static_edp_xml_config>filename1.xml</static_edp_xml_config>
+                        <static_edp_xml_config>filename2.xml</static_edp_xml_config>
+                        <static_edp_xml_config>filename3.xml</static_edp_xml_config>
                     </discovery_config>
 
                     <avoid_builtin_multicast>true</avoid_builtin_multicast>
@@ -322,6 +365,10 @@
                     <max_partitions>256</max_partitions>
                     <max_user_data>256</max_user_data>
                     <max_properties>512</max_properties>
+                    <send_buffers>
+                        <preallocated_number>127</preallocated_number>
+                        <dynamic>true</dynamic>
+                    </send_buffers>
                 </allocation>
             </rtps>
         </participant>
@@ -693,7 +740,25 @@
                 <increment>0</increment>
             </matchedPublishersAllocation>
         </data_reader>
+
+        <topic profile_name="topic_profile_example">
+            <historyQos>
+                <kind>KEEP_LAST</kind>
+                <depth>20</depth>
+            </historyQos>
+            <resourceLimitsQos>
+                <max_samples>5</max_samples>
+                <max_instances>2</max_instances>
+                <max_samples_per_instance>1</max_samples_per_instance>
+                <allocated_samples>20</allocated_samples>
+                <extra_samples>10</extra_samples>
+            </resourceLimitsQos>
+        </topic>
     </profiles>
+
+    <library_settings>
+        <intraprocess_delivery>USER_DATA_ONLY</intraprocess_delivery>
+    </library_settings>
 
     <log>
         <use_default>false</use_default>

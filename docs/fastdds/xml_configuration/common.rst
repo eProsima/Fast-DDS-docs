@@ -232,6 +232,7 @@ TopicType
 
 This XML element allows the configuration of the specific :ref:`historyqospolicy` and :ref:`resourcelimitsqospolicy`
 QoS of the Datawriters and DataReaders in which this element is defined inside of.
+Also, it sets the :ref:`dds_layer_topic_topicQos` configuration with the policies detailed.
 
 .. list-table::
   :header-rows: 1

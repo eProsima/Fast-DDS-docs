@@ -636,11 +636,11 @@ Please, follow the steps below to build *Fast DDS-Gen*:
 
     In case that a supported Gradle version is already installed in the system, *Fast DDS-Gen* can also be built running
     directly:
-    
+
     .. code-block:: bash
 
         gradle assemble
-    
+
 Contents
 ^^^^^^^^
 

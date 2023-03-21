@@ -322,10 +322,19 @@ Please refer to :ref:`fastddsgen_intro` for more information.
 Requirements
 ------------
 
-In order to compile *Fast DDS-Gen*, the following packages need to be installed in the system:
+*Fast DDS-Gen* is built using Gradle.
+Gradle is an open-source build automation tool which requires a Java version to be executed (see
+`Gradle-Java compatibility matrix <https://docs.gradle.org/current/userguide/compatibility.html>`_).
 
-* :ref:`java_sm`
-* :ref:`gradle_sm`
+.. important::
+
+    Even though earlier versions of Gradle support Java 8, *Fast DDS-Gen* stopped supporting Java versions previous to
+    Java 11 since release v2.4.0.
+
+.. important::
+
+    *Fast DDS-Gen* introduced support for Gradle 7 in release v2.2.0.
+    Gradle 8 is not yet supported.
 
 .. _java_sm:
 
@@ -333,43 +342,41 @@ Java JDK
 ^^^^^^^^
 
 The JDK is a development environment for building applications and components using the Java language.
-Download and install it at the following the steps given in the
+Download and install it following the steps given in the
 `Oracle website <https://www.oracle.com/java/technologies/javase-downloads.html>`_.
-
-.. _gradle_sm:
-
-Gradle
-^^^^^^
-
-Gradle is an open-source build automation tool.
-Download and install the last stable version of `Gradle <https://gradle.org/install>`_ in the preferred way.
-with Homebrew it would be running the command:
-
-.. code-block:: bash
-
-        brew install gradle
 
 .. note::
 
-    If errors occur during compilation or you do not wish to install gradle, an executable script is included which will
-    download gradle temporarily for the compilation step.
-
-    .. code-block:: bash
-
-        ./gradlew assemble
+    *Fast DDS-Gen* supports Java versions 11 to 19.
 
 Compiling Fast DDS-Gen
 ----------------------
 
-Once the requirements above are met, compile *Fast DDS-Gen* by following the steps below:
+In order to compile *Fast DDS-Gen*, an executable script is included in the repository which will download Gradle
+temporarily for the compilation step.
+Please, follow the steps below to build *Fast DDS-Gen*:
+
+.. note::
+
+    If Fast DDS has already been installed following :ref:`colcon_installation_mac`, skip cloning *Fast DDS-Gen*'s
+    repository, as it can be already be found under the :code:`src` directory within the colcon workspace.
 
 .. code-block:: bash
 
     cd ~
     git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git
     cd Fast-DDS-Gen
-    gradle assemble
+    ./gradlew assemble
 
+.. note::
+
+    In case that a supported Gradle version is already installed in the system, *Fast DDS-Gen* can also be built running
+    directly:
+    
+    .. code-block:: bash
+
+        gradle assemble
+    
 Contents
 ^^^^^^^^
 

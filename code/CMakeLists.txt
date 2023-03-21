@@ -57,6 +57,9 @@ add_subdirectory(Examples/C++/DDSHelloWorld)
 add_executable(doctest CodeTester.cpp)
 target_include_directories(doctest PRIVATE ${FAST_INCLUDE_DIR})
 target_link_libraries(doctest fastrtps)
+if(MSVC)
+    target_compile_definitions(doctest PRIVATE _CRT_SECURE_NO_WARNINGS)
+endif(MSVC)
 
 # DDSCodeTester utilizes Fast DDS API
 add_executable(dds-doctest DDSCodeTester.cpp FastDDSGenCodeTester.cpp)

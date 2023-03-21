@@ -171,7 +171,7 @@ public:
     void run(
         uint32_t samples)
     {
-        while(listener_.samples_ < samples)
+        while((uint32_t)listener_.samples_ < samples)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }

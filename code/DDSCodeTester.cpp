@@ -22,7 +22,6 @@
 #include <fastdds/dds/topic/TopicListener.hpp>
 #include <fastrtps/xmlparser/XMLProfileManager.h>
 
-#include <fastrtps/types/DynamicTypePtr.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastdds/dds/log/Log.hpp>
 #include <fastdds/dds/log/OStreamConsumer.hpp>
@@ -1089,7 +1088,11 @@ void dds_discovery_examples()
     }
 
     {
-        DomainParticipant* client_or_server;
+        DomainParticipant* client_or_server = nullptr;
+        /* ... additional code to get the DomainParticipant
+        client_or_server = get_participant_somehow(...);
+        */ 
+
         //CONF_SERVER_ADD_SERVERS
         // Get existing QoS for the server or client
         DomainParticipantQos client_or_server_qos;
@@ -5298,14 +5301,14 @@ void dds_persistence_examples()
     // Create a struct builder for a type with name "persistence_topic_type"
     const std::string topic_type_name = "persistence_topic_type";
     eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_type_builder(
-        eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance()->create_struct_builder());
+        eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance().create_struct_builder());
     struct_type_builder->set_name(topic_type_name);
 
     // The type consists of two members, and index and a message. Add members to the struct.
     struct_type_builder->add_member(0, "index",
-            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance()->create_uint32_type());
+            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance().create_uint32_type());
     struct_type_builder->add_member(1, "message",
-            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance()->create_string_type());
+            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance().create_string_type());
 
     // Build the type
     eprosima::fastrtps::types::DynamicType_ptr dyn_type_ptr = struct_type_builder->build();

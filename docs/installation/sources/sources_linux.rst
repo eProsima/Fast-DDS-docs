@@ -583,10 +583,19 @@ Please refer to :ref:`fastddsgen_intro` for more information.
 Requirements
 ------------
 
-In order to compile *Fast DDS-Gen*, the following packages need to be installed in the system:
+*Fast DDS-Gen* is built using Gradle.
+Gradle is an open-source build automation tool which requires a Java version to be executed (see
+`Gradle-Java compatibility matrix <https://docs.gradle.org/current/userguide/compatibility.html>`_).
 
-* :ref:`java_sl`
-* :ref:`gradle_sl`
+.. important::
+
+    Even though earlier versions of Gradle support Java 8, *Fast DDS-Gen* stopped supporting Java versions previous to
+    Java 11 since release v2.4.0.
+
+.. important::
+
+    *Fast DDS-Gen* introduced support for Gradle 7 in release v2.2.0.
+    Gradle 8 is not yet supported.
 
 .. _java_sl:
 
@@ -594,24 +603,22 @@ Java JDK
 ^^^^^^^^
 
 The JDK is a development environment for building applications and components using the Java language.
-To install Java JDK, run:
+To install Java 11 JDK, run for instance:
 
 .. code-block:: bash
 
-    sudo apt install openjdk-8-jdk
+    sudo apt install openjdk-11-jdk
 
-.. _gradle_sl:
+.. note::
 
-Gradle
-^^^^^^
-
-Gradle is an open-source build automation tool.
-Download and install the last stable version of `Gradle <https://gradle.org/install>`_ in the preferred way.
+    *Fast DDS-Gen* supports Java versions 11 to 19.
 
 Compiling Fast DDS-Gen
 ----------------------
 
-Once the requirements above are met, compile *Fast DDS-Gen* by following the steps below:
+In order to compile *Fast DDS-Gen*, an executable script is included in the repository which will download Gradle
+temporarily for the compilation step.
+Please, follow the steps below to build *Fast DDS-Gen*:
 
 .. note::
 
@@ -623,17 +630,17 @@ Once the requirements above are met, compile *Fast DDS-Gen* by following the ste
     cd ~
     git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git
     cd Fast-DDS-Gen
-    gradle assemble
+    ./gradlew assemble
 
 .. note::
 
-    If errors occur during compilation or you do not wish to install gradle, an executable script is included which will
-    download a gradle temporarily for the compilation step.
-
+    In case that a supported Gradle version is already installed in the system, *Fast DDS-Gen* can also be built running
+    directly:
+    
     .. code-block:: bash
 
-        ./gradlew assemble
-
+        gradle assemble
+    
 Contents
 ^^^^^^^^
 

@@ -347,7 +347,7 @@ Download and install it following the steps given in the
 
 .. note::
 
-    *Fast DDS-Gen* supports Java versions 11 to 19.
+    *Fast DDS-Gen* supports Java versions from 11 to 19.
 
 Compiling Fast DDS-Gen
 ----------------------
@@ -359,7 +359,7 @@ Please, follow the steps below to build *Fast DDS-Gen*:
 .. note::
 
     If Fast DDS has already been installed following :ref:`colcon_installation_mac`, skip cloning *Fast DDS-Gen*'s
-    repository, as it can be already be found under the :code:`src` directory within the colcon workspace.
+    repository, as it can already be found under the :code:`src` directory within the colcon workspace.
 
 .. code-block:: bash
 

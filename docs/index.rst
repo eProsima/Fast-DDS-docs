@@ -17,7 +17,7 @@
 .. toctree::
    :caption: Installation Manual
    :maxdepth: 2
-   :numbered: 5
+   :numbered: 6
    :hidden:
 
    /installation/binaries/binaries_linux
@@ -25,6 +25,7 @@
    /installation/sources/sources_linux
    /installation/sources/sources_windows
    /installation/sources/sources_mac
+   /installation/sources/sources_qnx
    /installation/configuration/cmake_options
 
 .. _index_fast_dds:

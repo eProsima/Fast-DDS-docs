@@ -1945,7 +1945,8 @@ void dynamictypes_configuration()
         DynamicType_ptr pType = pBuilder->build();
         DynamicData* pData = DynamicDataFactory::get_instance()->create_data(pType);
 
-        DynamicTypeBuilderFactory::get_instance().delete_builder(pBuilder.get());
+        DynamicTypeBuilderFactory::get_instance().delete_builder(*pBuilder);
+        DynamicTypeBuilderFactory::get_instance().delete_type(*pType);
         DynamicDataFactory::get_instance()->delete_data(pData);
         //!--
     }

@@ -53,8 +53,10 @@ add_custom_target(doc-dirs
     COMMENT "Creating documentation directories" VERBATIM)
 
 # Doxygen related variables
-set(DOXYGEN_INPUT_DIR "\"${FAST_INCLUDE_DIR}/fastdds\" \"${FAST_INCLUDE_DIR}/fastrtps/types\"")
+set(DOXYGEN_INPUT_DIR "${FAST_INCLUDE_DIR}/fastdds\" \"${FAST_INCLUDE_DIR}/fastrtps/types")
 set(DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doxygen")
+set(DOXYGEN_STRIP_PATH "${FAST_INCLUDE_DIR}")
+set(DOXYGEN_EXCLUDE_PATH "${FAST_INCLUDE_DIR}/fastdds/thirdparty")
 set(DOXYGEN_INDEX_FILE "${PROJECT_BINARY_DIR}/doxygen/xml/index.xml")
 set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/code/doxygen-config.in")
 set(DOXYFILE_OUT ${PROJECT_BINARY_DIR}/doxygen-config)

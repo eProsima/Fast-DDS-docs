@@ -443,7 +443,7 @@ Please, follow the steps below to build *Fast DDS-Gen*:
     cd ~
     git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git
     cd Fast-DDS-Gen
-    ./gradlew assemble
+    gradlew.bat assemble
 
 .. note::
 

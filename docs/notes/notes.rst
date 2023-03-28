@@ -77,14 +77,15 @@ This release includes the following **fixes**:
 3. **Synchronization fixes**
     1. Take mutex when removing local reader in WLP.
     2. Fix data races in SecurityManager authentication process.
-4. CI fixes
+4. **CI fixes**
     1. Fix test building when using ``GTEST_INDIVIDUAL`` :ref:`CMake option <cmake_options>`.
     2. Fix overflow in received samples in performance tests.
-5. Example fixes
+5. **Example fixes**
     1. Avoid creating entities within callbacks in DynamicHelloWorldExample.
-6. Repository fixes
+    2. Remove Asio dependency from DeadlineQoSExample.
+6. **Repository fixes**
     1. Remove 2.7.x as active branch.
-7. Community supported platforms
+7. **Community supported platforms**
     1. Include right header when building for iOS.
 
 .. note::

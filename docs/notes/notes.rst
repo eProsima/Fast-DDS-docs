@@ -5,23 +5,87 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.9.1
-=============
+Version 2.10.0
+==============
 
-This release includes the following **bugfixes**:
+This minor release includes several new features, improvements and bugfixes.
 
-1. **Synchronization fixes**:
-    1. Fix deadlock in Writer Liveliness Protocol (WLP) using intraprocess.
-    2. Fix data race in
-       :cpp:func:`DomainParticipant::set_listener()<eprosima::fastdds::dds::DomainParticipant::set_listener>`.
-    3. Fix deadlock on TLS closure.
-2. **Other fixes**:
-    1. Fix notification lost.
-    2. Fix ``total_read_`` to be consistent with Reader's History after |DataReader::get_first_untaken_info-api|.
-    3. Use shared pointers for internal singletons.
-    4. Support CCache on Windows.
-    5. Avoid null dereference on fuzzer.
-    6. Other minor fixes and improvements.
+.. note::
+    Mind that, even though this release is API compatible with previous v2.x versions, it is *NOT* ABI compatible with
+    previous versions.
+    This means that applications upgrading Fast DDS to v2.10.0 will require recompilation, though not source code
+    modification.
+
+.. note::
+    It is also advisable to regenerate the type support from the IDL files using
+    `Fast DDS-Gen v2.4.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.4.0>`_.
+    Furthermore, if upgrading to v2.10.0, it is also recommended to upgrade Fast CDR to
+    `v1.0.27 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.27>`_.
+
+This release includes the following **features**:
+
+1. New :ref:`dds_layer_publisher_dataWriterListener_on_unack_sample_removed` in
+   :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`.
+2. :ref:`Secure Discovery Server <DS_security>`.
+3. DomainParticipant ignore empty API.
+4. RTPS :cpp:class:`ReaderListener::on_incompatible_type <eprosima::fastrtps::rtps::ReaderListener::on_incompatible_type>`
+   and :cpp:class:`WriterListener::on_incompatible_type <eprosima::fastrtps::rtps::WriterListener::on_incompatible_type>`
+   empty API.
+
+This release includes the following **improvements**:
+
+1. **Fast DDS improvements**
+    1. Improve behavior when ``STRICT_REALTIME`` :ref:`CMake option <cmake_options>` is not enabled.
+    2. Using functors for ``for_matched_readers`` parameter.
+    3. Improve auto GAPs in Data Sharing.
+    4. Use standard value for ``PID_RELATED_SAMPLE_IDENTITY``.
+2. **Contributions and repository quality**
+    1. Update Pull Request template.
+    2. Update foonathan_memory quality declaration.
+    3. Update XSD schema.
+    4. Make netwrok headers private avoiding exposing non-public API.
+    5. Improve Doxygen documentation for
+       :cpp:class:`ResourceLimitsQosPolicy <eprosima::fastdds::dds::ResourceLimitsQosPolicy>`.
+3. **Examples**
+    1. New :ref:`Request-Reply example <use-case-request-reply>`.
+4. **CI improvements**
+    1. New workflow to check documentation build.
+    2. ASAN workflow updated to use Ubuntu 22.04.
+5. **Dependencies**
+    1. Upgrade internal type supports using latest Fast DDS-Gen release v2.4.0.
+    2. Upgrade Fast CDR submodule to v1.0.27.
+6. **Fast DDS CLI**
+    1. Handle ``SIGTERM`` signal.
+7. **Community supported platforms**
+    1. :ref:`QNX 7.1 build infrastructure <qnx_sources>`.
+
+This release includes the following **fixes**:
+
+1. **Security vulnerability**
+    1. Fix chain of trust issues with a single CA certificate.
+1. **Bugfixes**
+    1. Fix RTPS StatelessWriter ACK check.
+    2. ASAN (Address Sanitizer) fixes.
+    3. UBSan (Undefined Behavior Sanitizer) fixes.
+    4. Export public API correctly in Windows.
+    5. Correctly handle builtin endpoints mask.
+    6. Fix backwards compatibility using SHM communication.
+    7. Protect against uncaught exception in SHM segment creation.
+    8. Fix build for GCC 5.
+    9. Validity check for first sequence number.
+    10. Fix crash when enabling DisablePositiveACKsQoSPolicy with remote best-effort readers.
+1. **Synchronization fixes**
+    1. Take mutex when removing local reader in WLP.
+    2. Fix data races in SecurityManager authentication process.
+1. CI fixes
+    1. Fix test building when using ``GTEST_INDIVIDUAL`` :ref:`CMake option <cmake_options>`.
+    2. Fix overflow in received samples in performance tests.
+1. Example fixes
+    1. Avoid creating entities within callbacks in DynamicHelloWorldExample.
+1. Repository fixes
+    1. Remove 2.7.x as active branch.
+1. Community supported platforms
+    1. Include right header when building for iOS.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -31,6 +95,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.9.1.rst
 .. include:: previous_versions/v2.9.0.rst
 .. include:: previous_versions/v2.8.1.rst
 .. include:: previous_versions/v2.8.0.rst

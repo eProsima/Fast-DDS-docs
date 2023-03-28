@@ -43,7 +43,7 @@ This release includes the following **improvements**:
     1. Update Pull Request template.
     2. Update foonathan_memory quality declaration.
     3. Update XSD schema.
-    4. Make netwrok headers private avoiding exposing non-public API.
+    4. Make network headers private avoiding exposing non-public API.
     5. Improve Doxygen documentation for
        :cpp:class:`ResourceLimitsQosPolicy <eprosima::fastdds::dds::ResourceLimitsQosPolicy>`.
 3. **Examples**

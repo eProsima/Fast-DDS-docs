@@ -28,8 +28,8 @@ This release includes the following **features**:
    :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`.
 2. :ref:`Secure Discovery Server <DS_security>`.
 3. DomainParticipant ignore empty API.
-4. RTPS :cpp:class:`ReaderListener::on_incompatible_type <eprosima::fastrtps::rtps::ReaderListener::on_incompatible_type>`
-   and :cpp:class:`WriterListener::on_incompatible_type <eprosima::fastrtps::rtps::WriterListener::on_incompatible_type>`
+4. RTPS :cpp:func:`ReaderListener::on_incompatible_type <eprosima::fastrtps::rtps::ReaderListener::on_incompatible_type>`
+   and :cpp:func:`WriterListener::on_incompatible_type <eprosima::fastrtps::rtps::WriterListener::on_incompatible_type>`
    empty API.
 
 This release includes the following **improvements**:
@@ -63,7 +63,7 @@ This release includes the following **fixes**:
 
 1. **Security vulnerability**
     1. Fix chain of trust issues with a single CA certificate.
-1. **Bugfixes**
+2. **Bugfixes**
     1. Fix RTPS StatelessWriter ACK check.
     2. ASAN (Address Sanitizer) fixes.
     3. UBSan (Undefined Behavior Sanitizer) fixes.
@@ -74,17 +74,17 @@ This release includes the following **fixes**:
     8. Fix build for GCC 5.
     9. Validity check for first sequence number.
     10. Fix crash when enabling DisablePositiveACKsQoSPolicy with remote best-effort readers.
-1. **Synchronization fixes**
+3. **Synchronization fixes**
     1. Take mutex when removing local reader in WLP.
     2. Fix data races in SecurityManager authentication process.
-1. CI fixes
+4. CI fixes
     1. Fix test building when using ``GTEST_INDIVIDUAL`` :ref:`CMake option <cmake_options>`.
     2. Fix overflow in received samples in performance tests.
-1. Example fixes
+5. Example fixes
     1. Avoid creating entities within callbacks in DynamicHelloWorldExample.
-1. Repository fixes
+6. Repository fixes
     1. Remove 2.7.x as active branch.
-1. Community supported platforms
+7. Community supported platforms
     1. Include right header when building for iOS.
 
 .. note::

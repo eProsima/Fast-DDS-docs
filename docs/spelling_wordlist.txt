@@ -94,6 +94,7 @@ fastcdr
 fastdds
 fastddsgen
 foonathan
+functors
 fuzzer
 GCC
 GCM

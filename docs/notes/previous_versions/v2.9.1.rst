@@ -10,7 +10,8 @@ This release includes the following **bugfixes**:
     3. Fix deadlock on TLS closure.
 2. **Other fixes**:
     1. Fix notification lost.
-    2. Fix ``total_read_`` to be consistent with Reader's History after |DataReader::get_first_untaken_info-api|.
+    2. Fix ``total_read_`` to be consistent with Reader's History after
+       :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>`.
     3. Use shared pointers for internal singletons.
     4. Support CCache on Windows.
     5. Avoid null dereference on fuzzer.

@@ -3,7 +3,8 @@
 QNX 7.1 installation from sources
 =================================
 
-The instructions for installing :ref:`Fast DDS library <fastdds_lib_qnx>` and running examples and tests on QNX 7.1 are provided in this page.
+The instructions for installing :ref:`Fast DDS library <fastdds_lib_qnx>`
+and running examples and tests on QNX 7.1 are provided in this page.
 It is organized as follows:
 
 .. contents::
@@ -49,7 +50,8 @@ QNX SDP is QNX's Software Development Platform which contains tools and files wh
 
 `QNX SDP Installation Guide <https://www.qnx.com/developers/docs/7.0.0/#com.qnx.doc.qnxsdp.quickstart/topic/install_host.html>`_
 
-For the purpose of these instructions, QNX SDP 7.1 is assumed to be installed at ~/qnx710. If this is not the case, please adjust the paths accordingly.
+For the purpose of these instructions, QNX SDP 7.1 is assumed to be installed at ~/qnx710.
+If this is not the case, please adjust the paths accordingly.
 
 .. _cmake_pip3_git_sw:
 
@@ -95,7 +97,7 @@ Build and Installation
        git apply $WORKSPACE/build_qnx/qnx_patches/fastcdr_qnx.patch
 
        # Apply QNX patch to TinyXML2.
-       # TinyXML2's CMakeLists.txt has CRLF, so use unix2dos to convert the patch to CRLF. 
+       # TinyXML2's CMakeLists.txt has CRLF, so use unix2dos to convert the patch to CRLF.
        cd $WORKSPACE/thirdparty/tinyxml2
        unix2dos $WORKSPACE/build_qnx/qnx_patches/tinyxml2_qnx.patch
        git apply $WORKSPACE/build_qnx/qnx_patches/tinyxml2_qnx.patch
@@ -162,7 +164,8 @@ Move Libraries, Examples, and Tests to the QNX Target
 
 #. Move the built libraries to the QNX target:
 
-    The following steps assume that $(QNX_TARGET) is ~/qnx710/target/qnx7 and that $(CPUVARDIR) is aarch64le. Adjust the values if this is not the case.
+    The following steps assume that $(QNX_TARGET) is ~/qnx710/target/qnx7 and that $(CPUVARDIR) is aarch64le.
+    Adjust the values if this is not the case.
 
    .. code-block:: bash
 
@@ -204,7 +207,7 @@ Run DDSHelloWorldExample
 
        # Run a subscriber
        /var/examples/cpp/dds/HelloWorldExample/bin/DDSHelloWorldExample subscriber
-    
+
 #. Open another terminal and run a publisher:
 
     .. code-block:: bash
@@ -219,7 +222,7 @@ The following output will be shown in the subscriber terminal:
 
     .. code-block:: console
 
-       Starting 
+       Starting
        Subscriber running. Please press enter to stop the Subscriber
        Subscriber matched.
        Message HelloWorld 1 RECEIVED
@@ -238,7 +241,7 @@ The following output will be shown for the publisher:
 
     .. code-block:: console
 
-       Starting 
+       Starting
        Publisher running 10 samples.
        Publisher matched.
        Message: HelloWorld with index: 1 SENT
@@ -255,7 +258,8 @@ The following output will be shown for the publisher:
 Run a Test
 ----------
 
-    Because test binaries compiled for QNX cannot be run on Ubuntu, test binaries must be run on a target which is running QNX.
+    Because test binaries compiled for QNX cannot be run on Ubuntu,
+    test binaries must be run on a target which is running QNX.
 
     .. code-block:: bash
 

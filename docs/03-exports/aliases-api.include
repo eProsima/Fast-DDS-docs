@@ -144,6 +144,7 @@
 .. |DomainParticipant::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::DomainParticipant::delete_contained_entities>`
 .. |DomainParticipant::create_topic_with_profile-api| replace:: :cpp:func:`create_topic_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_topic_with_profile>`
 .. |DomainParticipant::find_topic| replace:: :cpp:func:`find_topic()<eprosima::fastdds::dds::DomainParticipant::find_topic>`
+.. |DomainParticipant::ignore_participant-api| replace:: :cpp:func:`ignore_participant()<eprosima::fastdds::dds::DomainParticipant::ignore_participant>`
 
 .. |DomainParticipantFactory-api| replace:: :cpp:class:`DomainParticipantFactory<eprosima::fastdds::dds::DomainParticipantFactory>`
 .. |DomainParticipantFactory::create_participant_with_profile-api| replace:: :cpp:func:`create_participant_with_profile()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile>`

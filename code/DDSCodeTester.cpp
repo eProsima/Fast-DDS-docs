@@ -142,11 +142,20 @@ public:
 
     void on_participant_discovery(
             DomainParticipant* /*participant*/,
-            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info) override
+            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info,
+            bool& should_be_ignored) override
     {
+        should_be_ignored = false;
         if (info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT)
         {
             std::cout << "New participant discovered" << std::endl;
+            // The following line can be modified to evaluate whether the discovered participant should be ignored
+            // (usually based on fields present in the discovery information)
+            bool ignoring_condition = false;
+            if (ignoring_condition)
+            {
+                should_be_ignored = true; // Request the ignoring of the discovered participant
+            }
         }
         else if (info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT ||
                 info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DROPPED_PARTICIPANT)

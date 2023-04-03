@@ -49,6 +49,7 @@
 #include <sstream>
 
 using namespace eprosima::fastdds::dds;
+using namespace eprosima::fastrtps::types::literals;
 
 class CustomChainingTransportDescriptor : public eprosima::fastdds::rtps::ChainingTransportDescriptor
 {
@@ -5320,8 +5321,8 @@ void dds_persistence_examples()
     // Create data sample a populate data. This is to be used when calling `writer->write()`
     eprosima::fastrtps::types::DynamicData* dyn_helloworld;
     dyn_helloworld = eprosima::fastrtps::types::DynamicDataFactory::get_instance()->create_data(dyn_type_ptr);
-    dyn_helloworld->set_uint32_value(0, 0);
-    dyn_helloworld->set_string_value("HelloWorld", 1);
+    dyn_helloworld->set_uint32_value(0, 0_id);
+    dyn_helloworld->set_string_value("HelloWorld", 1_id);
     /********************************************************************************************************
     * END CREATE TYPE AND TYPE SUPPORT
     ********************************************************************************************************/

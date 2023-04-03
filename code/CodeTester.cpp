@@ -1215,9 +1215,9 @@ void xml_dyn_examples_check()
     //XML-DYN-ENUM
     DynamicTypeBuilder_ptr enum_builder = DynamicTypeBuilderFactory::get_instance().create_enum_builder();
     enum_builder->set_name("MyEnum");
-    enum_builder->add_member(0, "A");
-    enum_builder->add_member(1, "B");
-    enum_builder->add_member(2, "C");
+    enum_builder->add_member(0_id, "A");
+    enum_builder->add_member(1_id, "B");
+    enum_builder->add_member(2_id, "C");
     DynamicType_ptr enum_type = enum_builder->build();
     //!--
     //XML-TYPEDEF
@@ -1240,8 +1240,8 @@ void xml_dyn_examples_check()
         DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance().create_struct_builder();
 
         struct_builder->set_name("MyStruct");
-        struct_builder->add_member(0, "first", long_type);
-        struct_builder->add_member(1, "second", long_long_type);
+        struct_builder->add_member(0_id, "first", long_type);
+        struct_builder->add_member(1_id, "second", long_long_type);
         DynamicType_ptr struct_type = struct_builder->build();
         //!--
     }
@@ -1252,16 +1252,16 @@ void xml_dyn_examples_check()
         DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance().create_struct_builder();
 
         struct_builder->set_name("ParentStruct");
-        struct_builder->add_member(0, "first", long_type);
-        struct_builder->add_member(1, "second", long_long_type);
+        struct_builder->add_member(0_id, "first", long_type);
+        struct_builder->add_member(1_id, "second", long_long_type);
         DynamicType_ptr struct_type = struct_builder->build();
 
         DynamicTypeBuilder_ptr child_builder =
                 DynamicTypeBuilderFactory::get_instance().create_child_struct_builder(*struct_type);
 
         child_builder->set_name("ChildStruct");
-        child_builder->add_member(0, "third", long_type);
-        child_builder->add_member(1, "fourth", long_long_type);
+        child_builder->add_member(0_id, "third", long_type);
+        child_builder->add_member(1_id, "fourth", long_long_type);
         DynamicType_ptr child_struct_type = child_builder->build();
         //!--
     }
@@ -1275,9 +1275,9 @@ void xml_dyn_examples_check()
             *octet_type);
 
         union_builder->set_name("MyUnion");
-        union_builder->add_member(0, "first", long_type, "", std::vector<uint64_t>{ 0, 1 }, false);
-        union_builder->add_member(1, "second", struct_builder->build(), "", std::vector<uint64_t>{ 2 }, false);
-        union_builder->add_member(2, "third", long_long_type, "", std::vector<uint64_t>{ }, true);
+        union_builder->add_member(0_id, "first", long_type, "", std::vector<uint64_t>{ 0, 1 }, false);
+        union_builder->add_member(1_id, "second", struct_builder->build(), "", std::vector<uint64_t>{ 2 }, false);
+        union_builder->add_member(2_id, "third", long_long_type, "", std::vector<uint64_t>{ }, true);
         DynamicType_ptr union_type = union_builder->build();
         //!--
     }
@@ -1345,18 +1345,18 @@ void xml_dyn_examples_check()
         //XML-BITSET
         DynamicTypeBuilderFactory& factory = DynamicTypeBuilderFactory::get_instance();
         DynamicTypeBuilder_ptr builder_ptr = factory.create_bitset_builder();
-        builder_ptr->add_member(0, "a", factory.create_byte_type());
-        builder_ptr->add_member(1, "b", factory.create_bool_type());
-        builder_ptr->add_member(3, "c", factory.create_uint16_type());
-        builder_ptr->add_member(4, "d", factory.create_int16_type());
-        builder_ptr->apply_annotation_to_member(0, ANNOTATION_BIT_BOUND_ID, "value", "3");
-        builder_ptr->apply_annotation_to_member(0, ANNOTATION_POSITION_ID, "value", "0");
-        builder_ptr->apply_annotation_to_member(1, ANNOTATION_BIT_BOUND_ID, "value", "1");
-        builder_ptr->apply_annotation_to_member(1, ANNOTATION_POSITION_ID, "value", "3");
-        builder_ptr->apply_annotation_to_member(3, ANNOTATION_BIT_BOUND_ID, "value", "10");
-        builder_ptr->apply_annotation_to_member(3, ANNOTATION_POSITION_ID, "value", "8"); // 4 empty
-        builder_ptr->apply_annotation_to_member(4, ANNOTATION_BIT_BOUND_ID, "value", "12");
-        builder_ptr->apply_annotation_to_member(4, ANNOTATION_POSITION_ID, "value", "18");
+        builder_ptr->add_member(0_id, "a", factory.create_byte_type());
+        builder_ptr->add_member(1_id, "b", factory.create_bool_type());
+        builder_ptr->add_member(3_id, "c", factory.create_uint16_type());
+        builder_ptr->add_member(4_id, "d", factory.create_int16_type());
+        builder_ptr->apply_annotation_to_member(0_id, ANNOTATION_BIT_BOUND_ID, "value", "3");
+        builder_ptr->apply_annotation_to_member(0_id, ANNOTATION_POSITION_ID, "value", "0");
+        builder_ptr->apply_annotation_to_member(1_id, ANNOTATION_BIT_BOUND_ID, "value", "1");
+        builder_ptr->apply_annotation_to_member(1_id, ANNOTATION_POSITION_ID, "value", "3");
+        builder_ptr->apply_annotation_to_member(3_id, ANNOTATION_BIT_BOUND_ID, "value", "10");
+        builder_ptr->apply_annotation_to_member(3_id, ANNOTATION_POSITION_ID, "value", "8"); // 4 empty
+        builder_ptr->apply_annotation_to_member(4_id, ANNOTATION_BIT_BOUND_ID, "value", "12");
+        builder_ptr->apply_annotation_to_member(4_id, ANNOTATION_POSITION_ID, "value", "18");
         builder_ptr->set_name("MyBitSet");
         //!--
     }
@@ -1364,10 +1364,10 @@ void xml_dyn_examples_check()
         //XML-BITMASK
         DynamicTypeBuilderFactory& factory = DynamicTypeBuilderFactory::get_instance();
         DynamicTypeBuilder_ptr builder_ptr = factory.create_bitmask_builder(8);
-        builder_ptr->add_member(0, "flag0");
-        builder_ptr->add_member(1, "flag1");
-        builder_ptr->add_member(2, "flag2");
-        builder_ptr->add_member(5, "flag5");
+        builder_ptr->add_member(0_id, "flag0");
+        builder_ptr->add_member(1_id, "flag1");
+        builder_ptr->add_member(2_id, "flag2");
+        builder_ptr->add_member(5_id, "flag5");
         builder_ptr->set_name("MyBitMask");
         //!--
     }
@@ -1375,21 +1375,21 @@ void xml_dyn_examples_check()
         //XML-BITSET-INHERIT
         DynamicTypeBuilderFactory& factory = DynamicTypeBuilderFactory::get_instance();
         DynamicTypeBuilder_ptr builder_ptr = factory.create_bitset_builder();
-        builder_ptr->add_member(0, "a", factory.create_byte_type());
-        builder_ptr->add_member(1, "b", factory.create_bool_type());
-        builder_ptr->apply_annotation_to_member(0, ANNOTATION_BIT_BOUND_ID, "value", "3");
-        builder_ptr->apply_annotation_to_member(0, ANNOTATION_POSITION_ID, "value", "0");
-        builder_ptr->apply_annotation_to_member(1, ANNOTATION_BIT_BOUND_ID, "value", "1");
-        builder_ptr->apply_annotation_to_member(1, ANNOTATION_POSITION_ID, "value", "3");
+        builder_ptr->add_member(0_id, "a", factory.create_byte_type());
+        builder_ptr->add_member(1_id, "b", factory.create_bool_type());
+        builder_ptr->apply_annotation_to_member(0_id, ANNOTATION_BIT_BOUND_ID, "value", "3");
+        builder_ptr->apply_annotation_to_member(0_id, ANNOTATION_POSITION_ID, "value", "0");
+        builder_ptr->apply_annotation_to_member(1_id, ANNOTATION_BIT_BOUND_ID, "value", "1");
+        builder_ptr->apply_annotation_to_member(1_id, ANNOTATION_POSITION_ID, "value", "3");
         builder_ptr->set_name("ParentBitSet");
 
         DynamicTypeBuilder_ptr child_ptr = factory.create_child_struct_builder(*builder_ptr->build());
-        child_ptr->add_member(3, "c", factory.create_uint16_type());
-        child_ptr->add_member(4, "d", factory.create_int16_type());
-        child_ptr->apply_annotation_to_member(3, ANNOTATION_BIT_BOUND_ID, "value", "10");
-        child_ptr->apply_annotation_to_member(3, ANNOTATION_POSITION_ID, "value", "8"); // 4 empty
-        child_ptr->apply_annotation_to_member(4, ANNOTATION_BIT_BOUND_ID, "value", "12");
-        child_ptr->apply_annotation_to_member(4, ANNOTATION_POSITION_ID, "value", "18");
+        child_ptr->add_member(3_id, "c", factory.create_uint16_type());
+        child_ptr->add_member(4_id, "d", factory.create_int16_type());
+        child_ptr->apply_annotation_to_member(3_id, ANNOTATION_BIT_BOUND_ID, "value", "10");
+        child_ptr->apply_annotation_to_member(3_id, ANNOTATION_POSITION_ID, "value", "8"); // 4 empty
+        child_ptr->apply_annotation_to_member(4_id, ANNOTATION_BIT_BOUND_ID, "value", "12");
+        child_ptr->apply_annotation_to_member(4_id, ANNOTATION_POSITION_ID, "value", "18");
         child_ptr->set_name("ChildBitSet");
         //!--
     }
@@ -1529,9 +1529,9 @@ void dynamictypes_configuration()
         DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance().create_enum_builder();
 
         // Use the builder to configure the type
-        builder->add_member(0, "DEFAULT");
-        builder->add_member(1, "FIRST");
-        builder->add_member(2, "SECOND");
+        builder->add_member(0_id, "DEFAULT");
+        builder->add_member(1_id, "FIRST");
+        builder->add_member(2_id, "SECOND");
 
         // Create the data type using the builder
         // The builder will internally use the DynamicTypeBuilderFactory to create the type
@@ -1601,9 +1601,9 @@ void dynamictypes_configuration()
         //DYNAMIC_TYPES_CREATE_ENUMERATIONS
         // Add enumeration values using the DynamicTypeBuilder
         DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance().create_enum_builder();
-        builder->add_member(0, "DEFAULT");
-        builder->add_member(1, "FIRST");
-        builder->add_member(2, "SECOND");
+        builder->add_member(0_id, "DEFAULT");
+        builder->add_member(1_id, "FIRST");
+        builder->add_member(2_id, "SECOND");
 
         // Create the data instance
         DynamicData* data = DynamicDataFactory::get_instance()->create_data(builder.get());
@@ -1630,26 +1630,26 @@ void dynamictypes_configuration()
 
         // Create the bitset with two bitfields
         DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance().create_bitset_builder();
-        builder->add_member(0, "byte", base_type_byte);
-        builder->add_member(1, "uint32", base_type_uint32);
+        builder->add_member(0_id, "byte", base_type_byte);
+        builder->add_member(1_id, "uint32", base_type_uint32);
 
         // Apply members' annotations
-        builder->apply_annotation_to_member(0, ANNOTATION_POSITION_ID, "value", "0");   // "byte" starts at position 0
-        builder->apply_annotation_to_member(0, ANNOTATION_BIT_BOUND_ID, "value", "2");  // "byte" is 2 bit length
-        builder->apply_annotation_to_member(1, ANNOTATION_POSITION_ID, "value", "10");  // "uint32" starts at position 10 (8 bits empty)
-        builder->apply_annotation_to_member(1, ANNOTATION_BIT_BOUND_ID, "value", "20"); // "uint32" is 20 bits length
+        builder->apply_annotation_to_member(0_id, ANNOTATION_POSITION_ID, "value", "0");   // "byte" starts at position 0
+        builder->apply_annotation_to_member(0_id, ANNOTATION_BIT_BOUND_ID, "value", "2");  // "byte" is 2 bit length
+        builder->apply_annotation_to_member(1_id, ANNOTATION_POSITION_ID, "value", "10");  // "uint32" starts at position 10 (8 bits empty)
+        builder->apply_annotation_to_member(1_id, ANNOTATION_BIT_BOUND_ID, "value", "20"); // "uint32" is 20 bits length
         DynamicType_ptr bitset_type = builder->build();
 
         // Create the data instance
         DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(bitset_type));
 
         // Access values
-        data->set_byte_value(234, 0);
-        data->set_uint32_value(2340, 1);
+        data->set_byte_value(234, 0_id);
+        data->set_uint32_value(2340, 1_id);
         octet bValue;
         uint32_t uValue;
-        data->get_byte_value(bValue, 0);
-        data->get_uint32_value(uValue, 1);
+        data->get_byte_value(bValue, 0_id);
+        data->get_uint32_value(uValue, 1_id);
         //!--
         //DYNAMIC_TYPES_CREATE_BITSETS-INHERIT
         DynamicTypeBuilder_ptr child_builder =
@@ -1663,8 +1663,8 @@ void dynamictypes_configuration()
 
         // Add bitmask flags using the DynamicTypeBuilder
         DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance().create_bitmask_builder(limit);
-        builder->add_member(0, "FIRST");
-        builder->add_member(1, "SECOND");
+        builder->add_member(0_id, "FIRST");
+        builder->add_member(1_id, "SECOND");
 
         // Create the data instance
         DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(builder->build()));
@@ -1674,7 +1674,7 @@ void dynamictypes_configuration()
         bool bSecondValue = data->get_bool_value("SECOND"); // Get the "SECOND" bit
 
         // Access the mask values using the index
-        data->set_bool_value(true, 1);                      // Set the "SECOND" bit
+        data->set_bool_value(true, 1_id);                      // Set the "SECOND" bit
         bool bFirstValue = data->get_bool_value(0);         // Get the "FIRST" bit
 
         // Get the complete bitmask as integer
@@ -1687,16 +1687,16 @@ void dynamictypes_configuration()
         //DYNAMIC_TYPES_CREATE_STRUCTS
         // Build a structure with two fields ("first" as int32, "other" as uint64) using DynamicTypeBuilder
         DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance().create_struct_builder();
-        builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type());
-        builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
+        builder->add_member(0_id, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type());
+        builder->add_member(1_id, "other", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
         DynamicType_ptr struct_type = builder->build();
 
         // Create the data instance
         DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(struct_type));
 
         // Access struct members
-        data->set_int32_value(5, 0);
-        data->set_uint64_value(13, 1);
+        data->set_int32_value(5, 0_id);
+        data->set_uint64_value(13, 1_id);
         //!--
         //DYNAMIC_TYPES_CREATE_STRUCTS-INHERIT
         DynamicTypeBuilder_ptr child_builder =
@@ -1711,10 +1711,10 @@ void dynamictypes_configuration()
         DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance().create_union_builder(*discriminator);
 
         // Add the union members. "firts" will be the default value
-        builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type(), "",
+        builder->add_member(0_id, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type(), "",
                 std::vector<uint64_t>{ 0 },
                 true);
-        builder->add_member(0, "second", DynamicTypeBuilderFactory::get_instance().create_int64_type(), "",
+        builder->add_member(0_id, "second", DynamicTypeBuilderFactory::get_instance().create_int64_type(), "",
                 std::vector<uint64_t>{ 1 },
                 false);
 
@@ -1723,8 +1723,8 @@ void dynamictypes_configuration()
         DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(union_type));
 
         // Access the values using the member index
-        data->set_int32_value(9, 0);
-        data->set_int64_value(13, 1);
+        data->set_int32_value(9, 0_id);
+        data->set_int64_value(13, 1_id);
 
         // Get the label of the currently selected member
         uint64_t unionLabel;
@@ -1811,21 +1811,21 @@ void dynamictypes_configuration()
         //DYNAMIC_TYPES_CREATE_NESTED_STRUCTS
         // Create a struct type
         DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance().create_struct_builder();
-        builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type());
-        builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
+        builder->add_member(0_id, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type());
+        builder->add_member(1_id, "other", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
         DynamicType_ptr struct_type = builder->build();
 
         // Create a struct type with the previous struct as member
         DynamicTypeBuilder_ptr parent_builder = DynamicTypeBuilderFactory::get_instance().create_struct_builder();
-        parent_builder->add_member(0, "child_struct", struct_type);
-        parent_builder->add_member(1, "second", DynamicTypeBuilderFactory::get_instance().create_int32_type());
+        parent_builder->add_member(0_id, "child_struct", struct_type);
+        parent_builder->add_member(1_id, "second", DynamicTypeBuilderFactory::get_instance().create_int32_type());
         DynamicType_ptr parent_type = parent_builder->build();
         DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(parent_type));
 
         // Access the child struct with the loan operations
-        DynamicData* child_data = data->loan_value(0);
-        child_data->set_int32_value(5, 0);
-        child_data->set_uint64_value(13, 1);
+        DynamicData* child_data = data->loan_value(0_id);
+        child_data->set_int32_value(5, 0_id);
+        child_data->set_uint64_value(13, 1_id);
         data->return_loaned_value(child_data);
         //!--
     }
@@ -1834,8 +1834,8 @@ void dynamictypes_configuration()
         //DYNAMIC_TYPES_CREATE_INHERITANCE_STRUCTS
         // Create a base struct type
         DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance().create_struct_builder();
-        builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type());
-        builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
+        builder->add_member(0_id, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type());
+        builder->add_member(1_id, "other", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
         DynamicType_ptr base_type = builder->build();
 
         // Create a struct type derived from the previous struct
@@ -1843,16 +1843,16 @@ void dynamictypes_configuration()
                 DynamicTypeBuilderFactory::get_instance().create_child_struct_builder(*base_type);
 
         // Add new members to the derived type
-        builder->add_member(2, "third", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
+        builder->add_member(2_id, "third", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
 
         // Create the data instance
         DynamicType_ptr struct_type = child_builder->build();
         DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(struct_type));
 
         // The derived type includes the members defined on the base type
-        data->set_int32_value(5, 0);
-        data->set_uint64_value(13, 1);
-        data->set_uint64_value(47, 2);
+        data->set_int32_value(5, 0_id);
+        data->set_uint64_value(13, 1_id);
+        data->set_uint64_value(47, 2_id);
         //!--
     }
 
@@ -1887,7 +1887,7 @@ void dynamictypes_configuration()
 
         // Add a int32 to the union
         builder->add_member(
-                0, // id
+                0_id, // id
                 "first", // name
                 DynamicTypeBuilderFactory::get_instance().create_int32_type(), // type
                 "", // default value
@@ -1896,18 +1896,18 @@ void dynamictypes_configuration()
 
         // Create a struct type and add it to the union
         DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance().create_struct_builder();
-        struct_builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type());
-        struct_builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
-        builder->add_member(1, "first", struct_builder->build(), "", std::vector<uint64_t>{ 1 }, false);
+        struct_builder->add_member(0_id, "first", DynamicTypeBuilderFactory::get_instance().create_int32_type());
+        struct_builder->add_member(1_id, "other", DynamicTypeBuilderFactory::get_instance().create_uint64_type());
+        builder->add_member(1_id, "first", struct_builder->build(), "", std::vector<uint64_t>{ 1 }, false);
 
         // Create the union data instance
         DynamicType_ptr union_type = builder->build();
         DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(union_type));
 
         // Access the struct member using the loan operations
-        DynamicData* child_data = data->loan_value(1);
-        child_data->set_int32_value(9, 0);
-        child_data->set_int64_value(13, 1);
+        DynamicData* child_data = data->loan_value(1_id);
+        child_data->set_int32_value(9, 0_id);
+        child_data->set_int64_value(13, 1_id);
         data->return_loaned_value(child_data);
         //!--
     }
@@ -1971,15 +1971,15 @@ void dynamictypes_configuration()
         DynamicTypeBuilder_ptr struct_type_builder(DynamicTypeBuilderFactory::get_instance().create_struct_builder());
 
         // Add members to the struct.
-        struct_type_builder->add_member(0, "index", DynamicTypeBuilderFactory::get_instance().create_uint32_type());
-        struct_type_builder->add_member(1, "message", DynamicTypeBuilderFactory::get_instance().create_string_type());
+        struct_type_builder->add_member(0_id, "index", DynamicTypeBuilderFactory::get_instance().create_uint32_type());
+        struct_type_builder->add_member(1_id, "message", DynamicTypeBuilderFactory::get_instance().create_string_type());
         struct_type_builder->set_name("HelloWorld");
 
         DynamicType_ptr dynType = struct_type_builder->build();
         m_DynType.SetDynamicType(dynType);
         m_DynHello = DynamicDataFactory::get_instance()->create_data(dynType);
-        m_DynHello->set_uint32_value(0, 0);
-        m_DynHello->set_string_value("HelloWorld", 1);
+        m_DynHello->set_uint32_value(0, 0_id);
+        m_DynHello->set_string_value("HelloWorld", 1_id);
         //!--
     }
 
@@ -1995,15 +1995,15 @@ void dynamictypes_configuration()
         DynamicTypeBuilder_ptr struct_type_builder(DynamicTypeBuilderFactory::get_instance().create_struct_builder());
 
         // Add members to the struct.
-        struct_type_builder->add_member(0, "index", DynamicTypeBuilderFactory::get_instance().create_uint32_type());
-        struct_type_builder->add_member(1, "message", DynamicTypeBuilderFactory::get_instance().create_string_type());
+        struct_type_builder->add_member(0_id, "index", DynamicTypeBuilderFactory::get_instance().create_uint32_type());
+        struct_type_builder->add_member(1_id, "message", DynamicTypeBuilderFactory::get_instance().create_string_type());
         struct_type_builder->set_name("HelloWorld");
 
         DynamicType_ptr dynType = struct_type_builder->build();
         m_DynType.SetDynamicType(dynType);
         m_DynHello = DynamicDataFactory::get_instance()->create_data(dynType);
-        m_DynHello->set_uint32_value(0, 0);
-        m_DynHello->set_string_value("HelloWorld", 1);
+        m_DynHello->set_uint32_value(0, 0_id);
+        m_DynHello->set_string_value("HelloWorld", 1_id);
         //!--
     }
 

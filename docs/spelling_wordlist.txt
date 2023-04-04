@@ -22,6 +22,7 @@ autodispose
 autoenable
 autoid
 automake
+backoff
 benchmarking
 bitfield
 Bitfields

@@ -20,7 +20,7 @@ upon initialization.
 *   Load directly the XML as a string data buffer.
 
 An XML profile is defined by a unique name that is used to reference the XML profile
-during the creation of an |Entity|, the :ref:`Trasport <comm-transports-configuration>` configuration, or the
+during the creation of an |Entity|, the :ref:`Transport <comm-transports-configuration>` configuration, or the
 :ref:`DynamicTypes <dds_layer_topic_dynamic_data_types>` definition.
 
 Both options can be complemented, i.e. it is possible to load multiple XML files but these must not have XML profiles

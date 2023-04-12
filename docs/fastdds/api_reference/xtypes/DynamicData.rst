@@ -5,6 +5,6 @@
 DynamicType
 -----------
 
-.. doxygenclass:: eprosima::fastrtps::types::DynamicData
+.. doxygenclass:: eprosima::fastrtps::types::v1_3::DynamicData
     :project: FastDDS
     :members:

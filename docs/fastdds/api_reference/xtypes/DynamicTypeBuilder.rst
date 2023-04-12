@@ -5,6 +5,6 @@
 DynamicTypeBuilder
 ------------------
 
-.. doxygenclass:: eprosima::fastrtps::types::DynamicTypeBuilder
+.. doxygenclass:: eprosima::fastrtps::types::v1_3::DynamicTypeBuilder
     :project: FastDDS
     :members:

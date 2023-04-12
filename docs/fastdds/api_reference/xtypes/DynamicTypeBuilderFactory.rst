@@ -5,6 +5,6 @@
 DynamicTypeBuilderFactory
 -------------------------
 
-.. doxygenclass:: eprosima::fastrtps::types::DynamicTypeBuilderFactory
+.. doxygenclass:: eprosima::fastrtps::types::v1_3::DynamicTypeBuilderFactory
     :project: FastDDS
     :members:

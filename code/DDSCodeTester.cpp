@@ -49,7 +49,6 @@
 #include <sstream>
 
 using namespace eprosima::fastdds::dds;
-using namespace eprosima::fastrtps::types::literals;
 
 class CustomChainingTransportDescriptor : public eprosima::fastdds::rtps::ChainingTransportDescriptor
 {
@@ -215,7 +214,7 @@ public:
             const eprosima::fastrtps::string_255& topic,
             const eprosima::fastrtps::types::TypeIdentifier* identifier,
             const eprosima::fastrtps::types::TypeObject* object,
-            eprosima::fastrtps::types::DynamicType_ptr dyn_type) override
+            eprosima::fastrtps::types::v1_3::DynamicType_ptr dyn_type) override
     {
         static_cast<void>(participant);
         static_cast<void>(request_sample_id);
@@ -888,7 +887,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             const eprosima::fastrtps::string_255& topic,
             const eprosima::fastrtps::types::TypeIdentifier* identifier,
             const eprosima::fastrtps::types::TypeObject* object,
-            eprosima::fastrtps::types::DynamicType_ptr dyn_type) override
+            eprosima::fastrtps::types::v1_3::DynamicType_ptr dyn_type) override
     {
         static_cast<void>(participant);
         static_cast<void>(request_sample_id);
@@ -1641,6 +1640,8 @@ void dds_topic_examples()
 
     {
         //DDS_DYNAMIC_TYPES
+        namespace xtypes = eprosima::fastrtps::types::v1_3;
+
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
@@ -1654,7 +1655,7 @@ void dds_topic_examples()
         eprosima::fastrtps::xmlparser::XMLProfileManager::loadXMLFile("example_type.xml");
 
         // Retrieve the an instance of the desired type and register it
-        eprosima::fastrtps::types::DynamicType_ptr dyn_type =
+        xtypes::DynamicType_ptr dyn_type =
                 eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName("DynamicType")->build();
         TypeSupport dyn_type_support(new eprosima::fastrtps::types::DynamicPubSubType(dyn_type));
         dyn_type_support.register_type(participant, nullptr);
@@ -4349,6 +4350,8 @@ void xml_profiles_examples()
     }
     {
         //XML-USAGE
+        namespace xtypes = eprosima::fastrtps::types::v1_3;
+
         // Create a DomainParticipant
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
@@ -4363,7 +4366,7 @@ void xml_profiles_examples()
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             // Retrieve the an instance of MyStruct type
-            eprosima::fastrtps::types::DynamicType_ptr my_struct_type =
+            xtypes::DynamicType_ptr my_struct_type =
                     eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName("MyStruct")->build();
             // Register MyStruct type
             TypeSupport my_struct_type_support(new eprosima::fastrtps::types::DynamicPubSubType(my_struct_type));
@@ -5286,6 +5289,9 @@ void dds_persistence_examples()
      *     };
      */
 
+    using namespace eprosima::fastrtps::types;
+    namespace xtypes = v1_3;
+
     // Configure persistence service plugin for DomainParticipant
     DomainParticipantQos pqos;
     pqos.properties().properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
@@ -5301,26 +5307,26 @@ void dds_persistence_examples()
     ********************************************************************************************************/
     // Create a struct builder for a type with name "persistence_topic_type"
     const std::string topic_type_name = "persistence_topic_type";
-    eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_type_builder(
-        eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance().create_struct_builder());
+    xtypes::DynamicTypeBuilder_ptr struct_type_builder(
+        xtypes::DynamicTypeBuilderFactory::get_instance().create_struct_builder());
     struct_type_builder->set_name(topic_type_name);
 
     // The type consists of two members, and index and a message. Add members to the struct.
     struct_type_builder->add_member(0, "index",
-            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance().create_uint32_type());
+            xtypes::DynamicTypeBuilderFactory::get_instance().create_uint32_type());
     struct_type_builder->add_member(1, "message",
-            eprosima::fastrtps::types::DynamicTypeBuilderFactory::get_instance().create_string_type());
+            xtypes::DynamicTypeBuilderFactory::get_instance().create_string_type());
 
     // Build the type
-    eprosima::fastrtps::types::DynamicType_ptr dyn_type_ptr = struct_type_builder->build();
+    xtypes::DynamicType_ptr dyn_type_ptr = struct_type_builder->build();
 
     // Create type support and register the type
-    TypeSupport type_support(new eprosima::fastrtps::types::DynamicPubSubType(dyn_type_ptr));
+    TypeSupport type_support(new DynamicPubSubType(dyn_type_ptr));
     type_support.register_type(participant);
 
     // Create data sample a populate data. This is to be used when calling `writer->write()`
-    eprosima::fastrtps::types::DynamicData* dyn_helloworld;
-    dyn_helloworld = eprosima::fastrtps::types::DynamicDataFactory::get_instance()->create_data(dyn_type_ptr);
+    xtypes::DynamicData* dyn_helloworld;
+    dyn_helloworld = xtypes::DynamicDataFactory::get_instance()->create_data(dyn_type_ptr);
     dyn_helloworld->set_uint32_value(0, 0_id);
     dyn_helloworld->set_string_value("HelloWorld", 1_id);
     /********************************************************************************************************

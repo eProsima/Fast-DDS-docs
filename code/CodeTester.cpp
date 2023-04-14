@@ -1662,13 +1662,13 @@ void dynamictypes_configuration()
         std::string sValue = "SECOND";
         data->set_enum_value(sValue);
         std::string sStoredValue;
-        data->get_enum_value(sStoredValue, MEMBER_ID_INVALID);
+        data->get_enum_value(sStoredValue);
 
         // Access value using the index
         uint32_t uValue = 2;
         data->set_enum_value(uValue);
         uint32_t uStoredValue;
-        data->get_enum_value(uStoredValue, MEMBER_ID_INVALID);
+        data->get_enum_value(uStoredValue);
         //!--
     }
 

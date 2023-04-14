@@ -8,7 +8,7 @@ This release includes the following **bugfixes**:
     2. Fix Statistics module CI.
     3. Install Statistics IDL file.
     4. Fix for building in old compilers.
-    5. Fix core dumped in |DomainParticipant::delete_contained_entities-api|.
+    5. Fix core dumped in `DomainParticipant::delete_contained_entities-api`.
 
 1. Address sanitizer fixes:
     1. Add ASAN CI job and ``SANITIZE`` :ref:`CMake option <cmake_options>`.
@@ -25,7 +25,7 @@ This release includes the following **bugfixes**:
     4. Include ``2.8.x`` branch release support.
     5. Send GAPs correctly when using separate sending.
     6. Fixes for building in old compilers.
-    7. Fix |DataReader::read_next_instance-api| and |DataReader::take_next_instance-api| implementation.
+    7. Fix `DataReader::read_next_instance-api` and `DataReader::take_next_instance-api` implementation.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

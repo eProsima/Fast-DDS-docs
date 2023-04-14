@@ -24,7 +24,7 @@ This release includes the following **bugfixes**:
 
 1. Fix bug in Topic creation with different Type Name
 2. Fix tests failing with subprocess aborted error
-3. Add ASAN CI tests for Fast DDS and Discovery Server
+3. Fix communication with asymmetric ignoreParticipantFlags
 4. Added `ignore_participant_flags()` to `Blackbox_FastRTPS` `PubSubReader`.
 5. Fix Deadlock in `remove_participant` (ResourceEvent thread) when compiled WITH_SECURITY
 6. Fix failed tests when compiling with statistics enabled

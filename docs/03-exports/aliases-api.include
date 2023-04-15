@@ -146,6 +146,9 @@
 .. |DomainParticipant::create_topic_with_profile-api| replace:: :cpp:func:`create_topic_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_topic_with_profile>`
 .. |DomainParticipant::find_topic| replace:: :cpp:func:`find_topic()<eprosima::fastdds::dds::DomainParticipant::find_topic>`
 .. |DomainParticipant::ignore_participant-api| replace:: :cpp:func:`ignore_participant()<eprosima::fastdds::dds::DomainParticipant::ignore_participant>`
+.. |DomainParticipant::enable-monitor-service-api| replace:: :cpp:func:`enable_monitor_service()<eprosima::fastdds::dds::DomainParticipant::enable_monitor_service>`
+.. |DomainParticipant::disable-monitor-service-api| replace:: :cpp:func:`disable_monitor_service()<eprosima::fastdds::dds::DomainParticipant::disable_monitor_service>`
+.. |DomainParticipant::check-compatible-qos-api| replace:: :cpp:func:`check_compatible_qos()<eprosima::fastdds::dds::DomainParticipant::check_compatible_qos>`
 
 .. |DomainParticipantFactory-api| replace:: :cpp:class:`DomainParticipantFactory<eprosima::fastdds::dds::DomainParticipantFactory>`
 .. |DomainParticipantFactory::create_participant_with_profile-api| replace:: :cpp:func:`create_participant_with_profile()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile>`

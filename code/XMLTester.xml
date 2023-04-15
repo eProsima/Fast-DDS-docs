@@ -2833,6 +2833,26 @@
 </participant>
 <!--><-->
 
+<!-->DDS_MONITOR_SERVICE<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+<participant profile_name="monitor_service_participant_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate Monitor Service -->
+                <property>
+                    <name>fastdds.enable_monitor_service</name>
+                    <value>true</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->PULL_MODE_DATAWRITER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

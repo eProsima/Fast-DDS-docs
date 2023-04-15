@@ -648,6 +648,34 @@ void dds_domain_examples()
         //!--
     }
     {
+        // FASTDDS_MONITOR_SERVICE_PROPERTY
+        DomainParticipantQos pqos;
+
+        // Activate Fast DDS Monitor Service through properties
+        pqos.properties().properties().emplace_back("fastdds.enable_monitor_service",
+                "true");
+
+        DomainParticipant* participant_with_mon_srv = DomainParticipantFactory::get_instance()->create_participant(0,
+                        pqos);
+
+        //!--
+    }
+    {
+        // FASTDDS_MONITOR_SERVICE_API
+
+        DomainParticipant* participant_with_mon_srv = DomainParticipantFactory::get_instance()->create_participant(0,
+                        PARTICIPANT_QOS_DEFAULT);
+
+        // Enable Fast DDS Monitor Service through API
+        participant_with_mon_srv->enable_monitor_service();
+
+        // Disable Fast DDS Monitor Service through API
+        participant_with_mon_srv->enable_monitor_service();
+
+
+        //!--
+    }
+    {
         // FASTDDS_PHYSICAL_PROPERTIES
         /* Create participant which announces default physical properties */
         DomainParticipantQos pqos_default_physical;

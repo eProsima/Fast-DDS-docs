@@ -6,11 +6,12 @@
 Monitor Service Configuration
 =============================
 
-The :ref:`monitor_service` can be programatically enabled in both :ref:`dds_layer` and :ref:`rtps_layer`
+The :ref:`monitor_service` can be programmatically enabled in both :ref:`dds_layer` and :ref:`rtps_layer`
 through the |DomainParticipant::enable-monitor-service-api| and |DomainParticipant::disable-monitor-service-api| calls.
-In addition, leveraging the |PropertyPolicyQos-api| there is new ``Property`` defined for the purpose: ``fastdds.enable_monitor_service``.
+In addition, leveraging the |PropertyPolicyQos-api| there is new ``Property`` defined
+for the purpose: ``fastdds.enable_monitor_service``.
 
-The following table depicts the different ways in which the monitor service can be enabled or disbled:
+The following table depicts the different ways in which the monitor service can be enabled or disabled:
 
 Property Policy
 ^^^^^^^^^^^^^^^

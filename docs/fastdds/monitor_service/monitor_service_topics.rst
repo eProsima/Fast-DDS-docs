@@ -6,7 +6,7 @@
 Monitor Service Topics
 ======================
 
-The following table depicts a summary of the availble topics in the :ref:`monitor_service`:
+The following table depicts a summary of the available topics in the :ref:`monitor_service`:
 
 +---------------------------------------+-------------------------+---------------------------------------+
 |**Topic name**                         |**Topic Alias**          | **TopicDataType**                     |
@@ -56,8 +56,10 @@ The ``MonitorServiceEventData`` data structure comprises the following fields:
 Monitor Service RPC Topics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A |DomainParticipant| with an enabled ``Monitor Service`` provides a RPC mechanism for querying another |DomainParticipant| about its known entities.
-This is achieved by means of the ``Monitor Service`` Request/Response topics, in which the client side writes the request and the ``Monitor Service``
+A |DomainParticipant| with an enabled ``Monitor Service`` provides a RPC mechanism
+for querying another |DomainParticipant| about its known entities.
+This is achieved by means of the ``Monitor Service`` Request/Response topics,
+in which the client side writes the request and the ``Monitor Service``
 of the requested |DomainParticipant| replies with the corresponding response.
 
 The actual data types and fields of the aforementioned topics are described below:
@@ -92,8 +94,8 @@ The ``MonitorServiceResponseData`` data structure consists on the following fiel
 * *param_list:* ParameterList consisting on a set of parameters for describing a WriterProxy, ReaderProxy or ParticipantProxy.
   See `DDS Interoperability Wire Protocol <https://www.omg.org/spec/DDSI-RTPS/>`_ for further information on these structures.
 * *locator_list:* Current |LocatorList_t-api| in use with that entity.
-  It is an additional informative field for the DDS Monitor to know which locators a particular entity is using for communicating with other
-  entity from other participant.
+  It is an additional informative field for the DDS Monitor to know which locators a particular entity is using
+  for communicating with other entity from other participant.
 
 .. code-block:: bash
 

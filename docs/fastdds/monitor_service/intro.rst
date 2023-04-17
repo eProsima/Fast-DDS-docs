@@ -13,9 +13,11 @@ as well as the capability of predicting possible misconfigurations among them.
 
 The :ref:`monitor_service` can be particularly useful in the following scenarios:
 
-*  To retrieve an entity graph of a |domain|, overcoming situations
-   in which a sub-set of |DomainParticipants| are not directly visible, for instance, because they
-   have multicast traffic disabled, discovering each other using an initial peers list.
+*  Querying a remote |DomainParticipant| for information targetting any of its local
+   entities in order to extend the default discovery information about it.
+*  Retrieving remote entities information in situations in which a sub-set of |DomainParticipants|
+   are not directly visible, for instance, because they have multicast traffic disabled,
+   discovering each other using an initial peers list.
    By means of the :ref:`monitor_service` it is possible to recover the information
    of those |DomainParticipants| and their entities (given that there is at least one
    |DomainParticipant| bridging the unicast and multicast groups).

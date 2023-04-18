@@ -60,7 +60,7 @@ sudo apt install -y \
     curl \
     wget \
     doxygen \
-    doc8 \
+    python3-doc8 \
     python3 \
     python3-pip \
     python3-venv \
@@ -79,7 +79,7 @@ python3 -m venv fastdds-docs-venv
 source fastdds-docs-venv/bin/activate
 wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/master/docs/requirements.txt
 pip3 install -r requirements.txt
-cd fastdds-docs-venv/lib/<python-version>/site-packages
+touch fastdds-docs-venv/COLCON_IGNORE
 ```
 
 The version of python3 used in the virtual environment can be seen by running the following command within the virtual environment:
@@ -87,11 +87,6 @@ The version of python3 used in the virtual environment can be seen by running th
 ```bash
 python3 -V
 ```
-
-#### Troubleshooting
-
-Python versions 3.7 and newer produce `Duplicate declaration` and `Error when parsing function declaration` warnings building the documentation.
-This is due to a difference in the Sphinx 3.0.3 module code which prevents the patch from working.
 
 ### Colcon installation
 
@@ -108,7 +103,9 @@ building tools.
         # Fast DDS dependencies
         libasio-dev \
         libtinyxml2-dev \
-        libssl-dev
+        libssl-dev \
+        # Fast DDS-Docs dependencies
+        python3-sphinx
     ```
 
 1. Create a colcon workspace containing Fast DDS and Fast DDS-docs:

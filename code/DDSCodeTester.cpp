@@ -805,6 +805,17 @@ void dds_domain_examples()
             );
         //!--
     }
+
+    {
+        // IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT
+        DomainParticipantQos participant_qos;
+
+        // Avoid local matching of this participant's endpoints
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.ignore_local_endpoints",
+            "true");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

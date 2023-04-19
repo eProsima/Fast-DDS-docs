@@ -2585,6 +2585,31 @@
 </data_writer>
 <!--><-->
 
+<!-->IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+        <participant profile_name="ignore_local_endpoints_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <!-- Avoid local matching of this participant's endpoints -->
+                        <property>
+                            <name>fastdds.ignore_local_endpoints</name>
+                            <value>true</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
 <!-->FASTDDS_STATISTICS_MODULE<-->
 <participant profile_name="statistics_domainparticipant_conf_xml_profile">
     <rtps>

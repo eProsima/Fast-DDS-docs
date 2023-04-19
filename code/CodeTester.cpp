@@ -1177,7 +1177,12 @@ void pubsub_api_example_participant_configuration()
 
         // input_type is an instance of DynamicPubSubType of out current dynamic type
         DynamicPubSubType* pst = dynamic_cast<DynamicPubSubType*>(input_type);
-        xtypes::DynamicData* sample = xtypes::DynamicDataFactory::get_instance()->create_data(pst->GetDynamicType());
+        xtypes::DynamicType_ptr type;
+        if (!pst->GetDynamicType(type))
+        {
+            // Error Handling
+        }
+        xtypes::DynamicData* sample = xtypes::DynamicDataFactory::get_instance()->create_data(type);
         subscriber->takeNextData(sample, &sample_info);
         //!--
     }
@@ -1447,9 +1452,10 @@ void xml_dyn_examples_check()
         eprosima::fastrtps::types::DynamicPubSubType* pbType =
                 eprosima::fastrtps::xmlparser::XMLProfileManager::CreateDynamicPubSubType("MyStruct");
         // Create a "MyStruct" instance
+        xtypes::DynamicType_ptr type;
+        pbType->GetDynamicType(type);
         xtypes::DynamicData* data =
-                xtypes::DynamicDataFactory::get_instance()->create_data(
-            pbType->GetDynamicType());
+                xtypes::DynamicDataFactory::get_instance()->create_data(type);
         //!--
     }
 }

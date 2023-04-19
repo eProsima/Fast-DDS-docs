@@ -122,6 +122,7 @@ initializations
 interoperability
 intra
 Intra
+iOS
 IPv
 json
 kB

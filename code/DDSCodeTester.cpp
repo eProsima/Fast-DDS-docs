@@ -1655,8 +1655,15 @@ void dds_topic_examples()
         eprosima::fastrtps::xmlparser::XMLProfileManager::loadXMLFile("example_type.xml");
 
         // Retrieve the an instance of the desired type and register it
-        xtypes::DynamicType_ptr dyn_type =
-                eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName("DynamicType")->build();
+        xtypes::DynamicTypeBuilder_ptr dyn_builder;
+        if (eprosima::fastrtps::xmlparser::XMLP_ret::XML_OK !=
+            eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName(dyn_builder, "DynamicType"))
+        {
+            // Error
+            return;
+        }
+
+        xtypes::DynamicType_ptr dyn_type = dyn_builder->build();
         TypeSupport dyn_type_support(new eprosima::fastrtps::types::DynamicPubSubType(dyn_type));
         dyn_type_support.register_type(participant, nullptr);
 
@@ -4366,8 +4373,17 @@ void xml_profiles_examples()
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             // Retrieve the an instance of MyStruct type
-            xtypes::DynamicType_ptr my_struct_type =
-                    eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName("MyStruct")->build();
+            xtypes::DynamicTypeBuilder_ptr my_struct_builder;
+            if (eprosima::fastrtps::xmlparser::XMLP_ret::XML_OK !=
+                eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName(my_struct_builder, "MyStruct"))
+            {
+                // Error
+                return;
+            }
+
+            // Retrieve the an instance of MyStruct type
+            xtypes::DynamicType_ptr my_struct_type = my_struct_builder->build();
+
             // Register MyStruct type
             TypeSupport my_struct_type_support(new eprosima::fastrtps::types::DynamicPubSubType(my_struct_type));
             my_struct_type_support.register_type(participant, nullptr);

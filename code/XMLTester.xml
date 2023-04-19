@@ -2097,8 +2097,8 @@
 <!-->CONF-DISCOVERY-PROTOCOL<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 -->
         <participant profile_name="participant_discovery_protocol">
             <rtps>
@@ -2118,8 +2118,8 @@
 <!-->CONF-DISCOVERY-IGNORE-FLAGS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 -->
         <participant profile_name="participant_discovery_ignore_flags">
             <rtps>
@@ -2139,8 +2139,8 @@
 <!-->CONF-DISCOVERY-LEASE-DURATION<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 -->
         <participant profile_name="participant_discovery_lease_duration">
             <rtps>
@@ -2163,8 +2163,8 @@
 <!-->CONF-DISCOVERY-LEASE-ANNOUNCEMENT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 -->
         <participant profile_name="participant_discovery_lease_announcement">
             <rtps>
@@ -2624,8 +2624,8 @@
 <!-->IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
 -->
         <participant profile_name="ignore_local_endpoints_domainparticipant_xml_profile">
             <rtps>

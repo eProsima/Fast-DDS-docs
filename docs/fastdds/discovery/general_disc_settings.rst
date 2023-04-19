@@ -132,6 +132,10 @@ The possible values are:
 |    :end-before: <!--><-->                                                                                            |
 +----------------------------------------------------------------------------------------------------------------------+
 
+.. note::
+
+    To configure a |DomainParticipant| to not receive data from its own |DataWriters|, please refer to :ref:`property_ignore_local_endpoints`.
+
 .. _discovery_lease_dur:
 
 Lease Duration

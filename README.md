@@ -79,7 +79,6 @@ python3 -m venv fastdds-docs-venv
 source fastdds-docs-venv/bin/activate
 wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/master/docs/requirements.txt
 pip3 install -r requirements.txt
-touch fastdds-docs-venv/COLCON_IGNORE
 ```
 
 The version of python3 used in the virtual environment can be seen by running the following command within the virtual environment:
@@ -122,13 +121,15 @@ building tools.
 
 1. [OPTIONAL]: You can checkout to different Fast DDS and Fast DDS-docs branches within the appropriate repositories located in `<path_to_ws>/fastdds-docs_ws/src`
 
-1. Build the workspace using colcon
+1. Build the workspace using colcon[^colcon_ignore]
 
     ```bash
     source <path_to_venv>/fastdds-docs-venv/bin/activate
     cd <path_to_ws>/fastdds-docs_ws
     colcon build
     ```
+
+[^colcon_ignore]: If the virtual environment is placed within the colcon workspace, it is recommended to add an empty `COLCON_IGNORE` file in the root of the virtual environment so that colcon does not inspect it.
 
 1. Run documentation tests:
 

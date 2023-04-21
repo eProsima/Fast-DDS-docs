@@ -9,34 +9,49 @@ Monitor Service
 The *Fast DDS* Monitor Service is an extension of Fast DDS that
 grants user the ability to collect data about the entities existing within
 a particular |domain| (i.e |DomainParticipants|, |DataReaders|, |DataWriters|)
-as well as the capability of predicting possible misconfigurations among them.
+as well as the capability of detecting possible misconfigurations among them.
 
-The :ref:`monitor_service` can be particularly useful in the following scenarios:
+Keywords
+^^^^^^^^
+* **Request/Response service or RPC**: An RPC is initiated by the client, which sends a request message to a
+  known remote server to execute a specified procedure with supplied parameters.
+  Then, the remote server sends a response back to the client, and the application continues its process.
 
-*  Querying a remote |DomainParticipant| for information targetting any of its local
-   entities in order to extend the default discovery information about it.
-*  Retrieving remote entities information in situations in which a sub-set of |DomainParticipants|
-   are not directly visible, for instance, because they have multicast traffic disabled,
-   discovering each other using an initial peers list.
-   By means of the :ref:`monitor_service` it is possible to recover the information
-   of those |DomainParticipants| and their entities (given that there is at least one
-   |DomainParticipant| bridging the unicast and multicast groups).
-*  Troubleshooting issues regarding discovery or entity-matching, leveraging the information
-   of the current locators in use, for example.
-*  Checking whether the Quality of Service *QoS* attributes of a pair of known entities (Reader, Writer)
-   are compatible, or not, using the service in conjunction with the |DomainParticipant::check-compatible-qos-api|.
+* **Proxy**: An entity that acts on behalf of another entity.
 
-Enabling the service makes each |DomainParticipant| publish the collection of
-entities known through discovery.
-In addition, a Remote Procedural Call *RPC* Server is provided so that information of a requested entity
+* **Proxy Data**: The way in which a Proxy can be described.
+
+* **Monitoring Information**: The collection of different sources of information and statuses of an entity,
+  including: the Proxy Data, incompatible_qos, connections, liveliness, deadlines missed, inconsistent
+  topics and sample lost status.
+
+Description
+^^^^^^^^^^^
+
+Enabling the service makes each |DomainParticipant| publish the collection of its local entities.
+In addition, a Remote Procedural Call *RPC* Server is provided so that information of a requested local entity
 can be retrieved.
-An RPC server works in a kind of client/server model where the RPC server provides
-a service to remotely connected RPC clients.
-The RPC Client sends a request, the RPC Server processes it, returning a response back to the client.
 
 The :ref:`monitor_service` is disabled by default, as it may entail a performance cost.
 Further information on the :ref:`monitor_service` topics and how to configure it, is described
-in the following sections:
+in the following sections.
+
+The :ref:`monitor_service` is available in both the :ref:`DDS Layer <dds_layer>` and :ref:`RTPS Layer <rtps_layer>`.
+
+.. note::
+
+   If the service is activated within a :ref:`RTPS <rtps_layer>` context, not all the information requested could
+   be returned by the service.
+
+Use Cases
+^^^^^^^^^^^
+
+The :ref:`monitor_service` can be particularly useful in the following scenarios:
+
+*  Querying a remote |DomainParticipant| for its ``Monitoring Information`` targetting any of its local
+   entities in order to extend the default discovery information (see :ref:`discovery`) about it.
+*  Troubleshooting issues regarding discovery or entity-matching, leveraging the information
+   of the current locators in use, for example.
 
 .. toctree::
     :titlesonly:

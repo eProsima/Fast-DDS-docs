@@ -178,6 +178,7 @@ nupkg
 offsetd
 oneway
 OpenSSL
+optionality
 optionparser
 OSS
 overcomplicated

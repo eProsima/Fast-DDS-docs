@@ -44,6 +44,7 @@ DurabilityQosPolicy
 DurabilityServiceQosPolicy
 dyn
 DynamicPubSubType
+emplaces
 Endianness
 entityId
 Enum
@@ -100,6 +101,7 @@ Num
 OfferedDeadlineMissedStatus
 OfferedIncompatibleQosStatus
 ok
+ostream
 OStream
 OwnershipQosPolicy
 OwnershipStrengthQosPolicy
@@ -168,6 +170,7 @@ typedef
 TypeIdentifier
 TypeIdV
 TypeInformation
+TypeKind
 typelookup
 TypeLookup
 TypeLookup
@@ -187,5 +190,6 @@ UserAllocatedSequence
 wakeup
 wdata
 WLPListener
+wstring
 xml
 xtypes

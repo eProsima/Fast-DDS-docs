@@ -57,15 +57,25 @@ add_subdirectory(Examples/C++/DDSHelloWorld)
 add_executable(doctest CodeTester.cpp)
 target_include_directories(doctest PRIVATE ${FAST_INCLUDE_DIR})
 target_link_libraries(doctest fastrtps)
+if(MSVC)
+    target_compile_definitions(doctest PRIVATE _CRT_SECURE_NO_WARNINGS)
+endif(MSVC)
 
 # DDSCodeTester utilizes Fast DDS API
 add_executable(dds-doctest DDSCodeTester.cpp FastDDSGenCodeTester.cpp)
 target_include_directories(dds-doctest PRIVATE ${FAST_INCLUDE_DIR})
-target_link_libraries(dds-doctest fastrtps)
+target_link_libraries(dds-doctest fastrtps fastcdr)
 
 ####################################################################################################
 # Add tests
 ####################################################################################################
+
+if(WIN32)
+# Use fastdds.bat for cli testing
+# cmd can no longer be used because ctest resolves all commands binaries to forward slashes, see:
+# https://gitlab.kitware.com/cmake/cmake/-/issues/17067
+set(SHELL_INVOKE powershell -C)
+endif(WIN32)
 
 # Copy the neccessary files over to the build directory
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTester.xml
@@ -118,9 +128,9 @@ add_test(NAME xml.profiles COMMAND dds-doctest XMLTester.xml)
 # Check validity of XML full example
 add_test(NAME xml.example COMMAND dds-doctest XMLTesterExample.xml)
 # Validate XML full example against XSD schema
-add_test(NAME xml.validate COMMAND fastdds xml validate XMLTesterExample.xml -x fastRTPS_profiles.xsd)
+add_test(NAME xml.validate COMMAND ${SHELL_INVOKE} fastdds xml validate XMLTesterExample.xml -x fastRTPS_profiles.xsd)
 # Validate XML snippets doc against XSD schema
-add_test(NAME xml.snippets COMMAND fastdds xml validate XMLTester.xml -x fastRTPS_profiles.xsd)
+add_test(NAME xml.snippets COMMAND ${SHELL_INVOKE} fastdds xml validate XMLTester.xml -x fastRTPS_profiles.xsd)
 # Check validity of Permissions and Governance XML files using Fast DDS API
 add_test(NAME xml.fastdds_permissions_test
     COMMAND dds-doctest
@@ -176,3 +186,12 @@ add_test(NAME docs.spell_check
     -d "${PROJECT_BINARY_DIR}/doctrees"
     ${CMAKE_SOURCE_DIR}/docs
     ${CMAKE_BINARY_DIR}/spelling)
+
+# Populate environment variables for tests
+if(WIN32)
+    get_directory_property(DOCS_TESTS TESTS)
+    set_tests_properties(${DOCS_TESTS} PROPERTIES
+        ENVIRONMENT_MODIFICATION "PATH=path_list_append:$<TARGET_FILE_DIR:fastrtps>"
+        ENVIRONMENT_MODIFICATION "PATH=path_list_append:$<TARGET_FILE_DIR:fastcdr>"
+    )
+endif(WIN32)

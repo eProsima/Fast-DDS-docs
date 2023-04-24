@@ -58,7 +58,7 @@ if __name__ == '__main__':
     occurrences = []
     rst_files = list(Path(directory).rglob('*.{}'.format(args.file_format)))
     for rst_file in rst_files:
-        with open(rst_file) as f:
+        with open(rst_file, encoding='utf-8') as f:
             line_number = 1
             for line in f:
                 if re.search(args.regex, line):

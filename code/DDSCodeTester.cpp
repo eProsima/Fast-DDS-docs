@@ -4642,6 +4642,9 @@ void dds_transport_examples ()
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tcp_transport);
+
+        // Avoid using the builtin transports
+        qos.transport().use_builtin_transports = false;
         //!--
     }
 

@@ -616,6 +616,7 @@
 
     <participant profile_name="CustomTcpTransportParticipant">
         <rtps>
+            <useBuiltinTransports>false</useBuiltinTransports>
             <userTransports>
                 <transport_id>CustomTcpTransport</transport_id>
             </userTransports>

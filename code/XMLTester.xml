@@ -2095,57 +2095,93 @@
 <!--><-->
 
 <!-->CONF-DISCOVERY-PROTOCOL<-->
-<participant profile_name="participant_discovery_protocol">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <discoveryProtocol>SIMPLE</discoveryProtocol>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <participant profile_name="participant_discovery_protocol">
+            <rtps>
+                <builtin>
+                    <discovery_config>
+                        <discoveryProtocol>SIMPLE</discoveryProtocol>
+                    </discovery_config>
+                </builtin>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
 <!--><-->
 
 <!-->CONF-DISCOVERY-IGNORE-FLAGS<-->
-<participant profile_name="participant_discovery_ignore_flags">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <ignoreParticipantFlags>FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS</ignoreParticipantFlags>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <participant profile_name="participant_discovery_ignore_flags">
+            <rtps>
+                <builtin>
+                    <discovery_config>
+                        <ignoreParticipantFlags>FILTER_DIFFERENT_PROCESS | FILTER_SAME_PROCESS</ignoreParticipantFlags>
+                    </discovery_config>
+                </builtin>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
 <!--><-->
 
 <!-->CONF-DISCOVERY-LEASE-DURATION<-->
-<participant profile_name="participant_discovery_lease_duration">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <leaseDuration>
-                    <sec>10</sec>
-                    <nanosec>20</nanosec>
-                </leaseDuration>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <participant profile_name="participant_discovery_lease_duration">
+            <rtps>
+                <builtin>
+                    <discovery_config>
+                        <leaseDuration>
+                            <sec>10</sec>
+                            <nanosec>20</nanosec>
+                        </leaseDuration>
+                    </discovery_config>
+                </builtin>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
 <!--><-->
 
 <!-->CONF-DISCOVERY-LEASE-ANNOUNCEMENT<-->
-<participant profile_name="participant_discovery_lease_announcement">
-    <rtps>
-        <builtin>
-            <discovery_config>
-                <leaseAnnouncement>
-                    <sec>1</sec>
-                    <nanosec>2</nanosec>
-                </leaseAnnouncement>
-            </discovery_config>
-        </builtin>
-    </rtps>
-</participant>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <participant profile_name="participant_discovery_lease_announcement">
+            <rtps>
+                <builtin>
+                    <discovery_config>
+                        <leaseAnnouncement>
+                            <sec>1</sec>
+                            <nanosec>2</nanosec>
+                        </leaseAnnouncement>
+                    </discovery_config>
+                </builtin>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
 <!--><-->
 
 <!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<-->
@@ -2583,6 +2619,31 @@
         </properties>
     </propertiesPolicy>
 </data_writer>
+<!--><-->
+
+<!-->IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <participant profile_name="ignore_local_endpoints_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <!-- Avoid local matching of this participant's endpoints -->
+                        <property>
+                            <name>fastdds.ignore_local_endpoints</name>
+                            <value>true</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
 <!--><-->
 
 <!-->FASTDDS_STATISTICS_MODULE<-->

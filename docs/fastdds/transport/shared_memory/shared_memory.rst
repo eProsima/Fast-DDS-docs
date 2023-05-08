@@ -1,3 +1,4 @@
+.. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
 .. include:: ../includes/aliases.rst
 
@@ -8,6 +9,14 @@ Shared Memory Transport
 
 The shared memory (SHM) transport enables fast communications between entities running in the same
 processing unit/machine, relying on the shared memory mechanisms provided by the host operating system.
+
+.. note::
+
+    Fast DDS utilizes the |DomainParticipant|'s |GuidPrefix_t-api| to identify peers running in the same host.
+    Two participants with identical 4 first bytes on the |GuidPrefix_t-api| are considered to be running in the same
+    host.
+    |is_on_same_host_as-api| API is provided to check this condition.
+    Please, take also into account the caveats included in :ref:`intraprocess_delivery_guids`.
 
 SHM transport provides better performance than other network transports like UDP / TCP,
 even when these transports use loopback interface.

@@ -93,7 +93,7 @@ the *find_package* CMake API.
 
 By setting the CMake variable **BUILD_SHARED_LIBS** is possible to choose the desired linkage (dynamic or static
 library) in the CMake generator stage.
-If the variable is missing defaults to static linking.
+If the variable is missing the build process will default to static linking.
 
 For example in order to build the examples dynamically linked to **Fast-DDS** do:
 

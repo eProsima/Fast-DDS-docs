@@ -49,7 +49,7 @@ using XML.
     Fast DDS assigns GUID prefixes considering several host parameters.
     Among them, the network interfaces enabled.
     Thus, if at runtime, the network interfaces change, any new DomainParticipant will have a different GUID prefix and
-    considered to be running in another host.
+    will be considered to be running on another host.
 
 .. tabs::
 

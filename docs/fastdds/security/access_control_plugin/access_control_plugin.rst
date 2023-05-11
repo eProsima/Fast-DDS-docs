@@ -232,8 +232,10 @@ The possible values for this element are:
 
 In accordance with the `DDS Security specification <https://www.omg.org/spec/DDS-SECURITY/>`_, the following premises should be considered:
 
-*  In order to match an entity with an unauthenticated DomainParticipant, all the :ref:`topic_rules` attributes must be either ``false`` or ``NONE``.
-*  If :ref:`rtps_protection_kind_section` is not ``NONE`` and :ref:`allow_unauthenticated_section` is enabled, the entity creation will fail with an error.
+*  Topics protected with ``enable_read_access_control`` or ``enable_write_access_control`` will not communicate
+   regardless of the allow_unauthenticated_participants flag value.
+*  If :ref:`rtps_protection_kind_section` is not ``NONE`` and :ref:`allow_unauthenticated_section` is enabled,
+   the entity creation will fail with an error.
 *  Despite ``<allow_unauthenticated_participants>`` is enabled, authentication is always attempted first.
 
 Enable Join Access Control

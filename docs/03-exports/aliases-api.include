@@ -846,7 +846,9 @@
 .. |FILTER_DIFFERENT_PROCESS| replace:: :cpp:enumerator:`FILTER_DIFFERENT_PROCESS<eprosima::fastrtps::rtps::ParticipantFilteringFlags::FILTER_DIFFERENT_PROCESS>`
 .. |FILTER_SAME_PROCESS| replace:: :cpp:enumerator:`FILTER_SAME_PROCESS<eprosima::fastrtps::rtps::ParticipantFilteringFlags::FILTER_SAME_PROCESS>`
 
-.. |Guid_t-api| replace:: :cpp:struct:`Guid_t<eprosima::fastrtps::rtps::Guid_t>`
+.. |Guid_t-api| replace:: :cpp:struct:`Guid_t<eprosima::fastrtps::rtps::GUID_t>`
+.. |is_on_same_host_as-api| replace:: :cpp:func:`is_on_same_host_as()<eprosima::fastrtps::rtps::GUID_t::is_on_same_host_as>`
+.. |is_on_same_process_as-api| replace:: :cpp:func:`is_on_same_process_as()<eprosima::fastrtps::rtps::GUID_t::is_on_same_process_as>`
 .. |GuidPrefix_t-api| replace:: :cpp:struct:`GuidPrefix_t<eprosima::fastrtps::rtps::GuidPrefix_t>`
 .. |EntityId_t-api| replace:: :cpp:struct:`EntityId_t<eprosima::fastrtps::rtps::EntityId_t>`
 .. |InitialAnnouncementConfig-api| replace:: :cpp:struct:`InitialAnnouncementConfig<eprosima::fastrtps::rtps::InitialAnnouncementConfig>`

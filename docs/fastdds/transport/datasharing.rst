@@ -11,6 +11,14 @@ by sharing the history of the |DataWriter| with the |DataReader| through shared 
 This prevents any of the overhead involved in the transport layer,
 effectively avoiding any data copy between DataWriter and DataReader.
 
+.. note::
+
+    Fast DDS utilizes the |DomainParticipant|'s |GuidPrefix_t-api| to identify peers running in the same host.
+    Two participants with identical 4 first bytes on the |GuidPrefix_t-api| are considered to be running in the same
+    host.
+    |is_on_same_host_as-api| API is provided to check this condition.
+    Please, take also into account the caveats included in :ref:`intraprocess_delivery_guids`.
+
 Use of Data-sharing delivery does not prevent data copies between the application
 and the DataReader and DataWriter.
 These can be avoided in some cases using :ref:`use-case-zero-copy`.

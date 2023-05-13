@@ -65,6 +65,7 @@ sudo apt install -y \
     python3-pip \
     python3-venv \
     imagemagick \
+    libenchant-2-2 \
     plantuml
 ```
 

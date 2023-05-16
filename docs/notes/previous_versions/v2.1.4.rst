@@ -1,0 +1,21 @@
+Version 2.1.4 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Improve auto gaps in data sharing
+2. Improve behavior when HAVE_STRICT_REALTIME is not set
+3. Handle SIGTERM in fast discovery server
+
+This release includes the following **bugfixes**:
+
+1. Select correct listener for on_requested_deadline_missed
+2. Correctly assign multicast port to multicast initial peers
+3. Fix chain of trust issues
+4. Correctly handle builtin endpoints mask
+5. Fix build on msvc 19.36.32528
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from a version older than 1.10.0, regenerating the code is *recommended*.

@@ -1,20 +1,21 @@
 .. _release_notes:
 
-Version 2.1.3
+Version 2.1.4
 =============
 
 This release includes the following **improvements**:
 
-1. Improve rediscovery on lossy environments.
+1. Improve auto gaps in data sharing
+2. Improve behavior when HAVE_STRICT_REALTIME is not set
+3. Handle SIGTERM in fast discovery server
 
 This release includes the following **bugfixes**:
 
-1. Fixed validation on ``ParameterPropertyList_t``.
-2. Fixed `SequenceNumberSet_t` deserialization.
-3. Add python3 dependency to package.xml.
-4. Fix data races when creating DataWriters.
-5. Fix deadlock when removing remote DomainParticipants by expired liveliness when using Security.
-6. Fix communication with asymmetric :ref:`discovery_ignore_flags`.
+1. Select correct listener for on_requested_deadline_missed
+2. Correctly assign multicast port to multicast initial peers
+3. Fix chain of trust issues
+4. Correctly handle builtin endpoints mask
+5. Fix build on msvc 19.36.32528
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -24,6 +25,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.1.3.rst
 .. include:: previous_versions/v2.1.2.rst
 .. include:: previous_versions/v2.1.1.rst
 .. include:: previous_versions/v2.1.0.rst

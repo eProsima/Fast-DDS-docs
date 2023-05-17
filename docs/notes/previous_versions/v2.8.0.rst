@@ -1,5 +1,5 @@
-Version 2.8.0
-^^^^^^^^^^^^^
+Version 2.8.0 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This minor release includes several new features, performance improvements (especially in the case of topics with many
 instances), CI improvements (including the ability to run the CI in Android emulators or devices), and several bug

@@ -3,17 +3,17 @@ Version 2.1.4 (EOL)
 
 This release includes the following **improvements**:
 
-1. Improve auto gaps in data sharing
-2. Improve behavior when HAVE_STRICT_REALTIME is not set
-3. Handle SIGTERM in fast discovery server
+1. Improve auto GAPs in Data Sharing
+2. Improve behavior when ``STRICT_REALTIME`` :ref:`CMake option <cmake_options>` is not enabled
+3. Handle SIGTERM in fast discovery server CLI
 
 This release includes the following **bugfixes**:
 
 1. Select correct listener for on_requested_deadline_missed
 2. Correctly assign multicast port to multicast initial peers
-3. Fix chain of trust issues
+3. Fix chain of trust issues with a single CA certificate
 4. Correctly handle builtin endpoints mask
-5. Fix build on msvc 19.36.32528
+5. Fix build on MSVC 19
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

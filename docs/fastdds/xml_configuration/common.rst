@@ -23,17 +23,24 @@ This section aims to explain these common elements.
 
     -   :ref:`xml_datasharing`
     -   :ref:`xml_deadline`
+    -   :ref:`xml_destinationorder`
     -   :ref:`xml_disableheartbeatpiggyback`
     -   :ref:`xml_disablepositiveacks`
     -   :ref:`xml_durability`
+    -   :ref:`xml_durabilityservice`
+    -   :ref:`xml_groupData`
     -   :ref:`xml_latencybudget`
     -   :ref:`xml_lifespan`
     -   :ref:`xml_liveliness`
-    -   :ref:`xml_partition`
     -   :ref:`xml_ownership`
     -   :ref:`xml_ownershipstrength`
+    -   :ref:`xml_partition`
+    -   :ref:`xml_presentation`
     -   :ref:`xml_publishmode`
     -   :ref:`xml_reliability`
+    -   :ref:`xml_timebasedfilter`
+    -   :ref:`xml_topicData`
+    -   :ref:`xml_userData`
 
 *   :ref:`historymemorypoliciesXML`
 *   :ref:`CommonAlloc`
@@ -332,6 +339,9 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - ``<deadline>``
     - See :ref:`deadlineqospolicy`.
     - :ref:`xml_deadline`
+  * - ``<destination_order>``
+    - See :ref:`destinationorderqospolicy`.
+    - :ref:`xml_destinationorder`
   * - ``<disable_heartbeat_piggyback>``
     - See :ref:`disableheartbeatpiggyback`.
     - :ref:`xml_disableheartbeatpiggyback`
@@ -341,6 +351,9 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - ``<durability>``
     - See :ref:`durabilityqospolicy`.
     - :ref:`xml_durability`
+  * - ``<durabilityService>``
+    - See :ref:`durabilityserviceqospolicy`.
+    - :ref:`xml_durabilityservice`
   * - ``<groupData>``
     - See :ref:`groupqospolicy`.
     - :ref:`xml_groupData`
@@ -362,12 +375,18 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - ``<partition>``
     - See :ref:`partitionqospolicy`.
     - :ref:`xml_partition`
+  * - ``<presentation>``
+    - See :ref:`presentationqospolicy`.
+    - :ref:`xml_presentation`
   * - ``<publishMode>``
     - See :ref:`publishmodeqospolicy`.
     - :ref:`xml_publishmode`
   * - ``<reliability>``
     - See :ref:`reliabilityqospolicy`.
     - :ref:`xml_reliability`
+  * - ``<timeBasedFilter>``
+    - See :ref:`timebasedfilterqospolicy`.
+    - :ref:`xml_timebasedfilter`
   * - ``<topicData>``
     - See :ref:`topicdataqospolicy`.
     - :ref:`xml_topicData`
@@ -437,6 +456,24 @@ Deadline
 | ``<period>``              | See :ref:`deadlineqospolicy`.    | :ref:`DurationType` | |c_TimeInfinite-api|            |
 +---------------------------+----------------------------------+---------------------+---------------------------------+
 
+.. _xml_destinationorder:
+
+DestinationOrder
+""""""""""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<kind>``
+    - See :ref:`destinationorderqospolicykind`.
+    - ``BY_RECEPTION_TIMESTAMP`` |br| ``BY_SOURCE_TIMESTAMP``
+    - ``BY_RECEPTION_TIMESTAMP``
+
 .. _xml_disableheartbeatpiggyback:
 
 DisableHeartbeatPiggyback
@@ -447,6 +484,10 @@ DisableHeartbeatPiggyback
 +==============================================+=======================================+==========+===========+
 | ``<disable_heartbeat_piggyback>``            | See :ref:`disableheartbeatpiggyback`. | ``bool`` | ``false`` |
 +----------------------------------------------+---------------------------------------+----------+-----------+
+
+.. important::
+
+    This configuration is only available for :ref:`DataWriter QoS profile configuration <publisherprofiles>`.
 
 .. _xml_disablepositiveacks:
 
@@ -482,6 +523,44 @@ Durability
       |PERSISTENT-xml-api|
     - DataReaders: |VOLATILE-xml-api| |br|
       DataWriters: |TRANSIENT_LOCAL-xml-api| |br|
+
+.. _xml_durabilityservice:
+
+DurabilityService
+"""""""""""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<service_cleanup_delay>``
+    - See :ref:`durabilityserviceqospolicy`.
+    - :ref:`DurationType`
+    - |c_TimeZero-api|
+  * - ``<history_kind>``
+    - See :ref:`durabilityserviceqospolicy`.
+    - :ref:`historyqospolicykind`
+    - ``KEEP_LAST_HISTORY_QOS``
+  * - ``<history_depth>``
+    - See :ref:`durabilityserviceqospolicy`.
+    - ``int32_t``
+    - ``1``
+  * - ``<max_samples>``
+    - See :ref:`durabilityserviceqospolicy`.
+    - ``int32_t``
+    - ``-1`` (Length Unlimited)
+  * - ``<max_instances>``
+    - See :ref:`durabilityserviceqospolicy`.
+    - ``int32_t``
+    - ``-1`` (Length Unlimited)
+  * - ``<max_samples_per_instance>``
+    - See :ref:`durabilityserviceqospolicy`.
+    - ``int32_t``
+    - ``-1`` (Length Unlimited)
 
 .. _xml_groupData:
 
@@ -586,6 +665,32 @@ Partition
 |                           |                                                                             |            |
 +---------------------------+-----------------------------------------------------------------------------+------------+
 
+.. _xml_presentation:
+
+Presentation
+""""""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<access_scope>``
+    - See :ref:`presentationqospolicy`.
+    - ``INSTANCE`` |br| ``TOPIC`` |br| ``GROUP``
+    - ``INSTANCE``
+  * - ``<coherent_access>``
+    - See :ref:`presentationqospolicy`.
+    - ``bool``
+    - ``false``
+  * - ``<ordered_access>``
+    - See :ref:`presentationqospolicy`.
+    - ``bool``
+    - ``false``
+
 .. _xml_publishmode:
 
 PublishMode
@@ -598,6 +703,10 @@ PublishMode
 |                       |                                       +------------------+                  |
 |                       |                                       | ``SYNCHRONOUS``  |                  |
 +-----------------------+---------------------------------------+------------------+------------------+
+
+.. important::
+
+    This configuration is only available for :ref:`DataWriter QoS profile configuration <publisherprofiles>`.
 
 .. _xml_reliability:
 
@@ -615,6 +724,17 @@ ReliabilityQosPolicy
 +------------------+-----------------------------------+-------------------------+-------------------------------------+
 | |max_block|      | See :ref:`reliabilityqospolicy`.  | :ref:`DurationType`     | 100 ms                              |
 +------------------+-----------------------------------+-------------------------+-------------------------------------+
+
+.. _xml_timebasedfilter:
+
+TimeBasedFilter
+"""""""""""""""
+
++--------------------------+---------------------------------------+---------------------+------------------+
+| Name                     | Description                           | Values              | Default          |
++==========================+=======================================+=====================+==================+
+| ``<minimum_separation>`` | See :ref:`timebasedfilterqospolicy`.  | :ref:`DurationType` | |c_TimeZero-api| |
++--------------------------+---------------------------------------+---------------------+------------------+
 
 .. _xml_topicData:
 

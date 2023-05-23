@@ -1409,6 +1409,10 @@
         </period>
     </deadline>
 
+    <destination_order>
+        <kind>BY_RECEPTION_TIMESTAMP</kind>
+    </destination_order>
+
     <!-- DataWriter specific QoS -->
     <disable_heartbeat_piggyback>true</disable_heartbeat_piggyback>
 
@@ -1423,11 +1427,21 @@
         <kind>VOLATILE</kind>
     </durability>
 
+    <durabilityService>
+        <service_cleanup_delay>
+            <sec>1</sec>
+        </service_cleanup_delay>
+        <history_kind>KEEP_ALL</history_kind>
+        <history_depth>15</history_depth>
+        <max_samples>10</max_samples>
+        <max_instances>5</max_instances>
+        <max_samples_per_instance>1</max_samples_per_instance>
+    </durabilityService>
+
     <groupData>
         <value>1.a.2</value>
     </groupData>
 
-    <!-- QoS policy pending implementation -->
     <latencyBudget>
         <duration>
             <sec>1</sec>
@@ -1456,7 +1470,6 @@
         <kind>EXCLUSIVE</kind>
     </ownership>
 
-    <!-- DataWriter specific QoS -->
     <ownershipStrength>
         <value>50</value>
     </ownershipStrength>
@@ -1467,6 +1480,12 @@
             <name>part2</name>
         </names>
     </partition>
+
+    <presentation>
+        <access_scope>TOPIC</access_scope>
+        <coherent_access>true</coherent_access>
+        <ordered_access>true</ordered_access>
+    </presentation>
 
     <!-- DataWriter specific QoS -->
     <publishMode>
@@ -1479,6 +1498,12 @@
             <sec>1</sec>
         </max_blocking_time>
     </reliability>
+
+    <timeBasedFilter>
+        <minimum_separation>
+            <sec>1</sec>
+        </minimum_separation>
+    </timeBasedFilter>
 
     <topicData>
         <value>2.b.1</value>

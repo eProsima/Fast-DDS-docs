@@ -26,14 +26,17 @@ This section aims to explain these common elements.
     -   :ref:`xml_disableheartbeatpiggyback`
     -   :ref:`xml_disablepositiveacks`
     -   :ref:`xml_durability`
+    -   :ref:`xml_groupData`
     -   :ref:`xml_latencybudget`
     -   :ref:`xml_lifespan`
     -   :ref:`xml_liveliness`
-    -   :ref:`xml_partition`
     -   :ref:`xml_ownership`
     -   :ref:`xml_ownershipstrength`
+    -   :ref:`xml_partition`
     -   :ref:`xml_publishmode`
     -   :ref:`xml_reliability`
+    -   :ref:`xml_topicData`
+    -   :ref:`xml_userData`
 
 *   :ref:`historymemorypoliciesXML`
 *   :ref:`CommonAlloc`
@@ -448,6 +451,10 @@ DisableHeartbeatPiggyback
 | ``<disable_heartbeat_piggyback>``            | See :ref:`disableheartbeatpiggyback`. | ``bool`` | ``false`` |
 +----------------------------------------------+---------------------------------------+----------+-----------+
 
+.. important::
+
+    This configuration is only available for :ref:`DataWriter QoS profile configuration <publisherprofiles>`.
+
 .. _xml_disablepositiveacks:
 
 DisablePositiveAcks
@@ -573,6 +580,10 @@ Ownership Strength
 |                  | :ref:`ownershipstrengthqospolicy`.     |                                      |                   |
 +------------------+----------------------------------------+--------------------------------------+-------------------+
 
+.. important::
+
+    This configuration is only available for :ref:`DataWriter QoS profile configuration <publisherprofiles>`.
+
 .. _xml_partition:
 
 Partition
@@ -598,6 +609,10 @@ PublishMode
 |                       |                                       +------------------+                  |
 |                       |                                       | ``SYNCHRONOUS``  |                  |
 +-----------------------+---------------------------------------+------------------+------------------+
+
+.. important::
+
+    This configuration is only available for :ref:`DataWriter QoS profile configuration <publisherprofiles>`.
 
 .. _xml_reliability:
 

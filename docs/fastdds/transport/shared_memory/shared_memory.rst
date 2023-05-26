@@ -68,6 +68,12 @@ DomainParticipants, and the remote
 DomainParticipants are able to read it directly using the
 shared memory mechanisms.
 
+.. note::
+
+    Launching any of the processes with a higher privileged user (for instance, *root*)
+    can lead to communication problems, as processes run by non-privileged users may
+    not be able to write into the memory segment.
+
 Every segment has a *segmentId*, a 16 character UUID that uniquely identifies each shared memory segment.
 These *segmentIds* are used to identify and access the segment of each DomainParticipant.
 

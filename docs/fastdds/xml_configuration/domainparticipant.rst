@@ -291,7 +291,8 @@ This section specifies the available XML members for the configuration of this
      - ``uint32_t``
      - 100
    * - ``typelookup_config``
-     - TypeLookup Service settings.
+     - TypeLookup Service settings. |br|
+       See :ref:`typelookup-service`.
      - :ref:`typelookup_config`
      -
 
@@ -488,8 +489,8 @@ Initial Announcements
 
 .. _typelookup_config:
 
-TypeLookupService Configuration
-###############################
+TypeLookup Service Configuration
+################################
 
 .. list-table::
   :header-rows: 1
@@ -500,11 +501,11 @@ TypeLookupService Configuration
     - Values
     - Default
   * - ``use_client``
-    - Create TypeLookupService client builtin endpoints.
+    - Create TypeLookup Service client builtin endpoints.
     - ``bool``
     - ``false``
   * - ``use_server``
-    - Create TypeLookupService server builtin endpoints.
+    - Create TypeLookup Service server builtin endpoints.
     - ``bool``
     - ``false``
 

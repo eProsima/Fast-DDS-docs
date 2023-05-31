@@ -3301,6 +3301,19 @@
 </participant>
 <!--><-->
 
+<!-->XML_TYPELOOKUP_SERVICE_ENABLING<-->
+<participant profile_name="participant_typelookup_service_enabled">
+    <rtps>
+        <builtin>
+            <typelookup_config>
+                <use_client>true</use_client>
+                <use_server>true</use_server>
+            </typelookup_config>
+        </builtin>
+    </rtps>
+</participant>
+<!--><-->
+
 <!--XML_PROFILES_SECTION-->
 
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->

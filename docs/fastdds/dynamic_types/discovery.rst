@@ -133,11 +133,22 @@ TypeLookup Service.
 To enable this builtin TypeLookup Service, the user must enable it in the
 :ref:`QoS<dds_layer_domainParticipantQos>` of the :ref:`dds_layer_domainParticipant`:
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_TYPELOOKUP_SERVICE_ENABLING
-   :end-before: //!--
-   :dedent: 8
+.. tabs::
+
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //DDS_TYPELOOKUP_SERVICE_ENABLING
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->XML_TYPELOOKUP_SERVICE_ENABLING
+      :end-before: <!--><-->
 
 A participant can be enabled to act as a TypeLookup server, client, or both.
 

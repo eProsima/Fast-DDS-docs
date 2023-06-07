@@ -4,7 +4,7 @@
 Introduction
 ============
 
-The ``Monitor Service`` targets any application implementing the suscription side,
+The ``Monitor Service`` targets any application implementing the subscription side,
 giving the possibility of retrieving the :ref:`Monitoring Information <monitor_service_keywords>`
 of the local entities of remote matched ``DomainParticipants`` (incompatible QoS, deadlines missed,
 active connections,...).
@@ -44,7 +44,7 @@ Use Cases
 
 The :ref:`monitor_service` can be particularly useful in the following scenarios:
 
-*  Collecting the ``Monitoring Information`` of any local entitiy of a remote |DomainParticipant|
+*  Collecting the ``Monitoring Information`` of any local entity of a remote |DomainParticipant|
    in order to extend the default discovery information (see :ref:`discovery`) about it.
 *  Troubleshooting issues regarding discovery or entity-matching, leveraging the information
    of the current locators in use, for example.

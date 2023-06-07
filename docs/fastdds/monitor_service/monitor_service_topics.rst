@@ -19,8 +19,9 @@ The following table depicts the properties of the topics within the :ref:`monito
 Monitor Service Status Topic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``Monitor Service Status Topic`` carries information about the :ref:`monitoring information <monitor_service_keywords>`
-of the local entities of a particular |DomainParticipant|.
+The ``Monitor Service Status Topic`` carries information about the
+:ref:`monitoring information <monitor_service_keywords>` of the local entities of a
+particular |DomainParticipant|.
 The :ref:`monitoring information <monitor_service_keywords>` can be divided into different statuses
 identified by a ``StatusKind``.
 The possible values are described in the following table:
@@ -102,8 +103,8 @@ The actual field names for the different values are described below:
 
 * *incompatible_qos_status:* Status of the Incompatible QoS of that entity.
 
-	* |DataWriter| Incompatible QoS Offered.
-	* |DataReader| Incompatible QoS Requested.
+  * |DataWriter| Incompatible QoS Offered.
+  * |DataReader| Incompatible QoS Requested.
 
 * *inconsistent_topic_status:* Status of Inconsistent topics of the topic of that entity.
   Asked to the topic of the requested entity.

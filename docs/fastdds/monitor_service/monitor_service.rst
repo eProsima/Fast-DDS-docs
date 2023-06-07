@@ -1,0 +1,19 @@
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+
+.. _monitor_service:
+
+Monitor Service
+===============
+
+The *Fast DDS* Monitor Service is an extension of Fast DDS that
+grants the user the ability to collect data about the entities existing within
+a particular |domain| (i.e |DomainParticipants|, |DataReaders|, |DataWriters|)
+as well as the capability of detecting possible misconfigurations among them.
+
+.. toctree::
+    :titlesonly:
+
+    /fastdds/monitor_service/intro
+    /fastdds/monitor_service/monitor_service_topics
+    /fastdds/monitor_service/monitor_service_configuration

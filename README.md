@@ -60,11 +60,12 @@ sudo apt install -y \
     curl \
     wget \
     doxygen \
-    doc8 \
+    python3-doc8 \
     python3 \
     python3-pip \
     python3-venv \
     imagemagick \
+    libenchant-2-2 \
     plantuml
 ```
 
@@ -79,7 +80,6 @@ python3 -m venv fastdds-docs-venv
 source fastdds-docs-venv/bin/activate
 wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/master/docs/requirements.txt
 pip3 install -r requirements.txt
-cd fastdds-docs-venv/lib/<python-version>/site-packages
 ```
 
 The version of python3 used in the virtual environment can be seen by running the following command within the virtual environment:
@@ -87,11 +87,6 @@ The version of python3 used in the virtual environment can be seen by running th
 ```bash
 python3 -V
 ```
-
-#### Troubleshooting
-
-Python versions 3.7 and newer produce `Duplicate declaration` and `Error when parsing function declaration` warnings building the documentation.
-This is due to a difference in the Sphinx 3.0.3 module code which prevents the patch from working.
 
 ### Colcon installation
 
@@ -108,7 +103,9 @@ building tools.
         # Fast DDS dependencies
         libasio-dev \
         libtinyxml2-dev \
-        libssl-dev
+        libssl-dev \
+        # Fast DDS-Docs dependencies
+        python3-sphinx
     ```
 
 1. Create a colcon workspace containing Fast DDS and Fast DDS-docs:
@@ -125,13 +122,15 @@ building tools.
 
 1. [OPTIONAL]: You can checkout to different Fast DDS and Fast DDS-docs branches within the appropriate repositories located in `<path_to_ws>/fastdds-docs_ws/src`
 
-1. Build the workspace using colcon
+1. Build the workspace using colcon[^colcon_ignore]
 
     ```bash
     source <path_to_venv>/fastdds-docs-venv/bin/activate
     cd <path_to_ws>/fastdds-docs_ws
     colcon build
     ```
+
+[^colcon_ignore]: If the virtual environment is placed within the colcon workspace, it is recommended to add an empty `COLCON_IGNORE` file in the root of the virtual environment so that colcon does not inspect it.
 
 1. Run documentation tests:
 

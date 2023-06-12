@@ -69,6 +69,8 @@ Where the option choices are:
 +---------------------+------------------------------------------------------------------------------------------------+
 | -ppPath             | Specifies the preprocessor path.                                                               |
 +---------------------+------------------------------------------------------------------------------------------------+
+| -extrastg <template>| Specifies a custom template. Template location must be in classpath.                           |
++---------------------+------------------------------------------------------------------------------------------------+
 | -typeobject         | Generates `TypeObject` files for the IDL provided and modifies MyType constructor to |br|      |
 |                     | register the TypeObject representation into the factory.                                       |
 +---------------------+------------------------------------------------------------------------------------------------+

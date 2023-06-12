@@ -44,6 +44,7 @@ cerr
 chocolatey
 ciphertext
 Clang
+classpath
 cmake
 CMake
 colcon
@@ -91,6 +92,7 @@ ethernet
 executables
 extensibility
 externality
+extrastg
 fastcdr
 fastdds
 fastddsgen

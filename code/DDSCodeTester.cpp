@@ -670,7 +670,7 @@ void dds_domain_examples()
         participant_with_mon_srv->enable_monitor_service();
 
         // Disable Fast DDS Monitor Service through API
-        participant_with_mon_srv->enable_monitor_service();
+        participant_with_mon_srv->disable_monitor_service();
 
 
         //!--

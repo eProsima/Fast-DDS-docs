@@ -4,9 +4,10 @@
 Introduction
 ============
 
-The ``Monitor Service`` targets any application implementing the subscription side,
+The ``Monitor Service`` targets any application implementing the subscription side of
+the :ref:`Monitor Service Status Topic <monitor_service_topics>`,
 giving the possibility of retrieving the :ref:`Monitoring Information <monitor_service_keywords>`
-of the local entities of remote matched ``DomainParticipants`` (incompatible QoS, deadlines missed,
+of the local entities (incompatible QoS, deadlines missed,
 active connections,...).
 
 .. _monitor_service_keywords:
@@ -33,6 +34,9 @@ Further information on the :ref:`monitor_service` topics and how to configure it
 in the following sections.
 
 The :ref:`monitor_service` is available in both the :ref:`DDS Layer <dds_layer>` and :ref:`RTPS Layer <rtps_layer>`.
+
+
+.. _monitor_service_in_rtps_note:
 
 .. note::
 

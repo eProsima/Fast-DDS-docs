@@ -55,7 +55,7 @@ Endpoints QoS
 ^^^^^^^^^^^^^
 
 For any consumer application of the :ref:`monitor_service`, the following endpoint QoS
-of the :ref:`monitor_service_status_topic` should be taken into consideration:
+of the :ref:`monitor_service_status_topic` DataWriter should be taken into consideration:
 
 +-------------------------+-------------------------------+------------------------------------+
 |       **Endpoint**      |          **QoS**              |  **Value**                         |

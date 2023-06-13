@@ -49,13 +49,18 @@ The possible values are described in the following table:
 |  5      |   ``LivelinessChangedInfo`` | Tracks the status of the number of times|
 |         |                             | the liveliness changed in a reader.     |
 +---------+-----------------------------+-----------------------------------------+
-|  6      |  ``DeadlineMissedInfo``     |  The Status of the number of deadlines  |
-|         |                             |  missed of a sample for that entity.    |
+|  6      |  ``DeadlineMissedInfo``     | The Status of the number of deadlines   |
+|         |                             | missed of a sample for that entity.     |
 +---------+-----------------------------+-----------------------------------------+
-|  7      |     ``SampleLostInfo``      | Tracks the number of times this entity  |
-|         |                             | lost samples.                           |
+|  7      |     ``SampleLostInfo``      | Tracks the status of the number of times|
+|         |                             | this entity lost samples.               |
 +---------+-----------------------------+-----------------------------------------+
 
+.. note::
+
+    If the service is enabled in a :ref:`RTPS layer <rtps_layer>` context, :ref:`not all
+    the statuses will be published <monitor_service_in_rtps_note>`,
+    only the ``ProxyInfo`` and ``ConnectionList``.
 
 The ``Monitor Service Status Topic`` publishes new data when new updates are received from any
 of the |DomainParticipant|'s local entities (on-event driven) with a minimum waiting time between

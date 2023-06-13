@@ -236,7 +236,7 @@ In accordance with the `DDS Security specification <https://www.omg.org/spec/DDS
    regardless of the allow_unauthenticated_participants flag value.
 *  If :ref:`rtps_protection_kind_section` is not ``NONE`` and :ref:`allow_unauthenticated_section` is enabled,
    the entity creation will fail with an error.
-*  Despite ``<allow_unauthenticated_participants>`` is enabled, authentication is always attempted first.
+*  Authentication is always attempted first regardless of ``<allow_unauthenticated_participants>`` configuration.
 
 Enable Join Access Control
 **************************

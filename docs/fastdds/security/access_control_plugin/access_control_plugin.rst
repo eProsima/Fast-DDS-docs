@@ -215,6 +215,8 @@ The ``<domains>`` element can contain:
 
 Or a combination of both, a list of domain identifiers and ranges of domain identifiers.
 
+.. _allow_unauthenticated_section:
+
 Allow Unauthenticated Participants
 **********************************
 
@@ -227,6 +229,14 @@ The possible values for this element are:
 *  ``true``: the DomainParticipant shall allow matching other DomainParticipants (event if the remote
    DomainParticipant cannot authenticate) as long as there is not an already valid authentication with the same
    DomainParticipant's GUID.
+
+In accordance with the `DDS Security specification <https://www.omg.org/spec/DDS-SECURITY/>`_, the following premises should be considered:
+
+*  Topics protected with ``enable_read_access_control`` or ``enable_write_access_control`` will not communicate
+   regardless of the allow_unauthenticated_participants flag value.
+*  If :ref:`rtps_protection_kind_section` is not ``NONE`` and :ref:`allow_unauthenticated_section` is enabled,
+   the entity creation will fail with an error.
+*  Authentication is always attempted first regardless of ``<allow_unauthenticated_participants>`` configuration.
 
 Enable Join Access Control
 **************************
@@ -260,6 +270,8 @@ The possible values are:
 *  ``NONE``: the secure channel shall not be protected.
 *  ``SIGN``: the secure channel shall be protected by MAC.
 *  ``ENCRYPT``: the secure channel shall be encrypted.
+
+.. _rtps_protection_kind_section:
 
 RTPS Protection Kind
 ********************
@@ -316,6 +328,7 @@ The rule applies to any |DataReader| or |DataWriter| associated with a |Topic| w
 name.
 The topic access rules are evaluated in the same order as they appear within the ``<topic_access_rules>`` section.
 If multiple rules match, the first rule that matches is the only one that applies.
+If no matching ``<topic_rule>`` is found, the entity creation will fail.
 
 .. _Topic expression:
 

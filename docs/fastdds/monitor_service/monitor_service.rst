@@ -6,7 +6,7 @@
 Monitor Service
 ===============
 
-The *Fast DDS* Monitor Service is an feature of Fast DDS that
+The *Fast DDS* Monitor Service is a feature of Fast DDS that
 grants the user the ability to collect data about the entities existing within
 a particular |domain| (i.e |DomainParticipants|, |DataReaders|, |DataWriters|)
 as well as the capability of detecting possible misconfigurations among them.

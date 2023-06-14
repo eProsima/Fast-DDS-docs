@@ -25,6 +25,11 @@ Mandatory arguments are:
 
  * A list of strings with the value of the parameters present on the filter expression.
 
+.. note::
+   The number of parameter values cannot exceed the maximum set by the
+   |ContentFilterProperty::AllocationConfiguration::expression_parameters-api| QoS configuration.
+   The default (and absolute) maximum allowed as set by the OMG DDS Standard is 100.
+
 Optional arguments are:
 
  * A string with the name of the filter class to use for the filter creation.
@@ -71,6 +76,7 @@ the expression parameters:
 
  * The expression parameters can be modified using the |ContentFilteredTopic::set_expression_parameters-api| member
    function.
+   The same constraints as when creating a ContentFilteredTopic apply.
 
  * The filter expression can be modified along with the expression parameters using the
    |ContentFilteredTopic::set_filter_expression-api| member function.

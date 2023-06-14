@@ -149,35 +149,35 @@ The following table summarizes the elements and sections that each domain rule m
 +-----------+-------------------------------------------+------------------------------------------+------------------+
 | **Type**  | **Name**                                  | **XML element tag**                      | **Values**       |
 +===========+===========================================+==========================================+==================+
-| Element   | :ref:`Allow Unauthenticated Participants` | ``<allow_unauthenticated_participants>`` | ``false``        |
+| Element   | `Allow Unauthenticated Participants`_     | ``<allow_unauthenticated_participants>`` | ``false``        |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``true``         |
 |           +-------------------------------------------+------------------------------------------+------------------+
-|           | :ref:`Enable Join Access Control`         | ``<enable_join_access_control>``         | ``SIGN``         |
+|           | `Enable Join Access Control`_             | ``<enable_join_access_control>``         | ``SIGN``         |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``ENCRYPT``      |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``NONE``         |
 |           +-------------------------------------------+------------------------------------------+------------------+
-|           | :ref:`Discovery Protection Kind`          | ``<discovery_protection_kind>``          | ``SIGN``         |
+|           | `Discovery Protection Kind`_              | ``<discovery_protection_kind>``          | ``SIGN``         |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``ENCRYPT``      |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``NONE``         |
 |           +-------------------------------------------+------------------------------------------+------------------+
-|           | :ref:`Liveliness Protection Kind`         | ``<liveliness_protection_kind>``         | ``SIGN``         |
+|           | `Liveliness Protection Kind`_             | ``<liveliness_protection_kind>``         | ``SIGN``         |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``ENCRYPT``      |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``NONE``         |
 |           +-------------------------------------------+------------------------------------------+------------------+
-|           | :ref:`RTPS Protection Kind`               | ``<rtps_protection_kind>``               | ``SIGN``         |
+|           | `RTPS Protection Kind`_                   | ``<rtps_protection_kind>``               | ``SIGN``         |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``ENCRYPT``      |
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``NONE``         |
 +-----------+-------------------------------------------+------------------------------------------+------------------+
-| Section   | :ref:`Domains`                            | ``<domains>``                            | ``<domains>``    |
+| Section   | `Domains`_                                | ``<domains>``                            | ``<domains>``    |
 |           +-------------------------------------------+------------------------------------------+------------------+
 |           | :ref:`Topic Access Rules <topic_rules>`   | ``<topic_access_rules>``                 | ``<topic_rule>`` |
 +-----------+-------------------------------------------+------------------------------------------+------------------+

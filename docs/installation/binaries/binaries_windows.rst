@@ -103,14 +103,14 @@ project using next mechanisms.
 
 2. Through the custom CMake variable `fastrtps_SHARED_LIBS`.
 
-   .. code-block:: cmake
+   .. code-block:: bash
 
        cmake -Dfastrtps_SHARED_LIBS=ON .. # Load shared library target
        cmake -Dfastrtps_SHARED_LIBS=OFF .. # Load static library target
 
 3. Through the built-in CMake variable `BUILD_SHARED_LIBS`.
 
-   .. code-block:: cmake
+   .. code-block:: bash
 
        cmake -DBUILD_SHARED_LIBS=ON .. # Load shared library target
        cmake -DBUILD_SHARED_LIBS=OFF .. # Load static library target

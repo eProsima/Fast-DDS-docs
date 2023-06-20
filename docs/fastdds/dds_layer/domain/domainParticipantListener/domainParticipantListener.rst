@@ -31,6 +31,8 @@ Additionally, DomainParticipantListener adds the following non-standard callback
    has changed its QoS.
    This method provides an overload with an additional boolean output parameter so a discovery callback can tell the middleware if a newly discovered participant has to be ignored via the use of the |DomainParticipant::ignore_participant-api|.
    This overload should be used when there is a need to ignore participants inside the discovery callback, since calling |DomainParticipant::ignore_participant-api| inside the listener might deadlock.
+   If both callbacks are implemented, the discovery callback with the ``should_be_ignored`` boolean flag takes precedence.
+   The second discovery callback is only executed if the discovered DomainParticipant is not ignored in the first callback (``should_be_ignored`` parameter returns ``false``).
 
  * |DomainParticipantListener::on_subscriber_discovery-api|: A new :ref:`dds_layer_subscriber_subscriber` is discovered in the same domain,
    a previously known Subscriber has been removed,

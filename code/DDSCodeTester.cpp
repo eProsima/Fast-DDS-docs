@@ -589,35 +589,6 @@ void dds_domain_examples()
         // Activate DDS:Crypto:AES-GCM-GMAC plugin
         pqos.properties().properties().emplace_back("dds.sec.crypto.plugin",
                 "builtin.AES-GCM-GMAC");
-
-        // Only if DDS:Access:Permissions plugin is not enabled
-        // Configure DDS:Crypto:AES-GCM-GMAC plugin
-        pqos.properties().properties().emplace_back(
-            "rtps.participant.rtps_protection_kind",
-            "ENCRYPT");
-        //!--
-
-        // DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER
-        DataWriterQos wqos;
-
-        // Only if DDS:Access:Permissions plugin is not enabled
-        // Configure DDS:Crypto:AES-GCM-GMAC plugin
-        wqos.properties().properties().emplace_back(
-            "rtps.endpoint.submessage_protection_kind",
-            "ENCRYPT");
-        wqos.properties().properties().emplace_back(
-            "rtps.endpoint.payload_protection_kind",
-            "ENCRYPT");
-        //!--
-
-        // DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER
-        DataWriterQos rqos;
-
-        // Only if DDS:Access:Permissions plugin is not enabled
-        // Configure DDS:Crypto:AES-GCM-GMAC plugin
-        rqos.properties().properties().emplace_back(
-            "rtps.endpoint.submessage_protection_kind",
-            "ENCRYPT");
         //!--
     }
     {

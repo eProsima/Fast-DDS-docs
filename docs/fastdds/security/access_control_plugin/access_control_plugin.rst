@@ -153,11 +153,9 @@ The following table summarizes the elements and sections that each domain rule m
 |           |                                           |                                          +------------------+
 |           |                                           |                                          | ``true``         |
 |           +-------------------------------------------+------------------------------------------+------------------+
-|           | `Enable Join Access Control`_             | ``<enable_join_access_control>``         | ``SIGN``         |
+|           | `Enable Join Access Control`_             | ``<enable_join_access_control>``         | ``false``        |
 |           |                                           |                                          +------------------+
-|           |                                           |                                          | ``ENCRYPT``      |
-|           |                                           |                                          +------------------+
-|           |                                           |                                          | ``NONE``         |
+|           |                                           |                                          | ``true``         |
 |           +-------------------------------------------+------------------------------------------+------------------+
 |           | `Discovery Protection Kind`_              | ``<discovery_protection_kind>``          | ``SIGN``         |
 |           |                                           |                                          +------------------+

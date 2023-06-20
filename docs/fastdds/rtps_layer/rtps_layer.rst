@@ -194,6 +194,8 @@ You can specify a maximum amount of changes for the History to hold and an initi
 When the initial amount of reserved changes is lower than the maximum, the History will allocate more changes as they
 are needed until it reaches the maximum size.
 
+.. _rtps_layer_custom_payload_pool:
+
 Using a custom Payload Pool
 ---------------------------
 
@@ -256,7 +258,6 @@ IPayloadPool interface
 
   Note that the size requested to |IPayloadPool::get_payload-api| already considers this 4 octet header.
 
-
 Default Payload pool implementation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -302,6 +303,8 @@ Payloads are guaranteed to have a data buffer at least as large as the requested
 Released Payloads can be reused for another :class:`CacheChange_t`.
 If there is at least one free Payload with a buffer size equal or larger to the requested one,
 no memory allocation is done.
+
+.. _rtps_layer_payload_pool_example:
 
 Example using a custom Payload pool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -2536,6 +2536,23 @@ void dds_dataWriter_examples()
     }
 
     {
+        //DDS_CREATE_PAYLOAD_POOL_DATAWRITER
+        // A DataWriterQos must be provided to the creation method
+        DataWriterQos qos;
+
+        // Create PayloadPool
+        std::shared_ptr<CustomPayloadPool> payload_pool = std::make_shared<CustomPayloadPool>();
+
+        DataWriter* data_writer = publisher->create_datawriter(topic, qos, payload_pool);
+        if (nullptr == data_writer)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
         //DDS_CHANGE_DATAWRITERQOS
         // Create a DataWriter with default DataWriterQos
         DataWriter* data_writer =
@@ -3303,6 +3320,23 @@ void dds_dataReader_examples()
         DataReader* data_reader_with_profile_and_custom_listener =
                 subscriber->create_datareader_with_profile(topic, "data_reader_profile", &custom_listener);
         if (nullptr == data_reader_with_profile_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CREATE_PAYLOAD_POOL_DATAREADER
+        // A DataReaderQos must be provided to the creation method
+        DataReaderQos qos;
+
+        // Create PayloadPool
+        std::shared_ptr<CustomPayloadPool> payload_pool = std::make_shared<CustomPayloadPool>();
+
+        DataReader* data_reader = subscriber->create_datareader(topic, qos, payload_pool);
+        if (nullptr == data_reader)
         {
             // Error
             return;

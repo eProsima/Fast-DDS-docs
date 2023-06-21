@@ -146,44 +146,43 @@ This configuration defines the level of protection that the rule applies to the 
 
 The following table summarizes the elements and sections that each domain rule may contain.
 
-+----------------+---------------------------------------+------------------------------------------+------------------+
-| **Type**       | **Name**                              | **XML element tag**                      | **Values**       |
-+================+=======================================+==========================================+==================+
-| Element        | `Domains`_                            | ``<domains>``                            | ``false``        |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``true``         |
-|                +---------------------------------------+------------------------------------------+------------------+
-|                | `Allow Unauthenticated Participants`_ | ``<allow_unauthenticated_participants>`` | ``false``        |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``true``         |
-|                +---------------------------------------+------------------------------------------+------------------+
-|                | `Enable Join Access Control`_         | ``<enable_join_access_control>``         | ``SIGN``         |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``ENCRYPT``      |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``NONE``         |
-|                +---------------------------------------+------------------------------------------+------------------+
-|                | `Discovery Protection Kind`_          | ``<discovery_protection_kind>``          | ``SIGN``         |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``ENCRYPT``      |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``NONE``         |
-|                +---------------------------------------+------------------------------------------+------------------+
-|                | `Liveliness Protection Kind`_         | ``<liveliness_protection_kind>``         | ``SIGN``         |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``ENCRYPT``      |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``NONE``         |
-|                +---------------------------------------+------------------------------------------+------------------+
-|                | `RTPS Protection Kind`_               | ``<rtps_protection_kind>``               | ``SIGN``         |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``ENCRYPT``      |
-|                |                                       |                                          +------------------+
-|                |                                       |                                          | ``NONE``         |
-+----------------+---------------------------------------+------------------------------------------+------------------+
-| Section        | `Topic Access Rules <topic_rules>`_   | ``<topic_access_rules>``                 | ``<topic_rule>`` |
-+----------------+---------------------------------------+------------------------------------------+------------------+
++-----------+-------------------------------------------+------------------------------------------+------------------+
+| **Type**  | **Name**                                  | **XML element tag**                      | **Values**       |
++===========+===========================================+==========================================+==================+
+| Element   | `Allow Unauthenticated Participants`_     | ``<allow_unauthenticated_participants>`` | ``false``        |
+|           |                                           |                                          +------------------+
+|           |                                           |                                          | ``true``         |
+|           +-------------------------------------------+------------------------------------------+------------------+
+|           | `Enable Join Access Control`_             | ``<enable_join_access_control>``         | ``false``        |
+|           |                                           |                                          +------------------+
+|           |                                           |                                          | ``true``         |
+|           +-------------------------------------------+------------------------------------------+------------------+
+|           | `Discovery Protection Kind`_              | ``<discovery_protection_kind>``          | ``SIGN``         |
+|           |                                           |                                          +------------------+
+|           |                                           |                                          | ``ENCRYPT``      |
+|           |                                           |                                          +------------------+
+|           |                                           |                                          | ``NONE``         |
+|           +-------------------------------------------+------------------------------------------+------------------+
+|           | `Liveliness Protection Kind`_             | ``<liveliness_protection_kind>``         | ``SIGN``         |
+|           |                                           |                                          +------------------+
+|           |                                           |                                          | ``ENCRYPT``      |
+|           |                                           |                                          +------------------+
+|           |                                           |                                          | ``NONE``         |
+|           +-------------------------------------------+------------------------------------------+------------------+
+|           | `RTPS Protection Kind`_                   | ``<rtps_protection_kind>``               | ``SIGN``         |
+|           |                                           |                                          +------------------+
+|           |                                           |                                          | ``ENCRYPT``      |
+|           |                                           |                                          +------------------+
+|           |                                           |                                          | ``NONE``         |
++-----------+-------------------------------------------+------------------------------------------+------------------+
+| Section   | `Domains`_                                | ``<domains>``                            | ``<domains>``    |
+|           +-------------------------------------------+------------------------------------------+------------------+
+|           | :ref:`Topic Access Rules <topic_rules>`   | ``<topic_access_rules>``                 | ``<topic_rule>`` |
++-----------+-------------------------------------------+------------------------------------------+------------------+
 
+.. todo:
+
+    check  that link `Topic Access Rules <topic_rules>` works correctly
 
 The following describes the possible configurations of each of the elements and sections listed above that are
 contained in the domain rules.
@@ -314,13 +313,17 @@ The following table summarizes the elements and sections that each domain rule m
 |                                       |                                          +-----------------------------------+
 |                                       |                                          | ``true``                          |
 +---------------------------------------+------------------------------------------+-----------------------------------+
-| `Metadata protection Kind`_           | ``<metadata_protection_kind>``           | ``true``                          |
+| `Metadata protection Kind`_           | ``<metadata_protection_kind>``           | ``SIGN``                          |
 |                                       |                                          +-----------------------------------+
-|                                       |                                          | ``false``                         |
+|                                       |                                          | ``ENCRYPT``                       |
+|                                       |                                          +-----------------------------------+
+|                                       |                                          | ``NONE``                          |
 +---------------------------------------+------------------------------------------+-----------------------------------+
-| `Data protection Kind`_               | ``<data_protection_kind>``               | ``true``                          |
+| `Data protection Kind`_               | ``<data_protection_kind>``               | ``SIGN``                          |
 |                                       |                                          +-----------------------------------+
-|                                       |                                          | ``false``                         |
+|                                       |                                          | ``ENCRYPT``                       |
+|                                       |                                          +-----------------------------------+
+|                                       |                                          | ``NONE``                          |
 +---------------------------------------+------------------------------------------+-----------------------------------+
 
 The topic expression within the rules selects a set of Topic names.
@@ -403,9 +406,9 @@ Metadata Protection Kind
 This element is delimited by the ``<metadata_protection_kind>`` XML element tag.
 Indicates whether the entity's RTPS submessages shall be encrypted by the Cryptographic plugin.
 
-*  ``false``: the RTPS submessages shall not be encrypted.
-*  ``true``: the RTPS submessages shall be encrypted.
-
+*  ``NONE``: shall not be protected.
+*  ``SIGN``: shall be protected by MAC.
+*  ``ENCRYPT``: shall be encrypted.
 
 .. _Data Protection Kind:
 
@@ -415,8 +418,9 @@ Data Protection Kind
 This element is delimited by the ``<data_protection_kind>`` XML element tag.
 Indicates whether the data payload shall be encrypted by the Cryptographic plugin.
 
-*  ``false``: the data payload shall not be encrypted.
-*  ``true``: the data payload shall be encrypted.
+*  ``NONE``: shall not be protected.
+*  ``SIGN``: shall be protected by MAC.
+*  ``ENCRYPT``: shall be encrypted.
 
 .. toctree::
    :hidden:

@@ -3,8 +3,8 @@
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-Security/20170801/omg_shared_ca_permissions.xsd">
     <permissions>
-        <grant name="PublisherPermissions">
-            <subject_name>emailAddress=mainpub@eprosima.com, CN=Main Publisher, OU=eProsima, O=eProsima, ST=MA, C=ES</subject_name>
+        <grant name="ParticipantPermissions">
+            <subject_name>emailAddress=example@eprosima.com, CN=DomainParticipantName, O=eProsima, ST=MA, C=ES</subject_name>
             <validity>
                 <not_before>2013-06-01T13:00:00</not_before>
                 <not_after>2038-06-01T13:00:00</not_after>
@@ -24,8 +24,10 @@
             </allow_rule>
             <default>DENY</default>
         </grant>
-        <grant name="SubscriberPermissions">
-            <subject_name> emailAddress=mainsub@eprosima.com, CN=Main Subscriber, OU=eProsima, O=eProsima, ST=MA, C=ES</subject_name>
+
+        <!-- Fill the subject name with the information specified in the Participant certificate -->
+        <grant name="OtherParticipantPermissions">
+            <subject_name> emailAddress=xxx@eprosima.com, CN=xxx, OU=x, O=x, ST=XX, C=XX</subject_name>
             <validity>
                 <not_before>2013-06-01T13:00:00</not_before>
                 <not_after>2038-06-01T13:00:00</not_after>
@@ -52,8 +54,8 @@
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-Security/20170801/omg_shared_ca_permissions.xsd">
     <permissions>
-        <grant name="PublisherPermissions">
-            <subject_name>emailAddress=mainpub@eprosima.com, CN=Main Publisher, OU=eProsima, O=eProsima, ST=MA, C=ES</subject_name>
+        <grant name="ParticipantPermissions">
+            <subject_name>emailAddress=example@eprosima.com, CN=DomainParticipantName, O=eProsima, ST=MA, C=ES</subject_name>
             <validity>
                 <not_before>2013-06-01T13:00:00</not_before>
                 <not_after>2038-06-01T13:00:00</not_after>

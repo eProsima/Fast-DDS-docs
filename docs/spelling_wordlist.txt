@@ -20,6 +20,7 @@ auth
 autodispose
 autoenable
 autoid
+backoff
 benchmarking
 bitfield
 Bitfields
@@ -85,6 +86,7 @@ fastcdr
 fastdds
 fastddsgen
 foonathan
+functors
 GCC
 GCM
 getter

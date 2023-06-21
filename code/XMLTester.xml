@@ -2538,50 +2538,10 @@
                     <name>dds.sec.crypto.plugin</name>
                     <value>builtin.AES-GCM-GMAC</value>
                 </property>
-                <!-- Only if DDS:Access:Permissions plugin is not enabled -->
-                <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
-                <property>
-                    <name>rtps.participant.rtps_protection_kind</name>
-                    <value>ENCRYPT</value>
-                </property>
             </properties>
         </propertiesPolicy>
     </rtps>
 </participant>
-<!--><-->
-
-<!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER<-->
-<data_writer profile_name="secure_datawriter_conf_crypto_plugin_xml_profile">
-    <propertiesPolicy>
-        <properties>
-            <!-- Only if DDS:Access:Permissions plugin is not enabled -->
-            <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
-            <property>
-                <name>rtps.endpoint.submessage_protection_kind</name>
-                <value>ENCRYPT</value>
-            </property>
-            <property>
-                <name>rtps.endpoint.payload_protection_kind</name>
-                <value>ENCRYPT</value>
-            </property>
-        </properties>
-    </propertiesPolicy>
-</data_writer>
-<!--><-->
-
-<!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER<-->
-<data_reader profile_name="secure_datareader_conf_crypto_plugin_xml_profile">
-    <propertiesPolicy>
-        <properties>
-            <!-- Only if DDS:Access:Permissions plugin is not enabled -->
-            <!-- Configure DDS:Crypto:AES-GCM-GMAC plugin -->
-            <property>
-                <name>rtps.endpoint.submessage_protection_kind</name>
-                <value>ENCRYPT</value>
-            </property>
-        </properties>
-    </propertiesPolicy>
-</data_reader>
 <!--><-->
 
 <!-->DDS_SECURITY_LOGGING_PLUGIN<-->

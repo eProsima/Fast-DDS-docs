@@ -32,79 +32,23 @@ The DDS\:Crypto\:AES-GCM-GMAC authentication plugin, can be activated setting th
 Moreover, this plugin needs the activation of the :ref:`auth-pki-dh`.
 The DDS\:Crypto\:\AES-GCM-GMAC plugin is configured using the :ref:`access-permissions`, i.e the cryptography
 plugin is configured through the properties and configuration files of the access control plugin.
-If the :ref:`access-permissions` plugin will not be used, you can configure the DDS\:Crypto\:AES-GCM-GMAC plugin
-manually with the properties outlined in the following table.
-
-+------------------------------------------+-------------------------------------------------+-------------------------+
-| **Property name**                        | **Description**                                 | **Property Value**      |
-+==========================================+=================================================+=========================+
-| rtps.participant.rtps_protection_kind    | Encrypt whole RTPS messages                     | ``ENCRYPT``             |
-+------------------------------------------+-------------------------------------------------+-------------------------+
-| rtps.endpoint.submessage_protection_kind | Encrypt RTPS submessages of a particular entity | ``ENCRYPT``             |
-+------------------------------------------+-------------------------------------------------+-------------------------+
-| rtps.endpoint.payload_protection_kind    | Encrypt payload of a particular Writer          | ``ENCRYPT``             |
-+------------------------------------------+-------------------------------------------------+-------------------------+
 
 The following is an example of how to set the properties of DomainParticipantQoS for the DDS\:Crypto\:AES-GCM-GMAC
 configuration.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT                                                     |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT<-->                                               |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tabs::
 
-Next example shows how to configure DataWriters to encrypt their RTPS submessages and the RTPS message payload, i.e.
-the user data.
-This is done by setting the DDS\:Crypto\:AES-GCM-GMAC properties (|DataWriterQos::properties-api|) corresponding to the
-DataWriters in the |DataWriterQos|.
+  .. tab:: C++
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER                                                            |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAWRITER<-->                                                      |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT
+        :end-before: //!--
+        :dedent: 8
 
+  .. tab:: XML
 
-The last example shows how to configure DataReader to encrypt their RTPS submessages.
-This is done by setting the DDS\:Crypto\:AES-GCM-GMAC properties (|DataReaderQos::properties-api|) corresponding to the
-DataReaders in the |DataReaderQos|.
-
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER                                                            |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DDS_SECURITY_CRYPTO_PLUGIN_DATAREADER<-->                                                      |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT<-->
+        :end-before: <!--><-->

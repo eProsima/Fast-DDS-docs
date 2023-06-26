@@ -23,11 +23,11 @@
 #include <stdio.h>
 #include <string.h>
 
-class PayloadPool : public eprosima::fastrtps::rtps::IPayloadPool
+class CustomPayloadPool : public eprosima::fastrtps::rtps::IPayloadPool
 {
 public:
 
-    ~PayloadPool() = default;
+    ~CustomPayloadPool() = default;
 
     bool get_payload(
             unsigned int size,

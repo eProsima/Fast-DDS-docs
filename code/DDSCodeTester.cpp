@@ -47,6 +47,8 @@
 
 #include <fastcdr/Cdr.h>
 
+#include "CustomPayloadPool.hpp"
+
 #include <sstream>
 
 using namespace eprosima::fastdds::dds;

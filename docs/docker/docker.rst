@@ -12,6 +12,6 @@ Docker Images
 .. toctree::
    :maxdepth: 2
 
+   shm_docker
    fastdds/fast_dds
    fastdds_suite/fast_dds_suite
-

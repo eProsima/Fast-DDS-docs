@@ -9,10 +9,10 @@ By default, *Fast DDS* enables both a :ref:`transport_sharedMemory_sharedMemory`
 the configuration allows it, see :ref:`datasharing-delivery-constraints`).
 The way *Fast DDS* utilizes to find out whether a remote |DomainParticipant| is running on the same host as the local
 one is through a hashing of the network interfaces, which entails that two Docker container which are not sharing the
-same network stack will be detected as two different host, and therefore *Fast DDS* will defer to communicating through
+same network stack will be detected as two different hosts, and therefore *Fast DDS* will defer to communicating through
 the :ref:`transport_udp_udp` instead.
 
-To enable the use of both the Shared Memory Transport and Data-sharing in Docker deployments, two additional
+To enable the use of both the *Shared Memory Transport* and *Data-sharing* in Docker deployments, two additional
 `options <https://docs.docker.com/engine/reference/commandline/run/#options>`_ need to be passed to the `docker run`
 command, those are:
 
@@ -24,7 +24,7 @@ command, those are:
   spaces, they will not be able to communicate with one another.
   The use of this option is the Docker recommended way of sharing shared memory between containers, in opposition of for
   instance sharing the `/dev/shm` volume in Linux machines.
-  A more advance user could set the flag to `shared`, thus sharing the shared memory mechanism of one of the container
+  A more advanced user could set the flag to `shared`, thus sharing the shared memory mechanism of one of the container
   with the others.
 
 .. code-block:: bash

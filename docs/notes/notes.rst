@@ -5,7 +5,7 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.10.1
+Version 2.11.0
 ==============
 
 This minor release includes several improvements and bugfixes.
@@ -24,7 +24,8 @@ This minor release includes several improvements and bugfixes.
 
 This release includes the following **features**:
 
-1. :ref:`Ignore every local endpoint within the DomainParticipant preventing local matching <property_ignore_local_endpoints>`.
+1. :ref:`Ignore every local endpoint within the DomainParticipant preventing local matching
+   <property_ignore_local_endpoints>`.
 2. Extend DynamicDataHelper API providing a ``print`` overload with ``std::ostream`` as parameter.
 3. :ref:`typelookup_config`.
 4. Static Discovery XSD Schema.
@@ -92,7 +93,7 @@ This release includes the following **fixes**:
     2. Remove 2.8.x as active branch.
 7. Non Tier 1 support
     1. Fix build on MSVC 19.36.
-    2. Forward compatibility with Boost interprocess 1.74+.
+    2. Forward compatibility with Boost inter-process 1.74+.
     3. Include missing header files required for compiling with GCC 13.
     4. QNX build fixes.
     5. Fix build issues in RPM systems.

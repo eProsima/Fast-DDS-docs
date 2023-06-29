@@ -66,8 +66,8 @@ This release includes the following **fixes**:
     5. Wait for log background thread initialization on the first queued entry.
     6. Fix data race when accessing ``WRITE_PARAM_DEFAULT`` static variable.
     7. Fix partition copy in QoS.
-    8. Fix Data-Sharing delivery when data_count is zero (#3065)
-    9. Fix API Fast DDS v2.10.0 API break calling correctly
+    8. Fix Data-Sharing delivery when data_count is zero.
+    9. Fix API Fast DDS v2.10.0 API break calling correctly.
        :cpp:func:`on_participant_discovery() <eprosima::fastdds::dds::DomainParticipantListener::on_participant_discovery>`
        callbacks.
     10. Security module: Honor :ref:`allow_unauthenticated_section` flag.

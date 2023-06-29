@@ -1,5 +1,5 @@
-.. include:: ../../03-exports/aliases.include
-.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
 
 .. _monitor_service:
 
@@ -12,8 +12,8 @@ a particular |domain| (i.e |DomainParticipants|, |DataReaders|, |DataWriters|)
 as well as the capability of detecting possible misconfigurations among them.
 
 .. toctree::
-    :titlesonly:
+    :maxdepth: 2
 
-    /fastdds/monitor_service/intro
-    /fastdds/monitor_service/monitor_service_topics
-    /fastdds/monitor_service/monitor_service_configuration
+    intro
+    monitor_service_topics
+    monitor_service_configuration

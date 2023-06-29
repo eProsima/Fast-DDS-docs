@@ -1,23 +1,26 @@
-.. include:: ../../03-exports/aliases.include
-.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
 
 .. _monitor_service_configuration:
 
 Monitor Service Configuration
 =============================
 
-The :ref:`monitor_service` can be programmatically enabled in both :ref:`dds_layer` and :ref:`rtps_layer`
-through the |DomainParticipant::enable-monitor-service-api| and |DomainParticipant::disable-monitor-service-api| calls.
+The :ref:`monitor_service` can be activated using the ``-DFASTDDS_STATISTICS=ON`` at CMake configuration step
+(for further information regarding the *Fast DDS* compilation, see :ref:`linux_sources` and :ref:`windows_sources`).
+Once the :ref:`monitor_service` feature is activated, it can be programmatically enabled in both :ref:`dds_layer` and
+:ref:`rtps_layer` through the |DomainParticipant::enable-monitor-service-api| and
+|DomainParticipant::disable-monitor-service-api| calls.
 In addition, leveraging the |PropertyPolicyQos-api| there is new ``Property`` defined
 for the purpose: ``fastdds.enable_monitor_service``.
 
-The following table depicts the different ways in which the monitor service can be enabled or disabled:
+The following table depicts the different ways in which the *Monitor Service* can be enabled or disabled:
 
 
 +----------------------------------------------------------+
 | **C++ API**                                              |
 +----------------------------------------------------------+
-| .. literalinclude:: ../../../code/DDSCodeTester.cpp      |
+| .. literalinclude:: /../code/DDSCodeTester.cpp           |
 |        :language: c++                                    |
 |        :dedent: 8                                        |
 |        :start-after: // FASTDDS_MONITOR_SERVICE_API      |
@@ -25,7 +28,7 @@ The following table depicts the different ways in which the monitor service can 
 +----------------------------------------------------------+
 | **C++ Property**                                         |
 +----------------------------------------------------------+
-| .. literalinclude:: ../../../code/DDSCodeTester.cpp      |
+| .. literalinclude:: /../code/DDSCodeTester.cpp           |
 |        :language: c++                                    |
 |        :dedent: 8                                        |
 |        :start-after: // FASTDDS_MONITOR_SERVICE_PROPERTY |

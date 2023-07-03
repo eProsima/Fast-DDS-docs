@@ -15,14 +15,69 @@ any methods on the same DomainParticipant from different threads.
 However, this multithreading implementation must be taken into account when external functions access to resources that
 are modified by threads running internally in the library.
 An example of this is the modified resources in the entity listener callbacks.
-The following is a brief overview of how *Fast DDS* multithreading schedule work:
 
-* Main thread: Managed by the application.
-* Event thread: Each DomainParticipant owns one of these. It processes periodic and triggered time events.
-* Asynchronous writer thread: This thread manages asynchronous writes for all DomainParticipants.
-  Even for synchronous writers, some forms of communication must be initiated in the background.
-* Reception threads: DomainParticipants spawn a thread for each reception channel, where the concept of a channel
-  depends on the transport layer (e.g. a UDP port).
+The complete set of threads spawned by Fast DDS is shown below.
+Transport related threads (marked as UDP, TCP and SHM types) are only created when the appropriate Transport is used.
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Name
+      - Type
+      - Cardinality
+      - Description
+    * - Event
+      - General
+      - One per DomainParticipant
+      - Processes periodic and triggered time events
+    * - Asynchronous Writer
+      - General
+      - One
+      - Manages asynchronous writes for all DomainParticipants.
+
+        Even for synchronous writers, some forms of communication must be initiated in the background.
+    * - Datasharing Listener
+      - General
+      - One per DomainParticipant
+      - Listener thread that processes messages received via Datasharing
+    * - Reception
+      - UDP
+      - One per port
+      - Listener thread that processes incoming UDP messages
+    * - Reception
+      - TCP
+      - One per port
+      - Listener thread that processes incoming TCP messages
+    * - Keep Alive
+      - TCP
+      - One per port
+      - Keep alive thread for TCP connections.
+    * - Reception
+      - SHM
+      - One per port
+      - Listener thread that processes incoming messages via SHM segments
+    * - Logging
+      - SHM
+      - One per SHM descriptor
+      - Stores and dumps transferred packets to a file.
+    * - Watchdog
+      - SHM
+      - One
+      - Monitors health of open shared memory segments.
+    * - General Logging
+      - Log
+      - One
+      - Accumulates and writes to the appropriate consumer log entries.
+    * - Security Logging
+      - Log
+      - One
+      - Accumulates and writes security log entries.
+
+Some of these threads are only spawned when certain conditions are met.
+Datasharing listener thread is created only when Datasharing is in use.
+TCP keep alive thread requires the keep alive period to be configured to a value greater than zero.
+Security logging and Shared Memory packet logging threads both require certain configuration options to be enabled.
 
 Event-driven architecture
 ^^^^^^^^^^^^^^^^^^^^^^^^^

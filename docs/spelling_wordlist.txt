@@ -36,6 +36,7 @@ booleans
 bugfixes
 cancelled
 Cannonical
+Cardinality
 CCache
 CDR
 centric
@@ -64,6 +65,7 @@ datagrams
 datarace
 datarate
 datareaders
+Datasharing
 deallocate
 deallocated
 deallocating

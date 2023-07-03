@@ -47,9 +47,8 @@
 
 #include <fastcdr/Cdr.h>
 
-#include "CustomPayloadPool.hpp"
-
 #include <sstream>
+#include <memory>
 
 using namespace eprosima::fastdds::dds;
 
@@ -253,6 +252,33 @@ public:
         std::cout << "New data type information received" << std::endl;
     }
 
+};
+//!--
+
+// Custom Payload pool example for documentation
+class CustomPayloadPool : public eprosima::fastrtps::rtps::IPayloadPool
+{
+public:
+    CustomPayloadPool() = default;
+    ~CustomPayloadPool() = default;
+    bool get_payload(
+            unsigned int size,
+            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+    {
+        return true;
+    }
+    bool get_payload(
+            eprosima::fastrtps::rtps::SerializedPayload_t& data,
+            eprosima::fastrtps::rtps::IPayloadPool*& data_owner,
+            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+    {
+        return true;
+    }
+    bool release_payload(
+            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+    {
+        return true;
+    }
 };
 //!--
 

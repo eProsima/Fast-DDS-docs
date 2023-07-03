@@ -2587,7 +2587,7 @@
 </data_writer>
 <!--><-->
 
-<!-->IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT<-->
+<!-->IGNORE_LOCAL_ENDPOINTS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
@@ -2606,6 +2606,31 @@
                 </propertiesPolicy>
             </rtps>
         </participant>
+
+        <data_writer profile_name="ignore_local_endpoints_datawriter_xml_profile">
+            <propertiesPolicy>
+                <properties>
+                    <!-- Avoid local matching with any other local DataReader in the participant -->
+                    <property>
+                        <name>fastdds.ignore_local_endpoints</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            <propertiesPolicy>
+        </data_writer>
+
+        <data_reader profile_name="ignore_local_endpoints_datareader_xml_profile">
+            <propertiesPolicy>
+                <properties>
+                    <!-- Avoid local matching with any other local DataWriter in the participant -->
+                    <property>
+                        <name>fastdds.ignore_local_endpoints</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            <propertiesPolicy>
+        </data_reader>
+
 <!--
     </profiles>
 </dds>

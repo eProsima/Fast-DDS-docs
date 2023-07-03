@@ -2616,7 +2616,7 @@
                         <value>true</value>
                     </property>
                 </properties>
-            <propertiesPolicy>
+            </propertiesPolicy>
         </data_writer>
 
         <data_reader profile_name="ignore_local_endpoints_datareader_xml_profile">
@@ -2628,7 +2628,7 @@
                         <value>true</value>
                     </property>
                 </properties>
-            <propertiesPolicy>
+            </propertiesPolicy>
         </data_reader>
 
 <!--

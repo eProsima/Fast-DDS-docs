@@ -54,7 +54,7 @@ The property can be configured both at the DomainParticipant level as at the end
             :language: xml
             :start-after: <!-->IGNORE_LOCAL_ENDPOINTS<-->
             :end-before: <!--><-->
-            :lines: 2-4,6-18,20-21
+            :lines: 2-4,6-41,43-44
 
 .. note::
     An invalid value of ``fastdds.ignore_local_endpoints`` results in the default behaviour.

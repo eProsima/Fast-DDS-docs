@@ -33,8 +33,8 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - Processes periodic and triggered time events
     * - Asynchronous Writer
       - General
-      - One
-      - Manages asynchronous writes for all DomainParticipants.
+      - One per enabled asynchronous flow controller
+      - Manages asynchronous writes.
 
         Even for synchronous writers, some forms of communication must be initiated in the background.
     * - Datasharing Listener

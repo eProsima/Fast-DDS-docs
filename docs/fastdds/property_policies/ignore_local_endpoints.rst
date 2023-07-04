@@ -19,8 +19,8 @@ endpoints through the PropertyPolicyQos.
 The property can be configured both at the DomainParticipant level as at the endpoint level:
 
 * When configured in the DomainParticipant, no local endpoint will be matched.
-* When configured in a specific endpoint, that specific endpoint will not be matched with any local one, but any other
-  local endpoint will be, unless trying to match with an endpoint with the property set.
+* When configured in a specific endpoint, that specific endpoint will not be matched with any local one, independently
+  if the other endpoint has or not the property enabled.
 
 .. note::
 

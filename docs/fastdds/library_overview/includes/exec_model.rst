@@ -31,9 +31,15 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - General
       - One per DomainParticipant
       - Processes periodic and triggered time events
+    * - Discovery Server Event
+      - General
+      - One per DomainParticipant
+      - Synchronizes access to the Discovery Server Database
     * - Asynchronous Writer
       - General
       - One per enabled asynchronous flow controller
+
+        Minimum 1.
       - Manages asynchronous writes.
 
         Even for synchronous writers, some forms of communication must be initiated in the background.
@@ -73,11 +79,28 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - Log
       - One
       - Accumulates and writes security log entries.
+    * - Watchdog
+      - Filewatch
+      - One
+      - Tracks the status of the watched file for modifications
+    * - Callback
+      - Filewatch
+      - One
+      - Runs the registered callback when the watched file changes.
 
-Some of these threads are only spawned when certain conditions are met.
-Datasharing listener thread is created only when Datasharing is in use.
-TCP keep alive thread requires the keep alive period to be configured to a value greater than zero.
-Security logging and Shared Memory packet logging threads both require certain configuration options to be enabled.
+Some of these threads are only spawned when certain conditions are met:
+
+* Datasharing listener thread is created only when Datasharing is in use.
+* Discovery Server Event thread is only created when the DomainParticipant is configured as a Discovery Server SERVER.
+* TCP keep alive thread requires the keep alive period to be configured to a value greater than zero.
+* Security logging and Shared Memory packet logging threads both require certain configuration options to be enabled.
+* Filewatch threads are only spawned if the :ref:`env_vars_fastdds_environment_file` is in use.
+
+Regarding transport threads, Fast DDS by default uses both a UDP and a Shared Memory transport.
+Port configuration can be configured to suit the specific needs of the deployment,
+but the default configuration is to always use a metatraffic port and a unicast user traffic port.
+This applies both to UDP and Shared Memory since TCP does not support multicast.
+More information can be found at the :ref:`listening_locators_default` page.
 
 Event-driven architecture
 ^^^^^^^^^^^^^^^^^^^^^^^^^

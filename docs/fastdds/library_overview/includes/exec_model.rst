@@ -1,3 +1,5 @@
+.. include:: ../../03-exports/roles.include
+
 Programming and execution model
 -------------------------------
 
@@ -34,27 +36,27 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Discovery Server Event
       - General
       - One per DomainParticipant
-      - Synchronizes access to the Discovery Server Database
+      - Synchronizes access to the Discovery Server |br| Database
     * - Asynchronous Writer
       - General
-      - One per enabled asynchronous flow controller
+      - One per enabled asynchronous |br| flow controller
 
         Minimum 1.
       - Manages asynchronous writes.
 
-        Even for synchronous writers, some forms of communication must be initiated in the background.
+        Even for synchronous writers, some forms of |br| communication must be initiated in the |br| background.
     * - Datasharing Listener
       - General
       - One per DomainParticipant
-      - Listener thread that processes messages received via Datasharing
+      - Listener thread that processes messages |br| received via Datasharing
     * - Reception
       - UDP
       - One per port
-      - Listener thread that processes incoming UDP messages
+      - Listener thread that processes incoming |br| UDP messages
     * - Reception
       - TCP
       - One per port
-      - Listener thread that processes incoming TCP messages
+      - Listener thread that processes incoming |br| TCP messages
     * - Keep Alive
       - TCP
       - One per port
@@ -62,7 +64,7 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Reception
       - SHM
       - One per port
-      - Listener thread that processes incoming messages via SHM segments
+      - Listener thread that processes incoming |br| messages via SHM segments
     * - Logging
       - SHM
       - One per SHM descriptor
@@ -70,11 +72,11 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Watchdog
       - SHM
       - One
-      - Monitors health of open shared memory segments.
+      - Monitors health of open shared memory |br| segments.
     * - General Logging
       - Log
       - One
-      - Accumulates and writes to the appropriate consumer log entries.
+      - Accumulates and writes to the appropriate |br| consumer log entries.
     * - Security Logging
       - Log
       - One
@@ -82,11 +84,11 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Watchdog
       - Filewatch
       - One
-      - Tracks the status of the watched file for modifications
+      - Tracks the status of the watched file for |br| modifications
     * - Callback
       - Filewatch
       - One
-      - Runs the registered callback when the watched file changes.
+      - Runs the registered callback when the |br| watched file changes.
 
 Some of these threads are only spawned when certain conditions are met:
 

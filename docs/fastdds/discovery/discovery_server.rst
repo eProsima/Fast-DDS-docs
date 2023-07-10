@@ -14,6 +14,10 @@ IP multicast protocol.
 A `Discovery-Server <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ tool is available to
 ease Discovery Server setup and testing.
 
+.. note::
+
+  :ref:`DDS Domain <dds_layer_domain>` concept does not apply when enabling the Discovery Server mechanism.
+
 .. contents::
     :local:
     :backlinks: none

@@ -4489,12 +4489,10 @@ void dds_transport_examples ()
 
     {
         //CONF-TCP-TRANSPORT-SETTING-SERVER
-        DomainParticipantQos qos;
+        eprosima::fastdds::dds::DomainParticipantQos qos;
 
         // Create a descriptor for the new transport.
-        auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
-        tcp_transport->sendBufferSize = 9216;
-        tcp_transport->receiveBufferSize = 9216;
+        auto tcp_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         tcp_transport->add_listener_port(5100);
         tcp_transport->set_WAN_address("80.80.99.45");
 
@@ -4503,26 +4501,36 @@ void dds_transport_examples ()
 
         // Avoid using the default transport
         qos.transport().use_builtin_transports = false;
+
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "80.80.99.45");
+        eprosima::fastrtps::rtps::IPLocator::setWan(locator, "80.80.99.45");
+        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(locator, 5100);
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(locator, 5100);
+
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
+        qos.wire_protocol().default_unicast_locator_list.push_back(locator);
         //!--
     }
 
     {
         //CONF-TCP-TRANSPORT-SETTING-CLIENT
-        DomainParticipantQos qos;
+        eprosima::fastdds::dds::DomainParticipantQos qos;
 
         // Disable the built-in Transport Layer.
         qos.transport().use_builtin_transports = false;
 
         // Create a descriptor for the new transport.
         // Do not configure any listener port
-        auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+        auto tcp_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         qos.transport().user_transports.push_back(tcp_transport);
 
         // Set initial peers.
-        Locator_t initial_peer_locator;
+        eprosima::fastrtps::rtps::Locator_t initial_peer_locator;
         initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
-        IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
-        initial_peer_locator.port = 5100;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
+        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
 
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
 

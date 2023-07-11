@@ -168,52 +168,55 @@ create an instance of :ref:`transport_tcp_v4transportDescriptor` (for TCPv4) or
 :ref:`transport_tcp_v6transportDescriptor` (for TCPv6), and add it to the user transport list of the
 DomainParticipant.
 
-If you provide |TCPTransportDescriptor::listening_ports-api| on the descriptor, the DomainParticipant will act
-as *TCP server*, listening for incoming remote connections on the given ports.
-The examples below show this procedure in both C++ code and XML file.
+Depending on the TCP transport descriptor settings and network locators defined, the DomainParticipant can act as a
+TCP Server or TCP Client.
 
-.. tabs::
+* **TCP Server**: If you provide |TCPTransportDescriptor::listening_ports-api| on the descriptor, the DomainParticipant
+  will act as *TCP server*, listening for incoming remote connections on the given ports.
+  The examples below show this procedure in both C++ code and XML file.
 
-  .. tab:: C++
+  .. tabs::
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER
-      :end-before: //!--
-      :dedent: 8
+    .. tab:: C++
 
-  .. tab:: XML
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER
+        :end-before: //!--
+        :dedent: 8
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+    .. tab:: XML
 
-If you provide |BuiltinAttributes::initialPeersList-api| to the DomainParticipant, it will act
-as *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
-The examples below show this procedure in both C++ code and XML file.
-See :ref:`Simple Initial Peers` for more information about their configuration.
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
-.. tabs::
+* **TCP Client**: If you provide |BuiltinAttributes::initialPeersList-api| to the DomainParticipant, it will act as
+  *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
+  The examples below show this procedure in both C++ code and XML file.
+  See :ref:`Simple Initial Peers` for more information about their configuration.
 
-  .. tab:: C++
+  .. tabs::
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT
-      :end-before: //!--
-      :dedent: 8
+    .. tab:: C++
 
-  .. tab:: XML
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT
+        :end-before: //!--
+        :dedent: 8
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+    .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 :ref:`transport_tcp_example` shows how to use and configure a TCP transport.
 

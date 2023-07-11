@@ -251,10 +251,8 @@
 -->
     <transport_descriptors>
         <transport_descriptor>
-            <transport_id>tcp_transport</transport_id>
+            <transport_id>tcp_server_transport</transport_id>
             <type>TCPv4</type>
-            <sendBufferSize>9216</sendBufferSize>
-            <receiveBufferSize>9216</receiveBufferSize>
             <listening_ports>
                 <port>5100</port>
             </listening_ports>
@@ -262,12 +260,34 @@
         </transport_descriptor>
     </transport_descriptors>
 
-    <participant profile_name="TCPParticipant">
+    <participant profile_name="tcp_server_participant">
         <rtps>
             <userTransports>
-                <transport_id>tcp_transport</transport_id>
+                <transport_id>tcp_server_transport</transport_id>
             </userTransports>
             <useBuiltinTransports>false</useBuiltinTransports>
+            <defaultUnicastLocatorList>
+                <locator>
+                    <tcpv4>
+                        <wan_address>80.80.99.45</wan_address>
+                        <address>80.80.99.45</address>
+                        <physical_port>5100</physical_port>
+                        <port>5100</port>
+                    </tcpv4>
+                </locator>
+            </defaultUnicastLocatorList>
+            <builtin>
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <tcpv4>
+                            <wan_address>80.80.99.45</wan_address>
+                            <address>80.80.99.45</address>
+                            <physical_port>5100</physical_port>
+                            <port>5100</port>
+                        </tcpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
         </rtps>
     </participant>
 <!--><-->
@@ -279,15 +299,15 @@
 -->
     <transport_descriptors>
         <transport_descriptor>
-            <transport_id>tcp2_transport</transport_id>
+            <transport_id>tcp_client_transport</transport_id>
             <type>TCPv4</type>
         </transport_descriptor>
     </transport_descriptors>
 
-    <participant profile_name="TCP2Participant">
+    <participant profile_name="tcp_client_participant">
         <rtps>
             <userTransports>
-                <transport_id>tcp2_transport</transport_id>
+                <transport_id>tcp_client_transport</transport_id>
             </userTransports>
              <useBuiltinTransports>false</useBuiltinTransports>
             <builtin>
@@ -296,6 +316,7 @@
                         <tcpv4>
                             <address>80.80.99.45</address>
                             <physical_port>5100</physical_port>
+                            <port>5100</port>
                         </tcpv4>
                     </locator>
                 </initialPeersList>

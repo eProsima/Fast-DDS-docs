@@ -4530,7 +4530,7 @@ void dds_transport_examples ()
         initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
         eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
         eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
-        initial_peer_locator.port = 5100;
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
 
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
 

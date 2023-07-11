@@ -4501,6 +4501,15 @@ void dds_transport_examples ()
 
         // Avoid using the default transport
         qos.transport().use_builtin_transports = false;
+
+        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "80.80.99.45");
+        eprosima::fastrtps::rtps::IPLocator::setWan(locator, "80.80.99.45");
+        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(locator, 5100);
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(locator, 5100);
+
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
+        qos.wire_protocol().default_unicast_locator_list.push_back(locator);
         //!--
     }
 

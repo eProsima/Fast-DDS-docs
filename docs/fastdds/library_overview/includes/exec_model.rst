@@ -45,7 +45,7 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
         Even for synchronous writers, some forms of |br| communication must be initiated in the |br| background.
     * - Datasharing Listener
       - General
-      - One per DomainParticipant
+      - One per |br| DataReader
       - Listener thread that processes messages |br| received via Datasharing
     * - Reception
       - UDP
@@ -77,7 +77,7 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - Accumulates and writes to the appropriate |br| consumer log entries.
     * - Security Logging
       - Log
-      - One
+      - One per |br| DomainParticipant
       - Accumulates and writes security log entries.
     * - Watchdog
       - Filewatch

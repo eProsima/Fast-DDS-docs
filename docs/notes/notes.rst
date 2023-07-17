@@ -17,15 +17,13 @@ This release includes the following **improvements**:
 
 This release includes the following **fixes**:
 
-    1. SHM sending improvements
+    1. Fixed long-standing reconnection issue on SHM transport
     2. Added missing include
-    3. Improved shm listener status update mechanism
-    4. Refactor of regenerate_port
-    5. Revert parallel testing SemaphoreNode changes
-    6. Fix StatelessWriter locators filtering
-    7. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO
-    8. Explicitly register type object in ContentFilteredTopicExample
-    9. Dynamic memory topic payload pool properly handle Zero sized payloads
+    3. Fixed Boost handle usage regression
+    4. Fix StatelessWriter locators filtering
+    5. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO
+    6. Explicitly register type object in ContentFilteredTopicExample
+    7. Properly handle zero-sized payloads on dynamic memory payload pools
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

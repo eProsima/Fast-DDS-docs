@@ -1,0 +1,23 @@
+Version 2.9.1 (EOL)
+^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **bugfixes**:
+
+1. **Synchronization fixes**:
+    1. Fix deadlock in Writer Liveliness Protocol (WLP) using intraprocess.
+    2. Fix data race in
+       :cpp:func:`DomainParticipant::set_listener()<eprosima::fastdds::dds::DomainParticipant::set_listener>`.
+    3. Fix deadlock on TLS closure.
+2. **Other fixes**:
+    1. Fix notification lost.
+    2. Fix ``total_read_`` to be consistent with Reader's History after
+       :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>`.
+    3. Use shared pointers for internal singletons.
+    4. Support CCache on Windows.
+    5. Avoid null dereference on fuzzer.
+    6. Other minor fixes and improvements.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

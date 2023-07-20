@@ -1,5 +1,5 @@
-Version 2.9.0
-^^^^^^^^^^^^^
+Version 2.9.0 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This minor release includes several new features (new log macros to avoid conflicts with external libraries), behavior
 change (default memory management policy is no longer

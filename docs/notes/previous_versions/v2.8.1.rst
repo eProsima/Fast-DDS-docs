@@ -1,5 +1,5 @@
-Version 2.8.1
-^^^^^^^^^^^^^
+Version 2.8.1 (EOL)
+^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **bugfixes**:
 

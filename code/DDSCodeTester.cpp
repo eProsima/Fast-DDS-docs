@@ -2543,7 +2543,7 @@ void dds_dataWriter_examples()
         std::shared_ptr<eprosima::fastrtps::rtps::IPayloadPool> payload_pool =
                 std::dynamic_pointer_cast<eprosima::fastrtps::rtps::IPayloadPool>(std::make_shared<CustomPayloadPool>());
 
-        DataWriter* data_writer = publisher->create_datawriter(topic, qos, payload_pool, nullptr);
+        DataWriter* data_writer = publisher->create_datawriter(topic, qos, nullptr, StatusMask::all(), payload_pool);
         if (nullptr == data_writer)
         {
             // Error
@@ -3335,7 +3335,7 @@ void dds_dataReader_examples()
         // Create PayloadPool
         std::shared_ptr<CustomPayloadPool> payload_pool = std::make_shared<CustomPayloadPool>();
 
-        DataReader* data_reader = subscriber->create_datareader(topic, qos, payload_pool);
+        DataReader* data_reader = subscriber->create_datareader(topic, qos, nullptr, StatusMask::all(), payload_pool);
         if (nullptr == data_reader)
         {
             // Error

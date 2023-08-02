@@ -304,8 +304,9 @@ SHM transport meta-traffic enforcement
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A DomainParticipant will by default configure both a :ref:`transport_udp_udp` and a
-:ref:`transport_sharedMemory_sharedMemory`. When a participant on another process in the same host is
-discovered, the endpoint discovery might be done using either transport.
+:ref:`transport_sharedMemory_sharedMemory`.
+When a participant on another process in the same host is discovered, the endpoint discovery
+might be done using either transport.
 
 Avoiding Shared Memory communication for discovery traffic can save valuable resources.
 The behavior regarding this can be configured using the property ``fastdds.shm.enforce_metatraffic``.

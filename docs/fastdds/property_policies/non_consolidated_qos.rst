@@ -331,3 +331,19 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
 
   When SHM is the only transport configured for a participant, the setting of this property is ignored, and considered to be ``"all"``.
 
+.. tabs::
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //DDS-SHM-ENFORCE-META-TRAFFIC
+           :end-before: //!--
+           :dedent: 8
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+           :language: xml
+           :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
+           :end-before: <!--><-->

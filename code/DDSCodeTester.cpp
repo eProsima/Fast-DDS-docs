@@ -787,6 +787,17 @@ void dds_domain_examples()
             "true");
         //!--
     }
+
+    {
+        // DDS-SHM-ENFORCE-META-TRAFFIC
+        DomainParticipantQos participant_qos;
+
+        // SHM transport will listen for unicast meta-traffic
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.shm.enforce_metatraffic",
+            "unicast");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

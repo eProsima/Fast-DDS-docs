@@ -297,3 +297,37 @@ Currently there are two different exchange formats which can be selected using t
            :language: xml
            :start-after: <!-->XML-STATIC-DISCOVERY-FORMAT
            :end-before: <!--><-->
+
+.. _property_policies_shm_enforce_metatraffic:
+
+SHM transport meta-traffic enforcement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A DomainParticipant will by default configure both a :ref:`transport_udp_udp` and a :ref:`transport_sharedMemory_sharedMemory`.
+When a participant on another process in the same host is discovered, the endpoint discovery might be done using either transport.
+Avoiding Shared Memory communication for discovery traffic can save valuable resources.
+The behavior regarding this can be configured using the property ``fastdds.shm.enforce_metatraffic``.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos value
+     - Description
+     - Default
+   * - ``"none"``
+     - Use other transports for meta-traffic.
+     - ✅
+   * - ``"unicast"``
+     - Enable SHM transport unicast communications.
+     -
+   * - ``"all"``
+     - Enable SHM transport unicast and multicast communications. |br|
+       This will enable discovery between SHM only participants |br|
+       and participants having several transports.
+     -
+
+.. note::
+
+  When SHM is the only transport configured for a participant, the setting of this property is ignored, and considered to be ``"all"``.
+

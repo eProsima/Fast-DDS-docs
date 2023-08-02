@@ -789,7 +789,7 @@ void dds_domain_examples()
     }
 
     {
-        // DDS-SHM-ENFORCE-META-TRAFFIC
+        //DDS-SHM-ENFORCE-META-TRAFFIC
         DomainParticipantQos participant_qos;
 
         // SHM transport will listen for unicast meta-traffic

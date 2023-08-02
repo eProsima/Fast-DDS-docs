@@ -211,6 +211,7 @@ seqNum
 SequenceNumber
 sequencenumbers
 shm
+SHM
 simpleEDP
 sqlite
 statechart

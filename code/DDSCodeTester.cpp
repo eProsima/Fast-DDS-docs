@@ -785,6 +785,31 @@ void dds_domain_examples()
             );
         //!--
     }
+<<<<<<< HEAD
+=======
+
+    {
+        // IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT
+        DomainParticipantQos participant_qos;
+
+        // Avoid local matching of this participant's endpoints
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.ignore_local_endpoints",
+            "true");
+        //!--
+    }
+
+    {
+        //DDS-SHM-ENFORCE-META-TRAFFIC
+        DomainParticipantQos participant_qos;
+
+        // SHM transport will listen for unicast meta-traffic
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.shm.enforce_metatraffic",
+            "unicast");
+        //!--
+    }
+>>>>>>> 3484b2d (User configuration for SHM metatraffic (#535))
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

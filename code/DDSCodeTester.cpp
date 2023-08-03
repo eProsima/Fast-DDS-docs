@@ -785,19 +785,6 @@ void dds_domain_examples()
             );
         //!--
     }
-<<<<<<< HEAD
-=======
-
-    {
-        // IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT
-        DomainParticipantQos participant_qos;
-
-        // Avoid local matching of this participant's endpoints
-        participant_qos.properties().properties().emplace_back(
-            "fastdds.ignore_local_endpoints",
-            "true");
-        //!--
-    }
 
     {
         //DDS-SHM-ENFORCE-META-TRAFFIC
@@ -809,7 +796,6 @@ void dds_domain_examples()
             "unicast");
         //!--
     }
->>>>>>> 3484b2d (User configuration for SHM metatraffic (#535))
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

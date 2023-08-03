@@ -48,6 +48,7 @@
 #include <fastcdr/Cdr.h>
 
 #include <sstream>
+#include <memory>
 
 using namespace eprosima::fastdds::dds;
 
@@ -251,6 +252,33 @@ public:
         std::cout << "New data type information received" << std::endl;
     }
 
+};
+//!--
+
+// Custom Payload pool example for documentation
+class CustomPayloadPool : public eprosima::fastrtps::rtps::IPayloadPool
+{
+public:
+    CustomPayloadPool() = default;
+    ~CustomPayloadPool() = default;
+    bool get_payload(
+            unsigned int size,
+            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+    {
+        return true;
+    }
+    bool get_payload(
+            eprosima::fastrtps::rtps::SerializedPayload_t& data,
+            eprosima::fastrtps::rtps::IPayloadPool*& data_owner,
+            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+    {
+        return true;
+    }
+    bool release_payload(
+            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+    {
+        return true;
+    }
 };
 //!--
 
@@ -2518,6 +2546,24 @@ void dds_dataWriter_examples()
     }
 
     {
+        //DDS_CREATE_PAYLOAD_POOL_DATAWRITER
+        // A DataWriterQos must be provided to the creation method
+        DataWriterQos qos;
+
+        // Create PayloadPool
+        std::shared_ptr<eprosima::fastrtps::rtps::IPayloadPool> payload_pool =
+                std::dynamic_pointer_cast<eprosima::fastrtps::rtps::IPayloadPool>(std::make_shared<CustomPayloadPool>());
+
+        DataWriter* data_writer = publisher->create_datawriter(topic, qos, nullptr, StatusMask::all(), payload_pool);
+        if (nullptr == data_writer)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
         //DDS_CHANGE_DATAWRITERQOS
         // Create a DataWriter with default DataWriterQos
         DataWriter* data_writer =
@@ -3285,6 +3331,23 @@ void dds_dataReader_examples()
         DataReader* data_reader_with_profile_and_custom_listener =
                 subscriber->create_datareader_with_profile(topic, "data_reader_profile", &custom_listener);
         if (nullptr == data_reader_with_profile_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_CREATE_PAYLOAD_POOL_DATAREADER
+        // A DataReaderQos must be provided to the creation method
+        DataReaderQos qos;
+
+        // Create PayloadPool
+        std::shared_ptr<CustomPayloadPool> payload_pool = std::make_shared<CustomPayloadPool>();
+
+        DataReader* data_reader = subscriber->create_datareader(topic, qos, nullptr, StatusMask::all(), payload_pool);
+        if (nullptr == data_reader)
         {
             // Error
             return;

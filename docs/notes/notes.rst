@@ -51,6 +51,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.6.rst
 .. include:: previous_versions/v2.6.4.rst
 .. include:: previous_versions/v2.6.3.rst
 .. include:: previous_versions/v2.6.2.rst

@@ -20,10 +20,10 @@ This release includes the following **bugfixes**:
 1. Fixed long-standing reconnection issues on SHM transport.
 2. Correctly resolve alias in DDSQLFilter.
 3. Fixed partition copy in QoS.
-4. Added length checks to prevent nullptr memcpy calls.
-5. Fixed XMLParser null-derefence in parseLogConfig.
+4. Added length checks to prevent nullptr memory copy calls.
+5. Fixed XMLParser null-dereference when parsing log configuration.
 6. Fixed SHM in 32-bit architectures.
-7. Added missing cstdint include.
+7. Added missing include.
 8. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO.
 9. Fixed statistics data_count with data-sharing.
 
@@ -35,7 +35,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
-.. include:: previous_versions/v2.6.6.rst
+.. include:: previous_versions/v2.6.5.rst
 .. include:: previous_versions/v2.6.4.rst
 .. include:: previous_versions/v2.6.3.rst
 .. include:: previous_versions/v2.6.2.rst

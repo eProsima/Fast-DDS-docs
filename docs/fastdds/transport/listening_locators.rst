@@ -177,7 +177,7 @@ further configuring the :ref:`comm-transports-configuration`.
    (neither *unicast* nor *multicast*), *Fast DDS* enables one *unicast* Locator
    that will be used for peer-to-peer communication of :ref:`dds_layer_topic_topic` data.
 
-For example, it is possible to prevent *multicast* traffic adding a single *user-traffic unicast* Locator
+For example, it is possible to prevent *multicast* traffic adding a single *metatraffic unicast* Locator
 as described in :ref:`transport_disableMulticast`.
 
 Default Listening Locators always use :ref:`listening_locators_defaultPorts`.

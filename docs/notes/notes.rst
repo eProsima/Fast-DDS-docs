@@ -8,40 +8,23 @@ Version 2.6.5
 
 This release includes the following **improvements**:
 
-1. Improve behavior when ``STRICT_REALTIME`` :ref:`CMake option <cmake_options>` is not enabled.
-2. Using functors for ``for_matched_readers`` parameter.
-3. Improve auto GAPs in Data Sharing.
+1. Improve validation on PID_PROPERTY_LIST deserialization.
+2. Improved CPU usage of timed events thread.
+3. Improved performance on intraprocess + data-sharing.
+4. Explicitly register type object in ContentFilteredTopicExample.
+5. Improve installer generation with documentation version fallback.
 
 This release includes the following **bugfixes**:
 
-1. Fix RTPS StatelessWriter ACK check.
-2. Fix ``total_read_`` to be consistent with Reader's History after
-   :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>`.
-3. Add deprecation notice to ``ThroughputControllerDescriptor``.
-4. UBSan (Undefined Behavior Sanitizer) fixes.
-5. Several dependencies fixes upgrading to Ubuntu 22.04.
-6. Fix chain of trust issues with a single CA certificate.
-7. Correctly handle builtin endpoints mask.
-8. Take mutex when removing local reader in WLP.
-9. Handle ``SIGTERM`` signal in Fast DDS CLI.
-10. Fix data races in SecurityManager authentication process.
-11. Avoid creating entities within callbacks in DynamicHelloWorldExample.
-12. Remove Asio dependency from DeadlineQoSExample.
-13. Validity check for first sequence number.
-14. Include right header when building for iOS.
-15. Fix build on MSVC 19.
-16. Correctly assign multicast port to multicast initial peers.
-17. Select correct listener for
-    :cpp:func:`on_requested_deadline_missed()<eprosima::fastdds::dds::DataReaderListener::on_requested_deadline_missed>`.
-18. Forward compatibility with boost inter-process 1.74+.
-19. Fix missing includes when building with GCC 13.
-20. Honor
-    :cpp:var:`allow_unauthenticated_participants<eprosima::fastrtps::rtps::security::ParticipantSecurityAttributes::allow_unauthenticated_participants>`
-    flag.
-21. Capture all Fast CDR exceptions.
-22. Fix example to delete Topic after deleting the corresponding Endpoint.
-23. Protect against uncaught exception in SHM segment creation.
-24. Initial acknack backoff.
+1. Fixed long-standing reconnection issues on SHM transport.
+6. Correctly resolve alias in DDSQLFilter.
+2. Fixed partition copy in QoS.
+3. Added length checks to prevent nullptr memcpy calls.
+5. Fixed XMLParser null-derefence in parseLogConfig.
+7. Fixed SHM in 32-bit architectures.
+8. Added missing cstdint include.
+9. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO.
+10. Fixed statistics data_count with data-sharing.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

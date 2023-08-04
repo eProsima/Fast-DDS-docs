@@ -4255,6 +4255,21 @@
 </participant>
 <!--><-->
 
+<!-->XML-SHM-ENFORCE-META-TRAFFIC<-->
+<participant profile_name="participant_xml_conf_shm_enforce_metatraffic_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <property>
+                    <name>fastdds.shm.enforce_metatraffic</name>
+                    <value>unicast</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!--XML_PROFILES_SECTION-->
 
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->

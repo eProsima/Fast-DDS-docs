@@ -13,18 +13,19 @@ This release includes the following **improvements**:
 3. Improved performance on intraprocess + data-sharing.
 4. Explicitly register type object in ContentFilteredTopicExample.
 5. Improve installer generation with documentation version fallback.
+6. Improve content filter expression parameters checks and verbosity.
 
 This release includes the following **bugfixes**:
 
 1. Fixed long-standing reconnection issues on SHM transport.
-6. Correctly resolve alias in DDSQLFilter.
-2. Fixed partition copy in QoS.
-3. Added length checks to prevent nullptr memcpy calls.
+2. Correctly resolve alias in DDSQLFilter.
+3. Fixed partition copy in QoS.
+4. Added length checks to prevent nullptr memcpy calls.
 5. Fixed XMLParser null-derefence in parseLogConfig.
-7. Fixed SHM in 32-bit architectures.
-8. Added missing cstdint include.
-9. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO.
-10. Fixed statistics data_count with data-sharing.
+6. Fixed SHM in 32-bit architectures.
+7. Added missing cstdint include.
+8. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO.
+9. Fixed statistics data_count with data-sharing.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

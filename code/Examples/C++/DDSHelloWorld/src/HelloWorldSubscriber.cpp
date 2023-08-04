@@ -183,12 +183,12 @@ int main(
         char** argv)
 {
     std::cout << "Starting subscriber." << std::endl;
-    int samples = 10;
+    uint32_t samples = 10;
 
     HelloWorldSubscriber* mysub = new HelloWorldSubscriber();
     if(mysub->init())
     {
-        mysub->run(static_cast<uint32_t>(samples));
+        mysub->run(samples);
     }
 
     delete mysub;

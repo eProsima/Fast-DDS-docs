@@ -189,12 +189,12 @@ int main(
         char** argv)
 {
     std::cout << "Starting publisher." << std::endl;
-    int samples = 10;
+    uint32_t samples = 10;
 
     HelloWorldPublisher* mypub = new HelloWorldPublisher();
     if(mypub->init())
     {
-        mypub->run(static_cast<uint32_t>(samples));
+        mypub->run(samples);
     }
 
     delete mypub;

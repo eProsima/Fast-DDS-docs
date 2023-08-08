@@ -226,7 +226,7 @@ For example:
     {
         bitfield<3> a;
         bitfield<10> b;
-        bitfield<12, int> c;
+        bitfield<12, long> c;
     };
 
 The type :class:`MyBitset` will store a total of 25 bits (3 + 10 + 12) and will require 32 bits in memory
@@ -246,7 +246,7 @@ The resulting C++ code will be similar to:
 Internally, it is stored as a ``std::bitset``.
 For each bitfield, :func:`get` and :func:`set` member functions are generated with the smaller possible primitive
 unsigned type to access it.
-In the case of bitfield 'c', the user has established that this accessing type will be ``int``, so the generated code
+In the case of bitfield 'c', the user has established that this accessing type will be ``long``, so the generated code
 uses ``int32_t`` instead of automatically use ``uint16_t``.
 
 Bitsets can inherit from other bitsets, extending their member set.

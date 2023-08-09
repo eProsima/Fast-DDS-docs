@@ -1,0 +1,24 @@
+Version 2.11.1
+==============
+
+This release includes the following **improvements**:
+
+    1. Correct CONTRIBUTING.md typo
+    2. Improve validation on PID_PROPERTY_LIST deserialization
+    3. Apply eProsima brand style to Fast DDS repository
+    4. Fix spelling mistake: SUBSTRACTION to SUBTRACTION
+
+This release includes the following **fixes**:
+
+    1. Fixed long-standing reconnection issue on SHM transport
+    2. Added missing include
+    3. Fixed Boost handle usage regression
+    4. Fix StatelessWriter locators filtering
+    5. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO
+    6. Explicitly register type object in ContentFilteredTopicExample
+    7. Properly handle zero-sized payloads on dynamic memory payload pools
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

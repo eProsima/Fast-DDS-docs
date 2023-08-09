@@ -5,7 +5,7 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.11.1
+Version 2.11.2
 ==============
 
 This release includes the following **improvements**:
@@ -17,8 +17,8 @@ This release includes the following **improvements**:
 This release includes the following **fixes**:
 
     1. Remove Mutex from TimedEventImpl
-    2. Replace uint64_t by 8 in alignas specifier
-    3. Fix XMLParser null-derefence in parseLogConfig
+    2. Replace uint64_t by 8 in ``alignas`` specifier
+    3. Fix XMLParser null-dereference in ``parseLogConfig``
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

@@ -11,7 +11,7 @@ Version 2.11.2
 This release includes the following **improvements**:
 
     1. Improve Shared Memory resilience to crashing participants
-    2. User configuration for Shared Memory metatraffic
+    2. User configuration for :ref:`Shared Memory metatraffic <property_policies_shm_enforce_metatraffic>`
     3. Performance improvements on intraprocess and data-sharing
 
 This release includes the following **fixes**:

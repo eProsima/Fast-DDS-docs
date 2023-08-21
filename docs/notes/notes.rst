@@ -5,25 +5,20 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.11.1
+Version 2.11.2
 ==============
 
 This release includes the following **improvements**:
 
-    1. Correct CONTRIBUTING.md typo
-    2. Improve validation on PID_PROPERTY_LIST deserialization
-    3. Apply eProsima brand style to Fast DDS repository
-    4. Fix spelling mistake: SUBSTRACTION to SUBTRACTION
+1. Improve Shared Memory resilience to crashing participants
+2. User configuration for :ref:`Shared Memory metatraffic <property_policies_shm_enforce_metatraffic>`
+3. Performance improvements on intraprocess and data-sharing
 
 This release includes the following **fixes**:
 
-    1. Fixed long-standing reconnection issue on SHM transport
-    2. Added missing include
-    3. Fixed Boost handle usage regression
-    4. Fix StatelessWriter locators filtering
-    5. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO
-    6. Explicitly register type object in ContentFilteredTopicExample
-    7. Properly handle zero-sized payloads on dynamic memory payload pools
+1. Remove Mutex from TimedEventImpl
+2. Replace uint64_t by 8 in ``alignas`` specifier
+3. Fix XMLParser null-dereference in ``parseLogConfig``
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -33,7 +28,9 @@ This release includes the following **fixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.11.1.rst
 .. include:: previous_versions/v2.11.0.rst
+.. include:: previous_versions/v2.10.2.rst
 .. include:: previous_versions/v2.10.1.rst
 .. include:: previous_versions/v2.10.0.rst
 .. include:: previous_versions/v2.9.2.rst
@@ -45,6 +42,7 @@ Previous versions
 .. include:: previous_versions/v2.7.2.rst
 .. include:: previous_versions/v2.7.1.rst
 .. include:: previous_versions/v2.7.0.rst
+.. include:: previous_versions/v2.6.6.rst
 .. include:: previous_versions/v2.6.5.rst
 .. include:: previous_versions/v2.6.4.rst
 .. include:: previous_versions/v2.6.3.rst

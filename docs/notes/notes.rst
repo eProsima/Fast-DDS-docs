@@ -11,45 +11,45 @@ Version 2.10.2
 This release includes the following **improvements**:
 
 1. Fix Data-Sharing delivery when data_count is zero
-1. Improve performance of intraprocess plus data-sharing
-1. Improve content filter expression parameters checks and verbosity
-1. Improve validation on PID_PROPERTY_LIST deserialization
-1. Participant ignore local endpoints
-1. Pick smallest available participant ID for new participants
-1. Improve endpoint QoS XML tags
-1. Forward compatibility with boost interprocess 1.74+
-1. Cap Thread Sanitizer memory usage to prevent runner shutdown
-1. Allow participant XML profile with no <rtps> tag
-1. Add unsupported note in API documentation to new ignore DomainParticipantListener callbacks
-1. Add documentation version fallback
+2. Improve performance of intraprocess plus data-sharing
+3. Improve content filter expression parameters checks and verbosity
+4. Improve validation on PID_PROPERTY_LIST deserialization
+5. Participant ignore local endpoints
+6. Pick smallest available participant ID for new participants
+7. Improve endpoint QoS XML tags
+8. Forward compatibility with boost interprocess 1.74+
+9. Cap Thread Sanitizer memory usage to prevent runner shutdown
+10. Allow participant XML profile with no <rtps> tag
+11. Add unsupported note in API documentation to new ignore DomainParticipantListener callbacks
+12. Add documentation version fallback
 
 This release includes the following **bugfixes**:
 
 1. Fixed long-standing reconnection issue on SHM transport
-1. Fix null dereference when fuzzing
-1. Fix segfault when creating two participant with same fixed id
-1. Fix UBSan (Undefined Behavior Sanitizer) issues
-1. Fix listener selection for on_requested_deadline_missed
-1. Fix build on msvc 19.36.32528
-1. Fix XML schema to set Transport descriptor kind as NOT mandatory
-1. Fix missing includes
-1. Fix overhead time unit
-1. Fix request reply example spelling typo
-1. Fix topic deletion after endpoint in examples
-1. Fix Data-Sharing delivery when data_count is zero
-1. Wait for log background thread initialization on the first queued entry
-1. Fix alias resolve in DDSSQLFilter
-1. Fix partition copy in QoS
-1. Fix StatelessWriter locators filtering
-1. Fix XMLParser null-dereference in parseLogConfig
-1. Fix encapsulation format in WLP
-1. Replace uint64_t by 8 in alignas specifier
-1. Capture all Fast CDR exceptions
-1. Security module: Honor allow_unauthenticated_participants flag
-1. Explicitly register type object in ContentFilteredTopicExample
-1. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO
-1. Fix API Fast DDS v2.10.0 API break calling correctly on_participant_discovery callbacks
-1. Remove mutex from TimedEventImpl
+2. Fix null dereference when fuzzing
+3. Fix segfault when creating two participant with same fixed id
+4. Fix UBSan (Undefined Behavior Sanitizer) issues
+5. Fix listener selection for on_requested_deadline_missed
+6. Fix build on msvc 19.36.32528
+7. Fix XML schema to set Transport descriptor kind as NOT mandatory
+8. Fix missing includes
+9. Fix overhead time unit
+10. Fix request reply example spelling typo
+11. Fix topic deletion after endpoint in examples
+12. Fix Data-Sharing delivery when data_count is zero
+13. Wait for log background thread initialization on the first queued entry
+14. Fix alias resolve in DDSSQLFilter
+15. Fix partition copy in QoS
+16. Fix StatelessWriter locators filtering
+17. Fix XMLParser null-dereference in parseLogConfig
+18. Fix encapsulation format in WLP
+19. Replace uint64_t by 8 in alignas specifier
+20. Capture all Fast CDR exceptions
+21. Security module: Honor allow_unauthenticated_participants flag
+22. Explicitly register type object in ContentFilteredTopicExample
+23. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO
+24. Fix API Fast DDS v2.10.0 API break calling correctly on_participant_discovery callbacks
+25. Remove mutex from TimedEventImpl
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

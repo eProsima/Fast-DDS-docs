@@ -9,6 +9,7 @@ acknack
 acknowledgement
 acks
 AES
+alignas
 allocator
 ament
 ami
@@ -120,6 +121,7 @@ ifreq
 ignoreParticipantFlags
 initializations
 interoperability
+interprocess
 intra
 Intra
 IPv
@@ -144,6 +146,7 @@ md
 metatraffic
 middleware
 modularity
+msvc
 multicast
 multicasting
 multithreading
@@ -166,6 +169,7 @@ OpenSSL
 optionparser
 OSS
 overcomplicated
+parseLogConfig
 parseXMLBitsetDynamicType
 persistency
 PKI

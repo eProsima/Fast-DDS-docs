@@ -1,0 +1,23 @@
+Version 2.10.1
+^^^^^^^^^^^^^^
+
+This release includes the following **feature** in an ABI compatible way:
+
+1. :cpp:func:`ignore_participant()<eprosima::fastdds::dds::DomainParticipant::ignore_participant>` implementation
+
+This release includes the following **bugfixes**:
+
+1. Fix repeated matched event notification.
+2. Fix regression introduced by #3396.
+3. Initial acknack backoff.
+4. Fix regular expression in XML schema.
+5. Correctly assign multicast port to multicast initial peers.
+
+This release includes the following **CI improvements**:
+
+1. Update runner and GCC version for Thread Sanitizer job.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

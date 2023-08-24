@@ -254,7 +254,7 @@ However, it is possible to connect server isolated networks very much as physica
 can be connected through routers:
 
     * :ref:`discovery_server_partitioning_option1`:
-      Connecting the clients to several servers, so that the clients belong several networks.
+      Connecting the clients to several servers, so that the clients belong to several networks.
     * :ref:`discovery_server_partitioning_option2`:
       Connecting one server to another, so that the networks are linked together.
     * :ref:`discovery_server_partitioning_option3`:
@@ -339,7 +339,7 @@ Option 2
 ^^^^^^^^
 
 Connect one server to the other.
-This means configuring one of the servers to act as client of the other.
+This means configuring one of the servers to act as a client of the other.
 
 Consider two servers, each one managing an isolated network:
 
@@ -350,7 +350,7 @@ Consider two servers, each one managing an isolated network:
     A, 75.63.2D.73.76.72.63.6C.6E.74.2D.31, "192.168.10.60:56543"
     B, 75.63.2D.73.76.72.63.6C.6E.74.2D.32, "192.168.10.57:56542"
 
-In order to communicate both networks we can set server A to act as client of server B:
+In order to communicate both networks we can set server A to act as  a client of server B:
 
 +--------------------------------------------------------+
 | **C++**                                                |

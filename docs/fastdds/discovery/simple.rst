@@ -80,8 +80,8 @@ Simple EDP Attributes
 | Name                        | Description                                                    | Type        | Default |
 +=============================+================================================================+=============+=========+
 | SIMPLE EDP                  | It defines the use of the SIMPLE protocol as a discovery |br|  | ``bool``    | true    |
-|                             | protocol for EDP phase. A DomainParticipant may create |br|    |             |         |
-|                             | DataWriters, DataReaders, both or neither.                     |             |         |
+|                             | protocol for the EDP phase. A DomainParticipant may |br|       |             |         |
+|                             | create DataWriters, DataReaders, both or neither.              |             |         |
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
 | Publication writer and |br| | It is intended for DomainParticipants that implement only |br| | ``bool``    | true    |
 | Subscription reader         | one or more DataWriters, i.e. do not implement DataReaders.    |             |         |
@@ -119,7 +119,7 @@ Initial peers
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), each
 |RTPSParticipant-api|
 must listen for incoming Participant Discovery Protocol (PDP) discovery metatraffic in two different ports, one linked
-with a multicast address, and another one linked to a unicast address.
+to a multicast address and another one linked to a unicast address.
 *Fast DDS* allows for the configuration of an initial peers list which contains one or more such IP-port address
 pairs corresponding to remote DomainParticipants PDP discovery listening resources, so that the local
 DomainParticipant will not only send its PDP traffic to the default multicast address-port specified by its domain,

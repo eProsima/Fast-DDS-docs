@@ -45,7 +45,7 @@ The possible values are:
 +---------------------+---------------------+--------------------------------------------------------------------------+
 | Discovery Mechanism | Possible values     | Description                                                              |
 +=====================+=====================+==========================================================================+
-| Simple              | |SIMPLE|            | Simple discovery protocol as specified in                                |
+| Simple              | |SIMPLE|            | Simple discovery protocol as specified in the                            |
 |                     |                     | `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_.           |
 +---------------------+---------------------+--------------------------------------------------------------------------+
 | Static              | |STATIC|            | SPDP with manual EDP specified in XML files.                             |
@@ -66,7 +66,7 @@ The possible values are:
 |                     |                     | This type of sever makes the Discovery Server architecture |br|          |
 |                     |                     | resilient to server destruction.                                         |
 +---------------------+---------------------+--------------------------------------------------------------------------+
-| Manual              | |NONE|              | Disables PDP phase, therefore the is no EDP phase. |br|                  |
+| Manual              | |NONE|              | Disables PDP phase, therefore there is no EDP phase. |br|                |
 |                     |                     | All matching must be done manually through the |br|                      |
 |                     |                     | ``addReaderLocator``, ``addReaderProxy``, ``addWriterProxy`` |br|        |
 |                     |                     | RTPS layer methods.                                                      |

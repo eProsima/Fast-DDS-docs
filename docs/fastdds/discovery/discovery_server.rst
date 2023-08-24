@@ -40,7 +40,7 @@ In this architecture there are several key concepts to understand:
   |DataWriters| and |DataReaders|.
 
 - Discovery Server DomainParticipants may be *clients* or *servers*.
-  The only difference between them is on how they handle discovery traffic.
+  The only difference between them is how they handle discovery traffic.
   The user traffic, that is, the traffic among the DataWriters and DataReaders they create, is role-independent.
 
 - All *server* and *client* discovery information will be shared with linked *clients*.
@@ -66,7 +66,7 @@ In this architecture there are several key concepts to understand:
 - A |CLIENT| is a participant that connects to one or more *servers* from which it receives only the discovery
   information they require to establish communication with matching endpoints.
 
-- *Clients* require a beforehand knowledge of the *servers* to which they want to link.
+- *Clients* require prior knowledge of the *servers* to which they want to link.
   Basically it is reduced to the *servers* identity (henceforth called |GuidPrefix_t-api|) and a list of locators
   where the *servers* are listening.
   These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
@@ -88,7 +88,7 @@ In this architecture there are several key concepts to understand:
     which it is connected.
     Any DomainParticipant discovered by the *Server* with no endpoints will not be known by the |SUPER_CLIENT|.
 
-- *Servers* do not require any beforehand knowledge of their *clients*, but their |GuidPrefix_t-api| and locator list
+- *Servers* do not require any prior knowledge of their *clients*, but their |GuidPrefix_t-api| and locator list
   (where they are listening) must match the one provided to the *clients*.
   *Clients* send discovery messages to the *servers* at regular intervals (ping period) until they receive message
   reception acknowledgement.

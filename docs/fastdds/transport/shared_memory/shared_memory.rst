@@ -40,9 +40,9 @@ This is mainly due to the following reasons:
 Definition of Concepts
 ----------------------
 
-This section describes basic concepts that will help understanding how the Shared Memory Transport works in order
+This section describes basic concepts to help explain how the Shared Memory Transport works in order
 to deliver the data messages to the appropriate :ref:`dds_layer_domainParticipant`.
-The purpose is not to be a exhaustive reference of the implementation, but to be a comprehensive explanation
+The purpose is not to be an exhaustive reference of the implementation, but to be a comprehensive explanation
 of each concept, so that users can configure the transport to their needs.
 
 Many of the descriptions in this section will be made following the example use case depicted in the following figure,
@@ -74,7 +74,7 @@ shared memory mechanisms.
     can lead to communication problems, as processes run by non-privileged users may
     not be able to write into the memory segment.
 
-Every segment has a *segmentId*, a 16 character UUID that uniquely identifies each shared memory segment.
+Every segment has a *segmentId*, a 16-character UUID that uniquely identifies each shared memory segment.
 These *segmentIds* are used to identify and access the segment of each DomainParticipant.
 
 .. _transport_sharedMemory_concepts_buffer:

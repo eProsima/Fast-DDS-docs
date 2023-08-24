@@ -37,12 +37,12 @@ In this scenario, several limitations have to be taken into account:
 
    *eProsima Fast DDS* defines a conservative default message size of 64kB,
    which roughly corresponds to TCP and UDP payload sizes.
-   If the topic data is bigger, it will automatically be be fragmented into several transport packets.
+   If the topic data is bigger, it will automatically be fragmented into several transport packets.
 
 .. warning::
 
    The loss of a fragment means the loss of the entire message.
-   This has most impact on |BEST_EFFORT_RELIABILITY_QOS-api| mode, where the message loss
+   This has the most impact on |BEST_EFFORT_RELIABILITY_QOS-api| mode, where the message loss
    probability increases with the number of fragments
 
 
@@ -167,7 +167,7 @@ The settings for a specific network adapter can be viewed using the one of the f
         ifconfig ${interface}
 
 This will display the configuration of the adapter, and among the parameters the ``txqueuelen``.
-This parameter can be a value between a 1000 and 20000.
+This parameter can be a value between 1000 and 20000.
 
 .. important::
 

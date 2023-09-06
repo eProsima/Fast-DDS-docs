@@ -259,6 +259,7 @@ public:
 class CustomPayloadPool : public eprosima::fastrtps::rtps::IPayloadPool
 {
 public:
+
     CustomPayloadPool() = default;
     ~CustomPayloadPool() = default;
     bool get_payload(
@@ -267,6 +268,7 @@ public:
     {
         return true;
     }
+
     bool get_payload(
             eprosima::fastrtps::rtps::SerializedPayload_t& data,
             eprosima::fastrtps::rtps::IPayloadPool*& data_owner,
@@ -274,11 +276,13 @@ public:
     {
         return true;
     }
+
     bool release_payload(
             eprosima::fastrtps::rtps::CacheChange_t& cache_change)
     {
         return true;
     }
+
 };
 //!--
 
@@ -1946,8 +1950,7 @@ void dds_custom_filters_examples()
              * }
              */
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload.data), payload.length);
-            eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN,
-                    eprosima::fastcdr::Cdr::DDS_CDR);
+            eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN);
             // Deserialize encapsulation.
             deser.read_encapsulation();
             int index = 0;

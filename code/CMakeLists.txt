@@ -61,7 +61,7 @@ target_link_libraries(doctest fastrtps)
 # DDSCodeTester utilizes Fast DDS API
 add_executable(dds-doctest DDSCodeTester.cpp FastDDSGenCodeTester.cpp)
 target_include_directories(dds-doctest PRIVATE ${FAST_INCLUDE_DIR})
-target_link_libraries(dds-doctest fastrtps)
+target_link_libraries(dds-doctest fastrtps fastcdr)
 
 ####################################################################################################
 # Add tests

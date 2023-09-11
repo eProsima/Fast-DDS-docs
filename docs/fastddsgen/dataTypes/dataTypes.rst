@@ -357,6 +357,7 @@ Including other IDL files
 Other IDL files can be included in addition to the current IDL file.
 *Fast DDS-Gen* uses a C/C++ preprocessor for this purpose, and ``#include`` directive can be used to include an IDL
 file.
+Preprocessor directives guarding against multiple inclusion of the same IDL file are also advisable.
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
    :language: c++
@@ -366,7 +367,6 @@ file.
 If *Fast DDS-Gen* does not find a C/C++ preprocessor in default system paths, the preprocessor path can be specified
 using parameter ``-ppPath``.
 The parameter ``-ppDisable`` can be used to disable the usage of the C/C++ preprocessor.
-
 
 Annotations
 --------------

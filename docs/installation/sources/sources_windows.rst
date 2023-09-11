@@ -204,14 +204,14 @@ new PKCS#11 engine following the
 replacing the binaries path with the proper ones. For example, before any section in the
 configuration file we introduce:
 
-.. code-block:: idl
+.. code-block:: cfg
 
     openssl_conf = openssl_init
 
 at the end of the file we include the engine devoted sections. Note to use POSIX path
 separator instead of the windows one.
 
-.. code-block:: idl
+.. code-block:: cfg
 
     [openssl_init]
         engines = engine_section

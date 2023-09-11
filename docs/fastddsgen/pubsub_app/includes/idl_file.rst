@@ -8,7 +8,7 @@ presented in :ref:`dds_layer_definition_data_types`.
 In the preferred text editor, create the *HelloWorld.idl* file with the following content and save it in the
 *FastDDSGenHelloWorld* directory.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     // HelloWorld.idl
     struct HelloWorld
@@ -24,4 +24,3 @@ For this, use the *Fast DDS-Gen* code generation tool, which can do two differen
 
 The second option is the one used to create this publish/subscribe application, while the first option is applied
 in this other tutorial: :ref:`writing_pubsub_app`.
-

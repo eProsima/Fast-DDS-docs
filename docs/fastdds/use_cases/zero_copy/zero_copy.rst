@@ -51,7 +51,7 @@ To enable Zero-Copy perform the following steps:
 1.  Define a plain and bounded type in an IDL file and generate the corresponding source code for further processing
     with the |Fast DDS-Gen| tool.
 
-    .. code-block:: idl
+    .. code-block:: omg-idl
 
         struct LoanableHelloWorld
         {

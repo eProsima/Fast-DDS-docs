@@ -146,7 +146,7 @@ Furthermore, :func:`set` and :func:`get` member functions are created to access 
 
 The following IDL structure:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct Structure
     {
@@ -164,7 +164,7 @@ Would be converted to:
 
 Structures can inherit from other structures, extending their member set.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct ParentStruct
     {
@@ -189,7 +189,7 @@ Optional members
 A member of a structure can be optional.
 This is achieved by writing the ``@optional`` annotation before the member.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct StructWithOptionalMember
     {
@@ -228,7 +228,7 @@ There are three extensibility kinds: *final*, *appendable* and *mutable*.
 * *MUTABLE* extensibility indicates that two types may differ from one another in the additional, removal, and/or
   transposition of members while remaining assignable.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     @extensibility(FINAL)
     struct FinalStruct
@@ -262,7 +262,7 @@ An IDL union type is mapped as a C++ class with member functions to access the u
 
 The following IDL union:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     union Union switch(long)
     {
@@ -290,7 +290,7 @@ Each member is defined as *bitfield* and eases the access to a part of the bitse
 
 For example:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     bitset MyBitset
     {
@@ -321,7 +321,7 @@ uses ``int32_t`` instead of automatically use ``uint16_t``.
 
 Bitsets can inherit from other bitsets, extending their member set.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     bitset ParentBitset
     {
@@ -351,7 +351,7 @@ An IDL enumeration type is mapped directly to the corresponding C++11 enumeratio
 
 The following IDL enumeration:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     enum Enumeration
     {
@@ -375,7 +375,7 @@ It allows defining bit masks based on their position.
 
 The following IDL bitmask:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     @bit_bound(8)
     bitmask MyBitMask
@@ -407,7 +407,7 @@ In order to use keyed topics, the user should define some key members inside the
 This is achieved by writing the ``@key`` annotation before the members of the structure that are used as keys.
 For example in the following IDL file the *id* and *type* field would be the keys:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct MyType
     {
@@ -445,7 +445,7 @@ The application allows the user to define and use their own annotations as defin
 `OMG IDL 4.2 specification <https://www.omg.org/spec/IDL/4.2/>`_.
 User annotations will be passed to TypeObject generated code if the ``-typeobject`` argument was used.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     @annotation MyAnnotation
     {
@@ -524,7 +524,7 @@ Forward declaration
 *Fast DDS-Gen* supports forward declarations.
 This allows declaring inter-dependant structures, unions, etc.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct ForwardStruct;
 
@@ -577,7 +577,7 @@ There are two ways to write IDL comments:
 Please refer to the `IDL 4.2 specification <https://www.omg.org/spec/IDL/4.2/PDF>`_ (*Section 7.2 Lexical Conventions*)
 for more information on IDL conventions.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     /* MyStruct definition */
     struct MyStruc

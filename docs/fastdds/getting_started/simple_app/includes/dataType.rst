@@ -22,7 +22,7 @@ In the workspace directory, execute the following commands:
 This creates the HelloWorld.idl file in the `src` directory.
 Open the file in a text editor and copy and paste the following snippet of code.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct HelloWorld
     {

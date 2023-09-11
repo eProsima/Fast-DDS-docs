@@ -76,7 +76,8 @@ Where the option choices are:
    * - -extrastg <template> <output>
      - Specifies a custom template used for generating source code. |br|
        This option expects the location of the template and the location of the file where source code output will be
-       stored.
+       stored. |br|
+       A custom template example can be found in this `link <https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/master/resources/Custom.stg>`_
    * - -typeobject
      - Generates `TypeObject` files for the IDL provided and modifies MyType constructor to |br|
        register the TypeObject representation into the factory.

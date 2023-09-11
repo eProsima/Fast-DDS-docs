@@ -248,6 +248,11 @@ There are three extensibility kinds: *final*, *appendable* and *mutable*.
         octet octet_opt;
     };
 
+.. note::
+
+    XCDRv1 encoding algorithm is not able to manage corretly the deserialization of an appendable structure when it is
+    used as a member of another one.
+
 Unions
 ^^^^^^
 

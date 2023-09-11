@@ -74,8 +74,9 @@ Where the option choices are:
    * - -ppPath
      - Specifies the preprocessor path.
    * - -extrastg <template> <output>
-     - Specifies a custom template.
-       Template location must be in classpath.
+     - Specifies a custom template used for generating source code. |br|
+       This option expects the location of the template and the location of the file where source code output will be
+       stored.
    * - -typeobject
      - Generates `TypeObject` files for the IDL provided and modifies MyType constructor to |br|
        register the TypeObject representation into the factory.
@@ -90,13 +91,3 @@ Where the option choices are:
      - Enables Case Sensitivity
 
 Please refer to :ref:`dynamic-types` for more information on TypeObject representation.
-
-.. note::
-
-    In order to use custom templates, it is recommended to use the following command:
-
-    .. code-block:: bash
-
-        java -cp <template_path>;<path to fastddsgen.jar> com.eprosima.fastdds.fastddsgen -extrastg <template> <output> <idl file>
-
-    If the ``jar`` file is directly used, the manifest overrides the classpath set by the user.

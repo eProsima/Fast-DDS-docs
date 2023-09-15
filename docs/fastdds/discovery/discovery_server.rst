@@ -79,8 +79,14 @@ In this architecture there are several key concepts to understand:
     since several *servers* can be hosted in the same machine, thus having the same IP, and also because multicast
     addresses are acceptable addresses.
 
-- A |SUPER_CLIENT| is a *client* that receives all the discovery information known by the *server*, in opposition to
+- A |SUPER_CLIENT| is a *client* that receives the discovery information known by the *server*, in opposition to
   *clients*, which only receive the information they need.
+
+  .. note::
+
+    A |SUPER_CLIENT| does not behave as a *Server* as it only receives the discovery information through the *Server* to
+    which it is connected.
+    Any DomainParticipant discovered by the *Server* with no endpoints will not be known by the |SUPER_CLIENT|.
 
 - *Servers* do not require any beforehand knowledge of their *clients*, but their |GuidPrefix_t-api| and locator list
   (where they are listening) must match the one provided to the *clients*.

@@ -131,7 +131,14 @@ Dynamic content by leveraging environment variables
 
 For deployment scenarios that require part of the XML content to be dynamically generated, Fast DDS supports using
 environment variables on the text content of any XML tag.
-The format for environment variables expansion is ``${ENV_VAR_NAME}``.
+The format for environment variables expansion is ``${ENV_VAR_NAME}``, where ``ENV_VAR_NAME`` follows the restrictions
+from `IEEE 1003.1 <https://pubs.opengroup.org/onlinepubs/000095399/basedefs/xbd_chap08.html>`_:
+
+.. note::
+
+    Environment variable names ... consist solely of uppercase letters, digits, and the '_' (underscore) from the
+    characters defined in Portable Character Set and do not begin with a digit.
+
 The expansion will take place when the XML file is loaded, so changing the value of an environment variable afterwards
 will have no effect.
 

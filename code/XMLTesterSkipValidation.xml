@@ -85,6 +85,7 @@
     <profiles>
         <participant profile_name="env_var_parsing_example">
             <rtps>
+                <name>This is app '${MY_APP_NAME}' running on host '${MY_HOST_NAME}'</name>
                 <builtin>
                     <initialPeersList>
                         <locator>

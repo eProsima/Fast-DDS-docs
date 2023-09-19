@@ -139,11 +139,14 @@ from `IEEE 1003.1 <https://pubs.opengroup.org/onlinepubs/000095399/basedefs/xbd_
     Environment variable names ... consist solely of uppercase letters, digits, and the '_' (underscore) from the
     characters defined in Portable Character Set and do not begin with a digit.
 
+More than one environment variable can be used, and they can be mixed with literal text.
+
 The expansion will take place when the XML file is loaded, so changing the value of an environment variable afterwards
 will have no effect.
 
 The following is an example of an XML allowing a participant to exclusively communicate with the participants on a
 fixed IP address, taken from ``REMOTE_IP_ADDRESS`` environment variable.
+It also gives the participant a name that mixes literal text with the content from two environment variables.
 
 .. literalinclude:: /../code/XMLTesterSkipValidation.xml
     :language: xml

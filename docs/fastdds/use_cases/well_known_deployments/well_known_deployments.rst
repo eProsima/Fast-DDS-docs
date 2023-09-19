@@ -36,7 +36,7 @@ This reduces the amount of meta traffic if not all the DomainParticipants
 need to be aware of all the rest of the remote participants present in the network.
 
 Use-case :ref:`use-case-fast-rtps-over-wifi` provides a detailed explanation on how to configure *Fast DDS* for such
-case.
+cases.
 
 .. _wide_deployments_static_edp:
 

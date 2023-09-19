@@ -196,7 +196,7 @@ This is achieved by writing the ``@optional`` annotation before the member.
         @optional octet octet_opt;
     };
 
-An optional member is converted into a templatized class ``eprosima::fastcdr::optional<T>``, where ``T`` is the member's
+An optional member is converted into a template class ``eprosima::fastcdr::optional<T>``, where ``T`` is the member's
 type.
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
@@ -204,8 +204,8 @@ type.
    :start-after: // STRUCTURE_WITH_OPTIONAL
    :end-before: //!
 
-Before reading the value of the optional member, it should be checked the optional contains a value using ``has_value()``
-function.
+Before reading the value of the optional member, it should be checked the optional contains a value using
+``has_value()`` function.
 Accessing a *null* optional throws a ``eprosima::fastcdr::exception::BadOptionalAccessException`` exception.
 
 .. literalinclude:: /../code/FastDDSGenCodeTester.cpp
@@ -221,7 +221,7 @@ In order to support evolving types without breaking interoperability, the concep
 *Fast DDS-Gen*.
 There are three extensibility kinds: *final*, *appendable* and *mutable*.
 
-* *FINAL* extensibility indicates that the type is strictly defined. It is not possible to add members while amintaining
+* *FINAL* extensibility indicates that the type is strictly defined. It is not possible to add members while maintaining
   type assignability.
 * *APPENDABLE* extensibility indicates that two types, where one contains all of the members of the other plus
   additional members appended to the end, may remain assignable.
@@ -250,7 +250,7 @@ There are three extensibility kinds: *final*, *appendable* and *mutable*.
 
 .. note::
 
-    XCDRv1 encoding algorithm is not able to manage corretly the deserialization of an appendable structure when it is
+    XCDRv1 encoding algorithm is not able to manage correctly the deserialization of an appendable structure when it is
     used as a member of another one.
 
 Unions

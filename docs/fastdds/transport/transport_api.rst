@@ -182,11 +182,11 @@ In TCP, the port of the locator is divided into a physical and a logical port.
 * The *physical port* is the port used by the network device, the real port that the operating system understands.
   It is stored in the two least significant bytes of the member |Locator_t::port-api|.
 * The *logical port* is the RTPS port.
-  It is used by the RTPS applications to perform communications.
+  It is used by the RTPS protocol to distinguish different entities.
   It is stored in the two most significant bytes of the member |Locator_t::port-api|.
 
-In TCP this distinction allows having only one opened port for external communication, while having multiple
-applications with different ports in the same host.
+In TCP, this distinction allows for several DDS applications using different RTPS ports (*logical ports*) to share the
+same *physical port*, thus only requiring for a single port to be opened for all communications.
 In UDP there is only the *physical port*, which is also the RTPS port, and is stored in the two least significant bytes
 of the member |Locator_t::port-api|.
 

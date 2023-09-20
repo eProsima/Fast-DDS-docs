@@ -193,43 +193,30 @@ of the member |Locator_t::port-api|.
 The locator address, represented in 16 bytes, is managed differently depending on whether the protocol used is IPv4 or
 IPv6.
 
-* The IPv6 address uses the 16 available Bytes to represent an unique and global address.
-* The IPv4 address splits those 16 Bytes in the following three sections, ordered from less to greatest significant:
+* The IPv6 address uses the 16 available bytes to represent a unique and global address.
+* The IPv4 address splits those 16 bytes in the following three sections, ordered from least to greatest significance:
 
-  - 4 Bytes LAN IP: UDP and TCP local subnet identification.
-  - 4 Bytes WAN IP: TCP only public IP.
-  - 16 Bytes unique LAN identifier: TCP only identifier for the TCP connection.
+  - 4 bytes LAN IP: Local subnet identification (UDP and TCP).
+  - 4 bytes WAN IP: Public IP (TCP only).
+  - 8 bytes unused.
 
 .. code-block:: idl
 
-    TODO Edu choose which representation fits better in the documentation
-    +---------------------------------------------------+       +-----------------------------------------------+
-    |                Locator IPv6 address               | 16    |              Locator IPv4 address             | 16
-    +---------------------------------------------------+       +-----------------------------------------------+
-    | Address (2001:0000:130F:0000:0000:09C0:876A:130B) | 16    | LAN address (192.168.0.113)                   | 4
-    +---------------------------------------------------+       +-----------------------------------------------+
-                                                                | WAN address (62.128.41.210)          TCP only | 4
-                                                                +-----------------------------------------------+
-                                                                | Unique LAN ID (192.168.1.1.1.1.2.55) TCP only | 8
-                                                                +-----------------------------------------------+
+                            Locator IPv4 address
+    +--------+-----------------------------+-----------------------------+
+    | Unused | WAN address (62.128.41.210) | LAN address (192.168.0.113) |
+    +--------+-----------------------------+-----------------------------+
+     8 bytes       (TCP only) 4 bytes                 4 bytes
 
-    TODO Edu choose which representation fits better in the documentation
-    +--------------------------------------------------------------------------------------------------+
-    |                                        Locator IPv4 address                                      |
-    +--------------------------------------+-----------------------------+-----------------------------+
-    | Unique LAN ID (192.168.1.1.1.1.2.55) | WAN address (62.128.41.210) | LAN address (192.168.0.113) |
-    +--------------------------------------+-----------------------------+-----------------------------+
-        (TCP only) 8 Bytes                  (TCP only) 4 Bytes                      4 Bytes
 
-    +--------------------------------------------------------------------------------------------------+
-    |                                        Locator IPv6 address                                      |
-    +--------------------------------------------------------------------------------------------------+
-    |                            Address (2001:0000:130F:0000:0000:09C0:876A:130B)                     |
-    +--------------------------------------------------------------------------------------------------+
-                                                   16 Bytes
+                            Locator IPv6 address
+    +--------------------------------------------------------------------+
+    |          Address (2001:0000:130F:0000:0000:09C0:876A:130B)         |
+    +--------------------------------------------------------------------+
+                                  16 bytes
 
-Check the :ref:`TCP IPv4 transport descriptor api <api_tcpv4_transport_descriptor>` for further information about WAN
-address.
+Check how to manipulate the WAN address in the :ref:`TCP IPv4 transport descriptor api <api_tcpv4_transport_descriptor>`
+section.
 
 .. _transport_transportApi_ipLocator:
 

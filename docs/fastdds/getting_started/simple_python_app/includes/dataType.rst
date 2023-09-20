@@ -45,9 +45,12 @@ This must have generated the following files:
     * HelloWorld.cxx: HelloWorld C++ type definition.
     * HelloWorld.h: C++ header file for HelloWorld.cxx.
     * HelloWorld.i: `SWIG`_ interface file for HelloWorld C++ type definition.
-    * HelloWorldPubSubTypes.cxx: C+`Serialization and Deserialization code for the HelloWorld type.
+    * HelloWorldPubSubTypes.cxx: C++ interface used by Fast DDS to support HelloWorld type.
     * HelloWorldPubSubTypes.h: C++ header file for HelloWorldPubSubTypes.cxx.
     * HelloWorldPubSubTypes.i: `SWIG`_ interface file for C++ Serialization and Deserialization code.
+    * HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
+    * HelloWorldCdrAux.ipp: C++ serialization and deserialization code for the HelloWorld type.
+    * HelloWorldCdrAux.hpp: C++ header file for HelloWorldCdrAux.ipp.
     * CMakeLists.txt: CMake file to generate C++ source code and Python module from the `SWIG`_ interface files,
       compile and generate C++ libraries.
     * HelloWorld.py: Python module to be imported by your Python example.

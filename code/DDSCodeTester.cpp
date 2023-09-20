@@ -1950,7 +1950,7 @@ void dds_custom_filters_examples()
              * }
              */
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload.data), payload.length);
-            eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN);
+            eprosima::fastcdr::Cdr deser(fastbuffer);
             // Deserialize encapsulation.
             deser.read_encapsulation();
             int index = 0;

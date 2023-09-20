@@ -53,42 +53,49 @@ Where the option choices are:
 
    * - Option
      - Description
-   * - -help
-     - Shows the help information
-   * - -version
-     - Shows the current version of eProsima *Fast DDS-Gen*.
+   * - -cs
+     - Enables Case Sensitivity
    * - -d <directory>
      - Sets the output directory where the generated files are created.
-   * - -I <directory>
-     - Add directory to preprocessor include paths.
-   * - -t <directory>
-     - Sets a specific directory as a temporary directory.
+   * - -default_extensibility <extensibility> |br|
+       -de <extensibility>
+     - Sets the default extensibility for types without the @extensibility annotation. |br|
+       Values: |br|
+       - final |br|
+       - appendable (default) |br|
+       - mutable
    * - -example <platform>
      - Generates an example and a solution to compile the generated source code for a specific |br|
        platform.
        The help command shows the supported platforms.
-   * - -replace
-     - Replaces the generated source code files even if they exist.
-   * - -ppDisable
-     - Disables the preprocessor.
-   * - -ppPath
-     - Specifies the preprocessor path.
    * - -extrastg <template> <output>
      - Specifies a custom template used for generating source code. |br|
        This option expects the location of the template and the location of the file where source code output will be
        stored. |br|
        A custom template example can be found in this `link <https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/master/resources/Custom.stg>`_
-   * - -typeobject
-     - Generates `TypeObject` files for the IDL provided and modifies MyType constructor to |br|
-       register the TypeObject representation into the factory.
-   * - -typeros2
-     - Generates type naming compatible with ROS 2
+   * - -help
+     - Shows the help information
+   * - -I <directory>
+     - Add directory to preprocessor include paths.
+   * - -ppDisable
+     - Disables the preprocessor.
+   * - -ppPath
+     - Specifies the preprocessor path.
    * - -python
      - Generates source code and a CMake solution to compile a library containing the data types |br|
        Python bindings required to run a *Fast DDS* Python-based application.
        This option is |br|
        incompatible with the `-example` and `-typeobject` ones.
-   * - -cs
-     - Enables Case Sensitivity
+   * - -replace
+     - Replaces the generated source code files even if they exist.
+   * - -t <directory>
+     - Sets a specific directory as a temporary directory.
+   * - -typeobject
+     - Generates `TypeObject` files for the IDL provided and modifies MyType constructor to |br|
+       register the TypeObject representation into the factory.
+   * - -typeros2
+     - Generates type naming compatible with ROS 2
+   * - -version
+     - Shows the current version of eProsima *Fast DDS-Gen*.
 
 Please refer to :ref:`dynamic-types` for more information on TypeObject representation.

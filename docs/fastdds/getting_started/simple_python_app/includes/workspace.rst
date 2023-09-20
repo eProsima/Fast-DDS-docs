@@ -16,6 +16,8 @@ Subscriber application respectively.
     ├── HelloWorld.i
     ├── HelloWorld.idl
     ├── HelloWorld.py
+    ├── HelloWorldCdrAux.hpp
+    ├── HelloWorldCdrAux.ipp
     ├── HelloWorldPubSubTypes.cxx
     ├── HelloWorldPubSubTypes.h
     ├── HelloWorldPubSubTypes.i

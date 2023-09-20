@@ -183,6 +183,8 @@ In this case, the resulting C++ code will be:
    :start-after: // STRUCTURE_INHERITANCE
    :end-before: //!
 
+.. _optional_members:
+
 Optional members
 """"""""""""""""
 
@@ -213,6 +215,8 @@ Accessing a *null* optional throws a ``eprosima::fastcdr::exception::BadOptional
    :start-after: // ACCESSING_OPTIONAL_VALUE
    :dedent: 4
    :end-before: //!
+
+.. _extensibility:
 
 Extensibility
 """""""""""""

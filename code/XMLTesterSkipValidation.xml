@@ -78,3 +78,25 @@
     </type>
 </types>
 <!--STAND_ALONE_TYPES_END-->
+
+<!-->XML_PROFILE_ENVIRONMENT_VARIABLES<-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+        <participant profile_name="env_var_parsing_example">
+            <rtps>
+                <name>This is app '${MY_APP_NAME}' running on host '${MY_HOST_NAME}'</name>
+                <builtin>
+                    <initialPeersList>
+                        <locator>
+                            <udpv4>
+                                <address>${REMOTE_IP_ADDRESS}</address>
+                            </udpv4>
+                        </locator>
+                    </initialPeersList>
+                </builtin>
+            </rtps>
+        </participant>
+    </profiles>
+</dds>
+<!--><-->

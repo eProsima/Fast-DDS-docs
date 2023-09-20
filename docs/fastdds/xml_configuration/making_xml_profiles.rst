@@ -125,3 +125,36 @@ XML profile. This allows the user to read and modify predefined XML profiles bef
     :start-after: //XML-MIX-WITH-CODE
     :end-before: //!--
     :dedent: 8
+
+Dynamic content by leveraging environment variables
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For deployment scenarios that require part of the XML content to be dynamically generated, Fast DDS supports using
+environment variables on the text content of any XML tag.
+The format for environment variables expansion is ``${ENV_VAR_NAME}``, where ``ENV_VAR_NAME`` follows the restrictions
+from `IEEE 1003.1 <https://pubs.opengroup.org/onlinepubs/000095399/basedefs/xbd_chap08.html>`_:
+
+.. note::
+
+    Environment variable names ... consist solely of uppercase letters, digits, and the '_' (underscore) from the
+    characters defined in Portable Character Set and do not begin with a digit.
+
+More than one environment variable can be used, and they can be mixed with literal text.
+
+The expansion will take place when the XML file is loaded, so changing the value of an environment variable afterwards
+will have no effect.
+
+The following is an example of an XML allowing a participant to exclusively communicate with the participants on a
+fixed IP address, taken from ``REMOTE_IP_ADDRESS`` environment variable.
+It also gives the participant a name that mixes literal text with the content from two environment variables.
+
+.. literalinclude:: /../code/XMLTesterSkipValidation.xml
+    :language: xml
+    :start-after: <!-->XML_PROFILE_ENVIRONMENT_VARIABLES<-->
+    :end-before: <!--><-->
+
+.. warning::
+
+    The `Fast DDS XSD schema <https://github.com/eProsima/Fast-DDS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_
+    does not support the environment variables expansion feature, so validation of an XML file with environment
+    variables expansion expressions will fail.

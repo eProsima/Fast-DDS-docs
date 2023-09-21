@@ -153,8 +153,9 @@ it has some constraints:
     This requirement avoids the copy between the CDR buffer and the user buffer because the data representation is the
     same.
     Consequently, only :ref:`primitive types<idl_primitive_types>` (except ``string``), arrays of these primitive
-    types and structures with FINAL :ref:`extensibility<extensibility>` and members of these primitive types, are considered to be
-    plain (Fast DDS also provides an API to check if a defined type is plain: |TypeSupport::is_plain-api|).
+    types, and structures with FINAL :ref:`extensibility<extensibility>` and members of these primitive types,
+    are considered to be plain (Fast DDS also provides an API to check if a defined type is plain:
+    |TypeSupport::is_plain-api|).
 
 *   Constraints for :ref:`datasharing delivery<datasharing-delivery-constraints>` also apply.
 

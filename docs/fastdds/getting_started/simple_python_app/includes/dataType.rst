@@ -48,7 +48,6 @@ This must have generated the following files:
     * HelloWorldPubSubTypes.cxx: C++ interface used by Fast DDS to support HelloWorld type.
     * HelloWorldPubSubTypes.h: C++ header file for HelloWorldPubSubTypes.cxx.
     * HelloWorldPubSubTypes.i: `SWIG`_ interface file for C++ Serialization and Deserialization code.
-    * HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
     * HelloWorldCdrAux.ipp: C++ serialization and deserialization code for the HelloWorld type.
     * HelloWorldCdrAux.hpp: C++ header file for HelloWorldCdrAux.ipp.
     * CMakeLists.txt: CMake file to generate C++ source code and Python module from the `SWIG`_ interface files,

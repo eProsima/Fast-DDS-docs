@@ -10,3 +10,5 @@ DataRepresentationId
 .. autoclass:: fastdds.XML_DATA_REPRESENTATION
 
 .. autoclass:: fastdds.XCDR2_DATA_REPRESENTATION
+
+.. autoclass:: fastdds.DEFAULT_DATA_REPRESENTATION

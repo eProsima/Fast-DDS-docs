@@ -132,7 +132,7 @@ DisablePositiveACKsQosPolicy
 This additional QoS allows reducing network traffic when strict reliable communication is not required and bandwidth is
 limited.
 It consists in changing the default behavior by which positive acks are sent from readers to writers.
-Instead, only negative acks will be sent when a reader is missing a sample, but writers will keep data for a sufficient
+Instead, only negative acks will be sent when a reader is missing a sample, but writers will keep data for an adjustable
 time before considering it as acknowledged.
 See |DisablePositiveACKsQosPolicy-api|.
 
@@ -156,8 +156,9 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entities.
-
+     The |DisablePositiveACKsQosPolicy::enabled-api| Data Member cannot be modified on enabled entities.
+     Thus, this feature must be set up during initialization.
+     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member can be modified on run time.
 .. warning::
     For DataWriters and DataReaders to match, they must follow the compatibility rule.
     See :ref:`disableacks_compatibilityrule` for further details.

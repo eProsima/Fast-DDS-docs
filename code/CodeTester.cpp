@@ -934,22 +934,30 @@ void rtps_api_example_create_entities_with_custom_pool()
 
         bool get_payload(
                 SerializedPayload_t& data,
-                IPayloadPool*& /* data_owner */,
-                CacheChange_t& cache_change) override
+                IPayloadPool*& data_owner,
+                CacheChange_t& cache_change)
         {
-            // Reserve new memory for the payload buffer
-            octet* payload = new octet[data.length];
+            octet* payload;
+            if (data_owner != this)
+            {
+                // Reserve new memory for the payload buffer
+                payload = new octet[data.length];
+                // Copy the data
+                memcpy(payload, data.data, data.length);
+            }
+            else
+            {
+                // Memory allocated by this same pool -> just copy pointer
+                payload = data.data;
+            }
 
-            // Copy the data
-            memcpy(payload, data.data, data.length);
+            // Tell the CacheChange who needs to release its payload
+            cache_change.payload_owner(this);
 
             // Assign the payload buffer to the CacheChange and update sizes
             cache_change.serializedPayload.data = payload;
             cache_change.serializedPayload.length = data.length;
             cache_change.serializedPayload.max_size = data.length;
-
-            // Tell the CacheChange who needs to release its payload
-            cache_change.payload_owner(this);
 
             return true;
         }
@@ -958,7 +966,11 @@ void rtps_api_example_create_entities_with_custom_pool()
                 CacheChange_t& cache_change) override
         {
             // Ensure precondition
-            assert(this == cache_change.payload_owner());
+            if (this != cache_change.payload_owner())
+            {
+                std::cerr << "Trying to release a payload buffer allocated by a different PayloadPool." << std::endl;
+                return false;
+            }
 
             // Dealloc the buffer of the payload
             delete[] cache_change.serializedPayload.data;

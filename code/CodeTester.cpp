@@ -934,23 +934,15 @@ void rtps_api_example_create_entities_with_custom_pool()
 
         bool get_payload(
                 SerializedPayload_t& data,
-                IPayloadPool*& data_owner,
+                IPayloadPool*& /*data_owner*/,
                 CacheChange_t& cache_change)
         {
-            octet* payload;
-            if (data_owner != this)
-            {
-                // Reserve new memory for the payload buffer
-                payload = new octet[data.length];
-                // Copy the data
-                memcpy(payload, data.data, data.length);
-            }
-            else
-            {
-                // Memory allocated by this same pool -> just copy pointer
-                payload = data.data;
-            }
+            // Reserve new memory for the payload buffer
+            octet* payload = new octet[data.length];
 
+            // Copy the data
+            memcpy(payload, data.data, data.length);
+            
             // Tell the CacheChange who needs to release its payload
             cache_change.payload_owner(this);
 

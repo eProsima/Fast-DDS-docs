@@ -22,7 +22,7 @@ In the workspace directory, execute the following commands:
 This creates the HelloWorld.idl file in the `src` directory.
 Open the file in a text editor and copy and paste the following snippet of code.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct HelloWorld
     {
@@ -43,8 +43,10 @@ This must have generated the following files:
 
     * HelloWorld.cxx: HelloWorld type definition.
     * HelloWorld.h: Header file for HelloWorld.cxx.
-    * HelloWorldPubSubTypes.cxx: Serialization and Deserialization code for the HelloWorld type.
+    * HelloWorldPubSubTypes.cxx: Interface used by Fast DDS to support HelloWorld type.
     * HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
+    * HelloWorldCdrAux.ipp: Serialization and Deserialization code for the HelloWorld type.
+    * HelloWorldCdrAux.hpp: Header file for HelloWorldCdrAux.ipp.
 
 CMakeLists.txt
 """"""""""""""

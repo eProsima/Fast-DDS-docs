@@ -21,6 +21,8 @@ The file ``build/HelloWorld`` is the generated *Fast DDS* application.
         ├── HelloWorld.cxx
         ├── HelloWorld.h
         ├── HelloWorld.idl
+        ├── HelloWorldCdrAux.hpp
+        ├── HelloWorldCdrAux.ipp
         ├── HelloWorldPublisher.cxx
         ├── HelloWorldPublisher.h
         ├── HelloWorldPubSubMain.cxx

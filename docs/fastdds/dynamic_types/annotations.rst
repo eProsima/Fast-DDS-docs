@@ -18,7 +18,7 @@ Both functions take the name,  the key and the value of the annotation.
 
 For example, if we define an annotation like:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     @annotation MyAnnotation
     {
@@ -28,12 +28,13 @@ For example, if we define an annotation like:
 
 And then we apply it through IDL to a struct:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     @MyAnnotation(5, "length")
     struct MyStruct
     {
-    ...
+        // ...
+    }
 
 The equivalent code using |DynamicTypes| will be:
 
@@ -60,4 +61,3 @@ The following annotations modifies the behavior of DynamicTypes:
 - | ``@default``: Sets a default value for the member.
 
 - | ``@non_serialized``: Excludes a member from being serialized.
-

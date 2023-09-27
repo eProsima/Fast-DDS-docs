@@ -8,6 +8,7 @@ Common
     /fastdds/api_reference/rtps/common/BinaryProperty/binaryproperty_toc
     /fastdds/api_reference/rtps/common/CacheChange/cachechange_toc
     /fastdds/api_reference/rtps/common/CDRMessage_t/cdrmessage_toc
+    /fastdds/api_reference/rtps/common/CDRSerialization/CDRSerialization
     /fastdds/api_reference/rtps/common/EntityId_t/entityid_toc
     /fastdds/api_reference/rtps/common/FragmentNumber/fragmentnumber_toc
     /fastdds/api_reference/rtps/common/Guid/guid_toc

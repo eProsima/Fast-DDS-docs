@@ -40,7 +40,7 @@ Assuming that the type module name selected is ``fastdds_record_typesupport`` th
 file could be defined.
 This IDL file will be the one used in the following steps.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
    module fastdds_record_typesupport
    {
@@ -244,4 +244,3 @@ will receive them:
    export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
    source <PATH_TO_ROS2_WORKSPACE>/fastdds_record_typesupport/install/setup.bash
    ros2 bag play <path-to-db-file>
-

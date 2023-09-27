@@ -277,6 +277,7 @@
 .. |TypeObject-api| replace:: :cpp:class:`TypeObject <eprosima::fastrtps::types::TypeObject>`
 .. |TypeObjectFactory-api| replace:: :cpp:class:`TypeObjectFactory <eprosima::fastrtps::types::TypeObjectFactory>`
 .. |TypeSupport-api| replace:: :cpp:class:`TypeSupport<eprosima::fastdds::dds::TypeSupport>`
+.. |TypeSupport::is_plain-api| replace:: :cpp:func:`TypeSupport::is_plain() <eprosima::fastdds::dds::TypeSupport::is_plain>`
 .. |TypeSupport::register_type-api| replace:: :cpp:func:`register_type() <eprosima::fastdds::dds::TypeSupport::register_type>`
 .. |SampleIdentity-api| replace:: :cpp:class:`SampleIdentity<eprosima::fastrtps::rtps::SampleIdentity>`
 .. |SampleInfo-api| replace:: :cpp:class:`SampleInfo<eprosima::fastdds::dds::SampleInfo>`

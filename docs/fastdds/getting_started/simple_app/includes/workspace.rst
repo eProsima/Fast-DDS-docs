@@ -21,6 +21,8 @@ Subscriber application respectively.
             ├── HelloWorld.cxx
             ├── HelloWorld.h
             ├── HelloWorld.idl
+            ├── HelloWorldCdrAux.hpp
+            ├── HelloWorldCdrAux.ipp
             ├── HelloWorldPublisher.cpp
             ├── HelloWorldPubSubTypes.cxx
             ├── HelloWorldPubSubTypes.h

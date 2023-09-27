@@ -146,7 +146,7 @@ Furthermore, :func:`set` and :func:`get` member functions are created to access 
 
 The following IDL structure:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct Structure
     {
@@ -164,7 +164,7 @@ Would be converted to:
 
 Structures can inherit from other structures, extending their member set.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct ParentStruct
     {
@@ -183,6 +183,80 @@ In this case, the resulting C++ code will be:
    :start-after: // STRUCTURE_INHERITANCE
    :end-before: //!
 
+.. _optional_members:
+
+Optional members
+""""""""""""""""
+
+A member of a structure can be optional.
+This is achieved by writing the ``@optional`` annotation before the member.
+
+.. code-block:: omg-idl
+
+    struct StructWithOptionalMember
+    {
+        @optional octet octet_opt;
+    };
+
+An optional member is converted into a template class ``eprosima::fastcdr::optional<T>``, where ``T`` is the member's
+type.
+
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: // STRUCTURE_WITH_OPTIONAL
+   :end-before: //!
+
+Before reading the value of the optional member, it should be checked the optional contains a value using
+``has_value()`` function.
+Accessing a *null* optional throws a ``eprosima::fastcdr::exception::BadOptionalAccessException`` exception.
+
+.. literalinclude:: /../code/FastDDSGenCodeTester.cpp
+   :language: c++
+   :start-after: // ACCESSING_OPTIONAL_VALUE
+   :dedent: 4
+   :end-before: //!
+
+.. _extensibility:
+
+Extensibility
+"""""""""""""
+
+In order to support evolving types without breaking interoperability, the concept of type extensibility is supported by
+*Fast DDS-Gen*.
+There are three extensibility kinds: *final*, *appendable* and *mutable*.
+
+* *FINAL* extensibility indicates that the type is strictly defined. It is not possible to add members while maintaining
+  type assignability.
+* *APPENDABLE* extensibility indicates that two types, where one contains all of the members of the other plus
+  additional members appended to the end, may remain assignable.
+* *MUTABLE* extensibility indicates that two types may differ from one another in the additional, removal, and/or
+  transposition of members while remaining assignable.
+
+.. code-block:: omg-idl
+
+    @extensibility(FINAL)
+    struct FinalStruct
+    {
+        octet octet_opt;
+    };
+
+    @extensibility(APPENDABLE)
+    struct AppendableStruct
+    {
+        octet octet_opt;
+    };
+
+    @extensibility(MUTABLE)
+    struct MutableStruct
+    {
+        octet octet_opt;
+    };
+
+.. note::
+
+    XCDRv1 encoding algorithm is not able to manage correctly the deserialization of an appendable structure when it is
+    used as a member of another one.
+
 Unions
 ^^^^^^
 
@@ -192,7 +266,7 @@ An IDL union type is mapped as a C++ class with member functions to access the u
 
 The following IDL union:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     union Union switch(long)
     {
@@ -220,7 +294,7 @@ Each member is defined as *bitfield* and eases the access to a part of the bitse
 
 For example:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     bitset MyBitset
     {
@@ -251,7 +325,7 @@ uses ``int32_t`` instead of automatically use ``uint16_t``.
 
 Bitsets can inherit from other bitsets, extending their member set.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     bitset ParentBitset
     {
@@ -281,7 +355,7 @@ An IDL enumeration type is mapped directly to the corresponding C++11 enumeratio
 
 The following IDL enumeration:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     enum Enumeration
     {
@@ -305,7 +379,7 @@ It allows defining bit masks based on their position.
 
 The following IDL bitmask:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     @bit_bound(8)
     bitmask MyBitMask
@@ -334,15 +408,15 @@ Data types with a key
 ^^^^^^^^^^^^^^^^^^^^^
 
 In order to use keyed topics, the user should define some key members inside the structure.
-This is achieved by writing the ``@Key`` annotation before the members of the structure that are used as keys.
+This is achieved by writing the ``@key`` annotation before the members of the structure that are used as keys.
 For example in the following IDL file the *id* and *type* field would be the keys:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct MyType
     {
-        @Key long id;
-        @Key string type;
+        @key long id;
+        @key string type;
         long positionX;
         long positionY;
     };
@@ -375,7 +449,7 @@ The application allows the user to define and use their own annotations as defin
 `OMG IDL 4.2 specification <https://www.omg.org/spec/IDL/4.2/>`_.
 User annotations will be passed to TypeObject generated code if the ``-typeobject`` argument was used.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     @annotation MyAnnotation
     {
@@ -392,16 +466,16 @@ Additionally, the following standard annotations are builtin (recognized and pas
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @autoid                 | [Unimplemented] Automatically allocate identifiers to the elements.                        |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @optional               | [Unimplemented] Setting an element as optional.                                            |
+| @optional               | Setting an element as optional. More info in `Optional Members`_.                          |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @extensibility          | [Unimplemented] Applied to any element which is constructed. Allow specifying how the |br| |
-|                         | element is allowed to evolve.                                                              |
+| @extensibility          | Applied to any element which is constructed. Allow specifying how the |br|                 |
+|                         | element is allowed to evolve. More info in Extensibility_.                                 |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @final                  | [Unimplemented] Shortcut for `@extensibility(FINAL)`                                       |
+| @final                  | Shortcut for `@extensibility(FINAL)`                                                       |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @appendable             | [Unimplemented] Shortcut for `@extensibility(APPENDABLE)`                                  |
+| @appendable             | Shortcut for `@extensibility(APPENDABLE)`                                                  |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @mutable                | [Unimplemented] Shortcut for `@extensibility(MUTABLE)`                                     |
+| @mutable                | Shortcut for `@extensibility(MUTABLE)`                                                     |
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @position               | Setting a position to an element or group of elements. Used by bitmasks_.                  |
 +-------------------------+--------------------------------------------------------------------------------------------+
@@ -454,7 +528,7 @@ Forward declaration
 *Fast DDS-Gen* supports forward declarations.
 This allows declaring inter-dependant structures, unions, etc.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct ForwardStruct;
 
@@ -507,7 +581,7 @@ There are two ways to write IDL comments:
 Please refer to the `IDL 4.2 specification <https://www.omg.org/spec/IDL/4.2/PDF>`_ (*Section 7.2 Lexical Conventions*)
 for more information on IDL conventions.
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     /* MyStruct definition */
     struct MyStruc

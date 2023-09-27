@@ -51,7 +51,7 @@ To enable Zero-Copy perform the following steps:
 1.  Define a plain and bounded type in an IDL file and generate the corresponding source code for further processing
     with the |Fast DDS-Gen| tool.
 
-    .. code-block:: idl
+    .. code-block:: omg-idl
 
         struct LoanableHelloWorld
         {
@@ -148,6 +148,15 @@ Although Zero-Copy can be used for one or several *Fast DDS* application process
 it has some constraints:
 
 *   Only plain types are supported.
+
+    A plain type is a type whose CDR representation matches its in-memory representation.
+    This requirement avoids the copy between the CDR buffer and the user buffer because the data representation is the
+    same.
+    Consequently, only :ref:`primitive types<idl_primitive_types>` (except ``string``), arrays of these primitive
+    types, and structures with FINAL :ref:`extensibility<extensibility>` and members of these primitive types,
+    are considered to be plain (Fast DDS also provides an API to check if a defined type is plain:
+    |TypeSupport::is_plain-api|).
+
 *   Constraints for :ref:`datasharing delivery<datasharing-delivery-constraints>` also apply.
 
 .. note::

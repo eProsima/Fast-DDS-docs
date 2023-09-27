@@ -85,7 +85,7 @@ instance key.
 The sample data being relayed would be the location of each flight being tracked at any given time.
 The following IDL defines the data described model:
 
-.. code-block:: idl
+.. code-block:: omg-idl
 
     struct FlightPosition
     {

@@ -64,7 +64,7 @@ For *Request-Reply* communication perform the following steps:
 1. Define two structures in an IDL file.
    One structure will be used as Request Topic's data type and the other one as Reply Topic's data type.
 
-   .. code-block:: idl
+   .. code-block:: omg-idl
 
        enum OperationType
        {

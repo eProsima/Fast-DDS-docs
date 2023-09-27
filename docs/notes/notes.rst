@@ -5,29 +5,85 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.11.2
+Version 2.12.0
 ==============
+
+.. note::
+
+  This release upgrades the following Fast DDS dependencies:
+
+  * `Fast CDR v2.0.0 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.0.0>`_
+  * `Fast DDS-Gen v3.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.0.0>`_
+
+  As Fast DDS dependencies have been upgraded to new major releases, depending on the types defined in the IDL files,
+  it might be required to modify the user application source code besides recompiling it (more information can be found
+  in the corresponding release notes).
+
+.. note::
+
+  There is a minor API break with previous v2.x versions: ``MEMBER_INVALID`` identifier was declared using ``#define``.
+  In order to prevent polluting the user workspace, it has been transformed into a ``constexpr`` within
+  ``eprosima::fastrtps::types`` namespace.
+
+This release includes the following **features**:
+
+1. :ref:`New participant property to configure SHM transport metatraffic behavior <property_policies_shm_enforce_metatraffic>`.
+2. Exposed custom payload pool on DDS :ref:`DataWriter <dds_layer_publisher_datawriter_with_payload_pool_creation>` and
+   :ref:`DataReader <dds_layer_subscriber_datareader_with_payload_pool_creation>` declaration.
+    1. Feature example.
+3. :ref:`Processing environment variables in XML text <xml_environment_variables>`.
+4. Dependencies
+    1. Upgrade internal type supports using latest Fast DDS-Gen release v3.0.0.
+       This release introduces the following features:
+        1. `Support for @optional builtin annotation <optional_members>`.
+        2. `Support for @extensibility builtin annotation <extensibility>`.
+    2. Upgrade Fast CDR submodule to v2.0.0 introducing XCDR encoding version 2.
 
 This release includes the following **improvements**:
 
-1. Improve Shared Memory resilience to crashing participants
-2. User configuration for :ref:`Shared Memory metatraffic <property_policies_shm_enforce_metatraffic>`
-3. Performance improvements on intraprocess and data-sharing
+1. ``fixed_string`` comparison operators.
+2. Remove mutex from `TimedEventImpl` (#3745, #3760)
+3. Performance improvements on intraprocess and datasharing.
+4. Improve Shared Memory resilience to crashing participants.
+5. Improve scripts shebang portability.
+6. Use ``foonathan_memory`` to reduce allocations in SharedMemManager.
 
 This release includes the following **fixes**:
 
-1. Remove Mutex from TimedEventImpl
-2. Replace uint64_t by 8 in ``alignas`` specifier
-3. Fix XMLParser null-dereference in ``parseLogConfig``
+1. **Fast DDS bugfixes**
+    1. Fixed XMLParser null-dereference when parsing log configuration.
+    2. Allow participant XML profiles with no ``<rtps>`` tag.
+    3. Fix encapsulation format in Writer Liveliness Protocol.
+    4. Fix :cpp:func:`DomainParticipant::register_remote_type<eprosima::fastdds::dds::DomainParticipant::register_remote_type>`
+       return when negotiating type.
+    5. Fix strict real-time feature when using Flow Controller feature.
+    6. Fix ParameterPropertyList increment operators.
+    7. Fix bad-free when receiving malformed DATA submessage.
+    8. Fix asymmetric whitelist matching.
+    9. Fix heap-use-after-free on XMLElementParser.
+    10. Fix History remove change return statement.
+2. CI fixes
+    1. Fix RemoteBuiltinEndpointHonoring blackbox test.
+    2. Improve repository workflows.
+    3. Use `FASTRTPS_NO_LIB` on unittest root folder.
+3. Examples
+    1. Fix HelloWorldDataSharing data type.
+4. Documentation
+    1. Doxygen typos.
+5. Repository
+    1. Remove 2.9.x as active branch.
+6. Non Tier 1 support
+    1. Fixed SHM in 32-bit architectures.
+    2. Fix warning on Win32 architecture.
 
 .. note::
-  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
-  files using *fastddsgen*.
-  If you are upgrading from any older version, regenerating the code is *highly recommended*.
+  Upgrading to version 2.12.0 **requires** to regenerate generated source from IDL files using
+  `Fast DDS-Gen v3.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.0.0>`_.
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.11.2.rst
 .. include:: previous_versions/v2.11.1.rst
 .. include:: previous_versions/v2.11.0.rst
 .. include:: previous_versions/v2.10.2.rst

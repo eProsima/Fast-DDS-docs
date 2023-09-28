@@ -421,13 +421,13 @@ installed in the system:
 
 .. include:: ../../04-common/python_requirements.rst
    :start-after: .. begin-swig
-   :end-before: .. end-swig-windows
+   :end-before: .. end-windows-swig
 
 .. _libpython_dev_sw:
 
 .. include:: ../../04-common/python_requirements.rst
    :start-after: .. begin-libpython-dev
-   :end-before: .. end-libpython-dev-windows
+   :end-before: .. end-windows-libpython-dev
 
 .. _dependencies_python_sw:
 
@@ -589,7 +589,7 @@ first in the configuration step of :code:`foonathan_memory_vendor` to the follow
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
 .. note::
-    
+
     Installation on system directories may need of permissions.
     Maybe permissions have to be granted through :code:`sudo`.
 

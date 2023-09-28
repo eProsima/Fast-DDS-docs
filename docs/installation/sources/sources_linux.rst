@@ -327,7 +327,7 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
 .. note::
-    
+
     Installation on system directories may need of permissions.
     Maybe permissions have to be granted through :code:`sudo`.
 
@@ -548,7 +548,7 @@ first in the configuration step of :code:`foonathan_memory_vendor` to the follow
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
 .. note::
-    
+
     Installation on system directories may need of permissions.
     Maybe permissions have to be granted through :code:`sudo`.
 

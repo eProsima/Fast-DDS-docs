@@ -415,19 +415,12 @@ installed in the system:
 
 - :ref:`Fast DDS requirements <requirements_sw>`
 - :ref:`swig_python_sw`
-- :ref:`libpython_dev_sw`
 
 .. _swig_python_sw:
 
 .. include:: ../../04-common/python_requirements.rst
    :start-after: .. begin-swig
    :end-before: .. end-windows-swig
-
-.. _libpython_dev_sw:
-
-.. include:: ../../04-common/python_requirements.rst
-   :start-after: .. begin-libpython-dev
-   :end-before: .. end-windows-libpython-dev
 
 .. _dependencies_python_sw:
 

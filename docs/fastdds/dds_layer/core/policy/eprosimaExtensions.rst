@@ -158,7 +158,7 @@ List of QoS Policy data members:
      :raw-html:`<br />`
      The |DisablePositiveACKsQosPolicy::enabled-api| Data Member cannot be modified on enabled entities.
      Thus, this feature must be set up during initialization.
-     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member can be modified on run time.
+     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member can be modified at runtime.
 .. warning::
     For DataWriters and DataReaders to match, they must follow the compatibility rule.
     See :ref:`disableacks_compatibilityrule` for further details.
@@ -708,7 +708,8 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to |DataReader| entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entities.
+     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member of the :ref:`disablepositiveacksqospolicy` and the |RTPSReliableReaderQos::times-api|
+     Data Member can be modified on enabled entities.
 
 .. _readertimes:
 
@@ -785,7 +786,8 @@ List of QoS Policy data members:
 .. note::
      This QoS Policy concerns to |DataWriter| entities.
      :raw-html:`<br />`
-     It cannot be changed on enabled entities.
+     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member of the :ref:`disablepositiveacksqospolicy` and the |RTPSReliableWriterQos::times-api|
+     Data Member can be modified on enabled entities.
 
 .. _writertimes:
 

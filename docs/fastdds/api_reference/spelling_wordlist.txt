@@ -109,6 +109,7 @@ PartitionQosPolicy
 PDPListener
 periodMillisecs
 Pid
+PortBasedTransportDescriptor
 pos
 preallocate
 PresentationQosPolicy

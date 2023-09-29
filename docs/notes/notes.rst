@@ -31,16 +31,22 @@ Version 2.12.0
 
 This release includes the following **features**:
 
-1. :ref:`New participant property to configure SHM transport metatraffic behavior <property_policies_shm_enforce_metatraffic>`.
+1. :ref:`New participant property <property_policies_shm_enforce_metatraffic>` to configure SHM
+   transport metatraffic behavior.
 2. Exposed custom payload pool on DDS :ref:`DataWriter <dds_layer_publisher_datawriter_with_payload_pool_creation>` and
    :ref:`DataReader <dds_layer_subscriber_datareader_with_payload_pool_creation>` declaration.
+
     1. Feature example.
+
 3. :ref:`Processing environment variables in XML text <xml_environment_variables>`.
 4. Dependencies
+
     1. Upgrade internal type supports using latest Fast DDS-Gen release v3.0.0.
        This release introduces the following features:
+
         1. `Support for @optional builtin annotation <optional_members>`.
         2. `Support for @extensibility builtin annotation <extensibility>`.
+
     2. Upgrade Fast CDR submodule to v2.0.0 introducing XCDR encoding version 2.
 
 This release includes the following **improvements**:

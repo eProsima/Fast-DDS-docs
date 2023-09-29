@@ -13,7 +13,11 @@ Version 2.12.0
   This release upgrades the following Fast DDS dependencies:
 
   * `Fast CDR v2.0.0 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.0.0>`_
-  * `Fast DDS-Gen v3.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.0.0>`_
+  * `Fast DDS-Gen v3.0.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.0.1>`_
+
+  Please, read also the release notes of
+  `Fast DDS-Gen v3.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.0.0>`_ to be aware of every possible
+  break in the application code.
 
   As Fast DDS dependencies have been upgraded to new major releases, depending on the types defined in the IDL files,
   it might be required to modify the user application source code besides recompiling it (more information can be found
@@ -66,19 +70,22 @@ This release includes the following **fixes**:
     1. Fix RemoteBuiltinEndpointHonoring blackbox test.
     2. Improve repository workflows.
     3. Use `FASTRTPS_NO_LIB` on unittest root folder.
-3. Examples
+    4. Fix Windows workflow.
+3. Tools
+    1. Remove C++11 check in ``fastdds-discovery-server`` CLI tool.
+4. Examples
     1. Fix HelloWorldDataSharing data type.
-4. Documentation
+5. Documentation
     1. Doxygen typos.
-5. Repository
+6. Repository
     1. Remove 2.9.x as active branch.
-6. Non Tier 1 support
+7. Non Tier 1 support
     1. Fixed SHM in 32-bit architectures.
     2. Fix warning on Win32 architecture.
 
 .. note::
   Upgrading to version 2.12.0 **requires** to regenerate generated source from IDL files using
-  `Fast DDS-Gen v3.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.0.0>`_.
+  `Fast DDS-Gen v3.0.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.0.1>`_.
 
 Previous versions
 =================

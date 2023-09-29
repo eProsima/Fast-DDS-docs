@@ -31,6 +31,7 @@ bitmask
 bitmasks
 bitset
 bitsets
+blackbox
 BNF
 boolean
 booleans
@@ -66,6 +67,7 @@ datagrams
 datarace
 datarate
 datareaders
+datasharing
 Datasharing
 de
 deallocate

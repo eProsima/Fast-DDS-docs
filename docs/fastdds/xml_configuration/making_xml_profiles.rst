@@ -126,6 +126,8 @@ XML profile. This allows the user to read and modify predefined XML profiles bef
     :end-before: //!--
     :dedent: 8
 
+.. _xml_environment_variables:
+
 Dynamic content by leveraging environment variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

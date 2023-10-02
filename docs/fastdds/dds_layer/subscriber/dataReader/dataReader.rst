@@ -70,7 +70,7 @@ Internally it contains the following |QosPolicy-api| objects:
 +-----------------------------------------------+---------------------------------------------+----------+
 | |readerdatalifecycleqospolicy|                | |DataReaderQos::reader_data_lifecycle-api|  | Yes      |
 +-----------------------------------------------+---------------------------------------------+----------+
-| |RTPSreliablereaderqos|                       | |DataReaderQos::reliable_reader_qos-api|    | Yes      |
+| |RTPSreliablereaderqos|                       | |DataReaderQos::reliable_reader_qos-api|    | Yes (*)  |
 +-----------------------------------------------+---------------------------------------------+----------+
 | |typeconsistencyqos|                          | |DataReaderQos::type_consistency-api|       | Yes      |
 +-----------------------------------------------+---------------------------------------------+----------+
@@ -95,6 +95,10 @@ default values.
    Reliability kind (whether the publication is reliable or best effort) is not mutable.
    However, the |ReliabilityQosPolicy::max_blocking_time-api| data member of |ReliabilityQosPolicy-api| can be modified
    any time.
+.. note::
+
+   Not all data members of RTPSReliableReaderQos are mutable, please refer to |RTPSReliableReaderQos|
+   for more information.
 
 The QoS value of a previously created DataReader can be modified using the
 |DataReader::set_qos-api| member function.

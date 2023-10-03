@@ -404,6 +404,12 @@ If omitted, it will be 32 bits.
 For each ``flag``, the user can use the annotation ``position`` to define the position of the flag.
 If omitted, it will be auto incremented from the last defined flag, starting at 0.
 
+Modules
+^^^^^^^
+
+In order to avoid collision between variable names, modules can be defined within the IDL file.
+A module would be converted into a namespace in C++.
+
 Data types with a key
 ^^^^^^^^^^^^^^^^^^^^^
 

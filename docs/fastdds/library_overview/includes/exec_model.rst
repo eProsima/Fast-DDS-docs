@@ -37,7 +37,7 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - Synchronizes access to the Discovery Server |br| Database
     * - Asynchronous Writer
       - General
-      - One per enabled asynchronous |br| flow controller
+      - One per enabled asynchronous |br| flow controller.
 
         Minimum 1.
       - Manages asynchronous writes.
@@ -53,11 +53,15 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - Listener thread that processes incoming |br| UDP messages
     * - Reception
       - TCP
-      - One per port
+      - One per TCP connection
       - Listener thread that processes incoming |br| TCP messages
+    * - Accept
+      - TCP
+      - One per TCP transport
+      - Thread that processes incoming TCP connection requests
     * - Keep Alive
       - TCP
-      - One per port
+      - One per TCP transport
       - Keep alive thread for TCP connections.
     * - Reception
       - SHM
@@ -65,7 +69,7 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - Listener thread that processes incoming |br| messages via SHM segments
     * - Logging
       - SHM
-      - One per SHM descriptor
+      - One per port
       - Stores and dumps transferred packets to a file.
     * - Watchdog
       - SHM

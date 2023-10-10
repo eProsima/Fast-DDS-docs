@@ -168,7 +168,7 @@ Also add the `Gtest repository <https://github.com/google/googletest>`_ into the
 
 .. code-block:: bash
 
-    git clone https://github.com/google/googletest src/googletest-distribution
+    git clone --branch release-1.11.0 https://github.com/google/googletest src/googletest-distribution
 
 .. _colcon_installation_linux:
 

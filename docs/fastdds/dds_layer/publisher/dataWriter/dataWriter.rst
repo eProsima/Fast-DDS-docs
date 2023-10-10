@@ -32,7 +32,7 @@ Internally it contains the following |QosPolicy-api| objects:
 +==================================+=================================================+==========+
 | |DurabilityQosPolicy|            | |DataWriterQos::durability-api|                 | No       |
 +----------------------------------+-------------------------------------------------+----------+
-| |DurabilityServiceQosPolicy|     | |DataWriterQos::durability_service-api|         | Yes      |
+| |DurabilityServiceQosPolicy|     | |DataWriterQos::durability_service-api|         | No       |
 +----------------------------------+-------------------------------------------------+----------+
 | |DeadlineQosPolicy|              | |DataWriterQos::deadline-api|                   | Yes      |
 +----------------------------------+-------------------------------------------------+----------+
@@ -44,9 +44,9 @@ Internally it contains the following |QosPolicy-api| objects:
 +----------------------------------+-------------------------------------------------+----------+
 | |DestinationOrderQosPolicy|      | |DataWriterQos::destination_order-api|          | No       |
 +----------------------------------+-------------------------------------------------+----------+
-| |HistoryQosPolicy|               | |DataWriterQos::history-api|                    | Yes      |
+| |HistoryQosPolicy|               | |DataWriterQos::history-api|                    | No       |
 +----------------------------------+-------------------------------------------------+----------+
-| |ResourceLimitsQosPolicy|        | |DataWriterQos::resource_limits-api|            | Yes      |
+| |ResourceLimitsQosPolicy|        | |DataWriterQos::resource_limits-api|            | No       |
 +----------------------------------+-------------------------------------------------+----------+
 | |TransportPriorityQosPolicy|     | |DataWriterQos::transport_priority-api|         | Yes      |
 +----------------------------------+-------------------------------------------------+----------+
@@ -60,17 +60,17 @@ Internally it contains the following |QosPolicy-api| objects:
 +----------------------------------+-------------------------------------------------+----------+
 | |WriterDataLifecycleQosPolicy|   | |DataWriterQos::writer_data_lifecycle-api|      | Yes      |
 +----------------------------------+-------------------------------------------------+----------+
-| |PublishModeQosPolicy|           | |DataWriterQos::publish_mode-api|               | Yes      |
+| |PublishModeQosPolicy|           | |DataWriterQos::publish_mode-api|               | No       |
 +----------------------------------+-------------------------------------------------+----------+
-| |DataRepresentationQosPolicy|    | |DataWriterQos::representation-api|             | Yes      |
+| |DataRepresentationQosPolicy|    | |DataWriterQos::representation-api|             | No       |
 +----------------------------------+-------------------------------------------------+----------+
-| |PropertyPolicyQos|              | |DataWriterQos::properties-api|                 | Yes      |
+| |PropertyPolicyQos|              | |DataWriterQos::properties-api|                 | No       |
 +----------------------------------+-------------------------------------------------+----------+
 | |RTPSReliableWriterQos|          | |DataWriterQos::reliable_writer_qos-api|        | Yes      |
 +----------------------------------+-------------------------------------------------+----------+
-| |RTPSEndpointQos|                | |DataWriterQos::endpoint-api|                   | Yes      |
+| |RTPSEndpointQos|                | |DataWriterQos::endpoint-api|                   | No       |
 +----------------------------------+-------------------------------------------------+----------+
-| |WriterResourceLimitsQos|        | |DataWriterQos::writer_resource_limits-api|     | Yes      |
+| |WriterResourceLimitsQos|        | |DataWriterQos::writer_resource_limits-api|     | No       |
 +----------------------------------+-------------------------------------------------+----------+
 | |ThroughputControllerDescriptor| | |DataWriterQos::throughput_controller-api|      | Yes      |
 +----------------------------------+-------------------------------------------------+----------+

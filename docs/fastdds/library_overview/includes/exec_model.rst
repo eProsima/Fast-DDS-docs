@@ -26,70 +26,86 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Name
       - Type
       - Cardinality
+      - OS thread name
       - Description
     * - Event
       - General
       - One per DomainParticipant
+      - ``dds.ev.<participant_id>``
       - Processes periodic and triggered time events
     * - Discovery Server Event
       - General
       - One per DomainParticipant
+      - ``dds.ds_ev.<participant_id>``
       - Synchronizes access to the Discovery Server |br| Database
     * - Asynchronous Writer
       - General
       - One per enabled asynchronous |br| flow controller.
 
         Minimum 1.
+      - ``dds.asyn.<participant_id>.<async_flow_controller_index>``
       - Manages asynchronous writes.
 
         Even for synchronous writers, some forms of |br| communication must be initiated in the |br| background.
     * - Datasharing Listener
       - General
       - One per |br| DataReader
+      - ``dds.dsha.<reader_id>``
       - Listener thread that processes messages |br| received via Datasharing
     * - Reception
       - UDP
       - One per port
+      - ``dds.udp.<port>``
       - Listener thread that processes incoming |br| UDP messages
     * - Reception
       - TCP
       - One per TCP connection
+      - ``dds.tcp.<port>``
       - Listener thread that processes incoming |br| TCP messages
     * - Accept
       - TCP
       - One per TCP transport
+      - ``dds.tcp_accept``
       - Thread that processes incoming TCP connection requests
     * - Keep Alive
       - TCP
       - One per TCP transport
+      - ``dds.tcp_keep``
       - Keep alive thread for TCP connections.
     * - Reception
       - SHM
       - One per port
+      - ``dds.shm.<port>``
       - Listener thread that processes incoming |br| messages via SHM segments
     * - Logging
       - SHM
       - One per port
+      - ``dds.shmd.<port>``
       - Stores and dumps transferred packets to a file.
     * - Watchdog
       - SHM
       - One
+      - ``dds.shm.wdog``
       - Monitors health of open shared memory |br| segments.
     * - General Logging
       - Log
       - One
+      - ``dds.log``
       - Accumulates and writes to the appropriate |br| consumer log entries.
     * - Security Logging
       - Log
       - One per |br| DomainParticipant
+      - ``dds.slog.<participant_id>``
       - Accumulates and writes security log entries.
     * - Watchdog
       - Filewatch
       - One
+      - ``dds.fwatch``
       - Tracks the status of the watched file for |br| modifications
     * - Callback
       - Filewatch
       - One
+      - ``dds.fwatch.cb``
       - Runs the registered callback when the |br| watched file changes.
 
 Some of these threads are only spawned when certain conditions are met:

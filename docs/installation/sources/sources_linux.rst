@@ -18,8 +18,8 @@ It is organized as follows:
 Fast DDS library installation
 """""""""""""""""""""""""""""
 
-This section describes the instructions for installing *eProsima Fast DDS* in a Linux environment from
-sources. The following packages will be installed:
+This section describes the instructions for installing *eProsima Fast DDS* in a Linux environment from sources.
+The following packages will be installed:
 
 * :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
   `library <https://github.com/foonathan/memory>`_.
@@ -49,7 +49,8 @@ CMake, g++, pip3, wget and git
 
 These packages provide the tools required to install *eProsima Fast DDS* and its dependencies from command line.
 Install CMake_, `g++ <https://gcc.gnu.org/>`_, pip3_, wget_ and git_ using the package manager of the appropriate
-Linux distribution. For example, on Ubuntu use the command:
+Linux distribution.
+For example, on Ubuntu use the command:
 
 .. code-block:: bash
 
@@ -101,8 +102,8 @@ For example, on Ubuntu use the command:
 Libp11 and SoftHSM libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Libp11 provides PKCS#11 support for OpenSSL. This is an optional dependency,
-that is needed only when *eprosima Fast DDS* is used with security and PKCS#11 URIs.
+Libp11 provides PKCS#11 support for OpenSSL.
+This is an optional dependency, that is needed only when *eprosima Fast DDS* is used with security and PKCS#11 URIs.
 
 Install libp11_ using the package manager of the appropriate Linux distribution.
 For example, on Ubuntu use the command:
@@ -122,8 +123,8 @@ For example, on Ubuntu use the command:
 
    sudo apt install softhsm2
 
-Note that the *softhsm2* package creates a new group called *softhsm*. In order
-to grant access to the HSM module a user must belong to this group.
+Note that the *softhsm2* package creates a new group called *softhsm*.
+In order to grant access to the HSM module a user must belong to this group.
 
 .. code-block:: bash
 
@@ -135,8 +136,9 @@ must be updated specifying the libp11_ and hardware module (here SoftHSM_) dynam
 location.
 
 This configuration step can be avoided using p11kit_ which allows OpenSSL to find PKCS#11
-devices on runtime without static configuration. This kit is often available through
-the Linux distribution package manager. On Ubuntu, for example:
+devices on runtime without static configuration.
+This kit is often available through the Linux distribution package manager.
+On Ubuntu, for example:
 
 .. code-block:: bash
 
@@ -223,8 +225,8 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
 .. note::
 
-    Being based on CMake_, it is possible to pass CMake configuration options to the :code:`colcon build`
-    command. For more information on the specific syntax, please refer to the
+    Being based on CMake_, it is possible to pass CMake configuration options to the :code:`colcon build` command.
+    For more information on the specific syntax, please refer to the
     `CMake specific arguments <https://colcon.readthedocs.io/en/released/reference/verb/build.html#cmake-specific-arguments>`_
     page of the colcon_ manual.
 
@@ -324,12 +326,14 @@ configuration step of :code:`foonathan_memory_vendor` to the following:
 
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
-.. note:: Installation on system directories may need of permissions. Maybe permissions have to be granted through
-   :code:`sudo`.
+.. note::
 
-   .. code-block:: bash
+    Installation on system directories may need of permissions.
+    Maybe permissions have to be granted through :code:`sudo`.
 
-       sudo cmake --build . --target install
+    .. code-block:: bash
+
+        sudo cmake --build . --target install
 
 .. _run_app_cmake_sl:
 
@@ -439,8 +443,8 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
 
 .. note::
 
-    Being based on CMake_, it is possible to pass CMake configuration options to the :code:`colcon build`
-    command. For more information on the specific syntax, please refer to the
+    Being based on CMake_, it is possible to pass CMake configuration options to the :code:`colcon build` command.
+    For more information on the specific syntax, please refer to the
     `CMake specific arguments <https://colcon.readthedocs.io/en/released/reference/verb/build.html#cmake-specific-arguments>`_
     page of the colcon_ manual.
 
@@ -543,12 +547,14 @@ first in the configuration step of :code:`foonathan_memory_vendor` to the follow
 
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
-.. note:: Installation on system directories may need of permissions. Maybe permissions have to be granted through
-   :code:`sudo`.
+.. note::
 
-   .. code-block:: bash
+    Installation on system directories may need of permissions.
+    Maybe permissions have to be granted through :code:`sudo`.
 
-       sudo cmake --build . --target install
+    .. code-block:: bash
+
+        sudo cmake --build . --target install
 
 Run an application
 ^^^^^^^^^^^^^^^^^^

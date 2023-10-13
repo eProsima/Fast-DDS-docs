@@ -66,7 +66,7 @@ Internally it contains the following |QosPolicy-api| objects:
 +----------------------------------+-------------------------------------------------+----------+
 | |PropertyPolicyQos|              | |DataWriterQos::properties-api|                 | Yes      |
 +----------------------------------+-------------------------------------------------+----------+
-| |RTPSReliableWriterQos|          | |DataWriterQos::reliable_writer_qos-api|        | Yes      |
+| |RTPSReliableWriterQos|          | |DataWriterQos::reliable_writer_qos-api|        | Yes (*)  |
 +----------------------------------+-------------------------------------------------+----------+
 | |RTPSEndpointQos|                | |DataWriterQos::endpoint-api|                   | Yes      |
 +----------------------------------+-------------------------------------------------+----------+
@@ -92,6 +92,10 @@ default values.
 
    Reliability kind (whether the publication is reliable or best effort) is not mutable.
    However, the ``max_blocking_time`` data member of |ReliabilityQosPolicy| can be modified any time.
+.. note::
+
+   Not all data members of RTPSReliableWriterQos are mutable, please refer to |RTPSReliableWriterQos|
+   for more information.
 
 The QoS value of a previously created DataWriter can be modified using the
 |DataWriter::set_qos-api| member function.

@@ -3673,8 +3673,8 @@ void dds_dataReader_examples()
                 // Both info_seq.length() and data_seq.length() will have the number of samples returned
                 for (FooSeq::size_type n = 0; n < info_seq.length(); ++n)
                 {
-                    // Only samples for which valid_data is true should be accessed
-                    if (info_seq[n].valid_data)
+                    // Only samples for which valid_data is true and sample was not replaced should be accessed
+                    if (info_seq[n].valid_data && data_reader->is_sample_valid(&data_seq[n], &info_seq[n]))
                     {
                         // Do something with data_seq[n]
                     }
@@ -5593,7 +5593,8 @@ void dds_zero_copy_example()
 
                             ++samples;
                             std::cout << "Sample received (count=" << samples
-                                      << ") at address " << &sample << std::endl
+                                      << ") at address " << &sample
+                                      << (reader->is_sample_valid(&sample, &infos[i]) ? " is valid" : " was replaced" ) << std::endl
                                       << "  index=" << sample.index() << std::endl
                                       << "  message=" << sample.message().data() << std::endl;
                         }
@@ -5853,8 +5854,8 @@ void dds_waitset_example()
                                 // Both info_seq.length() and data_seq.length() will have the number of samples returned
                                 for (FooSeq::size_type n = 0; n < info_seq.length(); ++n)
                                 {
-                                    // Only samples for which valid_data is true should be accessed
-                                    if (info_seq[n].valid_data)
+                                    // Only samples for which valid_data is true and sample was not replaced should be accessed
+                                    if (info_seq[n].valid_data && reader->is_sample_valid(&data_seq[n], &info_seq[n]))
                                     {
                                         // Process sample on data_seq[n]
                                     }

@@ -151,6 +151,7 @@ Configuring a user-defined directory may be useful in some scenarios:
 * To select a file system with Huge TLB enabled for the memory-mapped files.
 * To allow data-sharing delivery between containers that mount the same container.
 
+.. _datareader-datawriter-history-coupling:
 
 DataReader and DataWriter history coupling
 ------------------------------------------
@@ -167,8 +168,10 @@ the DataReader directly accesses the data instance created by the DataWriter.
 This means that the samples in both the history of the DataReader and the DataWriter
 refer to the same object in the shared memory.
 Therefore, there is a strong coupling in the behavior of the DataReader and DataWriter histories.
-If the DataWriter reuses the same sample to publish new data,
-the DataReader loses access to the old data sample.
+
+.. important::
+    If the DataWriter reuses the same sample to publish new data,
+    the DataReader loses access to the old data sample.
 
 .. note::
     The DataWriter can remove the sample from its history,

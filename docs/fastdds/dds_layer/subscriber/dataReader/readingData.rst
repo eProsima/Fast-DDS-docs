@@ -74,6 +74,8 @@ The sequences API provides a **length()** operation returning the number of elem
 The application code just needs to check this value and use the **[]** operator to access the corresponding elements.
 Elements on the DDS data sequence should only be accessed when the corresponding element on the SampleInfo sequence
 indicate that valid data is present.
+When using Data Sharing, it is also important to check that the sample is valid (i.e, not replaced,
+refer to :ref:`datareader-datawriter-history-coupling` for further information in this regard).
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

@@ -121,6 +121,8 @@ callback.
 The key points to be noted in this function are:
 
 *   The declaration and handling of |LoanableSequence-api|.
+*   Checking |DataReader::is_sample_valid-api| for verifying that the sample was not replaced.
+    Refer to :ref:`datareader-datawriter-history-coupling` for further information.
 *   The use of the |DataReader::return_loan-api| function to indicate to the DataReader that the application has
     finished accessing the sequence.
 

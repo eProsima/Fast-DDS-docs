@@ -976,3 +976,8 @@
 .. |WriteParams-api| replace:: :cpp:class:`WriteParams <eprosima::fastrtps::rtps::WriteParams>`
 .. |WriteParams-sample_identity-api| replace:: :cpp:func:`sample_identity() <eprosima::fastrtps::rtps::WriteParams::sample_identity>`
 .. |WriteParams-related_sample_identity-api| replace:: :cpp:func:`related_sample_identity() <eprosima::fastrtps::rtps::WriteParams::related_sample_identity>`
+
+.. |ThreadSettings::scheduling_policy-api| replace:: :cpp:member:`scheduling_policy<eprosima::fastdds::rtps::ThreadSettings::scheduling_policy>`
+.. |ThreadSettings::priority-api| replace:: :cpp:member:`priority<eprosima::fastdds::rtps::ThreadSettings::priority>`
+.. |ThreadSettings::affinity-api| replace:: :cpp:member:`affinity<eprosima::fastdds::rtps::ThreadSettings::affinity>`
+.. |ThreadSettings::stack_size-api| replace:: :cpp:member:`stack_size<eprosima::fastdds::rtps::ThreadSettings::stack_size>`

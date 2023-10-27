@@ -199,6 +199,34 @@
     </data_reader>
 <!--><-->
 
+<!-->CONF-COMMON-THREAD-SETTINGS<-->
+<!-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<-->
+        <domainparticipant_factory profile_name="common_thread_seetings_dummy_profile">
+            <qos>
+                <file_watch_threads>
+                <!-->
+                <thread_settings>
+                <-->
+                    <scheduling_policy>2</scheduling_policy>
+                    <priority>10</priority>
+                    <affinity>4</affinity>
+                    <stack_size>2000</stack_size>
+                <!-->
+                </thread_settings>
+                <-->
+                </file_watch_threads>
+            </qos>
+        </domainparticipant_factory>
+<!-->
+    </profiles>
+<dds>
+<-->
+<!--><-->
+
 <!-->CONF-COMMON-TRANSPORT-SETTING<-->
 <transport_descriptors>
     <transport_descriptor>

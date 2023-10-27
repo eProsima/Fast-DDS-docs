@@ -855,6 +855,68 @@ XML
     :start-after: <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
     :end-before: <!--><-->
 
+.. _threadsettingsqos:
+
+ThreadSettings
+^^^^^^^^^^^^^^
+
+This structure is part of other QoS policies, and allows controlling some OS settings for the threads created.
+The default values will leave the default OS settings on the created threads.
+Changing these values may require special permissions.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - |ThreadSettings::scheduling_policy-api|
+     - ``int32_t``
+     - -1
+   * - |ThreadSettings::priority-api|
+     - ``int32_t``
+     - -2^31
+   * - |ThreadSettings::affinity-api|
+     - ``uint32_t``
+     - 0
+   * - |ThreadSettings::stack_size-api|
+     - ``int32_t``
+     - -1
+
+* |ThreadSettings::scheduling_policy-api|: Configures the scheduling policy used for the thread.
+  This value is platform specific and it is used as-is to configure the specific platform thread.
+  It is ignored on Windows platforms.
+* |ThreadSettings::priority-api|: Configures the thread's priority.
+  This value is platform specific and it is used as-is to configure the specific platform thread.
+* |ThreadSettings::affinity-api|: On some systems (Windows, Linux), this is a bit mask for setting
+  the threads affinity to each core individually.
+  On MacOS, this sets the affinity tag for the thread, and the OS tries to share the L2 cache
+  between threads with the same affinity.
+  This value is platform specific and it is used as-is to configure the specific platform thread.
+* |ThreadSettings::stack_size-api|: Configures the thread's stack size in bytes.
+  This value is platform specific and it is used as-is to configure the specific platform thread.
+
+Example
+"""""""
+
+.. tabs::
+
+  .. tab:: C++
+
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+      :language: c++
+      :dedent: 8
+      :start-after: //DDS_CHANGE_THREAD_SETTINGS
+      :end-before: //!
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-COMMON-THREAD-SETTINGS<-->
+        :lines: 10,12-15,17
+        :dedent: 16
+
 .. _transportconfigqos:
 
 TransportConfigQos

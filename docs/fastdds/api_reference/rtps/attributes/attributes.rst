@@ -26,6 +26,7 @@ Attributes
     /fastdds/api_reference/rtps/attributes/RTPSWriterPublishMode
     /fastdds/api_reference/rtps/attributes/SendBuffersAllocationAttributes
     /fastdds/api_reference/rtps/attributes/SimpleEDPAttributes
+    /fastdds/api_reference/rtps/attributes/ThreadSettings
     /fastdds/api_reference/rtps/attributes/TypeLookupSettings
     /fastdds/api_reference/rtps/attributes/VariableLengthDataLimits
     /fastdds/api_reference/rtps/attributes/WriterAttributes

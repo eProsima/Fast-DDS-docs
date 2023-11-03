@@ -945,6 +945,9 @@ List of QoS Policy data members:
    * - |TransportConfigQos::listen_socket_buffer_size-api|
      - ``uint32_t``
      - 0
+   * - |TransportConfigQos::builtin_transports_reception_threads-api|
+     - |ThreadSettings|
+     -
 
 
 * |TransportConfigQos::user_transports-api|:
@@ -958,6 +961,8 @@ List of QoS Policy data members:
 * |TransportConfigQos::listen_socket_buffer_size-api|:
   The listen socket buffer size is also created with the system default size, but it can
   be changed using this data member.
+* |TransportConfigQos::builtin_transports_reception_threads-api|:
+  The |ThreadSettings| for the reception threads of the builtin transports.
 
 .. note::
      This QoS Policy concerns to |DomainParticipant| entities.

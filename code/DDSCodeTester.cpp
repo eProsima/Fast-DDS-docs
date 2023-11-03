@@ -4094,14 +4094,16 @@ void dds_qos_examples()
     {
         //DDS_CHANGE_TRANSPORT_CONFIG_QOS
         TransportConfigQos transport;
-        //Add new transport to the list of user transports
+        // Add new transport to the list of user transports
         std::shared_ptr<eprosima::fastdds::rtps::UDPv4TransportDescriptor> descriptor =
                 std::make_shared<eprosima::fastdds::rtps::UDPv4TransportDescriptor>();
         descriptor->sendBufferSize = 9126;
         descriptor->receiveBufferSize = 9126;
         transport.user_transports.push_back(descriptor);
-        //Set use_builtin_transports to false
+        // Set use_builtin_transports to false
         transport.use_builtin_transports = false;
+        // Set ThreadSettings for the builtin transports reception threads
+        transport.builtin_transports_reception_threads_ = eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2};
         //!--
     }
 

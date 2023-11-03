@@ -183,6 +183,10 @@
 .. |DomainParticipantQos::transport-api| replace:: :cpp:func:`transport()<eprosima::fastdds::dds::DomainParticipantQos::transport>`
 .. |DomainParticipantQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DomainParticipantQos::user_data>`
 .. |DomainParticipantQos::wire_protocol-api| replace:: :cpp:func:`wire_protocol()<eprosima::fastdds::dds::DomainParticipantQos::wire_protocol>`
+.. |DomainParticipantQos::builtin_controllers_sender_thread-api| replace:: :cpp:func:`builtin_controllers_sender_thread()<eprosima::fastdds::dds::DomainParticipantQos::builtin_controllers_sender_thread>`
+.. |DomainParticipantQos::timed_events_thread-api| replace:: :cpp:func:`timed_events_thread()<eprosima::fastdds::dds::DomainParticipantQos::timed_events_thread>`
+.. |DomainParticipantQos::discovery_server_thread-api| replace:: :cpp:func:`discovery_server_thread()<eprosima::fastdds::dds::DomainParticipantQos::discovery_server_thread>`
+.. |DomainParticipantQos::security_log_thread-api| replace:: :cpp:func:`security_log_thread()<eprosima::fastdds::dds::DomainParticipantQos::security_log_thread>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
 
 .. |FlowControllerDescriptor-api| replace:: :cpp:class:`FlowControllerDescriptor<eprosima::fastdds::rtps::FlowControllerDescriptor>`
@@ -579,6 +583,7 @@
 .. |TransportConfigQos::use_builtin_transports-api| replace:: :cpp:member:`use_builtin_transports<eprosima::fastdds::dds::TransportConfigQos::use_builtin_transports>`
 .. |TransportConfigQos::send_socket_buffer_size-api| replace:: :cpp:member:`send_socket_buffer_size<eprosima::fastdds::dds::TransportConfigQos::send_socket_buffer_size>`
 .. |TransportConfigQos::listen_socket_buffer_size-api| replace:: :cpp:member:`listen_socket_buffer_size<eprosima::fastdds::dds::TransportConfigQos::listen_socket_buffer_size>`
+.. |TransportConfigQos::builtin_transports_reception_threads-api| replace:: :cpp:func:`builtin_transports_reception_threads()<eprosima::fastdds::dds::TransportConfigQos::builtin_transports_reception_threads>`
 
 .. |TransportDescriptorInterface-api| replace:: :cpp:struct:`TransportDescriptorInterface<eprosima::fastdds::rtps::TransportDescriptorInterface>`
 .. |TransportDescriptorInterface::maxMessageSize-api| replace:: :cpp:member:`maxMessageSize<eprosima::fastdds::rtps::TransportDescriptorInterface::maxMessageSize>`

@@ -930,94 +930,131 @@
 <!-->XML-PARTICIPANT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <participant profile_name="domainparticipant_profile_name">
-        <domainId>4</domainId>
-        <rtps>
-            <name>DomainParticipant Name</name>
+        <participant profile_name="domainparticipant_profile_name">
+            <domainId>4</domainId>
+            <rtps>
+                <name>DomainParticipant Name</name>
 
-            <defaultUnicastLocatorList>
-                <!-- LOCATOR_LIST -->
-                <locator>
-                    <udpv4>
-                        <port>7400</port>
-                        <address>192.168.1.41</address>
+                <defaultUnicastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                    <locator>
+                        <udpv4>
+                            <port>7400</port>
+                            <address>192.168.1.41</address>
+                        </udpv4>
+                    </locator>
+                </defaultUnicastLocatorList>
+
+                <defaultMulticastLocatorList>
+                    <!-- LOCATOR_LIST -->
+                    <locator>
+                        <udpv4>
+                            <port>7400</port>
+                            <address>192.168.2.41</address>
+                        </udpv4>
+                    </locator>
+                </defaultMulticastLocatorList>
+
+                <default_external_unicast_locators>
+                    <!-- EXTERNAL_LOCATOR_LIST -->
+                    <udpv4 externality="1" cost="0" mask="24">
+                        <address>100.100.100.10</address>
+                        <port>23456</port>
                     </udpv4>
-                </locator>
-            </defaultUnicastLocatorList>
+                </default_external_unicast_locators>
 
-            <defaultMulticastLocatorList>
-                <!-- LOCATOR_LIST -->
-                <locator>
-                    <udpv4>
-                        <port>7400</port>
-                        <address>192.168.2.41</address>
-                    </udpv4>
-                </locator>
-            </defaultMulticastLocatorList>
+                <ignore_non_matching_locators>true</ignore_non_matching_locators>
 
-            <default_external_unicast_locators>
-                <!-- EXTERNAL_LOCATOR_LIST -->
-                <udpv4 externality="1" cost="0" mask="24">
-                    <address>100.100.100.10</address>
-                    <port>23456</port>
-                </udpv4>
-            </default_external_unicast_locators>
+                <sendSocketBufferSize>8192</sendSocketBufferSize>
 
-            <ignore_non_matching_locators>true</ignore_non_matching_locators>
+                <listenSocketBufferSize>8192</listenSocketBufferSize>
 
-            <sendSocketBufferSize>8192</sendSocketBufferSize>
+                <builtin>
+                    <!-- BUILTIN -->
+                </builtin>
 
-            <listenSocketBufferSize>8192</listenSocketBufferSize>
+                <port>
+                    <portBase>7400</portBase>
+                    <domainIDGain>200</domainIDGain>
+                    <participantIDGain>10</participantIDGain>
+                    <offsetd0>0</offsetd0>
+                    <offsetd1>1</offsetd1>
+                    <offsetd2>2</offsetd2>
+                    <offsetd3>3</offsetd3>
+                </port>
 
-            <builtin>
-                <!-- BUILTIN -->
-            </builtin>
+                <participantID>99</participantID>
 
-            <port>
-                <portBase>7400</portBase>
-                <domainIDGain>200</domainIDGain>
-                <participantIDGain>10</participantIDGain>
-                <offsetd0>0</offsetd0>
-                <offsetd1>1</offsetd1>
-                <offsetd2>2</offsetd2>
-                <offsetd3>3</offsetd3>
-            </port>
+                <userTransports>
+                    <transport_id>TransportId1</transport_id>
+                    <transport_id>TransportId2</transport_id>
+                </userTransports>
 
-            <participantID>99</participantID>
+                <useBuiltinTransports>false</useBuiltinTransports>
 
-            <userTransports>
-                <transport_id>TransportId1</transport_id>
-                <transport_id>TransportId2</transport_id>
-            </userTransports>
+                <propertiesPolicy>
+                    <!-- PROPERTIES_POLICY -->
+                    <properties>
+                        <property>
+                            <name>Property1Name</name>
+                            <value>Property1Value</value>
+                            <propagate>false</propagate>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
 
-            <useBuiltinTransports>false</useBuiltinTransports>
+                <allocation>
+                    <!-- ALLOCATION -->
+                </allocation>
 
-            <propertiesPolicy>
-                <!-- PROPERTIES_POLICY -->
-                <properties>
-                    <property>
-                        <name>Property1Name</name>
-                        <value>Property1Value</value>
-                        <propagate>false</propagate>
-                    </property>
-                </properties>
-            </propertiesPolicy>
+                <userData>
+                    <value>3.4.7.0.C</value>
+                </userData>
 
-            <allocation>
-                <!-- ALLOCATION -->
-            </allocation>
+                <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
 
-            <userData>
-                <value>3.4.7.0.C</value>
-            </userData>
+                <builtin_controllers_sender_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </builtin_controllers_sender_thread>
 
-            <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
-        </rtps>
-    </participant>
+                <timed_events_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </timed_events_thread>
+
+                <discovery_server_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </discovery_server_thread>
+
+                <builtin_transports_reception_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </builtin_transports_reception_threads>
+
+                <security_log_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </security_log_thread>
+            </rtps>
+        </participant>
 <!--
-</profiles>
+    </profiles>
+</dds>
 -->
 <!--><-->
 

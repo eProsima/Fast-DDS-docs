@@ -394,6 +394,41 @@
                         <dynamic>true</dynamic>
                     </send_buffers>
                 </allocation>
+
+                <builtin_controllers_sender_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </builtin_controllers_sender_thread>
+
+                <timed_events_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </timed_events_thread>
+
+                <discovery_server_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </discovery_server_thread>
+
+                <builtin_transports_reception_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </builtin_transports_reception_threads>
+
+                <security_log_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </security_log_thread>
             </rtps>
         </participant>
 

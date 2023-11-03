@@ -122,6 +122,9 @@ but the default configuration is to always use a metatraffic port and a unicast 
 This applies both to UDP and Shared Memory since TCP does not support multicast.
 More information can be found at the :ref:`listening_locators_default` page.
 
+*Fast DDS* offers the possibility of configuring certain attributes of the threads it creates by means of the
+:ref:`threadsettingsqos`.
+
 Event-driven architecture
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 

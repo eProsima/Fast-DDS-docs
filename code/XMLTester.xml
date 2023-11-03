@@ -896,6 +896,37 @@
 </data_reader>
 <!--><-->
 
+<!-->XML-PARTICIPANT-FACTORY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+        <domainparticipant_factory profile_name="domainparticipant_factory_profile_name">
+            <qos>
+                <entity_factory>
+                    <autoenable_created_entities>true</autoenable_created_entities>
+                </entity_factory>
+                <shm_watchdog_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </shm_watchdog_thread>
+                <file_watch_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </file_watch_threads>
+            </qos>
+        </domainparticipant_factory>
+<!--
+    </profiles>
+<dds>
+-->
+<!--><-->
+
 <!-->XML-PARTICIPANT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

@@ -162,6 +162,8 @@
 
 .. |DomainParticipantFactoryQos-api| replace:: :cpp:class:`DomainParticipantFactoryQos<eprosima::fastdds::dds::DomainParticipantFactoryQos>`
 .. |DomainParticipantFactoryQos::entity_factory-api| replace:: :cpp:func:`entity_factory()<eprosima::fastdds::dds::DomainParticipantFactoryQos::entity_factory>`
+.. |DomainParticipantFactoryQos::shm_watchdog_thread-api| replace:: :cpp:func:`shm_watchdog_thread()<eprosima::fastdds::dds::DomainParticipantFactoryQos::shm_watchdog_thread>`
+.. |DomainParticipantFactoryQos::file_watch_threads-api| replace:: :cpp:func:`file_watch_threads()<eprosima::fastdds::dds::DomainParticipantFactoryQos::file_watch_threads>`
 
 .. |DomainParticipantListener-api| replace:: :cpp:class:`DomainParticipantListener<eprosima::fastdds::dds::DomainParticipantListener>`
 .. |DomainParticipantListener::on_participant_discovery-api| replace:: :cpp:func:`on_participant_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_participant_discovery>`

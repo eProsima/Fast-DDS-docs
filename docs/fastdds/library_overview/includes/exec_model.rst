@@ -4,6 +4,8 @@ Programming and execution model
 *Fast DDS* is concurrent and event-based.
 The following explains the multithreading model that governs the operation of *Fast DDS* as well as the possible events.
 
+.. _concurrency_multithreading:
+
 Concurrency and multithreading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

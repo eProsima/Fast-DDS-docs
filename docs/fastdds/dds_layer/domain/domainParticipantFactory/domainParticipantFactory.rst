@@ -27,11 +27,21 @@ DomainParticipantFactoryQos
 DomainParticipantFactoryQos controls the behavior of the :ref:`dds_layer_domainParticipantFactory`.
 Internally it contains the following |QosPolicy-api| objects:
 
-+------------------------------+----------------------------------------------------------------------------+----------+
-| QosPolicy class              | Accessor/Mutator                                                           | Mutable  |
-+==============================+============================================================================+==========+
-| |EntityFactoryQosPolicy|     | |DomainParticipantFactoryQos::entity_factory-api|                          | Yes      |
-+------------------------------+----------------------------------------------------------------------------+----------+
+.. list-table::
+   :header-rows: 1
+
+   * - QosPolicy class
+     - Accessor/Mutator
+     - Mutable
+   * - |EntityFactoryQosPolicy|
+     - |DomainParticipantFactoryQos::entity_factory-api|
+     - Yes
+   * - |ThreadSettings|
+     - |DomainParticipantFactoryQos::shm_watchdog_thread-api|
+     - No
+   * - |ThreadSettings|
+     - |DomainParticipantFactoryQos::file_watch_threads-api|
+     - No
 
 Since the DomainParticipantFactory is a singleton, its QoS can only be modified with the
 |DomainParticipantFactory::set_qos-api| member function.

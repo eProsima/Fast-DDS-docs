@@ -2,6 +2,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
     <profiles>
+        <domainparticipant_factory profile_name="domainparticipant_factory_profile">
+            <!-- ... -->
+        </domainparticipant_factory>
+
         <participant profile_name="participant_profile">
             <!-- ... -->
         </participant>

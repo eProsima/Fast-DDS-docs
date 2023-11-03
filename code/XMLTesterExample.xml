@@ -72,6 +72,26 @@
             </transport_descriptor>
         </transport_descriptors>
 
+        <domainparticipant_factory profile_name="domainparticipant_factory_profile_name">
+            <qos>
+                <entity_factory>
+                    <autoenable_created_entities>true</autoenable_created_entities>
+                </entity_factory>
+                <shm_watchdog_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </shm_watchdog_thread>
+                <file_watch_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </file_watch_threads>
+            </qos>
+        </domainparticipant_factory>
+
         <participant profile_name="participant_profile_example">
             <domainId>4</domainId>
             <rtps>

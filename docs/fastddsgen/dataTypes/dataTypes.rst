@@ -410,6 +410,35 @@ Modules
 In order to avoid collision between variable names, modules can be defined within the IDL file.
 A module would be converted into a namespace in C++.
 
+.. code-block:: omg-idl
+
+    module MyNamespace
+    {
+        struct Structure
+        {
+            octet octet_value;
+            long long_value;
+            string string_value;
+        };
+    };
+
+After generation, you will receive a structure definition with a namespace.
+
+.. code-block:: c++
+
+    namespace MyNamespace
+    {
+        class Structure
+        {
+        public:
+            // ...
+        private:
+            uint8_t m_octet_value;
+            int32_t m_long_value;
+            std::string m_string_value;
+        }
+    };
+
 Data types with a key
 ^^^^^^^^^^^^^^^^^^^^^
 

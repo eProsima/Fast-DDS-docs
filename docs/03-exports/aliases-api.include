@@ -194,6 +194,7 @@
 .. |FlowControllerDescriptor::scheduler-api| replace:: :cpp:member:`scheduler<eprosima::fastdds::rtps::FlowControllerDescriptor::scheduler>`
 .. |FlowControllerDescriptor::max_bytes_per_period-api| replace:: :cpp:member:`max_bytes_per_period<eprosima::fastdds::rtps::FlowControllerDescriptor::max_bytes_per_period>`
 .. |FlowControllerDescriptor::period_ms-api| replace:: :cpp:member:`period_ms<eprosima::fastdds::rtps::FlowControllerDescriptor::period_ms>`
+.. |FlowControllerDescriptor::sender_thread-api| replace:: :cpp:member:`sender_thread<eprosima::fastdds::rtps::FlowControllerDescriptor::sender_thread>`
 
 .. |FlowControllerSchedulerPolicy-api| replace:: :cpp:enum:`FlowControllerSchedulerPolicy<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy>`
 .. |FIFO_SCHED_POLICY-api| replace:: :cpp:enumerator:`FIFO<eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::FIFO>`

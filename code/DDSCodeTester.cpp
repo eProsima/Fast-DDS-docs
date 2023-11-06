@@ -5103,6 +5103,9 @@ void dds_usecase_examples()
         flow_control_300k_per_sec->max_bytes_per_period = 300 * 1000;
         flow_control_300k_per_sec->period_ms = 1000;
 
+        // Configure sender thread settings
+        flow_control_300k_per_sec->sender_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
+
         // Register flow controller on participant
         DomainParticipantQos participant_qos;
         participant_qos.flow_controllers().push_back(flow_control_300k_per_sec);

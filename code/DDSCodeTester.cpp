@@ -4367,6 +4367,9 @@ void log_examples()
 
     // Stop the loggin thread and free its resources.
     Log::KillThread();
+
+    // Configure ThreadSettings for the logging thread
+    Log::SetThreadConfig(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
     //!--
 
 }

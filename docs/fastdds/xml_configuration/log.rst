@@ -5,7 +5,7 @@
 .. _logprofiles:
 
 Log profiles
-----------------
+------------
 
 *eProsima Fast DDS* allows for registering and configuring :ref:`Log consumers <dds_layer_log_consumer>` using XML
 configuration files.
@@ -14,17 +14,32 @@ The logging profiles are defined within the ``<log>`` XML tags.
 The ``<log>`` element has two child elements: ``<use_default>`` and ``<consumer>``.
 These are described in the following table.
 
-+-------------------+---------------------------------------------------------------+-----------------------+----------+
-| Name              | Description                                                   | Values                | Default  |
-+===================+===============================================================+=======================+==========+
-| ``<use_default>`` | If set to ``FALSE``, a call to                                | ``bool``              | ``true`` |
-|                   | |Log::ClearConsumers-api| is |br|                             |                       |          |
-|                   | performed. See :ref:`dds_layer_log_register_consumers`.       |                       |          |
-+-------------------+---------------------------------------------------------------+-----------------------+----------+
-| ``<consumer>``    | Defines the class and configuration of the consumer to |br|   | :ref:`xmllogconsumer` |          |
-|                   | be registered. Multiple consumers can be registered |br|      |                       |          |
-|                   | this way. See :ref:`dds_layer_log_consumer`.                  |                       |          |
-+-------------------+---------------------------------------------------------------+-----------------------+----------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<use_default>``
+     - If set to ``FALSE``, a call to |Log::ClearConsumers-api| is |br|
+       |Log::ClearConsumers-api| is |br|
+       performed. See :ref:`dds_layer_log_register_consumers`.
+     - ``bool``
+     - ``true``
+   * - ``<consumer>``
+     - Defines the class and configuration of the consumer to |br|
+       be registered. Multiple consumers can be registered |br|
+       this way. See :ref:`dds_layer_log_consumer`.
+     - :ref:`xmllogconsumer`
+     -
+   * - ``<thread_settings>``
+     - |ThreadSettings| for the logging thread.
+     - |ThreadSettings|
+     -
+
+
 
 The following constitutes an example of an XML configuration file that sets the |Log-api| to use one
 |StdoutConsumer-api|, one |StdoutErrConsumer-api|, and one |FileConsumer-api|:
@@ -33,7 +48,7 @@ The following constitutes an example of an XML configuration file that sets the 
     :language: xml
     :start-after: <!-->LOG-CONFIG<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-43, 45
+    :lines: 2-3, 5-53, 55
 
 .. _xmllogconsumer:
 

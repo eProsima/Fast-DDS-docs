@@ -16,6 +16,8 @@ However, sometimes applications may want to wait until the logging routine is do
 The logging module provides this capability via the member function |Log::Flush-api|.
 Furthermore, it is possible to completely eliminate the thread and its resources using member function
 |Log::KillThread-api|.
+In addition, it is possible to configured certain settings of this logging thread via the member function
+|Log::SetThreadConfig-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++

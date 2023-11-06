@@ -914,6 +914,7 @@
 
 .. |Log::Flush-api| replace:: :cpp:func:`Log::Flush() <eprosima::fastdds::dds::Log::Flush()>`
 .. |Log::KillThread-api| replace:: :cpp:func:`Log::KillThread() <eprosima::fastdds::dds::Log::KillThread()>`
+.. |Log::SetThreadConfig-api| replace:: :cpp:func:`Log::SetThreadConfig() <eprosima::fastdds::dds::Log::SetThreadConfig()>`
 
 .. |StdoutErrConsumer::stderr_threshold-api| replace:: :cpp:func:`StdoutErrConsumer::stderr_threshold() <eprosima::fastdds::dds::StdoutErrConsumer::stderr_threshold()>`
 

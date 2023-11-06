@@ -675,6 +675,7 @@
 .. |SharedMemTransportDescriptor::port_queue_capacity-api| replace:: :cpp:func:`port_queue_capacity()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::port_queue_capacity>`
 .. |SharedMemTransportDescriptor::healthy_check_timeout_ms-api| replace:: :cpp:func:`healthy_check_timeout_ms()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::healthy_check_timeout_ms>`
 .. |SharedMemTransportDescriptor::rtps_dump_file-api| replace:: :cpp:func:`rtps_dump_file()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::rtps_dump_file>`
+.. |SharedMemTransportDescriptor::dump_thread-api| replace:: :cpp:func:`dump_thread()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::dump_thread>`
 
 .. |TypeConsistencyQos-api| replace:: :cpp:class:`TypeConsistencyQos<eprosima::fastdds::dds::TypeConsistencyQos>`
 .. |TypeConsistencyQos::type_consistency-api| replace:: :cpp:member:`type_consistency<eprosima::fastdds::dds::TypeConsistencyQos::type_consistency>`

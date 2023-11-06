@@ -437,6 +437,12 @@
                         <stack_size>-1</stack_size>
                     </reception_thread>
                 </reception_threads>
+                <dump_thread> <!-- OPTIONAL -->
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </dump_thread>
             </transport_descriptor>
         </transport_descriptors>
 

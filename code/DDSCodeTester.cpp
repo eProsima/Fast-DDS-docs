@@ -4646,6 +4646,7 @@ void dds_transport_examples ()
         // [OPTIONAL] ThreadSettings configuration
         shm_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
         shm_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        shm_transport->dump_thread(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(shm_transport);

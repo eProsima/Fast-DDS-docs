@@ -176,12 +176,17 @@ the TransportDescriptor for Shared Memory defines the following ones:
      - |ThreadSettings|
      -
      - |PortBasedTransportDescriptor::default_reception_threads-api|
-     - |ThreadSettings| for the default reception threads
+     - |ThreadSettings| for the default reception threads.
    * - |PortBasedTransportDescriptor::reception_threads-api|
      - ``std::map<uint32_t, ThreadSettings>``
      -
      - |PortBasedTransportDescriptor::reception_threads-api|
-     - |ThreadSettings| for the default reception threads
+     - |ThreadSettings| for the default reception threads.
+   * - |SharedMemTransportDescriptor::dump_thread-api|
+     - |ThreadSettings|
+     -
+     - |SharedMemTransportDescriptor::dump_thread-api|
+     - |ThreadSettings| for the SHM dump thread.
 
 If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the DomainParticipant
 (sent and received) is traced to a file.
@@ -229,7 +234,7 @@ The examples below show this procedure in both C++ code and XML file.
       :language: xml
       :start-after: <!-->CONF-SHM-TRANSPORT-SETTING
       :end-before: <!--><-->
-      :lines: 2-4,6-35,37-38
+      :lines: 2-4,6-41,43-44
 
 .. note::
 

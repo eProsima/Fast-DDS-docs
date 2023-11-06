@@ -250,62 +250,86 @@
 <!-->CONF-UDP-TRANSPORT-SETTING<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <transport_descriptors>
-        <transport_descriptor>
-            <transport_id>udp_transport</transport_id>
-            <type>UDPv4</type>
-            <sendBufferSize>9216</sendBufferSize>
-            <receiveBufferSize>9216</receiveBufferSize>
-            <non_blocking_send>true</non_blocking_send>
-        </transport_descriptor>
-    </transport_descriptors>
-
-    <participant profile_name="UDPParticipant">
-        <rtps>
-            <userTransports>
+        <transport_descriptors>
+            <transport_descriptor>
                 <transport_id>udp_transport</transport_id>
-            </userTransports>
-            <useBuiltinTransports>false</useBuiltinTransports>
-        </rtps>
-    </participant>
+                <type>UDPv4</type>
+                <sendBufferSize>9216</sendBufferSize>
+                <receiveBufferSize>9216</receiveBufferSize>
+                <non_blocking_send>true</non_blocking_send>
+                <default_reception_threads>
+                    <scheduling_policy>2</scheduling_policy>
+                    <priority>2</priority>
+                    <affinity>2</affinity>
+                    <stack_size>2</stack_size>
+                </default_reception_threads>
+                <reception_threads>
+                    <reception_thread port="12345">
+                        <scheduling_policy>3</scheduling_policy>
+                        <priority>3</priority>
+                        <affinity>3</affinity>
+                        <stack_size>3</stack_size>
+                    </reception_thread>
+                </reception_threads>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <participant profile_name="UDPParticipant">
+            <rtps>
+                <userTransports>
+                    <transport_id>udp_transport</transport_id>
+                </userTransports>
+                <useBuiltinTransports>false</useBuiltinTransports>
+            </rtps>
+        </participant>
+<!-->
+    </profiles>
+<dds>
+<-->
 <!--><-->
 
 <!-->CONF-TCP-TRANSPORT-SETTING-SERVER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <transport_descriptors>
-        <transport_descriptor>
-            <transport_id>tcp_server_transport</transport_id>
-            <type>TCPv4</type>
-            <listening_ports>
-                <port>5100</port>
-            </listening_ports>
-            <wan_addr>80.80.99.45</wan_addr>
-        </transport_descriptor>
-    </transport_descriptors>
-
-    <participant profile_name="tcp_server_participant">
-        <rtps>
-            <userTransports>
+        <transport_descriptors>
+            <transport_descriptor>
                 <transport_id>tcp_server_transport</transport_id>
-            </userTransports>
-            <useBuiltinTransports>false</useBuiltinTransports>
-            <defaultUnicastLocatorList>
-                <locator>
-                    <tcpv4>
-                        <wan_address>80.80.99.45</wan_address>
-                        <address>80.80.99.45</address>
-                        <physical_port>5100</physical_port>
-                        <port>5100</port>
-                    </tcpv4>
-                </locator>
-            </defaultUnicastLocatorList>
-            <builtin>
-                <metatrafficUnicastLocatorList>
+                <type>TCPv4</type>
+                <listening_ports>
+                    <port>5100</port>
+                </listening_ports>
+                <wan_addr>80.80.99.45</wan_addr>
+                <!-- Optional thread configuration -->
+                <default_reception_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </default_reception_threads>
+                <reception_threads>
+                    <reception_thread port="12345">
+                        <scheduling_policy>-1</scheduling_policy>
+                        <priority>0</priority>
+                        <affinity>0</affinity>
+                        <stack_size>-1</stack_size>
+                    </reception_thread>
+                </reception_threads>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <participant profile_name="tcp_server_participant">
+            <rtps>
+                <userTransports>
+                    <transport_id>tcp_server_transport</transport_id>
+                </userTransports>
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <defaultUnicastLocatorList>
                     <locator>
                         <tcpv4>
                             <wan_address>80.80.99.45</wan_address>
@@ -314,66 +338,120 @@
                             <port>5100</port>
                         </tcpv4>
                     </locator>
-                </metatrafficUnicastLocatorList>
-            </builtin>
-        </rtps>
-    </participant>
+                </defaultUnicastLocatorList>
+                <builtin>
+                    <metatrafficUnicastLocatorList>
+                        <locator>
+                            <tcpv4>
+                                <wan_address>80.80.99.45</wan_address>
+                                <address>80.80.99.45</address>
+                                <physical_port>5100</physical_port>
+                                <port>5100</port>
+                            </tcpv4>
+                        </locator>
+                    </metatrafficUnicastLocatorList>
+                </builtin>
+            </rtps>
+        </participant>
+<!-->
+    </profiles>
+</dds>
+<-->
 <!--><-->
 
 <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <transport_descriptors>
-        <transport_descriptor>
-            <transport_id>tcp_client_transport</transport_id>
-            <type>TCPv4</type>
-        </transport_descriptor>
-    </transport_descriptors>
-
-    <participant profile_name="tcp_client_participant">
-        <rtps>
-            <userTransports>
+        <transport_descriptors>
+            <transport_descriptor>
                 <transport_id>tcp_client_transport</transport_id>
-            </userTransports>
-             <useBuiltinTransports>false</useBuiltinTransports>
-            <builtin>
-                <initialPeersList>
-                    <locator>
-                        <tcpv4>
-                            <address>80.80.99.45</address>
-                            <physical_port>5100</physical_port>
-                            <port>5100</port>
-                        </tcpv4>
-                    </locator>
-                </initialPeersList>
-            </builtin>
-        </rtps>
-    </participant>
+                <type>TCPv4</type>
+                <!-- Optional thread configuration -->
+                <default_reception_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </default_reception_threads>
+                <reception_threads>
+                    <reception_thread port="12345">
+                        <scheduling_policy>-1</scheduling_policy>
+                        <priority>0</priority>
+                        <affinity>0</affinity>
+                        <stack_size>-1</stack_size>
+                    </reception_thread>
+                </reception_threads>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <participant profile_name="tcp_client_participant">
+            <rtps>
+                <userTransports>
+                    <transport_id>tcp_client_transport</transport_id>
+                </userTransports>
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <builtin>
+                    <initialPeersList>
+                        <locator>
+                            <tcpv4>
+                                <address>80.80.99.45</address>
+                                <physical_port>5100</physical_port>
+                                <port>5100</port>
+                            </tcpv4>
+                        </locator>
+                    </initialPeersList>
+                </builtin>
+            </rtps>
+        </participant>
+<!-->
+    </profiles>
+</dds>
+<-->
 <!--><-->
 
 <!-->CONF-SHM-TRANSPORT-SETTING<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-    <transport_descriptors>
-        <!-- Create a descriptor for the new transport -->
-        <transport_descriptor>
-            <transport_id>shm_transport</transport_id>
-            <type>SHM</type>
-        </transport_descriptor>
-    </transport_descriptors>
-
-    <participant profile_name="SHMParticipant">
-        <rtps>
-            <!-- Link the Transport Layer to the Participant -->
-            <userTransports>
+        <transport_descriptors>
+            <!-- Create a descriptor for the new transport -->
+            <transport_descriptor>
                 <transport_id>shm_transport</transport_id>
-            </userTransports>
-        </rtps>
-    </participant>
+                <type>SHM</type>
+                <default_reception_threads> <!-- OPTIONAL -->
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </default_reception_threads>
+                <reception_threads> <!-- OPTIONAL -->
+                    <reception_thread port="12345">
+                        <scheduling_policy>-1</scheduling_policy>
+                        <priority>0</priority>
+                        <affinity>0</affinity>
+                        <stack_size>-1</stack_size>
+                    </reception_thread>
+                </reception_threads>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <participant profile_name="SHMParticipant">
+            <rtps>
+                <!-- Link the Transport Layer to the Participant -->
+                <userTransports>
+                    <transport_id>shm_transport</transport_id>
+                </userTransports>
+            </rtps>
+        </participant>
+<!-->
+    </profiles>
+</dds>
+<-->
 <!--><-->
 
 <!-->CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS<-->

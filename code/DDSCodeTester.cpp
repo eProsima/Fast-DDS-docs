@@ -4565,6 +4565,8 @@ void dds_transport_examples ()
         udp_transport->sendBufferSize = 9216;
         udp_transport->receiveBufferSize = 9216;
         udp_transport->non_blocking_send = true;
+        udp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2});
+        udp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{3, 3, 3, 3});
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(udp_transport);
@@ -4582,6 +4584,10 @@ void dds_transport_examples ()
         auto tcp_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         tcp_transport->add_listener_port(5100);
         tcp_transport->set_WAN_address("80.80.99.45");
+
+        // [OPTIONAL] ThreadSettings configuration
+        tcp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        tcp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tcp_transport);
@@ -4612,6 +4618,10 @@ void dds_transport_examples ()
         auto tcp_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         qos.transport().user_transports.push_back(tcp_transport);
 
+        // [OPTIONAL] ThreadSettings configuration
+        tcp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        tcp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+
         // Set initial peers.
         eprosima::fastrtps::rtps::Locator_t initial_peer_locator;
         initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
@@ -4632,6 +4642,10 @@ void dds_transport_examples ()
 
         // Create a descriptor for the new transport.
         std::shared_ptr<SharedMemTransportDescriptor> shm_transport = std::make_shared<SharedMemTransportDescriptor>();
+
+        // [OPTIONAL] ThreadSettings configuration
+        shm_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        shm_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(shm_transport);

@@ -599,6 +599,9 @@
 .. |ChainingTransport::send-api| replace:: :cpp:func:`send()<eprosima::fastdds::rtps::ChainingTransport::send>`
 .. |ChainingTransport::receive-api| replace:: :cpp:func:`receive()<eprosima::fastdds::rtps::ChainingTransport::receive>`
 
+.. |PortBasedTransportDescriptor::default_reception_threads-api| replace:: :cpp:func:`default_reception_threads<eprosima::fastdds::rtps::PortBasedTransportDescriptor::default_reception_threads>`
+.. |PortBasedTransportDescriptor::reception_threads-api| replace:: :cpp:func:`reception_threads<eprosima::fastdds::rtps::PortBasedTransportDescriptor::reception_threads>`
+
 .. |SocketTransportDescriptor::sendBufferSize-api| replace:: :cpp:var:`sendBufferSize<eprosima::fastdds::rtps::SocketTransportDescriptor::sendBufferSize>`
 .. |SocketTransportDescriptor::receiveBufferSize-api| replace:: :cpp:var:`receiveBufferSize<eprosima::fastdds::rtps::SocketTransportDescriptor::receiveBufferSize>`
 .. |SocketTransportDescriptor::interfaceWhiteList-api| replace:: :cpp:var:`interfaceWhiteList<eprosima::fastdds::rtps::SocketTransportDescriptor::interfaceWhiteList>`

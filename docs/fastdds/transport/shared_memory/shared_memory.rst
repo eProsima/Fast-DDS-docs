@@ -141,36 +141,47 @@ the TransportDescriptor for Shared Memory defines the following ones:
 
 
 .. list-table::
-    :header-rows: 1
+   :header-rows: 1
+   :align: left
 
-    *   - Member
-        - Data type
-        - Default
-        - Accessor / Mutator
-        - Description
-    *   - ``segment_size_``
-        - ``uint32_t``
-        - ``512*1024``
-        - |SharedMemTransportDescriptor::segment_size-api|
-        - Size of the shared memory segment |br|
-          (in octets).
-    *   - ``port_queue_capacity_``
-        - ``uint32_t``
-        - ``512``
-        - |SharedMemTransportDescriptor::port_queue_capacity-api|
-        - The size of the listening port |br|
-          (in messages).
-    *   - ``healthy_check_timeout_ms_``
-        - ``uint32_t``
-        - ``1000``
-        - |SharedMemTransportDescriptor::healthy_check_timeout_ms-api|
-        - Timeout for the health check of ports |br|
-          (in milliseconds).
-    *   - ``rtps_dump_file_``
-        - ``string``
-        - ``""``
-        - |SharedMemTransportDescriptor::rtps_dump_file-api|
-        - Full path of the protocol dump file.
+   * - Member
+     - Data type
+     - Default
+     - Accessor / Mutator
+     - Description
+   * - ``segment_size_``
+     - ``uint32_t``
+     - ``512*1024``
+     - |SharedMemTransportDescriptor::segment_size-api|
+     - Size of the shared memory segment |br|
+       (in octets).
+   * - ``port_queue_capacity_``
+     - ``uint32_t``
+     - ``512``
+     - |SharedMemTransportDescriptor::port_queue_capacity-api|
+     - The size of the listening port |br|
+       (in messages).
+   * - ``healthy_check_timeout_ms_``
+     - ``uint32_t``
+     - ``1000``
+     - |SharedMemTransportDescriptor::healthy_check_timeout_ms-api|
+     - Timeout for the health check of ports |br|
+       (in milliseconds).
+   * - ``rtps_dump_file_``
+     - ``string``
+     - ``""``
+     - |SharedMemTransportDescriptor::rtps_dump_file-api|
+     - Full path of the protocol dump file.
+   * - |PortBasedTransportDescriptor::default_reception_threads-api|
+     - |ThreadSettings|
+     -
+     - |PortBasedTransportDescriptor::default_reception_threads-api|
+     - |ThreadSettings| for the default reception threads
+   * - |PortBasedTransportDescriptor::reception_threads-api|
+     - ``std::map<uint32_t, ThreadSettings>``
+     -
+     - |PortBasedTransportDescriptor::reception_threads-api|
+     - |ThreadSettings| for the default reception threads
 
 If ``rtps_dump_file_`` is not empty, all the shared memory traffic on the DomainParticipant
 (sent and received) is traced to a file.
@@ -218,8 +229,7 @@ The examples below show this procedure in both C++ code and XML file.
       :language: xml
       :start-after: <!-->CONF-SHM-TRANSPORT-SETTING
       :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+      :lines: 2-4,6-35,37-38
 
 .. note::
 

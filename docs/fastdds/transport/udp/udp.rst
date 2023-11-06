@@ -1,3 +1,4 @@
+.. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
 
 .. _transport_udp_udp:
@@ -61,6 +62,14 @@ The following table describes the common data members for both UDPv4 and UDPv6.
      - ``bool``
      - ``false``
      - Do not block on send operations (*).
+   * - |PortBasedTransportDescriptor::default_reception_threads-api|
+     - |ThreadSettings|
+     -
+     - |ThreadSettings| for the default reception threads
+   * - |PortBasedTransportDescriptor::reception_threads-api|
+     - ``std::map<uint32_t, ThreadSettings>``
+     -
+     - |ThreadSettings| for the default reception threads
 
 .. note::
 
@@ -130,5 +139,4 @@ The examples below show this procedure in both C++ code and XML file.
          :language: xml
          :start-after: <!-->CONF-UDP-TRANSPORT-SETTING
          :end-before: <!--><-->
-         :lines: 2-3,5-
-         :append: </profiles>
+         :lines: 2-4,6-37,39-40

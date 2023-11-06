@@ -107,29 +107,44 @@
 <!--><-->
 
 <!-->CONF-QOS-DATASHARING<-->
-<data_writer profile_name="writer_profile_qos_datasharing">
-    <qos>
-        <data_sharing>
-            <kind>AUTOMATIC</kind>
-            <domain_ids>
-                <domainId>123</domainId>
-                <domainId>098</domainId>
-            </domain_ids>
-        </data_sharing>
-    </qos>
-</data_writer>
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+        <data_writer profile_name="writer_profile_qos_datasharing">
+            <qos>
+                <data_sharing>
+                    <kind>AUTOMATIC</kind>
+                    <domain_ids>
+                        <domainId>123</domainId>
+                        <domainId>098</domainId>
+                    </domain_ids>
+                </data_sharing>
+            </qos>
+        </data_writer>
 
-<data_reader profile_name="reader_profile_qos_datasharing">
-    <qos>
-        <data_sharing>
-            <kind>AUTOMATIC</kind>
-            <domain_ids>
-                <domainId>123</domainId>
-                <domainId>098</domainId>
-            </domain_ids>
-        </data_sharing>
-    </qos>
-</data_reader>
+        <data_reader profile_name="reader_profile_qos_datasharing">
+            <qos>
+                <data_sharing>
+                    <kind>AUTOMATIC</kind>
+                    <domain_ids>
+                        <domainId>123</domainId>
+                        <domainId>098</domainId>
+                    </domain_ids>
+                    <data_sharing_listener_thread>
+                        <scheduling_policy>-1</scheduling_policy>
+                        <priority>0</priority>
+                        <affinity>0</affinity>
+                        <stack_size>-1</stack_size>
+                    </data_sharing_listener_thread>
+                </data_sharing>
+            </qos>
+        </data_reader>
+<!-->
+    </profiles>
+<dds>
+<-->
 <!--><-->
 
 <!-->CONF-QOS-PARTITIONS<-->

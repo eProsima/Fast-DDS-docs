@@ -353,6 +353,7 @@
 .. |DataSharingQosPolicy::auto-api| replace:: :cpp:func:`automatic()<eprosima::fastdds::dds::DataSharingQosPolicy::automatic>`
 .. |DataSharingQosPolicy::on-api| replace:: :cpp:func:`on()<eprosima::fastdds::dds::DataSharingQosPolicy::on>`
 .. |DataSharingQosPolicy::off-api| replace:: :cpp:func:`off()<eprosima::fastdds::dds::DataSharingQosPolicy::off>`
+.. |DataSharingQosPolicy::data_sharing_listener_thread-api| replace:: :cpp:func:`data_sharing_listener_thread()<eprosima::fastdds::dds::DataSharingQosPolicy::data_sharing_listener_thread>`
 
 .. |DurabilityServiceQosPolicy-api| replace:: :cpp:class:`DurabilityServiceQosPolicy<eprosima::fastdds::dds::DurabilityServiceQosPolicy>`
 .. |service_cleanup_delay-api| replace:: :cpp:member:`service_cleanup_delay<eprosima::fastdds::dds::DurabilityServiceQosPolicy::service_cleanup_delay>`

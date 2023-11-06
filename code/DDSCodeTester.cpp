@@ -3942,6 +3942,9 @@ void dds_qos_examples()
         // unique for the current machine
         datasharing.automatic();
 
+        // ThreadSettings for listening thread
+        datasharing.data_sharing_listener_thread(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+
         //!--
     }
 

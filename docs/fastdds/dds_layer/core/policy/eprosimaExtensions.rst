@@ -28,17 +28,34 @@ Please, see :ref:`datasharing-delivery` for a description of the data-sharing de
 
 List of QoS Policy data members:
 
-+-------------------------+------------------------+-------------------------------------------+---------------+
-| Data Member             | Type                   | Accessor                                  | Default Value |
-+=========================+========================+===========================================+===============+
-| Data-sharing kind       | :ref:`datasharingkind` | |DataSharingQosPolicy::kind-api|          | ``AUTO``      |
-+-------------------------+------------------------+-------------------------------------------+---------------+
-| Shared memory directory | ``string``             | |DataSharingQosPolicy::shm_directory-api| | Empty string  |
-+-------------------------+------------------------+-------------------------------------------+---------------+
-| Maximum domain number   | ``uint32_t``           | |DataSharingQosPolicy::max_domains-api|   | 0 (unlimited) |
-+-------------------------+------------------------+-------------------------------------------+---------------+
-| Data-sharing domain IDs | ``vector<uint64_t>``   | |DataSharingQosPolicy::domain_ids-api|    | Empty         |
-+-------------------------+------------------------+-------------------------------------------+---------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Data Member
+     - Type
+     - Accessor
+     - Default Value
+   * - Data-sharing kind
+     - :ref:`datasharingkind`
+     - |DataSharingQosPolicy::kind-api|
+     - ``AUTO``
+   * - Shared memory directory
+     - ``string``
+     - |DataSharingQosPolicy::shm_directory-api|
+     - Empty string
+   * - Maximum domain number
+     - ``uint32_t``
+     - |DataSharingQosPolicy::max_domains-api|
+     - 0 (unlimited)
+   * - Data-sharing domain IDs
+     - ``vector<uint64_t>``
+     - |DataSharingQosPolicy::domain_ids-api|
+     - Empty
+   * - Data-sharing listener thread settings
+     - |ThreadSettings|
+     - |DataSharingQosPolicy::data_sharing_listener_thread-api|
+     -
 
 * Data-sharing kind:
   Specifies the behavior of data-sharing delivery.
@@ -54,6 +71,8 @@ List of QoS Policy data members:
 * Data sharing domain IDs:
   The list of data-sharing domain IDs configured for the current |DataWriter| or |DataReader|.
   If no ID is provided, the system will create a unique one for the current machine.
+* Data-sharing listener thread settings:
+  The |ThreadSettings| for the data-sharing thread dedicated to listening for incoming traffic.
 
 .. note::
      This QoS Policy concerns to |DataWriter| and |DataReader| entities.
@@ -109,20 +128,23 @@ so it must be done before the entity is enabled.
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_DATASHARING_QOS_POLICY
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->CONF-QOS-DATASHARING<-->
-    :end-before: <!--><-->
+   .. tab:: C++
+
+      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_DATASHARING_QOS_POLICY
+        :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF-QOS-DATASHARING<-->
+          :end-before: <!--><-->
+          :lines: 2-4, 6-34, 36-37
 
 .. _disablepositiveacksqospolicy:
 

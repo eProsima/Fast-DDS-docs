@@ -694,6 +694,12 @@
                         <domainId>0</domainId>
                         <domainId>11</domainId>
                     </domain_ids>
+                    <data_sharing_listener_thread>
+                        <scheduling_policy>-1</scheduling_policy>
+                        <priority>0</priority>
+                        <affinity>0</affinity>
+                        <stack_size>-1</stack_size>
+                    </data_sharing_listener_thread>
                 </data_sharing>
                 <deadline>
                     <period>

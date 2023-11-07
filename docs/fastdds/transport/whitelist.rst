@@ -13,7 +13,9 @@ This is achieved by adding the interfaces to the |SocketTransportDescriptor::int
 field in the :ref:`transport_tcp_transportDescriptor` or :ref:`transport_udp_transportDescriptor`.
 Thus, the communication interfaces used by the |DomainParticipants| whose |TransportDescriptorInterface-api| defines an
 |SocketTransportDescriptor::interfaceWhiteList-api| is limited to the interfaces' addresses defined in that list,
-therefore avoiding the use of the rest of the network interfaces available in the system. It is possible to add the interfaces to |SocketTransportDescriptor::interfaceWhiteList-api| specifying the IP addresses or the interface names.
+therefore avoiding the use of the rest of the network interfaces available in the system.
+It is possible to add the interfaces to |SocketTransportDescriptor::interfaceWhiteList-api| specifying the IP addresses
+or the interface names.
 For example:
 
 * Interface whitelist filled with IP address:

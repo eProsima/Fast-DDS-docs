@@ -60,12 +60,11 @@ For example:
       :lines: 2-3,5-
       :append: </profiles>
 
+.. important::
+
+  The values in this list should match the IP addresses or interface names on your machine for the corresponding networks. If none of the values in the whitelist match the interfaces on your machine, all the interfaces in the whitelist are filtered out and an invalid interface is assigned.
+
 .. warning::
 
   The interface whitelist feature applies to network interfaces.
   Therefore, it is only available on :ref:`transport_tcp_tcp` and :ref:`transport_udp_udp`.
-
-.. warning::
-
-  The values in this list should match the IP addresses or interface names on your machine for the corresponding networks. If none of the values in the whitelist match the interfaces on your machine, all the interfaces in the whitelist are filtered out and an invalid interface is assigned.
-

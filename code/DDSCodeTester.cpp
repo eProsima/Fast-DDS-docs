@@ -4746,8 +4746,26 @@ void dds_transport_examples ()
         // Create a descriptor for the new transport.
         auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
 
-        // Add loopback to the whitelist
+        // Add loopback to the whitelist by IP address
         tcp_transport->interfaceWhiteList.emplace_back("127.0.0.1");
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(tcp_transport);
+
+        // Avoid using the builtin transports
+        qos.transport().use_builtin_transports = false;
+        //!--
+    }
+
+    {
+        //WHITELIST-NAME
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+
+        // Add loopback to the whitelist by interface name
+        tcp_transport->interfaceWhiteList.emplace_back("lo");
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tcp_transport);

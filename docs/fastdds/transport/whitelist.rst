@@ -9,13 +9,14 @@ Interface Whitelist
 
 Using *Fast DDS*, it is possible to limit the network interfaces used by :ref:`transport_tcp_tcp` and
 :ref:`transport_udp_udp`.
-This is achieved by adding the interfaces' IP addresses to the |SocketTransportDescriptor::interfaceWhiteList-api|
+This is achieved by adding the interfaces to the |SocketTransportDescriptor::interfaceWhiteList-api|
 field in the :ref:`transport_tcp_transportDescriptor` or :ref:`transport_udp_transportDescriptor`.
 Thus, the communication interfaces used by the |DomainParticipants| whose |TransportDescriptorInterface-api| defines an
-|SocketTransportDescriptor::interfaceWhiteList-api| is limited to the interfaces' IP addresses defined in that list,
-therefore avoiding the use of the rest of the network interfaces available in the system.
-The values on this list should match the IPs of your machine in that networks.
+|SocketTransportDescriptor::interfaceWhiteList-api| is limited to the interfaces' addresses defined in that list,
+therefore avoiding the use of the rest of the network interfaces available in the system. It is possible to add the interfaces to |SocketTransportDescriptor::interfaceWhiteList-api| specifying the IP addresses or the interface names.
 For example:
+
+* Interface whitelist filled with IP address:
 
 .. tabs::
 
@@ -36,8 +37,33 @@ For example:
       :lines: 2-3,5-
       :append: </profiles>
 
+* Interface whitelist filled with interface names:
+
+.. tabs::
+
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //WHITELIST-NAME
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->WHITELIST-NAME
+      :end-before: <!--><-->
+      :lines: 2-3,5-
+      :append: </profiles>
+
 .. warning::
 
   The interface whitelist feature applies to network interfaces.
   Therefore, it is only available on :ref:`transport_tcp_tcp` and :ref:`transport_udp_udp`.
+
+.. warning::
+
+  The values in this list should match the IP addresses or interface names on your machine for the corresponding networks. If none of the values in the whitelist match the interfaces on your machine, all the interfaces in the whitelist are filtered out and an invalid interface is assigned.
 

@@ -319,7 +319,7 @@ Please refer to :ref:`ResourceLimitsQosPolicy` for further information on Resour
 .. _ThreadSettingsType:
 
 ThreadSettings
-""""""""""""""
+^^^^^^^^^^^^^^
 
 It controls some OS settings for the *Fast DDS* created threads.
 Please refer to :ref:`threadsettingsqos` for further information on ResourceLimitsQos.

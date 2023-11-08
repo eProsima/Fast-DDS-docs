@@ -3942,7 +3942,7 @@ void dds_qos_examples()
         // unique for the current machine
         datasharing.automatic();
 
-        // ThreadSettings for listening thread
+        // [OPTIONAL] ThreadSettings for listening thread
         datasharing.data_sharing_listener_thread(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
 
         //!--
@@ -4105,7 +4105,7 @@ void dds_qos_examples()
         transport.user_transports.push_back(descriptor);
         // Set use_builtin_transports to false
         transport.use_builtin_transports = false;
-        // Set ThreadSettings for the builtin transports reception threads
+        // [OPTIONAL] Set ThreadSettings for the builtin transports reception threads
         transport.builtin_transports_reception_threads_ = eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2};
         //!--
     }
@@ -4571,6 +4571,8 @@ void dds_transport_examples ()
         udp_transport->sendBufferSize = 9216;
         udp_transport->receiveBufferSize = 9216;
         udp_transport->non_blocking_send = true;
+
+        // [OPTIONAL] ThreadSettings configuration
         udp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2});
         udp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{3, 3, 3, 3});
 
@@ -5109,7 +5111,7 @@ void dds_usecase_examples()
         flow_control_300k_per_sec->max_bytes_per_period = 300 * 1000;
         flow_control_300k_per_sec->period_ms = 1000;
 
-        // Configure sender thread settings
+        // [OPTIONAL] Configure sender thread settings
         flow_control_300k_per_sec->sender_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
 
         // Register flow controller on participant

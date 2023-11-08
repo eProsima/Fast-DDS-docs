@@ -65,11 +65,11 @@ The following table describes the common data members for both UDPv4 and UDPv6.
    * - |PortBasedTransportDescriptor::default_reception_threads-api|
      - |ThreadSettings|
      -
-     - |ThreadSettings| for the default reception threads
+     - Default |ThreadSettings| for the reception threads.
    * - |PortBasedTransportDescriptor::reception_threads-api|
      - ``std::map<uint32_t, ThreadSettings>``
      -
-     - |ThreadSettings| for the default reception threads
+     - |ThreadSettings| for the reception threads on specific ports.
 
 .. note::
 

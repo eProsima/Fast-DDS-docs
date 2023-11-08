@@ -176,12 +176,12 @@ the TransportDescriptor for Shared Memory defines the following ones:
      - |ThreadSettings|
      -
      - |PortBasedTransportDescriptor::default_reception_threads-api|
-     - |ThreadSettings| for the default reception threads.
+     - Default |ThreadSettings| for the reception threads.
    * - |PortBasedTransportDescriptor::reception_threads-api|
      - ``std::map<uint32_t, ThreadSettings>``
      -
      - |PortBasedTransportDescriptor::reception_threads-api|
-     - |ThreadSettings| for the default reception threads.
+     - |ThreadSettings| for the reception threads on specific ports.
    * - |SharedMemTransportDescriptor::dump_thread-api|
      - |ThreadSettings|
      -

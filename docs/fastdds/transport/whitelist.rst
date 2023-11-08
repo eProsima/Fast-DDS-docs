@@ -62,7 +62,7 @@ For example:
 
 .. important::
 
-  The values in this list should match the IP addresses or interface names on your machine for the corresponding networks. If none of the values in the whitelist match the interfaces on your machine, all the interfaces in the whitelist are filtered out and an invalid interface is assigned.
+  If none of the values in the transport descriptor's whitelist match the interfaces on your machine, all the interfaces in the whitelist are filtered out and no communication will be established through that transport.
 
 .. warning::
 

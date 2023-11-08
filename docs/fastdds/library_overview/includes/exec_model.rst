@@ -46,7 +46,7 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - General
       - One per enabled asynchronous |br| flow controller.
         Minimum 1.
-      - ``dds.asyn.<participant_id>.``
+      - ``dds.asyn.<participant_id>.`` |br|
         ``<async_flow_controller_index>``
       - Manages asynchronous writes.
         Even for synchronous writers, some forms of |br| communication must be initiated in the |br| background. |br|

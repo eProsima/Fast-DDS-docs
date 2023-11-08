@@ -62,9 +62,11 @@ For example:
 
 .. important::
 
-  If none of the values in the transport descriptor's whitelist match the interfaces on your machine, all the interfaces in the whitelist are filtered out and no communication will be established through that transport.
+  If none of the values in the transport descriptor's whitelist match the interfaces on your machine,
+  all the interfaces in the whitelist are filtered out and no communication will be established through that transport.
 
 .. warning::
 
   The interface whitelist feature applies to network interfaces.
   Therefore, it is only available on :ref:`transport_tcp_tcp` and :ref:`transport_udp_udp`.
+

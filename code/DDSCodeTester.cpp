@@ -4626,6 +4626,11 @@ void dds_transport_examples ()
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(shm_transport);
         //!--
+ 
+        //CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS
+        // Explicit configuration of SharedMem transport
+        qos.transport().use_builtin_transports = false;
+        //!--
     }
 
     {

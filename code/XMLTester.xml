@@ -348,6 +348,18 @@
     </participant>
 <!--><-->
 
+<!-->CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="DisableBuiltinTransportsParticipant">
+        <rtps>
+            <useBuiltinTransports>false</useBuiltinTransports>
+        </rtps>
+    </participant>
+<!--><-->
+
 <!-->CONF-TCP-TLS-SERVER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

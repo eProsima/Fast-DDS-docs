@@ -1,5 +1,6 @@
-#include <sstream>
 #include <memory>
+#include <sstream>
+#include <thread>
 
 #include <fastcdr/Cdr.h>
 

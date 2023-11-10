@@ -20,3 +20,8 @@ To overcome this problem, this use case presents an approach for leveraging the 
 while at the same time not requiring configuration changes when the deployment changes by configuring the
 participant discovery phase (see :ref:`disc_phases`) to occur over UDP multicast, and the application data delivery to
 occur over TCP.
+
+.. toctree::
+    :maxdepth: 2
+
+    /fastdds/use_cases/tcp/tcp_with_multicast_discovery.rst

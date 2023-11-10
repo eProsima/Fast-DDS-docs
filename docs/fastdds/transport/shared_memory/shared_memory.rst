@@ -231,6 +231,30 @@ The examples below show this procedure in both C++ code and XML file.
   is automatically performed by SHM transport only.
   The rest of the enabled transports are not used between those two participants.
 
+.. hint::
+  To configure discovery traffic through Shared Memory, the default builtin transports must be disabled.
+  In that way, communication is performed completely using Shared Memory.
+  The snippet examples below show this procedure in both C++ code and XML file.
+  See :ref:`transport_sharedMemory_example` for a complete example.
+
+  .. tabs::
+
+    .. tab:: C++
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS
+        :end-before: //!--
+        :dedent: 8
+
+    .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. _transport_sharedMemory_example:
 

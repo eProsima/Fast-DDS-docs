@@ -14,56 +14,55 @@ field in the :ref:`transport_tcp_transportDescriptor` or :ref:`transport_udp_tra
 Thus, the communication interfaces used by the |DomainParticipants| whose |TransportDescriptorInterface-api| defines an
 |SocketTransportDescriptor::interfaceWhiteList-api| is limited to the interfaces' addresses defined in that list,
 therefore avoiding the use of the rest of the network interfaces available in the system.
-It is possible to add the interfaces to |SocketTransportDescriptor::interfaceWhiteList-api| specifying the IP addresses
-or the interface names.
+The interfaces in |SocketTransportDescriptor::interfaceWhiteList-api| can be specified both by IP address or interface name.
 For example:
 
 * Interface whitelist filled with IP address:
 
-.. tabs::
+  .. tabs::
 
-  .. tab:: C++
+    .. tab:: C++
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //TRANSPORT-DESCRIPTORS
-      :end-before: //!--
-      :dedent: 8
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //TRANSPORT-DESCRIPTORS
+        :end-before: //!--
+        :dedent: 8
 
-  .. tab:: XML
+    .. tab:: XML
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->TRANSPORT-DESCRIPTORS
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->TRANSPORT-DESCRIPTORS
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 * Interface whitelist filled with interface names:
 
-.. tabs::
+  .. tabs::
 
-  .. tab:: C++
+    .. tab:: C++
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //WHITELIST-NAME
-      :end-before: //!--
-      :dedent: 8
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //WHITELIST-NAME
+        :end-before: //!--
+        :dedent: 8
 
-  .. tab:: XML
+    .. tab:: XML
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->WHITELIST-NAME
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->WHITELIST-NAME
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. important::
 
-  If none of the values in the transport descriptor's whitelist match the interfaces on your machine,
-  all the interfaces in the whitelist are filtered out and no communication will be established through that transport.
+  If none of the values in the transport descriptor's whitelist match the interfaces on the host,
+  then all the interfaces in the whitelist are filtered out and therefore no communication will be established through that transport.
 
 .. warning::
 

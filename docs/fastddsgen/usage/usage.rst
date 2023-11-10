@@ -53,6 +53,12 @@ Where the option choices are:
 
    * - Option
      - Description
+   * - -cdr
+     - Sets the Fast-CDR version used to generate types source code. |br|
+       Values: |br|
+       - v1. Generate source code for Fast-CDR v1. |br|
+       - v2 (default). Generate source code for Fast-CDR v2. |br|
+       - both. Generate source code for both Fast-CDR v1 and Fast-CDR v2.
    * - -cs
      - Enables Case Sensitivity
    * - -d <directory>

@@ -14,7 +14,8 @@ field in the :ref:`transport_tcp_transportDescriptor` or :ref:`transport_udp_tra
 Thus, the communication interfaces used by the |DomainParticipants| whose |TransportDescriptorInterface-api| defines an
 |SocketTransportDescriptor::interfaceWhiteList-api| is limited to the interfaces' addresses defined in that list,
 therefore avoiding the use of the rest of the network interfaces available in the system.
-The interfaces in |SocketTransportDescriptor::interfaceWhiteList-api| can be specified both by IP address or interface name.
+The interfaces in |SocketTransportDescriptor::interfaceWhiteList-api| can be specified both by IP address or interface
+name.
 For example:
 
 * Interface whitelist filled with IP address:

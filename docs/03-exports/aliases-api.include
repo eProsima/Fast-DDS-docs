@@ -625,6 +625,8 @@
 .. |TCPTransportDescriptor::calculate_crc-api| replace:: :cpp:var:`calculate_crc<eprosima::fastdds::rtps::TCPTransportDescriptor::calculate_crc>`
 .. |TCPTransportDescriptor::check_crc-api| replace:: :cpp:var:`check_crc<eprosima::fastdds::rtps::TCPTransportDescriptor::check_crc>`
 .. |TCPTransportDescriptor::apply_security-api| replace:: :cpp:var:`apply_security<eprosima::fastdds::rtps::TCPTransportDescriptor::apply_security>`
+.. |TCPTransportDescriptor::keep_alive_thread-api| replace:: :cpp:var:`keep_alive_thread<eprosima::fastdds::rtps::TCPTransportDescriptor::keep_alive_thread>`
+.. |TCPTransportDescriptor::accept_thread-api| replace:: :cpp:var:`accept_thread<eprosima::fastdds::rtps::TCPTransportDescriptor::accept_thread>`
 .. |TCPTransportDescriptor::tls_config-api| replace:: :cpp:var:`tls_config<eprosima::fastdds::rtps::TCPTransportDescriptor::tls_config>`
 
 .. |TCPTransportDescriptor::TLSConfig-api| replace:: :cpp:struct:`TLSConfig<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig>`

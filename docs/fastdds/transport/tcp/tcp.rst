@@ -120,6 +120,14 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - ``std::map<uint32_t, ThreadSettings>``
     -
     - |ThreadSettings| for the reception threads on specific ports.
+  * - |TCPTransportDescriptor::keep_alive_thread-api|
+    - |ThreadSettings|
+    -
+    - |ThreadSettings| for the thread keeping alive TCP connections.
+  * - |TCPTransportDescriptor::accept_thread-api|
+    - |ThreadSettings|
+    -
+    - |ThreadSettings| for the threads processing incoming TCP connection requests.
 
 .. note::
 
@@ -200,7 +208,7 @@ TCP Server or TCP Client.
         :language: xml
         :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
         :end-before: <!--><-->
-        :lines: 2-4,6-61,63-64
+        :lines: 2-4,6-73,75-76
 
 * **TCP Client**: If you provide |BuiltinAttributes::initialPeersList-api| to the DomainParticipant, it will act as
   *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
@@ -223,7 +231,7 @@ TCP Server or TCP Client.
         :language: xml
         :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
         :end-before: <!--><-->
-        :lines: 2-4,6-46,48-49
+        :lines: 2-4,6-58,60-61
 
 :ref:`transport_tcp_example` shows how to use and configure a TCP transport.
 
@@ -272,7 +280,7 @@ The following examples show how to configure the DomainParticipant both in C++ a
       :language: xml
       :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
       :end-before: <!--><-->
-      :lines: 2-4,6-61,63-64
+      :lines: 2-4,6-73,75-76
 
 On the client side, the DomainParticipant must be configured
 with the **public** IP address and |TCPTransportDescriptor::listening_ports-api| of the *TCP server* as
@@ -294,7 +302,7 @@ with the **public** IP address and |TCPTransportDescriptor::listening_ports-api|
       :language: xml
       :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
       :end-before: <!--><-->
-      :lines: 2-4,6-46,48-49
+      :lines: 2-4,6-58,60-61
 
 .. _transport_tcp_example:
 

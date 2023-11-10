@@ -335,6 +335,18 @@
                         <stack_size>-1</stack_size>
                     </reception_thread>
                 </reception_threads>
+                <keep_alive_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </keep_alive_thread>
+                <accept_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </accept_thread>
             </transport_descriptor>
         </transport_descriptors>
 
@@ -399,6 +411,18 @@
                         <stack_size>-1</stack_size>
                     </reception_thread>
                 </reception_threads>
+                <keep_alive_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </keep_alive_thread>
+                <accept_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </accept_thread>
             </transport_descriptor>
         </transport_descriptors>
 

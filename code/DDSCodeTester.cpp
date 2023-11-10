@@ -4626,8 +4626,18 @@ void dds_transport_examples ()
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(shm_transport);
         //!--
- 
+    }
+
+    {
         //CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        std::shared_ptr<SharedMemTransportDescriptor> shm_transport = std::make_shared<SharedMemTransportDescriptor>();
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(shm_transport);
+
         // Explicit configuration of SharedMem transport
         qos.transport().use_builtin_transports = false;
         //!--

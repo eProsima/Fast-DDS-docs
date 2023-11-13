@@ -7,11 +7,17 @@ Large Data Rates
 ================
 
 When the amount of data exchanged between a :ref:`dds_layer_publisher` and a :ref:`dds_layer_subscriber`
-is large, some tuning may be required to compensate for side effects on the network and CPU load.
+is large, some extra configuration may be required to compensate for side effects on the network and CPU load.
 This large amount of data can be a result of the data types being large, a high message rate, or
 a combination of both.
 
-In this scenario, several limitations have to be taken into account:
+In this scenario, several approaches can be considered depending on the problem:
+
+* For the cases in which the data samples are large (in the order of MB) such as transmitting raw video frames,
+  point clouds, images, etc. between different hosts, TCP based communications may yield better reception rates
+  with lower message loss, specially in the cases where a best effort transport layer is more susceptible to
+  data loss, such as WiFi.
+  To tackle these cases, :ref:`use-case-tcp` documents several ways to configure Fast DDS to communicate over TCP.
 
 * Network packages could be dropped because the transmitted amount of data fills the socket buffer
   before it can be processed.

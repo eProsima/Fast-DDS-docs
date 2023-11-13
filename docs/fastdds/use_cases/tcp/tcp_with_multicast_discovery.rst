@@ -7,7 +7,7 @@ TCP Communication with Multicast Discovery
 ==========================================
 
 The following snippets show how to configure *Fast DDS* |DomainParticipants| to run the
-:ref:`PDP discovery<disc_phases>` phase over UDP multicast, and communicate application data over a
+:ref:`PDP discovery<disc_phases>` phase over UDP multicast and communicate application data over a
 :ref:`transport_tcp_tcp` transport.
 With this approach, applications managing large samples can benefit from transmitting their data over TCP, while
 at the same time have the flexibility of automatic discovery.

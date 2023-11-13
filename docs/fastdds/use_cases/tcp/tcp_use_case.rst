@@ -17,9 +17,9 @@ The configuration of the TCP transport typically involves an *a priori* knowledg
 to set :ref:`Simple Initial Peers` for :ref:`discovery`, which may not always be possible and creates difficulties when
 reallocating nodes of the distributed applications, as the entire discovery configuration needs to be changed.
 To overcome this problem, this use case presents an approach for leveraging the Fast DDS' TCP transport capabilities
-while at the same time not requiring configuration changes when the deployment changes by configuring the
-participant discovery phase (see :ref:`disc_phases`) to occur over UDP multicast, and the application data delivery to
-occur over TCP.
+while at the same time not requiring configuration modifications when the deployment changes over time.
+It does so by configuring the participant discovery phase (see :ref:`disc_phases`) to occur over UDP multicast, while
+the application data delivery occurs over TCP.
 
 .. toctree::
     :maxdepth: 2

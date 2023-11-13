@@ -11,12 +11,12 @@ is large, some extra configuration may be required to compensate for side effect
 This large amount of data can be a result of the data types being large, a high message rate, or
 a combination of both.
 
-In this scenario, several approaches can be taken depending on the problem:
+In this scenario, several approaches can be considered depending on the problem:
 
 * For the cases in which the data samples are large (in the order of MB) such as transmitting raw video frames,
   point clouds, images, etc. between different hosts, TCP based communications may yield better reception rates
   with lower message loss, specially in the cases where a best effort transport layer is more susceptible to
-  data loss such as WiFi.
+  data loss, such as WiFi.
   To tackle these cases, :ref:`use-case-tcp` documents several ways to configure Fast DDS to communicate over TCP.
 
 * Network packages could be dropped because the transmitted amount of data fills the socket buffer

@@ -52,6 +52,7 @@
    /fastdds/dynamic_types/dynamic_types
    /fastdds/use_cases/use_cases
    /fastdds/ros2/ros2
+   /fastdds/troubleshooting/troubleshooting
    /fastdds/api_reference/api_reference
    /fastdds/python_api_reference/python_api_reference
 

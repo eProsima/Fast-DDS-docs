@@ -5943,6 +5943,49 @@ void dds_waitset_example()
     //!
 }
 
+void tcp_use_cases()
+{
+    {
+        //PDP-MULTICAST-DATA-TCP
+        eprosima::fastdds::dds::DomainParticipantQos pqos = PARTICIPANT_QOS_DEFAULT;
+
+        /* Transports configuration */
+        // UDPv4 transport for PDP over multicast
+        auto pdp_transport = std::make_shared<eprosima::fastdds::rtps::UDPv4TransportDescriptor>();
+        pqos.transport().user_transports.push_back(pdp_transport);
+
+        // TCPv4 transport for EDP and application data (The listening port must to be unique for
+        // each participant in the same host)
+        constexpr uint16_t tcp_listening_port = 12345;
+        auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
+        data_transport->add_listener_port(tcp_listening_port);
+        pqos.transport().user_transports.push_back(data_transport);
+
+        pqos.transport().use_builtin_transports = false;
+
+        /* Locators */
+        // Define locator for PDP over multicast
+        eprosima::fastrtps::rtps::Locator_t pdp_locator;
+        pdp_locator.kind = LOCATOR_KIND_UDPv4;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(pdp_locator, "239.255.0.1");
+        pqos.wire_protocol().builtin.metatrafficMulticastLocatorList.push_back(pdp_locator);
+
+        // Define locator for EDP and user data
+        eprosima::fastrtps::rtps::Locator_t tcp_locator;
+        tcp_locator.kind = LOCATOR_KIND_TCPv4;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(tcp_locator, "0.0.0.0");
+        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(tcp_locator, tcp_listening_port);
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(tcp_locator, tcp_listening_port);
+        pqos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(tcp_locator);
+        pqos.wire_protocol().default_unicast_locator_list.push_back(tcp_locator);
+
+        /* Create participant as usual */
+        eprosima::fastdds::dds::DomainParticipant* participant =
+                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+        //!
+    }
+}
+
 bool dds_permissions_test(
         std::string main_ca_file,
         std::string appcert_file,

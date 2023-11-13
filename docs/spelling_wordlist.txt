@@ -40,6 +40,7 @@ cancelled
 Cannonical
 Cardinality
 CCache
+cdr
 CDR
 centric
 Centric

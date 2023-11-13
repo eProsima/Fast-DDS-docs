@@ -3408,6 +3408,93 @@
 </profiles>
 -->
 <!--><-->
+
+<!-->PDP-MULTICAST-DATA-TCP<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <transport_descriptors>
+            <!--
+                UDP transport for PDP
+            -->
+            <transport_descriptor>
+                    <transport_id>pdp_transport</transport_id>
+                    <type>UDPv4</type>
+            </transport_descriptor>
+            <!--
+                TCP transport for both EDP and application data
+            -->
+            <transport_descriptor>
+                <transport_id>data_transport</transport_id>
+                <type>TCPv4</type>
+                <!--
+                    Set listening port for the transport.
+                    This needs to be unique for each participant in the host
+                -->
+                <listening_ports>
+                    <port>12345</port>
+                </listening_ports>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <participant profile_name="udp_multicast_pdp_w_tcp_data" is_default_profile="true">
+            <rtps>
+                <!--
+                    Set participant transports
+                -->
+                <userTransports>
+                    <transport_id>pdp_transport</transport_id>
+                    <transport_id>data_transport</transport_id>
+                </userTransports>
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <!--
+                    Discovery configuration
+                -->
+                <builtin>
+                    <!--
+                        PDP over UDP multicast
+                    -->
+                    <metatrafficMulticastLocatorList>
+                        <locator>
+                            <udpv4>
+                                <address>239.255.0.1</address>
+                            </udpv4>
+                        </locator>
+                    </metatrafficMulticastLocatorList>
+                    <!--
+                        EDP over TCP
+                    -->
+                    <metatrafficUnicastLocatorList>
+                        <locator>
+                            <tcpv4>
+                                <address>0.0.0.0</address>
+                                <physical_port>12345</physical_port>
+                                <port>12345</port>
+                            </tcpv4>
+                        </locator>
+                    </metatrafficUnicastLocatorList>
+                </builtin>
+                <!--
+                    Application data over TCP
+                -->
+                <defaultUnicastLocatorList>
+                    <locator>
+                        <tcpv4>
+                            <address>0.0.0.0</address>
+                            <physical_port>12345</physical_port>
+                            <port>12345</port>
+                        </tcpv4>
+                    </locator>
+                </defaultUnicastLocatorList>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
 </profiles>
 
 <!-->CONF-LIBRARY-SETTINGS<-->

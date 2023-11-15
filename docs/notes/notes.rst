@@ -26,11 +26,10 @@ This release includes the following **fixes**:
     4. Fix the clang build for clang 14.
     5. Fix remote locators filtering when whitelist provided.
     6. Fix Data Race when updating liveliness changed in WLP.
-    7. Properly ignore clear submessages on protected topics.
-    8. Add XML parser bit_bound bounds check.
-    9. Fix missing mandatory attribute check in XML parser struct type.
-    10. SHM transport: ignore non-existing segment on pop.
-    11. Fix: mac address overflow on Windows.
+    7. Add XML parser bit_bound bounds check.
+    8. Fix missing mandatory attribute check in XML parser struct type.
+    9. SHM transport: ignore non-existing segment on pop.
+    10. Fix: mac address overflow on Windows.
 
 2. CI fixes:
 

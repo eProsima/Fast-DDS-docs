@@ -111,6 +111,7 @@ fuzzer
 GCC
 GCM
 getter
+github
 Github
 GMAC
 GMock
@@ -203,6 +204,7 @@ quadratically
 readNextData
 reconfigurations
 reconnection
+RecursiveTimedMutex
 redistributable
 replier
 repos
@@ -261,6 +263,8 @@ unmatches
 unmatching
 unwakening
 unwakeup
+updatability
+updatable
 Valgrind
 vcstool
 wget

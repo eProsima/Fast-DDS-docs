@@ -663,14 +663,19 @@ void dds_domain_examples()
     {
         // FASTDDS_MONITOR_SERVICE_API
 
-        DomainParticipant* participant_with_mon_srv = DomainParticipantFactory::get_instance()->create_participant(0,
+        DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0,
                         PARTICIPANT_QOS_DEFAULT);
 
+        // Obtain pointer to child class
+        eprosima::fastdds::statistics::dds::DomainParticipant* statistics_participant =
+                eprosima::fastdds::statistics::dds::DomainParticipant::narrow(participant);
+
+
         // Enable Fast DDS Monitor Service through API
-        participant_with_mon_srv->enable_monitor_service();
+        statistics_participant->enable_monitor_service();
 
         // Disable Fast DDS Monitor Service through API
-        participant_with_mon_srv->disable_monitor_service();
+        statistics_participant->disable_monitor_service();
 
 
         //!--

@@ -127,3 +127,5 @@
 
 .. |StatisticsDomainParticipant| replace:: :ref:`Statistics Domain Participant<statistics_domainparticipant>`
 .. |StatisticsQosTroubleshooting| replace:: :ref:`Statistics QoS Troubleshooting<statistics_troubleshooting>`
+
+.. |ThreadSettings| replace:: :ref:`ThreadSettings<threadsettingsqos>`

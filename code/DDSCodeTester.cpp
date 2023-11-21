@@ -1,54 +1,52 @@
+#include <memory>
+#include <sstream>
+#include <thread>
+
+#include <fastcdr/Cdr.h>
+
 #include <fastdds/dds/core/condition/GuardCondition.hpp>
 #include <fastdds/dds/core/condition/WaitSet.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipantListener.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/publisher/PublisherListener.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/subscriber/Subscriber.hpp>
-#include <fastdds/dds/subscriber/SubscriberListener.hpp>
-#include <fastdds/dds/subscriber/qos/SubscriberQos.hpp>
-#include <fastdds/dds/subscriber/SubscriberListener.hpp>
-#include <fastdds/dds/subscriber/DataReader.hpp>
-#include <fastdds/dds/subscriber/DataReaderListener.hpp>
-#include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>
-#include <fastdds/dds/subscriber/SampleInfo.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-#include <fastdds/dds/topic/TopicListener.hpp>
-#include <fastrtps/xmlparser/XMLProfileManager.h>
-
-#include <fastrtps/types/DynamicTypePtr.h>
-#include <fastrtps/types/DynamicDataFactory.h>
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
+#include <fastdds/dds/log/FileConsumer.hpp>
 #include <fastdds/dds/log/Log.hpp>
 #include <fastdds/dds/log/OStreamConsumer.hpp>
 #include <fastdds/dds/log/StdoutConsumer.hpp>
 #include <fastdds/dds/log/StdoutErrConsumer.hpp>
-#include <fastdds/dds/log/FileConsumer.hpp>
-
+#include <fastdds/dds/publisher/DataWriter.hpp>
+#include <fastdds/dds/publisher/Publisher.hpp>
+#include <fastdds/dds/publisher/PublisherListener.hpp>
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
+#include <fastdds/dds/subscriber/DataReader.hpp>
+#include <fastdds/dds/subscriber/DataReaderListener.hpp>
+#include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>
+#include <fastdds/dds/subscriber/qos/SubscriberQos.hpp>
+#include <fastdds/dds/subscriber/SampleInfo.hpp>
+#include <fastdds/dds/subscriber/Subscriber.hpp>
+#include <fastdds/dds/subscriber/SubscriberListener.hpp>
+#include <fastdds/dds/subscriber/SubscriberListener.hpp>
+#include <fastdds/dds/topic/qos/TopicQos.hpp>
+#include <fastdds/dds/topic/Topic.hpp>
+#include <fastdds/dds/topic/TopicListener.hpp>
+#include <fastdds/rtps/attributes/ThreadSettings.hpp>
+#include <fastdds/rtps/transport/ChainingTransport.h>
+#include <fastdds/rtps/transport/ChainingTransportDescriptor.h>
+#include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPTransportDescriptor.h>
-#include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
-#include <fastdds/rtps/transport/UDPv6TransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPv6TransportDescriptor.h>
-#include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
-#include <fastdds/rtps/transport/ChainingTransportDescriptor.h>
-#include <fastdds/rtps/transport/ChainingTransport.h>
-
+#include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
+#include <fastdds/rtps/transport/UDPv6TransportDescriptor.h>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
-
+#include <fastrtps/types/DynamicDataFactory.h>
+#include <fastrtps/types/DynamicTypePtr.h>
 #include <fastrtps/utils/IPLocator.h>
-
-#include <fastcdr/Cdr.h>
-
-#include <sstream>
-#include <memory>
+#include <fastrtps/xmlparser/XMLProfileManager.h>
 
 using namespace eprosima::fastdds::dds;
 
@@ -3945,6 +3943,9 @@ void dds_qos_examples()
         // unique for the current machine
         datasharing.automatic();
 
+        // [OPTIONAL] ThreadSettings for listening thread
+        datasharing.data_sharing_listener_thread(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+
         //!--
     }
 
@@ -4084,16 +4085,29 @@ void dds_qos_examples()
     }
 
     {
+        using namespace eprosima::fastdds::rtps;
+        //DDS_CHANGE_THREAD_SETTINGS
+        ThreadSettings thread_settings;
+        thread_settings.scheduling_policy = 2;
+        thread_settings.priority = 10;
+        thread_settings.affinity = 4;
+        thread_settings.stack_size = 2000;
+        //!--
+    }
+
+    {
         //DDS_CHANGE_TRANSPORT_CONFIG_QOS
         TransportConfigQos transport;
-        //Add new transport to the list of user transports
+        // Add new transport to the list of user transports
         std::shared_ptr<eprosima::fastdds::rtps::UDPv4TransportDescriptor> descriptor =
                 std::make_shared<eprosima::fastdds::rtps::UDPv4TransportDescriptor>();
         descriptor->sendBufferSize = 9126;
         descriptor->receiveBufferSize = 9126;
         transport.user_transports.push_back(descriptor);
-        //Set use_builtin_transports to false
+        // Set use_builtin_transports to false
         transport.use_builtin_transports = false;
+        // [OPTIONAL] Set ThreadSettings for the builtin transports reception threads
+        transport.builtin_transports_reception_threads_ = eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2};
         //!--
     }
 
@@ -4354,6 +4368,9 @@ void log_examples()
 
     // Stop the loggin thread and free its resources.
     Log::KillThread();
+
+    // Configure ThreadSettings for the logging thread
+    Log::SetThreadConfig(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
     //!--
 
 }
@@ -4556,6 +4573,10 @@ void dds_transport_examples ()
         udp_transport->receiveBufferSize = 9216;
         udp_transport->non_blocking_send = true;
 
+        // [OPTIONAL] ThreadSettings configuration
+        udp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2});
+        udp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{3, 3, 3, 3});
+
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(udp_transport);
 
@@ -4572,6 +4593,12 @@ void dds_transport_examples ()
         auto tcp_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         tcp_transport->add_listener_port(5100);
         tcp_transport->set_WAN_address("80.80.99.45");
+
+        // [OPTIONAL] ThreadSettings configuration
+        tcp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        tcp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        tcp_transport->keep_alive_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
+        tcp_transport->accept_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tcp_transport);
@@ -4602,6 +4629,12 @@ void dds_transport_examples ()
         auto tcp_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         qos.transport().user_transports.push_back(tcp_transport);
 
+        // [OPTIONAL] ThreadSettings configuration
+        tcp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        tcp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        tcp_transport->keep_alive_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
+        tcp_transport->accept_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
+
         // Set initial peers.
         eprosima::fastrtps::rtps::Locator_t initial_peer_locator;
         initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
@@ -4622,6 +4655,11 @@ void dds_transport_examples ()
 
         // Create a descriptor for the new transport.
         std::shared_ptr<SharedMemTransportDescriptor> shm_transport = std::make_shared<SharedMemTransportDescriptor>();
+
+        // [OPTIONAL] ThreadSettings configuration
+        shm_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        shm_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        shm_transport->dump_thread(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(shm_transport);
@@ -5077,6 +5115,9 @@ void dds_usecase_examples()
         flow_control_300k_per_sec->scheduler = eprosima::fastdds::rtps::FlowControllerSchedulerPolicy::FIFO;
         flow_control_300k_per_sec->max_bytes_per_period = 300 * 1000;
         flow_control_300k_per_sec->period_ms = 1000;
+
+        // [OPTIONAL] Configure sender thread settings
+        flow_control_300k_per_sec->sender_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
 
         // Register flow controller on participant
         DomainParticipantQos participant_qos;

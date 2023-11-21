@@ -33,6 +33,7 @@ to create complete XML files.
     :maxdepth: 2
 
     /fastdds/xml_configuration/making_xml_profiles
+    /fastdds/xml_configuration/domainparticipantfactory
     /fastdds/xml_configuration/domainparticipant
     /fastdds/xml_configuration/datawriter
     /fastdds/xml_configuration/datareader

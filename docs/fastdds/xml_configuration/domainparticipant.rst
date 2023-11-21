@@ -177,6 +177,26 @@ These elements allow the user to define the DomainParticipant configuration.
        delivery is used. See :ref:`intraprocess-delivery`.
      - ``string``
      - Empty
+   * - ``<builtin_controllers_sender_thread>``
+     - |ThreadSettings| for the builtin flow controllers sender thread.
+     - |ThreadSettings|
+     -
+   * - ``<timed_events_thread>``
+     - |ThreadSettings| participant's timed events thread.
+     - |ThreadSettings|
+     -
+   * - ``<discovery_server_thread>``
+     - |ThreadSettings| for the discovery server thread.
+     - |ThreadSettings|
+     -
+   * - ``<builtin_transports_reception_threads>``
+     - |ThreadSettings| for the builtin transports reception threads.
+     - |ThreadSettings|
+     -
+   * - ``<security_log_thread>``
+     - |ThreadSettings| for the security log thread.
+     - |ThreadSettings|
+     -
 
 **Example**
 
@@ -184,7 +204,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-88, 90
+    :lines: 2-4, 6-124, 126-127
 
 .. note::
 

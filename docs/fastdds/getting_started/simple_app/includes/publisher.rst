@@ -52,20 +52,20 @@ The next block includes the C++ header files that allow the use of the Fast DDS 
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 22-27
+    :lines: 22-30
 
 Next, we define the namespace that contains the eProsima Fast DDS classes and functions that we are going to use in
 our application.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 29
+    :lines: 32
 
 The next line creates the :class:`HelloWorldPublisher` class that implements a publisher.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 31
+    :lines: 34
 
 Continuing with the private data members of the class, the ``hello_`` data member is defined as an object of the
 :class:`HelloWorld` class that defines the data type
@@ -77,7 +77,7 @@ in the DomainParticipant.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 33-45
+    :lines: 36-48
 
 Then, the :class:`PubListener` class is defined by inheriting from the |DataWriterListener-api| class.
 This class overrides the default DataWriter listener callbacks, which allows the execution of routines in case of an
@@ -93,7 +93,7 @@ Finally, the ``listener_`` object of the class is defined as an instance of :cla
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 47-83
+    :lines: 50-86
     :dedent: 4
 
 The public constructor and destructor of the :class:`HelloWorldPublisher` class are defined below.
@@ -103,7 +103,7 @@ The class destructor removes these data members and thus cleans the system memor
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 87-111
+    :lines: 90-114
     :dedent: 4
 
 Continuing with the public member functions of the :class:`HelloWorldPublisher` class, the next snippet of code defines
@@ -125,7 +125,7 @@ The default value of the QoS of each DDS Entity can be checked in the
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 113-155
+    :lines: 116-158
     :dedent: 4
 
 To make the publication, the public member function ``publish()`` is implemented.
@@ -137,7 +137,7 @@ This is simply the `writing` of a change by the DataWriter object.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 157-167
+    :lines: 160-170
     :dedent: 4
 
 The public *run* function executes the action of publishing a given number of times, waiting for 1 second between
@@ -145,14 +145,14 @@ publications.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 169-184
+    :lines: 172-187
     :dedent: 4
 
 Finally, the HelloWorldPublisher is initialized and run in main.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
     :language: C++
-    :lines: 187-202
+    :lines: 190-205
 
 CMakeLists.txt
 """""""""""""""
@@ -162,7 +162,7 @@ files needed to build the executable, and links the executable and the library t
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
     :language: bash
-    :lines: 47-48
+    :lines: 43-44
 
 At this point the project is ready for building, compiling and running the publisher application.
 From the build directory in the workspace, run the following commands.

@@ -19,6 +19,8 @@ This section aims to explain these common elements.
     -   :ref:`hQos`
     -   :ref:`rLsQos`
 
+*   :ref:`ThreadSettingsType`
+
 *   :ref:`CommonQOS`
 
     -   :ref:`xml_datasharing`
@@ -26,6 +28,7 @@ This section aims to explain these common elements.
     -   :ref:`xml_disableheartbeatpiggyback`
     -   :ref:`xml_disablepositiveacks`
     -   :ref:`xml_durability`
+    -   :ref:`xml_entity_factory`
     -   :ref:`xml_groupData`
     -   :ref:`xml_latencybudget`
     -   :ref:`xml_lifespan`
@@ -313,6 +316,41 @@ Please refer to :ref:`ResourceLimitsQosPolicy` for further information on Resour
 | ``<extra_samples>``            | The number of extra samples to allocate on the pool.      | ``uint32_t``  | 1       |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
 
+.. _ThreadSettingsType:
+
+ThreadSettings
+^^^^^^^^^^^^^^
+
+It controls some OS settings for the *Fast DDS* created threads.
+Please refer to :ref:`threadsettingsqos` for further information on ResourceLimitsQos.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - |ThreadSettings::scheduling_policy-api|
+     - Configures the scheduling policy used for the thread.
+     - ``int32_t``
+     - -1
+   * - |ThreadSettings::priority-api|
+     - Configures the thread's priority.
+     - ``int32_t``
+     - -2^31
+   * - |ThreadSettings::affinity-api|
+     - On some systems (Windows, Linux), this is a bit mask for setting |br|
+       the threads affinity to each core individually. On MacOS, this |br|
+       sets the affinity tag for the thread, and the OS tries to share |br|
+       the L2 cache between threads with the same affinity.
+     - ``uint32_t``
+     - 0
+   * - |ThreadSettings::stack_size-api|
+     - Configures the thread's stack size in bytes.
+     - ``int32_t``
+     - -1
+
 .. _CommonQOS:
 
 QoS
@@ -344,6 +382,9 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - ``<durability>``
     - See :ref:`durabilityqospolicy`.
     - :ref:`xml_durability`
+  * - ``<entity_factory>``
+    - See :ref:`entityfactoryqospolicy`.
+    - :ref:`xml_entity_factory`
   * - ``<groupData>``
     - See :ref:`groupqospolicy`.
     - :ref:`xml_groupData`
@@ -489,6 +530,24 @@ Durability
       |PERSISTENT-xml-api|
     - DataReaders: |VOLATILE-xml-api| |br|
       DataWriters: |TRANSIENT_LOCAL-xml-api| |br|
+
+.. _xml_entity_factory:
+
+Entity Factory
+""""""""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<autoenable_created_entities>``
+    - See :ref:`entityfactoryqospolicy`.
+    - ``bool``
+    - ``true``
 
 .. _xml_groupData:
 

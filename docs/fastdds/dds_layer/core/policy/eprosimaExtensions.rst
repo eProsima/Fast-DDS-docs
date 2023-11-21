@@ -28,17 +28,34 @@ Please, see :ref:`datasharing-delivery` for a description of the data-sharing de
 
 List of QoS Policy data members:
 
-+-------------------------+------------------------+-------------------------------------------+---------------+
-| Data Member             | Type                   | Accessor                                  | Default Value |
-+=========================+========================+===========================================+===============+
-| Data-sharing kind       | :ref:`datasharingkind` | |DataSharingQosPolicy::kind-api|          | ``AUTO``      |
-+-------------------------+------------------------+-------------------------------------------+---------------+
-| Shared memory directory | ``string``             | |DataSharingQosPolicy::shm_directory-api| | Empty string  |
-+-------------------------+------------------------+-------------------------------------------+---------------+
-| Maximum domain number   | ``uint32_t``           | |DataSharingQosPolicy::max_domains-api|   | 0 (unlimited) |
-+-------------------------+------------------------+-------------------------------------------+---------------+
-| Data-sharing domain IDs | ``vector<uint64_t>``   | |DataSharingQosPolicy::domain_ids-api|    | Empty         |
-+-------------------------+------------------------+-------------------------------------------+---------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Data Member
+     - Type
+     - Accessor
+     - Default Value
+   * - Data-sharing kind
+     - :ref:`datasharingkind`
+     - |DataSharingQosPolicy::kind-api|
+     - ``AUTO``
+   * - Shared memory directory
+     - ``string``
+     - |DataSharingQosPolicy::shm_directory-api|
+     - Empty string
+   * - Maximum domain number
+     - ``uint32_t``
+     - |DataSharingQosPolicy::max_domains-api|
+     - 0 (unlimited)
+   * - Data-sharing domain IDs
+     - ``vector<uint64_t>``
+     - |DataSharingQosPolicy::domain_ids-api|
+     - Empty
+   * - Data-sharing listener thread settings
+     - |ThreadSettings|
+     - |DataSharingQosPolicy::data_sharing_listener_thread-api|
+     -
 
 * Data-sharing kind:
   Specifies the behavior of data-sharing delivery.
@@ -54,6 +71,8 @@ List of QoS Policy data members:
 * Data sharing domain IDs:
   The list of data-sharing domain IDs configured for the current |DataWriter| or |DataReader|.
   If no ID is provided, the system will create a unique one for the current machine.
+* Data-sharing listener thread settings:
+  The |ThreadSettings| for the data-sharing thread dedicated to listening for incoming traffic.
 
 .. note::
      This QoS Policy concerns to |DataWriter| and |DataReader| entities.
@@ -109,20 +128,23 @@ so it must be done before the entity is enabled.
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_DATASHARING_QOS_POLICY
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->CONF-QOS-DATASHARING<-->
-    :end-before: <!--><-->
+   .. tab:: C++
+
+      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_DATASHARING_QOS_POLICY
+        :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF-QOS-DATASHARING<-->
+          :end-before: <!--><-->
+          :lines: 2-4, 6-34, 36-37
 
 .. _disablepositiveacksqospolicy:
 
@@ -213,17 +235,28 @@ This QoS configures the list of flow controllers of a participant, so they can l
 its DataWriters.
 It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has the following fields:
 
-+------------------------------------------------------+-------------------------------------+-------------------------+
-| Data Member Name                                     | Type                                | Default Value           |
-+======================================================+=====================================+=========================+
-| |FlowControllerDescriptor::name-api|                 | ``const char *``                    |                         |
-+------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::scheduler-api|            | |FlowControllerSchedulerPolicy-api| | |FIFO_SCHED_POLICY-api| |
-+------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::max_bytes_per_period-api| | ``int32_t``                         | 0 (i.e. infinite)       |
-+------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::period_ms-api|            | ``uint64_t``                        | 100                     |
-+------------------------------------------------------+-------------------------------------+-------------------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - |FlowControllerDescriptor::name-api|
+     - ``const char *``
+     -
+   * - |FlowControllerDescriptor::scheduler-api|
+     - |FlowControllerSchedulerPolicy-api|
+     - FIFO_SCHED_POLICY-api|
+   * - |FlowControllerDescriptor::max_bytes_per_period-api|
+     - ``int32_t``
+     - 0 (i.e. infinite)
+   * - |FlowControllerDescriptor::period_ms-api|
+     - ``uint64_t``
+     - 100
+   * - |FlowControllerDescriptor::sender_thread-api|
+     - |ThreadSettings|
+     -
 
 Please refer to :ref:`flow-controllers` section for more information.
 
@@ -855,6 +888,68 @@ XML
     :start-after: <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
     :end-before: <!--><-->
 
+.. _threadsettingsqos:
+
+ThreadSettings
+^^^^^^^^^^^^^^
+
+This structure is part of other QoS policies, and allows controlling some OS settings for the threads created.
+The default values will leave the default OS settings on the created threads.
+Changing these values may require special permissions.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - |ThreadSettings::scheduling_policy-api|
+     - ``int32_t``
+     - -1
+   * - |ThreadSettings::priority-api|
+     - ``int32_t``
+     - -2^31
+   * - |ThreadSettings::affinity-api|
+     - ``uint32_t``
+     - 0
+   * - |ThreadSettings::stack_size-api|
+     - ``int32_t``
+     - -1
+
+* |ThreadSettings::scheduling_policy-api|: Configures the scheduling policy used for the thread.
+  This value is platform specific and it is used as-is to configure the specific platform thread.
+  It is ignored on Windows platforms.
+* |ThreadSettings::priority-api|: Configures the thread's priority.
+  This value is platform specific and it is used as-is to configure the specific platform thread.
+* |ThreadSettings::affinity-api|: On some systems (Windows, Linux), this is a bit mask for setting
+  the threads affinity to each core individually.
+  On MacOS, this sets the affinity tag for the thread, and the OS tries to share the L2 cache
+  between threads with the same affinity.
+  This value is platform specific and it is used as-is to configure the specific platform thread.
+* |ThreadSettings::stack_size-api|: Configures the thread's stack size in bytes.
+  This value is platform specific and it is used as-is to configure the specific platform thread.
+
+Example
+"""""""
+
+.. tabs::
+
+  .. tab:: C++
+
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+      :language: c++
+      :dedent: 8
+      :start-after: //DDS_CHANGE_THREAD_SETTINGS
+      :end-before: //!
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-COMMON-THREAD-SETTINGS<-->
+        :lines: 10,12-15,17
+        :dedent: 16
+
 .. _transportconfigqos:
 
 TransportConfigQos
@@ -883,6 +978,9 @@ List of QoS Policy data members:
    * - |TransportConfigQos::listen_socket_buffer_size-api|
      - ``uint32_t``
      - 0
+   * - |TransportConfigQos::builtin_transports_reception_threads-api|
+     - |ThreadSettings|
+     -
 
 
 * |TransportConfigQos::user_transports-api|:
@@ -896,6 +994,8 @@ List of QoS Policy data members:
 * |TransportConfigQos::listen_socket_buffer_size-api|:
   The listen socket buffer size is also created with the system default size, but it can
   be changed using this data member.
+* |TransportConfigQos::builtin_transports_reception_threads-api|:
+  The |ThreadSettings| for the reception threads of the builtin transports.
 
 .. note::
      This QoS Policy concerns to |DomainParticipant| entities.

@@ -4,6 +4,8 @@ Programming and execution model
 *Fast DDS* is concurrent and event-based.
 The following explains the multithreading model that governs the operation of *Fast DDS* as well as the possible events.
 
+.. _concurrency_multithreading:
+
 Concurrency and multithreading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -26,67 +28,101 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Name
       - Type
       - Cardinality
+      - OS thread name
       - Description
     * - Event
       - General
       - One per DomainParticipant
-      - Processes periodic and triggered time events
+      - ``dds.ev.<participant_id>``
+      - Processes periodic and triggered time events. |br|
+        See :ref:`dds_layer_domainParticipantQos`.
     * - Discovery Server Event
       - General
       - One per DomainParticipant
-      - Synchronizes access to the Discovery Server |br| Database
+      - ``dds.ds_ev.<participant_id>``
+      - Synchronizes access to the Discovery Server |br| Database. |br|
+        See :ref:`dds_layer_domainParticipantQos`.
     * - Asynchronous Writer
       - General
-      - One per enabled asynchronous |br| flow controller
-
+      - One per enabled asynchronous |br| flow controller.
         Minimum 1.
+      - ``dds.asyn.<participant_id>.`` |br|
+        ``<async_flow_controller_index>``
       - Manages asynchronous writes.
-
-        Even for synchronous writers, some forms of |br| communication must be initiated in the |br| background.
+        Even for synchronous writers, some forms of |br| communication must be initiated in the |br| background. |br|
+        See :ref:`dds_layer_domainParticipantQos` and :ref:`flowcontrollersqos`.
     * - Datasharing Listener
       - General
       - One per |br| DataReader
-      - Listener thread that processes messages |br| received via Datasharing
+      - ``dds.dsha.<reader_id>``
+      - Listener thread that processes messages |br| received via Datasharing. |br|
+        See :ref:`dds_layer_subscriber_dataReaderQos`.
     * - Reception
       - UDP
       - One per port
-      - Listener thread that processes incoming |br| UDP messages
+      - ``dds.udp.<port>``
+      - Listener thread that processes incoming |br| UDP messages. |br|
+        See :ref:`transportconfigqos` and :ref:`transport_udp_transportDescriptor`.
     * - Reception
       - TCP
-      - One per port
-      - Listener thread that processes incoming |br| TCP messages
+      - One per TCP connection
+      - ``dds.tcp.<port>``
+      - Listener thread that processes incoming |br| TCP messages. |br|
+        See :ref:`transport_tcp_transportDescriptor`.
+    * - Accept
+      - TCP
+      - One per TCP transport
+      - ``dds.tcp_accept``
+      - Thread that processes incoming TCP connection requests. |br|
+        See :ref:`transport_tcp_transportDescriptor`.
     * - Keep Alive
       - TCP
-      - One per port
-      - Keep alive thread for TCP connections.
+      - One per TCP transport
+      - ``dds.tcp_keep``
+      - Keep alive thread for TCP connections. |br|
+        See :ref:`transport_tcp_transportDescriptor`.
     * - Reception
       - SHM
       - One per port
-      - Listener thread that processes incoming |br| messages via SHM segments
+      - ``dds.shm.<port>``
+      - Listener thread that processes incoming |br| messages via SHM segments. |br|
+        See :ref:`transportconfigqos` and :ref:`transport_sharedMemory_transportDescriptor`.
     * - Logging
       - SHM
-      - One per SHM descriptor
-      - Stores and dumps transferred packets to a file.
+      - One per port
+      - ``dds.shmd.<port>``
+      - Stores and dumps transferred packets to a file. |br|
+        See :ref:`transportconfigqos` and :ref:`transport_sharedMemory_transportDescriptor`.
     * - Watchdog
       - SHM
       - One
-      - Monitors health of open shared memory |br| segments.
+      - ``dds.shm.wdog``
+      - Monitors health of open shared memory |br| segments. |br|
+        See :ref:`transportconfigqos` and :ref:`transport_sharedMemory_transportDescriptor`.
     * - General Logging
       - Log
       - One
-      - Accumulates and writes to the appropriate |br| consumer log entries.
+      - ``dds.log``
+      - Accumulates and writes to the appropriate |br| consumer log entries. |br|
+        See :ref:`dds_layer_log_thread`.
     * - Security Logging
       - Log
       - One per |br| DomainParticipant
-      - Accumulates and writes security log entries.
+      - ``dds.slog.<participant_id>``
+      - Accumulates and writes security log entries. |br|
+        See :ref:`dds_layer_domainParticipantQos`.
     * - Watchdog
       - Filewatch
       - One
-      - Tracks the status of the watched file for |br| modifications
+      - ``dds.fwatch``
+      - Tracks the status of the watched file for |br| modifications. |br|
+        See :ref:`dds_layer_domainParticipantFactoryQos`.
     * - Callback
       - Filewatch
       - One
-      - Runs the registered callback when the |br| watched file changes.
+      - ``dds.fwatch.cb``
+      - Runs the registered callback when the |br| watched file changes. |br|
+        See :ref:`dds_layer_domainParticipantFactoryQos`.
 
 Some of these threads are only spawned when certain conditions are met:
 
@@ -101,6 +137,9 @@ Port configuration can be configured to suit the specific needs of the deploymen
 but the default configuration is to always use a metatraffic port and a unicast user traffic port.
 This applies both to UDP and Shared Memory since TCP does not support multicast.
 More information can be found at the :ref:`listening_locators_default` page.
+
+*Fast DDS* offers the possibility of configuring certain attributes of the threads it creates by means of the
+:ref:`threadsettingsqos`.
 
 Event-driven architecture
 ^^^^^^^^^^^^^^^^^^^^^^^^^

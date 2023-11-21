@@ -37,17 +37,17 @@ the data reader class.
 *   |DataReaderQoS-api|.
     Structure that defines the QoS of the DataReader.
 *   |SampleInfo-api|.
-    It is the information that accompanies each sample that is ‘read’ or ‘taken.’
+    It is the information that accompanies each sample that is 'read' or 'taken'.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 22,29
+    :lines: 25-32
 
 The next line defines the :class:`HelloWorldSubscriber` class that implements a subscriber.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 33
+    :lines: 36
 
 Starting with the private data members of the class, it is worth mentioning the implementation of the data reader
 listener.
@@ -60,7 +60,7 @@ analog of the |DataWriterListener::on_publication_matched-api| callback of the D
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 60-77
+    :lines: 63-80
     :dedent: 8
 
 The second overridden callback is |DataReaderListener::on_data_available-api|.
@@ -71,14 +71,14 @@ Each time a sample is read, the counter of samples received is increased.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 79-92
+    :lines: 82-95
     :dedent: 8
 
 The public constructor and destructor of the class is defined below.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 102-126
+    :lines: 105-129
     :dedent: 4
 
 Next comes the subscriber initialization public member function.
@@ -90,7 +90,7 @@ The default value of the QoS of each DDS Entity can be checked in the
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 128-168
+    :lines: 131-171
     :dedent: 4
 
 The public member function :func:`run` ensures that the subscriber runs until all the samples have been received.
@@ -99,14 +99,14 @@ This member function implements an active wait of the subscriber, with a 100ms s
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 170-178
+    :lines: 173-181
     :dedent: 4
 
 Finally, the participant that implements a subscriber is initialized and run in main.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
     :language: C++
-    :lines: 181-196
+    :lines: 184-199
 
 CMakeLists.txt
 """""""""""""""
@@ -117,7 +117,7 @@ files needed to build the executable, and links the executable and the library t
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
     :language: bash
-    :lines: 50-51
+    :lines: 46-47
 
 At this point the project is ready for building, compiling and running the subscriber application.
 From the build directory in the workspace, run the following commands.

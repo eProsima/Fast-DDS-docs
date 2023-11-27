@@ -79,16 +79,22 @@ Where the parameters are:
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
 +==========================+===========================================================================================+
+| ``-h  -help``            | Produce help message.                                                                     |
++--------------------------+-------------------------------------------------------------------------------------------+
 | ``-i  --server-id``      | Unique server identifier. Specifies zero based server position in |br|                    |
 |                          | ``ROS_DISCOVERY_SERVER`` environment variable. Must be an integer in range [0, 255] |br|  |
 |                          | If not specified, it must be defined using a XML configuration file.                      |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-h  -help``            | Produce help message.                                                                     |
+| ``-l  --udp-address``    | IPv4/IPv6 address chosen to listen the clients using UDP transport. Defaults to any |br|  |
+|                          | (0.0.0.0/::0). Instead of an address, a DNS domain name can be specified.                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-l  --ip-address``     | IPv4/IPv6 address chosen to listen the clients. Defaults to any (0.0.0.0/::0). |br|       |
-|                          | Instead of an address, a DNS domain name can be specified.                                |
+| ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'.                               |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-p  --port``           | UDP port chosen to listen the clients. Defaults to '11811'.                               |
+| ``-t  --tcp-address``    | IPv4/IPv6 address chosen to listen the clients using TCP transport. Instead of an |br|    |
+|                          | address, a DNS domain name can be specified.                                              |
++--------------------------+-------------------------------------------------------------------------------------------+
+| ``-q  --tcp-port``       | TCP port chosen to listen the clients. Defaults to '42100'. Only one server can be |br|   |
+|                          | configured using the default port.                                                        |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-b  --backup``         | Creates a BACKUP *server* (see :ref:`discovery_protocol`)                                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -274,6 +280,67 @@ Examples
           Server ID:          0
           Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv4:[0.0.0.0]:11811
+
+8.  Launch a server with id 0 (first on ``ROS_DISCOVERY_SERVER``) reading
+    specific `profile_name` configuration from XML file.
+
+    .. code-block:: bash
+
+        fastdds discovery -i 0 -x profile_name@[PATH_TO_FILE]/config.xml
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type:   SERVER
+          Security:           NO
+          Server ID:          0
+          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   UDPv4:[127.0.0.1]:56542
+
+9.  Launch a server with id 0 (first on ``ROS_DISCOVERY_SERVER``) listening
+    on localhost on default TCP port '42100'.
+
+    .. code-block:: bash
+
+        fastdds discovery -i 0 -t 127.0.0.1
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type:   SERVER
+          Security:           NO
+          Server ID:          0
+          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   TCPv4:[127.0.0.1]:42100-42100
+
+10. Launch a server with id 0 (first on ``ROS_DISCOVERY_SERVER``) listening
+    on localhost and Wi-Fi (192.163.6.34). Two TCP ports need to be
+    specified because TCP transports cannot share ports.
+
+    .. code-block:: bash
+
+        fastdds discovery -i 0 -t 127.0.0.1 -q 42100 -t 192.163.6.34 -q 42101
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type:   SERVER
+          Security:           NO
+          Server ID:          0
+          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server Addresses:   TCPv4:[127.0.0.1]:42100-42100
+                              TCPv4:[192.163.6.34]:42101-42101
+
+.. note::
+     When using Discovery Server over TCP, the first port shown in the ouput
+     refers to the TCP Physical port and the second one to the TCP Logical
+     port (see :ref:`transport_tcp_tcp`). 
 
 .. _cli_shm:
 

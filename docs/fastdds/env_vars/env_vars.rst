@@ -68,17 +68,23 @@ For more information about XML profiles, please refer to :ref:`xml_profiles`.
 Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainParticipant>` to connect to one or more
 *servers* using the :ref:`Discovery Server<discovery_server>` discovery mechanism.
 
-* If ``ROS_DISCOVERY_SERVER`` is defined, and the ``DomainParticipant``'s :ref:`discovery protocol<discovery_protocol>`,
+* If ``ROS_DISCOVERY_SERVER`` is defined, and the ``DomainParticipant``'s :ref:`discovery protocol<discovery_protocol>`
   is set to |SIMPLE|, then Fast DDS will instead configure it as |CLIENT| of the given *server*.
 * If ``ROS_DISCOVERY_SERVER`` is defined, and the ``DomainParticipant``'s :ref:`discovery protocol<discovery_protocol>`
-  is |SERVER| or |BACKUP|, then the variable is used to add remote *servers* to the given *server*, leaving the
+  is set to |SERVER| or |BACKUP|, then the variable is used to add remote *servers* to the given *server*, leaving the
   :ref:`discovery protocol<discovery_protocol>` as |SERVER| or |BACKUP| respectively.
 
 * The value of the variable must list the locator of the server in the form of:
 
-    + An IPv4 address like ``192.168.2.23``. The UDP port can be appended using `:` as in ``192.168.2.23:35665``.
-    + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again a UDP port can be
-      appended like in ``[1080::8:800:200C:417A]:35665``. Note the use of square brackets to avoid ambiguities.
+    + An IPv4 address like ``192.168.2.23``. The UDP protocol is used by default. The UDP port can be appended using `:`
+      as in ``192.168.2.23:35665``.
+    + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again, it uses the UDP 
+      protocol by default. An UDP port can be appended like in ``[1080::8:800:200C:417A]:35665``. Note the use of square
+      brackets to avoid ambiguities.
+    + TCPv4 specifier + IPv4 address like ``TCPv4:[127.0.0.1]``. The TCP protocol is used to communicate with the server.
+      The TCP port can be appended using `:` as in ``TCPv4:[127.0.0.1]:42100``.
+    + TCPv6 specifier + IPv6 address like ``TCPv6:[::1]``. The TCP protocol is used to communicate with the server. The
+      TCP port can be appended using `:` as in ``TCPv6:[::1]:42100``.
     + A DNS name can be specified. This name will be used to query known hosts and available DNS servers to try to
       resolve valid IP addresses. Several formats are acceptable:
 
@@ -88,8 +94,13 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
         - UDPv4 specifier + domain name + port: ``UDPv4:[eprosima.com]:35665``. As above but using a specific port.
         - UDPv6 specifier + domain name: ``UDPv6:[eprosima.com]``. Only the first IPv6 address resolved will be used.
         - UDPv6 specifier + domain name + port: ``UDPv6:[eprosima.com]:35665``. As above but using a specific port.
+        - TCPv4 specifier + domain name: ``TCPv4:[eprosima.com]``. Only the first IPv4 address resolver will be used.
+        - TCPv4 specifier + domain name + port: ``TCPv4:[eprosima.com]:42100``. As above but using a specific port.
+        - TCPv6 specifier + domain name: ``TCPv6:[eprosima.com]``. Only the first IPv4 address resolver will be used.
+        - TCPv6 specifier + domain name + port: ``TCPv6:[eprosima.com]:42100``. As above but using a specific port.
 
-* If no port is specified, the default port 11811 is used.
+* If no port is specified when using default UDP transport, the default port 11811 is used.
+* If no port is specified when using TCP transport, the default port 42100 is used.
 * To set more than one *server*'s address, they must be separated by semicolons.
 * The server's ID is determined by their position in the list.
   Two semicolons together means the corresponding ID is free.

@@ -3892,6 +3892,99 @@
 
 </profiles>
 
+<!-->TCP-AND-DISCOVERY-SERVER-SERVER<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+                <transport_id>tcp_transport</transport_id>
+                <type>TCPv4</type>
+                <!--
+                    Set listening port for the transport.
+                    This port is where the clients will connect.
+                -->
+                <listening_ports>
+                    <port>12345</port>
+                </listening_ports>
+        </transport_descriptor>
+    </transport_descriptors>
+    <participant profile_name="TCP SERVER" is_default_profile="true">
+        <rtps>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>SERVER</discoveryProtocol>
+                </discovery_config>
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <tcpv4>
+                            <address>192.168.10.57</address>
+                            <port>12345</port>
+                            <physical_port>12345</physical_port>
+                        </tcpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+            <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
+            <useBuiltinTransports>false</useBuiltinTransports>
+            <userTransports>
+                <transport_id>tcp_transport</transport_id>
+            </userTransports>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->TCP-AND-DISCOVERY-SERVER-CLIENT<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+                <transport_id>tcp_transport</transport_id>
+                <type>TCPv4</type>
+                <!--
+                    Set listening port for the transport to 0.
+                    This automatically assigns a port.
+                -->
+                <listening_ports>
+                    <port>0</port>
+                </listening_ports>
+        </transport_descriptor>
+    </transport_descriptors>
+    <participant profile_name="TCP SERVER" is_default_profile="true">
+        <rtps>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>CLIENT</discoveryProtocol>
+                </discovery_config>
+                <discoveryServersList>
+                    <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
+                        <!--
+                            Server locator specifying where it is listening
+                        -->
+                        <metatrafficUnicastLocatorList>
+                            <locator>
+                                <tcpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>12345</port>
+                                    <physical_port>12345</physical_port>
+                                </tcpv4>
+                            </locator>
+                        </metatrafficUnicastLocatorList>
+                    </RemoteServer>
+                </discoveryServersList>  
+            </builtin>
+            <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
+            <useBuiltinTransports>false</useBuiltinTransports>
+            <userTransports>
+                <transport_id>tcp_transport</transport_id>
+            </userTransports>
+        </rtps>
+    </participant>
+<!--><-->
+
 <!-->CONF-LIBRARY-SETTINGS<-->
     <library_settings>
         <intraprocess_delivery>FULL</intraprocess_delivery> <!-- OFF | USER_DATA_ONLY | FULL -->

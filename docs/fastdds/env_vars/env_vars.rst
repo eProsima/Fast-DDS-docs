@@ -92,18 +92,20 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
         - Domain name + port: ``eprosima.com:35665``. As above but using a specific port.
         - UDPv4 specifier + domain name: ``UDPv4:[eprosima.com]``. Only the first IPv4 address resolved will be used.
         - UDPv4 specifier + domain name + port: ``UDPv4:[eprosima.com]:35665``. As above but using a specific port.
-        - UDPv6 specifier + domain name: ``UDPv6:[eprosima.com]``. Only the first IPv6 address resolved will be used.
-        - UDPv6 specifier + domain name + port: ``UDPv6:[eprosima.com]:35665``. As above but using a specific port.
+        - UDPv6 specifier + domain name: ``UDPv6:[<dns>]``. Only the first IPv6 address resolved will be used.
+        - UDPv6 specifier + domain name + port: ``UDPv6:[<dns>]:35665``. As above but using a specific port.
         - TCPv4 specifier + domain name: ``TCPv4:[eprosima.com]``. Only the first IPv4 address resolver will be used.
         - TCPv4 specifier + domain name + port: ``TCPv4:[eprosima.com]:42100``. As above but using a specific port.
-        - TCPv6 specifier + domain name: ``TCPv6:[eprosima.com]``. Only the first IPv4 address resolver will be used.
-        - TCPv6 specifier + domain name + port: ``TCPv6:[eprosima.com]:42100``. As above but using a specific port.
+        - TCPv6 specifier + domain name: ``TCPv6:[<dns>]``. Only the first IPv4 address resolver will be used.
+        - TCPv6 specifier + domain name + port: ``TCPv6:[<dns>]:42100``. As above but using a specific port.
 
 * If no port is specified when using default UDP transport, the default port 11811 is used.
 * If no port is specified when using TCP transport, the default port 42100 is used.
 * To set more than one *server*'s address, they must be separated by semicolons.
 * The server's ID is determined by their position in the list.
   Two semicolons together means the corresponding ID is free.
+* When using IPv6 with DNS, the specified domain name space (*<dns>*) must be able to resolve to an IPv6
+  address. Otherwise an error will be raised.
 
 The following example shows how to set the address of two remote discovery servers with addresses
 '84.22.259.329:8888' and 'localhost:1234' and IDs 0 and 2 respectively.

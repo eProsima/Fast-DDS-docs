@@ -94,7 +94,9 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<listening_ports>``         | Local port to work as TCP acceptor for input |br|  | ``List <uint16_t>``  |          |
 |                               | connections. If not set, the transport will |br|   |                      |          |
-|                               | work as TCP client only (**TCP only**).            |                      |          |
+|                               | work as TCP client only. If set to 0, an |br|      |                      |          |
+|                               | available port will be automatically assigned |br| |                      |          |
+|                               | (**TCP only**).                                    |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<tls>``                     | Allows to define TLS related parameters and |br|   | :ref:`tcp-tls`       |          |
 |                               | options (**TCP only**).                            |                      |          |

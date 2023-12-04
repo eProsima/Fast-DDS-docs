@@ -3807,7 +3807,7 @@
                 </listening_ports>
         </transport_descriptor>
     </transport_descriptors>
-    <participant profile_name="TCP SERVER" is_default_profile="true">
+    <participant profile_name="TCP_SERVER" is_default_profile="true">
         <rtps>
             <builtin>
                 <discovery_config>
@@ -3850,30 +3850,29 @@
                 </listening_ports>
         </transport_descriptor>
     </transport_descriptors>
-    <participant profile_name="TCP SERVER" is_default_profile="true">
+    <participant profile_name="TCP_CLIENT" is_default_profile="true">
         <rtps>
             <builtin>
                 <discovery_config>
                     <discoveryProtocol>CLIENT</discoveryProtocol>
+                    <discoveryServersList>
+                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
+                            <!--
+                                Server locator specifying where it is listening
+                            -->
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <tcpv4>
+                                        <address>192.168.10.57</address>
+                                        <port>12345</port>
+                                        <physical_port>12345</physical_port>
+                                    </tcpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
                 </discovery_config>
-                <discoveryServersList>
-                    <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
-                        <!--
-                            Server locator specifying where it is listening
-                        -->
-                        <metatrafficUnicastLocatorList>
-                            <locator>
-                                <tcpv4>
-                                    <address>192.168.10.57</address>
-                                    <port>12345</port>
-                                    <physical_port>12345</physical_port>
-                                </tcpv4>
-                            </locator>
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
-                </discoveryServersList>  
             </builtin>
-            <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
             <useBuiltinTransports>false</useBuiltinTransports>
             <userTransports>
                 <transport_id>tcp_transport</transport_id>

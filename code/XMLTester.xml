@@ -3433,7 +3433,7 @@
                     This needs to be unique for each participant in the host
                 -->
                 <listening_ports>
-                    <port>12345</port>
+                    <port>0</port>
                 </listening_ports>
             </transport_descriptor>
         </transport_descriptors>

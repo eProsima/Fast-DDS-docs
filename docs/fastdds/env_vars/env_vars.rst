@@ -78,7 +78,7 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
 
     + An IPv4 address like ``192.168.2.23``. The UDP protocol is used by default. The UDP port can be appended using `:`
       as in ``192.168.2.23:35665``.
-    + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again, it uses the UDP 
+    + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again, it uses the UDP
       protocol by default. An UDP port can be appended like in ``[1080::8:800:200C:417A]:35665``. Note the use of square
       brackets to avoid ambiguities.
     + TCPv4 specifier + IPv4 address like ``TCPv4:[127.0.0.1]``. The TCP protocol is used to communicate with the server.

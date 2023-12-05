@@ -20,7 +20,7 @@ To overcome this problem, these use cases present an approach for leveraging the
 while at the same time not requiring configuration modifications when the deployment changes over time.
 One option is to configure the participant discovery phase (see :ref:`disc_phases`) to occur over UDP multicast, while
 the application data delivery occurs over TCP. Also, it is possible to enable TCP communication while using
-:ref:`discovery-server-use-case` to manage :ref:`discovery`. 
+:ref:`discovery-server-use-case` to manage :ref:`discovery`.
 
 .. toctree::
     :maxdepth: 2

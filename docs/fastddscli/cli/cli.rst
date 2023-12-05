@@ -318,7 +318,7 @@ Examples
           Server Addresses:   TCPv4:[127.0.0.1]:42100-42100
 
 10. Launch a server with id 0 (first on ``ROS_DISCOVERY_SERVER``) listening
-    on localhost and Wi-Fi (192.163.6.34). Two TCP ports need to be
+    on localhost and WiFi (192.163.6.34). Two TCP ports need to be
     specified because TCP transports cannot share ports.
 
     .. code-block:: bash
@@ -338,9 +338,9 @@ Examples
                               TCPv4:[192.163.6.34]:42101-42101
 
 .. note::
-     When using Discovery Server over TCP, the first port shown in the ouput
+     When using Discovery Server over TCP, the first port shown in the output
      refers to the TCP Physical port and the second one to the TCP Logical
-     port (see :ref:`transport_tcp_tcp`). 
+     port (see :ref:`transport_tcp_tcp`).
 
 .. _cli_shm:
 

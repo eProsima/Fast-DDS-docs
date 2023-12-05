@@ -21,10 +21,14 @@ while at the same time not requiring configuration modifications when the deploy
 One option is to configure the participant discovery phase (see :ref:`disc_phases`) to occur over UDP multicast, while
 the application data delivery occurs over TCP. Also, it is possible to enable TCP communication while using
 <<<<<<< HEAD
+<<<<<<< HEAD
 :ref:`discovery-server-use-case` to manage :ref:`discovery`.
 =======
 :ref:`discovery-server-use-case` to manage :ref:`discovery`. 
 >>>>>>> d427e786 (Refs #20021: New TCP w/ Disc.Server example)
+=======
+:ref:`discovery-server-use-case` to manage :ref:`discovery`.
+>>>>>>> 1e0b754d (Refs #20021: correct tests)
 
 .. toctree::
     :maxdepth: 2

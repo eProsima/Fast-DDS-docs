@@ -132,6 +132,39 @@ The following example shows how to set the address of two remote discovery serve
     (that has been initialized with this environment variable previously) if loaded from an environment file using
     :ref:`env_vars_fastdds_environment_file`.
 
+.. _env_vars_ros_super_client:
+
+``ROS_SUPER_CLIENT``
+----------------------
+
+If the ``DomainParticipant``'s :ref:`discovery protocol<discovery_protocol>` is set to |SIMPLE|,
+and ``ROS_SUPER_CLIENT`` is set to TRUE, the participant is automatically promoted to a |SUPER_CLIENT|.
+
+.. important::
+    This environment variable is meant to be used in combination with ``ROS_DISCOVERY_SERVER`` to promote a participant from |SIMPLE| to |SUPER_CLIENT|.
+    The participant will have the *servers* list defined in ``ROS_DISCOVERY_SERVER``.
+
+The possible values are: **TRUE**, **true**, **True**, **1**, **FALSE**, **false**, **False**, **0**.
+
+.. important::
+    If the variable is not set, the default behavior of Fast DDS is equivalent to the case in which the variable is set to false.
+
+The following example shows how to set the environment variable to true.
+
+    +----------------------------------------------------------------------------+
+    | **Linux**                                                                  |
+    +----------------------------------------------------------------------------+
+    | .. code-block:: bash                                                       |
+    |                                                                            |
+    |    export ROS_SUPER_CLIENT=TRUE                                            |
+    +----------------------------------------------------------------------------+
+    | **Windows**                                                                |
+    +----------------------------------------------------------------------------+
+    | .. code-block:: bash                                                       |
+    |                                                                            |
+    |    set ROS_SUPER_CLIENT=TRUE                                               |
+    +----------------------------------------------------------------------------+
+
 .. _env_vars_fastdds_statistics:
 
 ``FASTDDS_STATISTICS``

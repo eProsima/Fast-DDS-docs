@@ -126,8 +126,9 @@ The following example shows how to set the address of two remote discovery serve
 
 .. important::
     IP addresses specified in ``ROS_DISCOVERY_SERVER`` must be either valid IPv4/IPv6 addresses or domain names.
-    If a name can be resolved into several addresses it is possible to either use them all or restrict the selection to
-    the first IPv4 or IPv6 address using the `UDPv4:` and `UDPv6:` prefixes respectively.
+    If a name can be resolved into several addresses, it is possible to either use them all or restrict the selection to
+    the first IPv4 using the `UDPv4:` or `TCPv4` prefixes or to the first IPv6 address using the `UDPv6:` or `TCPv6`
+    prefixes.
 
 .. important::
     This environment variable is meant to be used in combination with :ref:`Fast DDS discovery CLI<cli_discovery>`.

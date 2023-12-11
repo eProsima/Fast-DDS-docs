@@ -7,7 +7,7 @@ TCP Communication with Discovery Server
 ==========================================
 
 *Fast DDS* :ref:`discovery-server-use-case` consists on a client-server discovery mechanism, in which a server
-DomainParticipant operates as the central point of communication. It collects and processes the metatraffic
+|DomainParticipant| operates as the central point of communication. It collects and processes the metatraffic
 sent by the client DomainParticipants, and then distributes the appropriate information among the rest of
 the clients. An extended description of the feature can be found at :ref:`discovery_server`.
 
@@ -24,7 +24,8 @@ need to use custom user transports. There exists several ways of configuring the
 
         fastdds discovery -i 0 -t 127.0.0.1 -q 12345
 
-+ **Manual configuration**:
++ **Manual configuration**: the following snippets can be used to instantiate a server on IP 192.168.10.57
+  listening on port 12345.
 
 .. tabs::
 
@@ -65,7 +66,8 @@ The client participant can be configured by either using the ``ROS_DISCOVERY_SER
 
         export ROS_DISCOVERY_SERVER=TCPv4:[127.0.0.1]:12345
 
-+ **Manual configuration**:
++ **Manual configuration**: the following snippets can be used to instantiate a client that will try to connect to
+  a server on IP 192.168.10.57 and port 12345, that is, the server instantiated above.
 
 .. tabs::
 

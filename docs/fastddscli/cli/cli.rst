@@ -91,7 +91,7 @@ Where the parameters are:
 | ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'.                               |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-t  --tcp-address``    | IPv4/IPv6 address chosen to listen the clients using TCP transport. Instead of an |br|    |
-|                          | address, a DNS domain name can be specified.                                              |
+|                          | address, a DNS domain name can be specified. Defaults to localhost (127.0.0.1).           |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-q  --tcp-port``       | TCP port chosen to listen the clients. Defaults to '42100'. Only one server can be |br|   |
 |                          | configured using the default port.                                                        |
@@ -115,6 +115,8 @@ The output is:
       Server GUID prefix: 44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
       Server Addresses:   UDPv4:[<ip-address>]:<port>
                           UDPv6:[<ip-address>]:<port>
+                          TCPv4:[<ip-address>]:<physical-port>-<logical-port>
+                          TCPv6:[<ip-address>]:<physical-port>-<logical-port>
 
 Once the *server* is instantiated, the *clients* can be configured either programmatically or by XML (see
 :ref:`discovery_server`), or using environment variable ``ROS_DISCOVERY_SERVER`` (see
@@ -341,6 +343,11 @@ Examples
      When using Discovery Server over TCP, the first port shown in the output
      refers to the TCP Physical port and the second one to the TCP Logical
      port (see :ref:`transport_tcp_tcp`).
+
+.. note::
+     A server can be instantiated just by passing the port arguments ``-p``
+     and ``-q``. Fast DDS CLI will use the default values of the IP addresses,
+     that is, ``0.0.0.0`` for UDP and ``127.0.0.1`` for TCP.
 
 .. _cli_shm:
 

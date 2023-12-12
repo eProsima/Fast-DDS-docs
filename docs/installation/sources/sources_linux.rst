@@ -110,7 +110,7 @@ For example, on Ubuntu use the command:
 
 .. code-block:: bash
 
-   sudo apt install libp11-dev libengine-pkcs11-openssl
+   sudo apt install libp11-dev
 
 SoftHSM is a software implementation of an HSM (Hardware Security Module).
 If *eProsima Fast DDS* tests are activated and *libp11* is installed

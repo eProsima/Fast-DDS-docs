@@ -5956,7 +5956,7 @@ void tcp_use_cases()
 
         // TCPv4 transport for EDP and application data (The listening port must to be unique for
         // each participant in the same host)
-        constexpr uint16_t tcp_listening_port = 12345;
+        constexpr uint16_t tcp_listening_port = 0;
         auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         data_transport->add_listener_port(tcp_listening_port);
         pqos.transport().user_transports.push_back(data_transport);

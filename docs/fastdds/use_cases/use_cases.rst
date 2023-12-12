@@ -37,6 +37,8 @@ with distributed systems:
   or because the message rate.
   The examples describe how to:
 
+  - Use TCP based communications (see :ref:`use-case-tcp`).
+
   - Configure the socket buffer size (see :ref:`increase the buffers size<tuning-socket-buffer>`).
 
   - Limit the publication rate (see :ref:`flow-controllers`).
@@ -95,6 +97,7 @@ with distributed systems:
     /fastdds/use_cases/realtime/realtime.rst
     /fastdds/use_cases/reduce_memory/reduce_memory.rst
     /fastdds/use_cases/zero_copy/zero_copy.rst
+    /fastdds/use_cases/tcp/tcp_use_case.rst
     /fastdds/use_cases/unique_network_flows/unique_network_flows.rst
     /fastdds/use_cases/statistics_module/statistics_module.rst
     /fastdds/use_cases/dynamic_network_interfaces/dynamic_network_interfaces.rst

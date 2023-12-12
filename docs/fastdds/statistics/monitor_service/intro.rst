@@ -20,7 +20,7 @@ Keywords
 * **Proxy Data**: The way in which a Proxy can be described.
 
 * **Monitoring Information**: The collection of different sources of information and statuses of an entity,
-  including: the Proxy Data, incompatible qos, connections, liveliness, deadlines missed, inconsistent
+  including: the Proxy Data, incompatible QoS, connections, liveliness, deadlines missed, inconsistent
   topics and lost sample status.
 
 Description

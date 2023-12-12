@@ -16,43 +16,42 @@ for the purpose: ``fastdds.enable_monitor_service``.
 
 The following table depicts the different ways in which the *Monitor Service* can be enabled or disabled:
 
+.. tabs::
 
-+----------------------------------------------------------+
-| **C++ API**                                              |
-+----------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp           |
-|        :language: c++                                    |
-|        :dedent: 8                                        |
-|        :start-after: // FASTDDS_MONITOR_SERVICE_API      |
-|        :end-before: //!                                  |
-+----------------------------------------------------------+
-| **C++ Property**                                         |
-+----------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp           |
-|        :language: c++                                    |
-|        :dedent: 8                                        |
-|        :start-after: // FASTDDS_MONITOR_SERVICE_PROPERTY |
-|        :end-before: //!                                  |
-+----------------------------------------------------------+
-| **XML**                                                  |
-+----------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml               |
-|    :language: xml                                        |
-|    :start-after: <!-->DDS_MONITOR_SERVICE<-->            |
-|    :end-before: <!--><-->                                |
-+----------------------------------------------------------+
-| **Environment Variable Linux**                           |
-+----------------------------------------------------------+
-| .. code-block:: bash                                     |
-|                                                          |
-|    export FASTDDS_STATISTICS="MONITOR_SERVICE_TOPIC"     |
-+----------------------------------------------------------+
-| **Environment Variable Windows**                         |
-+----------------------------------------------------------+
-| .. code-block:: bash                                     |
-|                                                          |
-|    set FASTDDS_STATISTICS=MONITOR_SERVICE_TOPIC          |
-+----------------------------------------------------------+
+    .. tab:: C++ API
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: // FASTDDS_MONITOR_SERVICE_API
+        :end-before: //!
+
+    .. tab:: C++ Property
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: // FASTDDS_MONITOR_SERVICE_PROPERTY
+        :end-before: //!
+
+    .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_MONITOR_SERVICE<-->
+        :end-before: <!--><-->
+
+    .. tab:: Env. Variable Linux
+
+      .. code-block:: bash
+
+        export FASTDDS_STATISTICS="MONITOR_SERVICE_TOPIC"
+
+    .. tab:: Env. Variable Windows
+
+      .. code-block:: bash
+
+        set FASTDDS_STATISTICS=MONITOR_SERVICE_TOPIC
 
 Endpoints QoS
 ^^^^^^^^^^^^^

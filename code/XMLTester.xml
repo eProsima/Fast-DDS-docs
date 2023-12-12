@@ -2844,7 +2844,7 @@
             <properties>
                 <!-- Enable Monitor Service -->
                 <property>
-                <name>fastdds.enable_monitor_service</name>
+                    <name>fastdds.enable_monitor_service</name>
                     <value>true</value>
                 </property>
                 <!-- Include Monitor Service in the Fast DDS Statistics (other way to enable it) -->

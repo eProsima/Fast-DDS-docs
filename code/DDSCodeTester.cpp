@@ -648,6 +648,43 @@ void dds_domain_examples()
         //!--
     }
     {
+        // FASTDDS_MONITOR_SERVICE_PROPERTY
+        DomainParticipantQos pqos;
+
+        // Enable Fast DDS Monitor Service through properties
+        pqos.properties().properties().emplace_back("fastdds.enable_monitor_service",
+                "true");
+
+        // Enable Fast DDS Monitor Service through statistics properties (other way)
+        pqos.properties().properties().emplace_back("fastdds.statistics",
+                "MONITOR_SERVICE_TOPIC");
+
+        DomainParticipant* participant_with_mon_srv = DomainParticipantFactory::get_instance()->create_participant(0,
+                        pqos);
+
+        //!--
+    }
+    {
+        // FASTDDS_MONITOR_SERVICE_API
+
+        DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0,
+                        PARTICIPANT_QOS_DEFAULT);
+
+        // Obtain pointer to child class
+        eprosima::fastdds::statistics::dds::DomainParticipant* statistics_participant =
+                eprosima::fastdds::statistics::dds::DomainParticipant::narrow(participant);
+
+
+        // Enable Fast DDS Monitor Service through API
+        statistics_participant->enable_monitor_service();
+
+        // Disable Fast DDS Monitor Service through API
+        statistics_participant->disable_monitor_service();
+
+
+        //!--
+    }
+    {
         // FASTDDS_PHYSICAL_PROPERTIES
         /* Create participant which announces default physical properties */
         DomainParticipantQos pqos_default_physical;

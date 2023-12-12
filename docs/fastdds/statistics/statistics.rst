@@ -13,3 +13,4 @@ Statistics Module
    :maxdepth: 2
 
    dds_layer/statistics_dds_layer
+   monitor_service/monitor_service

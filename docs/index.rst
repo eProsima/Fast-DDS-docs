@@ -45,10 +45,10 @@
    /fastdds/persistence/persistence
    /fastdds/security/security
    /fastdds/logging/intro
-   /fastdds/statistics/statistics
    /fastdds/xml_configuration/xml_configuration
    /fastdds/env_vars/env_vars
    /fastdds/property_policies/property_policies
+   /fastdds/statistics/statistics
    /fastdds/dynamic_types/dynamic_types
    /fastdds/use_cases/use_cases
    /fastdds/ros2/ros2

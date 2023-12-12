@@ -146,6 +146,8 @@
 .. |DomainParticipant::create_topic_with_profile-api| replace:: :cpp:func:`create_topic_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_topic_with_profile>`
 .. |DomainParticipant::find_topic| replace:: :cpp:func:`find_topic()<eprosima::fastdds::dds::DomainParticipant::find_topic>`
 .. |DomainParticipant::ignore_participant-api| replace:: :cpp:func:`ignore_participant()<eprosima::fastdds::dds::DomainParticipant::ignore_participant>`
+.. |DomainParticipant::enable-monitor-service-api| replace:: :cpp:func:`enable_monitor_service()<eprosima::fastdds::dds::DomainParticipant::enable_monitor_service>`
+.. |DomainParticipant::disable-monitor-service-api| replace:: :cpp:func:`disable_monitor_service()<eprosima::fastdds::dds::DomainParticipant::disable_monitor_service>`
 
 .. |DomainParticipantFactory-api| replace:: :cpp:class:`DomainParticipantFactory<eprosima::fastdds::dds::DomainParticipantFactory>`
 .. |DomainParticipantFactory::create_participant_with_profile-api| replace:: :cpp:func:`create_participant_with_profile()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile>`
@@ -985,6 +987,9 @@
 
 .. |STATISTICS_DATAREADER_QOS-api| replace:: :cpp:member:`STATISTICS_DATAREADER_QOS <eprosima::fastdds::statistics::dds::STATISTICS_DATAREADER_QOS>`
 .. |STATISTICS_DATAWRITER_QOS-api| replace:: :cpp:member:`STATISTICS_DATAWRITER_QOS <eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS>`
+
+.. |DDSEntityStatus-api| replace:: :cpp:class:`DDSEntityStatus <eprosima::fastdds::statistics::rtps::DDSEntityStatus>`
+.. |MonitorServiceDataReaderQos-api| replace:: :cpp:class:`MonitorServiceDataReaderQos <eprosima::fastdds::statistics::dds::MonitorServiceDataReaderQos>`
 
 .. |RTPSMessageGroup| replace:: :cpp:class:`RTPSMessageGroup <eprosima::fastrtps::rtps::RTPSMessageGroup>`
 .. |MessageReceiver| replace:: :cpp:class:`MessageReceiver <eprosima::fastrtps::rtps::MessageReceiver>`

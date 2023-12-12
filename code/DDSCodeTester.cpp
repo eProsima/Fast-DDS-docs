@@ -651,9 +651,13 @@ void dds_domain_examples()
         // FASTDDS_MONITOR_SERVICE_PROPERTY
         DomainParticipantQos pqos;
 
-        // Activate Fast DDS Monitor Service through properties
+        // Enable Fast DDS Monitor Service through properties
         pqos.properties().properties().emplace_back("fastdds.enable_monitor_service",
                 "true");
+
+        // Enable Fast DDS Monitor Service through statistics properties (other way)
+        pqos.properties().properties().emplace_back("fastdds.statistics",
+                "MONITOR_SERVICE_TOPIC");
 
         DomainParticipant* participant_with_mon_srv = DomainParticipantFactory::get_instance()->create_participant(0,
                         pqos);

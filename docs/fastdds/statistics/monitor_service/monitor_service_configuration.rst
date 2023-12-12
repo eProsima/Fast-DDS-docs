@@ -40,6 +40,8 @@ The following table depicts the different ways in which the *Monitor Service* ca
         :language: xml
         :start-after: <!-->DDS_MONITOR_SERVICE<-->
         :end-before: <!--><-->
+        :lines: 2-3,5-22
+        :append: </profiles>
 
     .. tab:: Env. Variable Linux
 

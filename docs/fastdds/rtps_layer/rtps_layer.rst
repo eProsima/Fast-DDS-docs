@@ -125,6 +125,62 @@ as we did in the :ref:`dds_layer`:
     :start-after: //RTPS_API_READER_LISTENER
     :end-before: //!--
 
+.. _rtps_layer_builtin_transports:
+
+Managing the Builtin Transports
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+DDS uses the :ref:`comm-transports-configuration` to allow communication between DDS entities. *eProsima Fast DDS* comes
+with five transports already implemented. However, these transports are not always exclusive between them
+and in some cases they can be used simultaneously.
+
+You can choose what transports you want to use by disabling the use of builtin transports and manually
+adding them (see :ref:`transportconfigqos`) or using the default builtin transports behavior and selecting
+one of the configuration options listed below. Each option modifyes the kind of transports that will be
+instantiated.
+
++----------------------------+------------------------------------------------------------------------------+
+| Builtin Transports Options | Description                                                                  |
++============================+==============================================================================+
+| NONE                       | No transport will be instantiated. Hence, the user must manually add |br|    |
+|                            | the desired transports. Otherwise, the participant creation will fail.       |
++---------------------------------+-------------------------------------------------------------------------+
+| DEFAULT                    | UDPv4 and SHM transports will be instantiated. SHM transport has |br|        |
+|                            | priority over the UDPv4 transport. Meaning that SHM will always be used |br| |
+|                            | in case it is possible.                                                      |
++---------------------------------+-------------------------------------------------------------------------+
+| DEFAULTv6                  | UDPv6 and SHM transports will be instantiated. SHM transport has |br|        |
+|                            | priority over the UDPv4 transport. Meaning that SHM will always be used |br| |
+|                            | in case it is possible.                                                      |
++---------------------------------+-------------------------------------------------------------------------+
+| SHM                        | Only a SHM transport will be instantiated                                    |
++---------------------------------+-------------------------------------------------------------------------+
+| UDPv4                      | Only a UDPv4 transport will be instantiated                                  |
++---------------------------------+-------------------------------------------------------------------------+
+| UDPv6                      | Only a UDPv6 transport will be instantiated                                  |
++---------------------------------+-------------------------------------------------------------------------+
+| LARGE_DATA                 | UDPv4, TCPv4 and SHM transports will be instantiated. However, UDP will |br| |
+|                            | only be used during the participant discovery phase (see |br|                |
+|                            | :ref:`disc_phases`) while the application data delivery occurs over TCP |br| |
+|                            | or SHM. This configuration is useful when working with large data. (See |br| |
+|                            | :ref:`use-case-tcp`).                                                        |
++---------------------------------+-------------------------------------------------------------------------+
+| LARGE_DATA                 | UDPv6, TCPv6 and SHM transports will be instantiated. However, UDP will |br| |
+|                            | only be used during the participant discovery phase (see |br|                |
+|                            | :ref:`disc_phases`) while the application data delivery occurs over TCP |br| |
+|                            | or SHM. This configuration is useful when working with large data. (See |br| |
+|                            | :ref:`use-case-tcp`).                                                        |
++----------------------------+------------------------------------------------------------------------------+
+
+.. literalinclude:: ../../../code/CodeTester.cpp
+    :language: c++
+    :start-after: //RTPS_SETUP_TRANSPORTS_EXAMPLE
+    :end-before: //!--
+
+The same result can also be obtained using the |DomainParticipantQoS::setup_transports-api| wrapper
+function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`RTPS`) or the
+``FASTDDS_BUILTIN_TRANSPORTS`` environment variable (see :ref:`env_vars_builtin_transports`).
+
 Configuring Readers and Writers
 -------------------------------
 One of the benefits of using the :ref:`rtps_layer` is that it provides new configuration possibilities while

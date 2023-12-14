@@ -55,6 +55,54 @@ For more information about XML profiles, please refer to :ref:`xml_profiles`.
 |    set SKIP_DEFAULT_XML=1                                        |
 +------------------------------------------------------------------+
 
+.. _env_vars_builtin_transports:
+
+``FASTDDS_BUILTIN_TRANSPORTS``
+----------------------------------
+
+Setting this variable allows to modify the builtin transports that are initialized during the |DomainParticipant|
+creation. It is a simple way of changing the default configuration of the :ref:`comm-transports-configuration` and it directly
+affects how DDS entities communicate between them.
+
+All existing values, along with a brief description, are shown below:
+
++----------------------------+------------------------------------------------------------------------------+
+| Builtin Transports Options | Description                                                                  |
++============================+==============================================================================+
+| NONE                       | No transport will be instantiated. Hence, the user must manually add |br|    |
+|                            | the desired transports. Otherwise, the participant creation will fail.       |
++---------------------------------+-------------------------------------------------------------------------+
+| DEFAULT                    | UDPv4 and SHM transports will be instantiated. SHM transport has |br|        |
+|                            | priority over the UDPv4 transport. Meaning that SHM will always be used |br| |
+|                            | in case it is possible.                                                      |
++---------------------------------+-------------------------------------------------------------------------+
+| DEFAULTv6                  | UDPv6 and SHM transports will be instantiated. SHM transport has |br|        |
+|                            | priority over the UDPv4 transport. Meaning that SHM will always be used |br| |
+|                            | in case it is possible.                                                      |
++---------------------------------+-------------------------------------------------------------------------+
+| SHM                        | Only a SHM transport will be instantiated                                    |
++---------------------------------+-------------------------------------------------------------------------+
+| UDPv4                      | Only a UDPv4 transport will be instantiated                                  |
++---------------------------------+-------------------------------------------------------------------------+
+| UDPv6                      | Only a UDPv6 transport will be instantiated                                  |
++---------------------------------+-------------------------------------------------------------------------+
+| LARGE_DATA                 | UDPv4, TCPv4 and SHM transports will be instantiated. However, UDP will |br| |
+|                            | only be used during the participant discovery phase (see |br|                |
+|                            | :ref:`disc_phases`) while the application data delivery occurs over TCP |br| |
+|                            | or SHM. This configuration is useful when working with large data. (See |br| |
+|                            | :ref:`use-case-tcp`).                                                        |
++---------------------------------+-------------------------------------------------------------------------+
+| LARGE_DATA                 | UDPv6, TCPv6 and SHM transports will be instantiated. However, UDP will |br| |
+|                            | only be used during the participant discovery phase (see |br|                |
+|                            | :ref:`disc_phases`) while the application data delivery occurs over TCP |br| |
+|                            | or SHM. This configuration is useful when working with large data. (See |br| |
+|                            | :ref:`use-case-tcp`).                                                        |
++----------------------------+------------------------------------------------------------------------------+
+
+.. note::
+    The environment variable is only used in the case where |TransportConfigQos::use_builtin_transports-api| is set
+    to ``TRUE``. In any other case, the environment variable has no effect.
+
 .. _env_vars_ros_discovery_server:
 
 ``ROS_DISCOVERY_SERVER``

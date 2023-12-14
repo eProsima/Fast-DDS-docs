@@ -1,0 +1,47 @@
+Version 2.12.1
+^^^^^^^^^^^^^^
+
+.. note::
+
+  This release upgrades the following Fast DDS dependencies:
+
+  * `Fast CDR v2.0.0 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.0.0>`_
+  * `Fast DDS-Gen v3.0.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.0.1>`_
+
+  As Fast DDS dependencies have been upgraded to new major releases, depending on the types defined in the IDL files,
+  it might be required to modify the user application source code besides recompiling it (more information can be found
+  in the corresponding release notes).
+
+
+This release includes the following **improvements**:
+
+1. Support for linking with Fast CDR v1.
+2. The period for the timer within the :ref:`disablepositiveacksqospolicy` is now updatable.
+3. Log error message upon receiver resource creation failure.
+4. CI and repository improvements.
+5. Simplify code in CDRMessage.
+
+This release includes the following **fixes**:
+
+1. **Fast DDS bugfixes**
+
+    1. Fix transient local durability for reliable readers using intra-process and data-sharing.
+    2. Use STL implementation of Timed/RecursiveTimedMutex when MSVC >= 19.36.
+    3. Fix updatability of immutable DataWriterQos.
+    4. Fix the clang build for clang 14.
+    5. Fix remote locators filtering when whitelist provided.
+    6. Fix Data Race when updating liveliness changed in WLP.
+    7. Add XML parser bit_bound bounds check.
+    8. Fix missing mandatory attribute check in XML parser struct type.
+    9. SHM transport: ignore non-existing segment on pop.
+    10. Fix: mac address overflow on Windows.
+
+2. CI fixes:
+
+    1. Fix flow controllers unit tests compilation when using Fast CDR from thirdparty.
+    2. PubSubAsReliable test fix.
+    3. FileWatchTest fix for github windows CI.
+
+.. note::
+  When upgrading to version 2.12.1 it is **advisable** to regenerate generated source from IDL files
+   using `Fast DDS-Gen v3.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.1.0>`_.

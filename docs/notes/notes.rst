@@ -5,20 +5,19 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.12.1
+Version 2.12.2
 ==============
 
-This release includes the following **improvements**:
+This release includes the following **features**:
 
-1. Support for linking with Fast CDR v1.
-2. The period for the timer within the :ref:`disablepositiveacksqospolicy` is now updatable.
-3. Log error message upon receiver resource creation failure.
-4. CI and repository improvements.
-5. Simplify code in CDRMessage.
+1. Define a super client by environment variable.
+2. Support Autofill port (automatic assignation of the port) for TCP transport.
+3. Support TCP for Discovery server CLI and enviroment variable.
+    1. Feature example.
 
 This release includes the following **fixes**:
 
-1. **Fast DDS bugfixes**
+1. Remove duplicated apt install dependency.
 
     1. Fix transient local durability for reliable readers using intra-process and data-sharing.
     2. Use STL implementation of Timed/RecursiveTimedMutex when MSVC >= 19.36.
@@ -45,6 +44,7 @@ This release includes the following **fixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.12.1.rst
 .. include:: previous_versions/v2.12.0.rst
 .. include:: previous_versions/v2.11.2.rst
 .. include:: previous_versions/v2.11.1.rst

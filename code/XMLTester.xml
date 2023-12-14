@@ -3496,8 +3496,6 @@
 -->
 <!--><-->
 
-<<<<<<< HEAD
-=======
 <!-->TCP-AND-DISCOVERY-SERVER-SERVER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -3600,7 +3598,6 @@
 -->
 <!--><-->
 
->>>>>>> 194bd18 (TCP support for Discovery server CLI and env var and example (#599))
 </profiles>
 
 <!-->CONF-LIBRARY-SETTINGS<-->

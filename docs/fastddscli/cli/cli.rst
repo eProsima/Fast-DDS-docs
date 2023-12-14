@@ -81,12 +81,7 @@ Where the parameters are:
 | ``-l  --udp-address``    | IPv4/IPv6 address chosen to listen the clients using UDP transport. Defaults to any |br|  |
 |                          | (0.0.0.0/::0). Instead of an address, a DNS domain name can be specified.                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
-<<<<<<< HEAD
-| ``-l  --ip-address``     | IPv4 address chosen to listen the clients. Defaults to any (0.0.0.0). Instead of an |br|  |
-|                          | address, a name can be specified (see :ref:`DS_dns_name`)                                 |
-=======
 | ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'.                               |
->>>>>>> 194bd18 (TCP support for Discovery server CLI and env var and example (#599))
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-t  --tcp-address``    | IPv4/IPv6 address chosen to listen the clients using TCP transport. Instead of an |br|    |
 |                          | address, a DNS domain name can be specified. Defaults to localhost (127.0.0.1).           |
@@ -111,13 +106,7 @@ The output is:
       Server ID:          <server-id>
       Server GUID prefix: 44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
       Server Addresses:   UDPv4:[<ip-address>]:<port>
-<<<<<<< HEAD
-                          UDPv4:[<ip-address>]:<port>
-=======
-                          UDPv6:[<ip-address>]:<port>
                           TCPv4:[<ip-address>]:<physical-port>-<logical-port>
-                          TCPv6:[<ip-address>]:<physical-port>-<logical-port>
->>>>>>> 194bd18 (TCP support for Discovery server CLI and env var and example (#599))
 
 Once the *server* is instantiated, the *clients* can be configured either programmatically or by XML (see
 :ref:`discovery_server`), or using environment variable ``ROS_DISCOVERY_SERVER`` (see

@@ -5676,6 +5676,62 @@ void tcp_use_cases()
                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->create_participant(0, pqos);
         //!
     }
+
+    {
+        //TCP-AND-DISCOVERY-SERVER-SERVER
+        eprosima::fastdds::dds::DomainParticipantQos qos = PARTICIPANT_QOS_DEFAULT;
+
+        // Configure the current participant as SERVER
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+
+        // Add custom user transport with TCP port 12345
+        auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
+        data_transport->add_listener_port(12345);
+        qos.transport().user_transports.push_back(data_transport);
+
+        // Define the listening locator to be on interface 192.168.10.57 and port 12345
+        constexpr uint16_t tcp_listening_port = 12345;
+        eprosima::fastrtps::rtps::Locator_t listening_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(listening_locator, "192.168.10.57");
+        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(listening_locator, tcp_listening_port);
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(listening_locator, tcp_listening_port);
+        qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(listening_locator);
+
+        // Set the GUID prefix to identify this server
+        std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> qos.wire_protocol().prefix;
+        //!--
+    }
+
+    {
+        //TCP-AND-DISCOVERY-SERVER-CLIENT
+        eprosima::fastdds::dds::DomainParticipantQos qos = PARTICIPANT_QOS_DEFAULT;
+
+        // Configure the current participant as SERVER
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
+
+        // Add custom user transport with TCP port 0 (automatic port assignation)
+        auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
+        data_transport->add_listener_port(0);
+        qos.transport().user_transports.push_back(data_transport);
+
+        // Define the server locator to be on interface 192.168.10.57 and port 12345
+        constexpr uint16_t server_port = 12345;
+        eprosima::fastrtps::rtps::Locator_t server_locator;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
+        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(server_locator, server_port);
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(server_locator, server_port);
+
+        // Define the server attributes
+        eprosima::fastrtps::rtps::RemoteServerAttributes remote_server_att;
+        remote_server_att.metatrafficUnicastLocatorList.push_back(server_locator);
+
+        // Set the GUID prefix to identify this server
+        std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> remote_server_att.guidPrefix;
+
+        // Add the server
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
+        //!--
+    }
 }
 
 bool dds_permissions_test(

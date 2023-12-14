@@ -7,25 +7,14 @@ TCP Communication with Discovery Server
 ==========================================
 
 *Fast DDS* :ref:`discovery-server-use-case` consists on a client-server discovery mechanism, in which a server
-<<<<<<< HEAD
-<<<<<<< HEAD
 |DomainParticipant| operates as the central point of communication. It collects and processes the metatraffic
-=======
-DomainParticipant operates as the central point of communication. It collects and processes the metatraffic
->>>>>>> d427e786 (Refs #20021: New TCP w/ Disc.Server example)
-=======
-|DomainParticipant| operates as the central point of communication. It collects and processes the metatraffic
->>>>>>> 93266e9c (Refs #20021: Apply Revision's changes)
 sent by the client DomainParticipants, and then distributes the appropriate information among the rest of
 the clients. An extended description of the feature can be found at :ref:`discovery_server`.
 
 To use TCP communication along with Discovery Server, both the server participant and the client participant
-<<<<<<< HEAD
-<<<<<<< HEAD
 need to use custom user transports. There exists several ways of configuring the server participant, being
 *Fast DDS* :ref:`ffastddscli_cli` the fastest solution:
 
-<<<<<<< HEAD
 .. tabs::
 
    .. tab:: Fast DDS CLI
@@ -42,47 +31,6 @@ need to use custom user transports. There exists several ways of configuring the
 
       The following snippet can be used to instantiate a server on IP 192.168.10.57 listening on port 12345.
 
-=======
-need to use custom user transports. There exists several ways of configuring the server participant, being 
-=======
-need to use custom user transports. There exists several ways of configuring the server participant, being
->>>>>>> 1e0b754d (Refs #20021: correct tests)
-*Fast DDS* :ref:`ffastddscli_cli` the fastest solution:
-
-+ **Fast DDS CLI**: it can be configured to work over a TCP transport layer by using the
-  arguments `t` and `q` to set up the IP address and the TCP port, respectively. After sourcing the environment,
-  the following command can be used to instantiate a server listening on localhost and port 12345 (see
-  :ref:`ffastddscli_cli`).
-
-  .. code-block:: bash
-
-        fastdds discovery -i 0 -t 127.0.0.1 -q 12345
-
-+ **Manual configuration**: the following snippets can be used to instantiate a server on IP 192.168.10.57
-  listening on port 12345.
-
-=======
->>>>>>> b6bd2e6c (Refs #20021: Update use case and CLI)
-.. tabs::
-
-   .. tab:: Fast DDS CLI
-
-      It can be configured to work over a TCP transport layer by using the arguments ``-t`` and ``-q`` to set
-      up the IP address and the TCP port, respectively. After sourcing the environment, the following command
-      can be used to instantiate a server listening on localhost and port 12345 (see :ref:`ffastddscli_cli`).
-
-      .. code-block:: bash
-
-            fastdds discovery -i 0 -t 127.0.0.1 -q 12345
-
-   .. tab:: C++
-
-<<<<<<< HEAD
->>>>>>> d427e786 (Refs #20021: New TCP w/ Disc.Server example)
-=======
-      The following snippet can be used to instantiate a server on IP 192.168.10.57 listening on port 12345.
-
->>>>>>> b6bd2e6c (Refs #20021: Update use case and CLI)
       .. literalinclude:: ../../../../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
@@ -91,26 +39,15 @@ need to use custom user transports. There exists several ways of configuring the
 
    .. tab:: XML
 
-<<<<<<< HEAD
-<<<<<<< HEAD
       The following snippet can be used to instantiate a server on IP 192.168.10.57 listening on port 12345.
 
-=======
->>>>>>> d427e786 (Refs #20021: New TCP w/ Disc.Server example)
-=======
-      The following snippet can be used to instantiate a server on IP 192.168.10.57 listening on port 12345.
-
->>>>>>> b6bd2e6c (Refs #20021: Update use case and CLI)
       .. literalinclude:: /../code/XMLTester.xml
           :language: xml
           :start-after: <!-->TCP-AND-DISCOVERY-SERVER-SERVER<-->
           :end-before: <!--><-->
-<<<<<<< HEAD
-<<<<<<< HEAD
           :lines: 2-4, 6-41, 43-44
 
    .. tab:: Fast DDS Discovery Server Example
-<<<<<<< HEAD
 
       It can be configured to work over a TCP transport layer by using the argument ``--transport tcpv4``. The IP
       address and the TCP port can be set up with arguments ``--listening-address`` and ``--listening-port``,
@@ -143,55 +80,6 @@ The client participant can be configured by either using the ``ROS_DISCOVERY_SER
       The following snippet can be used to instantiate a client that will try to connect to a server on IP
       192.168.10.57 and port 12345, that is, the server instantiated above.
 
-=======
-          :lines: 2-3, 5-
-          :append: </profiles> 
-=======
-          :lines: 2-4, 6-41, 43-44
->>>>>>> 1e0b754d (Refs #20021: correct tests)
-
-+ **Fast DDS Discovery Server Example**: it can be configured to work over a TCP transport layer by using the
-  argument ``--transport tcpv4``. The IP address and the TCP port can be set up with arguments ``--listening-address``
-  and ``--listening-port``, respectively. From the *DiscoveryServerExample* folder, the following command can be
-  used to instantiate a server listening on localhost and port 12345.
-=======
->>>>>>> b6bd2e6c (Refs #20021: Update use case and CLI)
-
-      It can be configured to work over a TCP transport layer by using the argument ``--transport tcpv4``. The IP
-      address and the TCP port can be set up with arguments ``--listening-address`` and ``--listening-port``,
-      respectively. From the *DiscoveryServerExample* folder, the following command can be used to instantiate a
-      server listening on localhost and port 12345.
-
-      .. code-block:: bash
-
-            ./DiscoveryServerExample server --transport tcpv4 --listening-address 127.0.0.1 --listening-port 12345
-
-
-The client participant can be configured by either using the ``ROS_DISCOVERY_SERVER`` environment variable (see
-:ref:`env_vars_ros_discovery_server`) or by manually setting it.
-
-.. tabs::
-
-   .. tab:: Environment Variable
-
-      To configure a client participant to communicate over the TCP transport layer with the
-      ``ROS_DISCOVERY_SERVER`` environment variable, the prefix `TCPv4` needs to be used. The following command
-      can be used to configure the variable to set up a client using TCP communication and connecting to a
-      server on localhost and port 12345.
-
-      .. code-block:: bash
-
-              export ROS_DISCOVERY_SERVER=TCPv4:[127.0.0.1]:12345
-
-   .. tab:: C++
-
-<<<<<<< HEAD
->>>>>>> d427e786 (Refs #20021: New TCP w/ Disc.Server example)
-=======
-      The following snippet can be used to instantiate a client that will try to connect to a server on IP
-      192.168.10.57 and port 12345, that is, the server instantiated above.
-
->>>>>>> b6bd2e6c (Refs #20021: Update use case and CLI)
       .. literalinclude:: ../../../../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
@@ -200,29 +88,11 @@ The client participant can be configured by either using the ``ROS_DISCOVERY_SER
 
    .. tab:: XML
 
-<<<<<<< HEAD
-<<<<<<< HEAD
       The following snippet can be used to instantiate a client that will try to connect to a server on IP
       192.168.10.57 and port 12345, that is, the server instantiated above.
 
-=======
->>>>>>> d427e786 (Refs #20021: New TCP w/ Disc.Server example)
-=======
-      The following snippet can be used to instantiate a client that will try to connect to a server on IP
-      192.168.10.57 and port 12345, that is, the server instantiated above.
-
->>>>>>> b6bd2e6c (Refs #20021: Update use case and CLI)
       .. literalinclude:: /../code/XMLTester.xml
           :language: xml
           :start-after: <!-->TCP-AND-DISCOVERY-SERVER-CLIENT<-->
           :end-before: <!--><-->
-<<<<<<< HEAD
-<<<<<<< HEAD
           :lines: 2-4, 6-47, 49-50
-=======
-          :lines: 2-3, 5-
-          :append: </profiles> 
->>>>>>> d427e786 (Refs #20021: New TCP w/ Disc.Server example)
-=======
-          :lines: 2-4, 6-47, 49-50
->>>>>>> 1e0b754d (Refs #20021: correct tests)

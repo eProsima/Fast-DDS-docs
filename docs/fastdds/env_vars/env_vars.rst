@@ -1,5 +1,6 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _env_vars:
 
@@ -61,8 +62,8 @@ For more information about XML profiles, please refer to :ref:`xml_profiles`.
 ----------------------------------
 
 Setting this variable allows to modify the builtin transports that are initialized during the |DomainParticipant|
-creation. It is a simple way of changing the default configuration of the :ref:`comm-transports-configuration` and it directly
-affects how DDS entities communicate between them.
+creation. It is a simple way of changing the default configuration of the :ref:`comm-transports-configuration`
+and it directly affects how DDS entities communicate between them.
 
 All existing values, along with a brief description, are shown below:
 

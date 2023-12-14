@@ -193,7 +193,7 @@ during the participant discovery phase (see :ref:`disc_phases`) while the applic
 or SHM. This configuration enables auto discovery and does not require to manually set up each participant IP and
 listening port. Hence, avoiding the typical Server-Client configuration.
 
-Builting Transports can be configured via code, XML (see :ref:`RTPS`) or using the ``FASTDDS_BUILTIN_TRANSPORTS``
+Builtin Transports can be configured via code, XML (see :ref:`RTPS`) or using the ``FASTDDS_BUILTIN_TRANSPORTS``
 environment variable (see :ref:`env_vars_builtin_transports`).
 
 .. tabs::
@@ -210,7 +210,7 @@ environment variable (see :ref:`env_vars_builtin_transports`).
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
-        :start-after: <!-->LARGE_DATA_BUILIN_TRANSPORTS<-->
+        :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
         :end-before: <!--><-->
         :lines: 2-4, 6-13, 15-16
 

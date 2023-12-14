@@ -1,4 +1,5 @@
 .. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _RTPS standard: https://www.omg.org/spec/DDSI-RTPS/2.2
 
@@ -136,7 +137,7 @@ and in some cases they can be used simultaneously.
 
 You can choose what transports you want to use by disabling the use of builtin transports and manually
 adding them (see :ref:`transportconfigqos`) or using the default builtin transports behavior and selecting
-one of the configuration options listed below. Each option modifyes the kind of transports that will be
+one of the configuration options listed below. Each option modifies the kind of transports that will be
 instantiated.
 
 +----------------------------+------------------------------------------------------------------------------+

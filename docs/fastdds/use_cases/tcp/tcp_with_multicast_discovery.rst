@@ -19,14 +19,14 @@ while at the same time have the flexibility of automatic discovery.
       .. literalinclude:: ../../../../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
-        :start-after: //LARGE_DATA_BUILIN_TRANSPORTS
+        :start-after: //LARGE_DATA_BUILTIN_TRANSPORTS
         :end-before: //!
 
    .. tab:: XML
 
       .. literalinclude:: /../code/XMLTester.xml
           :language: xml
-          :start-after: <!-->LARGE_DATA_BUILIN_TRANSPORTS<-->
+          :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
           :end-before: <!--><-->
           :lines: 2-4, 6-13, 15-16
 

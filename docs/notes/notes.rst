@@ -5,51 +5,49 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.10.2
+Version 2.10.3
 ==============
+
+This release includes the **following features**:
+
+1. Support `Autofill port` (automatically set the port) for TCP Transport
+2. Define a super client by environment variable
 
 This release includes the following **improvements**:
 
-1. Fix Data-Sharing delivery when data_count is zero
-2. Improve performance of intraprocess plus data-sharing
-3. Improve content filter expression parameters checks and verbosity
-4. Improve validation on PID_PROPERTY_LIST deserialization
-5. Participant ignore local endpoints
-6. Pick smallest available participant ID for new participants
-7. Improve endpoint QoS XML tags
-8. Forward compatibility with boost interprocess 1.74+
-9. Cap Thread Sanitizer memory usage to prevent runner shutdown
-10. Allow participant XML profile with no <rtps> tag
-11. Add unsupported note in API documentation to new ignore DomainParticipantListener callbacks
-12. Add documentation version fallback
+1. Log warning upon receiver resource creation failure
+2. Simplify code in `CDRMessage`
+3. Rerun failed tests with ctest option instead of colcon's
+4. Use foonathan memory manager for reducing allocations in `SharedMemManager.hpp`
+5. Add CCache to all CI jobs
 
 This release includes the following **bugfixes**:
 
-1. Fixed long-standing reconnection issue on SHM transport
-2. Fix null dereference when fuzzing
-3. Fix segfault when creating two participant with same fixed id
-4. Fix UBSan (Undefined Behavior Sanitizer) issues
-5. Fix listener selection for on_requested_deadline_missed
-6. Fix build on msvc 19.36.32528
-7. Fix XML schema to set Transport descriptor kind as NOT mandatory
-8. Fix missing includes
-9. Fix overhead time unit
-10. Fix request reply example spelling typo
-11. Fix topic deletion after endpoint in examples
-12. Fix Data-Sharing delivery when data_count is zero
-13. Wait for log background thread initialization on the first queued entry
-14. Fix alias resolve in DDSSQLFilter
-15. Fix partition copy in QoS
-16. Fix StatelessWriter locators filtering
-17. Fix XMLParser null-dereference in parseLogConfig
-18. Fix encapsulation format in WLP
-19. Replace uint64_t by 8 in alignas specifier
-20. Capture all Fast CDR exceptions
-21. Security module: Honor allow_unauthenticated_participants flag
-22. Explicitly register type object in ContentFilteredTopicExample
-23. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO
-24. Fix API Fast DDS v2.10.0 API break calling correctly on_participant_discovery callbacks
-25. Remove mutex from TimedEventImpl
+1. Fix RemoteBuiltinEndpointHonoring blackbox test (#3794)
+2. Fix bad-free when receiving malformed DATA submessage (#3861)
+3. Fix clang warnings (#3905)
+4. Use STL implementation of Timed/RecursiveTimedMutex when MSVC >= 19.36 (#3917)
+5. Notify datasharing listener at the end of a successful matching in intraprocess (#3899)
+6. Fix the clang build for clang 14 (#3928)
+7. Fix HelloWorld DataSharing example idl (#3885)
+8. Fix the behaviour of disable_positive_acks period (#3896)
+9. Fix DomainParticipant::register_remote_type return when negotiating type (#3797)
+10. Fix Data Race when updating liveliness changed in WLP (#3960)
+11. Fix TCP sender resources creation (#3963)
+12. Fix flow controllers utests compilation when using Fast CDR from thirdparty (#3985)
+13. Add XML parser bit_bound bounds check (#3990)
+14. Add tests for reconnection with same GUID (#3977)
+15. Fix Github Windows CI (#4086)
+16. Fix PubSubAsReliable test (#4010)
+17. Use FASTRTPS_NO_LIB on unittest root folder (#3872)
+18. Fix missing mandatory attribute check in XML parser struct type (#4007)
+19. Fix mac address overflow on windows (#4020)
+20. Use SO_EXCLUSIVEADDRUSE for Win32 unicast listening sockets (#4072)
+21. Fix FileWatchTest for github windows CI (#4023)
+22. Add missing thread include (#4064)
+23. Update TLS unit test certificates (#4068)
+24. Fix documentation CI branch (#4089)
+25. Fix TCP deadlock on channel reuse (#4129)
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -59,6 +57,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.10.2.rst
 .. include:: previous_versions/v2.10.1.rst
 .. include:: previous_versions/v2.10.0.rst
 .. include:: previous_versions/v2.9.2.rst

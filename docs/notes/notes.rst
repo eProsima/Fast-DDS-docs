@@ -3,29 +3,47 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.6
+Version 2.6.7
 =============
+
+This release includes the following **features**:
+
+1. Support `Autofill port`(automatically set a port) for TCP Transport.
 
 This release includes the following **improvements**:
 
-1. Improve validation on PID_PROPERTY_LIST deserialization.
-2. Improved CPU usage of timed events thread.
-3. Improved performance on intraprocess + data-sharing.
-4. Explicitly register type object in ContentFilteredTopicExample.
-5. Improve installer generation with documentation version fallback.
-6. Improve content filter expression parameters checks and verbosity.
+1. Log warning message upon receiver resource creation failure.
+2. Use foonathan memory manager for reducing allocations in `SharedMemManager.hpp`
+3. Simplify code in `CDRMessage`.
+4. Rerun failed tests with ctest option instead of colcon's.
+5. Add CCache to all CI jobs.
 
 This release includes the following **bugfixes**:
 
-1. Fixed long-standing reconnection issues on SHM transport.
-2. Correctly resolve alias in DDSQLFilter.
-3. Fixed partition copy in QoS.
-4. Added length checks to prevent nullptr memory copy calls.
-5. Fixed XMLParser null-dereference when parsing log configuration.
-6. Fixed SHM in 32-bit architectures.
-7. Added missing include.
-8. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO.
-9. Fixed statistics data_count with data-sharing.
+1. Fix `DomainParticipant::register_remote_type` return when negotiating type.
+2. Fix `RemoteBuiltinEndpointHonoring` blackbox test.
+3. Allow participant profiles with no rtps tag.
+4. Fix bad-free when receiving malformed DATA submessage.
+5. Fix clang warnings (https://github.com/eProsima/Fast-DDS/pull/3906)
+6. Use STL implementation of `Timed/RecursiveTimedMutex` when `MSVC >= 19.36`.
+7. Fix encapsulation format in WLP.
+8. Fix the clang build for clang 14.
+9. Notify datasharing listener at the end of a successful matching in intraprocess.
+10. Updatable disable_positive_acks period.
+11. Fix Data Race when updating liveliness changed in WLP.
+12. Fix TCP sender resources creation.
+13. Add tests for reconnection with same GUID.
+14. Fix flow controllers utests compilation when using Fast CDR from thirdparty.
+15. Add XML parser bit_bound bounds check.
+16. Use `FASTRTPS_NO_LIB` on unittest root folder.
+17. Use `SO_EXCLUSIVEADDRUSE` for Win32 unicast listening sockets.
+18. Fix mac address overflow on windows.
+19. Fix `PubSubAsReliable` test.
+20. Fix `FileWatchTest`.
+21. Add missing thread include.
+22. Fix missing mandatory attribute check in XML parser struct type.
+23. Better handling of trigger events in docs CI.
+
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -35,6 +53,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.6.rst
 .. include:: previous_versions/v2.6.5.rst
 .. include:: previous_versions/v2.6.4.rst
 .. include:: previous_versions/v2.6.3.rst

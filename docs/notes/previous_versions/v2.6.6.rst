@@ -1,0 +1,28 @@
+Version 2.6.5
+^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Improve validation on PID_PROPERTY_LIST deserialization.
+2. Improved CPU usage of timed events thread.
+3. Improved performance on intraprocess + data-sharing.
+4. Explicitly register type object in ContentFilteredTopicExample.
+5. Improve installer generation with documentation version fallback.
+6. Improve content filter expression parameters checks and verbosity.
+
+This release includes the following **bugfixes**:
+
+1. Fixed long-standing reconnection issues on SHM transport.
+2. Correctly resolve alias in DDSQLFilter.
+3. Fixed partition copy in QoS.
+4. Added length checks to prevent nullptr memory copy calls.
+5. Fixed XMLParser null-dereference when parsing log configuration.
+6. Fixed SHM in 32-bit architectures.
+7. Added missing include.
+8. Avoid double definition of FASTDDS_ENFORCE_LOG_INFO.
+9. Fixed statistics data_count with data-sharing.
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

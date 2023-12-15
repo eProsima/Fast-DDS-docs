@@ -1,0 +1,19 @@
+Version 2.11.2
+^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+    1. Improve Shared Memory resilience to crashing participants
+    2. User configuration for :ref:`Shared Memory metatraffic <property_policies_shm_enforce_metatraffic>`
+    3. Performance improvements on intraprocess and data-sharing
+
+This release includes the following **fixes**:
+
+    1. Remove Mutex from TimedEventImpl
+    2. Replace uint64_t by 8 in ``alignas`` specifier
+    3. Fix XMLParser null-dereference in ``parseLogConfig``
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

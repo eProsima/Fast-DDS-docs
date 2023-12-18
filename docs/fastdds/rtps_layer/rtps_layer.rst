@@ -143,33 +143,33 @@ instantiated.
 +----------------------------+------------------------------------------------------------------------------+
 | Builtin Transports Options | Description                                                                  |
 +============================+==============================================================================+
-| NONE                       | No transport will be instantiated. Hence, the user must manually add |br|    |
-|                            | the desired transports. Otherwise, the participant creation will fail.       |
-+---------------------------------+-------------------------------------------------------------------------+
-| DEFAULT                    | UDPv4 and SHM transports will be instantiated. SHM transport has |br|        |
-|                            | priority over the UDPv4 transport. Meaning that SHM will always be used |br| |
+| NONE                       | No transport will be instantiated. Hence, the user must manually add         |
+|                            | the desired |br| transports. Otherwise, the participant creation will fail.  |
++----------------------------+------------------------------------------------------------------------------+
+| DEFAULT                    | UDPv4 and SHM transports will be instantiated. SHM transport has priority    |
+|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
 |                            | in case it is possible.                                                      |
-+---------------------------------+-------------------------------------------------------------------------+
-| DEFAULTv6                  | UDPv6 and SHM transports will be instantiated. SHM transport has |br|        |
-|                            | priority over the UDPv4 transport. Meaning that SHM will always be used |br| |
++----------------------------+------------------------------------------------------------------------------+
+| DEFAULTv6                  | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
+|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
 |                            | in case it is possible.                                                      |
-+---------------------------------+-------------------------------------------------------------------------+
-| SHM                        | Only a SHM transport will be instantiated                                    |
-+---------------------------------+-------------------------------------------------------------------------+
-| UDPv4                      | Only a UDPv4 transport will be instantiated                                  |
-+---------------------------------+-------------------------------------------------------------------------+
-| UDPv6                      | Only a UDPv6 transport will be instantiated                                  |
-+---------------------------------+-------------------------------------------------------------------------+
-| LARGE_DATA                 | UDPv4, TCPv4 and SHM transports will be instantiated. However, UDP will |br| |
-|                            | only be used during the participant discovery phase (see |br|                |
-|                            | :ref:`disc_phases`) while the application data delivery occurs over TCP |br| |
-|                            | or SHM. This configuration is useful when working with large data. (See |br| |
++----------------------------+------------------------------------------------------------------------------+
+| SHM                        | Only a SHM transport will be instantiated.                                   |
++----------------------------+------------------------------------------------------------------------------+
+| UDPv4                      | Only a UDPv4 transport will be instantiated.                                 |
++----------------------------+------------------------------------------------------------------------------+
+| UDPv6                      | Only a UDPv6 transport will be instantiated.                                 |
++----------------------------+------------------------------------------------------------------------------+
+| LARGE_DATA                 | UDPv4, TCPv4 and SHM transports will be instantiated. However, UDP will only |
+|                            | be used |br| during the participant discovery phase (see :ref:`disc_phases`) |
+|                            | while the application |br| data delivery occurs over TCP or SHM. This        |
+|                            | configuration is useful when working with large |br| data. (See              |
 |                            | :ref:`use-case-tcp`).                                                        |
-+---------------------------------+-------------------------------------------------------------------------+
-| LARGE_DATA                 | UDPv6, TCPv6 and SHM transports will be instantiated. However, UDP will |br| |
-|                            | only be used during the participant discovery phase (see |br|                |
-|                            | :ref:`disc_phases`) while the application data delivery occurs over TCP |br| |
-|                            | or SHM. This configuration is useful when working with large data. (See |br| |
++----------------------------+------------------------------------------------------------------------------+
+| LARGE_DATA                 | UDPv6, TCPv6 and SHM transports will be instantiated. However, UDP will only |
+|                            | be used |br| during the participant discovery phase (see :ref:`disc_phases`) |
+|                            | while the application |br| data delivery occurs over TCP or SHM. This        |
+|                            | configuration is useful when working with large |br| data. (See              |
 |                            | :ref:`use-case-tcp`).                                                        |
 +----------------------------+------------------------------------------------------------------------------+
 
@@ -181,6 +181,15 @@ instantiated.
 The same result can also be obtained using the |DomainParticipantQoS::setup_transports-api| wrapper
 function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`RTPS`) or the
 ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable (see :ref:`env_vars_builtin_transports`).
+
+.. note::
+     TCPv4 and TCPv6 transports are initialized with the following configuration:
+
+     * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
+       |TCPTransportDescriptor::apply_security-api| are set to false.
+     * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
+     * |TCPTransportDescriptor::keep_alive_thread-api| and
+       |TCPTransportDescriptor::accept_thread-api| use the default configuration.
 
 Configuring Readers and Writers
 -------------------------------

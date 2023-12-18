@@ -5,45 +5,74 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.12.1
+Version 2.13.0
 ==============
+
+.. note::
+
+  This release upgrades the following Fast DDS dependencies:
+
+  * `Fast CDR v2.1.1 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.1.1>`_
+  * `Fast DDS-Gen v3.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.0>`_
+
+
+This release includes the following **features**:
+
+1. Enable configuration of thread settings for all threads.
+2. Usage of gtest_discover_tests.
+3. Support `Autofill port` (automatic assignment of a port) for TCP Transport.
+4. Support adding interfaces to the interface whitelist by the name.
+5. Define a super client by environment variable.
+6. Support `DataRepresentationQos`.
+7. Support `Monitor Service`.
+8. Support TCP for Discovery server CLI and environment variable.
+9. Change serialize function default behaviour to omit the data representation.
+10. New methods to configure Builtin Transport (API, environment variable and XML configuration).
+
 
 This release includes the following **improvements**:
 
-1. Support for linking with Fast CDR v1.
-2. The period for the timer within the :ref:`disablepositiveacksqospolicy` is now updatable.
-3. Log error message upon receiver resource creation failure.
-4. CI and repository improvements.
-5. Simplify code in CDRMessage.
+1. Rerun failed tests with ctest option instead of colcon's.
+2. Add CCache to all CI jobs.
+3. Add macOS Github CI.
+4. Add Ubuntu Github CI.
 
 This release includes the following **fixes**:
 
 1. **Fast DDS bugfixes**
 
-    1. Fix transient local durability for reliable readers using intra-process and data-sharing.
-    2. Use STL implementation of Timed/RecursiveTimedMutex when MSVC >= 19.36.
-    3. Fix updatability of immutable DataWriterQos.
-    4. Fix the clang build for clang 14.
-    5. Fix remote locators filtering when whitelist provided.
-    6. Fix Data Race when updating liveliness changed in WLP.
-    7. Add XML parser bit_bound bounds check.
-    8. Fix missing mandatory attribute check in XML parser struct type.
-    9. SHM transport: ignore non-existing segment on pop.
-    10. Fix: mac address overflow on Windows.
+    1. Fix compilation of `XMLProfileParserTests` when building without security.
+    2. Improve `IgnoreNonExistentSegment` test for Windows.
+    3. Add missing thread includes.
+    4. Fix warning in Mac rewarding unnecessary lambda capture.
+    5. Use `SO_EXCLUSIVEADDRUSE` for Win32 unicast listening sockets.
+    6. Fix gtest discovery timeout.
+    7.
+    8. Mark `on_participant_discovery` overload removal.
+    9. Fix uninitialized member in `BuiltinAttributes` class.
+    10. Fix setaffinity directive for Android.
+    11. Fix Monitor Service types & test without security.
+    12. Fix TCP deadlock on channel reuse.
+    13. Fix dns filter in `CMakeLists` file for tests.
+    14. Fix memory issues related to ciphering payload.
+    15. Fix a bad-free when receiving a malformed `DATA_FRAG` submessage.
+    16. Fix data race on writer destruction while sending hearbeat.
+    17. Fix build with TLS, when `SECURITY=OFF` and `NO_TLS=OFF`.
 
 2. CI fixes:
 
-    1. Fix flow controllers unit tests compilation when using Fast CDR from thirdparty.
-    2. PubSubAsReliable test fix.
-    3. FileWatchTest fix for github windows CI.
+    1. Fix colcon on github CI.
+    2. Better handling of trigger events in docs CI.
 
 .. note::
-  When upgrading to version 2.12.1 it is **advisable** to regenerate generated source from IDL files
-   using `Fast DDS-Gen v3.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.1.0>`_.
+  When upgrading to version 2.13.0 it is **advisable** to regenerate generated source from IDL files
+   using `Fast DDS-Gen v3.1.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.1.1>`_.
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.12.2.rst
+.. include:: previous_versions/v2.12.1.rst
 .. include:: previous_versions/v2.12.0.rst
 .. include:: previous_versions/v2.11.2.rst
 .. include:: previous_versions/v2.11.1.rst

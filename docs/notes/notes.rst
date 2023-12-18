@@ -10,14 +10,28 @@ Version 2.12.2
 
 This release includes the following **features**:
 
-1. Define a super client by environment variable.
-2. Support Autofill port (automatic assignation of the port) for TCP transport.
-3. Support TCP for Discovery server CLI and enviroment variable.
-    1. Feature example.
+1. Define a super client by environment variable
+2. Support `Autofill port` (automatically set the port) for TCP Transport
+3. Support TCP for Discovery server CLI and environment variable
+4. Change serialize function default behaviour to omit the data representation
+
+This release includes the following **improvements**:
+
+1.  Rerun failed tests with ctest option instead of colcon's
+2. Add CCache to all CI jobs
 
 This release includes the following **fixes**:
 
-1. Remove duplicated apt install dependency.
+ 1. Fix uninitialized member in `RTPSParticipantAttributes`
+ 2. Fix colcon on github CI
+ 3. Fix branch selection on Github CI
+ 4. Add missing thread include
+ 5. Improve `IgnoreNonExistentSegment` test
+ 6. Use `SO_EXCLUSIVEADDRUSE` for Win32 unicast listening sockets
+ 7. Fix TCP deadlock on channel reuse
+ 8. Fix dns filter in CMakeLists file for tests
+ 9. Fix bad-free when receiving malformed DATA_FRAG submessage
+ 10. Fix memory problem related to ciphering payload 
 
     1. Fix transient local durability for reliable readers using intra-process and data-sharing.
     2. Use STL implementation of Timed/RecursiveTimedMutex when MSVC >= 19.36.

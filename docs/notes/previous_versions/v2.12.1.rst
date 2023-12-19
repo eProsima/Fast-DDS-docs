@@ -14,8 +14,8 @@ This release includes the following **fixes**:
 1. **Fast DDS bugfixes**
 
     1. Fix transient local durability for reliable readers using intra-process and data-sharing.
-    2. Use STL implementation of Timed/RecursiveTimedMutex when MSVC >= 19.36.
-    3. Fix updatability of immutable DataWriterQos.
+    2. Use STL implementation of Timed/RecursiveTimedMutex when `MSVC >= 19.36`.
+    3. Fix updatability of immutable `DataWriterQos`.
     4. Fix the clang build for clang 14.
     5. Fix remote locators filtering when whitelist provided.
     6. Fix Data Race when updating liveliness changed in WLP.

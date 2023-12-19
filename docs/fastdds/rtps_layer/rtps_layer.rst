@@ -1,4 +1,5 @@
 .. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _RTPS standard: https://www.omg.org/spec/DDSI-RTPS/2.2
 
@@ -124,6 +125,67 @@ as we did in the :ref:`dds_layer`:
     :language: c++
     :start-after: //RTPS_API_READER_LISTENER
     :end-before: //!--
+
+.. _rtps_layer_builtin_transports:
+
+Managing the Builtin Transports
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+DDS uses the :ref:`comm-transports-configuration` to allow communication between DDS entities. *eProsima Fast DDS* comes
+with five transports already implemented. However, these transports are not always exclusive between them
+and in some cases they can be used simultaneously.
+
+You can choose what transports you want to use by disabling the use of builtin transports and manually
+adding them (see :ref:`transportconfigqos`) or using the default builtin transports behavior and selecting
+one of the configuration options listed below. Each option modifies the kind of transports that will be
+instantiated.
+
++----------------------------+------------------------------------------------------------------------------+
+| Builtin Transports Options | Description                                                                  |
++============================+==============================================================================+
+| ``NONE``                   | No transport will be instantiated. Hence, the user must manually add         |
+|                            | the desired |br| transports. Otherwise, the participant creation will fail.  |
++----------------------------+------------------------------------------------------------------------------+
+| ``DEFAULT``                | UDPv4 and SHM transports will be instantiated. SHM transport has priority    |
+|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | when possible.                                                               |
++----------------------------+------------------------------------------------------------------------------+
+| ``DEFAULTv6``              | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
+|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | when possible.                                                               |
++----------------------------+------------------------------------------------------------------------------+
+| ``SHM``                    | Only a SHM transport will be instantiated.                                   |
++----------------------------+------------------------------------------------------------------------------+
+| ``UDPv4``                  | Only a UDPv4 transport will be instantiated.                                 |
++----------------------------+------------------------------------------------------------------------------+
+| ``UDPv6``                  | Only a UDPv6 transport will be instantiated.                                 |
++----------------------------+------------------------------------------------------------------------------+
+| ``LARGE_DATA``             | UDPv4, TCPv4, and SHM transports will be instantiated. However, UDP will     |
+|                            | only be used |br| for multicast announcements during the participant         |
+|                            | discovery phase (see :ref:`disc_phases`) |br| while the participant          |
+|                            | liveliness and the application data delivery occurs over TCP or SHM. |br|    |
+|                            | This configuration is useful when working with large data.(See               |
+|                            | :ref:`use-case-tcp`).                                                        |
++----------------------------+------------------------------------------------------------------------------+
+
+.. literalinclude:: ../../../code/CodeTester.cpp
+  :language: c++
+  :start-after: //RTPS_SETUP_TRANSPORTS_EXAMPLE
+  :end-before: //!--
+  :dedent: 4
+
+The same result can also be obtained using the |DomainParticipantQoS::setup_transports-api| wrapper
+function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`RTPS`) or the
+``FASTDDS_BUILTIN_TRANSPORTS`` environment variable (see :ref:`env_vars_builtin_transports`).
+
+.. note::
+     TCPv4 transport is initialized with the following configuration:
+
+     * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
+       |TCPTransportDescriptor::apply_security-api| are set to false.
+     * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
+     * |TCPTransportDescriptor::keep_alive_thread-api| and
+       |TCPTransportDescriptor::accept_thread-api| use the default configuration.
 
 Configuring Readers and Writers
 -------------------------------

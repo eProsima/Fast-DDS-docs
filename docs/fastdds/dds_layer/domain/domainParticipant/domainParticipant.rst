@@ -52,7 +52,8 @@ Internally it contains the following |QosPolicy-api| objects:
      - |DomainParticipantQos::wire_protocol-api|
      - No*
    * - |TransportConfigQos|
-     - |DomainParticipantQos::transport-api|
+     - |DomainParticipantQos::transport-api| and
+       |DomainParticipantQos::setup_transports-api|
      - No
    * - |FlowControllersQos|
      - |DomainParticipantQos::flow_controllers-api|

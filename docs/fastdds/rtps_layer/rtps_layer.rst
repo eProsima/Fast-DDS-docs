@@ -172,6 +172,7 @@ instantiated.
   :language: c++
   :start-after: //RTPS_SETUP_TRANSPORTS_EXAMPLE
   :end-before: //!--
+  :dedent: 4
 
 The same result can also be obtained using the |DomainParticipantQoS::setup_transports-api| wrapper
 function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`RTPS`) or the

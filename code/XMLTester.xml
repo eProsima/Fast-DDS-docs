@@ -928,10 +928,25 @@
 
             <participantID>99</participantID>
 
+<<<<<<< HEAD
             <userTransports>
                 <transport_id>TransportId1</transport_id>
                 <transport_id>TransportId2</transport_id>
             </userTransports>
+=======
+                <builtinTransports>DEFAULT</builtinTransports>
+
+                <propertiesPolicy>
+                    <!-- PROPERTIES_POLICY -->
+                    <properties>
+                        <property>
+                            <name>Property1Name</name>
+                            <value>Property1Value</value>
+                            <propagate>false</propagate>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+>>>>>>> b3bf26c (Methods to configure transport scenarios Documentation (#619))
 
             <useBuiltinTransports>false</useBuiltinTransports>
 
@@ -3429,6 +3444,26 @@
     </participant>
 <!--
 </profiles>
+-->
+<!--><-->
+
+<!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <!--
+            UDP transport for PDP and TCP transport for both EDP and application data
+        -->
+        <participant profile_name="large_data_builtin_transports" is_default_profile="true">
+            <rtps>
+                <builtinTransports>LARGE_DATA</builtinTransports>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
 -->
 <!--><-->
 

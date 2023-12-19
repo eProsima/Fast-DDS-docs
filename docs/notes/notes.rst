@@ -28,7 +28,7 @@ This release includes the following **features**:
 7. Add new methods to configure Builtin Transport.
 8. Support `DataRepresentationQos`.
 9. Change serialize function default behavior to omit the data representation.
-10. Upgrade Fast CDR submodule to v2.1.1.
+10. Upgrade Fast CDR submodule to v2.1.2.
 11. Update roadmap & platforms support.
 
 This release includes the following **improvements**:

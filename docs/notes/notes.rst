@@ -15,7 +15,6 @@ Version 2.13.0
   * `Fast CDR v2.1.2 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.1.2>`_
   * `Fast DDS-Gen v3.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.0>`_
 
-
 This release includes the following **features**:
 
 1. Support Monitor Service.

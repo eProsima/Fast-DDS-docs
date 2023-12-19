@@ -151,7 +151,7 @@ OpenSSL
 ^^^^^^^
 
 OpenSSL is a robust toolkit for the TLS and SSL protocols and a general-purpose cryptography library.
-Install it by running the following command inside an administrative shell with *PowerShell* and execute the following command:
+Install it by running the following command inside an administrative shell with *PowerShell*:
 
 .. code-block:: bash
 

@@ -4499,6 +4499,13 @@ void dds_transport_examples ()
     }
 
     {
+        //CONF-TCP-TRANSPORT-BUILTIN-TRANSPORT
+        eprosima::fastdds::dds::DomainParticipantQos qos;
+        qos.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA);
+        //!--
+    }
+
+    {
         //CONF-TCP-TRANSPORT-SETTING-SERVER
         eprosima::fastdds::dds::DomainParticipantQos qos;
 
@@ -5864,6 +5871,20 @@ void dds_waitset_example()
 
 void tcp_use_cases()
 {
+    {
+        //LARGE_DATA_BUILTIN_TRANSPORTS
+        eprosima::fastdds::dds::DomainParticipantQos pqos = PARTICIPANT_QOS_DEFAULT;
+
+        /* Transports configuration */
+        // UDPv4 transport for PDP over multicast and SHM / TCPv4 transport for EDP and application data
+        pqos.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA);
+
+        /* Create participant as usual */
+        eprosima::fastdds::dds::DomainParticipant* participant =
+                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+        //!
+    }
+
     {
         //PDP-MULTICAST-DATA-TCP
         eprosima::fastdds::dds::DomainParticipantQos pqos = PARTICIPANT_QOS_DEFAULT;

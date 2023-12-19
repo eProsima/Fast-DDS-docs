@@ -152,6 +152,12 @@ These elements allow the user to define the DomainParticipant configuration.
        in addition to its ``<userTransports>``.
      - ``bool``
      - true
+   * - ``<builtinTransports>``
+     - Configuration option to determine which transports |br|
+       will be instantiated if the ``useBuiltinTransports`` is |br|
+       set to true. See :ref:`rtps_layer_builtin_transports`.
+     - ``string_255``
+     - DEFAULT
    * - ``<propertiesPolicy>``
      - Additional configuration properties. |br|
        See :ref:`propertypolicyqos`.
@@ -184,7 +190,11 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
+<<<<<<< HEAD
     :lines: 2-3, 5-88, 90
+=======
+    :lines: 2-4, 6-126, 128-129
+>>>>>>> b3bf26c (Methods to configure transport scenarios Documentation (#619))
 
 .. note::
 

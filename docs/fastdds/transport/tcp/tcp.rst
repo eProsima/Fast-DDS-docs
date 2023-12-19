@@ -187,11 +187,12 @@ Configuration of Builtin Transports
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The first option is to modify the builtin transports that are responsible of the creation of the DomainParticipant
-transports. There exist two different configurations that enable TCP transports: ``LARGE_DATA`` and ``LARGE_DATAv6``.
-Both options instantiate a UDPv4/UDPv6, a TCPv4/TCPv6 and a SHM transport, respectively. UDP protocol will be used
-during the participant discovery phase (see :ref:`disc_phases`) while the application data delivery occurs over TCP
-or SHM. This configuration enables auto discovery and does not require to manually set up each participant IP and
-listening port. Hence, avoiding the typical Server-Client configuration.
+transports. The existing configuration that enables TCP transports is ``LARGE_DATA``.
+This option instantiates a UDPv4, a TCPv4 and a SHM transport, respectively. UDP protocol will be used for multicast
+announcements during the participant discovery phase (see :ref:`disc_phases`) while the participant liveliness and
+the application data delivery occurs over TCP or SHM. This configuration enables auto discovery and does not
+require to manually set up each participant IP and listening port. Hence, avoiding the typical Server-Client
+configuration.
 
 Builtin Transports can be configured via code, XML (see :ref:`RTPS`) or using the ``FASTDDS_BUILTIN_TRANSPORTS``
 environment variable (see :ref:`env_vars_builtin_transports`).

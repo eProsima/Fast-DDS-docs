@@ -4625,7 +4625,6 @@ void dds_transport_examples ()
     {
         //CONF-TCP-TRANSPORT-BUILTIN-TRANSPORT
         eprosima::fastdds::dds::DomainParticipantQos qos;
-
         qos.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA);
         //!--
     }

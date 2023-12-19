@@ -868,6 +868,15 @@ public:
 };
 //!--
 
+void rtps_setup_transports_example()
+{
+    //RTPS_SETUP_TRANSPORTS_EXAMPLE
+    RTPSParticipantAttributes participant_attr;
+    participant_attr.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA);
+    RTPSParticipant* participant = RTPSDomain::createParticipant(0, participant_attr);
+    //!--
+}
+
 void rtps_api_example_create_entities()
 {
     //RTPS_API_CREATE_PARTICIPANT
@@ -956,6 +965,12 @@ void rtps_api_example_create_entities_with_custom_pool()
 
             // Copy the data
             memcpy(payload, data.data, data.length);
+<<<<<<< HEAD
+=======
+
+            // Tell the CacheChange who needs to release its payload
+            cache_change.payload_owner(this);
+>>>>>>> b3bf26c (Methods to configure transport scenarios Documentation (#619))
 
             // Assign the payload buffer to the CacheChange and update sizes
             cache_change.serializedPayload.data = payload;

@@ -93,16 +93,19 @@ All existing values, along with a brief description, are shown below:
 |                            | configuration is useful when working with large |br| data. (See              |
 |                            | :ref:`use-case-tcp`).                                                        |
 +----------------------------+------------------------------------------------------------------------------+
-| LARGE_DATAv6               | UDPv6, TCPv6 and SHM transports will be instantiated. However, UDP will only |
-|                            | be used |br| during the participant discovery phase (see :ref:`disc_phases`) |
-|                            | while the application |br| data delivery occurs over TCP or SHM. This        |
-|                            | configuration is useful when working with large |br| data. (See              |
-|                            | :ref:`use-case-tcp`).                                                        |
-+----------------------------+------------------------------------------------------------------------------+
 
 .. note::
     The environment variable is only used in the case where |TransportConfigQos::use_builtin_transports-api| is set
     to ``TRUE``. In any other case, the environment variable has no effect.
+
+.. note::
+     TCPv4 transport is initialized with the following configuration:
+
+     * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
+       |TCPTransportDescriptor::apply_security-api| are set to false.
+     * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
+     * |TCPTransportDescriptor::keep_alive_thread-api| and
+       |TCPTransportDescriptor::accept_thread-api| use the default configuration.
 
 .. _env_vars_ros_discovery_server:
 

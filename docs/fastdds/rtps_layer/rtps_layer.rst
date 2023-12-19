@@ -166,12 +166,6 @@ instantiated.
 |                            | configuration is useful when working with large |br| data. (See              |
 |                            | :ref:`use-case-tcp`).                                                        |
 +----------------------------+------------------------------------------------------------------------------+
-| LARGE_DATAv6               | UDPv6, TCPv6 and SHM transports will be instantiated. However, UDP will only |
-|                            | be used |br| during the participant discovery phase (see :ref:`disc_phases`) |
-|                            | while the application |br| data delivery occurs over TCP or SHM. This        |
-|                            | configuration is useful when working with large |br| data. (See              |
-|                            | :ref:`use-case-tcp`).                                                        |
-+----------------------------+------------------------------------------------------------------------------+
 
 .. literalinclude:: ../../../code/CodeTester.cpp
     :language: c++
@@ -183,7 +177,7 @@ function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`R
 ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable (see :ref:`env_vars_builtin_transports`).
 
 .. note::
-     TCPv4 and TCPv6 transports are initialized with the following configuration:
+     TCPv4 transport is initialized with the following configuration:
 
      * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
        |TCPTransportDescriptor::apply_security-api| are set to false.

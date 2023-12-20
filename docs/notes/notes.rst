@@ -65,7 +65,7 @@ This release includes the following **fixes**:
 
 .. note::
   When upgrading to version 2.13.0 it is **advisable** to regenerate generated source from IDL files
-   using `Fast DDS-Gen v3.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.1.1>`_.
+   using `Fast DDS-Gen v3.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.0>`_.
 
 Previous versions
 =================

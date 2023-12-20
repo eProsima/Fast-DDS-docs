@@ -17,18 +17,18 @@ Version 2.13.0
 
 This release includes the following **features**:
 
-1. Support Monitor Service.
-2. Enable configuration of thread settings for all threads (both through the C++ API and XML configuration files).
-3. Support `Autofill port` (automatic assignment of a port) for TCP Transport.
-3. Support TCP for Discovery server CLI and environment variable.
-4. Usage of gtest_discover_tests.
-5. Define a super client by environment variable.
-6. Support adding interfaces to the interface whitelist by the name.
-7. Add new methods to configure Builtin Transport.
-8. Support `DataRepresentationQos`.
-9. Change serialize function default behavior to omit the data representation.
-10. Upgrade Fast CDR submodule to v2.1.2.
-11. Update roadmap & platforms support.
+1. Support :ref:`Monitor Service<monitor_service>`.
+2. Enable configuration of :ref:`thread settings<threadsettingsqos>` for all threads (both through the C++ API and XML configuration files).
+3. Support `Autofill port` (automatic assignment of a port) for :ref:`TCP Transport<transport_tcp_tcp>` listening port.
+4. Support :ref:`TCP for Discovery Server<use-case-tcp-discovery-server>` CLI and environment variable.
+5. Usage of gtest_discover_tests.
+6. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable.
+7. Support adding interfaces to the :ref:`interface whitelist<whitelist-interfaces>` by the name.
+8. Add new methods to configure :ref:`Builtin Transport<transport_tcp_enabling>`.
+9. Support `DataRepresentationQos`.
+10. Change serialize function default behavior to omit the data representation.
+11. Upgrade Fast CDR submodule to v2.1.2.
+12. Update roadmap & platforms support.
 
 This release includes the following **improvements**:
 

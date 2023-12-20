@@ -19,7 +19,7 @@ This release includes the following **features**:
 
 1. Support :ref:`Monitor Service<monitor_service>`.
 2. Enable configuration of :ref:`thread settings<threadsettingsqos>` for all threads
-(both through the C++ API and XML configuration files).
+   (both through the C++ API and XML configuration files).
 3. Support `Autofill port` (automatic assignment of a port) for :ref:`TCP Transport<transport_tcp_tcp>` listening port.
 4. Support :ref:`TCP for Discovery Server<use-case-tcp-discovery-server>` CLI and environment variable.
 5. Usage of gtest_discover_tests.

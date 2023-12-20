@@ -18,7 +18,8 @@ Version 2.13.0
 This release includes the following **features**:
 
 1. Support :ref:`Monitor Service<monitor_service>`.
-2. Enable configuration of :ref:`thread settings<threadsettingsqos>` for all threads (both through the C++ API and XML configuration files).
+2. Enable configuration of :ref:`thread settings<threadsettingsqos>` for all threads
+(both through the C++ API and XML configuration files).
 3. Support `Autofill port` (automatic assignment of a port) for :ref:`TCP Transport<transport_tcp_tcp>` listening port.
 4. Support :ref:`TCP for Discovery Server<use-case-tcp-discovery-server>` CLI and environment variable.
 5. Usage of gtest_discover_tests.
@@ -50,12 +51,12 @@ This release includes the following **fixes**:
     9. Fix set affinity directive for Android.
     10. Fix Monitor Service types & test without security.
     11. Fix TCP deadlock on channel reuse.
-    12. Fix dns filter in `CMakeLists` file for tests.
+    12. Fix DNS filter in `CMakeLists` file for tests.
     13. Fix memory issues related to ciphering payload.
     14. Fix a bad-free when receiving a malformed `DATA_FRAG` submessage.
     15. Fix CVE-2023-50257.
     16. Fix compilation of Fast DDS Python tests.
-    17. Fix data race on writer destruction while sending hearbeat.
+    17. Fix data race on writer destruction while sending heartbeat.
     18. Fix build with TLS, when `SECURITY=OFF` and `NO_TLS=OFF`.
 
 2. CI fixes:

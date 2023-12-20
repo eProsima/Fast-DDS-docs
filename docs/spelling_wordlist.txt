@@ -63,6 +63,7 @@ crl
 crypto
 cryptographic
 cryptosystem
+ctest
 datagram
 datagrams
 datarace
@@ -86,6 +87,7 @@ deserialized
 deserializes
 destructor
 diffie
+DNS
 domainId
 domainparticipant
 downcasted
@@ -119,6 +121,7 @@ googletest
 gradle
 gtest
 GTest
+gtest_discover_tests
 helloworld
 HelloWorld
 HelloWorldTopic

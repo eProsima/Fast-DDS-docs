@@ -904,27 +904,14 @@
 
             <participantID>99</participantID>
 
-<<<<<<< HEAD
             <userTransports>
                 <transport_id>TransportId1</transport_id>
                 <transport_id>TransportId2</transport_id>
             </userTransports>
-=======
-                <builtinTransports>DEFAULT</builtinTransports>
-
-                <propertiesPolicy>
-                    <!-- PROPERTIES_POLICY -->
-                    <properties>
-                        <property>
-                            <name>Property1Name</name>
-                            <value>Property1Value</value>
-                            <propagate>false</propagate>
-                        </property>
-                    </properties>
-                </propertiesPolicy>
->>>>>>> b3bf26c (Methods to configure transport scenarios Documentation (#619))
 
             <useBuiltinTransports>false</useBuiltinTransports>
+
+            <builtinTransports>DEFAULT</builtinTransports>
 
             <propertiesPolicy>
                 <!-- PROPERTIES_POLICY -->

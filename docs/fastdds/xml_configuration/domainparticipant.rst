@@ -190,11 +190,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-<<<<<<< HEAD
-    :lines: 2-3, 5-88, 90
-=======
-    :lines: 2-4, 6-126, 128-129
->>>>>>> b3bf26c (Methods to configure transport scenarios Documentation (#619))
+    :lines: 2-3, 5-90, 92
 
 .. note::
 

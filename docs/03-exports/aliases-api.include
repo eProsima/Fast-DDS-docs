@@ -181,14 +181,7 @@
 .. |DomainParticipantQos::transport-api| replace:: :cpp:func:`transport()<eprosima::fastdds::dds::DomainParticipantQos::transport>`
 .. |DomainParticipantQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DomainParticipantQos::user_data>`
 .. |DomainParticipantQos::wire_protocol-api| replace:: :cpp:func:`wire_protocol()<eprosima::fastdds::dds::DomainParticipantQos::wire_protocol>`
-<<<<<<< HEAD
-=======
-.. |DomainParticipantQos::builtin_controllers_sender_thread-api| replace:: :cpp:func:`builtin_controllers_sender_thread()<eprosima::fastdds::dds::DomainParticipantQos::builtin_controllers_sender_thread>`
-.. |DomainParticipantQos::timed_events_thread-api| replace:: :cpp:func:`timed_events_thread()<eprosima::fastdds::dds::DomainParticipantQos::timed_events_thread>`
-.. |DomainParticipantQos::discovery_server_thread-api| replace:: :cpp:func:`discovery_server_thread()<eprosima::fastdds::dds::DomainParticipantQos::discovery_server_thread>`
-.. |DomainParticipantQos::security_log_thread-api| replace:: :cpp:func:`security_log_thread()<eprosima::fastdds::dds::DomainParticipantQos::security_log_thread>`
 .. |DomainParticipantQoS::setup_transports-api| replace:: :cpp:func:`setup_transports()<eprosima::fastdds::dds::DomainParticipantQos::setup_transports>`
->>>>>>> b3bf26c (Methods to configure transport scenarios Documentation (#619))
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
 
 .. |FlowControllerDescriptor-api| replace:: :cpp:class:`FlowControllerDescriptor<eprosima::fastdds::rtps::FlowControllerDescriptor>`

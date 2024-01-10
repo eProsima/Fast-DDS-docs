@@ -27,6 +27,7 @@ char dummy;
 #endif  // _WIN32
 
 #include "HelloWorld.h"
+
 #include <fastcdr/Cdr.h>
 
 
@@ -36,9 +37,10 @@ using namespace eprosima::fastcdr::exception;
 #include <utility>
 
 
+
+
 HelloWorld::HelloWorld()
 {
-
 }
 
 HelloWorld::~HelloWorld()
@@ -65,7 +67,6 @@ HelloWorld& HelloWorld::operator =(
 
     m_index = x.m_index;
     m_message = x.m_message;
-
     return *this;
 }
 
@@ -75,7 +76,6 @@ HelloWorld& HelloWorld::operator =(
 
     m_index = x.m_index;
     m_message = std::move(x.m_message);
-
     return *this;
 }
 
@@ -162,3 +162,4 @@ std::string& HelloWorld::message()
 
 // Include auxiliary functions like for serializing/deserializing.
 #include "HelloWorldCdrAux.ipp"
+

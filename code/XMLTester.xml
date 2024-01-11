@@ -3900,6 +3900,110 @@
 -->
 <!--><-->
 
+<!-->TCP-AND-DISCOVERY-SERVER-SERVER<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <transport_descriptors>
+            <transport_descriptor>
+                <transport_id>server_tcp_transport</transport_id>
+                <type>TCPv4</type>
+                <!--
+                    Set listening port for the transport.
+                    This port is where the clients will connect.
+                -->
+                <listening_ports>
+                    <port>12345</port>
+                </listening_ports>
+            </transport_descriptor>
+        </transport_descriptors>
+        <participant profile_name="TCP_SERVER" is_default_profile="true">
+            <rtps>
+                <builtin>
+                    <discovery_config>
+                        <discoveryProtocol>SERVER</discoveryProtocol>
+                    </discovery_config>
+                    <metatrafficUnicastLocatorList>
+                        <locator>
+                            <tcpv4>
+                                <address>192.168.10.57</address>
+                                <port>12345</port>
+                                <physical_port>12345</physical_port>
+                            </tcpv4>
+                        </locator>
+                    </metatrafficUnicastLocatorList>
+                </builtin>
+                <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <userTransports>
+                    <transport_id>server_tcp_transport</transport_id>
+                </userTransports>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+<!-->TCP-AND-DISCOVERY-SERVER-CLIENT<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <transport_descriptors>
+            <transport_descriptor>
+                    <transport_id>client_tcp_transport</transport_id>
+                    <type>TCPv4</type>
+                    <!--
+                        Set listening port for the transport to 0.
+                        This automatically assigns a port.
+                    -->
+                    <listening_ports>
+                        <port>0</port>
+                    </listening_ports>
+            </transport_descriptor>
+        </transport_descriptors>
+        <participant profile_name="TCP_CLIENT" is_default_profile="true">
+            <rtps>
+                <builtin>
+                    <discovery_config>
+                        <discoveryProtocol>CLIENT</discoveryProtocol>
+                        <discoveryServersList>
+                            <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
+                                <!--
+                                    Server locator specifying where it is listening
+                                -->
+                                <metatrafficUnicastLocatorList>
+                                    <locator>
+                                        <tcpv4>
+                                            <address>192.168.10.57</address>
+                                            <port>12345</port>
+                                            <physical_port>12345</physical_port>
+                                        </tcpv4>
+                                    </locator>
+                                </metatrafficUnicastLocatorList>
+                            </RemoteServer>
+                        </discoveryServersList>
+                    </discovery_config>
+                </builtin>
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <userTransports>
+                    <transport_id>client_tcp_transport</transport_id>
+                </userTransports>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+</profiles>
+
 </profiles>
 
 <!-->LOG-CONFIG<-->

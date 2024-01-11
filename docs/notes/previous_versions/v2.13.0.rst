@@ -1,0 +1,62 @@
+Version 2.13.0
+^^^^^^^^^^^^^^
+
+.. note::
+
+  This release upgrades the following Fast DDS dependencies:
+
+  * `Fast CDR v2.1.2 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.1.2>`_
+  * `Fast DDS-Gen v3.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.0>`_
+
+This release includes the following **features**:
+
+1. Support :ref:`Monitor Service<monitor_service>`.
+2. Enable configuration of :ref:`thread settings<threadsettingsqos>` for all threads
+   (both through the C++ API and XML configuration files).
+3. Support `Autofill port` (automatic assignment of a port) for :ref:`TCP Transport<transport_tcp_tcp>` listening port.
+4. Support :ref:`TCP for Discovery Server<use-case-tcp-discovery-server>` CLI and environment variable.
+5. Usage of gtest_discover_tests.
+6. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable.
+7. Support adding interfaces to the :ref:`interface whitelist<whitelist-interfaces>` by the name.
+8. Add new methods to configure :ref:`Builtin Transport<transport_tcp_enabling>`.
+9. Support `DataRepresentationQos`.
+10. Change serialize function default behavior to omit the data representation.
+11. Upgrade Fast CDR submodule to v2.1.2.
+12. Update roadmap & platforms support.
+
+This release includes the following **improvements**:
+
+1. Rerun failed tests with ctest option instead of colcon's.
+2. Add CCache to all CI jobs.
+
+This release includes the following **fixes**:
+
+1. **Fast DDS bugfixes**
+
+    1. Fix compilation of `XMLProfileParserTests` when building without security.
+    2. Improve `IgnoreNonExistentSegment` test for Windows.
+    3. Add missing thread includes.
+    4. Fix warning in Mac rewarding unnecessary lambda capture.
+    5. Use `SO_EXCLUSIVEADDRUSE` for Win32 unicast listening sockets.
+    6. Fix gtest discovery timeout.
+    7. Mark `on_participant_discovery` overload removal.
+    8. Fix uninitialized member in `BuiltinAttributes` class.
+    9. Fix set affinity directive for Android.
+    10. Fix Monitor Service types & test without security.
+    11. Fix TCP deadlock on channel reuse.
+    12. Fix DNS filter in `CMakeLists` file for tests.
+    13. Fix memory issues related to ciphering payload.
+    14. Fix a bad-free when receiving a malformed `DATA_FRAG` submessage.
+    15. Fix CVE-2023-50257.
+    16. Fix compilation of Fast DDS Python tests.
+    17. Fix data race on writer destruction while sending heartbeat.
+    18. Fix build with TLS, when `SECURITY=OFF` and `NO_TLS=OFF`.
+
+2. CI fixes:
+
+    1. Fix colcon on github CI.
+    2. Better handling of trigger events in docs CI.
+
+.. note::
+  When upgrading to version 2.13.0 it is **advisable** to regenerate generated source from IDL files
+   using `Fast DDS-Gen v3.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.0>`_.

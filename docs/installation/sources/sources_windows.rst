@@ -139,15 +139,11 @@ OpenSSL
 ^^^^^^^
 
 OpenSSL is a robust toolkit for the TLS and SSL protocols and a general-purpose cryptography library.
-Download and install the latest OpenSSL version for Windows at this
-`link <https://slproweb.com/products/Win32OpenSSL.html>`_.
-After installing, add the environment variable :code:`OPENSSL_ROOT_DIR` pointing to the installation root directory.
-
-For example:
+Install it by running the following command inside an administrative shell with *PowerShell*:
 
 .. code-block:: bash
 
-   OPENSSL_ROOT_DIR=C:\Program Files\OpenSSL-Win64
+   choco install -y openssl
 
 .. _libp11_sw:
 

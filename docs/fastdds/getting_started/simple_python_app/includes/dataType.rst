@@ -52,7 +52,6 @@ This must have generated the following files:
     * HelloWorldCdrAux.hpp: C++ header file for HelloWorldCdrAux.ipp.
     * CMakeLists.txt: CMake file to generate C++ source code and Python module from the `SWIG`_ interface files,
       compile and generate C++ libraries.
-    * HelloWorld.py: Python module to be imported by your Python example.
 
 CMakeLists.txt
 """"""""""""""

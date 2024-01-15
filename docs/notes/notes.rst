@@ -8,7 +8,13 @@ Version 2.6.7
 
 This release includes the following **features**:
 
-1. Support `Autofill port`(automatically set a port) for TCP Transport.
+1. Support `Autofill port` (:ref:`automatically set a port<transport_tcp_transportDescriptor>`) for TCP Transport.
+2. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable
+3. Support :ref:`TCP Discovery server<use-case-tcp-discovery-server>` CLI and environment variable
+4. Define methods (:ref:`environment variable<env_vars_builtin_transports>`,
+   :ref:`rtps layer<rtps_layer_builtin_transports>`, :ref:`xml<RTPS>`) to
+   :ref:`configure transport scenarios<transport_tcp_enabling>`
+5. :ref:`Secure discovery server<DS_security>`
 
 This release includes the following **improvements**:
 
@@ -17,6 +23,8 @@ This release includes the following **improvements**:
 3. Simplify code in `CDRMessage`.
 4. Rerun failed tests with ctest option instead of colcon's.
 5. Add CCache to all CI jobs.
+6. Upgrade CMake minimum requirement to 3.16.3
+7. Update PR checklist template. Backports and Description
 
 This release includes the following **bugfixes**:
 
@@ -43,7 +51,14 @@ This release includes the following **bugfixes**:
 21. Add missing thread include.
 22. Fix missing mandatory attribute check in XML parser struct type.
 23. Better handling of trigger events in docs CI.
-
+24. Fix memory problem when ciphering payload
+25. Fix bad-free when receiving malformed DATA_FRAG submessage
+26. Fix data race on writer destruction while sending heartbeat
+27. Fix DiscoveryServer list access deadlock
+28. Fix c++11 support for fast discovery server tool
+29. Fix CVE-2023-50257
+30. Fix std::move warning
+31. Fix Github Windows CI
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

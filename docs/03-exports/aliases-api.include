@@ -625,6 +625,7 @@
 .. |TCPTransportDescriptor::logical_port_range-api| replace:: :cpp:var:`logical_port_range<eprosima::fastdds::rtps::TCPTransportDescriptor::logical_port_range>`
 .. |TCPTransportDescriptor::logical_port_increment-api| replace:: :cpp:var:`logical_port_increment<eprosima::fastdds::rtps::TCPTransportDescriptor::logical_port_increment>`
 .. |TCPTransportDescriptor::enable_tcp_nodelay-api| replace:: :cpp:var:`enable_tcp_nodelay<eprosima::fastdds::rtps::TCPTransportDescriptor::enable_tcp_nodelay>`
+.. |TCPTransportDescriptor::non_blocking_send-api| replace:: :cpp:var:`non_blocking_send<eprosima::fastdds::rtps::TCPTransportDescriptor::non_blocking_send>`
 .. |TCPTransportDescriptor::calculate_crc-api| replace:: :cpp:var:`calculate_crc<eprosima::fastdds::rtps::TCPTransportDescriptor::calculate_crc>`
 .. |TCPTransportDescriptor::check_crc-api| replace:: :cpp:var:`check_crc<eprosima::fastdds::rtps::TCPTransportDescriptor::check_crc>`
 .. |TCPTransportDescriptor::apply_security-api| replace:: :cpp:var:`apply_security<eprosima::fastdds::rtps::TCPTransportDescriptor::apply_security>`

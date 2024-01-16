@@ -8,46 +8,64 @@ Information about the release lifecycle can be found
 Version 2.10.3
 ==============
 
-This release includes the **following features**:
+This release includes the following **features**:
 
-1. Support `Autofill port` (automatically set the port) for TCP Transport
-2. Define a super client by environment variable
+1. Support `Autofill port` (:ref:`automatically set a port<transport_tcp_transportDescriptor>`) for TCP Transport.
+2. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable
+3. Support :ref:`TCP Discovery server<use-case-tcp-discovery-server>` CLI and environment variable
+4. Define methods (:ref:`environment variable<env_vars_builtin_transports>`,
+   :ref:`rtps layer<rtps_layer_builtin_transports>`, :ref:`xml<RTPS>`) to
+   :ref:`configure transport scenarios<transport_tcp_enabling>`
+5. Custom pools on DDS layer
 
 This release includes the following **improvements**:
 
 1. Log warning upon receiver resource creation failure
 2. Simplify code in `CDRMessage`
-3. Rerun failed tests with ctest option instead of colcon's
-4. Use foonathan memory manager for reducing allocations in `SharedMemManager.hpp`
-5. Add CCache to all CI jobs
+3. Backport workflows from master
+4. Rerun failed tests with ctest option instead of colcon's
+5. Use foonathan memory manager for reducing allocations in `SharedMemManager.hpp`
+6. Add CCache to all CI jobs
 
 This release includes the following **bugfixes**:
 
-1. Fix RemoteBuiltinEndpointHonoring blackbox test (#3794)
-2. Fix bad-free when receiving malformed DATA submessage (#3861)
-3. Fix clang warnings (#3905)
-4. Use STL implementation of Timed/RecursiveTimedMutex when MSVC >= 19.36 (#3917)
-5. Notify datasharing listener at the end of a successful matching in intraprocess (#3899)
-6. Fix the clang build for clang 14 (#3928)
-7. Fix HelloWorld DataSharing example idl (#3885)
-8. Fix the behaviour of disable_positive_acks period (#3896)
-9. Fix DomainParticipant::register_remote_type return when negotiating type (#3797)
-10. Fix Data Race when updating liveliness changed in WLP (#3960)
-11. Fix TCP sender resources creation (#3963)
-12. Fix flow controllers utests compilation when using Fast CDR from thirdparty (#3985)
-13. Add XML parser bit_bound bounds check (#3990)
-14. Add tests for reconnection with same GUID (#3977)
-15. Fix Github Windows CI (#4086)
-16. Fix PubSubAsReliable test (#4010)
-17. Use FASTRTPS_NO_LIB on unittest root folder (#3872)
-18. Fix missing mandatory attribute check in XML parser struct type (#4007)
-19. Fix mac address overflow on windows (#4020)
-20. Use SO_EXCLUSIVEADDRUSE for Win32 unicast listening sockets (#4072)
-21. Fix FileWatchTest for github windows CI (#4023)
-22. Add missing thread include (#4064)
-23. Update TLS unit test certificates (#4068)
-24. Fix documentation CI branch (#4089)
-25. Fix TCP deadlock on channel reuse (#4129)
+1. Fix `RemoteBuiltinEndpointHonoring` blackbox test
+2. Fix bad-free when receiving malformed DATA submessage
+3. Fix clang warnings
+4. Use STL implementation of `Timed/RecursiveTimedMutex` when `MSVC >= 19.36`
+5. Notify datasharing listener at the end of a successful matching in intraprocess
+6. Fix the clang build for clang 14
+7. Fix HelloWorld DataSharing example idl
+8. Fix the behavior of `disable_positive_acks` period
+9. Fix `DomainParticipant::register_remote_type` return when negotiating type
+10. Fix Data Race when updating liveliness changed in WLP
+11. Fix TCP sender resources creation
+12. Fix flow controllers utests compilation when using Fast CDR from thirdparty
+13. Add XML parser bit_bound bounds check
+14. Add tests for reconnection with same GUID
+15. Fix Github Windows CI
+16. Fix PubSubAsReliable test
+17. Use `FASTRTPS_NO_LIB` on unittest root folder
+18. Fix missing mandatory attribute check in XML parser struct type
+19. Fix mac address overflow on windows
+20. Use `SO_EXCLUSIVEADDRUSE` for Win32 unicast listening sockets
+21. Fix FileWatchTest for github windows CI
+22. Add missing thread include
+23. Update TLS unit test certificates
+24. Select correct .repos file on push events
+25. Fix documentation CI branch
+26. Fix TCP deadlock on channel reuse
+27. Fix dns filter in CMakeLists file for tests
+28. Fix bad-free when receiving malformed DATA_FRAG submessage
+29. Fix memory problem when ciphering payload
+30. Fix build with TLS, but not security
+31. Fix CVE-2023-50257
+32. Fix data race on writer destruction while sending heartbeat
+33. Fix comparison in remove_from_pdp_reader_history
+34. Fix data race in PDPListener and SecurityManager
+35. Update PR template to include check for PR description, title and backports
+36. Fix std::move warning
+37. Revert "TCP deadlock on channel reuse"
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

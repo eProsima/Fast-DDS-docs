@@ -105,8 +105,6 @@ All existing values, along with a brief description, are shown below:
      * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
        |TCPTransportDescriptor::apply_security-api| are set to false.
      * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
-     * |TCPTransportDescriptor::keep_alive_thread-api| and
-       |TCPTransportDescriptor::accept_thread-api| use the default configuration.
 
 .. _env_vars_ros_discovery_server:
 

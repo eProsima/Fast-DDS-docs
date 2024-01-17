@@ -8,7 +8,7 @@ Version 2.6.7
 
 This release includes the following **features**:
 
-1. Support `Autofill port` (:ref:`automatically set a port<transport_tcp_transportDescriptor>`) for TCP Transport.
+1. Support ``Autofill port`` (:ref:`automatically set a port<transport_tcp_transportDescriptor>`) for TCP Transport.
 2. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable
 3. Support :ref:`TCP Discovery server<use-case-tcp-discovery-server>` CLI and environment variable
 4. Define methods (:ref:`environment variable<env_vars_builtin_transports>`,
@@ -19,46 +19,48 @@ This release includes the following **features**:
 This release includes the following **improvements**:
 
 1. Log warning message upon receiver resource creation failure.
-2. Use foonathan memory manager for reducing allocations in `SharedMemManager.hpp`
-3. Simplify code in `CDRMessage`.
-4. Rerun failed tests with ctest option instead of colcon's.
-5. Add CCache to all CI jobs.
-6. Upgrade CMake minimum requirement to 3.16.3
-7. Update PR checklist template. Backports and Description
+2. Add tests for reconnection with same GUID
+3. Use foonathan memory manager for reducing allocations in ``SharedMemManager.hpp``
+4. Simplify code in ``CDRMessage``.
+5. Rerun failed tests with ctest option instead of colcon's.
+6. Several improvements on CI jobs.
+7. Upgrade CMake minimum requirement to 3.16.3
+8. Update PR checklist template. Backports and Description
 
 This release includes the following **bugfixes**:
 
-1. Fix `DomainParticipant::register_remote_type` return when negotiating type.
-2. Fix `RemoteBuiltinEndpointHonoring` blackbox test.
+1. Fix ``DomainParticipant::register_remote_type`` return when negotiating type.
+2. Fix ``RemoteBuiltinEndpointHonoring`` blackbox test.
 3. Allow participant profiles with no rtps tag.
 4. Fix bad-free when receiving malformed DATA submessage.
-5. Fix clang warnings (https://github.com/eProsima/Fast-DDS/pull/3906)
-6. Use STL implementation of `Timed/RecursiveTimedMutex` when `MSVC >= 19.36`.
+5. Fix clang warnings
+6. Use STL implementation of ``Timed/RecursiveTimedMutex`` when ``MSVC >= 19.36``.
 7. Fix encapsulation format in WLP.
 8. Fix the clang build for clang 14.
 9. Notify datasharing listener at the end of a successful matching in intraprocess.
 10. Updatable disable_positive_acks period.
 11. Fix Data Race when updating liveliness changed in WLP.
 12. Fix TCP sender resources creation.
-13. Add tests for reconnection with same GUID.
-14. Fix flow controllers utests compilation when using Fast CDR from thirdparty.
-15. Add XML parser bit_bound bounds check.
-16. Use `FASTRTPS_NO_LIB` on unittest root folder.
-17. Use `SO_EXCLUSIVEADDRUSE` for Win32 unicast listening sockets.
-18. Fix mac address overflow on windows.
-19. Fix `PubSubAsReliable` test.
-20. Fix `FileWatchTest`.
-21. Add missing thread include.
-22. Fix missing mandatory attribute check in XML parser struct type.
-23. Better handling of trigger events in docs CI.
-24. Fix memory problem when ciphering payload
-25. Fix bad-free when receiving malformed DATA_FRAG submessage
-26. Fix data race on writer destruction while sending heartbeat
-27. Fix DiscoveryServer list access deadlock
-28. Fix c++11 support for fast discovery server tool
-29. Fix CVE-2023-50257
-30. Fix std::move warning
-31. Fix Github Windows CI
+13. Fix flow controllers utests compilation when using Fast CDR from thirdparty.
+14. Add XML parser bit_bound bounds check.
+15. Use ``FASTRTPS_NO_LIB`` on unittest root folder.
+16. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets.
+17. Fix mac address overflow on windows.
+18. Fix ``PubSubAsReliable`` test.
+19. Fix ``FileWatchTest``.
+20. Add missing thread include.
+21. Fix missing mandatory attribute check in XML parser struct type.
+22. Better handling of trigger events in docs CI.
+23. Fix memory problem when ciphering payload
+24. Select correct .repos file on push events
+25. Update TLS unit test certificates
+26. Fix bad-free when receiving malformed DATA_FRAG submessage
+27. Fix data race on writer destruction while sending heartbeat
+28. Fix DiscoveryServer list access deadlock
+29. Fix c++11 support for fast discovery server tool
+30. Fix CVE-2023-50257
+31. Fix std::move warning
+32. Fix Github Windows CI
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

@@ -33,14 +33,14 @@ This release includes the following **bugfixes**:
 2. Fix bad-free when receiving malformed DATA submessage
 3. Fix clang warnings
 4. Use STL implementation of ``Timed/RecursiveTimedMutex`` when ``MSVC >= 19.36``
-5. Notify datasharing listener at the end of a successful matching in intraprocess
+5. Notify data-sharing listener at the end of a successful matching in intraprocess
 6. Fix the clang build for clang 14
-7. Fix HelloWorld DataSharing example idl
+7. Fix HelloWorld Data-Sharing example idl
 8. Fix the behavior of ``disable_positive_acks`` period
 9. Fix ``DomainParticipant::register_remote_type`` return when negotiating type
 10. Fix Data Race when updating liveliness changed in WLP
 11. Fix TCP sender resources creation
-12. Fix flow controllers utests compilation when using Fast CDR from thirdparty
+12. Fix flow controllers unit tests compilation when using Fast CDR from thirdparty
 13. Add XML parser bit_bound bounds check
 14. Fix Github Windows CI
 15. Fix PubSubAsReliable test

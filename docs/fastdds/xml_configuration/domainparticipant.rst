@@ -66,7 +66,6 @@ These elements allow the user to define the DomainParticipant configuration.
 .. |PartAlloc| replace:: :ref:`DomainParticipantAllocationType <ParticipantAllocationType>`
 .. |PolicyType| replace:: :ref:`PropertiesPolicyType <PropertiesPolicyType>`
 
-
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
 | Name                              | Description                                      | Values              | Default |
 +===================================+==================================================+=====================+=========+
@@ -121,6 +120,11 @@ These elements allow the user to define the DomainParticipant configuration.
 |                                   | transport instead |br|                           |                     |         |
 |                                   | of its ``<userTransports>``.                     |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
+| ``<builtinTransports>``           | Configuration option to determine which  |br|    | ``string_255``      | DEFAULT |
+|                                   | transports will be instantiated if the  |br|     |                     |         |
+|                                   | ``useBuiltinTransports`` is set to true. |br|    |                     |         |
+|                                   | See :ref:`rtps_layer_builtin_transports`. |br|   |                     |         |
++-----------------------------------+--------------------------------------------------+---------------------+---------+
 | ``<propertiesPolicy>``            | Additional configuration properties. |br|        | |PolicyType|        |         |
 |                                   | It expects a |PolicyType|.                       |                     |         |
 +-----------------------------------+--------------------------------------------------+---------------------+---------+
@@ -134,7 +138,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-76, 78
+    :lines: 2-3, 5-78, 80
 
 .. note::
 

@@ -29,23 +29,34 @@ DomainParticipantQos
 |DomainParticipantQos-api| controls the behavior of the DomainParticipant.
 Internally it contains the following |QosPolicy-api| objects:
 
-+--------------------------------+----------------------------------------------+----------+
-| QosPolicy class                | Accessor/Mutator                             | Mutable  |
-+================================+==============================================+==========+
-| |UserDataQosPolicy|            | |DomainParticipantQos::user_data-api|        | Yes      |
-+--------------------------------+----------------------------------------------+----------+
-| |EntityFactoryQosPolicy|       | |DomainParticipantQos::entity_factory-api|   | Yes      |
-+--------------------------------+----------------------------------------------+----------+
-| |ParticipantResourceLimitsQos| | |DomainParticipantQos::allocation-api|       | No       |
-+--------------------------------+----------------------------------------------+----------+
-| |PropertyPolicyQos|            | |DomainParticipantQos::properties-api|       | No       |
-+--------------------------------+----------------------------------------------+----------+
-| |WireProtocolConfigQos|        | |DomainParticipantQos::wire_protocol-api|    | No*      |
-+--------------------------------+----------------------------------------------+----------+
-| |TransportConfigQos|           | |DomainParticipantQos::transport-api|        | No       |
-+--------------------------------+----------------------------------------------+----------+
-| |FlowControllersQos|           | |DomainParticipantQos::flow_controllers-api| | No       |
-+--------------------------------+----------------------------------------------+----------+
+.. list-table::
+   :header-rows: 1
+
+   * - QosPolicy class
+     - Accessor/Mutator
+     - Mutable
+   * - |UserDataQosPolicy|
+     - |DomainParticipantQos::user_data-api|
+     - Yes
+   * - |EntityFactoryQosPolicy|
+     - |DomainParticipantQos::entity_factory-api|
+     - Yes
+   * - |ParticipantResourceLimitsQos|
+     - |DomainParticipantQos::allocation-api|
+     - No
+   * - |PropertyPolicyQos|
+     - |DomainParticipantQos::properties-api|
+     - No
+   * - |WireProtocolConfigQos|
+     - |DomainParticipantQos::wire_protocol-api|
+     - No*
+   * - |TransportConfigQos|
+     - |DomainParticipantQos::transport-api| and
+       |DomainParticipantQos::setup_transports-api|
+     - No
+   * - |FlowControllersQos|
+     - |DomainParticipantQos::flow_controllers-api|
+     - No
 
 .. Important::
     The only mutable field in |WireProtocolConfigQos| is |m_DiscoveryServers|, which is contained in

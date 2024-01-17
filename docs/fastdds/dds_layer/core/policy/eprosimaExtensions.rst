@@ -919,6 +919,11 @@ XML
     :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING<-->
     :end-before: <!--><-->
 
+.. note::
+     :ref:`transportconfigqos` can also be configured modifying the builtin
+     transports configuration by selecting one of the available builtin transports options.
+     See :ref:`rtps_layer_builtin_transports` or |DomainParticipantQoS::setup_transports-api|.
+
 .. _typeconsistencyqos:
 
 TypeConsistencyQos

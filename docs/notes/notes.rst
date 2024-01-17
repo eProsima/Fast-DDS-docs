@@ -37,11 +37,11 @@ This release includes the following **bugfixes**:
 6. Use STL implementation of ``Timed/RecursiveTimedMutex`` when ``MSVC >= 19.36``.
 7. Fix encapsulation format in WLP.
 8. Fix the clang build for clang 14.
-9. Notify datasharing listener at the end of a successful matching in intraprocess.
+9. Notify data-sharing listener at the end of a successful matching in intraprocess.
 10. Updatable disable_positive_acks period.
 11. Fix Data Race when updating liveliness changed in WLP.
 12. Fix TCP sender resources creation.
-13. Fix flow controllers utests compilation when using Fast CDR from thirdparty.
+13. Fix flow controllers unit tests compilation when using Fast CDR from thirdparty.
 14. Add XML parser bit_bound bounds check.
 15. Use ``FASTRTPS_NO_LIB`` on unittest root folder.
 16. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets.

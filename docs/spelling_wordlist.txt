@@ -60,7 +60,6 @@ datagram
 datagrams
 datarate
 datareaders
-datasharing
 deallocate
 deallocated
 deallocating
@@ -229,7 +228,6 @@ unmatching
 unwakening
 unwakeup
 Updatable
-utests
 Valgrind
 vcstool
 wget

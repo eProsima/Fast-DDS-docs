@@ -163,7 +163,51 @@ TCPv6TransportDescriptor
 Enabling TCP Transport
 ----------------------
 
-To enable TCP transport in a DomainParticipant, you need to
+There are several ways of enabling TCP transport in *eprosima Fast DDS*. According to the facet of each
+scenario, one method might suit better than the others.
+
+Configuration of Builtin Transports
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The first option is to modify the builtin transports that are responsible of the creation of the DomainParticipant
+transports. The existing configuration that enables TCP transports is ``LARGE_DATA``.
+This option instantiates a UDPv4, a TCPv4 and a SHM transport, respectively. UDP protocol will be used for multicast
+announcements during the participant discovery phase (see :ref:`disc_phases`) while the participant liveliness and
+the application data delivery occurs over TCP or SHM. This configuration enables auto discovery and does not
+require to manually set up each participant IP and listening port. Hence, avoiding the typical Server-Client
+configuration.
+
+Builtin Transports can be configured via code, XML (see :ref:`RTPS`) or using the ``FASTDDS_BUILTIN_TRANSPORTS``
+environment variable (see :ref:`env_vars_builtin_transports`).
+
+.. tabs::
+
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF-TCP-TRANSPORT-BUILTIN-TRANSPORT
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
+        :end-before: <!--><-->
+        :lines: 2-4, 6-13, 15-16
+
+.. note::
+   Note that ``LARGE_DATA`` configuration of the builtin transports will also create a SHM transport along the UDP
+   and TCP transports. Shared Memory will be used whenever it is possible. Manual configuration will be required
+   if a TCP communication is required when SHM is feasible. (See :ref:`use-case-tcp-multicast`).
+
+
+Server-Client Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To set up a Server-Client configuration you need to
 create an instance of :ref:`transport_tcp_v4transportDescriptor` (for TCPv4) or
 :ref:`transport_tcp_v6transportDescriptor` (for TCPv6), and add it to the user transport list of the
 DomainParticipant.

@@ -327,6 +327,8 @@
 
                 <useBuiltinTransports>false</useBuiltinTransports>
 
+                <builtinTransports>DEFAULT</builtinTransports>
+
                 <propertiesPolicy>
                     <properties>
                         <property>

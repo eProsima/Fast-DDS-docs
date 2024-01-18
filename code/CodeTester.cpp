@@ -854,6 +854,15 @@ public:
 };
 //!--
 
+void rtps_setup_transports_example()
+{
+    //RTPS_SETUP_TRANSPORTS_EXAMPLE
+    RTPSParticipantAttributes participant_attr;
+    participant_attr.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA);
+    RTPSParticipant* participant = RTPSDomain::createParticipant(0, participant_attr);
+    //!--
+}
+
 void rtps_api_example_create_entities()
 {
     //RTPS_API_CREATE_PARTICIPANT

@@ -152,6 +152,12 @@ These elements allow the user to define the DomainParticipant configuration.
        in addition to its ``<userTransports>``.
      - ``bool``
      - true
+   * - ``<builtinTransports>``
+     - Configuration option to determine which transports |br|
+       will be instantiated if the ``useBuiltinTransports`` is |br|
+       set to true. See :ref:`rtps_layer_builtin_transports`.
+     - ``string_255``
+     - DEFAULT
    * - ``<propertiesPolicy>``
      - Additional configuration properties. |br|
        See :ref:`propertypolicyqos`.

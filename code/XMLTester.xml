@@ -3409,6 +3409,26 @@
 -->
 <!--><-->
 
+<!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <!--
+            UDP transport for PDP and TCP transport for both EDP and application data
+        -->
+        <participant profile_name="large_data_builtin_transports" is_default_profile="true">
+            <rtps>
+                <builtinTransports>LARGE_DATA</builtinTransports>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
 <!-->PDP-MULTICAST-DATA-TCP<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

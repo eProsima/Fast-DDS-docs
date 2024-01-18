@@ -16,7 +16,8 @@ This release includes the following **features**:
 4. Define methods (:ref:`environment variable<env_vars_builtin_transports>`,
    :ref:`rtps layer<rtps_layer_builtin_transports>`, :ref:`xml<RTPS>`) to
    :ref:`configure transport scenarios<transport_tcp_enabling>`
-5. Custom pools on DDS layer
+5. Custom pools on DDS layer (:ref:`DataWriter<dds_layer_publisher_datawriter_with_payload_pool_creation>` and
+   :ref:`DataReader<dds_layer_subscriber_datareader_with_payload_pool_creation>`)
 
 This release includes the following **improvements**:
 

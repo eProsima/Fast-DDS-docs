@@ -184,7 +184,7 @@ function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`R
      * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
        |TCPTransportDescriptor::apply_security-api| are set to false.
      * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
-     * |TCPTransportDescriptor::non_blocking_send-api| is set to true.
+     * |TransportInterface-api| ``non_blocking_send`` is set to true.
      * |TCPTransportDescriptor::keep_alive_thread-api| and
        |TCPTransportDescriptor::accept_thread-api| use the default configuration.
 

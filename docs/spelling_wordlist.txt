@@ -24,7 +24,8 @@ autoenable
 autoid
 automake
 backoff
-Backports
+backport
+backports
 benchmarking
 bitfield
 Bitfields

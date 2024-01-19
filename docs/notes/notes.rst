@@ -34,14 +34,14 @@ This release includes the following **bugfixes**:
 2. Fix bad-free when receiving malformed DATA submessage
 3. Fix clang warnings
 4. Use STL implementation of ``Timed/RecursiveTimedMutex`` when ``MSVC >= 19.36``
-5. Notify datasharing listener at the end of a successful matching in intraprocess
+5. Notify data-sharing listener at the end of a successful matching in intraprocess
 6. Fix the clang build for clang 14
-7. Fix ``HelloWorld`` ``DataSharing`` example idl
+7. Fix ``HelloWorld`` Data-Sharing example idl
 8. Fix the behaviour of ``disable_positive_acks`` period
 9. Fix ``DomainParticipant::register_remote_type`` return when negotiating type
 10. Fix Data Race when updating liveliness changed in WLP
 11. Fix TCP sender resources creation
-12. Fix flow controllers utests compilation when using ``Fast CDR`` from thirdparty
+12. Fix flow controllers unit tests compilation when using ``Fast CDR`` from thirdparty
 13. Add XML parser ``bit_bound`` bounds check
 14. Add tests for reconnection with same GUID
 15. Fix Github Windows CI
@@ -50,19 +50,19 @@ This release includes the following **bugfixes**:
 18. Fix missing mandatory attribute check in XML parser struct type
 19. Fix mac address overflow on windows
 20. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets
-21. Fix FileWatchTest for github windows CI
+21. Fix FileWatchTest for Github windows CI
 22. Add missing thread include
 23. Update TLS unit test certificates
 24. Select correct .repos file on push events
 25. Fix documentation CI branch
 26. Fix TCP deadlock on channel reuse
-27. Fix dns filter in CMakeLists file for tests
+27. Fix DNS filter in CMakeLists file for tests
 28. Fix bad-free when receiving malformed DATA_FRAG submessage
 29. Fix memory problem when ciphering payload
 30. Fix build with TLS, but not security
 31. Fix CVE-2023-50257
 32. Fix data race on writer destruction while sending heartbeat
-33. Fix comparison in remove_from_pdp_reader_history
+33. Fix comparison in ``remove_from_pdp_reader_history``
 34. Fix data race in PDPListener and SecurityManager
 35. Update PR template to include check for PR description, title and backports
 36. Fix std::move warning

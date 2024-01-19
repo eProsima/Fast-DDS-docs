@@ -8,7 +8,7 @@ Information about the release lifecycle can be found
 Version 2.10.3
 ==============
 
-This release includes the following **features**:
+This release includes the following **features** in an ABI compatible manner:
 
 1. Support ``Autofill port`` (:ref:`automatically set a port<transport_tcp_transportDescriptor>`) for TCP Transport.
 2. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable
@@ -26,7 +26,7 @@ This release includes the following **improvements**:
 3. Backport workflows from master
 4. Rerun failed tests with ctest option instead of colcon's
 5. Use foonathan memory manager for reducing allocations in ``SharedMemManager.hpp``
-6. Several improvements on CI jobs
+6. Add CCache to all CI jobs
 
 This release includes the following **bugfixes**:
 
@@ -34,38 +34,40 @@ This release includes the following **bugfixes**:
 2. Fix bad-free when receiving malformed DATA submessage
 3. Fix clang warnings
 4. Use STL implementation of ``Timed/RecursiveTimedMutex`` when ``MSVC >= 19.36``
-5. Notify data-sharing listener at the end of a successful matching in intraprocess
+5. Notify datasharing listener at the end of a successful matching in intraprocess
 6. Fix the clang build for clang 14
-7. Fix HelloWorld Data-Sharing example idl
-8. Fix the behavior of ``disable_positive_acks`` period
+7. Fix ``HelloWorld`` ``DataSharing`` example idl
+8. Fix the behaviour of ``disable_positive_acks`` period
 9. Fix ``DomainParticipant::register_remote_type`` return when negotiating type
 10. Fix Data Race when updating liveliness changed in WLP
 11. Fix TCP sender resources creation
-12. Fix flow controllers unit tests compilation when using Fast CDR from thirdparty
-13. Add XML parser bit_bound bounds check
-14. Fix Github Windows CI
-15. Fix PubSubAsReliable test
-16. Use ``FASTRTPS_NO_LIB`` on unittest root folder
-17. Fix missing mandatory attribute check in XML parser struct type
-18. Fix mac address overflow on windows
-19. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets
-20. Fix FileWatchTest for github windows CI
-21. Add missing thread include
-22. Update TLS unit test certificates
-23. Select correct .repos file on push events
-24. Fix documentation CI branch
-25. Fix TCP deadlock on channel reuse
-26. Fix dns filter in CMakeLists file for tests
-27. Fix bad-free when receiving malformed DATA_FRAG submessage
-28. Fix memory problem when ciphering payload
-29. Fix build with TLS, but not security
-30. Fix CVE-2023-50257
-31. Fix data race on writer destruction while sending heartbeat
-32. Fix comparison in remove_from_pdp_reader_history
-33. Fix data race in PDPListener and SecurityManager
-34. Update PR template to include check for PR description, title and backports
-35. Fix std::move warning
-36. Revert "TCP deadlock on channel reuse"
+12. Fix flow controllers utests compilation when using ``Fast CDR`` from thirdparty
+13. Add XML parser ``bit_bound`` bounds check
+14. Add tests for reconnection with same GUID
+15. Fix Github Windows CI
+16. Fix PubSubAsReliable test
+17. Use ``FASTRTPS_NO_LIB`` on unittest root folder
+18. Fix missing mandatory attribute check in XML parser struct type
+19. Fix mac address overflow on windows
+20. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets
+21. Fix FileWatchTest for github windows CI
+22. Add missing thread include
+23. Update TLS unit test certificates
+24. Select correct .repos file on push events
+25. Fix documentation CI branch
+26. Fix TCP deadlock on channel reuse
+27. Fix dns filter in CMakeLists file for tests
+28. Fix bad-free when receiving malformed DATA_FRAG submessage
+29. Fix memory problem when ciphering payload
+30. Fix build with TLS, but not security
+31. Fix CVE-2023-50257
+32. Fix data race on writer destruction while sending heartbeat
+33. Fix comparison in remove_from_pdp_reader_history
+34. Fix data race in PDPListener and SecurityManager
+35. Update PR template to include check for PR description, title and backports
+36. Fix std::move warning
+37. Revert "TCP deadlock on channel reuse"
+38. Fix max clash with Windows CI
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

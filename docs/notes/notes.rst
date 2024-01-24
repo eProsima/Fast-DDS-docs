@@ -8,13 +8,16 @@ Information about the release lifecycle can be found
 Version 2.11.3
 ==============
 
-This release includes the following **features**:
+This release includes the following **features** in an ABI compatible manner:
 
-    1. Support ``Autofill port`` (automatically set the port) for TCP Transport
-    2. Define a ``Superclient`` by environment variable
-    3. TCP support for Discovery server CLI and environment variable
-    4. Custom pools on DDS layer
-    5. Methods to configure transport scenarios
+    1. Support ``Autofill port`` (:ref:`automatically set a port<transport_tcp_transportDescriptor>`) for TCP Transport.
+    2. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable
+    3. Support :ref:`TCP Discovery server<use-case-tcp-discovery-server>` CLI and environment variable
+    4. Define methods (:ref:`environment variable<env_vars_builtin_transports>`,
+       :ref:`rtps layer<rtps_layer_builtin_transports>`, :ref:`xml<RTPS>`) to
+       :ref:`configure transport scenarios<transport_tcp_enabling>`
+    5. Custom pools on DDS layer (:ref:`DataWriter<dds_layer_publisher_datawriter_with_payload_pool_creation>` and
+       :ref:`DataReader<dds_layer_subscriber_datareader_with_payload_pool_creation>`)
 
 This release includes the following **improvements**:
 

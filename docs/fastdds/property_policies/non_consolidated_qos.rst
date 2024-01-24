@@ -357,8 +357,8 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
 TCP Non-blocking send
 ^^^^^^^^^^^^^^^^^^^^^
 
-TCP transport will by default configure a :ref:`transport_tcp_tcp` with blocking send callbacks.
-When ``fastdds.tcp_transport.non_blocking_send`` property is set to ``false``, send operations will
+TCP transport will by default configure a :ref:`transport_tcp_tcp` with blocking send calls.
+When ``fastdds.tcp_transport.non_blocking_send`` property is set to ``true``, send operations will
 return immediately if the send buffer is full, but no error will be returned to the upper layer.
 This means that the application will behave as if the packet is sent and lost.
 

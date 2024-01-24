@@ -68,6 +68,9 @@ This release includes the following **bugfixes**:
 36. Fix std::move warning
 37. Revert "TCP deadlock on channel reuse"
 38. Fix max clash with Windows CI
+39. Remove unnecessary TCP warning
+40. Discard already processed samples on ``PDPListener``
+
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

@@ -70,7 +70,7 @@ This release includes the following **bugfixes**:
 38. Fix max clash with Windows CI
 39. Remove unnecessary TCP warning
 40. Discard already processed samples on ``PDPListener``
-
+41. TCP unique client announced local port
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

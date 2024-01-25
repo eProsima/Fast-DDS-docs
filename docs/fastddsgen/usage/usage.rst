@@ -63,6 +63,8 @@ Where the option choices are:
      - Enables Case Sensitivity
    * - -d <directory>
      - Sets the output directory where the generated files are created.
+   * - -flat-output-dir
+     - Ignore input files relative paths and place all generated files in the specified output directory.
    * - -default_extensibility <extensibility> |br|
        -de <extensibility>
      - Sets the default extensibility for types without the @extensibility annotation. |br|

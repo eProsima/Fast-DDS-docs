@@ -4654,7 +4654,7 @@ void dds_transport_examples ()
         locator.kind = LOCATOR_KIND_TCPv4;
         eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "192.168.1.10");
         eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(locator, 5100);
-            // [OPTIONAL] Logical port default value is 0, automatically assigned.
+        // [OPTIONAL] Logical port default value is 0, automatically assigned.
         eprosima::fastrtps::rtps::IPLocator::setLogicalPort(locator, 5100);
 
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
@@ -4700,7 +4700,7 @@ void dds_transport_examples ()
         // Create a descriptor for the new transport.
         auto tcp_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         tcp_transport->add_listener_port(5100);
-        tcp_transport->set_WAN_address("80.80.99.45")
+        tcp_transport->set_WAN_address("80.80.99.45");
 
         // [OPTIONAL] ThreadSettings configuration
         tcp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
@@ -4717,12 +4717,13 @@ void dds_transport_examples ()
         // [OPTIONAL] Set unicast locators (do not use setWAN(), set_WAN_address() overwrites it)
         eprosima::fastrtps::rtps::Locator_t locator;
         locator.kind = LOCATOR_KIND_TCPv4;
-            // [RECOMMENDED] Use the LAN address of the server
+        // [RECOMMENDED] Use the LAN address of the server
         eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "192.168.1.10");
-            // [ALTERNATIVE] Use server's WAN address. In that case, initial peers must be configured only with server's WAN address.
+        // [ALTERNATIVE] Use server's WAN address. In that case, initial peers must be configured
+        // only with server's WAN address.
         // eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "80.80.99.45");
         eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(locator, 5100);
-            // [OPTIONAL] Logical port default value is 0, automatically assigned.
+        // [OPTIONAL] Logical port default value is 0, automatically assigned.
         eprosima::fastrtps::rtps::IPLocator::setLogicalPort(locator, 5100);
 
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
@@ -4756,7 +4757,8 @@ void dds_transport_examples ()
         // [RECOMMENDED] Use both WAN and LAN server addresses
         eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "192.168.1.10");
         eprosima::fastrtps::rtps::IPLocator::setWan(initial_peer_locator, "80.80.99.45");
-        // [ALTERNATIVE] Use server's WAN address only. Valid if server specified its unicast locators with its LAN or WAN address.
+        // [ALTERNATIVE] Use server's WAN address only. Valid if server specified its unicast locators
+        // with its LAN or WAN address.
         // eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
         eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
         // If the logical port is set in the server side, it must be also set here with the same value.

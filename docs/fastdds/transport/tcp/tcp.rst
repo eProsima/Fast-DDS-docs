@@ -252,7 +252,7 @@ TCP Server or TCP Client.
         :language: xml
         :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
         :end-before: <!--><-->
-        :lines: 2-4,6-73,75-76
+        :lines: 2-4,6-74,76-77
 
 * **TCP Client**: If you provide |BuiltinAttributes::initialPeersList-api| to the DomainParticipant, it will act as
   *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
@@ -275,7 +275,7 @@ TCP Server or TCP Client.
         :language: xml
         :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
         :end-before: <!--><-->
-        :lines: 2-4,6-58,60-61
+        :lines: 2-4,6-59,61-62
 
 :ref:`transport_tcp_example` shows how to use and configure a TCP transport.
 
@@ -314,7 +314,7 @@ The following examples show how to configure the DomainParticipant both in C++ a
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
       :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER
+      :start-after: //CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
       :end-before: //!--
       :dedent: 8
 
@@ -322,9 +322,9 @@ The following examples show how to configure the DomainParticipant both in C++ a
 
     .. literalinclude:: /../code/XMLTester.xml
       :language: xml
-      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
+      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
       :end-before: <!--><-->
-      :lines: 2-4,6-73,75-76
+      :lines: 2-4,6-77,79-80
 
 On the client side, the DomainParticipant must be configured
 with the **public** IP address and |TCPTransportDescriptor::listening_ports-api| of the *TCP server* as
@@ -336,7 +336,7 @@ with the **public** IP address and |TCPTransportDescriptor::listening_ports-api|
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
       :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT
+      :start-after: //CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
       :end-before: //!--
       :dedent: 8
 
@@ -344,9 +344,9 @@ with the **public** IP address and |TCPTransportDescriptor::listening_ports-api|
 
     .. literalinclude:: /../code/XMLTester.xml
       :language: xml
-      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
+      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
       :end-before: <!--><-->
-      :lines: 2-4,6-58,60-61
+      :lines: 2-4,6-65,67-68
 
 .. _transport_tcp_example:
 
@@ -357,6 +357,3 @@ A TCP version of helloworld example can be found in the
 `HelloWorldExampleTCP folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/HelloWorldExampleTCP>`_.
 It shows a publisher and a subscriber that communicate through TCP.
 The publisher is configured as *TCP server* while the Subscriber is acting as *TCP client*.
-
-
-

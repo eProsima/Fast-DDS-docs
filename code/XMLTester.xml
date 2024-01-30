@@ -319,7 +319,6 @@
                 <listening_ports>
                     <port>5100</port>
                 </listening_ports>
-                <wan_addr>80.80.99.45</wan_addr>
                 <!-- Optional thread configuration -->
                 <default_reception_threads>
                     <scheduling_policy>-1</scheduling_policy>
@@ -356,23 +355,25 @@
                     <transport_id>tcp_server_transport</transport_id>
                 </userTransports>
                 <useBuiltinTransports>false</useBuiltinTransports>
+                <!-- Optional unicast locator set -->
                 <defaultUnicastLocatorList>
                     <locator>
                         <tcpv4>
-                            <wan_address>80.80.99.45</wan_address>
-                            <address>80.80.99.45</address>
+                            <address>192.168.1.10</address>
                             <physical_port>5100</physical_port>
+                            <!-- Optional logical port set -->
                             <port>5100</port>
                         </tcpv4>
                     </locator>
                 </defaultUnicastLocatorList>
+                <!-- Optional metatraffic unicast locator set -->
                 <builtin>
                     <metatrafficUnicastLocatorList>
                         <locator>
                             <tcpv4>
-                                <wan_address>80.80.99.45</wan_address>
-                                <address>80.80.99.45</address>
+                                <address>192.168.1.10</address>
                                 <physical_port>5100</physical_port>
+                                <!-- Optional logical port set -->
                                 <port>5100</port>
                             </tcpv4>
                         </locator>
@@ -436,8 +437,9 @@
                     <initialPeersList>
                         <locator>
                             <tcpv4>
-                                <address>80.80.99.45</address>
+                                <address>192.168.1.10</address>
                                 <physical_port>5100</physical_port>
+                                <!-- To be set if set in server -->
                                 <port>5100</port>
                             </tcpv4>
                         </locator>

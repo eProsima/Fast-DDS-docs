@@ -4636,7 +4636,6 @@ void dds_transport_examples ()
         // Create a descriptor for the new transport.
         auto tcp_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
         tcp_transport->add_listener_port(5100);
-        tcp_transport->set_WAN_address("80.80.99.45");
 
         // [OPTIONAL] ThreadSettings configuration
         tcp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
@@ -4650,11 +4649,12 @@ void dds_transport_examples ()
         // Avoid using the default transport
         qos.transport().use_builtin_transports = false;
 
+        // [OPTIONAL] Set unicast locators
         eprosima::fastrtps::rtps::Locator_t locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "80.80.99.45");
-        eprosima::fastrtps::rtps::IPLocator::setWan(locator, "80.80.99.45");
+        locator.kind = LOCATOR_KIND_TCPv4;
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "192.168.1.10");
         eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(locator, 5100);
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(locator, 5100);
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(locator, 5100); // This is optional. Default value is 0 and will be automatically assigned.
 
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
         qos.wire_protocol().default_unicast_locator_list.push_back(locator);
@@ -4682,14 +4682,11 @@ void dds_transport_examples ()
         // Set initial peers.
         eprosima::fastrtps::rtps::Locator_t initial_peer_locator;
         initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
+        eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "192.168.1.10");
         eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
+        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100); // If set in the server side, it must be set here too with the same value. If not set in the server side, do not set it here.
 
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
-
-        // Avoid using the default transport
-        qos.transport().use_builtin_transports = false;
         //!--
     }
 

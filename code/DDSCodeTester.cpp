@@ -4808,7 +4808,6 @@ void dds_transport_examples ()
         tls_transport->sendBufferSize = 9216;
         tls_transport->receiveBufferSize = 9216;
         tls_transport->add_listener_port(5100);
-        tls_transport->set_WAN_address("80.80.99.45");
 
         // Create the TLS configuration
         using TLSOptions = eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSOptions;
@@ -4833,7 +4832,7 @@ void dds_transport_examples ()
         // Set initial peers.
         Locator_t initial_peer_locator;
         initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
-        IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
+        IPLocator::setIPv4(initial_peer_locator, "192.168.1.10");
         initial_peer_locator.port = 5100;
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
 

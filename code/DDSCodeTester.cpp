@@ -4686,7 +4686,7 @@ void dds_transport_examples ()
         eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "192.168.1.10");
         eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
         // If the logical port is set in the server side, it must be also set here with the same value.
-        // If not set in the server side, do not set it here.
+        // If not set in the server side in a unicast locator, do not set it here.
         eprosima::fastrtps::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
 
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
@@ -4762,7 +4762,7 @@ void dds_transport_examples ()
         // eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
         eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
         // If the logical port is set in the server side, it must be also set here with the same value.
-        // If not set in the server side, do not set it here.
+        // If not set in the server side in a unicast locator, do not set it here.
         eprosima::fastrtps::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
 
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);

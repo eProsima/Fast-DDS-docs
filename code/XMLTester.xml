@@ -461,7 +461,7 @@
 -->
         <transport_descriptors>
             <transport_descriptor>
-                <transport_id>tcp_server_transport</transport_id>
+                <transport_id>tcp_server_wan_transport</transport_id>
                 <type>TCPv4</type>
                 <listening_ports>
                     <port>5100</port>
@@ -497,10 +497,10 @@
             </transport_descriptor>
         </transport_descriptors>
 
-        <participant profile_name="tcp_server_participant">
+        <participant profile_name="tcp_server_wan_participant">
             <rtps>
                 <userTransports>
-                    <transport_id>tcp_server_transport</transport_id>
+                    <transport_id>tcp_server_wan_transport</transport_id>
                 </userTransports>
                 <useBuiltinTransports>false</useBuiltinTransports>
                 <!-- Optional unicast locator set -->
@@ -522,6 +522,8 @@
                         <locator>
                             <tcpv4>
                                 <address>192.168.1.10</address>
+                                <!-- Alternatively use WAN address -->
+                                <!-- <address>80.80.99.45</address> -->
                                 <physical_port>5100</physical_port>
                                 <!-- Optional logical port set -->
                                 <port>5100</port>
@@ -545,7 +547,7 @@
 -->
         <transport_descriptors>
             <transport_descriptor>
-                <transport_id>tcp_client_transport</transport_id>
+                <transport_id>tcp_client_wan_transport</transport_id>
                 <type>TCPv4</type>
                 <!-- Recommended client's WAN set -->
                 <wan_addr>80.80.99.47</wan_addr>
@@ -579,10 +581,10 @@
             </transport_descriptor>
         </transport_descriptors>
 
-        <participant profile_name="tcp_client_participant">
+        <participant profile_name="tcp_client_wan_participant">
             <rtps>
                 <userTransports>
-                    <transport_id>tcp_client_transport</transport_id>
+                    <transport_id>tcp_client_wan_transport</transport_id>
                 </userTransports>
                 <useBuiltinTransports>false</useBuiltinTransports>
                 <builtin>

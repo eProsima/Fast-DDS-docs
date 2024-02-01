@@ -502,6 +502,10 @@ html_static_path = ['_static']
 
 html_context = {
         'css_files': select_css(script_path),
+        "display_github": True, # Integrate GitHub
+        "github_user": "eProsima", # Username
+        "github_repo": "Fast-DDS", # Repo name
+        "github_version": "master", # Version
         }
 
 

@@ -75,7 +75,7 @@ private:
             else
             {
                 std::cout << info.current_count_change
-                        << " is not a valid value for SubscriptionMatchedStatus current count change" << std::endl;
+                          << " is not a valid value for SubscriptionMatchedStatus current count change" << std::endl;
             }
         }
 
@@ -83,13 +83,13 @@ private:
                 DataReader* reader) override
         {
             SampleInfo info;
-            if (reader->take_next_sample(&hello_, &info) == ReturnCode_t::RETCODE_OK)
+            if (reader->take_next_sample(&hello_, &info) == eprosima::fastdds::dds::RETCODE_OK)
             {
                 if (info.valid_data)
                 {
                     samples_++;
                     std::cout << "Message: " << hello_.message() << " with index: " << hello_.index()
-                                << " RECEIVED." << std::endl;
+                              << " RECEIVED." << std::endl;
                 }
             }
         }
@@ -98,7 +98,8 @@ private:
 
         std::atomic_int samples_;
 
-    } listener_;
+    }
+    listener_;
 
 public:
 
@@ -172,13 +173,14 @@ public:
 
     //!Run the Subscriber
     void run(
-        uint32_t samples)
+            uint32_t samples)
     {
-        while(listener_.samples_ < samples)
+        while (listener_.samples_ < samples)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
     }
+
 };
 
 int main(
@@ -189,7 +191,7 @@ int main(
     uint32_t samples = 10;
 
     HelloWorldSubscriber* mysub = new HelloWorldSubscriber();
-    if(mysub->init())
+    if (mysub->init())
     {
         mysub->run(samples);
     }

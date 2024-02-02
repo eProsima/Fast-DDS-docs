@@ -34,11 +34,11 @@ Additionally, DomainParticipantListener adds the following non-standard callback
    If both callbacks are implemented, the discovery callback with the ``should_be_ignored`` boolean flag takes precedence.
    The second discovery callback is only executed if the discovered DomainParticipant is not ignored in the first callback (``should_be_ignored`` parameter returns ``false``).
 
- * |DomainParticipantListener::on_subscriber_discovery-api|: A new :ref:`dds_layer_subscriber_subscriber` is discovered in the same domain,
+ * |DomainParticipantListener::on_data_reader_discovery-api|: A new :ref:`dds_layer_subscriber_subscriber` is discovered in the same domain,
    a previously known Subscriber has been removed,
    or some Subscriber has changed its QoS.
 
- * |DomainParticipantListener::on_publisher_discovery-api|: A new :ref:`dds_layer_publisher_publisher` is discovered in the same domain,
+ * |DomainParticipantListener::on_data_writer_discovery-api|: A new :ref:`dds_layer_publisher_publisher` is discovered in the same domain,
    a previously known Publisher has been removed,
    or some Publisher has changed its QoS.
 

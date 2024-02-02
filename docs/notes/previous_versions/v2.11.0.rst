@@ -6,7 +6,7 @@ This release includes the following **features**:
 1. :ref:`Ignore every local endpoint within the DomainParticipant preventing local matching
    <property_ignore_local_endpoints>`.
 2. Extend DynamicDataHelper API providing a ``print`` overload with ``std::ostream`` as parameter.
-3. :ref:`typelookup_config`.
+3. TypeLookup Service settings.
 4. Static Discovery XSD Schema.
 
 This release includes the following **improvements**:

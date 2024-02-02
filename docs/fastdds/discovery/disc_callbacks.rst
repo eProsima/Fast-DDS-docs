@@ -11,8 +11,8 @@ As stated in :ref:`dds_layer_domainParticipantListener`, the |DomainParticipantL
 defining the callbacks that will be triggered in response to state changes on the DomainParticipant.
 Fast DDS defines four callbacks attached to events that may occur during discovery:
 |DomainParticipantListener::on_participant_discovery-api|,
-|DomainParticipantListener::on_subscriber_discovery-api|,
-|DomainParticipantListener::on_publisher_discovery-api|,
+|DomainParticipantListener::on_data_reader_discovery-api|,
+|DomainParticipantListener::on_data_writer_discovery-api|,
 |DomainParticipantListener::on_type_discovery-api|.
 Further information about the DomainParticipantListener is provided in the :ref:`dds_layer_domainParticipantListener`
 section.

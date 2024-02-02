@@ -1442,6 +1442,13 @@
                     <stack_size>-1</stack_size>
                 </discovery_server_thread>
 
+                <typelookup_service_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </typelookup_service_threads>
+
                 <builtin_transports_reception_threads>
                     <scheduling_policy>-1</scheduling_policy>
                     <priority>0</priority>
@@ -1620,10 +1627,6 @@
 
     <mutation_tries>55</mutation_tries>
 
-    <typelookup_config>
-        <use_client>true</use_client>
-        <use_server>true</use_server>
-    </typelookup_config>
 </builtin>
 <!--><-->
 </rtps>
@@ -3866,19 +3869,6 @@
                 </property>
             </properties>
         </propertiesPolicy>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->XML_TYPELOOKUP_SERVICE_ENABLING<-->
-<participant profile_name="participant_typelookup_service_enabled">
-    <rtps>
-        <builtin>
-            <typelookup_config>
-                <use_client>true</use_client>
-                <use_server>true</use_server>
-            </typelookup_config>
-        </builtin>
     </rtps>
 </participant>
 <!--><-->

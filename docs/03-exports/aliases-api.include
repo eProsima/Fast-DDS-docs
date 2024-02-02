@@ -170,8 +170,8 @@
 
 .. |DomainParticipantListener-api| replace:: :cpp:class:`DomainParticipantListener<eprosima::fastdds::dds::DomainParticipantListener>`
 .. |DomainParticipantListener::on_participant_discovery-api| replace:: :cpp:func:`on_participant_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_participant_discovery>`
-.. |DomainParticipantListener::on_subscriber_discovery-api| replace:: :cpp:func:`on_subscriber_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_subscriber_discovery>`
-.. |DomainParticipantListener::on_publisher_discovery-api| replace:: :cpp:func:`on_publisher_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_publisher_discovery>`
+.. |DomainParticipantListener::on_data_reader_discovery-api| replace:: :cpp:func:`on_data_reader_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_data_reader_discovery>`
+.. |DomainParticipantListener::on_data_writer_discovery-api| replace:: :cpp:func:`on_data_writer_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_data_writer_discovery>`
 .. |DomainParticipantListener::on_type_discovery-api| replace:: :cpp:func:`on_type_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_type_discovery>`
 .. |DomainParticipantListener::on_type_dependencies_reply-api| replace:: :cpp:func:`on_type_dependencies_reply()<eprosima::fastdds::dds::DomainParticipantListener::on_type_dependencies_reply>`
 .. |DomainParticipantListener::on_type_information_received-api| replace:: :cpp:func:`on_type_information_received()<eprosima::fastdds::dds::DomainParticipantListener::on_type_information_received>`
@@ -189,6 +189,7 @@
 .. |DomainParticipantQos::builtin_controllers_sender_thread-api| replace:: :cpp:func:`builtin_controllers_sender_thread()<eprosima::fastdds::dds::DomainParticipantQos::builtin_controllers_sender_thread>`
 .. |DomainParticipantQos::timed_events_thread-api| replace:: :cpp:func:`timed_events_thread()<eprosima::fastdds::dds::DomainParticipantQos::timed_events_thread>`
 .. |DomainParticipantQos::discovery_server_thread-api| replace:: :cpp:func:`discovery_server_thread()<eprosima::fastdds::dds::DomainParticipantQos::discovery_server_thread>`
+.. |DomainParticipantQos::typelookup_service_threads-api| replace:: :cpp:func:`typelookup_service_threads()<eprosima::fastdds::dds::DomainParticipantQos::typelookup_service_threads>`
 .. |DomainParticipantQos::security_log_thread-api| replace:: :cpp:func:`security_log_thread()<eprosima::fastdds::dds::DomainParticipantQos::security_log_thread>`
 .. |DomainParticipantQoS::setup_transports-api| replace:: :cpp:func:`setup_transports()<eprosima::fastdds::dds::DomainParticipantQos::setup_transports>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
@@ -962,7 +963,6 @@
 .. |TypeObjectV1-api| replace:: :cpp:class:`TypeObject<eprosima::fastdds::dds::TypeObjectV1>`
 .. |TypeIdV1-api| replace:: :cpp:class:`TypeIdentifier<eprosima::fastdds::dds::TypeIdV1>`
 
-.. |TopicDataType::auto_fill_type_object-api| replace:: :cpp:func:`auto_fill_type_object<eprosima::fastdds::dds::TopicDataType::auto_fill_type_object>`
 .. |TopicDataType::auto_fill_type_information-api| replace:: :cpp:func:`auto_fill_type_information<eprosima::fastdds::dds::TopicDataType::auto_fill_type_information>`
 
 .. |DomainParticipant::register_remote_type-api| replace:: :cpp:func:`register_remote_type<eprosima::fastdds::dds::DomainParticipant::register_remote_type>`

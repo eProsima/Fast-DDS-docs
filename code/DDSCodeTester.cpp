@@ -201,7 +201,7 @@ public:
 
 #endif // if HAVE_SECURITY
 
-    void on_subscriber_discovery(
+    void on_data_reader_discovery(
             DomainParticipant* /*participant*/,
             eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info) override
     {
@@ -215,7 +215,7 @@ public:
         }
     }
 
-    void on_publisher_discovery(
+    void on_data_writer_discovery(
             DomainParticipant* /*participant*/,
             eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info) override
     {
@@ -227,48 +227,6 @@ public:
         {
             std::cout << "New publisher lost" << std::endl;
         }
-    }
-
-    void on_type_discovery(
-            DomainParticipant* participant,
-            const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
-            const eprosima::fastcdr::string_255& topic,
-            const eprosima::fastrtps::types::TypeIdentifier* identifier,
-            const eprosima::fastrtps::types::TypeObject* object,
-            eprosima::fastrtps::types::DynamicType_ptr dyn_type) override
-    {
-        static_cast<void>(participant);
-        static_cast<void>(request_sample_id);
-        static_cast<void>(topic);
-        static_cast<void>(identifier);
-        static_cast<void>(object);
-        static_cast<void>(dyn_type);
-        std::cout << "New data type discovered" << std::endl;
-
-    }
-
-    void on_type_dependencies_reply(
-            DomainParticipant* participant,
-            const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
-            const eprosima::fastrtps::types::TypeIdentifierWithSizeSeq& dependencies) override
-    {
-        static_cast<void>(participant);
-        static_cast<void>(request_sample_id);
-        static_cast<void>(dependencies);
-        std::cout << "Answer to a request for type dependencies was received" << std::endl;
-    }
-
-    void on_type_information_received(
-            DomainParticipant* participant,
-            const eprosima::fastcdr::string_255 topic_name,
-            const eprosima::fastcdr::string_255 type_name,
-            const eprosima::fastrtps::types::TypeInformation& type_information) override
-    {
-        static_cast<void>(participant);
-        static_cast<void>(topic_name);
-        static_cast<void>(type_name);
-        static_cast<void>(type_information);
-        std::cout << "New data type information received" << std::endl;
     }
 
 };
@@ -457,7 +415,7 @@ void dds_domain_examples()
         }
 
         // Set the QoS on the participant to the default
-        if (participant->set_qos(PARTICIPANT_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_qos(PARTICIPANT_QOS_DEFAULT) != RETCODE_OK)
         {
             // Error
             return;
@@ -465,7 +423,7 @@ void dds_domain_examples()
 
         // The previous instruction is equivalent to the following:
         if (participant->set_qos(DomainParticipantFactory::get_instance()->get_default_participant_qos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -488,14 +446,14 @@ void dds_domain_examples()
         // (...)
 
         // Delete entities created by the DomainParticipant
-        if (participant->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
+        if (participant->delete_contained_entities() != RETCODE_OK)
         {
             // DomainParticipant failed to delete the entities it created.
             return;
         }
 
         // Delete the DomainParticipant
-        if (DomainParticipantFactory::get_instance()->delete_participant(participant) != ReturnCode_t::RETCODE_OK)
+        if (DomainParticipantFactory::get_instance()->delete_participant(participant) != RETCODE_OK)
         {
             // Error
             return;
@@ -513,7 +471,7 @@ void dds_domain_examples()
 
         // Set as the new default TopicQos
         if (DomainParticipantFactory::get_instance()->set_default_participant_qos(qos_type1) !=
-                ReturnCode_t::RETCODE_OK)
+                RETCODE_OK)
         {
             // Error
             return;
@@ -536,7 +494,7 @@ void dds_domain_examples()
 
         // Set as the new default TopicQos
         if (DomainParticipantFactory::get_instance()->set_default_participant_qos(qos_type2) !=
-                ReturnCode_t::RETCODE_OK)
+                RETCODE_OK)
         {
             // Error
             return;
@@ -553,7 +511,7 @@ void dds_domain_examples()
 
         // Resetting the default DomainParticipantQos to the original default constructed values
         if (DomainParticipantFactory::get_instance()->set_default_participant_qos(PARTICIPANT_QOS_DEFAULT)
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -561,7 +519,7 @@ void dds_domain_examples()
 
         // The previous instruction is equivalent to the following
         if (DomainParticipantFactory::get_instance()->set_default_participant_qos(DomainParticipantQos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -576,7 +534,7 @@ void dds_domain_examples()
         // Setting autoenable_created_entities to true makes the created DomainParticipants
         // to be enabled upon creation
         qos.entity_factory().autoenable_created_entities = true;
-        if (DomainParticipantFactory::get_instance()->set_qos(qos) != ReturnCode_t::RETCODE_OK)
+        if (DomainParticipantFactory::get_instance()->set_qos(qos) != RETCODE_OK)
         {
             // Error
             return;
@@ -595,7 +553,7 @@ void dds_domain_examples()
         // Setting autoenable_created_entities to false makes the created DomainParticipants
         // to be disabled upon creation
         qos.entity_factory().autoenable_created_entities = false;
-        if (DomainParticipantFactory::get_instance()->set_qos(qos) != ReturnCode_t::RETCODE_OK)
+        if (DomainParticipantFactory::get_instance()->set_qos(qos) != RETCODE_OK)
         {
             // Error
             return;
@@ -811,7 +769,7 @@ void dds_domain_examples()
 
         // Enable statistics DataWriter
         if (statistics_participant->enable_statistics_datawriter(eprosima::fastdds::statistics::GAP_COUNT_TOPIC,
-                eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS) != ReturnCode_t::RETCODE_OK)
+                eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS) != RETCODE_OK)
         {
             // Error
             return;
@@ -822,14 +780,14 @@ void dds_domain_examples()
 
         // Disable statistics DataWriter
         if (statistics_participant->disable_statistics_datawriter(eprosima::fastdds::statistics::GAP_COUNT_TOPIC) !=
-                ReturnCode_t::RETCODE_OK)
+                RETCODE_OK)
         {
             // Error
             return;
         }
 
         // Delete DomainParticipant
-        if (DomainParticipantFactory::get_instance()->delete_participant(participant) != ReturnCode_t::RETCODE_OK)
+        if (DomainParticipantFactory::get_instance()->delete_participant(participant) != RETCODE_OK)
         {
             // Error
             return;
@@ -966,8 +924,8 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
         }
     }
 
-    /* Custom Callback on_subscriber_discovery */
-    void on_subscriber_discovery(
+    /* Custom Callback on_data_reader_discovery */
+    void on_data_reader_discovery(
             DomainParticipant* participant,
             eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info) override
     {
@@ -989,8 +947,8 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
         }
     }
 
-    /* Custom Callback on_publisher_discovery */
-    void on_publisher_discovery(
+    /* Custom Callback on_data_writer_discovery */
+    void on_data_writer_discovery(
             DomainParticipant* participant,
             eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info) override
     {
@@ -1010,24 +968,6 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                     "' of type '" << info.info.typeName() << "' left the domain.";
                 break;
         }
-    }
-
-    /* Custom Callback on_type_discovery */
-    void on_type_discovery(
-            DomainParticipant* participant,
-            const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
-            const eprosima::fastcdr::string_255& topic,
-            const eprosima::fastrtps::types::TypeIdentifier* identifier,
-            const eprosima::fastrtps::types::TypeObject* object,
-            eprosima::fastrtps::types::DynamicType_ptr dyn_type) override
-    {
-        static_cast<void>(participant);
-        static_cast<void>(request_sample_id);
-        static_cast<void>(topic);
-        static_cast<void>(identifier);
-        static_cast<void>(object);
-        static_cast<void>(dyn_type);
-        std::cout << "New data type of topic '" << topic << "' discovered." << std::endl;
     }
 
 };
@@ -1240,7 +1180,7 @@ void dds_discovery_examples()
 
         /* Update list of remote servers for this client or server */
         client_or_server_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
-        if (ReturnCode_t::RETCODE_OK != client_or_server->set_qos(client_or_server_qos))
+        if (RETCODE_OK != client_or_server->set_qos(client_or_server_qos))
         {
             // Error
             return;
@@ -1345,7 +1285,7 @@ void dds_discovery_examples()
         // The (file://) flag is optional.
         std::string file = "file://static_Discovery.xml";
         DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
-        if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(file))
+        if (RETCODE_OK != factory->check_xml_static_discovery(file))
         {
             std::cout << "Error parsing xml file " << file << std::endl;
         }
@@ -1365,7 +1305,7 @@ void dds_discovery_examples()
                 "</writer>" \
                 "</participant>" \
                 "</staticdiscovery>";
-        if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(fileData))
+        if (RETCODE_OK != factory->check_xml_static_discovery(fileData))
         {
             std::cout << "Error parsing xml file data:" << std::endl << fileData << std::endl;
         }
@@ -1602,7 +1542,7 @@ void dds_topic_examples()
         }
 
         // Set the QoS on the topic to the default
-        if (topic->set_qos(TOPIC_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        if (topic->set_qos(TOPIC_QOS_DEFAULT) != RETCODE_OK)
         {
             // Error
             return;
@@ -1610,7 +1550,7 @@ void dds_topic_examples()
 
         // The previous instruction is equivalent to the following:
         if (topic->set_qos(participant->get_default_topic_qos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -1642,7 +1582,7 @@ void dds_topic_examples()
         // (...)
 
         // Delete the Topic
-        if (participant->delete_topic(topic) != ReturnCode_t::RETCODE_OK)
+        if (participant->delete_topic(topic) != RETCODE_OK)
         {
             // Error
             return;
@@ -1668,7 +1608,7 @@ void dds_topic_examples()
         // (...)
 
         // Set as the new default TopicQos
-        if (participant->set_default_topic_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_topic_qos(qos_type1) != RETCODE_OK)
         {
             // Error
             return;
@@ -1690,7 +1630,7 @@ void dds_topic_examples()
         // (...)
 
         // Set as the new default TopicQos
-        if (participant->set_default_topic_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_topic_qos(qos_type2) != RETCODE_OK)
         {
             // Error
             return;
@@ -1707,7 +1647,7 @@ void dds_topic_examples()
 
         // Resetting the default TopicQos to the original default constructed values
         if (participant->set_default_topic_qos(TOPIC_QOS_DEFAULT)
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -1715,7 +1655,7 @@ void dds_topic_examples()
 
         // The previous instruction is equivalent to the following
         if (participant->set_default_topic_qos(TopicQos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -1945,7 +1885,7 @@ void dds_content_filtered_topic_examples()
         // (...)
 
         // Update the expression
-        if (ReturnCode_t::RETCODE_OK !=
+        if (RETCODE_OK !=
                 filter_topic->set_filter_expression("message like %0 or index > %1", {"'Hello*'", "15"}))
         {
             // Error
@@ -1956,7 +1896,7 @@ void dds_content_filtered_topic_examples()
         print_filter_info(filter_topic);
 
         // Update the parameters
-        if (ReturnCode_t::RETCODE_OK !=
+        if (RETCODE_OK !=
                 filter_topic->set_expression_parameters({"'*world*'", "222"}))
         {
             // Error
@@ -2020,7 +1960,7 @@ void dds_content_filtered_topic_examples()
         // (...)
 
         // Delete the ContentFilteredTopic
-        if (ReturnCode_t::RETCODE_OK != participant->delete_contentfilteredtopic(filter_topic))
+        if (RETCODE_OK != participant->delete_contentfilteredtopic(filter_topic))
         {
             // Error
             return;
@@ -2108,19 +2048,19 @@ void dds_custom_filters_examples()
             // Check the ContentFilteredTopic should be created by my factory.
             if (0 != strcmp(filter_class_name, "MY_CUSTOM_FILTER"))
             {
-                return ReturnCode_t::RETCODE_BAD_PARAMETER;
+                return RETCODE_BAD_PARAMETER;
             }
 
             // Check the ContentFilteredTopic is created for the unique type this Custom Filter supports.
             if (0 != strcmp(type_name, "HelloWorld"))
             {
-                return ReturnCode_t::RETCODE_BAD_PARAMETER;
+                return RETCODE_BAD_PARAMETER;
             }
 
             // Check that the two mandatory filter parameters are set.
             if (2 != filter_parameters.length())
             {
-                return ReturnCode_t::RETCODE_BAD_PARAMETER;
+                return RETCODE_BAD_PARAMETER;
             }
 
             // If there is an update, delete previous instance.
@@ -2132,7 +2072,7 @@ void dds_custom_filters_examples()
             // Instantiation of the Custom Filter.
             filter_instance = new MyCustomFilter(std::stoi(filter_parameters[0]), std::stoi(filter_parameters[1]));
 
-            return ReturnCode_t::RETCODE_OK;
+            return RETCODE_OK;
         }
 
         ReturnCode_t delete_content_filter(
@@ -2142,13 +2082,13 @@ void dds_custom_filters_examples()
             // Check the ContentFilteredTopic should be created by my factory.
             if (0 != strcmp(filter_class_name, "MY_CUSTOM_FILTER"))
             {
-                return ReturnCode_t::RETCODE_BAD_PARAMETER;
+                return RETCODE_BAD_PARAMETER;
             }
 
             // Deletion of the Custom Filter.
             delete(dynamic_cast<MyCustomFilter*>(filter_instance));
 
-            return ReturnCode_t::RETCODE_OK;
+            return RETCODE_OK;
         }
 
     };
@@ -2170,7 +2110,7 @@ void dds_custom_filters_examples()
 
 
         // Registration of the factory
-        if (ReturnCode_t::RETCODE_OK !=
+        if (RETCODE_OK !=
                 participant->register_content_filter_factory("MY_CUSTOM_FILTER", factory))
         {
             // Error
@@ -2383,7 +2323,7 @@ void dds_publisher_examples()
         }
 
         // Set the QoS on the publisher to the default
-        if (publisher->set_qos(PUBLISHER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        if (publisher->set_qos(PUBLISHER_QOS_DEFAULT) != RETCODE_OK)
         {
             // Error
             return;
@@ -2391,7 +2331,7 @@ void dds_publisher_examples()
 
         // The previous instruction is equivalent to the following:
         if (publisher->set_qos(participant->get_default_publisher_qos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -2423,14 +2363,14 @@ void dds_publisher_examples()
         // (...)
 
         // Delete the entities the Publisher created.
-        if (publisher->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
+        if (publisher->delete_contained_entities() != RETCODE_OK)
         {
             // Publisher failed to delete the entities it created.
             return;
         }
 
         // Delete the Publisher
-        if (participant->delete_publisher(publisher) != ReturnCode_t::RETCODE_OK)
+        if (participant->delete_publisher(publisher) != RETCODE_OK)
         {
             // Error
             return;
@@ -2456,7 +2396,7 @@ void dds_publisher_examples()
         // (...)
 
         // Set as the new default PublisherQos
-        if (participant->set_default_publisher_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_publisher_qos(qos_type1) != RETCODE_OK)
         {
             // Error
             return;
@@ -2478,7 +2418,7 @@ void dds_publisher_examples()
         // (...)
 
         // Set as the new default PublisherQos
-        if (participant->set_default_publisher_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_publisher_qos(qos_type2) != RETCODE_OK)
         {
             // Error
             return;
@@ -2495,7 +2435,7 @@ void dds_publisher_examples()
 
         // Resetting the default PublisherQos to the original default constructed values
         if (participant->set_default_publisher_qos(PUBLISHER_QOS_DEFAULT)
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -2503,7 +2443,7 @@ void dds_publisher_examples()
 
         // The previous instruction is equivalent to the following
         if (participant->set_default_publisher_qos(PublisherQos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -2714,7 +2654,7 @@ void dds_dataWriter_examples()
         }
 
         // Set the QoS on the DataWriter to the default
-        if (data_writer->set_qos(DATAWRITER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        if (data_writer->set_qos(DATAWRITER_QOS_DEFAULT) != RETCODE_OK)
         {
             // Error
             return;
@@ -2722,7 +2662,7 @@ void dds_dataWriter_examples()
 
         // The previous instruction is equivalent to the following:
         if (data_writer->set_qos(publisher->get_default_datawriter_qos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -2745,7 +2685,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Delete the DataWriter
-        if (publisher->delete_datawriter(data_writer) != ReturnCode_t::RETCODE_OK)
+        if (publisher->delete_datawriter(data_writer) != RETCODE_OK)
         {
             // Error
             return;
@@ -2762,7 +2702,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Set as the new default DataWriterQos
-        if (publisher->set_default_datawriter_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (publisher->set_default_datawriter_qos(qos_type1) != RETCODE_OK)
         {
             // Error
             return;
@@ -2784,7 +2724,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Set as the new default DataWriterQos
-        if (publisher->set_default_datawriter_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (publisher->set_default_datawriter_qos(qos_type2) != RETCODE_OK)
         {
             // Error
             return;
@@ -2801,7 +2741,7 @@ void dds_dataWriter_examples()
 
         // Resetting the default DataWriterQos to the original default constructed values
         if (publisher->set_default_datawriter_qos(DATAWRITER_QOS_DEFAULT)
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -2809,7 +2749,7 @@ void dds_dataWriter_examples()
 
         // The previous instruction is equivalent to the following
         if (publisher->set_default_datawriter_qos(DataWriterQos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -2848,7 +2788,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Publish the new value, deduce the instance handle
-        if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != ReturnCode_t::RETCODE_OK)
+        if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != RETCODE_OK)
         {
             // Error
             return;
@@ -2863,7 +2803,7 @@ void dds_dataWriter_examples()
             //DDS_DATAWRITER_LOAN_SAMPLES
             // Borrow a data instance
             void* data = nullptr;
-            if (ReturnCode_t::RETCODE_OK == data_writer->loan_sample(data))
+            if (RETCODE_OK == data_writer->loan_sample(data))
             {
                 bool error = false;
 
@@ -2878,7 +2818,7 @@ void dds_dataWriter_examples()
                 }
 
                 // Publish the new value
-                if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != ReturnCode_t::RETCODE_OK)
+                if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != RETCODE_OK)
                 {
                     // Error
                     return;
@@ -3154,7 +3094,7 @@ void dds_subscriber_examples()
         }
 
         // Set the QoS on the subscriber to the default
-        if (subscriber->set_qos(SUBSCRIBER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        if (subscriber->set_qos(SUBSCRIBER_QOS_DEFAULT) != RETCODE_OK)
         {
             // Error
             return;
@@ -3162,7 +3102,7 @@ void dds_subscriber_examples()
 
         // The previous instruction is equivalent to the following:
         if (subscriber->set_qos(participant->get_default_subscriber_qos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -3194,14 +3134,14 @@ void dds_subscriber_examples()
         // (...)
 
         // Delete the entities the subscriber created
-        if (subscriber->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
+        if (subscriber->delete_contained_entities() != RETCODE_OK)
         {
             // Subscriber failed to delete the entities it created
             return;
         }
 
         // Delete the Subscriber
-        if (participant->delete_subscriber(subscriber) != ReturnCode_t::RETCODE_OK)
+        if (participant->delete_subscriber(subscriber) != RETCODE_OK)
         {
             // Error
             return;
@@ -3227,7 +3167,7 @@ void dds_subscriber_examples()
         // (...)
 
         // Set as the new default SubscriberQos
-        if (participant->set_default_subscriber_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_subscriber_qos(qos_type1) != RETCODE_OK)
         {
             // Error
             return;
@@ -3249,7 +3189,7 @@ void dds_subscriber_examples()
         // (...)
 
         // Set as the new default SubscriberQos
-        if (participant->set_default_subscriber_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (participant->set_default_subscriber_qos(qos_type2) != RETCODE_OK)
         {
             // Error
             return;
@@ -3266,7 +3206,7 @@ void dds_subscriber_examples()
 
         // Resetting the default SubscriberQos to the original default constructed values
         if (participant->set_default_subscriber_qos(SUBSCRIBER_QOS_DEFAULT)
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -3274,7 +3214,7 @@ void dds_subscriber_examples()
 
         // The previous instruction is equivalent to the following
         if (participant->set_default_subscriber_qos(SubscriberQos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -3506,7 +3446,7 @@ void dds_dataReader_examples()
         }
 
         // Set the QoS on the DataWriter to the default
-        if (data_reader->set_qos(DATAREADER_QOS_DEFAULT) != ReturnCode_t::RETCODE_OK)
+        if (data_reader->set_qos(DATAREADER_QOS_DEFAULT) != RETCODE_OK)
         {
             // Error
             return;
@@ -3514,7 +3454,7 @@ void dds_dataReader_examples()
 
         // The previous instruction is equivalent to the following:
         if (data_reader->set_qos(subscriber->get_default_datareader_qos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -3537,14 +3477,14 @@ void dds_dataReader_examples()
         // (...)
 
         // Delete the entities the DataReader created
-        if (data_reader->delete_contained_entities() != ReturnCode_t::RETCODE_OK)
+        if (data_reader->delete_contained_entities() != RETCODE_OK)
         {
             // DataReader failed to delete the entities it created.
             return;
         }
 
         // Delete the DataReader
-        if (subscriber->delete_datareader(data_reader) != ReturnCode_t::RETCODE_OK)
+        if (subscriber->delete_datareader(data_reader) != RETCODE_OK)
         {
             // Error
             return;
@@ -3561,7 +3501,7 @@ void dds_dataReader_examples()
         // (...)
 
         // Set as the new default DataReaderQos
-        if (subscriber->set_default_datareader_qos(qos_type1) != ReturnCode_t::RETCODE_OK)
+        if (subscriber->set_default_datareader_qos(qos_type1) != RETCODE_OK)
         {
             // Error
             return;
@@ -3583,7 +3523,7 @@ void dds_dataReader_examples()
         // (...)
 
         // Set as the new default DataReaderQos
-        if (subscriber->set_default_datareader_qos(qos_type2) != ReturnCode_t::RETCODE_OK)
+        if (subscriber->set_default_datareader_qos(qos_type2) != RETCODE_OK)
         {
             // Error
             return;
@@ -3600,7 +3540,7 @@ void dds_dataReader_examples()
 
         // Resetting the default DataReaderQos to the original default constructed values
         if (subscriber->set_default_datareader_qos(DATAREADER_QOS_DEFAULT)
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -3608,7 +3548,7 @@ void dds_dataReader_examples()
 
         // The previous instruction is equivalent to the following
         if (subscriber->set_default_datareader_qos(DataReaderQos())
-                != ReturnCode_t::RETCODE_OK)
+                != RETCODE_OK)
         {
             // Error
             return;
@@ -3645,9 +3585,9 @@ void dds_dataReader_examples()
         while (true)
         {
             ConditionSeq active_conditions;
-            if (ReturnCode_t::RETCODE_OK == wait_set.wait(active_conditions, timeout))
+            if (RETCODE_OK == wait_set.wait(active_conditions, timeout))
             {
-                while (ReturnCode_t::RETCODE_OK == data_reader->take_next_sample(&data, &info))
+                while (RETCODE_OK == data_reader->take_next_sample(&data, &info))
                 {
                     if (info.valid_data)
                     {
@@ -3698,7 +3638,7 @@ void dds_dataReader_examples()
         {
             if (data_reader->wait_for_unread_message(timeout))
             {
-                if (ReturnCode_t::RETCODE_OK == data_reader->take_next_sample(&data, &info))
+                if (RETCODE_OK == data_reader->take_next_sample(&data, &info))
                 {
                     if (info.valid_data)
                     {
@@ -3726,7 +3666,7 @@ void dds_dataReader_examples()
 
         {
             //READING-INSTANCE
-            if (ReturnCode_t::RETCODE_OK == data_reader->take_next_sample(&data, &info))
+            if (RETCODE_OK == data_reader->take_next_sample(&data, &info))
             {
                 if (info.valid_data)
                 {
@@ -3777,7 +3717,7 @@ void dds_dataReader_examples()
                             ANY_VIEW_STATE, ANY_INSTANCE_STATE);
 
             // process the returned data
-            if (ret_code == ReturnCode_t::RETCODE_OK)
+            if (ret_code == RETCODE_OK)
             {
                 // Both info_seq.length() and data_seq.length() will have the number of samples returned
                 for (FooSeq::size_type n = 0; n < info_seq.length(); ++n)
@@ -3820,7 +3760,7 @@ public:
         SampleInfo info;
 
         // Keep taking data until there is nothing to take
-        while (reader->take_next_sample(&data, &info) == ReturnCode_t::RETCODE_OK)
+        while (reader->take_next_sample(&data, &info) == RETCODE_OK)
         {
             if (info.valid_data)
             {
@@ -4351,17 +4291,6 @@ void dds_qos_examples()
     }
 }
 
-void dds_dynamic_types_examples ()
-{
-    {
-        //DDS_TYPELOOKUP_SERVICE_ENABLING
-        DomainParticipantQos qos;
-        qos.wire_protocol().builtin.typelookup_config.use_client = true;
-        qos.wire_protocol().builtin.typelookup_config.use_server = true;
-        //!--
-    }
-}
-
 void log_examples()
 {
     //LOG_MESSAGES
@@ -4490,7 +4419,7 @@ void xml_profiles_examples()
 {
     {
         //XML-LOAD-APPLY-PROFILES
-        if (ReturnCode_t::RETCODE_OK ==
+        if (RETCODE_OK ==
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             DomainParticipant* participant =
@@ -4522,7 +4451,7 @@ void xml_profiles_examples()
                     </profiles>\
                 </dds>\
                 ";
-        if (ReturnCode_t::RETCODE_OK ==
+        if (RETCODE_OK ==
                 DomainParticipantFactory::get_instance()->load_XML_profiles_string(xml_profile.c_str(),
                 xml_profile.length()))
         {
@@ -4542,7 +4471,7 @@ void xml_profiles_examples()
         }
 
         // Load the XML File
-        if (ReturnCode_t::RETCODE_OK ==
+        if (RETCODE_OK ==
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             // Retrieve the an instance of MyStruct type
@@ -4565,7 +4494,7 @@ void xml_profiles_examples()
     {
         std::string custom_name;
         //XML-MIX-WITH-CODE
-        if (ReturnCode_t::RETCODE_OK ==
+        if (RETCODE_OK ==
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             DomainParticipantQos participant_qos;
@@ -5890,7 +5819,7 @@ void dds_zero_copy_example()
         // Always call loan_sample() before writing a new sample.
         // This function will provide the user with a pointer to an internal buffer where the data type can be
         // prepared for sending.
-        if (ReturnCode_t::RETCODE_OK == writer->loan_sample(sample))
+        if (RETCODE_OK == writer->loan_sample(sample))
         {
             // Modify the sample data
             LoanableHelloWorld* data = static_cast<LoanableHelloWorld*>(sample);
@@ -5927,7 +5856,7 @@ void dds_zero_copy_example()
                 DataSeq data;
                 SampleInfoSeq infos;
                 // Access to the collection of data-samples and its corresponding collection of SampleInfo structures
-                while (ReturnCode_t::RETCODE_OK == reader->take(data, infos))
+                while (RETCODE_OK == reader->take(data, infos))
                 {
                     // Iterate over each LoanableCollection in the SampleInfo sequence
                     for (LoanableCollection::size_type i = 0; i < infos.length(); ++i)
@@ -6142,7 +6071,7 @@ void dds_waitset_example()
 {
     auto create_dds_application = [](std::vector<DataReader*>&, std::vector<DataWriter*>&) -> ReturnCode_t
             {
-                return ReturnCode_t::RETCODE_OK;
+                return RETCODE_OK;
             };
 
     auto destroy_dds_application = []() -> void
@@ -6165,7 +6094,7 @@ void dds_waitset_example()
                 ReturnCode_t ret_code;
                 ConditionSeq triggered_conditions;
                 ret_code = wait_set_.wait(triggered_conditions, eprosima::fastrtps::c_TimeInfinite);
-                if (ReturnCode_t::RETCODE_OK != ret_code)
+                if (RETCODE_OK != ret_code)
                 {
                     // ... handle error
                     continue;
@@ -6196,7 +6125,7 @@ void dds_waitset_example()
                             DataReader* reader = static_cast<DataReader*>(entity);
 
                             // Process all the samples until no one is returned
-                            while (ReturnCode_t::RETCODE_OK == reader->take(data_seq, info_seq,
+                            while (RETCODE_OK == reader->take(data_seq, info_seq,
                                     LENGTH_UNLIMITED, ANY_SAMPLE_STATE,
                                     ANY_VIEW_STATE, ANY_INSTANCE_STATE))
                             {
@@ -6258,7 +6187,7 @@ void dds_waitset_example()
 
     // Create the participant, topics, readers, and writers.
     ret_code = create_dds_application(application_readers, application_writers);
-    if (ReturnCode_t::RETCODE_OK != ret_code)
+    if (RETCODE_OK != ret_code)
     {
         // ... handle error
         return;
@@ -6539,7 +6468,7 @@ int main(
         {
             std::string file = argv[1];
             DomainParticipantFactory* factory = DomainParticipantFactory::get_instance();
-            if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(file))
+            if (RETCODE_OK != factory->check_xml_static_discovery(file))
             {
                 printf("Error parsing xml file %s\n", argv[1]);
                 exit_code = -1;
@@ -6557,7 +6486,7 @@ int main(
                     "</writer>" \
                     "</participant>" \
                     "</staticdiscovery>";
-            if (ReturnCode_t::RETCODE_OK != factory->check_xml_static_discovery(fileData))
+            if (RETCODE_OK != factory->check_xml_static_discovery(fileData))
             {
                 printf("Error parsing xml file %s\n", argv[1]);
                 exit_code = -1;

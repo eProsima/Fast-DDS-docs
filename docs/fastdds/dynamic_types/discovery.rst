@@ -110,14 +110,6 @@ Discovery-Time Data Typing allows the discovering of simple DynamicTypes.
 A TypeObject that depends on other TypeObjects, cannot be built locally using
 Discovery-Time Data Typing and should use :ref:`TypeLookup-Service` instead.
 
-To ease the sharing of the TypeObject and TypeIdentifier
-used by Discovery-Time Data Typing,
-:ref:`TopicDataType<dds_layer_definition_data_types>` contains a function member named
-|TopicDataType::auto_fill_type_object-api|.
-If set to true, the local participant will send the TypeObject and
-TypeIdentifier to the remote endpoint during discovery.
-
-
 .. _typelookup-service:
 
 TypeLookup Service
@@ -129,26 +121,6 @@ describing a type that the participant doesn't know, the participant listener's 
 is called with the received TypeInformation.
 The user can then try to retrieve the full TypeObject hierarchy to build the remote type locally, using the
 TypeLookup Service.
-
-To enable this builtin TypeLookup Service, the user must enable it in the
-:ref:`QoS<dds_layer_domainParticipantQos>` of the :ref:`dds_layer_domainParticipant`:
-
-.. tabs::
-
-  .. tab:: C++
-
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //DDS_TYPELOOKUP_SERVICE_ENABLING
-      :end-before: //!--
-      :dedent: 8
-
-  .. tab:: XML
-
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->XML_TYPELOOKUP_SERVICE_ENABLING
-      :end-before: <!--><-->
 
 A participant can be enabled to act as a TypeLookup server, client, or both.
 

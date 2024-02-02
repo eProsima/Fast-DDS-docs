@@ -68,6 +68,9 @@ Internally it contains the following |QosPolicy-api| objects:
      - |DomainParticipantQos::discovery_server_thread-api|
      - No
    * - |ThreadSettings|
+     - |DomainParticipantQos::typelookup_service_threads-api|
+     - No
+   * - |ThreadSettings|
      - |DomainParticipantQos::security_log_thread-api|
      - No
 

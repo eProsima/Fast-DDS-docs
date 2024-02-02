@@ -202,6 +202,10 @@ These elements allow the user to define the DomainParticipant configuration.
      - |ThreadSettings| for the discovery server thread.
      - |ThreadSettings|
      -
+   * - ``<typelookup_service_threads>``
+     - |ThreadSettings| for the threads used by the TypeLookup service.
+     - |ThreadSettings|
+     -
    * - ``<builtin_transports_reception_threads>``
      - |ThreadSettings| for the builtin transports reception threads.
      - |ThreadSettings|
@@ -323,12 +327,6 @@ This section specifies the available XML members for the configuration of this
        port is already in use.
      - ``uint32_t``
      - 100
-   * - ``typelookup_config``
-     - TypeLookup Service settings. |br|
-       See :ref:`typelookup-service`.
-     - :ref:`typelookup_config`
-     -
-
 
 **Example**
 
@@ -519,28 +517,6 @@ Initial Announcements
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
 | ``<period>`` | The period for the DomainParticipant to send its discovery messages.  | :ref:`DurationType` | 100 ms  |
 +--------------+-----------------------------------------------------------------------+---------------------+---------+
-
-.. _typelookup_config:
-
-TypeLookup Service Configuration
-################################
-
-.. list-table::
-  :header-rows: 1
-  :align: left
-
-  * - Name
-    - Description
-    - Values
-    - Default
-  * - ``use_client``
-    - Create TypeLookup Service client builtin endpoints.
-    - ``bool``
-    - ``false``
-  * - ``use_server``
-    - Create TypeLookup Service server builtin endpoints.
-    - ``bool``
-    - ``false``
 
 .. _Port:
 

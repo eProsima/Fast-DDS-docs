@@ -163,8 +163,9 @@ and the Publisher and Subscriber applications.
 
     └── HelloWorldExample
         ├── CMakeLists.txt
-        ├── HelloWorld.cxx
-        ├── HelloWorld.h
+        ├── HelloWorldCdrAux.hpp
+        ├── HelloWorldCdrAux.ipp
+        ├── HelloWorld.hpp
         ├── HelloWorld.idl
         ├── HelloWorldPublisher.cxx
         ├── HelloWorldPublisher.h

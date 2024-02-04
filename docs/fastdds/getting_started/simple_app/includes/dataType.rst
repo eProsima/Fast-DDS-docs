@@ -37,12 +37,11 @@ To do this, run the following command from the ``src`` directory.
 
 .. code-block:: bash
 
-    <path/to/Fast DDS-Gen>/scripts/fastddsgen HelloWorld.idl
+    <path/to/Fast DDS-Gen>/scripts/fastddsgen -no-typeobjectsupport HelloWorld.idl
 
 This must have generated the following files:
 
-    * HelloWorld.cxx: HelloWorld type definition.
-    * HelloWorld.h: Header file for HelloWorld.cxx.
+    * HelloWorld.hpp: HelloWorld type definition.
     * HelloWorldPubSubTypes.cxx: Interface used by Fast DDS to support HelloWorld type.
     * HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
     * HelloWorldCdrAux.ipp: Serialization and Deserialization code for the HelloWorld type.

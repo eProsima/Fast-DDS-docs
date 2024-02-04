@@ -18,8 +18,7 @@ Subscriber application respectively.
         │   └── Makefile
         ├── CMakeLists.txt
         └── src
-            ├── HelloWorld.cxx
-            ├── HelloWorld.h
+            ├── HelloWorld.hpp
             ├── HelloWorld.idl
             ├── HelloWorldCdrAux.hpp
             ├── HelloWorldCdrAux.ipp

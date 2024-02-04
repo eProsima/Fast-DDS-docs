@@ -134,9 +134,6 @@ diagram:
    * |DomainParticipantListener::onParticipantAuthentication-api|
    * |DomainParticipantListener::on_data_reader_discovery-api|
    * |DomainParticipantListener::on_data_writer_discovery-api|
-   * |DomainParticipantListener::on_type_discovery-api|
-   * |DomainParticipantListener::on_type_dependencies_reply-api|
-   * |DomainParticipantListener::on_type_information_received-api|
    * |DataWriterListener::on_unacknowledged_sample_removed-api|
 
 .. warning::

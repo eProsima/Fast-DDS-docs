@@ -3,11 +3,11 @@
 Dynamic Topic Types
 ===================
 
-.. _DDS-XTypes V1.2: http://www.omg.org/spec/DDS-XTypes/1.2
+.. _DDS-XTypes V1.3: http://www.omg.org/spec/DDS-XTypes/1.3
 
 eProsima Fast DDS provides a dynamic way to define and use topic types and topic data.
 Our implementation follows the *OMG Extensible and Dynamic Topic Types for DDS interface*.
-For more information, you can read the specification for `DDS-XTypes V1.2`_.
+For more information, you can read the specification for `DDS-XTypes V1.3`_.
 
 The dynamic topic types offer the possibility to work over RTPS without the restrictions related to the IDLs.
 Using them, the users can declare the different types that they need and manage the information directly,

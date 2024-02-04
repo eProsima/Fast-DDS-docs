@@ -37,7 +37,7 @@ code generation are the following:
 
 *   ``-replace``: It replaces existing files in case the data type files have been previously generated.
 *   ``-help``: It lists the currently supported platforms and Visual Studio versions.
-*   ``-typeobject``: It builds additional files for |TypeObject-api| generation and management (see
+*   ``-no-typeobjectsupport``: Avoids building additional files for |TypeObject-api| generation and management (see
     :ref:`dynamictypes_discovery_typeobject`).
 *   ``-example``: It generates a basic example of a DDS application and the files to build it for
     the given ``platform``.
@@ -51,12 +51,9 @@ Output files
 *Fast DDS-Gen* outputs several files.
 Assuming the IDL file had the name *“Mytype”*, and none of the above options have been defined, these files are:
 
-*   MyType.cxx/.h: Type definition.
+*   MyType.hpp: Type definition.
 *   MyTypePubSubType.cxx/.h: Serialization and deserialization source code for the data type.
     It also defines the |TopicDataType::getKey-api| member function of the :class:`MyTypePubSubType` class in case the
     topic implements keys (see :ref:`dds_layer_topic_keyed_data_types`).
-
-If the ``-typeobject`` argument was used, `MyType.cxx` is modified to register the |TypeObject-api| representation in
-the |TypeObjectFactory-api|, and these files will also be generated:
-
-*   MyTypeTypeObject.cxx/.h: TypeObject representation for `MyType` IDL.
+*   HelloWorldCdrAux.hpp/.ipp: C++ serialization and deserialization code for the HelloWorld type.
+*   MyTypeTypeObjectSupport.cxx/.hpp: |TypeObject-api| generation and regstration.

@@ -42,15 +42,6 @@ Additionally, DomainParticipantListener adds the following non-standard callback
    a previously known Publisher has been removed,
    or some Publisher has changed its QoS.
 
- * |DomainParticipantListener::on_type_discovery-api|: A new data Type is discovered in the same domain.
-
- * |DomainParticipantListener::on_type_dependencies_reply-api|: The Type lookup client received a replay to a :func:`getTypeDependencies` request.
-   This callback can be used to retrieve the new type using the :func:`getTypes` request and create a new
-   dynamic type using the retrieved type object.
-
- * |DomainParticipantListener::on_type_information_received-api|: A new |TypeInformation-api| has been received from a newly discovered
-   DomainParticipant.
-
  * |DomainParticipantListener::onParticipantAuthentication-api|: Informs about the result of the authentication process
    of a remote DomainParticipant (either on failure or success).
 

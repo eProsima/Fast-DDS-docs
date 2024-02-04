@@ -118,7 +118,6 @@
 .. |TypeObject| replace:: :ref:`dynamictypes_discovery_typeobject`
 .. |TypeInformation| replace:: :ref:`dynamictypes_discovery_typeinformation`
 .. |TypeIdentifier| replace:: :ref:`dynamictypes_discovery_typeidentifier`
-.. |TypeObjectFactory| replace:: :ref:`dynamictypes_discovery_typeobjectfactory`
 
 .. |TopicDataType| replace:: :ref:`TopicDataType<dds_layer_definition_data_types>`
 .. |TopicDataTypes| replace:: :ref:`TopicDataTypes<dds_layer_definition_data_types>`

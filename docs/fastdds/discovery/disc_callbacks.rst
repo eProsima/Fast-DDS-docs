@@ -13,7 +13,6 @@ Fast DDS defines four callbacks attached to events that may occur during discove
 |DomainParticipantListener::on_participant_discovery-api|,
 |DomainParticipantListener::on_data_reader_discovery-api|,
 |DomainParticipantListener::on_data_writer_discovery-api|,
-|DomainParticipantListener::on_type_discovery-api|.
 Further information about the DomainParticipantListener is provided in the :ref:`dds_layer_domainParticipantListener`
 section.
 The following is an example of the implementation of DomainParticipantListener discovery callbacks.

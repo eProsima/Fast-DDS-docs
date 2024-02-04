@@ -38,7 +38,7 @@ This example uses the DDS API, and can be retrieve from folder
 of the `Fast DDS GitHub repository`_.
 It shows a publisher that loads a type from an XML file, and shares it during discovery.
 The subscriber discovers the type using :ref:`discovery-time-data-typing`, and registers the
-discovered type on the |DomainParticipantListener::on_type_discovery-api| listener function.
+discovered type on the listener.
 
 TypeLookupService
 -----------------
@@ -48,4 +48,3 @@ This example uses the DDS API, and it is located in folder
 of the `Fast DDS GitHub repository`_.
 It is very similar to DDSDynamicHelloWorldExample, but the shared type is complex enough to require the
 TypeLookup Service due to the dependency of inner struct types.
-Specifically, it uses the |DomainParticipant::register_remote_type-api| approach with a callback.

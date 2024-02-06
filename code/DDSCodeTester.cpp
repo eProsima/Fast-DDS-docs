@@ -6225,6 +6225,45 @@ bool dds_rosbag_example()
     return true;
 }
 
+
+void pubsub_api_example_create_entities()
+{
+    //PUBSUB_API_CREATE_PARTICIPANT
+    ParticipantAttributes participant_attr; //Configuration structure
+    Participant* participant = Domain::createParticipant(participant_attr);
+    //!--
+
+    //PUBSUB_API_REGISTER_TYPE
+    HelloWorldPubSubType m_type; //Auto-generated type from Fast DDS-Gen
+    Domain::registerType(participant, &m_type);
+    //!--
+
+    //PUBSUB_API_CREATE_PUBLISHER
+    PublisherAttributes publisher_attr; //Configuration structure
+    PubListener publisher_listener; //Class that implements callbacks from the publisher
+    Publisher* publisher = Domain::createPublisher(participant, publisher_attr, &publisher_listener);
+    //!--
+
+    //PUBSUB_API_CREATE_DATAWRITER
+    Topic* topic =
+        participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+    DataWriter* data_writer =
+        publisher->create_datawriter(custom_topic, DATAWRITER_QOS_DEFAULT);
+    //!--
+
+    //PUBSUB_API_WRITE_SAMPLE
+    HelloWorld sample; //Auto-generated container class for topic data from Fast DDS-Gen
+    sample.msg("Hello there!"); // Add contents to the message
+    data_writer->write(&sample); //Publish
+    //!--
+
+    //PUBSUB_API_CREATE_SUBSCRIBER
+    SubscriberAttributes subscriber_attr; //Configuration structure
+    SubListener subscriber_listener; //Class that implements callbacks from the Subscriber
+    Subscriber* subscriber = Domain::createSubscriber(participant, subscriber_attr, &subscriber_listener);
+    //!--
+}
+
 int main(
         int argc,
         const char** argv)
@@ -6291,3 +6330,4 @@ int main(
 
     exit(exit_code);
 }
+

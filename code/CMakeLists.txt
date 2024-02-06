@@ -105,7 +105,7 @@ configure_file(${FAST_INCLUDE_DIR}/../share/fastdds_profiles.xsd
     ${CMAKE_CURRENT_BINARY_DIR}/fastdds_profiles.xsd COPYONLY)
 
 # Check validity of Permissions and Governance XML files using Fast RTPS API
-add_test(NAME xml.fastdds_permissions_test
+add_test(NAME xml.rtps_permissions_test
     COMMAND doctest
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/maincacert.pem"
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/appcert.pem"

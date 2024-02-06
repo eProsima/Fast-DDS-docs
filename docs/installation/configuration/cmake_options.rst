@@ -301,18 +301,6 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
         - Description
         - Possible values
         - Default
-    *   - :class:`GTEST_INDIVIDUAL`
-        - Activate the individual building of GoogleTest tests, since *Fast DDS* tests are |br|
-          implemented using the GoogleTest framework. However, the test are compiled |br|
-          if :class:`EPROSIMA_BUILD` is set to ``ON``. Therefore, if :class:`GTEST_INDIVIDUAL` is ``OFF`` and |br|
-          :class:`EPROSIMA_BUILD` is ``ON``, the tests are processed as a single major test.
-        - ``ON`` ``OFF``
-        - ``OFF``
-    *   - :class:`FASTRTPS_API_TESTS`
-        - Enables the building of black-box tests for the verification of RTPS communications |br|
-          using the *Fast DDS* RTPS-layer API.
-        - ``ON`` ``OFF``
-        - ``OFF``
     *   - :class:`FASTDDS_PIM_API_TESTS`
         - Enables the building of black-box tests for the verification of DDS communications |br|
           using the *Fast DDS* DDS-layer API.

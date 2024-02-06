@@ -120,7 +120,7 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``ON``
     *   - :class:`APPEND_PROJECT_NAME_TO_INCLUDEDIR`
-        - When ``ON`` headers are installed to a path ending with a folder called ``fastrtps``. |br|
+        - When ``ON`` headers are installed to a path ending with a folder called ``fastdds``. |br|
           This avoids include directory search order issues when overriding this package |br|
           from a merged catkin, ament, or colcon workspace.
         - ``ON`` ``OFF``

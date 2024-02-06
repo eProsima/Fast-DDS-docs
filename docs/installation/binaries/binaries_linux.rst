@@ -45,7 +45,7 @@ The :code:`src` folder contains the following packages:
   `library <https://github.com/foonathan/memory>`_.
 * :code:`fastcdr`, a C++ library for data serialization according to the
   `CDR standard <https://www.omg.org/spec/DDSI-RTPS/2.2>`_ (*Section 10.2.1.2 OMG CDR*).
-* :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
+* :code:`fastdds`, the core library of *eProsima Fast DDS* library.
 * :code:`fastddsgen`, a Java application that generates source code using the data types defined in an IDL file.
 
 In case any of these components is unwanted, it can be simply renamed or removed from the :code:`src`

@@ -24,7 +24,7 @@ sources. The following packages will be installed:
   `library <https://github.com/foonathan/memory>`_.
 * :code:`fastcdr`, a C++ library that serializes according to the
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
-* :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
+* :code:`fastdds`, the core library of *eProsima Fast DDS* library.
 
 The :ref:`requirements_sw_qnx` detailed below needs to be met first.
 
@@ -173,7 +173,7 @@ Move Libraries, Examples, and Tests to the QNX Target
        scp ~/qnx710/target/qnx7/aarch64le/usr/lib/libfastcdr.so* root@<target-ip-address>:/usr/lib
 
        # Move Fast-DDS library to the QNX target
-       scp ~/qnx710/target/qnx7/aarch64le/usr/lib/libfastrtps.so* root@<target-ip-address>:/usr/lib
+       scp ~/qnx710/target/qnx7/aarch64le/usr/lib/libfastdds.so* root@<target-ip-address>:/usr/lib
 
        # Move Foonathan Memory library to the QNX target
        scp ~/qnx710/target/qnx7/aarch64le/usr/lib/libfoonathan_memory* root@<target-ip-address>:/usr/lib

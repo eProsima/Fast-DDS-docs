@@ -24,7 +24,7 @@ sources. The following packages will be installed:
   `library <https://github.com/foonathan/memory>`_.
 * :code:`fastcdr`, a C++ library that serializes according to the
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
-* :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
+* :code:`fastdds`, the core library of *eProsima Fast DDS* library.
 
 First of all, the :ref:`requirements_sm` and :ref:`dependencies_sm` detailed below need to be met.
 Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_mac>`)
@@ -167,9 +167,9 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
        mkdir ~/Fast-DDS
        cd ~/Fast-DDS
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastdds.repos
        mkdir src
-       vcs import src < fastrtps.repos
+       vcs import src < fastdds.repos
 
 #. Build the packages:
 

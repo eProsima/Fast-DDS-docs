@@ -12,7 +12,7 @@ These XML profiles are defined within the ``<dds>`` element, and in turn, within
 The possible topologies for the definition of XML profiles are specified in :ref:`rootedvsstandalone`.
 
 It is worth mentioning that the first element of the xml profile must have the ``xmlns`` attribute with the link
-``xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"``, in both rooted or standalone definitions.
+``xmlns="http://www.eprosima.com/XMLSchemas/fastdds_Profiles"``, in both rooted or standalone definitions.
 That link defines the reference of the ``xsd`` schema that the ``xml`` document complies with.
 
 The available profile types are:
@@ -38,7 +38,7 @@ The following sections will show implementation examples for each of these profi
     The :ref:`examplexml` section shows an XML file with all the possible configurations and profile types.
     This example is useful as a quick reference to look for a particular property and how to use it.
     The
-    `Fast DDS XSD scheme <https://github.com/eProsima/Fast-DDS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_
+    `Fast DDS XSD scheme <https://github.com/eProsima/Fast-DDS/blob/master/resources/xsd/fastdds_profiles.xsd>`_
     can be used as a quick reference too.
 
 .. _loadingapplyingprofiles:
@@ -111,7 +111,7 @@ approaches.
 .. note::
 
     Make sure that the first element of the xml profile must have the ``xmlns`` tag with the link
-    ``xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"``, in both rooted or standalone definitions.
+    ``xmlns="http://www.eprosima.com/XMLSchemas/fastdds_Profiles"``, in both rooted or standalone definitions.
 
 Modifying predefined XML profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -157,6 +157,6 @@ It also gives the participant a name that mixes literal text with the content fr
 
 .. warning::
 
-    The `Fast DDS XSD schema <https://github.com/eProsima/Fast-DDS/blob/master/resources/xsd/fastRTPS_profiles.xsd>`_
+    The `Fast DDS XSD schema <https://github.com/eProsima/Fast-DDS/blob/master/resources/xsd/fastdds_profiles.xsd>`_
     does not support the environment variables expansion feature, so validation of an XML file with environment
     variables expansion expressions will fail.

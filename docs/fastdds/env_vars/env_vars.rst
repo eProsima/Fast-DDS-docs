@@ -9,9 +9,9 @@ Environment variables
 
 This is the list of environment variables that affect the behavior of *Fast DDS*:
 
-.. _env_vars_fastrtps_default_profiles_file:
+.. _env_vars_fastdds_default_profiles_file:
 
-``FASTRTPS_DEFAULT_PROFILES_FILE``
+``FASTDDS_DEFAULT_PROFILES_FILE``
 ----------------------------------
 
 Defines the location of the default profile configuration XML file.
@@ -23,13 +23,13 @@ For more information about XML profiles, please refer to :ref:`xml_profiles`.
 +------------------------------------------------------------------+
 | .. code-block:: bash                                             |
 |                                                                  |
-|    export FASTRTPS_DEFAULT_PROFILES_FILE=/home/user/profiles.xml |
+|    export FASTDDS_DEFAULT_PROFILES_FILE=/home/user/profiles.xml |
 +------------------------------------------------------------------+
 | **Windows**                                                      |
 +------------------------------------------------------------------+
 | .. code-block:: bash                                             |
 |                                                                  |
-|    set FASTRTPS_DEFAULT_PROFILES_FILE=C:\profiles.xml            |
+|    set FASTDDS_DEFAULT_PROFILES_FILE=C:\profiles.xml            |
 +------------------------------------------------------------------+
 
 .. _env_vars_skip_default_xml:
@@ -39,7 +39,7 @@ For more information about XML profiles, please refer to :ref:`xml_profiles`.
 
 Skips looking for a default profile configuration XML file.
 If this variable is set to `1`, *Fast DDS* will load the configuration parameters directly from the classes'
-definitions without looking for the *DEFAULT_FASTRTPS_PROFILES.xml* in the working directory.
+definitions without looking for the *DEFAULT_FASTDDS_PROFILES.xml* in the working directory.
 For more information about XML profiles, please refer to :ref:`xml_profiles`.
 
 +------------------------------------------------------------------+

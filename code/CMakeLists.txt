@@ -56,12 +56,12 @@ add_subdirectory(Examples/C++/DDSHelloWorld)
 # CodeTester utilizes Fast RTPS API
 add_executable(doctest CodeTester.cpp)
 target_include_directories(doctest PRIVATE ${FAST_INCLUDE_DIR})
-target_link_libraries(doctest fastrtps)
+target_link_libraries(doctest fastdds)
 
 # DDSCodeTester utilizes Fast DDS API
 add_executable(dds-doctest DDSCodeTester.cpp FastDDSGenCodeTester.cpp)
 target_include_directories(dds-doctest PRIVATE ${FAST_INCLUDE_DIR})
-target_link_libraries(dds-doctest fastrtps fastcdr)
+target_link_libraries(dds-doctest fastdds fastcdr)
 
 ####################################################################################################
 # Add tests
@@ -101,11 +101,11 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grep.py
     ${CMAKE_CURRENT_BINARY_DIR}/grep.py COPYONLY)
 
-configure_file(${FAST_INCLUDE_DIR}/../share/fastRTPS_profiles.xsd
-    ${CMAKE_CURRENT_BINARY_DIR}/fastRTPS_profiles.xsd COPYONLY)
+configure_file(${FAST_INCLUDE_DIR}/../share/fastdds_profiles.xsd
+    ${CMAKE_CURRENT_BINARY_DIR}/fastdds_profiles.xsd COPYONLY)
 
 # Check validity of Permissions and Governance XML files using Fast RTPS API
-add_test(NAME xml.fastrtps_permissions_test
+add_test(NAME xml.fastdds_permissions_test
     COMMAND doctest
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/maincacert.pem"
     "file://${CMAKE_CURRENT_BINARY_DIR}/certs/appcert.pem"
@@ -118,9 +118,9 @@ add_test(NAME xml.profiles COMMAND dds-doctest XMLTester.xml)
 # Check validity of XML full example
 add_test(NAME xml.example COMMAND dds-doctest XMLTesterExample.xml)
 # Validate XML full example against XSD schema
-add_test(NAME xml.validate COMMAND fastdds xml validate XMLTesterExample.xml -x fastRTPS_profiles.xsd)
+add_test(NAME xml.validate COMMAND fastdds xml validate XMLTesterExample.xml -x fastdds_profiles.xsd)
 # Validate XML snippets doc against XSD schema
-add_test(NAME xml.snippets COMMAND fastdds xml validate XMLTester.xml -x fastRTPS_profiles.xsd)
+add_test(NAME xml.snippets COMMAND fastdds xml validate XMLTester.xml -x fastdds_profiles.xsd)
 # Check validity of Permissions and Governance XML files using Fast DDS API
 add_test(NAME xml.fastdds_permissions_test
     COMMAND dds-doctest

@@ -24,7 +24,7 @@ The following packages will be installed:
   `library <https://github.com/foonathan/memory>`_.
 * :code:`fastcdr`, a C++ library that serializes according to the
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
-* :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
+* :code:`fastdds`, the core library of *eProsima Fast DDS* library.
 
 First of all, the :ref:`requirements_sw` and :ref:`dependencies_sw` detailed below need to be met.
 Afterwards, the user can choose whether to follow either the :ref:`colcon <colcon_installation_windows>`
@@ -263,9 +263,9 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
        mkdir ~\Fast-DDS
        cd ~\Fast-DDS
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastrtps.repos -output fastrtps.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastdds.repos -output fastdds.repos
        mkdir src
-       vcs import src --input fastrtps.repos
+       vcs import src --input fastdds.repos
 
    Finally, use colcon_ to compile all software:
 
@@ -382,7 +382,7 @@ packages have been installed.
 This can be done by opening the *Edit system environment variables* control panel and adding to the ``PATH`` the
 *Fast DDS* and *Fast CDR* installation directories:
 
-*   *Fast DDS*: C:\\Program Files\\fastrtps
+*   *Fast DDS*: C:\\Program Files\\fastdds
 *   *Fast CDR*: C:\\Program Files\\fastcdr
 
 .. _fastdds_python_sw:
@@ -595,7 +595,7 @@ This can be done by opening the *Edit system environment variables* control pane
 *Fast DDS python*, *Fast CDR* and *Fast DDS* installation directories:
 
 *   *Fast DDS python*: C:\\Program Files\\fastdds_python
-*   *Fast DDS*: C:\\Program Files\\fastrtps
+*   *Fast DDS*: C:\\Program Files\\fastdds
 *   *Fast CDR*: C:\\Program Files\\fastcdr
 
 .. _fastddsgen_sw:

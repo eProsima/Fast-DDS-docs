@@ -1,10 +1,12 @@
 
 #include <fastdds/rtps/history/WriterHistory.h>
 #include <fastdds/rtps/history/ReaderHistory.h>
+#include <fastdds/rtps/participant/RTPSParticipant.h>
 #include <fastdds/rtps/reader/RTPSReader.h>
 #include <fastdds/rtps/reader/ReaderListener.h>
+#include <fastdds/rtps/RTPSDomain.h>
 #include <fastdds/rtps/writer/RTPSWriter.h>
-#include <fastdds/subscriber/SampleInfo.h>
+#include <fastdds/dds/subscriber/SampleInfo.hpp>
 #include <fastrtps/log/Log.h>
 #include <fastrtps/log/FileConsumer.h>
 #include <fastrtps/TopicDataType.h>
@@ -1054,35 +1056,35 @@ bool permissions_test(
         std::string governance_file,
         std::string permissions_file)
 {
-    eprosima::fastrtps::ParticipantAttributes part_attr;
+    eprosima::fastrtps::rtps::RTPSParticipantAttributes part_attr;
 
     // Activate Auth:PKI-DH plugin
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.plugin",
+    part_attr.properties.properties().emplace_back("dds.sec.auth.plugin",
         "builtin.PKI-DH");
 
     // Configure Auth:PKI-DH plugin
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
+    part_attr.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
         main_ca_file);
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
+    part_attr.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
         appcert_file);
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
+    part_attr.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
         appkey_file);
 
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.access.plugin",
+    part_attr.properties.properties().emplace_back("dds.sec.access.plugin",
         "builtin.Access-Permissions");
 
     // Configure DDS:Access:Permissions plugin
-    part_attr.rtps.properties.properties().emplace_back(
+    part_attr.properties.properties().emplace_back(
         "dds.sec.access.builtin.Access-Permissions.permissions_ca",
         main_ca_file);
-    part_attr.rtps.properties.properties().emplace_back(
+    part_attr.properties.properties().emplace_back(
         "dds.sec.access.builtin.Access-Permissions.governance",
         governance_file);
-    part_attr.rtps.properties.properties().emplace_back(
+    part_attr.properties.properties().emplace_back(
         "dds.sec.access.builtin.Access-Permissions.permissions",
         permissions_file);
-
-    if (Domain::createParticipant(part_attr))
+    RTPSParticipant* participant = RTPSDomain::createParticipant(0, part_attr);
+    if (participant != nullptr)
     {
         return true;
     }

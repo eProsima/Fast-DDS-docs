@@ -63,6 +63,22 @@ public:
     eprosima::fastdds::rtps::TransportInterface* create_transport() const override;
 };
 
+class HelloWorld
+{
+public:
+
+    void msg(
+            const std::string&)
+    {
+    }
+
+    std::string msg()
+    {
+        return "";
+    }
+
+};
+
 //CHAINING_TRANSPORT_OVERRIDE
 class CustomChainingTransport : public eprosima::fastdds::rtps::ChainingTransport
 {
@@ -873,15 +889,25 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     /* Custom Callback on_participant_discovery */
     void on_participant_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info) override
+            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info,
+            bool& should_be_ignored) override
     {
+        should_be_ignored = false;
         static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
-                /* Process the case when a new DomainParticipant was found in the domain */
-                std::cout << "New DomainParticipant '" << info.info.m_participantName <<
-                    "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
+                {
+                    /* Process the case when a new DomainParticipant was found in the domain */
+                    std::cout << "New DomainParticipant '" << info.info.m_participantName <<
+                        "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
                     info.info.m_guid.guidPrefix << "' discovered." << std::endl;
+                    /* The following line can be substitue to evaluate whether the discovered participant should be ignored */
+                    bool ignoring_condition = false;
+                    if (ignoring_condition)
+                    {
+                        should_be_ignored = true; // Request the ignoring of the discovered participant
+                    }
+                }
                 break;
             case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::CHANGED_QOS_PARTICIPANT:
                 /* Process the case when a DomainParticipant changed its QOS */
@@ -3248,7 +3274,7 @@ public:
 
     void on_requested_deadline_missed(
             DataReader* reader,
-            const eprosima::fastrtps::RequestedDeadlineMissedStatus& info) override
+            const RequestedDeadlineMissedStatus& info) override
     {
         static_cast<void>(reader);
         static_cast<void>(info);
@@ -3257,7 +3283,7 @@ public:
 
     void on_liveliness_changed(
             DataReader* reader,
-            const eprosima::fastrtps::LivelinessChangedStatus& info) override
+            const LivelinessChangedStatus& info) override
     {
         static_cast<void>(reader);
         if (info.alive_count_change == 1)
@@ -3272,7 +3298,7 @@ public:
 
     void on_sample_rejected(
             DataReader* reader,
-            const eprosima::fastrtps::SampleRejectedStatus& info) override
+            const SampleRejectedStatus& info) override
     {
         static_cast<void>(reader);
         static_cast<void>(info);
@@ -6229,24 +6255,20 @@ bool dds_rosbag_example()
 void pubsub_api_example_create_entities()
 {
     //PUBSUB_API_CREATE_PARTICIPANT
-    ParticipantAttributes participant_attr; //Configuration structure
-    Participant* participant = Domain::createParticipant(participant_attr);
-    //!--
-
-    //PUBSUB_API_REGISTER_TYPE
-    HelloWorldPubSubType m_type; //Auto-generated type from Fast DDS-Gen
-    Domain::registerType(participant, &m_type);
+    DomainParticipant* participant =
+    DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
     //!--
 
     //PUBSUB_API_CREATE_PUBLISHER
-    PublisherAttributes publisher_attr; //Configuration structure
-    PubListener publisher_listener; //Class that implements callbacks from the publisher
-    Publisher* publisher = Domain::createPublisher(participant, publisher_attr, &publisher_listener);
+    Publisher* publisher = participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+    //!--
+
+    //CREATE TOPIC
+    Topic* custom_topic =
+    participant->create_topic("HelloWorldTopic", "HelloWorld", TOPIC_QOS_DEFAULT);
     //!--
 
     //PUBSUB_API_CREATE_DATAWRITER
-    Topic* topic =
-        participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
     DataWriter* data_writer =
         publisher->create_datawriter(custom_topic, DATAWRITER_QOS_DEFAULT);
     //!--
@@ -6258,9 +6280,7 @@ void pubsub_api_example_create_entities()
     //!--
 
     //PUBSUB_API_CREATE_SUBSCRIBER
-    SubscriberAttributes subscriber_attr; //Configuration structure
-    SubListener subscriber_listener; //Class that implements callbacks from the Subscriber
-    Subscriber* subscriber = Domain::createSubscriber(participant, subscriber_attr, &subscriber_listener);
+    Subscriber* subscriber = participant->create_subscriber(eprosima::fastdds::dds::SUBSCRIBER_QOS_DEFAULT);
     //!--
 }
 

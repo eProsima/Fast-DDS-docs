@@ -53,6 +53,14 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 | ``<maxInitialPeersRange>``    | Number of channels opened with each initial |br|   | ``uint32_t``         | 4        |
 |                               | remote peer.                                       |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
+| ``<netmask_filter>``          | Transport's :ref:`netmask_filtering` |br|          | OFF                  | AUTO     |
+|                               | configuration.                                     +----------------------+          |
+|                               |                                                    | AUTO                 |          |
+|                               |                                                    +----------------------+          |
+|                               |                                                    | ON                   |          |
++-------------------------------+----------------------------------------------------+----------------------+----------+
+| ``<interfaces>``              | Allows defining an :ref:`ifaces_config`.           | :ref:`ifaces_config` |          |
++-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<interfaceWhiteList>``      | Allows defining an interfaces |whitelist|.         | |whitelist|          |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<TTL>``                     | *Time To Live* (**UDP only**). See |br|            | ``uint8_t``          | 1        |
@@ -137,7 +145,7 @@ More examples of transports descriptors can be found in the :ref:`comm-transport
     :language: xml
     :start-after: <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-40, 42-43
+    :lines: 2-4, 6-50, 52-53
 
 .. _rtcpdefinition:
 

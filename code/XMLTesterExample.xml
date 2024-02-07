@@ -10,9 +10,19 @@
                 <receiveBufferSize>8192</receiveBufferSize>
                 <maxMessageSize>16384</maxMessageSize>
                 <maxInitialPeersRange>100</maxInitialPeersRange>
+                <netmask_filter>AUTO</netmask_filter>
+                <interfaces>
+                    <allowlist>
+                        <interface name="wlp59s0" netmask_filter="ON"/>
+                    </allowlist>
+                    <blocklist>
+                        <interface name="127.0.0.1"/>
+                        <interface name="docker0"/>
+                    </blocklist>
+                </interfaces>
                 <interfaceWhiteList>
                     <address>192.168.1.41</address>
-                    <address>127.0.0.1</address>
+                    <interface>lo</interface>
                 </interfaceWhiteList>
                 <wan_addr>80.80.55.44</wan_addr>
                 <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
@@ -212,6 +222,7 @@
                 <ignore_non_matching_locators>true</ignore_non_matching_locators>
                 <sendSocketBufferSize>8192</sendSocketBufferSize>
                 <listenSocketBufferSize>8192</listenSocketBufferSize>
+                <netmask_filter>AUTO</netmask_filter>
 
                 <builtin>
                     <discovery_config>

@@ -1,5 +1,6 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _transport_tcp_tcp:
 
@@ -40,6 +41,9 @@ However, they share many of their features, and most of the |TransportDescriptor
 
 The following table describes the common data members for both TCPv4 and TCPv6.
 
+.. |netmask_filtering| replace:: :ref:`netmask_filtering`
+.. |interfaces_allowlist| replace:: :ref:`interfaces_allowlist`
+.. |interfaces_blocklist| replace:: :ref:`interfaces_blocklist`
 .. |InterfaceWhitelist| replace:: :ref:`whitelist-interfaces`
 .. |TLSconfig| replace:: :ref:`transport_tcp_tls`
 
@@ -59,6 +63,21 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - ``uint32_t``
     - 0
     - Size of the receiving buffer of the socket (octets).
+  * - |SocketTransportDescriptor::netmask_filter-api|
+    - |NetmaskFilterKind-api|
+    - |NetmaskFilterKind::AUTO-api|
+    - See |netmask_filtering|.
+  * - |SocketTransportDescriptor::interface_allowlist-api|
+    - ``vector<pair<string, NetmaskFilterKind>>``
+    - Empty vector
+    - List of allowed interfaces with |br|
+      netmask filter configuration. |br|
+      See |interfaces_allowlist|.
+  * - |SocketTransportDescriptor::interface_blocklist-api|
+    - ``vector<string>``
+    - Empty vector
+    - List of blocked interfaces.
+      See |interfaces_blocklist|.
   * - |SocketTransportDescriptor::interfaceWhiteList-api|
     - ``vector<string>``
     - Empty vector

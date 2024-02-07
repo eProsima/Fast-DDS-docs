@@ -1004,6 +1004,85 @@
     </participant>
 <!--><-->
 
+<!-->TRANSPORT-NETMASK-FILTER<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>CustomTcpTransportNetmaskFilter</transport_id>
+            <type>TCPv4</type>
+            <netmask_filter>ON</netmask_filter>
+        </transport_descriptor>
+    </transport_descriptors>
+
+    <participant profile_name="CustomTcpTransportNetmaskFilterParticipant">
+        <rtps>
+            <useBuiltinTransports>false</useBuiltinTransports>
+            <userTransports>
+                <transport_id>CustomTcpTransportNetmaskFilter</transport_id>
+            </userTransports>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->INTERFACES-ALLOWLIST<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>CustomTcpTransportAllowlist</transport_id>
+            <type>TCPv4</type>
+            <interfaces>
+                <allowlist>
+                    <interface name="wlp59s0" netmask_filter="ON"/>
+                    <interface name="192.168.1.10" netmask_filter="OFF"/>
+                </allowlist>
+            </interfaces>
+        </transport_descriptor>
+    </transport_descriptors>
+
+    <participant profile_name="CustomTcpTransportAllowlistParticipant">
+        <rtps>
+            <useBuiltinTransports>false</useBuiltinTransports>
+            <userTransports>
+                <transport_id>CustomTcpTransportAllowlist</transport_id>
+            </userTransports>
+        </rtps>
+    </participant>
+<!--><-->
+
+<!-->INTERFACES-BLOCKLIST<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>CustomTcpTransportBlocklist</transport_id>
+            <type>TCPv4</type>
+            <interfaces>
+                <blocklist>
+                    <interface name="127.0.0.1"/>
+                    <interface name="docker0"/>
+                </blocklist>
+            </interfaces>
+        </transport_descriptor>
+    </transport_descriptors>
+
+    <participant profile_name="CustomTcpTransportBlocklistParticipant">
+        <rtps>
+            <useBuiltinTransports>false</useBuiltinTransports>
+            <userTransports>
+                <transport_id>CustomTcpTransportBlocklist</transport_id>
+            </userTransports>
+        </rtps>
+    </participant>
+<!--><-->
+
 <!-->CONF-TRANSPORT_METAMULTICASTLOCATOR<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1094,7 +1173,8 @@
         <transport_id>CustomTransport</transport_id>
         <type>UDPv4</type>
         <interfaceWhiteList>
-            <address>127.0.0.1</address>
+            <address>192.168.1.10</address>
+            <interface>lo</interface>
         </interfaceWhiteList>
     </transport_descriptor>
 
@@ -1110,7 +1190,7 @@
         <maxInitialPeersRange>100</maxInitialPeersRange>
         <interfaceWhiteList>
             <address>192.168.1.41</address>
-            <address>127.0.0.1</address>
+            <interface>lo</interface>
         </interfaceWhiteList>
         <wan_addr>80.80.55.44</wan_addr>
         <output_port>5101</output_port>
@@ -1278,6 +1358,8 @@
                 <sendSocketBufferSize>8192</sendSocketBufferSize>
 
                 <listenSocketBufferSize>8192</listenSocketBufferSize>
+
+                <netmask_filter>ON</netmask_filter>
 
                 <builtin>
                     <!-- BUILTIN -->
@@ -3803,9 +3885,19 @@
                 <receiveBufferSize>8192</receiveBufferSize>
                 <maxMessageSize>16384</maxMessageSize>
                 <maxInitialPeersRange>100</maxInitialPeersRange>
+                <netmask_filter>AUTO</netmask_filter>
+                <interfaces>
+                    <allowlist>
+                        <interface name="wlp59s0" netmask_filter="ON"/>
+                    </allowlist>
+                    <blocklist>
+                        <interface name="127.0.0.1"/>
+                        <interface name="docker0"/>
+                    </blocklist>
+                </interfaces>
                 <interfaceWhiteList>
                     <address>192.168.1.41</address>
-                    <address>127.0.0.1</address>
+                    <interface>lo</interface>
                 </interfaceWhiteList>
                 <TTL>250</TTL>
                 <non_blocking_send>false</non_blocking_send>

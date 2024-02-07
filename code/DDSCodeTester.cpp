@@ -34,6 +34,7 @@
 #include <fastdds/rtps/attributes/ThreadSettings.hpp>
 #include <fastdds/rtps/transport/ChainingTransport.h>
 #include <fastdds/rtps/transport/ChainingTransportDescriptor.h>
+#include <fastdds/rtps/transport/NetmaskFilterKind.hpp>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPTransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.h>
@@ -4903,6 +4904,75 @@ void dds_transport_examples ()
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tcp_transport);
+
+        // Avoid using the builtin transports
+        qos.transport().use_builtin_transports = false;
+        //!--
+    }
+
+    {
+        using namespace eprosima::fastdds::rtps;
+        //CONF-NETMASK-FILTER
+        DomainParticipantQos qos;
+
+        // Configure netmask filtering at participant level
+        qos.transport().netmask_filter = NetmaskFilterKind::AUTO;
+
+        // Create a descriptor for the new transport.
+        auto udp_transport = std::make_shared<UDPv4TransportDescriptor>();
+
+        // Configure netmask filtering at transport level
+        udp_transport->netmask_filter = NetmaskFilterKind::AUTO;
+
+        // Configure netmask filtering at interface level
+        udp_transport->interface_allowlist.push_back({"wlp59s0", NetmaskFilterKind::ON});
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(udp_transport);
+
+        // Avoid using the builtin transports
+        qos.transport().use_builtin_transports = false;
+        //!--
+    }
+
+    {
+        using namespace eprosima::fastdds::rtps;
+        //CONF-INTERFACES-ALLOWLIST
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto udp_transport = std::make_shared<UDPv4TransportDescriptor>();
+
+        // Add allowed interface by device name
+        udp_transport->interface_allowlist.push_back({"eth0", NetmaskFilterKind::OFF});
+
+        // Add allowed interface by IP address
+        udp_transport->interface_allowlist.push_back({"127.0.0.1", NetmaskFilterKind::AUTO});
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(udp_transport);
+
+        // Avoid using the builtin transports
+        qos.transport().use_builtin_transports = false;
+        //!--
+    }
+
+    {
+        using namespace eprosima::fastdds::rtps;
+        //CONF-INTERFACES-BLOCKLIST
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto udp_transport = std::make_shared<UDPv4TransportDescriptor>();
+
+        // Add blocked interface by device name
+        udp_transport->interface_blocklist.push_back("docker0");
+
+        // Add blocked interface by IP address
+        udp_transport->interface_blocklist.push_back("127.0.0.1");
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(udp_transport);
 
         // Avoid using the builtin transports
         qos.transport().use_builtin_transports = false;

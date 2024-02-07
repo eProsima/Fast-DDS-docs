@@ -123,6 +123,12 @@ These elements allow the user to define the DomainParticipant configuration.
        socket size.
      - ``uint32_t``
      - 0
+   * - ``<netmask_filter>``
+     - Participant's netmask |br|
+       filtering configuration. |br|
+       See the :ref:`netmask_filtering` section.
+     - |NetmaskFilterKind-api|
+     - |NetmaskFilterKind::AUTO-api|
    * - ``<builtin>``
      - |WireProtocolConfigQos::builtin-api| public data member of the |br|
        |WireProtocolConfigQos-api| class. |br|
@@ -211,7 +217,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-126, 128-129
+    :lines: 2-4, 6-128, 130-131
 
 .. note::
 

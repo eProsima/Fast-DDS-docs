@@ -11,7 +11,7 @@ The following table depicts the properties of the topics within the :ref:`monito
 +---------------------------------------+-------------------------+---------------------------------------+
 |**Topic name**                         |**Topic Alias**          | **TopicDataType**                     |
 +---------------------------------------+-------------------------+---------------------------------------+
-| ``fastdds_monitor_service_status``   | MONITOR_SERVICE_TOPIC   | :ref:`monitor_service_status_data`    |
+| ``fastdds_monitor_service_status``    | MONITOR_SERVICE_TOPIC   | :ref:`monitor_service_status_data`    |
 +---------------------------------------+-------------------------+---------------------------------------+
 
 .. _monitor_service_status_topic:

@@ -23,13 +23,13 @@ For more information about XML profiles, please refer to :ref:`xml_profiles`.
 +------------------------------------------------------------------+
 | .. code-block:: bash                                             |
 |                                                                  |
-|    export FASTDDS_DEFAULT_PROFILES_FILE=/home/user/profiles.xml |
+|     export FASTDDS_DEFAULT_PROFILES_FILE=/home/user/profiles.xml |
 +------------------------------------------------------------------+
 | **Windows**                                                      |
 +------------------------------------------------------------------+
 | .. code-block:: bash                                             |
 |                                                                  |
-|    set FASTDDS_DEFAULT_PROFILES_FILE=C:\profiles.xml            |
+|     set FASTDDS_DEFAULT_PROFILES_FILE=C:\profiles.xml            |
 +------------------------------------------------------------------+
 
 .. _env_vars_skip_default_xml:

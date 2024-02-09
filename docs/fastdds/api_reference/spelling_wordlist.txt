@@ -50,6 +50,7 @@ Enum
 eprosima
 expectsInlineQos
 fastdds
+fastrtps
 filteredX
 FlowController
 fragmentnumbers

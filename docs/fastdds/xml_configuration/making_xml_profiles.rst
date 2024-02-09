@@ -12,7 +12,7 @@ These XML profiles are defined within the ``<dds>`` element, and in turn, within
 The possible topologies for the definition of XML profiles are specified in :ref:`rootedvsstandalone`.
 
 It is worth mentioning that the first element of the xml profile must have the ``xmlns`` attribute with the link
-``xmlns="http://www.eprosima.com/XMLSchemas/fastdds_profiles"``, in both rooted or standalone definitions.
+``xmlns="http://www.eprosima.com"``, in both rooted or standalone definitions.
 That link defines the reference of the ``xsd`` schema that the ``xml`` document complies with.
 
 The available profile types are:
@@ -111,7 +111,7 @@ approaches.
 .. note::
 
     Make sure that the first element of the xml profile must have the ``xmlns`` tag with the link
-    ``xmlns="http://www.eprosima.com/XMLSchemas/fastdds_profiles"``, in both rooted or standalone definitions.
+    ``xmlns="http://www.eprosima.com"``, in both rooted or standalone definitions.
 
 Modifying predefined XML profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

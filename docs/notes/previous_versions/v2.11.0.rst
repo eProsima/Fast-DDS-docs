@@ -1,5 +1,5 @@
-Version 2.11.0
-^^^^^^^^^^^^^^
+Version 2.11.0 (EOL)
+^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **features**:
 

@@ -28,6 +28,7 @@ datawriter
 DataWriter
 DataWriterQos
 datawriters
+DDSEntityStatus
 DeadlineQosPolicy
 deserialized
 destinated
@@ -109,6 +110,7 @@ PartitionQosPolicy
 PDPListener
 periodMillisecs
 Pid
+PortBasedTransportDescriptor
 pos
 preallocate
 PresentationQosPolicy

@@ -79,6 +79,26 @@ It is advisable to check that the returned value is a valid pointer.
    :dedent: 8
 
 
+.. _dds_layer_subscriber_datareader_with_payload_pool_creation:
+
+Creating a DataWriter with a custom PayloadPool
+-----------------------------------------------
+
+A custom :ref:`PayloadPool<rtps_layer_custom_payload_pool>` can be passed as an argument during the creation of a
+:ref:`dds_layer_subscriber_dataReader`.
+This allows for customizing the management of the information exchanged between DataWriters and DataReaders.
+The same configuration can be set in the
+:ref:`opposite endpoint<dds_layer_publisher_datawriter_with_payload_pool_creation>`.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_CREATE_PAYLOAD_POOL_DATAREADER
+   :end-before: //!
+   :dedent: 8
+
+This configuration can be performed also in the :ref:`RTPS layer<rtps_layer_custom_payload_pool>`.
+The :ref:`customization example<rtps_layer_payload_pool_example>` applies both layers.
+
 .. _dds_layer_subscriber_datareader_deletion:
 
 Deleting a DataReader

@@ -463,6 +463,26 @@ There are two possible values (see |HistoryQosPolicyKind-api|):
   BEST_EFFORT the older values will be discarded, but if it is RELIABLE the service blocks the DataWriter until the old
   values are delivered to all existing Subscribers.
 
+.. _historyqospolicy_consistency:
+
+Consistency rule
+""""""""""""""""
+
+The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`, but also other QoS as
+:ref:`durabilityqospolicy`, so there are several cases to take into account:
+
+* The |HistoryQosPolicy::depth-api| must be consistent with the :ref:`resourcelimitsqospolicy` settings, which means
+  that the |HistoryQosPolicy::depth-api| must be equal or lower than the :ref:`resourcelimitsqospolicy`'s
+  |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
+  Also, |ResourceLimitsQosPolicy::max_samples_per_instance-api| must be equal or lower than the product of
+  |ResourceLimitsQosPolicy::max_samples-api| and |ResourceLimitsQosPolicy::max_instances-api|.
+* The |HistoryQosPolicy::depth-api| cannot be zero.
+  It must be equal or higher than 1, and it can be set to ``LENGTH_UNLIMITED`` to indicate that the depth is unlimited,
+  or it will be limited by the :ref:`resourcelimitsqospolicy` constraints.
+* The difference between setting the |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api| and setting it as
+  |KEEP_LAST_HISTORY_QOS-api| plus |HistoryQosPolicy::depth-api| as ``LENGTH_UNLIMITED`` is that if the
+  :ref:`durabilityqospolicy` is configured as |TRANSIENT_LOCAL_DURABILITY_QOS-api| or |TRANSIENT_DURABILITY_QOS-api|,
+  the first one will block the DataWriter, but the second one will discard the oldest samples when the depth is reached.
 
 Example
 """""""

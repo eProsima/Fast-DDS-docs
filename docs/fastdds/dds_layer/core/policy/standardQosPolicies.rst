@@ -487,20 +487,23 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_HISTORY_QOS_POLICY
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML-HISTORY<-->
-    :end-before: <!--><-->
+  .. tab:: C++
+
+        .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+            :language: c++
+            :dedent: 8
+            :start-after: //DDS_CHANGE_HISTORY_QOS_POLICY
+            :end-before: //!
+
+  .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML-HISTORY<-->
+            :end-before: <!--><-->
+
 
 .. _latencybudgetqospolicy:
 

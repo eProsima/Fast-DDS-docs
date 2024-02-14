@@ -191,8 +191,12 @@ TCP Server or TCP Client.
         :language: xml
         :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
         :end-before: <!--><-->
+<<<<<<< HEAD
         :lines: 2-3,5-
         :append: </profiles>
+=======
+        :lines: 2-4,6-74,76-77
+>>>>>>> 6c2c47a (Update TCP documentation (#654))
 
 * **TCP Client**: If you provide |BuiltinAttributes::initialPeersList-api| to the DomainParticipant, it will act as
   *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
@@ -215,8 +219,18 @@ TCP Server or TCP Client.
         :language: xml
         :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
         :end-before: <!--><-->
+<<<<<<< HEAD
         :lines: 2-3,5-
         :append: </profiles>
+=======
+        :lines: 2-4,6-59,61-62
+
+.. note::
+
+  Manually setting unicast locators is optional. If not setting them or setting them with a logical
+  port of ``0``, the client's initial peer shouldn't set its logical port (or set it to ``0``). Otherwise,
+  initial peer's logical port must match server's unicast logical port.
+>>>>>>> 6c2c47a (Update TCP documentation (#654))
 
 :ref:`transport_tcp_example` shows how to use and configure a TCP transport.
 
@@ -240,6 +254,47 @@ For example, imagine we have the scenario represented on the following figure:
 * Another DomainParticipant acts as a *TCP client* and has configured
   the server's IP address and port in its :ref:`Simple Initial Peers` list.
 
+By using ``set_WAN_address(wan_ip)``, the WAN IP address is set on the participant's locators that
+are communicated during the discovery phase.
+
+Like in the LAN case, manually setting unicast locators is optional. However, in this case, there are
+some considerations to take into account when setting its IP addresses:
+
+* Setting the WAN IP address using the ``setWAN()`` method in unicast locators is ineffective because it
+  gets overridden by the ``set_WAN_address()`` call.
+
+* For assigning IP addresses to unicast locators, use only the ``setIPv4()`` or ``setIPv6()`` methods, which
+  are LAN IP setters. There are some configurations which allow using these setters with a WAN IP address.
+
+Depending on whether the server has manually set its metatraffic unicast locators and default unicast
+locators, the client needs to adjust its initial peer list accordingly:
+
+* If the server's unicast locators are configured with the LAN IP address:
+
+  * The initial peer can be set up with only the server's WAN IP using the LAN IP setter.
+
+  * Alternatively, it can be configured with both the server's LAN and WAN IP addresses using the LAN
+    setter for the LAN IP and the WAN setter for the WAN IP.
+
+* If the server's unicast locators are configured with the WAN IP address:
+
+  * The initial peer must be set up with only the server's WAN IP using the LAN setter.
+
+  * Alternatively, it can be configured with the WAN IP address using both the LAN and WAN setters.
+
+* If the server has not set any unicast locators:
+
+  * The initial peer can be configured with only the server's WAN IP using the LAN setter.
+
+  * Alternatively, it can be configured with both the server's LAN and WAN IP addresses using the LAN
+    setter for the LAN IP and the WAN setter for the WAN IP.
+
+.. note::
+
+  Manually setting unicast locators is optional. If not setting them or setting them with a logical
+  port of ``0``, the client's initial peer shouldn't set its logical port (or set it to ``0``). Otherwise,
+  initial peer's logical port must match server's unicast logical port.
+
 On the server side, the router must be configured to forward to the *TCP server*
 all traffic incoming to port ``5100``. Typically, a NAT routing of port ``5100`` to our
 machine is enough. Any existing firewall should be configured as well.
@@ -255,7 +310,7 @@ The following examples show how to configure the DomainParticipant both in C++ a
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
       :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER
+      :start-after: //CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
       :end-before: //!--
       :dedent: 8
 
@@ -263,10 +318,14 @@ The following examples show how to configure the DomainParticipant both in C++ a
 
     .. literalinclude:: /../code/XMLTester.xml
       :language: xml
-      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
+      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
       :end-before: <!--><-->
+<<<<<<< HEAD
       :lines: 2-3,5-
       :append: </profiles>
+=======
+      :lines: 2-4,6-79,81-82
+>>>>>>> 6c2c47a (Update TCP documentation (#654))
 
 On the client side, the DomainParticipant must be configured
 with the **public** IP address and |TCPTransportDescriptor::listening_ports-api| of the *TCP server* as
@@ -278,7 +337,7 @@ with the **public** IP address and |TCPTransportDescriptor::listening_ports-api|
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
       :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT
+      :start-after: //CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
       :end-before: //!--
       :dedent: 8
 
@@ -286,10 +345,14 @@ with the **public** IP address and |TCPTransportDescriptor::listening_ports-api|
 
     .. literalinclude:: /../code/XMLTester.xml
       :language: xml
-      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
+      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
       :end-before: <!--><-->
+<<<<<<< HEAD
       :lines: 2-3,5-
       :append: </profiles>
+=======
+      :lines: 2-4,6-65,67-68
+>>>>>>> 6c2c47a (Update TCP documentation (#654))
 
 .. _transport_tcp_example:
 

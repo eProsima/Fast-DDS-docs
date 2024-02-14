@@ -826,6 +826,17 @@ void dds_domain_examples()
             "unicast");
         //!--
     }
+
+    {
+        //DDS-TCP-NON-BLOCKING-SEND
+        DomainParticipantQos participant_qos;
+
+        // TCP transport will use non-blocking send
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.tcp_transport.non_blocking_send",
+            "true");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

@@ -4625,12 +4625,6 @@ void dds_transport_examples ()
         tcp_transport->add_listener_port(5100);
         tcp_transport->set_WAN_address("80.80.99.45");
 
-        // [OPTIONAL] ThreadSettings configuration
-        tcp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
-        tcp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
-        tcp_transport->keep_alive_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
-        tcp_transport->accept_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
-
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(tcp_transport);
 
@@ -4667,12 +4661,6 @@ void dds_transport_examples ()
         // [RECOMMENDED] Use client's WAN address if there are more clients in other local networks.
         tcp_transport->set_WAN_address("80.80.99.47");
         qos.transport().user_transports.push_back(tcp_transport);
-
-        // [OPTIONAL] ThreadSettings configuration
-        tcp_transport->default_reception_threads(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
-        tcp_transport->set_thread_config_for_port(12345, eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
-        tcp_transport->keep_alive_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
-        tcp_transport->accept_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
 
         // Set initial peers.
         eprosima::fastrtps::rtps::Locator_t initial_peer_locator;

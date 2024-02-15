@@ -249,7 +249,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-<<<<<<< HEAD
     <transport_descriptors>
         <transport_descriptor>
             <transport_id>tcp_server_transport</transport_id>
@@ -257,7 +256,6 @@
             <listening_ports>
                 <port>5100</port>
             </listening_ports>
-            <wan_addr>80.80.99.45</wan_addr>
         </transport_descriptor>
     </transport_descriptors>
 
@@ -267,65 +265,20 @@
                 <transport_id>tcp_server_transport</transport_id>
             </userTransports>
             <useBuiltinTransports>false</useBuiltinTransports>
+            <!-- Optional unicast locator set -->
             <defaultUnicastLocatorList>
                 <locator>
                     <tcpv4>
-                        <wan_address>80.80.99.45</wan_address>
-                        <address>80.80.99.45</address>
+                        <address>192.168.1.10</address>
                         <physical_port>5100</physical_port>
+                        <!-- Optional logical port set -->
                         <port>5100</port>
                     </tcpv4>
                 </locator>
             </defaultUnicastLocatorList>
+            <!-- Optional metatraffic unicast locator set -->
             <builtin>
                 <metatrafficUnicastLocatorList>
-=======
-        <transport_descriptors>
-            <transport_descriptor>
-                <transport_id>tcp_server_transport</transport_id>
-                <type>TCPv4</type>
-                <listening_ports>
-                    <port>5100</port>
-                </listening_ports>
-                <!-- Optional thread configuration -->
-                <default_reception_threads>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </default_reception_threads>
-                <reception_threads>
-                    <reception_thread port="12345">
-                        <scheduling_policy>-1</scheduling_policy>
-                        <priority>0</priority>
-                        <affinity>0</affinity>
-                        <stack_size>-1</stack_size>
-                    </reception_thread>
-                </reception_threads>
-                <keep_alive_thread>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </keep_alive_thread>
-                <accept_thread>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </accept_thread>
-            </transport_descriptor>
-        </transport_descriptors>
-
-        <participant profile_name="tcp_server_participant">
-            <rtps>
-                <userTransports>
-                    <transport_id>tcp_server_transport</transport_id>
-                </userTransports>
-                <useBuiltinTransports>false</useBuiltinTransports>
-                <!-- Optional unicast locator set -->
-                <defaultUnicastLocatorList>
->>>>>>> 6c2c47a (Update TCP documentation (#654))
                     <locator>
                         <tcpv4>
                             <address>192.168.1.10</address>
@@ -334,33 +287,10 @@
                             <port>5100</port>
                         </tcpv4>
                     </locator>
-<<<<<<< HEAD
                 </metatrafficUnicastLocatorList>
             </builtin>
         </rtps>
     </participant>
-=======
-                </defaultUnicastLocatorList>
-                <!-- Optional metatraffic unicast locator set -->
-                <builtin>
-                    <metatrafficUnicastLocatorList>
-                        <locator>
-                            <tcpv4>
-                                <address>192.168.1.10</address>
-                                <physical_port>5100</physical_port>
-                                <!-- Optional logical port set -->
-                                <port>5100</port>
-                            </tcpv4>
-                        </locator>
-                    </metatrafficUnicastLocatorList>
-                </builtin>
-            </rtps>
-        </participant>
-<!-->
-    </profiles>
-</dds>
-<-->
->>>>>>> 6c2c47a (Update TCP documentation (#654))
 <!--><-->
 
 <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT<-->
@@ -375,19 +305,19 @@
         </transport_descriptor>
     </transport_descriptors>
 
-<<<<<<< HEAD
     <participant profile_name="tcp_client_participant">
         <rtps>
             <userTransports>
                 <transport_id>tcp_client_transport</transport_id>
             </userTransports>
-             <useBuiltinTransports>false</useBuiltinTransports>
+            <useBuiltinTransports>false</useBuiltinTransports>
             <builtin>
                 <initialPeersList>
                     <locator>
                         <tcpv4>
-                            <address>80.80.99.45</address>
+                            <address>192.168.1.10</address>
                             <physical_port>5100</physical_port>
+                            <!-- To be set if set in server -->
                             <port>5100</port>
                         </tcpv4>
                     </locator>
@@ -395,31 +325,6 @@
             </builtin>
         </rtps>
     </participant>
-=======
-        <participant profile_name="tcp_client_participant">
-            <rtps>
-                <userTransports>
-                    <transport_id>tcp_client_transport</transport_id>
-                </userTransports>
-                <useBuiltinTransports>false</useBuiltinTransports>
-                <builtin>
-                    <initialPeersList>
-                        <locator>
-                            <tcpv4>
-                                <address>192.168.1.10</address>
-                                <physical_port>5100</physical_port>
-                                <!-- To be set if set in server -->
-                                <port>5100</port>
-                            </tcpv4>
-                        </locator>
-                    </initialPeersList>
-                </builtin>
-            </rtps>
-        </participant>
-<!-->
-    </profiles>
-</dds>
-<-->
 <!--><-->
 
 <!-->CONF-TCP-TRANSPORT-SETTING-WAN-SERVER<-->
@@ -428,52 +333,39 @@
 <dds>
     <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-        <transport_descriptors>
-            <transport_descriptor>
-                <transport_id>tcp_server_wan_transport</transport_id>
-                <type>TCPv4</type>
-                <listening_ports>
-                    <port>5100</port>
-                </listening_ports>
-                <wan_addr>80.80.99.45</wan_addr>
-                <!-- Optional thread configuration -->
-                <default_reception_threads>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </default_reception_threads>
-                <reception_threads>
-                    <reception_thread port="12345">
-                        <scheduling_policy>-1</scheduling_policy>
-                        <priority>0</priority>
-                        <affinity>0</affinity>
-                        <stack_size>-1</stack_size>
-                    </reception_thread>
-                </reception_threads>
-                <keep_alive_thread>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </keep_alive_thread>
-                <accept_thread>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </accept_thread>
-            </transport_descriptor>
-        </transport_descriptors>
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>tcp_server_wan_transport</transport_id>
+            <type>TCPv4</type>
+            <listening_ports>
+                <port>5100</port>
+            </listening_ports>
+            <wan_addr>80.80.99.45</wan_addr>
+        </transport_descriptor>
+    </transport_descriptors>
 
-        <participant profile_name="tcp_server_wan_participant">
-            <rtps>
-                <userTransports>
-                    <transport_id>tcp_server_wan_transport</transport_id>
-                </userTransports>
-                <useBuiltinTransports>false</useBuiltinTransports>
-                <!-- Optional unicast locator set -->
-                <defaultUnicastLocatorList>
+    <participant profile_name="tcp_server_wan_participant">
+        <rtps>
+            <userTransports>
+                <transport_id>tcp_server_wan_transport</transport_id>
+            </userTransports>
+            <useBuiltinTransports>false</useBuiltinTransports>
+            <!-- Optional unicast locator set -->
+            <defaultUnicastLocatorList>
+                <locator>
+                    <tcpv4>
+                        <address>192.168.1.10</address>
+                        <!-- Alternatively use WAN address -->
+                        <!-- <address>80.80.99.45</address> -->
+                        <physical_port>5100</physical_port>
+                        <!-- Optional logical port set -->
+                        <port>5100</port>
+                    </tcpv4>
+                </locator>
+            </defaultUnicastLocatorList>
+            <!-- Optional metatraffic unicast locator set -->
+            <builtin>
+                <metatrafficUnicastLocatorList>
                     <locator>
                         <tcpv4>
                             <address>192.168.1.10</address>
@@ -484,28 +376,10 @@
                             <port>5100</port>
                         </tcpv4>
                     </locator>
-                </defaultUnicastLocatorList>
-                <!-- Optional metatraffic unicast locator set -->
-                <builtin>
-                    <metatrafficUnicastLocatorList>
-                        <locator>
-                            <tcpv4>
-                                <address>192.168.1.10</address>
-                                <!-- Alternatively use WAN address -->
-                                <!-- <address>80.80.99.45</address> -->
-                                <physical_port>5100</physical_port>
-                                <!-- Optional logical port set -->
-                                <port>5100</port>
-                            </tcpv4>
-                        </locator>
-                    </metatrafficUnicastLocatorList>
-                </builtin>
-            </rtps>
-        </participant>
-<!-->
-    </profiles>
-</dds>
-<-->
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT<-->
@@ -514,71 +388,39 @@
 <dds>
     <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
-        <transport_descriptors>
-            <transport_descriptor>
-                <transport_id>tcp_client_wan_transport</transport_id>
-                <type>TCPv4</type>
-                <!-- Recommended client's WAN set -->
-                <wan_addr>80.80.99.47</wan_addr>
-                <!-- Optional thread configuration -->
-                <default_reception_threads>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </default_reception_threads>
-                <reception_threads>
-                    <reception_thread port="12345">
-                        <scheduling_policy>-1</scheduling_policy>
-                        <priority>0</priority>
-                        <affinity>0</affinity>
-                        <stack_size>-1</stack_size>
-                    </reception_thread>
-                </reception_threads>
-                <keep_alive_thread>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </keep_alive_thread>
-                <accept_thread>
-                    <scheduling_policy>-1</scheduling_policy>
-                    <priority>0</priority>
-                    <affinity>0</affinity>
-                    <stack_size>-1</stack_size>
-                </accept_thread>
-            </transport_descriptor>
-        </transport_descriptors>
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>tcp_client_wan_transport</transport_id>
+            <type>TCPv4</type>
+            <!-- Recommended client's WAN set -->
+            <wan_addr>80.80.99.47</wan_addr>
+        </transport_descriptor>
+    </transport_descriptors>
 
-        <participant profile_name="tcp_client_wan_participant">
-            <rtps>
-                <userTransports>
-                    <transport_id>tcp_client_wan_transport</transport_id>
-                </userTransports>
-                <useBuiltinTransports>false</useBuiltinTransports>
-                <builtin>
-                    <initialPeersList>
-                        <locator>
-                            <tcpv4>
-                                <!-- Recommended use of both WAN and LAN server addresses -->
-                                <wan_address>80.80.99.45</wan_address>
-                                <address>192.168.1.10</address>
-                                <!-- Alternatively use server's WAN addresses only -->
-                                <!-- <address>80.80.99.45</address> -->
-                                <physical_port>5100</physical_port>
-                                <!-- To be set if set in server -->
-                                <port>5100</port>
-                            </tcpv4>
-                        </locator>
-                    </initialPeersList>
-                </builtin>
-            </rtps>
-        </participant>
-<!-->
-    </profiles>
-</dds>
-<-->
->>>>>>> 6c2c47a (Update TCP documentation (#654))
+    <participant profile_name="tcp_client_wan_participant">
+        <rtps>
+            <userTransports>
+                <transport_id>tcp_client_wan_transport</transport_id>
+            </userTransports>
+            <useBuiltinTransports>false</useBuiltinTransports>
+            <builtin>
+                <initialPeersList>
+                    <locator>
+                        <tcpv4>
+                            <!-- Recommended use of both WAN and LAN server addresses -->
+                            <wan_address>80.80.99.45</wan_address>
+                            <address>192.168.1.10</address>
+                            <!-- Alternatively use server's WAN addresses only -->
+                            <!-- <address>80.80.99.45</address> -->
+                            <physical_port>5100</physical_port>
+                            <!-- To be set if set in server -->
+                            <port>5100</port>
+                        </tcpv4>
+                    </locator>
+                </initialPeersList>
+            </builtin>
+        </rtps>
+    </participant>
 <!--><-->
 
 <!-->CONF-SHM-TRANSPORT-SETTING<-->

@@ -116,6 +116,7 @@ fuzzer
 GCC
 GCM
 getter
+getters
 github
 Github
 GMAC
@@ -187,6 +188,7 @@ OpenSSL
 optionality
 optionparser
 OSS
+ostream
 overcomplicated
 parseLogConfig
 parseXMLBitsetDynamicType

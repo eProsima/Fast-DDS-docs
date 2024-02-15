@@ -5,37 +5,40 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.13.1
+Version 2.13.2
 ==============
 
+This patch release includes the following **fixes** and **improvements**:
+
+1. Improve environment variable substitution algorithm
+2. Add large data to the Advanced Configuration example
+3. Discard already processed samples on ``PDPListener``
+4. Ignore ``0x8007`` if coming from other vendor
+5. TCP unique client announced local port
+6. TCP non-blocking send
+7. TCP Client&Server Participant Decision-Making
+8. Add non-throwing getters for socket info
+9. Add a keyed fragmented change to the reader data instance only when it is completed
+10. Include a variety of terminate process signals handlers in the discovery server
+11. Make DataWriters always send the key hash on keyed topics
+12. Update Fast DDS types with Fast DDS Gen to include ``<cstdint>`` in v1 types
+13. Add serialization for Log::Kind to ostream
+14. Fix wrong log info messages on TCP
+15. Return const reference in ``get_log_resources``
+16. Remove unnecessary warning
+17. Avoid a maybe-uninitialized warning
+18. Add static cast to an unused variable
+19. Prepare for v3.0.0 branch out
+20. Windows CI fixes
+
 .. note::
-
-  This release upgrades the following Fast DDS dependencies:
-
-  * `Fast CDR v2.1.3 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.1.3>`_
-  * `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_
-
-This release includes the following **improvements**:
-
-1. Downgrade CMake minimum required version to 3.20.
-2. Update PR template to include check for PR description, title and backports.
-3. Update Fast CDR submodule to v2.1.3.
-
-This patch release includes the following **fixes**:
-
-1. Revert wrong fix for TCP deadlock on channel reuse.
-2. Fix wrong history selection when removing PDP samples.
-3. Fix data race when processing incoming PDP samples on different threads.
-4. Fix DNS test filter in CMakeLists.
-5. Fix deserialization of unions in generated code.
-
-.. note::
-  When upgrading to version 2.13.1 it is **advisable** to regenerate generated source from IDL files
+  When upgrading to version 2.13.2 it is **advisable** to regenerate generated source from IDL files
    using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.13.1.rst
 .. include:: previous_versions/v2.13.0.rst
 .. include:: previous_versions/v2.12.1.rst
 .. include:: previous_versions/v2.12.0.rst

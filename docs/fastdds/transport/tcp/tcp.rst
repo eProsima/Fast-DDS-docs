@@ -235,18 +235,10 @@ The examples below show this procedure in both C++ code and XML file.
       :lines: 2-3,5-
       :append: </profiles>
 
-<<<<<<< HEAD
 If you provide |BuiltinAttributes::initialPeersList-api| to the DomainParticipant, it will act
 as *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
 The examples below show this procedure in both C++ code and XML file.
 See :ref:`Simple Initial Peers` for more information about their configuration.
-=======
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
-        :end-before: <!--><-->
-        :lines: 2-4,6-74,76-77
->>>>>>> 6c2c47a (Update TCP documentation (#654))
 
 .. tabs::
 
@@ -260,28 +252,18 @@ See :ref:`Simple Initial Peers` for more information about their configuration.
 
   .. tab:: XML
 
-<<<<<<< HEAD
     .. literalinclude:: /../code/XMLTester.xml
       :language: xml
       :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
       :end-before: <!--><-->
       :lines: 2-3,5-
       :append: </profiles>
-=======
-    .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
-        :end-before: <!--><-->
-        :lines: 2-4,6-59,61-62
 
 .. note::
 
   Manually setting unicast locators is optional. If not setting them or setting them with a logical
   port of ``0``, the client's initial peer shouldn't set its logical port (or set it to ``0``). Otherwise,
   initial peer's logical port must match server's unicast logical port.
->>>>>>> 6c2c47a (Update TCP documentation (#654))
 
 :ref:`transport_tcp_example` shows how to use and configure a TCP transport.
 
@@ -371,12 +353,8 @@ The following examples show how to configure the DomainParticipant both in C++ a
       :language: xml
       :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
       :end-before: <!--><-->
-<<<<<<< HEAD
       :lines: 2-3,5-
       :append: </profiles>
-=======
-      :lines: 2-4,6-79,81-82
->>>>>>> 6c2c47a (Update TCP documentation (#654))
 
 On the client side, the DomainParticipant must be configured
 with the **public** IP address and |TCPTransportDescriptor::listening_ports-api| of the *TCP server* as
@@ -398,12 +376,8 @@ with the **public** IP address and |TCPTransportDescriptor::listening_ports-api|
       :language: xml
       :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
       :end-before: <!--><-->
-<<<<<<< HEAD
       :lines: 2-3,5-
       :append: </profiles>
-=======
-      :lines: 2-4,6-65,67-68
->>>>>>> 6c2c47a (Update TCP documentation (#654))
 
 .. _transport_tcp_example:
 
@@ -414,6 +388,3 @@ A TCP version of helloworld example can be found in the
 `HelloWorldExampleTCP folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/HelloWorldExampleTCP>`_.
 It shows a publisher and a subscriber that communicate through TCP.
 The publisher is configured as *TCP server* while the Subscriber is acting as *TCP client*.
-
-
-

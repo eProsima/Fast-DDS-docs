@@ -30,6 +30,9 @@ This release includes the following **improvements**:
     7. Rerun failed tests with ctest option instead of colcon's
     8. Add CCache to all CI jobs
     9. Simplify code in ``CDRMessage``
+    10. TCP unique client announced local port
+    11. Make DataWriters always send the key hash on keyed topics
+    12. Include terminate process signals handler in discovery server
 
 This release includes the following **fixes**:
 
@@ -59,21 +62,26 @@ This release includes the following **fixes**:
     24. Add tests for reconnection with same ``GUID``
     25. Notify data-sharing listener at the end of a successful matching in intraprocess
     26. Fix TCP deadlock on channel reuse
-    27. Fix DNS filter in CMakeLists file for tests
-    28. Fix bad-free when receiving malformed DATA_FRAG submessage
-    29. Fix memory problem when ciphering payload
-    30. Fix CVE-2023-50257
-    31. Fix build with TLS, but not security
-    32. Fix std::move warning
-    33. Update PR template to include check for PR description, title and backports
-    34. Fix data race on writer destruction while sending heartbeat
-    35. Fix comparison in ``remove_from_pdp_reader_history``
-    36. Fix data race in PDPListener and SecurityManager
-    37. Fix an uninitialized value when building with GCC 13.2.0
-    38. Fix max clash with Windows CI
-    39. Discard already processed samples on PDPListener
-    40. Remove unnecessary TCP warning
-    41. Revert "TCP deadlock on channel reuse"
+    27. TCP non-blocking send
+    28. Fix DNS filter in CMakeLists file for tests
+    29. Fix bad-free when receiving malformed DATA_FRAG submessage
+    30. Fix memory problem when ciphering payload
+    31. Fix CVE-2023-50257
+    32. Fix build with TLS, but not security
+    33. Fix std::move warning
+    34. Update PR template to include check for PR description, title and backports
+    35. Fix data race on writer destruction while sending heartbeat
+    36. Fix comparison in ``remove_from_pdp_reader_history``
+    37. Fix data race in PDPListener and SecurityManager
+    38. Fix an uninitialized value when building with GCC 13.2.0
+    39. Fix max clash with Windows CI
+    40. Discard already processed samples on PDPListener
+    41. Remove unnecessary TCP warning
+    42. Fix wrong log info messages on TCP
+    43. Revert "TCP deadlock on channel reuse"
+    44. Return const reference in ``get_log_resources``
+    45. Add a keyed fragmented change to the reader data instance only when it is completed
+    46. Fix and refactor Windows Github CI
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

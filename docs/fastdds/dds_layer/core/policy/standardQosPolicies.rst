@@ -466,9 +466,6 @@ There are two possible values (see |HistoryQosPolicyKind-api|):
   to all the existing Subscribers.
   If this option is selected, the depth will not have any effect, so the history is only limited by the values set in
   :ref:`resourcelimitsqospolicy`.
-  If the limit is reached, the behavior of the system depends on the :ref:`reliabilityqospolicy`, if its kind is
-  BEST_EFFORT the older values will be discarded, but if it is RELIABLE the service blocks the DataWriter until the old
-  values are delivered to all existing Subscribers.
 
 .. _historyqospolicy_consistency:
 

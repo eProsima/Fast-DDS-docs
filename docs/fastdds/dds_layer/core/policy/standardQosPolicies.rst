@@ -372,8 +372,6 @@ Example
         :start-after: //DDS_CHANGE_ENTITY_FACTORY_QOS_POLICY
         :end-before: //!
 
-.. tabs::
-
   .. tab:: XML
 
     This QoS Policy cannot be configured using XML for the moment.

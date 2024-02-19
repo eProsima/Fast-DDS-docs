@@ -476,23 +476,29 @@ Consistency rule
 """"""""""""""""
 
 The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`, but also other QoS as
-:ref:`durabilityqospolicy`, so there are several cases to take into account:
+:ref:`durabilityqospolicy` and :ref:`reliabilityqospolicy`, so there are several cases to take into account:
 
 * The |HistoryQosPolicy::depth-api| is only considered if the |HistoryQosPolicy::kind-api| is set to
   |KEEP_LAST_HISTORY_QOS-api|.
 * The |HistoryQosPolicy::depth-api| must be consistent with the :ref:`resourcelimitsqospolicy` settings, which means
   that the |HistoryQosPolicy::depth-api| must be equal or lower than the :ref:`resourcelimitsqospolicy`'s
   |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
-  Also, |ResourceLimitsQosPolicy::max_samples-api| must be equal or higher than the product of
-  |ResourceLimitsQosPolicy::max_samples_per_instance-api| and |ResourceLimitsQosPolicy::max_instances-api|.
-* The |HistoryQosPolicy::depth-api| cannot be zero.
-  It must be equal or higher than 1, and it can be set to ``LENGTH_UNLIMITED`` to indicate that the depth is unlimited,
-  or it will be limited by the :ref:`resourcelimitsqospolicy` constraints.
-* The difference between setting the |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api| and setting it as
-  |KEEP_LAST_HISTORY_QOS-api| plus |HistoryQosPolicy::depth-api| as ``LENGTH_UNLIMITED`` is that if the
-  :ref:`durabilityqospolicy` is configured as |TRANSIENT_LOCAL_DURABILITY_QOS-api| or |TRANSIENT_DURABILITY_QOS-api|,
-  the first one will block the DataWriter when maximum :ref:`resourcelimitsqospolicy` settings are reached, but the
-  second one will discard the oldest samples when the |HistoryQosPolicy::depth-api| is reached.
+  Also, |ResourceLimitsQosPolicy::max_samples-api| must be equal or higher than
+  |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
+* The |HistoryQosPolicy::depth-api| cannot be less or equal than zero.
+  If unlimited resources required, please consider using |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api|.
+* Setting the |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api| uses the :ref:`resourcelimitsqospolicy`
+  limits (|ResourceLimitsQosPolicy::max_samples_per_instance-api| prior than
+  |ResourceLimitsQosPolicy::max_samples-api|).
+* The DataWriter publication behavior will be different in the case when the :ref:`reliabilityqospolicy` is set as
+  |RELIABLE_RELIABILITY_QOS-api|, the |HistoryQosPolicy::kind-api| is configured as |KEEP_ALL_HISTORY_QOS-api|, and the
+  resource limits are reached, based on the :ref:`durabilityqospolicy` configuration.
+
+  * If the |DurabilityQosPolicy::kind-api| is configured as |VOLATILE_DURABILITY_QOS-api|, the DataWriter publication
+    will discard the oldest samples.
+    Those oldest samples may be owned by other instance.
+  * If the |DurabilityQosPolicy::kind-api| is configured as |TRANSIENT_LOCAL_DURABILITY_QOS-api| or
+    |TRANSIENT_DURABILITY_QOS-api|, the DataWriter publication will be blocked.
 
 Example
 """""""

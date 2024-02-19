@@ -478,6 +478,8 @@ Consistency rule
 The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`, but also other QoS as
 :ref:`durabilityqospolicy`, so there are several cases to take into account:
 
+* The |HistoryQosPolicy::depth-api| is only considered if the |HistoryQosPolicy::kind-api| is set to
+  |KEEP_LAST_HISTORY_QOS-api|.
 * The |HistoryQosPolicy::depth-api| must be consistent with the :ref:`resourcelimitsqospolicy` settings, which means
   that the |HistoryQosPolicy::depth-api| must be equal or lower than the :ref:`resourcelimitsqospolicy`'s
   |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
@@ -489,8 +491,8 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
 * The difference between setting the |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api| and setting it as
   |KEEP_LAST_HISTORY_QOS-api| plus |HistoryQosPolicy::depth-api| as ``LENGTH_UNLIMITED`` is that if the
   :ref:`durabilityqospolicy` is configured as |TRANSIENT_LOCAL_DURABILITY_QOS-api| or |TRANSIENT_DURABILITY_QOS-api|,
-  the first one will block the DataWriter when maximum :ref:`resourcelimitsqospolicy` settings reached, but the second
-  one will discard the oldest samples when the depth is reached.
+  the first one will block the DataWriter when maximum :ref:`resourcelimitsqospolicy` settings are reached, but the
+  second one will discard the oldest samples when the |HistoryQosPolicy::depth-api| is reached.
 
 Example
 """""""

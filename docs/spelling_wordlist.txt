@@ -23,6 +23,8 @@ autoenable
 autoid
 automake
 backoff
+backport
+backports
 benchmarking
 bitfield
 Bitfields
@@ -30,6 +32,7 @@ bitmask
 bitmasks
 bitset
 bitsets
+blackbox
 BNF
 boolean
 booleans
@@ -60,6 +63,7 @@ crl
 crypto
 cryptographic
 cryptosystem
+ctest
 datagram
 datagrams
 datarace
@@ -252,6 +256,7 @@ unmatches
 unmatching
 unwakening
 unwakeup
+updatable
 Valgrind
 vcstool
 wget

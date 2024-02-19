@@ -409,17 +409,17 @@ Example
   .. tab:: C++
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: //DDS_CHANGE_GROUP_DATA_QOS_POLICY
-        :end-before: //!
+       :language: c++
+       :dedent: 8
+       :start-after: //DDS_CHANGE_GROUP_DATA_QOS_POLICY
+       :end-before: //!
 
   .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->XML_CHANGE_GROUP_DATA_QOS_POLICY
-        :end-before: <!--><-->
+       :language: xml
+       :start-after: <!-->XML_CHANGE_GROUP_DATA_QOS_POLICY
+       :end-before: <!--><-->
 
 .. _historyqospolicy:
 
@@ -1326,17 +1326,17 @@ Example
   .. tab:: C++
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: //DDS_CHANGE_TOPIC_DATA_QOS_POLICY
-        :end-before: //!
+       :language: c++
+       :dedent: 8
+       :start-after: //DDS_CHANGE_TOPIC_DATA_QOS_POLICY
+       :end-before: //!
 
   .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->XML_CHANGE_TOPIC_DATA_QOS_POLICY
-        :end-before: <!--><-->
+       :language: xml
+       :start-after: <!-->XML_CHANGE_TOPIC_DATA_QOS_POLICY
+       :end-before: <!--><-->
 
 .. _transportpriorityqospolicy:
 
@@ -1397,17 +1397,17 @@ Example
   .. tab:: C++
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: //DDS_CHANGE_USER_DATA_QOS_POLICY
-        :end-before: //!
+       :language: c++
+       :dedent: 8
+       :start-after: //DDS_CHANGE_USER_DATA_QOS_POLICY
+       :end-before: //!
 
   .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->XML_CHANGE_USER_DATA_QOS_POLICY
-        :end-before: <!--><-->
+       :language: xml
+       :start-after: <!-->XML_CHANGE_USER_DATA_QOS_POLICY
+       :end-before: <!--><-->
 
 .. _writerdatalifecycleqospolicy:
 

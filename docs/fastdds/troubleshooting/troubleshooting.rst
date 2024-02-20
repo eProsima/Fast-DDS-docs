@@ -6,12 +6,12 @@ Troubleshooting
 This section offers hints and pointers to help users with navigating through the documentation while troubleshooting
 issues.
 
-* Although Fast DDS' UDP default transport is designed to work in most network environments, it may encounter certain
-  limitations when operating over WiFi or within lossy networks conditions. In these cases, it is advisable to utilize
-  the ``LARGE_DATA`` profile, which has been specifically optimized for these scenarios. The ``LARGE_DATA`` profile
-  limits the use of UDP solely to the :ref:`PDP discovery<disc_phases>` phase, employing the more reliable TCP/SHM for
-  the remainder of the communication process. Its implementation can be accomplished by simply configuring the
-  ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable, or alternatively through XML profiles
+* Although UDP/SHM default transports of Fast DDS are designed to work in most network environments, they may encounter
+  certain limitations when operating over WiFi or within lossy network conditions. In these cases, it is advisable to
+  set up the ``LARGE_DATA`` configuration, which has been specifically optimized for these scenarios. The
+  ``LARGE_DATA`` profile limits the use of UDP solely to the :ref:`PDP discovery<disc_phases>` phase, employing the more
+  reliable TCP/SHM for the remainder of the communication process. Its implementation can be accomplished by simply
+  configuring the ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable, or alternatively through XML profiles
   or via code. For more information, please refer to :ref:`use-case-tcp-multicast`.
 
   .. tabs::

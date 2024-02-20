@@ -188,6 +188,8 @@ function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`R
     * |TCPTransportDescriptor::keep_alive_thread-api| and
       |TCPTransportDescriptor::accept_thread-api| use the default configuration.
 
+.. warning::
+
   To obtain a better performance when working with large data messages it is extremely recommended to set through
   :ref:`dds_layer_domainParticipantQos` the send and receive buffer sizes of the TCP transport to the maximum default
   system value. See :ref:`finding-out-maximum-socket-values` to learn how to check it.

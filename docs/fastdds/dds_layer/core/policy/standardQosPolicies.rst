@@ -493,7 +493,7 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
 
   * If the |DurabilityQosPolicy::kind-api| is configured as |VOLATILE_DURABILITY_QOS-api|, the DataWriter publication
     will discard the oldest samples.
-    Those oldest samples may belong to other :ref:`instances<dds_layer_topic_instances>`.
+    Those samples may belong to different :ref:`instances<dds_layer_topic_instances>`.
   * If the |DurabilityQosPolicy::kind-api| is configured as |TRANSIENT_LOCAL_DURABILITY_QOS-api| or
     |TRANSIENT_DURABILITY_QOS-api|, the DataWriter publication will be blocked.
 

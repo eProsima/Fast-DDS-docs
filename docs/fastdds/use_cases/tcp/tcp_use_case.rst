@@ -2,8 +2,8 @@
 
 .. _use-case-tcp:
 
-Fast DDS over TCP
-=================
+LARGE_DATA mode and Fast DDS over TCP
+======================================
 
 As explained in :ref:`transport_tcp_tcp`, Fast DDS offers the possibility to communicate nodes within distributed
 applications with DDS over a TCP transport layer.
@@ -16,10 +16,16 @@ links.
 The configuration of the TCP transport typically involves an *a priori* knowledge of the deployment in order
 to set :ref:`Simple Initial Peers` for :ref:`discovery`, which may not always be possible and creates difficulties when
 reallocating nodes of the distributed applications, as the entire discovery configuration needs to be changed.
-To overcome this problem, these use cases present an approach for leveraging the Fast DDS' TCP transport capabilities
-while at the same time not requiring configuration modifications when the deployment changes over time.
-One option is to configure the participant discovery phase (see :ref:`disc_phases`) to occur over UDP multicast, while
-the application data delivery occurs over TCP. Also, it is possible to enable TCP communication while using
+To overcome this problem, Fast DDS presents the ``LARGE_DATA`` builtin transports configuration as an approach for
+leveraging the Fast DDS' TCP transport capabilities while at the same time not requiring configuration modifications
+when the deployment changes over time.
+
+``LARGE_DATA`` has been specifically designed to improve communication performance of large data samples over lossy
+networks. When configured, UDP transport will exclusively be used during the :ref:`PDP discovery<disc_phases>` phase,
+taking advantage of the more reliable TCP/SHM for the remainder of the communication process. Fast DDS offers
+an extremely straightforward implementation for this mode through an environment variable, XML profiles or via code.
+
+Also, it is possible to enable TCP communication while using
 :ref:`discovery-server-use-case` to manage :ref:`discovery`.
 
 .. toctree::

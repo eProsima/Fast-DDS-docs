@@ -801,11 +801,6 @@ Example
 
 .. tabs::
 
-<<<<<<< HEAD
-XML
-***
-This QoS Policy cannot be configured using XML for the moment.
-=======
   .. tab:: C++
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -816,11 +811,7 @@ This QoS Policy cannot be configured using XML for the moment.
 
   .. tab:: XML
 
-    .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP
-        :end-before: <!--><-->
->>>>>>> 157375d (Improve History QoS documentation and compatibility rules (#664))
+    This QoS Policy cannot be configured using XML for the moment.
 
 .. _ownershipstrengthqospolicy:
 
@@ -850,11 +841,6 @@ Example
 
 .. tabs::
 
-<<<<<<< HEAD
-XML
-***
-This QoS Policy cannot be configured using XML for the moment.
-=======
   .. tab:: C++
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
@@ -865,12 +851,7 @@ This QoS Policy cannot be configured using XML for the moment.
 
   .. tab:: XML
 
-    .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_OWNERSHIP_STRENGTH
-        :end-before: <!--><-->
-
->>>>>>> 157375d (Improve History QoS documentation and compatibility rules (#664))
+    This QoS Policy cannot be configured using XML for the moment.
 
 .. _partitionqospolicy:
 

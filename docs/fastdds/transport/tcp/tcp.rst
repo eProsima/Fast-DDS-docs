@@ -177,18 +177,16 @@ the application data delivery occurs over TCP or SHM. This configuration enables
 require to manually set up each participant IP and listening port. Hence, avoiding the typical Server-Client
 configuration.
 
-Builtin Transports can be configured via code, XML (see :ref:`RTPS`) or using the ``FASTDDS_BUILTIN_TRANSPORTS``
-environment variable (see :ref:`env_vars_builtin_transports`).
+Builtin Transports can be configured using the ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable (see
+:ref:`env_vars_builtin_transports`), XML profiles (see :ref:`RTPS`) or via code.
 
 .. tabs::
 
-  .. tab:: C++
+  .. tab:: Environment Variable
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-BUILTIN-TRANSPORT
-      :end-before: //!--
-      :dedent: 8
+      .. code-block:: bash
+
+          export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
 
   .. tab:: XML
 
@@ -197,6 +195,14 @@ environment variable (see :ref:`env_vars_builtin_transports`).
         :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
         :end-before: <!--><-->
         :lines: 2-4, 6-13, 15-16
+
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF-TCP-TRANSPORT-BUILTIN-TRANSPORT
+      :end-before: //!--
+      :dedent: 8
 
 .. note::
    Note that ``LARGE_DATA`` configuration of the builtin transports will also create a SHM transport along the UDP

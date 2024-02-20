@@ -30,29 +30,6 @@ This patch release includes the following **fixes**:
   When upgrading to version 2.13.3 it is **advisable** to regenerate generated source from IDL files
   using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.
 
-.. _release_notes_related_versions:
-
-Compatibility with other eProsima products
-------------------------------------------
-
-The following table expose this version's related software product versions:
-
-.. list-table::
-   :header-rows: 1
-
-   * - Product
-     - Related version
-   * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`_
-     - `v1.4.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.0>`_
-   * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`_
-     - `v2.1.3 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.1.3>`_
-   * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`_
-     - `v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_
-   * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`_
-     - `v3.0.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.0>`_
-   * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`_
-     - `v2.13.1 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.13.1>`_
-
 Previous versions
 =================
 

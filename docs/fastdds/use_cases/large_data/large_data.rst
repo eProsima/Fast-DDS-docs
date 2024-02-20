@@ -88,6 +88,8 @@ as shown in the example below.
 |    :append: </profiles>                               |
 +-------------------------------------------------------+
 
+.. _finding-out-maximum-socket-values:
+
 Finding out system maximum values
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

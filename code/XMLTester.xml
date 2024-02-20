@@ -3884,7 +3884,7 @@
     <profiles>
 -->
         <!--
-            UDP transport for PDP and TCP transport for both EDP and application data
+            UDP transport for PDP and SHM/TCPv4 transport for both EDP and application data
         -->
         <participant profile_name="large_data_builtin_transports" is_default_profile="true">
             <rtps>

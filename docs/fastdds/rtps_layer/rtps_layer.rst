@@ -179,13 +179,20 @@ function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`R
 ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable (see :ref:`env_vars_builtin_transports`).
 
 .. note::
-     TCPv4 transport is initialized with the following configuration:
 
-     * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
-       |TCPTransportDescriptor::apply_security-api| are set to false.
-     * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
-     * |TCPTransportDescriptor::keep_alive_thread-api| and
-       |TCPTransportDescriptor::accept_thread-api| use the default configuration.
+  TCPv4 transport is initialized with the following configuration:
+
+    * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
+      |TCPTransportDescriptor::apply_security-api| are set to false.
+    * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
+    * |TCPTransportDescriptor::keep_alive_thread-api| and
+      |TCPTransportDescriptor::accept_thread-api| use the default configuration.
+
+.. warning::
+
+  To obtain a better performance when working with large data messages it is extremely recommended to set through
+  :ref:`dds_layer_domainParticipantQos` the send and receive buffer sizes of the TCP transport to the maximum default
+  system value. See :ref:`finding-out-maximum-socket-values` to learn how to check it.
 
 Configuring Readers and Writers
 -------------------------------

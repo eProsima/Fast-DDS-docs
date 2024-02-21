@@ -302,7 +302,7 @@
 -->
     <transport_descriptors>
         <transport_descriptor>
-            <transport_id>tcp2_transport</transport_id>
+            <transport_id>tcp_client_transport</transport_id>
             <type>TCPv4</type>
         </transport_descriptor>
     </transport_descriptors>

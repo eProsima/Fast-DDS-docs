@@ -14,9 +14,11 @@ If the installation from binaries has been followed, these libraries are already
     ``/usr/include/fastcdr/`` for *Fast DDS* and *Fast CDR* respectively.
     The compiled libraries of both can be found in the directory ``/usr/lib/``.
 *   On Windows: The header files can be found in directories
-    ``C:\Program Files\eProsima\fastdds 2.0.0\include\fastdds`` and
-    ``C:\Program Files\eProsima\fastdds 2.0.0\include\fastcdr\`` for *Fast DDS* and *Fast CDR* respectively.
-    The compiled libraries of both can be found in the directory ``C:\Program Files\eProsima\fastdds 2.0.0\lib\``.
+    ``C:\Program Files\eProsima\fastdds <major>.<minor>.<patch>\include\fastdds`` and
+    ``C:\Program Files\eProsima\fastdds <major>.<minor>.<patch>\include\fastcdr\`` for *Fast DDS* and *Fast CDR*
+    respectively.
+    The compiled libraries of both can be found in the directory ``C:\Program Files\eProsima\fastdds
+    <major>.<minor>.<patch>\lib\``.
 
 Colcon installation
 ^^^^^^^^^^^^^^^^^^^

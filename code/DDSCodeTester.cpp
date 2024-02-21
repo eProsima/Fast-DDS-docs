@@ -4463,7 +4463,7 @@ void xml_profiles_examples()
                 "\
                 <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
                 <dds>\
-                    <profiles xmlns=\"http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles\" >\
+                    <profiles xmlns=\"http://www.eprosima.com\" >\
                         <data_writer profile_name=\"test_publisher_profile\" is_default_profile=\"true\">\
                             <qos>\
                                 <durability>\

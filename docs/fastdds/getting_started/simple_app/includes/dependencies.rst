@@ -10,7 +10,7 @@ Installation from binaries and manual installation
 
 If we have followed the installation from binaries or the manual installation, these libraries are already accessible
 from the workspace.
-On Linux, the header files can be found in directories `/usr/include/fastrtps/` and
+On Linux, the header files can be found in directories `/usr/include/fastdds/` and
 `/usr/include/fastcdr/` for Fast DDS and Fast CDR respectively. The compiled libraries of both can be found in
 the directory `/usr/lib/`.
 

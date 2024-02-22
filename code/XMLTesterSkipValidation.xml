@@ -1,6 +1,6 @@
 <!-->CREATING_XML_PROFILES<-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
         <domainparticipant_factory profile_name="domainparticipant_factory_profile">
             <!-- ... -->
@@ -43,7 +43,7 @@
 
 <!-->ROOTED_TYPES_START<-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <types>
         <type>
             <!-- Type definition -->
@@ -59,7 +59,7 @@
 
 <!-->STANDALONE_TYPES_START<-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<types xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<types xmlns="http://www.eprosima.com">
     <type>
         <!-- Type definition -->
     </type>
@@ -72,7 +72,7 @@
 <!-->STANDALONE_TYPES_END<-->
 
 <!--STAND_ALONE_TYPES_START-->
-<types xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<types xmlns="http://www.eprosima.com">
     <type>
         <!-- Type definition -->
     </type>
@@ -85,7 +85,7 @@
 
 <!-->XML_PROFILE_ENVIRONMENT_VARIABLES<-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
         <participant profile_name="env_var_parsing_example">
             <rtps>

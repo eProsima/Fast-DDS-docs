@@ -10,13 +10,15 @@ Installation from binaries
 
 If the installation from binaries has been followed, these libraries are already accessible from the workspace.
 
-*   On Linux: The header files can be found in directories ``/usr/include/fastrtps/`` and
+*   On Linux: The header files can be found in directories ``/usr/include/fastdds/`` and
     ``/usr/include/fastcdr/`` for *Fast DDS* and *Fast CDR* respectively.
     The compiled libraries of both can be found in the directory ``/usr/lib/``.
 *   On Windows: The header files can be found in directories
-    ``C:\Program Files\eProsima\fastrtps 2.0.0\include\fastrtps`` and
-    ``C:\Program Files\eProsima\fastrtps 2.0.0\include\fastcdr\`` for *Fast DDS* and *Fast CDR* respectively.
-    The compiled libraries of both can be found in the directory ``C:\Program Files\eProsima\fastrtps 2.0.0\lib\``.
+    ``C:\Program Files\eProsima\fastdds <major>.<minor>.<patch>\include\fastdds`` and
+    ``C:\Program Files\eProsima\fastdds <major>.<minor>.<patch>\include\fastcdr\`` for *Fast DDS* and *Fast CDR*
+    respectively.
+    The compiled libraries of both can be found in the directory ``C:\Program Files\eProsima\fastdds
+    <major>.<minor>.<patch>\lib\``.
 
 Colcon installation
 ^^^^^^^^^^^^^^^^^^^

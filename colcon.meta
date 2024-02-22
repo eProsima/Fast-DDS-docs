@@ -1,6 +1,6 @@
 {
     "names": {
-        "fastrtps": {
+        "fastdds": {
             "cmake-args": [
                 "-DSECURITY=ON",
             ]

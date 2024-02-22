@@ -380,7 +380,7 @@ every new terminal).
 
 .. code-block:: console
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
+    export FASTDDS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
     ros2 daemon stop
     ros2 daemon start
     ros2 topic list
@@ -392,7 +392,7 @@ We can also see the Node's Graph using the ROS 2 tool `rqt_graph` as follows (yo
 
 .. code-block:: console
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
+    export FASTDDS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
     rqt_graph
 
 
@@ -428,7 +428,7 @@ Exporting ``ROS_DISCOVERY_SERVER`` is not needed as the remote server has been c
 
 .. code-block:: console
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
+    export FASTDDS_DEFAULT_PROFILES_FILE=super_client_configuration_file.xml
     ros2 topic list --no-daemon
     ros2 node info /talker --no-daemon --spin-time 2
 
@@ -468,7 +468,7 @@ After both executions are done, run the python script to generates a graph simil
 
 .. code-block:: console
 
-    $ export FASTRTPS_DEFAULT_PROFILES_FILE="no_intraprocess_configuration.xml"
+    $ export FASTDDS_DEFAULT_PROFILES_FILE="no_intraprocess_configuration.xml"
     $ sudo bash generate_discovery_packages.bash ~/ros2_foxy/install/local_setup.bash
     $ sudo bash generate_discovery_packages.bash ~/ros2_foxy/install/local_setup.bash SERVER
     $ python3 discovery_packets.py

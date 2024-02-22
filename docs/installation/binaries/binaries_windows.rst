@@ -67,7 +67,7 @@ By default, the installation will download all the available packages, namely:
   `library <https://github.com/foonathan/memory>`_.
 * :code:`fastcdr`, a C++ library that serializes according to the
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
-* :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
+* :code:`fastdds`, the core library of *eProsima Fast DDS* library.
 * :code:`fastddsgen`, a Java application that generates source code using the data types defined in an IDL file.
 
 .. _env_vars_bw:
@@ -77,7 +77,7 @@ Environment variables
 
 *eProsima Fast DDS* requires the following environment variable setup in order to function properly:
 
-* :code:`FASTRTPSHOME`: Root folder where *eProsima Fast DDS* is installed.
+* :code:`FASTDDSHOME`: Root folder where *eProsima Fast DDS* is installed.
 * Additions to the ``PATH``: The location of *eProsima Fast DDS* scripts and libraries should be
   appended to the ``PATH``.
 
@@ -98,15 +98,15 @@ project using next mechanisms.
 
    .. code-block:: cmake
 
-       find_package(fastrtps shared) # Load shared library target
-       find_package(fastrtps static) # Load static library target
+       find_package(fastdds shared) # Load shared library target
+       find_package(fastdds static) # Load static library target
 
-2. Through the custom CMake variable `fastrtps_SHARED_LIBS`.
+2. Through the custom CMake variable `fastdds_SHARED_LIBS`.
 
    .. code-block:: bash
 
-       cmake -Dfastrtps_SHARED_LIBS=ON .. # Load shared library target
-       cmake -Dfastrtps_SHARED_LIBS=OFF .. # Load static library target
+       cmake -Dfastdds_SHARED_LIBS=ON .. # Load shared library target
+       cmake -Dfastdds_SHARED_LIBS=OFF .. # Load static library target
 
 3. Through the built-in CMake variable `BUILD_SHARED_LIBS`.
 

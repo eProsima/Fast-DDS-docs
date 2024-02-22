@@ -38,8 +38,8 @@ project(fastdds-docs VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 #    * Generating the doxygen XML files that are then used for the API reference
 #    * Documentation tests applications
 # It is required that Fast DDS is built with -DSECURITY=ON
-find_package(fastrtps REQUIRED)
-get_target_property(FAST_INCLUDE_DIR fastrtps INTERFACE_INCLUDE_DIRECTORIES)
+find_package(fastdds REQUIRED)
+get_target_property(FAST_INCLUDE_DIR fastdds INTERFACE_INCLUDE_DIRECTORIES)
 
 message(STATUS "Fast DDS include directories: ${FAST_INCLUDE_DIR}")
 file(GLOB_RECURSE HPP_FILES "${FAST_INCLUDE_DIR}/fastdds/**/*.h*")

@@ -104,7 +104,7 @@ If more than one subscriber is available, it can be seen that the message is equ
 
 The values on the custom IDL-generated data type can also be modified as indicated below.
 
-.. literalinclude:: /../code/CodeTester.cpp
+.. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
    :start-after: //PUBSUB_API_WRITE_SAMPLE
    :end-before: //!

@@ -21,8 +21,8 @@ if(NOT fastcdr_FOUND)
     find_package(fastcdr 2 REQUIRED)
 endif()
 
-if(NOT fastrtps_FOUND)
-    find_package(fastrtps 2.12 REQUIRED)
+if(NOT fastdds_FOUND)
+    find_package(fastdds 3 REQUIRED)
 endif()
 
 # Set C++11
@@ -41,7 +41,7 @@ message(STATUS "Configuring HelloWorld publisher/subscriber example...")
 file(GLOB DDS_HELLOWORLD_SOURCES_CXX "src/*.cxx")
 
 add_executable(DDSHelloWorldPublisher src/HelloWorldPublisher.cpp ${DDS_HELLOWORLD_SOURCES_CXX})
-target_link_libraries(DDSHelloWorldPublisher fastrtps fastcdr)
+target_link_libraries(DDSHelloWorldPublisher fastdds fastcdr)
 
 add_executable(DDSHelloWorldSubscriber src/HelloWorldSubscriber.cpp ${DDS_HELLOWORLD_SOURCES_CXX})
-target_link_libraries(DDSHelloWorldSubscriber fastrtps fastcdr)
+target_link_libraries(DDSHelloWorldSubscriber fastdds fastcdr)

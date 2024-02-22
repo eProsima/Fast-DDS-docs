@@ -155,21 +155,21 @@ XML configuration file location
 
 There are two possibilities for providing *Fast DDS* with XML configuration files:
 
-* **Recommended**: Setting the location with environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE``
+* **Recommended**: Setting the location with environment variable ``FASTDDS_DEFAULT_PROFILES_FILE``
   to contain the path to the XML configuration file (see :ref:`env_vars`).
 
   ::
 
-      export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
+      export FASTDDS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
 
 * **Alternative**: Placing the XML file in the running application directory
-  under the name *DEFAULT_FASTRTPS_PROFILES.xml*.
+  under the name *DEFAULT_FASTDDS_PROFILES.xml*.
 
 For example:
 
 .. code-block:: bash
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
+    export FASTDDS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
     export RMW_FASTRTPS_USE_QOS_FROM_XML=1
     ros2 run <package> <application>
 
@@ -328,7 +328,7 @@ dynamically allocated publisher and subscriber histories.
    .. code-block:: bash
 
        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-       export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/xml/ros_example.xml
+       export FASTDDS_DEFAULT_PROFILES_FILE=path/to/xml/ros_example.xml
        export RMW_FASTRTPS_USE_QOS_FROM_XML=1
        ros2 run demo_nodes_cpp talker
 
@@ -337,6 +337,6 @@ dynamically allocated publisher and subscriber histories.
    .. code-block:: bash
 
        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-       export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/xml/ros_example.xml
+       export FASTDDS_DEFAULT_PROFILES_FILE=path/to/xml/ros_example.xml
        export RMW_FASTRTPS_USE_QOS_FROM_XML=1
        ros2 run demo_nodes_cpp listener

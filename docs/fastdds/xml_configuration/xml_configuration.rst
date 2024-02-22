@@ -12,11 +12,11 @@ In addition to the API functions for loading user XML files, *Fast DDS* tries to
 upon initialization.
 *Fast DDS* offers the following options:
 
-*   Load an XML file named *DEFAULT_FASTRTPS_PROFILES.xml* located in the current execution path.
-*   Load an XML file which location is defined using the environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE``
-    (see :ref:`env_vars_fastrtps_default_profiles_file`).
+*   Load an XML file named *DEFAULT_FASTDDS_PROFILES.xml* located in the current execution path.
+*   Load an XML file which location is defined using the environment variable ``FASTDDS_DEFAULT_PROFILES_FILE``
+    (see :ref:`env_vars_fastdds_default_profiles_file`).
 *   Load the configuration parameters directly from the classes' definitions without looking for the
-    *DEFAULT_FASTRTPS_PROFILES.xml* in the working directory (see :ref:`env_vars_skip_default_xml`).
+    *DEFAULT_FASTDDS_PROFILES.xml* in the working directory (see :ref:`env_vars_skip_default_xml`).
 *   Load directly the XML as a string data buffer.
 
 An XML profile is defined by a unique name that is used to reference the XML profile

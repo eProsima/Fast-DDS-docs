@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+<dds xmlns="http://www.eprosima.com" >
 <profiles>
 
 <!-->CONF_QOS_STATIC_DISCOVERY_USERID<-->
@@ -110,7 +110,7 @@
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
 -->
         <data_writer profile_name="writer_profile_qos_datasharing">
             <qos>
@@ -150,7 +150,7 @@
 <!-->CONF-QOS-PARTITIONS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <data_writer profile_name="pub_11">
         <qos>
@@ -218,7 +218,7 @@
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
 <-->
         <domainparticipant_factory profile_name="common_thread_seetings_dummy_profile">
             <qos>
@@ -266,7 +266,7 @@
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
 -->
         <transport_descriptors>
             <transport_descriptor>
@@ -310,7 +310,7 @@
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
 -->
         <transport_descriptors>
             <transport_descriptor>
@@ -391,7 +391,7 @@
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
 -->
         <transport_descriptors>
             <transport_descriptor>
@@ -615,7 +615,7 @@
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
 -->
         <transport_descriptors>
             <!-- Create a descriptor for the new transport -->
@@ -662,7 +662,7 @@
 <!-->CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <transport_descriptors>
         <!-- Create a descriptor for the new transport -->
@@ -686,7 +686,7 @@
 <!-->CONF-TCP-TLS-SERVER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <transport_descriptors>
         <transport_descriptor>
@@ -723,7 +723,7 @@
 <!-->CONF-TCP-TLS-CLIENT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <transport_descriptors>
         <transport_descriptor>
@@ -767,7 +767,7 @@
 <!-->CONF-DISABLE-MULTICAST<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="disable_multicast" is_default_profile="true">
         <rtps>
@@ -794,7 +794,7 @@
 <!-->CONF-QOS-FLOWCONTROLLER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <data_writer profile_name="writer_profile_qos_flowcontroller">
         <!-- TODO: Configure FlowController through XML -->
@@ -944,7 +944,7 @@
 <!-->CONF-QOS-INCREASE-SOCKETBUFFERS><-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_xml_profile_qos_socketbuffers">
         <rtps>
@@ -957,7 +957,7 @@
 <!-->TRANSPORT-DESCRIPTORS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <transport_descriptors>
         <transport_descriptor>
@@ -982,7 +982,7 @@
 <!-->WHITELIST-NAME<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <transport_descriptors>
         <transport_descriptor>
@@ -1100,7 +1100,7 @@
 <!-->CONF-TRANSPORT_METAMULTICASTLOCATOR<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="CustomMetatrafficMulticastParticipant">
         <rtps>
@@ -1122,7 +1122,7 @@
 <!-->CONF-TRANSPORT_METAUNICASTLOCATOR<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="CustomMetatrafficUnicastParticipant">
         <rtps>
@@ -1144,7 +1144,7 @@
 <!-->CONF-TRANSPORT_USERMULTICASTLOCATOR<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="CustomUsertrafficMulticastParticipant">
         <rtps>
@@ -1164,7 +1164,7 @@
 <!-->CONF-TRANSPORT_USERUNICASTLOCATOR<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="CustomUsertrafficUnicastParticipant">
         <rtps>
@@ -1242,7 +1242,7 @@
 <!-->XML-TCP-TLS<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 <-->
         <transport_descriptors>
@@ -1301,7 +1301,7 @@
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
 -->
         <domainparticipant_factory profile_name="domainparticipant_factory_profile_name">
             <qos>
@@ -1332,7 +1332,7 @@
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
 -->
         <participant profile_name="domainparticipant_profile_name">
             <domainId>4</domainId>
@@ -1632,7 +1632,7 @@
 <!-->XML-DATAWRITER<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 <-->
         <data_writer profile_name="datawriter_profile_name">
@@ -1724,7 +1724,7 @@
 <!-->XML-SUBSCRIBER<-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 <-->
         <data_reader profile_name="data_reader_profile_name">
@@ -2076,7 +2076,7 @@
 <!-->CONF-ALLOCATION-QOS-PARTICIPANTS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_qos_entity_resource_limit">
         <rtps>
@@ -2109,7 +2109,7 @@
 <!-->CONF-ALLOCATION-QOS-PARAMETERS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_qos_parameter_resource_limit">
         <rtps>
@@ -2127,7 +2127,7 @@
 <!-->CONF-ALLOCATION-QOS-WRITER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <data_writer profile_name="writer_profile_qos_resource_limit">
         <!-- Limit to 3 matching readers -->
@@ -2144,7 +2144,7 @@
 <!-->CONF-ALLOCATION-QOS-READER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <data_reader profile_name="reader_profile_qos_resource_limit">
         <!-- Limit to 1 matching writer -->
@@ -2159,7 +2159,7 @@
 <!-->CONF-ALLOCATION-QOS-EXAMPLE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_alloc_qos_example">
         <rtps>
@@ -2226,7 +2226,7 @@
 <!-->CONF-MEMORY-QOS-PUBSUB<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <data_writer profile_name="data_writer_min_samples">
         <topic>
@@ -2262,7 +2262,7 @@
 <!-->CONF-MEMORY-QOS-ENDPOINTS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <data_writer profile_name="data_writer_low_memory">
         <!-- ...  -->
@@ -2279,7 +2279,7 @@
 <!-->CONF_INITIAL_PEERS_BASIC<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="initial_peers_example_profile" is_default_profile="true">
         <rtps>
@@ -2300,7 +2300,7 @@
 <!-->CONF_INITIAL_PEERS_METAUNICAST<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="initial_peers_multicast_avoidance" is_default_profile="true" >
         <rtps>
@@ -2322,7 +2322,7 @@
 <!-->CONF_DS_MAIN_SCENARIO_SERVER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="UDP SERVER" is_default_profile="true">
         <rtps>
@@ -2347,7 +2347,7 @@
 <!-->CONF_DS_MAIN_SCENARIO_CLIENT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="UDP CLIENT" is_default_profile="true">
         <rtps>
@@ -2383,7 +2383,7 @@
 <!-->CONF_DS_RDNCY_SCENARIO_SERVER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="UDP SERVER 1">
         <rtps>
@@ -2427,7 +2427,7 @@
 <!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="UDP CLIENT REDUNDANCY">
         <rtps>
@@ -2465,7 +2465,7 @@
 <!-->CONF_DS_PARTITION_2<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="UDP SERVER A">
         <rtps>
@@ -2502,7 +2502,7 @@
 <!-->CONF_DS_PARTITION_3<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="UDP SERVER C">
         <rtps>
@@ -2549,7 +2549,7 @@
 <!-->STATIC_DISCOVERY_USE_CASE_PUB<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_static_pub">
         <rtps>
@@ -2572,7 +2572,7 @@
 <!-->STATIC_DISCOVERY_USE_CASE_SUB<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_static_sub">
         <rtps>
@@ -2594,7 +2594,7 @@
 <!-->CONF_ROS2_EXAMPLE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_ros2" is_default_profile="true">
         <rtps>
@@ -2649,7 +2649,7 @@
 <!-->CONF-DISCOVERY-PROTOCOL<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <participant profile_name="participant_discovery_protocol">
@@ -2670,7 +2670,7 @@
 <!-->CONF-DISCOVERY-IGNORE-FLAGS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <participant profile_name="participant_discovery_ignore_flags">
@@ -2691,7 +2691,7 @@
 <!-->CONF-DISCOVERY-LEASE-DURATION<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <participant profile_name="participant_discovery_lease_duration">
@@ -2715,7 +2715,7 @@
 <!-->CONF-DISCOVERY-LEASE-ANNOUNCEMENT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <participant profile_name="participant_discovery_lease_announcement">
@@ -2781,7 +2781,7 @@
 <!-->CONF-SERVER-SERVER-PREFIX<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_server_guidprefix" >
         <rtps>
@@ -2793,7 +2793,7 @@
 <!-->CONF-GUID-PREFIX<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_guidprefix" >
         <rtps>
@@ -2805,7 +2805,7 @@
 <!-->CONF-SERVER-SERVER-LOCATORS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_discovery_server_server_metatraffic">
        <rtps>
@@ -2827,7 +2827,7 @@
 <!-->CONF-SERVER-CLIENT-LOCATORS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_discovery_server_client_metatraffic">
        <rtps>
@@ -2855,7 +2855,7 @@
 <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_discovery_protocol_alt" >
         <rtps>
@@ -2876,7 +2876,7 @@
 <!-->CONF-SERVER-CLIENT-PING<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_ping" >
         <rtps>
@@ -2918,7 +2918,7 @@
 <!-->CONF_SERVER_FULL_EXAMPLE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_server_full_example">
         <rtps>
@@ -2968,7 +2968,7 @@
 <!-->CONF_CLIENT_FULL_EXAMPLE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_client_full_example">
         <rtps>
@@ -3141,7 +3141,7 @@
 <!-->DDS_MONITOR_SERVICE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
 <participant profile_name="monitor_service_participant_xml_profile">
     <rtps>
@@ -3166,7 +3166,7 @@
 <!-->PULL_MODE_DATAWRITER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
 <data_writer profile_name="pull_mode_datawriter_xml_profile">
     <propertiesPolicy>
@@ -3184,7 +3184,7 @@
 <!-->IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <participant profile_name="ignore_local_endpoints_domainparticipant_xml_profile">
@@ -3225,7 +3225,7 @@
 <!-->FASTDDS_STATISTICS_TROUBLESHOOTING_GENERIC<-->
 <!--
 <?xml version="1.0" encoding="utf-8"?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <participant profile_name="statistics_domainparticipant_conf_xml_general_profile">
@@ -3285,7 +3285,7 @@
 <!-->FASTDDS_STATISTICS_TROUBLESHOOTING_SINGLE_TOPIC<-->
 <!--
 <?xml version="1.0" encoding="utf-8"?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <participant profile_name="statistics_domainparticipant_conf_xml_specific_profile">
@@ -3345,7 +3345,7 @@
 <!-->FASTDDS_PHYSICAL_PROPERTIES<-->
 <!--
 <?xml version="1.0" encoding="utf-8"?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <participant profile_name="statistics_participant" is_default_profile="true">
@@ -3378,7 +3378,7 @@
 <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <!-- DomainParticipant configuration -->
@@ -3888,7 +3888,7 @@
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
 <!-->
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 <-->
         <transport_descriptors>
@@ -3945,7 +3945,7 @@
 <!-->DDS_MULTICAST_DELIVERY<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <data_reader profile_name="reader_xml_conf_multicast_locators_profile">
         <multicastLocatorList>
@@ -3963,7 +3963,7 @@
 <!-->CONF-SERVER-CLIENT-PREFIX<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<profiles xmlns="http://www.eprosima.com">
 -->
     <participant profile_name="participant_profile_discovery_client_prefix">
         <rtps>
@@ -3994,7 +3994,7 @@
 <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <!--
@@ -4031,7 +4031,7 @@
 <!-->PDP-MULTICAST-DATA-TCP<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <transport_descriptors>
@@ -4118,7 +4118,7 @@
 <!-->TCP-AND-DISCOVERY-SERVER-SERVER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <transport_descriptors>
@@ -4166,7 +4166,7 @@
 <!-->TCP-AND-DISCOVERY-SERVER-CLIENT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
         <transport_descriptors>
@@ -4228,7 +4228,7 @@
 <!-->LOG-CONFIG<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com">
 -->
     <log>
         <!--

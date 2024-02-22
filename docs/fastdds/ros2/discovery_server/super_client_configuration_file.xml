@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles xmlns="http://www.eprosima.com">
         <participant profile_name="super_client_profile" is_default_profile="true">
             <rtps>
                 <builtin>

@@ -478,24 +478,27 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
 * The |HistoryQosPolicy::depth-api| is only considered if the |HistoryQosPolicy::kind-api| is set to
   |KEEP_LAST_HISTORY_QOS-api|.
 * The |HistoryQosPolicy::depth-api| must be consistent with the :ref:`resourcelimitsqospolicy` settings, which means
-  that the |HistoryQosPolicy::depth-api| must be equal or lower than the :ref:`resourcelimitsqospolicy`'s
+  that the |HistoryQosPolicy::depth-api| must be lower or equal than the :ref:`resourcelimitsqospolicy`'s
   |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
-  Also, |ResourceLimitsQosPolicy::max_samples-api| must be equal or higher than
-  |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
-* The |HistoryQosPolicy::depth-api| cannot be less or equal than zero.
-  If unlimited resources required, please consider using |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api|.
-* Setting the |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api| uses the :ref:`resourcelimitsqospolicy`
-  limits (|ResourceLimitsQosPolicy::max_samples_per_instance-api| prior than
+  Also, |ResourceLimitsQosPolicy::max_samples-api| must be equal or higher than the product of
+  |ResourceLimitsQosPolicy::max_samples_per_instance-api| times |ResourceLimitsQosPolicy::max_instances-api|.
+* The |HistoryQosPolicy::depth-api| cannot be lower or equal than zero.
+  If an unlimited depth is required, please consider using |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api|.
+* Setting the |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api| entails that limits are set by the
+  :ref:`resourcelimitsqospolicy` limits (|ResourceLimitsQosPolicy::max_samples_per_instance-api| prior than
   |ResourceLimitsQosPolicy::max_samples-api|).
-* In case the :ref:`reliabilityqospolicy` is set as |RELIABLE_RELIABILITY_QOS-api|, the |HistoryQosPolicy::kind-api| is
-  configured as |KEEP_ALL_HISTORY_QOS-api|, the resource limits are reached, and based on the :ref:`durabilityqospolicy`
-  configuration:
+* In the case of the :ref:`reliabilityqospolicy` |ReliabilityQosPolicyKind-api| being set to
+  |RELIABLE_RELIABILITY_QOS-api| and the :ref:`historyqospolicy` |HistoryQosPolicy::kind-api| being set to
+  |KEEP_ALL_HISTORY_QOS-api|, when the resource limits are reached, the behavior of the service is depends on the
+  :ref:`durabilityqospolicy`:
 
-  * If the |DurabilityQosPolicy::kind-api| is configured as |VOLATILE_DURABILITY_QOS-api|, the DataWriter publication
-    will discard the oldest samples.
-    Those samples may belong to different :ref:`instances<dds_layer_topic_instances>`.
-  * If the |DurabilityQosPolicy::kind-api| is configured as |TRANSIENT_LOCAL_DURABILITY_QOS-api| or
-    |TRANSIENT_DURABILITY_QOS-api|, the DataWriter publication will be blocked.
+  * If the :ref:`durabilityqospolicy` |DurabilityQosPolicy::kind-api| is configured as |VOLATILE_DURABILITY_QOS-api|,
+    the DataWriter |DataWriter::write-api| call will discard the oldest sample in the history.
+    Note that the removed sample may belong to different :ref:`instances<dds_layer_topic_instances>` than the newly
+    written one.
+  * If the :ref:`durabilityqospolicy` |DurabilityQosPolicy::kind-api| is configured as
+    |TRANSIENT_LOCAL_DURABILITY_QOS-api| or |TRANSIENT_DURABILITY_QOS-api|, the DataWriter |DataWriter::write-api| call
+    will be blocked until the history has space for the new sample.
 
 Example
 """""""

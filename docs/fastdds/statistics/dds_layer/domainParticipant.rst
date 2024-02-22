@@ -32,7 +32,7 @@ Alternatively, Statistics DataWriters can be enabled at run time using one of tw
 * Name of the statistics topic to be enabled (see :ref:`statistics_topic_names` for the statistics topic list).
 * DataWriter QoS profile (see :ref:`statistics_datawriter_qos` for the recommended profile).
 
-It is possible to define specific desired QoS through DataWriter profile on the `FASTRTPS_DEFAULT_PROFILES_FILE`
+It is possible to define specific desired QoS through DataWriter profile on the `FASTDDS_DEFAULT_PROFILES_FILE`
 (see :ref:`xml_profiles`).
 |enable_statistics_datawriter_with_profile| method enables a DataWriter by searching a specific DataWriter XML profile.
 On those profiles, specific QoS can be set.
@@ -154,10 +154,10 @@ For the creation of an automatically enabled Datawriter, the priority for settin
 
 .. note::
 
-    The generic DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named as
+    The generic DataWriter profile defined in the `FASTDDS_DEFAULT_PROFILES_FILE` XML needs to be named as
     `GENERIC_STATISTICS_PROFILE`.
 
-    The specific DataWriter profile defined in the `FASTRTPS_DEFAULT_PROFILES_FILE` XML needs to be named using the
+    The specific DataWriter profile defined in the `FASTDDS_DEFAULT_PROFILES_FILE` XML needs to be named using the
     same statistic topic alias or name (see :ref:`statistics_topic_names` for the alias corresponding to each statistic
     topic) that has been used in the |DomainParticipantQos| |DomainParticipantQos::properties-api| ``fastdds.statistics``
     (see :ref:`property_policies_statistics`) or the :ref:`env_vars_fastdds_statistics` environment variable,

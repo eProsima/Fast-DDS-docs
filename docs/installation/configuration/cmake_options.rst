@@ -120,7 +120,7 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``ON``
     *   - :class:`APPEND_PROJECT_NAME_TO_INCLUDEDIR`
-        - When ``ON`` headers are installed to a path ending with a folder called ``fastrtps``. |br|
+        - When ``ON`` headers are installed to a path ending with a folder called ``fastdds``. |br|
           This avoids include directory search order issues when overriding this package |br|
           from a merged catkin, ament, or colcon workspace.
         - ``ON`` ``OFF``
@@ -301,11 +301,6 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
         - Description
         - Possible values
         - Default
-    *   - :class:`FASTRTPS_API_TESTS`
-        - Enables the building of black-box tests for the verification of RTPS communications |br|
-          using the *Fast DDS* RTPS-layer API.
-        - ``ON`` ``OFF``
-        - ``OFF``
     *   - :class:`FASTDDS_PIM_API_TESTS`
         - Enables the building of black-box tests for the verification of DDS communications |br|
           using the *Fast DDS* DDS-layer API.

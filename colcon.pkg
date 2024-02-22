@@ -1,5 +1,5 @@
 {
     "name": "fastdds-docs",
     "type": "cmake",
-    "dependencies": ["fastrtps", "fastdds_python"]
+    "dependencies": ["fastdds", "fastdds_python"]
 }

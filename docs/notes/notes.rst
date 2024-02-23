@@ -5,31 +5,26 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.13.2
+Version 2.13.3
 ==============
 
-This patch release includes the following **fixes** and **improvements**:
+This patch release includes the following **improvements**:
 
-1. Improve environment variable substitution algorithm
-2. Add large data to the Advanced Configuration example
-3. Discard already processed samples on ``PDPListener``
-4. Ignore ``0x8007`` if coming from other vendor
-5. TCP unique client announced local port
-6. TCP non-blocking send
-7. TCP Client&Server Participant Decision-Making
-8. Add non-throwing getters for socket info
-9. Add a keyed fragmented change to the reader data instance only when it is completed
-10. Include a variety of terminate process signals handlers in the discovery server
-11. Make DataWriters always send the key hash on keyed topics
-12. Update Fast DDS types with Fast DDS Gen to include ``<cstdint>`` in v1 types
-13. Add serialization for Log::Kind to ostream
-14. Fix wrong log info messages on TCP
-15. Return const reference in ``get_log_resources``
-16. Remove unnecessary warning
-17. Avoid a maybe-uninitialized warning
-18. Add static cast to an unused variable
-19. Prepare for v3.0.0 branch out
-20. Windows CI fixes
+1. Enabling multiple interfaces through whitelist in TCP servers
+2. Set LARGE_DATA Participants logic with the same listening ports
+3. Check History QoS inconsistencies
+
+This patch release includes the following **fixes**:
+
+1. Prevent index overflow and correctly assert the end iterator in DataSharing
+2. Fix the shared memory cleaning script
+3. Fix TCP reconnection after open logical port failure
+4. Fix data race on PDP
+5. Fix doxygen docs warnings. Prepare for compiling with Doxygen 1.10.0
+6. Add missing TypeLookup listeners
+7. Restore Blackbox tests names
+8. Add macOS Github CI
+9. Set 2.11.x as EOL
 
 .. note::
   When upgrading to version 2.13.2 it is **advisable** to regenerate generated source from IDL files
@@ -38,6 +33,7 @@ This patch release includes the following **fixes** and **improvements**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.13.2.rst
 .. include:: previous_versions/v2.13.1.rst
 .. include:: previous_versions/v2.13.0.rst
 .. include:: previous_versions/v2.12.1.rst

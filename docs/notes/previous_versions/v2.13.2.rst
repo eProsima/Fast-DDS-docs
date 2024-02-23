@@ -1,0 +1,29 @@
+Version 2.13.1
+^^^^^^^^^^^^^^
+
+This patch release includes the following **fixes** and **improvements**:
+
+1. Improve environment variable substitution algorithm
+2. Add large data to the Advanced Configuration example
+3. Discard already processed samples on ``PDPListener``
+4. Ignore ``0x8007`` if coming from other vendor
+5. TCP unique client announced local port
+6. TCP non-blocking send
+7. TCP Client&Server Participant Decision-Making
+8. Add non-throwing getters for socket info
+9. Add a keyed fragmented change to the reader data instance only when it is completed
+10. Include a variety of terminate process signals handlers in the discovery server
+11. Make DataWriters always send the key hash on keyed topics
+12. Update Fast DDS types with Fast DDS Gen to include ``<cstdint>`` in v1 types
+13. Add serialization for Log::Kind to ostream
+14. Fix wrong log info messages on TCP
+15. Return const reference in ``get_log_resources``
+16. Remove unnecessary warning
+17. Avoid a maybe-uninitialized warning
+18. Add static cast to an unused variable
+19. Prepare for v3.0.0 branch out
+20. Windows CI fixes
+
+.. note::
+  When upgrading to version 2.13.2 it is **advisable** to regenerate generated source from IDL files
+   using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.

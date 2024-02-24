@@ -1,24 +1,11 @@
-{
-    "names": {
-        "fastrtps": {
-            "cmake-args": [
-                "-DSECURITY=ON",
-            ]
-        },
-        "fastdds_python":
-        {
-            "cmake-args":
-            [
-                "-DBUILD_DOCUMENTATION=ON",
-            ]
-        },
-        "fastdds-docs":
-        {
-            "cmake-args":
-            [
-                "-DBUILD_DOCUMENTATION=ON",
-                "-DCOMPILE_TESTS=ON",
-            ]
-        }
-    }
-}
+names:
+    fastrtps:
+        cmake-args:
+            - "-DSECURITY=ON"
+    fastdds_python:
+        cmake-args:
+            - "-DBUILD_DOCUMENTATION=ON"
+    fastdds-docs:
+        cmake-args:
+            - "-DBUILD_DOCUMENTATION=ON"
+            - "-DCOMPILE_TESTS=ON"

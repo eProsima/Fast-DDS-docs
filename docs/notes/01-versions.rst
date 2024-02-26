@@ -51,4 +51,4 @@ Fast DDS as the core middleware.
    * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`_
      - `v1.4.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.0>`_
    * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`_
-     - `v2.13.1 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.13.1>`_
+     - `v2.13.3 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.13.3>`_

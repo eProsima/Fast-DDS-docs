@@ -69,6 +69,10 @@ Dependencies
 * :ref:`gtest_sl` [optional]
 * :ref:`pythonreq_sl` [optional]
 
+.. seealso::
+  For further information about this Fast DDS version dependencies and other products related versions, please check
+  the Fast DDS :ref:`related_versions` section.
+
 .. _asiotinyxml2_sl:
 
 Asio and TinyXML2 libraries

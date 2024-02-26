@@ -118,6 +118,10 @@ Dependencies
 * :ref:`asiotinyxml2_sm`
 * :ref:`openssl_sm`
 
+.. seealso::
+  For further information about this Fast DDS version dependencies and other products related versions, please check
+  the Fast DDS :ref:`related_versions` section.
+
 .. _asiotinyxml2_sm:
 
 Asio and TinyXML2 libraries

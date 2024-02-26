@@ -27,8 +27,8 @@ This patch release includes the following **fixes**:
 9. Set 2.11.x as EOL
 
 .. note::
-  When upgrading to version 2.13.2 it is **advisable** to regenerate generated source from IDL files
-   using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.
+  When upgrading to version 2.13.3 it is **advisable** to regenerate generated source from IDL files
+  using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.
 
 Previous versions
 =================

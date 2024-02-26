@@ -93,7 +93,7 @@
 .. _index_notes:
 
 .. toctree::
-   :caption: Release Notes
+   :caption: Versions
    :maxdepth: 2
    :hidden:
 

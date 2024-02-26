@@ -13,10 +13,10 @@ plugins admit a set of settings that can be configured.
 Authentication plugin settings
 ******************************
 
-The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos|
+The :ref:`DDS\:Auth\:PKI-DH <auth-pki-dh>` authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|
 ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.
-The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugin configuration.
+The following table outlines the properties used for the :ref:`DDS\:Auth\:PKI-DH <auth-pki-dh>` plugin configuration.
 
 .. list-table::
    :header-rows: 1
@@ -51,16 +51,22 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
 Authentication handshake settings
 *********************************
 
-The authentication phase starts with the participant sending an
-authentication handshake request.
+The authentication phase starts when discovery information is received
+from the remote |DomainParticipants|. At this moment, the participant sends
+a handshake request until a handshake response is received from the remote participant.
+Some parameters are involved in the behavior of this exchange:
 
 * ``max_handshake_requests`` controls the maximum number of handshake requests to be sent.
 
-* ``initial_handshake_resend_period`` represents the initial wait time (in milliseconds)
-  for the first handshake request.
+* ``initial_handshake_resend_period`` represents the initial waiting time (in milliseconds)
+  for the first handshake request that has to be resent.
 
 * ``handshake_resend_period_gain`` is the gain against which the period is multiplied
   between two handshake requests.
+
+Hence, the period of time to wait for sending a new handshake request is computed at each
+iteration as the period between the last two handshake requests multiplied by the gain
+(so that the period increases).
 
 The following table lists the
 settings to configure the authentication handshake behavior within
@@ -74,18 +80,18 @@ the ``dds.sec.auth.builtin.PKI-DH`` plugin:
      - PropertyPolicyQos value
      - PropertyPolicyQos bounds
      - Default value
-   * - ``"max_handshake_requests"``
-     - ``"<int>"``
-     - ``"[1, max)"``
-     - ``"10"``
-   * - ``"initial_handshake_resend_period"``
-     - ``"<int>"``
-     - ``"[1, max)"``
-     - ``"125"``
-   * - ``"handshake_resend_period_gain"``
-     - ``"<double>"``
-     - ``"(1.0, max)"``
-     - ``"1.5"``
+   * - ``max_handshake_requests``
+     - ``<int>``
+     - ``[1, max)``
+     - ``10``
+   * - ``initial_handshake_resend_period``
+     - ``<int>``
+     - ``[1, max)``
+     - ``125``
+   * - ``handshake_resend_period_gain``
+     - ``<double>``
+     - ``(1.0, max)``
+     - ``1.5``
 
 .. note::
 
@@ -115,18 +121,19 @@ authentication handshake configuration.
 Cryptographic plugin settings
 *****************************
 
-The DDS\:Crypto\:AES-GCM-GMAC authentication plugin, can be activated setting the |DomainParticipantQos|
-|DomainParticipantQos::properties-api|
+The :ref:`DDS\:Crypto\:AES-GCM-GMAC <crypto-aes-gcm-gmac>` authentication plugin,
+can be activated setting the |DomainParticipantQos| |DomainParticipantQos::properties-api|
 ``dds.sec.crypto.plugin`` with the value ``builtin.AES-GCM-GMAC``.
 Moreover, this plugin needs the activation of the :ref:`auth-pki-dh`.
-The DDS\:Crypto\:\AES-GCM-GMAC plugin is configured using the :ref:`access-permissions`, i.e the cryptography
-plugin is configured through the properties and configuration files of the access control plugin.
+The :ref:`DDS\:Crypto\:AES-GCM-GMAC <crypto-aes-gcm-gmac>` plugin is configured using the
+:ref:`access-permissions`, i.e the cryptography plugin is configured through the properties
+and configuration files of the access control plugin.
 For further information and examples in this regard please refer to :ref:`crypto-aes-gcm-gmac`.
 
 Logging plugin settings
 ***********************
-The DDS\:Logging\:DDS_LogTopic authentication plugin, can be activated setting the |DomainParticipantQos|
-|DomainParticipantQos::properties-api|
+The :ref:`DDS\:Logging\:DDS_LogTopic <logging-logtopic>` authentication plugin,
+can be activated setting the |DomainParticipantQos| |DomainParticipantQos::properties-api|
 ``dds.sec.log.plugin`` with the value ``builtin.DDS_LogTopic``.
 The following table outlines the properties used for the DDS\:Logging\:DDS_LogTopic plugin configuration.
 For further information and examples follow the dedicated documentation: :ref:`logging-logtopic`.

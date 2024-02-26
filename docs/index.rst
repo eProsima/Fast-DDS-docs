@@ -97,4 +97,5 @@
    :maxdepth: 2
    :hidden:
 
+   /notes/versions
    /notes/notes

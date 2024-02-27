@@ -38,8 +38,9 @@ This release includes the following **fixes**:
     3. FileWatchTest fix for github windows CI.
 
 .. note::
+
   When upgrading to version 2.12.1 it is **advisable** to regenerate generated source from IDL files
-   using `Fast DDS-Gen v3.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.1.0>`_.
+  using `Fast DDS-Gen v3.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.1.0>`_.
 
 Previous versions
 =================

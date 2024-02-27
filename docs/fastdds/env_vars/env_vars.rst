@@ -108,6 +108,59 @@ All existing values, along with a brief description, are shown below:
      * |TCPTransportDescriptor::keep_alive_thread-api| and
        |TCPTransportDescriptor::accept_thread-api| use the default configuration.
 
+.. _env_vars_large_data_options:
+
+Configuring LARGE_DATA options
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``LARGE_DATA`` builtin transports option has been designed to improve performance when working with large data.
+However, according to each specific use case, the user might want to configure several options to better fit their
+needs. Fast DDS offers an easy way to configure three main parameters of the ``LARGE_DATA`` option using the
+environment variable:
+
++----------------------------+------------------------------------------------------------------------------+
+| Builtin Transports Options | Description                                                                  |
++============================+==============================================================================+
+| ``max_msg_size``           | It determines the maximum message size that will be specified in the         |
+|                            | transport layer. |br| Selecting a message size large enough to accommodate   |
+|                            | the largest data message will |br| prevent fragmentation, which can          |
+|                            | significantly enhance the overall sending rate.                              |
++----------------------------+------------------------------------------------------------------------------+
+| ``sockets_size``           | It determines the size of the send and receive socket buffers. This parameter|
+|                            | needs to be |br| higher or equal to the maximum message size specified in    |
+|                            | order to be valid.                                                           |
++----------------------------+------------------------------------------------------------------------------+
+| ``non_blocking``           | It determines whether to use non-blocking send calls or not. When activated, |
+|                            | the |br| transport will discard messages if the socket buffers are full.     |
++----------------------------+------------------------------------------------------------------------------+
+
+The environment variable accepts several types of units to specify the values of the parameters. Also, both lowercase
+and uppercase letters are valid. The following list shows the available units and their corresponding symbols:
+
++ ``B``: Bytes. This is the default unit, so it is not necessary to specify it.
++ ``KB``: Kilobytes.
++ ``MB``: Megabytes.
++ ``GB``: Gigabytes.
++ ``KIB``: Kibibyte.
++ ``MIB``: Mebibyte.
++ ``GIB``: Gibibyte.
+
+.. code-block:: bash
+
+    export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=200KB&sockets_size=1MB&non_blocking=true
+
+.. note::
+    When working with large data, it is recommended to set the ``max_msg_size`` and ``sockets_size`` to a value large
+    enough to accommodate the largest data message and to set the ``non_blocking`` to ``TRUE``. Note that activating
+    the ``non_blocking`` option with a small message size (with fragmentation) can lead to an increase of messages
+    drop rate and produce undesired results. For more information, please refer to :ref:`use-case-large-data-options`.
+
+.. warning::
+    Setting a ``max_msg_size`` higher than 65500 KB is only possible when using the ``LARGE_DATA`` builtin transports
+    option. Trying to set it with any other builtin transports will result in an error and the creation of the
+    participant will fail.
+
+
 .. _env_vars_ros_discovery_server:
 
 ``ROS_DISCOVERY_SERVER``

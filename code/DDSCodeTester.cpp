@@ -4645,6 +4645,17 @@ void dds_transport_examples ()
     }
 
     {
+        //CONF-TCP-TRANSPORT-BUILTIN-TRANSPORT-LARGE_DATA-OPTIONS
+        eprosima::fastdds::dds::DomainParticipantQos qos;
+        eprosima::fastdds::rtps::BuiltinTransportsOptions large_data_options;
+        large_data_options.maxMessageSize = 200000;
+        large_data_options.sockets_buffer_size = 200000;
+        large_data_options.non_blocking_send = true;
+        qos.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA, large_data_options);
+        //!--
+    }
+
+    {
         //CONF-TCP-TRANSPORT-SETTING-SERVER
         eprosima::fastdds::dds::DomainParticipantQos qos;
 
@@ -6145,6 +6156,25 @@ void tcp_use_cases()
         /* Transports configuration */
         // UDPv4 transport for PDP over multicast and SHM / TCPv4 transport for EDP and application data
         pqos.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA);
+
+        /* Create participant as usual */
+        eprosima::fastdds::dds::DomainParticipant* participant =
+                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+        //!
+    }
+
+    {
+        //LARGE_DATA_BUILTIN_TRANSPORTS_OPTIONS
+        eprosima::fastdds::dds::DomainParticipantQos pqos = PARTICIPANT_QOS_DEFAULT;
+
+        /* Transports configuration */
+        // UDPv4 transport for PDP over multicast and SHM / TCPv4 transport for EDP and application data
+        // Use TCP with Message Size and Sockets sizes of 200000 + Non-blocking send
+        eprosima::fastdds::rtps::BuiltinTransportsOptions large_data_options;
+        large_data_options.maxMessageSize = 200000;
+        large_data_options.sockets_buffer_size = 200000;
+        large_data_options.non_blocking_send = true;
+        pqos.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA, large_data_options);
 
         /* Create participant as usual */
         eprosima::fastdds::dds::DomainParticipant* participant =

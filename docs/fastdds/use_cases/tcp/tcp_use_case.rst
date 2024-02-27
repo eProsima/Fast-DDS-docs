@@ -36,4 +36,5 @@ Also, it is possible to enable TCP communication while using
     :maxdepth: 2
 
     /fastdds/use_cases/tcp/tcp_with_multicast_discovery.rst
+    /fastdds/use_cases/tcp/tcp_large_data_with_options.rst
     /fastdds/use_cases/tcp/tcp_with_discovery_server.rst

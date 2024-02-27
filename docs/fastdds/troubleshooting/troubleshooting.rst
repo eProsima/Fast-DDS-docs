@@ -28,7 +28,7 @@ issues.
           :language: xml
           :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
           :end-before: <!--><-->
-          :lines: 2-4, 6-13, 15-16
+          :lines: 2-4, 6-15, 17-18
 
    .. tab:: C++
 

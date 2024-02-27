@@ -227,7 +227,7 @@ public:
     void on_type_discovery(
             DomainParticipant* participant,
             const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
-            const eprosima::fastrtps::string_255& topic,
+            const eprosima::fastcdr::string_255& topic,
             const eprosima::fastrtps::types::TypeIdentifier* identifier,
             const eprosima::fastrtps::types::TypeObject* object,
             eprosima::fastrtps::types::DynamicType_ptr dyn_type) override
@@ -255,8 +255,8 @@ public:
 
     void on_type_information_received(
             DomainParticipant* participant,
-            const eprosima::fastrtps::string_255 topic_name,
-            const eprosima::fastrtps::string_255 type_name,
+            const eprosima::fastcdr::string_255 topic_name,
+            const eprosima::fastcdr::string_255 type_name,
             const eprosima::fastrtps::types::TypeInformation& type_information) override
     {
         static_cast<void>(participant);
@@ -986,7 +986,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     void on_type_discovery(
             DomainParticipant* participant,
             const eprosima::fastrtps::rtps::SampleIdentity& request_sample_id,
-            const eprosima::fastrtps::string_255& topic,
+            const eprosima::fastcdr::string_255& topic,
             const eprosima::fastrtps::types::TypeIdentifier* identifier,
             const eprosima::fastrtps::types::TypeObject* object,
             eprosima::fastrtps::types::DynamicType_ptr dyn_type) override

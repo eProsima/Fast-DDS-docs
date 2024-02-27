@@ -20,6 +20,7 @@ This section aims to explain these common elements.
     -   :ref:`rLsQos`
 
 *   :ref:`ThreadSettingsType`
+*   :ref:`BuiltinTransportType`
 
 *   :ref:`CommonQOS`
 
@@ -350,6 +351,55 @@ Please refer to :ref:`threadsettingsqos` for further information on ResourceLimi
      - Configures the thread's stack size in bytes.
      - ``int32_t``
      - -1
+
+.. _BuiltinTransportType:
+
+BuiltinTransports
+^^^^^^^^^^^^^^^^^
+
+It controls the builtin transports that will be used during the initialization of the DomainParticipant.
+Please refer to :ref:`rtps_layer_builtin_transports` for further information on builtin transports.
+
+This tag can be configured with the following attributes:
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``max_msg_size``
+    - Maximum message size that will be specified in |br|
+      the transport layer.
+      Valid values: from 1 to 2^32-1.
+    - ``uint32_t``
+    - 65500
+  * - ``sockets_size``
+    - Size of the send and receive socket buffers.
+      Valid values: from 0 to 2^64-1.
+    - ``uint64_t``
+    - OS default
+  * - ``non_blocking``
+    - Whether to use non-blocking send calls or not.
+      Valid values: true or false.
+    - ``bool``
+    - false
+
+This type must contain the following tag:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<mode>``
+     - Defines the builtin transport mode.
+     - ``string_255``
+     - ``DEFAULT``
 
 .. _CommonQOS:
 

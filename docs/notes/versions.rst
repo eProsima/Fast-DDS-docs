@@ -13,6 +13,215 @@ This section provides information about the versions of the eProsima software pr
 Build time dependencies
 -----------------------
 
+The following table shows the minimum version required of the Fast DDS build time dependencies.
+
+.. tabs::
+
+    .. group-tab:: 2.13.x
+
+        .. list-table::
+
+            * - CMake
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Platform
+              - Compiler amd64
+              - Compiler amd32
+              - Compiler arm64
+              - Compiler arm32
+            * - Ubuntu Jammy (22.04)
+              - GCC 11.4, Clang 15
+              -
+              - GCC 11.4, Clang 15
+              -
+            * - Ubuntu Focal (20.04)
+              -
+              -
+              -
+              -
+            * - MacOS Mojave (10.14)
+              - Clang 15
+              -
+              -
+              -
+            * - Windows 10
+              - MSVC v142 (Visual Studio 2019)
+              - MSVC v141 (Visual Studio 2017)
+              -
+              -
+            * - Windows 11
+              -
+              -
+              -
+              -
+            * - Debian Buster (10)
+              -
+              -
+              -
+              -
+            * - Android 12
+              -
+              -
+              -
+              -
+            * - Android 11
+              -
+              -
+              -
+              -
+            * - QNX 7.1
+              -
+              -
+              -
+              -
+
+    .. group-tab:: 2.12.x
+
+        .. list-table::
+
+            * - CMake
+              - 3.22
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Platform
+              - Compiler amd64
+              - Compiler amd32
+              - Compiler arm64
+              - Compiler arm32
+            * - Ubuntu Jammy (22.04)
+              - GCC 11.4, Clang 15
+              -
+              - GCC 11.4, Clang 15
+              -
+            * - Ubuntu Focal (20.04)
+              -
+              -
+              -
+              -
+            * - MacOS Mojave (10.14)
+              - Clang 15
+              -
+              -
+              -
+            * - Windows 10
+              - MSVC v142 (Visual Studio 2019)
+              - MSVC v141 (Visual Studio 2017)
+              -
+              -
+            * - Debian Buster (10)
+              -
+              -
+              -
+              -
+            * - Android 12
+              -
+              -
+              -
+              -
+            * - QNX 7.1
+              -
+              -
+              -
+              -
+
+    .. group-tab:: 2.10.x
+
+        .. list-table::
+
+            * - CMake
+              - 3.16
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Platform
+              - Compiler amd64
+              - Compiler amd32
+              - Compiler arm64
+              - Compiler arm32
+            * - Ubuntu Jammy (22.04)
+              - GCC 9, GCC 11.3, GCC 12.1, Clang 12
+              -
+              - GCC 9, GCC 11.3, GCC 12.1, Clang 12
+              -
+            * - Ubuntu Focal (20.04)
+              - GCC 9, GCC 11.3, GCC 12.1, Clang 12
+              -
+              - GCC 9, GCC 11.3, GCC 12.1, Clang 12
+              -
+            * - MacOS Mojave (10.14)
+              - Clang 12
+              -
+              -
+              -
+            * - Windows 10
+              - MSVC v142 (Visual Studio 2019)
+              - MSVC v141 (Visual Studio 2017)
+              -
+              -
+            * - Debian Buster (10)
+              -
+              -
+              -
+              -
+            * - Android 11
+              -
+              -
+              -
+              -
+            * - QNX 7.1
+              -
+              -
+              -
+              -
+    .. group-tab:: 2.6.x
+
+        .. list-table::
+
+            * - CMake
+              - 3.16
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Platform
+              - Compiler amd64
+              - Compiler amd32
+              - Compiler arm64
+              - Compiler arm32
+            * - Ubuntu Focal (20.04)
+              - GCC 9, Clang 12
+              -
+              - GCC 9, Clang 12
+              -
+            * - MacOS Mojave (10.14)
+              - Clang 12
+              -
+              -
+              -
+            * - Windows 10
+              - MSVC v142 (Visual Studio 2019)
+              - MSVC v141 (Visual Studio 2017)
+              -
+              -
+            * - Debian Buster (10)
+              -
+              -
+              -
+              -
+
+.. _related_versions_run_dependencies:
+
+Run time dependencies
+---------------------
+
+The following table shows the corresponding versions of the Fast DDS run time dependencies.
+
 .. tabs::
 
     .. group-tab:: 2.13.x

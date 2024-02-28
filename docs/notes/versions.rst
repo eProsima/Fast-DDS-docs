@@ -13,7 +13,7 @@ This section provides information about the versions of the eProsima software pr
 Build time dependencies
 -----------------------
 
-The following table shows the the different versions of the Fast DDS software dependencies.
+The following table shows the corresponding versions of the Fast DDS dependencies.
 
 .. list-table::
    :header-rows: 1

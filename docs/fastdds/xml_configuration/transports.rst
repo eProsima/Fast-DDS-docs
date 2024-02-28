@@ -59,8 +59,9 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 |                               | :ref:`transport_udp_udp`.                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<non_blocking_send>``       | Whether to set the non-blocking send mode on |br|  | ``bool``             | ``false``|
-|                               | the socket (**UDP only**). See |br|                |                      |          |
-|                               | :ref:`transport_udp_transportDescriptor`.          |                      |          |
+|                               | the socket (**NOT available for SHM type**). See   |                      |          |
+|                               | |br| :ref:`transport_udp_transportDescriptor` and  |                      |          |
+|                               | |br| :ref:`transport_tcp_transportDescriptor`.     |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<output_port>``             | Port used for output bound. |br|                   | ``uint16_t``         | 0        |
 |                               | If this field isn't defined, the output port |br|  |                      |          |

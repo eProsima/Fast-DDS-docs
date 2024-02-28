@@ -96,6 +96,10 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - ``bool``
     - ``false``
     - Enables the TCP_NODELAY socket option.
+  * - |TCPTransportDescriptor::non_blocking_send-api|
+    - ``bool``
+    - ``false``
+    - Do not block on send operations (*).
   * - |TCPTransportDescriptor::calculate_crc-api|
     - ``bool``
     - ``true``
@@ -133,6 +137,15 @@ The following table describes the common data members for both TCPv4 and TCPv6.
 
   If |TCPTransportDescriptor::listening_ports-api| is left empty, the participant will not be able to receive incoming
   connections but will be able to connect to other participants that have configured their listening ports.
+
+.. note::
+
+   When |TCPTransportDescriptor::non_blocking_send-api| is set to ``true``, send operations will return immediately if the
+   send buffer might get full, but no error will be returned to the upper layer.
+   This means that the application will behave as if the packet is sent and lost.
+
+   When set to ``false``, send operations will block until the network buffer has space for the
+   packet.
 
 .. _transport_tcp_v4transportDescriptor:
 

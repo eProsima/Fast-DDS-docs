@@ -8,6 +8,8 @@ This means that the different software products that are part of the Fast DDS ec
 together with Fast DDS.
 This section provides information about the versions of the eProsima software products related to the Fast DDS.
 
+.. _related_versions_build_dependencies:
+
 Build time dependencies
 -----------------------
 
@@ -28,6 +30,8 @@ The following table shows the the different versions of the Fast DDS software de
      - `v6.0.0 <https://github.com/leethomason/tinyxml2/tree/6.0.0>`_
    * - `OpenSSL <https://github.com/openssl/openssl>`_
      - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`_
+
+.. _related_versions_product_compatibility:
 
 eProsima products compatibility
 -------------------------------

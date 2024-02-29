@@ -100,7 +100,9 @@ with distributed systems:
 
 .. toctree::
     :maxdepth: 2
+    :hidden:
 
+    /fastdds/use_cases/tcp/tcp_use_case.rst
     /fastdds/use_cases/wifi/wifi.rst
     /fastdds/use_cases/well_known_deployments/well_known_deployments.rst
     /fastdds/use_cases/large_data/large_data.rst
@@ -108,7 +110,6 @@ with distributed systems:
     /fastdds/use_cases/realtime/realtime.rst
     /fastdds/use_cases/reduce_memory/reduce_memory.rst
     /fastdds/use_cases/zero_copy/zero_copy.rst
-    /fastdds/use_cases/tcp/tcp_use_case.rst
     /fastdds/use_cases/unique_network_flows/unique_network_flows.rst
     /fastdds/use_cases/statistics_module/statistics_module.rst
     /fastdds/use_cases/dynamic_network_interfaces/dynamic_network_interfaces.rst

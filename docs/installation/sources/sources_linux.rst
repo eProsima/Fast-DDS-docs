@@ -70,8 +70,9 @@ Dependencies
 * :ref:`pythonreq_sl` [optional]
 
 .. seealso::
-  For further information about this Fast DDS version dependencies and other products related versions, please check
-  the Fast DDS :ref:`dependencies_compatibilities_library_dependencies` section.
+
+    For further information about this Fast DDS version dependencies and other products related versions, please check
+    the Fast DDS :ref:`dependencies_compatibilities_library_dependencies` section.
 
 .. _asiotinyxml2_sl:
 
@@ -606,6 +607,11 @@ Gradle is an open-source build automation tool which requires a Java version to 
 
     *Fast DDS-Gen* introduced support for Gradle 7 in release v2.2.0.
     Gradle 8 is not yet supported.
+
+.. seealso::
+
+    For further information about Fast DDS-Gen products related versions, please check the
+    :ref:`dependencies_compatibilities_library_dependencies` section.
 
 .. _java_sl:
 

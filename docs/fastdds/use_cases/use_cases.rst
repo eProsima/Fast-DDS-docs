@@ -10,6 +10,12 @@ Typical Use-Cases
 This section provides configuration examples for the following typical use cases when dealing
 with distributed systems:
 
++ :ref:`use-case-tcp`.
+  Describes how to configure *Fast DDS* to use the ``LARGE_DATA`` builtin transports mode. This mode enables
+  efficient utilization of TCP transport without the need for constant reconfiguration during deployment changes. It
+  optimizes communication performance for large data samples over lossy networks by employing a combination of UDP and
+  TCP/SHM transports.
+
 + :ref:`use-case-fast-rtps-over-wifi`.
   Presents a case where :ref:`discovery` through multicast communication is a challenge.
   This example shows how to:

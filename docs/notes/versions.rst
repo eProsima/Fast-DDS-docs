@@ -70,42 +70,42 @@ The following table shows the minimum version required of the Fast DDS build sys
             * - Ubuntu Jammy (22.04)
               - Tier 1: GCC 11.4 :raw-html:`<br />`
                 Tier 3: Clang 15
-              - ❌
+              - **───**
               - Tier 1: GCC 11.4 :raw-html:`<br />`
                 Tier 3: Clang 15
             * - Ubuntu Focal (20.04)
               - Tier 3: GCC 9
-              - ❌
+              - **───**
               - Tier 3: GCC 9
             * - MacOS Mojave (10.14)
               - Tier 1: Clang 15
-              - ❌
-              - ❌
+              - **───**
+              - **───**
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019),
-                :raw-html:`<br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp` MSVC v141 (Visual Studio 2017)
-              - ❌
+              - Tier 2: MSVC v142 (Visual Studio 2019), :raw-html:`<br />`
+                Tier 2: MSVC v141 (Visual Studio 2017)
+              - **───**
             * - Windows 11
               - Tier 3: MSVC v143 (Visual Studio 2022)
               - Tier 3: MSVC v143 (Visual Studio 2022)
-              - ❌
+              - **───**
             * - Debian Buster (10)
               - Tier 3: GCC 8
-              - ❌
+              - **───**
               - Tier 3: GCC 8
             * - Android 12
               - Tier 3: SDK 31
-              - ❌
+              - **───**
               - Tier 3: SDK 31
             * - Android 13
               - Tier 3: SDK 33
-              - ❌
+              - **───**
               - Tier 3: SDK 33
             * - QNX 7.1
               - Tier 3: QCC (over GCC 8.3)
-              - ❌
+              - **───**
               - Tier 3: QCC (over GCC 8.3)
 
     .. group-tab:: 2.12.x
@@ -118,41 +118,41 @@ The following table shows the minimum version required of the Fast DDS build sys
         .. list-table::
             :header-rows: 1
 
-            * - Platform
+            * - OS \ Architecture
               - amd64
               - amd32
               - arm64
             * - Ubuntu Jammy (22.04)
               - Tier 1: GCC 11.4 :raw-html:`<br />`
                 Tier 3: Clang 15
-              - ❌
+              - **───**
               - Tier 1: GCC 11.4 :raw-html:`<br />`
                 Tier 3: Clang 15
             * - Ubuntu Focal (20.04)
               - Tier 3: GCC 9
-              - ❌
+              - **───**
               - Tier 3: GCC 9
             * - MacOS Mojave (10.14)
               - Tier 1: Clang 15
-              - ❌
-              - ❌
+              - **───**
+              - **───**
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019),
-                :raw-html:`<br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp` MSVC v141 (Visual Studio 2017)
-              - ❌
+              - Tier 2: MSVC v142 (Visual Studio 2019), :raw-html:`<br />`
+                Tier 2: MSVC v141 (Visual Studio 2017)
+              - **───**
             * - Debian Buster (10)
               - Tier 3: GCC 8
-              - ❌
+              - **───**
               - Tier 3: GCC 8
             * - Android 12
               - Tier 3: SDK 31
-              - ❌
+              - **───**
               - Tier 3: SDK 31
             * - QNX 7.1
               - Tier 3: QCC (over GCC 8.3)
-              - ❌
+              - **───**
               - Tier 3: QCC (over GCC 8.3)
 
     .. group-tab:: 2.10.x
@@ -165,43 +165,43 @@ The following table shows the minimum version required of the Fast DDS build sys
         .. list-table::
             :header-rows: 1
 
-            * - Platform
+            * - OS \ Architecture
               - amd64
               - amd32
               - arm64
             * - Ubuntu Jammy (22.04)
               - Tier 1: GCC 9, GCC 11.3, GCC 12.1 :raw-html:`<br />`
                 Tier 3: Clang 12
-              - ❌
+              - **───**
               - Tier 1: GCC 9, GCC 11.3, GCC 12.1 :raw-html:`<br />`
                 Tier 3: Clang 12
             * - Ubuntu Focal (20.04)
               - Tier 1: GCC 9, GCC 11.3, GCC 12.1 :raw-html:`<br />`
                 Tier 3: Clang 12
-              - ❌
+              - **───**
               - Tier 1: GCC 9, GCC 11.3, GCC 12.1 :raw-html:`<br />`
                 Tier 3: Clang 12
             * - MacOS Mojave (10.14)
               - Tier 1: Clang 12
-              - ❌
-              - ❌
+              - **───**
+              - **───**
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019),
-                :raw-html:`<br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp` MSVC v141 (Visual Studio 2017)
-              - ❌
+              - Tier 2: MSVC v142 (Visual Studio 2019), :raw-html:`<br />`
+                Tier 2: MSVC v141 (Visual Studio 2017)
+              - **───**
             * - Debian Buster (10)
               - Tier 3: GCC 8
-              - ❌
+              - **───**
               - Tier 3: GCC 8
             * - Android 11
               - Tier 3: SDK 30
-              - ❌
+              - **───**
               - Tier 3: SDK 30
             * - QNX 7.1
               - Tier 3: QCC (over GCC 8.3)
-              - ❌
+              - **───**
               - Tier 3: QCC (over GCC 8.3)
 
     .. group-tab:: 2.6.x
@@ -214,29 +214,29 @@ The following table shows the minimum version required of the Fast DDS build sys
         .. list-table::
             :header-rows: 1
 
-            * - Platform
+            * - OS \ Architecture
               - amd64
               - amd32
               - arm64
             * - Ubuntu Focal (20.04)
               - Tier 1: GCC 9 :raw-html:`<br />`
                 Tier 3: Clang 12
-              - ❌
+              - **───**
               - Tier 1: GCC 9 :raw-html:`<br />`
                 Tier 3: Clang 12
             * - MacOS Mojave (10.14)
               - Tier 1: Clang 12
-              - ❌
-              - ❌
+              - **───**
+              - **───**
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019),
-                :raw-html:`<br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp` MSVC v141 (Visual Studio 2017)
-              - ❌
+              - Tier 2: MSVC v142 (Visual Studio 2019), :raw-html:`<br />`
+                Tier 2: MSVC v141 (Visual Studio 2017)
+              - **───**
             * - Debian Buster (10)
               - Tier 3: GCC 8
-              - ❌
+              - **───**
               - Tier 3: GCC 8
 
 .. _dependencies_compatibilities_library_dependencies:

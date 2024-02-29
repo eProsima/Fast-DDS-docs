@@ -2,7 +2,7 @@
 
 .. _use-case-tcp:
 
-LARGE_DATA mode and Fast DDS over TCP
+Large Data mode and Fast DDS over TCP
 ======================================
 
 As explained in :ref:`transport_tcp_tcp`, Fast DDS offers the possibility to communicate nodes within distributed

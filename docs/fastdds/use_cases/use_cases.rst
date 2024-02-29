@@ -16,8 +16,6 @@ with distributed systems:
   optimizes communication performance for large data samples over lossy networks by employing a combination of UDP and
   TCP/SHM transports.
 
-  TODO Carlos: Insert video demo
-
 + :ref:`use-case-fast-rtps-over-wifi`.
   Presents a case where :ref:`discovery` through multicast communication is a challenge.
   This example shows how to:

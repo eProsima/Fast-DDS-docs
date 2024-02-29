@@ -311,6 +311,10 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
           using the *Fast DDS* DDS-layer API.
         - ``ON`` ``OFF``
         - ``OFF``
+    *   - :class:`FASTDDS_EXAMPLE_TESTS`
+        - Enables the building of example tests for the verification of the Fast DDS examples |br|
+        - ``ON`` ``OFF``
+        - ``OFF``
     *   - :class:`PERFORMANCE_TESTS`
         - Activates the building of performance tests, except for the video test, which requires |br|
           both :class:`PERFORMANCE_TESTS` and :class:`VIDEO_TESTS` to be set to ``ON``.

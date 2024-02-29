@@ -6,14 +6,15 @@ Dependencies and compatibilities
 Fast DDS is continuously evolving and improving.
 This means that the different software products that are part of the Fast DDS ecosystem are evolving and improving
 together with Fast DDS.
-This section provides information about the versions of the eProsima software products related to the Fast DDS.
+This section provides information about the required dependencies for building Fast DDS, and versions of the eProsima
+software products related to the Fast DDS.
 
 .. _dependencies_compatibilities_build_system_dependencies:
 
 Build system dependencies
 -------------------------
 
-The following table shows the minimum version required of the Fast DDS build time dependencies.
+The following table shows the minimum version required of the Fast DDS build system dependencies.
 
 .. tabs::
 
@@ -21,7 +22,7 @@ The following table shows the minimum version required of the Fast DDS build tim
 
         .. list-table::
 
-            * - CMake
+            * - **CMake**
               - 3.20
 
         .. list-table::
@@ -31,58 +32,87 @@ The following table shows the minimum version required of the Fast DDS build tim
               - Compiler amd64
               - Compiler amd32
               - Compiler arm64
-              - Compiler arm32
             * - Ubuntu Jammy (22.04)
-              - GCC 11.4, Clang 15
-              -
-              - GCC 11.4, Clang 15
-              -
+              - Tier 1: GCC 11.4 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 15
+              - ──────────
+              - Tier 1: GCC 11.4 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 15
             * - Ubuntu Focal (20.04)
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 9
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 9
             * - MacOS Mojave (10.14)
-              - Clang 15
-              -
-              -
-              -
+              - Tier 1: Clang 15 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: ─────
+              - ──────────
+              - ──────────
             * - Windows 10
-              - MSVC v142 (Visual Studio 2019)
-              - MSVC v141 (Visual Studio 2017)
-              -
-              -
+              - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
+                Tier 2: MSVC v141 (Visual Studio 2017) :raw-html:`<br />`
+                Tier 3: ─────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: MSVC v142 (Visual Studio 2019),
+                :raw-html:`<br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp`
+                MSVC v141 (Visual Studio 2017) :raw-html:`<br />`
+                Tier 3: ─────
+              - ──────────
             * - Windows 11
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: MSVC v143 (Visual Studio 2022)
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: MSVC v143 (Visual Studio 2022)
+              - ──────────
             * - Debian Buster (10)
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 8
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 8
             * - Android 12
-              -
-              -
-              -
-              -
-            * - Android 11
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: SDK 31
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: SDK 31
+            * - Android 13
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: SDK 33
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: SDK 33
             * - QNX 7.1
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: QCC (over GCC 8.3)
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: QCC (over GCC 8.3)
+
+        For further information regarding **tiers**, please check
+        `the GitHub platform support section <https://github.com/eProsima/Fast-DDS/blob/2.13.x/PLATFORM_SUPPORT.md>`__.
 
     .. group-tab:: 2.12.x
 
         .. list-table::
 
-            * - CMake
+            * - **CMake**
               - 3.22
 
         .. list-table::
@@ -92,48 +122,71 @@ The following table shows the minimum version required of the Fast DDS build tim
               - Compiler amd64
               - Compiler amd32
               - Compiler arm64
-              - Compiler arm32
             * - Ubuntu Jammy (22.04)
-              - GCC 11.4, Clang 15
-              -
-              - GCC 11.4, Clang 15
-              -
+              - Tier 1: GCC 11.4 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 15
+              - ──────────
+              - Tier 1: GCC 11.4 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 15
             * - Ubuntu Focal (20.04)
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 9
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 9
             * - MacOS Mojave (10.14)
-              - Clang 15
-              -
-              -
-              -
+              - Tier 1: Clang 15 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: ─────
+              - ──────────
+              - ──────────
             * - Windows 10
-              - MSVC v142 (Visual Studio 2019)
-              - MSVC v141 (Visual Studio 2017)
-              -
-              -
+              - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
+                Tier 2: MSVC v141 (Visual Studio 2017) :raw-html:`<br />`
+                Tier 3: ─────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: MSVC v142 (Visual Studio 2019),
+                :raw-html:`<br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp`
+                MSVC v141 (Visual Studio 2017) :raw-html:`<br />`
+                Tier 3: ─────
+              - ──────────
             * - Debian Buster (10)
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 8
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 8
             * - Android 12
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: SDK 31
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: SDK 31
             * - QNX 7.1
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: QCC (over GCC 8.3)
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: QCC (over GCC 8.3)
+
+        For further information regarding **tiers**, please check
+        `the GitHub platform support section <https://github.com/eProsima/Fast-DDS/blob/2.12.x/PLATFORM_SUPPORT.md>`__.
 
     .. group-tab:: 2.10.x
 
         .. list-table::
 
-            * - CMake
+            * - **CMake**
               - 3.16
 
         .. list-table::
@@ -143,47 +196,71 @@ The following table shows the minimum version required of the Fast DDS build tim
               - Compiler amd64
               - Compiler amd32
               - Compiler arm64
-              - Compiler arm32
             * - Ubuntu Jammy (22.04)
-              - GCC 9, GCC 11.3, GCC 12.1, Clang 12
-              -
-              - GCC 9, GCC 11.3, GCC 12.1, Clang 12
-              -
+              - Tier 1: GCC 9, GCC 11.3, GCC 12.1 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 12
+              - ──────────
+              - Tier 1: GCC 9, GCC 11.3, GCC 12.1 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 12
             * - Ubuntu Focal (20.04)
-              - GCC 9, GCC 11.3, GCC 12.1, Clang 12
-              -
-              - GCC 9, GCC 11.3, GCC 12.1, Clang 12
-              -
+              - Tier 1: GCC 9, GCC 11.3, GCC 12.1 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 12
+              - ──────────
+              - Tier 1: GCC 9, GCC 11.3, GCC 12.1 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 12
             * - MacOS Mojave (10.14)
-              - Clang 12
-              -
-              -
-              -
+              - Tier 1: Clang 12 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: ─────
+              - ──────────
+              - ──────────
             * - Windows 10
-              - MSVC v142 (Visual Studio 2019)
-              - MSVC v141 (Visual Studio 2017)
-              -
-              -
+              - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
+                Tier 2: MSVC v141 (Visual Studio 2017) :raw-html:`<br />`
+                Tier 3: ─────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: MSVC v142 (Visual Studio 2019),
+                :raw-html:`<br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp`
+                MSVC v141 (Visual Studio 2017) :raw-html:`<br />`
+                Tier 3: ─────
+              - ──────────
             * - Debian Buster (10)
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 8
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 8
             * - Android 11
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: SDK 30
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: SDK 30
             * - QNX 7.1
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: QCC (over GCC 8.3)
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: QCC (over GCC 8.3)
+
+        For further information regarding **tiers**, please check
+        `the GitHub platform support section <https://github.com/eProsima/Fast-DDS/blob/2.10.x/PLATFORM_SUPPORT.md>`__.
+
     .. group-tab:: 2.6.x
 
         .. list-table::
 
-            * - CMake
+            * - **CMake**
               - 3.16
 
         .. list-table::
@@ -193,34 +270,48 @@ The following table shows the minimum version required of the Fast DDS build tim
               - Compiler amd64
               - Compiler amd32
               - Compiler arm64
-              - Compiler arm32
             * - Ubuntu Focal (20.04)
-              - GCC 9, Clang 12
-              -
-              - GCC 9, Clang 12
-              -
+              - Tier 1: GCC 9 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 12
+              - ──────────
+              - Tier 1: GCC 9 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: Clang 12
             * - MacOS Mojave (10.14)
-              - Clang 12
-              -
-              -
-              -
+              - Tier 1: Clang 12 :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: ─────
+              - ──────────
+              - ──────────
             * - Windows 10
-              - MSVC v142 (Visual Studio 2019)
-              - MSVC v141 (Visual Studio 2017)
-              -
-              -
+              - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
+                Tier 2: MSVC v141 (Visual Studio 2017) :raw-html:`<br />`
+                Tier 3: ─────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: MSVC v142 (Visual Studio 2019),
+                :raw-html:`<br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp`
+                MSVC v141 (Visual Studio 2017) :raw-html:`<br />`
+                Tier 3: ─────
+              - ──────────
             * - Debian Buster (10)
-              -
-              -
-              -
-              -
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 8
+              - ──────────
+              - Tier 1: ───── :raw-html:`<br />`
+                Tier 2: ───── :raw-html:`<br />`
+                Tier 3: GCC 8
+
+        For further information regarding **tiers**, please check
+        `the GitHub platform support section <https://github.com/eProsima/Fast-DDS/blob/2.6.x/PLATFORM_SUPPORT.md>`__.
 
 .. _dependencies_compatibilities_library_dependencies:
 
 Library dependencies
 --------------------
 
-The following table shows the corresponding versions of the Fast DDS run time dependencies.
+The following table shows the corresponding versions of the Fast DDS library dependencies.
 
 .. tabs::
 

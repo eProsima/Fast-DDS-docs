@@ -11,6 +11,7 @@ acks
 AES
 alignas
 allocator
+amd
 ament
 ami
 appendable
@@ -55,6 +56,7 @@ cmake
 CMake
 colcon
 Colcon
+compatibilities
 config
 connectionless
 connext

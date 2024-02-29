@@ -71,7 +71,7 @@ Dependencies
 
 .. seealso::
   For further information about this Fast DDS version dependencies and other products related versions, please check
-  the Fast DDS :ref:`related_versions` section.
+  the Fast DDS :ref:`dependencies_compatibilities_library_dependencies` section.
 
 .. _asiotinyxml2_sl:
 

@@ -1,17 +1,17 @@
-.. _related_versions:
+.. _dependencies_compatibilities:
 
-Related versions
-================
+Dependencies and compatibilities
+================================
 
 Fast DDS is continuously evolving and improving.
 This means that the different software products that are part of the Fast DDS ecosystem are evolving and improving
 together with Fast DDS.
 This section provides information about the versions of the eProsima software products related to the Fast DDS.
 
-.. _related_versions_build_dependencies:
+.. _dependencies_compatibilities_build_system_dependencies:
 
-Build time dependencies
------------------------
+Build system dependencies
+-------------------------
 
 The following table shows the minimum version required of the Fast DDS build time dependencies.
 
@@ -215,10 +215,10 @@ The following table shows the minimum version required of the Fast DDS build tim
               -
               -
 
-.. _related_versions_run_dependencies:
+.. _dependencies_compatibilities_library_dependencies:
 
-Run time dependencies
----------------------
+Library dependencies
+--------------------
 
 The following table shows the corresponding versions of the Fast DDS run time dependencies.
 
@@ -296,7 +296,7 @@ The following table shows the corresponding versions of the Fast DDS run time de
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v1.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-1.1.1>`__
 
-.. _related_versions_product_compatibility:
+.. _dependencies_compatibilities_product_compatibility:
 
 eProsima products compatibility
 -------------------------------

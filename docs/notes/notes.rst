@@ -31,8 +31,8 @@ This patch release includes the following **fixes**:
   using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.
 
 .. seealso::
-  For further information about this version dependencies and other products related versions, please check the Fast
-  DDS :ref:`related_versions` section.
+  For further information about other products versions related to this version, please check the Fast
+  DDS :ref:`dependencies_compatibilities_product_compatibility` section.
 
 Previous versions
 =================

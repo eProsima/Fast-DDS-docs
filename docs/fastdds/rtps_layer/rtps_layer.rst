@@ -190,9 +190,9 @@ function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`R
 
 .. warning::
 
-  To obtain a better performance when working with large data messages it is extremely recommended to set through
-  :ref:`dds_layer_domainParticipantQos` the send and receive buffer sizes of the TCP transport to the maximum default
-  system value. See :ref:`finding-out-maximum-socket-values` to learn how to check it.
+  To obtain a better performance when working with large data messages it is extremely recommended to use the
+  builtin transports configuration options to adjust the transport to the specific needs of the application.
+  Please refer to :ref:`use-case-large-data-options` for more information about how to configure it.
 
 Configuring Readers and Writers
 -------------------------------

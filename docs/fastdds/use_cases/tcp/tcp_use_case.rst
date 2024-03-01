@@ -25,6 +25,11 @@ networks. When configured, UDP transport will exclusively be used during the :re
 taking advantage of the more reliable TCP/SHM for the remainder of the communication process. Fast DDS offers
 an extremely straightforward implementation for this mode through an environment variable, XML profiles or via code.
 
+For a video demonstration showcasing a practical example of this configuration, please refer to:
+`Large Data communication with ROS 2
+<https://docs.vulcanexus.org/en/latest/rst/use_cases/large_data/large_data.html>`_.
+
+
 Also, it is possible to enable TCP communication while using
 :ref:`discovery-server-use-case` to manage :ref:`discovery`.
 

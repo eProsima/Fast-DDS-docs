@@ -133,6 +133,11 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     -
     - |ThreadSettings| for the threads processing incoming TCP connection requests.
 
+.. warning::
+
+  Although the member |TCPTransportDescriptor::listening_ports-api| accepts multiple ports, only the first listening port
+  will be effectively used. The rest of the ports will be ignored.
+
 .. note::
 
   If |TCPTransportDescriptor::listening_ports-api| is left empty, the participant will not be able to receive incoming

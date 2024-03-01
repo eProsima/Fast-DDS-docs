@@ -48,6 +48,11 @@ The :code:`src` folder contains the following packages:
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
 * :code:`fastddsgen`, a Java application that generates source code using the data types defined in an IDL file.
 
+.. seealso::
+
+    For further information about Fast DDS related packages, please check the Fast DDS
+    :ref:`dependencies_compatibilities` section.
+
 In case any of these components is unwanted, it can be simply renamed or removed from the :code:`src`
 directory.
 

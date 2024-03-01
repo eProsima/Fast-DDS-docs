@@ -168,6 +168,23 @@ Main Features
   dependencies (such as *eProsima Fast CDR*) and the external ones (such as the *foonathan* library) are free and
   open source.
 
+Dependencies and compatibilities
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*eProsima Fast DDS* is continuously evolving and improving.
+This means that the different software products that are part of the Fast DDS ecosystem are evolving and improving
+together with Fast DDS.
+
+Fast DDS has some :ref:`library dependencies <dependencies_compatibilities_library_dependencies>` as the previously
+mentioned Fast CDR for data serialization, or OpenSSL for secure communication, for instance.
+Basing on different :ref:`platform support levels <dependencies_compatibilities_platform_support>`, it has also
+different :ref:`build dependencies <dependencies_compatibilities_build_system_dependencies>`.
+
+Finally, there are some other *eProsima* products that are use Fast DDS as a middleware, such as *Micro XRCE-DDS*,
+*DDS Router* and *Fast DDS python* wrapper.
+Those which are strongly attached to each Fast DDS supported version are described in :ref:`this product compatibility
+table<dependencies_compatibilities_product_compatibility>`.
+
 Contacts and Commercial support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

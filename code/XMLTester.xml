@@ -2544,6 +2544,29 @@
 </participant>
 <!--><-->
 
+<!-->DDS_SECURITY_AUTH_HANDSHAKE_PROPS<-->
+<participant profile_name="secure_domainparticipant_conf_auth_handshake_props_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.max_handshake_requests</name>
+                    <value>5</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.initial_handshake_resend_period</name>
+                    <value>250</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.handshake_resend_period_gain</name>
+                    <value>1.5</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->DDS_SECURITY_ACCESS_CONTROL_PLUGIN<-->
 <participant profile_name="secure_domainparticipant_conf_access_control_plugin_xml_profile">
     <rtps>

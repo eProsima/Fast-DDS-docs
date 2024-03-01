@@ -110,29 +110,37 @@ All existing values, along with a brief description, are shown below:
 
 .. _env_vars_large_data_options:
 
-Configuring LARGE_DATA options
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring builtin transports options
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``LARGE_DATA`` builtin transports option has been designed to improve performance when working with large data.
+Fast DDS offers a straightforward method to configure three main parameters of every builtin transport via the
+environment variable. However, this feature proves particularly valuable when employing the ``LARGE_DATA`` builtin
+transports option.
+The ``LARGE_DATA`` mode has been designed to improve performance when working with large data.
 However, according to each specific use case, the user might want to configure several options to better fit their
-needs. Fast DDS offers an easy way to configure three main parameters of the ``LARGE_DATA`` option using the
-environment variable:
+needs. This mode can also be configured with the ``tcp_negotiation_timeout`` parameter:
 
-+----------------------------+------------------------------------------------------------------------------+
-| Builtin Transports Options | Description                                                                  |
-+============================+==============================================================================+
-| ``max_msg_size``           | It determines the maximum message size that will be specified in the         |
-|                            | transport layer. |br| Selecting a message size large enough to accommodate   |
-|                            | the largest data message will |br| prevent fragmentation, which can          |
-|                            | significantly enhance the overall sending rate.                              |
-+----------------------------+------------------------------------------------------------------------------+
-| ``sockets_size``           | It determines the size of the send and receive socket buffers. This parameter|
-|                            | needs to be |br| higher or equal to the maximum message size specified in    |
-|                            | order to be valid.                                                           |
-+----------------------------+------------------------------------------------------------------------------+
-| ``non_blocking``           | It determines whether to use non-blocking send calls or not. When activated, |
-|                            | the |br| transport will discard messages if the socket buffers are full.     |
-+----------------------------+------------------------------------------------------------------------------+
++----------------------------+--------------------------------------------------------------------+-------------------+
+| Builtin Transports Options | Description                                                        | Type              |
++============================+====================================================================+===================+
+| ``max_msg_size``           | It determines the maximum message size that will be specified |br| | uint32_t          |
+|                            | in the transport layer. Selecting a message size large |br|        |                   |
+|                            | enough to accommodate the largest data message will |br|           |                   |
+|                            | prevent fragmentation, which can significantly enhance |br|        |                   |
+|                            | the overall sending rate.                                          |                   |
++----------------------------+--------------------------------------------------------------------+-------------------+
+| ``sockets_size``           | It determines the size of the send and receive socket buffers. |br|| uint32_t          |
+|                            | This parameter needs to be higher or equal to the maximum |br|     |                   |
+|                            | message size specified in order to be valid.                       |                   |
++----------------------------+--------------------------------------------------------------------+-------------------+
+| ``non_blocking``           | It determines whether to use non-blocking send calls or not. |br|  | bool              |
+|                            | When activated, the transport will discard messages if the |br|    |                   |
+|                            | socket buffers are full.                                           |                   |
++----------------------------+--------------------------------------------------------------------+-------------------+
+| ``tcp_negotiation_timeout``| It determines the time to wait for logical port negotiation. |br|  | uint32_t          |
+|                            | Only valid if the ``LARGE_DATA`` mode is being used. |br|          |                   |
+|                            | It only accepts milliseconds.                                      |                   |
++----------------------------+--------------------------------------------------------------------+-------------------+
 
 The environment variable accepts several types of units to specify the values of the parameters. Also, both lowercase
 and uppercase letters are valid. The following list shows the available units and their corresponding symbols:
@@ -147,13 +155,14 @@ and uppercase letters are valid. The following list shows the available units an
 
 .. code-block:: bash
 
-    export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=200KB&sockets_size=1MB&non_blocking=true
+    export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=200KB&sockets_size=1MB&non_blocking=true&tcp_negotiation_timeout=50
 
 .. note::
-    When working with large data, it is recommended to set the ``max_msg_size`` and ``sockets_size`` to a value large
-    enough to accommodate the largest data message and to set the ``non_blocking`` to ``TRUE``. Note that activating
-    the ``non_blocking`` option with a small message size (with fragmentation) can lead to an increase of messages
-    drop rate and produce undesired results. For more information, please refer to :ref:`use-case-large-data-options`.
+    When working with ``LARGE_DATA``, it is recommended to set the ``max_msg_size`` and ``sockets_size`` to a value
+    large enough to accommodate the largest data message and to set the ``non_blocking`` to ``TRUE``. Note that
+    activating the ``non_blocking`` option with a small message size (with fragmentation) can lead to an increase of
+    messages drop rate and produce undesired results. For more information, please refer to
+    :ref:`use-case-large-data-options`.
 
 .. warning::
     Setting a ``max_msg_size`` higher than 65500 KB is only possible when using the ``LARGE_DATA`` builtin transports

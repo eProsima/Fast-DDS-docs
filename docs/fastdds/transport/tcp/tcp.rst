@@ -71,7 +71,7 @@ The following table describes the common data members for both TCPv4 and TCPv6.
   * - |TCPTransportDescriptor::listening_ports-api|
     - ``vector<uint16_t>``
     - Empty vector
-    - List of ports to listen as *server*. If a port is set to 0, an available port will be automatically assigned.
+    - List of ports to listen as *server*. If a port is set to 0, an available port will be automatically assigned. 
   * - |TCPTransportDescriptor::keep_alive_frequency_ms-api|
     - ``uint32_t``
     - 5000
@@ -132,6 +132,11 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - |ThreadSettings|
     -
     - |ThreadSettings| for the threads processing incoming TCP connection requests.
+
+.. warning::
+
+  Although the member |TCPTransportDescriptor::listening_ports-api| accepts multiple ports, only the first listening port
+  will be effectively used. The rest of the ports will be ignored.
 
 .. note::
 

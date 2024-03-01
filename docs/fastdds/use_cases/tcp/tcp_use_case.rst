@@ -24,6 +24,8 @@ when the deployment changes over time.
 networks. When configured, UDP transport will exclusively be used during the :ref:`PDP discovery<disc_phases>` phase,
 taking advantage of the more reliable TCP/SHM for the remainder of the communication process. Fast DDS offers
 an extremely straightforward implementation for this mode through an environment variable, XML profiles or via code.
+Additionally, it is possible to use the builtin transports configuration options to customize the ``LARGE_DATA`` mode
+to better suit the specific requirements of each user.
 
 For a video demonstration showcasing a practical example of this configuration, please refer to:
 `Large Data communication with ROS 2

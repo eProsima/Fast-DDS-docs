@@ -23,6 +23,11 @@ All builtin transports can be configured by adjusting the following parameters:
 + ``non_blocking``: If set to true, the transport will use non-blocking sockets. This can be useful to avoid
   blocking the application if the socket buffers are full. However, some messages will be lost. Its default value is
   false.
++ ``tcp_negotiation_timeout``: It specifies the timeout duration for logical port negotiation. This parameter is
+  useful for ensuring the availability of the logical port before data transmission, thus preventing message
+  loss during the negotiation process. Conversely, it can delay the discovery process. The default value is 0,
+  implying that discovery will occur as soon as possible, but the initial messages might be lost if reliability
+  is set to |BEST_EFFORT_RELIABILITY_QOS-api|. This parameter is only valid for the ``LARGE_DATA`` mode.
 
 Adjusting the maximum message and the socket buffer sizes to a value large enough to accommodate the data to be sent
 and setting the transport to non-blocking mode can help to improve the performance with large messages. In this
@@ -43,7 +48,7 @@ The following snippets show how to configure the ``LARGE_DATA`` mode:
 
       .. code-block:: bash
 
-         export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=1MB&sockets_size=1MB&non_blocking=true
+         export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=1MB&sockets_size=1MB&non_blocking=true&tcp_negotiation_timeout=50
 
    .. tab:: XML
 

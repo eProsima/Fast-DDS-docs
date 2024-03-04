@@ -164,16 +164,16 @@ The following table shows the minimum version required of the Fast DDS build sys
               - arm64
             * - Ubuntu Jammy (22.04)
               - Tier 1: GCC 9 :raw-html:`<br />`
-                Tier 3: Clang 12, GCC 11.3, GCC 12.1
+                Tier 3: Clang 12
               - **───**
               - Tier 1: GCC 9 :raw-html:`<br />`
-                Tier 3: Clang 12, GCC 11.3, GCC 12.1
+                Tier 3: Clang 12
             * - Ubuntu Focal (20.04)
               - Tier 1: GCC 9 :raw-html:`<br />`
-                Tier 3: Clang 12, GCC 11.3, GCC 12.1
+                Tier 3: Clang 12
               - **───**
               - Tier 1: GCC 9 :raw-html:`<br />`
-                Tier 3: Clang 12, GCC 11.3, GCC 12.1
+                Tier 3: Clang 12
             * - MacOS Mojave (10.14)
               - Tier 1: Clang 12
               - **───**

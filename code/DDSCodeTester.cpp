@@ -44,9 +44,11 @@
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
 #include <fastrtps/types/DynamicDataFactory.h>
+#include <fastrtps/types/DynamicTypeBuilderFactory.h>
+#include <fastrtps/types/DynamicTypeBuilderPtr.h>
 #include <fastrtps/types/DynamicTypePtr.h>
 #include <fastrtps/utils/IPLocator.h>
-#include <fastrtps/xmlparser/XMLProfileManager.h>
+
 
 using namespace eprosima::fastdds::dds;
 
@@ -911,19 +913,19 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
         static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
-                {
-                    /* Process the case when a new DomainParticipant was found in the domain */
-                    std::cout << "New DomainParticipant '" << info.info.m_participantName <<
-                        "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
+            {
+                /* Process the case when a new DomainParticipant was found in the domain */
+                std::cout << "New DomainParticipant '" << info.info.m_participantName <<
+                    "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
                     info.info.m_guid.guidPrefix << "' discovered." << std::endl;
-                    /* The following line can be substitue to evaluate whether the discovered participant should be ignored */
-                    bool ignoring_condition = false;
-                    if (ignoring_condition)
-                    {
-                        should_be_ignored = true; // Request the ignoring of the discovered participant
-                    }
+                /* The following line can be substitue to evaluate whether the discovered participant should be ignored */
+                bool ignoring_condition = false;
+                if (ignoring_condition)
+                {
+                    should_be_ignored = true;     // Request the ignoring of the discovered participant
                 }
-                break;
+            }
+            break;
             case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::CHANGED_QOS_PARTICIPANT:
                 /* Process the case when a DomainParticipant changed its QOS */
                 break;
@@ -1748,11 +1750,14 @@ void dds_topic_examples()
         }
 
         // Load the XML file with the type description
-        eprosima::fastrtps::xmlparser::XMLProfileManager::loadXMLFile("example_type.xml");
+        DomainParticipantFactory::get_instance()->load_XML_profiles_file("example_type.xml");
 
-        // Retrieve the an instance of the desired type and register it
-        eprosima::fastrtps::types::DynamicType_ptr dyn_type =
-                eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName("DynamicType")->build();
+        // Retrieve the an instance of the desired type
+        eprosima::fastrtps::types::DynamicTypeBuilder* type;
+        DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("DynamicType", type);
+
+        // Build and register it
+        eprosima::fastrtps::types::DynamicType_ptr dyn_type = type->build();
         TypeSupport dyn_type_support(new eprosima::fastrtps::types::DynamicPubSubType(dyn_type));
         dyn_type_support.register_type(participant, nullptr);
 
@@ -4513,8 +4518,10 @@ void xml_profiles_examples()
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             // Retrieve the an instance of MyStruct type
-            eprosima::fastrtps::types::DynamicType_ptr my_struct_type =
-                    eprosima::fastrtps::xmlparser::XMLProfileManager::getDynamicTypeByName("MyStruct")->build();
+            eprosima::fastrtps::types::DynamicTypeBuilder* type;
+            DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("MyStruct", type);
+            eprosima::fastrtps::types::DynamicType_ptr my_struct_type = type->build();
+
             // Register MyStruct type
             TypeSupport my_struct_type_support(new eprosima::fastrtps::types::DynamicPubSubType(my_struct_type));
             my_struct_type_support.register_type(participant, nullptr);
@@ -5828,7 +5835,8 @@ void dds_zero_copy_example()
                             ++samples;
                             std::cout << "Sample received (count=" << samples
                                       << ") at address " << &sample
-                                      << (reader->is_sample_valid(&sample, &infos[i]) ? " is valid" : " was replaced" ) << std::endl
+                                      << (reader->is_sample_valid(&sample,
+                            &infos[i]) ? " is valid" : " was replaced" ) << std::endl
                                       << "  index=" << sample.index() << std::endl
                                       << "  message=" << sample.message().data() << std::endl;
                         }
@@ -6223,7 +6231,8 @@ void tcp_use_cases()
         eprosima::fastdds::dds::DomainParticipantQos qos = PARTICIPANT_QOS_DEFAULT;
 
         // Configure the current participant as SERVER
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
 
         // Add custom user transport with TCP port 12345
         auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
@@ -6248,7 +6257,8 @@ void tcp_use_cases()
         eprosima::fastdds::dds::DomainParticipantQos qos = PARTICIPANT_QOS_DEFAULT;
 
         // Configure the current participant as SERVER
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
+                eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
 
         // Add custom user transport with TCP port 0 (automatic port assignation)
         auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
@@ -6341,12 +6351,11 @@ bool dds_rosbag_example()
     return true;
 }
 
-
 void pubsub_api_example_create_entities()
 {
     //PUBSUB_API_CREATE_PARTICIPANT
     DomainParticipant* participant =
-    DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
     //!--
 
     //PUBSUB_API_CREATE_PUBLISHER
@@ -6355,12 +6364,12 @@ void pubsub_api_example_create_entities()
 
     //CREATE TOPIC
     Topic* custom_topic =
-    participant->create_topic("HelloWorldTopic", "HelloWorld", TOPIC_QOS_DEFAULT);
+            participant->create_topic("HelloWorldTopic", "HelloWorld", TOPIC_QOS_DEFAULT);
     //!--
 
     //PUBSUB_API_CREATE_DATAWRITER
     DataWriter* data_writer =
-        publisher->create_datawriter(custom_topic, DATAWRITER_QOS_DEFAULT);
+            publisher->create_datawriter(custom_topic, DATAWRITER_QOS_DEFAULT);
     //!--
 
     //PUBSUB_API_WRITE_SAMPLE
@@ -6424,8 +6433,8 @@ int main(
         }
         else
         {
-            eprosima::fastrtps::xmlparser::XMLProfileManager parser;
-            if (parser.loadXMLFile(argv[1]) != eprosima::fastrtps::xmlparser::XMLP_ret::XML_OK)
+            if (ReturnCode_t::RETCODE_OK !=
+                    DomainParticipantFactory::get_instance()->load_XML_profiles_file(argv[1]))
             {
                 printf("Error parsing xml file %s\n", argv[1]);
                 exit_code = -1;
@@ -6440,4 +6449,3 @@ int main(
 
     exit(exit_code);
 }
-

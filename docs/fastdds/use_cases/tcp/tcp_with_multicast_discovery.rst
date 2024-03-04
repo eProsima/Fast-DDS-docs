@@ -3,52 +3,61 @@
 
 .. _use-case-tcp-multicast:
 
-TCP / SHM Communication with Multicast Discovery
-================================================
+TCP / SHM Communication with Multicast Discovery (LARGE_DATA)
+=============================================================
 
 The following snippets show how to configure *Fast DDS* |DomainParticipants| to run the
 :ref:`PDP discovery<disc_phases>` phase over UDP multicast and communicate application data over a
-:ref:`transport_tcp_tcp` transport.
+:ref:`transport_tcp_tcp` or :ref:`transport_sharedMemory_sharedMemory`, which is called the ``LARGE_DATA``
+configuration (See :ref:`rtps_layer_builtin_transports`).
 With this approach, applications managing large samples can benefit from transmitting their data over TCP or SHM,
 while at the same time have the flexibility of automatic discovery.
+The ``LARGE_DATA`` mode can be set using the ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable
+(see :ref:`env_vars_builtin_transports`), XML profiles or via code.
 
 .. tabs::
 
-   .. tab:: C++
+   .. tab:: Environment Variable
 
-      .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: //LARGE_DATA_BUILTIN_TRANSPORTS
-        :end-before: //!
+      .. code-block:: bash
+
+         export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
 
    .. tab:: XML
 
       .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
-          :end-before: <!--><-->
-          :lines: 2-4, 6-13, 15-16
+         :language: xml
+         :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
+         :end-before: <!--><-->
+         :lines: 2-4, 6-13, 15-16
+
+   .. tab:: C++
+
+      .. literalinclude:: ../../../../code/DDSCodeTester.cpp
+         :language: c++
+         :dedent: 8
+         :start-after: //LARGE_DATA_BUILTIN_TRANSPORTS
+         :end-before: //!
 
 .. note::
    ``LARGE_DATA`` configuration of the builtin transports will also create a SHM transport along the UDP and TCP
    transports. Shared Memory will be used whenever it is possible. Manual configuration will be required if a TCP
    communication is required when SHM is feasible.
 
-.. tabs::
+   .. tabs::
 
-   .. tab:: C++
+      .. tab:: C++
 
-      .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: //PDP-MULTICAST-DATA-TCP
-        :end-before: //!
+         .. literalinclude:: ../../../../code/DDSCodeTester.cpp
+            :language: c++
+            :dedent: 8
+            :start-after: //PDP-MULTICAST-DATA-TCP
+            :end-before: //!
 
-   .. tab:: XML
+      .. tab:: XML
 
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->PDP-MULTICAST-DATA-TCP<-->
-          :end-before: <!--><-->
-          :lines: 2-4, 6-80, 82-83
+         .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->PDP-MULTICAST-DATA-TCP<-->
+            :end-before: <!--><-->
+            :lines: 2-4, 6-80, 82-83

@@ -11,8 +11,9 @@
 #include <fastrtps/log/FileConsumer.h>
 #include <fastrtps/TopicDataType.h>
 #include <fastrtps/types/DynamicDataFactory.h>
+#include <fastrtps/types/DynamicTypeBuilderFactory.h>
+#include <fastrtps/types/DynamicTypeBuilderPtr.h>
 #include <fastrtps/utils/IPLocator.h>
-#include <fastrtps/xmlparser/XMLProfileManager.h>
 
 #include <fstream>
 
@@ -296,7 +297,8 @@ void rtps_api_example_conf()
 void xml_dyn_examples_check()
 {
     //XML-DYN-ENUM
-    DynamicTypeBuilder_ptr enum_builder = DynamicTypeBuilderFactory::get_instance()->create_enum_builder();
+    eprosima::fastrtps::types::DynamicTypeBuilder_ptr enum_builder =
+            DynamicTypeBuilderFactory::get_instance()->create_enum_builder();
     enum_builder->set_name("MyEnum");
     enum_builder->add_empty_member(0, "A");
     enum_builder->add_empty_member(1, "B");
@@ -304,23 +306,30 @@ void xml_dyn_examples_check()
     DynamicType_ptr enum_type = DynamicTypeBuilderFactory::get_instance()->create_type(enum_builder.get());
     //!--
     //XML-TYPEDEF
-    DynamicTypeBuilder_ptr alias1_builder = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(
+    eprosima::fastrtps::types::DynamicTypeBuilder_ptr alias1_builder =
+            DynamicTypeBuilderFactory::get_instance()->create_alias_builder(
         enum_builder.get(), "MyAlias1");
     DynamicType_ptr alias1_type = DynamicTypeBuilderFactory::get_instance()->create_type(alias1_builder.get());
 
     std::vector<uint32_t> sequence_lengths = { 2, 2 };
-    DynamicTypeBuilder_ptr int_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
-    DynamicTypeBuilder_ptr array_builder = DynamicTypeBuilderFactory::get_instance()->create_array_builder(
+    eprosima::fastrtps::types::DynamicTypeBuilder_ptr int_builder =
+            DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+    eprosima::fastrtps::types::DynamicTypeBuilder_ptr array_builder =
+            DynamicTypeBuilderFactory::get_instance()->create_array_builder(
         int_builder.get(), sequence_lengths);
-    DynamicTypeBuilder_ptr alias2_builder = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(
+    eprosima::fastrtps::types::DynamicTypeBuilder_ptr alias2_builder =
+            DynamicTypeBuilderFactory::get_instance()->create_alias_builder(
         array_builder.get(), "MyAlias2");
     DynamicType_ptr alias2_type = DynamicTypeBuilderFactory::get_instance()->create_type(alias2_builder.get());
     //!--
     {
         //XML-STRUCT
-        DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
-        DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
-        DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
 
         struct_builder->set_name("MyStruct");
         struct_builder->add_member(0, "first", long_builder.get());
@@ -330,16 +339,19 @@ void xml_dyn_examples_check()
     }
     {
         //XML-STRUCT-INHERIT
-        DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
-        DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
-        DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
 
         struct_builder->set_name("ParentStruct");
         struct_builder->add_member(0, "first", long_builder.get());
         struct_builder->add_member(1, "second", long_long_builder.get());
         DynamicType_ptr struct_type = DynamicTypeBuilderFactory::get_instance()->create_type(struct_builder.get());
 
-        DynamicTypeBuilder_ptr child_builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr child_builder =
                 DynamicTypeBuilderFactory::get_instance()->create_child_struct_builder(struct_builder.get());
 
         child_builder->set_name("ChildStruct");
@@ -350,11 +362,16 @@ void xml_dyn_examples_check()
     }
     {
         //XML-UNION
-        DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
-        DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
-        DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
-        DynamicTypeBuilder_ptr octet_builder = DynamicTypeBuilderFactory::get_instance()->create_byte_builder();
-        DynamicTypeBuilder_ptr union_builder = DynamicTypeBuilderFactory::get_instance()->create_union_builder(
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr octet_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_byte_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr union_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_union_builder(
             octet_builder.get());
 
         union_builder->set_name("MyUnion");
@@ -366,7 +383,8 @@ void xml_dyn_examples_check()
     }
     {
         //XML-GENERIC
-        DynamicTypeBuilder_ptr long_long_builder = DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int64_builder();
         long_long_builder->set_name("my_long");
         DynamicType_ptr long_long_type =
                 DynamicTypeBuilderFactory::get_instance()->create_type(long_long_builder.get());
@@ -374,11 +392,12 @@ void xml_dyn_examples_check()
     }
     {
         //XML-BOUNDEDSTRINGS
-        DynamicTypeBuilder_ptr string_builder = DynamicTypeBuilderFactory::get_instance()->create_string_builder(41925);
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr string_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_string_builder(41925);
         string_builder->set_name("my_large_string");
         DynamicType_ptr string_type = DynamicTypeBuilderFactory::get_instance()->create_type(string_builder.get());
 
-        DynamicTypeBuilder_ptr wstring_builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr wstring_builder =
                 DynamicTypeBuilderFactory::get_instance()->create_wstring_builder(20925);
         wstring_builder->set_name("my_large_wstring");
         DynamicType_ptr wstring_type = DynamicTypeBuilderFactory::get_instance()->create_type(wstring_builder.get());
@@ -387,8 +406,10 @@ void xml_dyn_examples_check()
     {
         //XML-ARRAYS
         std::vector<uint32_t> lengths = { 2, 3, 4 };
-        DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
-        DynamicTypeBuilder_ptr array_builder = DynamicTypeBuilderFactory::get_instance()->create_array_builder(
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr array_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_array_builder(
             long_builder.get(), lengths);
         array_builder->set_name("long_array");
         DynamicType_ptr array_type = DynamicTypeBuilderFactory::get_instance()->create_type(array_builder.get());
@@ -397,12 +418,15 @@ void xml_dyn_examples_check()
     {
         //XML-SEQUENCES
         uint32_t child_len = 2;
-        DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
-        DynamicTypeBuilder_ptr seq_builder = DynamicTypeBuilderFactory::get_instance()->create_sequence_builder(
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr seq_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_sequence_builder(
             long_builder.get(),
             child_len);
         uint32_t length = 3;
-        DynamicTypeBuilder_ptr seq_seq_builder = DynamicTypeBuilderFactory::get_instance()->create_sequence_builder(
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr seq_seq_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_sequence_builder(
             seq_builder.get(), length);
         seq_seq_builder->set_name("my_sequence_sequence");
         DynamicType_ptr seq_type = DynamicTypeBuilderFactory::get_instance()->create_type(seq_seq_builder.get());
@@ -411,12 +435,15 @@ void xml_dyn_examples_check()
     {
         //XML-MAPS
         uint32_t length = 2;
-        DynamicTypeBuilder_ptr long_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
-        DynamicTypeBuilder_ptr map_builder = DynamicTypeBuilderFactory::get_instance()->create_map_builder(
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr long_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr map_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_map_builder(
             long_builder.get(),
             long_builder.get(), length);
 
-        DynamicTypeBuilder_ptr map_map_builder = DynamicTypeBuilderFactory::get_instance()->create_map_builder(
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr map_map_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_map_builder(
             long_builder.get(),
             map_builder.get(), length);
         map_map_builder->set_name("my_map_map");
@@ -426,7 +453,7 @@ void xml_dyn_examples_check()
     {
         //XML-BITSET
         DynamicTypeBuilderFactory* m_factory = DynamicTypeBuilderFactory::get_instance();
-        DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitset_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitset_builder();
         builder_ptr->add_member(0, "a", m_factory->create_byte_builder()->build());
         builder_ptr->add_member(1, "b", m_factory->create_bool_builder()->build());
         builder_ptr->add_member(3, "c", m_factory->create_uint16_builder()->build());
@@ -445,7 +472,7 @@ void xml_dyn_examples_check()
     {
         //XML-BITMASK
         DynamicTypeBuilderFactory* m_factory = DynamicTypeBuilderFactory::get_instance();
-        DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitmask_builder(8);
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitmask_builder(8);
         builder_ptr->add_empty_member(0, "flag0");
         builder_ptr->add_empty_member(1, "flag1");
         builder_ptr->add_empty_member(2, "flag2");
@@ -456,7 +483,7 @@ void xml_dyn_examples_check()
     {
         //XML-BITSET-INHERIT
         DynamicTypeBuilderFactory* m_factory = DynamicTypeBuilderFactory::get_instance();
-        DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitset_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder_ptr = m_factory->create_bitset_builder();
         builder_ptr->add_member(0, "a", m_factory->create_byte_builder()->build());
         builder_ptr->add_member(1, "b", m_factory->create_bool_builder()->build());
         builder_ptr->apply_annotation_to_member(0, ANNOTATION_BIT_BOUND_ID, "value", "3");
@@ -465,7 +492,8 @@ void xml_dyn_examples_check()
         builder_ptr->apply_annotation_to_member(1, ANNOTATION_POSITION_ID, "value", "3");
         builder_ptr->set_name("ParentBitSet");
 
-        DynamicTypeBuilder_ptr child_ptr = m_factory->create_child_struct_builder(builder_ptr.get());
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr child_ptr = m_factory->create_child_struct_builder(
+            builder_ptr.get());
         child_ptr->add_member(3, "c", m_factory->create_uint16_builder()->build());
         child_ptr->add_member(4, "d", m_factory->create_int16_builder()->build());
         child_ptr->apply_annotation_to_member(3, ANNOTATION_BIT_BOUND_ID, "value", "10");
@@ -475,97 +503,6 @@ void xml_dyn_examples_check()
         child_ptr->set_name("ChildBitSet");
         //!--
     }
-    {
-        //XML-USAGE
-        // Load the XML File
-        if (eprosima::fastrtps::xmlparser::XMLP_ret::XML_OK !=
-                eprosima::fastrtps::xmlparser::XMLProfileManager::loadXMLFile("types.xml"))
-        {
-            std::cout << "Cannot open XML file \"types.xml\". "
-                      << "Please, set the correct path to the XML file"
-                      << std::endl;
-        }
-        // Create the "MyStructPubSubType"
-        eprosima::fastrtps::types::DynamicPubSubType* pbType =
-                eprosima::fastrtps::xmlparser::XMLProfileManager::CreateDynamicPubSubType("MyStruct");
-        // Create a "MyStruct" instance
-        eprosima::fastrtps::types::DynamicData* data =
-                eprosima::fastrtps::types::DynamicDataFactory::get_instance()->create_data(
-            pbType->GetDynamicType());
-        //!--
-    }
-}
-
-void security_configuration()
-{
-    //SECURITY_CONF_ALL_PLUGINS
-    eprosima::fastrtps::ParticipantAttributes part_attr;
-
-    // Activate Auth:PKI-DH plugin
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
-
-    // Configure Auth:PKI-DH plugin
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
-            "file://maincacert.pem");
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
-            "file://appcert.pem");
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key", "file://appkey.pem");
-
-    // Activate Access:Permissions plugin
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.access.plugin", "builtin.Access-Permissions");
-
-    // Configure Access:Permissions plugin
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.permissions_ca",
-            "file://maincacet.pem");
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.governance",
-            "file://governance.smime");
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.access.builtin.Access-Permissions.permissions",
-            "file://permissions.smime");
-
-    // Activate Crypto:AES-GCM-GMAC plugin
-    part_attr.rtps.properties.properties().emplace_back("dds.sec.crypto.plugin", "builtin.AES-GCM-GMAC");
-    //!--
-
-    {
-        //SECURITY_CONF_AUTH_AND_CRYPT_PLUGINS
-        eprosima::fastrtps::ParticipantAttributes part_attr;
-
-        // Activate Auth:PKI-DH plugin
-        part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
-
-        // Configure Auth:PKI-DH plugin
-        part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
-                "file://maincacert.pem");
-        part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
-                "file://appcert.pem");
-        part_attr.rtps.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
-                "file://appkey.pem");
-
-        // Activate Crypto:AES-GCM-GMAC plugin
-        part_attr.rtps.properties.properties().emplace_back("dds.sec.crypto.plugin", "builtin.AES-GCM-GMAC");
-
-        // Encrypt all RTPS submessages
-        part_attr.rtps.properties.properties().emplace_back("rtps.participant.rtps_protection_kind", "ENCRYPT");
-        //!--
-
-        //SECURITY_CONF_PUBLISHER_AUTH_AND_CRYPT_PLUGINS
-        eprosima::fastrtps::PublisherAttributes pub_attr;
-
-        // Encrypt RTPS submessages
-        pub_attr.properties.properties().emplace_back("rtps.endpoint.submessage_protection_kind", "ENCRYPT");
-
-        // Encrypt payload
-        pub_attr.properties.properties().emplace_back("rtps.endpoint.payload_protection_kind", "ENCRYPT");
-        //!--
-
-        //SECURITY_CONF_SUBSCRIBER_AUTH_AND_CRYPT_PLUGINS
-        eprosima::fastrtps::SubscriberAttributes sub_attr;
-
-        // Encrypt RTPS submessages
-        sub_attr.properties.properties().emplace_back("rtps.endpoint.submessage_protection_kind", "ENCRYPT");
-        //!--
-    }
-
 }
 
 void dynamictypes_configuration()
@@ -573,7 +510,8 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_QUICK_EXAMPLE
         // Create a builder for a specific type
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_enum_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_enum_builder();
 
         // Use the builder to configure the type
         builder->add_empty_member(0, "DEFAULT");
@@ -598,7 +536,8 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_PRIMITIVES
         // Using Builders
-        DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr created_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_int32_builder();
         DynamicType_ptr created_type = DynamicTypeBuilderFactory::get_instance()->create_type(created_builder.get());
         DynamicData* data = DynamicDataFactory::get_instance()->create_data(created_type);
         data->set_int32_value(1);
@@ -613,7 +552,8 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_STRINGS
         // Using Builders
-        DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::get_instance()->create_string_builder(100);
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr created_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_string_builder(100);
         DynamicType_ptr created_type = DynamicTypeBuilderFactory::get_instance()->create_type(created_builder.get());
         DynamicData* data = DynamicDataFactory::get_instance()->create_data(created_type);
         data->set_string_value("Dynamic String");
@@ -628,11 +568,13 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_ALIAS
         // Create the base type
-        DynamicTypeBuilder_ptr base_builder = DynamicTypeBuilderFactory::get_instance()->create_string_builder(100);
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr base_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_string_builder(100);
         DynamicType_ptr base_type = DynamicTypeBuilderFactory::get_instance()->create_type(base_builder.get());
 
         // Create alias using Builders
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(base_type,
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_alias_builder(base_type,
                         "alias");
         DynamicData* data = DynamicDataFactory::get_instance()->create_data(builder.get());
         data->set_string_value("Dynamic Alias String");
@@ -647,7 +589,8 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_ENUMERATIONS
         // Add enumeration values using the DynamicTypeBuilder
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_enum_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_enum_builder();
         builder->add_empty_member(0, "DEFAULT");
         builder->add_empty_member(1, "FIRST");
         builder->add_empty_member(2, "SECOND");
@@ -672,16 +615,17 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_BITSETS
         // Create bitfields with the appropriate type for their size
-        DynamicTypeBuilder_ptr base_type_byte_builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr base_type_byte_builder =
                 DynamicTypeBuilderFactory::get_instance()->create_byte_builder();
         auto base_type_byte = base_type_byte_builder->build();
 
-        DynamicTypeBuilder_ptr base_type_uint32_builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr base_type_uint32_builder =
                 DynamicTypeBuilderFactory::get_instance()->create_uint32_builder();
         auto base_type_uint32 = base_type_uint32_builder->build();
 
         // Create the bitset with two bitfields
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_bitset_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_bitset_builder();
         builder->add_member(0, "byte", base_type_byte);
         builder->add_member(1, "uint32", base_type_uint32);
 
@@ -703,7 +647,7 @@ void dynamictypes_configuration()
         data->get_uint32_value(uValue, 1);
         //!--
         //DYNAMIC_TYPES_CREATE_BITSETS-INHERIT
-        DynamicTypeBuilder_ptr child_builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr child_builder =
                 DynamicTypeBuilderFactory::get_instance()->create_child_struct_builder(builder.get());
         //!--
     }
@@ -713,7 +657,8 @@ void dynamictypes_configuration()
         uint32_t limit = 5; // Stores as "octet"
 
         // Add bitmask flags using the DynamicTypeBuilder
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_bitmask_builder(limit);
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_bitmask_builder(limit);
         builder->add_empty_member(0, "FIRST");
         builder->add_empty_member(1, "SECOND");
 
@@ -737,7 +682,8 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_STRUCTS
         // Build a structure with two fields ("first" as int32, "other" as uint64) using DynamicTypeBuilder
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
         builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type());
         builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance()->create_uint64_type());
         DynamicType_ptr struct_type(builder->build());
@@ -750,7 +696,7 @@ void dynamictypes_configuration()
         data->set_uint64_value(13, 1);
         //!--
         //DYNAMIC_TYPES_CREATE_STRUCTS-INHERIT
-        DynamicTypeBuilder_ptr child_builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr child_builder =
                 DynamicTypeBuilderFactory::get_instance()->create_child_struct_builder(builder.get());
         //!--
     }
@@ -759,7 +705,8 @@ void dynamictypes_configuration()
         //DYNAMIC_TYPES_CREATE_UNIONS
         // Create the union DynamicTypeBuilder with an int32 discriminator
         DynamicType_ptr discriminator = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_union_builder(discriminator);
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_union_builder(discriminator);
 
         // Add the union members. "firts" will be the default value
         builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type(), "", { 0 },
@@ -786,7 +733,7 @@ void dynamictypes_configuration()
         // Create a DynamicTypeBuilder for a sequence of two elements of type inte32
         uint32_t length = 2;
         DynamicType_ptr base_type = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-        DynamicTypeBuilder_ptr builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
                 DynamicTypeBuilderFactory::get_instance()->create_sequence_builder(base_type, length);
 
         // Create the data instance
@@ -806,7 +753,7 @@ void dynamictypes_configuration()
         // Create an array DynamicTypeBuilder for a 2x2 elements of type int32
         std::vector<uint32_t> lengths = { 2, 2 };
         DynamicType_ptr base_type = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-        DynamicTypeBuilder_ptr builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
                 DynamicTypeBuilderFactory::get_instance()->create_array_builder(base_type, lengths);
 
         // Create the data instance
@@ -826,7 +773,7 @@ void dynamictypes_configuration()
         // Create DynamicTypeBuilder for a map of two pairs of {key:int32, value:int32}
         uint32_t length = 2;
         DynamicType_ptr base = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-        DynamicTypeBuilder_ptr builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
                 DynamicTypeBuilderFactory::get_instance()->create_map_builder(base, base, length);
 
         // Create the data instance
@@ -859,13 +806,15 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_NESTED_STRUCTS
         // Create a struct type
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
         builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type());
         builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance()->create_uint64_type());
         DynamicType_ptr struct_type = builder->build();
 
         // Create a struct type with the previous struct as member
-        DynamicTypeBuilder_ptr parent_builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr parent_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
         parent_builder->add_member(0, "child_struct", struct_type);
         parent_builder->add_member(1, "second", DynamicTypeBuilderFactory::get_instance()->create_int32_type());
         DynamicData_ptr data(DynamicDataFactory::get_instance()->create_data(parent_builder.get()));
@@ -881,12 +830,13 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_INHERITANCE_STRUCTS
         // Create a base struct type
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
         builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type());
         builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance()->create_uint64_type());
 
         // Create a struct type derived from the previous struct
-        DynamicTypeBuilder_ptr child_builder =
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr child_builder =
                 DynamicTypeBuilderFactory::get_instance()->create_child_struct_builder(builder.get());
 
         // Add new members to the derived type
@@ -906,11 +856,14 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_NESTED_ALIAS
         // Using Builders
-        DynamicTypeBuilder_ptr created_builder = DynamicTypeBuilderFactory::get_instance()->create_string_builder(100);
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr created_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_string_builder(100);
         DynamicType_ptr created_type = DynamicTypeBuilderFactory::get_instance()->create_type(created_builder.get());
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_alias_builder(
             created_builder.get(), "alias");
-        DynamicTypeBuilder_ptr builder2 = DynamicTypeBuilderFactory::get_instance()->create_alias_builder(
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder2 =
+                DynamicTypeBuilderFactory::get_instance()->create_alias_builder(
             builder.get(), "alias2");
         DynamicData* data(DynamicDataFactory::get_instance()->create_data(builder2->build()));
         data->set_string_value("Dynamic Alias 2 String");
@@ -929,14 +882,16 @@ void dynamictypes_configuration()
         //DYNAMIC_TYPES_CREATE_NESTED_UNIONS
         // Create a union DynamicTypeBuilder
         DynamicType_ptr discriminator = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_union_builder(discriminator);
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_union_builder(discriminator);
 
         // Add a int32 to the union
         builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type(), "", { 0 },
                 true);
 
         // Create a struct type and add it to the union
-        DynamicTypeBuilder_ptr struct_builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
         struct_builder->add_member(0, "first", DynamicTypeBuilderFactory::get_instance()->create_int32_type());
         struct_builder->add_member(1, "other", DynamicTypeBuilderFactory::get_instance()->create_uint64_type());
         builder->add_member(1, "first", struct_builder.get(), "", { 1 }, false);
@@ -956,7 +911,8 @@ void dynamictypes_configuration()
     {
         //DYNAMIC_TYPES_CREATE_ANNOTATION
         // Apply the annotation
-        DynamicTypeBuilder_ptr builder = DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr builder =
+                DynamicTypeBuilderFactory::get_instance()->create_struct_builder();
         //...
         builder->apply_annotation("MyAnnotation", "value", "5");
         builder->apply_annotation("MyAnnotation", "name", "length");
@@ -993,7 +949,8 @@ void dynamictypes_configuration()
 
     {
         //DYNAMIC_TYPES_NOTES_2
-        DynamicTypeBuilder_ptr pBuilder = DynamicTypeBuilderFactory::get_instance()->create_uint32_builder();
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr pBuilder =
+                DynamicTypeBuilderFactory::get_instance()->create_uint32_builder();
         DynamicType_ptr pType = DynamicTypeBuilderFactory::get_instance()->create_int32_type();
         DynamicData_ptr pData(DynamicDataFactory::get_instance()->create_data(pType));
         //!--
@@ -1008,7 +965,8 @@ void dynamictypes_configuration()
 
         // In HelloWorldPublisher.cpp
         // Create basic builders
-        DynamicTypeBuilder_ptr struct_type_builder(DynamicTypeBuilderFactory::get_instance()->create_struct_builder());
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_type_builder(DynamicTypeBuilderFactory::get_instance()
+                        ->create_struct_builder());
 
         // Add members to the struct.
         struct_type_builder->add_member(0, "index", DynamicTypeBuilderFactory::get_instance()->create_uint32_type());
@@ -1032,7 +990,8 @@ void dynamictypes_configuration()
 
         // In HelloWorldPublisher.cpp
         // Create basic builders
-        DynamicTypeBuilder_ptr struct_type_builder(DynamicTypeBuilderFactory::get_instance()->create_struct_builder());
+        eprosima::fastrtps::types::DynamicTypeBuilder_ptr struct_type_builder(DynamicTypeBuilderFactory::get_instance()
+                        ->create_struct_builder());
 
         // Add members to the struct.
         struct_type_builder->add_member(0, "index", DynamicTypeBuilderFactory::get_instance()->create_uint32_type());
@@ -1060,18 +1019,18 @@ bool permissions_test(
 
     // Activate Auth:PKI-DH plugin
     part_attr.properties.properties().emplace_back("dds.sec.auth.plugin",
-        "builtin.PKI-DH");
+            "builtin.PKI-DH");
 
     // Configure Auth:PKI-DH plugin
     part_attr.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_ca",
-        main_ca_file);
+            main_ca_file);
     part_attr.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.identity_certificate",
-        appcert_file);
+            appcert_file);
     part_attr.properties.properties().emplace_back("dds.sec.auth.builtin.PKI-DH.private_key",
-        appkey_file);
+            appkey_file);
 
     part_attr.properties.properties().emplace_back("dds.sec.access.plugin",
-        "builtin.Access-Permissions");
+            "builtin.Access-Permissions");
 
     // Configure DDS:Access:Permissions plugin
     part_attr.properties.properties().emplace_back(

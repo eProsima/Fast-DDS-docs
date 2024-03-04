@@ -3,8 +3,8 @@
 
 .. _use-case-tcp-multicast:
 
-LARGE_DATA: TCP / SHM Communication with Multicast Discovery
-=============================================================
+Large Data Mode
+===============
 
 The following snippets show how to configure *Fast DDS* |DomainParticipants| to run the
 :ref:`PDP discovery<disc_phases>` phase over UDP multicast and communicate application data over a

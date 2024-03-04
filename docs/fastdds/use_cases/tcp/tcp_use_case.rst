@@ -3,7 +3,7 @@
 .. _use-case-tcp:
 
 Large Data mode and Fast DDS over TCP
-======================================
+=====================================
 
 As explained in :ref:`transport_tcp_tcp`, Fast DDS offers the possibility to communicate nodes within distributed
 applications with DDS over a TCP transport layer.
@@ -24,6 +24,10 @@ when the deployment changes over time.
 networks. When configured, UDP transport will exclusively be used during the :ref:`PDP discovery<disc_phases>` phase,
 taking advantage of the more reliable TCP/SHM for the remainder of the communication process. Fast DDS offers
 an extremely straightforward implementation for this mode through an environment variable, XML profiles or via code.
+
+For a video demonstration showcasing a practical example of this configuration, please refer to:
+`Large Data communication with ROS 2
+<https://docs.vulcanexus.org/en/latest/rst/use_cases/large_data/large_data.html>`_.
 
 Also, it is possible to enable TCP communication while using
 :ref:`discovery-server-use-case` to manage :ref:`discovery`.

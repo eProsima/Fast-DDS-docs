@@ -17,3 +17,7 @@ Security
    crypto_plugin/crypto_plugin
    logging_plugin/logging_plugin
    pkcs11_support/pkcs11_support
+
+Also, the following section contains the list of :ref:`propertypolicyqos`
+that can be set within *Fast DDS Security*:
+:ref:`Security Property QoS Settings <property_policies_security>`.

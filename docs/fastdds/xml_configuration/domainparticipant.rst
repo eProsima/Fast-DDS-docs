@@ -211,7 +211,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-128, 130-131
+    :lines: 2-4, 6-126, 128-129
 
 .. note::
 

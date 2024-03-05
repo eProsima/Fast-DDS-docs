@@ -399,9 +399,7 @@
 
                 <useBuiltinTransports>false</useBuiltinTransports>
 
-                <builtinTransports max_msg_size="50KB" sockets_size="50KB" non_blocking="false">
-                    <mode>DEFAULT</mode>
-                </builtinTransports>
+                <builtinTransports max_msg_size="50KB" sockets_size="50KB" non_blocking="false">DEFAULT</builtinTransports>
 
                 <propertiesPolicy>
                     <properties>

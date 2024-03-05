@@ -1302,9 +1302,7 @@
 
                 <useBuiltinTransports>false</useBuiltinTransports>
 
-                <builtinTransports>
-                    <mode>DEFAULT</mode>
-                </builtinTransports>
+                <builtinTransports>DEFAULT</builtinTransports>
 
                 <propertiesPolicy>
                     <!-- PROPERTIES_POLICY -->
@@ -3898,9 +3896,7 @@
         -->
         <participant profile_name="large_data_builtin_transports" is_default_profile="true">
             <rtps>
-                <builtinTransports>
-                    <mode>LARGE_DATA</mode>
-                </builtinTransports>
+                <builtinTransports>LARGE_DATA</builtinTransports>
             </rtps>
         </participant>
 <!--
@@ -3917,9 +3913,7 @@
 -->
         <participant profile_name="large_data_builtin_transports_options" is_default_profile="true">
             <rtps>
-                <builtinTransports max_msg_size="200KB" sockets_size="200KB" non_blocking="true" tcp_negotiation_timeout="50">
-                    <mode>LARGE_DATA</mode>
-                </builtinTransports>
+                <builtinTransports max_msg_size="200KB" sockets_size="200KB" non_blocking="true" tcp_negotiation_timeout="50">LARGE_DATA</builtinTransports>
             </rtps>
         </participant>
 <!--

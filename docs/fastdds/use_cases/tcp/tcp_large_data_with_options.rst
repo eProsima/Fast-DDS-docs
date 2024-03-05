@@ -56,7 +56,7 @@ The following snippets show how to configure the ``LARGE_DATA`` mode:
          :language: xml
          :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS_OPTIONS<-->
          :end-before: <!--><-->
-         :lines: 2-4, 6-12, 14-15
+         :lines: 2-4, 6-10, 12-13
 
    .. tab:: C++
 

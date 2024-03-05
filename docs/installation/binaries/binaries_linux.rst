@@ -50,8 +50,8 @@ The :code:`src` folder contains the following packages:
 
 .. seealso::
 
-    For further information about Fast DDS related packages, please check the Fast DDS
-    :ref:`dependencies_compatibilities` section.
+    For further information about Fast DDS dependencies, as well as for the corresponding versions of other related
+    products, please refer to the Fast DDS :ref:`dependencies_compatibilities` section.
 
 In case any of these components is unwanted, it can be simply renamed or removed from the :code:`src`
 directory.

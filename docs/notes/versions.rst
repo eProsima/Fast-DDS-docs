@@ -1,3 +1,6 @@
+
+.. include:: ../03-exports/roles.include
+
 .. _dependencies_compatibilities:
 
 Dependencies and compatibilities
@@ -6,8 +9,8 @@ Dependencies and compatibilities
 Fast DDS is continuously evolving and improving.
 This means that the different software products that are part of the Fast DDS ecosystem are evolving and improving
 together with Fast DDS.
-This section provides information about the required dependencies for building Fast DDS, and versions of the eProsima
-software products related to the Fast DDS.
+This section provides information about the required dependencies for building Fast DDS, as well as about the versions
+of the eProsima software products related to the Fast DDS.
 
 .. _dependencies_compatibilities_platform_support:
 
@@ -61,10 +64,10 @@ The following table shows the minimum version required of the Fast DDS build sys
               - amd32
               - arm64
             * - Ubuntu Jammy (22.04)
-              - Tier 1: GCC 11.4 :raw-html:`<br />`
+              - Tier 1: GCC 11.4 |br|
                 Tier 3: Clang 15
               - **───**
-              - Tier 1: GCC 11.4 :raw-html:`<br />`
+              - Tier 1: GCC 11.4 |br|
                 Tier 3: Clang 15
             * - Ubuntu Focal (20.04)
               - Tier 3: GCC 9
@@ -75,9 +78,9 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - **───**
             * - Windows 10
-              - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), :raw-html:`<br />`
+              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Windows 11
@@ -116,10 +119,10 @@ The following table shows the minimum version required of the Fast DDS build sys
               - amd32
               - arm64
             * - Ubuntu Jammy (22.04)
-              - Tier 1: GCC 11.4 :raw-html:`<br />`
+              - Tier 1: GCC 11.4 |br|
                 Tier 3: Clang 15
               - **───**
-              - Tier 1: GCC 11.4 :raw-html:`<br />`
+              - Tier 1: GCC 11.4 |br|
                 Tier 3: Clang 15
             * - Ubuntu Focal (20.04)
               - Tier 3: GCC 9
@@ -130,9 +133,9 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - **───**
             * - Windows 10
-              - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), :raw-html:`<br />`
+              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Debian Buster (10)
@@ -163,25 +166,25 @@ The following table shows the minimum version required of the Fast DDS build sys
               - amd32
               - arm64
             * - Ubuntu Jammy (22.04)
-              - Tier 1: GCC 9 :raw-html:`<br />`
+              - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
               - **───**
-              - Tier 1: GCC 9 :raw-html:`<br />`
+              - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
             * - Ubuntu Focal (20.04)
-              - Tier 1: GCC 9 :raw-html:`<br />`
+              - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
               - **───**
-              - Tier 1: GCC 9 :raw-html:`<br />`
+              - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
             * - MacOS Mojave (10.14)
               - Tier 1: Clang 12
               - **───**
               - **───**
             * - Windows 10
-              - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), :raw-html:`<br />`
+              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Debian Buster (10)
@@ -212,19 +215,19 @@ The following table shows the minimum version required of the Fast DDS build sys
               - amd32
               - arm64
             * - Ubuntu Focal (20.04)
-              - Tier 1: GCC 9 :raw-html:`<br />`
+              - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
               - **───**
-              - Tier 1: GCC 9 :raw-html:`<br />`
+              - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
             * - MacOS Mojave (10.14)
               - Tier 1: Clang 12
               - **───**
               - **───**
             * - Windows 10
-              - Tier 1: MSVC v142 (Visual Studio 2019) :raw-html:`<br />`
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), :raw-html:`<br />`
+              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Debian Buster (10)

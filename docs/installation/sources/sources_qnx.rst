@@ -28,8 +28,8 @@ sources. The following packages will be installed:
 
 .. seealso::
 
-    For further information about Fast DDS library dependencies, please check the Fast DDS
-    :ref:`dependencies_compatibilities_library_dependencies` section.
+    For further information about Fast DDS library dependencies, as well as for the corresponding versions of other
+    related products, please refer to the Fast DDS :ref:`dependencies_compatibilities_library_dependencies` section.
 
 The :ref:`requirements_sw_qnx` detailed below needs to be met first.
 
@@ -60,7 +60,7 @@ If this is not the case, please adjust the paths accordingly.
 
 .. seealso::
 
-    For further information about Fast DDS build system dependencies regarding QNX 7.1, please check the Fast DDS
+    For further information about Fast DDS build system dependencies regarding QNX 7.1, please refer to the Fast DDS
     :ref:`dependencies_compatibilities_build_system_dependencies` section.
 
 .. _cmake_pip3_git_sw:

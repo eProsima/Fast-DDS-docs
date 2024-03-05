@@ -33,8 +33,8 @@ This patch release includes the following **fixes**:
 
 .. seealso::
 
-    For further information about other products versions related to this version, please check the
-    :ref:`dependencies_compatibilities_product_compatibility` section.
+    For further information about the corresponding versions of other products related to this Fast DDS version, please
+    refer to the :ref:`dependencies_compatibilities_product_compatibility` section.
 
 Previous versions
 =================

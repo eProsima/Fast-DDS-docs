@@ -72,8 +72,8 @@ By default, the installation will download all the available packages, namely:
 
 .. seealso::
 
-    For further information about Fast DDS related packages, please check the Fast DDS
-    :ref:`dependencies_compatibilities` section.
+    For further information about Fast DDS dependencies, as well as for the corresponding versions of other related
+    products, please refer to the Fast DDS :ref:`dependencies_compatibilities` section.
 
 .. _env_vars_bw:
 

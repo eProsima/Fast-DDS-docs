@@ -351,3 +351,47 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
            :language: xml
            :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
            :end-before: <!--><-->
+
+.. _property_policies_tcp_non_blocking_send:
+
+TCP Non-blocking send
+^^^^^^^^^^^^^^^^^^^^^
+
+TCP transport will by default configure a :ref:`transport_tcp_tcp` with blocking send calls.
+When ``fastdds.tcp_transport.non_blocking_send`` property is set to ``true``, send operations will
+return immediately if the send buffer is full, but no error will be returned to the upper layer.
+This means that the application will behave as if the packet is sent and lost.
+
+When set to ``false``, send operations will block until the network buffer has space for the
+packet.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos value
+     - Description
+     - Default
+   * - ``"false"``
+     - Block on send operations when send buffer is full.
+     - ✅
+   * - ``"true"``
+     - Do not block on send operations when send buffer is full.
+     -
+
+.. tabs::
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //DDS-TCP-NON-BLOCKING-SEND
+           :end-before: //!--
+           :dedent: 8
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+           :language: xml
+           :start-after: <!-->XML-TCP-NON-BLOCKING-SEND
+           :end-before: <!--><-->

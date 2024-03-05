@@ -3,42 +3,48 @@
 
 .. _use-case-large-data-options:
 
-LARGE_DATA with configuration options
+Large Data with configuration options
 =====================================
 
 As it has been observed in :ref:`use-case-tcp-multicast`, ``LARGE_DATA`` builtin transports option offers an easy
-and efficient way to improve performance when working with large data. Nonetheless, custom configuration can help
-to enhance the performance even further.
+and efficient way to improve performance when working with large data.
+Nonetheless, custom configuration can help to enhance the performance even further.
 
-Fast DDS provides configuration options to adjust the behavior of the builtin transports. This becomes particularly
-relevant when using the ``LARGE_DATA`` mode, as it enables increasing the maximum message size beyond 65500 KB and
-prevents fragmentation, leveraging the TCP and SHM transports.
+Fast DDS provides configuration options to adjust the behavior of the builtin transports.
+This becomes particularly relevant when using the ``LARGE_DATA`` mode, as it enables increasing the maximum message
+size beyond 65500 KB and prevents fragmentation, leveraging the TCP and SHM transports.
 
 All builtin transports can be configured by adjusting the following parameters:
 
-+ ``max_msg_size``: Maximum size of the message that can be sent over the transport. Sending messages larger
-  than this size will result in fragmentation. Its maximum value is 2^32-1 for TCP and SHM and 65500 KB for UDP.
-+ ``sockets_size``: Size of the send and receive socket buffers. This value must be higher or equal than the
-  ``max_msg_size`` to obtain a valid configuration. Its maximum value is 2^32-1.
-+ ``non_blocking``: If set to true, the transport will use non-blocking sockets. This can be useful to avoid
-  blocking the application if the socket buffers are full. However, some messages will be lost. Its default value is
-  false.
-+ ``tcp_negotiation_timeout``: It specifies the timeout duration for logical port negotiation. This parameter is
-  useful for ensuring the availability of the logical port before data transmission, thus preventing message
-  loss during the negotiation process. Conversely, it can delay the discovery process. The default value is 0,
-  implying that discovery will occur as soon as possible, but the initial messages might be lost if reliability
-  is set to |BEST_EFFORT_RELIABILITY_QOS-api|. This parameter is only valid for the ``LARGE_DATA`` mode.
++ ``max_msg_size``: Message maximum size that can be sent over the transport.
+  Sending messages larger than this size will result in fragmentation.
+  Its maximum value is (2^32)-1 B for TCP and SHM and 65500 KB for UDP.
++ ``sockets_size``: Size of the send and receive socket buffers.
+  This value must be higher or equal than the ``max_msg_size`` to obtain a valid configuration.
+  Its maximum value is (2^32)-1 B.
++ ``non_blocking``: If set to true, the transport will use non-blocking sockets.
+  This can be useful to avoid blocking the application if the socket buffers are full.
+  However, some messages will be lost. Its default value is false.
++ ``tcp_negotiation_timeout``: It specifies the timeout duration for logical port negotiation.
+  This parameter is useful for ensuring the availability of the logical port before data transmission,
+  thus preventing message loss during the negotiation process.
+  Conversely, it can delay the discovery process.
+  The default value is 0, implying that discovery will occur as soon as possible, but the initial messages
+  might be lost if reliability is set to |BEST_EFFORT_RELIABILITY_QOS-api|.
+  This parameter is only valid for the ``LARGE_DATA`` mode.
 
-Adjusting the maximum message and the socket buffer sizes to a value large enough to accommodate the data to be sent
-and setting the transport to non-blocking mode can help to improve the performance with large messages. In this
-way, it is possible to take advantage of the TCP transport to avoid fragmentation and use the non-blocking mode to
-avoid blocking the application when the socket buffers are full. This configuration can be used, for example, when
-streaming video, which will result in a significant increase in fluidity.
+Adjusting the maximum message size and the socket buffer sizes to a large enough value to accommodate the data to be
+sent can help improve the performance with large messages, as well as setting the transport to non-blocking mode.
 
-Note than even when using the ``LARGE_DATA`` mode within the same machine, the configuration options
-can prove useful for improving performance, as they affect the SHM transport. It is highly recommended to set
-a shared memory segment size large enough to accommodate the data to be sent. To achieve this, the ``sockets_size``
-parameter must be set to a value at least half of the message size.
+In this way, it is possible to take advantage of the TCP transport to avoid fragmentation and use the non-blocking
+mode to avoid blocking the application when the socket buffers are full.
+This configuration can be used, for example, when streaming video, which will result in a significant increase
+in fluidity.
+
+Note that even when using the ``LARGE_DATA`` mode within the same machine, the configuration options
+can prove useful for improving performance, as they affect the SHM transport.
+It is highly recommended to set a shared memory segment size large enough to accommodate the data to be sent.
+To achieve this, the ``sockets_size`` parameter must be set to a value at least half of the message size.
 
 The following snippets show how to configure the ``LARGE_DATA`` mode:
 

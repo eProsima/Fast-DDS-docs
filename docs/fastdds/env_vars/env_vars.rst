@@ -114,11 +114,13 @@ Configuring builtin transports options
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Fast DDS offers a straightforward method to configure three main parameters of every builtin transport via the
-environment variable. However, this feature proves particularly valuable when employing the ``LARGE_DATA`` builtin
+environment variable.
+However, this feature proves particularly valuable when employing the ``LARGE_DATA`` builtin
 transports option.
 The ``LARGE_DATA`` mode has been designed to improve performance when working with large data.
 However, according to each specific use case, the user might want to configure several options to better fit their
-needs. This mode can also be configured with the ``tcp_negotiation_timeout`` parameter:
+needs.
+This mode can also be configured with the ``tcp_negotiation_timeout`` parameter:
 
 +----------------------------+--------------------------------------------------------------------+-------------------+
 | Builtin Transports Options | Description                                                        | Type              |
@@ -142,8 +144,9 @@ needs. This mode can also be configured with the ``tcp_negotiation_timeout`` par
 |                            | It only accepts milliseconds.                                      |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
 
-The environment variable accepts several types of units to specify the values of the parameters. Also, both lowercase
-and uppercase letters are valid. The following list shows the available units and their corresponding symbols:
+The environment variable accepts several types of units to specify the values of the parameters.
+Also, both lowercase and uppercase letters are valid.
+The following list shows the available units and their corresponding symbols:
 
 + ``B``: Bytes. This is the default unit, so it is not necessary to specify it.
 + ``KB``: Kilobytes.
@@ -159,15 +162,16 @@ and uppercase letters are valid. The following list shows the available units an
 
 .. note::
     When working with ``LARGE_DATA``, it is recommended to set the ``max_msg_size`` and ``sockets_size`` to a value
-    large enough to accommodate the largest data message and to set the ``non_blocking`` to ``TRUE``. Note that
-    activating the ``non_blocking`` option with a small message size (with fragmentation) can lead to an increase of
-    messages drop rate and produce undesired results. For more information, please refer to
-    :ref:`use-case-large-data-options`.
+    large enough to accommodate the largest data message and to set the ``non_blocking`` to ``TRUE``.
+    Note that activating the ``non_blocking`` option with a small message size (with fragmentation)
+    can lead to an increase of messages drop rate and produce undesired results.
+    For more information, please refer to :ref:`use-case-large-data-options`.
 
 .. warning::
     Setting a ``max_msg_size`` higher than 65500 KB is only possible when using the ``LARGE_DATA`` builtin transports
-    option. Trying to set it with any other builtin transports will result in an error and the creation of the
-    participant will fail.
+    option.
+    Trying to set it with any other builtin transports will result in an error and the creation of the participant
+    will fail.
 
 
 .. _env_vars_ros_discovery_server:

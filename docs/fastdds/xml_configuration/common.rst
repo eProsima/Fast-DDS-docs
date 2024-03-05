@@ -373,27 +373,27 @@ This tag can be configured with the following attributes:
   * - ``max_msg_size``
     - Maximum message size that will be specified in
       the transport layer. |br|
-      Valid values: from 1 to 2^32-1.
+      Valid values: from 1 to (2^32)-1.
     - ``uint32_t``
     - 65500
   * - ``sockets_size``
     - Size of the send and receive socket buffers.
-      Valid values: from 0 to 2^32-1.
+      Valid values: from 0 to (2^32)-1.
     - ``uint32_t``
     - OS default
   * - ``non_blocking``
     - Whether to use non-blocking send calls or not.
-      Valid values: true or false.
+      Valid values: ``true`` or ``false``.
     - ``bool``
-    - false
+    - ``false``
   * - ``tcp_negotiation_timeout``
     - Timeout duration for logical port negotiation.
-      Valid values: from 1 to 2^32-1. |br|
+      Valid values: from 1 to (2^32)-1. |br|
       Only valid for ``LARGE_DATA`` mode.
     - ``uint32_t``
     - 0
 
-This type must contain the following tag:
+This type must follow this configuration:
 
 .. list-table::
    :header-rows: 1
@@ -402,9 +402,10 @@ This type must contain the following tag:
      - Description
      - Values
      - Default
-   * - ``<mode>``
+   * - ``<builtinTransport>``
      - Defines the builtin transport mode.
-     - ``string_255``
+     - ``NONE`` |br| ``DEFAULT`` |br| ``DEFAULTv6`` |br| ``SHM`` |br| ``UDPv4`` |br| ``UDPv6``
+       |br| ``LARGE_DATA``
      - ``DEFAULT``
 
 .. _CommonQOS:

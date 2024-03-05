@@ -176,7 +176,7 @@ This means that the different software products that are part of the Fast DDS ec
 together with Fast DDS.
 
 Fast DDS has some :ref:`library dependencies <dependencies_compatibilities_library_dependencies>`, e.g. the previously
-mentioned Fast CDR for data serialization, or OpenSSL for secure communication.
+mentioned Fast CDR for data serialization, or OpenSSL for secure communications.
 Depending on different :ref:`platform support levels <dependencies_compatibilities_platform_support>`, it has also
 different :ref:`build dependencies <dependencies_compatibilities_build_system_dependencies>`.
 

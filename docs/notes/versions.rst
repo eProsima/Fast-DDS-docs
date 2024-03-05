@@ -10,7 +10,7 @@ Fast DDS is continuously evolving and improving.
 This means that the different software products that are part of the Fast DDS ecosystem are evolving and improving
 together with Fast DDS.
 This section provides information about the required dependencies for building Fast DDS, as well as about the versions
-of the eProsima software products related to the Fast DDS.
+of the eProsima software products related to Fast DDS.
 
 .. _dependencies_compatibilities_platform_support:
 

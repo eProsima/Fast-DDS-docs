@@ -13,3 +13,8 @@ application.
     definitions
     simple_app/simple_app
     simple_python_app/simple_python_app
+
+.. seealso::
+
+    Check Fast DDS dependencies, libraries, and related packages in the :ref:`dependencies_compatibilities` section.
+

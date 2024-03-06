@@ -26,6 +26,11 @@ sources. The following packages will be installed:
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
 
+.. seealso::
+
+    For further information about Fast DDS library dependencies, as well as for the corresponding versions of other
+    related products, please refer to the Fast DDS :ref:`dependencies_compatibilities_library_dependencies` section.
+
 The :ref:`requirements_sw_qnx` detailed below needs to be met first.
 
 .. _requirements_sw_qnx:
@@ -52,6 +57,11 @@ QNX SDP is QNX's Software Development Platform which contains tools and files wh
 
 For the purpose of these instructions, QNX SDP 7.1 is assumed to be installed at ~/qnx710.
 If this is not the case, please adjust the paths accordingly.
+
+.. seealso::
+
+    For further information about Fast DDS build system dependencies regarding QNX 7.1, please refer to the Fast DDS
+    :ref:`dependencies_compatibilities_build_system_dependencies` section.
 
 .. _cmake_pip3_git_sw:
 

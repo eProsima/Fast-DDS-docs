@@ -124,6 +124,12 @@ Dependencies
 * :ref:`asiotinyxml2_sw`
 * :ref:`openssl_sw`
 
+.. seealso::
+
+    For further information about this Fast DDS version dependencies, as well as for the corresponding versions of
+    other related products, please refer to the Fast DDS :ref:`dependencies_compatibilities_library_dependencies`
+    section.
+
 .. _asiotinyxml2_sw:
 
 Asio and TinyXML2 libraries
@@ -624,6 +630,11 @@ Gradle is an open-source build automation tool which requires a Java version to 
 
     *Fast DDS-Gen* introduced support for Gradle 7 in release v2.2.0.
     Gradle 8 is not yet supported.
+
+.. seealso::
+
+    For further information about Fast DDS-Gen product related versions, please refer to the
+    :ref:`dependencies_compatibilities_library_dependencies` section.
 
 .. _java_sb:
 

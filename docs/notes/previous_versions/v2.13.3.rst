@@ -1,0 +1,25 @@
+Version 2.13.3
+^^^^^^^^^^^^^^
+
+This patch release includes the following **improvements**:
+
+1. Enabling multiple interfaces through whitelist in TCP servers
+2. Set LARGE_DATA Participants logic with the same listening ports
+3. Check History QoS inconsistencies
+
+This patch release includes the following **fixes**:
+
+1. Prevent index overflow and correctly assert the end iterator in DataSharing
+2. Fix the shared memory cleaning script
+3. Fix TCP reconnection after open logical port failure
+4. Fix data race on PDP
+5. Fix doxygen docs warnings. Prepare for compiling with Doxygen 1.10.0
+6. Add missing TypeLookup listeners
+7. Restore Blackbox tests names
+8. Add macOS Github CI
+9. Set 2.11.x as EOL
+
+.. note::
+
+    When upgrading to version 2.13.3 it is **advisable** to regenerate generated source from IDL files
+    using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.

@@ -99,3 +99,5 @@
 
    /notes/versions
    /notes/notes
+   /notes/previous_versions/supported_versions
+   /notes/previous_versions/previous_versions

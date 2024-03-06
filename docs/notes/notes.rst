@@ -11,19 +11,3 @@ Information about the release lifecycle can be found
 
     For further information about the corresponding versions of other products related to this Fast DDS version, please
     refer to the :ref:`dependencies_compatibilities_product_compatibility` section.
-
-Supported versions
-==================
-
-.. toctree::
-    :maxdepth: 1
-
-    previous_versions/supported_versions.rst
-
-Previous end-of-life versions
-=============================
-
-.. toctree::
-    :maxdepth: 1
-
-    previous_versions/previous_versions.rst

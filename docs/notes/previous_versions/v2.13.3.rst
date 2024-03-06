@@ -1,5 +1,5 @@
-`Version 2.13.3 <https://fast-dds.docs.eprosima.com/en/v2.13.3/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 2.13.3 (latest) <https://fast-dds.docs.eprosima.com/en/v2.13.3/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This patch release includes the following **improvements**:
 

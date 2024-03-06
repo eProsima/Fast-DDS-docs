@@ -632,6 +632,7 @@
 .. |TCPTransportDescriptor::keep_alive_thread-api| replace:: :cpp:var:`keep_alive_thread<eprosima::fastdds::rtps::TCPTransportDescriptor::keep_alive_thread>`
 .. |TCPTransportDescriptor::accept_thread-api| replace:: :cpp:var:`accept_thread<eprosima::fastdds::rtps::TCPTransportDescriptor::accept_thread>`
 .. |TCPTransportDescriptor::tls_config-api| replace:: :cpp:var:`tls_config<eprosima::fastdds::rtps::TCPTransportDescriptor::tls_config>`
+.. |TCPTransportDescriptor::tcp_negotiation_timeout-api| replace:: :cpp:var:`tcp_negotiation_timeout<eprosima::fastdds::rtps::TCPTransportDescriptor::tcp_negotiation_timeout>`
 
 .. |TCPTransportDescriptor::TLSConfig-api| replace:: :cpp:struct:`TLSConfig<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig>`
 .. |TCPTransportDescriptor::TLSConfig::add_verify_mode-api| replace:: :cpp:func:`add_verify_mode()<eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::add_verify_mode>`

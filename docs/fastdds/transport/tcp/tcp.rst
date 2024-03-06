@@ -132,6 +132,13 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - |ThreadSettings|
     -
     - |ThreadSettings| for the threads processing incoming TCP connection requests.
+  * - |TCPTransportDescriptor::tcp_negotiation_timeout-api|
+    - ``uint32_t``
+    - 0
+    - Time to wait for logical port negotiation (in ms). If a logical port is under negotiation, it waits for the
+      negotiation to finish up to this timeout before trying to send a message to that port. Setting this option to
+      non-zero values increases the discovery time. Setting it to zero means no wait but could lead to loss of first
+      messages.
 
 .. warning::
 

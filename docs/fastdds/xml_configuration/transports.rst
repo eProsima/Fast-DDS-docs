@@ -111,6 +111,9 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 | ``<enable_tcp_nodelay>``      | Socket option for disabling the Nagle |br|         | ``bool``             | ``false``|
 |                               | algorithm. (**TCP only**).                         |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
+| ``<tcp_negotiation_timeout>`` | Time to wait for logical port negotiation (in ms)  | ``uint32_t``         | ``0``    |
+|                               | |br| (**TCP only**).                               |                      |          |
++-------------------------------+----------------------------------------------------+----------------------+----------+
 | ``<segment_size>``            | Size (in bytes) of the shared-memory segment. |br| | ``uint32_t``         | 262144   |
 |                               | (Optional, **SHM only**).                          |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+

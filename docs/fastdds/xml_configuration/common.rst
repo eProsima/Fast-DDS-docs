@@ -360,7 +360,22 @@ BuiltinTransports
 It controls the builtin transports that will be used during the initialization of the DomainParticipant.
 Please refer to :ref:`rtps_layer_builtin_transports` for further information on builtin transports.
 
-This tag can be configured with the following attributes:
+This type must follow this configuration:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<builtinTransport>``
+     - Defines the builtin transport mode.
+     - ``NONE`` |br| ``DEFAULT`` |br| ``DEFAULTv6`` |br| ``SHM`` |br| ``UDPv4`` |br| ``UDPv6``
+       |br| ``LARGE_DATA``
+     - ``DEFAULT``
+
+The ``<builtinTransport>`` tag can be configured with the following attributes:
 
 .. list-table::
   :header-rows: 1
@@ -392,21 +407,6 @@ This tag can be configured with the following attributes:
       Only valid for ``LARGE_DATA`` mode.
     - ``uint32_t``
     - 0
-
-This type must follow this configuration:
-
-.. list-table::
-   :header-rows: 1
-
-   * - Name
-     - Description
-     - Values
-     - Default
-   * - ``<builtinTransport>``
-     - Defines the builtin transport mode.
-     - ``NONE`` |br| ``DEFAULT`` |br| ``DEFAULTv6`` |br| ``SHM`` |br| ``UDPv4`` |br| ``UDPv6``
-       |br| ``LARGE_DATA``
-     - ``DEFAULT``
 
 .. _CommonQOS:
 

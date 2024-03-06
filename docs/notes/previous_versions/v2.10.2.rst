@@ -1,5 +1,5 @@
-Version 2.10.2
-^^^^^^^^^^^^^^
+`Version 2.10.2 <https://fast-dds.docs.eprosima.com/en/v2.10.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **improvements**:
 

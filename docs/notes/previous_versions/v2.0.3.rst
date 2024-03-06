@@ -1,5 +1,5 @@
-Version 2.0.3 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 2.0.3 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.0.3/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It also includes the following **improvements**:
 

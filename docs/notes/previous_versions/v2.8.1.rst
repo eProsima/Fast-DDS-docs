@@ -1,5 +1,5 @@
-Version 2.8.1 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 2.8.1 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.8.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **bugfixes**:
 

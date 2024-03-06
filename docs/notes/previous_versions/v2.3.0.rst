@@ -1,5 +1,5 @@
-Version 2.3.0 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 2.3.0 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.3.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This minor release is API compatible with the previous minor release, but introduces **ABI breaks** on
 two of the three public APIs:

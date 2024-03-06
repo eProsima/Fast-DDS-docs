@@ -1,5 +1,5 @@
-Version 2.6.7
-^^^^^^^^^^^^^
+`Version 2.6.7 <https://fast-dds.docs.eprosima.com/en/v2.6.7/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **features**:
 

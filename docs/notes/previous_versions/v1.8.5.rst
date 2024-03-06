@@ -1,5 +1,5 @@
-Version 1.8.5 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 1.8.5 (EOL) <https://fast-dds.docs.eprosima.com/en/v1.8.5/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **bugfixes**:
 

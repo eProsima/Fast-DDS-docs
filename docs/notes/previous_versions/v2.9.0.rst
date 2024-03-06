@@ -1,5 +1,5 @@
-Version 2.9.0 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 2.9.0 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.9.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This minor release includes several new features (new log macros to avoid conflicts with external libraries), behavior
 change (default memory management policy is no longer
@@ -18,7 +18,7 @@ fixes.
     It is also advisable to regenerate the type support from the IDL files using
     `Fast DDS-Gen v2.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.3.0>`_.
     Furthermore, if upgrading to v2.9.0, it is also recommended to upgrade Fast CDR to
-    `v1.0.26 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.26>`_.
+    `v1.0.06 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.06>`_.
 
 This release includes the following **features**:
 

@@ -119,6 +119,7 @@ GCC
 GCM
 getter
 getters
+gibibyte
 github
 Github
 GMAC
@@ -148,6 +149,7 @@ IPv
 json
 kB
 keyhash
+kibibyte
 latencies
 le
 Libp
@@ -163,6 +165,7 @@ LTS
 macOS
 mandatorily
 md
+mebibyte
 metatraffic
 middleware
 misconfigurations

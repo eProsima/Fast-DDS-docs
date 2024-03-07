@@ -38,5 +38,9 @@ issues.
         :start-after: //LARGE_DATA_BUILTIN_TRANSPORTS
         :end-before: //!
 
-* Problems with transmitting **large samples such as video or point clouds**? Please refer to
+* If having problems with transmitting **large samples** when using the ``LARGE_DATA`` mode, try to use the builtin
+  transports configuration options to adjust ``LARGE_DATA`` to your specific use case.
+  Please refer to :ref:`use-case-large-data-options` for more information.
+
+* If having problems with transmitting **large samples such as video or point clouds**, please refer to
   :ref:`use-case-largeData`.

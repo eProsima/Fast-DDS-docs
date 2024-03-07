@@ -3905,6 +3905,23 @@
 -->
 <!--><-->
 
+<!-->LARGE_DATA_BUILTIN_TRANSPORTS_OPTIONS<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+-->
+        <participant profile_name="large_data_builtin_transports_options" is_default_profile="true">
+            <rtps>
+                <builtinTransports max_msg_size="200KB" sockets_size="200KB" non_blocking="true" tcp_negotiation_timeout="50">LARGE_DATA</builtinTransports>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
 <!-->PDP-MULTICAST-DATA-TCP<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

@@ -6153,6 +6153,26 @@ void tcp_use_cases()
     }
 
     {
+        //LARGE_DATA_BUILTIN_TRANSPORTS_OPTIONS
+        eprosima::fastdds::dds::DomainParticipantQos pqos = PARTICIPANT_QOS_DEFAULT;
+
+        /* Transports configuration */
+        // UDPv4 transport for PDP over multicast and SHM / TCPv4 transport for EDP and application data
+        // Message Size and Sockets sizes of 200 KB + Non-blocking send + 50ms negotiation timeout
+        eprosima::fastdds::rtps::BuiltinTransportsOptions large_data_options;
+        large_data_options.maxMessageSize = 200000;
+        large_data_options.sockets_buffer_size = 200000;
+        large_data_options.non_blocking_send = true;
+        large_data_options.tcp_negotiation_timeout = 50;
+        pqos.setup_transports(eprosima::fastdds::rtps::BuiltinTransports::LARGE_DATA, large_data_options);
+
+        /* Create participant as usual */
+        eprosima::fastdds::dds::DomainParticipant* participant =
+                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->create_participant(0, pqos);
+        //!
+    }
+
+    {
         //PDP-MULTICAST-DATA-TCP
         eprosima::fastdds::dds::DomainParticipantQos pqos = PARTICIPANT_QOS_DEFAULT;
 

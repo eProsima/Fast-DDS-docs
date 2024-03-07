@@ -1,5 +1,5 @@
-Version 2.4.2 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 2.4.2 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.4.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **improvements**:
 

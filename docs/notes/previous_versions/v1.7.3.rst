@@ -1,5 +1,5 @@
-Version 1.7.3 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 1.7.3 (EOL) <https://fast-dds.docs.eprosima.com/en/v1.7.3/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **bugfixes**:
 

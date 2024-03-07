@@ -1,5 +1,5 @@
-Version 1.8.3 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 1.8.3 (EOL) <https://fast-dds.docs.eprosima.com/en/v1.8.3/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release adds the following bug fixes and improvements:
 

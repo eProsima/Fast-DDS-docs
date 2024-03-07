@@ -1,5 +1,5 @@
-Version 2.0.0 (EOL)
-^^^^^^^^^^^^^^^^^^^
+`Version 2.0.0 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.0.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release has the following **API breaks**:
 

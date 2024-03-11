@@ -591,6 +591,21 @@ void dds_domain_examples()
         //!--
     }
     {
+        // DDS_SECURITY_AUTH_HANDSHAKE_PROPS
+        DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.max_handshake_requests",
+            "5");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.initial_handshake_resend_period",
+            "250");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.handshake_resend_period_gain",
+            "1.5");
+        //!--
+    }
+    {
         // DDS_SECURITY_ACCESS_CONTROL_PLUGIN
         DomainParticipantQos pqos;
 

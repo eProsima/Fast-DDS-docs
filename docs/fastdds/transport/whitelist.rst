@@ -5,7 +5,7 @@
 .. warning::
 
     Interface whitelist will be deprecated in future versions of Fast DDS.
-    The use of the new :ref:`interfaces allowlist <interfaces_allowlist>` is encouraged.
+    The use of the new :ref:`interfaces allowlist <interfaces_allowlist>` is recommended.
 
 .. _whitelist-interfaces:
 

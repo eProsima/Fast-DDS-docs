@@ -1004,6 +1004,19 @@
     </participant>
 <!--><-->
 
+<!-->PARTICIPANT-NETMASK-FILTER<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+-->
+    <participant profile_name="CustomTcpParticipantNetmaskFilterParticipant">
+        <rtps>
+            <ignore_non_matching_locators>true</ignore_non_matching_locators>
+            <netmask_filter>ON</netmask_filter>
+        </rtps>
+    </participant>
+<!--><-->
+
 <!-->TRANSPORT-NETMASK-FILTER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1023,6 +1036,7 @@
             <userTransports>
                 <transport_id>CustomTcpTransportNetmaskFilter</transport_id>
             </userTransports>
+            <ignore_non_matching_locators>true</ignore_non_matching_locators>
         </rtps>
     </participant>
 <!--><-->

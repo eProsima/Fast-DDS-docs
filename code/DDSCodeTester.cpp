@@ -34,7 +34,7 @@
 #include <fastdds/rtps/attributes/ThreadSettings.hpp>
 #include <fastdds/rtps/transport/ChainingTransport.h>
 #include <fastdds/rtps/transport/ChainingTransportDescriptor.h>
-#include <fastdds/rtps/transport/NetmaskFilterKind.hpp>
+#include <fastdds/rtps/transport/network/NetmaskFilterKind.hpp>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPTransportDescriptor.h>
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.h>
@@ -4925,7 +4925,7 @@ void dds_transport_examples ()
         udp_transport->netmask_filter = NetmaskFilterKind::AUTO;
 
         // Configure netmask filtering at interface level
-        udp_transport->interface_allowlist.push_back({"wlp59s0", NetmaskFilterKind::ON});
+        udp_transport->interface_allowlist.emplace_back("wlp59s0", NetmaskFilterKind::ON);
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(udp_transport);
@@ -4944,10 +4944,10 @@ void dds_transport_examples ()
         auto udp_transport = std::make_shared<UDPv4TransportDescriptor>();
 
         // Add allowed interface by device name
-        udp_transport->interface_allowlist.push_back({"eth0", NetmaskFilterKind::OFF});
+        udp_transport->interface_allowlist.emplace_back("eth0", NetmaskFilterKind::OFF);
 
         // Add allowed interface by IP address
-        udp_transport->interface_allowlist.push_back({"127.0.0.1", NetmaskFilterKind::AUTO});
+        udp_transport->interface_allowlist.emplace_back("127.0.0.1", NetmaskFilterKind::AUTO);
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(udp_transport);
@@ -4966,10 +4966,10 @@ void dds_transport_examples ()
         auto udp_transport = std::make_shared<UDPv4TransportDescriptor>();
 
         // Add blocked interface by device name
-        udp_transport->interface_blocklist.push_back("docker0");
+        udp_transport->interface_blocklist.emplace_back("docker0");
 
         // Add blocked interface by IP address
-        udp_transport->interface_blocklist.push_back("127.0.0.1");
+        udp_transport->interface_blocklist.emplace_back("127.0.0.1");
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(udp_transport);

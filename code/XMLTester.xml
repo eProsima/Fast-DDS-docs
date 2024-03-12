@@ -2827,7 +2827,7 @@
         </participant>
 
         <!-- Generic profile for all the statistics DataWriter -->
-        <data_writer profile_name="GENERIC_STATISTICS_WRITER_PROFILE">
+        <data_writer profile_name="GENERIC_STATISTICS_PROFILE">
             <!-- Configure History QoS as KEEP_LAST 20 -->
             <!-- History depth depends on the user application constraints (publication rate for instance) -->
             <topic>

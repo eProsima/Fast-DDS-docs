@@ -64,6 +64,11 @@ if founded.
     :end-before: //!--
     :dedent: 8
 
+For simplicity, the |DomainParticipantFactory::create_participant_with_default_profile-api| method takes the default
+profile set in the environment to create a participant.
+It requires the XML profile to have been already loaded.
+Please, refer to :ref:`xml_profiles` for further information regarding loading profiles.
+
 .. warning::
 
     It is worth mentioning that if the same XML profile file is loaded multiple times, the second loading of

@@ -7,13 +7,13 @@
 #include <fastdds/rtps/RTPSDomain.h>
 #include <fastdds/rtps/writer/RTPSWriter.h>
 #include <fastdds/dds/subscriber/SampleInfo.hpp>
+#include <fastdds/utils/IPLocator.h>
 #include <fastrtps/log/Log.h>
 #include <fastrtps/log/FileConsumer.h>
 #include <fastrtps/TopicDataType.h>
 #include <fastrtps/types/DynamicDataFactory.h>
 #include <fastrtps/types/DynamicTypeBuilderFactory.h>
 #include <fastrtps/types/DynamicTypeBuilderPtr.h>
-#include <fastrtps/utils/IPLocator.h>
 
 #include <fstream>
 

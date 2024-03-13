@@ -1,4 +1,6 @@
+#include <fstream>
 
+#include <fastdds/dds/subscriber/SampleInfo.hpp>
 #include <fastdds/rtps/history/WriterHistory.h>
 #include <fastdds/rtps/history/ReaderHistory.h>
 #include <fastdds/rtps/participant/RTPSParticipant.h>
@@ -6,7 +8,6 @@
 #include <fastdds/rtps/reader/ReaderListener.h>
 #include <fastdds/rtps/RTPSDomain.h>
 #include <fastdds/rtps/writer/RTPSWriter.h>
-#include <fastdds/dds/subscriber/SampleInfo.hpp>
 #include <fastdds/utils/IPLocator.h>
 #include <fastrtps/log/Log.h>
 #include <fastrtps/log/FileConsumer.h>
@@ -15,7 +16,6 @@
 #include <fastrtps/types/DynamicTypeBuilderFactory.h>
 #include <fastrtps/types/DynamicTypeBuilderPtr.h>
 
-#include <fstream>
 
 using namespace eprosima::fastrtps;
 using namespace ::rtps;

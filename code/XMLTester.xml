@@ -3323,6 +3323,21 @@
 </participant>
 <!--><-->
 
+<!-->XML-TCP-NON-BLOCKING-SEND<-->
+<participant profile_name="participant_xml_conf_tcp_non_blocking_send">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <property>
+                    <name>fastdds.tcp_transport.non_blocking_send</name>
+                    <value>true</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!-->XML_TYPELOOKUP_SERVICE_ENABLING<-->
 <participant profile_name="participant_typelookup_service_enabled">
     <rtps>

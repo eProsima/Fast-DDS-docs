@@ -62,7 +62,7 @@ Likewise, the netmask filter configuration for an allowlist entry cannot be |Net
     Due to implementation details, it is required to set `ignore_non_matching_locators` to `true`
     (see :ref:`Matching algorithm <external_locators_algorithm>`) both in :ref:`participants <wireprotocolconfigqos>`
     and :ref:`endpoints <rtpsendpointqos>` when enabling the netmask filtering feature at participant or transport level
-    without defining an allowlist.
+    without defining an :ref:`allowlist <interfaces_allowlist>` or :ref:`blocklist <interfaces_blocklist>`.
 
 Additional considerations need to be taken into account when using netmask filtering in combination with
 :ref:`external locators <external_locators>`.
@@ -82,7 +82,7 @@ Netmask filtering can be enabled at participant level both via C++ API or XML co
        :language: c++
        :start-after: //CONF-NETMASK-FILTER
        :end-before: //!--
-       :lines: 3-4
+       :lines: 3-5
        :dedent: 8
 
   .. tab:: XML
@@ -104,7 +104,7 @@ For socket (UDP/TCP) transport descriptors:
       :language: c++
       :start-after: //CONF-NETMASK-FILTER
       :end-before: //!--
-      :lines: 6-10
+      :lines: 7-12
       :dedent: 8
 
   .. tab:: XML

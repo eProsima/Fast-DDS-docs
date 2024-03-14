@@ -21,6 +21,7 @@ All builtin transports can be configured by adjusting the following parameters:
   Its maximum value is (2^32)-1 B for TCP and SHM and 65500 KB for UDP.
 + ``sockets_size``: Size of the send and receive socket buffers.
   This value must be higher or equal than the ``max_msg_size`` to obtain a valid configuration.
+  It also defines the size of the shared memory segment, calculated as twice the value set.
   Its maximum value is (2^32)-1 B.
 + ``non_blocking``: If set to true, the transport will use non-blocking sockets.
   This can be useful to avoid blocking the application if the socket buffers are full.

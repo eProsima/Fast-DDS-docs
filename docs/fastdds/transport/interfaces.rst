@@ -57,10 +57,12 @@ is registered.
 Likewise, the netmask filter configuration for an allowlist entry cannot be |NetmaskFilterKind::ON-api| if it is
 |NetmaskFilterKind::OFF-api| for the transport descriptor where this allowlist is defined.
 
-Due to implementation details, it is required to set `ignore_non_matching_locators` to `true`
-(see :ref:`Matching algorithm <external_locators_algorithm>`) both in :ref:`participants <wireprotocolconfigqos>`
-and :ref:`endpoints <rtpsendpointqos>` when enabling the netmask filtering feature at participant or transport level
-without defining an allowlist.
+.. note::
+
+    Due to implementation details, it is required to set `ignore_non_matching_locators` to `true`
+    (see :ref:`Matching algorithm <external_locators_algorithm>`) both in :ref:`participants <wireprotocolconfigqos>`
+    and :ref:`endpoints <rtpsendpointqos>` when enabling the netmask filtering feature at participant or transport level
+    without defining an allowlist.
 
 Additional considerations need to be taken into account when using netmask filtering in combination with
 :ref:`external locators <external_locators>`.
@@ -70,7 +72,7 @@ or :ref:`endpoint <rtpsendpointqos>`.
 The reason for this is that a matching remote external locator would then (most likely) be effectively ignored, as no
 network interface would be able to reach it according to its network mask.
 
-Netmask filtering can be enabled both via C++ API or XML configuration:
+Netmask filtering can be enabled at participant level both via C++ API or XML configuration:
 
 .. tabs::
 
@@ -131,8 +133,8 @@ Thus, the communication interfaces used by the |DomainParticipants| whose |Trans
 avoiding the use of the rest of the network interfaces available in the system.
 The interfaces in |SocketTransportDescriptor::interface_allowlist-api| can be specified both by IP address
 or interface name.
-Additionally, each entry added to the allowlist must specify a :ref:`netmask filter <netmask_filtering>`
-configuration value.
+Additionally, each entry added to the allowlist may specify a :ref:`netmask filter <netmask_filtering>`
+configuration value (|NetmaskFilterKind::AUTO-api| by default).
 
 For example:
 

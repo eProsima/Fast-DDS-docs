@@ -24,6 +24,7 @@ autoenable
 autoid
 automake
 backoff
+backports
 benchmarking
 bitfield
 Bitfields
@@ -58,6 +59,7 @@ connectionless
 connext
 cout
 coverity
+ctest
 createRTPSWriter
 crl
 crypto
@@ -86,6 +88,7 @@ deserialized
 deserializes
 destructor
 diffie
+dns
 domainId
 domainparticipant
 downcasted

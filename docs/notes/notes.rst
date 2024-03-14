@@ -10,50 +10,60 @@ Version 2.12.2
 
 This release includes the following **features**:
 
-1. Define a super client by environment variable
-2. Support `Autofill port` (automatically set the port) for TCP Transport
+1. Methods to configure transport scenario
+2. Support ``Autofill port`` (automatically set the port) for TCP Transport
 3. Support TCP for Discovery server CLI and environment variable
-4. Change serialize function default behaviour to omit the data representation
+4. Define a super client by environment variable
+5. Change serialize function default behaviour to omit the data representation
+6. ``LARGE_DATA`` Participants logic with same listening ports
+7. TCP Client&Server Participant Decision-Making logic
+8. Expose Authentication Handshake Properties
+9. Enabling multiple interfaces through whitelist in TCP servers
+10. Add macOS and Ubuntu Github CI
 
 This release includes the following **improvements**:
 
-1.  Rerun failed tests with ctest option instead of colcon's
-2. Add CCache to all CI jobs
+1. Improve environment variable substitution algorithm
+2. Upgrade dependency version to last patch version in .repos file
+3. Rerun failed tests with ctest option instead of colcon's
+4. Remove unnecessary TCP warning
+5. Update PR template to include check for PR description, title and backports
+6. Improvements in GitHub CI
 
 This release includes the following **fixes**:
 
- 1. Fix uninitialized member in `RTPSParticipantAttributes`
- 2. Fix colcon on github CI
- 3. Fix branch selection on Github CI
- 4. Add missing thread include
- 5. Improve `IgnoreNonExistentSegment` test
- 6. Use `SO_EXCLUSIVEADDRUSE` for Win32 unicast listening sockets
- 7. Fix TCP deadlock on channel reuse
- 8. Fix dns filter in CMakeLists file for tests
- 9. Fix bad-free when receiving malformed DATA_FRAG submessage
- 10. Fix memory problem related to ciphering payload 
-
-    1. Fix transient local durability for reliable readers using intra-process and data-sharing.
-    2. Use STL implementation of Timed/RecursiveTimedMutex when MSVC >= 19.36.
-    3. Fix updatability of immutable DataWriterQos.
-    4. Fix the clang build for clang 14.
-    5. Fix remote locators filtering when whitelist provided.
-    6. Fix Data Race when updating liveliness changed in WLP.
-    7. Add XML parser bit_bound bounds check.
-    8. Fix missing mandatory attribute check in XML parser struct type.
-    9. SHM transport: ignore non-existing segment on pop.
-    10. Fix: mac address overflow on Windows.
-
-2. CI fixes:
-
-    1. Fix flow controllers unit tests compilation when using Fast CDR from thirdparty.
-    2. PubSubAsReliable test fix.
-    3. FileWatchTest fix for github windows CI.
-
-.. note::
-
-  When upgrading to version 2.12.1 it is **advisable** to regenerate generated source from IDL files
-  using `Fast DDS-Gen v3.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.1.0>`_.
+1. Fix TCP reconnection after open logical port failure
+2. TCP unique client announced local port
+3. TCP non-blocking send
+4. Fix wrong log info messages on TCP
+5. Improve ``IgnoreNonExistentSegment`` test
+6. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets
+7. Fix dns filter in CMakeLists file for tests
+8. Fix bad-free when receiving malformed DATA_FRAG submessage
+9. Fix memory problem related to ciphering payload
+10. Fix CVE-2023-50257
+11. Fix build with TLS, but not security
+12. Fix comparison in ``remove_from_pdp_reader_history``
+13. Fix data race in ``PDPListener`` and ``SecurityManager``
+14. Discard already processed samples on ``PDPListener``
+15. Fix .repos versions
+16. Fix the shared memory cleaning script
+17. Fix data race on writer destruction while sending heartbeat
+18. Return ``const`` reference to the shared pointer instead of a copy in ``get_log_resources``
+19. Ignore ``0x8007`` if coming from other vendor
+20. Fix Doxygen docs warnings and prepare for compiling with Doxygen 1.10.0
+21. Include variety of terminate process signals handler in discovery server
+22. Add missing ``TypeLookup`` listeners
+23. Add a keyed fragmented change to the reader data instance only when its completed
+24. Fix data race on PDP
+25. Check History QoS inconsistencies
+26. Make DataWriters always send the key hash on keyed topics
+27. Prevent index overflow and correctly assert the end iterator in DataSharing
+28. Fix uninitialized member in ``RTPSParticipantAttributes``
+29. Remove unnecessary ``std::move`` in ``FileWatch.hpp`` causing warning
+30. Add missing thread include
+31. Add missing virtual destructor for ``StatisticsAncillary``
+32. Downgrade CMake version to 3.20
 
 Previous versions
 =================

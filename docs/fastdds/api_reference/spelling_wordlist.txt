@@ -3,11 +3,13 @@ ACKs
 addReaderLocator
 addReaderProxy
 addWriterProxy
+allowlist
 assignability
 autodispose
 autoenable
 autopurge
 behaviour
+blocklist
 booleans
 bytesPerPeriod
 cacheChange
@@ -93,6 +95,7 @@ mutexes
 myFilterFactory
 nackResponseDelay
 nackSupressionDuration
+netmask
 NonConstEnabler
 NoOpDomainParticipantListener
 nullptr
@@ -150,6 +153,7 @@ Struct
 Subclassed
 subclasses
 subentities
+subnetwork
 SubscriberListener
 SubscriptionMatchedStatus
 synchronism

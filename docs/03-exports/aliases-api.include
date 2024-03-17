@@ -612,6 +612,15 @@
 .. |SocketTransportDescriptor::interfaceWhiteList-api| replace:: :cpp:var:`interfaceWhiteList<eprosima::fastdds::rtps::SocketTransportDescriptor::interfaceWhiteList>`
 .. |SocketTransportDescriptor::TTL-api| replace:: :cpp:var:`TTL<eprosima::fastdds::rtps::SocketTransportDescriptor::TTL>`
 
+.. |NetmaskFilterKind-api| replace:: :cpp:enum:`NetmaskFilterKind<eprosima::fastdds::rtps::NetmaskFilterKind>`
+.. |NetmaskFilterKind::ON-api| replace:: :cpp:enumerator:`ON<eprosima::fastdds::rtps::NetmaskFilterKind::ON>`
+.. |NetmaskFilterKind::OFF-api| replace:: :cpp:enumerator:`OFF<eprosima::fastdds::rtps::NetmaskFilterKind::OFF>`
+.. |NetmaskFilterKind::AUTO-api| replace:: :cpp:enumerator:`AUTO<eprosima::fastdds::rtps::NetmaskFilterKind::AUTO>`
+.. |SocketTransportDescriptor::netmask_filter-api| replace:: :cpp:var:`netmask_filter<eprosima::fastdds::rtps::SocketTransportDescriptor::netmask_filter>`
+.. |SocketTransportDescriptor::interface_allowlist-api| replace:: :cpp:var:`allowlist<eprosima::fastdds::rtps::SocketTransportDescriptor::interface_allowlist>`
+.. |SocketTransportDescriptor::interface_blocklist-api| replace:: :cpp:var:`blocklist<eprosima::fastdds::rtps::SocketTransportDescriptor::interface_blocklist>`
+
+
 .. |UDPTransportDescriptor::m_output_udp_socket-api| replace:: :cpp:var:`m_output_udp_socket<eprosima::fastdds::rtps::UDPTransportDescriptor::m_output_udp_socket>`
 .. |UDPTransportDescriptor::non_blocking_send-api| replace:: :cpp:var:`non_blocking_send<eprosima::fastdds::rtps::UDPTransportDescriptor::non_blocking_send>`
 .. |UDPv4TransportDescriptor-api| replace:: :cpp:struct:`UDPv4TransportDescriptor<eprosima::fastdds::rtps::UDPv4TransportDescriptor>`

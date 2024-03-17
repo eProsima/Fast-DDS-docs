@@ -58,5 +58,6 @@ The figure below shows a comparison between the different transports available i
     /fastdds/transport/listening_locators.rst
     /fastdds/transport/announced_locators.rst
     /fastdds/transport/whitelist.rst
+    /fastdds/transport/interfaces.rst
     /fastdds/transport/disabling_multicast.rst
 

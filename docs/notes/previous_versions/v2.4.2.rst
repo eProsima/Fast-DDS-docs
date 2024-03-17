@@ -6,7 +6,7 @@ This release includes the following **improvements**:
 1. Enable memory protection on :ref:`DataSharing <datasharing-delivery>` readers
 2. Add const overload of ``DataReader::guid()``
 3. Set recommended statistics :ref:`DataReaderQos <statistics_datareader_qos>` to ``PREALLOCATED_WITH_REALLOC``
-4. Allow fully qualified name on :ref:`MemberDescriptor <dynamictypes_overview_memberdescriptor>`
+4. Allow fully qualified name on MemberDescriptor
 
 This release includes the following bugfixes:
 

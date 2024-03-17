@@ -4276,39 +4276,97 @@
 
 <types>
 <type>
-<!-->XML-DYN-ENUM<-->
+
+
+
+
+<!-->XML_PRIMITIVES<-->
+<struct name="PrimitivesStruct">
+    <member name="my_bool" type="boolean"/>
+    <member name="my_char" type="char8"/>
+    <member name="my_wchar" type="char16"/>
+    <member name="my_octet" type="octet"/>
+    <member name="my_int8" type="int8"/>
+    <member name="my_uint8" type="uint8"/>
+    <member name="my_short" type="int16"/>
+    <member name="my_ushort" type="uint16"/>
+    <member name="my_long" type="int32"/>
+    <member name="my_ulong" type="uint32"/>
+    <member name="my_longlong" type="int64"/>
+    <member name="my_ulonglong" type="uint64"/>
+    <member name="my_float" type="float32"/>
+    <member name="my_double" type="float64"/>
+    <member name="my_longdouble" type="float128"/>
+</struct>
+<!--><-->
+<!-->XML_STRINGS<-->
+<struct name="StringsStruct">
+    <member name="my_string" type="string"/>
+    <member name="my_wstring" type="wstring"/>
+    <member name="my_bounded_string" type="string" stringMaxLength="41925"/>
+    <member name="my_bounded_wstring" type="wstring" stringMaxLength="20925"/>
+</struct>
+<!--><-->
+<!-->XML_ARRAYS<-->
+<struct name="ArrayStruct">
+    <member name="long_array" type="int32" arrayDimensions="2,3,4"/>
+</struct>
+<!--><-->
+<!-->XML_SEQUENCES<-->
+<struct name="SequenceStruct">
+    <member name="short_sequence" sequenceMaxLength="5" type="int16"/>
+</struct>
+<!--><-->
+<!-->XML_MAPS<-->
+<struct name="MapStruct">
+    <member name="long_long_map" type="int32" key_type="int32" mapMaxLength="2"/>
+</struct>
+<!--><-->
+<!-->XML_ENUM<-->
 <enum name="MyEnum">
     <enumerator name="A" value="0"/>
     <enumerator name="B" value="1"/>
     <enumerator name="C"/>
 </enum>
+<struct name="EnumStruct">
+    <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
+</struct>
 <!--><-->
-
-<!-->XML-TYPEDEF<-->
+<!-->XML_BITMASK<-->
+<bitmask name="MyBitMask" bit_bound="8">
+    <bit_value name="flag0" position="0"/>
+    <bit_value name="flag1"/>
+    <bit_value name="flag2" position="2"/>
+    <bit_value name="flag5" position="5"/>
+</bitmask>
+<struct name="BitmaskStruct">
+    <member name="my_bitmask" type="nonBasic" nonBasicTypeName="MyBitMask"/>
+</struct>
+<!--><-->
+<!-->XML_TYPEDEF<-->
 <typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
 <typedef name="MyAliasArray" type="int32" arrayDimensions="2,2"/>
-<!--Complex map-->
-<typedef name="my_map_inner" type="int32" key_type="int32"/>
-<struct name="StructComplexMap">
-    <member name="my_complex_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
-</struct>
-<!--Complex sequence-->
-<typedef name="long_sequence" sequenceMaxLength="10" type="int32"/>
-<struct name="StructComplexSequence">
-    <member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="long_sequence" sequenceMaxLength="3"/>
+<struct name="AliasStruct">
+    <member name="my_alias_enum" type="nonBasic" nonBasicTypeName="MyAliasEnum"/>
+    <member name="my_alias_array" type="nonBasic" nonBasicTypeName="MyAliasArray"/>
 </struct>
 <!--><-->
-
-<!-->XML-STRUCT<-->
+<!-->XML_RECURSIVE_TYPEDEF<-->
+<typedef name="RecursiveAlias" type="uint32"/>
+<typedef name="MyAlias" type="nonBasic" nonBasicTypeName="RecursiveAlias"/>
+<struct name="RecursiveAliasStruct">
+    <member name="my_alias" type="nonBasic" nonBasicTypeName="MyAlias"/>
+</struct>
+<!--><-->
+<!-->XML_STRUCT<-->
 <struct name="MyStruct">
     <member name="first" type="int32"/>
     <member name="second" type="int64"/>
 </struct>
 <!--><-->
-
-<!-->XML-UNION<-->
+<!-->XML_UNION<-->
 <union name="MyUnion">
-    <discriminator type="byte"/>
+    <discriminator type="int16"/>
     <case>
         <caseDiscriminator value="0"/>
         <caseDiscriminator value="1"/>
@@ -4323,81 +4381,33 @@
         <member name="third" type="nonBasic" nonBasicTypeName="int64"/>
     </case>
 </union>
-<!--><-->
-
-<!-->XML-GENERIC<-->
-<struct name="primitive_types_example">
-    <!-- Primitive type definitions inside a struct -->
-    <member name="my_bool" type="boolean"/>
-    <member name="my_char" type="char8"/>
-    <member name="my_wchar" type="char16"/>
-    <member name="my_byte" type="byte"/>
-    <member name="my_octet" type="octet"/>
-    <member name="my_uint8" type="uint8"/>
-    <member name="my_short" type="int16"/>
-    <member name="my_long" type="int32"/>
-    <member name="my_unsignedshort" type="uint16"/>
-    <member name="my_unsignedlong" type="uint32"/>
-    <member name="my_longlong" type="int64"/>
-    <member name="my_unsignedlonglong" type="uint64"/>
-    <member name="my_float" type="float32"/>
-    <member name="my_double" type="float64"/>
-    <member name="my_longdouble" type="float128"/>
-    <member name="my_string" type="string"/>
-    <member name="my_wstring" type="wstring"/>
+<struct name="UnionStruct">
+    <member name="my_union" type="nonBasic" nonBasicTypeName="MyUnion"/>
 </struct>
 <!--><-->
-<struct name="MembersExample">
-<!-->XML-BOUNDEDSTRINGS<-->
-<member name="my_large_string" type="string" stringMaxLength="41925"/>
-<member name="my_large_wstring" type="wstring" stringMaxLength="20925"/>
-<!--><-->
-<!-->XML-SEQUENCES<-->
-<member name="short_sequence" sequenceMaxLength="5" type="int16"/>
-<!--><-->
-<!-->XML-ARRAYS<-->
-<member name="long_array" type="int32" arrayDimensions="2,3,4"/>
-<!--><-->
-<!-->XML-MAPS<-->
-<member name="long_long_map" type="int32" key_type="int32" mapMaxLength="2"/>
-<!--><-->
-</struct>
-
-<!-->XML-COMPLEX<-->
-<struct name="ComplexTypeStruct">
-    <member name="my_complex_struct" type="nonBasic" nonBasicTypeName="primitive_types_example" arrayDimensions="5"/>
-</struct>
-<!--><-->
-
-<!-->XML-BITSET<-->
-<bitset name="MyBitSet">
+<!-->XML_BITSET<-->
+<bitset name="MyBitset">
     <bitfield name="a" bit_bound="3"/>
     <bitfield name="b" bit_bound="1"/>
     <bitfield bit_bound="4"/>
     <bitfield name="c" bit_bound="10"/>
     <bitfield name="d" bit_bound="12" type="int16"/>
 </bitset>
+<struct name="BitsetStruct">
+    <member name="my_bitset" type="nonBasic" nonBasicTypeName="MyBitset"/>
+</struct>
 <!--><-->
-<!-->XML-BITMASK<-->
-<bitmask name="MyBitMask" bit_bound="8">
-    <bit_value name="flag0" position="0"/>
-    <bit_value name="flag1"/>
-    <bit_value name="flag2" position="2"/>
-    <bit_value name="flag5" position="5"/>
-</bitmask>
-<!--><-->
-<!-->XML-BITSET-INHERIT<-->
+<!-->XML_BITSET_INHERITANCE<-->
 <bitset name="ParentBitSet">
-    <bitfield name="a" bit_bound="10"/>
-    <bitfield name="b" bit_bound="15"/>
+    <bitfield name="a" bit_bound="3"/>
+    <bitfield name="b" bit_bound="1"/>
 </bitset>
-
 <bitset name="ChildBitSet" baseType="ParentBitSet">
-    <bitfield bit_bound="1"/>
-    <bitfield bit_bound="5" type="uint16"/>
+    <bitfield name="c" bit_bound="10"/>
+    <bitfield name="d" bit_bound="12" type="int16"/>
 </bitset>
 <!--><-->
-<!-->XML-STRUCT-INHERIT<-->
+<!-->XML_STRUCT_INHERITANCE<-->
 <struct name="ParentStruct">
     <member name="first" type="int32"/>
     <member name="second" type="int64"/>
@@ -4407,6 +4417,39 @@
     <member name="fourth" type="int64"/>
 </struct>
 <!--><-->
+<!-->XML_COMPLEX_STRUCTS<-->
+<struct name="InnerStruct">
+    <member name="first" type="int32"/>
+</struct>
+<struct name="ComplexStruct">
+    <member name="complex_member" type="nonBasic" nonBasicTypeName="InnerStruct"/>
+</struct>
+<!--><-->
+<!-->XML_COMPLEX_UNIONS<-->
+<union name="InnerUnion">
+    <discriminator type="int32"/>
+    <case>
+        <caseDiscriminator value="0"/>
+        <member name="first" type="int64"/>
+    </case>
+    <case>
+        <caseDiscriminator value="1"/>
+        <member name="second" type="int64"/>
+    </case>
+</union>
+<union name="ComplexUnion">
+    <discriminator type="int32"/>
+    <case>
+        <caseDiscriminator value="0"/>
+        <member name="third" type="int64"/>
+    </case>
+    <case>
+        <caseDiscriminator value="1"/>
+        <member name="fourth" type="nonBasic" nonBasicTypeName="InnerUnion"/>
+    </case>
+</union>
+<!--><-->
+
 </type>
 </types>
 </dds>

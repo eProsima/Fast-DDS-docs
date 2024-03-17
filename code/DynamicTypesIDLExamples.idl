@@ -1,0 +1,219 @@
+//!--IDL_PRIMITIVES
+struct PrimitivesStruct
+{
+    boolean my_bool;
+    char my_char;
+    wchar my_wchar;
+    octet my_octet;
+    int8 my_int8;
+    uint8 my_uint8;
+    int16 my_short;
+    uint16 my_ushort;
+    int32 my_long;
+    uint32 my_unlong;
+    int64 my_longlong;
+    uint64 my_ulonglong;
+    float my_float;
+    double my_double;
+    long double my_longdouble;
+};
+//!--
+
+//!--IDL_STRINGS
+struct StringsStruct
+{
+    string my_string;
+    wstring my_wstring;
+    string<41925> my_bounded_string;
+    wstring<20925> my_bounded_wstring;
+};
+//!--
+
+//!--IDL_ARRAYS
+struct ArrayStruct
+{
+    int32 long_array[2][3][4];
+};
+//!--
+
+//!--IDL_SEQUENCES
+struct SequenceStruct
+{
+    sequence<short, 5> short_sequence;
+};
+//!--
+
+//!--IDL_MAPS
+struct MapStruct
+{
+    map<int32,int32,2> long_long_map;
+};
+//!--
+
+//!--IDL_ENUM
+enum MyEnum
+{
+    A,
+    B,
+    C
+};
+struct EnumStruct
+{
+    MyEnum my_enum;
+};
+//!--
+
+//!--IDL_BITMASK
+@bit_bound(8)
+bitmask MyBitMask
+{
+    @position(0) flag0,
+    @position(1) flag1,
+    @position(2) flag2,
+    @position(5) flag5
+};
+struct BitmaskStruct
+{
+    MyBitMask my_bitmask;
+};
+//!--
+
+//!--IDL_TYPEDEF
+typedef MyEnum MyAliasEnum;
+typedef int32 MyAliasArray[2][2];
+struct AliasStruct
+{
+    MyAliasEnum my_alias_enum;
+    MyAliasArray my_alias_array;
+};
+//!--
+
+//!--IDL_RECURSIVE_TYPEDEF
+typedef uint32 RecursiveAlias;
+typedef RecursiveAlias MyAlias;
+struct RecursiveAliasStruct
+{
+    MyAlias my_alias;
+};
+//!--
+
+//!--IDL_STRUCT
+struct MyStruct
+{
+   int32 first;
+   int64 second;
+};
+//!--
+
+//!--IDL_UNION
+union MyUnion switch (int16)
+{
+    case 0:
+    case 1:
+        int32 first;
+    case 2:
+        MyStruct second;
+    default:
+        int64 third;
+};
+struct UnionStruct
+{
+   MyUnion my_union;
+};//!--
+
+//!--IDL_BITSET
+bitset MyBitset
+{	
+    bitfield<3> a;
+    bitfield<1> b;
+    bitfield<4>;
+    bitfield<10> c;
+    bitfield<12, short> d;
+};
+struct BitsetStruct
+{
+   MyBitset my_bitset;
+};
+//!--
+
+//!--IDL_BITSET_INHERITANCE
+bitset ParentBitSet
+{	
+    bitfield<3> a;
+    bitfield<1> b;
+};
+
+bitset ChildBitSet : ParentBitSet
+{	
+    bitfield<10> c;
+    bitfield<12, short> d;
+};
+//!--
+
+//!--IDL_STRUCT_INHERITANCE
+struct ParentStruct
+{	
+    int32 first;
+    int64 second;
+};
+
+struct ChildStruct : ParentStruct
+{	
+    int32 third;
+    int63 fourth;
+};
+//!--
+
+//!--CPP_COMPLEX_STRUCTS
+struct InnerStruct
+{	
+    int32 first;
+};
+
+struct ComplexStruct
+{	
+    InnerStruct complex_member;
+};
+//!--
+
+//!--IDL_COMPLEX_STRUCTS
+struct InnerStruct
+{	
+    int32 first;
+};
+
+struct ComplexStruct
+{	
+    InnerStruct complex_member;
+};
+//!--
+
+//!--IDL_COMPLEX_UNIONS
+union InnerUnion switch (int32)
+{
+    case 0:
+        int64 first;
+    case 1:
+        int64 second;
+};
+
+union ComplexUnion switch (int32)
+{
+    case 0:
+        int32 third;
+    case 1:
+        InnerUnion fourth;
+};
+//!--
+
+//!--IDL_CUSTOM_ANNOTATION
+@annotation MyAnnotation
+{
+    short length;
+};
+
+@MyAnnotation(length = 5)
+struct AnnotatedStruct
+{
+};
+//!--

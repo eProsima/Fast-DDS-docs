@@ -61,6 +61,8 @@ Member types are defined as any type that can belong to a `Struct`_ or a `Union`
 `Typedef`_.
 These can be defined by the ``<member>`` XML tag.
 
+.. _xmldynamictypes_primivites:
+
 Primitive types
 ***************
 
@@ -90,10 +92,25 @@ Please, refer to :ref:`dynamictypes_supportedtypes_primitive` for more informati
 
 All of them are defined as follows:
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-GENERIC<-->
-  :end-before: <!--><-->
+.. tabs::
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_PRIMITIVES<-->
+        :end-before: <!--><-->
+
+   .. tab:: C++
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_PRIMITIVES
+        :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Primitives <dynamictypes_supportedtypes_primitive>`.
+
+.. _xmldynamictypes_strings:
 
 Bounded strings
 ***************
@@ -102,10 +119,25 @@ Bounded strings are defined as any other ``string`` or ``wstring`` but adding th
 maximum length available for that specific string.
 Please, refer to :ref:`dynamictypes_supportedtypes_string` for more information on string type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-BOUNDEDSTRINGS<-->
-  :end-before: <!--><-->
+.. tabs::
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_STRINGS<-->
+        :end-before: <!--><-->
+
+   .. tab:: C++
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_STRINGS
+        :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Strings <dynamictypes_supportedtypes_string>`.
+
+.. _xmldynamictypes_sequence:
 
 Sequences
 *********
@@ -115,10 +147,25 @@ The sequence type is implemented by setting three attributes: ``name``, ``type``
 The type of its content should be defined by the ``type`` attribute.
 Please, refer to :ref:`dynamictypes_supportedtypes_sequence` section for more information on sequence type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-SEQUENCES<-->
-  :end-before: <!--><-->
+.. tabs::
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_SEQUENCES<-->
+        :end-before: <!--><-->
+
+   .. tab:: C++
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_SEQUENCES
+        :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Sequences <dynamictypes_supportedtypes_sequence>`.
+
+.. _xmldynamictypes_array:
 
 Arrays
 ******
@@ -127,10 +174,25 @@ Arrays are defined in the same way as any other member type but they add the att
 The format of the ``arrayDimensions`` attribute value is the size of each dimension separated by commas.
 Please, refer to :ref:`dynamictypes_supportedtypes_array` explanation for more information on array type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-ARRAYS<-->
-  :end-before: <!--><-->
+.. tabs::
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->XML_ARRAYS<-->
+      :end-before: <!--><-->
+
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //!--CPP_ARRAYS
+      :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Arrays <dynamictypes_supportedtypes_array>`.
+
+.. _xmldynamictypes_map:
 
 Maps
 ****
@@ -139,10 +201,25 @@ Maps are similar to sequences, but they need to define two content types.
 The ``key_type`` defines the type of the map key, while the ``type`` defines the map value type.
 See section :ref:`dynamictypes_supportedtypes_map` for more information on map type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-MAPS<-->
-  :end-before: <!--><-->
+.. tabs::
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->XML_MAPS<-->
+      :end-before: <!--><-->
+
+  .. tab:: C++
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //!--CPP_MAPS
+      :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Maps <dynamictypes_supportedtypes_map>`.
+
+.. _xmldynamictypes_complextypes:
 
 Complex types
 """""""""""""
@@ -153,13 +230,45 @@ The ``type`` in this case is ``nonBasic`` (not a `Primitive types`_) and the nam
 given in the ``nonBasicTypeName`` attribute.
 Please, refer to :ref:`dynamictypes_complextypes` section for more information on complex types.
 
-The following example shows a new structure with the ``primitive_types_example`` struct defined in `Primitive types`_
-example.
+The following example shows structure having another structure as a member.
 
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML-COMPLEX<-->
-    :end-before: <!--><-->
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_COMPLEX_STRUCTS<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_COMPLEX_STRUCTS
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Nested Types <dynamictypes_nested_structures>`.
+
+This example shows union having another union as a member.
+
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_COMPLEX_UNIONS<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_COMPLEX_UNIONS
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Nested Types <dynamictypes_nested_unions>`.
 
 Complex types attributes
 ************************
@@ -190,6 +299,8 @@ these attributes are then defined in the following table.
     *   - ``mapMaxLength``
         - Maximum length of a `Maps`_.
 
+.. _xmldynamictypes_typedef:
+
 Typedef
 """""""
 
@@ -200,10 +311,25 @@ Maps, arrays and sequences can be elements within another container using ``<typ
 The ``<typedef>`` element corresponds to :ref:`dynamictypes_supportedtypes_alias` in :ref:`dynamictypes_supportedtypes`
 section.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-TYPEDEF<-->
-  :end-before: <!--><-->
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_TYPEDEF<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_TYPEDEF
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Alias <dynamictypes_supportedtypes_alias>`.
+
+.. _xmldynamictypes_enums:
 
 Enumerations
 """"""""""""
@@ -212,10 +338,25 @@ The ``<enum>`` type is defined by its attribute ``name`` and a set of ``<enumera
 Each ``<enumerator>`` is defined by two attributes: a mandatory ``name`` and an optional unsigned integer ``value``.
 Please, refer to :ref:`dynamictypes_supportedtypes_enumeration` for more information on the ``<enum>`` type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-DYN-ENUM<-->
-  :end-before: <!--><-->
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_ENUM<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_ENUM
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Enumerations <dynamictypes_supportedtypes_enumeration>`.
+
+.. _xmldynamictypes_struct:
 
 Struct
 """"""
@@ -223,20 +364,50 @@ Struct
 The ``<struct>`` element is defined by its ``name`` attribute and its ``<member>`` child elements.
 Please, refer to :ref:`dynamictypes_supportedtypes_structure` for more information on the ``<struct>`` type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-STRUCT<-->
-  :end-before: <!--><-->
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_STRUCT<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_STRUCT
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Structures <dynamictypes_supportedtypes_structure>`.
+
+.. _xmldynamictypes_struct_inheritance:
 
 Structs can inherit from another struct.
 This is implemented by defining the value of the ``baseType`` attribute, on the child ``<struct>`` element to be the
 value of the ``name`` attribute of the parent ``<struct>`` element.
 This is exemplified by the code snippet below.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-STRUCT-INHERIT<-->
-  :end-before: <!--><-->
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_STRUCT_INHERITANCE<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_STRUCT_INHERITANCE
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Structures Inheritance <dynamictypes_structure_inheritance>`.
+
+.. _xmldynamictypes_union:
 
 Union
 """""
@@ -248,10 +419,25 @@ Each ``<case>`` element has one or more ``<caseDiscriminator>`` elements, which 
 ``<discriminator>`` type, and a unique ``<member>`` element.
 Please, refer to :ref:`dynamictypes_supportedtypes_union` for more information on the ``<union>`` type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-UNION<-->
-  :end-before: <!--><-->
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_UNION<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_UNION
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Unions <dynamictypes_supportedtypes_union>`.
+
+.. _xmldynamictypes_bitset:
 
 Bitset
 """"""
@@ -264,17 +450,50 @@ A ``<bitfield>`` without ``name`` attribute is an inaccessible set of bits.
 Its management ``type`` can ease the ``<bitfield>`` modification and access.
 Please, refer to :ref:`dynamictypes_supportedtypes_bitset` for more information about the ``<bitset>`` type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-BITSET<-->
-  :end-before: <!--><-->
+.. tabs::
 
-Moreover, bitsets can inherit from another bitsets:
+    .. tab:: XML
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-BITSET-INHERIT<-->
-  :end-before: <!--><-->
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_BITSET<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_BITSET
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Bitset <dynamictypes_supportedtypes_bitset>`.
+
+.. _xmldynamictypes_bitset_inheritance:
+
+Moreover, bitsets can inherit from another bitsets.
+This is implemented by defining the value of the ``baseType`` attribute, on the child ``<bitset>`` element to be the
+value of the ``name`` attribute of the parent ``<bitset>`` element.
+This is exemplified by the code snippet below.
+
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_BITSET_INHERITANCE<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_BITSET_INHERITANCE
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Bitset Inheritance <dynamictypes_bitset_inheritance>`.
+
+.. _xmldynamictypes_bitmask:
 
 Bitmask
 """""""
@@ -287,10 +506,23 @@ The ``<bit_value>`` element must define the ``name`` attribute and it might defi
 the ``positition`` attribute.
 Please, refer to :ref:`dynamictypes_supportedtypes_bitmask` for more information on the ``<bitmask>`` type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-BITMASK<-->
-  :end-before: <!--><-->
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_BITMASK<-->
+            :end-before: <!--><-->
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_BITMASK
+            :end-before: //!--
+
+For a full example of how to define this type, please refer to :ref:`Bitmasks <dynamictypes_supportedtypes_bitmask>`.
 
 .. _Usage:
 
@@ -298,11 +530,10 @@ Loading dynamic types in a *Fast DDS* application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the *Fast DDS* application that will make use of the *XML Types*, the XML files that
-define the types must be loaded before trying to instantiate |DynamicPubSubType| objects of these types.
+define the types must be loaded before trying to instantiate |DynamicPubSubType-api| objects of these types.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
     :start-after: //XML-USAGE
     :end-before: //!--
     :dedent: 8
-

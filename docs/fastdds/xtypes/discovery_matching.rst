@@ -1,15 +1,16 @@
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/aliases.include
 
-.. _dynamictypes_discovery_matching:
+.. _xtypes_discovery_matching:
 
-Dynamic Types Discovery and Endpoint Matching
-=============================================
+Discovery and Endpoint Matching
+===============================
 
-.. _DDS-XTypes V1.3: http://www.omg.org/spec/DDS-XTypes/1.3
+.. _DDS-XTypes V1.3: https://www.omg.org/spec/DDS-XTypes/1.3
 
-When using |DynamicTypes| support, *Fast DDS* checks the optional |TypeInformation-api|
-value during endpoint matching.
+*eProsima Fast DDS* checks the optional |TypeInformation-api| value during endpoint discovery and matching
+to check if the types are known, and in case they are not,
+an automatic discovery of the necessary types it is initiated.
 
 The process of checking the types is as follows:
 
@@ -21,7 +22,7 @@ The process of checking the types is as follows:
 * If the discovered participant has not sent |TypeInformation-api|, Fast DDS will utilize a fallback mechanism,
   using the type name to check if the type is known. Matching will occur if the type is known.
 
-.. _dynamictypes_discovery_typeinformation:
+.. _xtypes_discovery_typeinformation:
 
 TypeInformation
 ---------------
@@ -35,7 +36,7 @@ This avoids sending the complete data type to Endpoints that may not be interest
 |TypeInformation-api| is described in the annexes of `DDS-XTypes V1.3`_ document,
 please refer to this document for details.
 
-.. _dynamictypes_discovery_typeobject:
+.. _xtypes_discovery_typeobject:
 
 TypeObject
 ----------
@@ -57,7 +58,7 @@ Both are described in the annexes of `DDS-XTypes V1.3`_ document, please refer t
 
 Fast DDS-Gen
 ------------
-*Fast DDS-Gen* default behaviour creates the necessary code to work with *Dynamic Types*.
+*Fast DDS-Gen* default behaviour creates the necessary code to work with :ref:`XTypes1.3 <dynamic-types>`.
 The generated code will include the `XXXTypeObjecSupport.h` and `XXXTypeObjecSupport.cxx` files,
 taking :class:`XXX` as our IDL type.
 These files provide a Type Factory for the type :class:`XXX`.

@@ -2,7 +2,7 @@
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
-.. _dynamictypes_language_binding:
+.. _xtypes_language_binding:
 
 Dynamic Language Binding
 ========================
@@ -19,12 +19,12 @@ from the IDL files.
 This section contains a detailed explanation of how to create |DynamicTypes| using the manual way, as well as the 
 same examples using XML and IDL files.
 
-.. _dynamictypes_supportedtypes:
+.. _xtypes_supportedtypes:
 
 Supported Types
 ---------------
 
-.. _dynamictypes_supportedtypes_primitive:
+.. _xtypes_supportedtypes_primitive:
 
 Primitives
 ^^^^^^^^^^
@@ -100,7 +100,7 @@ This examples show how to create members of each primitive type using |DynamicTy
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Primitives <xmldynamictypes_primivites>`.
 
-.. _dynamictypes_supportedtypes_string:
+.. _xtypes_supportedtypes_string:
 
 Strings
 ^^^^^^^
@@ -145,7 +145,7 @@ Constructed Types
 Enumerated Types
 """"""""""""""""
 
-.. _dynamictypes_supportedtypes_enumeration:
+.. _xtypes_supportedtypes_enumeration:
 
 Enumerations
 ************
@@ -182,7 +182,7 @@ function for each supported value.
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Enumerations <xmldynamictypes_enums>`.
 
-.. _dynamictypes_supportedtypes_bitmask:
+.. _xtypes_supportedtypes_bitmask:
 
 Bitmasks
 ********
@@ -223,7 +223,7 @@ facilitate the creation of this type.
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Bitmask <xmldynamictypes_bitmask>`.
 
-.. _dynamictypes_supportedtypes_alias:
+.. _xtypes_supportedtypes_alias:
 
 Alias
 """""
@@ -261,7 +261,7 @@ the existing type they want the alias to represent.
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Typedef <xmldynamictypes_typedef>`.
 
-.. _dynamictypes_complextypes_aliasalias:
+.. _xtypes_complextypes_aliasalias:
 
 Alias types support recursion, simply by using an alias as base type for :|TypeDescriptor::base_type|.
 
@@ -294,7 +294,7 @@ please refer to :ref:`Primitives <xmldynamictypes_primivites>`.
 Collections
 """""""""""
 
-.. _dynamictypes_supportedtypes_sequence:
+.. _xtypes_supportedtypes_sequence:
 
 Sequences
 *********
@@ -336,7 +336,7 @@ type that allow users to work with multiple values at once.
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Sequences <xmldynamictypes_sequence>`.
 
-.. _dynamictypes_supportedtypes_array:
+.. _xtypes_supportedtypes_array:
 
 Arrays
 ******
@@ -380,7 +380,7 @@ primitive type that allow users to work with multiple values at once.
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Arrays <xmldynamictypes_array>`.
 
-.. _dynamictypes_supportedtypes_map:
+.. _xtypes_supportedtypes_map:
 
 Maps
 ****
@@ -426,7 +426,7 @@ please refer to :ref:`Maps <xmldynamictypes_map>`.
 Aggregated Types
 """"""""""""""""
 
-.. _dynamictypes_supportedtypes_structure:
+.. _xtypes_supportedtypes_structure:
 
 Structures
 **********
@@ -471,7 +471,7 @@ without calling |DynamicData::return_loaned_value| before.
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Struct <xmldynamictypes_struct>`.
 
-.. _dynamictypes_supportedtypes_union:
+.. _xtypes_supportedtypes_union:
 
 Unions
 ******
@@ -512,7 +512,7 @@ member of the union, and |MemberDescriptor::is_default_label| to specify the def
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Union <xmldynamictypes_union>`.
 
-.. _dynamictypes_supportedtypes_bitset:
+.. _xtypes_supportedtypes_bitset:
 
 Bitset
 ******
@@ -568,12 +568,12 @@ The ``TypeKind`` used to identify Bitsets is ``TK_BITSET``.
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Bitset <xmldynamictypes_bitset>`.
 
-.. _dynamictypes_complextypes:
+.. _xtypes_complextypes:
 
 Complex types
 ^^^^^^^^^^^^^
 
-In complex data models, combinations of basic types :ref:`basic types<dynamictypes_supportedtypes>`
+In complex data models, combinations of basic types :ref:`basic types<xtypes_supportedtypes>`
 can be used to create intricate structures, including nested compositions such as structures within structures.
 Additionally, types can be extended using inheritance to enhance flexibility.
 
@@ -582,7 +582,7 @@ The following subsections describe these *complex types* and their use.
 Inheritance
 """""""""""
 
-.. _dynamictypes_structure_inheritance:
+.. _xtypes_structure_inheritance:
 
 Structures allow inheritance, exactly with the same OOP meaning.
 To inherit from another structure, users must create the parent structure calling the 
@@ -619,11 +619,11 @@ Structures support several levels of inheritance, so the base class can be anoth
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`Struct <xmldynamictypes_struct_inheritance>`.
 
-.. _dynamictypes_bitset_inheritance:
+.. _xtypes_bitset_inheritance:
 
 Bitsets allows inheritance aswell, exactly with the same OOP meaning.
 To inherit from another bitset, users must follow the same process as with 
-:ref:`structures <dynamictypes_structure_inheritance>`, but using bitset types.
+:ref:`structures <xtypes_structure_inheritance>`, but using bitset types.
 
 .. tabs::
 
@@ -649,12 +649,12 @@ To inherit from another bitset, users must follow the same process as with
             :end-before: //!--
 
 For a detailed explanation about the XML definition of this type,
-please refer to :ref:`Bitset <xmldynamictypes_bitset_inheritance>`.
+please refer to :ref:`Bitset <xmlxtypes_bitset_inheritance>`.
 
 Nested Types
 """"""""""""
 
-.. _dynamictypes_nested_structures:
+.. _xtypes_nested_structures:
 
 Structures can contain other structures as members.
 The access to these compound members is restricted and managed by the |DynamicData-api| instance.
@@ -685,7 +685,7 @@ The loan operation will fail if the member is already loaned and has not been re
             :start-after: //!--CPP_COMPLEX_STRUCTS
             :end-before: //!--
 
-.. _dynamictypes_nested_unions:
+.. _xtypes_nested_unions:
 
 Unions support complex type fields.
 The access to these complex type fields is restricted and managed by the |DynamicData-api| instance.
@@ -718,7 +718,7 @@ The loan operation will fail if the fields is already loaned and has not been re
 
 
 For a detailed explanation about the XML definition of this types,
-please refer to :ref:`Complex types <xmldynamictypes_complextypes>`.
+please refer to :ref:`Complex types <xmlxtypes_complextypes>`.
 
 Annotations
 ^^^^^^^^^^^

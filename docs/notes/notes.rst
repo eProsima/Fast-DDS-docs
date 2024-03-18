@@ -10,14 +10,14 @@ Version 2.12.2
 
 This release includes the following **features**:
 
-1. Methods to configure transport scenario
-2. Support ``Autofill port`` (automatically set the port) for TCP Transport
-3. Support TCP for Discovery server CLI and environment variable
-4. Define a super client by environment variable
+1. Methods to configure :ref:`transport scenarios <rtps_layer_builtin_transports>`
+2. Support ``Autofill port`` (:ref:`automatically set the port <transport_tcp_transportDescriptor>`) for TCP Transport
+3. Support :ref:`TCP for Discovery Server <use-case-tcp-discovery-server>` CLI and environment variable
+4. Define a :ref:`super client by environment variable <env_vars_ros_super_client>`
 5. Change serialize function default behaviour to omit the data representation
 6. ``LARGE_DATA`` Participants logic with same listening ports
 7. TCP Client&Server Participant Decision-Making logic
-8. Expose Authentication Handshake Properties
+8. Expose :ref:`Authentication Handshake Properties <property_policies_security>`
 9. Enabling multiple interfaces through whitelist in TCP servers
 10. Add macOS and Ubuntu Github CI
 
@@ -63,7 +63,9 @@ This release includes the following **fixes**:
 29. Remove unnecessary ``std::move`` in ``FileWatch.hpp`` causing warning
 30. Add missing thread include
 31. Add missing virtual destructor for ``StatisticsAncillary``
-32. Downgrade CMake version to 3.20
+32. Protect asio exception
+33. ``TCPSendResources`` cleanup
+34. Downgrade CMake version to 3.20
 
 Previous versions
 =================

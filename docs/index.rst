@@ -49,7 +49,7 @@
    /fastdds/env_vars/env_vars
    /fastdds/property_policies/property_policies
    /fastdds/statistics/statistics
-   /fastdds/dynamic_types/dynamic_types
+   /fastdds/xtypes/xtypes
    /fastdds/use_cases/use_cases
    /fastdds/ros2/ros2
    /fastdds/troubleshooting/troubleshooting

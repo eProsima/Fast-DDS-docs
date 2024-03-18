@@ -38,7 +38,7 @@ code generation are the following:
 *   ``-replace``: It replaces existing files in case the data type files have been previously generated.
 *   ``-help``: It lists the currently supported platforms and Visual Studio versions.
 *   ``-no-typeobjectsupport``: Avoids building additional files for |TypeObject-api| generation and management (see
-    :ref:`dynamictypes_discovery_typeobject`).
+    :ref:`xtypes_discovery_typeobject`).
 *   ``-example``: It generates a basic example of a DDS application and the files to build it for
     the given ``platform``.
     Thus, *Fast DDS-Gen* tool can generate a sample application using the provided data type, together with a

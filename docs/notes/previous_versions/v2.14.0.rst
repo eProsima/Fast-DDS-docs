@@ -1,16 +1,18 @@
 `Version 2.14.0 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.0/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**IMPORTANT**: Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS
-v3.0.0, stay tuned!
+.. important::
+
+    Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS
+    v3.0.0, stay tuned!
 
 This release includes the following **new features**:
 
-#. Add netmask filter transport configuration (see :ref:`ifaces_config`)
-#. Add interface allowlist and blocklist (see :ref:`ifaces_config`)
-#. Expose Security Authentication plugin Handshake Properties (see :ref:`property_policies_security`)
-#. Extend LARGE_DATA configuration options (see :ref:`use-case-large-data-options`)
-#. Allow single listening port on TCP (see :ref:`transport_tcp_transportDescriptor`)
+#. Add :ref:`netmask filter <ifaces_config>` transport configuration
+#. Add :ref:`interface allowlist and blocklist <ifaces_config>`
+#. Expose :ref:`Security Authentication plugin <property_policies_security>` Handshake Properties
+#. Extend ``LARGE_DATA`` :ref:`configuration options <use-case-large-data-options>`
+#. Allow :ref:`single listening port on TCP <transport_tcp_transportDescriptor>`
 #. OpenOutputChannels / CloseOutputChannels that receive a LocatorSelectorEntry
 #. Support GTest v1.14.0
 #. Update Fast CDR submodule to v2.2.0
@@ -20,21 +22,21 @@ This release includes the following **improvements**:
 
 #. Ignore custom PIDs defined in Fast DDS when they are received from other vendors
 #. Add catch of out-of-range exception for thread settings port
-#. Explicitly pass vendor ID to readFromCdrMessage
+#. Explicitly pass vendor ID to ``readFromCdrMessage``
 #. TCP transport improvements:
 
-    #. TCPSendResources cleanup
-    #. TCP non_blocking_send moved to TCPTransportDescriptor (see :ref:`transport_tcp_transportDescriptor`)
+    #. ``TCPSendResources`` cleanup
+    #. TCP ``non_blocking_send`` moved to :ref:`transport_tcp_transportDescriptor`
 
 #. Various repository improvements and housekeeping:
 
     #. Migrate communication tests to the DDS API
     #. Migrate TCPReqRepHelloWorldReplier/Requester to the DDS API
     #. Update APIs in video performance tests to the DDS API
-    #. Remove FASTDDS_TODO_BEFORE 2.14
+    #. Remove ``FASTDDS_TODO_BEFORE`` 2.14
     #. Remove use of deprecated FindPythonInterp
     #. Remove idl parser from .repos file
-    #. Force usage of semicolon in FASTDDS_TODO_BEFORE macro
+    #. Force usage of semicolon in ``FASTDDS_TODO_BEFORE`` macro
     #. Ubuntu example testing automation infrastructure
 
 #. Multiple Github CI improvements:

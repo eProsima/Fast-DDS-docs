@@ -1,0 +1,68 @@
+`Version 2.14.0 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**IMPORTANT**: Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS
+v3.0.0, stay tuned!
+
+This release includes the following **new features**:
+
+1. Add netmask filter transport configuration (see :ref:`ifaces_config`)
+1. Add interface allowlist and blocklist (see :ref:`ifaces_config`)
+1. Expose Security Authentication plugin Handshake Properties (see :ref:`property_policies_security`)
+1. Extend LARGE_DATA configuration options (see :ref:`use-case-large-data-options`)
+1. Allow single listening port on TCP (see :ref:`transport_tcp_transportDescriptor`)
+1. OpenOutputChannels / CloseOutputChannels that receive a LocatorSelectorEntry
+1. Support GTest v1.14.0
+1. Update Fast CDR submodule to v2.2.0
+1. Update roadmap and release support
+
+This release includes the following **improvements**:
+
+1. Ignore custom PIDs defined in Fast DDS when they are received from other vendors
+1. Add catch of out-of-range exception for thread settings port
+1. Explicitly pass vendor ID to readFromCdrMessage
+1. TCP transport improvements:
+
+    1. TCPSendResources cleanup
+    1. TCP non_blocking_send moved to TCPTransportDescriptor (see :ref:`transport_tcp_transportDescriptor`)
+
+1. Various repository improvements and housekeeping:
+
+    1. Migrate communication tests to the DDS API
+    1. Migrate TCPReqRepHelloWorldReplier/Requester to the DDS API
+    1. Update APIs in video performance tests to the DDS API
+    1. Remove FASTDDS_TODO_BEFORE 2.14
+    1. Remove use of deprecated FindPythonInterp
+    1. Remove idl parser from .repos file
+    1. Force usage of semicolon in FASTDDS_TODO_BEFORE macro
+    1. Ubuntu example testing automation infrastructure
+
+1. Multiple Github CI improvements:
+
+    1. Add nightly Ubuntu Github CI
+    1. Improve CI version management
+    1. Avoid running GitHub CI if PR has conflicts
+    1. Migrate apt package installation to eProsima-CI action
+    1. Include missing nightly for 3.0.x branch
+    1. Adapt nightly jobs for all supported versions
+    1. Pin CMake version and vm.mmap_rnd_bits in sanitizer workflows
+    1. Select reusable workflow version depending on target branch in nightly jobs
+
+This release includes the following **fixes**:
+
+1. Fix warnings when compiling for Windows x86
+1. TCP first message loss (see :ref:`transport_tcp_transportDescriptor`)
+1. Fix warnings on tests on Windows 32bits
+1. Protect asio exception hotfix
+1. Fix CVE-2024-28231
+1. Github CI fixes:
+
+    1. Fix CI documentation workflow label triggering
+    1. Fix nightly jobs
+    1. Fix input branch on reusable windows CI
+    1. Use correct version of GTest on DS ASan tests
+
+.. note::
+
+    When upgrading to version 2.14.0 it is **advisable** to regenerate generated source from IDL files
+    using `Fast DDS-Gen v3.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.0>`_.

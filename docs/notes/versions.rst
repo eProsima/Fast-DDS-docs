@@ -80,7 +80,7 @@ The following table shows the minimum version required of the Fast DDS build sys
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
+              - Tier 2: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Windows 11
@@ -135,7 +135,7 @@ The following table shows the minimum version required of the Fast DDS build sys
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
+              - Tier 2: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Windows 11
@@ -190,7 +190,7 @@ The following table shows the minimum version required of the Fast DDS build sys
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
+              - Tier 2: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Debian Buster (10)
@@ -239,7 +239,7 @@ The following table shows the minimum version required of the Fast DDS build sys
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
+              - Tier 2: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Debian Buster (10)
@@ -282,7 +282,7 @@ The following table shows the minimum version required of the Fast DDS build sys
             * - Windows 10
               - Tier 1: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019), |br|
+              - Tier 2: MSVC v142 (Visual Studio 2019) |br|
                 Tier 2: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Debian Buster (10)

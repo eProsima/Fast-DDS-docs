@@ -6,61 +6,61 @@ v3.0.0, stay tuned!
 
 This release includes the following **new features**:
 
-1. Add netmask filter transport configuration (see :ref:`ifaces_config`)
-1. Add interface allowlist and blocklist (see :ref:`ifaces_config`)
-1. Expose Security Authentication plugin Handshake Properties (see :ref:`property_policies_security`)
-1. Extend LARGE_DATA configuration options (see :ref:`use-case-large-data-options`)
-1. Allow single listening port on TCP (see :ref:`transport_tcp_transportDescriptor`)
-1. OpenOutputChannels / CloseOutputChannels that receive a LocatorSelectorEntry
-1. Support GTest v1.14.0
-1. Update Fast CDR submodule to v2.2.0
-1. Update roadmap and release support
+#. Add netmask filter transport configuration (see :ref:`ifaces_config`)
+#. Add interface allowlist and blocklist (see :ref:`ifaces_config`)
+#. Expose Security Authentication plugin Handshake Properties (see :ref:`property_policies_security`)
+#. Extend LARGE_DATA configuration options (see :ref:`use-case-large-data-options`)
+#. Allow single listening port on TCP (see :ref:`transport_tcp_transportDescriptor`)
+#. OpenOutputChannels / CloseOutputChannels that receive a LocatorSelectorEntry
+#. Support GTest v1.14.0
+#. Update Fast CDR submodule to v2.2.0
+#. Update roadmap and release support
 
 This release includes the following **improvements**:
 
-1. Ignore custom PIDs defined in Fast DDS when they are received from other vendors
-1. Add catch of out-of-range exception for thread settings port
-1. Explicitly pass vendor ID to readFromCdrMessage
-1. TCP transport improvements:
+#. Ignore custom PIDs defined in Fast DDS when they are received from other vendors
+#. Add catch of out-of-range exception for thread settings port
+#. Explicitly pass vendor ID to readFromCdrMessage
+#. TCP transport improvements:
 
-    1. TCPSendResources cleanup
-    1. TCP non_blocking_send moved to TCPTransportDescriptor (see :ref:`transport_tcp_transportDescriptor`)
+    #. TCPSendResources cleanup
+    #. TCP non_blocking_send moved to TCPTransportDescriptor (see :ref:`transport_tcp_transportDescriptor`)
 
-1. Various repository improvements and housekeeping:
+#. Various repository improvements and housekeeping:
 
-    1. Migrate communication tests to the DDS API
-    1. Migrate TCPReqRepHelloWorldReplier/Requester to the DDS API
-    1. Update APIs in video performance tests to the DDS API
-    1. Remove FASTDDS_TODO_BEFORE 2.14
-    1. Remove use of deprecated FindPythonInterp
-    1. Remove idl parser from .repos file
-    1. Force usage of semicolon in FASTDDS_TODO_BEFORE macro
-    1. Ubuntu example testing automation infrastructure
+    #. Migrate communication tests to the DDS API
+    #. Migrate TCPReqRepHelloWorldReplier/Requester to the DDS API
+    #. Update APIs in video performance tests to the DDS API
+    #. Remove FASTDDS_TODO_BEFORE 2.14
+    #. Remove use of deprecated FindPythonInterp
+    #. Remove idl parser from .repos file
+    #. Force usage of semicolon in FASTDDS_TODO_BEFORE macro
+    #. Ubuntu example testing automation infrastructure
 
-1. Multiple Github CI improvements:
+#. Multiple Github CI improvements:
 
-    1. Add nightly Ubuntu Github CI
-    1. Improve CI version management
-    1. Avoid running GitHub CI if PR has conflicts
-    1. Migrate apt package installation to eProsima-CI action
-    1. Include missing nightly for 3.0.x branch
-    1. Adapt nightly jobs for all supported versions
-    1. Pin CMake version and vm.mmap_rnd_bits in sanitizer workflows
-    1. Select reusable workflow version depending on target branch in nightly jobs
+    #. Add nightly Ubuntu Github CI
+    #. Improve CI version management
+    #. Avoid running GitHub CI if PR has conflicts
+    #. Migrate apt package installation to eProsima-CI action
+    #. Include missing nightly for 3.0.x branch
+    #. Adapt nightly jobs for all supported versions
+    #. Pin CMake version and vm.mmap_rnd_bits in sanitizer workflows
+    #. Select reusable workflow version depending on target branch in nightly jobs
 
 This release includes the following **fixes**:
 
-1. Fix warnings when compiling for Windows x86
-1. TCP first message loss (see :ref:`transport_tcp_transportDescriptor`)
-1. Fix warnings on tests on Windows 32bits
-1. Protect asio exception hotfix
-1. Fix CVE-2024-28231
-1. Github CI fixes:
+#. Fix warnings when compiling for Windows x86
+#. TCP first message loss (see :ref:`transport_tcp_transportDescriptor`)
+#. Fix warnings on tests on Windows 32bits
+#. Protect asio exception hotfix
+#. Fix CVE-2024-28231
+#. Github CI fixes:
 
-    1. Fix CI documentation workflow label triggering
-    1. Fix nightly jobs
-    1. Fix input branch on reusable windows CI
-    1. Use correct version of GTest on DS ASan tests
+    #. Fix CI documentation workflow label triggering
+    #. Fix nightly jobs
+    #. Fix input branch on reusable windows CI
+    #. Use correct version of GTest on DS ASan tests
 
 .. note::
 

@@ -1,6 +1,11 @@
 Supported versions
 ==================
 
+Version 2.14
+------------
+
+.. include:: v2.14.0.rst
+
 Version 2.13
 ------------
 

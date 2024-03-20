@@ -1,3 +1,5 @@
+.. include:: ../../03-exports/aliases-api.include
+
 .. _dynamic-types:
 
 XTypes 1.3

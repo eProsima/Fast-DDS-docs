@@ -1,6 +1,12 @@
 Previous end-of-life versions
 =============================
 
+Version 2.12 (EOL)
+------------------
+
+.. include:: v2.12.1.rst
+.. include:: v2.12.0.rst
+
 Version 2.11 (EOL)
 ------------------
 

@@ -15,6 +15,7 @@ amd
 ament
 ami
 appendable
+ASan
 asio
 Asio
 ASIO
@@ -135,6 +136,7 @@ HelloWorldTopic
 homebrew
 Homebrew
 hostid
+hotfix
 idl
 IDL
 ifaddrs
@@ -169,6 +171,7 @@ mebibyte
 metatraffic
 middleware
 misconfigurations
+mmap
 modularity
 msvc
 multicast
@@ -216,6 +219,7 @@ qnx
 QoS
 QosPolicyCount
 quadratically
+readFromCdrMessage
 readNextData
 reconfigurations
 reconnection
@@ -225,6 +229,7 @@ replier
 repos
 RETCODE_OK
 retransmission
+rnd
 roadmap
 rosbag
 rtps
@@ -283,6 +288,7 @@ updatability
 updatable
 Valgrind
 vcstool
+vm
 wget
 whitelist
 whitelists

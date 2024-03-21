@@ -9,14 +9,14 @@ XTypes 1.3
 
 *eProsima Fast DDS* manages :ref:`Discovery and Endpoint Matching <xtypes_discovery_matching>`
 using |TypeInformation-api| and |TypeObject-api| when posible.
-It checks that the types are known, initiating a type discovery process if necessary
-before matching with other participants.
+When remote endpoints are discovered, it checks that the types are known, initiating a type discovery process if necessary
+before the matching between the endpoints takes place.
 Alternatively, it uses a fallback mechanism based on type names when |TypeInformation-api| is unavailable.
 
 *eProsima Fast DDS* provides a dynamic way to define and use topic types and topic data.
-The :ref:`Dynamic Language Binding <xtypes_language_binding>` offer the possibility to work over RTPS
+The :ref:`Dynamic Language Binding <xtypes_language_binding>` offers the possibility to work over DDS/RTPS
 without the restrictions related to the IDLs.
-Using them, the users can declare the different types that they need and manage the information directly,
+The users can declare the different types that they need and manage the information on runtime,
 avoiding the additional step of updating the IDL file and the generation of *C++* classes.
 
 This implementation follows the *OMG Extensible and Dynamic Topic Types for DDS interface*.

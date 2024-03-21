@@ -7,17 +7,92 @@
 Dynamic Language Binding
 ========================
 
-*eProsima Fast DDS* supports several methods for defining |DynamicTypes|.
+*eProsima Fast DDS* supports several methods to define |DynamicTypes|.
 Manual creation using |DynamicTypeBuilderFactory-api| and |DynamicTypeBuilder-api| to create the types.
 
-:ref:`XMLDynamicTypes <xmldynamictypes>` allows *eProsima Fast DDS* to create DynamicTypes directly defining 
-them through XML.
+:ref:`XMLDynamicTypes <xmldynamictypes>` allows *eProsima Fast DDS* to create DynamicTypes by defining 
+them directly through XML.
 
-:ref:`Fast DDS-Gen <fastddsgen_intro>` provides a way to automatically generate the code to define the |DynamicTypes| 
-from the IDL files.
+This section contains an small description of the interfaces used to work with |DynamicTypes| and a detailed
+explanation of how to create |DynamicTypes| in the manual way, as well as the same examples using XML files.
 
-This section contains a detailed explanation of how to create |DynamicTypes| using the manual way, as well as the 
-same examples using XML and IDL files.
+.. _xtypes_intenfaces:
+
+Dynamic Types Interfaces
+------------------------
+
+DynamicTypeBuilderFactory
+^^^^^^^^^^^^^^^^^^^^^^^^^
+The |DynamicTypeBuilderFactory-api| serves as a singleton wich isntance is responsible for creating |DynamicTypes| and
+serves as the entry point for both creating and deleting |DynamicTypeBuilder-api| objects.
+The simpler types can be directly instantiated without the need for a DynamicTypeBuilder.
+Refer to the Supported Types documentation for details on which types support this direct creation option.
+
+AnnotationDescriptor
+^^^^^^^^^^^^^^^^^^^^
+|AnnotationDescriptor-api| encapsulates the state of an annotation when applied to an element (not an annotation type).
+
+TypeDescriptor
+^^^^^^^^^^^^^^
+|TypeDescriptor-api| stores the state of a type, including its structure, relationships, and constraints.
+As the class responsible for describing the inner structure of a DynamicType,
+When the DynamicType is created, DynamicTypeBuilderFactory utilizes the information from the TypeDescriptor to
+instantiate the DynamicType.
+This information is then copied to the DynamicType during creation, gaining independence from the DynamicTypeBuilder
+
+so the builder can be reused for another type.
+
+DynamicTypeMember
+^^^^^^^^^^^^^^^^^
+|DynamicTypeMember-api| represents a data member of a DynamicType that itself is a DynamicType.
+Dynamic types that are composed of other dynamic types have a DynamicTypeMember for every child
+DynamicType added to it.
+Functioning as the representation of a "member" of a type, it may be a member of an aggregate type,
+or constants within enumerations, or other types of substructure.
+
+MemberDescriptor
+^^^^^^^^^^^^^^^^
+|MemberDescriptor-api| encapsulates the state of a DynamicTypeMember.
+Analogous to TypeDescriptor's role in describing the inner structure of a DynamicType, MemberDescriptor
+stores all essential information for managing a DynamicTypeMember.
+This information, including member name, unique ID, and default value, is copied to the DynamicData
+upon its creation.
+
+DynamicType
+^^^^^^^^^^^
+|DynamicType-api| objects represent a type's schema, including its name, type kind, and member definitions.
+As the base class for all dynamically declared types, it is the representation of a dynamic data type used
+for creating DynamicData values.
+Once created, the structure of a DynamicType cannot be modified.
+
+DynamicTypeBuilder
+^^^^^^^^^^^^^^^^^^
+|DynamicTypeBuilder-api| represents the transitional state of a type defined in the Type System.
+It enables the instantiation of concrete DynamicType objects and serves as an intermediary for configuring a
+DynamicType before its creation.
+A DynamicType's composition must be defined before its creation, with the builder facilitating this setup,
+and its structure cannot be modified once the object is created.
+Upon definition, DynamicTypeBuilderFactory leverages the information contained in the builder to create
+the DynamicType.
+The builder offers a :func:`build` function for convenient creation of a fully constructed DynamicType,
+utilizing DynamicTypeBuilderFactory internally.
+Builders remain reusable after DynamicType creation, ensuring changes to the builder do not affect previously
+created types.
+
+DynamicDataFactory
+^^^^^^^^^^^^^^^^^^
+|DynamicDataFactory-api|, logically a singleton, oversees the creation of DynamicData objects.
+As the sole entry point for creating and deleting DynamicData and objects, it operates similarly to the singleton
+DomainParticipantFactory.
+This singleton class manages every DynamicData instance, capable of generating an instance corresponding to a specified
+DynamicType.
+
+DynamicData
+^^^^^^^^^^^
+|DynamicData-api| represents a data instance of a DynamicType, providing functionalities to access
+and modify data values.
+Each DynamicData object corresponds to an object of the type represented by its DynamicType.
+Offering reflective getters and setters, DynamicData enables manipulation of individual data samples.
 
 .. _xtypes_supportedtypes:
 
@@ -29,17 +104,17 @@ Supported Types
 Primitives
 ^^^^^^^^^^
 
-By definition, primitive types are self-described and can be created without configuration parameters.
-Therefore, |DynamicTypeBuilderFactory-api| exposes the function |DynamicTypeBuilderFactory::get_primitive_type| 
-to allow users to create the type avoiding the |DynamicTypeBuilder-api| step.
-The |DynamicData-api| class has a specific :func:`get__value` and :func:`set__value` functions for each primitive 
-type of the list.
+By definition, primitive types are self-describing and can be created without configuration parameters.
+Therefore, the |DynamicTypeBuilderFactory-api| exposes the function |DynamicTypeBuilderFactory::get_primitive_type| 
+to allow users to create the type bypassing the |DynamicTypeBuilder-api| step.
+The |DynamicData-api| class has a specific :func:`get_value` and :func:`set_value` functions for each primitive 
+type in the list.
 
 The following table shows the supported primitive types and their corresponding ``TypeKind``.
-The ``TypeKind`` is used to identify the type when creating it.
+The ``TypeKind`` is used to identify the type when it is created.
 
 +------------------+-------------------+
-| Type             | TypeKind          |
+| C++ Type         | TypeKind          |
 +------------------+-------------------+
 | ``BOOLEAN``      | ``TK_BOOLEAN``    |
 +------------------+-------------------+
@@ -72,7 +147,7 @@ The ``TypeKind`` is used to identify the type when creating it.
 | ``FLOAT128``     | ``TK_FLOAT128``   |
 +------------------+-------------------+
 
-This examples show how to create members of each primitive type using |DynamicTypeBuilderFactory-api|.
+This example shows how to create members of each primitive type using |DynamicTypeBuilderFactory-api|.
 
 .. tabs::
 
@@ -105,12 +180,12 @@ please refer to :ref:`Primitives <xmldynamictypes_primivites>`.
 Strings
 ^^^^^^^
 
-Strings are pretty similar to primitive types, the main difference being that they need to set their size limit.
+Strings are quite similar to primitive types, the main difference being that they need to set their size limit.
 
-|DynamicTypeBuilderFactory-api| exposes the functions |DynamicTypeBuilderFactory::create_string_type| and 
-|DynamicTypeBuilderFactory::create_wstring_type| to allow users create them directly.
-This functions receive a parameter to set the maximum length of the string, using ``LENGTH_UNLIMITED`` 
-to set it as unlimited.
+The |DynamicTypeBuilderFactory-api| exposes the functions |DynamicTypeBuilderFactory::create_string_type| and 
+|DynamicTypeBuilderFactory::create_wstring_type| to allow users to create them directly.
+These functions take a parameter to set the maximum length of the string, using ``LENGTH_UNLIMITED`` 
+to set it to unlimited.
 The |DynamicData-api| class has a specific :func:`get_string_value` and :func:`set_string_value`.
 
 .. tabs::
@@ -154,7 +229,10 @@ An enumeration contains a set of supported values and a selected value among tho
 The ``TypeKind`` used to identify Enumerations is ``TK_ENUM``.
 
 The supported values must be configured using the |DynamicTypeBuilder-api|, using the |DynamicTypeBuilder::add_member| 
-function for each supported value.
+function for the respective supported values.
+The type to which the enumeration will be bound to is determined the first time
+|DynamicTypeBuilder::add_member| is invoked by taking the type of that member.
+Subsequently added members must follow the same type.
 
 .. tabs::
 
@@ -187,15 +265,16 @@ please refer to :ref:`Enumerations <xmldynamictypes_enums>`.
 Bitmasks
 ********
 
-Bitmasks are similar to |Enumeration| types, but their members work as bit flags that can be individually turned on and
-off.
+Bitmasks are similar to |Enumeration| types, but their members act as bit flags that can be turned on and
+off individually.
 The ``TypeKind`` used to identify Bitmasks is ``TK_BITMASK``.
 
-Those flags might use the ``positition`` attribute to set their position in the bitmask.
-The ``bit_bound`` attribute specifies the number of bits that the bitmask type will manage.
+These flags might use the ``id`` attribute to set their position in the bitmask.
+The ``bound`` attribute specifies the number of bits that the bitmask type will manage.
 Bitmasks can be bound to any number of bits up to 64.
 The |DynamicTypeBuilderFactory-api| exposes the function |DynamicTypeBuilderFactory::create_bitmask_type| to 
 facilitate the creation of this type.
+The members added to a bitmask using |DynamicTypeBuilder::add_member| must be of type ``TK_BOOLEAN``.
 
 .. tabs::
 
@@ -299,16 +378,16 @@ Collections
 Sequences
 *********
 
-A complex type that manages its members as a list of items allowing users to insert, 
+A complex type that manages its members as a list of elements allowing users to insert, 
 remove or access to a member of the list.
 
 The |DynamicTypeBuilderFactory-api| exposes the function |DynamicTypeBuilderFactory::create_sequence_type| to 
 facilitate the creation of this type.
-To create this type users need to specify the type that it is going to store.
+To create this type, the user must specify the type to be stored.
 Additionally, the size limit of the list. Users can use ``LENGTH_UNLIMITED`` to create unbounded sequences.
 
-The |DynamicData-api| class has a specific :func:`get__values` and :func:`set__values` functions for each primitive 
-type that allow users to work with multiple values at once.
+The |DynamicData-api| class has a specific :func:`get_values` and :func:`set_values` functions for each primitive 
+type, allowing users to work with multiple values at once.
 
 .. tabs::
 
@@ -341,17 +420,17 @@ please refer to :ref:`Sequences <xmldynamictypes_sequence>`.
 Arrays
 ******
 
-Arrays are pretty similar to sequences with two main differences:
-They can have multiple dimensions and they do not need their elements to be stored consecutively.
+Arrays are very similar to sequences with two main differences:
+They can have multiple dimensions and their elements are initialized to the default value at the start.
 
-An array needs to know the number of dimensions it is managing.
-For that, users must provide a vector with as many elements as dimensions in the array.
+An array needs to know the number of dimensions it maanges.
+The user must provide a vector with as many elements as there are dimensions in the array.
 Each element in the vector represents the size of the given dimension.
 
 The |DynamicTypeBuilderFactory-api| exposes the function |DynamicTypeBuilderFactory::create_array_type| to 
 facilitate the creation of this type.
 
-The |DynamicData-api| class has a specific :func:`get__values` and :func:`set___values` functions for each 
+The |DynamicData-api| class has a specific :func:`get_values` and :func:`set_values` functions for each 
 primitive type that allow users to work with multiple values at once.
 
 .. tabs::
@@ -389,13 +468,18 @@ Maps contain a list of 'key-value' pair types, allowing users to insert, remove 
 The main difference with sequences is that the map works with pairs of elements and creates copies of the key element 
 to block the access to these elements.
 
-The |DynamicTypeBuilderFactory-api| exposes the function |DynamicTypeBuilderFactory::create_map_type| to 
+The |DynamicTypeBuilderFactory-api| exposes the |DynamicTypeBuilderFactory::create_map_type| function to 
 facilitate the creation of this type.
 To create a map, users must set the types of the key and the value elements.
 Additionally, the size limit of the map. Users can use ``LENGTH_UNLIMITED`` to create unbounded sequences.
 
 The |DynamicData-api| class has a specific :func:`get__values` and :func:`set___values` functions for each primitive 
 type that allow users to work with multiple values at once.
+
+To access the members of the map using the keys, users can use the |DynamicData::get_member_id_by_name| function to get
+the ``MemberId`` of the desired element key, and use it to modify the value of said element.
+Note that parameter used in |DynamicData::get_member_id_by_name| as the key name, must be the correct ``string``
+representation of the value of the key.
 
 .. tabs::
 
@@ -431,17 +515,17 @@ Aggregated Types
 Structures
 **********
 
-Structures are the most common complex types, they allow to add any kind of members inside them.
+Structures are the most common aggregated types, they allow any kind of members to be added inside them.
 They do not have any value, they are only used to contain other types.
 
 The function |DynamicTypeBuilderFactory::create_type| is used to create a new structure type.
-The ``TypeKind`` used to identify Structures is ``TK_STRUCTURE``.
+The ``TypeKind`` used to identify structures is ``TK_STRUCTURE``.
 
 To manage the types inside the structure, users can call the :func:`get` and :func:`set` functions according to the 
-kind of the type inside the structure using their ``ids``.
+kind of the type inside the structure using its ``id``.
 If the structure contains a complex value, |DynamicData::loan_value| should be used to access it and 
-|DynamicData::return_loaned_value| to release that loan.
-|DynamicData-api| manages the loaned values and users can not loan a value that has been loaned previously 
+|DynamicData::return_loaned_value| should be used to release that loan.
+|DynamicData-api| manages the loaned values and users cannot loan a previously loaned value 
 without calling |DynamicData::return_loaned_value| before.
 
 
@@ -476,15 +560,21 @@ please refer to :ref:`Struct <xmldynamictypes_struct>`.
 Unions
 ******
 
-Unions are a special kind of structures where only one of the members is active at the same time.
-The ``TypeKind`` used to identify Unions is ``TK_UNION``.
+Unions are a special type of structure where only one of the members is active at a time.
+The ``TypeKind`` used to identify unions is ``TK_UNION``.
 
 To control these members, users must set the ``discriminator`` type that is going to be used to select the current 
-member calling the |TypeDescriptor::discriminator_type| function of the union type.
-The ``discriminator`` itself is a DynamicType of any primitive type, string type or union type.
+member by calling the |TypeDescriptor::discriminator_type| function of the union type.
+The ``discriminator`` itself is a DynamicType that must be of any of the following types:
+- Boolean.
+- Byte.
+- Char8, Char16.
+- Int8, UInt8, Int16, UInt16, Int32, UInt32, Int64, UInt64.
+- An enumerated type.
+- Any alias type that resolves, directly or indirectly, to one of the aforementioned types.
 
-Additionally users can use the function |MemberDescriptor::label| with one or more values to set the labels of each 
-member of the union, and |MemberDescriptor::is_default_label| to specify the default label of the union.
+In addition, users can use the |MemberDescriptor::label| function with one or more values to set the labels of each 
+member of the union, and |MemberDescriptor::is_default_label| to set the default label of the union.
 
 .. tabs::
 

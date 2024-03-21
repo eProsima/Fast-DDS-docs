@@ -161,7 +161,7 @@ public:
     }
 
     void on_participant_discovery(
-            DomainParticipant* /*participant*/,
+            DomainParticipant* participant,
             eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
@@ -186,7 +186,7 @@ public:
 
 #if HAVE_SECURITY
     void onParticipantAuthentication(
-            DomainParticipant* /*participant*/,
+            DomainParticipant* participant,
             eprosima::fastrtps::rtps::ParticipantAuthenticationInfo&& info) override
     {
         if (info.status == eprosima::fastrtps::rtps::ParticipantAuthenticationInfo::AUTHORIZED_PARTICIPANT)
@@ -202,9 +202,9 @@ public:
 #endif // if HAVE_SECURITY
 
     void on_data_reader_discovery(
-            DomainParticipant* /*participant*/,
+            DomainParticipant* participant,
             eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
-            bool& /*should_be_ignored*/) override
+            bool& should_be_ignored) override
     {
         if (info.status == eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER)
         {
@@ -217,9 +217,9 @@ public:
     }
 
     void on_data_writer_discovery(
-            DomainParticipant* /*participant*/,
+            DomainParticipant* participant,
             eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
-            bool& /*should_be_ignored*/) override
+            bool& should_be_ignored) override
     {
         if (info.status == eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER)
         {
@@ -930,7 +930,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     void on_data_reader_discovery(
             DomainParticipant* participant,
             eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
-            bool& /*should_be_ignored*/) override
+            bool& should_be_ignored) override
     {
         static_cast<void>(participant);
         switch (info.status){
@@ -954,7 +954,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     void on_data_writer_discovery(
             DomainParticipant* participant,
             eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
-            bool& /*should_be_ignored*/) override
+            bool& should_be_ignored) override
     {
         static_cast<void>(participant);
         switch (info.status){
@@ -1363,21 +1363,21 @@ public:
     }
 
     bool serialize(
-            void* /*data*/,
-            eprosima::fastrtps::rtps::SerializedPayload_t* /*payload*/) override
+            void* data,
+            eprosima::fastrtps::rtps::SerializedPayload_t* payload) override
     {
         return true;
     }
 
     bool deserialize(
-            eprosima::fastrtps::rtps::SerializedPayload_t* /*payload*/,
-            void* /*data*/) override
+            eprosima::fastrtps::rtps::SerializedPayload_t* payload,
+            void* data) override
     {
         return true;
     }
 
     std::function<uint32_t()> getSerializedSizeProvider(
-            void* /*data*/) override
+            void* data) override
     {
         return std::function<uint32_t()>();
     }
@@ -1388,14 +1388,14 @@ public:
     }
 
     void deleteData(
-            void* /*data*/) override
+            void* data) override
     {
     }
 
     bool getKey(
-            void* /*data*/,
-            eprosima::fastrtps::rtps::InstanceHandle_t* /*ihandle*/,
-            bool /*force_md5*/) override
+            void* data,
+            eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
+            bool force_md5) override
     {
         return true;
     }
@@ -2014,7 +2014,7 @@ void dds_custom_filters_examples()
             {
                 deser >> index;
             }
-            catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+            catch (eprosima::fastcdr::exception::NotEnoughMemoryException& exception)
             {
                 return false;
             }
@@ -2497,7 +2497,7 @@ public:
     }
 
     void on_offered_incompatible_qos(
-            DataWriter* /*writer*/,
+            DataWriter* writer,
             const OfferedIncompatibleQosStatus& status) override
     {
         std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << status.last_policy_id <<
@@ -3299,7 +3299,7 @@ public:
     }
 
     void on_requested_incompatible_qos(
-            DataReader* /*reader*/,
+            DataReader* reader,
             const RequestedIncompatibleQosStatus& info) override
     {
         std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << info.last_policy_id <<
@@ -4427,7 +4427,7 @@ void dynamictypes_examples()
         // Define a struct type with various primitive members
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("PrimitivesStruct"));
+        type_descriptor->name("PrimitivesStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
 
@@ -4488,8 +4488,8 @@ void dynamictypes_examples()
         // Set and retrieve values for a member of type int32_t
         int32_t in_value = 2;
         int32_t out_value = 0;
-        data->set_int32_value(data->get_member_id_by_name(ObjectName("my_long")), in_value);
-        data->get_int32_value(out_value, data->get_member_id_by_name(ObjectName("my_long")));
+        data->set_int32_value(data->get_member_id_by_name("my_long"), in_value);
+        data->get_int32_value(out_value, data->get_member_id_by_name("my_long"));
         //!--
     }
     {
@@ -4497,7 +4497,7 @@ void dynamictypes_examples()
         // Define a struct type to contain the strings
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("StringsStruct"));
+        type_descriptor->name("StringsStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
 
@@ -4506,11 +4506,11 @@ void dynamictypes_examples()
 
         member_descriptor->name("my_string");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                        create_string_type(LENGTH_UNLIMITED)->build());
+                        create_string_type(static_cast<uint32_t>(LENGTH_UNLIMITED))->build());
         struct_builder->add_member(member_descriptor);
         member_descriptor->name("my_wstring");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                        create_wstring_type(LENGTH_UNLIMITED)->build());
+                        create_wstring_type(static_cast<uint32_t>(LENGTH_UNLIMITED))->build());
         struct_builder->add_member(member_descriptor);
         member_descriptor->name("my_bounded_string");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
@@ -4529,8 +4529,8 @@ void dynamictypes_examples()
         // Set and retrieve values for a string member
         std::string in_value = "helloworld";
         std::string out_value;
-        data->set_string_value(data->get_member_id_by_name(ObjectName("my_string")), in_value);
-        data->get_string_value(out_value, data->get_member_id_by_name(ObjectName("my_string")));
+        data->set_string_value(data->get_member_id_by_name("my_string"), in_value);
+        data->get_string_value(out_value, data->get_member_id_by_name("my_string"));
         //!--
     }
     {
@@ -4538,7 +4538,7 @@ void dynamictypes_examples()
         // Define a struct type to contain an enum
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("EnumStruct"));
+        type_descriptor->name("EnumStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
         // Define the enum type
@@ -4548,18 +4548,18 @@ void dynamictypes_examples()
         DynamicTypeBuilder::_ref_type enum_builder {DynamicTypeBuilderFactory::get_instance()->
                                                             create_type(enum_type_descriptor)};
         // Add enum members to the enum type
-        MemberDescriptor::_ref_type union_member_descriptor {traits<MemberDescriptor>::make_shared()};
-        union_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
-        union_member_descriptor->name("A");
-        enum_builder->add_member(union_member_descriptor);
-        union_member_descriptor = traits<MemberDescriptor>::make_shared();
-        union_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
-        union_member_descriptor->name("B");
-        enum_builder->add_member(union_member_descriptor);
-        union_member_descriptor = traits<MemberDescriptor>::make_shared();
-        union_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
-        union_member_descriptor->name("C");
-        enum_builder->add_member(union_member_descriptor);
+        MemberDescriptor::_ref_type enum_member_descriptor {traits<MemberDescriptor>::make_shared()};
+        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
+        enum_member_descriptor->name("A");
+        enum_builder->add_member(enum_member_descriptor);
+        enum_member_descriptor = traits<MemberDescriptor>::make_shared();
+        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
+        enum_member_descriptor->name("B");
+        enum_builder->add_member(enum_member_descriptor);
+        enum_member_descriptor = traits<MemberDescriptor>::make_shared();
+        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
+        enum_member_descriptor->name("C");
+        enum_builder->add_member(enum_member_descriptor);
         // Build the enum type
         DynamicType::_ref_type enum_type = enum_builder->build();
 
@@ -4574,10 +4574,10 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for an enum member
-        int32_t in_value = 2;
-        int32_t out_value = 0;
-        data->set_int32_value(data->get_member_id_by_name(ObjectName("my_enum")), in_value);
-        data->get_int32_value(out_value, data->get_member_id_by_name(ObjectName("my_enum")));
+        uint32_t in_value = 2;
+        uint32_t out_value = 0;
+        data->set_uint32_value(data->get_member_id_by_name("my_enum"), in_value);
+        data->get_uint32_value(out_value, data->get_member_id_by_name("my_enum"));
         //!--
     }
     {
@@ -4585,7 +4585,7 @@ void dynamictypes_examples()
         // Define a struct type to contain a bitmask
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("BitmaskStruct"));
+        type_descriptor->name("BitmaskStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
 
@@ -4598,6 +4598,10 @@ void dynamictypes_examples()
         bitmask_type_descriptor->bound().push_back(8);
         DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
                                                            bitmask_type_descriptor)};
+        /* Alternative
+           DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_bitmask_type(8)};
+         */
+
         // Add bitfield members to the bitmask type
         MemberDescriptor::_ref_type bitfield_member_descriptor {traits<MemberDescriptor>::make_shared()};
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
@@ -4632,20 +4636,21 @@ void dynamictypes_examples()
         // Create dynamic data based on the struct type
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
-        // Set and retrieve values for a bitmask member
-        bool in_value = 2;
-        bool out_value = 0;
-        data->set_boolean_value(data->get_member_id_by_name(ObjectName("my_bitmask")), in_value);
-        data->get_boolean_value(out_value, data->get_member_id_by_name(ObjectName("my_bitmask")));
+        // Set and retrieve values for bitmask member.
+        uint8_t in_value = 2;
+        uint8_t out_value = 0;
+        data->set_uint8_value(data->get_member_id_by_name("my_bitmask"), in_value);
+        data->get_uint8_value(out_value, data->get_member_id_by_name("my_bitmask"));
         //!--
     }
     {
+        // Type created as described in enumeration type section.
         DynamicType::_ref_type enum_type;
         //!--CPP_TYPEDEF
         // Define a struct type to contain the alias
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("AliasStruct"));
+        type_descriptor->name("AliasStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
         // Define an alias type for the enum
@@ -4689,8 +4694,8 @@ void dynamictypes_examples()
         // Set and retrieve values for the alias enum member
         int32_t in_value = 2;
         int32_t out_value = 0;
-        data->set_int32_value(data->get_member_id_by_name(ObjectName("my_alias_enum")), in_value);
-        data->get_int32_value(out_value, data->get_member_id_by_name(ObjectName("my_alias_enum")));
+        data->set_int32_value(data->get_member_id_by_name("my_alias_enum"), in_value);
+        data->get_int32_value(out_value, data->get_member_id_by_name("my_alias_enum"));
         //!--
     }
     {
@@ -4698,13 +4703,13 @@ void dynamictypes_examples()
         // Define a struct type to contain the alias
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("RecursiveAliasStruct"));
+        type_descriptor->name("RecursiveAliasStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
         // Define an alias type for base type
         type_descriptor = traits<TypeDescriptor>::make_shared();
         type_descriptor->kind(eprosima::fastdds::dds::TK_ALIAS);
-        type_descriptor->name(ObjectName("RecursiveAlias"));
+        type_descriptor->name("RecursiveAlias");
         type_descriptor->base_type(DynamicTypeBuilderFactory::get_instance()->
                         get_primitive_type(eprosima::fastdds::dds::TK_UINT32));
         DynamicTypeBuilder::_ref_type builder {DynamicTypeBuilderFactory::get_instance()->
@@ -4714,7 +4719,7 @@ void dynamictypes_examples()
 
         type_descriptor = traits<TypeDescriptor>::make_shared();
         type_descriptor->kind(eprosima::fastdds::dds::TK_ALIAS);
-        type_descriptor->name(ObjectName("MyAlias"));
+        type_descriptor->name("MyAlias");
         type_descriptor->base_type(rec_type);
         builder = DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor);
         // Build the alias type for other alias
@@ -4731,10 +4736,10 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for the alias member
-        int32_t in_value = 2;
-        int32_t out_value = 0;
-        data->set_int32_value(data->get_member_id_by_name(ObjectName("my_alias")), in_value);
-        data->get_int32_value(out_value, data->get_member_id_by_name(ObjectName("my_alias")));
+        uint32_t in_value = 2;
+        uint32_t out_value = 0;
+        data->set_uint32_value(data->get_member_id_by_name("my_alias"), in_value);
+        data->get_uint32_value(out_value, data->get_member_id_by_name("my_alias"));
         //!--
     }
     {
@@ -4742,7 +4747,7 @@ void dynamictypes_examples()
         // Define a struct type to contain the array
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("ArrayStruct"));
+        type_descriptor->name("ArrayStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
         // Define a member for the array
@@ -4759,10 +4764,10 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for the array member
-        Int32Seq in_value = {1, 2};
+        Int32Seq in_value = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 23, 24};
         Int32Seq out_value;
-        data->set_int32_values(data->get_member_id_by_name(ObjectName("long_array")), in_value);
-        data->get_int32_values(out_value, data->get_member_id_by_name(ObjectName("long_array")));
+        data->set_int32_values(data->get_member_id_by_name("long_array"), in_value);
+        data->get_int32_values(out_value, data->get_member_id_by_name("long_array"));
         //!--
     }
     {
@@ -4770,7 +4775,7 @@ void dynamictypes_examples()
         // Define a struct type to contain the sequence
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("SequenceStruct"));
+        type_descriptor->name("SequenceStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
         // Define a member for the sequence
@@ -4788,8 +4793,8 @@ void dynamictypes_examples()
         // Set and retrieve values for the sequence member
         Int16Seq in_value = {1, 2};
         Int16Seq out_value;
-        data->set_int16_values(data->get_member_id_by_name(ObjectName("short_sequence")), in_value);
-        data->get_int16_values(out_value, data->get_member_id_by_name(ObjectName("short_sequence")));
+        data->set_int16_values(data->get_member_id_by_name("short_sequence"), in_value);
+        data->get_int16_values(out_value, data->get_member_id_by_name("short_sequence"));
         //!--
     }
     {
@@ -4797,7 +4802,7 @@ void dynamictypes_examples()
         // Define a struct type to contain the map
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name(ObjectName("MapStruct"));
+        type_descriptor->name("MapStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
         // Define a member for the map
@@ -4853,11 +4858,12 @@ void dynamictypes_examples()
         // Set and retrieve values for the member
         const int32_t value1 = 2;
         int32_t value2 = 0;
-        data->set_int32_value(data->get_member_id_by_name(ObjectName("first")), value1);
-        data->get_int32_value(value2, data->get_member_id_by_name(ObjectName("first")));
+        data->set_int32_value(data->get_member_id_by_name("first"), value1);
+        data->get_int32_value(value2, data->get_member_id_by_name("first"));
         //!--
     }
     {
+        // Skipped this type creation. Same as in previous section.
         DynamicType::_ref_type mystruct_type;
         //!--CPP_UNION
         // Define a struct type to contain the union
@@ -6483,21 +6489,21 @@ public:
     }
 
     bool serialize(
-            void* /*data*/,
-            eprosima::fastrtps::rtps::SerializedPayload_t* /*payload*/) override
+            void* data,
+            eprosima::fastrtps::rtps::SerializedPayload_t* payload) override
     {
         return true;
     }
 
     bool deserialize(
-            eprosima::fastrtps::rtps::SerializedPayload_t* /*payload*/,
-            void* /*data*/) override
+            eprosima::fastrtps::rtps::SerializedPayload_t* payload,
+            void* data) override
     {
         return true;
     }
 
     std::function<uint32_t()> getSerializedSizeProvider(
-            void* /*data*/) override
+            void* data) override
     {
         return std::function<uint32_t()>();
     }
@@ -6508,14 +6514,14 @@ public:
     }
 
     void deleteData(
-            void* /*data*/) override
+            void* data) override
     {
     }
 
     bool getKey(
-            void* /*data*/,
-            eprosima::fastrtps::rtps::InstanceHandle_t* /*ihandle*/,
-            bool /*force_md5*/) override
+            void* data,
+            eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
+            bool force_md5) override
     {
         return true;
     }

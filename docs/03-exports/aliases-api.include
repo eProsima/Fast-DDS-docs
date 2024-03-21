@@ -953,6 +953,7 @@
 
 .. |AnnotationDescriptor-api| replace:: :cpp:class:`AnnotationDescriptor <eprosima::fastdds::dds::AnnotationDescriptor>`
 .. |DynamicData-api| replace:: :cpp:class:`DynamicData <eprosima::fastdds::dds::DynamicData>`
+.. |DynamicData::get_member_id_by_name| replace:: :cpp:func:`DynamicData::get_member_id_by_name <eprosima::fastdds::dds::DynamicData::get_member_id_by_name>`
 .. |DynamicData::loan_value| replace:: :cpp:func:`DynamicData::loan_value <eprosima::fastdds::dds::DynamicData::loan_value>`
 .. |DynamicData::return_loaned_value| replace:: :cpp:func:`DynamicData::return_loaned_value <eprosima::fastdds::dds::DynamicData::return_loaned_value>`
 .. |DynamicDataFactory-api| replace:: :cpp:class:`DynamicDataFactory <eprosima::fastdds::dds::DynamicDataFactory>`

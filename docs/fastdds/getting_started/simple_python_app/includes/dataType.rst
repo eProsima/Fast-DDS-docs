@@ -38,12 +38,11 @@ To do this, run the following command.
 
 .. code-block:: bash
 
-    <path/to/Fast DDS-Gen>/scripts/fastddsgen -python HelloWorld.idl
+    <path/to/Fast DDS-Gen>/scripts/fastddsgen -python -no-typeobjectsupport HelloWorld.idl
 
 This must have generated the following files:
 
-    * HelloWorld.cxx: HelloWorld C++ type definition.
-    * HelloWorld.h: C++ header file for HelloWorld.cxx.
+    * HelloWorld.hpp: HelloWorld C++ type definition.
     * HelloWorld.i: `SWIG`_ interface file for HelloWorld C++ type definition.
     * HelloWorldPubSubTypes.cxx: C++ interface used by Fast DDS to support HelloWorld type.
     * HelloWorldPubSubTypes.h: C++ header file for HelloWorldPubSubTypes.cxx.

@@ -453,7 +453,6 @@ Annotations
 
 The application allows the user to define and use their own annotations as defined in the
 `OMG IDL 4.2 specification <https://www.omg.org/spec/IDL/4.2/>`_.
-User annotations will be passed to TypeObject generated code if the ``-typeobject`` argument was used.
 
 .. code-block:: omg-idl
 
@@ -468,9 +467,9 @@ Additionally, the following standard annotations are builtin (recognized and pas
 +-------------------------+--------------------------------------------------------------------------------------------+
 | Annotation              | Implemented behavior                                                                       |
 +=========================+============================================================================================+
-| @id                     | [Unimplemented] Assign a 32-bit integer identifier to an element.                          |
+| @id                     | Assign a 32-bit integer identifier to an element.                                          |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @autoid                 | [Unimplemented] Automatically allocate identifiers to the elements.                        |
+| @autoid                 | Automatically allocate identifiers to the elements.                                        |
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @optional               | Setting an element as optional. More info in `Optional Members`_.                          |
 +-------------------------+--------------------------------------------------------------------------------------------+
@@ -485,17 +484,17 @@ Additionally, the following standard annotations are builtin (recognized and pas
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @position               | Setting a position to an element or group of elements. Used by bitmasks_.                  |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @value                  | [Unimplemented] Allow setting a constant value to any element.                             |
+| @value                  | [Unimplemented] Allow setting a constant value to a element.Used by enumeration's members. |
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @key                    | Alias for eProsima's @Key annotation. Indicate that a data member is part of the key |br|  |
 |                         | (please refer to :ref:`dds_layer_topic_instances` for more information).                   |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @must_understand        | [Unimplemented] Indicate that the data member must be understood by any application |br|   |
+| @must_understand        | Indicate that the data member must be understood by any application |br|                   |
 |                         | making use of that piece of data.                                                          |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @default_literal        | [Unimplemented] Allow selecting one member as the default within a collection.             |
+| @default_literal        | Allow selecting one member as the default within a collection.                             |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @default                | Allow specifying the default value of the annotated element.                               |
+| @default                | [Unimplemented] Allow specifying the default value of the annotated element.               |
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @range                  | [Unimplemented] Allow specifying a range of allowed values for the annotated element.      |
 +-------------------------+--------------------------------------------------------------------------------------------+
@@ -503,24 +502,24 @@ Additionally, the following standard annotations are builtin (recognized and pas
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @max                    | [Unimplemented] Allow specifying a maximum value for the annotated element.                |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @unit                   | [Unimplemented] Allow specifying a unit of measurement for the annotated element.          |
+| @unit                   | Allow specifying a unit of measurement for the annotated element.                          |
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @bit_bound              | Allow setting a size to a bitmasks_.                                                       |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @external               | [Unimplemented] Force the annotated element to be placed in a dedicated data space.        |
+| @external               | Force the annotated element to be placed in a dedicated data space.                        |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @nested                 | [Unimplemented] Allow indicating that the objects from the type under annotation will |br| |
+| @nested                 | Allow indicating that the objects from the type under annotation will |br|                 |
 |                         | always be nested within another one.                                                       |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @verbatim               | [Unimplemented] Allow injecting some user-provided information into what the compiler |br| |
+| @verbatim               | Allow injecting some user-provided information into what the compiler |br|                 |
 |                         | will generate.                                                                             |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @service                | [Unimplemented] Allow indicating that an interface is to be treated as a service.          |
+| @service                | Allow indicating that an interface is to be treated as a service.                          |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @oneway                 | [Unimplemented] Allow indicating that an operation is one way only, meaning that |br|      |
+| @oneway                 | Allow indicating that an operation is one way only, meaning that |br|                      |
 |                         | related information flow will go from client to server but not back.                       |
 +-------------------------+--------------------------------------------------------------------------------------------+
-| @ami                    | [Unimplemented] Allow indicating that an interface or an operation is to be made |br|      |
+| @ami                    | Allow indicating that an interface or an operation is to be made |br|                      |
 |                         | callable asynchronously.                                                                   |
 +-------------------------+--------------------------------------------------------------------------------------------+
 | @non_serialized         | The annotated member will be omitted from serialization.                                   |

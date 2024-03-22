@@ -132,11 +132,8 @@ diagram:
 
    * |DomainParticipantListener::on_participant_discovery-api|
    * |DomainParticipantListener::onParticipantAuthentication-api|
-   * |DomainParticipantListener::on_subscriber_discovery-api|
-   * |DomainParticipantListener::on_publisher_discovery-api|
-   * |DomainParticipantListener::on_type_discovery-api|
-   * |DomainParticipantListener::on_type_dependencies_reply-api|
-   * |DomainParticipantListener::on_type_information_received-api|
+   * |DomainParticipantListener::on_data_reader_discovery-api|
+   * |DomainParticipantListener::on_data_writer_discovery-api|
    * |DataWriterListener::on_unacknowledged_sample_removed-api|
 
 .. warning::

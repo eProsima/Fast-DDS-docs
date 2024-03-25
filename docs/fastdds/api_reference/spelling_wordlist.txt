@@ -97,6 +97,7 @@ myFilterFactory
 nackResponseDelay
 nackSupressionDuration
 netmask
+Netmask
 NonConstEnabler
 NoOpDomainParticipantListener
 nullptr
@@ -141,7 +142,6 @@ SecurityException
 sequenceNumber
 serializedPaylaod
 SetVerbosity
-SetVerbosity
 sn
 StatefulReader
 StatefulWriter
@@ -175,7 +175,6 @@ TypeIdentifier
 TypeIdV
 TypeInformation
 typelookup
-TypeLookup
 TypeLookup
 TypeLookupReplyListener
 TypeLookupRequestListener

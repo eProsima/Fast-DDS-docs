@@ -1,0 +1,61 @@
+`Version 2.12.2 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.12.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **features**:
+
+1. Methods to configure :ref:`transport scenarios <rtps_layer_builtin_transports>`
+2. Support ``Autofill port`` (:ref:`automatically set the port <transport_tcp_transportDescriptor>`) for TCP Transport
+3. Support :ref:`TCP for Discovery Server <use-case-tcp-discovery-server>` CLI and environment variable
+4. Define a :ref:`super client by environment variable <env_vars_ros_super_client>`
+5. Change serialize function default behaviour to omit the data representation
+6. ``LARGE_DATA`` Participants logic with same listening ports
+7. TCP Client&Server Participant Decision-Making logic
+8. Expose :ref:`Authentication Handshake Properties <property_policies_security>`
+9. Enabling multiple interfaces through whitelist in TCP servers
+10. Add macOS and Ubuntu Github CI
+
+This release includes the following **improvements**:
+
+1. Improve environment variable substitution algorithm
+2. Upgrade dependency version to last patch version in .repos file
+3. Rerun failed tests with ctest option instead of colcon's
+4. Remove unnecessary TCP warning
+5. Update PR template to include check for PR description, title and backports
+6. Improvements in GitHub CI
+
+This release includes the following **fixes**:
+
+1. Fix TCP reconnection after open logical port failure
+2. TCP unique client announced local port
+3. TCP non-blocking send
+4. Fix wrong log info messages on TCP
+5. Improve ``IgnoreNonExistentSegment`` test
+6. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets
+7. Fix DNS filter in CMakeLists file for tests
+8. Fix bad-free when receiving malformed DATA_FRAG submessage
+9. Fix memory problem related to ciphering payload
+10. Fix CVE-2023-50257
+11. Fix build with TLS, but not security
+12. Fix comparison in ``remove_from_pdp_reader_history``
+13. Fix data race in ``PDPListener`` and ``SecurityManager``
+14. Discard already processed samples on ``PDPListener``
+15. Fix .repos versions
+16. Fix the shared memory cleaning script
+17. Fix data race on writer destruction while sending heartbeat
+18. Return ``const`` reference to the shared pointer instead of a copy in ``get_log_resources``
+19. Ignore ``0x8007`` if coming from other vendor
+20. Fix Doxygen docs warnings and prepare for compiling with Doxygen 1.10.0
+21. Include variety of terminate process signals handler in discovery server
+22. Add missing ``TypeLookup`` listeners
+23. Add a keyed fragmented change to the reader data instance only when its completed
+24. Fix data race on PDP
+25. Check History QoS inconsistencies
+26. Make DataWriters always send the key hash on keyed topics
+27. Prevent index overflow and correctly assert the end iterator in DataSharing
+28. Fix uninitialized member in ``RTPSParticipantAttributes``
+29. Remove unnecessary ``std::move`` in ``FileWatch.hpp`` causing warning
+30. Add missing thread include
+31. Add missing virtual destructor for ``StatisticsAncillary``
+32. Protect asio exception
+33. ``TCPSendResources`` cleanup
+34. Downgrade CMake version to 3.20

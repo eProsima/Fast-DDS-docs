@@ -3,6 +3,7 @@ ACKs
 addReaderLocator
 addReaderProxy
 addWriterProxy
+allowlist
 assignability
 autodispose
 autoenable
@@ -94,6 +95,8 @@ mutexes
 myFilterFactory
 nackResponseDelay
 nackSupressionDuration
+netmask
+Netmask
 NonConstEnabler
 NoOpDomainParticipantListener
 nullptr

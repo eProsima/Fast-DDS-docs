@@ -91,6 +91,42 @@ It is advisable to check that the returned value is a valid pointer.
    :end-before: //!
    :dedent: 8
 
+.. _dds_layer_domainParticipant_creation_default_profile:
+
+Default profile DomainParticipant creation
+------------------------------------------
+
+If there is a profile already exported in the environment (please refer to :ref:`xml_profiles` for related
+information), creating a DomainParticipant with the
+|DomainParticipantFactory::create_participant_with_default_profile-api| member function on the
+:ref:`dds_layer_domainParticipantFactory` singleton would use that settings to configure the participant.
+If the profile has not been exported, the DomainParticipant will be created with the default values per
+:ref:`dds_layer_domainParticipantQos`, and ``0`` as |DomainId-api|.
+
+Optional arguments are:
+
+ * A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
+   that will be triggered in response to events and state changes on the DomainParticipant.
+   By default empty callbacks are used.
+
+ * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
+   :ref:`dds_layer_domainParticipantListener`.
+   By default all events are enabled.
+
+|DomainParticipantFactory::create_participant_with_default_profile-api| will return a null pointer if there was an
+error during the operation.
+It is advisable to check that the returned value is a valid pointer.
+
+.. note::
+
+   XML profiles must have been loaded previously. See :ref:`xml_profiles`.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_CREATE_DOMAINPARTICIPANT_DEFAULT_PROFILE
+   :end-before: //!
+   :dedent: 8
+
 .. _dds_layer_domainParticipant_deletion:
 
 Deleting a DomainParticipant

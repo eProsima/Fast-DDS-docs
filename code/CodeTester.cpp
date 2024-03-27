@@ -1,20 +1,19 @@
 #include <fstream>
 
+#include <fastdds/dds/log/FileConsumer.hpp>
+#include <fastdds/dds/log/Log.hpp>
 #include <fastdds/dds/subscriber/SampleInfo.hpp>
-#include <fastdds/rtps/history/WriterHistory.h>
+#include <fastdds/dds/topic/TopicDataType.hpp>
 #include <fastdds/rtps/history/ReaderHistory.h>
+#include <fastdds/rtps/history/WriterHistory.h>
 #include <fastdds/rtps/participant/RTPSParticipant.h>
-#include <fastdds/rtps/reader/RTPSReader.h>
 #include <fastdds/rtps/reader/ReaderListener.h>
+#include <fastdds/rtps/reader/RTPSReader.h>
 #include <fastdds/rtps/RTPSDomain.h>
 #include <fastdds/rtps/writer/RTPSWriter.h>
 #include <fastdds/utils/IPLocator.h>
-#include <fastrtps/log/Log.h>
-#include <fastrtps/log/FileConsumer.h>
-#include <fastrtps/TopicDataType.h>
-#include <fastdds/utils/IPLocator.h>
 
-
+using namespace eprosima::fastdds::dds;
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
 using namespace ::security;

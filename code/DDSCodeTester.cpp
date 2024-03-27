@@ -393,6 +393,31 @@ void dds_domain_examples()
     }
 
     {
+        //DDS_CREATE_DOMAINPARTICIPANT_DEFAULT_PROFILE
+        // Create a DomainParticipant using the environment profile and no Listener
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant_with_default_profile();
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DomainParticipant using the environment profile and a custom Listener.
+        // CustomDomainParticipantListener inherits from DomainParticipantListener.
+        CustomDomainParticipantListener custom_listener;
+        DomainParticipant* participant_with_custom_listener =
+                DomainParticipantFactory::get_instance()->create_participant_with_default_profile(
+                        &custom_listener, StatusMask::none());
+        if (nullptr == participant_with_custom_listener)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
         //DDS_CHANGE_DOMAINPARTICIPANTQOS
         // Create a DomainParticipant with default DomainParticipantQos
         DomainParticipant* participant =
@@ -6496,6 +6521,11 @@ void pubsub_api_example_create_entities()
     //PUBSUB_API_CREATE_PARTICIPANT
     DomainParticipant* participant =
             DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+    //!--
+
+    //PUBSUB_API_CREATE_DEFAULT_PARTICIPANT
+    DomainParticipant* default_participant =
+            DomainParticipantFactory::get_instance()->create_participant_with_default_profile();
     //!--
 
     //PUBSUB_API_CREATE_PUBLISHER

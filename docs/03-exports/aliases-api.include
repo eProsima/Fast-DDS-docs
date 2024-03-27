@@ -150,6 +150,7 @@
 .. |DomainParticipant::disable-monitor-service-api| replace:: :cpp:func:`disable_monitor_service()<eprosima::fastdds::dds::DomainParticipant::disable_monitor_service>`
 
 .. |DomainParticipantFactory-api| replace:: :cpp:class:`DomainParticipantFactory<eprosima::fastdds::dds::DomainParticipantFactory>`
+.. |DomainParticipantFactory::create_participant_with_default_profile-api| replace:: :cpp:func:`create_participant_with_default_profile()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_default_profile>`
 .. |DomainParticipantFactory::create_participant_with_profile-api| replace:: :cpp:func:`create_participant_with_profile()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile>`
 .. |DomainParticipantFactory::create_participant-api| replace:: :cpp:func:`create_participant()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant>`
 .. |DomainParticipantFactory::delete_participant-api| replace:: :cpp:func:`delete_participant()<eprosima::fastdds::dds::DomainParticipantFactory::delete_participant>`

@@ -5,34 +5,52 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.13.3
+Version 2.13.4
 ==============
 
-This patch release includes the following **improvements**:
+This release includes the following **features** in an ABI compatible manner:
 
-1. Enabling multiple interfaces through whitelist in TCP servers
-2. Set LARGE_DATA Participants logic with the same listening ports
-3. Check History QoS inconsistencies
+#. Expose :ref:`Authentication Handshake Properties<property_policies_security>`
 
-This patch release includes the following **fixes**:
+This release includes the following **improvements**:
 
-1. Prevent index overflow and correctly assert the end iterator in DataSharing
-2. Fix the shared memory cleaning script
-3. Fix TCP reconnection after open logical port failure
-4. Fix data race on PDP
-5. Fix doxygen docs warnings. Prepare for compiling with Doxygen 1.10.0
-6. Add missing TypeLookup listeners
-7. Restore Blackbox tests names
-8. Add macOS Github CI
-9. Set 2.11.x as EOL
+#. Monitor service properly managing instances
+#. Effectively assert ``AUTOMATIC`` / ``MANUAL_BY_PARTICIPANT`` liveliness
+#. Add catch of out-of-range exception for thread settings port
+#. TCP transport improvements:
+
+    #. ``TCPSendResources`` cleanup
+    #. TCP first message loss
+    #. Set real TCP ``non_blocking_send`` limitation
+
+This release includes the following **fixes**:
+
+#. Fix hidden overloaded virtual methods
+#. Fix Discovery Server over TCP using logical port
+#. Protect asio exception fix
+#. Fix flaky Log tests
+#. Fix CVE-2024-28231
+#. Add missing virtual destructor for StatisticsAncillary
+#. Increase ack waiting time in ``reliable_on_unack_sample_removed``
+#. Fix versions in fastrtps.repos
+#. GitHub CI fixes:
+
+    #. Fix CI version management
+    #. Add manual Ubuntu Github CI
+    #. Avoid running GitHub CI if PR has conflicts
+    #. Migrate apt package installation action to eProsima-CI
+    #. Only run PRs CI when review requested
+    #. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows
+    #. Improve filtering of DNS tests
 
 .. note::
-  When upgrading to version 2.13.3 it is **advisable** to regenerate generated source from IDL files
+  When upgrading to version 2.13.4 it is **advisable** to regenerate generated source from IDL files
   using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.13.3.rst
 .. include:: previous_versions/v2.13.2.rst
 .. include:: previous_versions/v2.13.1.rst
 .. include:: previous_versions/v2.13.0.rst

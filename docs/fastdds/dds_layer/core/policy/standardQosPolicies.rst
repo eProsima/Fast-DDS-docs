@@ -1157,11 +1157,22 @@ List of QoS Policy data members:
   can manage across all the
   instances associated with it.
   In other words, it represents the maximum samples that the middleware can store for a DataReader or DataWriter.
+<<<<<<< HEAD
 * |ResourceLimitsQosPolicy::max_instances-api|: Controls the maximum number of instances that a DataWriter or
   DataReader can manage.
 * |ResourceLimitsQosPolicy::max_samples_per_instance-api|: Controls the maximum number of samples within an instance
   that the DataWriter or
   DataReader can manage.
+=======
+  **Value less or equal to 0 means infinite resources.**
+* |ResourceLimitsQosPolicy::max_instances-api|: Controls the maximum number of instances that a DataWriter or
+  DataReader can manage.
+  **Value less or equal to 0 means infinite resources.**
+* |ResourceLimitsQosPolicy::max_samples_per_instance-api|: Controls the maximum number of samples within an instance
+  that the DataWriter or
+  DataReader can manage.
+  **Value less or equal to 0 means infinite resources.**
+>>>>>>> 495f5a2 (Update docs to force unlimited ResourceLimits if lower or equal to zero (#738))
 * |ResourceLimitsQosPolicy::allocated_samples-api|: States the number of samples that will be allocated on
   initialization.
 * |ResourceLimitsQosPolicy::extra_samples-api|: States the number of extra samples that will be allocated on

@@ -4,7 +4,6 @@ Status
 .. toctree::
 
    /fastdds/api_reference/dds_pim/core/status/basestatus.rst
-   /fastdds/api_reference/dds_pim/core/status/ddsentitystatus.rst
    /fastdds/api_reference/dds_pim/core/status/deadlinemissedstatus.rst
    /fastdds/api_reference/dds_pim/core/status/incompatibleqosstatus.rst
    /fastdds/api_reference/dds_pim/core/status/inconsistenttopicstatus.rst

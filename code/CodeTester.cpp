@@ -12,7 +12,7 @@
 #include <fastrtps/log/Log.h>
 #include <fastrtps/log/FileConsumer.h>
 #include <fastrtps/TopicDataType.h>
-#include <fastrtps/utils/IPLocator.h>
+#include <fastdds/utils/IPLocator.h>
 
 
 using namespace eprosima::fastrtps;

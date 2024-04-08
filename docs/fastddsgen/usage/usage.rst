@@ -54,11 +54,12 @@ Where the options are:
    * - Option
      - Description
    * - -cs
-     - IDL grammar apply case sensitive matching.
+     - Enables case sensitivity in variable names.
    * - -d <directory>
-     - Sets an output directory for generated files.
+     - Sets the output directory for the generated files.
    * - -default-container-prealloc-size
-     - Sets the default preallocated size for containers (sequence and maps). Default value: 0.
+     - Sets the default preallocated size for unbounded collections (sequences and maps) |br|
+       Default value: 0 (empty collection).
    * - -default_extensibility <extensibility> |br|
        -de <extensibility>
      - Sets the default extensibility for types without the @extensibility annotation. |br|
@@ -76,24 +77,18 @@ Where the options are:
        stored. |br|
        A custom template example can be found in this `link <https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/master/resources/Custom.stg>`_
    * - -flat-output-dir
-     - Ignore input files relative paths and place all generated files in the specified output directory.
-   * - -fusion
-     - Activates fusion.
+     - Ignores input files relative paths and place all generated files in the specified output directory.
    * - -help
      - Shows the help information
    * - -I <directory>
-     - Add directory to preprocessor include paths.
-   * - -language <lang>
-     - chooses between <c++> or <java> languages.
+     - Adds directory to preprocessor include paths.
    * - -no-typesupport
-     - Avoid generating the type support files.
+     - Avoids generating the type support files.
    * - -no-typeobjectsupport
-     - Avoid generating the TypeObject support specific files. |br|
+     - Avoids generating the TypeObject support specific files. |br|
        Enabled automatically if -no-typesupport argument is used.
    * - -no-dependencies
-     - Avoid processing the dependent IDL files.
-   * - -package
-     - Default package used in Java files.
+     - Avoids processing the dependent IDL files.
    * - -ppDisable
      - Disables the preprocessor.
    * - -ppPath
@@ -108,8 +103,6 @@ Where the options are:
      - Sets a specific directory as a temporary directory.
    * - -typeros2
      - Generates type naming compatible with ROS 2.
-   * - -typesc
-     - Generates string and sequence types compatible with C.
    * - -version
      - Shows the current version of eProsima *Fast DDS-Gen*.
 

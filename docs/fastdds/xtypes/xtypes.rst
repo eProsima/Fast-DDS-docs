@@ -1,26 +1,27 @@
-.. include:: ../../03-exports/aliases-api.include
-
 .. _dynamic-types:
 
 XTypes
 ======
 
-.. _DDS-XTypes V1.3: https://www.omg.org/spec/DDS-XTypes/1.3
+.. _Extensible and Dynamic Topic Types for DDS: https://www.omg.org/spec/DDS-XTypes/1.3
 
-*eProsima Fast DDS* manages :ref:`Discovery and Endpoint Matching <xtypes_discovery_matching>`
-using |TypeInformation-api| and |TypeObject-api| when possible.
-When remote endpoints are discovered, it checks that the types are known, initiating a type discovery process if
-necessary before the matching between the endpoints takes place.
-Alternatively, it uses a fallback mechanism based on type names when |TypeInformation-api| is unavailable.
+*eProsima Fast DDS* supports the OMG `Extensible and Dynamic Topic Types for DDS`_ specification (also known as XTypes).
+This specification defines the following concepts:
 
-*eProsima Fast DDS* provides a dynamic way to define and use topic types and topic data.
-The :ref:`Dynamic Language Binding <xtypes_language_binding>` offers the possibility to work over DDS/RTPS
-without the restrictions related to the IDLs.
-The users can declare the different types that they need and manage the information on runtime,
-avoiding the additional step of updating the IDL file and the generation of *C++* classes.
+* DDS supported type system, including the concept of extensible types that might evolve in time.
 
-This implementation follows the *OMG Extensible and Dynamic Topic Types for DDS interface*.
-For more information, refer to the specification for `DDS-XTypes V1.3`_.
+.. note::
+
+  This section also defines the type compatibility rules among evolved types which is still unsupported in Fast DDS.
+
+* Type representation, including :ref:`IDL<fastddsgen_idl_datatypes>` and :ref:`xtypes_discovery_typeobject`
+  representations.
+* Data representation over the wire.
+* Language binding, defining both a plain and a dynamic language binding.
+  :ref:`eProsima Fast DDS-Gen<fastddsgen_intro>` generates the plain language binding given an IDL type representation.
+  :ref:`xtypes_language_binding` section explains the required API to define and set/read the data types.
+* DDS builtin mechanism to automatically discover remote data types.
+  More information in :ref:`xtypes_discovery_matching` section.
 
 .. toctree::
    :maxdepth: 3

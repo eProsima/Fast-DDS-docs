@@ -113,39 +113,40 @@ type in the list.
 The following table shows the supported primitive types and their corresponding ``TypeKind``.
 The ``TypeKind`` is used to identify the type when it is created.
 
-+------------------+-------------------+
-| C++ Type         | TypeKind          |
-+------------------+-------------------+
-| ``BOOLEAN``      | ``TK_BOOLEAN``    |
-+------------------+-------------------+
-| ``CHAR8``        | ``TK_CHAR8``      |
-+------------------+-------------------+
-| ``CHAR16``       | ``TK_CHAR16``     |
-+------------------+-------------------+
-| ``OCTET``        | ``TK_BYTE``       |
-+------------------+-------------------+
-| ``INT8``         | ``TK_INT8``       |
-+------------------+-------------------+
-| ``UINT8``        | ``TK_UINT8``      |
-+------------------+-------------------+
-| ``INT16``        | ``TK_INT16``      |
-+------------------+-------------------+
-| ``UINT16``       | ``TK_UINT16``     |
-+------------------+-------------------+
-| ``INT32``        | ``TK_INT32``      |
-+------------------+-------------------+
-| ``UINT32``       | ``TK_UINT32``     |
-+------------------+-------------------+
-| ``INT64``        | ``TK_INT64``      |
-+------------------+-------------------+
-| ``UINT64``       | ``TK_UINT64``     |
-+------------------+-------------------+
-| ``FLOAT32``      | ``TK_FLOAT32``    |
-+------------------+-------------------+
-| ``FLOAT64``      | ``TK_FLOAT64``    |
-+------------------+-------------------+
-| ``FLOAT128``     | ``TK_FLOAT128``   |
-+------------------+-------------------+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - C++ Type
+      - TypeKind
+    * - :code:`bool`
+      - :code:`TK_BOOLEAN`
+    * - :code:`char`
+      - :code:`TK_CHAR8`
+    * - :code:`wchar_t`
+      - :code:`TK_CHAR16`
+    * - :code:`uint8_t`
+      - :code:`TK_BYTE` / :code:`TK_UINT8`
+    * - :code:`int8_t`
+      - :code:`TK_INT8`
+    * - :code:`int16_t`
+      - :code:`TK_INT16`
+    * - :code:`uint16_t`
+      - :code:`TK_UINT16`
+    * - :code:`int32_t`
+      - :code:`TK_INT32`
+    * - :code:`uint32_t`
+      - :code:`TK_UINT32`
+    * - :code:`int64_t`
+      - :code:`TK_INT64`
+    * - :code:`uint64_t`
+      - :code:`TK_UINT64`
+    * - :code:`float`
+      - :code:`TK_FLOAT32`
+    * - :code:`double`
+      - :code:`TK_FLOAT64`
+    * - :code:`long double`
+      - :code:`TK_FLOAT128`
 
 This example shows how to create members of each primitive type using |DynamicTypeBuilderFactory-api|.
 
@@ -614,19 +615,22 @@ A bitfield can be anonymous (cannot be addressed) to skip unused bits within a b
 
 Each bitfield in a bitset can be modified through their minimal needed primitive representation.
 
-+--------------------------+--------------------------+
-| Number of bits           | Primitive                |
-+--------------------------+--------------------------+
-| ``1``                    | ``BOOLEAN``              |
-+--------------------------+--------------------------+
-| ``2-8``                  | ``UINT8``                |
-+--------------------------+--------------------------+
-| ``9-16``                 | ``UINT16``               |
-+--------------------------+--------------------------+
-| ``17-32``                | ``UINT32``               |
-+--------------------------+--------------------------+
-| ``33-64``                | ``UINT64``               |
-+--------------------------+--------------------------+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Number of bits
+      - C++ holder type
+    * - :code:`1`
+      - :code:`bool`
+    * - :code:`2-8`
+      - :code:`uint8_t`
+    * - :code:`9-16`
+      - :code:`uint16_t`
+    * - :code:`17-32`
+      - :code:`uint32_t`
+    * - :code:`33-64`
+      - :code:`uint64_t`
 
 Each bitfield (or member) works like its primitive type with the only difference that the internal storage only
 modifies the involved bits instead of the full primitive value.
@@ -852,21 +856,27 @@ Beside the custom annotations created by the users, there are a number of builti
 
 Currently, |DynamicTypes| supports the following builtin annotations:
 
-+-------------------------+-------------------------------------------------------------------------------------------+
-| Annotation              | Implemented behavior                                                                      |
-+=========================+===========================================================================================+
-| ``@extensibility``      | Applied to any element which is constructed. Allow specifying how the |br|                |
-|                         | element is allowed to evolve. More info in :ref:`extensibility`.                          |
-+-------------------------+-------------------------------------------------------------------------------------------+
-| ``@final``              | Shortcut for `@extensibility(FINAL)`                                                      |
-+-------------------------+-------------------------------------------------------------------------------------------+
-| ``@appendable``         | Shortcut for `@extensibility(APPENDABLE)`                                                 |
-+-------------------------+-------------------------------------------------------------------------------------------+
-| ``@mutable``            | Shortcut for `@extensibility(MUTABLE)`                                                    |
-+-------------------------+-------------------------------------------------------------------------------------------+
-| ``@key``                | Alias for eProsima's @Key annotation. Indicate that a data member is part of the key |br| |
-|                         | (please refer to :ref:`dds_layer_topic_instances` for more information).                  |
-+-------------------------+-------------------------------------------------------------------------------------------+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Builtin annotation
+      - Behavior
+    * - :code:`@extensibility`
+      - This annotation applies to any type declaration and defines |br|
+        how the type is allowed to evolve.
+        More info in :ref:`extensibility`.
+    * - :code:`@final`
+      - Shortcut for :code:`@extensibility(FINAL)`.
+    * - :code:`@appendable`
+      - Shortcut for :code:`@extensibility(APPENDABLE)`.
+    * - :code:`@mutable`
+      - Shortcut for :code:`@extensibility(MUTABLE)`
+    * - :code:`@key`
+      - Mark a member as part of the key (please refer to :ref:`dds_layer_topic_instances` |br|
+        for more information).
+    * - :code:`@Key`
+      - :code:`@key` alias.
 
 To apply the @extensibility annotation (and its shortcuts) the |TypeDescriptor-api| exposes the function
 |TypeDescriptor::extensibility_kind|, that receives a :class:`ExtensibilityKind`.
@@ -882,36 +892,43 @@ This means that a smaller type can be implicitly promoted to a larger type, but 
 
 The following promotions are supported:
 
-+--------------+-------------------------------------------------------------------------------------------+
-| Type         | Promotions                                                                                |
-+==============+===========================================================================================+
-| `Int8`       | Int16, Int32, Int64, Float32, Float64, Float128                                           |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Int16`      | Int32, Int64, Float32, Float64, Float128                                                  |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Int32`      | Int64, Float64, Float128                                                                  |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Int64`      | Float128                                                                                  |
-+--------------+-------------------------------------------------------------------------------------------+
-| `UInt8`      | Int16,Int32, Int64, UInt16, UInt32, UInt64, Float32, Float64, Float128                    |
-+--------------+-------------------------------------------------------------------------------------------+
-| `UInt16`     | Int32, Int64, UInt32, UInt64, Float32, Float64, Float128                                  |
-+--------------+-------------------------------------------------------------------------------------------+
-| `UInt32`     | Int64, UInt64, Float64, Float128                                                          |
-+--------------+-------------------------------------------------------------------------------------------+
-| `UInt64`     | Float128                                                                                  |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Float32`    | Float64, Float128                                                                         |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Float64`    | Float128                                                                                  |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Float128`   | (none)                                                                                    |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Char8`      | Char16, Int16, Int32, Int64, Float32, Float64, Float128                                   |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Char16`     | Int32, Int64, Float32, Float64, Float128                                                  |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Byte`       | (any)                                                                                     |
-+--------------+-------------------------------------------------------------------------------------------+
-| `Boolean`    | Int8, Int16, Int32, Int64, UInt8, UInt16, UInt32, UInt64, Float32, Float64, Float128      |
-+--------------+-------------------------------------------------------------------------------------------+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - TypeKind
+      - Allowed promotions
+    * - :code:`TK_INT8`
+      - :code:`TK_INT16`, :code:`TK_INT32`, :code:`TK_INT64`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
+    * - :code:`TK_INT16`
+      - :code:`TK_INT32`, :code:`TK_INT64`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
+    * - :code:`TK_INT32`
+      - :code:`TK_INT64`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
+    * - :code:`TK_INT64`
+      - :code:`TK_FLOAT128`
+    * - :code:`TK_UINT8`
+      - :code:`TK_INT16`, :code:`TK_INT32`, :code:`TK_INT64`, :code:`TK_UINT16`, :code:`TK_UINT32`, :code:`TK_UINT64`,
+        :code:`TK_FLOAT32`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
+    * - :code:`TK_UINT16`
+      - :code:`TK_INT32`, :code:`TK_INT64`, :code:`TK_UINT32`, :code:`TK_UINT64`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`,
+        :code:`TK_FLOAT128`
+    * - :code:`TK_UINT32`
+      - :code:`TK_INT64`, :code:`TK_UINT64`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
+    * - :code:`TK_UINT64`
+      - :code:`lonf TK_FLOAT64`
+    * - :code:`TK_FLOAT32`
+      - :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
+    * - :code:`TK_FLOAT64`
+      - :code:`TK_FLOAT128`
+    * - :code:`TK_FLOAT128`
+      - (none)
+    * - :code:`TK_CHAR8`
+      - :code:`TK_CHAR16`, :code:`TK_INT16`, :code:`TK_INT32`, :code:`int64_t`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`,
+        :code:`TK_FLOAT128`
+    * - :code:`TK_CHAR16`
+      - :code:`TK_INT32`, :code:`int64_t`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
+    * - :code:`TK_BYTE`
+      - (any)
+    * - :code:`TK_BOOLEAN`
+      - :code:`TK_INT8`, `TK_INT16`, :code:`TK_INT32`, :code:`TK_INT64`, :code:`TK_UINT8`, :code:`TK_UINT16`,
+        :code:`TK_UINT32`, :code:`TK_UINT64`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`

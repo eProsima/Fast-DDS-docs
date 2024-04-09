@@ -9,7 +9,8 @@ Discovery and Endpoint Matching
 .. _DDS-XTypes V1.3: https://www.omg.org/spec/DDS-XTypes/1.3
 
 *eProsima Fast DDS* incorporates an advanced type discovery service used on endpoint discovery and matching.
-Discovery process leverages the optional |TypeInformation-api| value to ensure compatibility between communicating endpoints.
+Discovery process leverages the optional |TypeInformation-api| value to ensure compatibility between communicating
+endpoints.
 Upon the discovery of a remote endpoint, *eProsima Fast DDS* examines the |TypeInformation-api| to determine
 the availability of essential data type information.
 

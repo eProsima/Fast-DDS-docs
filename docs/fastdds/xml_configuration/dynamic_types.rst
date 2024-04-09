@@ -405,7 +405,8 @@ This is exemplified by the code snippet below.
             :start-after: //!--CPP_STRUCT_INHERITANCE
             :end-before: //!--
 
-For a full example of how to define this type, please refer to :ref:`Structures Inheritance <xtypes_structure_inheritance>`.
+For a full example of how to define this type, please refer to
+:ref:`Structures Inheritance <xtypes_structure_inheritance>`.
 
 .. _xmldynamictypes_union:
 

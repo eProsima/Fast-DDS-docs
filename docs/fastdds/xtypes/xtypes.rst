@@ -2,15 +2,15 @@
 
 .. _dynamic-types:
 
-XTypes 1.3
-==========
+XTypes
+======
 
 .. _DDS-XTypes V1.3: https://www.omg.org/spec/DDS-XTypes/1.3
 
 *eProsima Fast DDS* manages :ref:`Discovery and Endpoint Matching <xtypes_discovery_matching>`
 using |TypeInformation-api| and |TypeObject-api| when posible.
-When remote endpoints are discovered, it checks that the types are known, initiating a type discovery process if necessary
-before the matching between the endpoints takes place.
+When remote endpoints are discovered, it checks that the types are known, initiating a type discovery process if
+necessary before the matching between the endpoints takes place.
 Alternatively, it uses a fallback mechanism based on type names when |TypeInformation-api| is unavailable.
 
 *eProsima Fast DDS* provides a dynamic way to define and use topic types and topic data.

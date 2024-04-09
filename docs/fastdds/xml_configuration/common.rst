@@ -303,17 +303,17 @@ Please refer to :ref:`ResourceLimitsQosPolicy` for further information on Resour
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
 | Name                           | Description                                               | Values        | Default |
 +================================+===========================================================+===============+=========+
-| ``<max_samples>``              | It must verify that:                                      | ``uint32_t``  | 5000    |
+| ``<max_samples>``              | It must verify that:                                      | ``int32_t``   | 5000    |
 |                                | ``<max_samples>`` `>=` ``<max_samples_per_instance>``.    |               |         |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<max_instances>``            | It defines the maximum number of instances.               | ``uint32_t``  | 10      |
+| ``<max_instances>``            | It defines the maximum number of instances.               | ``int32_t``   | 10      |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`             | ``uint32_t``  | 400     |
+| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`             | ``int32_t``   | 400     |
 |                                | ``<depth>`` `<=` ``<max_samples_per_instance>``.          |               |         |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<allocated_samples>``        | It controls the maximum number of samples to be stored.   | ``uint32_t``  | 100     |
+| ``<allocated_samples>``        | It controls the maximum number of samples to be stored.   | ``int32_t``   | 100     |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<extra_samples>``            | The number of extra samples to allocate on the pool.      | ``uint32_t``  | 1       |
+| ``<extra_samples>``            | The number of extra samples to allocate on the pool.      | ``int32_t``   | 1       |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
 
 .. _ThreadSettingsType:

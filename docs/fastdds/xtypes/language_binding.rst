@@ -23,7 +23,7 @@ Dynamic Types Interfaces
 
 DynamicTypeBuilderFactory
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-The |DynamicTypeBuilderFactory-api| serves as a singleton wich isntance is responsible for creating |DynamicTypes| and
+The |DynamicTypeBuilderFactory-api| serves as a singleton which instance is responsible for creating |DynamicTypes| and
 serves as the entry point for both creating and deleting |DynamicTypeBuilder-api| objects.
 The simpler types can be directly instantiated without the need for a DynamicTypeBuilder.
 Refer to the Supported Types documentation for details on which types support this direct creation option.
@@ -423,7 +423,7 @@ Arrays
 Arrays are very similar to sequences with two main differences:
 They can have multiple dimensions and their elements are initialized to the default value at the start.
 
-An array needs to know the number of dimensions it maanges.
+An array needs to know the number of dimensions it manages.
 The user must provide a vector with as many elements as there are dimensions in the array.
 Each element in the vector represents the size of the given dimension.
 
@@ -711,7 +711,7 @@ please refer to :ref:`Struct <xmldynamictypes_struct_inheritance>`.
 
 .. _xtypes_bitset_inheritance:
 
-Bitsets allows inheritance aswell, exactly with the same OOP meaning.
+Bitsets allows inheritance as well, exactly with the same OOP meaning.
 To inherit from another bitset, users must follow the same process as with
 :ref:`structures <xtypes_structure_inheritance>`, but using bitset types.
 
@@ -869,7 +869,7 @@ Currently, |DynamicTypes| supports the following builtin annotations:
 +-------------------------+-------------------------------------------------------------------------------------------+
 
 To apply the @extensibility annotation (and its shortcuts) the |TypeDescriptor-api| exposes the function
-|TypeDescriptor::extensibility_kind|, that recives a :class:`ExtensibilityKind`.
+|TypeDescriptor::extensibility_kind|, that receives a :class:`ExtensibilityKind`.
 
 For the @key annotation the function |MemberDescriptor::is_key| can be fount in |MemberDescriptor-api|.
 

@@ -56,4 +56,4 @@ Assuming the IDL file had the name *“Mytype”*, and none of the above options
     It also defines the |TopicDataType::getKey-api| member function of the :class:`MyTypePubSubType` class in case the
     topic implements keys (see :ref:`dds_layer_topic_keyed_data_types`).
 *   HelloWorldCdrAux.hpp/.ipp: C++ serialization and deserialization code for the HelloWorld type.
-*   MyTypeTypeObjectSupport.cxx/.hpp: |TypeObject-api| generation and regstration.
+*   MyTypeTypeObjectSupport.cxx/.hpp: |TypeObject-api| generation and registration.

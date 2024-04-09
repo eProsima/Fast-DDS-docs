@@ -143,6 +143,7 @@ ifaddrs
 ifreq
 ignoreParticipantFlags
 initializations
+instantiation
 interoperability
 interprocess
 intra
@@ -207,6 +208,7 @@ postfixed
 ppDisable
 ppPath
 pre
+prealloc
 preallocate
 preallocated
 preallocates
@@ -269,10 +271,12 @@ Topologies
 txqueuelen
 typeobject
 TypeObject
+typeobjectsupport
 typeros
 typeros2
 typesupport
 uint
+UInt
 uncheck
 unicast
 unidimensional

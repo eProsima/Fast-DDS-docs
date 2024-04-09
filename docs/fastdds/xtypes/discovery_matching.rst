@@ -16,15 +16,15 @@ the availability of essential data type information.
 
 The process of checking the types is as follows:
 
-1. **Evaluation of TypeInformation**: If the discovered enpoint has transmitted |TypeInformation-api|,
+1. **Evaluation of TypeInformation**: If the discovered endpoint has transmitted |TypeInformation-api|,
      *eProsima Fast DDS* evaluates whether all required types are already known.
      In cases where some types are missing, an automatic process to discover the necessary types is initiated.
      |TypeObject-api| is used to communicate with other participants and to discover the topic types asynchronously.
-     Matching of the discovered enpoint is deferred until all necessary types are known.
+     Matching of the discovered endpoint is deferred until all necessary types are known.
 
 2. **Fallback Mechanism**: In scenarios where the discovered endpoint has not transmitted |TypeInformation-api|,
      *eProsima Fast DDS* resorts to a fallback mechanism.
-     This mechanism relys on the type name to verify if the type is already known within the system.
+     This mechanism relies on the type name to verify if the type is already known within the system.
      If the type name is recognized, matching occurs.
 
 .. _xtypes_discovery_typeinformation:

@@ -1725,12 +1725,10 @@ void dds_topic_examples()
         DomainParticipantFactory::get_instance()->load_XML_profiles_file("example_type.xml");
 
         // Retrieve the an instance of the desired type
-        DynamicTypeBuilder::_ref_type type_builder;
-        //TODO xtypes use the correct public method to get the type builder
-        //DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("DynamicType", type_builder);
+        DynamicType::_ref_type dyn_type;
+        DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("DynamicType", dyn_type);
 
-        // Build and register it
-        DynamicType::_ref_type dyn_type = type_builder->build();
+        // Register dynamic type
         TypeSupport dyn_type_support(new DynamicPubSubType(dyn_type));
         dyn_type_support.register_type(participant, nullptr);
 
@@ -5247,12 +5245,10 @@ void xml_profiles_examples()
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             // Retrieve the an instance of the desired type
-            DynamicTypeBuilder::_ref_type my_struct_builder;
-            //TODO xtypes use the correct public method to get the type builder
-            //DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("MyStruct", my_struct_builder);
+            DynamicType::_ref_type my_struct_type;
+            DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("MyStruct", my_struct_type);
 
             // Register MyStruct type
-            DynamicType::_ref_type my_struct_type = my_struct_builder->build();
             TypeSupport my_struct_type_support(new DynamicPubSubType(my_struct_type));
             my_struct_type_support.register_type(participant, nullptr);
         }

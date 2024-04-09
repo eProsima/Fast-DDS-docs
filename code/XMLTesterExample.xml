@@ -473,12 +473,12 @@
                     <stack_size>-1</stack_size>
                 </discovery_server_thread>
 
-                <typelookup_service_threads>
+                <typelookup_service_thread>
                     <scheduling_policy>-1</scheduling_policy>
                     <priority>0</priority>
                     <affinity>0</affinity>
                     <stack_size>-1</stack_size>
-                </typelookup_service_threads>
+                </typelookup_service_thread>
 
                 <builtin_transports_reception_threads>
                     <scheduling_policy>-1</scheduling_policy>
@@ -991,10 +991,11 @@
                 <member name="second" type="int64"/>
             </struct>
 
-            <struct name="OtherInheritedStruct" baseType="MyStruct">
+            <!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
+            <!-- <struct name="OtherInheritedStruct" baseType="MyStruct">
                 <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
                 <member name="my_struct" type="nonBasic" nonBasicTypeName="MyFullStruct" arrayDimensions="5"/>
-            </struct>
+            </struct> -->
 
             <union name="MyUnion1">
                 <discriminator type="byte"/>
@@ -1019,10 +1020,11 @@
                 <bitfield name="c" bit_bound="12" type="int16"/>
             </bitset>
 
-            <bitset name="OtherInheritedBitSet" baseType="MyBitSet">
+            <!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
+            <!-- <bitset name="OtherInheritedBitSet" baseType="MyBitSet">
                 <bitfield bit_bound="8"/>
                 <bitfield bit_bound="15" type="byte"/>
-            </bitset>
+            </bitset> -->
 
             <bitmask name="MyBitMask" bit_bound="8">
                 <bit_value name="flag0" position="0"/>

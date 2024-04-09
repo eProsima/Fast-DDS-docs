@@ -1442,12 +1442,12 @@
                     <stack_size>-1</stack_size>
                 </discovery_server_thread>
 
-                <typelookup_service_threads>
+                <typelookup_service_thread>
                     <scheduling_policy>-1</scheduling_policy>
                     <priority>0</priority>
                     <affinity>0</affinity>
                     <stack_size>-1</stack_size>
-                </typelookup_service_threads>
+                </typelookup_service_thread>
 
                 <builtin_transports_reception_threads>
                     <scheduling_policy>-1</scheduling_policy>
@@ -4277,9 +4277,6 @@
 <types>
 <type>
 
-
-
-
 <!-->XML_PRIMITIVES<-->
 <struct name="PrimitivesStruct">
     <member name="my_bool" type="boolean"/>
@@ -4386,7 +4383,8 @@
 </struct>
 <!--><-->
 <!-->XML_BITSET<-->
-<bitset name="MyBitset">
+<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
+<!-- <bitset name="MyBitset">
     <bitfield name="a" bit_bound="3"/>
     <bitfield name="b" bit_bound="1"/>
     <bitfield bit_bound="4"/>
@@ -4395,27 +4393,28 @@
 </bitset>
 <struct name="BitsetStruct">
     <member name="my_bitset" type="nonBasic" nonBasicTypeName="MyBitset"/>
-</struct>
+</struct> -->
 <!--><-->
+<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
 <!-->XML_BITSET_INHERITANCE<-->
-<bitset name="ParentBitSet">
+<!-- <bitset name="ParentBitSet">
     <bitfield name="a" bit_bound="3"/>
     <bitfield name="b" bit_bound="1"/>
 </bitset>
 <bitset name="ChildBitSet" baseType="ParentBitSet">
     <bitfield name="c" bit_bound="10"/>
     <bitfield name="d" bit_bound="12" type="int16"/>
-</bitset>
+</bitset> -->
 <!--><-->
 <!-->XML_STRUCT_INHERITANCE<-->
-<struct name="ParentStruct">
+<!-- <struct name="ParentStruct">
     <member name="first" type="int32"/>
     <member name="second" type="int64"/>
 </struct>
 <struct name="ChildStruct" baseType="ParentStruct">
     <member name="third" type="int32"/>
     <member name="fourth" type="int64"/>
-</struct>
+</struct> -->
 <!--><-->
 <!-->XML_COMPLEX_STRUCTS<-->
 <struct name="InnerStruct">

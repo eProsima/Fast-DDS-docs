@@ -1,3 +1,38 @@
+//!--TYPEINFORMATION
+@extensibility(APPENDABLE) @nested
+struct TypeIdentfierWithSize
+{
+    TypeIdentifier      type_id;
+    unsigned long       typeobject_serialized_size;
+};
+
+@extensibility(APPENDABLE) @nested
+struct TypeIdentifierWithDependencies
+{
+    TypeIdentfierWithSize           typeid_with_size;
+    long                            dependent_type_id_count;
+    sequence<TypeIdentfierWithSize> dependent_typeids;
+};
+
+@extensibility(MUTABLE) @nested
+struct TypeInformation
+{
+    @id(0x1001) TypeIdentifierWithDependencies minimal;
+    @id(0x1002) TypeIdentifierWithDependencies complete;
+};
+//!--
+
+//!--TYPEOBJECT
+@extensibility(APPENDABLE) @nested
+union TypeObject switch(octet)
+{
+    case EK_COMPLETE:
+        CompleteTypeObject  complete;
+    case EK_MINIMAL:
+        MinimalTypeObject   minimal;
+};
+//!--
+
 //!--IDL_PRIMITIVES
 struct PrimitivesStruct
 {

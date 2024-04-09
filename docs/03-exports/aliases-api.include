@@ -128,6 +128,7 @@
 .. |DomainParticipant::delete_subscriber-api| replace:: :cpp:func:`delete_subscriber()<eprosima::fastdds::dds::DomainParticipant::delete_subscriber>`
 .. |DomainParticipant::delete_topic-api| replace:: :cpp:func:`delete_topic()<eprosima::fastdds::dds::DomainParticipant::delete_topic>`
 .. |DomainParticipant::delete_contentfilteredtopic-api| replace:: :cpp:func:`delete_contentfilteredtopic()<eprosima::fastdds::dds::DomainParticipant::delete_contentfilteredtopic>`
+.. |DomainParticipant::register_type-api| replace:: :cpp:func:`register_type()<eprosima::fastdds::dds::DomainParticipant::register_type>`
 .. |DomainParticipant::register_content_filter_factory-api| replace:: :cpp:func:`register_content_filter_factory()<eprosima::fastdds::dds::DomainParticipant::register_content_filter_factory>`
 .. |DomainParticipant::lookup_content_filter_factory-api| replace:: :cpp:func:`lookup_content_filter_factory()<eprosima::fastdds::dds::DomainParticipant::lookup_content_filter_factory>`
 .. |DomainParticipant::unregister_content_filter_factory-api| replace:: :cpp:func:`unregister_content_filter_factory()<eprosima::fastdds::dds::DomainParticipant::unregister_content_filter_factory>`
@@ -283,8 +284,6 @@
 .. |TopicQos::topic_data-api| replace:: :cpp:func:`topic_data()<eprosima::fastdds::dds::TopicQos::topic_data>`
 .. |TopicQos::TopicQos-api| replace:: :cpp:func:`TopicQos() <eprosima::fastdds::dds::TopicQos::TopicQos>`
 .. |TopicQos::transport_priority-api| replace:: :cpp:func:`transport_priority()<eprosima::fastdds::dds::TopicQos::transport_priority>`
-.. |TypeInformation-api| replace:: :cpp:class:`TypeInformation <eprosima::fastdds::dds::xtypes::TypeInformation>`
-.. |TypeObject-api| replace:: :cpp:class:`TypeObject <eprosima::fastrtps::types::TypeObject>`
 .. |TypeSupport-api| replace:: :cpp:class:`TypeSupport<eprosima::fastdds::dds::TypeSupport>`
 .. |TypeSupport::is_plain-api| replace:: :cpp:func:`TypeSupport::is_plain() <eprosima::fastdds::dds::TypeSupport::is_plain>`
 .. |TypeSupport::register_type-api| replace:: :cpp:func:`register_type() <eprosima::fastdds::dds::TypeSupport::register_type>`
@@ -983,13 +982,8 @@
 .. |TypeDescriptor::discriminator_type| replace:: :cpp:func:`TypeDescriptor::discriminator_type <eprosima::fastdds::dds::TypeDescriptor::discriminator_type>`
 .. |VerbatimTextDescriptor-api| replace:: :cpp:class:`VerbatimTextDescriptor <eprosima::fastdds::dds::VerbatimTextDescriptor>`
 
-.. |ITypeObjectRegistry-api| replace:: :cpp:class:`ITypeObjectRegistry <eprosima::fastdds::dds::ITypeObjectRegistry>`
-.. |TypeObjectUtils-api| replace:: :cpp:class:`TypeObjectUtils <eprosima::fastdds::dds::TypeObjectUtils>`
-
-.. |TypeObjectV1-api| replace:: :cpp:class:`TypeObject<eprosima::fastdds::dds::TypeObjectV1>`
-.. |TypeIdV1-api| replace:: :cpp:class:`TypeIdentifier<eprosima::fastdds::dds::TypeIdV1>`
-
-.. |TopicDataType::auto_fill_type_information-api| replace:: :cpp:func:`auto_fill_type_information<eprosima::fastdds::dds::TopicDataType::auto_fill_type_information>`
+.. |ITypeObjectRegistry-api| replace:: :cpp:class:`ITypeObjectRegistry <eprosima::fastdds::dds::xtypes::ITypeObjectRegistry>`
+.. |TypeObjectUtils-api| replace:: :cpp:class:`TypeObjectUtils <eprosima::fastdds::dds::xtypes::TypeObjectUtils>`
 
 .. |DomainParticipant::set_listener-api| replace:: :cpp:func:`DomainParticipant::set_listener()<eprosima::fastdds::dds::DomainParticipant::set_listener>`
 .. |Publisher::set_listener-api| replace:: :cpp:func:`Publisher::set_listener()<eprosima::fastdds::dds::Publisher::set_listener>`

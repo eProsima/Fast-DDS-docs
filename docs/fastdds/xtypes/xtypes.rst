@@ -14,7 +14,7 @@ This specification defines the following concepts:
 
   This section also defines the type compatibility rules among evolved types which is still unsupported in Fast DDS.
 
-* Type representation, including :ref:`IDL<fastddsgen_idl_datatypes>` and :ref:`xtypes_discovery_typeobject`
+* Type representation, including :ref:`IDL<fastddsgen_idl_datatypes>` and :ref:`TypeObject<xtypes_discovery_matching>`
   representations.
 * Data representation over the wire.
 * Language binding, defining both a plain and a dynamic language binding.

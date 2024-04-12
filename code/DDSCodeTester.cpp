@@ -36,6 +36,7 @@
 #include <fastdds/dds/xtypes/dynamic_types/DynamicType.hpp>
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilder.hpp>
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilderFactory.hpp>
+#include <fastdds/dds/xtypes/type_representation/TypeObject.hpp>
 #include <fastdds/rtps/attributes/ThreadSettings.hpp>
 #include <fastdds/rtps/transport/ChainingTransport.h>
 #include <fastdds/rtps/transport/ChainingTransportDescriptor.h>
@@ -974,6 +975,107 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
         }
     }
 
+};
+//!--
+
+//!--REMOTE_TYPE_MATCHING
+class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListener
+{
+    /* Custom Callback on_data_reader_discovery */
+    void on_data_reader_discovery(
+            DomainParticipant* participant,
+            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
+            bool& should_be_ignored) override
+    {
+        static_cast<void>(should_be_ignored);
+        // Get remote type information
+        xtypes::TypeObject remote_type_object;
+        if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
+                info.info.type_information().type_information.complete().typeid_with_size().type_id(),
+                remote_type_object))
+        {
+            // Error
+            return;
+        }
+        // Register remotely discovered type
+        DynamicType::_ref_type remote_type = DynamicTypeBuilderFactory::get_instance()->create_type_w_type_object(
+                remote_type_object)->build();
+        TypeSupport dyn_type_support(new DynamicPubSubType(remote_type));
+        dyn_type_support.register_type(participant, nullptr);
+
+        // Create a Topic with the remotely discovered type.
+        Topic* topic =
+                participant->create_topic(info.info.topicName().to_string(), dyn_type_support.get_type_name(),
+                TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create endpoint
+        Publisher* publisher = participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+        if (nullptr == publisher)
+        {
+            // Error
+            return;
+        }
+
+        DataWriter* data_writer = publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr == data_writer)
+        {
+            // Error
+            return;
+        }
+    }
+
+    /* Custom Callback on_data_writer_discovery */
+    void on_data_writer_discovery(
+            DomainParticipant* participant,
+            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
+            bool& should_be_ignored) override
+    {
+        static_cast<void>(should_be_ignored);
+        // Get remote type information
+        xtypes::TypeObject remote_type_object;
+        if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
+                info.info.type_information().type_information.complete().typeid_with_size().type_id(),
+                remote_type_object))
+        {
+            // Error
+            return;
+        }
+        // Register remotely discovered type
+        DynamicType::_ref_type remote_type = DynamicTypeBuilderFactory::get_instance()->create_type_w_type_object(
+                remote_type_object)->build();
+        TypeSupport dyn_type_support(new DynamicPubSubType(remote_type));
+        dyn_type_support.register_type(participant, nullptr);
+
+        // Create a Topic with the remotely discovered type.
+        Topic* topic =
+                participant->create_topic(info.info.topicName().to_string(), dyn_type_support.get_type_name(),
+                TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+
+        // Create endpoint
+        Subscriber* subscriber = participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+        if (nullptr == subscriber)
+        {
+            // Error
+            return;
+        }
+
+        DataReader* data_reader = subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        if (nullptr == data_reader)
+        {
+            // Error
+            return;
+        }
+    }
 };
 //!--
 
@@ -4431,49 +4533,62 @@ void dynamictypes_examples()
 
         // Define and add primitive members to the struct
         MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
-
         member_descriptor->name("my_bool");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_char");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR8));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_wchar");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR16));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_octet");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BYTE));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_int8");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT8));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_uint8");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT8));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_short");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT16));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_ushort");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT16));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_long");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_ulong");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_longlong");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT64));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_ulonglong");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT64));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_float");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_FLOAT32));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_double");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_FLOAT64));
         struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_longdouble");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_FLOAT128));
         struct_builder->add_member(member_descriptor);
@@ -4505,18 +4620,52 @@ void dynamictypes_examples()
         member_descriptor->name("my_string");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
                         create_string_type(static_cast<uint32_t>(LENGTH_UNLIMITED))->build());
+
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_STRING8);
+            type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR8));
+            member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
+        */
+
         struct_builder->add_member(member_descriptor);
         member_descriptor->name("my_wstring");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
                         create_wstring_type(static_cast<uint32_t>(LENGTH_UNLIMITED))->build());
+
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_STRING16);
+            type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR16));
+            member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
+        */
+
         struct_builder->add_member(member_descriptor);
         member_descriptor->name("my_bounded_string");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
                         create_string_type(41925)->build());
+
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_STRING8);
+            type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR8));
+            type_descriptor->bound().push_back(41925);
+            member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
+        */
+
         struct_builder->add_member(member_descriptor);
         member_descriptor->name("my_bounded_wstring");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
                         create_wstring_type(20925)->build());
+
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_STRING16);
+            type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR16));
+            type_descriptor->bound().push_back(20925);
+            member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
+        */
+
         struct_builder->add_member(member_descriptor);
 
         // Build the struct type
@@ -4533,6 +4682,13 @@ void dynamictypes_examples()
     }
     {
         //!--CPP_ENUM
+        enum MyEnum : uint32_t
+        {
+            A,
+            B,
+            C
+        };
+
         // Define a struct type to contain an enum
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
@@ -4545,7 +4701,7 @@ void dynamictypes_examples()
         enum_type_descriptor->name("MyEnum");
         DynamicTypeBuilder::_ref_type enum_builder {DynamicTypeBuilderFactory::get_instance()->
                                                             create_type(enum_type_descriptor)};
-        // Add enum members to the enum type
+        // Add enum literals to the enum type
         MemberDescriptor::_ref_type enum_member_descriptor {traits<MemberDescriptor>::make_shared()};
         enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
         enum_member_descriptor->name("A");
@@ -4572,7 +4728,7 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for an enum member
-        uint32_t in_value = 2;
+        MyEnum in_value = MyEnum::C;
         uint32_t out_value = 0;
         data->set_uint32_value(data->get_member_id_by_name("my_enum"), in_value);
         data->get_uint32_value(out_value, data->get_member_id_by_name("my_enum"));
@@ -4588,17 +4744,18 @@ void dynamictypes_examples()
                                                               create_type(type_descriptor)};
 
         // Define the bitmask type
-        TypeDescriptor::_ref_type bitmask_type_descriptor {traits<TypeDescriptor>::make_shared()};
-        bitmask_type_descriptor->kind(TK_BITMASK);
-        bitmask_type_descriptor->name("MyBitMask");
-        bitmask_type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(
-                    TK_BOOLEAN));
-        bitmask_type_descriptor->bound().push_back(8);
-        DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
-                                                           bitmask_type_descriptor)};
+        DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_bitmask_type(8)};
+
         /* Alternative
-           DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_bitmask_type(8)};
-         */
+            TypeDescriptor::_ref_type bitmask_type_descriptor {traits<TypeDescriptor>::make_shared()};
+            bitmask_type_descriptor->kind(TK_BITMASK);
+            bitmask_type_descriptor->name("MyBitMask");
+            bitmask_type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(
+                        TK_BOOLEAN));
+            bitmask_type_descriptor->bound().push_back(8);
+            DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
+                                                            bitmask_type_descriptor)};
+        */
 
         // Add bitfield members to the bitmask type
         MemberDescriptor::_ref_type bitfield_member_descriptor {traits<MemberDescriptor>::make_shared()};
@@ -4609,12 +4766,10 @@ void dynamictypes_examples()
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitfield_member_descriptor->name("flag1");
-        bitfield_member_descriptor->id(1);
         bitmask_builder->add_member(bitfield_member_descriptor);
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitfield_member_descriptor->name("flag2");
-        bitfield_member_descriptor->id(2);
         bitmask_builder->add_member(bitfield_member_descriptor);
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
@@ -4639,11 +4794,25 @@ void dynamictypes_examples()
         uint8_t out_value = 0;
         data->set_uint8_value(data->get_member_id_by_name("my_bitmask"), in_value);
         data->get_uint8_value(out_value, data->get_member_id_by_name("my_bitmask"));
+
+        // Set and retrieve specific bitflag
+        bool in_bitflag_value = true;
+        bool out_bitflag_value = false;
+        DynamicData::_ref_type bitmask_data = data->loan_value(data->get_member_id_by_name("my_bitmask"));
+        bitmask_data->set_boolean_value(bitmask_data->get_member_id_by_name("flag5"), in_bitflag_value);
+        bitmask_data->get_boolean_value(out_bitflag_value, bitmask_data->get_member_id_by_name("flag5"));
         //!--
     }
     {
         // Type created as described in enumeration type section.
+        enum MyEnum : int32_t
+        {
+            A,
+            B,
+            C
+        };
         DynamicType::_ref_type enum_type;
+
         //!--CPP_TYPEDEF
         // Define a struct type to contain the alias
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
@@ -4651,93 +4820,134 @@ void dynamictypes_examples()
         type_descriptor->name("AliasStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
+
         // Define an alias type for the enum
         TypeDescriptor::_ref_type aliasenum_type_descriptor {traits<TypeDescriptor>::make_shared()};
         aliasenum_type_descriptor->kind(TK_ALIAS);
-        aliasenum_type_descriptor->name("MyAliasEnum");
+        aliasenum_type_descriptor->name("MyAliasedEnum");
         aliasenum_type_descriptor->base_type(enum_type);
         DynamicTypeBuilder::_ref_type aliasenum_builder {DynamicTypeBuilderFactory::get_instance()->
                                                                  create_type(aliasenum_type_descriptor)};
         // Build the alias type
         DynamicType::_ref_type aliasenum_type = aliasenum_builder->build();
 
-        // Define an alias type for an array
-        TypeDescriptor::_ref_type aliasarray_type_descriptor {traits<TypeDescriptor>::make_shared()};
-        aliasarray_type_descriptor->kind(TK_ALIAS);
-        aliasarray_type_descriptor->name("MyAliasArray");
-        BoundSeq array_bounds = { 2, 2 };
-        aliasarray_type_descriptor->base_type(DynamicTypeBuilderFactory::get_instance()->
-                        create_array_type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(TK_INT32), array_bounds)->build());
-        DynamicTypeBuilder::_ref_type aliasarray_builder {DynamicTypeBuilderFactory::get_instance()->
-                                                                  create_type(aliasarray_type_descriptor)};
-        // Build the alias type for the array
-        DynamicType::_ref_type aliasarray_type = aliasarray_builder->build();
+        // Define an alias type for a bounded string
+        TypeDescriptor::_ref_type alias_bounded_string_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        alias_bounded_string_type_descriptor->kind(TK_ALIAS);
+        alias_bounded_string_type_descriptor->name("MyAliasedBoundedString");
+        alias_bounded_string_type_descriptor->base_type(DynamicTypeBuilderFactory::get_instance()->
+                        create_string_type(100)->build());
+        DynamicTypeBuilder::_ref_type alias_bounded_string_builder {DynamicTypeBuilderFactory::get_instance()->
+                                                                  create_type(alias_bounded_string_type_descriptor)};
+        // Build the alias type for the bounded string
+        DynamicType::_ref_type alias_bounded_string_type = alias_bounded_string_builder->build();
 
-        // Add alias enum member to the struct
+        // Define a recursive alias
+        TypeDescriptor::_ref_type recursive_alias_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        recursive_alias_type_descriptor->kind(TK_ALIAS);
+        recursive_alias_type_descriptor->name("MyRecursiveAlias");
+        recursive_alias_type_descriptor->base_type(aliasenum_type);
+        DynamicTypeBuilder::_ref_type recursive_alias_builder {DynamicTypeBuilderFactory::get_instance()->
+                                                                  create_type(recursive_alias_type_descriptor)};
+        // Build the recursive alias type
+        DynamicType::_ref_type recursive_alias_type = recursive_alias_builder->build();
+
+        // Add alias enum member to the structure
         MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
-        member_descriptor->name("my_alias_enum");
+        member_descriptor->name("my_aliased_enum");
         member_descriptor->type(aliasenum_type);
         struct_builder->add_member(member_descriptor);
-        // Add alias array member to the struct
+        // Add alias bounded string member to the structure
         member_descriptor = traits<MemberDescriptor>::make_shared();
-        member_descriptor->name("my_alias_array");
-        member_descriptor->type(aliasarray_type);
+        member_descriptor->name("my_aliased_bounded_string");
+        member_descriptor->type(alias_bounded_string_type);
         struct_builder->add_member(member_descriptor);
+        // Add recursive alias member to the structure
+        member_descriptor = traits<MemberDescriptor>::make_shared();
+        member_descriptor->name("my_recursive_alias");
+        member_descriptor->type(recursive_alias_type);
+        struct_builder->add_member(member_descriptor);
+
         // Build the struct type
         DynamicType::_ref_type struct_type {struct_builder->build()};
         // Create dynamic data based on the struct type
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for the alias enum member
-        int32_t in_value = 2;
+        MyEnum in_value = MyEnum::C;
         int32_t out_value = 0;
         data->set_int32_value(data->get_member_id_by_name("my_alias_enum"), in_value);
         data->get_int32_value(out_value, data->get_member_id_by_name("my_alias_enum"));
         //!--
     }
     {
-        //!--CPP_RECURSIVE_TYPEDEF
-        // Define a struct type to contain the alias
+        // Type created as described in enumeration type section.
+        DynamicType::_ref_type bitmask_type;
+
+        //!--CPP_SEQUENCES
+        // Define a struct type to contain the sequence
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
         type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name("RecursiveAliasStruct");
+        type_descriptor->name("SequenceStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
                                                               create_type(type_descriptor)};
-        // Define an alias type for base type
-        type_descriptor = traits<TypeDescriptor>::make_shared();
-        type_descriptor->kind(eprosima::fastdds::dds::TK_ALIAS);
-        type_descriptor->name("RecursiveAlias");
-        type_descriptor->base_type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(eprosima::fastdds::dds::TK_UINT32));
-        DynamicTypeBuilder::_ref_type builder {DynamicTypeBuilderFactory::get_instance()->
-                                                       create_type(type_descriptor)};
-        // Build the alias type for the base type
-        DynamicType::_ref_type rec_type {builder->build()};
 
-        type_descriptor = traits<TypeDescriptor>::make_shared();
-        type_descriptor->kind(eprosima::fastdds::dds::TK_ALIAS);
-        type_descriptor->name("MyAlias");
-        type_descriptor->base_type(rec_type);
-        builder = DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor);
-        // Build the alias type for other alias
-        DynamicType::_ref_type alias_type {builder->build()};
+        // Define a member for the sequence
+        MemberDescriptor::_ref_type sequence_member_descriptor {traits<MemberDescriptor>::make_shared()};
+        sequence_member_descriptor->name("bitmask_sequence");
+        sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_sequence_type(bitmask_type,
+                static_cast<uint32_t>(LENGTH_UNLIMITED))->build());
 
-        // Add alias member to the struct
-        MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
-        member_descriptor->name("my_alias");
-        member_descriptor->type(alias_type);
-        struct_builder->add_member(member_descriptor);
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_SEQUENCE);
+            type_descriptor->element_type(bitmask_type);
+            sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
+                    type_descriptor)->build());
+        */
+        
+        // Add the sequence member to the struct
+        struct_builder->add_member(sequence_member_descriptor);
+        
+        sequence_member_descriptor = traits<MemberDescriptor>::make_shared();
+        sequence_member_descriptor->name("short_sequence");
+        sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_sequence_type(
+                    DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT16), 5)->build());
+
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_SEQUENCE);
+            type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT16));
+            type_descriptor->bound().push_back(5);
+            sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
+                    type_descriptor)->build());
+        */
+
+        // Add the sequence member to the struct
+        struct_builder->add_member(sequence_member_descriptor);
         // Build the struct type
         DynamicType::_ref_type struct_type {struct_builder->build()};
         // Create dynamic data based on the struct type
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
-        // Set and retrieve values for the alias member
-        uint32_t in_value = 2;
-        uint32_t out_value = 0;
-        data->set_uint32_value(data->get_member_id_by_name("my_alias"), in_value);
-        data->get_uint32_value(out_value, data->get_member_id_by_name("my_alias"));
+        // Set and retrieve values for the sequence member
+        Int16Seq in_value = {1, 2};
+        Int16Seq out_value;
+        data->set_int16_values(data->get_member_id_by_name("short_sequence"), in_value);
+        data->get_int16_values(out_value, data->get_member_id_by_name("short_sequence"));
+
+        DynamicData::_ref_type sequence_data {data->loan_value(data->get_member_id_by_name("short_sequence"))};
+        // Set the two latest possible values on the sequence
+        sequence_data->set_int16_values(3, in_value);
+        // Read every sequence value from index 1 to the end
+        sequence_data->get_int16_values(out_value, 1);
+
+        int16_t in_simple_value = 8;
+        int16_t out_simple_value;
+        sequence_data->set_int16_value(2, in_simple_value);
+        sequence_data->get_int16_value(out_simple_value, 2);
+        
+        data->return_loaned_value(sequence_data);
         //!--
     }
     {
@@ -4754,6 +4964,17 @@ void dynamictypes_examples()
         array_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_array_type(
                     DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32), { 2, 3, 4 })->build());
 
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_ARRAY);
+            type_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
+            type_descriptor->bound().push_back(2);
+            type_descriptor->bound().push_back(3);
+            type_descriptor->bound().push_back(4);
+            array_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
+                    type_descriptor)->build());
+        */
+
         // Add the array member to the struct
         struct_builder->add_member(array_member_descriptor);
         // Build the struct type
@@ -4766,36 +4987,25 @@ void dynamictypes_examples()
         Int32Seq out_value;
         data->set_int32_values(data->get_member_id_by_name("long_array"), in_value);
         data->get_int32_values(out_value, data->get_member_id_by_name("long_array"));
-        //!--
-    }
-    {
-        //!--CPP_SEQUENCES
-        // Define a struct type to contain the sequence
-        TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
-        type_descriptor->kind(TK_STRUCTURE);
-        type_descriptor->name("SequenceStruct");
-        DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
-                                                              create_type(type_descriptor)};
-        // Define a member for the sequence
-        MemberDescriptor::_ref_type sequence_member_descriptor {traits<MemberDescriptor>::make_shared()};
-        sequence_member_descriptor->name("short_sequence");
-        sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_sequence_type(
-                    DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT16), 5)->build());
-        // Add the sequence member to the struct
-        struct_builder->add_member(sequence_member_descriptor);
-        // Build the struct type
-        DynamicType::_ref_type struct_type {struct_builder->build()};
-        // Create dynamic data based on the struct type
-        DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
-        // Set and retrieve values for the sequence member
-        Int16Seq in_value = {1, 2};
-        Int16Seq out_value;
-        data->set_int16_values(data->get_member_id_by_name("short_sequence"), in_value);
-        data->get_int16_values(out_value, data->get_member_id_by_name("short_sequence"));
+        DynamicData::_ref_type array_data {data->loan_value(data->get_member_id_by_name("long_array"))};
+        // Set the two latest possible values on the array
+        array_data->set_int32_values(22, in_value);
+        // Read every array value from index 1 to the end
+        array_data->get_int32_values(out_value, 1);
+
+        int32_t in_simple_value = 8;
+        int32_t out_simple_value;
+        array_data->set_int32_value(2, in_simple_value);
+        array_data->get_int32_value(out_simple_value, 2);
+        
+        data->return_loaned_value(array_data);
         //!--
     }
     {
+        // Type created as described in enumeration type section.
+        DynamicType::_ref_type alias_bounded_string_type;
+
         //!--CPP_MAPS
         // Define a struct type to contain the map
         TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
@@ -4805,11 +5015,41 @@ void dynamictypes_examples()
                                                               create_type(type_descriptor)};
         // Define a member for the map
         MemberDescriptor::_ref_type map_member_descriptor {traits<MemberDescriptor>::make_shared()};
-        map_member_descriptor->name("long_long_map");
+        map_member_descriptor->name("string_long_array_unbounded_map");
         map_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_map_type(
-                    DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32),
-                    DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32), 2)->build());
+                DynamicTypeBuilderFactory::get_instance()->create_string_type(static_cast<uint32_t>(
+                LENGTH_UNLIMITED))->build(), alias_bounded_string_type, static_cast<uint32_t>(
+                LENGTH_UNLIMITED))->build());
+
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_MAP);
+            type_descriptor->key_element_type(DynamicTypeBuilderFactory::get_instance()->create_string_type(
+                    static_cast<uint32_t>(LENGTH_UNLIMITED)->build());
+            type_descriptor->element_type(alias_bounded_string_type);
+            map_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
+                    type_descriptor)->build());
+        */
+
         // Add the map member to the struct
+        struct_builder->add_member(map_member_descriptor);
+
+        map_member_descriptor = traits<MemberDescriptor>::make_shared();
+        map_member_descriptor->name("short_long_map");
+        map_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_map_type(
+                    DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT16),
+                    DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32), 2)->build());
+
+        /* Alternative
+            type_descriptor = traits<TypeDescriptor>::make_shared();
+            type_descriptor->kind(TK_MAP);
+            type_descriptor->key_element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT16));
+            type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
+            type_descriptor->bound().push_back(2);
+            map_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
+                    type_descriptor)->build());
+        */
+
         struct_builder->add_member(map_member_descriptor);
         // Build the struct type
         DynamicType::_ref_type struct_type {struct_builder->build()};
@@ -4817,7 +5057,7 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Get the data loan of the map member
-        DynamicData::_ref_type map_data = data->loan_value(data->get_member_id_by_name("long_long_map"));
+        DynamicData::_ref_type map_data = data->loan_value(data->get_member_id_by_name("short_long_map"));
 
         // Set and retrieve values for the map member
         int32_t key = 1;
@@ -4832,88 +5072,128 @@ void dynamictypes_examples()
     }
     {
         //!--CPP_STRUCT
-        // Define a struct type
-        TypeDescriptor::_ref_type struct_type_descriptor {traits<TypeDescriptor>::make_shared()};
-        struct_type_descriptor->kind(TK_STRUCTURE);
-        struct_type_descriptor->name("MyStruct");
-        DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
-                                                          struct_type_descriptor)};
-        // Add members to the struct
-        MemberDescriptor::_ref_type struct_member {traits<MemberDescriptor>::make_shared()};
-        struct_member->name("first");
-        struct_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
-        struct_builder->add_member(struct_member);
-        struct_member = traits<MemberDescriptor>::make_shared();
-        struct_member->name("second");
-        struct_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT64));
-        struct_builder->add_member(struct_member);
+        // Create inner struct type
+        TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
+        type_descriptor->kind(eprosima::fastdds::dds::TK_STRUCTURE);
+        type_descriptor->name("InnerStruct");
+        DynamicTypeBuilder::_ref_type builder {DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)};
+        // Add members to the inner struct type
+        MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
+        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
+                        get_primitive_type(eprosima::fastdds::dds::TK_INT32));
+        member_descriptor->name("first");
+        member_descriptor->id(16);
+        builder->add_member(member_descriptor);
+        // Build the inner struct type
+        DynamicType::_ref_type inner_struct_type {builder->build()};
 
-        // Build the struct type
-        DynamicType::_ref_type struct_type {struct_builder->build()};
+        // Create parent struct type
+        TypeDescriptor::_ref_type parentstruct_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        parentstruct_type_descriptor->kind(TK_STRUCTURE);
+        parentstruct_type_descriptor->name("ParentStruct");
+        DynamicTypeBuilder::_ref_type parentstruct_builder {DynamicTypeBuilderFactory::get_instance()->
+                                                                    create_type(parentstruct_type_descriptor)};
+        // Add members to the parent struct type
+        MemberDescriptor::_ref_type parentstruct_member {traits<MemberDescriptor>::make_shared()};
+        parentstruct_member->name("first");
+        parentstruct_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_FLOAT32));
+        parentstruct_builder->add_member(parentstruct_member);
+        parentstruct_member = traits<MemberDescriptor>::make_shared();
+        parentstruct_member->name("second");
+        parentstruct_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT64));
+        parentstruct_builder->add_member(parentstruct_member);
+        // Build the parent struct type
+        DynamicType::_ref_type parentstruct_type = parentstruct_builder->build();
+
+        // Create complex struct type
+        TypeDescriptor::_ref_type complexstruct_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        complexstruct_type_descriptor->kind(TK_STRUCTURE);
+        complexstruct_type_descriptor->name("ComplexStruct");
+        complexstruct_type_descriptor->base_type(parentstruct_type);
+        DynamicTypeBuilder::_ref_type complexstruct_builder {DynamicTypeBuilderFactory::get_instance()->
+                                                                   create_type(complexstruct_type_descriptor)};
+        // Add members to the complex struct type
+        MemberDescriptor::_ref_type complexstruct_member {traits<MemberDescriptor>::make_shared()};
+        complexstruct_member->name("complex_member");
+        complexstruct_member->type(inner_struct_type);
+        complexstruct_builder->add_member(complexstruct_member);
+
+        // Build the complex struct type
+        DynamicType::_ref_type complexstruct_type = complexstruct_builder->build();
         // Create dynamic data based on the struct type
-        DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
+        DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(complexstruct_type)};
 
-        // Set and retrieve values for the member
-        const int32_t value1 = 2;
-        int32_t value2 = 0;
-        data->set_int32_value(data->get_member_id_by_name("first"), value1);
-        data->get_int32_value(value2, data->get_member_id_by_name("first"));
+        // Set and retrieve values for member of type float
+        float in_value = 3.14;
+        float out_value = 0.0;
+        data->set_float32_value(data->get_member_id_by_name("first"), in_value);
+        data->get_float32_value(out_value, data->get_member_id_by_name("first"));
         //!--
     }
+
     {
-        // Skipped this type creation. Same as in previous section.
-        DynamicType::_ref_type mystruct_type;
+        // Skipped this type creation: same as primitives struct created in previous section.
+        DynamicType::_ref_type struct_type;
+
         //!--CPP_UNION
         // Define a struct type to contain the union
-        TypeDescriptor::_ref_type struct_type_descriptor {traits<TypeDescriptor>::make_shared()};
-        struct_type_descriptor->kind(TK_STRUCTURE);
-        struct_type_descriptor->name("UnionStruct");
-        DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
-                                                          struct_type_descriptor)};
-        // Define a type for union
-        TypeDescriptor::_ref_type union_type_descriptor = traits<TypeDescriptor>::make_shared();
-        union_type_descriptor->kind(TK_UNION);
-        union_type_descriptor->name("MyUnion");
-        union_type_descriptor->discriminator_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(
-                    TK_INT16));
-        DynamicTypeBuilder::_ref_type union_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
-                                                         union_type_descriptor)};
-        // Add members to the union type
-        MemberDescriptor::_ref_type union_member_descriptor {traits<MemberDescriptor>::make_shared()};
-        union_member_descriptor->name("first");
-        union_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
-        union_member_descriptor->label({0, 1});
-        union_builder->add_member(union_member_descriptor);
-        union_member_descriptor = traits<MemberDescriptor>::make_shared();
-        union_member_descriptor->name("second");
-        union_member_descriptor->type(mystruct_type);
-        union_member_descriptor->label({2});
-        union_builder->add_member(union_member_descriptor);
-        union_member_descriptor = traits<MemberDescriptor>::make_shared();
-        union_member_descriptor->name("third");
-        union_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT64));
-        union_member_descriptor->is_default_label(true);
-        union_builder->add_member(union_member_descriptor);
-        // Build the union type
-        DynamicType::_ref_type union_type = union_builder->build();
-
-        // Add the union member to the struct
+        // Create the inner union
+        TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
+        type_descriptor->kind(TK_UNION);
+        type_descriptor->name("InnerUnion");
+        type_descriptor->discriminator_type(DynamicTypeBuilderFactory::get_instance()->
+                        get_primitive_type(TK_INT16));
+        DynamicTypeBuilder::_ref_type builder {DynamicTypeBuilderFactory::get_instance()->
+                                                       create_type(type_descriptor)};
+        // Add members to the inner union type
         MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
-        member_descriptor->name("my_union");
-        member_descriptor->type(union_type);
-        struct_builder->add_member(member_descriptor);
-        // Build the struct type
-        DynamicType::_ref_type struct_type {struct_builder->build()};
-        // Create dynamic data based on the struct type
-        DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
+        member_descriptor->type(struct_type);
+        member_descriptor->name("first");
+        member_descriptor->id(16);
+        member_descriptor->label({0});
+        builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
+        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
+                        get_primitive_type(TK_INT64));
+        member_descriptor->name("second");
+        member_descriptor->label({1});
+        member_descriptor->is_default_label(true);
+        builder->add_member(member_descriptor);
+        // Build the inner union type
+        DynamicType::_ref_type inner_union_type {builder->build()};
+
+        // Create a complex union type
+        type_descriptor = traits<TypeDescriptor>::make_shared();
+        type_descriptor->kind(TK_UNION);
+        type_descriptor->name("ComplexUnion");
+        type_descriptor->discriminator_type(DynamicTypeBuilderFactory::get_instance()->
+                        get_primitive_type(TK_INT32));
+        builder = DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor);
+        // Add members to the complex union type
+        member_descriptor = traits<MemberDescriptor>::make_shared();
+        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
+                        get_primitive_type(TK_INT32));
+        member_descriptor->name("third");
+        member_descriptor->label({0, 1});
+        builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
+        member_descriptor->type(inner_union_type);
+        member_descriptor->name("fourth");
+        member_descriptor->is_default_label(true);
+        builder->add_member(member_descriptor);
+        // Build the complex union type
+        DynamicType::_ref_type union_type {builder->build()};
+
+        // Create dynamic data based on the union type
+        DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(union_type)};
         // Set and retrieve values for the member
-        DynamicData::_ref_type union_data = data->loan_value(data->get_member_id_by_name("my_union"));
+        DynamicData::_ref_type union_data = data->loan_value(data->get_member_id_by_name("InnerUnion"));
 
         // Set and retrieve values for the member
-        int32_t in_value = 2;
-        int32_t out_value;
-        union_data->set_int32_value(union_data->get_member_id_by_name("first"), in_value);
-        union_data->get_int32_value(out_value, union_data->get_member_id_by_name("first"));
+        int64_t in_value = 2;
+        int64_t out_value;
+        union_data->set_int64_value(union_data->get_member_id_by_name("second"), in_value);
+        union_data->get_int64_value(out_value, union_data->get_member_id_by_name("second"));
         // Return de data loan of the member
         data->return_loaned_value(union_data);
         //!--
@@ -4926,27 +5206,25 @@ void dynamictypes_examples()
         struct_type_descriptor->name("BitsetStruct");
         DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
                                                           struct_type_descriptor)};
-        // Define a type for bitset
+
+        // Define type for parent bitset
         TypeDescriptor::_ref_type bitset_type_descriptor {traits<TypeDescriptor>::make_shared()};
         bitset_type_descriptor->kind(TK_BITSET);
-        bitset_type_descriptor->name("MyBitset");
-        bitset_type_descriptor->bound({3, 1, 4, 10, 12});
+        bitset_type_descriptor->name("ParentBitSet");
+        bitset_type_descriptor->bound({3, 1, 10, 12});
         DynamicTypeBuilder::_ref_type bitset_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
                                                           bitset_type_descriptor)};
         // Add members to the bitset type
         MemberDescriptor::_ref_type bitset_member_descriptor {traits<MemberDescriptor>::make_shared()};
         bitset_member_descriptor->name("a");
-        bitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR8));
         bitset_member_descriptor->id(0);
         bitset_builder->add_member(bitset_member_descriptor);
         bitset_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitset_member_descriptor->name("b");
-        bitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitset_member_descriptor->id(3);
         bitset_builder->add_member(bitset_member_descriptor);
         bitset_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitset_member_descriptor->name("c");
-        bitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT16));
         bitset_member_descriptor->id(8);
         bitset_builder->add_member(bitset_member_descriptor);
         bitset_member_descriptor = traits<MemberDescriptor>::make_shared();
@@ -4955,7 +5233,28 @@ void dynamictypes_examples()
         bitset_member_descriptor->id(18);
         bitset_builder->add_member(bitset_member_descriptor);
         // Build the bitset type
-        DynamicType::_ref_type bitset_type = bitset_builder->build();
+        DynamicType::_ref_type parentbitset_type = bitset_builder->build();
+
+        // Create child bitset type
+        TypeDescriptor::_ref_type childbitset_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        childbitset_type_descriptor->kind(TK_BITSET);
+        childbitset_type_descriptor->name("ChildBitSet");
+        childbitset_type_descriptor->base_type(parentbitset_type);
+        childbitset_type_descriptor->bound({1, 20});
+        DynamicTypeBuilder::_ref_type childbitset_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
+                                                               childbitset_type_descriptor)};
+        // Add members to the child bitset type
+        MemberDescriptor::_ref_type childbitset_member_descriptor {traits<MemberDescriptor>::make_shared()};
+        childbitset_member_descriptor->name("e");
+        childbitset_member_descriptor->id(0);
+        childbitset_builder->add_member(childbitset_member_descriptor);
+        childbitset_member_descriptor = traits<MemberDescriptor>::make_shared();
+        childbitset_member_descriptor->name("d");
+        childbitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
+        childbitset_member_descriptor->id(1);
+        childbitset_builder->add_member(childbitset_member_descriptor);
+        // Build the child bitset type
+        DynamicType::_ref_type bitset_type = childbitset_builder->build();
 
         // Add the bitset member to the struct
         MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
@@ -4976,181 +5275,6 @@ void dynamictypes_examples()
         bitset_data->get_int16_value(out_value, bitset_data->get_member_id_by_name("d"));
         // Return de data loan of the member
         data->return_loaned_value(bitset_data);
-        //!--
-    }
-    {
-        //!--CPP_BITSET_INHERITANCE
-        // Create a parent bitset type
-        TypeDescriptor::_ref_type parentbitset_type_descriptor {traits<TypeDescriptor>::make_shared()};
-        parentbitset_type_descriptor->kind(TK_BITSET);
-        parentbitset_type_descriptor->name("ParentBitSet");
-        parentbitset_type_descriptor->bound({3, 1});
-        DynamicTypeBuilder::_ref_type parentbitset_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
-                                                                parentbitset_type_descriptor)};
-        // Add members to the parent bitset type
-        MemberDescriptor::_ref_type parentbitset_member_descriptor {traits<MemberDescriptor>::make_shared()};
-        parentbitset_member_descriptor->name("a");
-        parentbitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(TK_CHAR8));
-        parentbitset_member_descriptor->id(0);
-        parentbitset_builder->add_member(parentbitset_member_descriptor);
-        parentbitset_member_descriptor = traits<MemberDescriptor>::make_shared();
-        parentbitset_member_descriptor->name("b");
-        parentbitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(TK_BOOLEAN));
-        parentbitset_member_descriptor->id(3);
-        parentbitset_builder->add_member(parentbitset_member_descriptor);
-        // Build the parent bitset type
-        DynamicType::_ref_type parentbitset_type = parentbitset_builder->build();
-
-        // Create child bitset type
-        TypeDescriptor::_ref_type childbitset_type_descriptor {traits<TypeDescriptor>::make_shared()};
-        childbitset_type_descriptor->kind(TK_BITSET);
-        childbitset_type_descriptor->name("ChildBitSet");
-        childbitset_type_descriptor->base_type(parentbitset_type);
-        childbitset_type_descriptor->bound({10, 12});
-        DynamicTypeBuilder::_ref_type childbitset_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
-                                                               childbitset_type_descriptor)};
-        // Add members to the child bitset type
-        MemberDescriptor::_ref_type childbitset_member_descriptor {traits<MemberDescriptor>::make_shared()};
-        childbitset_member_descriptor->name("c");
-        childbitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT16));
-        childbitset_member_descriptor->id(0);
-        childbitset_builder->add_member(childbitset_member_descriptor);
-        childbitset_member_descriptor = traits<MemberDescriptor>::make_shared();
-        childbitset_member_descriptor->name("d");
-        childbitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT16));
-        childbitset_member_descriptor->id(10);
-        childbitset_builder->add_member(childbitset_member_descriptor);
-        // Build the child bitset type
-        DynamicType::_ref_type childbitset_type = childbitset_builder->build();
-        //!--
-    }
-    {
-        //!--CPP_STRUCT_INHERITANCE
-        // Create a parent struct type
-        TypeDescriptor::_ref_type parentstruct_type_descriptor {traits<TypeDescriptor>::make_shared()};
-        parentstruct_type_descriptor->kind(TK_STRUCTURE);
-        parentstruct_type_descriptor->name("ParentStruct");
-        DynamicTypeBuilder::_ref_type parentstruct_builder {DynamicTypeBuilderFactory::get_instance()->
-                                                                    create_type(parentstruct_type_descriptor)};
-        // Add members to the parent struct type
-        MemberDescriptor::_ref_type parentstruct_member {traits<MemberDescriptor>::make_shared()};
-        parentstruct_member->name("first");
-        parentstruct_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
-        parentstruct_builder->add_member(parentstruct_member);
-        parentstruct_member = traits<MemberDescriptor>::make_shared();
-        parentstruct_member->name("second");
-        parentstruct_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT64));
-        parentstruct_builder->add_member(parentstruct_member);
-        // Build the parent struct type
-        DynamicType::_ref_type parentstruct_type = parentstruct_builder->build();
-
-        // Create child struct type
-        TypeDescriptor::_ref_type childstruct_type_descriptor {traits<TypeDescriptor>::make_shared()};
-        childstruct_type_descriptor->kind(TK_STRUCTURE);
-        childstruct_type_descriptor->name("ChildStruct");
-        childstruct_type_descriptor->base_type(parentstruct_type);
-        DynamicTypeBuilder::_ref_type childstruct_builder {DynamicTypeBuilderFactory::get_instance()->
-                                                                   create_type(childstruct_type_descriptor)};
-        // Add members to the child struct type
-        MemberDescriptor::_ref_type childstruct_member {traits<MemberDescriptor>::make_shared()};
-        childstruct_member->name("third");
-        childstruct_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
-        childstruct_builder->add_member(childstruct_member);
-        childstruct_member = traits<MemberDescriptor>::make_shared();
-        childstruct_member->name("fourth");
-        childstruct_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT64));
-        childstruct_builder->add_member(childstruct_member);
-        // Build the child struct type
-        DynamicType::_ref_type childstruct_type = childstruct_builder->build();
-        //!--
-    }
-    {
-        //!--CPP_COMPLEX_STRUCTS
-        // Create a inner struct type
-        TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
-        type_descriptor->kind(eprosima::fastdds::dds::TK_STRUCTURE);
-        type_descriptor->name("InnerStruct");
-        DynamicTypeBuilder::_ref_type builder {DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)};
-
-        // Add members to the inner struct type
-        MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
-        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(eprosima::fastdds::dds::TK_INT32));
-        member_descriptor->name("first");
-        member_descriptor->id(0);
-        builder->add_member(member_descriptor);
-        // Build the inner struct type
-        DynamicType::_ref_type inner_struct_type {builder->build()};
-
-        // Create a complex struct type
-        type_descriptor = traits<TypeDescriptor>::make_shared();
-        type_descriptor->kind(eprosima::fastdds::dds::TK_STRUCTURE);
-        type_descriptor->name("ComplexStruct");
-        builder = DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor);
-        // Add members to the complex struct type
-        member_descriptor = traits<MemberDescriptor>::make_shared();
-        member_descriptor->type(inner_struct_type);
-        member_descriptor->name("complex_member");
-        member_descriptor->id(0);
-        builder->add_member(member_descriptor);
-        // Build the complex struct type
-        DynamicType::_ref_type struct_type {builder->build()};
-        //!--
-    }
-    {
-        //!--CPP_COMPLEX_UNIONS
-        // Create the inner union
-        TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
-        type_descriptor->kind(eprosima::fastdds::dds::TK_UNION);
-        type_descriptor->name("InnerUnion");
-        type_descriptor->discriminator_type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(eprosima::fastdds::dds::TK_INT32));
-        DynamicTypeBuilder::_ref_type builder {DynamicTypeBuilderFactory::get_instance()->
-                                                       create_type(type_descriptor)};
-        // Add members to the inner union type
-        MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
-        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(eprosima::fastdds::dds::TK_INT64));
-        member_descriptor->name("first");
-        member_descriptor->id(1);
-        member_descriptor->label({0});
-        builder->add_member(member_descriptor);
-        member_descriptor = traits<MemberDescriptor>::make_shared();
-        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(eprosima::fastdds::dds::TK_INT64));
-        member_descriptor->name("second");
-        member_descriptor->id(2);
-        member_descriptor->label({1});
-        member_descriptor->is_default_label(true);
-        builder->add_member(member_descriptor);
-        // Build the inner union type
-        DynamicType::_ref_type inner_union_type {builder->build()};
-
-        // Create a complex union type
-        type_descriptor = traits<TypeDescriptor>::make_shared();
-        type_descriptor->kind(eprosima::fastdds::dds::TK_UNION);
-        type_descriptor->name("ComplexUnion");
-        type_descriptor->discriminator_type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(eprosima::fastdds::dds::TK_INT32));
-        builder = DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor);
-        // Add members to the complex union type
-        member_descriptor = traits<MemberDescriptor>::make_shared();
-        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                        get_primitive_type(eprosima::fastdds::dds::TK_INT32));
-        member_descriptor->name("third");
-        member_descriptor->id(1);
-        member_descriptor->label({0});
-        builder->add_member(member_descriptor);
-        member_descriptor = traits<MemberDescriptor>::make_shared();
-        member_descriptor->type(inner_union_type);
-        member_descriptor->name("fourth");
-        member_descriptor->id(2);
-        member_descriptor->label({1});
-        builder->add_member(member_descriptor);
-        // Build the complex union type
-        DynamicType::_ref_type union_type {builder->build()};
         //!--
     }
     {
@@ -5181,6 +5305,29 @@ void dynamictypes_examples()
         annotation_descriptor->set_value("length", std::to_string(5));
         // Apply the annotation to the structure
         type_builder->apply_annotation(annotation_descriptor);
+        //!--
+    }
+    {
+        // Complex struct type defined previously
+        DynamicType::_ref_type complexstruct_type;
+        //!--CPP_COMPLEX_DATA
+        // Create dynamic data based on the struct type
+        DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(complexstruct_type)};
+
+        // Get/Set complex API (copy)
+        DynamicData::_ref_type complex_data;
+        data->get_complex_value(complex_data, data->get_member_id_by_name("complex_member"));
+        // Set data
+        int32_t in_value = 10;
+        complex_data->set_int32_value(complex_data->get_member_id_by_name("first"), in_value);
+        data->set_complex_value(data->get_member_id_by_name("complex_member"), complex_data);
+
+        // Loan API
+        DynamicData::_ref_type loan_data = data->loan_value(data->get_member_id_by_name("complex_member"));
+        loan_data->set_int32_value(loan_data->get_member_id_by_name("first"), in_value);
+        int32_t out_value;
+        loan_data->get_int32_value(out_value, loan_data->get_member_id_by_name("first"));
+        data->return_loaned_value(loan_data);
         //!--
     }
 }
@@ -5246,7 +5393,13 @@ void xml_profiles_examples()
         {
             // Retrieve the an instance of the desired type
             DynamicType::_ref_type my_struct_type;
-            DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("MyStruct", my_struct_type);
+            if (RETCODE_OK !=
+                    DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name(
+                    "MyStruct", my_struct_type))
+            {
+                // Error
+                return;
+            }
 
             // Register MyStruct type
             TypeSupport my_struct_type_support(new DynamicPubSubType(my_struct_type));

@@ -1,5 +1,7 @@
-Dynamic Types
-=============
+.. _dynamic_language_binding_api:
+
+Dynamic Language Binding
+========================
 
 .. toctree::
 

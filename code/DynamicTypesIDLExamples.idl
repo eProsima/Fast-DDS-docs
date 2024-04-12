@@ -42,12 +42,12 @@ struct PrimitivesStruct
     octet my_octet;
     int8 my_int8;
     uint8 my_uint8;
-    int16 my_short;
-    uint16 my_ushort;
-    int32 my_long;
-    uint32 my_unlong;
-    int64 my_longlong;
-    uint64 my_ulonglong;
+    short my_short;
+    unsigned short my_ushort;
+    long my_long;
+    unsigned long my_ulong;
+    long long my_longlong;
+    unsigned long long my_ulonglong;
     float my_float;
     double my_double;
     long double my_longdouble;
@@ -64,27 +64,6 @@ struct StringsStruct
 };
 //!--
 
-//!--IDL_ARRAYS
-struct ArrayStruct
-{
-    int32 long_array[2][3][4];
-};
-//!--
-
-//!--IDL_SEQUENCES
-struct SequenceStruct
-{
-    sequence<short, 5> short_sequence;
-};
-//!--
-
-//!--IDL_MAPS
-struct MapStruct
-{
-    map<int32,int32,2> long_long_map;
-};
-//!--
-
 //!--IDL_ENUM
 enum MyEnum
 {
@@ -92,6 +71,7 @@ enum MyEnum
     B,
     C
 };
+
 struct EnumStruct
 {
     MyEnum my_enum;
@@ -103,10 +83,11 @@ struct EnumStruct
 bitmask MyBitMask
 {
     @position(0) flag0,
-    @position(1) flag1,
-    @position(2) flag2,
+    flag1,
+    flag2,
     @position(5) flag5
 };
+
 struct BitmaskStruct
 {
     MyBitMask my_bitmask;
@@ -114,50 +95,81 @@ struct BitmaskStruct
 //!--
 
 //!--IDL_TYPEDEF
-typedef MyEnum MyAliasEnum;
-typedef int32 MyAliasArray[2][2];
+typedef MyEnum MyAliasedEnum;
+typedef string<100> MyAliasedBoundedString;
+typedef MyAliasedEnum MyRecursiveAlias;
+
 struct AliasStruct
 {
-    MyAliasEnum my_alias_enum;
-    MyAliasArray my_alias_array;
+    MyAliasedEnum my_aliased_enum;
+    MyAliasedBoundedString my_aliased_bounded_string;
+    MyRecursiveAlias my_recursive_alias;
 };
 //!--
 
-//!--IDL_RECURSIVE_TYPEDEF
-typedef uint32 RecursiveAlias;
-typedef RecursiveAlias MyAlias;
-struct RecursiveAliasStruct
+//!--IDL_SEQUENCES
+struct SequenceStruct
 {
-    MyAlias my_alias;
+    sequence<MyBitmask> bitmask_sequence;
+    sequence<short, 5> short_sequence;
+};
+//!--
+
+//!--IDL_ARRAYS
+struct ArrayStruct
+{
+    long long_array[2][3][4];
+};
+//!--
+
+//!--IDL_MAPS
+struct MapStruct
+{
+    map<string, MyAliasedBoundedString> string_alias_unbounded_map;
+    map<short, long, 2> short_long_map;
 };
 //!--
 
 //!--IDL_STRUCT
-struct MyStruct
-{
-   int32 first;
-   int64 second;
+struct InnerStruct
+{	
+    @id(0x10) long first;
+};
+
+struct ParentStruct
+{	
+    float first;
+    long long second;
+};
+
+struct ComplexStruct : ParentStruct
+{	
+    InnerStruct complex_member;
 };
 //!--
 
 //!--IDL_UNION
-union MyUnion switch (int16)
+union InnerUnion switch (short)
+{
+    case 0:
+        @id(0x10) PrimitivesStruct first;
+    case 1:
+    default:
+        long long second;
+};
+
+union ComplexUnion switch (long)
 {
     case 0:
     case 1:
-        int32 first;
-    case 2:
-        MyStruct second;
+        long third;
     default:
-        int64 third;
+        InnerUnion fourth;
 };
-struct UnionStruct
-{
-   MyUnion my_union;
-};//!--
+//!--
 
 //!--IDL_BITSET
-bitset MyBitset
+bitset ParentBitSet
 {	
     bitfield<3> a;
     bitfield<1> b;
@@ -165,79 +177,16 @@ bitset MyBitset
     bitfield<10> c;
     bitfield<12, short> d;
 };
-struct BitsetStruct
-{
-   MyBitset my_bitset;
-};
-//!--
-
-//!--IDL_BITSET_INHERITANCE
-bitset ParentBitSet
-{	
-    bitfield<3> a;
-    bitfield<1> b;
-};
 
 bitset ChildBitSet : ParentBitSet
 {	
-    bitfield<10> c;
-    bitfield<12, short> d;
-};
-//!--
-
-//!--IDL_STRUCT_INHERITANCE
-struct ParentStruct
-{	
-    int32 first;
-    int64 second;
+    bitfield<1> e;
+    bitfield<20, unsigned long> f;
 };
 
-struct ChildStruct : ParentStruct
-{	
-    int32 third;
-    int63 fourth;
-};
-//!--
-
-//!--CPP_COMPLEX_STRUCTS
-struct InnerStruct
-{	
-    int32 first;
-};
-
-struct ComplexStruct
-{	
-    InnerStruct complex_member;
-};
-//!--
-
-//!--IDL_COMPLEX_STRUCTS
-struct InnerStruct
-{	
-    int32 first;
-};
-
-struct ComplexStruct
-{	
-    InnerStruct complex_member;
-};
-//!--
-
-//!--IDL_COMPLEX_UNIONS
-union InnerUnion switch (int32)
+struct BitsetStruct
 {
-    case 0:
-        int64 first;
-    case 1:
-        int64 second;
-};
-
-union ComplexUnion switch (int32)
-{
-    case 0:
-        int32 third;
-    case 1:
-        InnerUnion fourth;
+   ChildBitSet my_bitset;
 };
 //!--
 

@@ -31,6 +31,7 @@ backports
 benchmarking
 bitfield
 Bitfields
+bitflags
 bitmask
 bitmasks
 bitset
@@ -43,6 +44,7 @@ bugfixes
 cancelled
 Cannonical
 Cardinality
+caseDiscriminator
 CCache
 cdr
 CDR

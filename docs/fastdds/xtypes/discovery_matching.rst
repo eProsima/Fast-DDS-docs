@@ -7,8 +7,8 @@ Remote Data Types Discovery
 
 .. _DDS-XTypes specification: https://www.omg.org/spec/DDS-XTypes/1.3
 
-`DDS-XTypes specification`_ defines an internal mechanism to discover the remote data types at runtime and match depending on the
-extesible types compatibility rules configured using the :ref:`typeconsistencyenforcementqospolicy`.
+`DDS-XTypes specification`_ defines an internal mechanism to discover the remote data types at runtime and match
+depending on the extensible types compatibility rules configured using the :ref:`typeconsistencyenforcementqospolicy`.
 
 .. note::
 
@@ -37,13 +37,20 @@ The :code:`CompleteTypeObject` includes the data type full description.
 On the other hand, :code:`MinimalTypeObject` only includes the minimum required information in order to check type
 compatibility.
 
+.. important::
+
+     Current TypeObject representation implementation does not support forward declarations or recursive data types
+     defined using the :code:`@external` annotation.
+     Please, remember to disable TypeObject generation code using :code:`-no-typeobjectsupport` option when generating
+     the code using Fast DDS-Gen.
+
 Prerequisites
 -------------
 
 The remote data type discovery feature only works if some requisites are met:
 
 1. The local data types must be registered into the |ITypeObjectRegistry-api|.
-   The types are automatically registered when calling |DomainParticipant::register_type-api|/
+   The types are automatically registered when calling |DomainParticipant::register_type-api| /
    |TypeSupport::register_type-api| if the code required for registration has been generated using
    :ref:`eProsima Fast DDS-Gen<fastddsgen_intro>`.
    Fast DDS-Gen generates the required files (*<IDLFileName>TypeObjectSupport.cxx/.hpp*) by default.
@@ -66,3 +73,9 @@ The remote data type discovery feature only works if some requisites are met:
 
 If the prerequisites are not met, endpoint matching relies on type name and topic name in order to match the discovered
 endpoints.
+
+Remote types discovery example
+------------------------------
+
+Please, refer to :ref:`use-case-remote-type-discovery-and-matching` for more information about how to leverage this
+feature.

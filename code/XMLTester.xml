@@ -4296,6 +4296,7 @@
     <member name="my_longdouble" type="float128"/>
 </struct>
 <!--><-->
+
 <!-->XML_STRINGS<-->
 <struct name="StringsStruct">
     <member name="my_string" type="string"/>
@@ -4304,135 +4305,94 @@
     <member name="my_bounded_wstring" type="wstring" stringMaxLength="20925"/>
 </struct>
 <!--><-->
-<!-->XML_ARRAYS<-->
-<struct name="ArrayStruct">
-    <member name="long_array" type="int32" arrayDimensions="2,3,4"/>
-</struct>
-<!--><-->
-<!-->XML_SEQUENCES<-->
-<struct name="SequenceStruct">
-    <member name="short_sequence" sequenceMaxLength="5" type="int16"/>
-</struct>
-<!--><-->
-<!-->XML_MAPS<-->
-<struct name="MapStruct">
-    <member name="long_long_map" type="int32" key_type="int32" mapMaxLength="2"/>
-</struct>
-<!--><-->
+
 <!-->XML_ENUM<-->
 <enum name="MyEnum">
     <enumerator name="A" value="0"/>
     <enumerator name="B" value="1"/>
     <enumerator name="C"/>
 </enum>
+
 <struct name="EnumStruct">
     <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
 </struct>
 <!--><-->
+
 <!-->XML_BITMASK<-->
 <bitmask name="MyBitMask" bit_bound="8">
     <bit_value name="flag0" position="0"/>
     <bit_value name="flag1"/>
-    <bit_value name="flag2" position="2"/>
+    <bit_value name="flag2"/>
     <bit_value name="flag5" position="5"/>
 </bitmask>
+
 <struct name="BitmaskStruct">
     <member name="my_bitmask" type="nonBasic" nonBasicTypeName="MyBitMask"/>
 </struct>
 <!--><-->
+
 <!-->XML_TYPEDEF<-->
-<typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-<typedef name="MyAliasArray" type="int32" arrayDimensions="2,2"/>
+<typedef name="MyAliasedEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
+<!-- TODO: XSD does not allow to set bounds to aliased strings -->
+<typedef name="MyAliasedBoundedString" type="string"/>
+<typedef name="MyRecursiveAlias" type="nonBasic" nonBasicTypeName="MyAliasedEnum"/>
+
 <struct name="AliasStruct">
-    <member name="my_alias_enum" type="nonBasic" nonBasicTypeName="MyAliasEnum"/>
-    <member name="my_alias_array" type="nonBasic" nonBasicTypeName="MyAliasArray"/>
+    <member name="my_aliased_enum" type="nonBasic" nonBasicTypeName="MyAliasedEnum"/>
+    <member name="my_aliased_bounded_string" type="nonBasic" nonBasicTypeName="MyAliasedBoundedString"/>
+    <member name="my_recursive_alias" type="nonBasic" nonBasicTypeName="MyRecursiveAlias"/>
 </struct>
 <!--><-->
-<!-->XML_RECURSIVE_TYPEDEF<-->
-<typedef name="RecursiveAlias" type="uint32"/>
-<typedef name="MyAlias" type="nonBasic" nonBasicTypeName="RecursiveAlias"/>
-<struct name="RecursiveAliasStruct">
-    <member name="my_alias" type="nonBasic" nonBasicTypeName="MyAlias"/>
+
+<!-->XML_SEQUENCES<-->
+<struct name="SequenceStruct">
+    <!-- XML Sequence Type definition does not support unbounded sequences -->
+    <member name="bitmask_sequence" type="nonBasic" nonBasicTypeName="MyBitMask" sequenceMaxLength="1000"/>
+    <member name="short_sequence" sequenceMaxLength="5" type="int16"/>
 </struct>
 <!--><-->
+
+<!-->XML_ARRAYS<-->
+<struct name="ArrayStruct">
+    <member name="long_array" type="int32" arrayDimensions="2,3,4"/>
+</struct>
+<!--><-->
+
+<!-->XML_MAPS<-->
+<struct name="MapStruct">
+    <!-- XML Map Type definition does not support unbounded maps -->
+    <member name="string_alias_unbounded_map" type="nonBasic" nonBasicTypeName="MyAliasedBoundedString" key_type="string" mapMaxLength="1000"/>
+    <member name="short_long_map" type="int32" key_type="int16" mapMaxLength="2"/>
+</struct>
+<!--><-->
+
 <!-->XML_STRUCT<-->
-<struct name="MyStruct">
+<struct name="InnerStruct">
+    <!-- XML does not support setting Member ID -->
     <member name="first" type="int32"/>
+</struct>
+
+<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
+<!-- <struct name="ParentStruct">
+    <member name="first" type="float32"/>
     <member name="second" type="int64"/>
 </struct>
+
+<struct name="ComplexStruct" baseType="ParentStruct">
+    <member name="complex_member" type="nonBasic" nonBasicTypeName="InnerStruct"/>
+</struct> -->
 <!--><-->
+
 <!-->XML_UNION<-->
-<union name="MyUnion">
+<union name="InnerUnion">
     <discriminator type="int16"/>
     <case>
         <caseDiscriminator value="0"/>
+        <member name="first" type="nonBasic" nonBasicTypeName="PrimitivesStruct"/>
+    </case>
+    <case>
         <caseDiscriminator value="1"/>
-        <member name="first" type="int32"/>
-    </case>
-    <case>
-        <caseDiscriminator value="2"/>
-        <member name="second" type="nonBasic" nonBasicTypeName="MyStruct"/>
-    </case>
-    <case>
         <caseDiscriminator value="default"/>
-        <member name="third" type="nonBasic" nonBasicTypeName="int64"/>
-    </case>
-</union>
-<struct name="UnionStruct">
-    <member name="my_union" type="nonBasic" nonBasicTypeName="MyUnion"/>
-</struct>
-<!--><-->
-<!-->XML_BITSET<-->
-<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
-<!-- <bitset name="MyBitset">
-    <bitfield name="a" bit_bound="3"/>
-    <bitfield name="b" bit_bound="1"/>
-    <bitfield bit_bound="4"/>
-    <bitfield name="c" bit_bound="10"/>
-    <bitfield name="d" bit_bound="12" type="int16"/>
-</bitset>
-<struct name="BitsetStruct">
-    <member name="my_bitset" type="nonBasic" nonBasicTypeName="MyBitset"/>
-</struct> -->
-<!--><-->
-<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
-<!-->XML_BITSET_INHERITANCE<-->
-<!-- <bitset name="ParentBitSet">
-    <bitfield name="a" bit_bound="3"/>
-    <bitfield name="b" bit_bound="1"/>
-</bitset>
-<bitset name="ChildBitSet" baseType="ParentBitSet">
-    <bitfield name="c" bit_bound="10"/>
-    <bitfield name="d" bit_bound="12" type="int16"/>
-</bitset> -->
-<!--><-->
-<!-->XML_STRUCT_INHERITANCE<-->
-<!-- <struct name="ParentStruct">
-    <member name="first" type="int32"/>
-    <member name="second" type="int64"/>
-</struct>
-<struct name="ChildStruct" baseType="ParentStruct">
-    <member name="third" type="int32"/>
-    <member name="fourth" type="int64"/>
-</struct> -->
-<!--><-->
-<!-->XML_COMPLEX_STRUCTS<-->
-<struct name="InnerStruct">
-    <member name="first" type="int32"/>
-</struct>
-<struct name="ComplexStruct">
-    <member name="complex_member" type="nonBasic" nonBasicTypeName="InnerStruct"/>
-</struct>
-<!--><-->
-<!-->XML_COMPLEX_UNIONS<-->
-<union name="InnerUnion">
-    <discriminator type="int32"/>
-    <case>
-        <caseDiscriminator value="0"/>
-        <member name="first" type="int64"/>
-    </case>
-    <case>
-        <caseDiscriminator value="1"/>
         <member name="second" type="int64"/>
     </case>
 </union>
@@ -4440,13 +4400,38 @@
     <discriminator type="int32"/>
     <case>
         <caseDiscriminator value="0"/>
-        <member name="third" type="int64"/>
+        <caseDiscriminator value="1"/>
+        <member name="third" type="int32"/>
     </case>
     <case>
-        <caseDiscriminator value="1"/>
+        <caseDiscriminator value="default"/>
         <member name="fourth" type="nonBasic" nonBasicTypeName="InnerUnion"/>
     </case>
 </union>
+<!--><-->
+
+<!-->XML_BITSET<-->
+<bitset name="ParentBitset">
+    <bitfield name="a" bit_bound="3"/>
+    <bitfield name="b" bit_bound="1"/>
+    <bitfield bit_bound="4"/>
+    <bitfield name="c" bit_bound="10"/>
+    <bitfield name="d" bit_bound="12" type="int16"/>
+</bitset>
+
+<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
+<!--<bitset name="ChildBitSet" baseType="ParentBitSet">
+    <bitfield name="e" bit_bound="1"/>
+    <bitfield name="f" bit_bound="20" type="uint32"/>
+</bitset> 
+
+<struct name="BitsetStruct">
+    <member name="my_bitset" type="nonBasic" nonBasicTypeName="ChildBitSet"/>
+</struct>-->
+<!--><-->
+
+<!-->XML_CUSTOM_ANNOTATION<-->
+<!-- XML Types Profiles does not support defining/setting custom annotations -->
 <!--><-->
 
 </type>

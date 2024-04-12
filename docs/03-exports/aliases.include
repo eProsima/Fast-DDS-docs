@@ -82,26 +82,7 @@
 .. |whitelist| replace:: :ref:`Whitelist <whitelist-interfaces>`
 .. |MemoryManagementPolicy| replace:: :ref:`MemoryManagementPolicy<memorymanagementpolicy>`
 
-.. |DynamicTypes| replace:: :ref:`DynamicTypes<dynamic-types>`
-.. |Supported Types| replace:: :ref:`Supported Types<xtypes_supportedtypes>`
-.. |Primitive Types| replace:: :ref:`Primitive Types<xtypes_supportedtypes_primitive>`
-.. |String and WString| replace:: :ref:`String and WString<xtypes_supportedtypes_string>`
-.. |Alias| replace:: :ref:`Alias<xtypes_supportedtypes_alias>`
-.. |Alias of an alias| replace:: :ref:`Alias of an alias<xtypes_complextypes_aliasalias>`
-.. |Enumeration| replace:: :ref:`Enumeration<xtypes_supportedtypes_enumeration>`
-.. |Bitmask| replace:: :ref:`Bitmask<xtypes_supportedtypes_bitmask>`
-.. |Structure| replace:: :ref:`Structure<xtypes_supportedtypes_structure>`
-.. |Bitset| replace:: :ref:`Bitset<xtypes_supportedtypes_bitset>`
-.. |Union| replace:: :ref:`Union<xtypes_supportedtypes_union>`
-.. |Sequence| replace:: :ref:`Sequence<xtypes_supportedtypes_sequence>`
-.. |Array| replace:: :ref:`Array<xtypes_supportedtypes_array>`
-.. |Map| replace:: :ref:`Map<xtypes_supportedtypes_map>`
-.. |Complex Types| replace:: :ref:`Complex Types<xtypes_complextypes>`
-.. |Structure inheritance| replace:: :ref:`Structure inheritance<xtypes_structure_inheritance>`
-.. |Bitset inheritance| replace:: :ref:`Bitset inheritance<xtypes_bitset_inheritance>`
-.. |Nested Structures| replace:: :ref:`Nested Structures<xtypes_nested_structures>`
-.. |Nested Unions| replace:: :ref:`Nested Unions<xtypes_nested_unions>`
-
+.. |DynamicTypes| replace:: :ref:`Dynamic Language Binding<xtypes_language_binding>`
 .. |TypeObject| replace:: :ref:`TypeObject<xtypes_discovery_matching>`
 .. |TypeInformation| replace:: :ref:`TypeInformation<xtypes_discovery_matching>`
 

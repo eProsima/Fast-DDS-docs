@@ -16,7 +16,7 @@ Basic usage
 ^^^^^^^^^^^
 
 *Fast DDS* can be executed by calling *fastddsgen* on Linux or *fastddsgen.bat* on Windows.
-The IDL file containing the data type definition is given with the ``<IDLfile>`` argument.
+The IDL file containing the data type definition is given with the :code:`<IDLfile>` argument.
 
 +----------------------------------------------------------------------------------------------------------------------+
 | **Linux**                                                                                                            |
@@ -35,11 +35,11 @@ The IDL file containing the data type definition is given with the ``<IDLfile>``
 Among the available arguments defined in :ref:`fastddsgen_usage`, the main *Fast DDS-Gen* options for data type source
 code generation are the following:
 
-*   ``-replace``: It replaces existing files in case the data type files have been previously generated.
-*   ``-help``: It lists the currently supported platforms and Visual Studio versions.
-*   ``-no-typeobjectsupport``: Avoids building additional files for |TypeObject| registration.
-*   ``-example``: It generates a basic example of a DDS application and the files to build it for
-    the given ``platform``.
+*   :code:`-replace`: It replaces existing files in case the data type files have been previously generated.
+*   :code:`-help`: It lists the currently supported platforms and Visual Studio versions.
+*   :code:`-no-typeobjectsupport`: Disables the automatic generation of the |TypeObject| registration code.
+*   :code:`-example`: It generates a basic example of a DDS application and the files to build it for
+    the given :code:`platform`.
     Thus, *Fast DDS-Gen* tool can generate a sample application using the provided data type, together with a
     `Makefile`, to compile it on Linux distributions, and a Visual Studio project for Windows.
     To see an example of this please refer to tutorial :ref:`fastddsgen_pubsub_app`.
@@ -54,5 +54,5 @@ Assuming the IDL file had the name *“Mytype”*, and none of the above options
 *   MyTypePubSubType.cxx/.h: Serialization and deserialization source code for the data type.
     It also defines the |TopicDataType::getKey-api| member function of the :class:`MyTypePubSubType` class in case the
     topic implements keys (see :ref:`dds_layer_topic_keyed_data_types`).
-*   HelloWorldCdrAux.hpp/.ipp: C++ serialization and deserialization code for the HelloWorld type.
-*   MyTypeTypeObjectSupport.cxx/.hpp: |TypeObject| generation and registration.
+*   HelloWorldCdrAux.hpp/.ipp: Auxiliary methods required by Fast CDR for type serialization and deserialization.
+*   MyTypeTypeObjectSupport.cxx/.hpp: Auxiliary code required for |TypeObject| generation and registration.

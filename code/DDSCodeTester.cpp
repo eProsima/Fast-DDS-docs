@@ -181,7 +181,7 @@ public:
         else if (info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT ||
                 info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DROPPED_PARTICIPANT)
         {
-            std::cout << "New participant lost" << std::endl;
+            std::cout << "Participant lost" << std::endl;
         }
     }
 
@@ -207,13 +207,21 @@ public:
             eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
+        should_be_ignored = false;
         if (info.status == eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER)
         {
-            std::cout << "New subscriber discovered" << std::endl;
+            std::cout << "New datareader discovered" << std::endl;
+            // The following line can be modified to evaluate whether the discovered datareader should be ignored
+            // (usually based on fields present in the discovery information)
+            bool ignoring_condition = false;
+            if (ignoring_condition)
+            {
+                should_be_ignored = true; // Request the ignoring of the discovered datareader
+            }
         }
         else if (info.status == eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER)
         {
-            std::cout << "New subscriber lost" << std::endl;
+            std::cout << "Datareader lost" << std::endl;
         }
     }
 
@@ -222,13 +230,21 @@ public:
             eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
+        should_be_ignored = false;
         if (info.status == eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER)
         {
-            std::cout << "New publisher discovered" << std::endl;
+            std::cout << "New datawriter discovered" << std::endl;
+            // The following line can be modified to evaluate whether the discovered datawriter should be ignored
+            // (usually based on fields present in the discovery information)
+            bool ignoring_condition = false;
+            if (ignoring_condition)
+            {
+                should_be_ignored = true; // Request the ignoring of the discovered datawriter
+            }
         }
         else if (info.status == eprosima::fastrtps::rtps::WriterDiscoveryInfo::REMOVED_WRITER)
         {
-            std::cout << "New publisher lost" << std::endl;
+            std::cout << "Datawriter lost" << std::endl;
         }
     }
 
@@ -907,7 +923,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                 std::cout << "New DomainParticipant '" << info.info.m_participantName <<
                     "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
                     info.info.m_guid.guidPrefix << "' discovered." << std::endl;
-                /* The following line can be substitue to evaluate whether the discovered participant should be ignored */
+                /* The following line can be substituted to evaluate whether the discovered participant should be ignored */
                 bool ignoring_condition = false;
                 if (ignoring_condition)
                 {
@@ -920,7 +936,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                 break;
             case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT:
                 /* Process the case when a DomainParticipant was removed from the domain */
-                std::cout << "New DomainParticipant '" << info.info.m_participantName <<
+                std::cout << "DomainParticipant '" << info.info.m_participantName <<
                     "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
                     info.info.m_guid.guidPrefix << "' left the domain." << std::endl;
                 break;
@@ -933,19 +949,28 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
+        should_be_ignored = false;
         static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
+            {
                 /* Process the case when a new subscriber was found in the domain */
                 std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' discovered";
-                break;
+                /* The following line can be substituted to evaluate whether the discovered datareader should be ignored */
+                bool ignoring_condition = false;
+                if (ignoring_condition)
+                {
+                    should_be_ignored = true;     // Request the ignoring of the discovered datareader
+                }
+            }
+            break;
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
                 /* Process the case when a subscriber changed its QOS */
                 break;
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
                 /* Process the case when a subscriber was removed from the domain */
-                std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
+                std::cout << "DataReader subscribed to topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' left the domain.";
                 break;
         }
@@ -957,19 +982,28 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
+        should_be_ignored = false;
         static_cast<void>(participant);
         switch (info.status){
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
+            {
                 /* Process the case when a new publisher was found in the domain */
                 std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' discovered";
-                break;
+                /* The following line can be substituted to evaluate whether the discovered datawriter should be ignored */
+                bool ignoring_condition = false;
+                if (ignoring_condition)
+                {
+                    should_be_ignored = true;     // Request the ignoring of the discovered datawriter
+                }
+            }
+            break;
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo::CHANGED_QOS_WRITER:
                 /* Process the case when a publisher changed its QOS */
                 break;
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo::REMOVED_WRITER:
                 /* Process the case when a publisher was removed from the domain */
-                std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
+                std::cout << "DataWriter publishing under topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' left the domain.";
                 break;
         }
@@ -5186,10 +5220,10 @@ void dynamictypes_examples()
 
         // Create dynamic data based on the union type
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(union_type)};
-        // Set and retrieve values for the member
+        // Get the loan for the InnerUnion member
         DynamicData::_ref_type union_data = data->loan_value(data->get_member_id_by_name("InnerUnion"));
 
-        // Set and retrieve values for the member
+        // Set and retrieve values for the long long member within InnerUnion member
         int64_t in_value = 2;
         int64_t out_value;
         union_data->set_int64_value(union_data->get_member_id_by_name("second"), in_value);
@@ -5265,10 +5299,10 @@ void dynamictypes_examples()
         DynamicType::_ref_type struct_type {struct_builder->build()};
         // Create dynamic data based on the struct type
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
-        // Set and retrieve values for the map member
+        // Get the loan for the bitset member
         DynamicData::_ref_type bitset_data = data->loan_value(data->get_member_id_by_name("my_bitset"));
 
-        // Set and retrieve values for the member
+        // Set and retrieve bitfield values 
         int16_t in_value = 2;
         int16_t out_value;
         bitset_data->set_int16_value(bitset_data->get_member_id_by_name("d"), in_value);
@@ -5285,6 +5319,11 @@ void dynamictypes_examples()
         type_descriptor->name("AnnotatedStruct");
         DynamicTypeBuilder::_ref_type type_builder {DynamicTypeBuilderFactory::get_instance()->
                                                             create_type(type_descriptor)};
+        MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
+        member_descriptor->name("string_var");
+        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_string_type(static_cast<uint32_t>(
+                LENGTH_UNLIMITED))->build());
+        type_builder->add_member(member_descriptor);
 
         // Create the annotation type
         AnnotationDescriptor::_ref_type annotation_descriptor {traits<AnnotationDescriptor>::make_shared()};
@@ -5305,6 +5344,15 @@ void dynamictypes_examples()
         annotation_descriptor->set_value("length", std::to_string(5));
         // Apply the annotation to the structure
         type_builder->apply_annotation(annotation_descriptor);
+
+        // Reuse annotation descriptor to annotate struct member
+        annotation_descriptor = traits<AnnotationDescriptor>::make_shared();
+        annotation_descriptor->type(annotation_builder->build());
+        annotation_descriptor->set_value("length", std::to_string(10));
+
+        DynamicTypeMember::_ref_type member;
+        type_builder->get_member_by_name(member, "string_var");
+        type_builder->apply_annotation_to_member(member->get_id(), annotation_descriptor);
         //!--
     }
     {
@@ -5391,7 +5439,7 @@ void xml_profiles_examples()
         if (RETCODE_OK ==
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
-            // Retrieve the an instance of the desired type
+            // Retrieve instance of the desired type
             DynamicType::_ref_type my_struct_type;
             if (RETCODE_OK !=
                     DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name(
@@ -6579,7 +6627,7 @@ void dds_persistence_examples()
     MemberDescriptor::_ref_type index_member_descriptor {traits<MemberDescriptor>::make_shared()};
     index_member_descriptor->name("index");
     index_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                    get_primitive_type(TK_INT32));
+                    get_primitive_type(TK_UINT32));
     struct_builder->add_member(index_member_descriptor);
 
     MemberDescriptor::_ref_type message_member_descriptor {traits<MemberDescriptor>::make_shared()};

@@ -154,7 +154,7 @@ the TypeSupport and the example source files:
     mkdir HelloWorldExample
     cd HelloWorldExample
     cp <PATH_TO_ROS2_WORKSPACE>/fastdds_record_typesupport/idl/HelloWorld.idl .
-    fastddsgen -example CMake -typeros2 HelloWorld.idl
+    fastddsgen -example CMake -typeros2 -no-typeobjectsupport HelloWorld.idl
 
 This command will populate the current folder with the required header and source files to build the TypeSupport,
 and the Publisher and Subscriber applications.

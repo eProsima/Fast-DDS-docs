@@ -199,5 +199,6 @@ struct BitsetStruct
 @MyAnnotation(length = 5)
 struct AnnotatedStruct
 {
+    @MyAnnotation(length = 10) string string_var;
 };
 //!--

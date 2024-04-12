@@ -1,4 +1,4 @@
-.. _api_pim_invalidargumenterror:
+.. _api_pim_xtypes_exception:
 
 .. rst-class:: api-ref
 

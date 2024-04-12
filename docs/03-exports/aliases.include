@@ -83,7 +83,7 @@
 .. |MemoryManagementPolicy| replace:: :ref:`MemoryManagementPolicy<memorymanagementpolicy>`
 
 .. |DynamicTypes| replace:: :ref:`Dynamic Language Binding<xtypes_language_binding>`
-.. |TypeObject| replace:: :ref:`TypeObject<xtypes_discovery_matching>`
+.. |TypeObject| replace:: :ref:`TypeObject representation<xtypes_discovery_matching>`
 .. |TypeInformation| replace:: :ref:`TypeInformation<xtypes_discovery_matching>`
 
 .. |TopicDataType| replace:: :ref:`TopicDataType<dds_layer_definition_data_types>`

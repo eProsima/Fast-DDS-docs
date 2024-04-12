@@ -188,7 +188,7 @@
 .. |DomainParticipantQos::builtin_controllers_sender_thread-api| replace:: :cpp:func:`builtin_controllers_sender_thread()<eprosima::fastdds::dds::DomainParticipantQos::builtin_controllers_sender_thread>`
 .. |DomainParticipantQos::timed_events_thread-api| replace:: :cpp:func:`timed_events_thread()<eprosima::fastdds::dds::DomainParticipantQos::timed_events_thread>`
 .. |DomainParticipantQos::discovery_server_thread-api| replace:: :cpp:func:`discovery_server_thread()<eprosima::fastdds::dds::DomainParticipantQos::discovery_server_thread>`
-.. |DomainParticipantQos::typelookup_service_threads-api| replace:: :cpp:func:`typelookup_service_threads()<eprosima::fastdds::dds::DomainParticipantQos::typelookup_service_threads>`
+.. |DomainParticipantQos::typelookup_service_threads-api| replace:: :cpp:func:`typelookup_service_thread()<eprosima::fastdds::dds::DomainParticipantQos::typelookup_service_thread>`
 .. |DomainParticipantQos::security_log_thread-api| replace:: :cpp:func:`security_log_thread()<eprosima::fastdds::dds::DomainParticipantQos::security_log_thread>`
 .. |DomainParticipantQoS::setup_transports-api| replace:: :cpp:func:`setup_transports()<eprosima::fastdds::dds::DomainParticipantQos::setup_transports>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`

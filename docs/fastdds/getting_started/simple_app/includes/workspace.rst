@@ -25,7 +25,9 @@ Subscriber application respectively.
             ├── HelloWorldPublisher.cpp
             ├── HelloWorldPubSubTypes.cxx
             ├── HelloWorldPubSubTypes.h
-            └── HelloWorldSubscriber.cpp
+            ├── HelloWorldSubscriber.cpp
+            ├── HelloWorldTypeObjectSupport.cxx
+            └── HelloWorldTypeObjectSupport.hpp
 
 Let's create the directory tree first.
 

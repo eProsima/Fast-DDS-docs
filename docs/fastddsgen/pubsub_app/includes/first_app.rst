@@ -18,13 +18,13 @@ installation followed and the operating system.
 
     .. code:: bash
 
-        <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen -no-typeobjectsupport -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen -example CMake HelloWorld.idl
 
     - For a **stand-alone installation**, run:
 
     .. code:: bash
 
-        <path-to-Fast-DDS-Gen>/scripts/fastddsgen -no-typeobjectsupport -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-Gen>/scripts/fastddsgen -example CMake HelloWorld.idl
 
 * On Windows:
 
@@ -32,19 +32,19 @@ installation followed and the operating system.
 
     .. code:: bash
 
-        <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen.bat -no-typeobjectsupport -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
     - For a **stand-alone installation**, run:
 
     .. code:: bash
 
-        <path-to-Fast-DDS-Gen>/scripts/fastddsgen.bat -no-typeobjectsupport -example CMake HelloWorld.idl
+        <path-to-Fast-DDS-Gen>/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
     - For an **installation from binaries**, run:
 
     .. code:: bash
 
-        fastddsgen.bat -no-typeobjectsupport -example CMake HelloWorld.idl
+        fastddsgen.bat -example CMake HelloWorld.idl
 
 .. warning::
 

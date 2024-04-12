@@ -22,6 +22,8 @@ Subscriber application respectively.
     ├── HelloWorldPubSubTypes.i
     ├── HelloWorldPublisher.py
     ├── HelloWorldSubscriber.py
+    ├── HelloWorldTypeObjectSupport.cxx
+    ├── HelloWorldTypeObjectSupport.hpp
     ├── Makefile
     ├── _HelloWorldWrapper.so
     ├── cmake_install.cmake

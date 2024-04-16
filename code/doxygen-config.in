@@ -323,7 +323,8 @@ INCLUDE_FILE_PATTERNS  =
 PREDEFINED             = "HAVE_SECURITY=1" \
                          "DOXYGEN_DOCUMENTATION=1" \
                          "DOXYGEN_SHOULD_SKIP_THIS" \
-                          RTPS_DllAPI=
+                          RTPS_DllAPI= \
+                          FASTDDS_TODO_BEFORE=
 EXPAND_AS_DEFINED      = YES
 SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------

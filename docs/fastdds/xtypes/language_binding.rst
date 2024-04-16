@@ -561,7 +561,7 @@ This API requires the type of both the key and the value stored in the collectio
 Manipulating map types data is more complex.
 First the :code:`MemberId` corresponding to a specific :code:`key` must be retrieved using
 |DynamicData::get_member_id_by_name| API.
-This API either returns the :code:`MemberId` corresponding to the existing :code:`key`; or, if the :code:`key` does not
+This API either returns the :code:`MemberId` corresponding to the existing :code:`key` or, if the :code:`key` does not
 exist yet, it creates the :code:`key` and returns the :code:`memberId` associated to the just created :code:`key`.
 In order to call this method, the correct :code:`string` representation of the key value must be passed.
 The map value can now be set using the API corresponding to the map value type.

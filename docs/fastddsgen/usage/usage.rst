@@ -45,7 +45,7 @@ The expected argument list of the application is:
 
     fastddsgen [<options>] <IDL file> [<IDL file> ...]
 
-Where the option choices are:
+Where the options are:
 
 .. list-table::
    :header-rows: 1
@@ -53,18 +53,13 @@ Where the option choices are:
 
    * - Option
      - Description
-   * - -cdr
-     - Sets the Fast CDR version used to generate types source code. |br|
-       Values: |br|
-       - v1. Generate source code for Fast CDR v1. |br|
-       - v2 (default). Generate source code for Fast CDR v2. |br|
-       - both. Generate source code for both Fast CDR v1 and Fast CDR v2.
    * - -cs
-     - Enables Case Sensitivity
+     - Enables case sensitivity in variable names.
    * - -d <directory>
-     - Sets the output directory where the generated files are created.
-   * - -flat-output-dir
-     - Ignore input files relative paths and place all generated files in the specified output directory.
+     - Sets the output directory for the generated files.
+   * - -default-container-prealloc-size
+     - Sets the default preallocated size for unbounded collections (sequences and maps) |br|
+       Default value: 0 (empty collection).
    * - -default_extensibility <extensibility> |br|
        -de <extensibility>
      - Sets the default extensibility for types without the @extensibility annotation. |br|
@@ -81,10 +76,19 @@ Where the option choices are:
        This option expects the location of the template and the location of the file where source code output will be
        stored. |br|
        A custom template example can be found in this `link <https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/master/resources/Custom.stg>`_
+   * - -flat-output-dir
+     - Ignores input files relative paths and place all generated files in the specified output directory.
    * - -help
      - Shows the help information
    * - -I <directory>
-     - Add directory to preprocessor include paths.
+     - Adds directory to preprocessor include paths.
+   * - -no-typesupport
+     - Avoids generating the type support files.
+   * - -no-typeobjectsupport
+     - Avoids generating the TypeObject support specific files. |br|
+       Enabled automatically if -no-typesupport argument is used.
+   * - -no-dependencies
+     - Avoids processing the dependent IDL files.
    * - -ppDisable
      - Disables the preprocessor.
    * - -ppPath
@@ -92,17 +96,13 @@ Where the option choices are:
    * - -python
      - Generates source code and a CMake solution to compile a library containing the data types |br|
        Python bindings required to run a *Fast DDS* Python-based application.
-       This option is |br|
-       incompatible with the `-example` and `-typeobject` ones.
+       This option is incompatible with `-example`.
    * - -replace
      - Replaces the generated source code files even if they exist.
    * - -t <directory>
      - Sets a specific directory as a temporary directory.
-   * - -typeobject
-     - Generates `TypeObject` files for the IDL provided and modifies MyType constructor to |br|
-       register the TypeObject representation into the factory.
    * - -typeros2
-     - Generates type naming compatible with ROS 2
+     - Generates type naming compatible with ROS 2.
    * - -version
      - Shows the current version of eProsima *Fast DDS-Gen*.
 

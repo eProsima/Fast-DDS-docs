@@ -76,10 +76,12 @@ This QoS Policy cannot be configured using XML for the moment.
 TypeConsistencyEnforcementQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. warning::
+    This QoS Policy will be implemented in future releases.
+
 This XTypes QoS Policy extension defines the rules for determining whether the data type used in the
 |DataWriter| is consistent with the one used in the |DataReader|.
 See |TypeConsistencyEnforcementQosPolicy-api|.
-
 
 List of QoS Policy data members:
 

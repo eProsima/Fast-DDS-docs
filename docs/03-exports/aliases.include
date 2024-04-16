@@ -16,14 +16,17 @@
 .. |domain| replace:: :ref:`domain<dds_layer_domain>`
 .. |DomainParticipant| replace:: :ref:`DomainParticipant<dds_layer_domainParticipant>`
 .. |DomainParticipantFactory| replace:: :ref:`DomainParticipantFactory<dds_layer_domainparticipantfactory>`
+.. |DomainParticipantListener| replace:: :ref:`DomainParticipantListener<dds_layer_domainParticipantListener>`
 .. |DomainParticipantQos| replace:: :ref:`DomainParticipantQos<dds_layer_domainParticipantQos>`
 .. |DomainParticipants| replace:: :ref:`DomainParticipants<dds_layer_domainParticipant>`
 .. |domains| replace:: :ref:`domains<dds_layer_domain>`
 .. |DurabilityQosPolicy| replace:: :ref:`DurabilityQosPolicy<durabilityqospolicy>`
 .. |DurabilityServiceQosPolicy| replace:: :ref:`DurabilityServiceQosPolicy<durabilityserviceqospolicy>`
+.. |DynamicTypes| replace:: :ref:`Dynamic Language Binding<xtypes_language_binding>`
 .. |Entities| replace:: :ref:`Entities<dds_layer_core_entity>`
 .. |Entity| replace:: :ref:`Entity<dds_layer_core_entity>`
 .. |EntityFactoryQosPolicy| replace:: :ref:`EntityFactoryQosPolicy<entityfactoryqospolicy>`
+.. |Fast DDS-Gen| replace:: :ref:`Fast DDS-Gen<fastddsgen_intro>`
 .. |FlowControllersQos| replace:: :ref:`FlowControllersQos<flowcontrollersqos>`
 .. |GroupDataQosPolicy| replace:: :ref:`GroupDataQosPolicy<groupqospolicy>`
 .. |HistoryQosPolicy| replace:: :ref:`HistoryQosPolicy<historyqospolicy>`
@@ -33,6 +36,7 @@
 .. |LivelinessChangedStatus| replace:: :ref:`LivelinessChangedStatus<dds_layer_core_status_livelinessChangedStatus>`
 .. |LivelinessLostStatus| replace:: :ref:`LivelinessLostStatus<dds_layer_core_status_livelinessLostStatus>`
 .. |LivelinessQosPolicy| replace:: :ref:`LivelinessQosPolicy<livelinessqospolicy>`
+.. |MemoryManagementPolicy| replace:: :ref:`MemoryManagementPolicy<memorymanagementpolicy>`
 .. |OfferedDeadlineMissedStatus| replace:: :ref:`OfferedDeadlineMissedStatus<dds_layer_core_status_offeredDeadlineMissedStatus>`
 .. |OfferedIncompatibleQosStatus| replace:: :ref:`OfferedIncompatibleQosStatus<dds_layer_core_status_offeredIncompatibleQosStatus>`
 .. |OwnershipQosPolicy| replace:: :ref:`OwnershipQosPolicy<ownershipqospolicy>`
@@ -59,14 +63,19 @@
 .. |SampleInfo| replace:: :ref:`SampleInfo<dds_layer_subscriber_sampleInfo>`
 .. |SampleLostStatus| replace:: :ref:`SampleLostStatus<dds_layer_core_status_sampleLostStatus>`
 .. |SampleRejectedStatus| replace:: :ref:`SampleRejectedStatus<dds_layer_core_status_sampleRejectedStatus>`
+.. |StatisticsDomainParticipant| replace:: :ref:`Statistics Domain Participant<statistics_domainparticipant>`
+.. |StatisticsQosTroubleshooting| replace:: :ref:`Statistics QoS Troubleshooting<statistics_troubleshooting>`
 .. |Subscriber| replace:: :ref:`Subscriber<dds_layer_subscriber_subscriber>`
 .. |SubscriberListener| replace:: :ref:`SubscriberListener<dds_layer_subscriber_subscriberListener>`
 .. |SubscriberQos| replace:: :ref:`SubscriberQos<dds_layer_subscriber_subscriberQos>`
 .. |Subscribers| replace:: :ref:`Subscribers<dds_layer_subscriber_subscriber>`
 .. |SubscriptionMatchedStatus| replace:: :ref:`SubscriptionMatchedStatus<dds_layer_core_status_subscriptionMatchedStatus>`
+.. |ThreadSettings| replace:: :ref:`ThreadSettings<threadsettingsqos>`
 .. |TimeBasedFilterQosPolicy| replace:: :ref:`RTPSEndpointTimeBasedFilterQosPolicy<timebasedfilterqospolicy>`
 .. |Topic| replace:: :ref:`Topic<dds_layer_topic>`
 .. |TopicDataQosPolicy| replace:: :ref:`TopicDataQosPolicy<topicdataqospolicy>`
+.. |TopicDataType| replace:: :ref:`TopicDataType<dds_layer_definition_data_types>`
+.. |TopicDataTypes| replace:: :ref:`TopicDataTypes<dds_layer_definition_data_types>`
 .. |TopicListener| replace:: :ref:`TopicListener<dds_layer_topic_topicListener>`
 .. |TopicQos| replace:: :ref:`TopicQos<dds_layer_topic_topicQos>`
 .. |Topics| replace:: :ref:`Topics<dds_layer_topic>`
@@ -74,58 +83,10 @@
 .. |TransportPriorityQosPolicy| replace:: :ref:`TransportPriorityQosPolicy<transportpriorityqospolicy>`
 .. |TypeConsistencyEnforcementQosPolicy| replace:: :ref:`TypeConsistencyEnforcementQosPolicy<typeconsistencyenforcementqospolicy>`
 .. |TypeConsistencyQos| replace:: :ref:`TypeConsistencyQos<typeconsistencyqos>`
+.. |TypeInformation| replace:: :ref:`TypeInformation<xtypes_discovery_matching>`
+.. |TypeObject| replace:: :ref:`TypeObject representation<xtypes_discovery_matching>`
 .. |UserDataQosPolicy| replace:: :ref:`UserDataQosPolicy<userdataqospolicy>`
+.. |whitelist| replace:: :ref:`Whitelist <whitelist-interfaces>`
 .. |WireProtocolConfigQos| replace:: :ref:`WireProtocolConfigQos<wireprotocolconfigqos>`
 .. |WriterDataLifecycleQosPolicy| replace:: :ref:`WriterDataLifecycleQosPolicy<writerdatalifecycleqospolicy>`
 .. |WriterResourceLimitsQos| replace:: :ref:`WriterResourceLimitsQos<writerresourcelimitsqos>`
-.. |DomainParticipantListener| replace:: :ref:`DomainParticipantListener<dds_layer_domainParticipantListener>`
-.. |whitelist| replace:: :ref:`Whitelist <whitelist-interfaces>`
-.. |MemoryManagementPolicy| replace:: :ref:`MemoryManagementPolicy<memorymanagementpolicy>`
-
-.. |DynamicType| replace:: :ref:`dynamictypes_overview_dynamictype`
-.. |DynamicTypes| replace:: :ref:`dynamictypes_overview_dynamictype`
-.. |DynamicTypeBuilderFactory| replace:: :ref:`dynamictypes_overview_dynamictypebuilderfactory`
-.. |DynamicTypeBuilder| replace:: :ref:`dynamictypes_overview_dynamictypebuilder`
-.. |TypeDescriptor| replace:: :ref:`dynamictypes_overview_typedescriptor`
-.. |DynamicTypeMember| replace:: :ref:`dynamictypes_overview_dynamictypemember`
-.. |MemberDescriptor| replace:: :ref:`dynamictypes_overview_memberdescriptor`
-.. |DynamicData| replace:: :ref:`dynamictypes_overview_dynamicdata`
-.. |DynamicDataFactory| replace:: :ref:`dynamictypes_overview_dynamicdatafactory`
-.. |DynamicPubSubType| replace:: :ref:`dynamictypes_overview_dynamicpubsubtype`
-
-.. |Supported Types| replace:: :ref:`dynamictypes_supportedtypes`
-.. |Primitive Types| replace:: :ref:`dynamictypes_supportedtypes_primitive`
-.. |String and WString| replace:: :ref:`dynamictypes_supportedtypes_string`
-.. |Alias| replace:: :ref:`dynamictypes_supportedtypes_alias`
-.. |Enumeration| replace:: :ref:`dynamictypes_supportedtypes_enumeration`
-.. |Bitmask| replace:: :ref:`dynamictypes_supportedtypes_bitmask`
-.. |Structure| replace:: :ref:`dynamictypes_supportedtypes_structure`
-.. |Bitset| replace:: :ref:`dynamictypes_supportedtypes_bitset`
-.. |Union| replace:: :ref:`dynamictypes_supportedtypes_union`
-.. |Sequence| replace:: :ref:`dynamictypes_supportedtypes_sequence`
-.. |Array| replace:: :ref:`dynamictypes_supportedtypes_array`
-.. |Map| replace:: :ref:`dynamictypes_supportedtypes_map`
-
-.. |Memory management| replace:: :ref:`dynamictypes_memorymanagement`
-
-.. |Complex Types| replace:: :ref:`dynamictypes_complextypes`
-
-.. |Nested structures| replace:: :ref:`dynamictypes_complextypes_nestedstructures`
-.. |Structure inheritance| replace:: :ref:`dynamictypes_complextypes_inheritance`
-.. |Alias of an alias| replace:: :ref:`dynamictypes_complextypes_aliasalias`
-.. |Unions with complex types| replace:: :ref:`dynamictypes_complextypes_complexunions`
-
-.. |TypeObject| replace:: :ref:`dynamictypes_discovery_typeobject`
-.. |TypeInformation| replace:: :ref:`dynamictypes_discovery_typeinformation`
-.. |TypeIdentifier| replace:: :ref:`dynamictypes_discovery_typeidentifier`
-.. |TypeObjectFactory| replace:: :ref:`dynamictypes_discovery_typeobjectfactory`
-
-.. |TopicDataType| replace:: :ref:`TopicDataType<dds_layer_definition_data_types>`
-.. |TopicDataTypes| replace:: :ref:`TopicDataTypes<dds_layer_definition_data_types>`
-
-.. |Fast DDS-Gen| replace:: :ref:`Fast DDS-Gen<fastddsgen_intro>`
-
-.. |StatisticsDomainParticipant| replace:: :ref:`Statistics Domain Participant<statistics_domainparticipant>`
-.. |StatisticsQosTroubleshooting| replace:: :ref:`Statistics QoS Troubleshooting<statistics_troubleshooting>`
-
-.. |ThreadSettings| replace:: :ref:`ThreadSettings<threadsettingsqos>`

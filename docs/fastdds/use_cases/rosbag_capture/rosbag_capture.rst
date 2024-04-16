@@ -147,14 +147,19 @@ For the IDL being used in this example the data type name would be "fastdds_reco
 
 Create a new workspace different from the ROS 2 one used previously.
 Copy inside the same IDL file and run Fast DDS-Gen to generate
-the TypeSupport and the example source files:
+the TypeSupport and the example source files.
+
+.. note::
+
+    Fast DDS-Gen :code:`-no-typeobjectsupport` option is advisable to be enabled as this feature does not ensure vendor
+    interoperability for the moment.
 
 .. code-block:: bash
 
     mkdir HelloWorldExample
     cd HelloWorldExample
     cp <PATH_TO_ROS2_WORKSPACE>/fastdds_record_typesupport/idl/HelloWorld.idl .
-    fastddsgen -example CMake -typeros2 HelloWorld.idl
+    fastddsgen -example CMake -typeros2 -no-typeobjectsupport HelloWorld.idl
 
 This command will populate the current folder with the required header and source files to build the TypeSupport,
 and the Publisher and Subscriber applications.
@@ -163,8 +168,9 @@ and the Publisher and Subscriber applications.
 
     └── HelloWorldExample
         ├── CMakeLists.txt
-        ├── HelloWorld.cxx
-        ├── HelloWorld.h
+        ├── HelloWorldCdrAux.hpp
+        ├── HelloWorldCdrAux.ipp
+        ├── HelloWorld.hpp
         ├── HelloWorld.idl
         ├── HelloWorldPublisher.cxx
         ├── HelloWorldPublisher.h

@@ -8,15 +8,14 @@ Dynamic Types profiles
 ----------------------
 
 *Fast DDS* supports the implementation of |DynamicTypes| by defining them through XML files.
-Thus the :ref:`Dynamic Types <dynamic-types>` can be modified without the need to modify the source code of the DDS
-application.
+Thus the topic data types can be modified without the need to modify the source code of the DDS application.
 
 XML Structure
 ^^^^^^^^^^^^^
 
-The definition of type profiles in the XML file is done with the ``<types>`` tag.
-Each ``<types>`` element can contain one or more :ref:`Type definitions <Type definition>`.
-Defining several types within a ``<types>`` element or a single type for each ``<types>`` element has the same
+The definition of data type profiles in the XML file is done with the :code:`types` tag.
+Each :code:`types` element can contain one or more :ref:`Type definitions <Type definition>`.
+Defining several types within a :code:`types` element or a single type for each :code:`types` element has the same
 result.
 Below, an example of a stand-alone types definition via XML is shown.
 
@@ -34,31 +33,29 @@ Below, an example of a stand-alone types definition via XML is shown.
 
 Type definition
 ^^^^^^^^^^^^^^^
-Below, the types supported by *Fast DDS* are presented .
-For further information about the supported |DynamicTypes|, please, refer to :ref:`dynamictypes_supportedtypes`.
-For each of the types detailed below, an example of how to build the type's XML profile is provided.
+Below, the types supported by *eProsima Fast DDS* are presented.
+For further information about the supported |DynamicTypes|, please, refer to :ref:`xtypes_supportedtypes`.
+For each type listed below, an example of how to build the type's XML profile is provided.
 
-*   `Member types`_
+* `Primitive types`_
+* :ref:`xmldynamictypes_strings`
+* :ref:`xmldynamictypes_enums`
+* :ref:`xmldynamictypes_bitmask`
+* :ref:`xmldynamictypes_typedef`
+* :ref:`xmldynamictypes_sequence`
+* :ref:`xmldynamictypes_array`
+* :ref:`xmldynamictypes_map`
+* :ref:`xmldynamictypes_struct`
+* :ref:`xmldynamictypes_union`
+* :ref:`xmldynamictypes_bitset`
 
-    -  `Primitive types`_
-    -  `Bounded strings`_
-    -  `Sequences`_
-    -  `Arrays`_
-    -  `Maps`_
-
-*   `Enumerations`_
-*   `Typedef`_
-*   `Struct`_
-*   `Union`_
-*   `Bitset`_
-*   `Bitmask`_
-*   `Complex types`_
+.. _xmldynamictypes_member:
 
 Member types
 """"""""""""
 
-Member types are defined as any type that can belong to a `Struct`_ or a `Union`_, or be aliased by a
-`Typedef`_.
+Member types are defined as any type that can belong to a :ref:`Struct<xmldynamictypes_struct>` or a
+:ref:`Union <xmldynamictypes_union>`, or be aliased by a :ref:`Alias <xmldynamictypes_typedef>`.
 These can be defined by the ``<member>`` XML tag.
 A member can be annotated as ``key`` (equivalent of the IDL's ``@key``) by setting the ``key`` attribute to ``"true"``.
 
@@ -67,248 +64,384 @@ A member can be annotated as ``key`` (equivalent of the IDL's ``@key``) by setti
   :start-after: <!-->XML-MEMBER_WITH_KEY<-->
   :end-before: <!--><-->
 
-Primitive types
-***************
+.. _xmldynamictypes_primivites:
 
-The identifiers of the available basic types are listed in the table below.
-Please, refer to :ref:`dynamictypes_supportedtypes_primitive` for more information on the primitive types.
+Primitive types
+"""""""""""""""
+
+Primitive types are built-in types and they should be declared as members of an aggregated type
+(:ref:`xmldynamictypes_struct` or :ref:`xmldynamictypes_union`).
+Primitive types are declared by attribute :code:`type` and the possible values are listed in the table below.
+Please, refer to :ref:`xtypes_supportedtypes_primitive` for more information on primitive types.
 
 .. list-table::
 
   * - ``boolean``
+    - ``byte``
     - ``char8``
     - ``char16``
-  * - ``byte``
-    - ``octet``
-    - ``uint8``
-  * - ``int8``
-    - ``int16``
     - ``int32``
-  * - ``uint16``
-    - ``uint32``
-    - ``int64``
-  * - ``uint64``
+  * - ``uint32``
+    - ``int8``
+    - ``uint8``
+    - ``int16``
+    - ``uint16``
+  * - ``int64``
+    - ``uint64``
     - ``float32``
     - ``float64``
-  * - ``float128``
-    - ``string``
-    - ``wstring``
+    - ``float128``
 
-All of them are defined as follows:
+All of them are declared as follows:
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-GENERIC<-->
-  :end-before: <!--><-->
+.. tabs::
 
-Bounded strings
-***************
+   .. tab:: XML
 
-Bounded strings are defined as any other ``string`` or ``wstring`` but adding the attribute ``stringMaxLength`` with the
-maximum length available for that specific string.
-Please, refer to :ref:`dynamictypes_supportedtypes_string` for more information on string type.
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_PRIMITIVES<-->
+        :end-before: <!--><-->
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-BOUNDEDSTRINGS<-->
-  :end-before: <!--><-->
+   .. tab:: IDL
 
-Sequences
-*********
+      .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_PRIMITIVES
+        :end-before: //!--
 
-The sequence type is implemented by setting three attributes: ``name``, ``type``, and the
-``sequenceMaxLength``.
-The type of its content should be defined by the ``type`` attribute.
-Please, refer to :ref:`dynamictypes_supportedtypes_sequence` section for more information on sequence type.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-SEQUENCES<-->
-  :end-before: <!--><-->
+.. _xmldynamictypes_strings:
 
-Arrays
-******
-
-Arrays are defined in the same way as any other member type but they add the attribute ``arrayDimensions``.
-The format of the ``arrayDimensions`` attribute value is the size of each dimension separated by commas.
-Please, refer to :ref:`dynamictypes_supportedtypes_array` explanation for more information on array type.
-
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-ARRAYS<-->
-  :end-before: <!--><-->
-
-Maps
-****
-
-Maps are similar to sequences, but they need to define two content types.
-The ``key_type`` defines the type of the map key, while the ``type`` defines the map value type.
-See section :ref:`dynamictypes_supportedtypes_map` for more information on map type.
-
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-MAPS<-->
-  :end-before: <!--><-->
-
-Complex types
-"""""""""""""
-
-The complex types are a combination of the aforementioned types.
-Complex types can be defined using the ``<member>`` element in the same way a basic or an array type would be.
-The ``type`` in this case is ``nonBasic`` (not a `Primitive types`_) and the name of the previously defined type is
-given in the ``nonBasicTypeName`` attribute.
-Please, refer to :ref:`dynamictypes_complextypes` section for more information on complex types.
-
-The following example shows a new structure with the ``primitive_types_example`` struct defined in `Primitive types`_
-example.
-
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML-COMPLEX<-->
-    :end-before: <!--><-->
-
-Complex types attributes
-************************
-
-The attributes of a complex type element can be highly varied depending on the type being defined.
-Since the attributes that can be defined for each of the types have already been listed,
-these attributes are then defined in the following table.
-
-.. list-table::
-    :header-rows: 1
-
-    *   - Name
-        - Description
-    *   - ``type``
-        - Data type.
-          This can be a `Primitive types`_ or a ``nonBasic`` type. |br|
-          The latter is used to denote that a complex type is defined.
-    *   - ``nonBasicTypeName``
-        - Name of the complex type. Only applies if the ``type`` attribute is set to ``nonBasic``.
-    *   - ``stringMaxLength``
-        - Maximum length of a string.
-    *   - ``sequenceMaxLength``
-        - Maximum length of a `Sequences`_.
-    *   - ``arrayDimensions``
-        - Dimensions of an array.
-    *   - ``key_type``
-        - Data type of a map key.
-    *   - ``mapMaxLength``
-        - Maximum length of a `Maps`_.
-
-Typedef
-"""""""
-
-The ``<typedef>`` XML element is defined by a ``name`` and a ``type`` mandatory attributes, and any of the optional
-attributes presented in `Complex types attributes`_ section.
-This element allows for defining complex types without the need to define them previously as members.
-Maps, arrays and sequences can be elements within another container using ``<typedef>``.
-The ``<typedef>`` element corresponds to :ref:`dynamictypes_supportedtypes_alias` in :ref:`dynamictypes_supportedtypes`
-section.
-
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-TYPEDEF<-->
-  :end-before: <!--><-->
-
-Enumerations
+String Types
 """"""""""""
 
-The ``<enum>`` type is defined by its attribute ``name`` and a set of ``<enumerator>`` child elements.
-Each ``<enumerator>`` is defined by two attributes: a mandatory ``name`` and an optional unsigned integer ``value``.
-Please, refer to :ref:`dynamictypes_supportedtypes_enumeration` for more information on the ``<enum>`` type.
+String types should be defined as members of an aggregated type (:ref:`xmldynamictypes_struct` or
+:ref:`xmldynamictypes_union`).
+String types are defined with attribute :code:`type` set to :code:`string` or :code:`wstring`.
+An optional attribute :code:`stringMaxLength` might used to set a maximum length for the string collection.
+Please, refer to :ref:`xtypes_supportedtypes_string` for more information on string types.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-DYN-ENUM<-->
-  :end-before: <!--><-->
+.. tabs::
 
-Struct
-""""""
+   .. tab:: XML
 
-The ``<struct>`` element is defined by its ``name`` attribute and its ``<member>`` child elements.
-Please, refer to :ref:`dynamictypes_supportedtypes_structure` for more information on the ``<struct>`` type.
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_STRINGS<-->
+        :end-before: <!--><-->
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-STRUCT<-->
-  :end-before: <!--><-->
+   .. tab:: IDL
 
-Structs can inherit from another struct.
-This is implemented by defining the value of the ``baseType`` attribute, on the child ``<struct>`` element to be the
-value of the ``name`` attribute of the parent ``<struct>`` element.
-This is exemplified by the code snippet below.
+      .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_STRINGS
+        :end-before: //!--
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-STRUCT-INHERIT<-->
-  :end-before: <!--><-->
+.. _xmldynamictypes_enums:
 
-Union
-"""""
+Enumeration Types
+"""""""""""""""""
 
-The ``<union>`` type is defined by a ``name`` attribute, a ``<discriminator>`` child element and a set of ``<case>``
-child elements.
-The ``<discriminator>`` must define its ``type``
-Each ``<case>`` element has one or more ``<caseDiscriminator>`` elements, which type must be consistent with the
-``<discriminator>`` type, and a unique ``<member>`` element.
-Please, refer to :ref:`dynamictypes_supportedtypes_union` for more information on the ``<union>`` type.
+Enumeration types are defined using the :code:`<enum>` tag.
+Attribute :code:`name` and at least one :code:`<enumerator>` child element are mandatory.
+Enumeration literals are defined using the :code:`<enumerator>` tag with mandatory attribute :code:`name`.
+Optionally, unsigned integer attribute :code:`value` might be added to set a specific value for the enumeration literal.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-UNION<-->
-  :end-before: <!--><-->
+.. note::
 
-Bitset
-""""""
+    :code:`value` attribute is equivalent to :code:`@value` builtin annotation which is not still supported in neither
+    the plain (IDL) nor |DynamicTypes|.
 
-The ``<bitset>`` element defines the :ref:`dynamictypes_supportedtypes_bitset` type.
-It is comprised by a ``name`` attribute and a set of ``<bitfield>`` child elements.
-In turn, the ``<bitfield>`` element has the mandatory ``bit_bound`` attribute, which cannot be higher than 64, and
-two optional attributes: ``name`` and ``type``.
-A ``<bitfield>`` without ``name`` attribute is an inaccessible set of bits.
-Its management ``type`` can ease the ``<bitfield>`` modification and access.
-Please, refer to :ref:`dynamictypes_supportedtypes_bitset` for more information about the ``<bitset>`` type.
+Please, refer to :ref:`xtypes_supportedtypes_enumeration` for more information on enumeration types.
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-BITSET<-->
-  :end-before: <!--><-->
+.. tabs::
 
-Moreover, bitsets can inherit from another bitsets:
+    .. tab:: XML
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-BITSET-INHERIT<-->
-  :end-before: <!--><-->
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_ENUM<-->
+            :end-before: <!--><-->
 
-Bitmask
-"""""""
+    .. tab:: IDL
 
-The ``<bitmask>`` element, which corresponds to the :ref:`dynamictypes_supportedtypes_bitmask` type, is defined by
-a mandatory ``name`` attribute, an optional ``bit_bound`` attribute, and several ``<bit_value>`` child elements.
-The ``bit_bound`` attribute specifies the number of bits that the bitmask type will manage.
-The maximum value allowed for the ``bit_bound`` is 64.
-The ``<bit_value>`` element must define the ``name`` attribute and it might define its position in the bitmask setting
-the ``positition`` attribute.
-Please, refer to :ref:`dynamictypes_supportedtypes_bitmask` for more information on the ``<bitmask>`` type.
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_ENUM
+            :end-before: //!--
 
-.. literalinclude:: /../code/XMLTester.xml
-  :language: xml
-  :start-after: <!-->XML-BITMASK<-->
-  :end-before: <!--><-->
+.. _xmldynamictypes_bitmask:
+
+Bitmask Types
+"""""""""""""
+
+Bitmask types are defined using the :code:`<bitmask>` tag.
+Attribute :code:`name` and at least on :code:`<bit_value>` child element are mandatory.
+Optionally, :code:`bit_bound` attribute might be set to specify the bitmask bound (by default 32 bits).
+Bitflag elements are defined using the :code:`<bit_value>` tag with mandatory attribute :code:`name`.
+Optionally, :code:`position` attribute might be defined to set the bitflag position within the bitmask.
+Please, refer to :ref:`xtypes_supportedtypes_bitmask` for more information on bitmask types.
+
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_BITMASK<-->
+            :end-before: <!--><-->
+
+    .. tab:: IDL
+
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_BITMASK
+            :end-before: //!--
+
+.. _xmldynamictypes_typedef:
+
+Alias Types
+"""""""""""
+
+Alias types are defined using the :code:`<typedef>` tag.
+Attributes :code:`name` and :code:`type` are mandatory.
+Depending on the aliased type, some other mandatory and/or optional attributes might be necessary or available.
+Non-primitive types must define the :code:`type` attribute as :code:`nonBasic` and include the :code:`nonBasicTypeName`
+attribute with the name of the aliased type.
+Please, refer to :ref:`xtypes_supportedtypes_alias` for more information on alias types.
+
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_TYPEDEF<-->
+            :end-before: <!--><-->
+
+    .. tab:: IDL
+
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_TYPEDEF
+            :end-before: //!--
+
+.. _xmldynamictypes_sequence:
+
+Sequence Types
+""""""""""""""
+
+Sequence types should be defined as members of an aggregated type (:ref:`xmldynamictypes_struct` or
+:ref:`xmldynamictypes_union`).
+Sequence types are defined with mandatory attributes :code:`type` set to the collection's element type, and
+:code:`sequenceMaxLength` used to set the maximum collection's length.
+Unbounded sequences should set :code:`sequenceMaxLength` attribute to :code:`-1`.
+Please, refer to :ref:`xtypes_supportedtypes_sequence` for more information on sequence types.
+
+.. tabs::
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_SEQUENCES<-->
+        :end-before: <!--><-->
+
+   .. tab:: IDL
+
+      .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_SEQUENCES
+        :end-before: //!--
+
+.. _xmldynamictypes_array:
+
+Array Types
+"""""""""""
+
+Array types should be defined as members of an aggregated type (:ref:`xmldynamictypes_struct` or
+:ref:`xmldynamictypes_union`).
+Array types are defined with mandatory attributes :code:`type` set to the collection's element type, and
+:code:`arrayDimensions` used to set the collection's dimensions.
+The format of :code:`arrayDimensions` attribute value is the size of each dimension separated by commas.
+Please, refer to :ref:`xtypes_supportedtypes_array` for more information on array types.
+
+.. tabs::
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->XML_ARRAYS<-->
+      :end-before: <!--><-->
+
+  .. tab:: IDL
+
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+      :language: omg-idl
+      :start-after: //!--IDL_ARRAYS
+      :end-before: //!--
+
+.. _xmldynamictypes_map:
+
+Map Types
+"""""""""
+
+Map types should be defined as members of an aggregated type (:ref:`xmldynamictypes_struct` or
+:ref:`xmldynamictypes_union`).
+Map types are defined with mandatory attributes :code:`type` set to the map's value type, :code:`key_type` set to the
+map's key type, and :code:`mapMaxLength` used to set the maximum map's number of key-value pairs.
+Unbounded maps should set :code:`mapMaxLength` attribute to :code:`-1`.
+Please, refer to :ref:`xtypes_supportedtypes_map` for more information on map types.
+
+.. tabs::
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->XML_MAPS<-->
+      :end-before: <!--><-->
+
+  .. tab:: IDL
+
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+      :language: omg-idl
+      :start-after: //!--IDL_MAPS
+      :end-before: //!--
+
+.. _xmldynamictypes_struct:
+
+Structure Types
+"""""""""""""""
+
+Structure types are defined using the :code:`<struct>` tag with mandatory attribute :code:`name`.
+Structure inheritance may be configured setting optional attribute :code:`baseType`.
+XML Structure Types require at least one member defined.
+
+.. note::
+
+    `IDL specification <https://www.omg.org/spec/IDL/4.2/About-IDL>`__ introduced in version 4.1 the possibility of void
+    content structures.
+    Empty structures are not supported in XML Types profiles yet.
+
+Structure members are defined using the :code:`<member>` tag with mandatory attributes :code:`name` and :code:`type`.
+Depending on the member type, some other mandatory and/or optional attributes might be necessary or available.
+Non-primitive types must define the :code:`type` attribute as :code:`nonBasic` and include the :code:`nonBasicTypeName`
+attribute with the name of the member type.
+
+.. note::
+
+    Currently, XML Types profiles does not support setting the member ID or marking a member as key.
+
+Please, refer to :ref:`xtypes_supportedtypes_structure` for more information on structure types.
+
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_STRUCT<-->
+            :end-before: <!--><-->
+
+    .. tab:: IDL
+
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_STRUCT
+            :end-before: //!--
+
+.. _xmldynamictypes_union:
+
+Union Types
+"""""""""""
+
+Union types are defined using the :code:`<union>` tag with mandatory attribute :code:`name`.
+A mandatory discriminator child must be defined using :code:`<discriminator>` tag.
+Discriminator element requires :code:`<type>` as mandatory attribute.
+
+Union types also require at least one case child defined using the :code:`<case>` tag.
+Each case child requires at least one label child using the :code:`<caseDiscriminator>` tag.
+:code:`value` attribute is mandatory and defines the label value.
+Several labels might be defined using several :code:`<caseDiscriminator>` elements.
+Each case child must have exclusively one union member defined.
+
+Union members are defined using the :code:`<member>` tag with mandatory attributes :code:`name` and :code:`type`.
+Depending on the member type, some other mandatory and/or optional attributes might be necessary or available.
+Non-primitive types must define the :code:`type` attribute as :code:`nonBasic` and include the :code:`nonBasicTypeName`
+attribute with the name of the member type.
+At least one union member must be defined for the union type to be consistent.
+
+.. note::
+
+    Currently, XML Types profiles does not support setting the member ID or marking a member as key.
+
+Please, refer to :ref:`xtypes_supportedtypes_union` for more information on the union types.
+
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_UNION<-->
+            :end-before: <!--><-->
+
+    .. tab:: IDL
+
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_UNION
+            :end-before: //!--
+
+.. _xmldynamictypes_bitset:
+
+Bitset Types
+""""""""""""
+
+Bitset types are defined using the :code:`<bitset>` tag with mandatory attribute :code:`name`.
+Bitset inheritance may be configured setting optional attribute :code:`baseType`.
+At least one bitfield child must be defined using :code:`bitfield` tag.
+
+Bitfield elements require mandatory attribute :code:`bit_bound` with the number of bits managed by the bitfield (maximum
+64 bits).
+Optionally, attributes :code:`name` and :code:`type` might be defined.
+An anonymous bitfield (attribute :code:`name` not set) is not accessible and serves as padding between named bitfields.
+The :code:`type` attribute can ease bitfield management explicitly setting an integer type that handles the bitfield.
+
+Please, refer to :ref:`xtypes_supportedtypes_bitset` for more information about the bitset types.
+
+.. tabs::
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_BITSET<-->
+            :end-before: <!--><-->
+
+    .. tab:: IDL
+
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_BITSET
+            :end-before: //!--
 
 .. _Usage:
 
-Loading dynamic types in a *Fast DDS* application
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Loading XML Types profile in *Fast DDS* application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the *Fast DDS* application that will make use of the *XML Types*, the XML files that
-define the types must be loaded before trying to instantiate |DynamicPubSubType| objects of these types.
+*Fast DDS* application can use types defined in XML configuration files once those files have been loaded into the
+|DomainParticipantFactory-api| using |DomainParticipantFactory::load_XML_profiles_file-api|.
+Types might be retrieved using |DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name-api|.
+After getting the DynamicType, objects of |DynamicPubSubType-api| class might be instantiated and used to write/read
+data.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
     :start-after: //XML-USAGE
     :end-before: //!--
     :dedent: 8
-

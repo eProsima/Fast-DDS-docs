@@ -204,7 +204,7 @@ These elements allow the user to define the DomainParticipant configuration.
      -
    * - ``<typelookup_service_thread>``
      - |ThreadSettings| for the threads used by the builtin TypeLookup service |br|
-       used to discover unknown remote types. |br|
+       to discover unknown remote types. |br|
        See :ref:`xtypes_discovery_matching`.
      - |ThreadSettings|
      -

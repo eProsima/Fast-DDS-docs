@@ -483,7 +483,7 @@ annotations might be applied without the need of defining them).
       - ✅
     * - :code:`@autoid`
       - Member ID algorithm configuration if there is no member ID explicitly set using :code:`@id` annotation. |br|
-        Possible values are :code:`SEQUENTIAL` (member ID is assigned sequentially) or |br|
+        Possible values are :code:`SEQUENTIAL` (member ID is assigned sequentially. Default value) or |br|
         :code:`HASH` (member ID is calculated with an algorithm involving hashing the member name). |br|
         This annotation might be defined in module, structure or union declarations.
       - ✅

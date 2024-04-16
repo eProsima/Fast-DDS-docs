@@ -4280,15 +4280,15 @@
 <!-->XML_PRIMITIVES<-->
 <struct name="PrimitivesStruct">
     <member name="my_bool" type="boolean"/>
+    <member name="my_octet" type="byte"/>
     <member name="my_char" type="char8"/>
     <member name="my_wchar" type="char16"/>
-    <member name="my_octet" type="octet"/>
+    <member name="my_long" type="int32"/>
+    <member name="my_ulong" type="uint32"/>
     <member name="my_int8" type="int8"/>
     <member name="my_uint8" type="uint8"/>
     <member name="my_short" type="int16"/>
     <member name="my_ushort" type="uint16"/>
-    <member name="my_long" type="int32"/>
-    <member name="my_ulong" type="uint32"/>
     <member name="my_longlong" type="int64"/>
     <member name="my_ulonglong" type="uint64"/>
     <member name="my_float" type="float32"/>
@@ -4331,9 +4331,10 @@
 </struct>
 <!--><-->
 
+<!-- TODO: fix XSD -->
 <!-->XML_TYPEDEF<-->
 <typedef name="MyAliasedEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-<!-- TODO: XSD does not allow to set bounds to aliased strings -->
+<!-- XSD does not allow to set bounds to aliased strings -->
 <typedef name="MyAliasedBoundedString" type="string"/>
 <typedef name="MyRecursiveAlias" type="nonBasic" nonBasicTypeName="MyAliasedEnum"/>
 
@@ -4346,8 +4347,7 @@
 
 <!-->XML_SEQUENCES<-->
 <struct name="SequenceStruct">
-    <!-- XML Sequence Type definition does not support unbounded sequences -->
-    <member name="bitmask_sequence" type="nonBasic" nonBasicTypeName="MyBitMask" sequenceMaxLength="1000"/>
+    <member name="bitmask_sequence" type="nonBasic" nonBasicTypeName="MyBitMask" sequenceMaxLength="-1"/>
     <member name="short_sequence" sequenceMaxLength="5" type="int16"/>
 </struct>
 <!--><-->
@@ -4360,8 +4360,7 @@
 
 <!-->XML_MAPS<-->
 <struct name="MapStruct">
-    <!-- XML Map Type definition does not support unbounded maps -->
-    <member name="string_alias_unbounded_map" type="nonBasic" nonBasicTypeName="MyAliasedBoundedString" key_type="string" mapMaxLength="1000"/>
+    <member name="string_alias_unbounded_map" type="nonBasic" nonBasicTypeName="MyAliasedBoundedString" key_type="string" mapMaxLength="-1"/>
     <member name="short_long_map" type="int32" key_type="int16" mapMaxLength="2"/>
 </struct>
 <!--><-->

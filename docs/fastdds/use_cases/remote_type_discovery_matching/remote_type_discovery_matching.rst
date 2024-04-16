@@ -12,8 +12,8 @@ local participant.
 Prerequisites
 -------------
 
-This use case is focused on the strategy that has to be followed in order to create an endpoint in runtime in a
-previously unknown topic using the information provided by the remote endpoint discovery information.
+This use case focuses on the strategy to follow in order to create an endpoint at runtime in a previously unknown topic
+using the information provided by the remote endpoint discovery information.
 Therefore, the prerequisites are:
 
 .. TODO: third prerequiste will be obsolete once the DynamicTypes defined using the Dynamic Language Binding are
@@ -31,11 +31,10 @@ Remote type discovery
 ---------------------
 
 Following the :ref:`participant discovery phase <disc_phases>`, the endpoint information is exchanged.
-The corresponding |DomainParticipantListener::on_data_reader_discovery-api| or
-|DomainParticipantListener::on_data_writer_discovery-api| callback will be called, depending on the kind of endpoint
+The appropriate |DomainParticipantListener::on_data_reader_discovery-api| or
+|DomainParticipantListener::on_data_writer_discovery-api| callback is called, depending on the kind of endpoint
 created on the remote participant.
-The endpoint discovery callback provides access to the remote discovered information which includes the
-|TypeInformation|.
+The endpoint discovery callback provides access to the remotely discovered information including the |TypeInformation|.
 
 Provided the :code:`TypeInformation`, |ITypeObjectRegistry-api| singleton can be queried for the corresponding
 |TypeObject| calling |ITypeObjectRegistry::get_type_object| API.
@@ -45,7 +44,19 @@ Register remote type
 
 |DynamicTypeBuilderFactory-api| provides a specific API that given a |TypeObject| returns the corresponding
 |DynamicTypeBuilder-api|: |DynamicTypeBuilderFactory::create_type_w_type_object|.
-The DynamicType can then be obtained and registered using |DynamicPubSubType-api|.
+The |DynamicType-api| can then be obtained and registered using |DynamicPubSubType-api|.
+
+Create local endpoint
+---------------------
+
+Once the remote type has been locally registered, a :ref:`Topic<dds_layer_topic_topic>` can be created within the
+DomainParticipant and endpoints using this Topic might be also created.
+
+.. note::
+
+  Endpoint matching takes into consideration QoS consistency.
+  Consequently, for the local endpoint to match, the remote QoS has to be taken into account.
+  The remote endpoint discovery information provided by the discovery callback includes also this data.
 
 Example
 -------

@@ -78,7 +78,7 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Keep Alive
       - TCP
       - One per TCP transport
-      - :code:`dds.tcp_keep``
+      - :code:`dds.tcp_keep`
       - Keep alive thread for TCP connections. |br|
         See :ref:`transport_tcp_transportDescriptor`.
     * - Reception
@@ -96,13 +96,13 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Watchdog
       - SHM
       - One
-      - :code:`dds.shm.wdog``
+      - :code:`dds.shm.wdog`
       - Monitors health of open shared memory |br| segments. |br|
         See :ref:`transportconfigqos` and :ref:`transport_sharedMemory_transportDescriptor`.
     * - General Logging
       - Log
       - One
-      - :code:`dds.log``
+      - :code:`dds.log`
       - Accumulates and writes to the appropriate |br| consumer log entries. |br|
         See :ref:`dds_layer_log_thread`.
     * - Security Logging
@@ -114,13 +114,13 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
     * - Watchdog
       - Filewatch
       - One
-      - :code:`dds.fwatch``
+      - :code:`dds.fwatch`
       - Tracks the status of the watched file for |br| modifications. |br|
         See :ref:`dds_layer_domainParticipantFactoryQos`.
     * - Callback
       - Filewatch
       - One
-      - :code:`dds.fwatch.cb``
+      - :code:`dds.fwatch.cb`
       - Runs the registered callback when the |br| watched file changes. |br|
         See :ref:`dds_layer_domainParticipantFactoryQos`.
     * - Reception

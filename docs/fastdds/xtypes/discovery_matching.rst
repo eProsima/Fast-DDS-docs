@@ -20,7 +20,7 @@ On the one hand, :code:`TypeInformation` structure defined in the IDL below (ext
 `DDS-XTypes specification`_), is used to communicate the Topic Data Type and its dependencies.
 
 .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-     :language: idl
+     :language: omg-idl
      :start-after: //!--TYPEINFORMATION
      :end-before: //!--
 
@@ -29,7 +29,7 @@ univocally the data type.
 The data type information is contained in the :code:`TypeObject` union:
 
 .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-     :language: idl
+     :language: omg-idl
      :start-after: //!--TYPEOBJECT
      :end-before: //!--
 

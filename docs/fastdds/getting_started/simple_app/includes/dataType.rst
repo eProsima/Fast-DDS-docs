@@ -46,7 +46,7 @@ This must have generated the following files:
     * HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
     * HelloWorldCdrAux.ipp: Serialization and Deserialization code for the HelloWorld type.
     * HelloWorldCdrAux.hpp: Header file for HelloWorldCdrAux.ipp.
-    * HelloWorldTypeObjectSupport.cxx: TypeObject registration code.
+    * HelloWorldTypeObjectSupport.cxx: |TypeObject| registration code.
     * HelloWorldTypeObjectSupport.hpp: Header file for HelloWorldTypeObjectSupport.cxx.
 
 CMakeLists.txt

@@ -147,7 +147,12 @@ For the IDL being used in this example the data type name would be "fastdds_reco
 
 Create a new workspace different from the ROS 2 one used previously.
 Copy inside the same IDL file and run Fast DDS-Gen to generate
-the TypeSupport and the example source files:
+the TypeSupport and the example source files.
+
+.. note::
+
+    Fast DDS-Gen :code:`-no-typeobjectsupport` option is advisable to be enabled as this feature does not ensure vendor
+    interoperability for the moment.
 
 .. code-block:: bash
 

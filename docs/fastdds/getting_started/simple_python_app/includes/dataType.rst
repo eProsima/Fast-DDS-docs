@@ -49,7 +49,7 @@ This must have generated the following files:
     * HelloWorldPubSubTypes.i: `SWIG`_ interface file for C++ Serialization and Deserialization code.
     * HelloWorldCdrAux.ipp: C++ serialization and deserialization code for the HelloWorld type.
     * HelloWorldCdrAux.hpp: C++ header file for HelloWorldCdrAux.ipp.
-    * HelloWorldTypeObjectSupport.cxx: TypeObject registration code.
+    * HelloWorldTypeObjectSupport.cxx: |TypeObject| registration code.
     * HelloWorldTypeObjectSupport.hpp: Header file for HelloWorldTypeObjectSupport.cxx.
     * CMakeLists.txt: CMake file to generate C++ source code and Python module from the `SWIG`_ interface files,
       compile and generate C++ libraries.

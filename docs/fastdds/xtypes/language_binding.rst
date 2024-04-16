@@ -69,8 +69,9 @@ to the correct DynamicType address.
 DynamicTypeMember
 ^^^^^^^^^^^^^^^^^
 
-|DynamicTypeMember-api| represents a data member of a DynamicType that is in itself a DynamicType.
-Consequently, the same remarks affecting DynamicTypes, also applies to DynamicTypeMembers.
+|DynamicTypeMember-api| represents a data member of a DynamicType.
+Objects of this interface have reference semantics, so the API receives a nil-reference which is then returned pointing
+to the correct DynamicTypeMember address.
 
 DynamicTypeBuilder
 ^^^^^^^^^^^^^^^^^^
@@ -161,7 +162,7 @@ The example below shows how to create an structure with primitive members.
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_PRIMITIVES
             :end-before: //!--
 
@@ -214,7 +215,7 @@ The following promotions are supported:
     * - :code:`TK_UINT32`
       - :code:`TK_INT64`, :code:`TK_UINT64`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
     * - :code:`TK_UINT64`
-      - :code:`TK_FLOAT64`
+      - :code:`TK_FLOAT128`
     * - :code:`TK_FLOAT32`
       - :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
     * - :code:`TK_FLOAT64`
@@ -222,10 +223,10 @@ The following promotions are supported:
     * - :code:`TK_FLOAT128`
       - (none)
     * - :code:`TK_CHAR8`
-      - :code:`TK_CHAR16`, :code:`TK_INT16`, :code:`TK_INT32`, :code:`int64_t`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`,
+      - :code:`TK_CHAR16`, :code:`TK_INT16`, :code:`TK_INT32`, :code:`TK_INT64`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`,
         :code:`TK_FLOAT128`
     * - :code:`TK_CHAR16`
-      - :code:`TK_INT32`, :code:`int64_t`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
+      - :code:`TK_INT32`, :code:`TK_INT64`, :code:`TK_FLOAT32`, :code:`TK_FLOAT64`, :code:`TK_FLOAT128`
     * - :code:`TK_BYTE`
       - (any)
     * - :code:`TK_BOOLEAN`
@@ -238,7 +239,7 @@ The following promotions are supported:
 String Types
 ^^^^^^^^^^^^
 
-String Types are one-dimensional collections of characters (:code:`TK_CHAR8` or :code:`TK_CHAR16`.
+String types are one-dimensional collections of characters (:code:`TK_CHAR8` or :code:`TK_CHAR16`.
 The latest are also known as wide strings or :code:`wstring`).
 The :code:`TypeKinds` used to identify string types are :code:`TK_STRING8` and :code:`TK_STRING16`.
 The string may be bounded, setting a maximum length, or unbounded.
@@ -256,7 +257,7 @@ parameter (:code:`LENGTH_UNLIMITED` is used for unbounded strings).
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_STRINGS
             :end-before: //!--
 
@@ -310,7 +311,7 @@ primitive type (and any other method promotable to that specific primitive type)
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_ENUM
             :end-before: //!--
 
@@ -363,7 +364,7 @@ In this latest case, only bitflags are going to be set (bits not named are alway
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_BITMASK
             :end-before: //!--
 
@@ -402,7 +403,7 @@ Once the |DynamicData-api| is created, information can be accessed as if working
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_TYPEDEF
             :end-before: //!--
 
@@ -431,8 +432,8 @@ Sequence types
 Sequence types are one-dimensional collections of any type.
 The :code:`TypeKind` used to identify sequences is :code:`TK_SEQUENCE`.
 |TypeDescriptor-api| :code:`element_type` property must be set with the collection's type.
-Additionally, :code:`bound` property might be configured to set a maximum length for the collection.
-Otherwise, the collection is considered to be unbounded.
+Additionally, :code:`bound` property must also be configured with the sequence's maximum length, or
+:code:`LENGTH_UNLIMITED` in case of unbounded sequences.
 
 |DynamicTypeBuilderFactory-api| exposes the function |DynamicTypeBuilderFactory::create_sequence_type| to
 facilitate the creation of this type.
@@ -455,7 +456,7 @@ of the element to be modified.
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_SEQUENCES
             :end-before: //!--
 
@@ -485,6 +486,7 @@ Array types are multi-dimensional collections of any type.
 The :code:`TypeKind` used to identify arrays is :code:`TK_ARRAY`.
 |TypeDescriptor-api| :code:`element_type` property must be set with the collection's type.
 Additionally, :code:`bound` property must be configured with the sequence containing the size of each dimension.
+Bound sequence must have at least one dimension and it is not allowed for any dimension to have size :code:`0`.
 
 |DynamicTypeBuilderFactory-api| exposes the function |DynamicTypeBuilderFactory::create_array_type| to
 facilitate the creation of this type.
@@ -511,7 +513,7 @@ of the element to be modified.
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_ARRAYS
             :end-before: //!--
 
@@ -548,7 +550,8 @@ Allowed key types are signed and unsigned integer types and string types.
 
   Currently, wide string keys are not supported as map keys.
 
-Additionally, :code:`bound` property might be configured to set a maximum length for the collection.
+Additionally, :code:`bound` property must also be configured with the map's maximum length, or :code:`LENGTH_UNLIMITED`
+in case of unbounded maps.
 
 |DynamicTypeBuilderFactory-api| exposes the |DynamicTypeBuilderFactory::create_map_type| function to
 facilitate the creation of this type.
@@ -558,6 +561,8 @@ This API requires the type of both the key and the value stored in the collectio
 Manipulating map types data is more complex.
 First the :code:`MemberId` corresponding to a specific :code:`key` must be retrieved using
 |DynamicData::get_member_id_by_name| API.
+This API either returns the :code:`MemberId` corresponding to the existing :code:`key`; or, if the :code:`key` does not
+exist yet, it creates the :code:`key` and returns the :code:`memberId` associated to the just created :code:`key`.
 In order to call this method, the correct :code:`string` representation of the key value must be passed.
 The map value can now be set using the API corresponding to the map value type.
 For complex map values, please refer to :ref:`xtypes_complextypes`.
@@ -567,7 +572,7 @@ For complex map values, please refer to :ref:`xtypes_complextypes`.
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_MAPS
             :end-before: //!--
 
@@ -616,7 +621,7 @@ Member name is configured using |MemberDescriptor-api| :code:`name` property and
 Structure members might be keyed to create :ref:`topic instances<dds_layer_topic_instances>` by setting the
 |MemberDescriptor-api| :code:`is_key` property.
 The behavior is the same as setting the :code:`@key` :ref:`builtin annotation<builtin_annotations>`.
-Additionally, |MemberDescriptor-api| :code:`default_value` property might be set to configured the member default value,
+Additionally, |MemberDescriptor-api| :code:`default_value` property might be set to configure the member default value,
 and |MemberDescriptor-api| :code:`id` property sets explicitly the member ID.
 This behavior is the same as setting the :code:`@default` and :code:`@id`
 :ref:`builtin annotations<builtin_annotations>`.
@@ -643,7 +648,7 @@ For managing complex type members, please refer to :ref:`xtypes_complextypes`.
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_STRUCT
             :end-before: //!--
 
@@ -708,7 +713,7 @@ This latest property indicates the discriminator values that select this specifi
 If no labels are configured, then the flag indicating the member to be the default one, must be set.
 Only one union member must be configured as default.
 
-Additionally, |MemberDescriptor-api| :code:`default_value` property might be set to configured the member default value,
+Additionally, |MemberDescriptor-api| :code:`default_value` property might be set to configure the member default value,
 and |MemberDescriptor-api| :code:`id` property sets explicitly the member ID.
 This behavior is the same as setting the :code:`@default` and :code:`@id`
 :ref:`builtin annotations<builtin_annotations>`.
@@ -737,7 +742,7 @@ For managing complex type members, please refer to :ref:`xtypes_complextypes`.
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_UNION
             :end-before: //!--
 
@@ -775,6 +780,11 @@ function with the corresponding |MemberDescriptor-api|.
 At least one bitfield is required for the bitset to be consistent.
 Bitfield name is configured using |MemberDescriptor-api| :code:`name` property, and the bitfield initial bit position
 is set using |MemberDescriptor-api| :code:`id` property.
+
+.. note::
+
+  For derived bitsets, the first bitfield initial position must be after the bits defined by the parent bitset type.
+
 A bitfield manages exclusively a set of bits, so no bitfield superposition is allowed.
 Additionally, |MemberDescriptor-api| :code:`type` property might be set to configure an integer type to access bitfield
 data.
@@ -805,7 +815,7 @@ modifies the involved bits instead of the full primitive value.
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_BITSET
             :end-before: //!--
 
@@ -870,7 +880,7 @@ The annotation parameter value must be converted to its string representation.
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_CUSTOM_ANNOTATION
             :end-before: //!--
 

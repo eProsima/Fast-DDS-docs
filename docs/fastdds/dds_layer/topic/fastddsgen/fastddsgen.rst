@@ -37,7 +37,7 @@ code generation are the following:
 
 *   :code:`-replace`: It replaces existing files in case the data type files have been previously generated.
 *   :code:`-help`: It lists the currently supported platforms and Visual Studio versions.
-*   :code:`-no-typeobjectsupport`: Disables the automatic generation of the |TypeObject| registration code.
+*   :code:`-no-typeobjectsupport`: It disables the automatic generation of the |TypeObject| registration code.
 *   :code:`-example`: It generates a basic example of a DDS application and the files to build it for
     the given :code:`platform`.
     Thus, *Fast DDS-Gen* tool can generate a sample application using the provided data type, together with a
@@ -54,5 +54,5 @@ Assuming the IDL file had the name *“Mytype”*, and none of the above options
 *   MyTypePubSubType.cxx/.h: Serialization and deserialization source code for the data type.
     It also defines the |TopicDataType::getKey-api| member function of the :class:`MyTypePubSubType` class in case the
     topic implements keys (see :ref:`dds_layer_topic_keyed_data_types`).
-*   HelloWorldCdrAux.hpp/.ipp: Auxiliary methods required by Fast CDR for type serialization and deserialization.
+*   MyTypeCdrAux.hpp/.ipp: Auxiliary methods required by Fast CDR for type encoding and decoding.
 *   MyTypeTypeObjectSupport.cxx/.hpp: Auxiliary code required for |TypeObject| generation and registration.

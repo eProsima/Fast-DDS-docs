@@ -35,7 +35,7 @@ Type definition
 ^^^^^^^^^^^^^^^
 Below, the types supported by *eProsima Fast DDS* are presented.
 For further information about the supported |DynamicTypes|, please, refer to :ref:`xtypes_supportedtypes`.
-For each of the types detailed below, an example of how to build the type's XML profile is provided.
+For each type listed below, an example of how to build the type's XML profile is provided.
 
 * `Primitive types`_
 * `String types`_
@@ -54,30 +54,30 @@ For each of the types detailed below, an example of how to build the type's XML 
 Primitive types
 """""""""""""""
 
-Primitive types should be declared as members of an aggregated type (`Structure types`_ or `Union types`_).
-Primitive types are defined by attribute :code:`type` and the possible values are listed in the table below.
+Primitive types are built-in types and they should be declared as members of an aggregated type (`Structure types`_ or
+`Union types`_).
+Primitive types are declared by attribute :code:`type` and the possible values are listed in the table below.
 Please, refer to :ref:`xtypes_supportedtypes_primitive` for more information on primitive types.
 
 .. list-table::
 
   * - ``boolean``
+    - ``byte``
     - ``char8``
     - ``char16``
-    - ``byte``
-  * - ``octet``
-    - ``uint8``
+    - ``int32``
+  * - ``uint32``
     - ``int8``
+    - ``uint8``
     - ``int16``
-  * - ``int32``
     - ``uint16``
-    - ``uint32``
-    - ``int64``
-  * - ``uint64``
+  * - ``int64``
+    - ``uint64``
     - ``float32``
     - ``float64``
     - ``float128``
 
-All of them are defined as follows:
+All of them are declared as follows:
 
 .. tabs::
 
@@ -91,7 +91,7 @@ All of them are defined as follows:
    .. tab:: IDL
 
       .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-        :language: idl
+        :language: omg-idl
         :start-after: //!--IDL_PRIMITIVES
         :end-before: //!--
 
@@ -101,7 +101,8 @@ All of them are defined as follows:
 String Types
 """"""""""""
 
-String Types are defined with attribute :code:`type` set to :code:`string` or :code:`wstring`.
+String types should be declared as members of an aggregated type (`Structure types`_ or `Union types`_).
+String types are declared with attribute :code:`type` set to :code:`string` or :code:`wstring`.
 An optional attribute :code:`stringMaxLength` might used to set a maximum length for the string collection.
 Please, refer to :ref:`xtypes_supportedtypes_string` for more information on string types.
 
@@ -117,7 +118,7 @@ Please, refer to :ref:`xtypes_supportedtypes_string` for more information on str
    .. tab:: IDL
 
       .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-        :language: idl
+        :language: omg-idl
         :start-after: //!--IDL_STRINGS
         :end-before: //!--
 
@@ -126,15 +127,15 @@ Please, refer to :ref:`xtypes_supportedtypes_string` for more information on str
 Enumeration Types
 """""""""""""""""
 
-Enumeration types are defined using the :code:`<enum>` tag.
+Enumeration types are declared using the :code:`<enum>` tag.
 Attribute :code:`name` and at least one :code:`<enumerator>` child element are mandatory.
-Enumeration literals are defined using the :code:`<enumerator>` tag with mandatory attribute :code:`name`.
+Enumeration literals are declared using the :code:`<enumerator>` tag with mandatory attribute :code:`name`.
 Optionally, unsigned integer attribute :code:`value` might be added to set a specific value for the enumeration literal.
 
 .. note::
 
     :code:`value` attribute is equivalent to :code:`@value` builtin annotation which is not still supported in neither
-    the plain (IDL) nor dynamic language binding.
+    the plain (IDL) nor |DynamicTypes|.
 
 Please, refer to :ref:`xtypes_supportedtypes_enumeration` for more information on enumeration types.
 
@@ -150,7 +151,7 @@ Please, refer to :ref:`xtypes_supportedtypes_enumeration` for more information o
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_ENUM
             :end-before: //!--
 
@@ -159,11 +160,11 @@ Please, refer to :ref:`xtypes_supportedtypes_enumeration` for more information o
 Bitmask Types
 """""""""""""
 
-Bitmask types are defined using the :code:`<bitmask>` tag.
+Bitmask types are declared using the :code:`<bitmask>` tag.
 Attribute :code:`name` and at least on :code:`<bit_value>` child element are mandatory.
 Optionally, :code:`bit_bound` attribute might be set to specify the bitmask bound (by default 32 bits).
-Bitflag elements are defined using the :code:`<bit_value>` tag with mandatory attribute :code:`name`.
-Optionally, :code:`position` attribute might be defined to set the bitflag position within the bitmask.
+Bitflag elements are declared using the :code:`<bit_value>` tag with mandatory attribute :code:`name`.
+Optionally, :code:`position` attribute might be declared to set the bitflag position within the bitmask.
 Please, refer to :ref:`xtypes_supportedtypes_bitmask` for more information on bitmask types.
 
 .. tabs::
@@ -178,7 +179,7 @@ Please, refer to :ref:`xtypes_supportedtypes_bitmask` for more information on bi
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_BITMASK
             :end-before: //!--
 
@@ -187,9 +188,11 @@ Please, refer to :ref:`xtypes_supportedtypes_bitmask` for more information on bi
 Alias Types
 """""""""""
 
-Alias types are defined using the :code:`<typedef>` tag.
+Alias types are declared using the :code:`<typedef>` tag.
 Attributes :code:`name` and :code:`type` are mandatory.
-Depending on the aliased type, any other attribute might be required or optionally added.
+Depending on the aliased type, some other mandatory and/or optional attributes might be necessary or available.
+Non-primitive types must define the :code:`type` attribute as :code:`nonBasic` and include the :code:`nonBasicTypeName`
+attribute with the name of the aliased type.
 Please, refer to :ref:`xtypes_supportedtypes_alias` for more information on alias types.
 
 .. tabs::
@@ -204,7 +207,7 @@ Please, refer to :ref:`xtypes_supportedtypes_alias` for more information on alia
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_TYPEDEF
             :end-before: //!--
 
@@ -213,13 +216,10 @@ Please, refer to :ref:`xtypes_supportedtypes_alias` for more information on alia
 Sequence Types
 """"""""""""""
 
-Sequence Types are defined with mandatory attributes :code:`type` set to the collection's element type, and
+Sequence types should be declared as members of an aggregated type (`Structure types`_ or `Union types`_).
+Sequence types are declared with mandatory attributes :code:`type` set to the collection's element type, and
 :code:`sequenceMaxLength` used to set the maximum collection's length.
-
-.. important::
-
-    Currently, unbounded sequences cannot be defined using XML profiles.
-
+Unbounded sequences should set :code:`sequenceMaxLength` attribute to :code:`-1`.
 Please, refer to :ref:`xtypes_supportedtypes_sequence` for more information on sequence types.
 
 .. tabs::
@@ -234,7 +234,7 @@ Please, refer to :ref:`xtypes_supportedtypes_sequence` for more information on s
    .. tab:: IDL
 
       .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-        :language: idl
+        :language: omg-idl
         :start-after: //!--IDL_SEQUENCES
         :end-before: //!--
 
@@ -243,7 +243,8 @@ Please, refer to :ref:`xtypes_supportedtypes_sequence` for more information on s
 Array Types
 """""""""""
 
-Array Types are defined with mandatory attributes :code:`type` set to the collection's element type, and
+Array types should be declared as members of an aggregated type (`Structure types`_ or `Union types`_).
+Array types are declared with mandatory attributes :code:`type` set to the collection's element type, and
 :code:`arrayDimensions` used to set the collection's dimensions.
 The format of :code:`arrayDimensions` attribute value is the size of each dimension separated by commas.
 Please, refer to :ref:`xtypes_supportedtypes_array` for more information on array types.
@@ -260,7 +261,7 @@ Please, refer to :ref:`xtypes_supportedtypes_array` for more information on arra
   .. tab:: IDL
 
     .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-      :language: idl
+      :language: omg-idl
       :start-after: //!--IDL_ARRAYS
       :end-before: //!--
 
@@ -269,13 +270,10 @@ Please, refer to :ref:`xtypes_supportedtypes_array` for more information on arra
 Map Types
 """""""""
 
-Maps Types are defined with mandatory attributes :code:`type` set to the map's value type, :code:`key_type` set to the
+Map types should be declared as members of an aggregated type (`Structure types`_ or `Union types`_).
+Map types are declared with mandatory attributes :code:`type` set to the map's value type, :code:`key_type` set to the
 map's key type, and :code:`mapMaxLength` used to set the maximum map's number of key-value pairs.
-
-.. important::
-
-    Currently, unbounded maps cannot be defined using XML profiles.
-
+Unbounded maps should set :code:`mapMaxLength` attribute to :code:`-1`.
 Please, refer to :ref:`xtypes_supportedtypes_map` for more information on map types.
 
 .. tabs::
@@ -290,7 +288,7 @@ Please, refer to :ref:`xtypes_supportedtypes_map` for more information on map ty
   .. tab:: IDL
 
     .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-      :language: idl
+      :language: omg-idl
       :start-after: //!--IDL_MAPS
       :end-before: //!--
 
@@ -299,9 +297,9 @@ Please, refer to :ref:`xtypes_supportedtypes_map` for more information on map ty
 Structure Types
 """""""""""""""
 
-Structure types are defined using the :code:`<struct>` tag with mandatory attribute :code:`name`.
+Structure types are declared using the :code:`<struct>` tag with mandatory attribute :code:`name`.
 Structure inheritance may be configured setting optional attribute :code:`baseType`.
-XML Structure Types require at least one member defined.
+XML Structure Types require at least one member declared.
 
 .. note::
 
@@ -309,7 +307,7 @@ XML Structure Types require at least one member defined.
     content structures.
     Empty structures are not supported in XML Types profiles yet.
 
-Structure members are defined using the :code:`<member>` tag with mandatory attributes :code:`name` and :code:`type`.
+Structure members are declared using the :code:`<member>` tag with mandatory attributes :code:`name` and :code:`type`.
 Depending on the member type, some other mandatory and/or optional attributes might be necessary or available.
 Non-primitive types must define the :code:`type` attribute as :code:`nonBasic` and include the :code:`nonBasicTypeName`
 attribute with the name of the member type.
@@ -332,7 +330,7 @@ Please, refer to :ref:`xtypes_supportedtypes_structure` for more information on 
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_STRUCT
             :end-before: //!--
 
@@ -341,21 +339,21 @@ Please, refer to :ref:`xtypes_supportedtypes_structure` for more information on 
 Union Types
 """""""""""
 
-Union types are defined using the :code:`<union>` tag with mandatory attribute :code:`name`.
-A mandatory discriminator child must be defined using :code:`<discriminator>` tag.
-Discriminator element requires as mandatory attribute :code:`<type>`.
+Union types are declared using the :code:`<union>` tag with mandatory attribute :code:`name`.
+A mandatory discriminator child must be declared using :code:`<discriminator>` tag.
+Discriminator element requires :code:`<type>` as mandatory attribute.
 
-Union types also require at least one case child defined using the :code:`<case>` tag.
-Each case child requires at least one caseDiscriminator child using the :code:`<caseDiscriminator>` tag.
-:code:`value` attribute is mandatory and defines the label associated with that specific caseDiscriminator.
-Several labels might be defined using several caseDiscriminator elements.
-Each case child must have exclusively one union member defined.
+Union types also require at least one case child declared using the :code:`<case>` tag.
+Each case child requires at least one label child using the :code:`<caseDiscriminator>` tag.
+:code:`value` attribute is mandatory and defines the label value.
+Several labels might be declared using several :code:`<caseDiscriminator>` elements.
+Each case child must have exclusively one union member declared.
 
-Union members are defined using the :code:`<member>` tag with mandatory attributes :code:`name` and :code:`type`.
+Union members are declared using the :code:`<member>` tag with mandatory attributes :code:`name` and :code:`type`.
 Depending on the member type, some other mandatory and/or optional attributes might be necessary or available.
 Non-primitive types must define the :code:`type` attribute as :code:`nonBasic` and include the :code:`nonBasicTypeName`
 attribute with the name of the member type.
-At least one union member must be defined for the union type to be consistent.
+At least one union member must be declared for the union type to be consistent.
 
 .. note::
 
@@ -375,7 +373,7 @@ Please, refer to :ref:`xtypes_supportedtypes_union` for more information on the 
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_UNION
             :end-before: //!--
 
@@ -384,13 +382,13 @@ Please, refer to :ref:`xtypes_supportedtypes_union` for more information on the 
 Bitset Types
 """"""""""""
 
-Bitset types are defined using the :code:`<bitset>` tag with mandatory attribute :code:`name`.
+Bitset types are declared using the :code:`<bitset>` tag with mandatory attribute :code:`name`.
 Bitset inheritance may be configured setting optional attribute :code:`baseType`.
-At least one bitfield child must be defined using :code:`bitfield` tag.
+At least one bitfield child must be declared using :code:`bitfield` tag.
 
 Bitfield elements require mandatory attribute :code:`bit_bound` with the number of bits managed by the bitfield (maximum
 64 bits).
-Optionally, attributes :code:`name` and :code:`type` might be defined.
+Optionally, attributes :code:`name` and :code:`type` might be declared.
 An anonymous bitfield (attribute :code:`name` not set) is not accessible and serves as padding between named bitfields.
 The :code:`type` attribute can ease bitfield management explicitly setting an integer type that handles the bitfield.
 
@@ -408,7 +406,7 @@ Please, refer to :ref:`xtypes_supportedtypes_bitset` for more information about 
     .. tab:: IDL
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: idl
+            :language: omg-idl
             :start-after: //!--IDL_BITSET
             :end-before: //!--
 
@@ -417,7 +415,7 @@ Please, refer to :ref:`xtypes_supportedtypes_bitset` for more information about 
 Loading XML Types profile in *Fast DDS* application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-*Fast DDS* application can use types defined in XML configuration files once those files have been loaded into the
+*Fast DDS* application can use types declared in XML configuration files once those files have been loaded into the
 |DomainParticipantFactory-api| using |DomainParticipantFactory::load_XML_profiles_file-api|.
 Types might be retrieved using |DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name-api|.
 After getting the DynamicType, objects of |DynamicPubSubType-api| class might be instantiated and used to write/read

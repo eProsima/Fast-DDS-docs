@@ -954,7 +954,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
         switch (info.status){
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
             {
-                /* Process the case when a new subscriber was found in the domain */
+                /* Process the case when a new datareader was found in the domain */
                 std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' discovered";
                 /* The following line can be substituted to evaluate whether the discovered datareader should be ignored */
@@ -966,10 +966,10 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             }
             break;
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
-                /* Process the case when a subscriber changed its QOS */
+                /* Process the case when a datareader changed its QOS */
                 break;
             case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
-                /* Process the case when a subscriber was removed from the domain */
+                /* Process the case when a datareader was removed from the domain */
                 std::cout << "DataReader subscribed to topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' left the domain.";
                 break;
@@ -987,7 +987,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
         switch (info.status){
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
             {
-                /* Process the case when a new publisher was found in the domain */
+                /* Process the case when a new datawriter was found in the domain */
                 std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' discovered";
                 /* The following line can be substituted to evaluate whether the discovered datawriter should be ignored */
@@ -999,10 +999,10 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             }
             break;
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo::CHANGED_QOS_WRITER:
-                /* Process the case when a publisher changed its QOS */
+                /* Process the case when a datawriter changed its QOS */
                 break;
             case eprosima::fastrtps::rtps::WriterDiscoveryInfo::REMOVED_WRITER:
-                /* Process the case when a publisher was removed from the domain */
+                /* Process the case when a datawriter was removed from the domain */
                 std::cout << "DataWriter publishing under topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' left the domain.";
                 break;
@@ -1021,7 +1021,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
             eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
-        static_cast<void>(should_be_ignored);
+        should_be_ignored = false;
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
@@ -1035,7 +1035,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
         DynamicType::_ref_type remote_type = DynamicTypeBuilderFactory::get_instance()->create_type_w_type_object(
                 remote_type_object)->build();
         TypeSupport dyn_type_support(new DynamicPubSubType(remote_type));
-        dyn_type_support.register_type(participant, nullptr);
+        dyn_type_support.register_type(participant);
 
         // Create a Topic with the remotely discovered type.
         Topic* topic =
@@ -1069,7 +1069,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
             eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
-        static_cast<void>(should_be_ignored);
+        should_be_ignored = false;
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
@@ -1083,7 +1083,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
         DynamicType::_ref_type remote_type = DynamicTypeBuilderFactory::get_instance()->create_type_w_type_object(
                 remote_type_object)->build();
         TypeSupport dyn_type_support(new DynamicPubSubType(remote_type));
-        dyn_type_support.register_type(participant, nullptr);
+        dyn_type_support.register_type(participant);
 
         // Create a Topic with the remotely discovered type.
         Topic* topic =
@@ -1103,6 +1103,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
             return;
         }
 
+        // The QoS depends on the remote endpoint QoS. For simplicity, default QoS have been assumed.
         DataReader* data_reader = subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
         if (nullptr == data_reader)
         {
@@ -4571,6 +4572,10 @@ void dynamictypes_examples()
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         struct_builder->add_member(member_descriptor);
         member_descriptor = traits<MemberDescriptor>::make_shared();
+        member_descriptor->name("my_octet");
+        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BYTE));
+        struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_char");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR8));
         struct_builder->add_member(member_descriptor);
@@ -4579,8 +4584,12 @@ void dynamictypes_examples()
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR16));
         struct_builder->add_member(member_descriptor);
         member_descriptor = traits<MemberDescriptor>::make_shared();
-        member_descriptor->name("my_octet");
-        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BYTE));
+        member_descriptor->name("my_long");
+        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
+        struct_builder->add_member(member_descriptor);
+        member_descriptor = traits<MemberDescriptor>::make_shared();
+        member_descriptor->name("my_ulong");
+        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
         struct_builder->add_member(member_descriptor);
         member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_int8");
@@ -4597,14 +4606,6 @@ void dynamictypes_examples()
         member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_ushort");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT16));
-        struct_builder->add_member(member_descriptor);
-        member_descriptor = traits<MemberDescriptor>::make_shared();
-        member_descriptor->name("my_long");
-        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
-        struct_builder->add_member(member_descriptor);
-        member_descriptor = traits<MemberDescriptor>::make_shared();
-        member_descriptor->name("my_ulong");
-        member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
         struct_builder->add_member(member_descriptor);
         member_descriptor = traits<MemberDescriptor>::make_shared();
         member_descriptor->name("my_longlong");
@@ -4633,8 +4634,8 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for a member of type int32_t
-        int32_t in_value = 2;
-        int32_t out_value = 0;
+        int32_t in_value {2};
+        int32_t out_value {0};
         data->set_int32_value(data->get_member_id_by_name("my_long"), in_value);
         data->get_int32_value(out_value, data->get_member_id_by_name("my_long"));
         //!--
@@ -4659,6 +4660,7 @@ void dynamictypes_examples()
             type_descriptor = traits<TypeDescriptor>::make_shared();
             type_descriptor->kind(TK_STRING8);
             type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR8));
+            type_descriptor->bound().push_back(static_cast<uint32_t>(LENGTH_UNLIMITED));
             member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
         */
 
@@ -4671,6 +4673,7 @@ void dynamictypes_examples()
             type_descriptor = traits<TypeDescriptor>::make_shared();
             type_descriptor->kind(TK_STRING16);
             type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR16));
+            type_descriptor->bound().push_back(static_cast<uint32_t>(LENGTH_UNLIMITED));
             member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
         */
 
@@ -4708,7 +4711,7 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for a string member
-        std::string in_value = "helloworld";
+        std::string in_value {"helloworld"};
         std::string out_value;
         data->set_string_value(data->get_member_id_by_name("my_string"), in_value);
         data->get_string_value(out_value, data->get_member_id_by_name("my_string"));
@@ -4762,8 +4765,13 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for an enum member
-        MyEnum in_value = MyEnum::C;
-        uint32_t out_value = 0;
+        MyEnum in_value {MyEnum::C};
+
+        /* Alternative
+            uint32_t in_value {2}; // Selecting MyEnum::C
+        */
+
+        uint32_t out_value {0};
         data->set_uint32_value(data->get_member_id_by_name("my_enum"), in_value);
         data->get_uint32_value(out_value, data->get_member_id_by_name("my_enum"));
         //!--
@@ -4824,8 +4832,8 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for bitmask member.
-        uint8_t in_value = 2;
-        uint8_t out_value = 0;
+        uint8_t in_value {3}; // Setting both "flag0" and "flag1" simultaneously.
+        uint8_t out_value {0};
         data->set_uint8_value(data->get_member_id_by_name("my_bitmask"), in_value);
         data->get_uint8_value(out_value, data->get_member_id_by_name("my_bitmask"));
 
@@ -4908,8 +4916,8 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(struct_type)};
 
         // Set and retrieve values for the alias enum member
-        MyEnum in_value = MyEnum::C;
-        int32_t out_value = 0;
+        MyEnum in_value {MyEnum::C};
+        int32_t out_value {0};
         data->set_int32_value(data->get_member_id_by_name("my_alias_enum"), in_value);
         data->get_int32_value(out_value, data->get_member_id_by_name("my_alias_enum"));
         //!--
@@ -4936,6 +4944,7 @@ void dynamictypes_examples()
             type_descriptor = traits<TypeDescriptor>::make_shared();
             type_descriptor->kind(TK_SEQUENCE);
             type_descriptor->element_type(bitmask_type);
+            type_descriptor->bound().push_back(static_cast<uint32_t>(LENGTH_UNLIMITED));
             sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
                     type_descriptor)->build());
         */
@@ -5024,7 +5033,8 @@ void dynamictypes_examples()
 
         DynamicData::_ref_type array_data {data->loan_value(data->get_member_id_by_name("long_array"))};
         // Set the two latest possible values on the array
-        array_data->set_int32_values(22, in_value);
+        Int32Seq small_in_value = {0, 1};
+        array_data->set_int32_values(22, small_in_value);
         // Read every array value from index 1 to the end
         array_data->get_int32_values(out_value, 1);
 
@@ -5061,6 +5071,7 @@ void dynamictypes_examples()
             type_descriptor->key_element_type(DynamicTypeBuilderFactory::get_instance()->create_string_type(
                     static_cast<uint32_t>(LENGTH_UNLIMITED)->build());
             type_descriptor->element_type(alias_bounded_string_type);
+            type_descriptor->bound().push_back(static_cast<uint32_t>(LENGTH_UNLIMITED));
             map_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
                     type_descriptor)->build());
         */
@@ -5094,8 +5105,8 @@ void dynamictypes_examples()
         DynamicData::_ref_type map_data = data->loan_value(data->get_member_id_by_name("short_long_map"));
 
         // Set and retrieve values for the map member
-        int32_t key = 1;
-        int32_t in_value = 2;
+        int32_t key {1};
+        int32_t in_value {2};
         int32_t out_value;
         map_data->set_int32_value(map_data->get_member_id_by_name(std::to_string(key)), in_value);
         map_data->get_int32_value(out_value, map_data->get_member_id_by_name(std::to_string(key)));
@@ -5158,8 +5169,8 @@ void dynamictypes_examples()
         DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(complexstruct_type)};
 
         // Set and retrieve values for member of type float
-        float in_value = 3.14;
-        float out_value = 0.0;
+        float in_value {3.14};
+        float out_value {0.0};
         data->set_float32_value(data->get_member_id_by_name("first"), in_value);
         data->get_float32_value(out_value, data->get_member_id_by_name("first"));
         //!--
@@ -5224,7 +5235,7 @@ void dynamictypes_examples()
         DynamicData::_ref_type union_data = data->loan_value(data->get_member_id_by_name("InnerUnion"));
 
         // Set and retrieve values for the long long member within InnerUnion member
-        int64_t in_value = 2;
+        int64_t in_value {2};
         int64_t out_value;
         union_data->set_int64_value(union_data->get_member_id_by_name("second"), in_value);
         union_data->get_int64_value(out_value, union_data->get_member_id_by_name("second"));
@@ -5280,12 +5291,12 @@ void dynamictypes_examples()
         // Add members to the child bitset type
         MemberDescriptor::_ref_type childbitset_member_descriptor {traits<MemberDescriptor>::make_shared()};
         childbitset_member_descriptor->name("e");
-        childbitset_member_descriptor->id(0);
+        childbitset_member_descriptor->id(30);
         childbitset_builder->add_member(childbitset_member_descriptor);
         childbitset_member_descriptor = traits<MemberDescriptor>::make_shared();
         childbitset_member_descriptor->name("d");
         childbitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
-        childbitset_member_descriptor->id(1);
+        childbitset_member_descriptor->id(31);
         childbitset_builder->add_member(childbitset_member_descriptor);
         // Build the child bitset type
         DynamicType::_ref_type bitset_type = childbitset_builder->build();
@@ -5303,7 +5314,7 @@ void dynamictypes_examples()
         DynamicData::_ref_type bitset_data = data->loan_value(data->get_member_id_by_name("my_bitset"));
 
         // Set and retrieve bitfield values 
-        int16_t in_value = 2;
+        int16_t in_value {2};
         int16_t out_value;
         bitset_data->set_int16_value(bitset_data->get_member_id_by_name("d"), in_value);
         bitset_data->get_int16_value(out_value, bitset_data->get_member_id_by_name("d"));
@@ -5366,7 +5377,7 @@ void dynamictypes_examples()
         DynamicData::_ref_type complex_data;
         data->get_complex_value(complex_data, data->get_member_id_by_name("complex_member"));
         // Set data
-        int32_t in_value = 10;
+        int32_t in_value {10};
         complex_data->set_int32_value(complex_data->get_member_id_by_name("first"), in_value);
         data->set_complex_value(data->get_member_id_by_name("complex_member"), complex_data);
 
@@ -5406,7 +5417,7 @@ void xml_profiles_examples()
                 <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
                 <dds>\
                     <profiles xmlns=\"http://www.eprosima.com\" >\
-                        <data_writer profile_name=\"test_publisher_profile\" is_default_profile=\"true\">\
+                        <data_writer profile_name=\"test_datawriter_profile\" is_default_profile=\"true\">\
                             <qos>\
                                 <durability>\
                                     <kind>TRANSIENT_LOCAL</kind>\
@@ -6633,7 +6644,7 @@ void dds_persistence_examples()
     MemberDescriptor::_ref_type message_member_descriptor {traits<MemberDescriptor>::make_shared()};
     message_member_descriptor->name("message");
     message_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
-                    create_string_type(LENGTH_UNLIMITED)->build());
+                    create_string_type(static_cast<uint32_t>(LENGTH_UNLIMITED))->build());
     struct_builder->add_member(message_member_descriptor);
 
     // Build the type

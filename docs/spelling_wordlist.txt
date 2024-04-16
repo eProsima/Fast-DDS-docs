@@ -44,7 +44,6 @@ bugfixes
 cancelled
 Cannonical
 Cardinality
-caseDiscriminator
 CCache
 cdr
 CDR

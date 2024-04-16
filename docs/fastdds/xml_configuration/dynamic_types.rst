@@ -77,7 +77,7 @@ Please, refer to :ref:`xtypes_supportedtypes_primitive` for more information on 
     - ``float64``
     - ``float128``
 
-All of them are defined as follows:
+All of them are declared as follows:
 
 .. tabs::
 

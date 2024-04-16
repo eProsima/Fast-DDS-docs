@@ -38,7 +38,7 @@ To do this, run the following command.
 
 .. code-block:: bash
 
-    <path/to/Fast DDS-Gen>/scripts/fastddsgen HelloWorld.idl
+    <path/to/Fast DDS-Gen>/scripts/fastddsgen -python HelloWorld.idl
 
 This must have generated the following files:
 

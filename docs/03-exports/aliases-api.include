@@ -951,6 +951,7 @@
 
 .. |EDPStatic| replace:: :cpp:class:`EDPStatic <eprosima::fastrtps::rtps::EDPStatic>`
 
+.. {{{ X-Types API
 .. |AnnotationDescriptor-api| replace:: :cpp:class:`AnnotationDescriptor <eprosima::fastdds::dds::AnnotationDescriptor>`
 .. |AnnotationDescriptor::set_value-api| replace:: :cpp:func:`AnnotationDescriptor::set_value() <eprosima::fastdds::dds::AnnotationDescriptor::set_value>`
 .. |DynamicData-api| replace:: :cpp:class:`DynamicData <eprosima::fastdds::dds::DynamicData>`
@@ -991,6 +992,7 @@
 .. |ITypeObjectRegistry-api| replace:: :cpp:class:`ITypeObjectRegistry <eprosima::fastdds::dds::xtypes::ITypeObjectRegistry>`
 .. |ITypeObjectRegistry::get_type_object| replace:: :cpp:func:`ITypeObjectRegistry::get_type_object <eprosima::fastdds::dds::xtypes::ITypeObjectRegistry::get_type_object>`
 .. |TypeObjectUtils-api| replace:: :cpp:class:`TypeObjectUtils <eprosima::fastdds::dds::xtypes::TypeObjectUtils>`
+.. }}}
 
 .. |DomainParticipant::set_listener-api| replace:: :cpp:func:`DomainParticipant::set_listener()<eprosima::fastdds::dds::DomainParticipant::set_listener>`
 .. |Publisher::set_listener-api| replace:: :cpp:func:`Publisher::set_listener()<eprosima::fastdds::dds::Publisher::set_listener>`

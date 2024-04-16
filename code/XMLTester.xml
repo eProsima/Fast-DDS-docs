@@ -1465,6 +1465,13 @@
                     <stack_size>-1</stack_size>
                 </discovery_server_thread>
 
+                <typelookup_service_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </typelookup_service_thread>
+
                 <builtin_transports_reception_threads>
                     <scheduling_policy>-1</scheduling_policy>
                     <priority>0</priority>
@@ -1643,10 +1650,6 @@
 
     <mutation_tries>55</mutation_tries>
 
-    <typelookup_config>
-        <use_client>true</use_client>
-        <use_server>true</use_server>
-    </typelookup_config>
 </builtin>
 <!--><-->
 </rtps>
@@ -3893,19 +3896,6 @@
 </participant>
 <!--><-->
 
-<!-->XML_TYPELOOKUP_SERVICE_ENABLING<-->
-<participant profile_name="participant_typelookup_service_enabled">
-    <rtps>
-        <builtin>
-            <typelookup_config>
-                <use_client>true</use_client>
-                <use_server>true</use_server>
-            </typelookup_config>
-        </builtin>
-    </rtps>
-</participant>
-<!--><-->
-
 <!--XML_PROFILES_SECTION-->
 
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
@@ -4309,51 +4299,135 @@
 
 <types>
 <type>
-<!-->XML-DYN-ENUM<-->
+
+<!-->XML_PRIMITIVES<-->
+<struct name="PrimitivesStruct">
+    <member name="my_bool" type="boolean"/>
+    <member name="my_octet" type="byte"/>
+    <member name="my_char" type="char8"/>
+    <member name="my_wchar" type="char16"/>
+    <member name="my_long" type="int32"/>
+    <member name="my_ulong" type="uint32"/>
+    <member name="my_int8" type="int8"/>
+    <member name="my_uint8" type="uint8"/>
+    <member name="my_short" type="int16"/>
+    <member name="my_ushort" type="uint16"/>
+    <member name="my_longlong" type="int64"/>
+    <member name="my_ulonglong" type="uint64"/>
+    <member name="my_float" type="float32"/>
+    <member name="my_double" type="float64"/>
+    <member name="my_longdouble" type="float128"/>
+</struct>
+<!--><-->
+
+<!-->XML_STRINGS<-->
+<struct name="StringsStruct">
+    <member name="my_string" type="string"/>
+    <member name="my_wstring" type="wstring"/>
+    <member name="my_bounded_string" type="string" stringMaxLength="41925"/>
+    <member name="my_bounded_wstring" type="wstring" stringMaxLength="20925"/>
+</struct>
+<!--><-->
+
+<!-->XML_ENUM<-->
 <enum name="MyEnum">
     <enumerator name="A" value="0"/>
     <enumerator name="B" value="1"/>
     <enumerator name="C"/>
 </enum>
-<!--><-->
 
-<!-->XML-TYPEDEF<-->
-<typedef name="MyAliasEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
-<typedef name="MyAliasArray" type="int32" arrayDimensions="2,2"/>
-<!--Complex map-->
-<typedef name="my_map_inner" type="int32" key_type="int32"/>
-<struct name="StructComplexMap">
-    <member name="my_complex_map" type="nonBasic" nonBasicTypeName="my_map_inner" key_type="int32" mapMaxLength="2"/>
-</struct>
-<!--Complex sequence-->
-<typedef name="long_sequence" sequenceMaxLength="10" type="int32"/>
-<struct name="StructComplexSequence">
-    <member name="my_sequence_sequence" type="nonBasic" nonBasicTypeName="long_sequence" sequenceMaxLength="3"/>
+<struct name="EnumStruct">
+    <member name="my_enum" type="nonBasic" nonBasicTypeName="MyEnum"/>
 </struct>
 <!--><-->
 
-<!-->XML-STRUCT<-->
-<struct name="MyStruct">
+<!-->XML_BITMASK<-->
+<bitmask name="MyBitMask" bit_bound="8">
+    <bit_value name="flag0" position="0"/>
+    <bit_value name="flag1"/>
+    <bit_value name="flag2"/>
+    <bit_value name="flag5" position="5"/>
+</bitmask>
+
+<struct name="BitmaskStruct">
+    <member name="my_bitmask" type="nonBasic" nonBasicTypeName="MyBitMask"/>
+</struct>
+<!--><-->
+
+<!-- TODO: fix XSD -->
+<!-->XML_TYPEDEF<-->
+<typedef name="MyAliasedEnum" type="nonBasic" nonBasicTypeName="MyEnum"/>
+<!-- XSD does not allow to set bounds to aliased strings -->
+<typedef name="MyAliasedBoundedString" type="string"/>
+<typedef name="MyRecursiveAlias" type="nonBasic" nonBasicTypeName="MyAliasedEnum"/>
+
+<struct name="AliasStruct">
+    <member name="my_aliased_enum" type="nonBasic" nonBasicTypeName="MyAliasedEnum"/>
+    <member name="my_aliased_bounded_string" type="nonBasic" nonBasicTypeName="MyAliasedBoundedString"/>
+    <member name="my_recursive_alias" type="nonBasic" nonBasicTypeName="MyRecursiveAlias"/>
+</struct>
+<!--><-->
+
+<!-->XML_SEQUENCES<-->
+<struct name="SequenceStruct">
+    <member name="bitmask_sequence" type="nonBasic" nonBasicTypeName="MyBitMask" sequenceMaxLength="-1"/>
+    <member name="short_sequence" sequenceMaxLength="5" type="int16"/>
+</struct>
+<!--><-->
+
+<!-->XML_ARRAYS<-->
+<struct name="ArrayStruct">
+    <member name="long_array" type="int32" arrayDimensions="2,3,4"/>
+</struct>
+<!--><-->
+
+<!-->XML_MAPS<-->
+<struct name="MapStruct">
+    <member name="string_alias_unbounded_map" type="nonBasic" nonBasicTypeName="MyAliasedBoundedString" key_type="string" mapMaxLength="-1"/>
+    <member name="short_long_map" type="int32" key_type="int16" mapMaxLength="2"/>
+</struct>
+<!--><-->
+
+<!-->XML_STRUCT<-->
+<struct name="InnerStruct">
+    <!-- XML does not support setting Member ID -->
     <member name="first" type="int32"/>
+</struct>
+
+<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
+<!-- <struct name="ParentStruct">
+    <member name="first" type="float32"/>
     <member name="second" type="int64"/>
 </struct>
+
+<struct name="ComplexStruct" baseType="ParentStruct">
+    <member name="complex_member" type="nonBasic" nonBasicTypeName="InnerStruct"/>
+</struct> -->
 <!--><-->
 
-<!-->XML-UNION<-->
-<union name="MyUnion">
-    <discriminator type="byte"/>
+<!-->XML_UNION<-->
+<union name="InnerUnion">
+    <discriminator type="int16"/>
+    <case>
+        <caseDiscriminator value="0"/>
+        <member name="first" type="nonBasic" nonBasicTypeName="PrimitivesStruct"/>
+    </case>
+    <case>
+        <caseDiscriminator value="1"/>
+        <caseDiscriminator value="default"/>
+        <member name="second" type="int64"/>
+    </case>
+</union>
+<union name="ComplexUnion">
+    <discriminator type="int32"/>
     <case>
         <caseDiscriminator value="0"/>
         <caseDiscriminator value="1"/>
-        <member name="first" type="int32"/>
-    </case>
-    <case>
-        <caseDiscriminator value="2"/>
-        <member name="second" type="nonBasic" nonBasicTypeName="MyStruct"/>
+        <member name="third" type="int32"/>
     </case>
     <case>
         <caseDiscriminator value="default"/>
-        <member name="third" type="nonBasic" nonBasicTypeName="int64"/>
+        <member name="fourth" type="nonBasic" nonBasicTypeName="InnerUnion"/>
     </case>
 </union>
 <!--><-->
@@ -4405,44 +4479,30 @@
 </struct>
 <!--><-->
 
-<!-->XML-BITSET<-->
-<bitset name="MyBitSet">
+<!-->XML_BITSET<-->
+<bitset name="ParentBitset">
     <bitfield name="a" bit_bound="3"/>
     <bitfield name="b" bit_bound="1"/>
     <bitfield bit_bound="4"/>
     <bitfield name="c" bit_bound="10"/>
     <bitfield name="d" bit_bound="12" type="int16"/>
 </bitset>
-<!--><-->
-<!-->XML-BITMASK<-->
-<bitmask name="MyBitMask" bit_bound="8">
-    <bit_value name="flag0" position="0"/>
-    <bit_value name="flag1"/>
-    <bit_value name="flag2" position="2"/>
-    <bit_value name="flag5" position="5"/>
-</bitmask>
-<!--><-->
-<!-->XML-BITSET-INHERIT<-->
-<bitset name="ParentBitSet">
-    <bitfield name="a" bit_bound="10"/>
-    <bitfield name="b" bit_bound="15"/>
+
+<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
+<!--<bitset name="ChildBitSet" baseType="ParentBitSet">
+    <bitfield name="e" bit_bound="1"/>
+    <bitfield name="f" bit_bound="20" type="uint32"/>
 </bitset>
 
-<bitset name="ChildBitSet" baseType="ParentBitSet">
-    <bitfield bit_bound="1"/>
-    <bitfield bit_bound="5" type="uint16"/>
-</bitset>
+<struct name="BitsetStruct">
+    <member name="my_bitset" type="nonBasic" nonBasicTypeName="ChildBitSet"/>
+</struct>-->
 <!--><-->
-<!-->XML-STRUCT-INHERIT<-->
-<struct name="ParentStruct">
-    <member name="first" type="int32"/>
-    <member name="second" type="int64"/>
-</struct>
-<struct name="ChildStruct" baseType="ParentStruct">
-    <member name="third" type="int32"/>
-    <member name="fourth" type="int64"/>
-</struct>
+
+<!-->XML_CUSTOM_ANNOTATION<-->
+<!-- XML Types Profiles does not support defining/setting custom annotations -->
 <!--><-->
+
 </type>
 </types>
 </dds>

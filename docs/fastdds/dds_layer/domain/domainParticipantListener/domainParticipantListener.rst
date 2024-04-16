@@ -34,22 +34,11 @@ Additionally, DomainParticipantListener adds the following non-standard callback
    If both callbacks are implemented, the discovery callback with the ``should_be_ignored`` boolean flag takes precedence.
    The second discovery callback is only executed if the discovered DomainParticipant is not ignored in the first callback (``should_be_ignored`` parameter returns ``false``).
 
- * |DomainParticipantListener::on_subscriber_discovery-api|: A new :ref:`dds_layer_subscriber_subscriber` is discovered in the same domain,
-   a previously known Subscriber has been removed,
-   or some Subscriber has changed its QoS.
+ * |DomainParticipantListener::on_data_reader_discovery-api|: A new :ref:`dds_layer_subscriber_dataReader` is discovered in the same domain,
+   a previously known DataReader has been removed, or some DataReader has changed its QoS.
 
- * |DomainParticipantListener::on_publisher_discovery-api|: A new :ref:`dds_layer_publisher_publisher` is discovered in the same domain,
-   a previously known Publisher has been removed,
-   or some Publisher has changed its QoS.
-
- * |DomainParticipantListener::on_type_discovery-api|: A new data Type is discovered in the same domain.
-
- * |DomainParticipantListener::on_type_dependencies_reply-api|: The Type lookup client received a replay to a :func:`getTypeDependencies` request.
-   This callback can be used to retrieve the new type using the :func:`getTypes` request and create a new
-   dynamic type using the retrieved type object.
-
- * |DomainParticipantListener::on_type_information_received-api|: A new |TypeInformation-api| has been received from a newly discovered
-   DomainParticipant.
+ * |DomainParticipantListener::on_data_writer_discovery-api|: A new :ref:`dds_layer_publisher_dataWriter` is discovered in the same domain,
+   a previously known DataWriter has been removed, or some DataWriter has changed its QoS.
 
  * |DomainParticipantListener::onParticipantAuthentication-api|: Informs about the result of the authentication process
    of a remote DomainParticipant (either on failure or success).

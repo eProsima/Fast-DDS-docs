@@ -98,6 +98,10 @@ with distributed systems:
   *Request-Reply* communications.
   This use case explains how to use the APIs to communicate two application using *Request-Reply*.
 
++ :ref:`use-case-remote-type-discovery-and-matching`.
+  This use case leverages the :ref:`xtypes_discovery_matching` to create endpoints and start communicating with remote
+  discovered endpoints with previously unknown data types.
+
 .. toctree::
     :maxdepth: 2
     :hidden:
@@ -115,3 +119,4 @@ with distributed systems:
     /fastdds/use_cases/dynamic_network_interfaces/dynamic_network_interfaces.rst
     /fastdds/use_cases/rosbag_capture/rosbag_capture.rst
     /fastdds/use_cases/request_reply/request_reply.rst
+    /fastdds/use_cases/remote_type_discovery_matching/remote_type_discovery_matching.rst

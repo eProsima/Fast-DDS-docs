@@ -1,3 +1,4 @@
+.. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-python.include
 
 .. _writing_pubsub_python_app:

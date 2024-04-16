@@ -1,0 +1,204 @@
+//!--TYPEINFORMATION
+@extensibility(APPENDABLE) @nested
+struct TypeIdentfierWithSize
+{
+    TypeIdentifier      type_id;
+    unsigned long       typeobject_serialized_size;
+};
+
+@extensibility(APPENDABLE) @nested
+struct TypeIdentifierWithDependencies
+{
+    TypeIdentfierWithSize           typeid_with_size;
+    long                            dependent_type_id_count;
+    sequence<TypeIdentfierWithSize> dependent_typeids;
+};
+
+@extensibility(MUTABLE) @nested
+struct TypeInformation
+{
+    @id(0x1001) TypeIdentifierWithDependencies minimal;
+    @id(0x1002) TypeIdentifierWithDependencies complete;
+};
+//!--
+
+//!--TYPEOBJECT
+@extensibility(APPENDABLE) @nested
+union TypeObject switch(octet)
+{
+    case EK_COMPLETE:
+        CompleteTypeObject  complete;
+    case EK_MINIMAL:
+        MinimalTypeObject   minimal;
+};
+//!--
+
+//!--IDL_PRIMITIVES
+struct PrimitivesStruct
+{
+    boolean my_bool;
+    octet my_octet;
+    char my_char;
+    wchar my_wchar;
+    long my_long;
+    unsigned long my_ulong;
+    int8 my_int8;
+    uint8 my_uint8;
+    short my_short;
+    unsigned short my_ushort;
+    long long my_longlong;
+    unsigned long long my_ulonglong;
+    float my_float;
+    double my_double;
+    long double my_longdouble;
+};
+//!--
+
+//!--IDL_STRINGS
+struct StringsStruct
+{
+    string my_string;
+    wstring my_wstring;
+    string<41925> my_bounded_string;
+    wstring<20925> my_bounded_wstring;
+};
+//!--
+
+//!--IDL_ENUM
+enum MyEnum
+{
+    A,
+    B,
+    C
+};
+
+struct EnumStruct
+{
+    MyEnum my_enum;
+};
+//!--
+
+//!--IDL_BITMASK
+@bit_bound(8)
+bitmask MyBitMask
+{
+    @position(0) flag0,
+    flag1,
+    flag2,
+    @position(5) flag5
+};
+
+struct BitmaskStruct
+{
+    MyBitMask my_bitmask;
+};
+//!--
+
+//!--IDL_TYPEDEF
+typedef MyEnum MyAliasedEnum;
+typedef string<100> MyAliasedBoundedString;
+typedef MyAliasedEnum MyRecursiveAlias;
+
+struct AliasStruct
+{
+    MyAliasedEnum my_aliased_enum;
+    MyAliasedBoundedString my_aliased_bounded_string;
+    MyRecursiveAlias my_recursive_alias;
+};
+//!--
+
+//!--IDL_SEQUENCES
+struct SequenceStruct
+{
+    sequence<MyBitmask> bitmask_sequence;
+    sequence<short, 5> short_sequence;
+};
+//!--
+
+//!--IDL_ARRAYS
+struct ArrayStruct
+{
+    long long_array[2][3][4];
+};
+//!--
+
+//!--IDL_MAPS
+struct MapStruct
+{
+    map<string, MyAliasedBoundedString> string_alias_unbounded_map;
+    map<short, long, 2> short_long_map;
+};
+//!--
+
+//!--IDL_STRUCT
+struct InnerStruct
+{	
+    @id(0x10) long first;
+};
+
+struct ParentStruct
+{	
+    float first;
+    long long second;
+};
+
+struct ComplexStruct : ParentStruct
+{	
+    InnerStruct complex_member;
+};
+//!--
+
+//!--IDL_UNION
+union InnerUnion switch (short)
+{
+    case 0:
+        @id(0x10) PrimitivesStruct first;
+    case 1:
+    default:
+        long long second;
+};
+
+union ComplexUnion switch (long)
+{
+    case 0:
+    case 1:
+        long third;
+    default:
+        InnerUnion fourth;
+};
+//!--
+
+//!--IDL_BITSET
+bitset ParentBitSet
+{	
+    bitfield<3> a;
+    bitfield<1> b;
+    bitfield<4>;
+    bitfield<10> c;
+    bitfield<12, short> d;
+};
+
+bitset ChildBitSet : ParentBitSet
+{	
+    bitfield<1> e;
+    bitfield<20, unsigned long> f;
+};
+
+struct BitsetStruct
+{
+   ChildBitSet my_bitset;
+};
+//!--
+
+//!--IDL_CUSTOM_ANNOTATION
+@annotation MyAnnotation
+{
+    short length;
+};
+
+@MyAnnotation(length = 5)
+struct AnnotatedStruct
+{
+    @MyAnnotation(length = 10) string string_var;
+};
+//!--

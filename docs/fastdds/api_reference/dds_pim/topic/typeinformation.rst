@@ -1,10 +1,10 @@
-.. _api_pim_typeinformation:
+.. _api_pim_typeinformationparameter:
 
 .. rst-class:: api-ref
 
-TypeInformation
----------------
+TypeInformationParameter
+------------------------
 
-.. doxygenclass:: eprosima::fastdds::dds::xtypes::TypeInformation
+.. doxygenclass:: eprosima::fastdds::dds::xtypes::TypeInformationParameter
     :project: FastDDS
     :members:

@@ -11,8 +11,7 @@ Subscriber application respectively.
     ├── CMakeCache.txt
     ├── CMakeFiles
     ├── CMakeLists.txt
-    ├── HelloWorld.cxx
-    ├── HelloWorld.h
+    ├── HelloWorld.hpp
     ├── HelloWorld.i
     ├── HelloWorld.idl
     ├── HelloWorld.py
@@ -23,6 +22,8 @@ Subscriber application respectively.
     ├── HelloWorldPubSubTypes.i
     ├── HelloWorldPublisher.py
     ├── HelloWorldSubscriber.py
+    ├── HelloWorldTypeObjectSupport.cxx
+    ├── HelloWorldTypeObjectSupport.hpp
     ├── Makefile
     ├── _HelloWorldWrapper.so
     ├── cmake_install.cmake

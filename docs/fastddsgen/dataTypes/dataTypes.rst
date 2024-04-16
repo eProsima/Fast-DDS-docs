@@ -1,3 +1,4 @@
+.. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
 .. _fastddsgen_idl_datatypes:
@@ -452,8 +453,7 @@ Annotations
 --------------
 
 The application allows the user to define and use their own annotations as defined in the
-`OMG IDL 4.2 specification <https://www.omg.org/spec/IDL/4.2/>`_.
-User annotations will be passed to TypeObject generated code if the ``-typeobject`` argument was used.
+`OMG IDL specification <https://www.omg.org/spec/IDL/4.2/>`_.
 
 .. code-block:: omg-idl
 
@@ -463,73 +463,122 @@ User annotations will be passed to TypeObject generated code if the ``-typeobjec
         string name;
     };
 
-Additionally, the following standard annotations are builtin (recognized and passed to TypeObject when unimplemented).
+.. _builtin_annotations:
 
-+-------------------------+--------------------------------------------------------------------------------------------+
-| Annotation              | Implemented behavior                                                                       |
-+=========================+============================================================================================+
-| @id                     | [Unimplemented] Assign a 32-bit integer identifier to an element.                          |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @autoid                 | [Unimplemented] Automatically allocate identifiers to the elements.                        |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @optional               | Setting an element as optional. More info in `Optional Members`_.                          |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @extensibility          | Applied to any element which is constructed. Allow specifying how the |br|                 |
-|                         | element is allowed to evolve. More info in Extensibility_.                                 |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @final                  | Shortcut for `@extensibility(FINAL)`                                                       |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @appendable             | Shortcut for `@extensibility(APPENDABLE)`                                                  |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @mutable                | Shortcut for `@extensibility(MUTABLE)`                                                     |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @position               | Setting a position to an element or group of elements. Used by bitmasks_.                  |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @value                  | [Unimplemented] Allow setting a constant value to any element.                             |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @key                    | Alias for eProsima's @Key annotation. Indicate that a data member is part of the key |br|  |
-|                         | (please refer to :ref:`dds_layer_topic_instances` for more information).                   |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @must_understand        | [Unimplemented] Indicate that the data member must be understood by any application |br|   |
-|                         | making use of that piece of data.                                                          |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @default_literal        | [Unimplemented] Allow selecting one member as the default within a collection.             |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @default                | Allow specifying the default value of the annotated element.                               |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @range                  | [Unimplemented] Allow specifying a range of allowed values for the annotated element.      |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @min                    | [Unimplemented] Allow specifying a minimum value for the annotated element.                |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @max                    | [Unimplemented] Allow specifying a maximum value for the annotated element.                |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @unit                   | [Unimplemented] Allow specifying a unit of measurement for the annotated element.          |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @bit_bound              | Allow setting a size to a bitmasks_.                                                       |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @external               | [Unimplemented] Force the annotated element to be placed in a dedicated data space.        |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @nested                 | [Unimplemented] Allow indicating that the objects from the type under annotation will |br| |
-|                         | always be nested within another one.                                                       |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @verbatim               | [Unimplemented] Allow injecting some user-provided information into what the compiler |br| |
-|                         | will generate.                                                                             |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @service                | [Unimplemented] Allow indicating that an interface is to be treated as a service.          |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @oneway                 | [Unimplemented] Allow indicating that an operation is one way only, meaning that |br|      |
-|                         | related information flow will go from client to server but not back.                       |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @ami                    | [Unimplemented] Allow indicating that an interface or an operation is to be made |br|      |
-|                         | callable asynchronously.                                                                   |
-+-------------------------+--------------------------------------------------------------------------------------------+
-| @non_serialized         | The annotated member will be omitted from serialization.                                   |
-+-------------------------+--------------------------------------------------------------------------------------------+
+Additionally, the following standard annotations are defined by the specification and considered builtin (these
+annotations might be applied without the need of defining them).
 
-Most unimplemented annotations are related to Extended Types.
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Builtin Annotation
+      - Behavior
+      - Supported
+    * - :code:`@ami`
+      - Asynchronous interface or operation.
+      - ❌
+    * - :code:`@appendable`
+      - Shortcut for :code:`@extensibility(APPENDABLE)`.
+      - ✅
+    * - :code:`@autoid`
+      - Member ID algorithm configuration if there is no member ID explicitly set using :code:`@id` annotation. |br|
+        Possible values are :code:`SEQUENTIAL` (member ID is assigned sequentially. Default value) or |br|
+        :code:`HASH` (member ID is calculated with an algorithm involving hashing the member name). |br|
+        This annotation might be defined in module, structure or union declarations.
+      - ✅
+    * - :code:`@bit_bound`
+      - Set number of bits on `bitmasks`_ and `enumerations`_ underlying primitive type. |br|
+        Currently, :code:`@bit_bound` can only be applied to bitmask types.
+      - ✅❌
+    * - :code:`@data_representation`
+      - Specify the |DataRepresentationId-api| required for a specific type.
+      - ❌
+    * - :code:`@default`
+      - Set constant default value to a member.
+      - ❌
+    * - :code:`@default_literal`
+      - Mark an `enumerations`_ literal as default.
+      - ❌
+    * - :code:`@default_nested`
+      - Use in module declaration to mark as :code:`@nested` every element defined within the module.
+      - ❌
+    * - :code:`@extensibility`
+      - Applicable to any constructed element.
+        Specify how the element is allowed to evolve. |br|
+        Please, refer to Extensibility_ for more information.
+      - ✅
+    * - :code:`@external`
+      - Member is stored in external storage.
+      - ✅
+    * - :code:`@final`
+      - Shortcut for :code:`@extensibility(FINAL)`
+      - ✅
+    * - :code:`@hashid`
+      - Calculate the member ID with the string provided or, if empty, with the member name.
+      - ✅
+    * - :code:`@id`
+      - Assign member ID to a structure or union member.
+      - ✅
+    * - :code:`@ignore_literal_names`
+      - When checking evolved type compatibility, take or not into account member names.
+      - ❌
+    * - :code:`@key`
+      - Mark a structure member as part of the key. :code:`@Key` is also supported. |br|
+        Please, refer to :ref:`dds_layer_topic_instances` for more information.
+      - ✅
+    * - :code:`@max`
+      - Set a maximum constant value to the member.
+      - ❌
+    * - :code:`@min`
+      - Set a minimum constant value to the member.
+      - ❌
+    * - :code:`@must_understand`
+      - Mark a structure member as essential for the structure cohesion.
+      - ❌
+    * - :code:`@mutable`
+      - Shortcut for :code:`@extensibility(MUTABLE)`
+      - ✅
+    * - :code:`@nested`
+      - Type is always used within another one.
+      - ❌
+    * - :code:`@non_serialized`
+      - Omit member during serialization.
+      - ❌
+    * - :code:`@oneway`
+      - One-way operation, flowing the information only on one direction.
+      - ❌
+    * - :code:`@optional`
+      - Configure a structure member as optional. Please refer to `Optional Members`_ for more information.
+      - ✅
+    * - :code:`@position`
+      - Set a bitflag position in `bitmasks`_.
+      - ✅
+    * - :code:`@range`
+      - Set a range of allowed values for the member.
+      - ❌
+    * - :code:`@service`
+      - Interface is to be treated as a service.
+      - ❌
+    * - :code:`@topic`
+      - Structure or union is meant to be used as Topic Data Type.
+      - ❌
+    * - :code:`@try_construct`
+      - When checking evolved type compatibility, configure the behavior for |br|
+        collection/aggregated types construction and what to do in case of failure.
+      - ❌
+    * - :code:`@unit`
+      - Specify a unit of measurement for the member.
+      - ❌
+    * - :code:`@value`
+      - Set constant value to `enumerations`_ literal.
+      - ❌
+    * - :code:`@verbatim`
+      - Add comment or text to the element.
+      - ❌
 
 Forward declaration
----------------------
+-------------------
 
 *Fast DDS-Gen* supports forward declarations.
 This allows declaring inter-dependant structures, unions, etc.

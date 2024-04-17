@@ -60,6 +60,12 @@ Member types
 Member types are defined as any type that can belong to a `Struct`_ or a `Union`_, or be aliased by a
 `Typedef`_.
 These can be defined by the ``<member>`` XML tag.
+A member can be annotated as ``key`` (equivalent of the IDL's ``@key``) by setting the ``key`` attribute to ``"true"``.
+
+.. literalinclude:: /../code/XMLTester.xml
+  :language: xml
+  :start-after: <!-->XML-MEMBER_WITH_KEY<-->
+  :end-before: <!--><-->
 
 Primitive types
 ***************

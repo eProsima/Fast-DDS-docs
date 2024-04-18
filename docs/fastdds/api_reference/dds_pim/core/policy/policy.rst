@@ -2,6 +2,7 @@ Policy
 ======
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/core/policy/datarepresentationid.rst
    /fastdds/api_reference/dds_pim/core/policy/datarepresentationqospolicy.rst

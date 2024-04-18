@@ -4,6 +4,7 @@ Flow control
 ============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/flowcontrol/FlowControllerDescriptor
     /fastdds/api_reference/rtps/flowcontrol/FlowControllerSchedulerPolicy

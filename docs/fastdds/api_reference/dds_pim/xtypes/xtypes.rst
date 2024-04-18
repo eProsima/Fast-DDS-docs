@@ -2,6 +2,7 @@ XTypes
 ======
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/xtypes/dynamic_types.rst
    /fastdds/api_reference/dds_pim/xtypes/exception.rst

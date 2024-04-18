@@ -6,6 +6,7 @@ Statistics
 *eProsima Fast DDS* Statistics Module extension API.
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/statistics/domain_participant.rst
    /fastdds/api_reference/statistics/datawriter_qos.rst

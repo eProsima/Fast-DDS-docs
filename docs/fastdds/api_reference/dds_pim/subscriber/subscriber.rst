@@ -2,6 +2,7 @@ Subscriber
 ==========
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/subscriber/datareader.rst
    /fastdds/api_reference/dds_pim/subscriber/datareaderlistener.rst

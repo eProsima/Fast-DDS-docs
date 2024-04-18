@@ -4,6 +4,7 @@ Types
 --------------------
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/Types/BuiltinEndpointSet_t
     /fastdds/api_reference/rtps/common/Types/const_values

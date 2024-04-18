@@ -7,4 +7,5 @@ TopicQos
 
 .. autoclass:: fastdds.TopicQos
 
-.. autoclass:: fastdds.TOPIC_QOS_DEFAULT
+.. autodata:: fastdds.TOPIC_QOS_DEFAULT
+   :annotation: = <fastdds.TopicQos>

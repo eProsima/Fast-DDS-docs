@@ -4,6 +4,7 @@ Property
 ===============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/Property/Property
     /fastdds/api_reference/rtps/common/Property/PropertyHelper

@@ -4,6 +4,7 @@ Guid
 ===============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/Guid/c_Guid_Unknown
     /fastdds/api_reference/rtps/common/Guid/GUID_t

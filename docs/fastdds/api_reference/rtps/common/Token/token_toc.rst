@@ -4,6 +4,7 @@ Token
 --------------------
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/Token/AuthenticatedPeerCredentialToken
     /fastdds/api_reference/rtps/common/Token/DataHolder

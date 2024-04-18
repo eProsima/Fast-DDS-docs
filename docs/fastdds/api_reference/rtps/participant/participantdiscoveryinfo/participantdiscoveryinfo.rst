@@ -4,6 +4,7 @@ ParticipantDiscoveryInfo
 ============================
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/participant/participantdiscoveryinfo/ParticipantAuthenticationInfo
     /fastdds/api_reference/rtps/participant/participantdiscoveryinfo/ParticipantDiscoveryInfo_class

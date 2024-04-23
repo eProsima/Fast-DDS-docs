@@ -981,11 +981,6 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - ❌
       - ❌
 
-To apply the :code:`@extensibility` annotation (and its shortcuts) the |TypeDescriptor-api| provides
-:code:`extensibility_kind` property.
-
-:code:`@key` annotation is applied enabling |MemberDescriptor-api| :code:`is_key` property.
-
 .. _xtypes_complextypes:
 
 Managing Complex Types Data

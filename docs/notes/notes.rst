@@ -3,64 +3,65 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.7
+Version 2.6.8
 =============
 
 This release includes the following **features**:
 
-1. Support ``Autofill port`` (:ref:`automatically set a port<transport_tcp_transportDescriptor>`) for TCP Transport.
-2. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable
-3. Support :ref:`TCP Discovery server<use-case-tcp-discovery-server>` CLI and environment variable
-4. Define methods (:ref:`environment variable<env_vars_builtin_transports>`,
-   :ref:`rtps layer<rtps_layer_builtin_transports>`, :ref:`xml<RTPS>`) to
-   :ref:`configure transport scenarios<transport_tcp_enabling>`
-5. :ref:`Secure discovery server<DS_security>`
+#. :ref:`Authentication Handshake Properties <property_policies_security>` documentation.
+#. TCP Client and Server Participant Decision Making.
+#. Add macOS and Ubuntu Github CI.
 
 This release includes the following **improvements**:
 
-1. Log warning message upon receiver resource creation failure.
-2. Add tests for reconnection with same GUID
-3. Use foonathan memory manager for reducing allocations in ``SharedMemManager.hpp``
-4. Simplify code in ``CDRMessage``.
-5. Rerun failed tests with ctest option instead of colcon's.
-6. Several improvements on CI jobs.
-7. Upgrade CMake minimum requirement to 3.16.3
-8. Update PR checklist template. Backports and Description
+#. Make DataWriters always send the key hash on keyed topics.
+#. Include variety of terminate process signals handler in discovery server.
+#. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows.
+#. Effectively assert ``AUTOMATIC/MANUAL_BY_PARTICIPANT`` liveliness.
+#. Pick smallest available participant ID for new participants.
+#. Build Fast DDS Python bindings in Fast DDS Docs Github CI job.
+#. Check History QoS inconsistencies.
+#. Add check for XML API to PR template.
+#. ``LARGE_DATA`` Participants logic with same listening ports.
 
-This release includes the following **bugfixes**:
+TCP transport improvements:
 
-1. Fix ``DomainParticipant::register_remote_type`` return when negotiating type.
-2. Fix ``RemoteBuiltinEndpointHonoring`` blackbox test.
-3. Allow participant profiles with no rtps tag.
-4. Fix bad-free when receiving malformed DATA submessage.
-5. Fix clang warnings
-6. Use STL implementation of ``Timed/RecursiveTimedMutex`` when ``MSVC >= 19.36``.
-7. Fix encapsulation format in WLP.
-8. Fix the clang build for clang 14.
-9. Notify data-sharing listener at the end of a successful matching in intraprocess.
-10. Updatable disable_positive_acks period.
-11. Fix Data Race when updating liveliness changed in WLP.
-12. Fix TCP sender resources creation.
-13. Fix flow controllers unit tests compilation when using Fast CDR from thirdparty.
-14. Add XML parser bit_bound bounds check.
-15. Use ``FASTRTPS_NO_LIB`` on unittest root folder.
-16. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets.
-17. Fix mac address overflow on windows.
-18. Fix ``PubSubAsReliable`` test.
-19. Fix ``FileWatchTest``.
-20. Add missing thread include.
-21. Fix missing mandatory attribute check in XML parser struct type.
-22. Better handling of trigger events in docs CI.
-23. Fix memory problem when ciphering payload
-24. Select correct .repos file on push events
-25. Update TLS unit test certificates
-26. Fix bad-free when receiving malformed DATA_FRAG submessage
-27. Fix data race on writer destruction while sending heartbeat
-28. Fix DiscoveryServer list access deadlock
-29. Fix c++11 support for fast discovery server tool
-30. Fix CVE-2023-50257
-31. Fix std::move warning
-32. Fix Github Windows CI
+#. TCP unique client announced local port.
+#. Remove unnecessary TCP warning and Fix some tests.
+#. TCP ``non-blocking`` send.
+#. Enabling multiple interfaces through whitelist in TCP servers.
+
+Github CI management:
+
+#. Refactor Github CI sanitizer related jobs.
+#. Avoid running GitHub CI if PR has conflicts.
+#. Add manual Ubuntu Github CI.
+#. Improve CI version management.
+#. Build ``ShapesDemo`` on Ubuntu Github CI.
+#. Only run PRs CI when review is requested.
+
+This release includes the following **fixes**:
+
+#. Fix and refactor Windows Github CI.
+#. Fix max clash with Windows CI.
+#. Fix the shared memory cleaning script.
+#. Fix doxygen docs warnings. Prepare for compiling with ``Doxygen 1.10.0``.
+#. Prevent index overflow and correctly assert the end iterator in DataSharing.
+#. Add a keyed fragmented change to the reader data instance only when its completed.
+#. Add missing virtual destructor for ``StatisticsAncillary``.
+#. Fix wrong log info messages on TCP.
+#. Migrate apt package installation action to ``eProsima-CI``.
+#. Fix CI documentation workflow label triggering.
+#. Upgrade dependency version to last patch version in ``.repos`` file.
+#. Fix ``CVE-2024-28231``
+#. Fix data race on PDP.
+#. Discard already processed samples on PDPListener.
+#. Fix flaky Log tests.
+#. Add missing ``TypeLookup`` listeners.
+#. Fix hidden overloaded virtual methods.
+#. Fix TCP reconnection after open logical port failure.
+#. Fix ``CVE-2024-30258 / CVE-2024-30259``
+#. Make :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>` coherent with ``read()/take()``.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -70,6 +71,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.7.rst
 .. include:: previous_versions/v2.6.6.rst
 .. include:: previous_versions/v2.6.5.rst
 .. include:: previous_versions/v2.6.4.rst

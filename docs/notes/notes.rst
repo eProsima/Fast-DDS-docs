@@ -10,16 +10,13 @@ This release includes the following **features**:
 
 #. :ref:`Authentication Handshake Properties <property_policies_security>` documentation.
 #. TCP Client and Server Participant Decision Making.
-#. Add macOS and Ubuntu Github CI.
 
 This release includes the following **improvements**:
 
 #. Make DataWriters always send the key hash on keyed topics.
 #. Include variety of terminate process signals handler in discovery server.
-#. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows.
 #. Effectively assert ``AUTOMATIC/MANUAL_BY_PARTICIPANT`` liveliness.
 #. Pick smallest available participant ID for new participants.
-#. Build Fast DDS Python bindings in Fast DDS Docs Github CI job.
 #. Check History QoS inconsistencies.
 #. Add check for XML API to PR template.
 #. ``LARGE_DATA`` Participants logic with same listening ports.
@@ -30,6 +27,7 @@ TCP transport improvements:
 #. Remove unnecessary TCP warning and Fix some tests.
 #. TCP ``non-blocking`` send.
 #. Enabling multiple interfaces through whitelist in TCP servers.
+#. Set real TCP ``non-blocking-send`` limitation.
 
 Github CI management:
 
@@ -39,6 +37,9 @@ Github CI management:
 #. Improve CI version management.
 #. Build ``ShapesDemo`` on Ubuntu Github CI.
 #. Only run PRs CI when review is requested.
+#. Add macOS and Ubuntu Github CI.
+#. Build Fast DDS Python bindings in Fast DDS Docs Github CI job.
+#. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows.
 
 This release includes the following **fixes**:
 
@@ -62,6 +63,8 @@ This release includes the following **fixes**:
 #. Fix TCP reconnection after open logical port failure.
 #. Fix ``CVE-2024-30258 / CVE-2024-30259``
 #. Make :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>` coherent with ``read()/take()``.
+#. Removed warning in ``ParameterList``.
+#. TCP avoid first message loss.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

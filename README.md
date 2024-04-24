@@ -6,6 +6,12 @@
 
 <a href="http://www.eprosima.com"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSd0PDlVz1U_7MgdTe0FRIWD0Jc9_YH-gGi0ZpLkr-qgCI6ZEoJZ5GBqQ" align="left" hspace="8" vspace="2" width="100" height="100" ></a>
 
+
+<!-- TODO(eduponz): Remove this before releasing v3.0.0 -->
+> [!WARNING]
+> In preparation for v3.0.0, Fast DDS' master branch is undergoing major changes entailing **API breaks**.
+> Until Fast DDS v3.0.0 is released, it is strongly advisable to use the latest stable branch, [2.14.x](https://github.com/eProsima/Fast-DDS/tree/2.14.x).
+
 *eprosima Fast DDS* (formerly Fast RTPS) is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). eProsima Fast DDS implements the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP,
 as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution
 Service (DDS) standard. *eProsima Fast DDS* exposes an API to access the RTPS protocol directly, giving the user full access to the protocol internals.

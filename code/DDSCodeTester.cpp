@@ -1277,6 +1277,14 @@ void dds_discovery_examples()
     }
     {
         //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
+        // Using the ``>>`` operator and the ``std::istringstream`` type.
+        DomainParticipantQos serverQos;
+        std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> serverQos.wire_protocol().prefix;
+        //!--
+    }
+    {
+        //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
+        // Manual setting of the ``unsigned char`` in ASCII format.
         eprosima::fastdds::rtps::GuidPrefix_t serverGuidPrefix;
         serverGuidPrefix.value[0] = eprosima::fastdds::rtps::octet(0x44);
         serverGuidPrefix.value[1] = eprosima::fastdds::rtps::octet(0x53);
@@ -1296,36 +1304,23 @@ void dds_discovery_examples()
         //!--
     }
     {
-        //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
-        DomainParticipantQos serverQos;
-        std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> serverQos.wire_protocol().prefix;
-        //!--
-    }
-    {
-        //CONF_SERVER_CLIENT_GUIDPREFIX
-        RemoteServerAttributes server;
-        server.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.41");
-
-        DomainParticipantQos clientQos;
-        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
-        //!--
-    }
-    {
         //CONF_SERVER_CLIENT_LOCATORS
         Locator_t locator;
+        // The default locator kind is UDPv4
+        locator.kind = LOCATOR_KIND_UDPv4;
         IPLocator::setIPv4(locator, 192, 168, 1, 133);
         locator.port = 64863;
-        RemoteServerAttributes server;
-        server.metatrafficUnicastLocatorList.push_back(locator);
 
         DomainParticipantQos clientQos;
-        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server);
+        clientQos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(locator);
         //!--
     }
 
     {
         //CONF_SERVER_SERVER_LOCATORS
         Locator_t locator;
+        // The default locator kind is UDPv4
+        locator.kind = LOCATOR_KIND_UDPv4;
         IPLocator::setIPv4(locator, 192, 168, 1, 133);
         locator.port = 64863;
 
@@ -1352,17 +1347,13 @@ void dds_discovery_examples()
         /* Create a new server entry to which the client or server should connect */
         RemoteServerAttributes remote_server_att;
 
-        // Set server's GUID prefix
-        remote_server_att.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.42");
-
         // Set server's listening locator for PDP
         Locator_t locator;
         IPLocator::setIPv4(locator, 127, 0, 0, 1);
         locator.port = 11812;
-        remote_server_att.metatrafficUnicastLocatorList.push_back(locator);
 
         /* Update list of remote servers for this client or server */
-        client_or_server_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
+        client_or_server_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(locator);
         if (RETCODE_OK != client_or_server->set_qos(client_or_server_qos))
         {
             // Error
@@ -1394,9 +1385,6 @@ void dds_discovery_examples()
         server_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 DiscoveryProtocol::SERVER;
 
-        // Set SERVER's GUID prefix
-        std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> server_qos.wire_protocol().prefix;
-
         // Set SERVER's listening locator for PDP
         Locator_t locator;
         IPLocator::setIPv4(locator, 127, 0, 0, 1);
@@ -1404,18 +1392,13 @@ void dds_discovery_examples()
         server_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
 
         /* Add a remote serve to which this server will connect */
-        // Set remote SERVER's GUID prefix
-        RemoteServerAttributes remote_server_att;
-        remote_server_att.ReadguidPrefix("44.53.01.5f.45.50.52.4f.53.49.4d.41");
-
         // Set remote SERVER's listening locator for PDP
         Locator_t remote_locator;
         IPLocator::setIPv4(remote_locator, 127, 0, 0, 1);
         remote_locator.port = 11812;
-        remote_server_att.metatrafficUnicastLocatorList.push_back(remote_locator);
 
         // Add remote SERVER to SERVER's list of SERVERs
-        server_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
+        server_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_locator);
 
         // Create SERVER
         DomainParticipant* server =
@@ -1437,18 +1420,13 @@ void dds_discovery_examples()
         client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 DiscoveryProtocol::CLIENT;
 
-        // Set SERVER's GUID prefix
-        RemoteServerAttributes remote_server_att;
-        remote_server_att.ReadguidPrefix("44.53.00.5f.45.50.52.4f.53.49.4d.41");
-
         // Set SERVER's listening locator for PDP
         Locator_t locator;
         IPLocator::setIPv4(locator, 127, 0, 0, 1);
         locator.port = 11811;
-        remote_server_att.metatrafficUnicastLocatorList.push_back(locator);
 
         // Add remote SERVER to CLIENT's list of SERVERs
-        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
+        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(locator);
 
         // Set ping period to 250 ms
         client_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod =
@@ -6285,9 +6263,6 @@ void dds_usecase_examples()
         IPLocator::setIPv4(server_locator, "192.168.10.57");
         server_locator.port = 56542;
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
-
-        // Set the GUID prefix to identify this server
-        std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> qos.wire_protocol().prefix;
         //!--
     }
 
@@ -6303,14 +6278,8 @@ void dds_usecase_examples()
         IPLocator::setIPv4(remote_server_locator, "192.168.10.57");
         remote_server_locator.port = 56542;
 
-        RemoteServerAttributes remote_server_attr;
-        remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator);
-
-        // Set the GUID prefix to identify the remote server
-        remote_server_attr.ReadguidPrefix("72.61.73.70.66.61.72.6d.74.65.73.74");
-
         // Connect to the SERVER at the previous locator
-        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_locator);
         //!--
     }
 
@@ -6324,6 +6293,7 @@ void dds_usecase_examples()
         // Configure participant_1 as SERVER listening on the previous locator
         DomainParticipantQos server_1_qos;
         server_1_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
+        // Optional GUID
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.31") >> server_1_qos.wire_protocol().prefix;
         server_1_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator_1);
 
@@ -6335,6 +6305,7 @@ void dds_usecase_examples()
         // Configure participant_2 as SERVER listening on the previous locator
         DomainParticipantQos server_2_qos;
         server_2_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
+        // Optional GUID
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.32") >> server_2_qos.wire_protocol().prefix;
         server_2_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator_2);
         //!--
@@ -6347,24 +6318,16 @@ void dds_usecase_examples()
         IPLocator::setIPv4(remote_server_locator_1, "192.168.10.57");
         remote_server_locator_1.port = 56542;
 
-        RemoteServerAttributes remote_server_attr_1;
-        remote_server_attr_1.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
-        remote_server_attr_1.metatrafficUnicastLocatorList.push_back(remote_server_locator_1);
-
         // Define a locator for the second SERVER Participant
         Locator_t remote_server_locator_2;
         IPLocator::setIPv4(remote_server_locator_2, "192.168.10.60");
         remote_server_locator_2.port = 56543;
 
-        RemoteServerAttributes remote_server_attr_2;
-        remote_server_attr_2.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
-        remote_server_attr_2.metatrafficUnicastLocatorList.push_back(remote_server_locator_2);
-
         // Configure the current participant as CLIENT connecting to the SERVERS at the previous locators
         DomainParticipantQos client_qos;
         client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::CLIENT;
-        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_1);
-        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_2);
+        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_locator_1);
+        client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_locator_2);
         //!--
     }
 
@@ -6378,6 +6341,7 @@ void dds_usecase_examples()
         server_locator.port = 56543;
 
         qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
+        // Optional GUID
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.31") >> qos.wire_protocol().prefix;
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
 
@@ -6386,11 +6350,7 @@ void dds_usecase_examples()
         IPLocator::setIPv4(remote_server_locator, "192.168.10.57");
         remote_server_locator.port = 56542;
 
-        RemoteServerAttributes remote_server_attr;
-        remote_server_attr.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
-        remote_server_attr.metatrafficUnicastLocatorList.push_back(remote_server_locator);
-
-        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr);
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_locator);
         //!--
     }
 
@@ -6404,6 +6364,7 @@ void dds_usecase_examples()
         server_locator.port = 56541;
 
         qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
+        // Optional GUID
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.33") >> qos.wire_protocol().prefix;
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
 
@@ -6412,22 +6373,14 @@ void dds_usecase_examples()
         IPLocator::setIPv4(remote_server_locator_A, "192.168.10.60");
         remote_server_locator_A.port = 56543;
 
-        RemoteServerAttributes remote_server_attr_A;
-        remote_server_attr_A.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.31");
-        remote_server_attr_A.metatrafficUnicastLocatorList.push_back(remote_server_locator_A);
-
-        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_A);
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_locator_A);
 
         // Add the connection attributes to the remote server B.
         Locator_t remote_server_locator_B;
         IPLocator::setIPv4(remote_server_locator_B, "192.168.10.57");
         remote_server_locator_B.port = 56542;
 
-        RemoteServerAttributes remote_server_attr_B;
-        remote_server_attr_B.ReadguidPrefix("75.63.2D.73.76.72.63.6C.6E.74.2D.32");
-        remote_server_attr_B.metatrafficUnicastLocatorList.push_back(remote_server_locator_B);
-
-        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_B);
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_locator_B);
         //!--
     }
 
@@ -7542,9 +7495,6 @@ void tcp_use_cases()
         eprosima::fastdds::rtps::IPLocator::setPhysicalPort(listening_locator, tcp_listening_port);
         eprosima::fastdds::rtps::IPLocator::setLogicalPort(listening_locator, tcp_listening_port);
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(listening_locator);
-
-        // Set the GUID prefix to identify this server
-        std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> qos.wire_protocol().prefix;
         //!--
     }
 
@@ -7568,15 +7518,8 @@ void tcp_use_cases()
         eprosima::fastdds::rtps::IPLocator::setPhysicalPort(server_locator, server_port);
         eprosima::fastdds::rtps::IPLocator::setLogicalPort(server_locator, server_port);
 
-        // Define the server attributes
-        eprosima::fastdds::rtps::RemoteServerAttributes remote_server_att;
-        remote_server_att.metatrafficUnicastLocatorList.push_back(server_locator);
-
-        // Set the GUID prefix to identify this server
-        std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> remote_server_att.guidPrefix;
-
         // Add the server
-        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_att);
+        qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server_locator);
         //!--
     }
 }

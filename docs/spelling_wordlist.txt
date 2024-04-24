@@ -76,6 +76,7 @@ datarate
 datareaders
 datasharing
 Datasharing
+DDSEntityStatus
 de
 deallocate
 deallocated

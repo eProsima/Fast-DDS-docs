@@ -11,3 +11,6 @@ DataWriterQos
 
 .. doxygenvariable:: eprosima::fastdds::dds::DATAWRITER_QOS_DEFAULT
     :project: FastDDS
+
+.. doxygenvariable:: eprosima::fastdds::dds::DATAWRITER_QOS_USE_TOPIC_QOS
+    :project: FastDDS

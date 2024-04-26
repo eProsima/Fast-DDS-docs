@@ -314,9 +314,9 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v1.0.24 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.24>`__
+              - `v1.0.28 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.28>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
-              - `v1.2.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.2.1>`__
+              - `v1.2.2 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.2.2>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
               - `v1.18.1 <https://github.com/chriskohlhoff/asio/tree/asio-1-18-1>`__
             * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__
@@ -390,10 +390,10 @@ Fast DDS as the core middleware.
             * - Product
               - Related version
             * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
-              - `v2.1.2 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.1.2>`__
+              - `v2.1.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.1.2>`__
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
               - `v1.2.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v1.2.0>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.0.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.0.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.6.7 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.7>`__
+              - `v2.6.8 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.8>`__

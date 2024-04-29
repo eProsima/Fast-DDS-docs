@@ -929,8 +929,13 @@ Changing these values may require special permissions.
 * |ThreadSettings::stack_size-api|: Configures the thread's stack size in bytes.
   This value is platform specific and it is used as-is to configure the specific platform thread.
 
+The :ref:`threadsettingsqos` for reception threads in port-based transport desciptors can also be configured
+by associating each thread-specific configuration with its corresponding port number.
+
 Example
 """""""
+
+The following example illustrate a thread settings configuration:
 
 .. tabs::
 
@@ -949,6 +954,25 @@ Example
         :start-after: <!-->CONF-COMMON-THREAD-SETTINGS<-->
         :lines: 10,12-15,17
         :dedent: 16
+
+The subsequent example depicts a reception threads settings configuration:
+
+.. tabs::
+
+  .. tab:: C++
+
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+      :language: c++
+      :dedent: 8
+      :start-after: //DDS_RECEPTION_THREADS_SETTINGS
+      :end-before: //!
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-COMMON-RECEPTION-THREADS-SETTINGS<-->
+        :end-before: <!--><-->
 
 .. _transportconfigqos:
 

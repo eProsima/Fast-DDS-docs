@@ -4147,6 +4147,20 @@ void dds_qos_examples()
         thread_settings.priority = 10;
         thread_settings.affinity = 4;
         thread_settings.stack_size = 2000;
+
+        //!--
+
+        //DDS_RECEPTION_THREADS_SETTINGS
+        PortBasedTransportDescriptor::ReceptionThreadsConfigMap reception_threads_config;
+        reception_threads_config[20000].scheduling_policy = 1;
+        reception_threads_config[20000].priority = 30;
+        reception_threads_config[20000].affinity = 2;
+        reception_threads_config[20000].stack_size = 1024;
+        reception_threads_config[20001].scheduling_policy = 2;
+        reception_threads_config[20001].priority = 10;
+        reception_threads_config[20001].affinity = 6;
+        reception_threads_config[20001].stack_size = 4096;
+
         //!--
     }
 

@@ -4358,6 +4358,9 @@
 </struct>
 <!--><-->
 <struct name="MembersExample">
+<!-->XML-MEMBER_WITH_KEY<-->
+<member name="my_long" type="int32" key="true"/>
+<!--><-->
 <!-->XML-BOUNDEDSTRINGS<-->
 <member name="my_large_string" type="string" stringMaxLength="41925"/>
 <member name="my_large_wstring" type="wstring" stringMaxLength="20925"/>

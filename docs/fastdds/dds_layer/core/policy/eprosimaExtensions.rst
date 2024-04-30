@@ -929,7 +929,7 @@ Changing these values may require special permissions.
 * |ThreadSettings::stack_size-api|: Configures the thread's stack size in bytes.
   This value is platform specific and it is used as-is to configure the specific platform thread.
 
-The :ref:`threadsettingsqos` for reception threads in port-based transport desciptors can also be configured
+The :ref:`threadsettingsqos` for reception threads in port-based transport descriptors can also be configured
 by associating each thread-specific configuration with its corresponding port number.
 
 Example

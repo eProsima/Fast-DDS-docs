@@ -13,6 +13,10 @@ Calling *eProsima Fast DDS-Gen* with the option `-python` will generate these fi
 first generating C++ files (for connecting C++ and Python) and Python files (Python module for your type) and
 then compiling the C++ sources.
 
+.. note::
+
+    The Python bindings does not support the use of namespaces.
+
 Before calling CMake, the :ref:`fastddsgen_python_build` process needs several :ref:`fastddsgen_python_deps` to be met.
 
 .. _fastddsgen_python_deps:
@@ -44,6 +48,11 @@ Call CMake:
 
 This will create the Python files (`.py`) with the modules (one per each IDL file) that have to be imported within the
 Python script.
+
+.. note::
+
+    The python bindings does not support using different modules in the same idl file.
+    Split them in different files for expected behavior.
 
 .. External links
 

@@ -26,6 +26,7 @@ Version 2.10
 Version 2.6
 -----------
 
+.. include:: v2.6.8.rst
 .. include:: v2.6.7.rst
 .. include:: v2.6.6.rst
 .. include:: v2.6.5.rst

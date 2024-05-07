@@ -1,0 +1,41 @@
+`Version 2.13.4 <https://fast-dds.docs.eprosima.com/en/v2.13.4/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **features** in an ABI compatible manner:
+
+#. Expose :ref:`Authentication Handshake Properties<property_policies_security>`
+
+This release includes the following **improvements**:
+
+#. Monitor service properly managing instances
+#. Effectively assert ``AUTOMATIC`` / ``MANUAL_BY_PARTICIPANT`` liveliness
+#. Add catch of out-of-range exception for thread settings port
+#. TCP transport improvements:
+
+    #. ``TCPSendResources`` cleanup
+    #. TCP first message loss
+    #. Set real TCP ``non_blocking_send`` limitation
+
+This release includes the following **fixes**:
+
+#. Fix hidden overloaded virtual methods
+#. Fix Discovery Server over TCP using logical port
+#. Protect asio exception fix
+#. Fix flaky Log tests
+#. Fix CVE-2024-28231
+#. Add missing virtual destructor for StatisticsAncillary
+#. Increase ack waiting time in ``reliable_on_unack_sample_removed``
+#. Fix versions in fastrtps.repos
+#. GitHub CI fixes:
+
+    #. Fix CI version management
+    #. Add manual Ubuntu Github CI
+    #. Avoid running GitHub CI if PR has conflicts
+    #. Migrate apt package installation action to eProsima-CI
+    #. Only run PRs CI when review requested
+    #. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows
+    #. Improve filtering of DNS tests
+
+.. note::
+  When upgrading to version 2.13.4 it is **advisable** to regenerate generated source from IDL files
+  using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.

@@ -17,6 +17,9 @@ Mandatory arguments are:
  * The :ref:`dds_layer_subscriber_dataReaderQos` describing the behavior of the DataReader.
    If the provided value is :class:`DATAREADER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultDataReaderQos` is used.
+   If the provided value is :class:`DATAREADER_QOS_USE_TOPIC_QOS`,
+   the values of the default QoS and the provided TopicQoS are used, whereby any policy
+   that is set on the TopicQoS overrides the corresponding policy on the default QoS.
 
 Optional arguments are:
 

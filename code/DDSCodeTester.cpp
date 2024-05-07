@@ -2571,6 +2571,18 @@ void dds_dataWriter_examples()
             // Error
             return;
         }
+
+        // Create a DataWriter with default QoS and a custom TopicQos.
+        // The value DATAWRITER_QOS_USE_TOPIC_QOS is used to denote the default QoS
+        // and to override the TopicQos.
+        Topic* topic;
+        DataWriter* data_writer_with_default_qos_and_custom_topic_qos =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_USE_TOPIC_QOS);
+        if (nullptr == data_writer_with_default_qos_and_custom_topic_qos)
+        {
+            // Error
+            return;
+        }
         //!--
     }
 
@@ -3360,6 +3372,18 @@ void dds_dataReader_examples()
         DataReader* data_reader_with_default_qos_and_custom_listener =
                 subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT, &custom_listener);
         if (nullptr == data_reader_with_default_qos_and_custom_listener)
+        {
+            // Error
+            return;
+        }
+
+        // Create a DataReader with default QoS and a custom TopicQos.
+        // The value DATAREADER_QOS_USE_TOPIC_QOS is used to denote the default QoS
+        // and to override the TopicQos.
+        Topic* topic;
+        DataReader* data_reader_with_default_qos_and_custom_topic_qos =
+                subscriber->create_datareader(topic, DATAREADER_QOS_USE_TOPIC_QOS);
+        if (nullptr == data_reader_with_default_qos_and_custom_topic_qos)
         {
             // Error
             return;

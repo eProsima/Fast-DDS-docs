@@ -815,6 +815,8 @@
 .. |TOPIC_QOS_DEFAULT-api| replace:: :cpp:member:`TOPIC_QOS_DEFAULT <eprosima::fastdds::dds::TOPIC_QOS_DEFAULT>`
 .. |DATAWRITER_QOS_DEFAULT-api| replace:: :cpp:member:`DATAWRITER_QOS_DEFAULT <eprosima::fastdds::dds::DATAWRITER_QOS_DEFAULT>`
 .. |DATAREADER_QOS_DEFAULT-api| replace:: :cpp:member:`DATAREADER_QOS_DEFAULT <eprosima::fastdds::dds::DATAREADER_QOS_DEFAULT>`
+.. |DATAWRITER_QOS_USE_TOPIC_QOS-api| replace:: :cpp:member:`DATAWRITER_QOS_USE_TOPIC_QOS <eprosima::fastdds::dds::DATAWRITER_QOS_USE_TOPIC_QOS>`
+.. |DATAREADER_QOS_USE_TOPIC_QOS-api| replace:: :cpp:member:`DATAREADER_QOS_USE_TOPIC_QOS <eprosima::fastdds::dds::DATAREADER_QOS_USE_TOPIC_QOS>`
 
 .. |DomainId-api| replace:: :cpp:type:`DomainId <eprosima::fastdds::dds::DomainId_t>`
 .. |c_InstanceHandle_Unknown-api| replace:: :cpp:member:`c_InstanceHandle_Unknown <eprosima::fastrtps::rtps::c_InstanceHandle_Unknown>`

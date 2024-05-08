@@ -243,6 +243,7 @@ typeros
 typeros2
 typesupport
 uint
+Updatable
 uncheck
 unicast
 unidimensional

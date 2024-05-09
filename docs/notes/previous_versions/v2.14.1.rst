@@ -26,6 +26,7 @@ This release includes the following **improvements**:
 #. Run ``is_plain`` method with the corresponding data representation
 #. Address compilation issue for GLIBC version
 #. Repository and test improvements:
+
     #. Run Github Ubuntu CI on PRs
     #. Only run PRs CI when a review is requested
     #. Improve filtering of DNS tests

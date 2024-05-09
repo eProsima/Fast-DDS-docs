@@ -4,6 +4,7 @@ BinaryProperty
 ===============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/BinaryProperty/BinaryProperty
     /fastdds/api_reference/rtps/common/BinaryProperty/BinaryPropertyHelper

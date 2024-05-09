@@ -7,6 +7,8 @@ DataReaderQos
 
 .. autoclass:: fastdds.DataReaderQos
 
-.. autoclass:: fastdds.DATAREADER_QOS_DEFAULT
+.. autodata:: fastdds.DATAREADER_QOS_DEFAULT
+   :annotation: = <fastdds.DataReaderQos>
 
-.. autoclass:: fastdds.DATAREADER_QOS_USE_TOPIC_QOS
+.. autodata:: fastdds.DATAREADER_QOS_USE_TOPIC_QOS
+   :annotation: = <fastdds.DataReaderQos>

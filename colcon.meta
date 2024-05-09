@@ -1,11 +1,12 @@
 names:
     fastdds:
         cmake-args:
-            - "-DSECURITY=ON"
+            - -DSECURITY=ON
     fastdds_python:
         cmake-args:
-            - "-DBUILD_DOCUMENTATION=ON"
+            - -DBUILD_DOCUMENTATION=ON
     fastdds-docs:
         cmake-args:
-            - "-DBUILD_DOCUMENTATION=ON"
-            - "-DCOMPILE_TESTS=ON"
+            - -DBUILD_DOCUMENTATION=ON
+            - -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+            - -DCOMPILE_TESTS=ON

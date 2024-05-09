@@ -2,6 +2,7 @@ Publisher
 =========
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/publisher/datawriter.rst
    /fastdds/api_reference/dds_pim/publisher/datawriterlistener.rst

@@ -2,6 +2,7 @@ Core
 ====
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/core/entity.rst
    /fastdds/api_reference/dds_pim/core/domainentity.rst

@@ -2,6 +2,7 @@ Topic
 =====
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/topic/topicdatatype.rst
    /fastdds/api_reference/dds_pim/topic/typesupport.rst

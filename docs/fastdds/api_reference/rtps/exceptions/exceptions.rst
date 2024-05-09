@@ -4,5 +4,6 @@ Exceptions
 ============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/exceptions/Exception

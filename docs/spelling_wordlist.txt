@@ -39,6 +39,7 @@ blackbox
 BNF
 boolean
 booleans
+Bugfix
 bugfixes
 cancelled
 Cannonical
@@ -298,4 +299,5 @@ Wireshark
 worskspace
 WString
 Xcode
+XMLProfiles
 XTypes

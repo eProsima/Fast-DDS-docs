@@ -4,6 +4,7 @@ FragmentNumber
 ===============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/FragmentNumber/FragmentNumber_t
     /fastdds/api_reference/rtps/common/FragmentNumber/FragmentNumberSet_t

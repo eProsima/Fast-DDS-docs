@@ -6,6 +6,7 @@ LOG
 *eProsima Fast DDS* Logging Module API
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/log/colors.rst
    /fastdds/api_reference/log/file_consumer.rst

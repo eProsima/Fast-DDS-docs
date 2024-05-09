@@ -7,4 +7,5 @@ PublisherQos
 
 .. autoclass:: fastdds.PublisherQos
 
-.. autoclass:: fastdds.PUBLISHER_QOS_DEFAULT
+.. autodata:: fastdds.PUBLISHER_QOS_DEFAULT
+   :annotation: = <fastdds.PublisherQos>

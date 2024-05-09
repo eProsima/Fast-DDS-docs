@@ -766,7 +766,7 @@ For a detailed explanation about the XML definition of this type, please refer t
 .. _xtypes_supportedtypes_bitset:
 
 Bitset Types
-""""""""""""
+^^^^^^^^^^^^
 
 Bitset types are an aggregation of bitfields.
 The :code:`TypeKind` used to identify bitsets is :code:`TK_BITSET`.
@@ -921,7 +921,8 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - ✅
       - ❌
     * - :code:`@bit_bound`
-      - |TypeDescriptor-api| :code:`bound` property.
+      - |TypeDescriptor-api| :code:`bound` property for :ref:`xtypes_supportedtypes_bitset`. |br|
+        |MemberDescriptor-api| :code:`type` property for :ref:`xtypes_supportedtypes_enumeration`.
       - ✅
       - ✅❌ (`Enumeration types`_ not configurable).
     * - :code:`@default`
@@ -980,11 +981,6 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - |VerbatimTextDescriptor-api|
       - ❌
       - ❌
-
-To apply the :code:`@extensibility` annotation (and its shortcuts) the |TypeDescriptor-api| provides
-:code:`extensibility_kind` property.
-
-:code:`@key` annotation is applied enabling |MemberDescriptor-api| :code:`is_key` property.
 
 .. _xtypes_complextypes:
 

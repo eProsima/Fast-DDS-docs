@@ -4,6 +4,7 @@ Dynamic Language Binding
 ========================
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/xtypes/annotationdescriptor.rst
    /fastdds/api_reference/dds_pim/xtypes/dynamicdata.rst

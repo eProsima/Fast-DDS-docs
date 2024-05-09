@@ -15,9 +15,10 @@ For more information about the API reference, please refer to
 `Fast DDS API reference <https://www.eprosima.com/docs/fast-rtps/latest/API>`_.
 
 .. toctree::
+    :titlesonly:
 
-   /fastdds/api_reference/dds_pim/dds_pim
-   /fastdds/api_reference/rtps/rtps
-   /fastdds/api_reference/transport/transport
-   /fastdds/api_reference/log/log
-   /fastdds/api_reference/statistics/statistics
+    /fastdds/api_reference/dds_pim/dds_pim
+    /fastdds/api_reference/rtps/rtps
+    /fastdds/api_reference/transport/transport
+    /fastdds/api_reference/log/log
+    /fastdds/api_reference/statistics/statistics

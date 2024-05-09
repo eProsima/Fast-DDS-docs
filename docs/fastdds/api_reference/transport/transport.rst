@@ -6,6 +6,7 @@ Transport
 *eProsima Fast DDS* Transport Layer API.
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/transport/transport_generic_interfaces.rst
     /fastdds/api_reference/transport/chaining_transport.rst

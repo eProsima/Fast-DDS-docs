@@ -6,5 +6,6 @@ Python API Reference
 This section presents the most commonly used Python APIs provided by *Fast DDS*.
 
 .. toctree::
+    :titlesonly:
 
-   /fastdds/python_api_reference/dds_pim/dds_pim
+    /fastdds/python_api_reference/dds_pim/dds_pim

@@ -4,6 +4,7 @@ Time_t
 --------------------
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/Time_t/const_values
     /fastdds/api_reference/rtps/common/Time_t/defines

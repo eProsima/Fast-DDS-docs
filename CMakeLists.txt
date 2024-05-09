@@ -29,6 +29,11 @@ string(REGEX REPLACE "^version = u'([0-9]+.[0-9]+.[0-9]+)'"
 
 project(fastdds-docs VERSION "${LIB_VERSION_STR}" LANGUAGES C CXX)
 
+# In case CMake version less than 3.24, add the option CMAKE_COMPILE_WARNING_AS_ERROR.
+if (${CMAKE_VERSION} VERSION_LESS "3.24")
+    option(CMAKE_COMPILE_WARNING_AS_ERROR "Treat warnings as errors" OFF)
+endif()
+
 
 ####################################################################################################
 # Build Doxygen documentation
@@ -125,7 +130,9 @@ if (BUILD_DOCUMENTATION)
     # Generate the sphinx documentation
     add_custom_target(Sphinx ALL
         COMMAND
-        ${SPHINX_EXECUTABLE} -b ${FASTDDS_DOCS_BUILDER}
+        ${SPHINX_EXECUTABLE}
+        $<$<BOOL:${CMAKE_COMPILE_WARNING_AS_ERROR}>:-W>
+        -b ${FASTDDS_DOCS_BUILDER}
         # Tell Breathe where to find the Doxygen output
         -D breathe_projects.FastDDS=${DOXYGEN_OUTPUT_DIR}/xml
         ${PYTHON_EXTRA_FLAG}

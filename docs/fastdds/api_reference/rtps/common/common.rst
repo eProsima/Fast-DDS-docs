@@ -4,6 +4,7 @@ Common
 ======
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/BinaryProperty/binaryproperty_toc
     /fastdds/api_reference/rtps/common/CacheChange/cachechange_toc

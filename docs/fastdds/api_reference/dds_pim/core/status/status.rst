@@ -2,6 +2,7 @@ Status
 ======
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/core/status/basestatus.rst
    /fastdds/api_reference/dds_pim/core/status/deadlinemissedstatus.rst

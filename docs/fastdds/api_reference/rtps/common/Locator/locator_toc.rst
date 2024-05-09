@@ -4,6 +4,7 @@ Locator
 ===============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/Locator/defines
     /fastdds/api_reference/rtps/common/Locator/IsAddressDefined

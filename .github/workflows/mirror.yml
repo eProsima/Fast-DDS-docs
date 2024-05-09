@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - 'master'
+      - '2.14.x'
 
 jobs:
-  mirror_job:
+  mirror_job_master:
+    if: github.ref == 'refs/heads/master'
     name: Mirror master branch to latest minor branches
     runs-on: ubuntu-latest
     strategy:
@@ -13,6 +15,7 @@ jobs:
       matrix:
         dest_branch:
           - '3.0.x'
+          - '3.x'
     steps:
     - name: Mirror action step
       id: mirror
@@ -20,4 +23,22 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         source: 'master'
+        dest: ${{ matrix.dest_branch }}
+
+  mirror_job_2_x:
+    if: github.ref == 'refs/heads/2.14.x'
+    name: Mirror 2.14.x branch to latest minor branches
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dest_branch:
+          - '2.x'
+    steps:
+    - name: Mirror action step
+      id: mirror
+      uses: eProsima/eProsima-CI/external/mirror-branch-action@main
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        source: '2.14.x'
         dest: ${{ matrix.dest_branch }}

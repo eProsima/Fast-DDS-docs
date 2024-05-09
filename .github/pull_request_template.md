@@ -19,7 +19,7 @@
     In case of bug fixes, please provide the list of supported branches where this fix should be also merged.
     Please uncomment following line, adjusting the corresponding target branches for the backport.
 -->
-<!-- @Mergifyio backport 2.13.x 2.10.x 2.6.x -->
+<!-- @Mergifyio backport 2.14.x 2.13.x 2.10.x 2.6.x -->
 
 <!-- If an issue is already opened, please uncomment next line with the corresponding issue number. -->
 <!-- Fixes #(issue) -->
@@ -34,6 +34,11 @@ Related implementation PR:
 -->
 
 ## Contributor Checklist
+
+<!--
+    - If any of the elements of the following checklist is not applicable, substitute the checkbox [ ] by _N/A_:
+    - If any of the elements of the following checklist is not fulfilled on purpose, please provide a reason and substitute the checkbox [ ] with ❌: or __NO__:.
+-->
 
 - [ ] Commit messages follow the project guidelines. <!-- External contributors should sign the DCO. Fast DDS docs developers must also refer to the internal Redmine task. -->
 - [ ] Code snippets related to the added documentation have been provided.

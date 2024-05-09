@@ -4,6 +4,12 @@
     eProsima Fast DDS Documentation
   </h1>
 
+.. TODO(eduponz): Remove this before releasing v3.0.0
+.. warning::
+
+    In preparation for v3.0.0, Fast DDS' master branch is undergoing major changes entailing **API breaks**.
+    Until Fast DDS v3.0.0 is released, it is strongly advisable to use the latest stable version, `2.14 <https://fast-dds.docs.eprosima.com/en/v2.14.0>`_.
+
 .. image:: /01-figures/logo.png
   :height: 100px
   :width: 100px

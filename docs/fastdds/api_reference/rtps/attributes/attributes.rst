@@ -4,6 +4,7 @@ Attributes
 ============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/attributes/BuiltinAttributes
     /fastdds/api_reference/rtps/attributes/c_default_RTPSParticipantAllocationAttributes

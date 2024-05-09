@@ -6,6 +6,7 @@ RTPS
 *eProsima Fast DDS* Real-Time Publish-Subscribe (RTPS) layer API.
 
 .. toctree::
+    :titlesonly:
 
 
     /fastdds/api_reference/rtps/attributes/attributes

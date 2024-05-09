@@ -4,6 +4,7 @@ CDRMessage
 ===============
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/CDRMessage_t/CDRMessage_t
     /fastdds/api_reference/rtps/common/CDRMessage_t/defines

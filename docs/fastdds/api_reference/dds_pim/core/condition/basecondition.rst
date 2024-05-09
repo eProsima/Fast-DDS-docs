@@ -2,6 +2,7 @@ Condition
 =========
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/dds_pim/core/condition/condition.rst
     /fastdds/api_reference/dds_pim/core/condition/conditionseq.rst

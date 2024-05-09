@@ -102,7 +102,15 @@ def get_git_branch():
     # Invoke git to get the current branch which we use to get the theme
     try:
         p = subprocess.Popen(
-            ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+            ['git', 'rev-parse', '--verify', 'HEAD'],
+            stdout=subprocess.PIPE,
+            cwd=path_to_here
+        )
+
+        commit = p.communicate()[0].decode().rstrip()
+
+        p = subprocess.Popen(
+            ['git', 'name-rev', '--name-only', commit],
             stdout=subprocess.PIPE,
             cwd=path_to_here
         )

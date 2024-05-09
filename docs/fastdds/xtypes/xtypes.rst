@@ -9,11 +9,6 @@ XTypes
 This specification defines the following concepts:
 
 * DDS supported type system, including the concept of extensible types that might evolve in time.
-
-.. note::
-
-  This section also defines the type compatibility rules among evolved types which is still unsupported in Fast DDS.
-
 * Type representation, including :ref:`IDL<fastddsgen_idl_datatypes>` and :ref:`TypeObject<xtypes_discovery_matching>`
   representations.
 * Data representation over the wire.
@@ -28,3 +23,7 @@ This specification defines the following concepts:
 
    /fastdds/xtypes/discovery_matching.rst
    /fastdds/xtypes/language_binding.rst
+
+.. note::
+
+  Type compatibility rules among evolved types are still unsupported in Fast DDS.

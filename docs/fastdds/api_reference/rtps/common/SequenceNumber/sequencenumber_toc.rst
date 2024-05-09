@@ -4,6 +4,7 @@ SequenceNumber
 ---------------
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/common/SequenceNumber/c_SequenceNumber_Unknown
     /fastdds/api_reference/rtps/common/SequenceNumber/operators

@@ -2,6 +2,7 @@ Domain
 ======
 
 .. toctree::
+   :titlesonly:
 
    /fastdds/api_reference/dds_pim/domain/domainparticipant.rst
    /fastdds/api_reference/dds_pim/domain/domainparticipantfactory.rst

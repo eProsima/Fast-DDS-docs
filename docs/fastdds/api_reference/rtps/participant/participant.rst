@@ -4,6 +4,7 @@ RTPSParticipant
 =================
 
 .. toctree::
+    :titlesonly:
 
     /fastdds/api_reference/rtps/participant/participantdiscoveryinfo/participantdiscoveryinfo
     /fastdds/api_reference/rtps/participant/RTPSParticipant

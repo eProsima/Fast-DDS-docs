@@ -8,5 +8,5 @@ DomainParticipantQos
 .. autoclass:: fastdds.DomainParticipantQos
 
 
-.. TODO
-   .. autoclass:: fastdds.PARTICIPANT_QOS_DEFAULT
+.. autodata:: fastdds.PARTICIPANT_QOS_DEFAULT
+   :annotation: = <fastdds.DomainParticipantQos>

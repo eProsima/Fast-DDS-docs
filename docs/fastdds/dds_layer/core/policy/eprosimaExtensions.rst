@@ -1190,6 +1190,17 @@ List of QoS Policy data members:
      |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
      :ref:`DS_modify_server_list`).
 
+.. note::
+     In single process deployments where multiple Datareaders and Datawriters are created within the same
+     DomainParticipant, each of them will have the same **participantId** but different *unicast locator* ports.
+     That can lead on participant creation failure if the amount of Datareaders and Datawriters to be created reaches
+     the value of
+     :cpp:var:`BuiltinAttributes::mutation_tries<eprosima::fastrtps::rtps::BuiltinAttributes::mutation_tries>`, due to
+     exceeding the maximum amount of mutations of the same **participantId** into different port number for the
+     *unicast locator* creation.
+
+.. _wireprotocolconfigqos_example:
+
 Example
 """""""
 
@@ -1207,6 +1218,9 @@ XML
     :language: xml
     :start-after: <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
     :end-before: <!--><-->
+
+.. note::
+    For extended XML information, refer to :ref:`domainparticipantconfig` and :ref:`builtin` XML sections.
 
 .. _writerresourcelimitsqos:
 

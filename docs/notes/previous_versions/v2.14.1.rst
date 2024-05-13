@@ -1,0 +1,66 @@
+`Version 2.14.1 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important::
+
+    Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS
+    v3.0.0, stay tuned!
+
+This release includes the following **features** in an ABI compatible manner:
+
+#. Implement `copy_from_topic_qos` method (see :ref:`dds_layer_publisher_datawriter_creation` and see
+   :ref:`dds_layer_subscriber_datareader_creation`).
+
+This release includes the following **improvements**:
+
+#. Set 2.12.x as EOL
+#. Use a plain switch for `NetmaskFilterKind` `operator<<`
+#. Set real TCP `non_blocking_send` limitation
+#. Increase ack waiting time in `reliable_on_unack_sample_removed`
+#. Enforce SHM ports open mode exclusions
+#. Force unlimited ResourceLimits if lower or equal to zero (see :ref:`resourcelimitsqospolicy`)
+#. Allow processing of AckNack submessages with ``count == 0``
+#. Refactor ``IStatusQueryable`` and make monitor service interfaces private
+#. Internal refactor on port handling
+#. Improve ``ThreadSettingsQoS`` logging
+#. Run ``is_plain`` method with the corresponding data representation
+#. Address compilation issue for GLIBC version
+#. Repository and test improvements:
+
+    #. Run Github Ubuntu CI on PRs
+    #. Only run PRs CI when a review is requested
+    #. Improve filtering of DNS tests
+    #. Make ``sample_lost_be_dw_be_dr_fragments`` test less flaky
+    #. Build Fast DDS Python bindings in Fast DDS Docs Github CI job
+    #. Add check for XML API to PR template
+    #. Refactor Github CI sanitizer related jobs
+    #. Increase sleep to miss the deadline in macOS flaky tests
+    #. Fix nightly sanitizer CI workflow name
+    #. Improve xml loading method in fuzz_XMLProfiles
+    #. Build ShapesDemo on Ubuntu Github CI
+    #. Correctly set branches for ``reusable-sanitizers-ci``
+
+This release includes the following **fixes**:
+
+#. Address XMLProfiles fuzzer regressions
+#. Fix flaky Log tests
+#. Fix hidden overloaded virtual methods
+#. Effectively assert ``automatic/manual_by_participant`` liveliness
+#. Fix ``on_sample_lost`` notification on best-effort readers for fragmented samples
+#. Monitor service properly managing instances
+#. Fix CVE-2024-30258
+#. Fix Discovery Server over TCP using ``LocatorSelectorEntry``
+#. Removed warning
+#. Make ``get_first_untaken_info()`` coherent with ``read()/take()``
+#. Fix serialization of Data(w)/Data(r) in MonitorService
+#. Bugfix in ``DDSBlackboxTestsDataReader`` test
+#. Fix leak in ``SecurityManager::participant_volatile_message_secure_writer_``
+#. Fix some leaks in XML DynamicTypes Parser
+#. Fix support for ``@key`` annotation in Dynamic types
+#. Fix SecurityTest unit tests memory error
+#. Fix Python Installation version in Github CI. Address failing system tests environment issues
+
+.. note::
+
+    When upgrading to version 2.14.0 it is **advisable** to regenerate generated source from IDL files
+    using `Fast DDS-Gen v3.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.0>`_.

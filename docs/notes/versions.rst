@@ -260,7 +260,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.2.0 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.0>`__
+              - `v2.2.1 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.1>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
               - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
@@ -348,7 +348,7 @@ Fast DDS as the core middleware.
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.4.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.1>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.14.0 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.0>`__
+              - `v2.14.1 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.1>`__
 
     .. group-tab:: 2.13.x
 

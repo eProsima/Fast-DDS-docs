@@ -1244,9 +1244,10 @@ List of QoS Policy data members:
      :ref:`DS_modify_server_list`).
 
 .. note::
-     In single process deployments where multiple endpoints are created within the same DomainParticipant, each of
-     them will have the same **participantId** but different *unicast locator* ports.
-     That can lead on participant creation failure if the amount of endpoints to be created reaches the value of
+     In single process deployments where multiple Datareaders and Datawriters are created within the same
+     DomainParticipant, each of them will have the same **participantId** but different *unicast locator* ports.
+     That can lead on participant creation failure if the amount of Datareaders and Datawriters to be created reaches
+     the value of
      :cpp:var:`BuiltinAttributes::mutation_tries<eprosima::fastrtps::rtps::BuiltinAttributes::mutation_tries>`, due to
      exceeding the maximum amount of mutations of the same **participantId** into different port number for the
      *unicast locator* creation.

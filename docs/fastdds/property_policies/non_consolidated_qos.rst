@@ -351,3 +351,72 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
            :language: xml
            :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
            :end-before: <!--><-->
+
+.. _property_max_message_size:
+
+Maximum Message Size
+^^^^^^^^^^^^^^^^^^^^
+
+It is possible to set the maximum number of bytes of an RTPS datagram sent by an RTPSParticipant.
+The value can be set in the RTPSParticipant properties or in the RTPSWriter properties.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.max_message_size"``
+     - ``int32_t``
+     - ``"4294967295"``
+
+.. tabs::
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
+            :end-before: //!--
+            :dedent: 6
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
+            :end-before: <!--><-->
+            :lines: 2,4-16
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.max_message_size"``
+     - ``int32_t``
+     - ``"4294967295"``
+
+.. tabs::
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: // MAX_MESSAGE_SIZE_PROPERTY_WRITER
+            :end-before: //!--
+            :dedent: 6
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
+            :end-before: <!--><-->
+            :lines: 2,4-14
+
+.. note::
+    An invalid value of ``fastdds.max_message_size`` results in an exception.

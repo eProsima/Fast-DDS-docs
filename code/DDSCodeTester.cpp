@@ -903,6 +903,28 @@ void dds_domain_examples()
             "unicast");
         //!--
     }
+
+    {
+        // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
+        eprosima::fastrtps::rtps::RTPSParticipantAttributes part_attributes;
+
+        // Set maximum number of bytes of the datagram to be sent
+        part_attributes.properties.properties().emplace_back(
+            "fastdds.max_message_size",
+            "1200");
+        //!--
+    }
+
+    {
+        // MAX_MESSAGE_SIZE_PROPERTY_WRITER
+        eprosima::fastrtps::rtps::WriterAttributes writer_attributes;
+
+        // Set maximum number of bytes of the datagram to be sent
+        writer_attributes.endpoint.properties.properties().emplace_back(
+            "fastdds.max_message_size",
+            "1200");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS
@@ -4986,10 +5008,10 @@ void dynamictypes_examples()
             sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
                     type_descriptor)->build());
         */
-        
+
         // Add the sequence member to the struct
         struct_builder->add_member(sequence_member_descriptor);
-        
+
         sequence_member_descriptor = traits<MemberDescriptor>::make_shared();
         sequence_member_descriptor->name("short_sequence");
         sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_sequence_type(
@@ -5027,7 +5049,7 @@ void dynamictypes_examples()
         int16_t out_simple_value;
         sequence_data->set_int16_value(2, in_simple_value);
         sequence_data->get_int16_value(out_simple_value, 2);
-        
+
         data->return_loaned_value(sequence_data);
         //!--
     }
@@ -5080,7 +5102,7 @@ void dynamictypes_examples()
         int32_t out_simple_value;
         array_data->set_int32_value(2, in_simple_value);
         array_data->get_int32_value(out_simple_value, 2);
-        
+
         data->return_loaned_value(array_data);
         //!--
     }
@@ -5351,7 +5373,7 @@ void dynamictypes_examples()
         // Get the loan for the bitset member
         DynamicData::_ref_type bitset_data = data->loan_value(data->get_member_id_by_name("my_bitset"));
 
-        // Set and retrieve bitfield values 
+        // Set and retrieve bitfield values
         int16_t in_value {2};
         int16_t out_value;
         bitset_data->set_int16_value(bitset_data->get_member_id_by_name("d"), in_value);

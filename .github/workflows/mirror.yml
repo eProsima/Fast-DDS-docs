@@ -7,7 +7,6 @@ on:
 
 jobs:
   mirror_job:
-    if: github.ref == 'refs/heads/2.14.x'
     name: Mirror 2.14.x branch to compatible version branches
     runs-on: ubuntu-latest
     strategy:

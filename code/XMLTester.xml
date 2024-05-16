@@ -3240,7 +3240,7 @@
     <rtps>
         <propertiesPolicy>
             <properties>
-                <!-- Avoid local matching of this participant's endpoints -->
+                <!-- Set the maximum size in bytes for all RTPS datagrams sent by the participant -->
                 <property>
                     <name>fastdds.max_message_size</name>
                     <value>1200</value>
@@ -3258,7 +3258,7 @@
 <data_writer profile_name="max_msg_size_datawriter_xml_profile">
     <propertiesPolicy>
         <properties>
-            <!-- Enable pull mode -->
+            <!-- Set the maximum size in bytes for all RTPS datagrams sent by the participant -->
             <property>
                 <name>fastdds.max_message_size</name>
                 <value>1200</value>

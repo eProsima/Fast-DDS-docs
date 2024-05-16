@@ -906,10 +906,10 @@ void dds_domain_examples()
 
     {
         // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
-        eprosima::fastrtps::rtps::RTPSParticipantAttributes part_attributes;
+        DomainParticipantQos pqos;
 
         // Set maximum number of bytes of the datagram to be sent
-        part_attributes.properties.properties().emplace_back(
+        pqos.properties().properties().emplace_back(
             "fastdds.max_message_size",
             "1200");
         //!--
@@ -917,10 +917,10 @@ void dds_domain_examples()
 
     {
         // MAX_MESSAGE_SIZE_PROPERTY_WRITER
-        eprosima::fastrtps::rtps::WriterAttributes writer_attributes;
+        DataWriterQos wqos;
 
         // Set maximum number of bytes of the datagram to be sent
-        writer_attributes.endpoint.properties.properties().emplace_back(
+        wqos.properties().properties().emplace_back(
             "fastdds.max_message_size",
             "1200");
         //!--

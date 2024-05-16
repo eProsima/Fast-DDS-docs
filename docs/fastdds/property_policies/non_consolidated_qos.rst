@@ -357,8 +357,17 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
 Maximum Message Size
 ^^^^^^^^^^^^^^^^^^^^
 
-It is possible to set the maximum number of bytes of an RTPS datagram sent by an RTPSParticipant.
-The value can be set in the RTPSParticipant properties or in the RTPSWriter properties.
+One common requirement is the differentiation between the maximum size of received and sent datagrams.
+This capability is especially important in scenarios where a system might need to handle large incoming
+data sizes but should restrict the size of the data it sends to prevent overwhelming network resources
+or complying with network traffic policies. The primary attribute for controlling datagram size is
+`maxMessageSize`, which sets the upper limit for both the size of datagrams that can be received and
+those that can be sent. For applications that need to restrict the size of outgoing datagrams without
+changing the size of incoming ones, it's possible to set the new property ``fastdds.max_message_size``.
+This property allows for the specific configuration of the maximum number of bytes for datagrams that
+are sent. By configuring this property to a value lower than the smallest `maxMessageSize` across all
+transports, applications can achieve a lower sending limit while maintaining the ability to receive
+larger datagrams.
 
 .. list-table::
    :header-rows: 1
@@ -368,8 +377,12 @@ The value can be set in the RTPSParticipant properties or in the RTPSWriter prop
      - PropertyPolicyQos value
      - Default value
    * - ``"fastdds.max_message_size"``
-     - ``int32_t``
+     - ``uint32_t``
      - ``"4294967295"``
+
+.. note::
+    An invalid value of ``fastdds.max_message_size`` would log an error,
+    and the default value will be used.
 
 .. tabs::
 
@@ -389,17 +402,6 @@ The value can be set in the RTPSParticipant properties or in the RTPSWriter prop
             :end-before: <!--><-->
             :lines: 2,4-16
 
-.. list-table::
-   :header-rows: 1
-   :align: left
-
-   * - PropertyPolicyQos name
-     - PropertyPolicyQos value
-     - Default value
-   * - ``"fastdds.max_message_size"``
-     - ``int32_t``
-     - ``"4294967295"``
-
 .. tabs::
 
     .. tab:: C++
@@ -417,6 +419,3 @@ The value can be set in the RTPSParticipant properties or in the RTPSWriter prop
             :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
             :end-before: <!--><-->
             :lines: 2,4-14
-
-.. note::
-    An invalid value of ``fastdds.max_message_size`` results in an exception.

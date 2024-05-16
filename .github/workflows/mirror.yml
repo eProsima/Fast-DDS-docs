@@ -1,23 +1,24 @@
 # .github/workflows/mirror.yml
+name: Mirror
 on:
   push:
     branches:
-      - 'master'
+      - '2.14.x'
 
 jobs:
   mirror_job:
-    name: Mirror master branch to latest minor branches
+    name: Mirror 2.14.x branch to compatible version branches
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         dest_branch:
-          - '2.14.x'
+          - '2.x'
     steps:
     - name: Mirror action step
       id: mirror
       uses: eProsima/eProsima-CI/external/mirror-branch-action@main
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        source: 'master'
+        source: '2.14.x'
         dest: ${{ matrix.dest_branch }}

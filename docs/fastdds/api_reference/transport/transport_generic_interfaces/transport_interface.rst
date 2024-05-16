@@ -13,9 +13,6 @@ TransportInterface
 .. doxygenvariable:: eprosima::fastdds::rtps::s_maximumInitialPeersRange
     :project: FastDDS
 
-.. doxygenvariable:: eprosima::fastdds::rtps::s_minimumSocketBuffer
-    :project: FastDDS
-
 .. doxygenvariable:: eprosima::fastdds::rtps::s_IPv4AddressAny
     :project: FastDDS
 

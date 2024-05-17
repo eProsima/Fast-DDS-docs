@@ -9,6 +9,9 @@ Creating a DomainParticipant
 Creation of a :ref:`dds_layer_domainParticipant` is done with the |DomainParticipantFactory::create_participant-api|
 member function on the
 :ref:`dds_layer_domainParticipantFactory` singleton, that acts as a factory for the DomainParticipant.
+Then, when the lifecycle of the participant finishes, every participant must be deleted with
+|DomainParticipantFactory::delete_participant-api|.
+Please refer to :ref:`dds_layer_domainParticipant_deletion` for further details on the deletion of a participant.
 
 Mandatory arguments are:
 
@@ -93,16 +96,18 @@ It is advisable to check that the returned value is a valid pointer.
 Deleting a DomainParticipant
 ----------------------------
 
-A DomainParticipant can be deleted with the |DomainParticipantFactory::delete_participant-api| member function on the
+A DomainParticipant shall be deleted with the |DomainParticipantFactory::delete_participant-api| member function on the
 :ref:`dds_layer_domainParticipantFactory` singleton.
 
-.. note::
+.. important::
 
    A DomainParticipant can only be deleted if all Entities belonging to the participant
    (Publisher, Subscriber or Topic) have already been deleted.
    Otherwise, the function will issue an error and the DomainParticipant will not be deleted.
-   This can be performed by using the |DomainParticipant::delete_contained_entities-api| member function of the
-   :ref:`dds_layer_domainParticipant`.
+   This can be performed either by using the |DomainParticipant::delete_contained_entities-api| member function of the
+   :ref:`dds_layer_domainParticipant` or manually deleting each entity with the corresponding *delete_* method from the
+   DomainParticipant e.g |DomainParticipant::delete_publisher-api|, |DomainParticipant::delete_subscriber-api|,
+   |DomainParticipant::delete_topic-api|, etc.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

@@ -351,3 +351,82 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
            :language: xml
            :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
            :end-before: <!--><-->
+
+.. _property_max_message_size:
+
+Maximum Message Size
+^^^^^^^^^^^^^^^^^^^^
+
+One common requirement is the differentiation between the maximum size of received and sent datagrams.
+This capability is especially important in scenarios where a system might need to handle large incoming
+data sizes but should restrict the size of the data it sends to prevent overwhelming network resources
+or complying with network traffic policies.
+The primary attribute for controlling datagram size is `maxMessageSize`, which sets the upper limit
+for both the size of datagrams that can be received and those that can be sent.
+Property ``fastdds.max_message_size`` allows restricting the size of outgoing datagrams without
+changing the size of incoming ones.
+This property allows for the specific configuration of the maximum number of bytes for datagrams that
+are sent.
+By configuring this property to a value lower than the smallest `maxMessageSize` across all transports,
+applications can achieve a lower sending limit while maintaining the ability to receive larger datagrams.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.max_message_size"``
+     - ``uint32_t``
+     - ``"4294967295"``
+
+.. note::
+    An invalid value of ``fastdds.max_message_size`` would log an error,
+    and the default value will be used.
+
+.. _setting_max_message_size_participant:
+
+Setting ``fastdds.max_message_size`` At Participant Level
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. tabs::
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
+            :end-before: //!--
+            :dedent: 6
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
+            :end-before: <!--><-->
+            :lines: 2,4-16
+
+.. _setting_max_message_size_writer:
+
+Setting ``fastdds.max_message_size`` At Writer Level
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. tabs::
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: // MAX_MESSAGE_SIZE_PROPERTY_WRITER
+            :end-before: //!--
+            :dedent: 6
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
+            :end-before: <!--><-->
+            :lines: 2,4-14

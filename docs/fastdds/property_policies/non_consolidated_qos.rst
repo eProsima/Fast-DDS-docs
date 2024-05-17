@@ -360,14 +360,15 @@ Maximum Message Size
 One common requirement is the differentiation between the maximum size of received and sent datagrams.
 This capability is especially important in scenarios where a system might need to handle large incoming
 data sizes but should restrict the size of the data it sends to prevent overwhelming network resources
-or complying with network traffic policies. The primary attribute for controlling datagram size is
-`maxMessageSize`, which sets the upper limit for both the size of datagrams that can be received and
-those that can be sent. For applications that need to restrict the size of outgoing datagrams without
-changing the size of incoming ones, it's possible to set the new property ``fastdds.max_message_size``.
+or complying with network traffic policies.
+The primary attribute for controlling datagram size is `maxMessageSize`, which sets the upper limit
+for both the size of datagrams that can be received and those that can be sent.
+Property ``fastdds.max_message_size`` allows restricting the size of outgoing datagrams without
+changing the size of incoming ones.
 This property allows for the specific configuration of the maximum number of bytes for datagrams that
-are sent. By configuring this property to a value lower than the smallest `maxMessageSize` across all
-transports, applications can achieve a lower sending limit while maintaining the ability to receive
-larger datagrams.
+are sent.
+By configuring this property to a value lower than the smallest `maxMessageSize` across all transports,
+applications can achieve a lower sending limit while maintaining the ability to receive larger datagrams.
 
 .. list-table::
    :header-rows: 1
@@ -383,6 +384,11 @@ larger datagrams.
 .. note::
     An invalid value of ``fastdds.max_message_size`` would log an error,
     and the default value will be used.
+
+.. _setting_max_message_size_participant:
+
+Setting ``fastdds.max_message_size`` At Participant Level
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. tabs::
 
@@ -401,6 +407,11 @@ larger datagrams.
             :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
             :end-before: <!--><-->
             :lines: 2,4-16
+
+.. _setting_max_message_size_writer:
+
+Setting ``fastdds.max_message_size`` At Writer Level
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. tabs::
 

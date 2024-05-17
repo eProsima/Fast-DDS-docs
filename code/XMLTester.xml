@@ -3258,7 +3258,7 @@
 <data_writer profile_name="max_msg_size_datawriter_xml_profile">
     <propertiesPolicy>
         <properties>
-            <!-- Set the maximum size in bytes for all RTPS datagrams sent by the participant -->
+            <!-- Set the maximum size in bytes for all RTPS datagrams sent by the writer -->
             <property>
                 <name>fastdds.max_message_size</name>
                 <value>1200</value>

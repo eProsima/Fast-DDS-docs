@@ -31,11 +31,21 @@ See |DataRepresentationQosPolicy-api|.
 
 List of QoS Policy data members:
 
-+-----------------------------------------------------------+------------------------------------------+---------------+
-| Data Member Name                                          | Type                                     | Default Value |
-+===========================================================+==========================================+===============+
-| |DataRepresentationQosPolicy::m_value-api|                | std::vector<:ref:`datarepresentationid`> | Empty vector  |
-+-----------------------------------------------------------+------------------------------------------+---------------+
+.. list-table::
+   :header-rows: 1
+
+   * - Data Member Name
+     - Type
+     - Default Value
+     - DataReader default value
+     - DataWriter default value
+     - Topic default value
+   * - |DataRepresentationQosPolicy::m_value-api|
+     - std::vector<:ref:`datarepresentationid`>
+     - Empty vector
+     - [|XCDR_DATA_REPRESENTATION-api|, |br||XCDR2_DATA_REPRESENTATION-api|]
+     - [|XCDR2_DATA_REPRESENTATION-api|]
+     - [|XCDR_DATA_REPRESENTATION-api|]
 
 .. note::
      This QoS Policy concerns to Topic, DataReader and DataWriter entities.

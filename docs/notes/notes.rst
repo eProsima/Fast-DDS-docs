@@ -17,7 +17,7 @@ This release includes the following **features** in an ABI compatible manner:
 This release includes the following **improvements**:
 
 #. Return const reference in ``get_log_resources``.
-#. Include variety of terminate proccess signals handler in discovery server.
+#. Include variety of terminate process signals handler in discovery server.
 #. Check History QoS inconsistencies.
 #. Make DataWriters always send the key hash on keyed topics.
 #. ``LARGE_DATA`` Participants logic with same listening ports.
@@ -45,7 +45,7 @@ Github CI management:
 #. Refactor Github CI sanitizer related jobs.
 #. Build ``ShapesDemo`` on Ubuntu Github CI.
 #. Fix Python version and environment.
-#. Add DNS entries to hosts files on github workflows.
+#. Add DNS entries to hosts files on Github workflows.
 #. Build Fast DDS Python bindings in Fast DDS Docs Github CI job.
 
 This release includes the following **fixes**:
@@ -80,7 +80,7 @@ This release includes the following **fixes**:
 #. Fix leaks in XML parser for ``DynamicTypes``.
 #. Fix Discovery Server over TCP.
 #. Handle errors when setting socket buffer sizes.
-#. Fix :cpp:func:`on_sample_lost<eprosima::fastdds::dds::DataReaderListener::on_sample_lost>` notification on best-effort readers for framented samples.
+#. Fix :cpp:func:`on_sample_lost<eprosima::fastdds::dds::DataReaderListener::on_sample_lost>` notification on best-effort readers for fragmented samples.
 #. Fix DataSharing QoS deserialization.
 
 .. note::

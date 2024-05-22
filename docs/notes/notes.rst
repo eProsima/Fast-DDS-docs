@@ -25,6 +25,7 @@ This release includes the following **improvements**:
 #. Improve checklist on PR template.
 #. Allow processing of ``AckNack`` submessages with ``count == 0``.
 #. Internal refactor on port handling.
+#. Upgrade Fast CDR submodule to v1.0.28
 
 TCP transport improvements:
 

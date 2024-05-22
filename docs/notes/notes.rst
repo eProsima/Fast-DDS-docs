@@ -5,72 +5,83 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.10.3
+Version 2.10.4
 ==============
 
 This release includes the following **features** in an ABI compatible manner:
 
-1. Support ``Autofill port`` (:ref:`automatically set a port<transport_tcp_transportDescriptor>`) for TCP Transport.
-2. Define a :ref:`super client<env_vars_ros_super_client>` by environment variable
-3. Support :ref:`TCP Discovery server<use-case-tcp-discovery-server>` CLI and environment variable
-4. Define methods (:ref:`environment variable<env_vars_builtin_transports>`,
-   :ref:`rtps layer<rtps_layer_builtin_transports>`, :ref:`xml<RTPS>`) to
-   :ref:`configure transport scenarios<transport_tcp_enabling>`
-5. Custom pools on DDS layer (:ref:`DataWriter<dds_layer_publisher_datawriter_with_payload_pool_creation>` and
-   :ref:`DataReader<dds_layer_subscriber_datareader_with_payload_pool_creation>`)
+#. TCP Client and Server Participant Decision Making.
+#. :ref:`Authentication Handshake Properties <property_policies_security>` documentation.
+#. New :ref:`max_message_size property <property_max_message_size>` to limit output datagrams size.
 
 This release includes the following **improvements**:
 
-1. Log warning upon receiver resource creation failure
-2. Simplify code in ``CDRMessage``
-3. Backport workflows from master
-4. Rerun failed tests with ctest option instead of colcon's
-5. Use foonathan memory manager for reducing allocations in ``SharedMemManager.hpp``
-6. Add CCache to all CI jobs
+#. Return const reference in ``get_log_resources``.
+#. Include variety of terminate process signals handler in discovery server.
+#. Check History QoS inconsistencies.
+#. Make DataWriters always send the key hash on keyed topics.
+#. ``LARGE_DATA`` Participants logic with same listening ports.
+#. Effectively assert ``AUTOMATIC/MANUAL_BY_PARTICIPANT`` liveliness.
+#. Improve checklist on PR template.
+#. Allow processing of ``AckNack`` submessages with ``count == 0``.
+#. Internal refactor on port handling.
+#. Upgrade Fast CDR submodule to v1.0.28
 
-This release includes the following **bugfixes**:
+TCP transport improvements:
 
-1. Fix ``RemoteBuiltinEndpointHonoring`` blackbox test
-2. Fix bad-free when receiving malformed DATA submessage
-3. Fix clang warnings
-4. Use STL implementation of ``Timed/RecursiveTimedMutex`` when ``MSVC >= 19.36``
-5. Notify data-sharing listener at the end of a successful matching in intraprocess
-6. Fix the clang build for clang 14
-7. Fix ``HelloWorld`` Data-Sharing example idl
-8. Fix the behaviour of ``disable_positive_acks`` period
-9. Fix ``DomainParticipant::register_remote_type`` return when negotiating type
-10. Fix Data Race when updating liveliness changed in WLP
-11. Fix TCP sender resources creation
-12. Fix flow controllers unit tests compilation when using ``Fast CDR`` from thirdparty
-13. Add XML parser ``bit_bound`` bounds check
-14. Add tests for reconnection with same GUID
-15. Fix Github Windows CI
-16. Fix PubSubAsReliable test
-17. Use ``FASTRTPS_NO_LIB`` on unittest root folder
-18. Fix missing mandatory attribute check in XML parser struct type
-19. Fix mac address overflow on windows
-20. Use ``SO_EXCLUSIVEADDRUSE`` for Win32 unicast listening sockets
-21. Fix FileWatchTest for Github windows CI
-22. Add missing thread include
-23. Update TLS unit test certificates
-24. Select correct .repos file on push events
-25. Fix documentation CI branch
-26. Fix TCP deadlock on channel reuse
-27. Fix DNS filter in CMakeLists file for tests
-28. Fix bad-free when receiving malformed DATA_FRAG submessage
-29. Fix memory problem when ciphering payload
-30. Fix build with TLS, but not security
-31. Fix CVE-2023-50257
-32. Fix data race on writer destruction while sending heartbeat
-33. Fix comparison in ``remove_from_pdp_reader_history``
-34. Fix data race in PDPListener and SecurityManager
-35. Update PR template to include check for PR description, title and backports
-36. Fix std::move warning
-37. Revert "TCP deadlock on channel reuse"
-38. Fix max clash with Windows CI
-39. Remove unnecessary TCP warning
-40. Discard already processed samples on ``PDPListener``
-41. TCP unique client announced local port
+#. TCP ``non-blocking`` send.
+#. Enabling multiple interfaces through whitelist in TCP servers.
+#. Set real TCP ``non-blocking-send`` limitation.
+#. Clean up TCP send resources on peer disconnection.
+
+Github CI management:
+
+#. Add macOS Github CI.
+#. Avoid running GitHub CI if PR has conflicts.
+#. Add Ubuntu Github CI.
+#. Improve CI version management.
+#. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows.
+#. Only run PRs CI when review is requested.
+#. Refactor Github CI sanitizer related jobs.
+#. Build ``ShapesDemo`` on Ubuntu Github CI.
+#. Fix Python version and environment.
+#. Add DNS entries to hosts files on Github workflows.
+#. Build Fast DDS Python bindings in Fast DDS Docs Github CI job.
+
+This release includes the following **fixes**:
+
+#. Fix and refactor Windows Github CI.
+#. Fix wrong log info messages on TCP.
+#. Add a keyed fragmented change to the reader data instance only when complete.
+#. Prevent index overflow and correctly assert the end iterator in DataSharing.
+#. Fix the shared memory cleaning script.
+#. Fix CI documentation workflow label triggering.
+#. Add missing virtual destructor for ``StatisticsAncillary``.
+#. Migrate apt package installation action to ``eProsima-CI``.
+#. Add missing ``TypeLookup`` listeners.
+#. Fix doxygen docs warnings. Prepare for compiling with ``Doxygen 1.10.0``.
+#. Upgrade dependency version to last patch version in ``.repos`` file.
+#. Fix TCP reconnection after open logical port failure.
+#. Avoid unhandled asio exceptions.
+#. Fix ``CVE-2024-28231``.
+#. Fix data race on PDP.
+#. Fix flaky Log tests.
+#. Fix some flaky MacOS tests.
+#. Fix hidden overloaded virtual methods.
+#. Fix test filtering in CMake files.
+#. Avoid first message loss in TCP.
+#. Fix ``CVE-2024-30258 / CVE-2024-30259``.
+#. Enforce SHM ports open mode exclusions.
+#. Force unlimited :ref:`ResourceLimits <resourcelimitsqospolicy>` if lower or equal to zero.
+#. Removed warning in ``ParameterList``.
+#. Make :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>` coherent with ``read()/take()``.
+#. Fix leak in ``SecurityManager``.
+#. Fix support for ``@key`` annotation in ``DynamicTypes``.
+#. Fix leaks in XML parser for ``DynamicTypes``.
+#. Fix Discovery Server over TCP.
+#. Handle errors when setting socket buffer sizes.
+#. Fix :cpp:func:`on_sample_lost<eprosima::fastdds::dds::DataReaderListener::on_sample_lost>` notification on best-effort readers for fragmented samples.
+#. Fix DataSharing QoS deserialization.
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -80,6 +91,7 @@ This release includes the following **bugfixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.10.3.rst
 .. include:: previous_versions/v2.10.2.rst
 .. include:: previous_versions/v2.10.1.rst
 .. include:: previous_versions/v2.10.0.rst

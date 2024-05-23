@@ -500,7 +500,7 @@
 
 .. |RTPSReliableReaderQos-api| replace:: :cpp:class:`RTPSReliableReaderQos<eprosima::fastdds::dds::RTPSReliableReaderQos>`
 .. |RTPSReliableReaderQos::times-api| replace:: :cpp:member:`times<eprosima::fastdds::dds::RTPSReliableReaderQos::times>`
-.. |RTPSReliableReaderQos::disable_positive_ACKs-api| replace:: :cpp:member:`disable_positive_ACKs<eprosima::fastdds::dds::RTPSReliableReaderQos::disable_positive_ACKs>`
+.. |RTPSReliableReaderQos::disable_positive_acks-api| replace:: :cpp:member:`disable_positive_acks<eprosima::fastdds::dds::RTPSReliableReaderQos::disable_positive_acks>`
 
 .. |DisablePositiveACKsQosPolicy-api| replace:: :cpp:class:`DisablePositiveACKsQosPolicy<eprosima::fastdds::dds::DisablePositiveACKsQosPolicy>`
 .. |DisablePositiveACKsQosPolicy::enabled-api| replace:: :cpp:member:`enabled<eprosima::fastdds::dds::DisablePositiveACKsQosPolicy::enabled>`

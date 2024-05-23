@@ -210,21 +210,200 @@ Table with the possible combinations:
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
-    :end-before: <!--><-->
+   .. tab:: C++
 
+      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
+          :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
+          :end-before: <!--><-->
+
+.. _rtpsreliablereaderqos:
+
+RTPSReliableReaderQos
+^^^^^^^^^^^^^^^^^^^^^
+
+This RTPS QoS Policy allows the configuration of several RTPS reliable reader's aspects.
+See |RTPSReliableReaderQos-api|.
+
+List of QoS Policy data members:
+
++--------------------------------------------------------------------------------+-------------------------------------+
+| Data Member Name                                                               | Type                                |
++================================================================================+=====================================+
+| |RTPSReliableReaderQos::times-api|                                             | :ref:`readertimes`                  |
++--------------------------------------------------------------------------------+-------------------------------------+
+| |RTPSReliableReaderQos::disable_positive_acks-api|                             | :ref:`disablepositiveacksqospolicy` |
++--------------------------------------------------------------------------------+-------------------------------------+
+
+* |RTPSReliableReaderQos::times-api|:
+  Defines the duration of the RTPSReader events. See :ref:`readertimes` for further details.
+* |RTPSReliableReaderQos::disable_positive_acks-api|:
+  Configures the settings to disable the positive acks.
+  See :ref:`disablepositiveacksqospolicy` for further details.
+
+.. note::
+     This QoS Policy concerns to |DataReader| entities.
+     :raw-html:`<br />`
+     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member of the :ref:`disablepositiveacksqospolicy` and the |RTPSReliableReaderQos::times-api|
+     Data Member can be modified on enabled entities.
+
+.. _readertimes:
+
+ReaderTimes
+"""""""""""
+
+This structure defines the times associated with the Reliable Readers' events.
+See |ReaderTimes-api|.
+
+List of structure members:
+
++-----------------------------------------------------------------------------------+------------------+---------------+
+| Member Name                                                                       | Type             | Default Value |
++===================================================================================+==================+===============+
+| |ReaderTimes::initial_acknack_delay-api|                                          | |Duration_t-api| | 70 ms         |
++-----------------------------------------------------------------------------------+------------------+---------------+
+| |ReaderTimes::heartbeat_response_delay-api|                                       | |Duration_t-api| | 5 ms          |
++-----------------------------------------------------------------------------------+------------------+---------------+
+
+* |ReaderTimes::initial_acknack_delay-api|:
+  Defines the duration of the initial acknack delay.
+* |ReaderTimes::heartbeat_response_delay-api|:
+  Establishes the duration of the delay applied when a heartbeat message is received.
+
+Example
+"""""""
+
+.. tabs::
+
+   .. tab:: C++
+
+     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_RTPS_RELIABLE_READER_QOS
+        :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->XML_RTPS_RELIABLE_READER_QOS<-->
+          :end-before: <!--><-->
+
+
+.. _rtpsreliablewriterqos:
+
+RTPSReliableWriterQos
+^^^^^^^^^^^^^^^^^^^^^
+
+This RTPS QoS Policy allows the configuration of several RTPS reliable writer's aspects.
+See |RTPSReliableWriterQos-api|.
+
+List of QoS Policy data members:
+
++--------------------------------------------------------------------------------+-------------------------------------+
+| Data Member Name                                                               | Type                                |
++================================================================================+=====================================+
+| |RTPSReliableWriterQos::times-api|                                             | :ref:`writertimes`                  |
++--------------------------------------------------------------------------------+-------------------------------------+
+| |RTPSReliableWriterQos::disable_positive_acks-api|                             | :ref:`disablepositiveacksqospolicy` |
++--------------------------------------------------------------------------------+-------------------------------------+
+| |RTPSReliableWriterQos::disable_heartbeat_piggyback-api|                       | :ref:`disableheartbeatpiggyback`    |
++--------------------------------------------------------------------------------+-------------------------------------+
+
+* |RTPSReliableWriterQos::times-api|:
+  Defines the duration of the RTPSWriter events.
+  See :ref:`writertimes` for further details.
+* |RTPSReliableWriterQos::disable_positive_acks-api|:
+  Configures the settings to disable the positive acks.
+  See :ref:`disablepositiveacksqospolicy` for further details.
+* |RTPSReliableWriterQos::disable_heartbeat_piggyback-api|:
+  Configures the settings to disable the heartbeat piggyback mechanism.
+  See :ref:`disableheartbeatpiggyback` for further details.
+
+.. note::
+     This QoS Policy concerns to |DataWriter| entities.
+     :raw-html:`<br />`
+     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member of the :ref:`disablepositiveacksqospolicy` and the |RTPSReliableWriterQos::times-api|
+     Data Member can be modified on enabled entities.
+
+.. _writertimes:
+
+WriterTimes
+"""""""""""
+
+This structure defines the times associated with the Reliable Writers' events.
+
+List of structure members:
+
++-----------------------------------------------------------------------------------+------------------+---------------+
+| Member Name                                                                       | Type             | Default Value |
++===================================================================================+==================+===============+
+| |WriterTimes::initialHeartbeatDelay-api|                                          | |Duration_t-api| | 12ms          |
++-----------------------------------------------------------------------------------+------------------+---------------+
+| |WriterTimes::heartbeatPeriod-api|                                                | |Duration_t-api| | 3s            |
++-----------------------------------------------------------------------------------+------------------+---------------+
+| |WriterTimes::nackResponseDelay-api|                                              | |Duration_t-api| | 5ms           |
++-----------------------------------------------------------------------------------+------------------+---------------+
+| |WriterTimes::nackSupressionDuration-api|                                         | |Duration_t-api| | 0s            |
++-----------------------------------------------------------------------------------+------------------+---------------+
+
+* |WriterTimes::initialHeartbeatDelay-api|:
+  Defines duration of the initial heartbeat delay.
+* |WriterTimes::heartbeatPeriod-api|:
+  Specifies the interval between periodic heartbeats.
+* |WriterTimes::nackResponseDelay-api|:
+  Establishes the duration of the delay applied to the response of an ACKNACK message.
+* |WriterTimes::nackSupressionDuration-api|:
+  The RTPSWriter ignores the nack messages received after sending the data until the
+  duration time elapses.
+
+.. _disableheartbeatpiggyback:
+
+DisableHeartbeatPiggyback
+"""""""""""""""""""""""""
+
+Besides sending heartbeats periodically using the |WriterTimes::heartbeatPeriod-api| (see :ref:`writertimes`), reliable
+DataWriters also use a mechanism to append a heartbeat submessage in the same message where data is being delivered to
+the DataReaders.
+This mechanism acts in specific situations where the reliable communication state must be up to date to maintain
+optimal communication:
+
+- When the DataWriter sends as many bytes to the *socket* as the length of the *socket* buffer, a heartbeat
+  submessage is appended after the last data.
+- When the DataWriter's history is full, the DataWriter starts to append heartbeat submessages after each data.
+
+This mechanism can be disabled using this policy.
+
+Example
+"""""""
+
+.. tabs::
+
+   .. tab:: C++
+
+     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
+          :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
+          :end-before: <!--><-->
 
 .. _flowcontrollersqos:
 
@@ -273,7 +452,6 @@ ParticipantResourceLimitsQos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This QoS configures allocation limits and the use of physical memory for internal resources.
-See |ParticipantResourceLimitsQos-api|.
 
 List of QoS Policy data members:
 
@@ -477,20 +655,23 @@ List of structure members:
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
-    :end-before: <data_writer
+   .. tab:: C++
+
+      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
+          :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
+          :end-before: <data_writer
+          :lines: 2-4, 5-
 
 .. _propertypolicyqos:
 
@@ -504,23 +685,30 @@ For the complete list of settings that can be configured with this QoS Policy, p
 This QoS also allows to add custom user properties that could be sent to the external entities.
 This could be done by setting as :code:`true` the :code:`propagate` value of the Property.
 
+.. note::
+     This QoS Policy concerns to |DomainParticipant|, |DataWriter| and |DataReader| entities.
+     :raw-html:`<br />`
+     It cannot be changed on enabled entities.
+
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_PROPERTY_POLICY_QOS
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML_PROPERTY_POLICY
-    :end-before: <!--><-->
+   .. tab:: C++
+
+      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_PROPERTY_POLICY_QOS
+          :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->XML_PROPERTY_POLICY
+          :end-before: <!--><-->
 
 .. _publishmodeqospolicy:
 
@@ -551,7 +739,7 @@ List of QoS Policy data members:
      - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::
-     This QoS Policy concerns to DataWriter entities.
+     This QoS Policy concerns to |DataWriter| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -572,20 +760,22 @@ descriptor name.
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_PUBLISH_MODE_QOS
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->CONF-QOS-PUBLISHMODE<-->
-    :end-before: <!--><-->
+   .. tab:: C++
+
+      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_PUBLISH_MODE_QOS
+          :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF-QOS-PUBLISHMODE<-->
+          :end-before: <!--><-->
 
 .. _readerresourcelimitsqos:
 
@@ -606,27 +796,73 @@ List of QoS Policy data members:
 
 
 .. note::
-     This QoS Policy concerns to DataReader entities.
+     This QoS Policy concerns to |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML_READER_RESOURCE_LIMITS_QOS<-->
-    :end-before: <!--><-->
+   .. tab:: C++
+
+      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
+          :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->XML_READER_RESOURCE_LIMITS_QOS<-->
+          :end-before: <!--><-->
+
+.. _writerresourcelimitsqos:
+
+WriterResourceLimitsQos
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This QoS Policy states the limits for the matched |DataReaders|' resource limited collections based on the maximum
+number of DataReaders that are going to match with the |DataWriter|.
+See |WriterResourceLimitsQos-api|.
+
+List of QoS Policy data members:
+
++-----------------------------------------------------------------------------+----------------------------------------+
+| Data Member Name                                                            | Type                                   |
++=============================================================================+========================================+
+| |WriterResourceLimitsQos::matched_subscriber_allocation-api|                | :ref:`resourcelimitedcontainerconfig`  |
++-----------------------------------------------------------------------------+----------------------------------------+
+| |WriterResourceLimitsQos::reader_filters_allocation-api|                    | :ref:`resourcelimitedcontainerconfig`  |
++-----------------------------------------------------------------------------+----------------------------------------+
+
+.. note::
+     This QoS Policy concerns to |DataWriter| entities.
+     :raw-html:`<br />`
+     It cannot be changed on enabled entities.
+
+Example
+"""""""
+
+.. tabs::
+
+   .. tab:: C++
+
+     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
+          :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
+          :end-before: <!--><-->
 
 .. _rtpsendpointqos:
 
@@ -720,194 +956,22 @@ There are four possible values (see |MemoryManagementPolicy-api|):
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_RTPS_ENDPOINT_QOS
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML_RTPS_ENDPOINT_QOS<-->
-    :end-before: <!--><-->
+   .. tab:: C++
 
-.. _rtpsreliablereaderqos:
+     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_RTPS_ENDPOINT_QOS
+          :end-before: //!
 
-RTPSReliableReaderQos
-^^^^^^^^^^^^^^^^^^^^^
+   .. tab:: XML
 
-This RTPS QoS Policy allows the configuration of several RTPS reliable reader's aspects.
-See |RTPSReliableReaderQos-api|.
-
-List of QoS Policy data members:
-
-+--------------------------------------------------------------------------------+-------------------------------------+
-| Data Member Name                                                               | Type                                |
-+================================================================================+=====================================+
-| |RTPSReliableReaderQos::times-api|                                             | :ref:`readertimes`                  |
-+--------------------------------------------------------------------------------+-------------------------------------+
-| |RTPSReliableReaderQos::disable_positive_ACKs-api|                             | :ref:`disablepositiveacksqospolicy` |
-+--------------------------------------------------------------------------------+-------------------------------------+
-
-* |RTPSReliableReaderQos::times-api|:
-  Defines the duration of the RTPSReader events. See :ref:`readertimes` for further details.
-* |RTPSReliableReaderQos::disable_positive_ACKs-api|:
-  Configures the settings to disable the positive acks.
-  See :ref:`disablepositiveacksqospolicy` for further details.
-
-.. note::
-     This QoS Policy concerns to |DataReader| entities.
-     :raw-html:`<br />`
-     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member of the :ref:`disablepositiveacksqospolicy` and the |RTPSReliableReaderQos::times-api|
-     Data Member can be modified on enabled entities.
-
-.. _readertimes:
-
-ReaderTimes
-"""""""""""
-
-This structure defines the times associated with the Reliable Readers' events.
-See |ReaderTimes-api|.
-
-List of structure members:
-
-+-----------------------------------------------------------------------------------+------------------+---------------+
-| Member Name                                                                       | Type             | Default Value |
-+===================================================================================+==================+===============+
-| |ReaderTimes::initial_acknack_delay-api|                                          | |Duration_t-api| | 70 ms         |
-+-----------------------------------------------------------------------------------+------------------+---------------+
-| |ReaderTimes::heartbeat_response_delay-api|                                       | |Duration_t-api| | 5 ms          |
-+-----------------------------------------------------------------------------------+------------------+---------------+
-
-* |ReaderTimes::initial_acknack_delay-api|:
-  Defines the duration of the initial acknack delay.
-* |ReaderTimes::heartbeat_response_delay-api|:
-  Establishes the duration of the delay applied when a heartbeat message is received.
-
-Example
-"""""""
-
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_RTPS_RELIABLE_READER_QOS
-   :end-before: //!
-
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML_RTPS_RELIABLE_READER_QOS<-->
-    :end-before: <!--><-->
-
-
-.. _rtpsreliablewriterqos:
-
-RTPSReliableWriterQos
-^^^^^^^^^^^^^^^^^^^^^
-
-This RTPS QoS Policy allows the configuration of several RTPS reliable writer's aspects.
-See |RTPSReliableWriterQos-api|.
-
-List of QoS Policy data members:
-
-+--------------------------------------------------------------------------------+-------------------------------------+
-| Data Member Name                                                               | Type                                |
-+================================================================================+=====================================+
-| |RTPSReliableWriterQos::times-api|                                             | :ref:`writertimes`                  |
-+--------------------------------------------------------------------------------+-------------------------------------+
-| |RTPSReliableWriterQos::disable_positive_acks-api|                             | :ref:`disablepositiveacksqospolicy` |
-+--------------------------------------------------------------------------------+-------------------------------------+
-| |RTPSReliableWriterQos::disable_heartbeat_piggyback-api|                       | :ref:`disableheartbeatpiggyback`    |
-+--------------------------------------------------------------------------------+-------------------------------------+
-
-* |RTPSReliableWriterQos::times-api|:
-  Defines the duration of the RTPSWriter events.
-  See :ref:`writertimes` for further details.
-* |RTPSReliableWriterQos::disable_positive_acks-api|:
-  Configures the settings to disable the positive acks.
-  See :ref:`disablepositiveacksqospolicy` for further details.
-* |RTPSReliableWriterQos::disable_heartbeat_piggyback-api|:
-  Configures the settings to disable the heartbeat piggyback mechanism.
-  See :ref:`disableheartbeatpiggyback` for further details.
-
-.. note::
-     This QoS Policy concerns to |DataWriter| entities.
-     :raw-html:`<br />`
-     Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member of the :ref:`disablepositiveacksqospolicy` and the |RTPSReliableWriterQos::times-api|
-     Data Member can be modified on enabled entities.
-
-.. _writertimes:
-
-WriterTimes
-"""""""""""
-
-This structure defines the times associated with the Reliable Writers' events.
-
-List of structure members:
-
-+-----------------------------------------------------------------------------------+------------------+---------------+
-| Member Name                                                                       | Type             | Default Value |
-+===================================================================================+==================+===============+
-| |WriterTimes::initialHeartbeatDelay-api|                                          | |Duration_t-api| | 12ms          |
-+-----------------------------------------------------------------------------------+------------------+---------------+
-| |WriterTimes::heartbeatPeriod-api|                                                | |Duration_t-api| | 3s            |
-+-----------------------------------------------------------------------------------+------------------+---------------+
-| |WriterTimes::nackResponseDelay-api|                                              | |Duration_t-api| | 5ms           |
-+-----------------------------------------------------------------------------------+------------------+---------------+
-| |WriterTimes::nackSupressionDuration-api|                                         | |Duration_t-api| | 0s            |
-+-----------------------------------------------------------------------------------+------------------+---------------+
-
-* |WriterTimes::initialHeartbeatDelay-api|:
-  Defines duration of the initial heartbeat delay.
-* |WriterTimes::heartbeatPeriod-api|:
-  Specifies the interval between periodic heartbeats.
-* |WriterTimes::nackResponseDelay-api|:
-  Establishes the duration of the delay applied to the response of an ACKNACK message.
-* |WriterTimes::nackSupressionDuration-api|:
-  The RTPSWriter ignores the nack messages received after sending the data until the
-  duration time elapses.
-
-.. _disableheartbeatpiggyback:
-
-DisableHeartbeatPiggyback
-"""""""""""""""""""""""""
-
-Besides sending heartbeats periodically using the |WriterTimes::heartbeatPeriod-api| (see :ref:`writertimes`), reliable
-DataWriters also use a mechanism to append a heartbeat submessage in the same message where data is being delivered to
-the DataReaders.
-This mechanism acts in specific situations where the reliable communication state must be up to date to maintain
-optimal communication:
-
-- When the DataWriter sends as many bytes to the *socket* as the length of the *socket* buffer, a heartbeat
-  submessage is appended after the last data.
-- When the DataWriter's history is full, the DataWriter starts to append heartbeat submessages after each data.
-
-This mechanism can be disabled using this policy.
-
-Example
-"""""""
-
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
-   :end-before: //!
-
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
-    :end-before: <!--><-->
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->XML_RTPS_ENDPOINT_QOS<-->
+          :end-before: <!--><-->
 
 .. _threadsettingsqos:
 
@@ -1083,20 +1147,22 @@ List of structure members:
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_TRANSPORT_CONFIG_QOS
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING<-->
-    :end-before: <!--><-->
+   .. tab:: C++
+
+     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_TRANSPORT_CONFIG_QOS
+          :end-before: //!
+
+   .. tab:: XML
+
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING<-->
+          :end-before: <!--><-->
 
 .. note::
      :ref:`transportconfigqos` can also be configured modifying the builtin
@@ -1109,7 +1175,6 @@ WireProtocolConfigQos
 ^^^^^^^^^^^^^^^^^^^^^
 
 This QoS Policy allows the configuration of the wire protocol.
-See |WireProtocolConfigQos-api|.
 
 List of QoS Policy data members:
 
@@ -1170,7 +1235,7 @@ List of QoS Policy data members:
   any of the locators announced by this DDS participant.
 
 .. note::
-     This QoS Policy concerns to DomainParticipant entities.
+     This QoS Policy concerns to |DomainParticipant| entities.
 
 .. important::
      The only mutable field on enabled entities is |m_DiscoveryServers|, which is contained in
@@ -1180,59 +1245,20 @@ List of QoS Policy data members:
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
-   :end-before: //!
+.. tabs::
 
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
-    :end-before: <!--><-->
+   .. tab:: C++
 
-.. _writerresourcelimitsqos:
+     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
+          :end-before: //!
 
-WriterResourceLimitsQos
-^^^^^^^^^^^^^^^^^^^^^^^
+   .. tab:: XML
 
-This QoS Policy states the limits for the matched |DataReaders|' resource limited collections based on the maximum
-number of DataReaders that are going to match with the |DataWriter|.
-See |WriterResourceLimitsQos-api|.
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
+          :end-before: <!--><-->
 
-List of QoS Policy data members:
-
-+-----------------------------------------------------------------------------+----------------------------------------+
-| Data Member Name                                                            | Type                                   |
-+=============================================================================+========================================+
-| |WriterResourceLimitsQos::matched_subscriber_allocation-api|                | :ref:`resourcelimitedcontainerconfig`  |
-+-----------------------------------------------------------------------------+----------------------------------------+
-| |WriterResourceLimitsQos::reader_filters_allocation-api|                    | :ref:`resourcelimitedcontainerconfig`  |
-+-----------------------------------------------------------------------------+----------------------------------------+
-
-.. note::
-     This QoS Policy concerns to DataWriter entities.
-     :raw-html:`<br />`
-     It cannot be changed on enabled entities.
-
-Example
-"""""""
-
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
-   :end-before: //!
-
-XML
-***
-.. literalinclude:: /../code/XMLTester.xml
-    :language: xml
-    :start-after: <!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
-    :end-before: <!--><-->

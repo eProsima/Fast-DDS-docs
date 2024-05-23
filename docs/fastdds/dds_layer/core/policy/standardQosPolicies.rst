@@ -110,7 +110,7 @@ List of QoS Policy data members:
 +----------------------------------------------------+--------------------------------------+--------------------------+
 
 .. note::
-    This QoS Policy concerns to Topic, DataReader and DataWriter entities.
+    This QoS Policy concerns to |Topic|, |DataReader| and |DataWriter| entities.
     :raw-html:`<br />`
     It cannot be changed on enabled entities.
 
@@ -187,7 +187,7 @@ List of QoS Policy data members:
 +---------------------------------------+-----------------------+------------------------------------------------------+
 
 .. note::
-     This QoS Policy concerns to Topic, DataReader and DataWriter entities.
+     This QoS Policy concerns to |Topic|, |DataReader| and |DataWriter| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -330,7 +330,7 @@ List of QoS Policy data members:
   This value must be lower than the maximum number of samples.
 
 .. note::
-     This QoS Policy concerns to Topic and DataWriter entities.
+     This QoS Policy concerns to |Topic| and |DataWriter| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -397,7 +397,7 @@ List of QoS Policy data members:
 +--------------------------+-------------------------------+-------------------+
 
 .. note::
-     This QoS Policy concerns to Publisher and Subscriber entities.
+     This QoS Policy concerns to |Publisher| and |Subscriber| entities.
      :raw-html:`<br />`
      It can be changed on enabled entities.
 
@@ -447,7 +447,7 @@ List of QoS Policy data members:
   :ref:`resourcelimitsqospolicy`, which means that its value must be lower or equal to max_samples_per_instance.
 
 .. note::
-     This QoS Policy concerns to Topic, DataWriter and DataReader entities.
+     This QoS Policy concerns to |Topic|, |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -840,7 +840,7 @@ List of QoS Policy data members:
 +-----------------------------------------------------------------+-------------------------------+-------------------+
 
 .. note::
-     This QoS Policy concerns to DataWriter entities.
+     This QoS Policy concerns to |DataWriter| entities.
      :raw-html:`<br />`
      It can be changed on enabled entities.
 
@@ -891,12 +891,12 @@ List of QoS Policy data members:
 * |PartitionQosPolicy::names-api|: List of partition names.
 
 .. note::
-     This QoS Policy concerns to Publisher and Subscriber entities.
+     This QoS Policy concerns to |Publisher| and |Subscriber| entities.
      :raw-html:`<br />`
      Partitions can also be explicitly defined at the endpoint level to override this configuration. Information
      to do so can be found :ref:`here<property_policies_partitions>`.
      :raw-html:`<br />`
-     It can be changed on enabled Publishers and Subscribers.
+     It can be changed on enabled entities.
 
 Example
 """""""
@@ -1073,7 +1073,7 @@ List of QoS Policy data members:
   After this time elapses, the DataReader purges all the samples for the instance.
 
 .. note::
-     This QoS Policy concerns to DataReader entities.
+     This QoS Policy concerns to |DataReader| entities.
      :raw-html:`<br />`
      It can be changed on enabled entities.
 
@@ -1233,7 +1233,7 @@ List of QoS Policy data members:
   These extra samples act as a reservoir of samples even when the history is full.
 
 .. note::
-     This QoS Policy concerns to Topic, DataWriter and DataReader entities.
+     This QoS Policy concerns to |Topic|, |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -1299,7 +1299,7 @@ List of QoS Policy data members:
 +---------------------------------------------------------------------+-----------------------------+------------------+
 
 .. note::
-     This QoS Policy concerns to DataReader entities.
+     This QoS Policy concerns to |DataReader| entities.
      :raw-html:`<br />`
      It can be changed on enabled entities.
 
@@ -1321,7 +1321,7 @@ List of QoS Policy data members:
 +------------------------------------------------------------+----------------------------------------+----------------+
 
 .. note::
-    This QoS Policy concerns to Topic entities.
+    This QoS Policy concerns to |Topic| entities.
     :raw-html:`<br />`
     It can be changed even if it is already created.
 
@@ -1393,7 +1393,7 @@ List of QoS Policy data members:
 +-------------------------------------------------------------------+----------------------------------+---------------+
 
 .. note::
-    This QoS Policy concerns to all DDS entities.
+    This QoS Policy concerns to |DomainParticipant|, |DataWriter| and |DataReader| entities.
     :raw-html:`<br />`
     It can be changed on enabled entities.
 
@@ -1443,6 +1443,6 @@ List of QoS Policy data members:
 +--------------------------------------------------------------------------------------+-----------+-------------------+
 
 .. note::
-     This QoS Policy concerns to DataWriter entities.
+     This QoS Policy concerns to |DataWriter| entities.
      :raw-html:`<br />`
      It can be changed on enabled entities.

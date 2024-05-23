@@ -166,17 +166,18 @@ There are two possible values:
   The DataWriter and the DataReader do not need to support the same data type in order to
   communicate as long as the DataReader's type is assignable from the DataWriter's type.
 
-Example
-"""""""
+.. Uncomment after implementation and update example with correct API
+.. Example
+.. """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_TYPE_CONSISTENCY_ENFORCEMENT_QOS
-   :end-before: //!
+.. C++
+.. ***
+.. .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+..    :language: c++
+..    :dedent: 8
+..    :start-after: //DDS_CHANGE_TYPE_CONSISTENCY_ENFORCEMENT_QOS
+..    :end-before: //!
 
-XML
-***
-This QoS Policy cannot be configured using XML for the moment.
+.. XML
+.. ***
+.. This QoS Policy cannot be configured using XML for the moment.

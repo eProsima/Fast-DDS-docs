@@ -883,6 +883,28 @@ void dds_domain_examples()
             "unicast");
         //!--
     }
+
+    {
+        // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
+        DomainParticipantQos pqos;
+
+        // Set maximum number of bytes of the datagram to be sent
+        pqos.properties().properties().emplace_back(
+            "fastdds.max_message_size",
+            "1200");
+        //!--
+    }
+
+    {
+        // MAX_MESSAGE_SIZE_PROPERTY_WRITER
+        DataWriterQos wqos;
+
+        // Set maximum number of bytes of the datagram to be sent
+        wqos.properties().properties().emplace_back(
+            "fastdds.max_message_size",
+            "1200");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

@@ -1071,51 +1071,6 @@ XML
      transports configuration by selecting one of the available builtin transports options.
      See :ref:`rtps_layer_builtin_transports` or |DomainParticipantQoS::setup_transports-api|.
 
-.. _typeconsistencyqos:
-
-TypeConsistencyQos
-^^^^^^^^^^^^^^^^^^
-
-This QoS Policy allows the configuration of the :ref:`XTypes extension QoS<xtypes_extensions>` on the |DataReader|.
-See |TypeConsistencyQos-api|.
-
-List of QoS Policy data members:
-
-+-------------------------------------------------------------------------+--------------------------------------------+
-| Data Member Name                                                        | Type                                       |
-+=========================================================================+============================================+
-| |TypeConsistencyQos::type_consistency-api|                              | :ref:`typeconsistencyenforcementqospolicy` |
-+-------------------------------------------------------------------------+--------------------------------------------+
-| |TypeConsistencyQos::representation-api|                                | :ref:`datarepresentationqospolicy`         |
-+-------------------------------------------------------------------------+--------------------------------------------+
-
-* |TypeConsistencyQos::type_consistency-api|:
-  It states the rules for the data types compatibility.
-  See :ref:`typeconsistencyenforcementqospolicy` for further details.
-* |TypeConsistencyQos::representation-api|:
-  It specifies the data representations valid for the entities.
-  See :ref:`datarepresentationqospolicy` for further details.
-
-.. note::
-     This QoS Policy concerns to DataReader entities.
-     :raw-html:`<br />`
-     It cannot be changed on enabled entities.
-
-Example
-"""""""
-
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_TYPE_CONSISTENCY_QOS
-   :end-before: //!
-
-XML
-***
-This QoS Policy cannot be configured using XML for the moment.
-
 .. _wireprotocolconfigqos:
 
 WireProtocolConfigQos

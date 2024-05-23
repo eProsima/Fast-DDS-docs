@@ -15,5 +15,4 @@ Subscriber
     /fastdds/python_api_reference/dds_pim/subscriber/subscriber_class.rst
     /fastdds/python_api_reference/dds_pim/subscriber/subscriberlistener.rst
     /fastdds/python_api_reference/dds_pim/subscriber/subscriberqos.rst
-    /fastdds/python_api_reference/dds_pim/subscriber/typeconsistencyqos.rst
     /fastdds/python_api_reference/dds_pim/subscriber/viewstatekind.rst

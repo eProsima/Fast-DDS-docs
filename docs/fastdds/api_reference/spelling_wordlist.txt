@@ -271,7 +271,6 @@ TopicListener
 TransportDescriptor
 TransportPriorityQosPolicy
 TypeConsistencyEnforcementQosPolicy
-TypeConsistencyQos
 typedef
 typeid
 TypeIdentfierWithSizePubSubType

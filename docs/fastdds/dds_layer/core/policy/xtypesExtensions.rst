@@ -1,5 +1,6 @@
 .. include:: ../../../../03-exports/aliases.include
 .. include:: ../../../../03-exports/aliases-api.include
+.. include:: ../../../../03-exports/roles.include
 
 .. role:: raw-html(raw)
     :format: html
@@ -43,7 +44,7 @@ List of QoS Policy data members:
    * - |DataRepresentationQosPolicy::m_value-api|
      - std::vector<:ref:`datarepresentationid`>
      - Empty vector
-     - [|XCDR_DATA_REPRESENTATION-api|, |br||XCDR2_DATA_REPRESENTATION-api|]
+     - [|XCDR_DATA_REPRESENTATION-api|, |br| |XCDR2_DATA_REPRESENTATION-api|]
      - [|XCDR2_DATA_REPRESENTATION-api|]
      - [|XCDR_DATA_REPRESENTATION-api|]
 

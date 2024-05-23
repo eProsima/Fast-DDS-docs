@@ -4431,16 +4431,6 @@ void dds_qos_examples()
         //!--
     }
 
-    {
-        //DDS_CHANGE_TYPE_CONSISTENCY_QOS
-        TypeConsistencyQos consistency_qos;
-        //You can change the DataRepresentationQosPolicy. For further details see DataRepresentationQosPolicySection section.
-        consistency_qos.representation.m_value.push_back(DataRepresentationId_t::XCDR2_DATA_REPRESENTATION);
-        //You can change the TypeConsistencyEnforcementQosPolicy. For further details see TypeConsistencyEnforcementQosPolicy section.
-        consistency_qos.type_consistency.m_kind = TypeConsistencyKind::ALLOW_TYPE_COERCION;
-        //!--
-    }
-
     // Taken out of the examples to avoid bloating them
     DomainParticipant* participant =
             DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);

@@ -3971,370 +3971,480 @@ void dds_qos_examples()
 {
     {
         //DDS_CHANGE_DEADLINE_QOS_POLICY
-        DeadlineQosPolicy deadline;
-        //The DeadlineQosPolicy is default constructed with an infinite period.
-        //Change the period to 1 second
-        deadline.period.seconds = 1;
-        deadline.period.nanosec = 0;
+        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The DeadlineQosPolicy is default constructed with an infinite period.
+        // Change the period to 1 second
+        writer_qos.deadline().period.seconds = 1;
+        writer_qos.deadline().period.nanosec = 0;
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_DURABILITY_QOS_POLICY
-        DurabilityQosPolicy durability;
-        //The DurabilityQosPolicy is default constructed with kind = VOLATILE_DURABILITY_QOS
-        //Change the kind to TRANSIENT_LOCAL_DURABILITY_QOS
-        durability.kind = TRANSIENT_LOCAL_DURABILITY_QOS;
+        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The DurabilityQosPolicy is default constructed with kind = VOLATILE_DURABILITY_QOS
+        // Change the kind to TRANSIENT_LOCAL_DURABILITY_QOS
+        writer_qos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_ENTITY_FACTORY_QOS_POLICY
-        EntityFactoryQosPolicy entity_factory;
-        //The EntityFactoryQosPolicy is default constructed with autoenable_created_entities = true
-        //Change it to false
-        entity_factory.autoenable_created_entities = false;
+        // This example uses a Participant, but it can also be applied to:
+        // DomainParticipantFactory, DomainParticipant, Publisher and Subscriber entities
+        DomainParticipantQos participant_qos;
+        // The EntityFactoryQosPolicy is default constructed with autoenable_created_entities = true
+        // Change it to false
+        participant_qos.entity_factory().autoenable_created_entities = false;
+        // Use modified QoS in the creation of the corresponding entity
+        participant_ = factory_->create_participant(domain, participant_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_GROUP_DATA_QOS_POLICY
-        GroupDataQosPolicy group_data;
-        //The GroupDataQosPolicy is default constructed with an empty collection
-        //Collection is a private member so you need to use getters and setters to access
-        //Add data to the collection
-        std::vector<eprosima::fastdds::rtps::octet> vec;
-        vec = group_data.data_vec(); // Getter function
+        // This example uses a Publisher, but it can also be applied to: Publisher and Subscriber entities
+        PublisherQos publisher_qos;
+        // The GroupDataQosPolicy is default constructed with an empty collection
+        // Collection is a private member so you need to use getters and setters to access
 
-        //Add two new octets to group data vector
+        // Add data to the collection in initialization
+        std::vector<eprosima::fastdds::rtps::octet> vec;
+        // Add two new octets to group data vector
         eprosima::fastdds::rtps::octet val = 3;
         vec.push_back(val);
         val = 10;
         vec.push_back(val);
-        group_data.data_vec(vec); //Setter function
+        publisher_qos.group_data().data_vec(vec); // Setter function
+        // Use modified QoS in the creation of the corresponding entity
+        publisher_ = participant_->create_publisher(publisher_qos);
+
+        // Add data to the collection at runtime
+        vec = publisher_qos.group_data().data_vec(); // Getter to keep old values
+        val = 31;
+        vec.push_back(val);
+        publisher_qos.group_data().data_vec(vec); // Setter function
+        // Update the QoS in the corresponding entity
+        publisher_->set_qos(publisher_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_HISTORY_QOS_POLICY
-        HistoryQosPolicy history;
-        //The HistoryQosPolicy is default constructed with kind = KEEP_LAST and depth = 1.
-        //Change the depth to 20
-        history.depth = 20;
-        //You can also change the kind to KEEP_ALL but after that the depth will not have effect.
-        history.kind = KEEP_ALL_HISTORY_QOS;
+        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The HistoryQosPolicy is default constructed with kind = KEEP_LAST and depth = 1.
+        // It is possible to adjust the depth and keep the kind as KEEP_LAST
+        writer_qos.history().depth = 20;
+        // Or you can also change the kind to KEEP_ALL (depth will not be used).
+        writer_qos.history().kind = KEEP_ALL_HISTORY_QOS;
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_LIFESPAN_QOS_POLICY
-        LifespanQosPolicy lifespan;
-        //The LifespanQosPolicy is default constructed with duration set to infinite.
-        //Change the duration to 5 s
-        lifespan.duration = {5, 0};
+        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The LifespanQosPolicy is default constructed with duration set to infinite.
+        // Change the duration to 5 s
+        writer_qos.lifespan().duration = {5, 0};
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_LIVELINESS_QOS_POLICY
-        LivelinessQosPolicy liveliness;
-        //The LivelinessQosPolicy is default constructed with kind = AUTOMATIC
-        //Change the kind to MANUAL_BY_PARTICIPANT
-        liveliness.kind = MANUAL_BY_PARTICIPANT_LIVELINESS_QOS;
-        //The LivelinessQosPolicy is default constructed with lease_duration set to infinite
-        //Change the lease_duration to 1 second
-        liveliness.lease_duration = {1, 0};
-        //The LivelinessQosPolicy is default constructed with announcement_period set to infinite
-        //Change the announcement_period to 1 ms
-        liveliness.announcement_period = {0, 1000000};
+        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The LivelinessQosPolicy is default constructed with kind = AUTOMATIC
+        // Change the kind to MANUAL_BY_PARTICIPANT
+        writer_qos.liveliness().kind = MANUAL_BY_PARTICIPANT_LIVELINESS_QOS;
+        // The LivelinessQosPolicy is default constructed with lease_duration set to infinite
+        // Change the lease_duration to 1 second
+        writer_qos.liveliness().lease_duration = {1, 0};
+        // The LivelinessQosPolicy is default constructed with announcement_period set to infinite
+        // Change the announcement_period to 1 ms
+        writer_qos.liveliness().announcement_period = {0, 1000000};
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_OWNERSHIP_QOS_POLICY
-        OwnershipQosPolicy ownership;
-        //The OwnershipQosPolicy is default constructed with kind = SHARED.
-        //Change the kind to EXCLUSIVE
-        ownership.kind = EXCLUSIVE_OWNERSHIP_QOS;
+        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The OwnershipQosPolicy is default constructed with kind = SHARED.
+        // Change the kind to EXCLUSIVE
+        writer_qos.ownership().kind = EXCLUSIVE_OWNERSHIP_QOS;
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_OWNERSHIP_STRENGTH_QOS_POLICY
-        OwnershipStrengthQosPolicy ownership_strength;
-        //The OwnershipStrengthQosPolicy is default constructed with value 0
-        //Change the strength to 10
-        ownership_strength.value = 10;
+        // This example only applies to DataWriter entities
+        DataWriterQos writer_qos;
+        // The OwnershipStrengthQosPolicy is default constructed with value 0
+        // Change the strength to 10
+        writer_qos.ownership_strength().value = 10;
+        // Use modified QoS in the creation of the corresponding DataWriter
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_PARTITION_QOS_POLICY
-        PartitionQosPolicy partitions;
-        //The PartitionsQosPolicy is default constructed with max_size = 0.
-        //Max_size is a private member so you need to use getters and setters to access
-        //Change the max_size to 20
-        partitions.set_max_size(20); //Setter function
-        //The PartitionsQosPolicy is default constructed with an empty list of partitions
-        //Partitions is a private member so you need to use getters and setters to access
-        //Add new partitions
-        std::vector<std::string> part = partitions.names(); //Getter function
+        // This example uses a Publisher, but it can also be applied to: Publisher and Subscriber entities
+        PublisherQos publisher_qos;
+        // The PartitionsQosPolicy is default constructed with max_size = 0
+        // Max_size is a private member so you need to use getters and setters to access
+        // Change the max_size to 20
+        publisher_qos.partition().set_max_size(20); // Setter function
+        // The PartitionsQosPolicy is default constructed with an empty list of partitions
+        // Partitions is a private member so you need to use getters and setters to access
+
+        // Add new partitions in initialization
+        std::vector<std::string> part;
         part.push_back("part1");
         part.push_back("part2");
-        partitions.names(part); //Setter function
+        publisher_qos.partition().names(part); // Setter function
+        // Use modified QoS in the creation of the corresponding entity
+        publisher_ = participant_->create_publisher(publisher_qos);
+
+        // Add data to the collection at runtime
+        part = publisher_qos.partition().names(); // Getter to keep old values
+        part.push_back("part3");
+        publisher_qos.partition().names(part); // Setter function
+        // Update the QoS in the corresponding entity
+        publisher_->set_qos(publisher_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_RELIABILITY_QOS_POLICY
-        ReliabilityQosPolicy reliability;
-        //The ReliabilityQosPolicy is default constructed with kind = BEST_EFFORT
-        //Change the kind to RELIABLE
-        reliability.kind = RELIABLE_RELIABILITY_QOS;
-        //The ReliabilityQosPolicy is default constructed with max_blocking_time = 100ms
-        //Change the max_blocking_time to 1s
-        reliability.max_blocking_time = {1, 0};
+        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The ReliabilityQosPolicy is default constructed with kind = BEST_EFFORT
+        // Change the kind to RELIABLE
+        writer_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
+        // The ReliabilityQosPolicy is default constructed with max_blocking_time = 100ms
+        // Change the max_blocking_time to 1s
+        writer_qos.reliability().max_blocking_time = {1, 0};
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
-        ResourceLimitsQosPolicy resource_limits;
-        //The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
-        //Change max_samples to 200
-        resource_limits.max_samples = 200;
-        //The ResourceLimitsQosPolicy is default constructed with max_instances = 10
-        //Change max_instances to 20
-        resource_limits.max_instances = 20;
-        //The ResourceLimitsQosPolicy is default constructed with max_samples_per_instance = 400
-        //Change max_samples_per_instance to 100 as it must be lower than max_samples
-        resource_limits.max_samples_per_instance = 100;
-        //The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
-        //Change allocated_samples to 50
-        resource_limits.allocated_samples = 50;
+        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
+        // Change max_samples to 200
+        writer_qos.resource_limits().max_samples = 200;
+        // The ResourceLimitsQosPolicy is default constructed with max_instances = 10
+        // Change max_instances to 20
+        writer_qos.resource_limits().max_instances = 20;
+        // The ResourceLimitsQosPolicy is default constructed with max_samples_per_instance = 400
+        // Change max_samples_per_instance to 100 as it must be lower than max_samples
+        writer_qos.resource_limits().max_samples_per_instance = 100;
+        // The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
+        // Change allocated_samples to 50
+        writer_qos.resource_limits().allocated_samples = 50;
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_TOPIC_DATA_QOS_POLICY
-        //The TopicDataQosPolicy is default constructed with an empty vector.
-        TopicDataQosPolicy topic_data;
+        // This example only applies to Topic entities
+        TopicQos topic_qos;
+        // The TopicDataQosPolicy is default constructed with an empty vector.
         std::vector<eprosima::fastdds::rtps::octet> vec;
-        vec = topic_data.data_vec(); // Getter Function
-
-        //Add two new octets to topic data vector
+        // Add two new octets to topic data vector
         eprosima::fastdds::rtps::octet val = 3;
         vec.push_back(val);
         val = 10;
         vec.push_back(val);
-        topic_data.data_vec(vec); //Setter Function
+        topic_qos.topic_data().data_vec(vec); // Setter Function
+        // Use modified QoS in the creation of the corresponding Topic
+        topic_ = participant_->create_topic(topic_name, type_name, topic_qos);
         //!--
     }
-
 
     {
         //DDS_CHANGE_USER_DATA_QOS_POLICY
-        //The TopicDataQosPolicy is default constructed with an empty vector.
-        UserDataQosPolicy user_data;
+        // This example uses a DataWriter, but it can also be applied to: DomainParticipant, DataWriter, and DataReader entities
+        DataWriterQos writer_qos;
         std::vector<eprosima::fastdds::rtps::octet> vec;
-        vec = user_data.data_vec(); // Getter Function
-
-        //Add two new octets to user data vector
+        // Add two new octets to user data vector
         eprosima::fastdds::rtps::octet val = 3;
         vec.push_back(val);
         val = 10;
         vec.push_back(val);
-        user_data.data_vec(vec); //Setter Function
-        //!--
-    }
-
-    {
-        //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
-        DisablePositiveACKsQosPolicy disable_acks;
-        //The DisablePositiveACKsQosPolicy is default constructed with enabled = false
-        //Change enabled to true
-        disable_acks.enabled = true;
-        //The DisablePositiveACKsQosPolicy is default constructed with infinite duration
-        //Change the duration to 1 second
-        disable_acks.duration = {1, 0};
-
+        writer_qos.user_data().data_vec(vec); // Setter Function
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_DATASHARING_QOS_POLICY
-        DataSharingQosPolicy datasharing;
+        // This example uses a DataWriter, but it can also be applied to: DataWriter and DataReader entities
+        DataWriterQos writer_qos;
 
-        // Configure the DataSharing as AUTO with two user-defined IDs
+        // DataSharing is set to AUTO by default, which means that DataSharing will be used if the topic
+        // is compatible. If no Shared Memory directory is specified, the default one will be used.
+
+        // Configure DataSharing to ON to enable DataSharing and specify the shared memory directory (mandatory)
+        writer_qos.data_sharing().on("/path/to/shared_memory/directory");
+        // Alternatively, configure DataSharing to OFF to disable it
+        writer_qos.data_sharing().off();
+
+        // Configure the DataSharing as AUTO with two user-defined IDs (can also be used with ON)
         std::vector<uint16_t> ids;
         ids.push_back(0x1234);
         ids.push_back(0xABCD);
-        datasharing.automatic(ids);
+        writer_qos.data_sharing().automatic(ids);
 
-        // Alternatively, configure with no IDs and add them afterwards
-        datasharing.automatic();
-        datasharing.add_domain_id(uint16_t(0x1234));
-        datasharing.add_domain_id(uint16_t(0xABCD));
+        // Alternatively, add them individually
+        writer_qos.data_sharing().add_domain_id(uint16_t(0x1234));
+        writer_qos.data_sharing().add_domain_id(uint16_t(0xABCD));
+        // Or you can leave the IDs empty and the system will automatically create a
+        // unique ID for the current machine
 
-        // Or you can leave the IDs empty and the system will create one for you
-        // unique for the current machine
-        datasharing.automatic();
+        // Set the maximum number of domains to 5. Setting 0 means 'unlimited'
+        writer_qos.data_sharing().set_max_domains(5);
 
         // [OPTIONAL] ThreadSettings for listening thread
-        datasharing.data_sharing_listener_thread(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
+        writer_qos.data_sharing().data_sharing_listener_thread(eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1});
 
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
-        //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
-        ParticipantResourceLimitsQos participant_limits;
-        //Set the maximum size of participant resource limits collection to 3 and it allocation configuration to fixed size
-        participant_limits.participants = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(
-            3u);
-        //Set the maximum size of reader's resource limits collection to 2 and its allocation configuration to fixed size
-        participant_limits.readers = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
-        //Set the maximum size of writer's resource limits collection to 1 and its allocation configuration to fixed size
-        participant_limits.writers = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
-        //Set the maximum size of the partition data to 256
-        participant_limits.data_limits.max_partitions = 256u;
-        //Set the maximum size of the user data to 256
-        participant_limits.data_limits.max_user_data = 256u;
-        //Set the maximum size of the properties data to 512
-        participant_limits.data_limits.max_properties = 512u;
-        //Set the preallocated filter expression size to 512
-        participant_limits.content_filter.expression_initial_size = 512u;
-        //Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
-        participant_limits.content_filter.expression_parameters =
-                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
-        //!--
-    }
+        //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
+        // This Qos has different API for DataWriter and DataReader entities, because it is accesed
+        // through the ReliableWriterQos and ReliableReaderQos respectively.
+        // For further details see RTPSReliableWriterQos & RTPSReliableReaderQos sections.
+        DataWriterQos writer_qos;
+        DataReaderQos reader_qos;
+        // The DisablePositiveACKsQosPolicy is default constructed with enabled = false
+        // Change enabled to true
+        writer_qos.reliable_writer_qos().disable_positive_acks.enabled = true;
+        reader_qos.reliable_reader_qos().disable_positive_acks.enabled = true;
+        // The DisablePositiveACKsQosPolicy is default constructed with infinite duration
+        // Change the duration to 1 second
+        writer_qos.reliable_writer_qos().disable_positive_acks.duration = {1, 0};
+        reader_qos.reliable_reader_qos().disable_positive_acks.duration = {1, 0};
 
-    {
-        //DDS_CHANGE_PROPERTY_POLICY_QOS
-        PropertyPolicyQos property_policy;
-        //Add new property for the Auth:PKI-DH plugin
-        property_policy.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
-        //Add new property for the Access:Permissions plugin
-        property_policy.properties().emplace_back(eprosima::fastdds::rtps::Property("dds.sec.access.plugin",
-                "builtin.Access-Permissions"));
+        // Exclusively, DataWriters can additionally disable the heartbeat piggyback
+        writer_qos.reliable_writer_qos().disable_heartbeat_piggyback = true;
 
-        //Add new user custom property to send to external Participants
-        property_policy.properties().emplace_back("Custom Property Name", "Custom value", true);
-        //!--
-    }
-
-    {
-        //DDS_CHANGE_PUBLISH_MODE_QOS
-        PublishModeQosPolicy publish_mode;
-        //The PublishModeQosPolicy is default constructed with kind = SYNCHRONOUS
-        //Change the kind to ASYNCHRONOUS
-        publish_mode.kind = ASYNCHRONOUS_PUBLISH_MODE;
-        // Optionally, select the flow controller name
-        publish_mode.flow_controller_name = "example_flow_controller_name";
-        //!--
-    }
-
-    {
-        //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
-        ReaderResourceLimitsQos reader_limits;
-        //Set the maximum size for writer matched resource limits collection to 1 and its allocation configuration to fixed size
-        reader_limits.matched_publisher_allocation =
-                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
-        //!--
-    }
-
-    {
-        //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
-        WriterResourceLimitsQos writer_limits;
-        //Set the maximum size for reader matched resource limits collection to 3 and its allocation configuration to fixed size
-        writer_limits.matched_subscriber_allocation =
-                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
-        // Set the maximum number of writer side content filters to 1 and its allocation configuration to fixed size
-        writer_limits.reader_filters_allocation =
-                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
-        //!--
-    }
-
-    {
-        //DDS_CHANGE_RTPS_ENDPOINT_QOS
-        RTPSEndpointQos endpoint;
-        //Add new unicast locator with port 7800
-        eprosima::fastdds::rtps::Locator_t new_unicast_locator;
-        new_unicast_locator.port = 7800;
-        endpoint.unicast_locator_list.push_back(new_unicast_locator);
-        //Add new multicast locator with IP 239.255.0.4 and port 7900
-        eprosima::fastdds::rtps::Locator_t new_multicast_locator;
-        eprosima::fastdds::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
-        new_multicast_locator.port = 7900;
-        endpoint.multicast_locator_list.push_back(new_multicast_locator);
-        // Add an external locator with IP 100.100.100.10, port 12345, mask 24, externality 1, and cost 0
-        eprosima::fastdds::rtps::LocatorWithMask external_locator;
-        external_locator.kind = LOCATOR_KIND_UDPv4;
-        external_locator.port = 12345;
-        external_locator.mask(24);
-        endpoint.external_unicast_locators[1][0].push_back(external_locator);
-        // Drop non matching locators
-        endpoint.ignore_non_matching_locators = true;
-        //Set 3 as user defined id
-        endpoint.user_defined_id = 3;
-        //Set 4 as entity id
-        endpoint.entity_id = 4;
-        //The RTPSEndpointQos is default constructed with history_memory_policy = PREALLOCATED
-        //Change the history_memory_policy to DYNAMIC_RESERVE
-        endpoint.history_memory_policy = eprosima::fastdds::rtps::DYNAMIC_RESERVE_MEMORY_MODE;
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
+        reader_ = subscriber_->create_datareader(topic_, reader_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
-        RTPSReliableWriterQos reliable_writer_qos;
-        //The RTPSReliableWriterQos is default constructed with initialHeartbeatDelay = 12 ms
-        //Change the initialHeartbeatDelay to 20 nanoseconds
-        reliable_writer_qos.times.initialHeartbeatDelay = {0, 20};
-        //The RTPSReliableWriterQos is default constructed with heartbeatPeriod = 3 s
-        //Change the heartbeatPeriod to 5 seconds
-        reliable_writer_qos.times.heartbeatPeriod = {5, 0};
-        //The RTPSReliableWriterQos is default constructed with nackResponseDelay = 5 ms
-        //Change the nackResponseDelay to 10 nanoseconds
-        reliable_writer_qos.times.nackResponseDelay = {0, 10};
-        //The RTPSReliableWriterQos is default constructed with nackSupressionDuration = 0 s
-        //Change the nackSupressionDuration to 20 nanoseconds
-        reliable_writer_qos.times.nackSupressionDuration = {0, 20};
-        //You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
-        reliable_writer_qos.disable_positive_acks.enabled = true;
-        //The RTPSReliableWriterQos is default constructed with disable_heartbeat_piggyback = false
-        //Disable the heartbeat piggyback mechanism.
-        reliable_writer_qos.disable_heartbeat_piggyback = true;
+        // This example only applies to DataWriter entities
+        DataWriterQos writer_qos;
+        // The RTPSReliableWriterQos is default constructed with initialHeartbeatDelay = 12 ms
+        // Change the initialHeartbeatDelay to 20 nanoseconds
+        writer_qos.reliable_writer_qos().times.initialHeartbeatDelay = {0, 20};
+        // The RTPSReliableWriterQos is default constructed with heartbeatPeriod = 3 s
+        // Change the heartbeatPeriod to 5 seconds
+        writer_qos.reliable_writer_qos().times.heartbeatPeriod = {5, 0};
+        // The RTPSReliableWriterQos is default constructed with nackResponseDelay = 5 ms
+        // Change the nackResponseDelay to 10 nanoseconds
+        writer_qos.reliable_writer_qos().times.nackResponseDelay = {0, 10};
+        // The RTPSReliableWriterQos is default constructed with nackSupressionDuration = 0 s
+        // Change the nackSupressionDuration to 20 nanoseconds
+        writer_qos.reliable_writer_qos().times.nackSupressionDuration = {0, 20};
+        // You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
+        writer_qos.reliable_writer_qos().disable_positive_acks.enabled = true;
+        // The RTPSReliableWriterQos is default constructed with disable_heartbeat_piggyback = false
+        // Disable the heartbeat piggyback mechanism.
+        writer_qos.reliable_writer_qos().disable_heartbeat_piggyback = true;
+        // Use modified QoS in the creation of the DataWriter entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_RTPS_RELIABLE_READER_QOS
-        RTPSReliableReaderQos reliable_reader_qos;
-        //The RTPSReliableReaderQos is default constructed with initial_acknack_delay = 70 ms
-        //Change the initial_acknack_delay to 70 nanoseconds
-        reliable_reader_qos.times.initial_acknack_delay = {0, 70};
-        //The RTPSReliableWriterQos is default constructed with heartbeat_response_delay = 5 ms
-        //Change the heartbeat_response_delay to 5 nanoseconds
-        reliable_reader_qos.times.heartbeat_response_delay = {0, 5};
-        //You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
-        reliable_reader_qos.disable_positive_ACKs.enabled = true;
+        // This example only applies to DataReader entities
+        DataReaderQos reader_qos;
+        // The RTPSReliableReaderQos is default constructed with initial_acknack_delay = 70 ms
+        // Change the initialAcknackDelay to 70 nanoseconds
+        reader_qos.reliable_reader_qos().times.initial_acknack_delay = {0, 70};
+        // The RTPSReliableReaderQos is default constructed with heartbeat_response_delay = 5 ms
+        // Change the heartbeatResponseDelay to 5 nanoseconds
+        reader_qos.reliable_reader_qos().times.heartbeat_response_delay = {0, 5};
+        // You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
+        reader_qos.reliable_reader_qos().disable_positive_acks.enabled = true;
+        // Use modified QoS in the creation of the DataReader entity
+        reader_ = subscriber_->create_datareader(topic_, reader_qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
+        // This example only applies to DomainParticipant entities
+        DomainParticipantQos participant_qos;
+        // Set the maximum size of participant resource limits collection to 3 and it allocation configuration to fixed size
+        participant_qos.allocation().participants = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(
+            3u);
+        // Set the maximum size of reader's resource limits collection to 2 and its allocation configuration to fixed size
+        participant_qos.allocation().readers = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+        // Set the maximum size of writer's resource limits collection to 1 and its allocation configuration to fixed size
+        participant_qos.allocation().writers = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        // Set the maximum size of the partition data to 256
+        participant_qos.allocation().data_limits.max_partitions = 256u;
+        // Set the maximum size of the user data to 256
+        participant_qos.allocation().data_limits.max_user_data = 256u;
+        // Set the maximum size of the properties data to 512
+        participant_qos.allocation().data_limits.max_properties = 512u;
+        // Set the preallocated filter expression size to 512
+        participant_qos.allocation().content_filter.expression_initial_size = 512u;
+        // Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
+        participant_qos.allocation().content_filter.expression_parameters =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
+        // Use modified QoS in the creation of the corresponding DomainParticipant
+        participant_ = factory_->create_participant(domain, participant_qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PROPERTY_POLICY_QOS
+        // This example uses a DataWriter, but it can also be applied to: DomainParticipant, DataWriter and DataReader entities
+        DataWriterQos writer_qos;
+        // Add new property for the Auth:PKI-DH plugin
+        writer_qos.properties().properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
+        // Add new property for the Access:Permissions plugin
+        writer_qos.properties().properties().emplace_back(eprosima::fastdds::rtps::Property("dds.sec.access.plugin",
+                "builtin.Access-Permissions"));
+
+        // Add new user custom property to send to external Participants
+        writer_qos.properties().properties().emplace_back("Custom Property Name", "Custom value", true);
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_PUBLISH_MODE_QOS
+        // This example only applies to DataWriter entities
+        DataWriterQos writer_qos;
+        // The PublishModeQosPolicy is default constructed with kind = SYNCHRONOUS
+        // Change the kind to ASYNCHRONOUS
+        writer_qos.publish_mode().kind = ASYNCHRONOUS_PUBLISH_MODE;
+        // Use modified QoS in the creation of the DataWriter entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
+        // This example only applies to DataReader entities
+        DataReaderQos reader_qos;
+        // Set the maximum size for writer matched resource limits collection to 1 and its allocation configuration to fixed size
+        reader_qos.reader_resource_limits().matched_publisher_allocation =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        // Set the maximum size for sample info resource limits to 22 and its allocation configuration to fixed size
+        reader_qos.reader_resource_limits().sample_infos_allocation =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(22u);
+        // Set the maximum size for writer matched resource limits collection to 3 and its allocation configuration to fixed size
+        reader_qos.reader_resource_limits().outstanding_reads_allocation =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        reader_qos.reader_resource_limits().max_samples_per_read = 42;
+        // Use modified QoS in the creation of the DataReader entity
+        reader_ = subscriber->create_datareader(topic_, reader_qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
+        // This example only applies to DataWriter entities
+        DataWriterQos writer_qos;
+        // Set the maximum size for reader matched resource limits collection to 3 and its allocation configuration to fixed size
+        writer_qos.writer_resource_limits().matched_subscriber_allocation =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+        // Set the maximum number of writer side content filters to 1 and its allocation configuration to fixed size
+        writer_qos.writer_resource_limits().reader_filters_allocation =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        // Use modified QoS in the creation of the DataWriter entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_RTPS_ENDPOINT_QOS
+        // This example uses a DataWriter, but it can also be applied to: DataWriter and DataReader entities
+        DataWriterQos writer_qos;
+        // Add new unicast locator with port 7800
+        eprosima::fastdds::rtps::Locator_t new_unicast_locator;
+        new_unicast_locator.port = 7800;
+        writer_qos.endpoint().unicast_locator_list.push_back(new_unicast_locator);
+        // Add new multicast locator with IP 239.255.0.4 and port 7900
+        eprosima::fastdds::rtps::Locator_t new_multicast_locator;
+        eprosima::fastdds::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
+        new_multicast_locator.port = 7900;
+        writer_qos.endpoint().multicast_locator_list.push_back(new_multicast_locator);
+        // Add an external locator with IP 100.100.100.10, port 12345, mask 24, externality 1, and cost 0
+        eprosima::fastdds::rtps::LocatorWithMask external_locator;
+        external_locator.kind = LOCATOR_KIND_UDPv4;
+        external_locator.port = 12345;
+        external_locator.mask(24);
+        writer_qos.endpoint().external_unicast_locators[1][0].push_back(external_locator);
+        // Drop non matching locators
+        writer_qos.endpoint().ignore_non_matching_locators = true;
+        // Set 3 as user defined id
+        writer_qos.endpoint().user_defined_id = 3;
+        // Set 4 as entity id
+        writer_qos.endpoint().entity_id = 4;
+        // The RTPSWriterQos is default constructed with history_memory_policy = PREALLOCATED
+        // Change the history_memory_policy to DYNAMIC_RESERVE
+        writer_qos.endpoint().history_memory_policy = eprosima::fastdds::rtps::DYNAMIC_RESERVE_MEMORY_MODE;
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         using namespace eprosima::fastdds::rtps;
         //DDS_CHANGE_THREAD_SETTINGS
-        ThreadSettings thread_settings;
-        thread_settings.scheduling_policy = 2;
-        thread_settings.priority = 10;
-        thread_settings.affinity = 4;
-        thread_settings.stack_size = 2000;
+        // This example uses a specific thread of the DomainParticipantQos, but it can also be applied to most of
+        // the threads used by FastDDS in DomainParticipantFactoryQos, DomainParticipantQos or DataSharingQosPolicy.
+        // Each thread has its own getter and setter function. See Fast DDS documentation for further details.
+        DomainParticipantQos participant_qos;
+        participant_qos.timed_events_thread().scheduling_policy = 2;
+        participant_qos.timed_events_thread().priority = 10;
+        participant_qos.timed_events_thread().affinity = 4;
+        participant_qos.timed_events_thread().stack_size = 2000;
 
+        // Use modified QoS in the creation of the corresponding entity
+        participant_ = factory_->create_participant(domain, participant_qos);
         //!--
 
         //DDS_RECEPTION_THREADS_SETTINGS
+        PortBasedTransportDescriptor descriptor;
         PortBasedTransportDescriptor::ReceptionThreadsConfigMap reception_threads_config;
         reception_threads_config[20000].scheduling_policy = 1;
         reception_threads_config[20000].priority = 30;
@@ -4345,95 +4455,124 @@ void dds_qos_examples()
         reception_threads_config[20001].affinity = 6;
         reception_threads_config[20001].stack_size = 4096;
 
+        // Use setter to set the reception threads configuration
+        descriptor.reception_threads(reception_threads_config);
         //!--
     }
 
     {
         //DDS_CHANGE_TRANSPORT_CONFIG_QOS
-        TransportConfigQos transport;
+        // This example only applies to DomainParticipant entities
+        DomainParticipantQos participant_qos;
         // Add new transport to the list of user transports
         std::shared_ptr<eprosima::fastdds::rtps::UDPv4TransportDescriptor> descriptor =
                 std::make_shared<eprosima::fastdds::rtps::UDPv4TransportDescriptor>();
         descriptor->sendBufferSize = 9126;
         descriptor->receiveBufferSize = 9126;
-        transport.user_transports.push_back(descriptor);
+        participant_qos.transport().user_transports.push_back(descriptor);
         // Set use_builtin_transports to false
-        transport.use_builtin_transports = false;
+        participant_qos.transport().use_builtin_transports = false;
         // [OPTIONAL] Set ThreadSettings for the builtin transports reception threads
-        transport.builtin_transports_reception_threads_ = eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2};
+        participant_qos.transport().builtin_transports_reception_threads_ = eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2};
         // Set max_msg_size_no_frag to a value > 65500 KB
-        transport.max_msg_size_no_frag = 70000;
+        participant_qos.transport().max_msg_size_no_frag = 70000;
         // Configure netmask filter
-        transport.netmask_filter = eprosima::fastdds::rtps::NetmaskFilterKind::ON;
+        participant_qos.transport().netmask_filter = eprosima::fastdds::rtps::NetmaskFilterKind::ON;
+        // Use modified QoS in the creation of the DomainParticipant entity
+        participant_ = factory_->create_participant(domain, participant_qos);
+        //!--
+    }
+
+    {
+        //DDS_CHANGE_TYPE_CONSISTENCY_QOS
+        // This example only applies to DataReader entities
+        DataReaderQos reader_qos;
+        // You can change the DataRepresentationQosPolicy. For further details see DataRepresentationQosPolicySection section.
+        reader_qos.type_consistency().representation.m_value.push_back(DataRepresentationId_t::XCDR2_DATA_REPRESENTATION);
+        // You can change the TypeConsistencyEnforcementQosPolicy. For further details see TypeConsistencyEnforcementQosPolicy section.
+        reader_qos.type_consistency().type_consistency.m_kind = TypeConsistencyKind::ALLOW_TYPE_COERCION;
+        // Use modified QoS in the creation of the DataReader entity
+        reader_ = subscriber_->create_datareader(topic_, reader_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
-        WireProtocolConfigQos wire_protocol;
-        //Set the guid prefix
-        std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> wire_protocol.prefix;
+        // This example only applies to DomainParticipant entities
+        DomainParticipantQos participant_qos;
+        // Set the guid prefix
+        std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> participant_qos.wire_protocol().prefix;
         //Configure Builtin Attributes
-        wire_protocol.builtin.discovery_config.discoveryProtocol =
+        participant_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 eprosima::fastdds::rtps::DiscoveryProtocol::SERVER;
-        //Add locator to unicast list
+        // Add locator to unicast list
         eprosima::fastdds::rtps::Locator_t server_locator;
         eprosima::fastdds::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
         server_locator.port = 56542;
-        wire_protocol.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
+        participant_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
         // Add a metatraffic external locator with IP 100.100.100.10, port 34567, mask 24, externality 1, and cost 0
         eprosima::fastdds::rtps::LocatorWithMask meta_external_locator;
         meta_external_locator.kind = LOCATOR_KIND_UDPv4;
         meta_external_locator.port = 34567;
         meta_external_locator.mask(24);
-        wire_protocol.builtin.metatraffic_external_unicast_locators[1][0].push_back(meta_external_locator);
-        //Add locator to default unicast locator list
+        participant_qos.wire_protocol().builtin.metatraffic_external_unicast_locators[1][0].push_back(meta_external_locator);
+        // Add locator to default unicast locator list
         eprosima::fastdds::rtps::Locator_t unicast_locator;
         eprosima::fastdds::rtps::IPLocator::setIPv4(unicast_locator, 192, 168, 1, 41);
         unicast_locator.port = 7400;
-        wire_protocol.default_unicast_locator_list.push_back(unicast_locator);
-        //Add locator to default multicast locator list
+        participant_qos.wire_protocol().default_unicast_locator_list.push_back(unicast_locator);
+        // Add locator to default multicast locator list
         eprosima::fastdds::rtps::Locator_t multicast_locator;
         eprosima::fastdds::rtps::IPLocator::setIPv4(multicast_locator, 192, 168, 1, 41);
         multicast_locator.port = 7400;
-        wire_protocol.default_multicast_locator_list.push_back(multicast_locator);
+        participant_qos.wire_protocol().default_multicast_locator_list.push_back(multicast_locator);
         // Add a default external locator with IP 100.100.100.10, port 23456, mask 24, externality 1, and cost 0
         eprosima::fastdds::rtps::LocatorWithMask external_locator;
         external_locator.kind = LOCATOR_KIND_UDPv4;
         external_locator.port = 23456;
         external_locator.mask(24);
-        wire_protocol.default_external_unicast_locators[1][0].push_back(external_locator);
+        participant_qos.wire_protocol().default_external_unicast_locators[1][0].push_back(external_locator);
         // Drop non matching locators
-        wire_protocol.ignore_non_matching_locators = true;
+        participant_qos.wire_protocol().ignore_non_matching_locators = true;
+        // Use modified QoS in the creation of the DomainParticipant entity
+        participant_ = factory_->create_participant(domain, participant_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_DATA_REPRESENTATION_QOS
-        DataRepresentationQosPolicy data_representation;
-        //Add XCDR v1 data representation to the list of valid representations
-        data_representation.m_value.push_back(DataRepresentationId_t::XCDR_DATA_REPRESENTATION);
-        //Add XML data representation to the list of valid representations
-        data_representation.m_value.push_back(DataRepresentationId_t::XML_DATA_REPRESENTATION);
+        // This example uses a DataWriter, but it can also be applied to: DataWriter and Topic entities.
+        // DataRepresentationQosPolicy of DataReaders is contained in the TypeConsistencyQos
+        // (for further details see TypeConsistencyQos section).
+        DataWriterQos writer_qos;
+        // Add XCDR v1 data representation to the list of valid representations
+        writer_qos.representation().m_value.push_back(DataRepresentationId_t::XCDR_DATA_REPRESENTATION);
+        // Add XML data representation to the list of valid representations
+        writer_qos.representation().m_value.push_back(DataRepresentationId_t::XML_DATA_REPRESENTATION);
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
         //!--
     }
 
     {
         //DDS_CHANGE_TYPE_CONSISTENCY_ENFORCEMENT_QOS
-        TypeConsistencyEnforcementQosPolicy type_enforcement;
-        //The TypeConsistencyEnforcementQosPolicy is default constructed with kind = ALLOW_TYPE_COERCION
-        //Change the kind to DISALLOW_TYPE_COERCION
-        type_enforcement.m_kind = TypeConsistencyKind::DISALLOW_TYPE_COERCION;
+        // This example only applies to DataReader entities
+        DataReaderQos reader_qos;
+        // The TypeConsistencyEnforcementQosPolicy is default constructed with kind = ALLOW_TYPE_COERCION
+        // Change the kind to DISALLOW_TYPE_COERCION
+        reader_qos.type_consistency().m_kind = TypeConsistencyKind::DISALLOW_TYPE_COERCION;
         //Configures the system to ignore the sequence sizes in assignations
-        type_enforcement.m_ignore_sequence_bounds = true;
+        reader_qos.type_consistency().m_ignore_sequence_bounds = true;
         //Configures the system to ignore the string sizes in assignations
-        type_enforcement.m_ignore_string_bounds = true;
+        reader_qos.type_consistency().m_ignore_string_bounds = true;
         //Configures the system to ignore the member names. Members with same ID could have different names
-        type_enforcement.m_ignore_member_names = true;
+        reader_qos.type_consistency().m_ignore_member_names = true;
         //Configures the system to allow type widening
-        type_enforcement.m_prevent_type_widening = false;
+        reader_qos.type_consistency().m_prevent_type_widening = false;
         //Configures the system to not use the complete Type Information in entities match process
-        type_enforcement.m_force_type_validation = false;
+        reader_qos.type_consistency().m_force_type_validation = false;
+        // Use modified QoS in the creation of the corresponding entity
+        reader_ = subscriber_->create_datareader(topic_, reader_qos);
         //!--
     }
 
@@ -4454,7 +4593,6 @@ void dds_qos_examples()
         RequestedIncompatibleQosStatus status;
         data_reader->get_requested_incompatible_qos_status(status);
         uint32_t incompatible_reliability_count = status.policies[RELIABILITY_QOS_POLICY_ID].count;
-
         //!--
     }
 
@@ -4476,6 +4614,8 @@ void dds_qos_examples()
 
         DomainParticipantQos participant_qos;
         participant_qos.wire_protocol().prefix = guid_prefix;
+        // Use modified QoS in the creation of the DomainParticipant entity
+        participant_ = factory_->create_participant(domain, participant_qos);
         //!--
     }
 
@@ -4483,6 +4623,8 @@ void dds_qos_examples()
         //CONF_GUIDPREFIX_OPTION_2
         DomainParticipantQos participant_qos;
         std::istringstream("77.73.71.85.69.76.95.66.65.82.82.79") >> participant_qos.wire_protocol().prefix;
+        // Use modified QoS in the creation of the DomainParticipant entity
+        participant_ = factory_->create_participant(domain, participant_qos);
         //!--
     }
 }

@@ -1032,7 +1032,6 @@
 
 .. |MonitorServiceDataReaderQos-api| replace:: :cpp:class:`MonitorServiceDataReaderQos <eprosima::fastdds::statistics::dds::MonitorServiceDataReaderQos>`
 
-.. |RTPSMessageGroup| replace:: :cpp:class:`RTPSMessageGroup <eprosima::fastrtps::rtps::RTPSMessageGroup>`
 .. |MessageReceiver| replace:: :cpp:class:`MessageReceiver <eprosima::fastrtps::rtps::MessageReceiver>`
 
 .. |WriteParams-api| replace:: :cpp:class:`WriteParams <eprosima::fastrtps::rtps::WriteParams>`

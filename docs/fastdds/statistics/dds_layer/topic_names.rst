@@ -66,8 +66,8 @@ the corresponding user's callback.
 The ``_fastdds_statistics_network_latency`` statistics topic collects data related with the network latency (expressed
 in *ns*) between any two communicating locators.
 This measurement provides information about the transport layer latency.
-The measured latency corresponds to the time spent between the message being written in the |RTPSMessageGroup| until the
-message being received in the |MessageReceiver|.
+The measured latency corresponds to the time spent between the message being written until the message being received
+in the |MessageReceiver|.
 
 .. important::
     In the case of :ref:`transport_tcp_tcp`, the reported latency also includes the time spent on the datagram's CRC

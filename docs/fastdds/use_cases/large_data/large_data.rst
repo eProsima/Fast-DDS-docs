@@ -258,8 +258,10 @@ Example configuration
 
    .. tab:: XML
 
-      There is currently no way of configuring flow controllers with XML.
-      This will be added in future releases of the product.
+      .. literalinclude:: /../code/XMLTester.xml
+         :language: xml
+         :start-after: <!-->CONF-QOS-FLOWCONTROLLER
+         :end-before: <!--><-->
 
 .. Warning::
 

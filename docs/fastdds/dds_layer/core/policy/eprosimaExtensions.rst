@@ -548,6 +548,8 @@ There are two possible values (see |PublishModeQosPolicyKind-api|):
 * |ASYNCHRONOUS_PUBLISH_MODE-api|: An internal thread takes the responsibility of sending the data asynchronously.
   The write operation returns before the data is actually sent.
 
+Also, the |PublishModeQosPolicy::flow_ctrl_name-api| has to be set to the name of a valid :ref:`flow-controllers` descriptor name.
+
 Example
 """""""
 

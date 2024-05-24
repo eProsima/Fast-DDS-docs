@@ -3969,6 +3969,19 @@ public:
 
 void dds_qos_examples()
 {
+    // Taken out of the examples to avoid bloating them
+    DomainParticipantFactory* factory_ = DomainParticipantFactory::get_instance();
+    DomainParticipant* participant_ =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+    Subscriber* subscriber_ =
+            participant_->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
+    Publisher* publisher_ =
+            participant_->create_publisher(PUBLISHER_QOS_DEFAULT);
+    Topic* topic_ =
+            participant_->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+    DataReader* reader_ = subscriber_->create_datareader(topic_, DATAREADER_QOS_DEFAULT);
+    DataWriter* writer_ = publisher_->create_datawriter(topic_, DATAWRITER_QOS_DEFAULT);
+    uint16_t domain = 7;
     {
         //DDS_CHANGE_DEADLINE_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
@@ -4180,7 +4193,7 @@ void dds_qos_examples()
         vec.push_back(val);
         topic_qos.topic_data().data_vec(vec); // Setter Function
         // Use modified QoS in the creation of the corresponding Topic
-        topic_ = participant_->create_topic(topic_name, type_name, topic_qos);
+        topic_ = participant_->create_topic("<topic_name>", "<type_name>", topic_qos);
         //!--
     }
 
@@ -4375,7 +4388,7 @@ void dds_qos_examples()
                 eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
         reader_qos.reader_resource_limits().max_samples_per_read = 42;
         // Use modified QoS in the creation of the DataReader entity
-        reader_ = subscriber->create_datareader(topic_, reader_qos);
+        reader_ = subscriber_->create_datareader(topic_, reader_qos);
         //!--
     }
 
@@ -4429,6 +4442,28 @@ void dds_qos_examples()
 
     {
         using namespace eprosima::fastdds::rtps;
+        // For port thread settings
+        class CustomPortBasedTransportDescriptor : public PortBasedTransportDescriptor
+        {
+        public:
+
+            CustomPortBasedTransportDescriptor()
+                : PortBasedTransportDescriptor(0, 0)
+            {
+            }
+
+            TransportInterface* create_transport() const override
+            {
+                return nullptr;
+            }
+
+            //! Returns the minimum size required for a send operation.
+            uint32_t min_send_buffer_size() const override
+            {
+                return 0;
+            }
+
+        };
         //DDS_CHANGE_THREAD_SETTINGS
         // This example uses a specific thread of the DomainParticipantQos, but it can also be applied to most of
         // the threads used by FastDDS in DomainParticipantFactoryQos, DomainParticipantQos or DataSharingQosPolicy.
@@ -4444,7 +4479,8 @@ void dds_qos_examples()
         //!--
 
         //DDS_RECEPTION_THREADS_SETTINGS
-        PortBasedTransportDescriptor descriptor;
+        // Implement a Custom class, derived from PortBasedTransportDescriptor, to set the reception threads configuration
+        CustomPortBasedTransportDescriptor descriptor;
         PortBasedTransportDescriptor::ReceptionThreadsConfigMap reception_threads_config;
         reception_threads_config[20000].scheduling_policy = 1;
         reception_threads_config[20000].priority = 30;
@@ -4576,22 +4612,14 @@ void dds_qos_examples()
         //!--
     }
 
-    // Taken out of the examples to avoid bloating them
-    DomainParticipant* participant =
-            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-    Subscriber* subscriber =
-            participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
-    Topic* topic =
-            participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
-
     {
         //DDS_QOS_POLICY_COUNT_SEQ
-        DataReader* data_reader =
-                subscriber->create_datareader(topic, DATAREADER_QOS_DEFAULT);
+        DataReader* reader_ =
+                subscriber_->create_datareader(topic_, DATAREADER_QOS_DEFAULT);
 
         // Get how many times ReliabilityQosPolicy was not compatible with a remote writer
         RequestedIncompatibleQosStatus status;
-        data_reader->get_requested_incompatible_qos_status(status);
+        reader_->get_requested_incompatible_qos_status(status);
         uint32_t incompatible_reliability_count = status.policies[RELIABILITY_QOS_POLICY_ID].count;
         //!--
     }

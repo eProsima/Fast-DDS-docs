@@ -670,8 +670,9 @@ Example
       .. literalinclude:: /../code/XMLTester.xml
           :language: xml
           :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
+          :dedent: 4
           :end-before: <data_writer
-          :lines: 2-4, 5-
+          :lines: 5-
 
 .. _propertypolicyqos:
 

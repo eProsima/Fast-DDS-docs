@@ -7,12 +7,6 @@ ParticipantProxyData
     :project: FastDDS
     :members:
 
-.. doxygendefine:: BUILTIN_PARTICIPANT_DATA_MAX_SIZE
-   :project: FastDDS
-
-.. doxygendefine:: TYPELOOKUP_DATA_MAX_SIZE
-   :project: FastDDS
-
 .. doxygenvariable:: DISC_BUILTIN_ENDPOINT_PARTICIPANT_ANNOUNCER
    :project: FastDDS
 

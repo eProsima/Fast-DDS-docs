@@ -16,5 +16,4 @@ Subscriber
    /fastdds/api_reference/dds_pim/subscriber/subscriber_class.rst
    /fastdds/api_reference/dds_pim/subscriber/subscriberlistener.rst
    /fastdds/api_reference/dds_pim/subscriber/subscriberqos.rst
-   /fastdds/api_reference/dds_pim/subscriber/typeconsistencyqos.rst
    /fastdds/api_reference/dds_pim/subscriber/viewstatekind.rst

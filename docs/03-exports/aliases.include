@@ -82,7 +82,6 @@
 .. |TransportConfigQos| replace:: :ref:`TransportConfigQos<transportconfigqos>`
 .. |TransportPriorityQosPolicy| replace:: :ref:`TransportPriorityQosPolicy<transportpriorityqospolicy>`
 .. |TypeConsistencyEnforcementQosPolicy| replace:: :ref:`TypeConsistencyEnforcementQosPolicy<typeconsistencyenforcementqospolicy>`
-.. |TypeConsistencyQos| replace:: :ref:`TypeConsistencyQos<typeconsistencyqos>`
 .. |TypeInformation| replace:: :ref:`TypeInformation<xtypes_discovery_matching>`
 .. |TypeObject| replace:: :ref:`TypeObject representation<xtypes_discovery_matching>`
 .. |UserDataQosPolicy| replace:: :ref:`UserDataQosPolicy<userdataqospolicy>`

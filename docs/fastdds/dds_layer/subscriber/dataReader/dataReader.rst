@@ -72,7 +72,9 @@ Internally it contains the following |QosPolicy-api| objects:
 +-----------------------------------------------+---------------------------------------------+----------+
 | |RTPSreliablereaderqos|                       | |DataReaderQos::reliable_reader_qos-api|    | Yes (*)  |
 +-----------------------------------------------+---------------------------------------------+----------+
-| |typeconsistencyqos|                          | |DataReaderQos::type_consistency-api|       | Yes      |
+| |typeconsistencyenforcementqospolicy|         | |DataReaderQos::type_consistency-api|       | Yes      |
++-----------------------------------------------+---------------------------------------------+----------+
+| |datarepresentationqospolicy|                 | |DataReaderQos::representation-api|         | Yes      |
 +-----------------------------------------------+---------------------------------------------+----------+
 | |datasharingqospolicy|                        | |DataReaderQos::data_sharing-api|           | No       |
 +-----------------------------------------------+---------------------------------------------+----------+

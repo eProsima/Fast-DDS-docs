@@ -65,6 +65,7 @@
 .. |DataReaderQos::resource_limits-api| replace:: :cpp:func:`resource_limits()<eprosima::fastdds::dds::DataReaderQos::resource_limits>`
 .. |DataReaderQos::time_based_filter-api| replace:: :cpp:func:`time_based_filter()<eprosima::fastdds::dds::DataReaderQos::time_based_filter>`
 .. |DataReaderQos::type_consistency-api| replace:: :cpp:func:`type_consistency()<eprosima::fastdds::dds::DataReaderQos::type_consistency>`
+.. |DataReaderQos::representation-api| replace:: :cpp:func:`representation()<eprosima::fastdds::dds::DataReaderQos::representation>`
 .. |DataReaderQos::user_data-api| replace:: :cpp:func:`user_data()<eprosima::fastdds::dds::DataReaderQos::user_data>`
 
 .. |DataReaders-api| replace:: :cpp:class:`DataReaders <eprosima::fastdds::dds::DataReader>`
@@ -692,10 +693,6 @@
 .. |SharedMemTransportDescriptor::healthy_check_timeout_ms-api| replace:: :cpp:func:`healthy_check_timeout_ms()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::healthy_check_timeout_ms>`
 .. |SharedMemTransportDescriptor::rtps_dump_file-api| replace:: :cpp:func:`rtps_dump_file()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::rtps_dump_file>`
 .. |SharedMemTransportDescriptor::dump_thread-api| replace:: :cpp:func:`dump_thread()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::dump_thread>`
-
-.. |TypeConsistencyQos-api| replace:: :cpp:class:`TypeConsistencyQos<eprosima::fastdds::dds::TypeConsistencyQos>`
-.. |TypeConsistencyQos::type_consistency-api| replace:: :cpp:member:`type_consistency<eprosima::fastdds::dds::TypeConsistencyQos::type_consistency>`
-.. |TypeConsistencyQos::representation-api| replace:: :cpp:member:`representation<eprosima::fastdds::dds::TypeConsistencyQos::representation>`
 
 .. |WireProtocolConfigQos-api| replace:: :cpp:class:`WireProtocolConfigQos<eprosima::fastdds::dds::WireProtocolConfigQos>`
 .. |WireProtocolConfigQos::prefix-api| replace:: :cpp:member:`prefix<eprosima::fastdds::dds::WireProtocolConfigQos::prefix>`

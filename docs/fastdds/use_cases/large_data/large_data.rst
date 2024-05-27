@@ -262,6 +262,8 @@ Example configuration
          :language: xml
          :start-after: <!-->CONF-QOS-FLOWCONTROLLER
          :end-before: <!--><-->
+         :lines: 2-3, 5-25
+         :append: </profiles>
 
 .. Warning::
 

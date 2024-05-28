@@ -4520,19 +4520,6 @@ void dds_qos_examples()
     }
 
     {
-        //DDS_CHANGE_TYPE_CONSISTENCY_QOS
-        // This example only applies to DataReader entities
-        DataReaderQos reader_qos;
-        // You can change the DataRepresentationQosPolicy. For further details see DataRepresentationQosPolicySection section.
-        reader_qos.type_consistency().representation.m_value.push_back(DataRepresentationId_t::XCDR2_DATA_REPRESENTATION);
-        // You can change the TypeConsistencyEnforcementQosPolicy. For further details see TypeConsistencyEnforcementQosPolicy section.
-        reader_qos.type_consistency().type_consistency.m_kind = TypeConsistencyKind::ALLOW_TYPE_COERCION;
-        // Use modified QoS in the creation of the DataReader entity
-        reader_ = subscriber_->create_datareader(topic_, reader_qos);
-        //!--
-    }
-
-    {
         //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
         // This example only applies to DomainParticipant entities
         DomainParticipantQos participant_qos;

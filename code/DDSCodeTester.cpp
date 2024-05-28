@@ -106,7 +106,7 @@ public:
 
     bool send(
             eprosima::fastrtps::rtps::SenderResource* low_sender_resource,
-            const std::list<eprosima::fastdds::rtps::NetworkBuffer>& buffers,
+            const std::vector<eprosima::fastdds::rtps::NetworkBuffer>& buffers,
             uint32_t total_bytes,
             eprosima::fastrtps::rtps::LocatorsIterator* destination_locators_begin,
             eprosima::fastrtps::rtps::LocatorsIterator* destination_locators_end,

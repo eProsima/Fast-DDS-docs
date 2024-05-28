@@ -16,7 +16,6 @@
 using namespace eprosima::fastdds::dds;
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
-using namespace ::security;
 
 class HelloWorld
 {

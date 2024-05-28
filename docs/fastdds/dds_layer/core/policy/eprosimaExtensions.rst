@@ -1005,6 +1005,12 @@ List of QoS Policy data members:
    * - |TransportConfigQos::builtin_transports_reception_threads-api|
      - |ThreadSettings|
      -
+   * - |TransportConfigQos::max_msg_size_no_frag-api|
+     - ``uint32_t``
+     - 0
+   * - |TransportConfigQos::netmask_filter-api|
+     - ``fastdds::rtps::NetmaskFilterKind``
+     - ``AUTO``
 
 
 * |TransportConfigQos::user_transports-api|:
@@ -1020,6 +1026,10 @@ List of QoS Policy data members:
   be changed using this data member.
 * |TransportConfigQos::builtin_transports_reception_threads-api|:
   The |ThreadSettings| for the reception threads of the builtin transports.
+* |TransportConfigQos::max_msg_size_no_frag-api|:
+  Maximum message size used to avoid fragmentation, set only in LARGE_DATA.
+* |TransportConfigQos::netmask_filter-api|:
+  :ref:`Network filter<netmask_filtering>` configuration.
 
 .. note::
      This QoS Policy concerns to |DomainParticipant| entities.

@@ -1027,7 +1027,8 @@ List of QoS Policy data members:
 * |TransportConfigQos::builtin_transports_reception_threads-api|:
   The |ThreadSettings| for the reception threads of the builtin transports.
 * |TransportConfigQos::max_msg_size_no_frag-api|:
-  Maximum message size used to avoid fragmentation, set only in LARGE_DATA.
+  Maximum message size used to avoid fragmentation.
+  Useful when the configured transports allow for big datagrams to be sent (i.e. SHM or TCP).
 * |TransportConfigQos::netmask_filter-api|:
   :ref:`Network filter<netmask_filtering>` configuration.
 

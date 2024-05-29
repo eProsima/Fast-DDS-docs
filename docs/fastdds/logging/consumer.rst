@@ -22,8 +22,6 @@ StdoutConsumer
 
 |StdoutConsumer-api| outputs log entries to STDOUT stream following the convection specified in
 :ref:`dds_layer_log_logging_spec`.
-It is the default and only log consumer of the logging module if the CMake option |LOG_CONSUMER_DEFAULT| is set to
-``AUTO``, ``STDOUT``, or not set at all.
 It can be registered and unregistered using the methods explained in
 :ref:`dds_layer_log_register_consumers` and :ref:`dds_layer_log_reset`.
 
@@ -42,6 +40,8 @@ StdoutErrConsumer
 |StdoutErrConsumer-api| uses a |Log::Kind-api| threshold to filter the output of the log entries.
 Those log entries whose |Log::Kind-api| is equal to or more severe than the given threshold output to STDERR.
 Other log entries output to STDOUT.
+It is the default and only log consumer of the logging module if the CMake option |LOG_CONSUMER_DEFAULT| is set to
+``AUTO``, ``STDOUTERR``, or not set at all.
 By default, the threshold is set to |Log::Kind::Warning-api|.
 |StdoutErrConsumer::stderr_threshold-api| allows the user to modify the default threshold.
 

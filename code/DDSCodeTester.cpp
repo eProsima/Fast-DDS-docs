@@ -4362,7 +4362,7 @@ void dds_qos_examples()
         // Set max_msg_size_no_frag to a value > 65500 KB
         transport.max_msg_size_no_frag = 70000;
         // Configure netmask filter
-        transport.netmask_filter = NetmaskFilterKind::ON;
+        transport.netmask_filter = eprosima::fastdds::rtps::NetmaskFilterKind::ON;
         //!--
     }
 

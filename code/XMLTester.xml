@@ -281,6 +281,7 @@
             <transport_id>my_transport</transport_id>
         </userTransports>
         <useBuiltinTransports>false</useBuiltinTransports>
+        <netmask_filter>ON</netmask_filter>
     </rtps>
 </participant>
 <!--><-->

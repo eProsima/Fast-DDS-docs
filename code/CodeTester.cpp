@@ -98,7 +98,7 @@ public:
         // The incoming message is enclosed within the `change` in the function parameters
         printf("%s\n", change->serializedPayload.data);
         // Once done, remove the change
-        reader->getHistory()->remove_change((CacheChange_t*)change);
+        reader->get_history()->remove_change((CacheChange_t*)change);
     }
 
 };

@@ -391,6 +391,10 @@ List of structure members:
 +------------------------------------------------------------------------+-------------------------+-------------------+
 | |SendBuffersAllocationAttributes::dynamic-api|                         | ``bool``                | ``false``         |
 +------------------------------------------------------------------------+-------------------------+-------------------+
+| |SendBuffersAllocationAttributes::preallocated_network_buffers-api|    | ``size_t``              | ``0``             |
++------------------------------------------------------------------------+-------------------------+-------------------+
+| |SendBuffersAllocationAttributes::allocation_inc_network_buffers-api|  | ``size_t``              | ``0``             |
++------------------------------------------------------------------------+-------------------------+-------------------+
 
 * |SendBuffersAllocationAttributes::preallocated_number-api|:
   This member controls the initial number of send buffers to be allocated.
@@ -399,6 +403,13 @@ List of structure members:
 * |SendBuffersAllocationAttributes::dynamic-api|:
   This member controls how the buffer manager behaves when a send buffer is not available.
   When true, a new buffer will be created. Otherwise, it will wait for a buffer to be returned.
+* |SendBuffersAllocationAttributes::preallocated_network_buffers-api|:
+  This attribute controls the initial number of network buffers to be allocated for each send buffer.
+  The default value will preallocate 16 network buffers.
+* |SendBuffersAllocationAttributes::allocation_inc_network_buffers-api|:
+  This attribute controls the initial number of network buffers to be allocated when growing the vector of the send buffer
+  if it runs out of capacity.
+  The default value will dynamically allocate 16 network buffers every time is needed.
 
 .. _variablelengthdatalimits:
 

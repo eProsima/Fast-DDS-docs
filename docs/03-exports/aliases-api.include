@@ -527,6 +527,8 @@
 .. |SendBuffersAllocationAttributes-api| replace:: :cpp:struct:`SendBuffersAllocationAttributes<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes>`
 .. |SendBuffersAllocationAttributes::preallocated_number-api| replace:: :cpp:member:`preallocated_number<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes::preallocated_number>`
 .. |SendBuffersAllocationAttributes::dynamic-api| replace:: :cpp:member:`dynamic<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes::dynamic>`
+.. |SendBuffersAllocationAttributes::preallocated_network_buffers-api| replace:: :cpp:member:`preallocated_network_buffers<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes::preallocated_network_buffers>`
+.. |SendBuffersAllocationAttributes::allocation_inc_network_buffers-api| replace:: :cpp:member:`allocation_inc_network_buffers<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes::allocation_inc_network_buffers>`
 
 .. |ReaderTimes-api| replace:: :cpp:class:`ReaderTimes<eprosima::fastrtps::rtps::ReaderTimes>`
 .. |ReaderTimes::initial_acknack_delay-api| replace:: :cpp:member:`initial_acknack_delay<eprosima::fastrtps::rtps::ReaderTimes::initial_acknack_delay>`

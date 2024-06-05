@@ -407,9 +407,15 @@ List of structure members:
   This attribute controls the initial number of network buffers to be allocated for each send buffer.
   The default value will preallocate 16 network buffers.
 * |SendBuffersAllocationAttributes::allocation_inc_network_buffers-api|:
-  This attribute controls the initial number of network buffers to be allocated when growing the vector of the send buffer
-  if it runs out of capacity.
+  This attribute controls the initial number of network buffers to be allocated when growing the vector of the send
+  buffer if it runs out of capacity.
   The default value will dynamically allocate 16 network buffers every time is needed.
+
+.. note::
+     |SendBuffersAllocationAttributes::preallocated_network_buffers-api| and
+     |SendBuffersAllocationAttributes::allocation_inc_network_buffers-api| will also be used to instantiate a vector of
+     |SerializedPayload_t-api| that contains the metadata necessary to avoid payload copies during the creation of the
+     RTPS message.
 
 .. _variablelengthdatalimits:
 

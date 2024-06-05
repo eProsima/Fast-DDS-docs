@@ -25,12 +25,8 @@
 
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
-<<<<<<< HEAD
-using namespace ::security;
 using namespace ::types;
 using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
-=======
->>>>>>> 5b807c7 (Add missing documentation of netmask filter and max_msg_size_no_frag in TransportConfigQos (#788))
 
 class HelloWorld
 {

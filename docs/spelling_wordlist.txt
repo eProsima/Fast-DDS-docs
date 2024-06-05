@@ -211,6 +211,7 @@ qnx
 QoS
 QosPolicyCount
 quadratically
+ReaderProxyData
 readNextData
 reconfigurations
 reconnection

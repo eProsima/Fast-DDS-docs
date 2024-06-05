@@ -192,6 +192,7 @@
 .. |DomainParticipantQos::typelookup_service_threads-api| replace:: :cpp:func:`typelookup_service_thread()<eprosima::fastdds::dds::DomainParticipantQos::typelookup_service_thread>`
 .. |DomainParticipantQos::security_log_thread-api| replace:: :cpp:func:`security_log_thread()<eprosima::fastdds::dds::DomainParticipantQos::security_log_thread>`
 .. |DomainParticipantQoS::setup_transports-api| replace:: :cpp:func:`setup_transports()<eprosima::fastdds::dds::DomainParticipantQos::setup_transports>`
+.. |DomainParticipantExtendedQos-api| replace:: :cpp:class:`DomainParticipantExtendedQos<eprosima::fastdds::dds::DomainParticipantExtendedQos>`
 .. |DomainParticipants-api| replace:: :cpp:class:`DomainParticipants <eprosima::fastdds::dds::DomainParticipant>`
 
 .. |FlowControllerDescriptor-api| replace:: :cpp:class:`FlowControllerDescriptor<eprosima::fastdds::rtps::FlowControllerDescriptor>`

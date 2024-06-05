@@ -9,3 +9,4 @@ Domain
    /fastdds/api_reference/dds_pim/domain/domainparticipantfactoryqos.rst
    /fastdds/api_reference/dds_pim/domain/domainparticipantlistener.rst
    /fastdds/api_reference/dds_pim/domain/domainparticipantqos.rst
+   /fastdds/api_reference/dds_pim/domain/domainparticipantextendedqos.rst

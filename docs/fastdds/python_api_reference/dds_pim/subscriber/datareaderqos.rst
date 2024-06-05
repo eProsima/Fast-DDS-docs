@@ -7,4 +7,4 @@ DataReaderQos
 
 .. autoclass:: fastdds.DataReaderQos
 
-.. autoclass:: fastdds.DATAREADER_QOS_DEFAULT
+.. autodata:: fastdds.DATAREADER_QOS_DEFAULT

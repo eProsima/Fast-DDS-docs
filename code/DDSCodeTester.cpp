@@ -419,6 +419,31 @@ void dds_domain_examples()
     }
 
     {
+        //DDS_CHANGE_DOMAINPARTICIPANTEXTENDEDQOS
+        // Create a DomainParticipant with default DomainParticipantExtendedQos
+
+        DomainParticipantExtendedQos extended_qos;
+
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(extended_qos);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Get the current QoS or create a new one from scratch
+        DomainParticipantQos qos = participant->get_qos();
+
+        // Modify QoS attributes
+        qos.entity_factory().autoenable_created_entities = false;
+
+        // Assign the new Qos to the object
+        participant->set_qos(qos);
+        //!--
+    }
+
+    {
         //DDS_CHANGE_DOMAINPARTICIPANTQOS_TO_DEFAULT
         // Create a custom DomainParticipantQos
         DomainParticipantQos custom_qos;

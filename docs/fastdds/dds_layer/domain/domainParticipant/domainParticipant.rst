@@ -156,3 +156,23 @@ This will reset the current default DomainParticipantQos to the default construc
    * On |DomainParticipantFactory::set_default_participant_qos-api| it refers to the default constructed
      |DomainParticipantQoS::DomainParticipantQoS-api|.
 
+
+.. _dds_layer_domainParticipantExtendedQos:
+
+DomainParticipantExtendedQos
+----------------------------
+
+|DomainParticipantExtendedQos-api| is an extension of |DomainParticipantQos-api| that includes both
+the |DomainId-api| and the |DomainParticipantQos-api| objects of a DomainParticipant.
+This class is useful for simplifying the creation and configuration of a DomainParticipant,
+as it allows specifying all necessary settings in a single object.
+
+|DomainParticipant::set_qos-api| can be directly created with |DomainParticipantExtendedQos-api|.
+The QoS value of a previously created DomainParticipant can be modified similarly as when creating
+the |DomainParticipant::set_qos-api| from |DomainParticipantQos-api|.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_CHANGE_DOMAINPARTICIPANTEXTENDEDQOS
+   :end-before: //!
+   :dedent: 8

@@ -20,6 +20,11 @@ Mandatory arguments are:
  * The :ref:`dds_layer_domainParticipantQos` describing the behavior of the DomainParticipant.
    If the provided value is :class:`TOPIC_QOS_DEFAULT`, the value of the DomainParticipantQos is used.
 
+Alternatively, instead of the two mandatory arguments above, you can use:
+
+ * The :ref:`dds_layer_domainParticipantExtendedQos` which encompasses both the |DomainId-api| and
+   the :ref:`dds_layer_domainParticipantQos`.
+
 Optional arguments are:
 
  * A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks

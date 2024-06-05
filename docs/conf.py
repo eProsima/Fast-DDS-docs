@@ -293,10 +293,13 @@ if read_the_docs_build:
         project_source_dir
     )
     # Generate doxygen documentation
-    subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
+    doxygen_ret = subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
+    if doxygen_ret != 0:
+        print('Doxygen failed with return code {}'.format(doxygen_ret))
+        sys.exit(doxygen_ret)
 
     # Generate SWIG code.
-    subprocess.call('swig -python -doxygen -I{}/include \
+    swig_ret = subprocess.call('swig -python -doxygen -I{}/include \
             -outdir {}/fastdds_python/src/swig -c++ -interface \
             _fastdds_python -o \
             {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
@@ -306,6 +309,10 @@ if read_the_docs_build:
                 fastdds_python_repo_name,
                 fastdds_python_repo_name
                 ), shell=True)
+    if swig_ret != 0:
+        print('SWIG failed with return code {}'.format(swig_ret))
+        sys.exit(swig_ret)
+
     fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(
             fastdds_python_repo_name)
     autodoc_mock_imports = ["_fastdds_python"]

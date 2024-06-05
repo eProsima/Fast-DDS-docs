@@ -245,7 +245,7 @@
 <!-->CONF-COMMON-RECEPTION-THREADS-SETTINGS<-->
 <transport_descriptors>
     <transport_descriptor>
-        <transport_id>Test</transport_id>
+        <transport_id>thread_config_transport</transport_id>
         <type>UDPv4</type>
         <reception_threads>
             <reception_thread port="20000">

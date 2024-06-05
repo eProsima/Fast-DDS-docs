@@ -839,7 +839,6 @@
     </participant>
 
     <data_writer profile_name="writer_profile_qos_flowcontroller">
-        <!-- TODO: Configure FlowController through XML -->
         <qos>
             <publishMode>
                 <kind>ASYNCHRONOUS</kind>

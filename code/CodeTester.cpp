@@ -186,7 +186,7 @@ void rtps_api_example_create_entities_with_custom_pool()
             payload.max_size = size;
 
             // Tell the CacheChange who needs to release its payload
-            payload.payload_owner(this);
+            payload.payload_owner = this;
 
             return true;
         }
@@ -202,7 +202,7 @@ void rtps_api_example_create_entities_with_custom_pool()
             memcpy(payload_buff, data.data, data.length);
 
             // Tell the CacheChange who needs to release its payload
-            payload.payload_owner(this);
+            payload.payload_owner = this;
 
             // Assign the payload buffer to the CacheChange and update sizes
             payload.data = payload_buff;
@@ -216,7 +216,7 @@ void rtps_api_example_create_entities_with_custom_pool()
                 SerializedPayload_t& payload) override
         {
             // Ensure precondition
-            if (this != payload.payload_owner())
+            if (this != payload.payload_owner)
             {
                 std::cerr << "Trying to release a payload buffer allocated by a different PayloadPool." << std::endl;
                 return false;
@@ -231,7 +231,7 @@ void rtps_api_example_create_entities_with_custom_pool()
             payload.max_size = 0;
 
             // Reset the owner of the payload
-            payload.payload_owner(nullptr);
+            payload.payload_owner = nullptr;
 
             return true;
         }

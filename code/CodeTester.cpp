@@ -25,7 +25,6 @@
 
 using namespace eprosima::fastrtps;
 using namespace ::rtps;
-using namespace ::security;
 using namespace ::types;
 using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
 

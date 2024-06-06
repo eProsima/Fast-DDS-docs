@@ -589,6 +589,8 @@
 .. |TransportConfigQos::send_socket_buffer_size-api| replace:: :cpp:member:`send_socket_buffer_size<eprosima::fastdds::dds::TransportConfigQos::send_socket_buffer_size>`
 .. |TransportConfigQos::listen_socket_buffer_size-api| replace:: :cpp:member:`listen_socket_buffer_size<eprosima::fastdds::dds::TransportConfigQos::listen_socket_buffer_size>`
 .. |TransportConfigQos::builtin_transports_reception_threads-api| replace:: :cpp:func:`builtin_transports_reception_threads()<eprosima::fastdds::dds::TransportConfigQos::builtin_transports_reception_threads>`
+.. |TransportConfigQos::max_msg_size_no_frag-api| replace:: :cpp:member:`max_msg_size_no_frag<eprosima::fastdds::dds::TransportConfigQos::max_msg_size_no_frag>`
+.. |TransportConfigQos::netmask_filter-api| replace:: :cpp:member:`netmask_filter<eprosima::fastdds::dds::TransportConfigQos::netmask_filter>`
 
 .. |TransportDescriptorInterface-api| replace:: :cpp:struct:`TransportDescriptorInterface<eprosima::fastdds::rtps::TransportDescriptorInterface>`
 .. |TransportDescriptorInterface::maxMessageSize-api| replace:: :cpp:member:`maxMessageSize<eprosima::fastdds::rtps::TransportDescriptorInterface::maxMessageSize>`

@@ -4223,6 +4223,10 @@ void dds_qos_examples()
         transport.use_builtin_transports = false;
         // [OPTIONAL] Set ThreadSettings for the builtin transports reception threads
         transport.builtin_transports_reception_threads_ = eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2};
+        // Set max_msg_size_no_frag to a value > 65500 KB
+        transport.max_msg_size_no_frag = 70000;
+        // Configure netmask filter
+        transport.netmask_filter = eprosima::fastdds::rtps::NetmaskFilterKind::ON;
         //!--
     }
 

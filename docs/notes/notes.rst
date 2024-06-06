@@ -5,51 +5,63 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.13.4
+Version 2.13.5
 ==============
 
 This release includes the following **features** in an ABI compatible manner:
 
-#. Expose :ref:`Authentication Handshake Properties<property_policies_security>`
+#. New :ref:`property_max_message_size` property to limit output datagrams size
 
 This release includes the following **improvements**:
 
-#. Monitor service properly managing instances
-#. Effectively assert ``AUTOMATIC`` / ``MANUAL_BY_PARTICIPANT`` liveliness
-#. Add catch of out-of-range exception for thread settings port
-#. TCP transport improvements:
+#. Improve ThreadSettingsQoS logging
+#. Allow processing of AckNack submessages with ``count == 0``
+#. Internal refactor on port handling
+#. Do not require ``PYTHON_VERSION`` to be defined in .bat files
+#. Use ``%*`` instead of loop in ``.bat`` scripts
+#. Consider library behavior changes as ABI breaks in the PR template checklist
+#. Refactor IStatusQueryable and make monitor service interfaces private
+#. Automatically unmatch remote participants on participant deletion
+#. Handle errors when setting socket buffer sizes
+#. Github CI management:
 
-    #. ``TCPSendResources`` cleanup
-    #. TCP first message loss
-    #. Set real TCP ``non_blocking_send`` limitation
+    #. Refactor Github CI sanitizer related jobs
+    #. Build Fast DDS Python bindings in Fast DDS Docs Github CI job
+    #. Build ShapesDemo on Ubuntu Github CI
+    #. Fix Python Installation version in Github CI. Address failing system tests environment issues.
+    #. Fix sanitizers CI test summary report
+    #. Run selected VS tool on Windows CI
+    #. Increase sleep to miss the deadline in macOS flaky tests
+    #. Fix ShmTransport buffer recovery MacOS flaky test
+    #. Set fallback branch for ``get_related_branch_from_repo`` correctly
+    #. Add DNS entries to hosts files on github workflows
 
 This release includes the following **fixes**:
 
-#. Fix hidden overloaded virtual methods
-#. Fix Discovery Server over TCP using logical port
-#. Protect asio exception fix
-#. Fix flaky Log tests
-#. Fix CVE-2024-28231
-#. Add missing virtual destructor for StatisticsAncillary
-#. Increase ack waiting time in ``reliable_on_unack_sample_removed``
-#. Fix versions in fastrtps.repos
-#. GitHub CI fixes:
-
-    #. Fix CI version management
-    #. Add manual Ubuntu Github CI
-    #. Avoid running GitHub CI if PR has conflicts
-    #. Migrate apt package installation action to eProsima-CI
-    #. Only run PRs CI when review requested
-    #. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows
-    #. Improve filtering of DNS tests
+#. Add check for XML API to PR template
+#. Use absolute paths when loading XML files
+#. Fix some leaks in XML DynamicTypes Parser
+#. Force unlimited ResourceLimits if lower or equal to zero
+#. Enforce SHM ports open mode exclusions
+#. Run ``is_plain`` method with the corresponding data representation
+#. Removed warning
+#. Don't require Fast CDR v2 in examples
+#. Make reader ``get_first_untaken_info()`` coherent with ``read()`` / ``take()``
+#. Fix leak in ``SecurityManager::participant_volatile_message_secure_writer_``
+#. Fix CVE-2024-30258 / CVE-2024-30259
+#. Fix support for ``@key`` annotation in Dynamic types
+#. Set DataSharing in Writer|ReaderProxyData
+#. Fix on_sample_lost notification on best-effort readers for fragmented samples
+#. Correct liveliness state in a multiple reader - one writer scenario
 
 .. note::
-  When upgrading to version 2.13.4 it is **advisable** to regenerate generated source from IDL files
+  When upgrading to version 2.13.5 it is **advisable** to regenerate generated source from IDL files
   using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.13.4.rst
 .. include:: previous_versions/v2.13.3.rst
 .. include:: previous_versions/v2.13.2.rst
 .. include:: previous_versions/v2.13.1.rst

@@ -98,7 +98,7 @@ A full example of such file can be found in :ref:`static_xml_example`.
      - EntityId of the DataReader/DataWriter.
      - ``uint16_t``
      - 0
-   * - ``<expectsInlineQos>``
+   * - ``<expects_inline_qos>``
      - It indicates if QOS is expected inline |br|
        (DataReader **only**).
      - ``bool``

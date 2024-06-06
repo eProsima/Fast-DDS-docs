@@ -82,7 +82,7 @@ The DataReader configuration is performed through the XML elements listed in the
        announced by this DataReader.
      - ``bool``
      - false
-   * - ``<expectsInlineQos>``
+   * - ``<expects_inline_qos>``
      - It indicates if QoS is expected inline.
      - ``bool``
      - ``false``

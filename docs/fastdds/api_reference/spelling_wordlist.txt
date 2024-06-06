@@ -103,7 +103,7 @@ Endianness
 entityId
 Enum
 eprosima
-expectsInlineQos
+expects_inline_qos
 ExtendedAnnotationParameterValuePubSubType
 ExtendedTypeDefnPubSubType
 fastdds

@@ -276,6 +276,7 @@ typedef
 typeid
 TypeIdentfierWithSizePubSubType
 TypeIdentifier
+TypeIdentifierPair
 TypeIdentifierPairPubSubType
 TypeIdentifierTypeObjectPairPubSubType
 TypeIdentifierWithDependenciesPubSubType

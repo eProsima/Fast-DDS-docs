@@ -49,7 +49,7 @@ void register_HelloWorld_type_identifier(
         "HelloWorld", type_ids_HelloWorld);
     if (eprosima::fastdds::dds::RETCODE_OK != return_code_HelloWorld)
     {
-        StructTypeFlag struct_flags_HelloWorld = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::NOT_APPLIED,
+        StructTypeFlag struct_flags_HelloWorld = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::APPENDABLE,
                 false, false);
         QualifiedTypeName type_name_HelloWorld = "HelloWorld";
         eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_HelloWorld;
@@ -71,7 +71,7 @@ void register_HelloWorld_type_identifier(
                         "index Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_index = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_index = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_index = 0x00000000;
             bool common_index_ec {false};
@@ -109,7 +109,7 @@ void register_HelloWorld_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_message = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_message = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_message = 0x00000001;
             bool common_message_ec {false};

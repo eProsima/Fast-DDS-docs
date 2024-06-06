@@ -1,4 +1,4 @@
-Version 2.13.3
+Version 2.13.4
 ^^^^^^^^^^^^^^
 
 This release includes the following **features** in an ABI compatible manner:

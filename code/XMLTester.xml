@@ -820,8 +820,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
 -->
+    <participant profile_name="participant_profile_qos_flowcontroller">
+        <rtps>
+            <flow_controller_descriptor_list>
+                <flow_controller_descriptor>
+                    <name>example_flow_controller</name>
+                    <scheduler>FIFO</scheduler>
+                    <max_bytes_per_period>4096</max_bytes_per_period>
+                    <period_ms>500</period_ms>
+                    <sender_thread>
+                        <scheduling_policy>-1</scheduling_policy>
+                        <priority>0</priority>
+                        <affinity>0</affinity>
+                        <stack_size>-1</stack_size>
+                    </sender_thread>
+                </flow_controller_descriptor>
+            </flow_controller_descriptor_list>
+        </rtps>
+    </participant>
+
     <data_writer profile_name="writer_profile_qos_flowcontroller">
-        <!-- TODO: Configure FlowController through XML -->
+        <qos>
+            <publishMode>
+                <kind>ASYNCHRONOUS</kind>
+                <flow_controller_name>example_flow_controller</flow_controller_name>
+            </publishMode>
+        </qos>
     </data_writer>
 <!--><-->
 
@@ -830,6 +854,7 @@
     <qos>
         <publishMode>
             <kind>ASYNCHRONOUS</kind>
+            <flow_controller_name>example_flow_controller</flow_controller_name>
         </publishMode>
     </qos>
 </data_writer>

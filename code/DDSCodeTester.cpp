@@ -4094,6 +4094,8 @@ void dds_qos_examples()
         //The PublishModeQosPolicy is default constructed with kind = SYNCHRONOUS
         //Change the kind to ASYNCHRONOUS
         publish_mode.kind = ASYNCHRONOUS_PUBLISH_MODE;
+        // Optionally, select the flow controller name
+        publish_mode.flow_controller_name = "example_flow_controller";
         //!--
     }
 

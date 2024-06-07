@@ -4097,7 +4097,7 @@ void dds_qos_examples()
 
         // Optionally, select the flow controller name
         //Important: the flow_controller_name must be kept alive during the Participant's lifetime.
-        static std::string flow_controller_name{"example_flow_controller"}
+        static std::string flow_controller_name{"example_flow_controller"};
         publish_mode.flow_controller_name = flow_controller_name.c_str();
         //!--
     }

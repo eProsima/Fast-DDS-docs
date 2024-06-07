@@ -73,6 +73,7 @@ config
 const
 ContentFilteredTopic
 Contructs
+createRTPSReader
 datareader
 DataReader
 DataReaderListener

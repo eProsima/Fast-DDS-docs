@@ -4094,8 +4094,11 @@ void dds_qos_examples()
         //The PublishModeQosPolicy is default constructed with kind = SYNCHRONOUS
         //Change the kind to ASYNCHRONOUS
         publish_mode.kind = ASYNCHRONOUS_PUBLISH_MODE;
+
         // Optionally, select the flow controller name
-        publish_mode.flow_controller_name = "example_flow_controller";
+        //Important: the flow_controller_name must be kept alive during the Participant's lifetime.
+        static std::string flow_controller_name{"example_flow_controller"}
+        publish_mode.flow_controller_name = flow_controller_name.c_str();
         //!--
     }
 
@@ -5409,6 +5412,7 @@ void dds_usecase_examples()
     {
         //CONF-QOS-FLOWCONTROLLER
         // Limit to 300kb per second.
+        //Important: the flow_controller_name must be kept alive during the Participant's lifetime.
         static const char* flow_controller_name = "example_flow_controller";
         auto flow_control_300k_per_sec = std::make_shared<eprosima::fastdds::rtps::FlowControllerDescriptor>();
         flow_control_300k_per_sec->name = flow_controller_name;

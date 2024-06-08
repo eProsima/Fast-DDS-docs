@@ -79,3 +79,71 @@ Remote types discovery example
 
 Please, refer to :ref:`use-case-remote-type-discovery-and-matching` for more information about how to leverage this
 feature.
+
+Remote discovered types introspection
+-------------------------------------
+
+The following code demonstrates how to implement remote type introspection using FastDDS in C++.
+This feature allows a subscriber to introspect the remotly discovered type and serialize it into a more manageable
+and understandable format.
+Once a type is discovered, it can be registered and every time the subscriber receives new data related to this type,
+the corresponding DynamicData can be obtained from the DynamicDataFactory and serialized into a JSON string format.
+
+.. code-block:: c++
+
+    class TypeIntrospectionSubscriber : public DomainParticipantListener
+    {
+        void on_type_discovered_and_registered_(
+                const DynamicType::_ref_type& type)
+        {
+            // Copy dynamic type
+            dyn_type_ = type;
+
+            // Register type
+            TypeSupport m_type(new DynamicPubSubType(type));
+            m_type.register_type(participant_);
+
+            // Create topic
+            topic_ = participant_->create_topic(
+                topic_name_,
+                m_type->getName(),
+                TOPIC_QOS_DEFAULT);
+
+            if (topic_ == nullptr)
+            {
+                return;
+            }
+
+            // Create DataReader
+            reader_ = subscriber_->create_datareader(
+                topic_,
+                DATAREADER_QOS_DEFAULT,
+                this);
+        }
+
+        /* Custom Callback on_data_available */
+        void on_data_available(
+                DataReader* reader)
+        {
+            // Dynamic DataType
+            DynamicData::_ref_type new_data =
+                                DynamicDataFactory::get_instance()->create_data(dyn_type_);
+
+            // Serialize DynamicData into JSON string format
+            json_serialize(new_data, output, DynamicDataJsonFormat::EPROSIMA);
+        }
+
+        DomainParticipant* participant_;
+
+        Subscriber* subscriber_;
+
+        Topic* topic_;
+
+        DataReader* reader_;
+
+        TypeSupport type_;
+
+        std::string topic_name_;
+
+        DynamicType::_ref_type dyn_type_;
+    };

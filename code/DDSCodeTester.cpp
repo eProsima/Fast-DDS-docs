@@ -4312,12 +4312,12 @@ void dds_qos_examples()
     {
         //DDS_CHANGE_RTPS_RELIABLE_READER_QOS
         RTPSReliableReaderQos reliable_reader_qos;
-        //The RTPSReliableReaderQos is default constructed with initialAcknackDelay = 70 ms
-        //Change the initialAcknackDelay to 70 nanoseconds
-        reliable_reader_qos.times.initialAcknackDelay = {0, 70};
-        //The RTPSReliableWriterQos is default constructed with heartbeatResponseDelay = 5 ms
-        //Change the heartbeatResponseDelay to 5 nanoseconds
-        reliable_reader_qos.times.heartbeatResponseDelay = {0, 5};
+        //The RTPSReliableReaderQos is default constructed with initial_acknack_delay = 70 ms
+        //Change the initial_acknack_delay to 70 nanoseconds
+        reliable_reader_qos.times.initial_acknack_delay = {0, 70};
+        //The RTPSReliableWriterQos is default constructed with heartbeat_response_delay = 5 ms
+        //Change the heartbeat_response_delay to 5 nanoseconds
+        reliable_reader_qos.times.heartbeat_response_delay = {0, 5};
         //You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
         reliable_reader_qos.disable_positive_ACKs.enabled = true;
         //!--

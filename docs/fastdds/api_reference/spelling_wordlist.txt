@@ -121,12 +121,12 @@ GuidPrefix
 hashid
 Hashid
 heartbeatPeriod
-heartbeatResponseDelay
+heartbeat_response_delay
 HistoryQosPolicy
 InconsistentTopicStatus
 Implementers
 infos
-initialAcknackDelay
+initial_acknack_delay
 initialHeartbeatDelay
 inlined
 instanceHandle

@@ -3,6 +3,6 @@
 PortParameters
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::PortParameters
+.. doxygenclass:: eprosima::fastdds::rtps::PortParameters
     :project: FastDDS
     :members:

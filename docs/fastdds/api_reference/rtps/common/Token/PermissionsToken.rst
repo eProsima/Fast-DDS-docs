@@ -3,5 +3,5 @@
 PermissionsToken
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::PermissionsToken
+.. doxygentypedef:: eprosima::fastdds::rtps::PermissionsToken
     :project: FastDDS

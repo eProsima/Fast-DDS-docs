@@ -3,6 +3,6 @@
 ReaderDiscoveryInfo
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::ReaderDiscoveryInfo
+.. doxygenstruct:: eprosima::fastdds::rtps::ReaderDiscoveryInfo
     :project: FastDDS
     :members:

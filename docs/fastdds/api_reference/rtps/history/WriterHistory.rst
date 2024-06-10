@@ -3,6 +3,6 @@
 WriterHistory
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::WriterHistory
+.. doxygenclass:: eprosima::fastdds::rtps::WriterHistory
     :project: FastDDS
     :members:

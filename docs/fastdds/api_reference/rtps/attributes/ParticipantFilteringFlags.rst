@@ -3,5 +3,5 @@
 ParticipantFilteringFlags
 -----------------------------
 
-.. doxygenenum:: eprosima::fastrtps::rtps::ParticipantFilteringFlags
+.. doxygenenum:: eprosima::fastdds::rtps::ParticipantFilteringFlags
     :project: FastDDS

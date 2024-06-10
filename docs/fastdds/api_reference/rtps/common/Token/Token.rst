@@ -3,5 +3,5 @@
 Token
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::Token
+.. doxygentypedef:: eprosima::fastdds::rtps::Token
     :project: FastDDS

@@ -3,6 +3,6 @@
 SequenceNumberDiff
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::SequenceNumberDiff
+.. doxygenstruct:: eprosima::fastdds::rtps::SequenceNumberDiff
     :project: FastDDS
     :members:

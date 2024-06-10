@@ -3,6 +3,6 @@
 RemoteLocatorsAllocationAttributes
 ------------------------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::RemoteLocatorsAllocationAttributes
+.. doxygenstruct:: eprosima::fastdds::rtps::RemoteLocatorsAllocationAttributes
     :project: FastDDS
     :members:

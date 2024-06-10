@@ -3,6 +3,6 @@
 LocatorSelectorEntry
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::LocatorSelectorEntry
+.. doxygenstruct:: eprosima::fastdds::rtps::LocatorSelectorEntry
     :project: FastDDS
     :members:

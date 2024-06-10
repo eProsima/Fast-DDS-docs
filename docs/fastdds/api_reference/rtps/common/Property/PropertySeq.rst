@@ -3,5 +3,5 @@
 PropertySeq
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::PropertySeq
+.. doxygentypedef:: eprosima::fastdds::rtps::PropertySeq
     :project: FastDDS

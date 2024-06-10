@@ -3,6 +3,6 @@
 WriterAttributes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::WriterAttributes
+.. doxygenclass:: eprosima::fastdds::rtps::WriterAttributes
     :project: FastDDS
     :members:

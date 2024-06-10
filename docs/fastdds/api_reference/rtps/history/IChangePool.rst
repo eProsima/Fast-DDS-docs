@@ -3,6 +3,6 @@
 IChangePool
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::IChangePool
+.. doxygenclass:: eprosima::fastdds::rtps::IChangePool
     :project: FastDDS
     :members:

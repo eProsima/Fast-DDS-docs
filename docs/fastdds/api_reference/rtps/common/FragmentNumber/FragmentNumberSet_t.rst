@@ -3,5 +3,5 @@
 FragmentNumberSet_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::FragmentNumberSet_t
+.. doxygentypedef:: eprosima::fastdds::rtps::FragmentNumberSet_t
     :project: FastDDS

@@ -3,6 +3,6 @@
 MatchingInfo
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::MatchingInfo
+.. doxygenclass:: eprosima::fastdds::rtps::MatchingInfo
     :project: FastDDS
     :members:

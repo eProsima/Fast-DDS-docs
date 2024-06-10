@@ -3,6 +3,6 @@
 BinaryPropertyHelper
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::BinaryPropertyHelper
+.. doxygenclass:: eprosima::fastdds::rtps::BinaryPropertyHelper
     :project: FastDDS
     :members:

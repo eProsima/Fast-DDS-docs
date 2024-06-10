@@ -3,5 +3,5 @@
 IsAddressDefined
 --------------------------------
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::IsAddressDefined
+.. doxygenfunction:: eprosima::fastdds::rtps::IsAddressDefined
     :project: FastDDS

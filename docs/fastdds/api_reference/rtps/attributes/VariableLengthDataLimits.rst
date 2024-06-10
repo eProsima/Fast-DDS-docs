@@ -3,6 +3,6 @@
 VariableLengthDataLimits
 ------------------------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::VariableLengthDataLimits
+.. doxygenstruct:: eprosima::fastdds::rtps::VariableLengthDataLimits
     :project: FastDDS
     :members:

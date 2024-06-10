@@ -3,6 +3,6 @@
 IPayloadPool
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::IPayloadPool
+.. doxygenclass:: eprosima::fastdds::rtps::IPayloadPool
     :project: FastDDS
     :members:

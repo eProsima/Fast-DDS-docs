@@ -3,5 +3,5 @@
 IdentityStatusToken
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::IdentityStatusToken
+.. doxygentypedef:: eprosima::fastdds::rtps::IdentityStatusToken
     :project: FastDDS

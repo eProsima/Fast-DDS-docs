@@ -3,6 +3,6 @@
 ParticipantDiscoveryInfo
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::ParticipantDiscoveryInfo
+.. doxygenstruct:: eprosima::fastdds::rtps::ParticipantDiscoveryInfo
     :project: FastDDS
     :members:

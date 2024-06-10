@@ -3,6 +3,6 @@
 SampleIdentity
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::SampleIdentity
+.. doxygenclass:: eprosima::fastdds::rtps::SampleIdentity
     :project: FastDDS
     :members:

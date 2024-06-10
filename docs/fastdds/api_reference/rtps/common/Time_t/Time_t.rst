@@ -3,6 +3,6 @@
 Time_t
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::Time_t
+.. doxygenclass:: eprosima::fastdds::rtps::Time_t
     :project: FastDDS
     :members:

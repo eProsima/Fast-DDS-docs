@@ -3,6 +3,6 @@
 LocatorSelector
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::LocatorSelector
+.. doxygenclass:: eprosima::fastdds::rtps::LocatorSelector
     :project: FastDDS
     :members:

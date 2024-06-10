@@ -3,6 +3,6 @@
 ReaderListener
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::ReaderListener
+.. doxygenclass:: eprosima::fastdds::rtps::ReaderListener
     :project: FastDDS
     :members:

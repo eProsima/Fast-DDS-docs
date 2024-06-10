@@ -3,6 +3,6 @@
 Endpoint
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::Endpoint
+.. doxygenclass:: eprosima::fastdds::rtps::Endpoint
     :project: FastDDS
     :members:

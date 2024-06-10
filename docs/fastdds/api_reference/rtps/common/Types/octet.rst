@@ -3,5 +3,5 @@
 octet
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::octet
+.. doxygentypedef:: eprosima::fastdds::rtps::octet
     :project: FastDDS

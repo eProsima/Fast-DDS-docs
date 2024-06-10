@@ -3,6 +3,6 @@
 SerializedPayload_t
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::SerializedPayload_t
+.. doxygenstruct:: eprosima::fastdds::rtps::SerializedPayload_t
     :project: FastDDS
     :members:

@@ -3,6 +3,6 @@
 RTPSParticipantListener
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::RTPSParticipantListener
+.. doxygenclass:: eprosima::fastdds::rtps::RTPSParticipantListener
     :project: FastDDS
     :members:

@@ -3,5 +3,5 @@
 BinaryPropertySeq
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::BinaryPropertySeq
+.. doxygentypedef:: eprosima::fastdds::rtps::BinaryPropertySeq
     :project: FastDDS

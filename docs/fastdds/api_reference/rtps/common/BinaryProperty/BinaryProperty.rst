@@ -3,6 +3,6 @@
 BinaryProperty
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::BinaryProperty
+.. doxygenclass:: eprosima::fastdds::rtps::BinaryProperty
     :project: FastDDS
     :members:

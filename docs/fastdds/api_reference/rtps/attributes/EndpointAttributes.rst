@@ -3,6 +3,6 @@
 EndpointAttributes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::EndpointAttributes
+.. doxygenclass:: eprosima::fastdds::rtps::EndpointAttributes
     :project: FastDDS
     :members:

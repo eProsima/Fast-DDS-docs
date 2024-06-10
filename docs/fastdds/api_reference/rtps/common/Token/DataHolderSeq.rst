@@ -3,5 +3,5 @@
 DataHolderSeq
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::DataHolderSeq
+.. doxygentypedef:: eprosima::fastdds::rtps::DataHolderSeq
     :project: FastDDS

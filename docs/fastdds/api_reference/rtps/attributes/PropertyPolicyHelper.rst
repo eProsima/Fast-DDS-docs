@@ -3,6 +3,6 @@
 PropertyPolicyHelper
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::PropertyPolicyHelper
+.. doxygenclass:: eprosima::fastdds::rtps::PropertyPolicyHelper
     :project: FastDDS
     :members:

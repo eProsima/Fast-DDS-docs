@@ -3,5 +3,5 @@
 EndpointKind_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::EndpointKind_t
+.. doxygentypedef:: eprosima::fastdds::rtps::EndpointKind_t
     :project: FastDDS

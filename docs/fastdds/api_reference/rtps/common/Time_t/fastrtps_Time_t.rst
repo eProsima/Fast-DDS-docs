@@ -1,8 +1,8 @@
 .. rst-class:: api-ref
 
-eprosima::fastrtps::Time_t
+eprosima::fastdds::Time_t
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::Time_t
+.. doxygenstruct:: eprosima::fastdds::Time_t
     :project: FastDDS
     :members:

@@ -3,56 +3,56 @@
 Time_t Operators
 --------------------------------
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator==(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator==(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator!=(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator!=(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator<(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator<(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator>(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator>(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator<=(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator<=(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator>=(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator>=(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator<<(std::ostream &output, const Time_t &t)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator<<(std::ostream &output, const Time_t &t)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator+(const Time_t &ta, const Time_t &tb)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator+(const Time_t &ta, const Time_t &tb)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator-(const Time_t &ta, const Time_t &tb)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator-(const Time_t &ta, const Time_t &tb)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator==(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::operator==(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator!=(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::operator!=(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator<(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::operator<(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator>(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::operator>(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator<=(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::operator<=(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator>=(const Time_t &t1, const Time_t &t2)
+.. doxygenfunction:: eprosima::fastdds::operator>=(const Time_t &t1, const Time_t &t2)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator<<(std::ostream &output, const Time_t &t)
+.. doxygenfunction:: eprosima::fastdds::operator<<(std::ostream &output, const Time_t &t)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator+(const Time_t &ta, const Time_t &tb)
+.. doxygenfunction:: eprosima::fastdds::operator+(const Time_t &ta, const Time_t &tb)
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::operator-(const Time_t &ta, const Time_t &tb)
+.. doxygenfunction:: eprosima::fastdds::operator-(const Time_t &ta, const Time_t &tb)
     :project: FastDDS

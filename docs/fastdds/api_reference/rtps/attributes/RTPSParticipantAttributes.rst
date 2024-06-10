@@ -3,6 +3,6 @@
 RTPSParticipantAttributes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::RTPSParticipantAttributes
+.. doxygenclass:: eprosima::fastdds::rtps::RTPSParticipantAttributes
     :project: FastDDS
     :members:

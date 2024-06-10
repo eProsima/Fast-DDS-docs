@@ -3,6 +3,6 @@
 WriterProxyData
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::WriterProxyData
+.. doxygenclass:: eprosima::fastdds::rtps::WriterProxyData
     :project: FastDDS
     :members:

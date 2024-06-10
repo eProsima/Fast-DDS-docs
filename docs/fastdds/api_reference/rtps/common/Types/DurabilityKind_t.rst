@@ -3,5 +3,5 @@
 DurabilityKind_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::DurabilityKind_t
+.. doxygentypedef:: eprosima::fastdds::rtps::DurabilityKind_t
     :project: FastDDS

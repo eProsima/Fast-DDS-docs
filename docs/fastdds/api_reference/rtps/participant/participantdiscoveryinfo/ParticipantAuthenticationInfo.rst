@@ -3,9 +3,9 @@
 ParticipantAuthenticationInfo
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::ParticipantAuthenticationInfo
+.. doxygenstruct:: eprosima::fastdds::rtps::ParticipantAuthenticationInfo
     :project: FastDDS
     :members:
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator==(const ParticipantAuthenticationInfo &l, const ParticipantAuthenticationInfo &r)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator==(const ParticipantAuthenticationInfo &l, const ParticipantAuthenticationInfo &r)
     :project: FastDDS

@@ -3,7 +3,7 @@
 ParticipantProxyData
 --------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::ParticipantProxyData
+.. doxygenclass:: eprosima::fastdds::rtps::ParticipantProxyData
     :project: FastDDS
     :members:
 

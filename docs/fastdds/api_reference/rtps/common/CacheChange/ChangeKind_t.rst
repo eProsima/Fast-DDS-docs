@@ -3,5 +3,5 @@
 ChangeKind_t
 --------------------------------
 
-.. doxygenenum:: eprosima::fastrtps::rtps::ChangeKind_t
+.. doxygenenum:: eprosima::fastdds::rtps::ChangeKind_t
     :project: FastDDS

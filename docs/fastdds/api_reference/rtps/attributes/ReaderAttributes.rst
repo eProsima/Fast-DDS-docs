@@ -3,6 +3,6 @@
 ReaderAttributes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::ReaderAttributes
+.. doxygenclass:: eprosima::fastdds::rtps::ReaderAttributes
     :project: FastDDS
     :members:

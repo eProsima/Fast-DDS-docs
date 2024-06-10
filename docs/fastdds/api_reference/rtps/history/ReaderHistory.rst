@@ -3,6 +3,6 @@
 ReaderHistory
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::ReaderHistory
+.. doxygenclass:: eprosima::fastdds::rtps::ReaderHistory
     :project: FastDDS
     :members:

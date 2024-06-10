@@ -3,6 +3,6 @@
 WriterTimes
 ------------------------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::WriterTimes
+.. doxygenstruct:: eprosima::fastdds::rtps::WriterTimes
     :project: FastDDS
     :members:

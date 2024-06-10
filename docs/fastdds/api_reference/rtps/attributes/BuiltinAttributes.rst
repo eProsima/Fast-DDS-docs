@@ -3,6 +3,6 @@
 BuiltinAttributes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::BuiltinAttributes
+.. doxygenclass:: eprosima::fastdds::rtps::BuiltinAttributes
     :project: FastDDS
     :members:

@@ -192,7 +192,7 @@ void rtps_api_example_create_entities_with_custom_pool()
         }
 
         bool get_payload(
-                SerializedPayload_t& data,
+                const SerializedPayload_t& data,
                 SerializedPayload_t& payload)
         {
             // Reserve new memory for the payload buffer

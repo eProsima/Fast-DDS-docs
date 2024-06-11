@@ -266,7 +266,7 @@ public:
     }
 
     bool get_payload(
-            eprosima::fastrtps::rtps::SerializedPayload_t& data,
+            const eprosima::fastrtps::rtps::SerializedPayload_t& data,
             eprosima::fastrtps::rtps::SerializedPayload_t& payload)
     {
         return true;

@@ -38,6 +38,8 @@
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilderFactory.hpp>
 #include <fastdds/dds/xtypes/type_representation/TypeObject.hpp>
 #include <fastdds/rtps/attributes/ThreadSettings.hpp>
+#include <fastdds/rtps/common/WriteParams.h>
+#include <fastdds/rtps/history/IPayloadPool.h>
 #include <fastdds/rtps/transport/ChainingTransport.h>
 #include <fastdds/rtps/transport/ChainingTransportDescriptor.h>
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>

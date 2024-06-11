@@ -760,14 +760,14 @@ List of structure members:
 +-----------------------------------------------------------------------------------+------------------+---------------+
 | Member Name                                                                       | Type             | Default Value |
 +===================================================================================+==================+===============+
-| |ReaderTimes::initialAcknackDelay-api|                                            | |Duration_t-api| | 70 ms         |
+| |ReaderTimes::initial_acknack_delay-api|                                          | |Duration_t-api| | 70 ms         |
 +-----------------------------------------------------------------------------------+------------------+---------------+
-| |ReaderTimes::heartbeatResponseDelay-api|                                         | |Duration_t-api| | 5 ms          |
+| |ReaderTimes::heartbeat_response_delay-api|                                       | |Duration_t-api| | 5 ms          |
 +-----------------------------------------------------------------------------------+------------------+---------------+
 
-* |ReaderTimes::initialAcknackDelay-api|:
+* |ReaderTimes::initial_acknack_delay-api|:
   Defines the duration of the initial acknack delay.
-* |ReaderTimes::heartbeatResponseDelay-api|:
+* |ReaderTimes::heartbeat_response_delay-api|:
   Establishes the duration of the delay applied when a heartbeat message is received.
 
 Example

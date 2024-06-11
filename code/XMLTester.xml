@@ -1791,13 +1791,13 @@
             </qos>
 
             <times> <!-- readerTimesType -->
-                <initialAcknackDelay>
+                <initial_acknack_delay>
                     <nanosec>70</nanosec>
-                </initialAcknackDelay>
+                </initial_acknack_delay>
 
-                <heartbeatResponseDelay>
+                <heartbeat_response_delay>
                     <nanosec>5</nanosec>
-                </heartbeatResponseDelay>
+                </heartbeat_response_delay>
             </times>
 
             <unicastLocatorList>
@@ -1828,7 +1828,7 @@
 
             <ignore_non_matching_locators>true</ignore_non_matching_locators>
 
-            <expectsInlineQos>true</expectsInlineQos>
+            <expects_inline_qos>true</expects_inline_qos>
 
             <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
 
@@ -3799,12 +3799,12 @@
 <!-->XML_RTPS_RELIABLE_READER_QOS<-->
 <data_reader profile_name="sub_profile_name">
     <times> <!-- readerTimesType -->
-        <initialAcknackDelay> <!-- DURATION -->
+        <initial_acknack_delay> <!-- DURATION -->
             <nanosec>70</nanosec>
-        </initialAcknackDelay>
-        <heartbeatResponseDelay> <!-- DURATION -->
+        </initial_acknack_delay>
+        <heartbeat_response_delay> <!-- DURATION -->
             <nanosec>5</nanosec>
-        </heartbeatResponseDelay>
+        </heartbeat_response_delay>
     </times>
     <!--You can also change the values of DisablePositiveACKsQosPolicy.-->
     <!--See DisablePositiveACKsQosPolicy section for further details-->

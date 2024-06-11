@@ -529,8 +529,8 @@
 .. |SendBuffersAllocationAttributes::dynamic-api| replace:: :cpp:member:`dynamic<eprosima::fastrtps::rtps::SendBuffersAllocationAttributes::dynamic>`
 
 .. |ReaderTimes-api| replace:: :cpp:class:`ReaderTimes<eprosima::fastrtps::rtps::ReaderTimes>`
-.. |ReaderTimes::initialAcknackDelay-api| replace:: :cpp:member:`initialAcknackDelay<eprosima::fastrtps::rtps::ReaderTimes::initialAcknackDelay>`
-.. |ReaderTimes::heartbeatResponseDelay-api| replace:: :cpp:member:`heartbeatResponseDelay<eprosima::fastrtps::rtps::ReaderTimes::heartbeatResponseDelay>`
+.. |ReaderTimes::initial_acknack_delay-api| replace:: :cpp:member:`initial_acknack_delay<eprosima::fastrtps::rtps::ReaderTimes::initial_acknack_delay>`
+.. |ReaderTimes::heartbeat_response_delay-api| replace:: :cpp:member:`heartbeat_response_delay<eprosima::fastrtps::rtps::ReaderTimes::heartbeat_response_delay>`
 
 .. |RTPSReliableWriterQos-api| replace:: :cpp:class:`RTPSReliableWriterQos<eprosima::fastdds::dds::RTPSReliableWriterQos>`
 .. |RTPSReliableWriterQos::times-api| replace:: :cpp:member:`times<eprosima::fastdds::dds::RTPSReliableWriterQos::times>`

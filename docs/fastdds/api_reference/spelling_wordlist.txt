@@ -73,6 +73,7 @@ config
 const
 ContentFilteredTopic
 Contructs
+createRTPSReader
 datareader
 DataReader
 DataReaderListener
@@ -103,7 +104,7 @@ Endianness
 entityId
 Enum
 eprosima
-expectsInlineQos
+expects_inline_qos
 ExtendedAnnotationParameterValuePubSubType
 ExtendedTypeDefnPubSubType
 fastdds
@@ -120,12 +121,12 @@ GuidPrefix
 hashid
 Hashid
 heartbeatPeriod
-heartbeatResponseDelay
+heartbeat_response_delay
 HistoryQosPolicy
 InconsistentTopicStatus
 Implementers
 infos
-initialAcknackDelay
+initial_acknack_delay
 initialHeartbeatDelay
 inlined
 instanceHandle

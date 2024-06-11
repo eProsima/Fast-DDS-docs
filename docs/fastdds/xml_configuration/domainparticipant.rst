@@ -676,24 +676,17 @@ Send buffers
        See :ref:`sendbuffersallocationattributes`.
      - ``bool``
      - false
-   * - ``<preallocated_network_buffers>``
-     - Initial number initial number of network buffers |br|
-       to be allocated for each send buffer. See |br|
-       :ref:`sendbuffersallocationattributes`.
-     - ``uint32_t``
-     - 0
-   * - ``<allocation_inc_network_buffers>``
-     - Number of network buffers to be dynamically |br|
-       allocated when growing the vector of the send buffer |br|
-       if it runs out of capacity. See |br|
-       :ref:`sendbuffersallocationattributes`.
-     - ``uint32_t``
-     - 0
+   * - ``<network_buffers_config>``
+     - Network buffer :ref:`CommonAlloc` to specify the |br|
+       number of network buffers to be allocated for each |br|
+       send buffer. See :ref:`ResourceLimitedContainerConfig`.
+     - :ref:`CommonAlloc`
+     - (16, inf, 16)
 
 .. note::
     The default value ``0`` of ``<preallocated_number>`` will perform an initial guess of the number of buffers
     required, based on the number of threads from which a send operation could be started.
     So it does not mean there are no buffers, instead it would use the maximum amount of buffers available.
-    Similarly, the default value ``0`` of ``<preallocated_network_buffers>`` and ``<allocation_inc_network_buffers>``
-    will use a fixed amount of 16 network buffers per send buffer as the preallocated and the increment number,
-    respectively.
+    On the contrary, ``<network_buffers_config>`` will default to an initial number of 16 buffers, with an infinite
+    maximum and an increment of 16 buffers per send buffer. Setting a value of ``0`` will prevent the creation of
+    network buffers. In case of doubt, leave it unset.

@@ -167,9 +167,11 @@ the |DomainId-api| and the |DomainParticipantQos-api| objects of a DomainPartici
 This class is useful for simplifying the creation and configuration of a DomainParticipant,
 as it allows specifying all necessary settings in a single object.
 
-|DomainParticipant::set_qos-api| can be directly created with |DomainParticipantExtendedQos-api|.
+This |DomainParticipantExtendedQos-api| can be obtained from the loaded profiles with
+|DomainParticipantFactory::get_participant_extended_qos_from_profile-api| and then create |DomainParticipant-api|
+with those |DomainParticipantExtendedQos-api|.
 The QoS value of a previously created DomainParticipant can be modified similarly as when creating
-the |DomainParticipant::set_qos-api| from |DomainParticipantQos-api|.
+the |DomainParticipant-api| from |DomainParticipantQos-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++

@@ -161,6 +161,7 @@
 .. |DomainParticipantFactory::get_default_participant_qos-api| replace:: :cpp:func:`get_default_participant_qos()<eprosima::fastdds::dds::DomainParticipantFactory::get_default_participant_qos>`
 .. |DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name-api| replace:: :cpp:func:`DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name()<eprosima::fastdds::dds::DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name>`
 .. |DomainParticipantFactory::get_instance-api| replace:: :cpp:func:`get_instance()<eprosima::fastdds::dds::DomainParticipantFactory::get_instance>`
+.. |DomainParticipantFactory::get_participant_extended_qos_from_profile-api| replace:: :cpp:func:`get_participant_extended_qos_from_profile()<eprosima::fastdds::dds::DomainParticipantFactory::get_participant_extended_qos_from_profile>`
 .. |DomainParticipantFactory::load_XML_profiles_file-api| replace:: :cpp:func:`load_XML_profiles_file()<eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_file>`
 .. |DomainParticipantFactory::load_XML_profiles_string-api| replace:: :cpp:func:`load_XML_profiles_string()<eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_string>`
 .. |DomainParticipantFactory::set_default_participant_qos-api| replace:: :cpp:func:`set_default_participant_qos()<eprosima::fastdds::dds::DomainParticipantFactory::set_default_participant_qos>`

@@ -420,12 +420,13 @@ void dds_domain_examples()
 
     {
         //DDS_CHANGE_DOMAINPARTICIPANTEXTENDEDQOS
-        // Create a DomainParticipant with default DomainParticipantExtendedQos
-
-        DomainParticipantExtendedQos extended_qos;
+        // Create a DomainParticipant with DomainParticipantExtendedQos from profile
+        DomainParticipantExtendedQos profile_extended_qos;
+        DomainParticipantFactory::get_instance()->get_participant_extended_qos_from_profile("xml_profile.xml",
+            profile_extended_qos);
 
         DomainParticipant* participant =
-                DomainParticipantFactory::get_instance()->create_participant(extended_qos);
+                DomainParticipantFactory::get_instance()->create_participant(profile_extended_qos);
         if (nullptr == participant)
         {
             // Error

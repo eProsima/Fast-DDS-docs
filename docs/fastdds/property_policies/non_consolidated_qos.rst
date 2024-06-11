@@ -70,7 +70,7 @@ See :ref:`tuning-heartbeat-period` for more details.
 .. warning::
     * It is inconsistent to enable the ``pull mode`` and also set the |ReliabilityQosPolicyKind-api| to
       |BEST_EFFORT_RELIABILITY_QOS-api|.
-    * It is inconsistent to enable the ``pull mode`` and also set the |WriterTimes::heartbeatPeriod-api| to
+    * It is inconsistent to enable the ``pull mode`` and also set the |WriterTimes::heartbeat_period-api| to
       |c_TimeInfinite-api|.
 
 

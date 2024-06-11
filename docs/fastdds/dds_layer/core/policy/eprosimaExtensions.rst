@@ -349,22 +349,22 @@ List of structure members:
 +-----------------------------------------------------------------------------------+------------------+---------------+
 | Member Name                                                                       | Type             | Default Value |
 +===================================================================================+==================+===============+
-| |WriterTimes::initialHeartbeatDelay-api|                                          | |Duration_t-api| | 12ms          |
+| |WriterTimes::initial_heartbeat_delay-api|                                        | |Duration_t-api| | 12ms          |
 +-----------------------------------------------------------------------------------+------------------+---------------+
-| |WriterTimes::heartbeatPeriod-api|                                                | |Duration_t-api| | 3s            |
+| |WriterTimes::heartbeat_period-api|                                               | |Duration_t-api| | 3s            |
 +-----------------------------------------------------------------------------------+------------------+---------------+
-| |WriterTimes::nackResponseDelay-api|                                              | |Duration_t-api| | 5ms           |
+| |WriterTimes::nack_response_delay-api|                                            | |Duration_t-api| | 5ms           |
 +-----------------------------------------------------------------------------------+------------------+---------------+
-| |WriterTimes::nackSupressionDuration-api|                                         | |Duration_t-api| | 0s            |
+| |WriterTimes::nack_supression_duration-api|                                       | |Duration_t-api| | 0s            |
 +-----------------------------------------------------------------------------------+------------------+---------------+
 
-* |WriterTimes::initialHeartbeatDelay-api|:
+* |WriterTimes::initial_heartbeat_delay-api|:
   Defines duration of the initial heartbeat delay.
-* |WriterTimes::heartbeatPeriod-api|:
+* |WriterTimes::heartbeat_period-api|:
   Specifies the interval between periodic heartbeats.
-* |WriterTimes::nackResponseDelay-api|:
+* |WriterTimes::nack_response_delay-api|:
   Establishes the duration of the delay applied to the response of an ACKNACK message.
-* |WriterTimes::nackSupressionDuration-api|:
+* |WriterTimes::nack_supression_duration-api|:
   The RTPSWriter ignores the nack messages received after sending the data until the
   duration time elapses.
 
@@ -373,7 +373,7 @@ List of structure members:
 DisableHeartbeatPiggyback
 """""""""""""""""""""""""
 
-Besides sending heartbeats periodically using the |WriterTimes::heartbeatPeriod-api| (see :ref:`writertimes`), reliable
+Besides sending heartbeats periodically using the |WriterTimes::heartbeat_period-api| (see :ref:`writertimes`), reliable
 DataWriters also use a mechanism to append a heartbeat submessage in the same message where data is being delivered to
 the DataReaders.
 This mechanism acts in specific situations where the reliable communication state must be up to date to maintain

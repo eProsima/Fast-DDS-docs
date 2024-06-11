@@ -121,14 +121,14 @@ guid
 GuidPrefix
 hashid
 Hashid
-heartbeatPeriod
+heartbeat_period
 heartbeat_response_delay
 HistoryQosPolicy
 InconsistentTopicStatus
 Implementers
 infos
 initial_acknack_delay
-initialHeartbeatDelay
+initial_heartbeat_delay
 inlined
 instanceHandle
 InstanceHandle
@@ -185,8 +185,8 @@ msg
 mutex
 mutexes
 myFilterFactory
-nackResponseDelay
-nackSupressionDuration
+nack_response_delay
+nack_supression_duration
 netmask
 Netmask
 NonConstEnabler

@@ -135,13 +135,13 @@ These parameters are included within :ref:`rtpsreliablewriterqos` in the :ref:`w
 +------------------------------+-------------------------------------------------------+---------------------+---------+
 | Name                         | Description                                           | Values              | Default |
 +==============================+=======================================================+=====================+=========+
-| ``<initialHeartbeatDelay>``  | Initial heartbeat delay.                              | :ref:`DurationType` | 12 ms   |
+| ``<initial_heartbeat_delay>``  | Initial heartbeat delay.                              | :ref:`DurationType` | 12 ms   |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
-| ``<heartbeatPeriod>``        | Periodic heartbeat period.                            | :ref:`DurationType` | 3 s     |
+| ``<heartbeat_period>``        | Periodic heartbeat period.                            | :ref:`DurationType` | 3 s     |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
-| ``<nackResponseDelay>``      | Delay to apply to the response of an ACKNACK message. | :ref:`DurationType` | 5 ms    |
+| ``<nack_response_delay>``      | Delay to apply to the response of an ACKNACK message. | :ref:`DurationType` | 5 ms    |
 +------------------------------+-------------------------------------------------------+---------------------+---------+
-| ``<nackSupressionDuration>`` | This time allows the DataWriter to ignore NACK |br|   | :ref:`DurationType` | 0 ms    |
+| ``<nack_supression_duration>`` | This time allows the DataWriter to ignore NACK |br|   | :ref:`DurationType` | 0 ms    |
 |                              | messages for a given period of time right after |br|  |                     |         |
 |                              | the data has been sent.                               |                     |         |
 +------------------------------+-------------------------------------------------------+---------------------+---------+

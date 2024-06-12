@@ -304,9 +304,9 @@ IPayloadPool interface
 
 * |IPayloadPool::get_payload-api| overload with SerializadPayload parameter:
 
-  Copies the given Payload data to a new Payload from the pool and ties it to the :class:`CacheChange_t` instance.
-  This overload also takes a pointer to the pool that owns the original Payload.
-  This allows certain optimizations, like sharing the Payload if the original one comes form this same pool,
+  Copies the given Payload data to a new Payload from the pool.
+  Each :cpp:member:`SerializedPayload_t` contains a pointer to the pool that allocated its data.
+  This allows certain certain optimizations, like sharing the Payload if the original one comes from this same pool,
   therefore avoiding the copy operation.
 
 * |IPayloadPool::release_payload-api|:

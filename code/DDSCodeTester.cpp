@@ -260,21 +260,20 @@ public:
     ~CustomPayloadPool() = default;
     bool get_payload(
             unsigned int size,
-            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+            eprosima::fastrtps::rtps::SerializedPayload_t& payload)
     {
         return true;
     }
 
     bool get_payload(
-            eprosima::fastrtps::rtps::SerializedPayload_t& data,
-            eprosima::fastrtps::rtps::IPayloadPool*& data_owner,
-            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+            const eprosima::fastrtps::rtps::SerializedPayload_t& data,
+            eprosima::fastrtps::rtps::SerializedPayload_t& payload)
     {
         return true;
     }
 
     bool release_payload(
-            eprosima::fastrtps::rtps::CacheChange_t& cache_change)
+            eprosima::fastrtps::rtps::SerializedPayload_t& payload)
     {
         return true;
     }

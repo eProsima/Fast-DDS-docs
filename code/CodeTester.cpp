@@ -175,64 +175,63 @@ void rtps_api_example_create_entities_with_custom_pool()
     {
         bool get_payload(
                 uint32_t size,
-                CacheChange_t& cache_change) override
+                SerializedPayload_t& payload) override
         {
             // Reserve new memory for the payload buffer
-            octet* payload = new octet[size];
+            octet* payload_buff = new octet[size];
 
             // Assign the payload buffer to the CacheChange and update sizes
-            cache_change.serializedPayload.data = payload;
-            cache_change.serializedPayload.length = size;
-            cache_change.serializedPayload.max_size = size;
+            payload.data = payload_buff;
+            payload.length = size;
+            payload.max_size = size;
 
             // Tell the CacheChange who needs to release its payload
-            cache_change.payload_owner(this);
+            payload.payload_owner = this;
 
             return true;
         }
 
         bool get_payload(
-                SerializedPayload_t& data,
-                IPayloadPool*& /*data_owner*/,
-                CacheChange_t& cache_change)
+                const SerializedPayload_t& data,
+                SerializedPayload_t& payload)
         {
             // Reserve new memory for the payload buffer
-            octet* payload = new octet[data.length];
+            octet* payload_buff = new octet[data.length];
 
             // Copy the data
-            memcpy(payload, data.data, data.length);
+            memcpy(payload_buff, data.data, data.length);
 
             // Tell the CacheChange who needs to release its payload
-            cache_change.payload_owner(this);
+            payload.payload_owner = this;
 
             // Assign the payload buffer to the CacheChange and update sizes
-            cache_change.serializedPayload.data = payload;
-            cache_change.serializedPayload.length = data.length;
-            cache_change.serializedPayload.max_size = data.length;
+            payload.data = payload_buff;
+            payload.length = data.length;
+            payload.max_size = data.length;
 
             return true;
         }
 
         bool release_payload(
-                CacheChange_t& cache_change) override
+                SerializedPayload_t& payload) override
         {
             // Ensure precondition
-            if (this != cache_change.payload_owner())
+            if (this != payload.payload_owner)
             {
                 std::cerr << "Trying to release a payload buffer allocated by a different PayloadPool." << std::endl;
                 return false;
             }
 
             // Dealloc the buffer of the payload
-            delete[] cache_change.serializedPayload.data;
+            delete[] payload.data;
 
             // Reset sizes and pointers
-            cache_change.serializedPayload.data = nullptr;
-            cache_change.serializedPayload.length = 0;
-            cache_change.serializedPayload.max_size = 0;
+            payload.data = nullptr;
+            payload.length = 0;
+            payload.max_size = 0;
 
             // Reset the owner of the payload
-            cache_change.payload_owner(nullptr);
+            payload.payload_owner = nullptr;
 
             return true;
         }

@@ -422,7 +422,7 @@ void dds_domain_examples()
         //DDS_CHANGE_DOMAINPARTICIPANTEXTENDEDQOS
         // Create a DomainParticipant with DomainParticipantExtendedQos from profile
         DomainParticipantExtendedQos profile_extended_qos;
-        DomainParticipantFactory::get_instance()->get_participant_extended_qos_from_profile("xml_profile.xml",
+        DomainParticipantFactory::get_instance()->get_participant_extended_qos_from_profile("participant_profile",
             profile_extended_qos);
 
         DomainParticipant* participant =
@@ -432,15 +432,6 @@ void dds_domain_examples()
             // Error
             return;
         }
-
-        // Get the current QoS or create a new one from scratch
-        DomainParticipantQos qos = participant->get_qos();
-
-        // Modify QoS attributes
-        qos.entity_factory().autoenable_created_entities = false;
-
-        // Assign the new Qos to the object
-        participant->set_qos(qos);
         //!--
     }
 

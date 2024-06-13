@@ -863,7 +863,6 @@
 
 .. |DiscoveryProtocol-api| replace:: :cpp:enum:`DiscoveryProtocol<eprosima::fastdds::rtps::DiscoveryProtocol>`
 .. |SIMPLE| replace:: :cpp:enumerator:`SIMPLE<eprosima::fastdds::rtps::DiscoveryProtocol::SIMPLE>`
-.. |STATIC| replace:: :cpp:enumerator:`STATIC<eprosima::fastdds::rtps::DiscoveryProtocol::STATIC>`
 .. |SERVER| replace:: :cpp:enumerator:`SERVER<eprosima::fastdds::rtps::DiscoveryProtocol::SERVER>`
 .. |CLIENT| replace:: :cpp:enumerator:`CLIENT<eprosima::fastdds::rtps::DiscoveryProtocol::CLIENT>`
 .. |CLIENTS| replace:: :cpp:enumerator:`CLIENTS<eprosima::fastdds::rtps::DiscoveryProtocol::CLIENT>`

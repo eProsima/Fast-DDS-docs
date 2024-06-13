@@ -49,6 +49,7 @@
 #include <fastdds/rtps/transport/TCPv6TransportDescriptor.h>
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
 #include <fastdds/rtps/transport/UDPv6TransportDescriptor.h>
+#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
@@ -105,8 +106,8 @@ public:
 
     bool send(
             eprosima::fastrtps::rtps::SenderResource* low_sender_resource,
-            const eprosima::fastrtps::rtps::octet* send_buffer,
-            uint32_t send_buffer_size,
+            const std::vector<eprosima::fastdds::rtps::NetworkBuffer>& buffers,
+            uint32_t total_bytes,
             eprosima::fastrtps::rtps::LocatorsIterator* destination_locators_begin,
             eprosima::fastrtps::rtps::LocatorsIterator* destination_locators_end,
             const std::chrono::steady_clock::time_point& timeout) override
@@ -116,7 +117,7 @@ public:
         //
 
         // Call low level transport
-        return low_sender_resource->send(send_buffer, send_buffer_size, destination_locators_begin,
+        return low_sender_resource->send(buffers, total_bytes, destination_locators_begin,
                        destination_locators_end, timeout);
     }
 

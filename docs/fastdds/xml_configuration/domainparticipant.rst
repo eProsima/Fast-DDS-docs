@@ -172,8 +172,7 @@ These elements allow the user to define the DomainParticipant configuration.
      -
    * - ``<allocation>``
      - Configuration regarding allocation behavior. |br|
-       It expects a |br|
-       |PartAlloc|.
+       It expects a |PartAlloc|.
      - |PartAlloc|
      -
    * - ``<userData>``
@@ -570,53 +569,44 @@ configuration.
    * - Name
      - Description
      - Values
-     - Default
    * - ``<remote_locators>``
      - Defines the limits for the remote locators' collections. |br|
        See :ref:`remotelocatorsallocationattributes`.
      - :ref:`remote_locators_allocations`
-     -
    * - ``<total_participants>``
      - DomainParticipant :ref:`CommonAlloc` to specify the |br|
        total number of DomainParticipants in the domain |br|
        (local and remote). See |br|
        :ref:`ResourceLimitedContainerConfig`.
      - :ref:`CommonAlloc`
-     -
    * - ``<total_readers>``
      - DomainParticipant :ref:`CommonAlloc` to specify the |br|
        total number of DataReader on each DomainParticipant |br|
        (local and remote). See |br|
        :ref:`ResourceLimitedContainerConfig`.
      - :ref:`CommonAlloc`
-     -
    * - ``<total_writers>``
      - DomainParticipant :ref:`CommonAlloc` related to the |br|
        total number of DataWriters on each DomainParticipant |br|
        (local and remote).
        See :ref:`resourcelimitedcontainerconfig`.
      - :ref:`CommonAlloc`
-     -
    * - ``<max_partitions>``
      - Maximum size of the partitions submessage. |br|
        Set to zero for no limit.
      - ``uint32_t``
-     -
    * - ``<max_user_data>``
      - Maximum size of the user data submessage. |br|
        Set to zero for no limit.
      - ``uint32_t``
-     -
    * - ``<max_properties>``
      - Maximum size of the properties submessage. |br|
        Set to zero for no limit.
      - ``uint32_t``
-     -
    * - ``<send_buffers>``
      - Allocation behaviour for the send buffer |br|
        manager.
      - :ref:`SendBuffers`
-     -
 
 **Example**
 
@@ -672,12 +662,22 @@ Send buffers
      - ``uint32_t``
      - 0
    * - ``<dynamic>``
-     - Whether the number of send buffers is allowed to grow. |br|
-       See :ref:`sendbuffersallocationattributes`.
+     - Whether the number of send buffers is allowed to |br|
+       grow. See :ref:`sendbuffersallocationattributes`.
      - ``bool``
      - false
+   * - ``<network_buffers_config>``
+     - Network buffer :ref:`CommonAlloc` to specify the |br|
+       number of network buffers to be allocated for each |br|
+       send buffer. See :ref:`ResourceLimitedContainerConfig`.
+     - :ref:`CommonAlloc`
+     - (16, inf, 16)
 
 .. note::
     The default value ``0`` of ``<preallocated_number>`` will perform an initial guess of the number of buffers
     required, based on the number of threads from which a send operation could be started.
     So it does not mean there are no buffers, instead it would use the maximum amount of buffers available.
+    On the contrary, ``<network_buffers_config>`` will default to an initial number of 16 buffers, with an infinite
+    maximum and an increment of 16 buffers per send buffer.
+    An initial value of ``0`` will imply more dynamic allocations, especially at the beginning of the execution.
+    In case of doubt, it should be left to the default values.

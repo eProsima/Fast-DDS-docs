@@ -384,13 +384,22 @@ See |SendBuffersAllocationAttributes-api|.
 
 List of structure members:
 
-+------------------------------------------------------------------------+-------------------------+-------------------+
-| Member Name                                                            | Type                    | Default Value     |
-+========================================================================+=========================+===================+
-| |SendBuffersAllocationAttributes::preallocated_number-api|             | ``size_t``              | 0                 |
-+------------------------------------------------------------------------+-------------------------+-------------------+
-| |SendBuffersAllocationAttributes::dynamic-api|                         | ``bool``                | ``false``         |
-+------------------------------------------------------------------------+-------------------------+-------------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Member Name
+     - Type
+     - Default Value
+   * - |SendBuffersAllocationAttributes::preallocated_number-api|
+     - ``size_t``
+     - 0
+   * - |SendBuffersAllocationAttributes::dynamic-api|
+     - ``bool``
+     - ``false``
+   * - |SendBuffersAllocationAttributes::network_buffers_config-api|
+     - :ref:`resourcelimitedcontainerconfig`
+     - (16, inf, 16)
 
 * |SendBuffersAllocationAttributes::preallocated_number-api|:
   This member controls the initial number of send buffers to be allocated.
@@ -399,6 +408,15 @@ List of structure members:
 * |SendBuffersAllocationAttributes::dynamic-api|:
   This member controls how the buffer manager behaves when a send buffer is not available.
   When true, a new buffer will be created. Otherwise, it will wait for a buffer to be returned.
+* |SendBuffersAllocationAttributes::network_buffers_config-api|:
+  This attribute defines the allocation behavior and limits of the network buffers contained in each send buffer.
+  The default value will preallocate 16 network buffers and dynamically allocate 16 network buffers every time
+  that growing the vector is needed.
+
+.. note::
+     |SendBuffersAllocationAttributes::network_buffers_config-api| will also be used to instantiate a vector of
+     |SerializedPayload_t-api| that contains the metadata necessary to avoid payload copies during the creation of the
+     RTPS message.
 
 .. _variablelengthdatalimits:
 

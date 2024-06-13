@@ -346,7 +346,7 @@ Fast DDS as the core middleware.
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
               - `v3.0.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.0>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v1.4.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.1>`__
+              - `v1.4.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
               - `v2.14.1 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.1>`__
 
@@ -362,9 +362,9 @@ Fast DDS as the core middleware.
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
               - `v3.0.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.0>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v1.4.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.0>`__
+              - `v1.4.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.13.4 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.13.4>`__
+              - `v2.13.5 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.13.5>`__
 
     .. group-tab:: 2.10.x
 

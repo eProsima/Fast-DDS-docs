@@ -224,6 +224,7 @@ qnx
 QoS
 QosPolicyCount
 quadratically
+ReaderProxyData
 readFromCdrMessage
 readNextData
 reconfigurations

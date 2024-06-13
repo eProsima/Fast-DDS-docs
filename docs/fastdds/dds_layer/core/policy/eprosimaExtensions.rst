@@ -384,15 +384,22 @@ See |SendBuffersAllocationAttributes-api|.
 
 List of structure members:
 
-+-------------------------------------------------------------+---------------------------------------+---------------+
-| Member Name                                                 | Type                                  | Default Value |
-+=============================================================+=======================================+===============+
-||SendBuffersAllocationAttributes::preallocated_number-api|   | ``size_t``                            | 0             |
-+-------------------------------------------------------------+---------------------------------------+---------------+
-||SendBuffersAllocationAttributes::dynamic-api|               | ``bool``                              | ``false``     |
-+-------------------------------------------------------------+---------------------------------------+---------------+
-||SendBuffersAllocationAttributes::network_buffers_config-api|| :ref:`resourcelimitedcontainerconfig` | (16, inf, 16) |
-+-------------------------------------------------------------+---------------------------------------+---------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Member Name
+     - Type
+     - Default Value
+   * - |SendBuffersAllocationAttributes::preallocated_number-api|
+     - ``size_t``
+     - 0
+   * - |SendBuffersAllocationAttributes::dynamic-api|
+     - ``bool``
+     - ``false``
+   * - |SendBuffersAllocationAttributes::network_buffers_config-api|
+     - :ref:`resourcelimitedcontainerconfig`
+     - (16, inf, 16)
 
 * |SendBuffersAllocationAttributes::preallocated_number-api|:
   This member controls the initial number of send buffers to be allocated.

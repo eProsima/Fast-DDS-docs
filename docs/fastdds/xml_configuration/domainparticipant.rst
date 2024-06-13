@@ -678,5 +678,6 @@ Send buffers
     required, based on the number of threads from which a send operation could be started.
     So it does not mean there are no buffers, instead it would use the maximum amount of buffers available.
     On the contrary, ``<network_buffers_config>`` will default to an initial number of 16 buffers, with an infinite
-    maximum and an increment of 16 buffers per send buffer. Setting a value of ``0`` will prevent the creation of
-    network buffers. In case of doubt, leave it unset.
+    maximum and an increment of 16 buffers per send buffer.
+    An initial value of ``0`` will imply more dynamic allocations, especially at the beginning of the execution.
+    In case of doubt, it should be left to the default values.

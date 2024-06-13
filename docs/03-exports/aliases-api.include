@@ -856,7 +856,7 @@
 .. |DiscoverySettings-api| replace:: :cpp:class:`DiscoverySettings <eprosima::fastdds::rtps::DiscoverySettings>`
 .. |leaseDuration_announcementperiod| replace:: :cpp:member:`leaseDuration_announcementperiod <eprosima::fastdds::rtps::DiscoverySettings::leaseDuration_announcementperiod>`
 .. |DiscoveryProtocol| replace:: :cpp:member:`DiscoveryProtocol <eprosima::fastdds::rtps::DiscoverySettings::DiscoveryProtocol>`
-.. |ParticipantFilteringFlags_t| replace:: :cpp:member:`ParticipantFilteringFlags_t <eprosima::fastdds::rtps::DiscoverySettings::ParticipantFilteringFlags_t>`
+.. |ParticipantFilteringFlags| replace:: :cpp:member:`ParticipantFilteringFlags <eprosima::fastdds::rtps::DiscoverySettings::ParticipantFilteringFlags>`
 .. |discoveryProtocol| replace:: :cpp:member:`discoveryProtocol <eprosima::fastdds::rtps::DiscoverySettings::discoveryProtocol>`
 .. |m_DiscoveryServers| replace:: :cpp:member:`m_DiscoveryServers <eprosima::fastdds::rtps::DiscoverySettings::m_DiscoveryServers>`
 .. |discoveryServer_client_syncperiod| replace:: :cpp:member:`discoveryServer_client_syncperiod <eprosima::fastdds::rtps::DiscoverySettings::discoveryServer_client_syncperiod>`

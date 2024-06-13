@@ -1142,7 +1142,7 @@ void dds_discovery_examples()
     using RemoteServerAttributes = eprosima::fastdds::rtps::RemoteServerAttributes;
     using IPLocator = eprosima::fastdds::rtps::IPLocator;
     using DiscoveryProtocol = eprosima::fastdds::rtps::DiscoveryProtocol;
-    using ParticipantFilteringFlags_t = eprosima::fastdds::rtps::ParticipantFilteringFlags_t;
+    using ParticipantFilteringFlags = eprosima::fastdds::rtps::ParticipantFilteringFlags;
     {
         //SET-DISCOVERY-CALLBACKS
         // Create the participant QoS and configure values
@@ -1169,9 +1169,9 @@ void dds_discovery_examples()
         DomainParticipantQos pqos;
 
         pqos.wire_protocol().builtin.discovery_config.ignoreParticipantFlags =
-                static_cast<eprosima::fastdds::rtps::ParticipantFilteringFlags_t>(
-            ParticipantFilteringFlags_t::FILTER_DIFFERENT_PROCESS |
-            ParticipantFilteringFlags_t::FILTER_SAME_PROCESS);
+                static_cast<eprosima::fastdds::rtps::ParticipantFilteringFlags>(
+            ParticipantFilteringFlags::FILTER_DIFFERENT_PROCESS |
+            ParticipantFilteringFlags::FILTER_SAME_PROCESS);
         //!--
     }
     {

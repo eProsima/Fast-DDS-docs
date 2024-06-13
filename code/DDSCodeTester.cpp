@@ -1141,7 +1141,7 @@ void dds_discovery_examples()
     using Locator_t = eprosima::fastdds::rtps::Locator_t;
     using RemoteServerAttributes = eprosima::fastdds::rtps::RemoteServerAttributes;
     using IPLocator = eprosima::fastdds::rtps::IPLocator;
-    using DiscoveryProtocol_t = eprosima::fastdds::rtps::DiscoveryProtocol_t;
+    using DiscoveryProtocol = eprosima::fastdds::rtps::DiscoveryProtocol;
     using ParticipantFilteringFlags_t = eprosima::fastdds::rtps::ParticipantFilteringFlags_t;
     {
         //SET-DISCOVERY-CALLBACKS
@@ -1161,7 +1161,7 @@ void dds_discovery_examples()
         DomainParticipantQos pqos;
 
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::SIMPLE;
+                DiscoveryProtocol::SIMPLE;
         //!--
     }
     {
@@ -1246,13 +1246,13 @@ void dds_discovery_examples()
         DomainParticipantQos pqos;
 
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::CLIENT;
+                DiscoveryProtocol::CLIENT;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::SUPER_CLIENT;
+                DiscoveryProtocol::SUPER_CLIENT;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::SERVER;
+                DiscoveryProtocol::SERVER;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::BACKUP;
+                DiscoveryProtocol::BACKUP;
         //!--
     }
     {
@@ -1372,7 +1372,7 @@ void dds_discovery_examples()
 
         // Set participant as SERVER
         server_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::SERVER;
+                DiscoveryProtocol::SERVER;
 
         // Set SERVER's GUID prefix
         std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> server_qos.wire_protocol().prefix;
@@ -1415,7 +1415,7 @@ void dds_discovery_examples()
 
         // Set participant as CLIENT
         client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::CLIENT;
+                DiscoveryProtocol::CLIENT;
 
         // Set SERVER's GUID prefix
         RemoteServerAttributes remote_server_att;
@@ -4375,7 +4375,7 @@ void dds_qos_examples()
         std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> wire_protocol.prefix;
         //Configure Builtin Attributes
         wire_protocol.builtin.discovery_config.discoveryProtocol =
-                eprosima::fastdds::rtps::DiscoveryProtocol_t::SERVER;
+                eprosima::fastdds::rtps::DiscoveryProtocol::SERVER;
         //Add locator to unicast list
         eprosima::fastdds::rtps::Locator_t server_locator;
         eprosima::fastdds::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
@@ -6059,7 +6059,7 @@ void dds_usecase_examples()
     using Locator_t = eprosima::fastdds::rtps::Locator_t;
     using RemoteServerAttributes = eprosima::fastdds::rtps::RemoteServerAttributes;
     using IPLocator = eprosima::fastdds::rtps::IPLocator;
-    using DiscoveryProtocol_t = eprosima::fastdds::rtps::DiscoveryProtocol_t;
+    using DiscoveryProtocol = eprosima::fastdds::rtps::DiscoveryProtocol;
 
     {
         //CONF_INITIAL_PEERS_BASIC
@@ -6093,7 +6093,7 @@ void dds_usecase_examples()
         DomainParticipantQos qos;
 
         // Configure the current participant as SERVER
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
 
         // Define the listening locator to be on interface 192.168.10.57 and port 56542
         Locator_t server_locator;
@@ -6111,7 +6111,7 @@ void dds_usecase_examples()
         DomainParticipantQos qos;
 
         // Configure the current participant as CLIENT
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::CLIENT;
 
         // Define a locator for the SERVER Participant on address 192.168.10.57 and port 56542
         Locator_t remote_server_locator;
@@ -6138,7 +6138,7 @@ void dds_usecase_examples()
 
         // Configure participant_1 as SERVER listening on the previous locator
         DomainParticipantQos server_1_qos;
-        server_1_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        server_1_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.31") >> server_1_qos.wire_protocol().prefix;
         server_1_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator_1);
 
@@ -6149,7 +6149,7 @@ void dds_usecase_examples()
 
         // Configure participant_2 as SERVER listening on the previous locator
         DomainParticipantQos server_2_qos;
-        server_2_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        server_2_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.32") >> server_2_qos.wire_protocol().prefix;
         server_2_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator_2);
         //!--
@@ -6177,7 +6177,7 @@ void dds_usecase_examples()
 
         // Configure the current participant as CLIENT connecting to the SERVERS at the previous locators
         DomainParticipantQos client_qos;
-        client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+        client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::CLIENT;
         client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_1);
         client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_2);
         //!--
@@ -6192,7 +6192,7 @@ void dds_usecase_examples()
         IPLocator::setIPv4(server_locator, "192.168.10.60");
         server_locator.port = 56543;
 
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.31") >> qos.wire_protocol().prefix;
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
 
@@ -6218,7 +6218,7 @@ void dds_usecase_examples()
         IPLocator::setIPv4(server_locator, "192.168.10.54");
         server_locator.port = 56541;
 
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.33") >> qos.wire_protocol().prefix;
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
 
@@ -7343,7 +7343,7 @@ void tcp_use_cases()
 
         // Configure the current participant as SERVER
         qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                eprosima::fastdds::rtps::DiscoveryProtocol_t::SERVER;
+                eprosima::fastdds::rtps::DiscoveryProtocol::SERVER;
 
         // Add custom user transport with TCP port 12345
         auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
@@ -7369,7 +7369,7 @@ void tcp_use_cases()
 
         // Configure the current participant as SERVER
         qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                eprosima::fastdds::rtps::DiscoveryProtocol_t::CLIENT;
+                eprosima::fastdds::rtps::DiscoveryProtocol::CLIENT;
 
         // Add custom user transport with TCP port 0 (automatic port assignation)
         auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();

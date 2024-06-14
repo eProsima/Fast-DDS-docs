@@ -22,6 +22,7 @@ sources. The following packages will be installed:
 
 * :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
   `library <https://github.com/foonathan/memory>`_.
+* :code:`fastdds_gen`, a Java application that generates source code using the data types defined in an IDL file.
 * :code:`fastcdr`, a C++ library that serializes according to the
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
@@ -163,7 +164,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. code-block:: bash
 
-       colcon build
+       colcon build --packages-up-to fastrtps
 
 .. note::
 
@@ -353,9 +354,10 @@ Once the requirements above are met, compile *Fast DDS-Gen* by following the ste
 
 .. code-block:: bash
 
-    cd ~
-    git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git
-    cd Fast-DDS-Gen
+    mkdir -p ~/Fast-DDS/src
+    cd ~/Fast-DDS/src
+    git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git fastddsgen
+    cd fastddsgen
     gradle assemble
 
 Contents

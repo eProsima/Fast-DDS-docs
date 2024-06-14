@@ -23,6 +23,7 @@ The following packages will be installed:
 
 * :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
   `library <https://github.com/foonathan/memory>`_.
+* :code:`fastdds_gen`, a Java application that generates source code using the data types defined in an IDL file.
 * :code:`fastcdr`, a C++ library that serializes according to the
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.
@@ -227,7 +228,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    .. code-block:: bash
 
-       colcon build
+       colcon build --packages-up-to fastrtps
 
 .. note::
 
@@ -445,7 +446,7 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
 
    .. code-block:: bash
 
-       colcon build
+       colcon build --packages-up-to fastdds_python
 
 .. note::
 
@@ -590,7 +591,8 @@ Fast DDS-Gen installation
 This section provides the instructions for installing *Fast DDS-Gen* in a Linux environment from
 sources.
 *Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
-Please refer to :ref:`fastddsgen_intro` for more information.
+Please refer to :ref:`fastddsgen_intro` for more information, and to
+:ref:`dependencies_compatibilities_product_compatibility` for the compatibility matrix against Fast DDS versions.
 
 Requirements
 ------------
@@ -645,9 +647,10 @@ Please, follow the steps below to build *Fast DDS-Gen*:
 
 .. code-block:: bash
 
-    cd ~
-    git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git
-    cd Fast-DDS-Gen
+    mkdir -p ~/Fast-DDS/src
+    cd ~/Fast-DDS/src
+    git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git fastddsgen
+    cd fastddsgen
     ./gradlew assemble
 
 .. note::

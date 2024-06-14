@@ -22,6 +22,7 @@ sources. The following packages will be installed:
 
 * :code:`foonathan_memory_vendor`, an STL compatible C++ memory allocator
   `library <https://github.com/foonathan/memory>`_.
+* :code:`fastdds_gen`, a Java application that generates source code using the data types defined in an IDL file.
 * :code:`fastcdr`, a C++ library that serializes according to the
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
 * :code:`fastrtps`, the core library of *eProsima Fast DDS* library.

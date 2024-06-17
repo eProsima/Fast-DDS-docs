@@ -125,7 +125,7 @@ if (BUILD_DOCUMENTATION)
 
     # CMake project always build the documentaion using HTML builder. Users can always build with
     # other builders using sphinx directly
-    set(FASTDDS_DOCS_BUILDER html)
+    set(FASTDDS_DOCS_BUILDER text)
 
     # Generate the sphinx documentation
     add_custom_target(Sphinx ALL

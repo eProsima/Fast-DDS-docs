@@ -3,12 +3,12 @@
 Const values
 --------------------------------
 
-.. doxygenvariable:: eprosima::fastrtps::c_TimeInfinite
+.. doxygenvariable:: eprosima::fastdds::c_TimeInfinite
     :project: FastDDS
 
-.. doxygenvariable:: eprosima::fastrtps::c_TimeZero
+.. doxygenvariable:: eprosima::fastdds::c_TimeZero
     :project: FastDDS
 
-.. doxygenvariable:: eprosima::fastrtps::c_TimeInvalid
+.. doxygenvariable:: eprosima::fastdds::c_TimeInvalid
     :project: FastDDS
 

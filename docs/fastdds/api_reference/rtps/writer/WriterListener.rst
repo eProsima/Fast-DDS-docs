@@ -3,6 +3,6 @@
 WriterListener
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::WriterListener
+.. doxygenclass:: eprosima::fastdds::rtps::WriterListener
     :project: FastDDS
     :members:

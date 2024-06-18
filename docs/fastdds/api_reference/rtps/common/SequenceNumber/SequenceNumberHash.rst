@@ -3,6 +3,6 @@
 SequenceNumberHash
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::SequenceNumberHash
+.. doxygenstruct:: eprosima::fastdds::rtps::SequenceNumberHash
     :project: FastDDS
     :members:

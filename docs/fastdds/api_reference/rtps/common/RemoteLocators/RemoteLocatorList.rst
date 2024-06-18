@@ -3,6 +3,6 @@
 RemoteLocatorList
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::RemoteLocatorList
+.. doxygenstruct:: eprosima::fastdds::rtps::RemoteLocatorList
     :project: FastDDS
     :members:

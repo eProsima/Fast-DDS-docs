@@ -3,5 +3,5 @@
 RTPSWriterPublishMode
 ------------------------
 
-.. doxygenenum:: eprosima::fastrtps::rtps::RTPSWriterPublishMode
+.. doxygenenum:: eprosima::fastdds::rtps::RTPSWriterPublishMode
     :project: FastDDS

@@ -3,6 +3,6 @@
 RTPSReader
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::RTPSReader
+.. doxygenclass:: eprosima::fastdds::rtps::RTPSReader
     :project: FastDDS
     :members:

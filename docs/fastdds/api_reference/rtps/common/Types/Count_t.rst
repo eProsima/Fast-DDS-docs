@@ -3,5 +3,5 @@
 Count_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::Count_t
+.. doxygentypedef:: eprosima::fastdds::rtps::Count_t
     :project: FastDDS

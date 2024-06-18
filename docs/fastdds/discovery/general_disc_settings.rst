@@ -48,8 +48,6 @@ The possible values are:
 | Simple              | |SIMPLE|            | Simple discovery protocol as specified in the                            |
 |                     |                     | `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_.           |
 +---------------------+---------------------+--------------------------------------------------------------------------+
-| Static              | |STATIC|            | SPDP with manual EDP specified in XML files.                             |
-+---------------------+---------------------+--------------------------------------------------------------------------+
 | Discovery Server    | |SERVER|            | The DomainParticipant acts as a hub for discovery traffic, receiving     |
 |                     |                     | |br| and distributing discovery information.                             |
 |                     +---------------------+--------------------------------------------------------------------------+

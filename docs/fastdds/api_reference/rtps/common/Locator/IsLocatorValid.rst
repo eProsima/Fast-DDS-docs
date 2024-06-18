@@ -3,5 +3,5 @@
 IsLocatorValid
 --------------------------------
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::IsLocatorValid
+.. doxygenfunction:: eprosima::fastdds::rtps::IsLocatorValid
     :project: FastDDS

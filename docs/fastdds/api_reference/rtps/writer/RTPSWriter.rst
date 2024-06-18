@@ -3,6 +3,6 @@
 RTPSWriter
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::RTPSWriter
+.. doxygenclass:: eprosima::fastdds::rtps::RTPSWriter
     :project: FastDDS
     :members:

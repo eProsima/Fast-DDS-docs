@@ -3,6 +3,6 @@
 CDRMessage_t
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::CDRMessage_t
+.. doxygenstruct:: eprosima::fastdds::rtps::CDRMessage_t
     :project: FastDDS
     :members:

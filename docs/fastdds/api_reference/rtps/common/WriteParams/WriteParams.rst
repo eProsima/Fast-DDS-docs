@@ -3,6 +3,6 @@
 WriteParams
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::WriteParams
+.. doxygenclass:: eprosima::fastdds::rtps::WriteParams
     :project: FastDDS
     :members:

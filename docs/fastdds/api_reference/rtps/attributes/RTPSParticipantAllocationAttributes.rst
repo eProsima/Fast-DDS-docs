@@ -3,6 +3,6 @@
 RTPSParticipantAllocationAttributes
 ------------------------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::RTPSParticipantAllocationAttributes
+.. doxygenstruct:: eprosima::fastdds::rtps::RTPSParticipantAllocationAttributes
     :project: FastDDS
     :members:

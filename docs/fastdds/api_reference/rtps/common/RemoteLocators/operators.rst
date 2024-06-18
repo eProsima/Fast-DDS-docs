@@ -3,5 +3,5 @@
 RemoteLocators Operators
 --------------------------------
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator<<(std::ostream &output, const RemoteLocatorList &remote_locators)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator<<(std::ostream &output, const RemoteLocatorList &remote_locators)
     :project: FastDDS

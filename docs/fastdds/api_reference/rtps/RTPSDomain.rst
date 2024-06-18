@@ -3,6 +3,6 @@
 RTPSDomain
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::RTPSDomain
+.. doxygenclass:: eprosima::fastdds::rtps::RTPSDomain
     :project: FastDDS
     :members:

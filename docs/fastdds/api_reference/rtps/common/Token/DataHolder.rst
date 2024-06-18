@@ -3,6 +3,6 @@
 DataHolder
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::DataHolder
+.. doxygenclass:: eprosima::fastdds::rtps::DataHolder
     :project: FastDDS
     :members:

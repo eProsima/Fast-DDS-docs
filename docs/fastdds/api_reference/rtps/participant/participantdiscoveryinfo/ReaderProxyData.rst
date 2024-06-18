@@ -3,6 +3,6 @@
 ReaderProxyData
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::ReaderProxyData
+.. doxygenclass:: eprosima::fastdds::rtps::ReaderProxyData
     :project: FastDDS
     :members:

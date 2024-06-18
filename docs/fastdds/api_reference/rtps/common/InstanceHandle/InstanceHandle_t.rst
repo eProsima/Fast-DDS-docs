@@ -3,6 +3,6 @@
 InstanceHandle_t
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::InstanceHandle_t
+.. doxygenstruct:: eprosima::fastdds::rtps::InstanceHandle_t
     :project: FastDDS
     :members:

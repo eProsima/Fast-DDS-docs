@@ -3,5 +3,5 @@
 SequenceNumberSet_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::SequenceNumberSet_t
+.. doxygentypedef:: eprosima::fastdds::rtps::SequenceNumberSet_t
     :project: FastDDS

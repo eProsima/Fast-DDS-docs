@@ -3,5 +3,5 @@
 TopicKind_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::TopicKind_t
+.. doxygentypedef:: eprosima::fastdds::rtps::TopicKind_t
     :project: FastDDS

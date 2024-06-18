@@ -3,5 +3,5 @@
 BuiltinEndpointSet_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::BuiltinEndpointSet_t
+.. doxygentypedef:: eprosima::fastdds::rtps::BuiltinEndpointSet_t
     :project: FastDDS

@@ -3,6 +3,6 @@
 GUID_t
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::GUID_t
+.. doxygenstruct:: eprosima::fastdds::rtps::GUID_t
     :project: FastDDS
     :members:

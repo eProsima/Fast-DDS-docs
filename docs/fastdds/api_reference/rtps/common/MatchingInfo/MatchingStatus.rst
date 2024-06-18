@@ -3,5 +3,5 @@
 MatchingStatus
 --------------------------------
 
-.. doxygenenum:: eprosima::fastrtps::rtps::MatchingStatus
+.. doxygenenum:: eprosima::fastdds::rtps::MatchingStatus
     :project: FastDDS

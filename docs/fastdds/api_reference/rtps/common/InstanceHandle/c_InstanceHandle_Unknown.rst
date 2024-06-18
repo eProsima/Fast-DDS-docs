@@ -3,5 +3,5 @@
 c_InstanceHandle_Unknown
 --------------------------------
 
-.. doxygenvariable:: eprosima::fastrtps::rtps::c_InstanceHandle_Unknown
+.. doxygenvariable:: eprosima::fastdds::rtps::c_InstanceHandle_Unknown
     :project: FastDDS

@@ -3,6 +3,6 @@
 EntityId_t
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::EntityId_t
+.. doxygenstruct:: eprosima::fastdds::rtps::EntityId_t
     :project: FastDDS
     :members:

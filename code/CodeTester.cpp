@@ -14,7 +14,7 @@
 #include <fastdds/utils/IPLocator.h>
 
 using namespace eprosima::fastdds::dds;
-using namespace eprosima::fastrtps;
+using namespace eprosima::fastdds;
 using namespace ::rtps;
 
 class HelloWorld
@@ -295,7 +295,7 @@ bool permissions_test(
         std::string governance_file,
         std::string permissions_file)
 {
-    eprosima::fastrtps::rtps::RTPSParticipantAttributes part_attr;
+    eprosima::fastdds::rtps::RTPSParticipantAttributes part_attr;
 
     // Activate Auth:PKI-DH plugin
     part_attr.properties.properties().emplace_back("dds.sec.auth.plugin",

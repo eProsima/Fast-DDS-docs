@@ -3,5 +3,5 @@
 DiscoveryProtocol
 ------------------------
 
-.. doxygenenum:: eprosima::fastrtps::rtps::DiscoveryProtocol
+.. doxygenenum:: eprosima::fastdds::rtps::DiscoveryProtocol
     :project: FastDDS

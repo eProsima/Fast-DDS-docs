@@ -3,8 +3,8 @@
 FragmentNumber_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::FragmentNumber_t
+.. doxygentypedef:: eprosima::fastdds::rtps::FragmentNumber_t
     :project: FastDDS
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::operator<<(std::ostream &output, const FragmentNumberSet_t &fns)
+.. doxygenfunction:: eprosima::fastdds::rtps::operator<<(std::ostream &output, const FragmentNumberSet_t &fns)
     :project: FastDDS

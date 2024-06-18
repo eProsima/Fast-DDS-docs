@@ -105,11 +105,11 @@ public:
     }
 
     bool send(
-            eprosima::fastrtps::rtps::SenderResource* low_sender_resource,
+            eprosima::fastdds::rtps::SenderResource* low_sender_resource,
             const std::vector<eprosima::fastdds::rtps::NetworkBuffer>& buffers,
             uint32_t total_bytes,
-            eprosima::fastrtps::rtps::LocatorsIterator* destination_locators_begin,
-            eprosima::fastrtps::rtps::LocatorsIterator* destination_locators_end,
+            eprosima::fastdds::rtps::LocatorsIterator* destination_locators_begin,
+            eprosima::fastdds::rtps::LocatorsIterator* destination_locators_end,
             const std::chrono::steady_clock::time_point& timeout) override
     {
         //
@@ -123,10 +123,10 @@ public:
 
     void receive(
             eprosima::fastdds::rtps::TransportReceiverInterface* next_receiver,
-            const eprosima::fastrtps::rtps::octet* receive_buffer,
+            const eprosima::fastdds::rtps::octet* receive_buffer,
             uint32_t receive_buffer_size,
-            const eprosima::fastrtps::rtps::Locator_t& local_locator,
-            const eprosima::fastrtps::rtps::Locator_t& remote_locator) override
+            const eprosima::fastdds::rtps::Locator_t& local_locator,
+            const eprosima::fastdds::rtps::Locator_t& remote_locator) override
     {
         //
         // Preprocess incoming buffer.
@@ -164,11 +164,11 @@ public:
 
     void on_participant_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::ParticipantDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
-        if (info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT)
+        if (info.status == eprosima::fastdds::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT)
         {
             std::cout << "New participant discovered" << std::endl;
             // The following line can be modified to evaluate whether the discovered participant should be ignored
@@ -179,8 +179,8 @@ public:
                 should_be_ignored = true; // Request the ignoring of the discovered participant
             }
         }
-        else if (info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT ||
-                info.status == eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DROPPED_PARTICIPANT)
+        else if (info.status == eprosima::fastdds::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT ||
+                info.status == eprosima::fastdds::rtps::ParticipantDiscoveryInfo::DROPPED_PARTICIPANT)
         {
             std::cout << "Participant lost" << std::endl;
         }
@@ -189,13 +189,13 @@ public:
 #if HAVE_SECURITY
     void onParticipantAuthentication(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ParticipantAuthenticationInfo&& info) override
+            eprosima::fastdds::rtps::ParticipantAuthenticationInfo&& info) override
     {
-        if (info.status == eprosima::fastrtps::rtps::ParticipantAuthenticationInfo::AUTHORIZED_PARTICIPANT)
+        if (info.status == eprosima::fastdds::rtps::ParticipantAuthenticationInfo::AUTHORIZED_PARTICIPANT)
         {
             std::cout << "A participant was authorized" << std::endl;
         }
-        else if (info.status == eprosima::fastrtps::rtps::ParticipantAuthenticationInfo::UNAUTHORIZED_PARTICIPANT)
+        else if (info.status == eprosima::fastdds::rtps::ParticipantAuthenticationInfo::UNAUTHORIZED_PARTICIPANT)
         {
             std::cout << "A participant failed authorization" << std::endl;
         }
@@ -205,11 +205,11 @@ public:
 
     void on_data_reader_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::ReaderDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
-        if (info.status == eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER)
+        if (info.status == eprosima::fastdds::rtps::ReaderDiscoveryInfo::DISCOVERED_READER)
         {
             std::cout << "New datareader discovered" << std::endl;
             // The following line can be modified to evaluate whether the discovered datareader should be ignored
@@ -220,7 +220,7 @@ public:
                 should_be_ignored = true; // Request the ignoring of the discovered datareader
             }
         }
-        else if (info.status == eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER)
+        else if (info.status == eprosima::fastdds::rtps::ReaderDiscoveryInfo::REMOVED_READER)
         {
             std::cout << "Datareader lost" << std::endl;
         }
@@ -228,11 +228,11 @@ public:
 
     void on_data_writer_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::WriterDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
-        if (info.status == eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER)
+        if (info.status == eprosima::fastdds::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER)
         {
             std::cout << "New datawriter discovered" << std::endl;
             // The following line can be modified to evaluate whether the discovered datawriter should be ignored
@@ -243,7 +243,7 @@ public:
                 should_be_ignored = true; // Request the ignoring of the discovered datawriter
             }
         }
-        else if (info.status == eprosima::fastrtps::rtps::WriterDiscoveryInfo::REMOVED_WRITER)
+        else if (info.status == eprosima::fastdds::rtps::WriterDiscoveryInfo::REMOVED_WRITER)
         {
             std::cout << "Datawriter lost" << std::endl;
         }
@@ -253,7 +253,7 @@ public:
 //!--
 
 // Custom Payload pool example for documentation
-class CustomPayloadPool : public eprosima::fastrtps::rtps::IPayloadPool
+class CustomPayloadPool : public eprosima::fastdds::rtps::IPayloadPool
 {
 public:
 
@@ -261,20 +261,20 @@ public:
     ~CustomPayloadPool() = default;
     bool get_payload(
             unsigned int size,
-            eprosima::fastrtps::rtps::SerializedPayload_t& payload)
+            eprosima::fastdds::rtps::SerializedPayload_t& payload)
     {
         return true;
     }
 
     bool get_payload(
-            const eprosima::fastrtps::rtps::SerializedPayload_t& data,
-            eprosima::fastrtps::rtps::SerializedPayload_t& payload)
+            const eprosima::fastdds::rtps::SerializedPayload_t& data,
+            eprosima::fastdds::rtps::SerializedPayload_t& payload)
     {
         return true;
     }
 
     bool release_payload(
-            eprosima::fastrtps::rtps::SerializedPayload_t& payload)
+            eprosima::fastdds::rtps::SerializedPayload_t& payload)
     {
         return true;
     }
@@ -933,13 +933,13 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     /* Custom Callback on_participant_discovery */
     void on_participant_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ParticipantDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::ParticipantDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
         static_cast<void>(participant);
         switch (info.status){
-            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
+            case eprosima::fastdds::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
             {
                 /* Process the case when a new DomainParticipant was found in the domain */
                 std::cout << "New DomainParticipant '" << info.info.m_participantName <<
@@ -953,10 +953,10 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                 }
             }
             break;
-            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::CHANGED_QOS_PARTICIPANT:
+            case eprosima::fastdds::rtps::ParticipantDiscoveryInfo::CHANGED_QOS_PARTICIPANT:
                 /* Process the case when a DomainParticipant changed its QOS */
                 break;
-            case eprosima::fastrtps::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT:
+            case eprosima::fastdds::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT:
                 /* Process the case when a DomainParticipant was removed from the domain */
                 std::cout << "DomainParticipant '" << info.info.m_participantName <<
                     "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
@@ -968,13 +968,13 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     /* Custom Callback on_data_reader_discovery */
     void on_data_reader_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::ReaderDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
         static_cast<void>(participant);
         switch (info.status){
-            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
+            case eprosima::fastdds::rtps::ReaderDiscoveryInfo::DISCOVERED_READER:
             {
                 /* Process the case when a new datareader was found in the domain */
                 std::cout << "New DataReader subscribed to topic '" << info.info.topicName() <<
@@ -987,10 +987,10 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                 }
             }
             break;
-            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
+            case eprosima::fastdds::rtps::ReaderDiscoveryInfo::CHANGED_QOS_READER:
                 /* Process the case when a datareader changed its QOS */
                 break;
-            case eprosima::fastrtps::rtps::ReaderDiscoveryInfo::REMOVED_READER:
+            case eprosima::fastdds::rtps::ReaderDiscoveryInfo::REMOVED_READER:
                 /* Process the case when a datareader was removed from the domain */
                 std::cout << "DataReader subscribed to topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' left the domain.";
@@ -1001,13 +1001,13 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     /* Custom Callback on_data_writer_discovery */
     void on_data_writer_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::WriterDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
         static_cast<void>(participant);
         switch (info.status){
-            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
+            case eprosima::fastdds::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
             {
                 /* Process the case when a new datawriter was found in the domain */
                 std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
@@ -1020,10 +1020,10 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                 }
             }
             break;
-            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::CHANGED_QOS_WRITER:
+            case eprosima::fastdds::rtps::WriterDiscoveryInfo::CHANGED_QOS_WRITER:
                 /* Process the case when a datawriter changed its QOS */
                 break;
-            case eprosima::fastrtps::rtps::WriterDiscoveryInfo::REMOVED_WRITER:
+            case eprosima::fastdds::rtps::WriterDiscoveryInfo::REMOVED_WRITER:
                 /* Process the case when a datawriter was removed from the domain */
                 std::cout << "DataWriter publishing under topic '" << info.info.topicName() <<
                     "' of type '" << info.info.typeName() << "' left the domain.";
@@ -1040,7 +1040,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
     /* Custom Callback on_data_reader_discovery */
     void on_data_reader_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::ReaderDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::ReaderDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
@@ -1088,7 +1088,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
     /* Custom Callback on_data_writer_discovery */
     void on_data_writer_discovery(
             DomainParticipant* participant,
-            eprosima::fastrtps::rtps::WriterDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::WriterDiscoveryInfo&& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
@@ -1138,11 +1138,11 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
 
 void dds_discovery_examples()
 {
-    using Locator_t = eprosima::fastrtps::rtps::Locator_t;
-    using RemoteServerAttributes = eprosima::fastrtps::rtps::RemoteServerAttributes;
-    using IPLocator = eprosima::fastrtps::rtps::IPLocator;
-    using DiscoveryProtocol_t = eprosima::fastrtps::rtps::DiscoveryProtocol_t;
-    using ParticipantFilteringFlags_t = eprosima::fastrtps::rtps::ParticipantFilteringFlags_t;
+    using Locator_t = eprosima::fastdds::rtps::Locator_t;
+    using RemoteServerAttributes = eprosima::fastdds::rtps::RemoteServerAttributes;
+    using IPLocator = eprosima::fastdds::rtps::IPLocator;
+    using DiscoveryProtocol = eprosima::fastdds::rtps::DiscoveryProtocol;
+    using ParticipantFilteringFlags = eprosima::fastdds::rtps::ParticipantFilteringFlags;
     {
         //SET-DISCOVERY-CALLBACKS
         // Create the participant QoS and configure values
@@ -1161,7 +1161,7 @@ void dds_discovery_examples()
         DomainParticipantQos pqos;
 
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::SIMPLE;
+                DiscoveryProtocol::SIMPLE;
         //!--
     }
     {
@@ -1169,9 +1169,9 @@ void dds_discovery_examples()
         DomainParticipantQos pqos;
 
         pqos.wire_protocol().builtin.discovery_config.ignoreParticipantFlags =
-                static_cast<eprosima::fastrtps::rtps::ParticipantFilteringFlags_t>(
-            ParticipantFilteringFlags_t::FILTER_DIFFERENT_PROCESS |
-            ParticipantFilteringFlags_t::FILTER_SAME_PROCESS);
+                static_cast<eprosima::fastdds::rtps::ParticipantFilteringFlags>(
+            ParticipantFilteringFlags::FILTER_DIFFERENT_PROCESS |
+            ParticipantFilteringFlags::FILTER_SAME_PROCESS);
         //!--
     }
     {
@@ -1246,30 +1246,30 @@ void dds_discovery_examples()
         DomainParticipantQos pqos;
 
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::CLIENT;
+                DiscoveryProtocol::CLIENT;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::SUPER_CLIENT;
+                DiscoveryProtocol::SUPER_CLIENT;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::SERVER;
+                DiscoveryProtocol::SERVER;
         pqos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::BACKUP;
+                DiscoveryProtocol::BACKUP;
         //!--
     }
     {
         //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
-        eprosima::fastrtps::rtps::GuidPrefix_t serverGuidPrefix;
-        serverGuidPrefix.value[0] = eprosima::fastrtps::rtps::octet(0x44);
-        serverGuidPrefix.value[1] = eprosima::fastrtps::rtps::octet(0x53);
-        serverGuidPrefix.value[2] = eprosima::fastrtps::rtps::octet(0x00);
-        serverGuidPrefix.value[3] = eprosima::fastrtps::rtps::octet(0x5f);
-        serverGuidPrefix.value[4] = eprosima::fastrtps::rtps::octet(0x45);
-        serverGuidPrefix.value[5] = eprosima::fastrtps::rtps::octet(0x50);
-        serverGuidPrefix.value[6] = eprosima::fastrtps::rtps::octet(0x52);
-        serverGuidPrefix.value[7] = eprosima::fastrtps::rtps::octet(0x4f);
-        serverGuidPrefix.value[8] = eprosima::fastrtps::rtps::octet(0x53);
-        serverGuidPrefix.value[9] = eprosima::fastrtps::rtps::octet(0x49);
-        serverGuidPrefix.value[10] = eprosima::fastrtps::rtps::octet(0x4d);
-        serverGuidPrefix.value[11] = eprosima::fastrtps::rtps::octet(0x41);
+        eprosima::fastdds::rtps::GuidPrefix_t serverGuidPrefix;
+        serverGuidPrefix.value[0] = eprosima::fastdds::rtps::octet(0x44);
+        serverGuidPrefix.value[1] = eprosima::fastdds::rtps::octet(0x53);
+        serverGuidPrefix.value[2] = eprosima::fastdds::rtps::octet(0x00);
+        serverGuidPrefix.value[3] = eprosima::fastdds::rtps::octet(0x5f);
+        serverGuidPrefix.value[4] = eprosima::fastdds::rtps::octet(0x45);
+        serverGuidPrefix.value[5] = eprosima::fastdds::rtps::octet(0x50);
+        serverGuidPrefix.value[6] = eprosima::fastdds::rtps::octet(0x52);
+        serverGuidPrefix.value[7] = eprosima::fastdds::rtps::octet(0x4f);
+        serverGuidPrefix.value[8] = eprosima::fastdds::rtps::octet(0x53);
+        serverGuidPrefix.value[9] = eprosima::fastdds::rtps::octet(0x49);
+        serverGuidPrefix.value[10] = eprosima::fastdds::rtps::octet(0x4d);
+        serverGuidPrefix.value[11] = eprosima::fastdds::rtps::octet(0x41);
 
         DomainParticipantQos serverQos;
         serverQos.wire_protocol().prefix = serverGuidPrefix;
@@ -1354,7 +1354,7 @@ void dds_discovery_examples()
     {
         //CONF_SERVER_DNS_LOCATORS
         Locator_t locator;
-        auto response = eprosima::fastrtps::rtps::IPLocator::resolveNameDNS("localhost");
+        auto response = eprosima::fastdds::rtps::IPLocator::resolveNameDNS("localhost");
         // Get the first returned IPv4
         if (response.first.size() > 0)
         {
@@ -1372,7 +1372,7 @@ void dds_discovery_examples()
 
         // Set participant as SERVER
         server_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::SERVER;
+                DiscoveryProtocol::SERVER;
 
         // Set SERVER's GUID prefix
         std::istringstream("44.53.00.5f.45.50.52.4f.53.49.4d.41") >> server_qos.wire_protocol().prefix;
@@ -1415,7 +1415,7 @@ void dds_discovery_examples()
 
         // Set participant as CLIENT
         client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                DiscoveryProtocol_t::CLIENT;
+                DiscoveryProtocol::CLIENT;
 
         // Set SERVER's GUID prefix
         RemoteServerAttributes remote_server_att;
@@ -1523,13 +1523,13 @@ public:
 
     bool serialize(
             void* data,
-            eprosima::fastrtps::rtps::SerializedPayload_t* payload) override
+            eprosima::fastdds::rtps::SerializedPayload_t* payload) override
     {
         return true;
     }
 
     bool deserialize(
-            eprosima::fastrtps::rtps::SerializedPayload_t* payload,
+            eprosima::fastdds::rtps::SerializedPayload_t* payload,
             void* data) override
     {
         return true;
@@ -1553,7 +1553,7 @@ public:
 
     bool getKey(
             void* data,
-            eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
+            eprosima::fastdds::rtps::InstanceHandle_t* ihandle,
             bool force_md5) override
     {
         return true;
@@ -2777,8 +2777,8 @@ void dds_dataWriter_examples()
         DataWriterQos qos;
 
         // Create PayloadPool
-        std::shared_ptr<eprosima::fastrtps::rtps::IPayloadPool> payload_pool =
-                std::dynamic_pointer_cast<eprosima::fastrtps::rtps::IPayloadPool>(std::make_shared<CustomPayloadPool>());
+        std::shared_ptr<eprosima::fastdds::rtps::IPayloadPool> payload_pool =
+                std::dynamic_pointer_cast<eprosima::fastdds::rtps::IPayloadPool>(std::make_shared<CustomPayloadPool>());
 
         DataWriter* data_writer = publisher->create_datawriter(topic, qos, nullptr, StatusMask::all(), payload_pool);
         if (nullptr == data_writer)
@@ -2962,7 +2962,7 @@ void dds_dataWriter_examples()
         // (...)
 
         // Publish the new value, deduce the instance handle
-        if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != RETCODE_OK)
+        if (data_writer->write(data, eprosima::fastdds::rtps::InstanceHandle_t()) != RETCODE_OK)
         {
             // Error
             return;
@@ -2992,7 +2992,7 @@ void dds_dataWriter_examples()
                 }
 
                 // Publish the new value
-                if (data_writer->write(data, eprosima::fastrtps::rtps::InstanceHandle_t()) != RETCODE_OK)
+                if (data_writer->write(data, eprosima::fastdds::rtps::InstanceHandle_t()) != RETCODE_OK)
                 {
                     // Error
                     return;
@@ -3051,7 +3051,7 @@ void dds_dataWriter_examples()
             first_flight_position.flight_number(1234);
 
             // Register instance
-            eprosima::fastrtps::rtps::InstanceHandle_t first_flight_handle =
+            eprosima::fastdds::rtps::InstanceHandle_t first_flight_handle =
                     data_writer->register_instance(&first_flight_position);
             //!
 
@@ -3763,7 +3763,7 @@ void dds_dataReader_examples()
         SampleInfo info;
 
         //Define a timeout of 5 seconds
-        eprosima::fastrtps::Duration_t timeout (5, 0);
+        eprosima::fastdds::Duration_t timeout (5, 0);
 
         // Loop reading data as it arrives
         // This will make the current thread to be dedicated exclusively to
@@ -3815,7 +3815,7 @@ void dds_dataReader_examples()
         SampleInfo info;
 
         //Define a timeout of 5 seconds
-        eprosima::fastrtps::Duration_t timeout (5, 0);
+        eprosima::fastdds::Duration_t timeout (5, 0);
 
         // Loop reading data as it arrives
         // This will make the current thread to be dedicated exclusively to
@@ -4003,11 +4003,11 @@ void dds_qos_examples()
         //The GroupDataQosPolicy is default constructed with an empty collection
         //Collection is a private member so you need to use getters and setters to access
         //Add data to the collection
-        std::vector<eprosima::fastrtps::rtps::octet> vec;
+        std::vector<eprosima::fastdds::rtps::octet> vec;
         vec = group_data.data_vec(); // Getter function
 
         //Add two new octets to group data vector
-        eprosima::fastrtps::rtps::octet val = 3;
+        eprosima::fastdds::rtps::octet val = 3;
         vec.push_back(val);
         val = 10;
         vec.push_back(val);
@@ -4119,11 +4119,11 @@ void dds_qos_examples()
         //DDS_CHANGE_TOPIC_DATA_QOS_POLICY
         //The TopicDataQosPolicy is default constructed with an empty vector.
         TopicDataQosPolicy topic_data;
-        std::vector<eprosima::fastrtps::rtps::octet> vec;
+        std::vector<eprosima::fastdds::rtps::octet> vec;
         vec = topic_data.data_vec(); // Getter Function
 
         //Add two new octets to topic data vector
-        eprosima::fastrtps::rtps::octet val = 3;
+        eprosima::fastdds::rtps::octet val = 3;
         vec.push_back(val);
         val = 10;
         vec.push_back(val);
@@ -4136,11 +4136,11 @@ void dds_qos_examples()
         //DDS_CHANGE_USER_DATA_QOS_POLICY
         //The TopicDataQosPolicy is default constructed with an empty vector.
         UserDataQosPolicy user_data;
-        std::vector<eprosima::fastrtps::rtps::octet> vec;
+        std::vector<eprosima::fastdds::rtps::octet> vec;
         vec = user_data.data_vec(); // Getter Function
 
         //Add two new octets to user data vector
-        eprosima::fastrtps::rtps::octet val = 3;
+        eprosima::fastdds::rtps::octet val = 3;
         vec.push_back(val);
         val = 10;
         vec.push_back(val);
@@ -4190,12 +4190,12 @@ void dds_qos_examples()
         //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
         ParticipantResourceLimitsQos participant_limits;
         //Set the maximum size of participant resource limits collection to 3 and it allocation configuration to fixed size
-        participant_limits.participants = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(
+        participant_limits.participants = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(
             3u);
         //Set the maximum size of reader's resource limits collection to 2 and its allocation configuration to fixed size
-        participant_limits.readers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+        participant_limits.readers = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
         //Set the maximum size of writer's resource limits collection to 1 and its allocation configuration to fixed size
-        participant_limits.writers = eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        participant_limits.writers = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //Set the maximum size of the partition data to 256
         participant_limits.data_limits.max_partitions = 256u;
         //Set the maximum size of the user data to 256
@@ -4206,7 +4206,7 @@ void dds_qos_examples()
         participant_limits.content_filter.expression_initial_size = 512u;
         //Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
         participant_limits.content_filter.expression_parameters =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
         //!--
     }
 
@@ -4216,7 +4216,7 @@ void dds_qos_examples()
         //Add new property for the Auth:PKI-DH plugin
         property_policy.properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
         //Add new property for the Access:Permissions plugin
-        property_policy.properties().emplace_back(eprosima::fastrtps::rtps::Property("dds.sec.access.plugin",
+        property_policy.properties().emplace_back(eprosima::fastdds::rtps::Property("dds.sec.access.plugin",
                 "builtin.Access-Permissions"));
 
         //Add new user custom property to send to external Participants
@@ -4240,7 +4240,7 @@ void dds_qos_examples()
         ReaderResourceLimitsQos reader_limits;
         //Set the maximum size for writer matched resource limits collection to 1 and its allocation configuration to fixed size
         reader_limits.matched_publisher_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 
@@ -4249,10 +4249,10 @@ void dds_qos_examples()
         WriterResourceLimitsQos writer_limits;
         //Set the maximum size for reader matched resource limits collection to 3 and its allocation configuration to fixed size
         writer_limits.matched_subscriber_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
         // Set the maximum number of writer side content filters to 1 and its allocation configuration to fixed size
         writer_limits.reader_filters_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 
@@ -4260,12 +4260,12 @@ void dds_qos_examples()
         //DDS_CHANGE_RTPS_ENDPOINT_QOS
         RTPSEndpointQos endpoint;
         //Add new unicast locator with port 7800
-        eprosima::fastrtps::rtps::Locator_t new_unicast_locator;
+        eprosima::fastdds::rtps::Locator_t new_unicast_locator;
         new_unicast_locator.port = 7800;
         endpoint.unicast_locator_list.push_back(new_unicast_locator);
         //Add new multicast locator with IP 239.255.0.4 and port 7900
-        eprosima::fastrtps::rtps::Locator_t new_multicast_locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
+        eprosima::fastdds::rtps::Locator_t new_multicast_locator;
+        eprosima::fastdds::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
         new_multicast_locator.port = 7900;
         endpoint.multicast_locator_list.push_back(new_multicast_locator);
         // Add an external locator with IP 100.100.100.10, port 12345, mask 24, externality 1, and cost 0
@@ -4282,7 +4282,7 @@ void dds_qos_examples()
         endpoint.entity_id = 4;
         //The RTPSEndpointQos is default constructed with history_memory_policy = PREALLOCATED
         //Change the history_memory_policy to DYNAMIC_RESERVE
-        endpoint.history_memory_policy = eprosima::fastrtps::rtps::DYNAMIC_RESERVE_MEMORY_MODE;
+        endpoint.history_memory_policy = eprosima::fastdds::rtps::DYNAMIC_RESERVE_MEMORY_MODE;
         //!--
     }
 
@@ -4375,10 +4375,10 @@ void dds_qos_examples()
         std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> wire_protocol.prefix;
         //Configure Builtin Attributes
         wire_protocol.builtin.discovery_config.discoveryProtocol =
-                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+                eprosima::fastdds::rtps::DiscoveryProtocol::SERVER;
         //Add locator to unicast list
-        eprosima::fastrtps::rtps::Locator_t server_locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
+        eprosima::fastdds::rtps::Locator_t server_locator;
+        eprosima::fastdds::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
         server_locator.port = 56542;
         wire_protocol.builtin.metatrafficUnicastLocatorList.push_back(server_locator);
         // Add a metatraffic external locator with IP 100.100.100.10, port 34567, mask 24, externality 1, and cost 0
@@ -4388,13 +4388,13 @@ void dds_qos_examples()
         meta_external_locator.mask(24);
         wire_protocol.builtin.metatraffic_external_unicast_locators[1][0].push_back(meta_external_locator);
         //Add locator to default unicast locator list
-        eprosima::fastrtps::rtps::Locator_t unicast_locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(unicast_locator, 192, 168, 1, 41);
+        eprosima::fastdds::rtps::Locator_t unicast_locator;
+        eprosima::fastdds::rtps::IPLocator::setIPv4(unicast_locator, 192, 168, 1, 41);
         unicast_locator.port = 7400;
         wire_protocol.default_unicast_locator_list.push_back(unicast_locator);
         //Add locator to default multicast locator list
-        eprosima::fastrtps::rtps::Locator_t multicast_locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(multicast_locator, 192, 168, 1, 41);
+        eprosima::fastdds::rtps::Locator_t multicast_locator;
+        eprosima::fastdds::rtps::IPLocator::setIPv4(multicast_locator, 192, 168, 1, 41);
         multicast_locator.port = 7400;
         wire_protocol.default_multicast_locator_list.push_back(multicast_locator);
         // Add a default external locator with IP 100.100.100.10, port 23456, mask 24, externality 1, and cost 0
@@ -4460,19 +4460,19 @@ void dds_qos_examples()
 
     {
         //CONF_GUIDPREFIX_OPTION_1
-        eprosima::fastrtps::rtps::GuidPrefix_t guid_prefix;
-        guid_prefix.value[0] = eprosima::fastrtps::rtps::octet(0x77);
-        guid_prefix.value[1] = eprosima::fastrtps::rtps::octet(0x73);
-        guid_prefix.value[2] = eprosima::fastrtps::rtps::octet(0x71);
-        guid_prefix.value[3] = eprosima::fastrtps::rtps::octet(0x85);
-        guid_prefix.value[4] = eprosima::fastrtps::rtps::octet(0x69);
-        guid_prefix.value[5] = eprosima::fastrtps::rtps::octet(0x76);
-        guid_prefix.value[6] = eprosima::fastrtps::rtps::octet(0x95);
-        guid_prefix.value[7] = eprosima::fastrtps::rtps::octet(0x66);
-        guid_prefix.value[8] = eprosima::fastrtps::rtps::octet(0x65);
-        guid_prefix.value[9] = eprosima::fastrtps::rtps::octet(0x82);
-        guid_prefix.value[10] = eprosima::fastrtps::rtps::octet(0x82);
-        guid_prefix.value[11] = eprosima::fastrtps::rtps::octet(0x79);
+        eprosima::fastdds::rtps::GuidPrefix_t guid_prefix;
+        guid_prefix.value[0] = eprosima::fastdds::rtps::octet(0x77);
+        guid_prefix.value[1] = eprosima::fastdds::rtps::octet(0x73);
+        guid_prefix.value[2] = eprosima::fastdds::rtps::octet(0x71);
+        guid_prefix.value[3] = eprosima::fastdds::rtps::octet(0x85);
+        guid_prefix.value[4] = eprosima::fastdds::rtps::octet(0x69);
+        guid_prefix.value[5] = eprosima::fastdds::rtps::octet(0x76);
+        guid_prefix.value[6] = eprosima::fastdds::rtps::octet(0x95);
+        guid_prefix.value[7] = eprosima::fastdds::rtps::octet(0x66);
+        guid_prefix.value[8] = eprosima::fastdds::rtps::octet(0x65);
+        guid_prefix.value[9] = eprosima::fastdds::rtps::octet(0x82);
+        guid_prefix.value[10] = eprosima::fastdds::rtps::octet(0x82);
+        guid_prefix.value[11] = eprosima::fastdds::rtps::octet(0x79);
 
         DomainParticipantQos participant_qos;
         participant_qos.wire_protocol().prefix = guid_prefix;
@@ -5561,8 +5561,8 @@ void dds_transport_examples ()
     using TCPv4TransportDescriptor = eprosima::fastdds::rtps::TCPv4TransportDescriptor;
     using TCPv6TransportDescriptor = eprosima::fastdds::rtps::TCPv6TransportDescriptor;
     using SharedMemTransportDescriptor = eprosima::fastdds::rtps::SharedMemTransportDescriptor;
-    using Locator_t = eprosima::fastrtps::rtps::Locator_t;
-    using IPLocator = eprosima::fastrtps::rtps::IPLocator;
+    using Locator_t = eprosima::fastdds::rtps::Locator_t;
+    using IPLocator = eprosima::fastdds::rtps::IPLocator;
 
     {
         //CONF-IPLOCATOR-USAGE
@@ -5588,7 +5588,7 @@ void dds_transport_examples ()
 
         // This locator will open a socket to listen network messages
         // on UDPv4 port 22222 over multicast address 239.255.0.1
-        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastdds::rtps::Locator_t locator;
         IPLocator::setIPv4(locator, 239, 255, 0, 1);
         locator.port = 22222;
 
@@ -5603,7 +5603,7 @@ void dds_transport_examples ()
 
         // This locator will open a socket to listen network messages
         // on UDPv4 port 22223 over address 192.168.0.1
-        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastdds::rtps::Locator_t locator;
         IPLocator::setIPv4(locator, 192, 168, 0, 1);
         locator.port = 22223;
 
@@ -5618,7 +5618,7 @@ void dds_transport_examples ()
 
         // This locator will open a socket to listen network messages
         // on UDPv4 port 22224 over multicast address 239.255.0.1
-        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastdds::rtps::Locator_t locator;
         IPLocator::setIPv4(locator, 239, 255, 0, 1);
         locator.port = 22224;
 
@@ -5633,7 +5633,7 @@ void dds_transport_examples ()
 
         // This locator will open a socket to listen network messages
         // on UDPv4 port 22225 over address 192.168.0.1
-        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastdds::rtps::Locator_t locator;
         IPLocator::setIPv4(locator, 192, 168, 0, 1);
         locator.port = 22225;
 
@@ -5692,12 +5692,12 @@ void dds_transport_examples ()
         qos.transport().use_builtin_transports = false;
 
         // [OPTIONAL] Set unicast locators
-        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastdds::rtps::Locator_t locator;
         locator.kind = LOCATOR_KIND_TCPv4;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "192.168.1.10");
-        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(locator, 5100);
+        eprosima::fastdds::rtps::IPLocator::setIPv4(locator, "192.168.1.10");
+        eprosima::fastdds::rtps::IPLocator::setPhysicalPort(locator, 5100);
         // [OPTIONAL] Logical port default value is 0, automatically assigned.
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(locator, 5100);
+        eprosima::fastdds::rtps::IPLocator::setLogicalPort(locator, 5100);
 
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
         qos.wire_protocol().default_unicast_locator_list.push_back(locator);
@@ -5723,13 +5723,13 @@ void dds_transport_examples ()
         tcp_transport->accept_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
 
         // Set initial peers.
-        eprosima::fastrtps::rtps::Locator_t initial_peer_locator;
+        eprosima::fastdds::rtps::Locator_t initial_peer_locator;
         initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "192.168.1.10");
-        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
+        eprosima::fastdds::rtps::IPLocator::setIPv4(initial_peer_locator, "192.168.1.10");
+        eprosima::fastdds::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
         // If the logical port is set in the server side, it must be also set here with the same value.
         // If not set in the server side in a unicast locator, do not set it here.
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
+        eprosima::fastdds::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
 
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
         //!--
@@ -5757,16 +5757,16 @@ void dds_transport_examples ()
         qos.transport().use_builtin_transports = false;
 
         // [OPTIONAL] Set unicast locators (do not use setWAN(), set_WAN_address() overwrites it)
-        eprosima::fastrtps::rtps::Locator_t locator;
+        eprosima::fastdds::rtps::Locator_t locator;
         locator.kind = LOCATOR_KIND_TCPv4;
         // [RECOMMENDED] Use the LAN address of the server
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "192.168.1.10");
+        eprosima::fastdds::rtps::IPLocator::setIPv4(locator, "192.168.1.10");
         // [ALTERNATIVE] Use server's WAN address. In that case, initial peers must be configured
         // only with server's WAN address.
-        // eprosima::fastrtps::rtps::IPLocator::setIPv4(locator, "80.80.99.45");
-        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(locator, 5100);
+        // eprosima::fastdds::rtps::IPLocator::setIPv4(locator, "80.80.99.45");
+        eprosima::fastdds::rtps::IPLocator::setPhysicalPort(locator, 5100);
         // [OPTIONAL] Logical port default value is 0, automatically assigned.
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(locator, 5100);
+        eprosima::fastdds::rtps::IPLocator::setLogicalPort(locator, 5100);
 
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator);
         qos.wire_protocol().default_unicast_locator_list.push_back(locator);
@@ -5794,18 +5794,18 @@ void dds_transport_examples ()
         tcp_transport->accept_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};
 
         // Set initial peers.
-        eprosima::fastrtps::rtps::Locator_t initial_peer_locator;
+        eprosima::fastdds::rtps::Locator_t initial_peer_locator;
         initial_peer_locator.kind = LOCATOR_KIND_TCPv4;
         // [RECOMMENDED] Use both WAN and LAN server addresses
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "192.168.1.10");
-        eprosima::fastrtps::rtps::IPLocator::setWan(initial_peer_locator, "80.80.99.45");
+        eprosima::fastdds::rtps::IPLocator::setIPv4(initial_peer_locator, "192.168.1.10");
+        eprosima::fastdds::rtps::IPLocator::setWan(initial_peer_locator, "80.80.99.45");
         // [ALTERNATIVE] Use server's WAN address only. Valid if server specified its unicast locators
         // with its LAN or WAN address.
-        // eprosima::fastrtps::rtps::IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
-        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
+        // eprosima::fastdds::rtps::IPLocator::setIPv4(initial_peer_locator, "80.80.99.45");
+        eprosima::fastdds::rtps::IPLocator::setPhysicalPort(initial_peer_locator, 5100);
         // If the logical port is set in the server side, it must be also set here with the same value.
         // If not set in the server side in a unicast locator, do not set it here.
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
+        eprosima::fastdds::rtps::IPLocator::setLogicalPort(initial_peer_locator, 5100);
 
         qos.wire_protocol().builtin.initialPeersList.push_back(initial_peer_locator);
         //!--
@@ -6056,10 +6056,10 @@ void dds_transport_examples ()
 
 void dds_usecase_examples()
 {
-    using Locator_t = eprosima::fastrtps::rtps::Locator_t;
-    using RemoteServerAttributes = eprosima::fastrtps::rtps::RemoteServerAttributes;
-    using IPLocator = eprosima::fastrtps::rtps::IPLocator;
-    using DiscoveryProtocol_t = eprosima::fastrtps::rtps::DiscoveryProtocol_t;
+    using Locator_t = eprosima::fastdds::rtps::Locator_t;
+    using RemoteServerAttributes = eprosima::fastdds::rtps::RemoteServerAttributes;
+    using IPLocator = eprosima::fastdds::rtps::IPLocator;
+    using DiscoveryProtocol = eprosima::fastdds::rtps::DiscoveryProtocol;
 
     {
         //CONF_INITIAL_PEERS_BASIC
@@ -6093,7 +6093,7 @@ void dds_usecase_examples()
         DomainParticipantQos qos;
 
         // Configure the current participant as SERVER
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
 
         // Define the listening locator to be on interface 192.168.10.57 and port 56542
         Locator_t server_locator;
@@ -6111,7 +6111,7 @@ void dds_usecase_examples()
         DomainParticipantQos qos;
 
         // Configure the current participant as CLIENT
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::CLIENT;
 
         // Define a locator for the SERVER Participant on address 192.168.10.57 and port 56542
         Locator_t remote_server_locator;
@@ -6138,7 +6138,7 @@ void dds_usecase_examples()
 
         // Configure participant_1 as SERVER listening on the previous locator
         DomainParticipantQos server_1_qos;
-        server_1_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        server_1_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.31") >> server_1_qos.wire_protocol().prefix;
         server_1_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator_1);
 
@@ -6149,7 +6149,7 @@ void dds_usecase_examples()
 
         // Configure participant_2 as SERVER listening on the previous locator
         DomainParticipantQos server_2_qos;
-        server_2_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        server_2_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.32") >> server_2_qos.wire_protocol().prefix;
         server_2_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator_2);
         //!--
@@ -6177,7 +6177,7 @@ void dds_usecase_examples()
 
         // Configure the current participant as CLIENT connecting to the SERVERS at the previous locators
         DomainParticipantQos client_qos;
-        client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::CLIENT;
+        client_qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::CLIENT;
         client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_1);
         client_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(remote_server_attr_2);
         //!--
@@ -6192,7 +6192,7 @@ void dds_usecase_examples()
         IPLocator::setIPv4(server_locator, "192.168.10.60");
         server_locator.port = 56543;
 
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.31") >> qos.wire_protocol().prefix;
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
 
@@ -6218,7 +6218,7 @@ void dds_usecase_examples()
         IPLocator::setIPv4(server_locator, "192.168.10.54");
         server_locator.port = 56541;
 
-        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol_t::SERVER;
+        qos.wire_protocol().builtin.discovery_config.discoveryProtocol = DiscoveryProtocol::SERVER;
         std::istringstream("75.63.2D.73.76.72.63.6C.6E.74.2D.33") >> qos.wire_protocol().prefix;
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(server_locator);
 
@@ -6406,8 +6406,8 @@ void dds_usecase_examples()
         DataReaderQos qos;
 
         // Add new multicast locator with IP 239.255.0.4 and port 7900
-        eprosima::fastrtps::rtps::Locator_t new_multicast_locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
+        eprosima::fastdds::rtps::Locator_t new_multicast_locator;
+        eprosima::fastdds::rtps::IPLocator::setIPv4(new_multicast_locator, "239.255.0.4");
         new_multicast_locator.port = 7900;
         qos.endpoint().multicast_locator_list.push_back(new_multicast_locator);
         //!--
@@ -6420,15 +6420,15 @@ void dds_usecase_examples()
         // Fix the size of discovered participants to 3
         // This will effectively preallocate the memory during initialization
         qos.allocation().participants =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
 
         // Fix the size of discovered DataWriters to 1 per DomainParticipant
         // Fix the size of discovered DataReaders to 3 per DomainParticipant
         // This will effectively preallocate the memory during initialization
         qos.allocation().writers =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         qos.allocation().readers =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
         //!--
     }
 
@@ -6446,7 +6446,7 @@ void dds_usecase_examples()
         qos.allocation().content_filter.expression_initial_size = 512u;
         // Set the maximum number of expression parameters to 4 and its allocation configuration to fixed size
         qos.allocation().content_filter.expression_parameters =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(4u);
         //!--
     }
 
@@ -6457,11 +6457,11 @@ void dds_usecase_examples()
         // Fix the size of matched DataReaders to 3
         // This will effectively preallocate the memory during initialization
         qos.writer_resource_limits().matched_subscriber_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
         // Fix the size of writer side content filters to 1
         // This will effectively preallocate the memory during initialization
         qos.writer_resource_limits().reader_filters_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 
@@ -6472,7 +6472,7 @@ void dds_usecase_examples()
         // Fix the size of matched DataWriters to 1
         // This will effectively preallocate the memory during initialization
         qos.reader_resource_limits().matched_publisher_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 
@@ -6484,13 +6484,13 @@ void dds_usecase_examples()
 
         // We know we have 3 participants on the domain
         participant_qos.allocation().participants =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
         // We know we have at most 2 readers on each participant
         participant_qos.allocation().readers =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
         // We know we have at most 1 writer on each participant
         participant_qos.allocation().writers =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
 
         // We know the maximum size of partition data
         participant_qos.allocation().data_limits.max_partitions = 256u;
@@ -6502,7 +6502,7 @@ void dds_usecase_examples()
         // Content filtering is not being used
         participant_qos.allocation().content_filter.expression_initial_size = 0u;
         participant_qos.allocation().content_filter.expression_parameters =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
         // DataWriter configuration for Topic 1
         ///////////////////////////////////////
@@ -6510,9 +6510,9 @@ void dds_usecase_examples()
 
         // We know we will only have three matching subscribers, and no content filters
         writer1_qos.writer_resource_limits().matched_subscriber_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(3u);
         writer1_qos.writer_resource_limits().reader_filters_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
         // DataWriter configuration for Topic 2
         ///////////////////////////////////////
@@ -6520,9 +6520,9 @@ void dds_usecase_examples()
 
         // We know we will only have two matching subscribers
         writer2_qos.writer_resource_limits().matched_subscriber_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
         writer2_qos.writer_resource_limits().reader_filters_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(0u);
 
 
         // DataReader configuration for both Topics
@@ -6531,7 +6531,7 @@ void dds_usecase_examples()
 
         // We know we will only have one matching publisher
         reader_qos.reader_resource_limits().matched_publisher_allocation =
-                eprosima::fastrtps::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         //!--
     }
 
@@ -6561,7 +6561,7 @@ void dds_usecase_examples()
     {
         //CONF-MEMORY-QOS-ENDPOINTS
         RTPSEndpointQos endpoint;
-        endpoint.history_memory_policy = eprosima::fastrtps::rtps::DYNAMIC_REUSABLE_MEMORY_MODE;
+        endpoint.history_memory_policy = eprosima::fastdds::rtps::DYNAMIC_REUSABLE_MEMORY_MODE;
         //!--
     }
 
@@ -6754,13 +6754,13 @@ public:
 
     bool serialize(
             void* data,
-            eprosima::fastrtps::rtps::SerializedPayload_t* payload) override
+            eprosima::fastdds::rtps::SerializedPayload_t* payload) override
     {
         return true;
     }
 
     bool deserialize(
-            eprosima::fastrtps::rtps::SerializedPayload_t* payload,
+            eprosima::fastdds::rtps::SerializedPayload_t* payload,
             void* data) override
     {
         return true;
@@ -6784,7 +6784,7 @@ public:
 
     bool getKey(
             void* data,
-            eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
+            eprosima::fastdds::rtps::InstanceHandle_t* ihandle,
             bool force_md5) override
     {
         return true;
@@ -7006,7 +7006,7 @@ void dds_request_reply_example_client()
 
         //!
 
-        eprosima::fastrtps::rtps::SampleIdentity my_request_sample_identity;
+        eprosima::fastdds::rtps::SampleIdentity my_request_sample_identity;
 
     }
     listener;
@@ -7039,13 +7039,13 @@ void dds_request_reply_example_client()
     //!
 
     //REQUEST_REPLY_EXAMPLE_CLIENT_RETRIEVE_ID
-    eprosima::fastrtps::rtps::SampleIdentity my_request_sample_identity;
+    eprosima::fastdds::rtps::SampleIdentity my_request_sample_identity;
     RequestType request;
 
     // Fill the request
 
     // Publish request
-    eprosima::fastrtps::rtps::WriteParams write_params;
+    eprosima::fastdds::rtps::WriteParams write_params;
     request_writer->write(static_cast<void*>(&request), write_params);
 
     // Store sample identity
@@ -7071,7 +7071,7 @@ void dds_request_reply_example_server()
             if (eprosima::fastdds::dds::InstanceStateKind::ALIVE_INSTANCE_STATE == sample_info.instance_state)
             {
                 // Store the request identity.
-                eprosima::fastrtps::rtps::SampleIdentity client_request_identity = sample_info.sample_identity;
+                eprosima::fastdds::rtps::SampleIdentity client_request_identity = sample_info.sample_identity;
             }
         }
 
@@ -7107,14 +7107,14 @@ void dds_request_reply_example_server()
     DataReader* request_reader = subscriber->create_datareader(request_topic, DATAREADER_QOS_DEFAULT, &listener);
     //!
 
-    eprosima::fastrtps::rtps::SampleIdentity client_request_identity;
+    eprosima::fastdds::rtps::SampleIdentity client_request_identity;
     //REQUEST_REPLY_EXAMPLE_SERVER_SEND_REPLY
     ReplyType reply;
 
     // Fill reply
 
     // Send reply associating it with the client request.
-    eprosima::fastrtps::rtps::WriteParams write_params;
+    eprosima::fastdds::rtps::WriteParams write_params;
     write_params.related_sample_identity() = client_request_identity;
     reply_writer->write(reinterpret_cast<void*>(&reply), write_params);
     //!
@@ -7146,7 +7146,7 @@ void dds_waitset_example()
                 // Wait for any of the conditions to be triggered
                 ReturnCode_t ret_code;
                 ConditionSeq triggered_conditions;
-                ret_code = wait_set_.wait(triggered_conditions, eprosima::fastrtps::c_TimeInfinite);
+                ret_code = wait_set_.wait(triggered_conditions, eprosima::fastdds::c_TimeInfinite);
                 if (RETCODE_OK != ret_code)
                 {
                     // ... handle error
@@ -7317,17 +7317,17 @@ void tcp_use_cases()
 
         /* Locators */
         // Define locator for PDP over multicast
-        eprosima::fastrtps::rtps::Locator_t pdp_locator;
+        eprosima::fastdds::rtps::Locator_t pdp_locator;
         pdp_locator.kind = LOCATOR_KIND_UDPv4;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(pdp_locator, "239.255.0.1");
+        eprosima::fastdds::rtps::IPLocator::setIPv4(pdp_locator, "239.255.0.1");
         pqos.wire_protocol().builtin.metatrafficMulticastLocatorList.push_back(pdp_locator);
 
         // Define locator for EDP and user data
-        eprosima::fastrtps::rtps::Locator_t tcp_locator;
+        eprosima::fastdds::rtps::Locator_t tcp_locator;
         tcp_locator.kind = LOCATOR_KIND_TCPv4;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(tcp_locator, "0.0.0.0");
-        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(tcp_locator, tcp_listening_port);
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(tcp_locator, tcp_listening_port);
+        eprosima::fastdds::rtps::IPLocator::setIPv4(tcp_locator, "0.0.0.0");
+        eprosima::fastdds::rtps::IPLocator::setPhysicalPort(tcp_locator, tcp_listening_port);
+        eprosima::fastdds::rtps::IPLocator::setLogicalPort(tcp_locator, tcp_listening_port);
         pqos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(tcp_locator);
         pqos.wire_protocol().default_unicast_locator_list.push_back(tcp_locator);
 
@@ -7343,7 +7343,7 @@ void tcp_use_cases()
 
         // Configure the current participant as SERVER
         qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
+                eprosima::fastdds::rtps::DiscoveryProtocol::SERVER;
 
         // Add custom user transport with TCP port 12345
         auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
@@ -7352,10 +7352,10 @@ void tcp_use_cases()
 
         // Define the listening locator to be on interface 192.168.10.57 and port 12345
         constexpr uint16_t tcp_listening_port = 12345;
-        eprosima::fastrtps::rtps::Locator_t listening_locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(listening_locator, "192.168.10.57");
-        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(listening_locator, tcp_listening_port);
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(listening_locator, tcp_listening_port);
+        eprosima::fastdds::rtps::Locator_t listening_locator;
+        eprosima::fastdds::rtps::IPLocator::setIPv4(listening_locator, "192.168.10.57");
+        eprosima::fastdds::rtps::IPLocator::setPhysicalPort(listening_locator, tcp_listening_port);
+        eprosima::fastdds::rtps::IPLocator::setLogicalPort(listening_locator, tcp_listening_port);
         qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(listening_locator);
 
         // Set the GUID prefix to identify this server
@@ -7369,7 +7369,7 @@ void tcp_use_cases()
 
         // Configure the current participant as SERVER
         qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
-                eprosima::fastrtps::rtps::DiscoveryProtocol_t::CLIENT;
+                eprosima::fastdds::rtps::DiscoveryProtocol::CLIENT;
 
         // Add custom user transport with TCP port 0 (automatic port assignation)
         auto data_transport = std::make_shared<eprosima::fastdds::rtps::TCPv4TransportDescriptor>();
@@ -7378,13 +7378,13 @@ void tcp_use_cases()
 
         // Define the server locator to be on interface 192.168.10.57 and port 12345
         constexpr uint16_t server_port = 12345;
-        eprosima::fastrtps::rtps::Locator_t server_locator;
-        eprosima::fastrtps::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
-        eprosima::fastrtps::rtps::IPLocator::setPhysicalPort(server_locator, server_port);
-        eprosima::fastrtps::rtps::IPLocator::setLogicalPort(server_locator, server_port);
+        eprosima::fastdds::rtps::Locator_t server_locator;
+        eprosima::fastdds::rtps::IPLocator::setIPv4(server_locator, "192.168.10.57");
+        eprosima::fastdds::rtps::IPLocator::setPhysicalPort(server_locator, server_port);
+        eprosima::fastdds::rtps::IPLocator::setLogicalPort(server_locator, server_port);
 
         // Define the server attributes
-        eprosima::fastrtps::rtps::RemoteServerAttributes remote_server_att;
+        eprosima::fastdds::rtps::RemoteServerAttributes remote_server_att;
         remote_server_att.metatrafficUnicastLocatorList.push_back(server_locator);
 
         // Set the GUID prefix to identify this server

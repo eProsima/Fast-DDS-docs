@@ -3,6 +3,6 @@
 SendBuffersAllocationAttributes
 ------------------------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::SendBuffersAllocationAttributes
+.. doxygenstruct:: eprosima::fastdds::rtps::SendBuffersAllocationAttributes
     :project: FastDDS
     :members:

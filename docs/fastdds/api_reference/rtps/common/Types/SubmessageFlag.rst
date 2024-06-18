@@ -3,5 +3,5 @@
 SubmessageFlag
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::SubmessageFlag
+.. doxygentypedef:: eprosima::fastdds::rtps::SubmessageFlag
     :project: FastDDS

@@ -3,5 +3,5 @@
 sort_seqNum
 --------------------------------
 
-.. doxygenfunction:: eprosima::fastrtps::rtps::sort_seqNum
+.. doxygenfunction:: eprosima::fastdds::rtps::sort_seqNum
     :project: FastDDS

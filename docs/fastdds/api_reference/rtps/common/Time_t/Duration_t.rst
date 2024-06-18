@@ -1,7 +1,7 @@
 .. rst-class:: api-ref
 
-eprosima::fastrtps::Duration_t
+eprosima::fastdds::Duration_t
 --------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::Duration_t
+.. doxygentypedef:: eprosima::fastdds::Duration_t
     :project: FastDDS

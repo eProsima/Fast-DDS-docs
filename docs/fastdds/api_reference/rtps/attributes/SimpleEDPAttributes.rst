@@ -3,6 +3,6 @@
 SimpleEDPAttributes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::SimpleEDPAttributes
+.. doxygenclass:: eprosima::fastdds::rtps::SimpleEDPAttributes
     :project: FastDDS
     :members:

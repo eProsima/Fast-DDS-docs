@@ -3,6 +3,6 @@
 WriterDiscoveryInfo
 --------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::WriterDiscoveryInfo
+.. doxygenstruct:: eprosima::fastdds::rtps::WriterDiscoveryInfo
     :project: FastDDS
     :members:

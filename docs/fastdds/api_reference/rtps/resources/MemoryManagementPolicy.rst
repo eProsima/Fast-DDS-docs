@@ -3,5 +3,5 @@
 MemoryManagementPolicy
 ------------------------
 
-.. doxygenenum:: eprosima::fastrtps::rtps::MemoryManagementPolicy
+.. doxygenenum:: eprosima::fastdds::rtps::MemoryManagementPolicy
     :project: FastDDS

@@ -3,5 +3,5 @@
 AuthenticatedPeerCredentialToken
 -----------------------------------
 
-.. doxygentypedef:: eprosima::fastrtps::rtps::AuthenticatedPeerCredentialToken
+.. doxygentypedef:: eprosima::fastdds::rtps::AuthenticatedPeerCredentialToken
     :project: FastDDS

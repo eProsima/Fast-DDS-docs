@@ -3,6 +3,6 @@
 DiscoverySettings
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::DiscoverySettings
+.. doxygenclass:: eprosima::fastdds::rtps::DiscoverySettings
     :project: FastDDS
     :members:

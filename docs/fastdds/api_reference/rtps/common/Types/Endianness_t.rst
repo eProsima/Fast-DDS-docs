@@ -3,5 +3,5 @@
 Endianness_t
 --------------------------------
 
-.. doxygenenum:: eprosima::fastrtps::rtps::Endianness_t
+.. doxygenenum:: eprosima::fastdds::rtps::Endianness_t
     :project: FastDDS

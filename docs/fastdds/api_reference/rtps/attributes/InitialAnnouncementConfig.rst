@@ -3,6 +3,6 @@
 InitialAnnouncementConfig
 ------------------------------------------------
 
-.. doxygenstruct:: eprosima::fastrtps::rtps::InitialAnnouncementConfig
+.. doxygenstruct:: eprosima::fastdds::rtps::InitialAnnouncementConfig
     :project: FastDDS
     :members:

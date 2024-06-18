@@ -3,6 +3,6 @@
 Locator_t
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::Locator_t
+.. doxygenclass:: eprosima::fastdds::rtps::Locator_t
     :project: FastDDS
     :members:

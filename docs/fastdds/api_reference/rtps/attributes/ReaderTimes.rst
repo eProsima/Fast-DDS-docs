@@ -3,6 +3,6 @@
 ReaderTimes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::ReaderTimes
+.. doxygenclass:: eprosima::fastdds::rtps::ReaderTimes
     :project: FastDDS
     :members:

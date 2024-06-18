@@ -3,6 +3,6 @@
 HistoryAttributes
 --------------------------------
 
-.. doxygenclass:: eprosima::fastrtps::rtps::HistoryAttributes
+.. doxygenclass:: eprosima::fastdds::rtps::HistoryAttributes
     :project: FastDDS
     :members:

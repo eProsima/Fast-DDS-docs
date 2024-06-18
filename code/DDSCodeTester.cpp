@@ -3971,8 +3971,7 @@ void dds_qos_examples()
 {
     // Taken out of the examples to avoid bloating them
     DomainParticipantFactory* factory_ = DomainParticipantFactory::get_instance();
-    DomainParticipant* participant_ =
-            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+    DomainParticipant* participant_ = factory_->create_participant(0, PARTICIPANT_QOS_DEFAULT);
     Subscriber* subscriber_ =
             participant_->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
     Publisher* publisher_ =
@@ -3984,9 +3983,9 @@ void dds_qos_examples()
     uint16_t domain = 7;
     {
         //DDS_CHANGE_DEADLINE_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The DeadlineQosPolicy is default constructed with an infinite period.
+        // The DeadlineQosPolicy is constructed with an infinite period by default
         // Change the period to 1 second
         writer_qos.deadline().period.seconds = 1;
         writer_qos.deadline().period.nanosec = 0;
@@ -3997,7 +3996,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_DURABILITY_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
         // The DurabilityQosPolicy is default constructed with kind = VOLATILE_DURABILITY_QOS
         // Change the kind to TRANSIENT_LOCAL_DURABILITY_QOS
@@ -4009,8 +4008,8 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_ENTITY_FACTORY_QOS_POLICY
-        // This example uses a Participant, but it can also be applied to:
-        // DomainParticipantFactory, DomainParticipant, Publisher and Subscriber entities
+        // This example uses a Participant, but it can also be applied to
+        // DomainParticipantFactory, Publisher and Subscriber entities
         DomainParticipantQos participant_qos;
         // The EntityFactoryQosPolicy is default constructed with autoenable_created_entities = true
         // Change it to false
@@ -4022,7 +4021,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_GROUP_DATA_QOS_POLICY
-        // This example uses a Publisher, but it can also be applied to: Publisher and Subscriber entities
+        // This example uses a Publisher, but it can also be applied to Subscriber entities
         PublisherQos publisher_qos;
         // The GroupDataQosPolicy is default constructed with an empty collection
         // Collection is a private member so you need to use getters and setters to access
@@ -4050,7 +4049,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_HISTORY_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
         // The HistoryQosPolicy is default constructed with kind = KEEP_LAST and depth = 1.
         // It is possible to adjust the depth and keep the kind as KEEP_LAST
@@ -4064,7 +4063,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_LIFESPAN_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
         // The LifespanQosPolicy is default constructed with duration set to infinite.
         // Change the duration to 5 s
@@ -4076,7 +4075,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_LIVELINESS_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
         // The LivelinessQosPolicy is default constructed with kind = AUTOMATIC
         // Change the kind to MANUAL_BY_PARTICIPANT
@@ -4094,7 +4093,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_OWNERSHIP_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
         // The OwnershipQosPolicy is default constructed with kind = SHARED.
         // Change the kind to EXCLUSIVE
@@ -4118,7 +4117,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_PARTITION_QOS_POLICY
-        // This example uses a Publisher, but it can also be applied to: Publisher and Subscriber entities
+        // This example uses a Publisher, but it can also be applied to Subscriber entities
         PublisherQos publisher_qos;
         // The PartitionsQosPolicy is default constructed with max_size = 0
         // Max_size is a private member so you need to use getters and setters to access
@@ -4146,7 +4145,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_RELIABILITY_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
         // The ReliabilityQosPolicy is default constructed with kind = BEST_EFFORT
         // Change the kind to RELIABLE
@@ -4161,7 +4160,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter, DataReader and Topic entities
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
         // The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
         // Change max_samples to 200
@@ -4199,7 +4198,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_USER_DATA_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DomainParticipant, DataWriter, and DataReader entities
+        // This example uses a DataWriter, but it can also be applied to DomainParticipant and DataReader entities
         DataWriterQos writer_qos;
         std::vector<eprosima::fastdds::rtps::octet> vec;
         // Add two new octets to user data vector
@@ -4215,7 +4214,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_DATASHARING_QOS_POLICY
-        // This example uses a DataWriter, but it can also be applied to: DataWriter and DataReader entities
+        // This example uses a DataWriter, but it can also be applied to DataReader entities
         DataWriterQos writer_qos;
 
         // DataSharing is set to AUTO by default, which means that DataSharing will be used if the topic
@@ -4346,7 +4345,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_PROPERTY_POLICY_QOS
-        // This example uses a DataWriter, but it can also be applied to: DomainParticipant, DataWriter and DataReader entities
+        // This example uses a DataWriter, but it can also be applied to DomainParticipant and DataReader entities
         DataWriterQos writer_qos;
         // Add new property for the Auth:PKI-DH plugin
         writer_qos.properties().properties().emplace_back("dds.sec.auth.plugin", "builtin.PKI-DH");
@@ -4409,7 +4408,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_RTPS_ENDPOINT_QOS
-        // This example uses a DataWriter, but it can also be applied to: DataWriter and DataReader entities
+        // This example uses a DataWriter, but it can also be applied to DataReader entities
         DataWriterQos writer_qos;
         // Add new unicast locator with port 7800
         eprosima::fastdds::rtps::Locator_t new_unicast_locator;
@@ -4564,7 +4563,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_DATA_REPRESENTATION_QOS
-        // This example uses a DataWriter, but it can also be applied to: DataWriter and Topic entities.
+        // This example uses a DataWriter, but it can also be applied to Topic entities.
         // DataRepresentationQosPolicy of DataReaders is contained in the TypeConsistencyQos
         // (for further details see TypeConsistencyQos section).
         DataWriterQos writer_qos;

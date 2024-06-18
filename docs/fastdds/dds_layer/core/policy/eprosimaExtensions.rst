@@ -75,7 +75,7 @@ List of QoS Policy data members:
   The |ThreadSettings| for the data-sharing thread dedicated to listening for incoming traffic.
 
 .. note::
-     This QoS Policy concerns to |DataWriter| and |DataReader| entities.
+     This QoS Policy applies to |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -176,7 +176,7 @@ List of QoS Policy data members:
   This value does not apply to DataReaders.
 
 .. note::
-     This QoS Policy concerns to |DataWriter| and |DataReader| entities.
+     This QoS Policy applies to |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
      The |DisablePositiveACKsQosPolicy::enabled-api| Data Member cannot be modified on enabled entities.
      Thus, this feature must be set up during initialization.
@@ -252,7 +252,7 @@ List of QoS Policy data members:
   See :ref:`disablepositiveacksqospolicy` for further details.
 
 .. note::
-     This QoS Policy concerns to |DataReader| entities.
+     This QoS Policy applies to |DataReader| entities.
      :raw-html:`<br />`
      Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member of the :ref:`disablepositiveacksqospolicy` and the |RTPSReliableReaderQos::times-api|
      Data Member can be modified on enabled entities.
@@ -332,7 +332,7 @@ List of QoS Policy data members:
   See :ref:`disableheartbeatpiggyback` for further details.
 
 .. note::
-     This QoS Policy concerns to |DataWriter| entities.
+     This QoS Policy applies to |DataWriter| entities.
      :raw-html:`<br />`
      Only the |DisablePositiveACKsQosPolicy::duration-api| Data Member of the :ref:`disablepositiveacksqospolicy` and the |RTPSReliableWriterQos::times-api|
      Data Member can be modified on enabled entities.
@@ -441,7 +441,7 @@ Please refer to :ref:`flow-controllers` section for more information.
 
 
 .. note::
-     This QoS Policy concerns to |DomainParticipant| entities.
+     This QoS Policy applies to |DomainParticipant| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -492,7 +492,7 @@ List of QoS Policy data members:
   States the limits for content-filter discovery information.
 
 .. note::
-     This QoS Policy concerns to |DomainParticipant| entities.
+     This QoS Policy applies to |DomainParticipant| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -687,7 +687,7 @@ This QoS also allows to add custom user properties that could be sent to the ext
 This could be done by setting as :code:`true` the :code:`propagate` value of the Property.
 
 .. note::
-     This QoS Policy concerns to |DomainParticipant|, |DataWriter| and |DataReader| entities.
+     This QoS Policy applies to |DomainParticipant|, |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -740,7 +740,7 @@ List of QoS Policy data members:
      - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::
-     This QoS Policy concerns to |DataWriter| entities.
+     This QoS Policy applies to |DataWriter| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -797,7 +797,7 @@ List of QoS Policy data members:
 
 
 .. note::
-     This QoS Policy concerns to |DataReader| entities.
+     This QoS Policy applies to |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -841,7 +841,7 @@ List of QoS Policy data members:
 +-----------------------------------------------------------------------------+----------------------------------------+
 
 .. note::
-     This QoS Policy concerns to |DataWriter| entities.
+     This QoS Policy applies to |DataWriter| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -929,7 +929,7 @@ List of QoS Policy data members:
   Indicates the way the memory is managed in terms of dealing with the CacheChanges.
 
 .. note::
-     This QoS Policy concerns to |DataWriter| and |DataReader| entities.
+     This QoS Policy applies to |DataWriter| and |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -1119,7 +1119,7 @@ List of QoS Policy data members:
   :ref:`Network filter<netmask_filtering>` configuration.
 
 .. note::
-     This QoS Policy concerns to |DomainParticipant| entities.
+     This QoS Policy applies to |DomainParticipant| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -1236,7 +1236,7 @@ List of QoS Policy data members:
   any of the locators announced by this DDS participant.
 
 .. note::
-     This QoS Policy concerns to |DomainParticipant| entities.
+     This QoS Policy applies to |DomainParticipant| entities.
 
 .. important::
      The only mutable field on enabled entities is |m_DiscoveryServers|, which is contained in

@@ -348,9 +348,6 @@ the file.
 The environment value can be either an absolute or relative path.
 The file format is as follows:
 
-.. literalinclude:: /../code/environment_file_format.json
-    :language: JSON
-
 .. important::
     The environment variables set in the environment file have precedence over the environment.
 

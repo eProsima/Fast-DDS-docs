@@ -59,7 +59,7 @@ member functions expect a profile name as an argument.
 if founded.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-    :language: cpp
+    :language: c++
     :start-after: //XML-LOAD-APPLY-PROFILES
     :end-before: //!--
     :dedent: 8
@@ -126,7 +126,7 @@ For such cases the :ref:`dds_layer_core_entity_types` which act as factories pro
 XML profile. This allows the user to read and modify predefined XML profiles before applying them to a new entity.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-    :language: cpp
+    :language: c++
     :start-after: //XML-MIX-WITH-CODE
     :end-before: //!--
     :dedent: 8

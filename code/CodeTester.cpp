@@ -36,7 +36,7 @@ public:
 class HelloWorldPubSubType : public TopicDataType
 {
     bool serialize(
-            void* data,
+            const void* const data,
             rtps::SerializedPayload_t* payload) override
     {
         return false;
@@ -50,7 +50,7 @@ class HelloWorldPubSubType : public TopicDataType
     }
 
     std::function<uint32_t()> getSerializedSizeProvider(
-            void* data) override
+            const void* const data) override
     {
         return []
                {
@@ -69,7 +69,7 @@ class HelloWorldPubSubType : public TopicDataType
     }
 
     bool getKey(
-            void* data,
+            const void* const data,
             rtps::InstanceHandle_t* ihandle,
             bool force_md5 = false) override
     {

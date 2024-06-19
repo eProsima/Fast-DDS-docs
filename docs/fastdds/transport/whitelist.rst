@@ -2,15 +2,15 @@
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
-.. warning::
-
-    Interface whitelist will be deprecated in future versions of Fast DDS.
-    The use of the new :ref:`interfaces allowlist <interfaces_allowlist>` is recommended.
-
 .. _whitelist-interfaces:
 
 Interface Whitelist
 -------------------
+
+.. warning::
+
+    Interface whitelist will be deprecated in future versions of Fast DDS.
+    The use of the new :ref:`interfaces allowlist <interfaces_allowlist>` is recommended.
 
 Using *Fast DDS*, it is possible to limit the network interfaces used by :ref:`transport_tcp_tcp` and
 :ref:`transport_udp_udp`.

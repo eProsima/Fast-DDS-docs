@@ -2,15 +2,15 @@
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
 
-.. warning::
-
-  The configuration options described in this section apply to network interfaces.
-  Therefore, it is only available on :ref:`transport_tcp_tcp` and :ref:`transport_udp_udp`.
-
 .. _ifaces_config:
 
 Interfaces configuration
 ========================
+
+.. warning::
+
+  The configuration options described in this section apply to network interfaces.
+  Therefore, it is only available on :ref:`transport_tcp_tcp` and :ref:`transport_udp_udp`.
 
 By default, *Fast DDS* makes use of all active network interfaces found in the system to communicate (note: applies to
 :ref:`transport_udp_udp` and :ref:`transport_tcp_tcp`).

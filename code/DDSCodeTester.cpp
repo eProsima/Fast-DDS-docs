@@ -3970,6 +3970,9 @@ public:
 void dds_qos_examples()
 {
     // Taken out of the examples to avoid bloating them
+    // Note that the following lines are included to make these examples compilable and more readable.
+    // In a real application, calling creation functions multiple times on the same pointer should
+    // be avoided, as this can lead to memory leaks. It is more robust to use unique_ptrs if necessary.
     DomainParticipantFactory* factory_ = DomainParticipantFactory::get_instance();
     DomainParticipant* participant_ = factory_->create_participant(0, PARTICIPANT_QOS_DEFAULT);
     Subscriber* subscriber_ =
@@ -3998,7 +4001,7 @@ void dds_qos_examples()
         //DDS_CHANGE_DURABILITY_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The DurabilityQosPolicy is default constructed with kind = VOLATILE_DURABILITY_QOS
+        // The DurabilityQosPolicy is constructed with kind = VOLATILE_DURABILITY_QOS by default
         // Change the kind to TRANSIENT_LOCAL_DURABILITY_QOS
         writer_qos.durability().kind = TRANSIENT_LOCAL_DURABILITY_QOS;
         // Use modified QoS in the creation of the corresponding entity
@@ -4011,7 +4014,7 @@ void dds_qos_examples()
         // This example uses a Participant, but it can also be applied to
         // DomainParticipantFactory, Publisher and Subscriber entities
         DomainParticipantQos participant_qos;
-        // The EntityFactoryQosPolicy is default constructed with autoenable_created_entities = true
+        // The EntityFactoryQosPolicy is constructed with autoenable_created_entities = true by default
         // Change it to false
         participant_qos.entity_factory().autoenable_created_entities = false;
         // Use modified QoS in the creation of the corresponding entity
@@ -4023,7 +4026,7 @@ void dds_qos_examples()
         //DDS_CHANGE_GROUP_DATA_QOS_POLICY
         // This example uses a Publisher, but it can also be applied to Subscriber entities
         PublisherQos publisher_qos;
-        // The GroupDataQosPolicy is default constructed with an empty collection
+        // The GroupDataQosPolicy is constructed with an empty collection by default
         // Collection is a private member so you need to use getters and setters to access
 
         // Add data to the collection in initialization
@@ -4051,7 +4054,7 @@ void dds_qos_examples()
         //DDS_CHANGE_HISTORY_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The HistoryQosPolicy is default constructed with kind = KEEP_LAST and depth = 1.
+        // The HistoryQosPolicy is constructed with kind = KEEP_LAST and depth = 1 by default
         // It is possible to adjust the depth and keep the kind as KEEP_LAST
         writer_qos.history().depth = 20;
         // Or you can also change the kind to KEEP_ALL (depth will not be used).
@@ -4065,7 +4068,7 @@ void dds_qos_examples()
         //DDS_CHANGE_LIFESPAN_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The LifespanQosPolicy is default constructed with duration set to infinite.
+        // The LifespanQosPolicy is constructed with duration set to infinite by default
         // Change the duration to 5 s
         writer_qos.lifespan().duration = {5, 0};
         // Use modified QoS in the creation of the corresponding entity
@@ -4077,13 +4080,13 @@ void dds_qos_examples()
         //DDS_CHANGE_LIVELINESS_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The LivelinessQosPolicy is default constructed with kind = AUTOMATIC
+        // The LivelinessQosPolicy is constructed with kind = AUTOMATIC by default
         // Change the kind to MANUAL_BY_PARTICIPANT
         writer_qos.liveliness().kind = MANUAL_BY_PARTICIPANT_LIVELINESS_QOS;
-        // The LivelinessQosPolicy is default constructed with lease_duration set to infinite
+        // The LivelinessQosPolicy is constructed with lease_duration set to infinite by default
         // Change the lease_duration to 1 second
         writer_qos.liveliness().lease_duration = {1, 0};
-        // The LivelinessQosPolicy is default constructed with announcement_period set to infinite
+        // The LivelinessQosPolicy is constructed with announcement_period set to infinite by default
         // Change the announcement_period to 1 ms
         writer_qos.liveliness().announcement_period = {0, 1000000};
         // Use modified QoS in the creation of the corresponding entity
@@ -4095,7 +4098,7 @@ void dds_qos_examples()
         //DDS_CHANGE_OWNERSHIP_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The OwnershipQosPolicy is default constructed with kind = SHARED.
+        // The OwnershipQosPolicy is constructed with kind = SHARED by default
         // Change the kind to EXCLUSIVE
         writer_qos.ownership().kind = EXCLUSIVE_OWNERSHIP_QOS;
         // Use modified QoS in the creation of the corresponding entity
@@ -4107,7 +4110,7 @@ void dds_qos_examples()
         //DDS_CHANGE_OWNERSHIP_STRENGTH_QOS_POLICY
         // This example only applies to DataWriter entities
         DataWriterQos writer_qos;
-        // The OwnershipStrengthQosPolicy is default constructed with value 0
+        // The OwnershipStrengthQosPolicy is constructed with value 0 by default
         // Change the strength to 10
         writer_qos.ownership_strength().value = 10;
         // Use modified QoS in the creation of the corresponding DataWriter
@@ -4119,11 +4122,11 @@ void dds_qos_examples()
         //DDS_CHANGE_PARTITION_QOS_POLICY
         // This example uses a Publisher, but it can also be applied to Subscriber entities
         PublisherQos publisher_qos;
-        // The PartitionsQosPolicy is default constructed with max_size = 0
+        // The PartitionsQosPolicy is constructed with max_size = 0 by default
         // Max_size is a private member so you need to use getters and setters to access
         // Change the max_size to 20
         publisher_qos.partition().set_max_size(20); // Setter function
-        // The PartitionsQosPolicy is default constructed with an empty list of partitions
+        // The PartitionsQosPolicy is constructed with an empty list of partitions by default
         // Partitions is a private member so you need to use getters and setters to access
 
         // Add new partitions in initialization
@@ -4147,10 +4150,10 @@ void dds_qos_examples()
         //DDS_CHANGE_RELIABILITY_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The ReliabilityQosPolicy is default constructed with kind = BEST_EFFORT
+        // The ReliabilityQosPolicy is constructed with kind = BEST_EFFORT by default
         // Change the kind to RELIABLE
         writer_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
-        // The ReliabilityQosPolicy is default constructed with max_blocking_time = 100ms
+        // The ReliabilityQosPolicy is constructed with max_blocking_time = 100ms by default
         // Change the max_blocking_time to 1s
         writer_qos.reliability().max_blocking_time = {1, 0};
         // Use modified QoS in the creation of the corresponding entity
@@ -4162,16 +4165,16 @@ void dds_qos_examples()
         //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
+        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
         // Change max_samples to 200
         writer_qos.resource_limits().max_samples = 200;
-        // The ResourceLimitsQosPolicy is default constructed with max_instances = 10
+        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
         // Change max_instances to 20
         writer_qos.resource_limits().max_instances = 20;
-        // The ResourceLimitsQosPolicy is default constructed with max_samples_per_instance = 400
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
         // Change max_samples_per_instance to 100 as it must be lower than max_samples
         writer_qos.resource_limits().max_samples_per_instance = 100;
-        // The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
+        // The ResourceLimitsQosPolicy is constructed with allocated_samples = 100 by default
         // Change allocated_samples to 50
         writer_qos.resource_limits().allocated_samples = 50;
         // Use modified QoS in the creation of the corresponding entity
@@ -4183,7 +4186,7 @@ void dds_qos_examples()
         //DDS_CHANGE_TOPIC_DATA_QOS_POLICY
         // This example only applies to Topic entities
         TopicQos topic_qos;
-        // The TopicDataQosPolicy is default constructed with an empty vector.
+        // The TopicDataQosPolicy is constructed with an empty vector by default
         std::vector<eprosima::fastdds::rtps::octet> vec;
         // Add two new octets to topic data vector
         eprosima::fastdds::rtps::octet val = 3;
@@ -4255,11 +4258,11 @@ void dds_qos_examples()
         // For further details see RTPSReliableWriterQos & RTPSReliableReaderQos sections.
         DataWriterQos writer_qos;
         DataReaderQos reader_qos;
-        // The DisablePositiveACKsQosPolicy is default constructed with enabled = false
+        // The DisablePositiveACKsQosPolicy is constructed with enabled = false by default
         // Change enabled to true
         writer_qos.reliable_writer_qos().disable_positive_acks.enabled = true;
         reader_qos.reliable_reader_qos().disable_positive_acks.enabled = true;
-        // The DisablePositiveACKsQosPolicy is default constructed with infinite duration
+        // The DisablePositiveACKsQosPolicy is constructed with infinite duration by default
         // Change the duration to 1 second
         writer_qos.reliable_writer_qos().disable_positive_acks.duration = {1, 0};
         reader_qos.reliable_reader_qos().disable_positive_acks.duration = {1, 0};
@@ -4277,21 +4280,21 @@ void dds_qos_examples()
         //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
         // This example only applies to DataWriter entities
         DataWriterQos writer_qos;
-        // The RTPSReliableWriterQos is default constructed with initialHeartbeatDelay = 12 ms
+        // The RTPSReliableWriterQos is constructed with initialHeartbeatDelay = 12 ms by default
         // Change the initialHeartbeatDelay to 20 nanoseconds
         writer_qos.reliable_writer_qos().times.initialHeartbeatDelay = {0, 20};
-        // The RTPSReliableWriterQos is default constructed with heartbeatPeriod = 3 s
+        // The RTPSReliableWriterQos is constructed with heartbeatPeriod = 3 s by default
         // Change the heartbeatPeriod to 5 seconds
         writer_qos.reliable_writer_qos().times.heartbeatPeriod = {5, 0};
-        // The RTPSReliableWriterQos is default constructed with nackResponseDelay = 5 ms
+        // The RTPSReliableWriterQos is constructed with nackResponseDelay = 5 ms by default
         // Change the nackResponseDelay to 10 nanoseconds
         writer_qos.reliable_writer_qos().times.nackResponseDelay = {0, 10};
-        // The RTPSReliableWriterQos is default constructed with nackSupressionDuration = 0 s
+        // The RTPSReliableWriterQos is constructed with nackSupressionDuration = 0 s by default
         // Change the nackSupressionDuration to 20 nanoseconds
         writer_qos.reliable_writer_qos().times.nackSupressionDuration = {0, 20};
         // You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
         writer_qos.reliable_writer_qos().disable_positive_acks.enabled = true;
-        // The RTPSReliableWriterQos is default constructed with disable_heartbeat_piggyback = false
+        // The RTPSReliableWriterQos is constructed with disable_heartbeat_piggyback = false by default
         // Disable the heartbeat piggyback mechanism.
         writer_qos.reliable_writer_qos().disable_heartbeat_piggyback = true;
         // Use modified QoS in the creation of the DataWriter entity
@@ -4303,10 +4306,10 @@ void dds_qos_examples()
         //DDS_CHANGE_RTPS_RELIABLE_READER_QOS
         // This example only applies to DataReader entities
         DataReaderQos reader_qos;
-        // The RTPSReliableReaderQos is default constructed with initial_acknack_delay = 70 ms
+        // The RTPSReliableReaderQos is constructed with initial_acknack_delay = 70 ms by default
         // Change the initialAcknackDelay to 70 nanoseconds
         reader_qos.reliable_reader_qos().times.initial_acknack_delay = {0, 70};
-        // The RTPSReliableReaderQos is default constructed with heartbeat_response_delay = 5 ms
+        // The RTPSReliableReaderQos is constructed with heartbeat_response_delay = 5 ms by default
         // Change the heartbeatResponseDelay to 5 nanoseconds
         reader_qos.reliable_reader_qos().times.heartbeat_response_delay = {0, 5};
         // You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
@@ -4364,7 +4367,7 @@ void dds_qos_examples()
         //DDS_CHANGE_PUBLISH_MODE_QOS
         // This example only applies to DataWriter entities
         DataWriterQos writer_qos;
-        // The PublishModeQosPolicy is default constructed with kind = SYNCHRONOUS
+        // The PublishModeQosPolicy is constructed with kind = SYNCHRONOUS by default
         // Change the kind to ASYNCHRONOUS
         writer_qos.publish_mode().kind = ASYNCHRONOUS_PUBLISH_MODE;
         // Use modified QoS in the creation of the DataWriter entity
@@ -4431,7 +4434,7 @@ void dds_qos_examples()
         writer_qos.endpoint().user_defined_id = 3;
         // Set 4 as entity id
         writer_qos.endpoint().entity_id = 4;
-        // The RTPSWriterQos is default constructed with history_memory_policy = PREALLOCATED
+        // The RTPSWriterQos is constructed with history_memory_policy = PREALLOCATED by default
         // Change the history_memory_policy to DYNAMIC_RESERVE
         writer_qos.endpoint().history_memory_policy = eprosima::fastdds::rtps::DYNAMIC_RESERVE_MEMORY_MODE;
         // Use modified QoS in the creation of the corresponding entity
@@ -4580,7 +4583,7 @@ void dds_qos_examples()
         //DDS_CHANGE_TYPE_CONSISTENCY_ENFORCEMENT_QOS
         // This example only applies to DataReader entities
         DataReaderQos reader_qos;
-        // The TypeConsistencyEnforcementQosPolicy is default constructed with kind = ALLOW_TYPE_COERCION
+        // The TypeConsistencyEnforcementQosPolicy is constructed with kind = ALLOW_TYPE_COERCION by default
         // Change the kind to DISALLOW_TYPE_COERCION
         reader_qos.type_consistency().m_kind = TypeConsistencyKind::DISALLOW_TYPE_COERCION;
         //Configures the system to ignore the sequence sizes in assignations
@@ -6695,19 +6698,19 @@ void dds_usecase_examples()
         //CONF-MEMORY-QOS-PUBSUB
         ResourceLimitsQosPolicy resource_limits;
 
-        // The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
+        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
         // Change max_samples to the minimum
         resource_limits.max_samples = 1;
 
-        // The ResourceLimitsQosPolicy is default constructed with max_instances = 10
+        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
         // Change max_instances to the minimum
         resource_limits.max_instances = 1;
 
-        // The ResourceLimitsQosPolicy is default constructed with max_samples_per_instance = 400
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
         // Change max_samples_per_instance to the minimum
         resource_limits.max_samples_per_instance = 1;
 
-        // The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
+        // The ResourceLimitsQosPolicy is constructed with allocated_samples = 100 by default
         // No allocated samples
         resource_limits.allocated_samples = 0;
         //!--

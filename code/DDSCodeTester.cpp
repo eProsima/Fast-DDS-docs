@@ -1879,11 +1879,11 @@ void dds_topic_examples()
         DomainParticipantFactory::get_instance()->load_XML_profiles_file("example_type.xml");
 
         // Retrieve the an instance of the desired type
-        DynamicType::_ref_type dyn_type;
-        DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("DynamicType", dyn_type);
+        DynamicTypeBuilder::_ref_type dyn_type_builder;
+        DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("DynamicType", dyn_type_builder);
 
         // Register dynamic type
-        TypeSupport dyn_type_support(new DynamicPubSubType(dyn_type));
+        TypeSupport dyn_type_support(new DynamicPubSubType(dyn_type_builder->build()));
         dyn_type_support.register_type(participant, nullptr);
 
         // Create a Topic with the registered type.
@@ -5667,7 +5667,7 @@ void xml_profiles_examples()
                 DomainParticipantFactory::get_instance()->load_XML_profiles_file("my_profiles.xml"))
         {
             // Retrieve instance of the desired type
-            DynamicType::_ref_type my_struct_type;
+            DynamicTypeBuilder::_ref_type my_struct_type;
             if (RETCODE_OK !=
                     DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name(
                         "MyStruct", my_struct_type))
@@ -5677,7 +5677,7 @@ void xml_profiles_examples()
             }
 
             // Register MyStruct type
-            TypeSupport my_struct_type_support(new DynamicPubSubType(my_struct_type));
+            TypeSupport my_struct_type_support(new DynamicPubSubType(my_struct_type->build()));
             my_struct_type_support.register_type(participant, nullptr);
         }
         else

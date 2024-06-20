@@ -49,7 +49,7 @@ List of QoS Policy data members:
      - [|XCDR_DATA_REPRESENTATION-api|]
 
 .. note::
-     This QoS Policy concerns to Topic, DataReader and DataWriter entities.
+     This QoS Policy applies to |Topic|, |DataReader| and |DataWriter| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -148,7 +148,7 @@ List of QoS Policy data members:
   If it is enabled, it must have the Complete Type Information, otherwise it is not necessary.
 
 .. note::
-     This QoS Policy concerns to DataReader entities.
+     This QoS Policy applies to |DataReader| entities.
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
@@ -165,18 +165,3 @@ There are two possible values:
 * |ALLOW_TYPE_COERCION-api|:
   The DataWriter and the DataReader do not need to support the same data type in order to
   communicate as long as the DataReader's type is assignable from the DataWriter's type.
-
-Example
-"""""""
-
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_TYPE_CONSISTENCY_ENFORCEMENT_QOS
-   :end-before: //!
-
-XML
-***
-This QoS Policy cannot be configured using XML for the moment.

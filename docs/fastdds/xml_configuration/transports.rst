@@ -19,6 +19,11 @@ into the XML profile of the DomainParticipant using the ``<transport_id>`` XML t
 An example of how to load the ``<transport_descriptor>`` into the XML profile of the DomainParticipant is found in
 :ref:`participantprofiles`.
 
+.. _available_xml_elements_td:
+
+Available XML elements for transport descriptors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following table lists all the available XML elements that can be defined within the ``<transport_descriptor>``
 element for the configuration of the transport layer.
 A more detailed explanation of each of these elements can be found in :ref:`comm-transports-configuration`.

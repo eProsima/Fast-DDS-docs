@@ -1159,7 +1159,6 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
 void dds_discovery_examples()
 {
     using Locator_t = eprosima::fastdds::rtps::Locator_t;
-    using RemoteServerAttributes = eprosima::fastdds::rtps::RemoteServerAttributes;
     using IPLocator = eprosima::fastdds::rtps::IPLocator;
     using DiscoveryProtocol = eprosima::fastdds::rtps::DiscoveryProtocol;
     using ParticipantFilteringFlags = eprosima::fastdds::rtps::ParticipantFilteringFlags;
@@ -1345,8 +1344,6 @@ void dds_discovery_examples()
         client_or_server->get_qos(client_or_server_qos);
 
         /* Create a new server entry to which the client or server should connect */
-        RemoteServerAttributes remote_server_att;
-
         // Set server's listening locator for PDP
         Locator_t locator;
         IPLocator::setIPv4(locator, 127, 0, 0, 1);
@@ -6220,7 +6217,6 @@ void dds_transport_examples ()
 void dds_usecase_examples()
 {
     using Locator_t = eprosima::fastdds::rtps::Locator_t;
-    using RemoteServerAttributes = eprosima::fastdds::rtps::RemoteServerAttributes;
     using IPLocator = eprosima::fastdds::rtps::IPLocator;
     using DiscoveryProtocol = eprosima::fastdds::rtps::DiscoveryProtocol;
 

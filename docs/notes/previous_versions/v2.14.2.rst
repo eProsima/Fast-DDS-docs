@@ -8,7 +8,7 @@
 
 This release includes the following **features** in an ABI compatible manner:
 
-#. Set :ref:`DataSharing Qos policy<datasharingqospolicy>` in transmitted ``Writer``|``ReaderProxyData``.
+#. Set :ref:`DataSharing Qos policy<datasharingqospolicy>` in transmitted ``WriterProxyData`` and ``ReaderProxyData``.
 #. New :ref:`max_message_size<use-case-large-data-options>` property to limit the output datagrams size.
 #. Add XML configuration for :ref:`flow-controllers`.
 

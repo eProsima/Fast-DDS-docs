@@ -302,9 +302,9 @@ The behavior is the same as setting the :code:`@value` :ref:`builtin annotation<
 
   Currently, Fast DDS-Gen does not support :code:`@value` builtin annotation.
 
-As the enumeration type is basically a primitive type which might take only some specific values defined with the
+As the enumeration type is basically a signed integer type which might take only some specific values defined with the
 enumeration literals, the corresponding DynamicData getters and setters are the ones corresponding to the underlying
-primitive type (and any other method promotable to that specific primitive type).
+signed integer type (and any other method promotable to that specific primitive type).
 
 .. tabs::
 

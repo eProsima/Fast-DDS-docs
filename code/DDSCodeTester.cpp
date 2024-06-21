@@ -1049,22 +1049,22 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                info.info.type_information().type_information.complete().typeid_with_size().type_id(),
-                remote_type_object))
+                    info.info.type_information().type_information.complete().typeid_with_size().type_id(),
+                    remote_type_object))
         {
             // Error
             return;
         }
         // Register remotely discovered type
         DynamicType::_ref_type remote_type = DynamicTypeBuilderFactory::get_instance()->create_type_w_type_object(
-                remote_type_object)->build();
+            remote_type_object)->build();
         TypeSupport dyn_type_support(new DynamicPubSubType(remote_type));
         dyn_type_support.register_type(participant);
 
         // Create a Topic with the remotely discovered type.
         Topic* topic =
                 participant->create_topic(info.info.topicName().to_string(), dyn_type_support.get_type_name(),
-                TOPIC_QOS_DEFAULT);
+                        TOPIC_QOS_DEFAULT);
         if (nullptr == topic)
         {
             // Error
@@ -1097,22 +1097,22 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                info.info.type_information().type_information.complete().typeid_with_size().type_id(),
-                remote_type_object))
+                    info.info.type_information().type_information.complete().typeid_with_size().type_id(),
+                    remote_type_object))
         {
             // Error
             return;
         }
         // Register remotely discovered type
         DynamicType::_ref_type remote_type = DynamicTypeBuilderFactory::get_instance()->create_type_w_type_object(
-                remote_type_object)->build();
+            remote_type_object)->build();
         TypeSupport dyn_type_support(new DynamicPubSubType(remote_type));
         dyn_type_support.register_type(participant);
 
         // Create a Topic with the remotely discovered type.
         Topic* topic =
                 participant->create_topic(info.info.topicName().to_string(), dyn_type_support.get_type_name(),
-                TOPIC_QOS_DEFAULT);
+                        TOPIC_QOS_DEFAULT);
         if (nullptr == topic)
         {
             // Error
@@ -1135,6 +1135,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
             return;
         }
     }
+
 };
 //!--
 
@@ -4326,12 +4327,15 @@ void dds_qos_examples()
         // This example only applies to DomainParticipant entities
         DomainParticipantQos participant_qos;
         // Set the maximum size of participant resource limits collection to 3 and it allocation configuration to fixed size
-        participant_qos.allocation().participants = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(
+        participant_qos.allocation().participants =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(
             3u);
         // Set the maximum size of reader's resource limits collection to 2 and its allocation configuration to fixed size
-        participant_qos.allocation().readers = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
+        participant_qos.allocation().readers =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(2u);
         // Set the maximum size of writer's resource limits collection to 1 and its allocation configuration to fixed size
-        participant_qos.allocation().writers = eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
+        participant_qos.allocation().writers =
+                eprosima::fastdds::ResourceLimitedContainerConfig::fixed_size_configuration(1u);
         // Set the maximum size of the partition data to 256
         participant_qos.allocation().data_limits.max_partitions = 256u;
         // Set the maximum size of the user data to 256
@@ -4513,7 +4517,8 @@ void dds_qos_examples()
         // Set use_builtin_transports to false
         participant_qos.transport().use_builtin_transports = false;
         // [OPTIONAL] Set ThreadSettings for the builtin transports reception threads
-        participant_qos.transport().builtin_transports_reception_threads_ = eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2};
+        participant_qos.transport().builtin_transports_reception_threads_ =
+                eprosima::fastdds::rtps::ThreadSettings{2, 2, 2, 2};
         // Set max_msg_size_no_frag to a value > 65500 KB
         participant_qos.transport().max_msg_size_no_frag = 70000;
         // Configure netmask filter
@@ -4542,7 +4547,8 @@ void dds_qos_examples()
         meta_external_locator.kind = LOCATOR_KIND_UDPv4;
         meta_external_locator.port = 34567;
         meta_external_locator.mask(24);
-        participant_qos.wire_protocol().builtin.metatraffic_external_unicast_locators[1][0].push_back(meta_external_locator);
+        participant_qos.wire_protocol().builtin.metatraffic_external_unicast_locators[1][0].push_back(
+            meta_external_locator);
         // Add locator to default unicast locator list
         eprosima::fastdds::rtps::Locator_t unicast_locator;
         eprosima::fastdds::rtps::IPLocator::setIPv4(unicast_locator, 192, 168, 1, 41);
@@ -4879,7 +4885,7 @@ void dynamictypes_examples()
             type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR8));
             type_descriptor->bound().push_back(static_cast<uint32_t>(LENGTH_UNLIMITED));
             member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
-        */
+         */
 
         struct_builder->add_member(member_descriptor);
         member_descriptor->name("my_wstring");
@@ -4892,7 +4898,7 @@ void dynamictypes_examples()
             type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR16));
             type_descriptor->bound().push_back(static_cast<uint32_t>(LENGTH_UNLIMITED));
             member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
-        */
+         */
 
         struct_builder->add_member(member_descriptor);
         member_descriptor->name("my_bounded_string");
@@ -4905,7 +4911,7 @@ void dynamictypes_examples()
             type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR8));
             type_descriptor->bound().push_back(41925);
             member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
-        */
+         */
 
         struct_builder->add_member(member_descriptor);
         member_descriptor->name("my_bounded_wstring");
@@ -4918,7 +4924,7 @@ void dynamictypes_examples()
             type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_CHAR16));
             type_descriptor->bound().push_back(20925);
             member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(type_descriptor)->build());
-        */
+         */
 
         struct_builder->add_member(member_descriptor);
 
@@ -4936,7 +4942,7 @@ void dynamictypes_examples()
     }
     {
         //!--CPP_ENUM
-        enum MyEnum : uint32_t
+        enum MyEnum : int32_t
         {
             A,
             B,
@@ -4957,15 +4963,15 @@ void dynamictypes_examples()
                                                             create_type(enum_type_descriptor)};
         // Add enum literals to the enum type
         MemberDescriptor::_ref_type enum_member_descriptor {traits<MemberDescriptor>::make_shared()};
-        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
+        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
         enum_member_descriptor->name("A");
         enum_builder->add_member(enum_member_descriptor);
         enum_member_descriptor = traits<MemberDescriptor>::make_shared();
-        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
+        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
         enum_member_descriptor->name("B");
         enum_builder->add_member(enum_member_descriptor);
         enum_member_descriptor = traits<MemberDescriptor>::make_shared();
-        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT32));
+        enum_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
         enum_member_descriptor->name("C");
         enum_builder->add_member(enum_member_descriptor);
         // Build the enum type
@@ -4986,7 +4992,7 @@ void dynamictypes_examples()
 
         /* Alternative
             uint32_t in_value {2}; // Selecting MyEnum::C
-        */
+         */
 
         uint32_t out_value {0};
         data->set_uint32_value(data->get_member_id_by_name("my_enum"), in_value);
@@ -5014,7 +5020,7 @@ void dynamictypes_examples()
             bitmask_type_descriptor->bound().push_back(8);
             DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
                                                             bitmask_type_descriptor)};
-        */
+         */
 
         // Add bitfield members to the bitmask type
         MemberDescriptor::_ref_type bitfield_member_descriptor {traits<MemberDescriptor>::make_shared()};
@@ -5097,7 +5103,8 @@ void dynamictypes_examples()
         alias_bounded_string_type_descriptor->base_type(DynamicTypeBuilderFactory::get_instance()->
                         create_string_type(100)->build());
         DynamicTypeBuilder::_ref_type alias_bounded_string_builder {DynamicTypeBuilderFactory::get_instance()->
-                                                                  create_type(alias_bounded_string_type_descriptor)};
+                                                                            create_type(
+                                                                        alias_bounded_string_type_descriptor)};
         // Build the alias type for the bounded string
         DynamicType::_ref_type alias_bounded_string_type = alias_bounded_string_builder->build();
 
@@ -5107,7 +5114,7 @@ void dynamictypes_examples()
         recursive_alias_type_descriptor->name("MyRecursiveAlias");
         recursive_alias_type_descriptor->base_type(aliasenum_type);
         DynamicTypeBuilder::_ref_type recursive_alias_builder {DynamicTypeBuilderFactory::get_instance()->
-                                                                  create_type(recursive_alias_type_descriptor)};
+                                                                       create_type(recursive_alias_type_descriptor)};
         // Build the recursive alias type
         DynamicType::_ref_type recursive_alias_type = recursive_alias_builder->build();
 
@@ -5164,7 +5171,7 @@ void dynamictypes_examples()
             type_descriptor->bound().push_back(static_cast<uint32_t>(LENGTH_UNLIMITED));
             sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
                     type_descriptor)->build());
-        */
+         */
 
         // Add the sequence member to the struct
         struct_builder->add_member(sequence_member_descriptor);
@@ -5181,7 +5188,7 @@ void dynamictypes_examples()
             type_descriptor->bound().push_back(5);
             sequence_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
                     type_descriptor)->build());
-        */
+         */
 
         // Add the sequence member to the struct
         struct_builder->add_member(sequence_member_descriptor);
@@ -5233,7 +5240,7 @@ void dynamictypes_examples()
             type_descriptor->bound().push_back(4);
             array_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
                     type_descriptor)->build());
-        */
+         */
 
         // Add the array member to the struct
         struct_builder->add_member(array_member_descriptor);
@@ -5278,9 +5285,9 @@ void dynamictypes_examples()
         MemberDescriptor::_ref_type map_member_descriptor {traits<MemberDescriptor>::make_shared()};
         map_member_descriptor->name("string_long_array_unbounded_map");
         map_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_map_type(
-                DynamicTypeBuilderFactory::get_instance()->create_string_type(static_cast<uint32_t>(
-                LENGTH_UNLIMITED))->build(), alias_bounded_string_type, static_cast<uint32_t>(
-                LENGTH_UNLIMITED))->build());
+                    DynamicTypeBuilderFactory::get_instance()->create_string_type(static_cast<uint32_t>(
+                        LENGTH_UNLIMITED))->build(), alias_bounded_string_type, static_cast<uint32_t>(
+                        LENGTH_UNLIMITED))->build());
 
         /* Alternative
             type_descriptor = traits<TypeDescriptor>::make_shared();
@@ -5291,7 +5298,7 @@ void dynamictypes_examples()
             type_descriptor->bound().push_back(static_cast<uint32_t>(LENGTH_UNLIMITED));
             map_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
                     type_descriptor)->build());
-        */
+         */
 
         // Add the map member to the struct
         struct_builder->add_member(map_member_descriptor);
@@ -5310,7 +5317,7 @@ void dynamictypes_examples()
             type_descriptor->bound().push_back(2);
             map_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_type(
                     type_descriptor)->build());
-        */
+         */
 
         struct_builder->add_member(map_member_descriptor);
         // Build the struct type
@@ -5373,7 +5380,7 @@ void dynamictypes_examples()
         complexstruct_type_descriptor->name("ComplexStruct");
         complexstruct_type_descriptor->base_type(parentstruct_type);
         DynamicTypeBuilder::_ref_type complexstruct_builder {DynamicTypeBuilderFactory::get_instance()->
-                                                                   create_type(complexstruct_type_descriptor)};
+                                                                     create_type(complexstruct_type_descriptor)};
         // Add members to the complex struct type
         MemberDescriptor::_ref_type complexstruct_member {traits<MemberDescriptor>::make_shared()};
         complexstruct_member->name("complex_member");
@@ -5550,7 +5557,7 @@ void dynamictypes_examples()
         MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
         member_descriptor->name("string_var");
         member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->create_string_type(static_cast<uint32_t>(
-                LENGTH_UNLIMITED))->build());
+                    LENGTH_UNLIMITED))->build());
         type_builder->add_member(member_descriptor);
 
         // Create the annotation type
@@ -5671,7 +5678,7 @@ void xml_profiles_examples()
             DynamicType::_ref_type my_struct_type;
             if (RETCODE_OK !=
                     DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name(
-                    "MyStruct", my_struct_type))
+                        "MyStruct", my_struct_type))
             {
                 // Error
                 return;

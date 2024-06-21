@@ -1,5 +1,5 @@
-`Version 2.14.1 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.1/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 2.14.1 <https://fast-dds.docs.eprosima.com/en/v2.14.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
 
@@ -62,5 +62,5 @@ This release includes the following **fixes**:
 
 .. note::
 
-    When upgrading to version 2.14.0 it is **advisable** to regenerate generated source from IDL files
+    When upgrading to version 2.14.1 it is **advisable** to regenerate generated source from IDL files
     using `Fast DDS-Gen v3.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.0>`_.

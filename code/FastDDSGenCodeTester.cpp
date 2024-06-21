@@ -159,7 +159,7 @@ class ChildBitset : public ParentBitset
 //!
 
 // ENUMERATION_DATA_TYPE
-enum Enumeration : uint32_t
+enum Enumeration : int32_t
 {
     RED,
     GREEN,

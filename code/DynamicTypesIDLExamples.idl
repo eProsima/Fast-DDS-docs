@@ -202,3 +202,11 @@ struct AnnotatedStruct
     @MyAnnotation(length = 10) string string_var;
 };
 //!--
+
+//!--IDL_HELLO_WORLD
+struct HelloWorld
+{
+    unsigned long index;
+    string message;
+};
+//!--

@@ -5606,6 +5606,32 @@ void dynamictypes_examples()
         data->return_loaned_value(loan_data);
         //!--
     }
+    {
+        //!--CPP_HELLO_WORLD
+        // Create struct type
+        TypeDescriptor::_ref_type struct_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        struct_type_descriptor->kind(TK_STRUCTURE);
+        struct_type_descriptor->name("HelloWorld");
+        DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
+                                                            create_type(struct_type_descriptor)};
+
+        // The type consists of two members, and index and a message. Add members to the struct.
+        MemberDescriptor::_ref_type index_member_descriptor {traits<MemberDescriptor>::make_shared()};
+        index_member_descriptor->name("index");
+        index_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
+                        get_primitive_type(TK_UINT32));
+        struct_builder->add_member(index_member_descriptor);
+
+        MemberDescriptor::_ref_type message_member_descriptor {traits<MemberDescriptor>::make_shared()};
+        message_member_descriptor->name("message");
+        message_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->
+                        create_string_type(static_cast<uint32_t>(LENGTH_UNLIMITED))->build());
+        struct_builder->add_member(message_member_descriptor);
+
+        // Build the type
+        DynamicType::_ref_type struct_type {struct_builder->build()};
+        //!--
+    }
 }
 
 void xml_profiles_examples()

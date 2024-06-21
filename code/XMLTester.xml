@@ -4570,6 +4570,13 @@
 <!-- XML Types Profiles does not support defining/setting custom annotations -->
 <!--><-->
 
+<!-->XML_HELLO_WORLD<-->
+<struct name="HelloWorld">
+    <member name="index" type="uint32"/>
+    <member name="message" type="string"/>
+</struct>
+<!--><-->
+
 </type>
 </types>
 </dds>

@@ -1,0 +1,39 @@
+`Version 2.14.2 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important::
+
+    Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS
+    v3.0.0, stay tuned!
+
+This release includes the following **features** in an ABI compatible manner:
+
+#. Set :ref:`DataSharing Qos policy<datasharingqospolicy>` in transmitted ``WriterProxyData`` and ``ReaderProxyData``.
+#. New :ref:`max_message_size<use-case-large-data-options>` property to limit the output datagrams size.
+#. Add XML configuration for :ref:`flow-controllers`.
+
+This release includes the following **improvements**:
+
+#. Repository & CI improvements.
+#. Do not require `PYTHON_VERSION` to be defined. in .bat files.
+#. Use `%*` instead of loop in `.bat` scripts.
+#. Use absolute paths when loading XML files.
+#. Bump Fast CDR submodule to version 2.2.2.
+
+This release includes the following **fixes**:
+
+#. Handle errors when setting socket buffer sizes.
+#. Do not require Fast CDR v2 in examples.
+#. Fix :ref:`transport_sharedMemory_sharedMemory` buffer recovery MacOS flaky test.
+#. Automatically unmatch remote participants on participant deletion.
+#. Bugfix: correct :ref:`liveliness<livelinessqospolicy>` state in a multiple reader - one writer scenario.
+#. Only apply :ref:`content filter<dds_layer_topic_contentFilteredTopic>` to ALIVE changes.
+#. Properly delete builtin statistics writers upon :func:`delete_contained_entities`.
+#. Fix doxygen warning about undocumented `@param` in deleted functions.
+#. Correctly initialize `MatchingFailureMask` constants to be used with the `std::bitset` API.
+#. Fix :ref:`Discovery Server<discovery_server>` not connecting due to ports logic.
+
+.. note::
+
+    When upgrading to version 2.14.2 it is **advisable** to regenerate generated source from IDL files
+    using `Fast DDS-Gen v3.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.0>`_.

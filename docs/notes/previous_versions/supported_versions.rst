@@ -4,6 +4,7 @@ Supported versions
 Version 2.14
 ------------
 
+.. include:: v2.14.2.rst
 .. include:: v2.14.1.rst
 .. include:: v2.14.0.rst
 

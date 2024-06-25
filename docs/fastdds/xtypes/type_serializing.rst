@@ -15,11 +15,11 @@ The following `DynamicType` object would be serialized as follows:
 
 .. tabs::
 
-    .. tab:: C++
+    .. tab:: IDL
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_HELLO_WORLD
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_HELLO_WORLD
             :end-before: //!--
 
     .. tab:: XML
@@ -29,11 +29,11 @@ The following `DynamicType` object would be serialized as follows:
             :start-after: <!-->XML_HELLO_WORLD<-->
             :end-before: <!--><-->
 
-    .. tab:: IDL
+    .. tab:: C++
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_HELLO_WORLD
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //!--CPP_HELLO_WORLD
             :end-before: //!--
 
 .. note::
@@ -42,7 +42,7 @@ The following `DynamicType` object would be serialized as follows:
 
 .. note::
 
-    The conversion to IDL does not support inheritance of :ref:`xtypes_supportedtypes_structure` or of :ref:`xtypes_supportedtypes_bitset`.
+    The conversion to IDL supports inheritance of :ref:`xtypes_supportedtypes_struct` fully, and of :ref:`xtypes_supportedtypes_bitset` at the cost of collapsing the base and derived bitsets into a single bitset.
 
 Default values
 ++++++++++++++

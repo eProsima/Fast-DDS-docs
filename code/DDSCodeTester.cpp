@@ -5632,6 +5632,100 @@ void dynamictypes_examples()
         DynamicType::_ref_type struct_type {struct_builder->build()};
         //!--
     }
+    {
+        //!--CPP_BITMASK_DEFAULT_ANNOTATIONS
+        // Define a struct type to contain a bitmask
+        TypeDescriptor::_ref_type type_descriptor {traits<TypeDescriptor>::make_shared()};
+        type_descriptor->kind(TK_STRUCTURE);
+        type_descriptor->name("BitmaskStruct");
+        DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->
+                                                              create_type(type_descriptor)};
+
+        // Define the bitmask type
+        DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_bitmask_type(32)};
+
+        /* Alternative
+            TypeDescriptor::_ref_type bitmask_type_descriptor {traits<TypeDescriptor>::make_shared()};
+            bitmask_type_descriptor->kind(TK_BITMASK);
+            bitmask_type_descriptor->name("MyBitMask");
+            bitmask_type_descriptor->element_type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(
+                        TK_BOOLEAN));
+            bitmask_type_descriptor->bound().push_back(32);
+            DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
+                                                            bitmask_type_descriptor)};
+        */
+
+        // Add bitfield members to the bitmask type
+        MemberDescriptor::_ref_type bitfield_member_descriptor {traits<MemberDescriptor>::make_shared()};
+        bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
+        bitfield_member_descriptor->name("flag0");
+        bitfield_member_descriptor->id(0);
+        bitmask_builder->add_member(bitfield_member_descriptor);
+        bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
+        bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
+        bitfield_member_descriptor->name("flag1");
+        bitfield_member_descriptor->id(2);
+        bitmask_builder->add_member(bitfield_member_descriptor);
+        bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
+        bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
+        bitfield_member_descriptor->name("flag2");
+        bitmask_builder->add_member(bitfield_member_descriptor);
+        // Build the bitmask type
+        DynamicType::_ref_type bitmask_type =  bitmask_builder->build();
+
+        // Add a bitmask member to the struct
+        MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
+        member_descriptor->name("my_bitmask");
+        member_descriptor->type(bitmask_type);
+        struct_builder->add_member(member_descriptor);
+        // Build the struct type
+        DynamicType::_ref_type struct_type {struct_builder->build()};
+        //!--
+    }
+    {
+        //!--CPP_BITSET_DEFAULT_TYPES
+        // Define a struct type to contain the bitset
+        TypeDescriptor::_ref_type struct_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        struct_type_descriptor->kind(TK_STRUCTURE);
+        struct_type_descriptor->name("BitsetStruct");
+        DynamicTypeBuilder::_ref_type struct_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
+                                                          struct_type_descriptor)};
+
+        // Define type for my_bitset
+        TypeDescriptor::_ref_type bitset_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        bitset_type_descriptor->kind(TK_BITSET);
+        bitset_type_descriptor->name("MyBitSet");
+        bitset_type_descriptor->bound({3, 1, 12});
+        DynamicTypeBuilder::_ref_type bitset_builder {DynamicTypeBuilderFactory::get_instance()->create_type(
+                                                          bitset_type_descriptor)};
+        // Add members to the bitset type
+        MemberDescriptor::_ref_type bitset_member_descriptor {traits<MemberDescriptor>::make_shared()};
+        bitset_member_descriptor->name("a");
+        bitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_UINT8));
+        bitset_member_descriptor->id(0);
+        bitset_builder->add_member(bitset_member_descriptor);
+        bitset_member_descriptor = traits<MemberDescriptor>::make_shared();
+        bitset_member_descriptor->name("b");
+        bitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
+        bitset_member_descriptor->id(3);
+        bitset_builder->add_member(bitset_member_descriptor);
+        bitset_member_descriptor = traits<MemberDescriptor>::make_shared();
+        bitset_member_descriptor->name("c");
+        bitset_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT16));
+        bitset_member_descriptor->id(4);
+        bitset_builder->add_member(bitset_member_descriptor);
+        // Build the bitset type
+        DynamicType::_ref_type bitset_type = bitset_builder->build();
+
+        // Add the bitset member to the struct
+        MemberDescriptor::_ref_type member_descriptor {traits<MemberDescriptor>::make_shared()};
+        member_descriptor->name("my_bitset");
+        member_descriptor->type(bitset_type);
+        struct_builder->add_member(member_descriptor);
+        // Build the struct type
+        DynamicType::_ref_type struct_type {struct_builder->build()};
+        //!--
+    }
 }
 
 void xml_profiles_examples()

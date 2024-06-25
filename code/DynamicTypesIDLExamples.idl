@@ -210,3 +210,31 @@ struct HelloWorld
     string message;
 };
 //!--
+
+//!--IDL_BITMASK_DEFAULT_ANNOTATIONS
+bitmask MyBitMask
+{
+    flag0,
+    @position(2) flag1,
+    flag2
+};
+
+struct BitmaskStruct
+{
+    MyBitMask my_bitmask;
+};
+//!--
+
+//!--IDL_BITSET_DEFAULT_TYPES
+bitset MyBitSet
+{
+    bitfield<3> a;
+    bitfield<1> b;
+    bitfield<12, short> c;
+};
+
+struct BitsetStruct
+{
+   MyBitSet my_bitset;
+};
+//!--

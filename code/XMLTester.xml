@@ -4577,6 +4577,30 @@
 </struct>
 <!--><-->
 
+<!-->XML_BITMASK_DEFAULT_ANNOTATIONS<-->
+<bitmask name="MyBitMask" bit_bound="32">
+    <bit_value name="flag0" position="0"/>
+    <bit_value name="flag1" position="2"/>
+    <bit_value name="flag2"/>
+</bitmask>
+
+<struct name="BitmaskStruct">
+    <member name="my_bitmask" type="nonBasic" nonBasicTypeName="MyBitMask"/>
+</struct>
+<!--><-->
+
+<!-->XML_BITSET_DEFAULT_TYPES<-->
+<bitset name="MyBitset">
+    <bitfield name="a" bit_bound="3" type="uint8" />
+    <bitfield name="b" bit_bound="1" type="bool" />
+    <bitfield name="c" bit_bound="12" type="int16"/>
+</bitset>
+
+<struct name="BitsetStruct">
+    <member name="my_bitset" type="nonBasic" nonBasicTypeName="MyBitSet"/>
+</struct>
+<!--><-->
+
 </type>
 </types>
 </dds>

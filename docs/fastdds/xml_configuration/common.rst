@@ -846,3 +846,35 @@ and to :ref:`realtime-allocations` for detailed information on how to tune alloc
      - Number of new elements that will be allocated when more space is |br| necessary.
      - ``uint32_t``
      - 1
+
+.. _flowcontrollers_xml:
+
+Flow Controller Descriptors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This ``<flow_controller_descriptor_list>`` element configures the list of flow controllers of a participant,
+so they can later be used on its DataWriters.
+Please refer to :ref:`flowcontrollersqos` for a detailed documentation.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - ``name``
+     - ``string``
+     -
+   * - ``<scheduler>``
+     - |FlowControllerSchedulerPolicy-api|
+     - |FIFO_SCHED_POLICY-api|
+   * - ``<max_bytes_per_period>``
+     - ``int32_t``
+     - 0 (i.e. infinite)
+   * - ``<period_ms>``
+     - ``uint64_t``
+     - 100
+   * - ``<sender_thread>``
+     - :ref:`ThreadSettingsType`
+     -

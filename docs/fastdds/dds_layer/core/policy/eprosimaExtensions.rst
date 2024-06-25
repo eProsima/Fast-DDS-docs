@@ -422,7 +422,7 @@ It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has t
      - Type
      - Default Value
    * - |FlowControllerDescriptor::name-api|
-     - ``const char *``
+     - ``string``
      -
    * - |FlowControllerDescriptor::scheduler-api|
      - |FlowControllerSchedulerPolicy-api|

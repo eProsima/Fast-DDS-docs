@@ -15,8 +15,8 @@ This release includes the following **features** in an ABI compatible manner:
 This release includes the following **improvements**:
 
 #. Repository & CI improvements.
-#. Do not require `PYTHON_VERSION` to be defined. in .bat files.
-#. Use `%*` instead of loop in `.bat` scripts.
+#. Do not require ``PYTHON_VERSION`` to be defined. in .bat files.
+#. Use ``%*`` instead of loop in ``.bat`` scripts.
 #. Use absolute paths when loading XML files.
 #. Bump Fast CDR submodule to version 2.2.2.
 
@@ -29,8 +29,8 @@ This release includes the following **fixes**:
 #. Bugfix: correct :ref:`liveliness<livelinessqospolicy>` state in a multiple reader - one writer scenario.
 #. Only apply :ref:`content filter<dds_layer_topic_contentFilteredTopic>` to ALIVE changes.
 #. Properly delete builtin statistics writers upon :func:`delete_contained_entities`.
-#. Fix doxygen warning about undocumented `@param` in deleted functions.
-#. Correctly initialize `MatchingFailureMask` constants to be used with the `std::bitset` API.
+#. Fix doxygen warning about undocumented ``@param`` in deleted functions.
+#. Correctly initialize ``MatchingFailureMask`` constants to be used with the ``std::bitset`` API.
 #. Fix :ref:`Discovery Server<discovery_server>` not connecting due to ports logic.
 
 .. note::

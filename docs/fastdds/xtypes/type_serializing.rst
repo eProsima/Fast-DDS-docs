@@ -5,12 +5,12 @@
 Dynamic Type Serializing
 ========================
 
-Fast-DDS provides methods to serialize DynamicType objects.
+Fast-DDS provides methods to serialize `DynamicType` objects.
 
 Dynamic Type to IDL
 -------------------
 
-The method `idl_serialize` converts a DynamicType object into an IDL string.
+The method `idl_serialize` converts a `DynamicType` object into an IDL string.
 The following `DynamicType` object would be serialized as follows:
 
 .. tabs::
@@ -38,8 +38,8 @@ The following `DynamicType` object would be serialized as follows:
 
 .. note::
 
-    The conversion to IDL does not support :ref:`xtypes_supportedtypes_alias`, :ref:`xtypes_supportedtypes_bitset`, :ref:`xtypes_supportedtypes_bitmask`, or :ref:`xtypes_annotations`.
+    The conversion to IDL only supports the annotations: `@bit_bound`, `@extensibility`, `@key`, `@position`.
 
 .. note::
 
-    The conversion to IDL does not support inheritance of :ref:`xtypes_supportedtypes_structure`.
+    The conversion to IDL does not support inheritance of :ref:`xtypes_supportedtypes_structure` or of :ref:`xtypes_supportedtypes_bitset`.

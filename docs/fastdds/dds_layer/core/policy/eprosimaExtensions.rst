@@ -736,7 +736,7 @@ List of QoS Policy data members:
      - :ref:`publishmodeqospolicykind`
      - |SYNCHRONOUS_PUBLISH_MODE-api|
    * - |PublishModeQosPolicy::flow_ctrl_name-api|
-     - ``const char *``
+     - ``string``
      - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::

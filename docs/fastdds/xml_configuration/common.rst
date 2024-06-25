@@ -725,8 +725,7 @@ PublishMode
 |                          |                                       +------------------+                  |
 |                          |                                       | ``SYNCHRONOUS``  |                  |
 +--------------------------+---------------------------------------+------------------+------------------+
-|``<flow_controller_name>``| string referring to a                 | ``<name>``       | Empty            |
-|                          | :ref:`flowcontrollersqos` name.       |                  |                  |
+|``<flow_controller_name>``| :ref:`flowcontrollersqos` name.       | ``<string>``     | Empty            |
 +--------------------------+---------------------------------------+------------------+------------------+
 
 .. important::
@@ -866,9 +865,9 @@ Please refer to :ref:`flowcontrollersqos` for a detailed documentation.
    * - Data Member Name
      - Type
      - Default Value
-   * - ``name``
+   * - ``<name>``
      - ``string``
-     -
+     - Empty
    * - ``<scheduler>``
      - |FlowControllerSchedulerPolicy-api|
      - |FIFO_SCHED_POLICY-api|

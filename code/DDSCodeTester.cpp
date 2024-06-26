@@ -6975,7 +6975,7 @@ public:
         return true;
     }
 
-    MD5 m_md5;
+    eprosima::fastdds::MD5 m_md5;
     unsigned char* m_keyBuffer;
 };
 

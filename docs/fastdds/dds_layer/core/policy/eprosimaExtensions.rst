@@ -422,7 +422,7 @@ It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has t
      - Type
      - Default Value
    * - |FlowControllerDescriptor::name-api|
-     - ``const char *``
+     - ``string``
      -
    * - |FlowControllerDescriptor::scheduler-api|
      - |FlowControllerSchedulerPolicy-api|
@@ -736,7 +736,7 @@ List of QoS Policy data members:
      - :ref:`publishmodeqospolicykind`
      - |SYNCHRONOUS_PUBLISH_MODE-api|
    * - |PublishModeQosPolicy::flow_ctrl_name-api|
-     - ``const char *``
+     - ``string``
      - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::

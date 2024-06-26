@@ -215,6 +215,11 @@ These elements allow the user to define the DomainParticipant configuration.
      - |ThreadSettings| for the security log thread.
      - |ThreadSettings|
      -
+   * - ``<flow_controller_descriptor_list>``
+     - Defined flow controller descriptors to be used by the |br|
+       DomainParticipant. See :ref:`flowcontrollers_xml`.
+     - |FlowControllersQos|
+     -
 
 **Example**
 
@@ -222,7 +227,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-128, 130-131
+    :lines: 2-4, 6-150, 152-153
 
 .. note::
 

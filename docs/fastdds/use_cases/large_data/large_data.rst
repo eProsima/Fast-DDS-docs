@@ -246,24 +246,6 @@ They only differ in the way they decide the order in which the samples are sent.
 Example configuration
 ^^^^^^^^^^^^^^^^^^^^^
 
-<<<<<<< HEAD
-+------------------------------------------------+
-| **C++**                                        |
-+------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp |
-|    :language: c++                              |
-|    :start-after: //CONF-QOS-FLOWCONTROLLER     |
-|    :end-before: //!--                          |
-|    :dedent: 8                                  |
-+------------------------------------------------+
-| **XML**                                        |
-+------------------------------------------------+
-| There is currently no way of configuring flow  |
-| controllers with XML.                          |
-| This will be added in future releases of the   |
-| product                                        |
-+------------------------------------------------+
-=======
 .. tabs::
 
    .. tab:: C++
@@ -282,7 +264,6 @@ Example configuration
          :end-before: <!--><-->
          :lines: 2-3, 5-
          :append: </profiles>
->>>>>>> f3f4f0e (Add XML configuration for FlowControllerDescriptor to 2.x (#793))
 
 .. Warning::
 

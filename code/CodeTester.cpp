@@ -125,7 +125,7 @@ void rtps_api_example_create_entities()
         //RTPS_API_CONF_PARTICIPANT
         RTPSParticipantAttributes participant_attr;
         participant_attr.setName("my_participant");
-        //etc.
+        // etc.
         //!--
     }
 
@@ -151,11 +151,11 @@ void rtps_api_example_create_entities()
     }
 
     //RTPS_API_WRITE_SAMPLE
-    //Request a change from the history
+    // Request a change from the history
     CacheChange_t* change = history->create_change(255, ALIVE);
-    //Write serialized data into the change
+    // Write serialized data into the change
     change->serializedPayload.length = sprintf((char*) change->serializedPayload.data, "My example string %d", 2) + 1;
-    //Insert change into the history. The Writer takes care of the rest.
+    // Insert change into the history. The Writer takes care of the rest.
     history->add_change(change);
     //!--
 }
@@ -273,12 +273,12 @@ void rtps_api_example_conf()
     //!--
 
     //RTPS_API_HISTORY_CONF_PAYLOADMAXSIZE
-    history_attr.payloadMaxSize  = 250;//Defaults to 500 bytes
+    history_attr.payloadMaxSize  = 250; // Defaults to 500 bytes
     //!--
 
     //RTPS_API_HISTORY_CONF_RESOURCES
-    history_attr.initialReservedCaches = 250; //Defaults to 500
-    history_attr.maximumReservedCaches = 500; //Defaults to 0 = Unlimited Changes
+    history_attr.initialReservedCaches = 250; // Defaults to 500
+    history_attr.maximumReservedCaches = 500; // Defaults to 0 = Unlimited Changes
     //!--
 }
 

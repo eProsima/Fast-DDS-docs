@@ -213,17 +213,25 @@ This QoS configures the list of flow controllers of a participant, so they can l
 its DataWriters.
 It is a vector of shared pointers to |FlowControllerDescriptor-api|, which has the following fields:
 
-+------------------------------------------------------+-------------------------------------+-------------------------+
-| Data Member Name                                     | Type                                | Default Value           |
-+======================================================+=====================================+=========================+
-| |FlowControllerDescriptor::name-api|                 | ``const char *``                    |                         |
-+------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::scheduler-api|            | |FlowControllerSchedulerPolicy-api| | |FIFO_SCHED_POLICY-api| |
-+------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::max_bytes_per_period-api| | ``int32_t``                         | 0 (i.e. infinite)       |
-+------------------------------------------------------+-------------------------------------+-------------------------+
-| |FlowControllerDescriptor::period_ms-api|            | ``uint64_t``                        | 100                     |
-+------------------------------------------------------+-------------------------------------+-------------------------+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - |FlowControllerDescriptor::name-api|
+     - ``string``
+     -
+   * - |FlowControllerDescriptor::scheduler-api|
+     - |FlowControllerSchedulerPolicy-api|
+     - |FIFO_SCHED_POLICY-api|
+   * - |FlowControllerDescriptor::max_bytes_per_period-api|
+     - ``int32_t``
+     - 0 (i.e. infinite)
+   * - |FlowControllerDescriptor::period_ms-api|
+     - ``uint64_t``
+     - 100
 
 Please refer to :ref:`flow-controllers` section for more information.
 
@@ -496,7 +504,7 @@ List of QoS Policy data members:
      - :ref:`publishmodeqospolicykind`
      - |SYNCHRONOUS_PUBLISH_MODE-api|
    * - |PublishModeQosPolicy::flow_ctrl_name-api|
-     - ``const char *``
+     - ``string``
      - |FASTDDS_FLOW_CONTROLLER_DEFAULT-api|
 
 .. note::

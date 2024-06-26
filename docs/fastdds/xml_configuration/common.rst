@@ -300,6 +300,76 @@ Liveliness
 | ``<announcement_period>`` | See :ref:`livelinessqospolicy`. |                                 | |c_TimeInfinite-api| |
 +---------------------------+---------------------------------+---------------------------------+----------------------+
 
+<<<<<<< HEAD
+=======
+.. _xml_ownership:
+
+Ownership
+"""""""""
+
+.. list-table::
+  :header-rows: 1
+  :align: left
+
+  * - Name
+    - Description
+    - Values
+    - Default
+  * - ``<kind>``
+    - See :ref:`ownershipqospolicykind`.
+    - |SHARED-xml-api| |br|
+      |EXCLUSIVE-xml-api|
+    - |SHARED-xml-api|
+
+.. _xml_ownershipstrength:
+
+Ownership Strength
+""""""""""""""""""
+
++------------------+----------------------------------------+--------------------------------------+-------------------+
+| Name             | Description                            | Values                               | Default           |
++==================+========================================+======================================+===================+
+| ``<value>``      | See                                    | ``uint32_t``                         | 0                 |
+|                  | :ref:`ownershipstrengthqospolicy`.     |                                      |                   |
++------------------+----------------------------------------+--------------------------------------+-------------------+
+
+.. important::
+
+    This configuration is only available for :ref:`DataWriter QoS profile configuration <publisherprofiles>`.
+
+.. _xml_partition:
+
+Partition
+"""""""""
+
++---------------------------+-----------------------------------------------------------------------------+------------+
+| Name                      | Description                                                                 | Values     |
++===========================+=============================================================================+============+
+| ``<names>``               | It comprises a set of ``<name>`` elements containing the name of each       | ``<name>`` |
+|                           | partition. |br| See :ref:`partitionqospolicy`.                              |            |
+|                           |                                                                             |            |
++---------------------------+-----------------------------------------------------------------------------+------------+
+
+.. _xml_publishmode:
+
+PublishMode
+"""""""""""
+
++--------------------------+---------------------------------------+------------------+------------------+
+| Name                     | Description                           | Values           | Default          |
++==========================+=======================================+==================+==================+
+| ``<kind>``               | See :ref:`publishmodeqospolicy`.      | ``ASYNCHRONOUS`` | ``ASYNCHRONOUS`` |
+|                          |                                       +------------------+                  |
+|                          |                                       | ``SYNCHRONOUS``  |                  |
++--------------------------+---------------------------------------+------------------+------------------+
+|``<flow_controller_name>``| :ref:`flowcontrollersqos` name.       | ``<string>``     | Empty            |
++--------------------------+---------------------------------------+------------------+------------------+
+
+.. important::
+
+    This configuration is only available for :ref:`DataWriter QoS profile configuration <publisherprofiles>`.
+
+>>>>>>> 6e7f076 (Complete flow_controller_descriptor references in xml sections (#824))
 .. _xml_reliability:
 
 ReliabilityQosPolicy
@@ -482,3 +552,35 @@ and to :ref:`realtime-allocations` for detailed information on how to tune alloc
      - Number of new elements that will be allocated when more space is |br| necessary.
      - ``uint32_t``
      - 1
+
+.. _flowcontrollers_xml:
+
+Flow Controller Descriptors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This ``<flow_controller_descriptor_list>`` element configures the list of flow controllers of a participant,
+so they can later be used on its DataWriters.
+Please refer to :ref:`flowcontrollersqos` for a detailed documentation.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Data Member Name
+     - Type
+     - Default Value
+   * - ``<name>``
+     - ``string``
+     - Empty
+   * - ``<scheduler>``
+     - |FlowControllerSchedulerPolicy-api|
+     - |FIFO_SCHED_POLICY-api|
+   * - ``<max_bytes_per_period>``
+     - ``int32_t``
+     - 0 (i.e. infinite)
+   * - ``<period_ms>``
+     - ``uint64_t``
+     - 100
+   * - ``<sender_thread>``
+     - :ref:`ThreadSettingsType`
+     -

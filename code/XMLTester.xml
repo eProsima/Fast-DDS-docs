@@ -1594,11 +1594,78 @@
                 <!-- ALLOCATION -->
             </allocation>
 
+<<<<<<< HEAD
             <userData>
                 <value>13.40.37.00.CE</value>
             </userData>
         </rtps>
     </participant>
+=======
+                <userData>
+                    <value>3.4.7.0.C</value>
+                </userData>
+
+                <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
+
+                <builtin_controllers_sender_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </builtin_controllers_sender_thread>
+
+                <timed_events_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </timed_events_thread>
+
+                <discovery_server_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </discovery_server_thread>
+
+                <typelookup_service_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </typelookup_service_thread>
+
+                <builtin_transports_reception_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </builtin_transports_reception_threads>
+
+                <security_log_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </security_log_thread>
+
+                <flow_controller_descriptor_list>
+                    <flow_controller_descriptor>
+                        <name>example_flow_controller</name>
+                        <scheduler>FIFO</scheduler>
+                        <max_bytes_per_period>4096</max_bytes_per_period>
+                        <period_ms>500</period_ms>
+                        <sender_thread>
+                            <scheduling_policy>-1</scheduling_policy>
+                            <priority>0</priority>
+                            <affinity>0</affinity>
+                            <stack_size>-1</stack_size>
+                        </sender_thread>
+                    </flow_controller_descriptor>
+                </flow_controller_descriptor_list>
+            </rtps>
+        </participant>
+>>>>>>> 6e7f076 (Complete flow_controller_descriptor references in xml sections (#824))
 <!--
 </profiles>
 -->

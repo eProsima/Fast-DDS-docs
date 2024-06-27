@@ -104,8 +104,8 @@ with distributed systems:
 
 + :ref:`use-case-statistics-from-dedicated-interface`.
   In complex network environments, users may require the segregation of different types of data across multiple network
-  interfaces. For instance, a user might need to ensure that `:ref:statistics information <statistics_module>` is
-  received exclusively through a network interface that is dedicated to monitoring tasks, and all other user data
+  interfaces. For instance, a user might need to ensure that :ref:`statistics information <statistics_module>` is
+  received exclusively through a subnetwork interface that is dedicated to monitoring tasks, and all other user data
   intended for different participants are sent through alternate network interfaces. This setup allows users to
   effectively manage network traffic and ensures that sensitive monitoring data remains isolated within a specific
   subnetwork.

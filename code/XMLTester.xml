@@ -1441,6 +1441,9 @@
 </struct>
 <!--><-->
 <struct name="MembersExample">
+<!-->XML-MEMBER_WITH_KEY<-->
+<member name="my_long" type="int32" key="true"/>
+<!--><-->
 <!-->XML-BOUNDEDSTRINGS<-->
 <member name="my_large_string" type="string" stringMaxLength="41925"/>
 
@@ -4389,7 +4392,6 @@
 </data_reader>
 <!--><-->
 
-<<<<<<< HEAD
 <!-->XML_RELIABILITY<-->
 <data_writer profile_name="writer_xml_conf_reliability_profile">
     <qos>
@@ -4402,48 +4404,6 @@
         </reliability>
     </qos>
 </data_writer>
-=======
-<!-->XML-GENERIC<-->
-<struct name="primitive_types_example">
-    <!-- Primitive type definitions inside a struct -->
-    <member name="my_bool" type="boolean"/>
-    <member name="my_char" type="char8"/>
-    <member name="my_wchar" type="char16"/>
-    <member name="my_byte" type="byte"/>
-    <member name="my_octet" type="octet"/>
-    <member name="my_uint8" type="uint8"/>
-    <member name="my_short" type="int16"/>
-    <member name="my_long" type="int32"/>
-    <member name="my_unsignedshort" type="uint16"/>
-    <member name="my_unsignedlong" type="uint32"/>
-    <member name="my_longlong" type="int64"/>
-    <member name="my_unsignedlonglong" type="uint64"/>
-    <member name="my_float" type="float32"/>
-    <member name="my_double" type="float64"/>
-    <member name="my_longdouble" type="float128"/>
-    <member name="my_string" type="string"/>
-    <member name="my_wstring" type="wstring"/>
-</struct>
-<!--><-->
-<struct name="MembersExample">
-<!-->XML-MEMBER_WITH_KEY<-->
-<member name="my_long" type="int32" key="true"/>
-<!--><-->
-<!-->XML-BOUNDEDSTRINGS<-->
-<member name="my_large_string" type="string" stringMaxLength="41925"/>
-<member name="my_large_wstring" type="wstring" stringMaxLength="20925"/>
-<!--><-->
-<!-->XML-SEQUENCES<-->
-<member name="short_sequence" sequenceMaxLength="5" type="int16"/>
-<!--><-->
-<!-->XML-ARRAYS<-->
-<member name="long_array" type="int32" arrayDimensions="2,3,4"/>
-<!--><-->
-<!-->XML-MAPS<-->
-<member name="long_long_map" type="int32" key_type="int32" mapMaxLength="2"/>
-<!--><-->
-</struct>
->>>>>>> f95e5c9 (Document how to annotate member as key in XMl types (#746))
 
 <data_reader profile_name="reader_xml_conf_reliability_profile">
     <qos>

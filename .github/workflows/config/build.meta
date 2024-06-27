@@ -1,0 +1,11 @@
+names:
+    fastdds-docs:
+        cmake-args:
+            - "-DBUILD_DOCUMENTATION=ON"
+    fastdds:
+        cmake-args:
+            - "-DBUILD_DOCUMENTATION=ON"
+            - "-DSECURITY=ON"
+    fastdds_python:
+        cmake-args:
+            - "-DBUILD_DOCUMENTATION=ON"

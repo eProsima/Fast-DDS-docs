@@ -131,7 +131,7 @@ These elements allow the user to define the DomainParticipant configuration.
 | ``<allocation>``                     | Configuration regarding allocation behavior.   | |PartAlloc|        |         |
 |                                      | |br| It expects a |br| |PartAlloc|.            |                    |         |
 +--------------------------------------+------------------------------------------------+--------------------+---------+
-| ``<flow_controller_descriptor_list>``| Defined flow controller descriptors |br|.      ||FlowControllersQos||         |
+| ``<flow_controller_descriptor_list>``| Defined flow controller descriptors. |br|      ||FlowControllersQos||         |
 |                                      | See :ref:`flowcontrollers_xml`.                |                    |         |
 +--------------------------------------+------------------------------------------------+--------------------+---------+
 

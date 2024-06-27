@@ -38,24 +38,24 @@
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilderFactory.hpp>
 #include <fastdds/dds/xtypes/type_representation/TypeObject.hpp>
 #include <fastdds/rtps/attributes/ThreadSettings.hpp>
-#include <fastdds/rtps/common/WriteParams.h>
-#include <fastdds/rtps/history/IPayloadPool.h>
-#include <fastdds/rtps/transport/ChainingTransport.h>
-#include <fastdds/rtps/transport/ChainingTransportDescriptor.h>
+#include <fastdds/rtps/common/WriteParams.hpp>
+#include <fastdds/rtps/history/IPayloadPool.hpp>
+#include <fastdds/rtps/transport/ChainingTransport.hpp>
+#include <fastdds/rtps/transport/ChainingTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/BlockedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/NetmaskFilterKind.hpp>
-#include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h>
-#include <fastdds/rtps/transport/TCPTransportDescriptor.h>
-#include <fastdds/rtps/transport/TCPv4TransportDescriptor.h>
-#include <fastdds/rtps/transport/TCPv6TransportDescriptor.h>
-#include <fastdds/rtps/transport/UDPv4TransportDescriptor.h>
-#include <fastdds/rtps/transport/UDPv6TransportDescriptor.h>
+#include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp>
+#include <fastdds/rtps/transport/TCPTransportDescriptor.hpp>
+#include <fastdds/rtps/transport/TCPv4TransportDescriptor.hpp>
+#include <fastdds/rtps/transport/TCPv6TransportDescriptor.hpp>
+#include <fastdds/rtps/transport/UDPv4TransportDescriptor.hpp>
+#include <fastdds/rtps/transport/UDPv6TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
-#include <fastdds/utils/IPLocator.h>
+#include <fastdds/utils/IPLocator.hpp>
 
 using namespace eprosima::fastdds::dds;
 
@@ -6975,7 +6975,7 @@ public:
         return true;
     }
 
-    MD5 m_md5;
+    eprosima::fastdds::MD5 m_md5;
     unsigned char* m_keyBuffer;
 };
 

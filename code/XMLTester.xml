@@ -1611,6 +1611,15 @@
             <userData>
                 <value>13.40.37.00.CE</value>
             </userData>
+
+            <flow_controller_descriptor_list>
+                <flow_controller_descriptor>
+                    <name>example_flow_controller</name>
+                    <scheduler>FIFO</scheduler>
+                    <max_bytes_per_period>4096</max_bytes_per_period>
+                    <period_ms>500</period_ms>
+                </flow_controller_descriptor>
+            </flow_controller_descriptor_list>
         </rtps>
     </participant>
 <!--

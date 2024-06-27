@@ -102,6 +102,14 @@ with distributed systems:
   This use case leverages the :ref:`xtypes_discovery_matching` to create endpoints and start communicating with remote
   discovered endpoints with previously unknown data types.
 
++ :ref:`use-case-statistics-from-dedicated-interface`.
+  In complex network environments, users may require the segregation of different types of data across multiple network
+  interfaces. For instance, a user might need to ensure that `:ref:statistics information <statistics_module>` is
+  received exclusively through a network interface that is dedicated to monitoring tasks, and all other user data
+  intended for different participants are sent through alternate network interfaces. This setup allows users to
+  effectively manage network traffic and ensures that sensitive monitoring data remains isolated within a specific
+  subnetwork.
+
 .. toctree::
     :maxdepth: 2
     :hidden:
@@ -120,3 +128,4 @@ with distributed systems:
     /fastdds/use_cases/rosbag_capture/rosbag_capture.rst
     /fastdds/use_cases/request_reply/request_reply.rst
     /fastdds/use_cases/remote_type_discovery_matching/remote_type_discovery_matching.rst
+    /fastdds/use_cases/statistics_from_dedicated_interface/statistics_from_dedicated_interface.rst

@@ -125,7 +125,7 @@ void rtps_api_example_create_entities()
         //RTPS_API_CONF_PARTICIPANT
         RTPSParticipantAttributes participant_attr;
         participant_attr.setName("my_participant");
-        //etc.
+        // etc.
         //!--
     }
 
@@ -151,14 +151,11 @@ void rtps_api_example_create_entities()
     }
 
     //RTPS_API_WRITE_SAMPLE
-    //Request a change from the writer
-    CacheChange_t* change = writer->new_change([]() -> uint32_t
-                    {
-                        return 255;
-                    }, ALIVE);
-    //Write serialized data into the change
+    // Request a change from the history
+    CacheChange_t* change = history->create_change(255, ALIVE);
+    // Write serialized data into the change
     change->serializedPayload.length = sprintf((char*) change->serializedPayload.data, "My example string %d", 2) + 1;
-    //Insert change into the history. The Writer takes care of the rest.
+    // Insert change into the history. The Writer takes care of the rest.
     history->add_change(change);
     //!--
 }
@@ -242,9 +239,9 @@ void rtps_api_example_create_entities_with_custom_pool()
 
     // A writer using the custom payload pool
     HistoryAttributes writer_history_attr;
-    WriterHistory* writer_history = new WriterHistory(writer_history_attr);
+    WriterHistory* writer_history = new WriterHistory(writer_history_attr, payload_pool);
     WriterAttributes writer_attr;
-    RTPSWriter* writer = RTPSDomain::createRTPSWriter(participant, writer_attr, payload_pool, writer_history);
+    RTPSWriter* writer = RTPSDomain::createRTPSWriter(participant, writer_attr, writer_history);
 
     // A reader using the same instance of the custom payload pool
     HistoryAttributes reader_history_attr;
@@ -254,10 +251,7 @@ void rtps_api_example_create_entities_with_custom_pool()
 
     // Write and Read operations work as usual, but take the Payloads from the pool.
     // Requesting a change to the Writer will provide one with an empty Payload taken from the pool
-    CacheChange_t* change = writer->new_change([]() -> uint32_t
-                    {
-                        return 255;
-                    }, ALIVE);
+    CacheChange_t* change = writer_history->create_change(255, ALIVE);
 
     // Write serialized data into the change and add it to the history
     change->serializedPayload.length = sprintf((char*) change->serializedPayload.data, "My example string %d", 2) + 1;
@@ -279,12 +273,12 @@ void rtps_api_example_conf()
     //!--
 
     //RTPS_API_HISTORY_CONF_PAYLOADMAXSIZE
-    history_attr.payloadMaxSize  = 250;//Defaults to 500 bytes
+    history_attr.payloadMaxSize  = 250; // Defaults to 500 bytes
     //!--
 
     //RTPS_API_HISTORY_CONF_RESOURCES
-    history_attr.initialReservedCaches = 250; //Defaults to 500
-    history_attr.maximumReservedCaches = 500; //Defaults to 0 = Unlimited Changes
+    history_attr.initialReservedCaches = 250; // Defaults to 500
+    history_attr.maximumReservedCaches = 500; // Defaults to 0 = Unlimited Changes
     //!--
 }
 

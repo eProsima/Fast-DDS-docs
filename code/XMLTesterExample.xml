@@ -277,6 +277,14 @@
                         </property>
                     </properties>
                 </propertiesPolicy>
+                <flow_controller_descriptor_list>
+                    <flow_controller_descriptor>
+                        <name>example_flow_controller</name>
+                        <scheduler>FIFO</scheduler>
+                        <max_bytes_per_period>4096</max_bytes_per_period>
+                        <period_ms>500</period_ms>
+                    </flow_controller_descriptor>
+                </flow_controller_descriptor_list>
             </rtps>
         </participant>
 
@@ -333,6 +341,7 @@
                 </partition>
                 <publishMode>
                     <kind>ASYNCHRONOUS</kind>
+                    <flow_controller_name>example_flow_controller</flow_controller_name>
                 </publishMode>
                 <disablePositiveAcks>
                     <enabled>true</enabled>

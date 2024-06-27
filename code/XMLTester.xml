@@ -3254,6 +3254,42 @@
 </data_writer>
 <!--><-->
 
+<!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+-->
+<participant profile_name="max_message_size_participant_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Set the maximum size in bytes for all RTPS datagrams sent by the participant -->
+                <property>
+                    <name>fastdds.max_message_size</name>
+                    <value>1200</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
+<!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+-->
+<data_writer profile_name="max_msg_size_datawriter_xml_profile">
+    <propertiesPolicy>
+        <properties>
+            <!-- Set the maximum size in bytes for all RTPS datagrams sent by the writer -->
+            <property>
+                <name>fastdds.max_message_size</name>
+                <value>1200</value>
+            </property>
+        </properties>
+    </propertiesPolicy>
+</data_writer>
+<!--><-->
+
 <!-->FASTDDS_STATISTICS_MODULE<-->
 <participant profile_name="statistics_domainparticipant_conf_xml_profile">
     <rtps>

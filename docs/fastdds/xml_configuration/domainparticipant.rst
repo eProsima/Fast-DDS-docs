@@ -183,6 +183,40 @@ These elements allow the user to define the DomainParticipant configuration.
        delivery is used. See :ref:`intraprocess-delivery`.
      - ``string``
      - Empty
+<<<<<<< HEAD
+=======
+   * - ``<builtin_controllers_sender_thread>``
+     - |ThreadSettings| for the builtin flow controllers sender thread.
+     - |ThreadSettings|
+     -
+   * - ``<timed_events_thread>``
+     - |ThreadSettings| participant's timed events thread.
+     - |ThreadSettings|
+     -
+   * - ``<discovery_server_thread>``
+     - |ThreadSettings| for the discovery server thread.
+     - |ThreadSettings|
+     -
+   * - ``<typelookup_service_thread>``
+     - |ThreadSettings| for the threads used by the builtin TypeLookup service |br|
+       to discover unknown remote types. |br|
+       See :ref:`xtypes_discovery_matching`.
+     - |ThreadSettings|
+     -
+   * - ``<builtin_transports_reception_threads>``
+     - |ThreadSettings| for the builtin transports reception threads.
+     - |ThreadSettings|
+     -
+   * - ``<security_log_thread>``
+     - |ThreadSettings| for the security log thread.
+     - |ThreadSettings|
+     -
+   * - ``<flow_controller_descriptor_list>``
+     - Defined flow controller descriptors to be used by the |br|
+       DomainParticipant. See :ref:`flowcontrollers_xml`.
+     - |FlowControllersQos|
+     -
+>>>>>>> 6e7f076 (Complete flow_controller_descriptor references in xml sections (#824))
 
 **Example**
 
@@ -190,7 +224,11 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
+<<<<<<< HEAD
     :lines: 2-3, 5-88, 90
+=======
+    :lines: 2-4, 6-150, 152-153
+>>>>>>> 6e7f076 (Complete flow_controller_descriptor references in xml sections (#824))
 
 .. note::
 

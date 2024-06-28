@@ -25,7 +25,7 @@ need to use custom user transports. There exists several ways of configuring the
 
       .. code-block:: bash
 
-            fastdds discovery -i 0 -t 127.0.0.1 -q 12345
+            fastdds discovery -t 127.0.0.1 -q 12345
 
    .. tab:: C++
 
@@ -45,7 +45,7 @@ need to use custom user transports. There exists several ways of configuring the
           :language: xml
           :start-after: <!-->TCP-AND-DISCOVERY-SERVER-SERVER<-->
           :end-before: <!--><-->
-          :lines: 2-4, 6-41, 43-44
+          :lines: 2-4, 6-40, 42-43
 
    .. tab:: Fast DDS Discovery Server Example
 
@@ -95,4 +95,4 @@ The client participant can be configured by either using the ``ROS_DISCOVERY_SER
           :language: xml
           :start-after: <!-->TCP-AND-DISCOVERY-SERVER-CLIENT<-->
           :end-before: <!--><-->
-          :lines: 2-4, 6-47, 49-50
+          :lines: 2-4, 6-43, 45-46

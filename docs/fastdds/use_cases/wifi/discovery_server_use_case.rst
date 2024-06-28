@@ -32,54 +32,59 @@ UDPv4 basic example setup
 
 To configure the Discovery Server scenario, two types of participants are created: the server participant and
 the client participant.
-Two parameters to be configured in this type of implementation are outlined:
+Only one parameter needs be configured in this type of implementation:
 
-+ **Server GUID Prefix**: This is the unique identifier of the server.
 + **Server Address-port pair**: Specifies the IP address and port of the machine that implements the server.
   Any free random port can be used.
   However, using :ref:`RTPS standard ports<listening_locators_defaultPorts>` is discouraged.
 
-+--------------------------------------------------------+
-| **SERVER**                                             |
-+========================================================+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF_DS_MAIN_SCENARIO_SERVER        |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF_DS_MAIN_SCENARIO_SERVER<--> |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
++-------------------------------------------------------------+
+| **SERVER**                                                  |
++=============================================================+
+|                                                             |
+|.. tabs::                                                    |
+|                                                             |
+|   .. tab:: **C++**                                          |
+|                                                             |
+|      .. literalinclude:: /../code/DDSCodeTester.cpp         |
+|         :language: c++                                      |
+|         :start-after: //CONF_DS_MAIN_SCENARIO_SERVER        |
+|         :end-before: //!--                                  |
+|         :dedent: 8                                          |
+|                                                             |
+|   .. tab:: **XML**                                          |
+|                                                             |
+|      .. literalinclude:: /../code/XMLTester.xml             |
+|         :language: xml                                      |
+|         :start-after: <!-->CONF_DS_MAIN_SCENARIO_SERVER<--> |
+|         :end-before: <!--><-->                              |
+|         :lines: 2-3,5-                                      |
+|         :append: </profiles>                                |
++-------------------------------------------------------------+
 
-+--------------------------------------------------------+
-| **CLIENT**                                             |
-+========================================================+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF_DS_MAIN_SCENARIO_CLIENT        |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF_DS_MAIN_SCENARIO_CLIENT<--> |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
++-------------------------------------------------------------+
+| **CLIENT**                                                  |
++=============================================================+
+|                                                             |
+|.. tabs::                                                    |
+|                                                             |
+|   .. tab:: **C++**                                          |
+|                                                             |
+|      .. literalinclude:: /../code/DDSCodeTester.cpp         |
+|         :language: c++                                      |
+|         :start-after: //CONF_DS_MAIN_SCENARIO_CLIENT        |
+|         :end-before: //!--                                  |
+|         :dedent: 8                                          |
+|                                                             |
+|   .. tab:: **XML**                                          |
+|                                                             |
+|      .. literalinclude:: /../code/XMLTester.xml             |
+|         :language: xml                                      |
+|         :start-after: <!-->CONF_DS_MAIN_SCENARIO_CLIENT<--> |
+|         :end-before: <!--><-->                              |
+|         :lines: 2-3,5-                                      |
+|         :append: </profiles>                                |
++-------------------------------------------------------------+
 
 .. _discovery_server_redundancy_scenario_setup:
 
@@ -91,7 +96,7 @@ That is, if the server fails the clients are not able to perform the discovery.
 To prevent this, several servers could be linked to each client.
 Then, a discovery failure only takes place if *all servers* fail, which is a more unlikely event.
 
-In the example below, the values have been chosen to ensure each server has a unique *GUID Prefix* and
+In the example below, the values have been chosen to ensure each server has a unique
 *unicast address-port pair*.
 Note that several servers can share the same IP address but their port numbers should be different.
 Likewise, several servers can share the same port if their IP addresses are different.
@@ -147,47 +152,53 @@ Likewise, several servers can share the same port if their IP addresses are diff
 .. | @enduml
 
 
-+--------------------------------------------------------+
-| **SERVER**                                             |
-+========================================================+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF_DS_REDUNDANCY_SCENARIO_SERVER  |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF_DS_RDNCY_SCENARIO_SERVER<-->|
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
++-------------------------------------------------------------+
+| **SERVER**                                                  |
++=============================================================+
+|                                                             |
+|.. tabs::                                                    |
+|                                                             |
+|   .. tab:: **C++**                                          |
+|                                                             |
+|      .. literalinclude:: /../code/DDSCodeTester.cpp         |
+|         :language: c++                                      |
+|         :start-after: //CONF_DS_REDUNDANCY_SCENARIO_SERVER  |
+|         :end-before: //!--                                  |
+|         :dedent: 8                                          |
+|                                                             |
+|   .. tab:: **XML**                                          |
+|                                                             |
+|      .. literalinclude:: /../code/XMLTester.xml             |
+|         :language: xml                                      |
+|         :start-after: <!-->CONF_DS_RDNCY_SCENARIO_SERVER<-->|
+|         :end-before: <!--><-->                              |
+|         :lines: 2-3,5-                                      |
+|         :append: </profiles>                                |
++-------------------------------------------------------------+
 
-+--------------------------------------------------------+
-| **CLIENT**                                             |
-+========================================================+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF_DS_REDUNDANCY_SCENARIO_CLIENT  |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->|
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
++-------------------------------------------------------------+
+| **CLIENT**                                                  |
++=============================================================+
+|                                                             |
+|.. tabs::                                                    |
+|                                                             |
+|   .. tab:: **C++**                                          |
+|                                                             |
+|      .. literalinclude:: /../code/DDSCodeTester.cpp         |
+|         :language: c++                                      |
+|         :start-after: //CONF_DS_REDUNDANCY_SCENARIO_CLIENT  |
+|         :end-before: //!--                                  |
+|         :dedent: 8                                          |
+|                                                             |
+|   .. tab:: **XML**                                          |
+|                                                             |
+|      .. literalinclude:: /../code/XMLTester.xml             |
+|         :language: xml                                      |
+|         :start-after: <!-->CONF_DS_RDNCY_SCENARIO_CLIENT<-->|
+|         :end-before: <!--><-->                              |
+|         :lines: 2-3,5-                                      |
+|         :append: </profiles>                                |
++-------------------------------------------------------------+
 
 .. _discovery_server_persistency_scenario_setup:
 
@@ -352,24 +363,24 @@ Consider two servers, each one managing an isolated network:
 
 In order to communicate both networks we can set server A to act as  a client of server B:
 
-+--------------------------------------------------------+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF_DS_PARTITION_2                 |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF_DS_PARTITION_2<-->          |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
+.. tabs::
+
+   .. tab:: **C++**
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+         :language: c++
+         :start-after: //CONF_DS_PARTITION_2
+         :end-before: //!--
+         :dedent: 8
+
+   .. tab:: **XML**
+
+      .. literalinclude:: /../code/XMLTester.xml
+         :language: xml
+         :start-after: <!-->CONF_DS_PARTITION_2<-->
+         :end-before: <!--><-->
+         :lines: 2-3,5-
+         :append: </profiles>
 
 .. _discovery_server_partitioning_option3:
 
@@ -391,22 +402,27 @@ server (C) that will be used to connect the first two:
 
 In order to communicate both networks we can setup server C to act as client of servers A and B as follows:
 
-+--------------------------------------------------------+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF_DS_PARTITION_3                 |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF_DS_PARTITION_3<-->          |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
+.. tabs::
 
+   .. tab:: **C++**
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+         :language: c++
+         :start-after: //CONF_DS_PARTITION_3
+         :end-before: //!--
+         :dedent: 8
+
+   .. tab:: **XML**
+
+      .. literalinclude:: /../code/XMLTester.xml
+         :language: xml
+         :start-after: <!-->CONF_DS_PARTITION_3<-->
+         :end-before: <!--><-->
+         :lines: 2-3,5-
+         :append: </profiles>
+
+.. note::
+     GUID Prefixes are used in these examples to identify the *servers* and help to understand each scenario.
+     However, they are not mandatory and can be omitted.
+     Note that in the *clients* configuration, the GUID Prefix is always missing, as it is not needed in
+     order to connect to the *servers*.

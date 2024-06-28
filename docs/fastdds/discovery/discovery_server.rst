@@ -43,41 +43,37 @@ In this architecture there are several key concepts to understand:
   The only difference between them is how they handle discovery traffic.
   The user traffic, that is, the traffic among the DataWriters and DataReaders they create, is role-independent.
 
-- All *server* and *client* discovery information will be shared with linked *clients*.
-  Note that a *server* may act as a *client* for other *servers*.
-
 - A |SERVER| is a participant to which the *clients* (and maybe other *servers*) send their discovery information.
-  The role of the *server* is to re-distribute the *clients* (and *servers*) discovery information to their known
-  *clients* and *servers*.
-  A *server* may connect to other *servers* to receive information about their *clients*.
-  Known *servers* will receive all the information known by the *server*.
-  Known *clients* will only receive the information they need to establish communication, i.e. the information about the
-  DomainParticipants, DataWriters, and DataReaders to which they match.
-  This means that the *server* runs a "matching" algorithm to sort out which information is required by which *client*.
+
+    * The role of the *server* is to redistribute its *clients* discovery information to its known
+      *clients* and *servers*.
+    * A *server* also announces the existence of a new *server* to its known *servers*, and vice versa.
+      In this way, a new server can connect to every other existing *server* in the network by just knowing the
+      existence of one of them.
+    * The discovery information that is redistributed might come from a **direct** *client* connected to the |SERVER|,
+      or from another *server* that is redirecting the discovery data from **its** *clients*.
+    * Known *servers* will receive all the information from the **direct** *clients* known by the *server* and the
+      participant information of other *servers* (to announce a new server).
+    * Known *clients* will only receive the information they need to establish communication, i.e. the information
+      about the DomainParticipants, DataWriters, and DataReaders to which they match.
+      This means that the *server* runs a "matching" algorithm to sort out which information is required by which
+      *client*.
 
 - A |BACKUP| *server* is a *server* that persists its discovery database into a file.
-  This type of *server* can load the network graph from a file on start-up without the need of receiving any *client's*
-  information.
-  It can be used to persist the *server* knowledge about the network between runs, thus securing the *server's*
-  information in case of unexpected shutdowns.
-  It is important to note that the discovery times will be negatively affected when using this type of *server*, since
-  periodically writing to a file is an expensive operation.
+
+    * This type of *server* can load the network graph from a file on start-up without the need of receiving any
+      *client's* information.
+    * It can be used to persist the *server* knowledge about the network between runs, thus securing the *server's*
+      information in case of unexpected shutdowns.
+    * It is important to note that the discovery times will be negatively affected when using this type of *server*,
+      since periodically writing to a file is an expensive operation.
 
 - A |CLIENT| is a participant that connects to one or more *servers* from which it receives only the discovery
   information they require to establish communication with matching endpoints.
 
-- *Clients* require prior knowledge of the *servers* to which they want to link.
-  Basically it is reduced to the *servers* identity (henceforth called |GuidPrefix_t-api|) and a list of locators
-  where the *servers* are listening.
-  These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
-
-  - The |GuidPrefix_t-api| is the RTPS standard RTPSParticipant unique identifier, a 12-byte chain.
-    This identifier allows *clients* to assess whether they are receiving messages from the right *server*, as each
-    standard RTPS message contains this piece of information.
-
-    The |GuidPrefix_t-api| is used because the *server's* IP address may not be a reliable enough server identifier,
-    since several *servers* can be hosted in the same machine, thus having the same IP, and also because multicast
-    addresses are acceptable addresses.
+    * *Clients* require prior knowledge of the *servers* to which they want to link.
+      Basically, it consists of a list of locators where the *servers* are listening, namely, an IP address and a port.
+      These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
 
 - A |SUPER_CLIENT| is a *client* that receives the discovery information known by the *server*, in opposition to
   *clients*, which only receive the information they need.
@@ -86,10 +82,11 @@ In this architecture there are several key concepts to understand:
 
     A |SUPER_CLIENT| does not behave as a *Server* as it only receives the discovery information through the *Server* to
     which it is connected.
+    It will not connect to other servers, and it will not redistribute the information it receives.
     Any DomainParticipant discovered by the *Server* with no endpoints will not be known by the |SUPER_CLIENT|.
 
-- *Servers* do not require any prior knowledge of their *clients*, but their |GuidPrefix_t-api| and locator list
-  (where they are listening) must match the one provided to the *clients*.
+- *Servers* do not require any prior knowledge of their *clients*, but they must listen in the address specified
+  by the locator provided to the *clients*.
   *Clients* send discovery messages to the *servers* at regular intervals (ping period) until they receive message
   reception acknowledgement.
   From then on, the *server* knows about the *client* and will inform it of the relevant discovery information.
@@ -105,109 +102,24 @@ A participant can only play one role (despite the fact that a *server* may conne
 It is mandatory to fill this value because it defaults to |SIMPLE|.
 The examples below shows how to set this parameter both programmatically and using XML.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL                                                                    |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->                                                             |
-|    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-18                                                                                                  |
-|    :append: </profiles>                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tabs::
 
-.. _DS_guidPrefix:
+   .. tab:: **C++**
 
-The GuidPrefix as the server unique identifier
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+         :language: c++
+         :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL
+         :end-before: //!--
+         :dedent: 8
 
-The |GuidPrefix_t-api| attribute belongs to the RTPS specification and univocally identifies each RTPSParticipant.
-It consists on 12 bytes, and in Fast DDS is a key for the DomainParticipant used in the DDS domain.
-Fast DDS defines the DomainParticipant |GuidPrefix_t-api| as a public data member of the
-|WireProtocolConfigQos-api| class.
-In the Discovery Server, it has the purpose to link a *server* to its *clients*.
-It must be specified in *server* and *client* setups.
+   .. tab:: **XML**
 
-Server side setup
-"""""""""""""""""
-
-The examples below show how to manage the corresponding enum data member and XML tag.
-
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++** - Option 1: Manual setting of the ``unsigned char`` in ASCII format.                                         |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1                                                            |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++** - Option 2: Using the ``>>`` operator and the ``std::istringstream`` type.                                   |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2                                                            |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->                                                                  |
-|    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-                                                                                                    |
-|    :append: </profiles>                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-
-Note that a *server* can connect to other *servers*.
-Thus, the following section may also apply.
-
-.. important::
-     When selecting a GUID prefix for the *server*, it is important to take into account that Fast DDS also uses this
-     parameter to identify participants in the same process and enable intra-process communications.
-     Setting two DomainParticipant GUID prefixes as intra-process compatible will result in no communication if the
-     DomainParticipants run in separate processes.
-     For more information, please refer to :ref:`intraprocess_delivery_guids`.
-
-.. warning::
-    Launching more than one server using the same GUID prefix is undefined behavior.
-
-Client side setup
-"""""""""""""""""
-
-Each *client* must keep a list of the *servers* to which it wants to link.
-Each single element represents an individual server, and a |GuidPrefix_t-api| must be provided.
-The *server* list must be populated with |RemoteServerAttributes-api| objects with a valid |GuidPrefix_t-api| data
-member.
-In XML the server list and its elements are simultaneously specified.
-Note that ``prefix`` is an element of the ``RemoteServer`` tag.
-
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_CLIENT_GUIDPREFIX                                                                     |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-CLIENT-PREFIX<-->                                                                  |
-|    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-11,20-25,27                                                                                         |
-+----------------------------------------------------------------------------------------------------------------------+
+      .. literalinclude:: /../code/XMLTester.xml
+         :language: xml
+         :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->
+         :end-before: <!--><-->
+         :lines: 2-3,5-18
+         :append: </profiles>
 
 .. _DS_locators:
 
@@ -216,31 +128,36 @@ The server locator list
 
 Each *server* must specify valid locators where it can be reached.
 Any *client* must be given proper locators to reach each of its *servers*.
-As in the :ref:`above section <DS_guidPrefix>`, here there is a *server* and a *client* side setup.
+Below are two examples of a *server* and a *client* side setup.
 
 Server side setup
 """""""""""""""""
 
 The examples below show how to setup the server locator list and XML tag.
+Each locator must contain:
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_SERVER_LOCATORS                                                                       |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->                                                                |
-|    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-19                                                                                                  |
-|    :append: </profiles>                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
+- IP address.
+- Port.
+- Transport protocol (UDPv4/6 or TCPv4/6).
+
+.. tabs::
+
+   .. tab:: **C++**
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+         :language: c++
+         :start-after: //CONF_SERVER_SERVER_LOCATORS
+         :end-before: //!--
+         :dedent: 8
+
+   .. tab:: **XML**
+
+      .. literalinclude:: /../code/XMLTester.xml
+         :language: xml
+         :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->
+         :end-before: <!--><-->
+         :lines: 2-3,5-19
+         :append: </profiles>
 
 Note that a *server* can connect to other *servers*, thus, the following section may also apply.
 
@@ -248,30 +165,36 @@ Client side setup
 """""""""""""""""
 
 Each *client* must keep a list of locators associated to the *servers* to which it wants to link.
-Each *server* specifies its own locator list which must be populated with |RemoteServerAttributes-api| objects with a
-valid ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``.
-In XML the server list and its elements are simultaneously specified.
-Note the ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList`` are elements of the ``RemoteServer``
-tag.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_CLIENT_LOCATORS                                                                       |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->                                                                |
-|    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-25                                                                                                  |
-|    :append: </profiles>                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
+Note that providing an unreachable locator will result in the *client* sending ping messages to that direction at
+regular intervals until it is connected to the same amount of servers that has been configured in the locator list.
+
+.. tabs::
+
+   .. tab:: **C++**
+
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+         :language: c++
+         :start-after: //CONF_SERVER_CLIENT_LOCATORS
+         :end-before: //!--
+         :dedent: 8
+
+   .. tab:: **XML**
+
+      .. literalinclude:: /../code/XMLTester.xml
+         :language: xml
+         :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->
+         :end-before: <!--><-->
+         :lines: 2-3,5-21
+         :append: </profiles>
+
+.. note::
+
+    Additionally, a logical port can be specified in the locator.
+    If this parameters is left empty, Fast DDS will automatically assign a logical port equal to the physical
+    port whenever it is needed.
+    This behavior is coherent with the logic implemented in the :ref:`env_vars_ros_discovery_server` environment
+    variable and the :ref:`Fast DDS CLI<cli_discovery>` tool.
 
 .. _DS_ping_period:
 
@@ -279,28 +202,87 @@ Fine tuning discovery server handshake
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As explained :ref:`above <DS_key_concepts>` the *clients* send discovery messages to the *servers* at regular
-intervals (ping period) until they receive message reception acknowledgement.
+intervals (ping period) until they receive as many message reception acknowledgement as remote locators
+(server addresses) were specified.
 Mind that this period also applies for those *servers* which connect to other *servers*.
-The default value for this period is 450 ms.
+The default value for this period is 450 ms, but it can be configured to a different value.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_SERVER_CLIENT_PING                                                                           |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-SERVER-CLIENT-PING<-->                                                                    |
-|    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-16                                                                                                  |
-|    :append: </profiles>                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tabs::
+
+  .. tab:: **C++**
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF_SERVER_CLIENT_PING
+      :end-before: //!--
+      :dedent: 8
+
+  .. tab:: **XML**
+
+    .. literalinclude:: /../code/XMLTester.xml
+      :language: xml
+      :start-after: <!-->CONF-SERVER-CLIENT-PING<-->
+      :end-before: <!--><-->
+      :lines: 2-3,5-16
+      :append: </profiles>
+
+.. _DS_guidPrefix:
+
+The GuidPrefix as an optional server unique identifier
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The |GuidPrefix_t-api| attribute belongs to the RTPS specification and univocally identifies each RTPSParticipant.
+It consists on 12 bytes, and in Fast DDS is a key for the DomainParticipant used in the DDS domain.
+Fast DDS defines the DomainParticipant |GuidPrefix_t-api| as a public data member of the
+|WireProtocolConfigQos-api| class.
+In the new Discovery Server mechanism, it is a completely optional parameter.
+However, it might be required in specific scenarios to operate with Discovery Server entities of Fast DDS v2.x or
+older, where the |GuidPrefix_t-api| was mandatory.
+
+Server side setup
+"""""""""""""""""
+
+The examples below show how to manage the corresponding enum data member and XML tag.
+
+.. tabs::
+
+  .. tab:: **C++** - Option 1
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
+        :end-before: //!--
+        :dedent: 8
+
+  .. tab:: **C++** - Option 2
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
+        :end-before: //!--
+        :dedent: 8
+
+  .. tab:: **XML**
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
+
+.. important::
+     When selecting a GUID prefix for the *server*, it is important to take into account that Fast DDS also uses this
+     parameter to identify participants in the same host or process and translate locators to localhost or enable
+     intra-process communications.
+     It is recommended to let Fast DDS to automatically generate the GUID prefix to guarantee the correct behavior of
+     these features.
+     Setting two DomainParticipant GUID prefixes as intra-process compatible will result in no communication if the
+     DomainParticipants run in separate processes.
+     For more information, please refer to :ref:`intraprocess_delivery_guids`.
+
+.. warning::
+    Launching more than one server using the same GUID prefix is undefined behavior.
 
 .. _DS_modify_server_list:
 
@@ -315,9 +297,10 @@ This feature allows to include a new remote server into the Discovery Server net
 in case that the remote server is relaunched with a different listening locator.
 
 .. important::
-     The list of remote *servers* can only be modified to either add more *servers*, or modify the remote server
-     locator, but not to remove any of the existing ones.
-     This means that the new list passed to |DomainParticipant::set_qos-api| must be a superset of the existing one.
+     The updated list of remote *servers* will modify the ping routine of a *client* or *server*, but it will not
+     affect the already established connections.
+     Hence, deleting a locator from the list will not disconnect the *server* or *client* from the remote server.
+     However, it will impede reconnection if the connection is lost.
 
 .. note::
     The remote server list can also be modified using the ``ROS_DISCOVERY_SERVER`` environment variable.
@@ -327,16 +310,15 @@ in case that the remote server is relaunched with a different listening locator.
     It is strongly advised to use either the API or the environment file.
     Using both at the same time may cause undefined behavior.
 
-+---------------------------------------------------------------------+
-| **C++**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                      |
-|    :language: c++                                                   |
-|    :start-after: //CONF_SERVER_ADD_SERVERS                          |
-|    :end-before: //!--                                               |
-|    :dedent: 8                                                       |
-|                                                                     |
-+---------------------------------------------------------------------+
+.. tabs::
+
+  .. tab:: **C++**
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+      :language: c++
+      :start-after: //CONF_SERVER_ADD_SERVERS
+      :end-before: //!--
+      :dedent: 8
 
 .. _DS_dns_name:
 
@@ -358,49 +340,46 @@ similar to the one discussed in this section, as well as multiple other examples
 Server side setup
 """""""""""""""""
 
-+---------------------------------------------------------------------+
-| **C++**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                      |
-|    :language: c++                                                   |
-|    :start-after: //CONF_SERVER_FULL_EXAMPLE                         |
-|    :end-before: //!--                                               |
-|    :dedent: 8                                                       |
-|                                                                     |
-+---------------------------------------------------------------------+
-| **XML**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                          |
-|    :language: xml                                                   |
-|    :start-after: <!-->CONF_SERVER_FULL_EXAMPLE<-->                  |
-|    :end-before: <!--><-->                                           |
-|    :lines: 2-3,5-47                                                 |
-|    :append: </profiles>                                             |
-+---------------------------------------------------------------------+
+.. tabs::
 
+  .. tab:: **C++**
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: //CONF_SERVER_FULL_EXAMPLE
+       :end-before: //!--
+       :dedent: 8
+
+  .. tab:: XML
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->CONF_SERVER_FULL_EXAMPLE<-->
+       :end-before: <!--><-->
+       :lines: 2-3,5-36
+       :append: </profiles>
 
 Client side setup
 """""""""""""""""
 
-+---------------------------------------------------------------------+
-| **C++**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                      |
-|    :language: c++                                                   |
-|    :start-after: //CONF_CLIENT_FULL_EXAMPLE                         |
-|    :end-before: //!--                                               |
-|    :dedent: 8                                                       |
-|                                                                     |
-+---------------------------------------------------------------------+
-| **XML**                                                             |
-+---------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                          |
-|    :language: xml                                                   |
-|    :start-after: <!-->CONF_CLIENT_FULL_EXAMPLE<-->                  |
-|    :end-before: <!--><-->                                           |
-|    :lines: 2-3,5-40                                                 |
-|    :append: </profiles>                                             |
-+---------------------------------------------------------------------+
+.. tabs::
+
+  .. tab:: **C++**
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: //CONF_CLIENT_FULL_EXAMPLE
+       :end-before: //!--
+       :dedent: 8
+
+  .. tab:: **XML**
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->CONF_CLIENT_FULL_EXAMPLE<-->
+       :end-before: <!--><-->
+       :lines: 2-3,5-31
+       :append: </profiles>
 
 .. _DS_security:
 

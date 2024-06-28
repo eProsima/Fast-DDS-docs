@@ -20,8 +20,6 @@ Attributes
     /fastdds/api_reference/rtps/attributes/ReaderAttributes
     /fastdds/api_reference/rtps/attributes/ReaderTimes
     /fastdds/api_reference/rtps/attributes/RemoteLocatorsAllocationAttributes
-    /fastdds/api_reference/rtps/attributes/RemoteServerAttributes
-    /fastdds/api_reference/rtps/attributes/RemoteServerList_t
     /fastdds/api_reference/rtps/attributes/RTPSParticipantAllocationAttributes
     /fastdds/api_reference/rtps/attributes/RTPSParticipantAttributes
     /fastdds/api_reference/rtps/attributes/RTPSWriterPublishMode

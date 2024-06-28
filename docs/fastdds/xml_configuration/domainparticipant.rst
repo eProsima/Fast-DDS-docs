@@ -356,19 +356,22 @@ configurable settings.
 +=================================+================================================+=====================+=============+
 | ``<discoveryProtocol>``         | Indicates which discovery protocol |br|        | |SIMPLE|            | |SIMPLE|    |
 |                                 | the DomainParticipant will use. |br|           +---------------------+             |
-|                                 | See :ref:`disc_mechanisms`. If set to  |br|    | |CLIENT|            |             |
-|                                 | |CLIENT|, ``<discoveryServersList>`` |br|      +---------------------+             |
+|                                 | See :ref:`disc_mechanisms`. If not set to |br| | |CLIENT|            |             |
+|                                 | |SIMPLE| or |NONE|,                            +---------------------+             |
+|                                 | ``<discoveryServersList>`` |br|                |                     |             |
 |                                 | element would be used.                         | |SERVER|            |             |
 |                                 |                                                +---------------------+             |
 |                                 |                                                | |BACKUP|            |             |
 |                                 |                                                +---------------------+             |
+|                                 |                                                | |SUPER_CLIENT|      |             |
+|                                 |                                                +---------------------+             |
 |                                 |                                                | |NONE|              |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<discoveryServersList>``      | Describes servers from which it receives |br|  | :ref:`discserverlst`|             |
-|                                 | only the discovery information they |br|       |                     |             |
-|                                 | require to establish communication with |br|   |                     |             |
-|                                 | matching endpoints. |br|                       |                     |             |
-|                                 | See :ref:`discovery_server`                    |                     |             |
+| ``<discoveryServersList>``      | Describes locators of servers from which |br|  | ``<locator>``       |             |
+|                                 | it receives only the discovery information |br||                     |             |
+|                                 | they require to establish communication |br|   |                     |             |
+|                                 | with matching endpoints. |br|                  |                     |             |
+|                                 | It expects a :ref:`LocatorListType`.           |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<ignoreParticipantFlags>``    | Restricts metatraffic using several |br|       | :ref:`partfiltering`| |NO_FILTER| |
 |                                 | filtering criteria.                            |                     |             |
@@ -410,63 +413,6 @@ configurable settings.
 |                                 | the ``<EDP>`` member is set to |br|            |                     |             |
 |                                 | ``STATIC``. See :ref:`discovery_static`.       |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-
-
-.. _discserverlst:
-
-discoveryServersList
-####################
-
-Contains a list of ``<RemoteServer>`` (*server*) elements, which are defined by the |GuidPrefix_t-api| and their own
-locator list which must be populated with |RemoteServerAttributes-api|.
-The DomainParticipant set as *client* would discover the *servers* described in this section.
-
-
-**Server attributes**
-
-The ``<RemoteServer>`` element has a mandatory attribute defined: ``prefix``.
-
-.. list-table::
-   :header-rows: 1
-   :align: left
-
-   * - Name
-     - Description
-     - Use
-   * - ``prefix``
-     - RTPS standard participant unique identifier, a 12-byte chain. |br|
-       This identifier allows clients to assess whether they are |br|
-       receiving messages from the right server.
-     - Mandatory
-
-**RemoteServer configuration**
-
-Each *client* (or a *server* connecting to another *server*) must keep a list of locators associated to the *servers*
-to which it wants to link.
-Those locator would be defined as ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``.
-
-.. list-table::
-  :header-rows: 1
-  :align: left
-
-  * - Name
-    - Description
-    - Values
-  * - ``<metatrafficUnicastLocatorList>``
-    - Metatraffic Unicast Locator List.
-    - A set of ``<locator>`` members. |br| See :ref:`LocatorListType`
-  * - ``<metatrafficMulticastLocatorList>``
-    - Metatraffic Multicast Locator List.
-    - A set of ``<locator>`` members. |br| See :ref:`LocatorListType`
-
-**Example**
-
-.. literalinclude:: /../code/XMLTester.xml
-   :language: xml
-   :start-after: <!-->CONF_DS_MAIN_SCENARIO_CLIENT<-->
-   :end-before: <!--><-->
-   :lines: 2-3,5-
-   :append: </profiles>
 
 .. _partfiltering:
 

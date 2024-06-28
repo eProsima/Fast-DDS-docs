@@ -228,42 +228,30 @@
                     <discovery_config>
                         <discoveryProtocol>NONE</discoveryProtocol>
                         <discoveryServersList>
-                            <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
-                                <metatrafficUnicastLocatorList>
-                                    <locator>
-                                        <udpv4>
-                                            <address>192.168.10.57</address>
-                                            <port>56542</port>
-                                        </udpv4>
-                                    </locator>
-                                </metatrafficUnicastLocatorList>
-                                <metatrafficMulticastLocatorList>
-                                    <locator>
-                                        <udpv4>
-                                            <address>192.168.10.58</address>
-                                            <port>24565</port>
-                                        </udpv4>
-                                    </locator>
-                                </metatrafficMulticastLocatorList>
-                            </RemoteServer>
-                            <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.75">
-                                <metatrafficUnicastLocatorList>
-                                    <locator>
-                                        <udpv4>
-                                            <address>192.168.10.59</address>
-                                            <port>56543</port>
-                                        </udpv4>
-                                    </locator>
-                                </metatrafficUnicastLocatorList>
-                                <metatrafficMulticastLocatorList>
-                                    <locator>
-                                        <udpv4>
-                                            <address>192.168.10.60</address>
-                                            <port>34565</port>
-                                        </udpv4>
-                                    </locator>
-                                </metatrafficMulticastLocatorList>
-                            </RemoteServer>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>56542</port>
+                                </udpv4>
+                            </locator>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.58</address>
+                                    <port>24565</port>
+                                </udpv4>
+                            </locator>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.59</address>
+                                    <port>56543</port>
+                                </udpv4>
+                            </locator>
+                            <locator>
+                                <udpv4>
+                                    <address>192.168.10.60</address>
+                                    <port>34565</port>
+                                </udpv4>
+                            </locator>
                         </discoveryServersList>
                         <ignoreParticipantFlags>FILTER_DIFFERENT_PROCESS|FILTER_SAME_PROCESS</ignoreParticipantFlags>
                         <EDP>SIMPLE</EDP>

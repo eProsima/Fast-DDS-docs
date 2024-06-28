@@ -879,7 +879,6 @@
 <!-->XML-DS-CLI-XML-CONF<-->
 <participant profile_name="participant_profile_discovery_server_cli" is_default_profile="true">
     <rtps>
-        <prefix>44.53.01.5f.45.50.52.4f.53.49.4d.41</prefix>
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>
@@ -898,7 +897,6 @@
 
 <participant profile_name="second_participant_profile_discovery_server_cli">
     <rtps>
-        <prefix>44.53.02.5f.45.50.52.4f.53.49.4d.41</prefix>
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>
@@ -923,7 +921,6 @@
 
 <participant profile_name="secure_discovery_server_cli">
     <rtps>
-        <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>
@@ -1591,24 +1588,18 @@
         <discoveryProtocol>CLIENT</discoveryProtocol>
 
         <discoveryServersList>
-            <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
-                <metatrafficUnicastLocatorList>
-                    <locator>
-                        <udpv4>
-                            <address>192.168.10.57</address>
-                            <port>56542</port>
-                        </udpv4>
-                    </locator>
-                </metatrafficUnicastLocatorList>
-                <metatrafficMulticastLocatorList>
-                    <locator>
-                        <udpv4>
-                            <address>192.168.10.58</address>
-                            <port>24565</port>
-                        </udpv4>
-                    </locator>
-                </metatrafficMulticastLocatorList>
-            </RemoteServer>
+            <locator>
+                <udpv4>
+                    <address>192.168.10.57</address>
+                    <port>56542</port>
+                </udpv4>
+            </locator>
+            <locator>
+                <udpv4>
+                    <address>192.168.10.58</address>
+                    <port>24565</port>
+                </udpv4>
+            </locator>
         </discoveryServersList>
 
         <ignoreParticipantFlags>FILTER_DIFFERENT_HOST</ignoreParticipantFlags>
@@ -2411,7 +2402,6 @@
                     </locator>
                 </metatrafficUnicastLocatorList>
             </builtin>
-            <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
         </rtps>
     </participant>
 <!--><-->
@@ -2427,24 +2417,12 @@
                 <discovery_config>
                     <discoveryProtocol>CLIENT</discoveryProtocol>
                     <discoveryServersList>
-                        <RemoteServer prefix="72.61.73.70.66.61.72.6d.74.65.73.74">
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.10.57</address>
-                                        <port>56542</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                            <metatrafficMulticastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.10.58</address>
-                                        <port>24565</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficMulticastLocatorList>
-                        </RemoteServer>
+                        <locator>
+                            <udpv4>
+                                <address>192.168.10.57</address>
+                                <port>56542</port>
+                            </udpv4>
+                        </locator>
                     </discoveryServersList>
                 </discovery_config>
             </builtin>
@@ -2459,6 +2437,7 @@
 -->
     <participant profile_name="UDP SERVER 1">
         <rtps>
+            <!-- Optional GUID -->
             <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
             <builtin>
                 <discovery_config>
@@ -2478,6 +2457,7 @@
 
     <participant profile_name="UDP SERVER 2">
         <rtps>
+            <!-- Optional GUID -->
             <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.32</prefix>
             <builtin>
                 <discovery_config>
@@ -2507,26 +2487,18 @@
                 <discovery_config>
                     <discoveryProtocol>CLIENT</discoveryProtocol>
                     <discoveryServersList>
-                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.10.57</address>
-                                        <port>56542</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
-                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.10.60</address>
-                                        <port>56543</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
+                        <locator>
+                            <udpv4>
+                                <address>192.168.10.57</address>
+                                <port>56542</port>
+                            </udpv4>
+                        </locator>
+                        <locator>
+                            <udpv4>
+                                <address>192.168.10.60</address>
+                                <port>56543</port>
+                            </udpv4>
+                        </locator>
                     </discoveryServersList>
                 </discovery_config>
             </builtin>
@@ -2541,21 +2513,18 @@
 -->
     <participant profile_name="UDP SERVER A">
         <rtps>
+            <!-- Optional GUID -->
             <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.31</prefix>
             <builtin>
                 <discovery_config>
                     <discoveryProtocol>SERVER</discoveryProtocol>
                     <discoveryServersList>
-                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.10.57</address>
-                                        <port>56542</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
+                        <locator>
+                            <udpv4>
+                                <address>192.168.10.57</address>
+                                <port>56542</port>
+                            </udpv4>
+                        </locator>
                     </discoveryServersList>
                 </discovery_config>
                 <metatrafficUnicastLocatorList>
@@ -2578,31 +2547,24 @@
 -->
     <participant profile_name="UDP SERVER C">
         <rtps>
+            <!-- Optional GUID -->
             <prefix>75.63.2D.73.76.72.63.6C.6E.74.2D.33</prefix>
             <builtin>
                 <discovery_config>
                     <discoveryProtocol>SERVER</discoveryProtocol>
                     <discoveryServersList>
-                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.32">
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.10.57</address>
-                                        <port>56542</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
-                        <RemoteServer prefix="75.63.2D.73.76.72.63.6C.6E.74.2D.31">
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.10.60</address>
-                                        <port>56543</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
+                        <locator>
+                            <udpv4>
+                                <address>192.168.10.57</address>
+                                <port>56542</port>
+                            </udpv4>
+                        </locator>
+                        <locator>
+                            <udpv4>
+                                <address>192.168.10.60</address>
+                                <port>56543</port>
+                            </udpv4>
+                        </locator>
                     </discoveryServersList>
                 </discovery_config>
                 <metatrafficUnicastLocatorList>
@@ -2906,17 +2868,13 @@
             <builtin>
                 <discovery_config>
                     <discoveryServersList>
-                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <!-- placeholder server UDP address -->
-                                        <address>192.168.1.113</address>
-                                        <port>64863</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
+                        <locator>
+                            <udpv4>
+                                <!-- placeholder server UDP address -->
+                                <address>192.168.1.113</address>
+                                <port>64863</port>
+                            </udpv4>
+                        </locator>
                     </discoveryServersList>
                 </discovery_config>
             </builtin>
@@ -2969,18 +2927,14 @@
         <builtin>
             <discovery_config>
                 <discoveryServersList>
-                    <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                        <metatrafficUnicastLocatorList>
-                            <!-->CONF_SERVER_DNS_LOCATORS<-->
-                            <locator>
-                                <udpv4>
-                                    <port>11811</port>
-                                    <address>localhost</address>
-                                </udpv4>
-                            </locator>
-                            <!--><-->
-                        </metatrafficUnicastLocatorList>
-                    </RemoteServer>
+                    <!-->CONF_SERVER_DNS_LOCATORS<-->
+                    <locator>
+                        <udpv4>
+                            <port>11811</port>
+                            <address>localhost</address>
+                        </udpv4>
+                    </locator>
+                    <!--><-->
                 </discoveryServersList>
             </discovery_config>
         </builtin>
@@ -2994,36 +2948,25 @@
 -->
     <participant profile_name="participant_profile_server_full_example">
         <rtps>
-            <!-- Set SERVER's GUID prefix -->
-            <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
             <builtin>
                 <!-- Set participant as SERVER -->
                 <discovery_config>
                     <discoveryProtocol>SERVER</discoveryProtocol>
                     <!--
-                        Set a list of remote servers to which this server connects.
-                        This list may contain one or more <RemoteServer> tags
+                        Set a list of remote servers (locators) to which this
+                        server connects.
                     -->
                     <discoveryServersList>
-                        <!--
-                            Set remote server configuration:
-                                - Prefix
-                                - PDP listening locator
-                        -->
-                        <RemoteServer prefix="44.53.01.5f.45.50.52.4f.53.49.4d.41">
-                            <metatrafficUnicastLocatorList>
-                                <!-- Set SERVER's listening locator for PDP -->
-                                <locator>
-                                    <udpv4>
-                                        <address>127.0.0.1</address>
-                                        <port>11812</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
+                        <!-- Set REMOTE SERVER's listening locator for PDP -->
+                        <locator>
+                            <udpv4>
+                                <address>127.0.0.1</address>
+                                <port>11812</port>
+                            </udpv4>
+                        </locator>
                     </discoveryServersList>
                 </discovery_config>
-                <!-- Set SERVER's listening locator for PDP -->
+                <!-- Set OWN SERVER's listening locator for PDP -->
                 <metatrafficUnicastLocatorList>
                     <locator>
                         <udpv4>
@@ -3049,26 +2992,17 @@
                     <!-- Set participant as CLIENT -->
                     <discoveryProtocol>CLIENT</discoveryProtocol>
                     <!--
-                        Set list of remote servers. This list may contain one or
-                        more <RemoteServer> tags
+                        Set a list of remote servers (locators) to which this
+                        client connects.
                     -->
                     <discoveryServersList>
-                        <!--
-                            Set remote server configuration:
-                                - Prefix
-                                - PDP listening locator
-                        -->
-                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                            <metatrafficUnicastLocatorList>
-                                <!-- Set SERVER's listening locator for PDP -->
-                                <locator>
-                                    <udpv4>
-                                        <address>127.0.0.1</address>
-                                        <port>11811</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
+                        <!-- Set REMOTE SERVER's listening locator for PDP -->
+                        <locator>
+                            <udpv4>
+                                <address>127.0.0.1</address>
+                                <port>11811</port>
+                            </udpv4>
+                        </locator>
                     </discoveryServersList>
                     <!-- Set ping period to 250 ms -->
                     <clientAnnouncementPeriod>
@@ -4055,37 +3989,6 @@
 <!--><-->
 
 <!-- NON_VALIDATION SNIPPETS -->
-<!-->CONF-SERVER-CLIENT-PREFIX<-->
-<!--
-<?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com">
--->
-    <participant profile_name="participant_profile_discovery_client_prefix">
-        <rtps>
-            <builtin>
-                <discovery_config>
-                    <discoveryServersList>
-                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                            <!-- Metatraffic locators -->
-                            <metatrafficUnicastLocatorList>
-                                <locator>
-                                    <udpv4>
-                                        <address>192.168.10.57</address>
-                                        <port>56542</port>
-                                    </udpv4>
-                                </locator>
-                            </metatrafficUnicastLocatorList>
-                        </RemoteServer>
-                    </discoveryServersList>
-                </discovery_config>
-            </builtin>
-        </rtps>
-    </participant>
-<!--
-</profiles>
--->
-<!--><-->
-
 <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -4245,7 +4148,6 @@
                         </locator>
                     </metatrafficUnicastLocatorList>
                 </builtin>
-                <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
                 <useBuiltinTransports>false</useBuiltinTransports>
                 <userTransports>
                     <transport_id>server_tcp_transport</transport_id>
@@ -4283,20 +4185,16 @@
                     <discovery_config>
                         <discoveryProtocol>CLIENT</discoveryProtocol>
                         <discoveryServersList>
-                            <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
-                                <!--
-                                    Server locator specifying where it is listening
-                                -->
-                                <metatrafficUnicastLocatorList>
-                                    <locator>
-                                        <tcpv4>
-                                            <address>192.168.10.57</address>
-                                            <port>12345</port>
-                                            <physical_port>12345</physical_port>
-                                        </tcpv4>
-                                    </locator>
-                                </metatrafficUnicastLocatorList>
-                            </RemoteServer>
+                            <!--
+                                Server locator specifying where it is listening
+                            -->
+                            <locator>
+                                <tcpv4>
+                                    <address>192.168.10.57</address>
+                                    <port>12345</port>
+                                    <physical_port>12345</physical_port>
+                                </tcpv4>
+                            </locator>
                         </discoveryServersList>
                     </discovery_config>
                 </builtin>

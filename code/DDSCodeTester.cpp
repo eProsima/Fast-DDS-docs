@@ -424,7 +424,7 @@ void dds_domain_examples()
         // Create a DomainParticipant with DomainParticipantExtendedQos from profile
         DomainParticipantExtendedQos profile_extended_qos;
         DomainParticipantFactory::get_instance()->get_participant_extended_qos_from_profile("participant_profile",
-            profile_extended_qos);
+                profile_extended_qos);
 
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(profile_extended_qos);
@@ -7692,6 +7692,7 @@ void statistics_defined_interface()
 
     // STATISTICS_DEDICATED_INTERFACE
     // --- Device 1 ---
+
     // Create DomainParticipant 1
     DomainParticipantQos pqos1;
     // Set NetmaskFIlter = ON to enable communication only between locators on the same subnetwork
@@ -7701,6 +7702,7 @@ void statistics_defined_interface()
     Subscriber* subscriber_1 = participant_1->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
 
     // --- Device 2 ---
+
     // Create DomainParticipant 2
     DomainParticipantQos pqos2;
     // Set NetmaskFIlter = ON to enable communication only between locators on the same subnetwork
@@ -7708,26 +7710,30 @@ void statistics_defined_interface()
     pqos2.wire_protocol().ignore_non_matching_locators = true; // Required if not defining an allowlist or blocklist
     DomainParticipant* participant_2 = DomainParticipantFactory::get_instance()->create_participant(0, pqos2);
     // Retrieve Statistics DomainParticipant child from DomainParticipant
-    eprosima::fastdds::statistics::dds::DomainParticipant* statistics_participant = eprosima::fastdds::statistics::dds::DomainParticipant::narrow(participant_2);
+    eprosima::fastdds::statistics::dds::DomainParticipant* statistics_participant =
+            eprosima::fastdds::statistics::dds::DomainParticipant::narrow(participant_2);
     Publisher* publisher = statistics_participant->create_publisher(PUBLISHER_QOS_DEFAULT);
     // Enable statistics DataWriter with API setting STATISTICS_DATAWRITER_QOS
-    statistics_participant->enable_statistics_datawriter(eprosima::fastdds::statistics::DISCOVERY_TOPIC, eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS);
+    statistics_participant->enable_statistics_datawriter(eprosima::fastdds::statistics::DISCOVERY_TOPIC,
+            eprosima::fastdds::statistics::dds::STATISTICS_DATAWRITER_QOS);
 
     // --- Device 3 ---
+
     // Create a DomainParticipant to monitor statistics information
-    DomainParticipant* monitor_participant = DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+    DomainParticipant* monitor_participant = DomainParticipantFactory::get_instance()->create_participant(0,
+                    PARTICIPANT_QOS_DEFAULT);
     Subscriber* monitor_subscriber = monitor_participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT);
     DataReaderQos datareader_qos = eprosima::fastdds::statistics::dds::STATISTICS_DATAREADER_QOS;
     // Create topic
     Topic* topic = monitor_participant->create_topic(eprosima::fastdds::statistics::DISCOVERY_TOPIC,
-                    "DiscoveryTimePubSubType", TOPIC_QOS_DEFAULT);
+                    "DiscoveryType", TOPIC_QOS_DEFAULT);
     // Add a Unicast Locator to limit user communication only through the specified interface
     Locator_t locator;
     IPLocator::setIPv4(locator, 192, 168, 5, 14);
     locator.port = 22225;
     datareader_qos.endpoint().unicast_locator_list.push_back(locator);
     DataReader* monitor_reader = monitor_subscriber->create_datareader(topic,
-                datareader_qos);
+                    datareader_qos);
     //!--
 }
 

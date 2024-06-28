@@ -1,4 +1,3 @@
-
 name: Fast DDS Docs Ubuntu CI (nightly)
 
 on:
@@ -10,9 +9,10 @@ jobs:
   nightly-ubuntu-ci-master:
     uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@master
     with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-image: 'ubuntu-22.04'
       label: 'nightly-ubuntu-ci-master'
-      ctest-args: "-LE xfail"
       fastdds-docs-branch: 'master'
       fastdds-branch: 'master'
       fastdds-python-branch: 'main'
@@ -23,9 +23,10 @@ jobs:
   nightly-ubuntu-ci-2_14_x:
     uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@2.14.x
     with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-image: 'ubuntu-22.04'
       label: '-nightly-ubuntu-ci-2.14.x'
-      ctest-args: "-LE xfail"
       fastdds-docs-branch: '2.14.x'
       fastdds-branch: '2.14.x'
       fastdds-python-branch: '1.4.x'
@@ -36,9 +37,10 @@ jobs:
   nightly-ubuntu-ci-2_13_x:
     uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@2.13.x
     with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-image: 'ubuntu-22.04'
       label: '-nightly-ubuntu-ci-2.13.x'
-      ctest-args: "-LE xfail"
       fastdds-docs-branch: '2.13.x'
       fastdds-branch: '2.13.x'
       fastdds-python-branch: '1.4.x'
@@ -49,9 +51,10 @@ jobs:
   nightly-ubuntu-ci-2_10_x:
     uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@2.10.x
     with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-image: 'ubuntu-22.04'
       label: '-nightly-ubuntu-ci-2.10.x'
-      ctest-args: "-LE xfail"
       fastdds-docs-branch: '2.10.x'
       fastdds-branch: '2.10.x'
       fastdds-python-branch: '1.2.x'
@@ -62,9 +65,10 @@ jobs:
   nightly-ubuntu-ci-2_6_x:
     uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@2.6.x
     with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-image: 'ubuntu-20.04'
       label: '-nightly-ubuntu-ci-2.6.x'
-      ctest-args: "-LE xfail"
       fastdds-docs-branch: '2.6.x'
       fastdds-branch: '2.6.x'
       fastdds-python-branch: '1.0.x'

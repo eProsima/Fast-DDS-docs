@@ -51,13 +51,14 @@ on:
         required: false
         type: boolean
         default: false
-
+env:
+    build-meta: ${{ inputs.run-tests == true && './src/fastdds-docs/.github/workflows/config/build.meta ./src/fastdds-docs/.github/workflows/config/test.meta' || './src/fastdds-docs/.github/workflows/config/build.meta' }}
 defaults:
   run:
     shell: bash
 
 jobs:
-  fastdds_docs_build:
+  reusable-ubuntu-ci:
     runs-on: ${{ inputs.os-version }}
     if: ${{ inputs.run-build == true }}
     strategy:
@@ -162,77 +163,8 @@ jobs:
           destination_workspace: src
           skip_existing: 'true'
 
-      - name: Colcon build
-        continue-on-error: false
-        uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
-        with:
-          colcon_meta_file: ${{ github.workspace }}/src/fastdds-docs/.github/workflows/config/build.meta
-          colcon_build_args: ${{ inputs.colcon-args }}
-          cmake_args: ${{ inputs.cmake-args }}
-          cmake_build_type: ${{ matrix.cmake-build-type }}
-          workspace: ${{ github.workspace }}
-
-      - name: Upload build artifacts
-        uses: eProsima/eProsima-CI/external/upload-artifact@v0
-        with:
-          name: fastdds_docs_build_${{ inputs.label }}
-          path: ${{ github.workspace }}
-
-  fastdds_docs_test:
-    needs: fastdds_docs_build
-    runs-on: ${{ inputs.os-version }}
-    if: ${{ inputs.run-tests == true }}
-    strategy:
-      fail-fast: false
-      matrix:
-        cmake-build-type:
-          - 'RelWithDebInfo'
-    steps:
-      - name: Download build artifacts
-        uses: eProsima/eProsima-CI/external/download-artifact@v0
-        with:
-          name: fastdds_docs_build_${{ inputs.label }}
-          path: ${{ github.workspace }}
-
-      - name: Install Fix Python version
-        uses: eProsima/eProsima-CI/external/setup-python@v0
-        with:
-          python-version: '3.11'
-
-      - name: Get minimum supported version of CMake
-        uses: eProsima/eProsima-CI/external/get-cmake@v0
-        with:
-          cmakeVersion: '3.22.6'
-
-      - name: Install apt dependencies
-        uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
-        with:
-          packages: libasio-dev libtinyxml2-dev libssl-dev swig doxygen imagemagick plantuml
-          update: false
-          upgrade: false
-
-      - name: Install colcon
-        uses: eProsima/eProsima-CI/ubuntu/install_colcon@v0
-
-      - name: Install Python dependencies
-        uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
-        with:
-          packages: vcstool xmlschema
-          upgrade: false
-
-      - name: Install Fast DDS Docs required python packages
-        uses: eProsima/eProsima-CI/ubuntu/install_python_packages@v0
-        with:
-          upgrade: false
-          requirements_file_name: src/fastdds-docs/docs/requirements.txt
-
-      - name: Setup CCache
-        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
-        if: ${{ inputs.use-ccache == true }}
-        with:
-          api_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Fetch Fast DDS Docs CI dependencies
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0
         with:
           vcs_repos_file: ${{ github.workspace }}/src/fastdds-docs/.github/workflows/config/test.repos
@@ -243,13 +175,14 @@ jobs:
         continue-on-error: false
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
         with:
-          colcon_meta_file: ${{ github.workspace }}/src/fastdds-docs/.github/workflows/config/build.meta ${{ github.workspace }}/src/fastdds-docs/.github/workflows/config/test.meta
+          colcon_meta_file: ${{ env.build-meta }}
           colcon_build_args: ${{ inputs.colcon-args }}
           cmake_args: ${{ inputs.cmake-args }}
           cmake_build_type: ${{ matrix.cmake-build-type }}
           workspace: ${{ github.workspace }}
 
       - name: Colcon test
+        if: ${{ inputs.run-tests == true }}
         id: fastdds_docs_test
         uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
         with:
@@ -264,7 +197,7 @@ jobs:
 
       - name: Fast DDS Docs test summary
         uses: eProsima/eProsima-CI/multiplatform/junit_summary@v0
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && inputs.run-tests == true }}
         with:
           junit_reports_dir: "${{ steps.fastdds_docs_test.outputs.ctest_results_path }}"
           print_summary: 'True'

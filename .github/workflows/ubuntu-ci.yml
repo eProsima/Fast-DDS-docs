@@ -34,7 +34,7 @@ on:
         required: true
         type: string
       run-tests:
-        description: 'Run test suite of Fast DDS python'
+        description: 'Run test suite of Fast DDS Docs'
         required: false
         type: boolean
         default: true
@@ -58,16 +58,19 @@ concurrency:
 
 jobs:
   ubuntu-ci:
+    if: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'conflicts') }}
     uses: ./.github/workflows/reusable-ubuntu-ci.yml
     with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: ${{ inputs.os-version || 'ubuntu-22.04' }}
-      label: 'ubuntu-ci'
+      label: 'ubuntu-ci-master-main'
       colcon-args: ${{ inputs.colcon-args }}
       cmake-args: ${{ inputs.cmake-args }}
       ctest-args: ${{ inputs.ctest-args }}
-      fastdds-docs-branch: ${{ inputs.fastdds-docs-branch || github.ref || 'master' }}
+      fastdds-docs-branch: ${{ inputs.fastdds-docs-branch || github.ref }}
       fastdds-branch: ${{ inputs.fastdds-branch || 'master' }}
       fastdds-python-branch: ${{ inputs.fastdds-python-branch || 'main' }}
-      run-build: ${{ !(github.event_name == 'pull_request') && true || (!contains(github.event.pull_request.labels.*.name, 'skip-ci') && !contains(github.event.pull_request.labels.*.name, 'conflicts')) && true || false }}
-      run-tests: ${{ ((inputs.run-tests == true) && true) || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'no-test')) && true || false }}
+      run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
+      run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) }}
       use-ccache: ${{ inputs.use-ccache || false }}

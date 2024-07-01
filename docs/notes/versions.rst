@@ -349,6 +349,8 @@ Fast DDS as the core middleware.
               - `v1.4.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
               - `v2.14.2 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.2>`__
+            * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
+              - `v1.2.2 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.2>`__
 
     .. group-tab:: 2.13.x
 
@@ -365,6 +367,8 @@ Fast DDS as the core middleware.
               - `v1.4.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.0>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
               - `v2.13.4 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.13.4>`__
+            * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
+              - `v1.2.2 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.2>`__
 
     .. group-tab:: 2.10.x
 
@@ -381,6 +385,8 @@ Fast DDS as the core middleware.
               - `v1.2.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.2.1>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
               - `v2.10.4 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.10.4>`__
+            * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
+              - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 
     .. group-tab:: 2.6.x
 
@@ -397,3 +403,5 @@ Fast DDS as the core middleware.
               - `v1.0.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.0.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
               - `v2.6.8 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.8>`__
+            * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
+              - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__

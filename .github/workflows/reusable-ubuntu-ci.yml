@@ -126,18 +126,17 @@ jobs:
           remote_repository: eProsima/Fast-DDS
           fallback_branch: ${{ inputs.fastdds-branch }}
 
-      - name: Obtain Fast DDS dependencies
-        uses: eProsima/eProsima-CI/multiplatform/get_file_from_repo@v0
+      - name: Obtain deduced Fast DDS repository content
+        uses: eProsima/eProsima-CI/external/checkout@v0
         with:
-          source_repository_branch: ${{ steps.get_fastdds_branch.outputs.deduced_branch }}
-          source_repository: eProsima/Fast-DDS
-          file_name: fastdds.repos
-          file_result: ${{ github.workspace }}/fastdds.repos
+          repository: eProsima/Fast-DDS
+          ref: ${{ steps.get_fastdds_branch.outputs.deduced_branch }}
+          path: ${{ github.workspace }}/src/fastdds
 
       - name: Fetch Fast DDS dependencies
         uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0
         with:
-          vcs_repos_file: ${{ github.workspace }}/fastdds.repos
+          vcs_repos_file: ${{ github.workspace }}/src/fastdds/fastdds.repos
           destination_workspace: src
           skip_existing: 'true'
 
@@ -148,20 +147,12 @@ jobs:
           remote_repository: eProsima/Fast-DDS-python
           fallback_branch: ${{ inputs.fastdds-python-branch }}
 
-      - name: Obtain Fast DDS Python dependencies
-        uses: eProsima/eProsima-CI/multiplatform/get_file_from_repo@v0
+      - name: Obtain deduced Fast DDS Python repository content
+        uses: eProsima/eProsima-CI/external/checkout@v0
         with:
-          source_repository_branch: ${{ steps.get_fastdds_python_branch.outputs.deduced_branch }}
-          source_repository: eProsima/Fast-DDS-python
-          file_name: fastdds_python.repos
-          file_result: ${{ github.workspace }}/fastdds_python.repos
-
-      - name: Fetch Fast DDS Python dependencies
-        uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0
-        with:
-          vcs_repos_file: ${{ github.workspace }}/fastdds_python.repos
-          destination_workspace: src
-          skip_existing: 'true'
+          repository: eProsima/Fast-DDS-python
+          ref: ${{ steps.get_fastdds_python_branch.outputs.deduced_branch }}
+          path: ${{ github.workspace }}/src/fastdds_python
 
       - name: Fetch Fast DDS Docs CI dependencies
         if: ${{ inputs.run-tests == true }}

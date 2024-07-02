@@ -4312,6 +4312,60 @@
 -->
 <!--><-->
 
+
+<!-->XML_STATISTICS_DEDICATED_INTERFACE<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <!-- Device 1 -->
+        <participant profile_name="participant_1">
+            <rtps>
+                <ignore_non_matching_locators>true</ignore_non_matching_locators>
+                <netmask_filter>ON</netmask_filter>
+            </rtps>
+        </participant>
+
+        <!-- Device 2 -->
+        <participant profile_name="participant_2">
+            <rtps>
+                <ignore_non_matching_locators>true</ignore_non_matching_locators>
+                <netmask_filter>ON</netmask_filter>
+                <propertiesPolicy>
+                    <properties>
+                        <!-- Activate Fast DDS Statistics Module -->
+                        <property>
+                            <name>fastdds.statistics</name>
+                            <value>DISCOVERY_TOPIC</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+
+        <!-- Device 3 -->
+        <participant profile_name="monitor_participant">
+            <!-- Add configurations if necessary -->
+        </participant>
+
+        <!-- Data Reader QoS settings for monitoring statistics -->
+        <data_reader profile_name="statistics_data_reader">
+            <unicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>192.168.5.14</address>
+                        <port>22225</port>
+                    </udpv4>
+                </locator>
+            </unicastLocatorList>
+        </data_reader>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
 </profiles>
 
 <!-->CONF-LIBRARY-SETTINGS<-->

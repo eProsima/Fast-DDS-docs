@@ -836,6 +836,8 @@ modifies the involved bits instead of the full primitive value.
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Bitset Types<xmldynamictypes_bitset>`.
 
+.. _xtypes_annotations:
+
 Annotations
 ^^^^^^^^^^^
 

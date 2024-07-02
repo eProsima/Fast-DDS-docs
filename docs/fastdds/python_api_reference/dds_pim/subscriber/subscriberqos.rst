@@ -7,4 +7,4 @@ SubscriberQos
 
 .. autoclass:: fastdds.SubscriberQos
 
-.. autoclass:: fastdds.SUBSCRIBER_QOS_DEFAULT
+.. autodata:: fastdds.SUBSCRIBER_QOS_DEFAULT

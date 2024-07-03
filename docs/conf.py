@@ -221,7 +221,7 @@ if read_the_docs_build:
             fastdds.refs.__contains__('origin/{}'.format(fastdds_branch))):
         fastdds_branch = 'origin/{}'.format(fastdds_branch)
     else:
-        fastdds_branch = 'origin/mergify/bp/2.13.x/pr-5016'
+        fastdds_branch = 'origin/2.13.x'
         print(f'Fast DDS branch is not set by env var. Using "{fastdds_branch}"')
 
     # Actual checkout

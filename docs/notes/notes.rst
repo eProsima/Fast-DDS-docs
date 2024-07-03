@@ -8,48 +8,48 @@ Version 2.6.9
 
 This release includes the following **features**:
 
-#. Add XML configuration for FlowControllerDescriptor to 2.x (#4907)
-#. New `max_message_size` property to limit output datagrams size (#4899)
+#. Add XML configuration for FlowControllerDescriptor to 2.x
+#. New `max_message_size` property to limit output datagrams size
 
 This release includes the following **improvements**:
 
-#. Update Fast CDR thirdparty submodule (#4733)
-#. Consider library behavior changes as ABI breaks in the PR template checklist (#4784)
-#. Allow processing of AckNack submessages with count == 0 (#4774)
-#. Use `%*` instead of loop in `.bat` scripts. (#4821)
-#. Use absolute paths when loading XML files (#4831)
-#. TCPSendResources cleanup (#4513)
+#. Update Fast CDR thirdparty submodule
+#. Consider library behavior changes as ABI breaks in the PR template checklist
+#. Allow processing of AckNack submessages with count == 0
+#. Use `%*` instead of loop in `.bat` scripts.
+#. Use absolute paths when loading XML files
+#. TCPSendResources cleanup
 
 Github CI management:
 
-#. Fix Python Installation version in Github CI. Address failing system tests environment issues (#4766)
-#. Set fallback branch for `get_related_branch_from_repo` correctly (#4847)
-#. Fix sanitizers CI test summary report (#4841)
-#. Protect asio exception (#4533)
-#. Set Fallback branch to 2.6.x (#4870)
-#. Run selected VS tool on Windows CI (#4868)
-#. Add DNS entries to hosts files on Github workflows (#4811)
-#. Refactor Fast DDS Ubuntu CI to include several tests (#4957)
-#. Avoid `CCache` in workflows and nighties (#4976)
-#. Update README.md with GitHub actions Ubuntu CI nightly (#4983)
+#. Fix Python Installation version in Github CI. Address failing system tests environment issues
+#. Set fallback branch for `get_related_branch_from_repo` correctly
+#. Fix sanitizers CI test summary report
+#. Protect asio exception
+#. Set Fallback branch to 2.6.x
+#. Run selected VS tool on Windows CI
+#. Add DNS entries to hosts files on Github workflows
+#. Refactor Fast DDS Ubuntu CI to include several tests
+#. Avoid `CCache` in workflows and nighties
+#. Update README.md with GitHub actions Ubuntu CI nightly
 
 This release includes the following **fixes**:
 
-#. Fix leak in `SecurityManager::participant_volatile_message_secure_writer_` (#4726)
-#. Fix Discovery Server over TCP (#4656)
-#. Fix some leaks in XML DynamicTypes Parser (#4763)
-#. Correct liveliness state in a multiple reader - one writer scenario (#4884)
-#. Fix support for `@key` annotation in Dynamic types (#4749)
-#. Properly delete builtin statistics writers upon `delete_contained_entities()` (#4917)
-#. Correctly initialize `MatchingFailureMask` constants to be used with the `std::bitset` API (#4928)
-#. Set DataSharing in `Writer|ReaderProxyData` (#4804)
-#. Only apply content filter to ALIVE changes (#4904)
-#. Handle errors when setting socket buffer sizes (#4825)
-#. Automatically unmatch remote participants on participant deletion (#4865)
-#. Fix on_sample_lost notification on best-effort readers for fragmented samples (#4607)
-#. Handle errors when setting socket buffer sizes (#4852)
-#. Fix DS servers not connecting due to ports logic (#4952)
-#. Manual fix for documentation generation (#5013)
+#. Fix leak in `SecurityManager::participant_volatile_message_secure_writer_`
+#. Fix Discovery Server over TCP
+#. Fix some leaks in XML DynamicTypes Parser
+#. Correct liveliness state in a multiple reader - one writer scenario
+#. Fix support for `@key` annotation in Dynamic types
+#. Properly delete builtin statistics writers upon `delete_contained_entities()`
+#. Correctly initialize `MatchingFailureMask` constants to be used with the `std::bitset` API
+#. Set DataSharing in `Writer|ReaderProxyData`
+#. Only apply content filter to ALIVE changes
+#. Handle errors when setting socket buffer sizes
+#. Automatically unmatch remote participants on participant deletion
+#. Fix on_sample_lost notification on best-effort readers for fragmented samples
+#. Handle errors when setting socket buffer sizes
+#. Fix DS servers not connecting due to ports logic
+#. Manual fix for documentation generation
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

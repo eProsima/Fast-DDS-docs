@@ -130,7 +130,7 @@ jobs:
         uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           repository: eProsima/Fast-DDS
-          ref: ${{ steps.get_fastdds_branch.outputs.deduced_branch }}
+          ref: 'mergify/bp/2.13.x/pr-5016'
           path: ${{ github.workspace }}/src/fastrtps
 
       - name: Fetch Fast DDS dependencies

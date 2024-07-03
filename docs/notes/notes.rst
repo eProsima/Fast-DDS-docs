@@ -23,14 +23,14 @@ This release includes the following **improvements**:
 Github CI management:
 
 #. Fix Python Installation version in Github CI. Address failing system tests environment issues (#4766)
-#. Set fallback branch for get_related_branch_from_repo correctly (#4847)
+#. Set fallback branch for `get_related_branch_from_repo` correctly (#4847)
 #. Fix sanitizers CI test summary report (#4841)
-#. Protect asio exception hotfix (#4533)
+#. Protect asio exception (#4533)
 #. Set Fallback branch to 2.6.x (#4870)
 #. Run selected VS tool on Windows CI (#4868)
-#. Add DNS entries to hosts files on github workflows (#4811)
+#. Add DNS entries to hosts files on Github workflows (#4811)
 #. Refactor Fast DDS Ubuntu CI to include several tests (#4957)
-#. CI - Avoid CCache in workflows and nightlies (#4976)
+#. Avoid `CCache` in workflows and nighties (#4976)
 #. Update README.md with GitHub actions Ubuntu CI nightly (#4983)
 
 This release includes the following **fixes**:
@@ -42,7 +42,7 @@ This release includes the following **fixes**:
 #. Fix support for `@key` annotation in Dynamic types (#4749)
 #. Properly delete builtin statistics writers upon `delete_contained_entities()` (#4917)
 #. Correctly initialize `MatchingFailureMask` constants to be used with the `std::bitset` API (#4928)
-#. Set DataSharing in Writer|ReaderProxyData (#4804)
+#. Set DataSharing in `Writer|ReaderProxyData` (#4804)
 #. Only apply content filter to ALIVE changes (#4904)
 #. Handle errors when setting socket buffer sizes (#4825)
 #. Automatically unmatch remote participants on participant deletion (#4865)

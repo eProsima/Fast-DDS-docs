@@ -51,9 +51,9 @@ discovery
 
 This command launches a |SERVER| (or |BACKUP|) for :ref:`Discovery Server <discovery_server>`. This *server* will manage
 the discovery phases of the |CLIENTS| which are connected to it.
-*Clients* must know how to reach the *server*, which is accomplished by specifying an IP address, the *servers* GUID
-prefix, and a transport protocol like UDP or TCP.
-*Servers* do not need any prior knowledge of their *clients*, but require a GUID prefix, and the listening IP address
+*Clients* must know how to reach the *server*, which is accomplished by specifying an IP address, a port and
+a transport protocol like UDP or TCP.
+*Servers* do not need any prior knowledge of their *clients*, but require the listening IP address and port
 where they may be reached.
 For more information on the different *Fast DDS* discovery mechanisms and how to configure them, please refer to
 :ref:`discovery`.
@@ -72,29 +72,26 @@ On a shell, execute:
 
 .. code-block:: bash
 
-    fastdds discovery -i {0-255} [optional parameters]
+    fastdds discovery [optional parameters]
 
 Where the parameters are:
 
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
 +==========================+===========================================================================================+
-| ``-h  -help``            | Produce help message.                                                                     |
-+--------------------------+-------------------------------------------------------------------------------------------+
-| ``-i  --server-id``      | Unique server identifier. Specifies zero based server position in |br|                    |
-|                          | ``ROS_DISCOVERY_SERVER`` environment variable. Must be an integer in range [0, 255] |br|  |
-|                          | If not specified, it must be defined using a XML configuration file.                      |
+| ``-h  --help``           | Produce help message with examples.                                                       |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-l  --udp-address``    | IPv4/IPv6 address chosen to listen the clients using UDP transport. Defaults to any |br|  |
 |                          | (0.0.0.0/::0). Instead of an address, a DNS domain name can be specified.                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'.                               |
+| ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'. Only one server can be |br|   |
+|                          | configured using the default UDP port.                                                    |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-t  --tcp-address``    | IPv4/IPv6 address chosen to listen the clients using TCP transport. Instead of an |br|    |
-|                          | address, a DNS domain name can be specified. Defaults to localhost (127.0.0.1).           |
+|                          | address, a DNS domain name can be specified. Defaults to any (0.0.0.0).                   |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-q  --tcp-port``       | TCP port chosen to listen the clients. Defaults to '42100'. Only one server can be |br|   |
-|                          | configured using the default port.                                                        |
+|                          | configured using the default TCP port.                                                    |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-b  --backup``         | Creates a BACKUP *server* (see :ref:`discovery_protocol`)                                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -103,6 +100,11 @@ Where the parameters are:
 |                          | that specific parameter. The default profile in the XML file is loaded except if |br|     |
 |                          | a specific profile name is specified: ``profile_name@xml_file``                           |
 +--------------------------+-------------------------------------------------------------------------------------------+
+| ``-i  --server-id``      | Unique server identifier. Its functionality its deprecated. It can be used to select |br| |
+|                          | a fixed GUID in the form shown below. Must be an integer in range [0, 255].               |
++--------------------------+-------------------------------------------------------------------------------------------+
+
+Executing the command without parameters will launch a *server* with default UDP values.
 
 The output is:
 
@@ -111,8 +113,7 @@ The output is:
     ### Server is running ###
       Participant Type:   <SERVER|BACKUP>
       Security:           <YES|NO>
-      Server ID:          <server-id>
-      Server GUID prefix: 44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
+      Server GUID prefix: <Default>|44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
       Server Addresses:   UDPv4:[<ip-address>]:<port>
                           UDPv6:[<ip-address>]:<port>
                           TCPv4:[<ip-address>]:<physical-port>-<logical-port>
@@ -131,13 +132,12 @@ Once the *server* is instantiated, the *clients* can be configured either progra
 Examples
 ^^^^^^^^
 
-1.  Launch a **default server** with id 0 (first on ``ROS_DISCOVERY_SERVER``)
-    listening on all available interfaces on UDP port '11811'. Only one
-    server can use default values per machine.
+1.  Launch a **default server** listening on all available interfaces on UDP port '11811'.
+    Only one server can use default values per machine.
 
     .. code-block:: bash
 
-        fastdds discovery -i 0
+        fastdds discovery
 
     Output:
 
@@ -146,17 +146,15 @@ Examples
         ### Server is running ###
           Participant Type:   SERVER
           Security:           NO
-          Server ID:          0
-          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server GUID prefix: <Default GUID>
           Server Addresses:   UDPv4:[0.0.0.0]:11811
 
-2.  Launch a default server with id 1 (second on ``ROS_DISCOVERY_SERVER``)
-    listening on localhost with UDP port 14520. Only localhost clients
-    can reach the server defining as `ROS_DISCOVERY_SERVER=;127.0.0.1:14520` .
+2.  Launch a default server listening on localhost with UDP port 14520.
+    Only localhost clients can reach the server defining as `ROS_DISCOVERY_SERVER=127.0.0.1:14520`.
 
     .. code-block:: bash
 
-        fastdds discovery -i 1 -l 127.0.0.1 -p 14520
+        fastdds discovery -l 127.0.0.1 -p 14520
 
     Output:
 
@@ -165,8 +163,7 @@ Examples
         ### Server is running ###
           Participant Type:   SERVER
           Security:           NO
-          Server ID:          1
-          Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
+          Server GUID prefix: <Default GUID>
           Server Addresses:   UDPv4:[127.0.0.1]:14520
 
     This same output can be obtained loading the following XML configuration file ``DiscoveryServerCLI.xml``:
@@ -180,12 +177,12 @@ Examples
 
         fastdds discovery -x [PATH_TO_FILE]/DiscoveryServerCLI.xml
 
-3.  Launch a default server with id 1 (second on ``ROS_DISCOVERY_SERVER``)
-    listening on IPv6 address ``2a02:ec80:600:ed1a::3`` with UDP port 14520.
+3.  Launch a default server listening on all available interfaces on TCP port '42100'.
+    Only one server can use default values per machine.
 
     .. code-block:: bash
 
-        fast-discovery-serverd-1.0.1.exe -i 1 -l 2a02:ec80:600:ed1a::3 -p 14520
+        fastdds discovery -t
 
     Output:
 
@@ -194,18 +191,35 @@ Examples
         ### Server is running ###
           Participant Type:   SERVER
           Security:           NO
-          Server ID:          1
+          Server GUID prefix: <Default GUID>
+          Server Addresses:   TCPv4:[0.0.0.0]:42100
+
+.. _Deprecated_CLI: https://fast-dds.docs.eprosima.com/en/v2.14.0/fastddscli/cli/cli.html
+
+4.  Launch a default server with GUID corresponding to id 1 (see `Deprecated_CLI`_)
+    listening on IPv6 address ``2a02:ec80:600:ed1a::3`` with UDP port 14520.
+
+    .. code-block:: bash
+
+        fastdds discovery -i 1 -l 2a02:ec80:600:ed1a::3 -p 14520
+
+    Output:
+
+    .. code-block:: bash
+
+        ### Server is running ###
+          Participant Type:   SERVER
+          Security:           NO
           Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
           Server Addresses:   UDPv6:[2a02:ec80:600:ed1a::3]:14520
 
-4.  Launch a default server with id 2 (third on ``ROS_DISCOVERY_SERVER``)
-    listening on WiFi (192.168.36.34) and Ethernet (172.20.96.1) local
-    interfaces with UDP ports 8783 and 51083 respectively
+5.  Launch a default server listening on WiFi (192.168.36.34) and Ethernet (172.20.96.1)
+    local interfaces with UDP ports 8783 and 51083 respectively
     (addresses and ports are made up for the example).
 
     .. code-block:: bash
 
-        fastdds discovery -i 2 -l 192.168.36.34 -p 8783 -l 172.20.96.1 -p 51083
+        fastdds discovery -l 192.168.36.34 -p 8783 -l 172.20.96.1 -p 51083
 
     Output:
 
@@ -214,8 +228,7 @@ Examples
         ### Server is running ###
           Participant Type    SERVER
           Security:           NO
-          Server ID:          2
-          Server GUID prefix: 44.53.02.5f.45.50.52.4f.53.49.4d.41
+          Server GUID prefix: <Default GUID>
           Server Addresses:   UDPv4:[192.168.36.34]:8783
                               UDPv4:[172.20.96.1]:51083
 
@@ -226,14 +239,12 @@ Examples
 
         fastdds discovery -x second_participant_profile_discovery_server_cli@[PATH_TO_FILE]/DiscoveryServerCLI.xml
 
-5.  Launch a default server with id 3 (fourth on ``ROS_DISCOVERY_SERVER``)
-    listening on 172.30.144.1 with UDP port 12345 and provided with a
-    backup file. If the server crashes it will automatically restore its
-    previous state when re-enacted.
+6.  Launch a default server listening on 172.30.144.1 with UDP port 12345 and provided with a
+    backup file. If the server crashes it will automatically restore its previous state when re-enacted.
 
     .. code-block:: bash
 
-        fastdds discovery -i 3 -l 172.30.144.1 -p 12345 -b
+        fastdds discovery -l 172.30.144.1 -p 12345 -b
 
     Output:
 
@@ -242,31 +253,10 @@ Examples
         ### Server is running ###
           Participant Type    BACKUP
           Security:           NO
-          Server ID:          3
-          Server GUID prefix: 44.53.03.5f.45.50.52.4f.53.49.4d.41
+          Server GUID prefix: <Default GUID>
           Server Addresses:   UDPv4:[172.30.144.1]:12345
 
-6.  Launch a default server with id 0 (first on ``ROS_DISCOVERY_SERVER``)
-    listening on localhost with UDP port 14520. Only localhost clients
-    can reach the server defining as `ROS_DISCOVERY_SERVER=localhost:14520`.
-
-    .. code-block:: bash
-
-        fastdds discovery -i 0 -l localhost -p 14520
-
-    Output:
-
-    .. code-block:: bash
-
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           NO
-          Server ID:          0
-          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
-          Server Addresses:   UDPv4:[127.0.0.1]:14520
-
-7.  Launch a secure server with id 0 (first on ``ROS_DISCOVERY_SERVER``)
-    listening on all available interfaces on UDP port '11811'.
+7.  Launch a secure server listening on all available interfaces on UDP port '11811'.
 
     .. code-block:: bash
 
@@ -279,16 +269,14 @@ Examples
         ### Server is running ###
           Participant Type:   SERVER
           Security:           YES
-          Server ID:          0
-          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server GUID prefix: <Default GUID>
           Server Addresses:   UDPv4:[0.0.0.0]:11811
 
-8.  Launch a server with id 0 (first on ``ROS_DISCOVERY_SERVER``) reading
-    specific `profile_name` configuration from XML file.
+8.  Launch a server reading specific `profile_name` configuration from XML file.
 
     .. code-block:: bash
 
-        fastdds discovery -i 0 -x profile_name@[PATH_TO_FILE]/config.xml
+        fastdds discovery -x profile_name@[PATH_TO_FILE]/config.xml
 
     Output:
 
@@ -297,16 +285,14 @@ Examples
         ### Server is running ###
           Participant Type:   SERVER
           Security:           NO
-          Server ID:          0
-          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server GUID prefix: <Default GUID>
           Server Addresses:   UDPv4:[127.0.0.1]:56542
 
-9.  Launch a server with id 0 (first on ``ROS_DISCOVERY_SERVER``) listening
-    on localhost on default TCP port '42100'.
+9.  Launch a server listening on localhost on default TCP port '42100'.
 
     .. code-block:: bash
 
-        fastdds discovery -i 0 -t 127.0.0.1
+        fastdds discovery -t 127.0.0.1
 
     Output:
 
@@ -315,17 +301,15 @@ Examples
         ### Server is running ###
           Participant Type:   SERVER
           Security:           NO
-          Server ID:          0
-          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server GUID prefix: <Default GUID>
           Server Addresses:   TCPv4:[127.0.0.1]:42100-42100
 
-10. Launch a server with id 0 (first on ``ROS_DISCOVERY_SERVER``) listening
-    on localhost and WiFi (192.163.6.34). Two TCP ports need to be
-    specified because TCP transports cannot share ports.
+10. Launch a server listening on localhost and WiFi (192.163.6.34). Two TCP ports need to be
+    specified because transports cannot share ports.
 
     .. code-block:: bash
 
-        fastdds discovery -i 0 -t 127.0.0.1 -q 42100 -t 192.163.6.34 -q 42101
+        fastdds discovery -t 127.0.0.1 -q 42100 -t 192.163.6.34 -q 42101
 
     Output:
 
@@ -334,8 +318,7 @@ Examples
         ### Server is running ###
           Participant Type:   SERVER
           Security:           NO
-          Server ID:          0
-          Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+          Server GUID prefix: <Default GUID>
           Server Addresses:   TCPv4:[127.0.0.1]:42100-42100
                               TCPv4:[192.163.6.34]:42101-42101
 
@@ -347,7 +330,7 @@ Examples
 .. note::
      A server can be instantiated just by passing the port arguments ``-p``
      and ``-q``. Fast DDS CLI will use the default values of the IP addresses,
-     that is, ``0.0.0.0`` for UDP and ``127.0.0.1`` for TCP.
+     that is, ``0.0.0.0`` for UDP and ``0.0.0.0`` for TCP.
 
 .. _cli_shm:
 

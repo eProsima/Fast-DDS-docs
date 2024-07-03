@@ -260,7 +260,7 @@ remote *server* in the case of *clients* (and *servers* that connect to other *s
          :language: xml
          :start-after: <!-->CONF_SERVER_DNS_LOCATORS<-->
          :end-before: <!--><-->
-         :dedent: 28
+         :dedent: 20
 
 .. warning::
 

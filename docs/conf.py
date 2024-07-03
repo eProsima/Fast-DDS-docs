@@ -216,22 +216,13 @@ if read_the_docs_build:
     fastdds_branch = os.environ.get('FASTDDS_BRANCH', None)
 
     # First try to checkout to ${FASTDDS_BRANCH}
-    # Else try with current documentation branch
-    # Else checkout to master
+    # Else checkout to 2.13.x
     if (fastdds_branch and
             fastdds.refs.__contains__('origin/{}'.format(fastdds_branch))):
         fastdds_branch = 'origin/{}'.format(fastdds_branch)
-    elif (docs_branch and
-            fastdds.refs.__contains__('origin/{}'.format(docs_branch))):
-        fastdds_branch = 'origin/{}'.format(docs_branch)
     else:
-        print(
-            'Fast DDS does not have either "{}" or "{}" branches'.format(
-                fastdds_branch,
-                docs_branch
-            )
-        )
-        fastdds_branch = 'origin/master'
+        fastdds_branch = 'origin/2.13.x'
+        print(f'Fast DDS branch is not set by env var. Using "{fastdds_branch}"')
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
@@ -248,20 +239,14 @@ if read_the_docs_build:
     fastdds_python_branch = os.environ.get('FASTDDS_PYTHON_BRANCH', None)
 
     # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
-    # Else try with current documentation branch
-    # Else checkout to master
+    # Else checkout to 1.4.x
     if (fastdds_python_branch and
             fastdds_python.refs.__contains__(
                 'origin/{}'.format(fastdds_python_branch))):
         fastdds_python_branch = 'origin/{}'.format(fastdds_python_branch)
-    elif (docs_branch and
-            fastdds_python.refs.__contains__('origin/{}'.format(docs_branch))):
-        fastdds_python_branch = 'origin/{}'.format(docs_branch)
     else:
-        print(
-            'Fast DDS Python does not have either "{}" or "{}" branches'
-            .format(fastdds_python_branch, docs_branch))
-        fastdds_python_branch = 'origin/main'
+        fastdds_python_branch = 'origin/1.4.x'
+        print(f'Fast DDS Python branch is not set by env var. Using "{fastdds_python_branch}"')
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(
@@ -285,10 +270,13 @@ if read_the_docs_build:
         project_source_dir
     )
     # Generate doxygen documentation
-    subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
+    doxygen_ret = subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
+    if doxygen_ret != 0:
+        print('Doxygen failed with return code {}'.format(doxygen_ret))
+        sys.exit(doxygen_ret)
 
     # Generate SWIG code.
-    subprocess.call('swig -python -doxygen -I{}/include \
+    swig_ret = subprocess.call('swig -python -doxygen -I{}/include \
             -outdir {}/fastdds_python/src/swig -c++ -interface \
             _fastdds_python -o \
             {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
@@ -298,6 +286,10 @@ if read_the_docs_build:
                 fastdds_python_repo_name,
                 fastdds_python_repo_name
                 ), shell=True)
+    if swig_ret != 0:
+        print('SWIG failed with return code {}'.format(swig_ret))
+        sys.exit(swig_ret)
+
     fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(
             fastdds_python_repo_name)
     autodoc_mock_imports = ["_fastdds_python"]

@@ -7,4 +7,4 @@ DataWriterQos
 
 .. autoclass:: fastdds.DataWriterQos
 
-.. autoclass:: fastdds.DATAWRITER_QOS_DEFAULT
+.. autodata:: fastdds.DATAWRITER_QOS_DEFAULT

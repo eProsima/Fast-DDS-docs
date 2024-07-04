@@ -37,6 +37,7 @@
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilder.hpp>
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilderFactory.hpp>
 #include <fastdds/dds/xtypes/type_representation/TypeObject.hpp>
+#include <fastdds/dds/xtypes/utils.hpp>
 #include <fastdds/rtps/attributes/ThreadSettings.hpp>
 #include <fastdds/rtps/common/WriteParams.hpp>
 #include <fastdds/rtps/history/IPayloadPool.hpp>
@@ -45,6 +46,7 @@
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/BlockedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/NetmaskFilterKind.hpp>
+#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.hpp>
@@ -1153,6 +1155,67 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
         }
     }
 
+};
+//!--
+
+//!--REMOTE_TYPE_INTROSPECTION
+class TypeIntrospectionSubscriber : public DomainParticipantListener
+{
+    void on_type_discovered_and_registered_(
+            const DynamicType::_ref_type& type)
+    {
+        // Copy dynamic type
+        dyn_type_ = type;
+
+        // Register type
+        TypeSupport m_type(new DynamicPubSubType(type));
+        m_type.register_type(participant_);
+
+        // Create topic
+        topic_ = participant_->create_topic(
+            topic_name_,
+            m_type->getName(),
+            TOPIC_QOS_DEFAULT);
+
+        if (topic_ == nullptr)
+        {
+            return;
+        }
+
+        // Create DataReader
+        reader_ = subscriber_->create_datareader(
+            topic_,
+            DATAREADER_QOS_DEFAULT,
+            this);
+    }
+
+    /* Custom Callback on_data_available */
+    void on_data_available(
+            DataReader* reader)
+    {
+        // Dynamic DataType
+        DynamicData::_ref_type new_data =
+                            DynamicDataFactory::get_instance()->create_data(dyn_type_);
+
+        std::string output;
+
+        // Serialize DynamicData into JSON string format
+        json_serialize(new_data, output, DynamicDataJsonFormat::EPROSIMA);
+    }
+
+    DomainParticipant* participant_;
+
+    Subscriber* subscriber_;
+
+    Topic* topic_;
+
+    DataReader* reader_;
+
+    TypeSupport type_;
+
+    std::string topic_name_;
+
+    DynamicType::_ref_type dyn_type_;
 };
 //!--
 
@@ -5580,6 +5643,29 @@ void dynamictypes_examples()
         DynamicTypeMember::_ref_type member;
         type_builder->get_member_by_name(member, "string_var");
         type_builder->apply_annotation_to_member(member->get_id(), annotation_descriptor);
+        //!--
+    }
+    {
+        //!--CPP_DYNDATA_TO_JSON
+        // Create the structure to annotate
+        // index
+        dyn_data->set_uint32_value(dyn_data->get_member_id_by_name("index"), static_cast<uint32_t>(1));
+
+        // my struct
+        traits<DynamicData>::ref_type dyn_data_my_struct = dyn_data->loan_value(dyn_data->get_member_id_by_name("my_struct"));
+        dyn_data_my_struct->set_int32_value(dyn_data_my_struct->get_member_id_by_name("my_enum"), 1);
+        Int32Seq long_array_seq = {1, 2, 3, 4, 5, 6};
+        dyn_data_my_struct->set_int32_values(dyn_data_my_struct->get_member_id_by_name("long_array"), long_array_seq);
+        traits<DynamicData>::ref_type dyn_data_my_bitset = dyn_data->loan_value(dyn_data->get_member_id_by_name("my_bitset"));
+        dyn_data_my_bitset->set_int16_value(dyn_data_my_bitset->get_member_id_by_name("d"), static_cast<int16_t>(3));
+        dyn_data->return_loaned_value(dyn_data_my_bitset);
+
+        // complex map
+        traits<DynamicData>::ref_type dyn_data_complex_map = dyn_data->loan_value(dyn_data->get_member_id_by_name("complex_map"));
+        dyn_data_complex_map->set_complex_value(dyn_data_complex_map->get_member_id_by_name(std::to_string(2)), dyn_data_my_struct);
+        dyn_data->return_loaned_value(dyn_data_complex_map);
+        dyn_data->return_loaned_value(dyn_data_my_struct);
+
         //!--
     }
     {

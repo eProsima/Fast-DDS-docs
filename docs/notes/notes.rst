@@ -3,8 +3,8 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.9
-=============
+Version 2.6.9 (maintenance)
+===========================
 
 .. important::
   According to our

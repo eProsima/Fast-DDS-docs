@@ -82,15 +82,15 @@ def select_css(html_css_dir):
     :param html_css_dir: The directory to save the CSS stylesheet.
     :return: Returns a list of CSS files to be imported.
     """
-    ret = ['_static/tabs.css']
-    common_css = '_static/css/eprosima_rtd_theme.css'
-    local_css = '_static/css/fiware_readthedocs.css'
+    ret = ''
+    common_css = 'css/eprosima_rtd_theme.css'
+    local_css = 'css/fiware_readthedocs.css'
     if download_css(html_css_dir):
         print('Applying common CSS style file: {}'.format(common_css))
-        ret.append(common_css)
+        ret = common_css
     else:
         print('Applying local CSS style file: {}'.format(local_css))
-        ret.append(local_css)
+        ret = local_css
 
     return ret
 
@@ -515,10 +515,7 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-html_context = {
-        'css_files': select_css(script_path),
-        }
-
+html_style = select_css(script_path)
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied

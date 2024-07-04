@@ -38,6 +38,7 @@ Github CI management:
 #. Refactor Fast DDS Ubuntu CI to include several tests
 #. Avoid `CCache` in workflows and nighties
 #. Update README.md with GitHub actions Ubuntu CI nightly
+#. Label flaky tests with `xfail`
 
 This release includes the following **fixes**:
 

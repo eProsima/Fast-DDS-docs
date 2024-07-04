@@ -3,68 +3,61 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.8
-=============
+Version 2.6.9 (maintenance)
+===========================
+
+.. important::
+  According to our
+  `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+  Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
+  From now on, the v2.6 minor will only receive patches for critical issues and security fixes.
 
 This release includes the following **features**:
 
-#. :ref:`Authentication Handshake Properties <property_policies_security>` documentation.
-#. TCP Client and Server Participant Decision Making.
+#. Add XML configuration for FlowControllerDescriptor to 2.x
+#. New `max_message_size` property to limit output datagrams size
 
 This release includes the following **improvements**:
 
-#. Make DataWriters always send the key hash on keyed topics.
-#. Include variety of terminate process signals handler in discovery server.
-#. Effectively assert ``AUTOMATIC/MANUAL_BY_PARTICIPANT`` liveliness.
-#. Pick smallest available participant ID for new participants.
-#. Check History QoS inconsistencies.
-#. Add check for XML API to PR template.
-#. ``LARGE_DATA`` Participants logic with same listening ports.
-
-TCP transport improvements:
-
-#. TCP unique client announced local port.
-#. Remove unnecessary TCP warning and Fix some tests.
-#. TCP ``non-blocking`` send.
-#. Enabling multiple interfaces through whitelist in TCP servers.
-#. Set real TCP ``non-blocking-send`` limitation.
+#. Update Fast CDR thirdparty submodule
+#. Consider library behavior changes as ABI breaks in the PR template checklist
+#. Allow processing of AckNack submessages with count == 0
+#. Use `%*` instead of loop in `.bat` scripts.
+#. Use absolute paths when loading XML files
+#. TCPSendResources cleanup
 
 Github CI management:
 
-#. Refactor Github CI sanitizer related jobs.
-#. Avoid running GitHub CI if PR has conflicts.
-#. Add manual Ubuntu Github CI.
-#. Improve CI version management.
-#. Build ``ShapesDemo`` on Ubuntu Github CI.
-#. Only run PRs CI when review is requested.
-#. Add macOS and Ubuntu Github CI.
-#. Build Fast DDS Python bindings in Fast DDS Docs Github CI job.
-#. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows.
+#. Fix Python Installation version in Github CI. Address failing system tests environment issues
+#. Set fallback branch for `get_related_branch_from_repo` correctly
+#. Fix sanitizers CI test summary report
+#. Protect asio exception
+#. Set Fallback branch to 2.6.x
+#. Run selected VS tool on Windows CI
+#. Add DNS entries to hosts files on Github workflows
+#. Refactor Fast DDS Ubuntu CI to include several tests
+#. Avoid `CCache` in workflows and nighties
+#. Update README.md with GitHub actions Ubuntu CI nightly
+#. Label flaky tests with `xfail`
 
 This release includes the following **fixes**:
 
-#. Fix and refactor Windows Github CI.
-#. Fix max clash with Windows CI.
-#. Fix the shared memory cleaning script.
-#. Fix doxygen docs warnings. Prepare for compiling with ``Doxygen 1.10.0``.
-#. Prevent index overflow and correctly assert the end iterator in DataSharing.
-#. Add a keyed fragmented change to the reader data instance only when its completed.
-#. Add missing virtual destructor for ``StatisticsAncillary``.
-#. Fix wrong log info messages on TCP.
-#. Migrate apt package installation action to ``eProsima-CI``.
-#. Fix CI documentation workflow label triggering.
-#. Upgrade dependency version to last patch version in ``.repos`` file.
-#. Fix ``CVE-2024-28231``
-#. Fix data race on PDP.
-#. Discard already processed samples on PDPListener.
-#. Fix flaky Log tests.
-#. Add missing ``TypeLookup`` listeners.
-#. Fix hidden overloaded virtual methods.
-#. Fix TCP reconnection after open logical port failure.
-#. Fix ``CVE-2024-30258 / CVE-2024-30259``
-#. Make :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>` coherent with ``read()/take()``.
-#. Removed warning in ``ParameterList``.
-#. TCP avoid first message loss.
+#. Fix leak in `SecurityManager::participant_volatile_message_secure_writer_`
+#. Fix Discovery Server over TCP
+#. Fix some leaks in XML DynamicTypes Parser
+#. Correct liveliness state in a multiple reader - one writer scenario
+#. Fix support for `@key` annotation in Dynamic types
+#. Properly delete builtin statistics writers upon `delete_contained_entities()`
+#. Correctly initialize `MatchingFailureMask` constants to be used with the `std::bitset` API
+#. Set DataSharing in `Writer|ReaderProxyData`
+#. Only apply content filter to ALIVE changes
+#. Handle errors when setting socket buffer sizes
+#. Automatically unmatch remote participants on participant deletion
+#. Fix on_sample_lost notification on best-effort readers for fragmented samples
+#. Handle errors when setting socket buffer sizes
+#. Fix DS servers not connecting due to ports logic
+#. Manual fix for documentation generation
+#. Create `InitialConnection` for TCP initial peers
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -74,6 +67,7 @@ This release includes the following **fixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.8.rst
 .. include:: previous_versions/v2.6.7.rst
 .. include:: previous_versions/v2.6.6.rst
 .. include:: previous_versions/v2.6.5.rst

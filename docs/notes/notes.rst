@@ -6,6 +6,12 @@ Information about the release lifecycle can be found
 Version 2.6.9
 =============
 
+.. important::
+  According to our
+  `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+  Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
+  From now on, the v2.6 minor will only receive patches for critical issues and security fixes.
+
 This release includes the following **features**:
 
 #. Add XML configuration for FlowControllerDescriptor to 2.x
@@ -50,6 +56,7 @@ This release includes the following **fixes**:
 #. Handle errors when setting socket buffer sizes
 #. Fix DS servers not connecting due to ports logic
 #. Manual fix for documentation generation
+#. Create `InitialConnection` for TCP initial peers
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

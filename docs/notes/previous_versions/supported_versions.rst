@@ -11,6 +11,7 @@ Version 2.14
 Version 2.13
 ------------
 
+.. include:: v2.13.5.rst
 .. include:: v2.13.4.rst
 .. include:: v2.13.3.rst
 .. include:: v2.13.2.rst

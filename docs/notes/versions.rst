@@ -208,7 +208,7 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 3: QCC (over GCC 8.3)
 
-    .. group-tab:: 2.6.x
+    .. group-tab:: 2.6.x (maintenance)
 
         .. list-table::
 
@@ -242,6 +242,12 @@ The following table shows the minimum version required of the Fast DDS build sys
               - Tier 3: GCC 8
               - **───**
               - Tier 3: GCC 8
+
+        .. important::
+          According to our
+          `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+          Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
+          From now on, the v2.6 minor will only receive patches for critical issues and security fixes.
 
 .. _dependencies_compatibilities_library_dependencies:
 
@@ -306,7 +312,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
 
-    .. group-tab:: 2.6.x
+    .. group-tab:: 2.6.x (maintenance)
 
         .. list-table::
             :header-rows: 1
@@ -323,6 +329,12 @@ The following table shows the corresponding versions of the Fast DDS library dep
               - `v6.0.0 <https://github.com/leethomason/tinyxml2/tree/6.0.0>`__
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v1.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-1.1.1>`__
+
+        .. important::
+          According to our
+          `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+          Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
+          From now on, the v2.6 minor will only receive patches for critical issues and security fixes.
 
 .. _dependencies_compatibilities_product_compatibility:
 
@@ -388,7 +400,7 @@ Fast DDS as the core middleware.
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 
-    .. group-tab:: 2.6.x
+    .. group-tab:: 2.6.x (maintenance)
 
         .. list-table::
             :header-rows: 1
@@ -402,6 +414,12 @@ Fast DDS as the core middleware.
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.0.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.0.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.6.8 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.8>`__
+              - `v2.6.9 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.9>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
+
+        .. important::
+          According to our
+          `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+          Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
+          From now on, the v2.6 minor will only receive patches for critical issues and security fixes.

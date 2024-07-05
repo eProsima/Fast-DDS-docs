@@ -306,7 +306,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
 
-    .. group-tab:: 2.6.x
+    .. group-tab:: 2.6.x (maintenance)
 
         .. list-table::
             :header-rows: 1
@@ -388,7 +388,7 @@ Fast DDS as the core middleware.
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 
-    .. group-tab:: 2.6.x
+    .. group-tab:: 2.6.x (maintenance)
 
         .. list-table::
             :header-rows: 1
@@ -402,6 +402,6 @@ Fast DDS as the core middleware.
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.0.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.0.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.6.8 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.8>`__
+              - `v2.6.9 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.9>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__

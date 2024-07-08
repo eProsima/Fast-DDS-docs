@@ -1197,10 +1197,12 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         DynamicData::_ref_type new_data =
                             DynamicDataFactory::get_instance()->create_data(dyn_type_);
 
-        std::string output;
+        std::stringstream output;
+        output << std::setw(4);
 
         // Serialize DynamicData into JSON string format
-        json_serialize(new_data, output, DynamicDataJsonFormat::EPROSIMA);
+        json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
+        std::cout << "Message received:\n" << output.str() << std::endl;
     }
 
     DomainParticipant* participant_;
@@ -5643,29 +5645,6 @@ void dynamictypes_examples()
         DynamicTypeMember::_ref_type member;
         type_builder->get_member_by_name(member, "string_var");
         type_builder->apply_annotation_to_member(member->get_id(), annotation_descriptor);
-        //!--
-    }
-    {
-        //!--CPP_DYNDATA_TO_JSON
-        // Create the structure to annotate
-        // index
-        dyn_data->set_uint32_value(dyn_data->get_member_id_by_name("index"), static_cast<uint32_t>(1));
-
-        // my struct
-        traits<DynamicData>::ref_type dyn_data_my_struct = dyn_data->loan_value(dyn_data->get_member_id_by_name("my_struct"));
-        dyn_data_my_struct->set_int32_value(dyn_data_my_struct->get_member_id_by_name("my_enum"), 1);
-        Int32Seq long_array_seq = {1, 2, 3, 4, 5, 6};
-        dyn_data_my_struct->set_int32_values(dyn_data_my_struct->get_member_id_by_name("long_array"), long_array_seq);
-        traits<DynamicData>::ref_type dyn_data_my_bitset = dyn_data->loan_value(dyn_data->get_member_id_by_name("my_bitset"));
-        dyn_data_my_bitset->set_int16_value(dyn_data_my_bitset->get_member_id_by_name("d"), static_cast<int16_t>(3));
-        dyn_data->return_loaned_value(dyn_data_my_bitset);
-
-        // complex map
-        traits<DynamicData>::ref_type dyn_data_complex_map = dyn_data->loan_value(dyn_data->get_member_id_by_name("complex_map"));
-        dyn_data_complex_map->set_complex_value(dyn_data_complex_map->get_member_id_by_name(std::to_string(2)), dyn_data_my_struct);
-        dyn_data->return_loaned_value(dyn_data_complex_map);
-        dyn_data->return_loaned_value(dyn_data_my_struct);
-
         //!--
     }
     {

@@ -122,6 +122,13 @@ struct ArrayStruct
 };
 //!--
 
+//!--IDL_ARRAYS_JSON
+struct ArrayStruct
+{
+    long long_array[2][3];
+};
+//!--
+
 //!--IDL_MAPS
 struct MapStruct
 {

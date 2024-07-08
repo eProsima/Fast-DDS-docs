@@ -1161,34 +1161,6 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
 //!--REMOTE_TYPE_INTROSPECTION
 class TypeIntrospectionSubscriber : public DomainParticipantListener
 {
-    void on_type_discovered_and_registered_(
-            const DynamicType::_ref_type& type)
-    {
-        // Copy dynamic type
-        dyn_type_ = type;
-
-        // Register type
-        TypeSupport m_type(new DynamicPubSubType(type));
-        m_type.register_type(participant_);
-
-        // Create topic
-        topic_ = participant_->create_topic(
-            topic_name_,
-            m_type->getName(),
-            TOPIC_QOS_DEFAULT);
-
-        if (topic_ == nullptr)
-        {
-            return;
-        }
-
-        // Create DataReader
-        reader_ = subscriber_->create_datareader(
-            topic_,
-            DATAREADER_QOS_DEFAULT,
-            this);
-    }
-
     /* Custom Callback on_data_available */
     void on_data_available(
             DataReader* reader)
@@ -1204,18 +1176,6 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
         std::cout << "Message received:\n" << output.str() << std::endl;
     }
-
-    DomainParticipant* participant_;
-
-    Subscriber* subscriber_;
-
-    Topic* topic_;
-
-    DataReader* reader_;
-
-    TypeSupport type_;
-
-    std::string topic_name_;
 
     DynamicType::_ref_type dyn_type_;
 };

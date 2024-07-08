@@ -1,0 +1,17 @@
+{
+    "my_bool": false,
+    "my_octet": 0,
+    "my_char": "\u0000",
+    "my_wchar": "\u0000",
+    "my_long": 0,
+    "my_ulong": 0,
+    "my_int8": 0,
+    "my_uint8": 0,
+    "my_short": 0,
+    "my_ushort": 0,
+    "my_longlong": 0,
+    "my_ulonglong": 0,
+    "my_float": 0.0,
+    "my_double": 0.0,
+    "my_longdouble": 0.0
+}

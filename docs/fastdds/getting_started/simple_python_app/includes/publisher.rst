@@ -6,7 +6,7 @@ From the workspace, run the following command to download the HelloWorldPublishe
 .. code-block:: bash
 
     wget -O HelloWorldPublisher.py \
-        https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/Python/HelloWorld/HelloWorldPublisher.py
+        https://raw.githubusercontent.com/eProsima/Fast-DDS-Docs/2.x/code/Examples/Python/HelloWorld/HelloWorldPublisher.py
 
 This is the Python source code for the publisher application.
 It is going to send 10 publications under the topic `HelloWorldTopic`.

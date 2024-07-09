@@ -6,7 +6,7 @@ From the workspace, run the following command to download the HelloWorldSubscrib
 .. code-block:: bash
 
     wget -O HelloWorldSubscriber.py \
-        https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
+        https://raw.githubusercontent.com/eProsima/Fast-DDS-Docs/2.x/code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
 
 This is the Python source code for the subscriber application.
 The application runs a subscriber until the user press *Ctrl+C* receiving samples under the topic HelloWorldTopic.

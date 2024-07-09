@@ -6,7 +6,7 @@ From the `src` directory in the workspace, execute the following command to down
 .. code-block:: bash
 
     wget -O HelloWorldSubscriber.cpp \
-        https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
+        https://raw.githubusercontent.com/eProsima/Fast-DDS-Docs/2.x/code/Examples/C++/DDSHelloWorld/src/HelloWorldSubscriber.cpp
 
 This is the C++ source code for the subscriber application.
 The application runs a subscriber until it receives 10 samples under the topic `HelloWorldTopic`.

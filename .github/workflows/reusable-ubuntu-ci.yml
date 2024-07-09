@@ -6,7 +6,7 @@ on:
       os-version:
         description: 'The OS image for the workflow'
         required: false
-        default: 'ubuntu-22.04'
+        default: 'ubuntu-24.04'
         type: string
       label:
         description: 'ID associated to the workflow'

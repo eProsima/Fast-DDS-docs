@@ -16,7 +16,7 @@ DynamicHelloWorldExample
 ------------------------
 
 This example is in folder
-`examples/cpp/dds/DynamicHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/DynamicHelloWorldExample>`_
+`examples/cpp/dds/DynamicHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/DynamicHelloWorldExample>`_
 of the `Fast DDS GitHub repository`_.
 It shows the use of DynamicType generation to provide the |TopicDataType|.
 This example is compatible with the classic HelloWorldExample.
@@ -34,7 +34,7 @@ DDSDynamicHelloWorldExample
 ---------------------------
 
 This example uses the DDS API, and can be retrieve from folder
-`examples/cpp/dds/DynamicHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/DynamicHelloWorldExample>`_
+`examples/cpp/dds/DynamicHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/DynamicHelloWorldExample>`_
 of the `Fast DDS GitHub repository`_.
 It shows a publisher that loads a type from an XML file, and shares it during discovery.
 The subscriber discovers the type using :ref:`discovery-time-data-typing`, and registers the
@@ -44,7 +44,7 @@ TypeLookupService
 -----------------
 
 This example uses the DDS API, and it is located in folder
-`examples/cpp/dds/TypeLookupService <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/TypeLookupService>`_
+`examples/cpp/dds/TypeLookupService <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/TypeLookupService>`_
 of the `Fast DDS GitHub repository`_.
 It is very similar to DDSDynamicHelloWorldExample, but the shared type is complex enough to require the
 TypeLookup Service due to the dependency of inner struct types.

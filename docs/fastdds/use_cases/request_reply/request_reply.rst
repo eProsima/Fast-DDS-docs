@@ -152,4 +152,4 @@ For this the client application has to compare the stored |SampleIdentity-api| w
    :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_RECEIVE_REPLY
    :end-before: //!
 
-.. _Fast DDS repository: https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/RequestReplyExample
+.. _Fast DDS repository: https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/RequestReplyExample

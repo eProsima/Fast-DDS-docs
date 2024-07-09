@@ -78,7 +78,7 @@ Create a virtual environment and install python3 dependencies.
 ```bash
 python3 -m venv fastdds-docs-venv
 source fastdds-docs-venv/bin/activate
-wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/master/docs/requirements.txt
+wget https://raw.githubusercontent.com/eProsima/Fast-DDS-docs/2.x/docs/requirements.txt
 pip3 install -r requirements.txt
 ```
 

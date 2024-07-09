@@ -80,7 +80,7 @@ Where the option choices are:
      - Specifies a custom template used for generating source code. |br|
        This option expects the location of the template and the location of the file where source code output will be
        stored. |br|
-       A custom template example can be found in this `link <https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/master/resources/Custom.stg>`_
+       A custom template example can be found in this `link <https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/3.x/resources/Custom.stg>`_
    * - -help
      - Shows the help information
    * - -I <directory>

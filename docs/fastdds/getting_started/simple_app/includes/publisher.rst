@@ -6,7 +6,7 @@ From the `src` directory in the workspace, run the following command to download
 .. code-block:: bash
 
     wget -O HelloWorldPublisher.cpp \
-        https://raw.githubusercontent.com/eProsima/Fast-RTPS-docs/master/code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
+        https://raw.githubusercontent.com/eProsima/Fast-DDS-Docs/2.x/code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp
 
 This is the C++ source code for the publisher application.
 It is going to send 10 publications under the topic `HelloWorldTopic`.

@@ -451,6 +451,6 @@ HelloWorldExampleTCP
 --------------------
 
 A TCP version of helloworld example can be found in the
-`HelloWorldExampleTCP folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/HelloWorldExampleTCP>`_.
+`HelloWorldExampleTCP folder <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/HelloWorldExampleTCP>`_.
 It shows a publisher and a subscriber that communicate through TCP.
 The publisher is configured as *TCP server* while the Subscriber is acting as *TCP client*.

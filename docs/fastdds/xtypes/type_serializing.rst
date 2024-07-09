@@ -13,25 +13,25 @@ format that can be easily transmitted and reconstructed across different platfor
 DynamicData to JSON
 --------------------
 
-In the context of DDS (Data Distribution Service), `DynamicType` represents the structure of the data being
+In the context of DDS (Data Distribution Service), |DynamicType-api| represents the structure of the data being
 distributed across the system.
-Each `DynamicData` object corresponds to an object of the type represented by its `DynamicType`,
+Each |DynamicData-api| object corresponds to an object of the type represented by its |DynamicType-api|,
 providing functionalities to access and modify data values.
-To enhance interoperability and readability, it is necessary to serialize `DynamicData` into a more manageable format,
+To enhance interoperability and readability, it is necessary to serialize |DynamicData-api| into a more manageable format,
 to enable easier data processing and analysis across different systems and applications.
-The method `json_serialize` converts a `DynamicData` object into an JSON object, then dumped into a `std::ostream`.
+The method |XTypesUtils-json_serialize-api| converts a |DynamicData-api| object into an JSON object, then dumped into a ``std::ostream``.
 
 Supported Types Serialization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This section provides the serialization of `DynamicData` to JSON ostream for all supported types.
+This section provides the serialization of |DynamicData-api| to JSON ostream for all supported types.
 
 .. _xtypes_serialization_utilities_primitive:
 
 Primitive types
 """""""""""""""
 
-Primitive types are the basic building blocks for every `DynamicType`.
+Primitive types are the basic building blocks for every |DynamicType-api|.
 Below is an example of the definition of primitive types in IDL:
 
 .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
@@ -39,10 +39,12 @@ Below is an example of the definition of primitive types in IDL:
     :start-after: //!--IDL_PRIMITIVES
     :end-before: //!--
 
-The previous `DynamicData` object would be serialized as follows:
+The previous |DynamicData-api| object would be serialized as follows:
 
 .. literalinclude:: /../code/json/Primitives.json
     :language: json
+
+.. _xtypes_serialization_utilities_string:
 
 String types
 """"""""""""
@@ -56,10 +58,12 @@ The following example shows the definition of string types in IDL:
     :start-after: //!--IDL_STRINGS
     :end-before: //!--
 
-The previous `DynamicData` object would be serialized as follows:
+The previous |DynamicData-api| object would be serialized as follows:
 
 .. literalinclude:: /../code/json/Strings.json
     :language: json
+
+.. _xtypes_serialization_utilities_enumeration:
 
 Enumeration types
 """""""""""""""""
@@ -75,7 +79,7 @@ Below is an example of the definition of enumeration types in IDL:
 
 The previous DynamicData object can be serialized in two different formats, `eProsima` and `OMG`, providing
 flexibility depending on the required interoperability and compatibility with other systems.
-The previous `DynamicData` object would be serialized as follows in the different formats:
+The previous |DynamicData-api| object would be serialized as follows in the different formats:
 
 .. tabs::
 
@@ -88,6 +92,8 @@ The previous `DynamicData` object would be serialized as follows in the differen
 
         .. literalinclude:: /../code/json/Enum_OMG.json
             :language: json
+
+.. _xtypes_serialization_utilities_bitmask:
 
 Bitmask Types
 """""""""""""
@@ -102,7 +108,7 @@ Here is an example of the definition of bitmask types in IDL:
     :end-before: //!--
 
 Bitmask also present different serialized structures in the different dormats `eProsima` and `OMG`.
-The previous `DynamicData` object would be serialized as follows in the different formats:
+The previous |DynamicData-api| object would be serialized as follows in the different formats:
 
 .. tabs::
 
@@ -116,6 +122,8 @@ The previous `DynamicData` object would be serialized as follows in the differen
         .. literalinclude:: /../code/json/Bitmask_OMG.json
             :language: json
 
+.. _xtypes_serialization_utilities_sequence:
+
 Sequence types
 """"""""""""""
 
@@ -128,10 +136,12 @@ Below is an example of the definition of sequence types in IDL:
     :start-after: //!--IDL_SEQUENCES
     :end-before: //!--
 
-The previous `DynamicData` object would be serialized as follows:
+The previous |DynamicData-api| object would be serialized as follows:
 
 .. literalinclude:: /../code/json/Sequences.json
     :language: json
+
+.. _xtypes_serialization_utilities_array:
 
 Array types
 """""""""""
@@ -144,10 +154,12 @@ The following example shows the definition of array types in IDL:
     :start-after: //!--IDL_ARRAYS_JSON
     :end-before: //!--
 
-The previous `DynamicData` object would be serialized as follows:
+The previous |DynamicData-api| object would be serialized as follows:
 
 .. literalinclude:: /../code/json/Arrays.json
     :language: json
+
+.. _xtypes_serialization_utilities_map:
 
 Map Types
 """""""""
@@ -161,10 +173,12 @@ Below is an example of the definition of map types in IDL:
     :start-after: //!--IDL_MAPS
     :end-before: //!--
 
-The previous `DynamicData` object would be serialized as follows:
+The previous |DynamicData-api| object would be serialized as follows:
 
 .. literalinclude:: /../code/json/Maps.json
     :language: json
+
+.. _xtypes_serialization_utilities_structure:
 
 Structure Types
 """""""""""""""
@@ -177,10 +191,12 @@ Here is an example of the definition of structure types in IDL:
     :start-after: //!--IDL_STRUCT
     :end-before: //!--
 
-The previous `DynamicData` object would be serialized as follows:
+The previous |DynamicData-api| object would be serialized as follows:
 
 .. literalinclude:: /../code/json/Structs.json
     :language: json
+
+.. _xtypes_serialization_utilities_union:
 
 Union Types
 """""""""""
@@ -193,21 +209,23 @@ Below is an example of the definition of union types in IDL:
     :start-after: //!--IDL_UNION
     :end-before: //!--
 
-The previous `DynamicData` object would be serialized as follows:
+The previous |DynamicData-api| object would be serialized as follows:
 
 .. literalinclude:: /../code/json/Unions.json
     :language: json
 
-Example: Remote discovered types introspection
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _xtypes_serialization_utilities_example:
 
-The following code demonstrates how to implement remote type introspection using FastDDS in C++.
-This feature allows a subscriber to introspect the remotely discovered type and serialize it into a more manageable
-and understandable format.
-Once a type is discovered, it can be registered and every time the subscriber receives new data related to this type,
-the corresponding DynamicData can be obtained from the DynamicDataFactory and serialized into a JSON string format.
+Example: Convert received data into JSON format
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following code demonstrates how to use the |XTypesUtils-json_serialize-api| function in FastDDS to serialize
+received data into a more manageable and understandable JSON format.
+Each time the subscriber receives new data, the corresponding |DynamicData-api| can be obtained from the
+|DynamicDataFactory-api| and serialized into a JSON string format.
+For more details on how to implement remote type discovery, see the :ref:`use-case-remote-type-discovery-and-matching`.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
-    :start-after: //!--REMOTE_TYPE_INTROSPECTION
+    :start-after: //!--DYNDATA_JSON_SERIALIZATION
     :end-before: //!--

@@ -1161,7 +1161,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
 //!--REMOTE_TYPE_INTROSPECTION
 class TypeIntrospectionSubscriber : public DomainParticipantListener
 {
-    /* Custom Callback on_data_available */
+    //!--DYNDATA_JSON_SERIALIZATION
     void on_data_available(
             DataReader* reader)
     {
@@ -1170,13 +1170,12 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
                             DynamicDataFactory::get_instance()->create_data(dyn_type_);
 
         std::stringstream output;
-        output << std::setw(4);
 
         // Serialize DynamicData into JSON string format
         json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
         std::cout << "Message received:\n" << output.str() << std::endl;
     }
-
+    //!--
     DynamicType::_ref_type dyn_type_;
 };
 //!--

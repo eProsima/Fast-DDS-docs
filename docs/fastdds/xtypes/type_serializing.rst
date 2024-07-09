@@ -17,9 +17,10 @@ In the context of DDS (Data Distribution Service), |DynamicType-api| represents 
 distributed across the system.
 Each |DynamicData-api| object corresponds to an object of the type represented by its |DynamicType-api|,
 providing functionalities to access and modify data values.
-To enhance interoperability and readability, it is necessary to serialize |DynamicData-api| into a more manageable format,
-to enable easier data processing and analysis across different systems and applications.
-The method |XTypesUtils-json_serialize-api| converts a |DynamicData-api| object into an JSON object, then dumped into a ``std::ostream``.
+To enhance interoperability and readability, it is necessary to serialize |DynamicData-api| into a more
+manageable format, to enable easier data processing and analysis across different systems and applications.
+The method |XTypesUtils-json_serialize-api| converts a |DynamicData-api| object into an JSON object, then
+dumped into a ``std::ostream``.
 
 Supported Types
 ^^^^^^^^^^^^^^^
@@ -107,7 +108,7 @@ Here is an example of the definition of bitmask types in IDL:
     :start-after: //!--IDL_BITMASK
     :end-before: //!--
 
-Bitmask also present different serialized structures in the different dormats `eProsima` and `OMG`.
+Bitmask also present different serialized structures in the different formats `eProsima` and `OMG`.
 The previous |DynamicData-api| object would be serialized as follows in the different formats:
 
 .. tabs::

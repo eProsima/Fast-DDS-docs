@@ -1,7 +1,9 @@
 .. _api_pim_xtypes_utils:
 
+.. rst-class:: api-ref
+
 Utils
 -----
 
-.. doxygenfunction:: eprosima::fastdds::dds::json_serialize(const DynamicData::_ref_type& data, const DynamicDataJsonFormat& format, std::ostream& output)
-    :project: FastDDS
+.. doxygenfunction:: eprosima::fastdds::dds::json_serialize
+   :project: FastDDS

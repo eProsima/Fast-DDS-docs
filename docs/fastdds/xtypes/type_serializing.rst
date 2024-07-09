@@ -21,15 +21,15 @@ To enhance interoperability and readability, it is necessary to serialize |Dynam
 to enable easier data processing and analysis across different systems and applications.
 The method |XTypesUtils-json_serialize-api| converts a |DynamicData-api| object into an JSON object, then dumped into a ``std::ostream``.
 
-Supported Types Serialization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Supported Types
+^^^^^^^^^^^^^^^
 
 This section provides the serialization of |DynamicData-api| to JSON ostream for all supported types.
 
 .. _xtypes_serialization_utilities_primitive:
 
-Primitive types
-"""""""""""""""
+Primitives
+""""""""""
 
 Primitive types are the basic building blocks for every |DynamicType-api|.
 Below is an example of the definition of primitive types in IDL:
@@ -46,8 +46,8 @@ The previous |DynamicData-api| object would be serialized as follows:
 
 .. _xtypes_serialization_utilities_string:
 
-String types
-""""""""""""
+Strings
+"""""""
 
 String types are used to represent sequences of characters, which are essential for handling textual
 data within the system.
@@ -65,8 +65,8 @@ The previous |DynamicData-api| object would be serialized as follows:
 
 .. _xtypes_serialization_utilities_enumeration:
 
-Enumeration types
-"""""""""""""""""
+Enumerations
+""""""""""""
 
 Enumeration types represent a fixed set of named values, making it easier to work with a predefined
 list of options.
@@ -95,8 +95,8 @@ The previous |DynamicData-api| object would be serialized as follows in the diff
 
 .. _xtypes_serialization_utilities_bitmask:
 
-Bitmask Types
-"""""""""""""
+Bitmasks
+""""""""
 
 Bitmask types allow the representation of a set of flags in a single value, which can be useful
 for storing multiple boolean options compactly.
@@ -124,8 +124,8 @@ The previous |DynamicData-api| object would be serialized as follows in the diff
 
 .. _xtypes_serialization_utilities_sequence:
 
-Sequence types
-""""""""""""""
+Sequences
+"""""""""
 
 Sequence types are used to represent ordered collections of elements, similar to arrays but with
 dynamic length.
@@ -143,8 +143,8 @@ The previous |DynamicData-api| object would be serialized as follows:
 
 .. _xtypes_serialization_utilities_array:
 
-Array types
-"""""""""""
+Arrays
+""""""
 
 Array types are used to represent fixed-size collections of elements.
 The following example shows the definition of array types in IDL:
@@ -161,8 +161,8 @@ The previous |DynamicData-api| object would be serialized as follows:
 
 .. _xtypes_serialization_utilities_map:
 
-Map Types
-"""""""""
+Maps
+""""
 
 Map types represent collections of key-value pairs, allowing for the efficient lookup of values based
 on unique keys.
@@ -180,8 +180,8 @@ The previous |DynamicData-api| object would be serialized as follows:
 
 .. _xtypes_serialization_utilities_structure:
 
-Structure Types
-"""""""""""""""
+Structures
+""""""""""
 
 Structure types are used to group different types of data together.
 Here is an example of the definition of structure types in IDL:
@@ -198,8 +198,8 @@ The previous |DynamicData-api| object would be serialized as follows:
 
 .. _xtypes_serialization_utilities_union:
 
-Union Types
-"""""""""""
+Unions
+""""""
 
 Union types are a special type of structure type where only one member exists.
 Below is an example of the definition of union types in IDL:
@@ -219,11 +219,12 @@ The previous |DynamicData-api| object would be serialized as follows:
 Example: Convert received data into JSON format
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following code demonstrates how to use the |XTypesUtils-json_serialize-api| function in FastDDS to serialize
+The following code demonstrates how to use the |XTypesUtils-json_serialize-api| function in Fast DDS to serialize
 received data into a more manageable and understandable JSON format.
 Each time the subscriber receives new data, the corresponding |DynamicData-api| can be obtained from the
 |DynamicDataFactory-api| and serialized into a JSON string format.
-For more details on how to implement remote type discovery, see the :ref:`use-case-remote-type-discovery-and-matching`.
+Please refer to :ref:`use-case-remote-type-discovery-and-matching` section for more details on how to implement
+remote type discovery.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++

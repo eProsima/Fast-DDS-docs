@@ -95,6 +95,7 @@ discoveryServersList
 DomainParticipant
 DomainParticipantListener
 doxygenfunction
+DummyPubSubType
 DurabilityKind
 DurabilityQosPolicy
 DurabilityServiceQosPolicy

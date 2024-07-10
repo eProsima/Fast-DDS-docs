@@ -1181,7 +1181,7 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         }
     }
 
-    // DynamicType registered in discovery callback
+    // DynamicType created in discovery callback
     DynamicType::_ref_type dyn_type_;
     //!--
 };

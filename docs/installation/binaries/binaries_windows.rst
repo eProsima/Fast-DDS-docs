@@ -100,3 +100,22 @@ For example in order to build the examples statically linked to **Fast-DDS** do:
 
     > cmake -Bbuildexample -DFASTDDS_STATIC=ON .
     > cmake --build buildexample --target install
+
+
+.. _cli_bw:
+
+Fast DDS CLI (optional)
+-----------------------
+
+The :ref:`Fast DDS CLI<ffastddscli_cli>` (Command Line Interface) is a tool that provides a set commands and
+sub-commands to perform, Fast DDS related, maintenance and configuration tasks.
+As an optional tool, its dependencies are not installed by default, but they can be installed by running the
+following command:
+
+.. code-block:: bash
+
+    choco install python
+    python -m pip install --upgrade pywin32 xmlschema
+
+Python3 is required to run the CLI tool, and the `xmlschema <https://pypi.org/project/xmlschema/>`_ dependency is
+needed to use the :ref:`XML validation command<cli_xml>`.

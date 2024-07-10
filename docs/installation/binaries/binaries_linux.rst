@@ -32,8 +32,6 @@ the :code:`install.sh` script with administrative privileges:
     By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the :ref:`linux_sources`
     page.
 
-    To use the :ref:`cli_xml` validation tool, please refer to the :ref:`linux_sources` page.
-
 .. _contents_bl:
 
 Contents
@@ -91,6 +89,24 @@ For example in order to build the examples dynamically linked to **Fast-DDS** do
 
     $ cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
     $ cmake --build buildexample --target install
+
+.. _cli_bl:
+
+Fast DDS CLI (optional)
+-----------------------
+
+The :ref:`Fast DDS CLI<ffastddscli_cli>` (Command Line Interface) is a tool that provides a set commands and
+sub-commands to perform, Fast DDS related, maintenance and configuration tasks.
+As an optional tool, its dependencies are not installed by default, but they can be installed by running the
+following command:
+
+.. code-block:: bash
+
+    sudo apt-get install python3 python3-pip
+    pip3 install xmlschema
+
+Python3 is required to run the CLI tool, and the `xmlschema <https://pypi.org/project/xmlschema/>`_ dependency is
+needed to use the :ref:`XML validation command<cli_xml>`.
 
 .. _uninstall_bl:
 

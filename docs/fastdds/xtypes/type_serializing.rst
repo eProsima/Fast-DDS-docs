@@ -222,6 +222,25 @@ would be serialized as follows:
 .. literalinclude:: /../code/json/Unions.json
     :language: json
 
+.. _xtypes_serialization_utilities_bitsets:
+
+Bitsets
+"""""""
+
+Bitset types are a specialized type of structure where individual bits can be accessed and manipulated.
+Below is an example of the definition of bitset types in IDL:
+
+.. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+    :language: omg-idl
+    :start-after: //!--IDL_BITSET_JSON
+    :end-before: //!--
+
+The previous |DynamicData-api| object corresponding to the type represented above
+would be serialized as follows:
+
+.. literalinclude:: /../code/json/Bitsets.json
+    :language: json
+
 .. _xtypes_serialization_utilities_example:
 
 Example: Convert received data into JSON format

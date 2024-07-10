@@ -1710,21 +1710,21 @@
             </qos>
 
             <times> <!-- writerTimesType -->
-                <initialHeartbeatDelay>
+                <initial_heartbeat_delay>
                     <nanosec>12</nanosec>
-                </initialHeartbeatDelay>
+                </initial_heartbeat_delay>
 
-                <heartbeatPeriod>
+                <heartbeat_period>
                     <sec>3</sec>
-                </heartbeatPeriod>
+                </heartbeat_period>
 
-                <nackResponseDelay>
+                <nack_response_delay>
                     <nanosec>5</nanosec>
-                </nackResponseDelay>
+                </nack_response_delay>
 
-                <nackSupressionDuration>
+                <nack_supression_duration>
                     <sec>0</sec>
-                </nackSupressionDuration>
+                </nack_supression_duration>
             </times>
 
             <unicastLocatorList>
@@ -3727,18 +3727,18 @@
 <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
 <data_writer profile_name="pub_profile_name">
     <times> <!-- writerTimesType -->
-        <initialHeartbeatDelay> <!-- DURATION -->
+        <initial_heartbeat_delay> <!-- DURATION -->
             <nanosec>20</nanosec>
-        </initialHeartbeatDelay>
-        <heartbeatPeriod> <!-- DURATION -->
+        </initial_heartbeat_delay>
+        <heartbeat_period> <!-- DURATION -->
             <sec>5</sec>
-        </heartbeatPeriod>
-        <nackResponseDelay> <!-- DURATION -->
+        </heartbeat_period>
+        <nack_response_delay> <!-- DURATION -->
             <nanosec>10</nanosec>
-        </nackResponseDelay>
-        <nackSupressionDuration> <!-- DURATION -->
+        </nack_response_delay>
+        <nack_supression_duration> <!-- DURATION -->
             <nanosec>20</nanosec>
-        </nackSupressionDuration>
+        </nack_supression_duration>
     </times>
 
     <!--You can also change the values of DisablePositiveACKsQosPolicy.-->

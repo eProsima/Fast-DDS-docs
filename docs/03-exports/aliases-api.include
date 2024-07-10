@@ -580,10 +580,10 @@
 .. |RTPSEndpointQos::history_memory_policy-api| replace:: :cpp:member:`history_memory_policy<eprosima::fastdds::dds::RTPSEndpointQos::history_memory_policy>`
 
 .. |WriterTimes-api| replace:: :cpp:struct:`WriterTimes<eprosima::fastdds::rtps::WriterTimes>`
-.. |WriterTimes::initialHeartbeatDelay-api| replace:: :cpp:member:`initialHeartbeatDelay<eprosima::fastdds::rtps::WriterTimes::initialHeartbeatDelay>`
-.. |WriterTimes::heartbeatPeriod-api| replace:: :cpp:member:`heartbeatPeriod<eprosima::fastdds::rtps::WriterTimes::heartbeatPeriod>`
-.. |WriterTimes::nackResponseDelay-api| replace:: :cpp:member:`nackResponseDelay<eprosima::fastdds::rtps::WriterTimes::nackResponseDelay>`
-.. |WriterTimes::nackSupressionDuration-api| replace:: :cpp:member:`nackSupressionDuration<eprosima::fastdds::rtps::WriterTimes::nackSupressionDuration>`
+.. |WriterTimes::initial_heartbeat_delay-api| replace:: :cpp:member:`initial_heartbeat_delay<eprosima::fastdds::rtps::WriterTimes::initial_heartbeat_delay>`
+.. |WriterTimes::heartbeat_period-api| replace:: :cpp:member:`heartbeat_period<eprosima::fastdds::rtps::WriterTimes::heartbeat_period>`
+.. |WriterTimes::nack_response_delay-api| replace:: :cpp:member:`nack_response_delay<eprosima::fastdds::rtps::WriterTimes::nack_response_delay>`
+.. |WriterTimes::nack_supression_duration-api| replace:: :cpp:member:`nack_supression_duration<eprosima::fastdds::rtps::WriterTimes::nack_supression_duration>`
 
 .. |TransportConfigQos-api| replace:: :cpp:class:`TransportConfigQos<eprosima::fastdds::dds::TransportConfigQos>`
 .. |TransportConfigQos::user_transports-api| replace:: :cpp:member:`user_transports<eprosima::fastdds::dds::TransportConfigQos::user_transports>`

@@ -4275,18 +4275,18 @@ void dds_qos_examples()
         //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
         // This example only applies to DataWriter entities
         DataWriterQos writer_qos;
-        // The RTPSReliableWriterQos is constructed with initialHeartbeatDelay = 12 ms by default
-        // Change the initialHeartbeatDelay to 20 nanoseconds
-        writer_qos.reliable_writer_qos().times.initialHeartbeatDelay = {0, 20};
-        // The RTPSReliableWriterQos is constructed with heartbeatPeriod = 3 s by default
-        // Change the heartbeatPeriod to 5 seconds
-        writer_qos.reliable_writer_qos().times.heartbeatPeriod = {5, 0};
-        // The RTPSReliableWriterQos is constructed with nackResponseDelay = 5 ms by default
-        // Change the nackResponseDelay to 10 nanoseconds
-        writer_qos.reliable_writer_qos().times.nackResponseDelay = {0, 10};
-        // The RTPSReliableWriterQos is constructed with nackSupressionDuration = 0 s by default
-        // Change the nackSupressionDuration to 20 nanoseconds
-        writer_qos.reliable_writer_qos().times.nackSupressionDuration = {0, 20};
+        // The RTPSReliableWriterQos is constructed with initial_heartbeat_delay = 12 ms by default
+        // Change the initial_heartbeat_delay to 20 nanoseconds
+        writer_qos.reliable_writer_qos().times.initial_heartbeat_delay = {0, 20};
+        // The RTPSReliableWriterQos is constructed with heartbeat_period = 3 s by default
+        // Change the heartbeat_period to 5 seconds
+        writer_qos.reliable_writer_qos().times.heartbeat_period = {5, 0};
+        // The RTPSReliableWriterQos is constructed with nack_response_delay = 5 ms by default
+        // Change the nack_response_delay to 10 nanoseconds
+        writer_qos.reliable_writer_qos().times.nack_response_delay = {0, 10};
+        // The RTPSReliableWriterQos is constructed with nack_supression_duration = 0 s by default
+        // Change the nack_supression_duration to 20 nanoseconds
+        writer_qos.reliable_writer_qos().times.nack_supression_duration = {0, 20};
         // You can also change the DisablePositiveACKsQosPolicy. For further details see DisablePositiveACKsQosPolicy section.
         writer_qos.reliable_writer_qos().disable_positive_acks.enabled = true;
         // The RTPSReliableWriterQos is constructed with disable_heartbeat_piggyback = false by default
@@ -6530,8 +6530,8 @@ void dds_usecase_examples()
     {
         //CONF_QOS_TUNING_RELIABLE_WRITER
         DataWriterQos qos;
-        qos.reliable_writer_qos().times.heartbeatPeriod.seconds = 0;
-        qos.reliable_writer_qos().times.heartbeatPeriod.nanosec = 500000000;     //500 ms
+        qos.reliable_writer_qos().times.heartbeat_period.seconds = 0;
+        qos.reliable_writer_qos().times.heartbeat_period.nanosec = 500000000;     //500 ms
         //!--
     }
 

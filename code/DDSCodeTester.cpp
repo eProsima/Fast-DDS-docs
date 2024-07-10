@@ -46,7 +46,6 @@
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/BlockedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/NetmaskFilterKind.hpp>
-#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.hpp>
@@ -1169,14 +1168,22 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         DynamicData::_ref_type new_data =
                             DynamicDataFactory::get_instance()->create_data(dyn_type_);
 
-        std::stringstream output;
+        SampleInfo info;
 
-        // Serialize DynamicData into JSON string format
-        json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
-        std::cout << "Message received:\n" << output.str() << std::endl;
+        while ((RETCODE_OK == reader->take_next_sample(&new_data, &info)))
+        {
+            std::stringstream output;
+            output << std::setw(4);
+
+            // Serialize DynamicData into JSON string format
+            json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
+            std::cout << "Message received:\n" << output.str() << std::endl;
+        }
     }
-    //!--
+
+    // DynamicType registered in discovery callback
     DynamicType::_ref_type dyn_type_;
+    //!--
 };
 //!--
 

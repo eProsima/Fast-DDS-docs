@@ -17,9 +17,9 @@ In the context of DDS (Data Distribution Service), |DynamicType-api| represents 
 distributed across the system.
 Each |DynamicData-api| object corresponds to an object of the type represented by its |DynamicType-api|,
 providing functionalities to access and modify data values.
-To enhance interoperability and readability, it is necessary to serialize |DynamicData-api| into a more
+To enhance interoperability and readability, it is often useful to serialize |DynamicData-api| into a more
 manageable format, to enable easier data processing and analysis across different systems and applications.
-The method |XTypesUtils-json_serialize-api| converts a |DynamicData-api| object into an JSON object, then
+The method |XTypesUtils-json_serialize-api| converts a |DynamicData-api| object into a JSON object, then
 dumped into a ``std::ostream``.
 
 Supported Types
@@ -40,7 +40,8 @@ Below is an example of the definition of primitive types in IDL:
     :start-after: //!--IDL_PRIMITIVES
     :end-before: //!--
 
-The previous |DynamicData-api| object would be serialized as follows:
+The previous |DynamicData-api| object corresponding to the type represented above
+would be serialized as follows:
 
 .. literalinclude:: /../code/json/Primitives.json
     :language: json
@@ -59,7 +60,8 @@ The following example shows the definition of string types in IDL:
     :start-after: //!--IDL_STRINGS
     :end-before: //!--
 
-The previous |DynamicData-api| object would be serialized as follows:
+The previous |DynamicData-api| object corresponding to the type represented above
+would be serialized as follows:
 
 .. literalinclude:: /../code/json/Strings.json
     :language: json
@@ -137,7 +139,8 @@ Below is an example of the definition of sequence types in IDL:
     :start-after: //!--IDL_SEQUENCES
     :end-before: //!--
 
-The previous |DynamicData-api| object would be serialized as follows:
+The previous |DynamicData-api| object corresponding to the type represented above
+would be serialized as follows:
 
 .. literalinclude:: /../code/json/Sequences.json
     :language: json
@@ -155,7 +158,8 @@ The following example shows the definition of array types in IDL:
     :start-after: //!--IDL_ARRAYS_JSON
     :end-before: //!--
 
-The previous |DynamicData-api| object would be serialized as follows:
+The previous |DynamicData-api| object corresponding to the type represented above
+would be serialized as follows:
 
 .. literalinclude:: /../code/json/Arrays.json
     :language: json
@@ -174,7 +178,8 @@ Below is an example of the definition of map types in IDL:
     :start-after: //!--IDL_MAPS
     :end-before: //!--
 
-The previous |DynamicData-api| object would be serialized as follows:
+The previous |DynamicData-api| object corresponding to the type represented above
+would be serialized as follows:
 
 .. literalinclude:: /../code/json/Maps.json
     :language: json
@@ -192,7 +197,8 @@ Here is an example of the definition of structure types in IDL:
     :start-after: //!--IDL_STRUCT
     :end-before: //!--
 
-The previous |DynamicData-api| object would be serialized as follows:
+The previous |DynamicData-api| object corresponding to the type represented above
+would be serialized as follows:
 
 .. literalinclude:: /../code/json/Structs.json
     :language: json
@@ -210,7 +216,8 @@ Below is an example of the definition of union types in IDL:
     :start-after: //!--IDL_UNION
     :end-before: //!--
 
-The previous |DynamicData-api| object would be serialized as follows:
+The previous |DynamicData-api| object corresponding to the type represented above
+would be serialized as follows:
 
 .. literalinclude:: /../code/json/Unions.json
     :language: json
@@ -229,5 +236,6 @@ remote type discovery.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++
+    :dedent: 4
     :start-after: //!--DYNDATA_JSON_SERIALIZATION
     :end-before: //!--

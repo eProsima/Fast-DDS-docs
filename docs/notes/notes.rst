@@ -17,8 +17,8 @@ This release includes the following **improvements**:
 #. Github CI management:
 
     #. Refactor Fast DDS Ubuntu CI to include several tests
-    #. Use token for ccache action
-    #. CI - Avoid CCache in workflows and nightlys
+    #. Use token for CCache action
+    #. CI - Avoid CCache in workflows and nightly
     #. Update README.md with GitHub actions Ubuntu CI nightly
     #. Build profiling tests as alternate build in Ubuntu CI
 

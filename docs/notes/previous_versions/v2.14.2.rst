@@ -1,5 +1,5 @@
-`Version 2.14.2 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.2/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 2.14.2 <https://fast-dds.docs.eprosima.com/en/v2.14.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
 

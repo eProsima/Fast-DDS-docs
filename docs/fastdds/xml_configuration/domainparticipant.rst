@@ -215,11 +215,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-<<<<<<< HEAD
-    :lines: 2-4, 6-126, 128-129
-=======
-    :lines: 2-4, 6-150, 152-153
->>>>>>> 6e7f076 (Complete flow_controller_descriptor references in xml sections (#824))
+    :lines: 2-4, 6-141, 143-144
 
 .. note::
 

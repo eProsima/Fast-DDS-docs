@@ -234,11 +234,15 @@ public:
 
     void on_data_writer_discovery(
             DomainParticipant* participant,
-            eprosima::fastdds::rtps::WriterDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS reason,
+            const eprosima::fastdds::dds::PublicationBuiltinTopicData& info,
             bool& should_be_ignored) override
     {
+        static_cast<void>(participant);
+        static_cast<void>(info);
+
         should_be_ignored = false;
-        if (info.status == eprosima::fastdds::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER)
+        if (reason == eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS::DISCOVERED_WRITER)
         {
             std::cout << "New datawriter discovered" << std::endl;
             // The following line can be modified to evaluate whether the discovered datawriter should be ignored
@@ -249,7 +253,7 @@ public:
                 should_be_ignored = true; // Request the ignoring of the discovered datawriter
             }
         }
-        else if (info.status == eprosima::fastdds::rtps::WriterDiscoveryInfo::REMOVED_WRITER)
+        else if (reason == eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS::REMOVED_WRITER)
         {
             std::cout << "Datawriter lost" << std::endl;
         }
@@ -1024,17 +1028,18 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     /* Custom Callback on_data_writer_discovery */
     void on_data_writer_discovery(
             DomainParticipant* participant,
-            eprosima::fastdds::rtps::WriterDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS reason,
+            const eprosima::fastdds::dds::PublicationBuiltinTopicData& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
         static_cast<void>(participant);
-        switch (info.status){
-            case eprosima::fastdds::rtps::WriterDiscoveryInfo::DISCOVERED_WRITER:
+        switch (reason){
+            case eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS::DISCOVERED_WRITER:
             {
                 /* Process the case when a new datawriter was found in the domain */
-                std::cout << "New DataWriter publishing under topic '" << info.info.topicName() <<
-                    "' of type '" << info.info.typeName() << "' discovered";
+                std::cout << "New DataWriter publishing under topic '" << info.topic_name <<
+                    "' of type '" << info.type_name << "' discovered";
                 /* The following line can be substituted to evaluate whether the discovered datawriter should be ignored */
                 bool ignoring_condition = false;
                 if (ignoring_condition)
@@ -1043,13 +1048,13 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                 }
             }
             break;
-            case eprosima::fastdds::rtps::WriterDiscoveryInfo::CHANGED_QOS_WRITER:
+            case eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS::CHANGED_QOS_WRITER:
                 /* Process the case when a datawriter changed its QOS */
                 break;
-            case eprosima::fastdds::rtps::WriterDiscoveryInfo::REMOVED_WRITER:
+            case eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS::REMOVED_WRITER:
                 /* Process the case when a datawriter was removed from the domain */
-                std::cout << "DataWriter publishing under topic '" << info.info.topicName() <<
-                    "' of type '" << info.info.typeName() << "' left the domain.";
+                std::cout << "DataWriter publishing under topic '" << info.topic_name <<
+                    "' of type '" << info.type_name << "' left the domain.";
                 break;
         }
     }
@@ -1111,14 +1116,15 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
     /* Custom Callback on_data_writer_discovery */
     void on_data_writer_discovery(
             DomainParticipant* participant,
-            eprosima::fastdds::rtps::WriterDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS reason,
+            const eprosima::fastdds::dds::PublicationBuiltinTopicData& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                    info.info.type_information().type_information.complete().typeid_with_size().type_id(),
+                    info.type_information.type_information.complete().typeid_with_size().type_id(),
                     remote_type_object))
         {
             // Error
@@ -1132,7 +1138,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
 
         // Create a Topic with the remotely discovered type.
         Topic* topic =
-                participant->create_topic(info.info.topicName().to_string(), dyn_type_support.get_type_name(),
+                participant->create_topic(info.topic_name, dyn_type_support.get_type_name(),
                         TOPIC_QOS_DEFAULT);
         if (nullptr == topic)
         {

@@ -5,62 +5,40 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.13.5
-==============
-
-This release includes the following **features** in an ABI compatible manner:
-
-#. New :ref:`property_max_message_size` property to limit output datagrams size
+Version 2.13.6 (EOL)
+====================
 
 This release includes the following **improvements**:
 
-#. Improve ThreadSettingsQoS logging
-#. Allow processing of AckNack submessages with ``count == 0``
-#. Internal refactor on port handling
-#. Do not require ``PYTHON_VERSION`` to be defined in .bat files
-#. Use ``%*`` instead of loop in ``.bat`` scripts
-#. Consider library behavior changes as ABI breaks in the PR template checklist
-#. Refactor IStatusQueryable and make monitor service interfaces private
-#. Automatically unmatch remote participants on participant deletion
-#. Handle errors when setting socket buffer sizes
+#. Create InitialConnection for TCP initial peers
+#. Only apply content filter to ALIVE changes
+#. Update version support documentation
+#. Add XML configuration for FlowControllerDescriptor
 #. Github CI management:
 
-    #. Refactor Github CI sanitizer related jobs
-    #. Build Fast DDS Python bindings in Fast DDS Docs Github CI job
-    #. Build ShapesDemo on Ubuntu Github CI
-    #. Fix Python Installation version in Github CI. Address failing system tests environment issues.
-    #. Fix sanitizers CI test summary report
-    #. Run selected VS tool on Windows CI
-    #. Increase sleep to miss the deadline in macOS flaky tests
-    #. Fix ShmTransport buffer recovery MacOS flaky test
-    #. Set fallback branch for ``get_related_branch_from_repo`` correctly
-    #. Add DNS entries to hosts files on github workflows
+    #. Refactor Fast DDS Ubuntu CI to include several tests
+    #. Use token for ccache action
+    #. CI - Avoid CCache in workflows and nightlys
+    #. Update README.md with GitHub actions Ubuntu CI nightly
+    #. Build profiling tests as alternate build in Ubuntu CI
 
 This release includes the following **fixes**:
 
-#. Add check for XML API to PR template
-#. Use absolute paths when loading XML files
-#. Fix some leaks in XML DynamicTypes Parser
-#. Force unlimited ResourceLimits if lower or equal to zero
-#. Enforce SHM ports open mode exclusions
-#. Run ``is_plain`` method with the corresponding data representation
-#. Removed warning
-#. Don't require Fast CDR v2 in examples
-#. Make reader ``get_first_untaken_info()`` coherent with ``read()`` / ``take()``
-#. Fix leak in ``SecurityManager::participant_volatile_message_secure_writer_``
-#. Fix CVE-2024-30258 / CVE-2024-30259
-#. Fix support for ``@key`` annotation in Dynamic types
-#. Set DataSharing in Writer|ReaderProxyData
-#. Fix on_sample_lost notification on best-effort readers for fragmented samples
-#. Correct liveliness state in a multiple reader - one writer scenario
+#. Fix DS servers not connecting due to ports logic
+#. Correctly initialize ``MatchingFailureMask`` constants to be used with the ``std::bitset`` API
+#. Fix topic interference on ``liveliness_changed`` status
+#. Properly delete builtin statistics writers upon ``delete_contained_entities()``
+#. Fix Latency tests
+#. Remove doxygen warnings
 
 .. note::
-  When upgrading to version 2.13.5 it is **advisable** to regenerate generated source from IDL files
+  When upgrading to version 2.13.6 it is **advisable** to regenerate generated source from IDL files
   using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.13.5.rst
 .. include:: previous_versions/v2.13.4.rst
 .. include:: previous_versions/v2.13.3.rst
 .. include:: previous_versions/v2.13.2.rst

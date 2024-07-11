@@ -1,5 +1,5 @@
-Version 2.13.2
-^^^^^^^^^^^^^^
+Version 2.13.2 (EOL)
+^^^^^^^^^^^^^^^^^^^^
 
 This patch release includes the following **fixes** and **improvements**:
 

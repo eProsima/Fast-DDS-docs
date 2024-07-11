@@ -991,6 +991,7 @@
 .. |ITypeObjectRegistry-api| replace:: :cpp:class:`ITypeObjectRegistry <eprosima::fastdds::dds::xtypes::ITypeObjectRegistry>`
 .. |ITypeObjectRegistry::get_type_object| replace:: :cpp:func:`ITypeObjectRegistry::get_type_object <eprosima::fastdds::dds::xtypes::ITypeObjectRegistry::get_type_object>`
 .. |TypeObjectUtils-api| replace:: :cpp:class:`TypeObjectUtils <eprosima::fastdds::dds::xtypes::TypeObjectUtils>`
+.. |XTypesUtils-idl_serialize-api| replace:: :cpp:func:`idl_serialize <eprosima::fastdds::dds::idl_serialize>`
 .. |XTypesUtils-json_serialize-api| replace:: :cpp:func:`json_serialize <eprosima::fastdds::dds::json_serialize>`
 .. }}}
 

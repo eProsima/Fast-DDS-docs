@@ -13,14 +13,8 @@ This release includes the following **improvements**:
 #. Create InitialConnection for TCP initial peers
 #. Only apply content filter to ALIVE changes
 #. Update version support documentation
-#. Add XML configuration for FlowControllerDescriptor
-#. Github CI management:
-
-    #. Refactor Fast DDS Ubuntu CI to include several tests
-    #. Use token for CCache action
-    #. CI - Avoid CCache in workflows and nightly
-    #. Update README.md with GitHub actions Ubuntu CI nightly
-    #. Build profiling tests as alternate build in Ubuntu CI
+#. Add XML configuration for ``FlowControllerDescriptor``
+#. Github CI improvements
 
 This release includes the following **fixes**:
 

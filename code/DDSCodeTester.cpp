@@ -1189,7 +1189,7 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         idl_serialize(remote_type, idl);
 
         // Print IDL representation
-        std::cout << "Type received:\n" << idl.str() << std::endl;
+        std::cout << "Type discovered:\n" << idl.str() << std::endl;
     }
 
     /* Custom Callback on_data_writer_discovery */
@@ -1217,7 +1217,7 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         idl_serialize(remote_type, idl);
 
         // Print IDL representation
-        std::cout << "Type received:\n" << idl.str() << std::endl;
+        std::cout << "Type discovered:\n" << idl.str() << std::endl;
     }
     //!--
 

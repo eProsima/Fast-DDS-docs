@@ -19,26 +19,33 @@ The method |XTypesUtils-idl_serialize-api| serializes a |DynamicType-api| object
 
 .. note::
 
-    The conversion to IDL only supports the following :ref:`builtin annotations<builtin_annotations>`: :code:`@bit_bound`, :code:`@extensibility`, :code:`@key`, and :code:`@position`.
+    The conversion to IDL only supports the following :ref:`builtin annotations<builtin_annotations>`:
+    :code:`@bit_bound`, :code:`@extensibility`, :code:`@key`, and :code:`@position`.
 
 .. warning::
 
-    The conversion to IDL of a :ref:`Bitset<xtypes_supportedtypes_bitset>` with inheritance merges derived :ref:`Bitsets<xtypes_supportedtypes_bitset>` with their base :ref:`Bitset<xtypes_supportedtypes_bitset>`.
+    The conversion to IDL of a :ref:`Bitset<xtypes_supportedtypes_bitset>` with inheritance merges derived
+    :ref:`Bitsets<xtypes_supportedtypes_bitset>` with their base :ref:`Bitset<xtypes_supportedtypes_bitset>`.
 
 .. warning::
 
     The conversion to IDL dismisses values explicitly set to their default value.
     For example, the default :code:`@bit_bound` value of a :ref:`Bitmask<xtypes_supportedtypes_bitmask>` is 32.
-    If a user were to explicitly set the :code:`@bit_bound` value of a :ref:`Bitmask<xtypes_supportedtypes_bitmask>` to 32 and then serialize the |DynamicType-api| to IDL, the :code:`@bit_bound` would not be included in the IDL.
+    If a user were to explicitly set the :code:`@bit_bound` value of a
+    :ref:`Bitmask<xtypes_supportedtypes_bitmask>` to 32 and then serialize the |DynamicType-api| to IDL, the
+    :code:`@bit_bound` would not be included in the IDL.
 
 .. _xtypes_serialization_utilities_idl_example:
 
 Example: Convert a discovered type to IDL format
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example demonstrates how to use the |XTypesUtils-idl_serialize-api| method in Fast DDS to convert discovered types to IDL format.
-Each time the subscriber discovers a new |DataReader-api| or |DataWriter-api|, it uses the |DynamicTypeBuilderFactory-api| to build a |DynamicType-api| and serialize it to IDL format.
-Please refer to :ref:`use-case-remote-type-discovery-and-matching` section for more details on how to implement remote type discovery.
+The following example demonstrates how to use the |XTypesUtils-idl_serialize-api| method in Fast DDS to convert
+discovered types to IDL format.
+Each time the subscriber discovers a new |DataReader-api| or |DataWriter-api|, it uses the
+|DynamicTypeBuilderFactory-api| to build a |DynamicType-api| and serialize it to IDL format.
+Please refer to :ref:`use-case-remote-type-discovery-and-matching` section for more details on how to implement
+remote type discovery.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
     :language: c++

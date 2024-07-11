@@ -122,6 +122,13 @@ struct ArrayStruct
 };
 //!--
 
+//!--IDL_ARRAYS_JSON
+struct ArrayStruct
+{
+    long long_array[2][3];
+};
+//!--
+
 //!--IDL_MAPS
 struct MapStruct
 {
@@ -187,6 +194,22 @@ bitset ChildBitSet : ParentBitSet
 struct BitsetStruct
 {
    ChildBitSet my_bitset;
+};
+//!--
+
+//!--IDL_BITSET_JSON
+bitset MyBitSet
+{
+    bitfield<3> a;
+    bitfield<1> b;
+    bitfield<4>;
+    bitfield<10> c;
+    bitfield<12, short> d;
+};
+
+struct BitsetStruct
+{
+   MyBitSet my_bitset;
 };
 //!--
 

@@ -1,0 +1,10 @@
+{
+    "inner_union": {
+        "second": 0
+    },
+    "complex_union": {
+        "fourth": {
+            "second": 0
+        }
+    }
+}

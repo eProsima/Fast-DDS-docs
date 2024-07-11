@@ -37,6 +37,7 @@
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilder.hpp>
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilderFactory.hpp>
 #include <fastdds/dds/xtypes/type_representation/TypeObject.hpp>
+#include <fastdds/dds/xtypes/utils.hpp>
 #include <fastdds/rtps/attributes/ThreadSettings.hpp>
 #include <fastdds/rtps/common/WriteParams.hpp>
 #include <fastdds/rtps/history/IPayloadPool.hpp>
@@ -1153,6 +1154,36 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
         }
     }
 
+};
+//!--
+
+//!--REMOTE_TYPE_INTROSPECTION
+class TypeIntrospectionSubscriber : public DomainParticipantListener
+{
+    //!--DYNDATA_JSON_SERIALIZATION
+    void on_data_available(
+            DataReader* reader)
+    {
+        // Dynamic DataType
+        DynamicData::_ref_type new_data =
+                            DynamicDataFactory::get_instance()->create_data(dyn_type_);
+
+        SampleInfo info;
+
+        while ((RETCODE_OK == reader->take_next_sample(&new_data, &info)))
+        {
+            std::stringstream output;
+            output << std::setw(4);
+
+            // Serialize DynamicData into JSON string format
+            json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
+            std::cout << "Message received:\n" << output.str() << std::endl;
+        }
+    }
+
+    // DynamicType created in discovery callback
+    DynamicType::_ref_type dyn_type_;
+    //!--
 };
 //!--
 

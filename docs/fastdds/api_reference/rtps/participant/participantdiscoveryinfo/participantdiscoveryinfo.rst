@@ -12,4 +12,3 @@ ParticipantDiscoveryInfo
     /fastdds/api_reference/rtps/participant/participantdiscoveryinfo/ReaderDiscoveryInfo
     /fastdds/api_reference/rtps/participant/participantdiscoveryinfo/ReaderProxyData
     /fastdds/api_reference/rtps/participant/participantdiscoveryinfo/WriterDiscoveryInfo
-    /fastdds/api_reference/rtps/participant/participantdiscoveryinfo/WriterProxyData

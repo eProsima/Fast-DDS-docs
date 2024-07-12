@@ -3872,7 +3872,7 @@ void dds_dataReader_examples()
         SampleInfo info;
 
         //Define a timeout of 5 seconds
-        eprosima::fastdds::Duration_t timeout (5, 0);
+        eprosima::fastdds::dds::Duration_t timeout (5, 0);
 
         // Loop reading data as it arrives
         // This will make the current thread to be dedicated exclusively to
@@ -3924,7 +3924,7 @@ void dds_dataReader_examples()
         SampleInfo info;
 
         //Define a timeout of 5 seconds
-        eprosima::fastdds::Duration_t timeout (5, 0);
+        eprosima::fastdds::dds::Duration_t timeout (5, 0);
 
         // Loop reading data as it arrives
         // This will make the current thread to be dedicated exclusively to
@@ -7403,7 +7403,7 @@ void dds_waitset_example()
                 // Wait for any of the conditions to be triggered
                 ReturnCode_t ret_code;
                 ConditionSeq triggered_conditions;
-                ret_code = wait_set_.wait(triggered_conditions, eprosima::fastdds::c_TimeInfinite);
+                ret_code = wait_set_.wait(triggered_conditions, eprosima::fastdds::dds::c_TimeInfinite);
                 if (RETCODE_OK != ret_code)
                 {
                     // ... handle error

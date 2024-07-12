@@ -10,6 +10,48 @@ within distributed systems.
 Serialization is a crucial process in data distribution services, as it converts complex data structures into a
 format that can be easily transmitted and reconstructed across different platforms and programming environments.
 
+.. _xtypes_serialization_utilities_idl:
+
+Dynamic Type to IDL
+-------------------
+
+The method |XTypesUtils-idl_serialize-api| serializes a |DynamicType-api| object to its IDL representation.
+
+.. note::
+
+    The conversion to IDL only supports the following :ref:`builtin annotations<builtin_annotations>`:
+    :code:`@bit_bound`, :code:`@extensibility`, :code:`@key`, and :code:`@position`.
+
+.. warning::
+
+    The conversion to IDL of a :ref:`Bitset<xtypes_supportedtypes_bitset>` with inheritance merges derived
+    :ref:`Bitsets<xtypes_supportedtypes_bitset>` with their base :ref:`Bitset<xtypes_supportedtypes_bitset>`.
+
+.. warning::
+
+    The conversion to IDL dismisses values explicitly set to their default value.
+    For example, the default :code:`@bit_bound` value of a :ref:`Bitmask<xtypes_supportedtypes_bitmask>` is 32.
+    If a user were to explicitly set the :code:`@bit_bound` value of a
+    :ref:`Bitmask<xtypes_supportedtypes_bitmask>` to 32 and then serialize the |DynamicType-api| to IDL, the
+    :code:`@bit_bound` would not be included in the IDL.
+
+.. _xtypes_serialization_utilities_idl_example:
+
+Example: Convert a discovered type to IDL format
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following example demonstrates how to use the |XTypesUtils-idl_serialize-api| method in Fast DDS to convert
+discovered types to IDL format.
+Each time the subscriber discovers a new |DataReader-api| or |DataWriter-api|, it uses the
+|DynamicTypeBuilderFactory-api| to build a |DynamicType-api| and serialize it to IDL format.
+Please refer to :ref:`use-case-remote-type-discovery-and-matching` section for more details on how to implement
+remote type discovery.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: c++
+    :start-after: //!--DYNTYPE_IDL_SERIALIZATION
+    :end-before: //!--
+
 DynamicData to JSON
 --------------------
 
@@ -40,7 +82,7 @@ Below is an example of the definition of primitive types in IDL:
     :start-after: //!--IDL_PRIMITIVES
     :end-before: //!--
 
-The previous |DynamicData-api| object corresponding to the type represented above
+A |DynamicData-api| object corresponding to the type represented above
 would be serialized as follows:
 
 .. literalinclude:: /../code/json/Primitives.json
@@ -60,7 +102,7 @@ The following example shows the definition of string types in IDL:
     :start-after: //!--IDL_STRINGS
     :end-before: //!--
 
-The previous |DynamicData-api| object corresponding to the type represented above
+A |DynamicData-api| object corresponding to the type represented above
 would be serialized as follows:
 
 .. literalinclude:: /../code/json/Strings.json
@@ -139,7 +181,7 @@ Below is an example of the definition of sequence types in IDL:
     :start-after: //!--IDL_SEQUENCES
     :end-before: //!--
 
-The previous |DynamicData-api| object corresponding to the type represented above
+A |DynamicData-api| object corresponding to the type represented above
 would be serialized as follows:
 
 .. literalinclude:: /../code/json/Sequences.json
@@ -158,7 +200,7 @@ The following example shows the definition of array types in IDL:
     :start-after: //!--IDL_ARRAYS_JSON
     :end-before: //!--
 
-The previous |DynamicData-api| object corresponding to the type represented above
+A |DynamicData-api| object corresponding to the type represented above
 would be serialized as follows:
 
 .. literalinclude:: /../code/json/Arrays.json
@@ -178,7 +220,7 @@ Below is an example of the definition of map types in IDL:
     :start-after: //!--IDL_MAPS
     :end-before: //!--
 
-The previous |DynamicData-api| object corresponding to the type represented above
+A |DynamicData-api| object corresponding to the type represented above
 would be serialized as follows:
 
 .. literalinclude:: /../code/json/Maps.json
@@ -197,7 +239,7 @@ Here is an example of the definition of structure types in IDL:
     :start-after: //!--IDL_STRUCT
     :end-before: //!--
 
-The previous |DynamicData-api| object corresponding to the type represented above
+A |DynamicData-api| object corresponding to the type represented above
 would be serialized as follows:
 
 .. literalinclude:: /../code/json/Structs.json
@@ -216,7 +258,7 @@ Below is an example of the definition of union types in IDL:
     :start-after: //!--IDL_UNION
     :end-before: //!--
 
-The previous |DynamicData-api| object corresponding to the type represented above
+A |DynamicData-api| object corresponding to the type represented above
 would be serialized as follows:
 
 .. literalinclude:: /../code/json/Unions.json
@@ -235,13 +277,13 @@ Below is an example of the definition of bitset types in IDL:
     :start-after: //!--IDL_BITSET_JSON
     :end-before: //!--
 
-The previous |DynamicData-api| object corresponding to the type represented above
+A |DynamicData-api| object corresponding to the type represented above
 would be serialized as follows:
 
 .. literalinclude:: /../code/json/Bitsets.json
     :language: json
 
-.. _xtypes_serialization_utilities_example:
+.. _xtypes_serialization_utilities_json_example:
 
 Example: Convert received data into JSON format
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

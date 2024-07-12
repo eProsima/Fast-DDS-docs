@@ -5,5 +5,8 @@
 Utils
 -----
 
+.. doxygenfunction:: eprosima::fastdds::dds::idl_serialize
+   :project: FastDDS
+
 .. doxygenfunction:: eprosima::fastdds::dds::json_serialize
    :project: FastDDS

@@ -1,3 +1,4 @@
+#include <iostream>
 #include <memory>
 #include <sstream>
 #include <thread>
@@ -41,6 +42,7 @@
 #include <fastdds/rtps/attributes/ThreadSettings.hpp>
 #include <fastdds/rtps/common/WriteParams.hpp>
 #include <fastdds/rtps/history/IPayloadPool.hpp>
+#include <fastdds/rtps/reader/ReaderDiscoveryInfo.hpp>
 #include <fastdds/rtps/transport/ChainingTransport.hpp>
 #include <fastdds/rtps/transport/ChainingTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>
@@ -53,6 +55,7 @@
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv6TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/NetworkBuffer.hpp>
+#include <fastdds/rtps/writer/WriterDiscoveryInfo.hpp>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
@@ -1160,6 +1163,64 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
 //!--REMOTE_TYPE_INTROSPECTION
 class TypeIntrospectionSubscriber : public DomainParticipantListener
 {
+    //!--DYNTYPE_IDL_SERIALIZATION
+    /* Custom Callback on_data_reader_discovery */
+    void on_data_reader_discovery(
+            DomainParticipant* /* participant */,
+            eprosima::fastdds::rtps::ReaderDiscoveryInfo&& info,
+            bool& /* should_be_ignored */) override
+    {
+        // Get remote type information
+        xtypes::TypeObject remote_type_object;
+        if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
+                    info.info.type_information().type_information.complete().typeid_with_size().type_id(),
+                    remote_type_object))
+        {
+            // Error
+            return;
+        }
+
+        // Build remotely discovered type
+        DynamicType::_ref_type remote_type = DynamicTypeBuilderFactory::get_instance()->create_type_w_type_object(
+            remote_type_object)->build();
+
+        // Serialize DynamicType into its IDL representation
+        std::stringstream idl;
+        idl_serialize(remote_type, idl);
+
+        // Print IDL representation
+        std::cout << "Type discovered:\n" << idl.str() << std::endl;
+    }
+
+    /* Custom Callback on_data_writer_discovery */
+    void on_data_writer_discovery(
+            DomainParticipant* /* participant */,
+            eprosima::fastdds::rtps::WriterDiscoveryInfo&& info,
+            bool& /* should_be_ignored */) override
+    {
+        // Get remote type information
+        xtypes::TypeObject remote_type_object;
+        if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
+                    info.info.type_information().type_information.complete().typeid_with_size().type_id(),
+                    remote_type_object))
+        {
+            // Error
+            return;
+        }
+
+        // Build remotely discovered type
+        DynamicType::_ref_type remote_type = DynamicTypeBuilderFactory::get_instance()->create_type_w_type_object(
+            remote_type_object)->build();
+
+        // Serialize DynamicType into its IDL representation
+        std::stringstream idl;
+        idl_serialize(remote_type, idl);
+
+        // Print IDL representation
+        std::cout << "Type discovered:\n" << idl.str() << std::endl;
+    }
+    //!--
+
     //!--DYNDATA_JSON_SERIALIZATION
     void on_data_available(
             DataReader* reader)

@@ -1,8 +1,7 @@
 .. rst-class:: api-ref
 
-ReaderDiscoveryInfo
---------------------------------
+ReaderDiscoveryStatus
+---------------------
 
-.. doxygenstruct:: eprosima::fastdds::rtps::ReaderDiscoveryInfo
+.. doxygenenum:: eprosima::fastdds::rtps::ReaderDiscoveryStatus
     :project: FastDDS
-    :members:

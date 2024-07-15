@@ -1138,7 +1138,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
 
         // Create a Topic with the remotely discovered type.
         Topic* topic =
-                participant->create_topic(info.topic_name, dyn_type_support.get_type_name(),
+                participant->create_topic(info.topic_name.to_string(), dyn_type_support.get_type_name(),
                         TOPIC_QOS_DEFAULT);
         if (nullptr == topic)
         {

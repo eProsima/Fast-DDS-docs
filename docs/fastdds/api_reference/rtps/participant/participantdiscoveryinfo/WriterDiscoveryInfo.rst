@@ -1,7 +1,7 @@
 .. rst-class:: api-ref
 
-WRITER_DISCOVERY_STATUS
+WriterDiscoveryStatus
 -----------------------
 
-.. doxygenenum:: eprosima::fastdds::rtps::WRITER_DISCOVERY_STATUS
+.. doxygenenum:: eprosima::fastdds::rtps::WriterDiscoveryStatus
     :project: FastDDS

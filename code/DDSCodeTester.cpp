@@ -55,7 +55,6 @@
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv6TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/NetworkBuffer.hpp>
-#include <fastdds/rtps/writer/WriterDiscoveryInfo.hpp>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
@@ -1201,13 +1200,14 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
     /* Custom Callback on_data_writer_discovery */
     void on_data_writer_discovery(
             DomainParticipant* /* participant */,
-            eprosima::fastdds::rtps::WriterDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::WriterDiscoveryStatus /*reason*/,
+            const eprosima::fastdds::dds::PublicationBuiltinTopicData& info,
             bool& /* should_be_ignored */) override
     {
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                    info.info.type_information().type_information.complete().typeid_with_size().type_id(),
+                    info.type_information.type_information.complete().typeid_with_size().type_id(),
                     remote_type_object))
         {
             // Error

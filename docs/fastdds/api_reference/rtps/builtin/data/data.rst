@@ -7,3 +7,4 @@ Builtin data
     :titlesonly:
 
     /fastdds/api_reference/rtps/builtin/data/ContentFilterProperty
+    /fastdds/api_reference/rtps/builtin/data/PublicationBuiltinTopicData

@@ -5,6 +5,7 @@
 
 #include <fastcdr/Cdr.h>
 
+#include <fastdds/dds/builtin/topic/ParticipantBuiltinTopicData.hpp>
 #include <fastdds/dds/core/condition/GuardCondition.hpp>
 #include <fastdds/dds/core/condition/WaitSet.hpp>
 #include <fastdds/dds/domain/DomainParticipant.hpp>
@@ -169,11 +170,12 @@ public:
 
     void on_participant_discovery(
             DomainParticipant* participant,
-            eprosima::fastdds::rtps::ParticipantDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::ParticipantDiscoveryStatus status,
+            const ParticipantBuiltinTopicData& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
-        if (info.status == eprosima::fastdds::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT)
+        if (status == eprosima::fastdds::rtps::ParticipantDiscoveryStatus::DISCOVERED_PARTICIPANT)
         {
             std::cout << "New participant discovered" << std::endl;
             // The following line can be modified to evaluate whether the discovered participant should be ignored
@@ -184,8 +186,8 @@ public:
                 should_be_ignored = true; // Request the ignoring of the discovered participant
             }
         }
-        else if (info.status == eprosima::fastdds::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT ||
-                info.status == eprosima::fastdds::rtps::ParticipantDiscoveryInfo::DROPPED_PARTICIPANT)
+        else if (status == eprosima::fastdds::rtps::ParticipantDiscoveryStatus::REMOVED_PARTICIPANT ||
+                status == eprosima::fastdds::rtps::ParticipantDiscoveryStatus::DROPPED_PARTICIPANT)
         {
             std::cout << "Participant lost" << std::endl;
         }
@@ -960,18 +962,19 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     /* Custom Callback on_participant_discovery */
     void on_participant_discovery(
             DomainParticipant* participant,
-            eprosima::fastdds::rtps::ParticipantDiscoveryInfo&& info,
+            eprosima::fastdds::rtps::ParticipantDiscoveryStatus status,
+            const ParticipantBuiltinTopicData& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
         static_cast<void>(participant);
-        switch (info.status){
-            case eprosima::fastdds::rtps::ParticipantDiscoveryInfo::DISCOVERED_PARTICIPANT:
+        switch (status){
+            case eprosima::fastdds::rtps::ParticipantDiscoveryStatus::DISCOVERED_PARTICIPANT:
             {
                 /* Process the case when a new DomainParticipant was found in the domain */
-                std::cout << "New DomainParticipant '" << info.info.m_participantName <<
-                    "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
-                    info.info.m_guid.guidPrefix << "' discovered." << std::endl;
+                std::cout << "New DomainParticipant '" << info.participant_name <<
+                    "' with ID '" << info.guid.entityId << "' and GuidPrefix '" <<
+                    info.guid.guidPrefix << "' discovered." << std::endl;
                 /* The following line can be substituted to evaluate whether the discovered participant should be ignored */
                 bool ignoring_condition = false;
                 if (ignoring_condition)
@@ -980,14 +983,14 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                 }
             }
             break;
-            case eprosima::fastdds::rtps::ParticipantDiscoveryInfo::CHANGED_QOS_PARTICIPANT:
+            case eprosima::fastdds::rtps::ParticipantDiscoveryStatus::CHANGED_QOS_PARTICIPANT:
                 /* Process the case when a DomainParticipant changed its QOS */
                 break;
-            case eprosima::fastdds::rtps::ParticipantDiscoveryInfo::REMOVED_PARTICIPANT:
+            case eprosima::fastdds::rtps::ParticipantDiscoveryStatus::REMOVED_PARTICIPANT:
                 /* Process the case when a DomainParticipant was removed from the domain */
-                std::cout << "DomainParticipant '" << info.info.m_participantName <<
-                    "' with ID '" << info.info.m_guid.entityId << "' and GuidPrefix '" <<
-                    info.info.m_guid.guidPrefix << "' left the domain." << std::endl;
+                std::cout << "DomainParticipant '" << info.participant_name <<
+                    "' with ID '" << info.guid.entityId << "' and GuidPrefix '" <<
+                    info.guid.guidPrefix << "' left the domain." << std::endl;
                 break;
         }
     }

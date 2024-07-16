@@ -211,7 +211,7 @@ public:
     void on_data_reader_discovery(
             DomainParticipant* participant,
             eprosima::fastdds::rtps::ReaderDiscoveryStatus reason,
-            const eprosima::fastdds::rtps::ReaderProxyData& info,
+            const eprosima::fastdds::rtps::SubscriptionBuiltinTopicData& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
@@ -996,7 +996,7 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
     void on_data_reader_discovery(
             DomainParticipant* participant,
             eprosima::fastdds::rtps::ReaderDiscoveryStatus reason,
-            const eprosima::fastdds::rtps::ReaderProxyData& info,
+            const eprosima::fastdds::rtps::SubscriptionBuiltinTopicData& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
@@ -1005,8 +1005,8 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
             case eprosima::fastdds::rtps::ReaderDiscoveryStatus::DISCOVERED_READER:
             {
                 /* Process the case when a new datareader was found in the domain */
-                std::cout << "New DataReader subscribed to topic '" << info.topicName() <<
-                    "' of type '" << info.typeName() << "' discovered";
+                std::cout << "New DataReader subscribed to topic '" << info.topic_name <<
+                    "' of type '" << info.type_name << "' discovered";
                 /* The following line can be substituted to evaluate whether the discovered datareader should be ignored */
                 bool ignoring_condition = false;
                 if (ignoring_condition)
@@ -1020,8 +1020,8 @@ class DiscoveryDomainParticipantListener : public DomainParticipantListener
                 break;
             case eprosima::fastdds::rtps::ReaderDiscoveryStatus::REMOVED_READER:
                 /* Process the case when a datareader was removed from the domain */
-                std::cout << "DataReader subscribed to topic '" << info.topicName() <<
-                    "' of type '" << info.typeName() << "' left the domain.";
+                std::cout << "DataReader subscribed to topic '" << info.topic_name <<
+                    "' of type '" << info.type_name << "' left the domain.";
                 break;
         }
     }
@@ -1070,14 +1070,14 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
     void on_data_reader_discovery(
             DomainParticipant* participant,
             eprosima::fastdds::rtps::ReaderDiscoveryStatus reason,
-            const eprosima::fastdds::rtps::ReaderProxyData& info,
+            const eprosima::fastdds::rtps::SubscriptionBuiltinTopicData& info,
             bool& should_be_ignored) override
     {
         should_be_ignored = false;
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                    info.type_information().type_information.complete().typeid_with_size().type_id(),
+                    info.type_information.type_information.complete().typeid_with_size().type_id(),
                     remote_type_object))
         {
             // Error
@@ -1091,7 +1091,7 @@ class RemoteDiscoveryDomainParticipantListener : public DomainParticipantListene
 
         // Create a Topic with the remotely discovered type.
         Topic* topic =
-                participant->create_topic(info.topicName().to_string(), dyn_type_support.get_type_name(),
+                participant->create_topic(info.topic_name.to_string(), dyn_type_support.get_type_name(),
                         TOPIC_QOS_DEFAULT);
         if (nullptr == topic)
         {
@@ -1176,13 +1176,13 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
     void on_data_reader_discovery(
             DomainParticipant* /* participant */,
             eprosima::fastdds::rtps::ReaderDiscoveryStatus /* reason */,
-            const eprosima::fastdds::rtps::ReaderProxyData& info,
+            const eprosima::fastdds::dds::SubscriptionBuiltinTopicData& info,
             bool& /* should_be_ignored */) override
     {
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                    info.type_information().type_information.complete().typeid_with_size().type_id(),
+                    info.type_information.type_information.complete().typeid_with_size().type_id(),
                     remote_type_object))
         {
             // Error

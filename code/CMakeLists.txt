@@ -56,7 +56,7 @@ add_subdirectory(Examples/C++/DDSHelloWorld)
 # CodeTester utilizes Fast RTPS API
 add_executable(doctest CodeTester.cpp)
 target_include_directories(doctest PRIVATE ${FAST_INCLUDE_DIR})
-target_link_libraries(doctest fastdds)
+target_link_libraries(doctest fastdds fastcdr)
 
 # DDSCodeTester utilizes Fast DDS API
 add_executable(dds-doctest DDSCodeTester.cpp FastDDSGenCodeTester.cpp)

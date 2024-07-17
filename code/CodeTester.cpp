@@ -37,40 +37,47 @@ class HelloWorldPubSubType : public TopicDataType
 {
     bool serialize(
             const void* const data,
-            rtps::SerializedPayload_t* payload) override
+            rtps::SerializedPayload_t& payload,
+            DataRepresentationId_t data_representation) override
     {
         return false;
     }
 
     bool deserialize(
-            rtps::SerializedPayload_t* payload,
+            rtps::SerializedPayload_t& payload,
             void* data) override
     {
         return false;
     }
 
-    std::function<uint32_t()> getSerializedSizeProvider(
-            const void* const data) override
+    uint32_t calculate_serialized_size(
+            const void* const data,
+            DataRepresentationId_t data_representation) override
     {
-        return []
-               {
-                   return 0;
-               };
+        return 0;
     }
 
-    void* createData() override
+    void* create_data() override
     {
         return nullptr;
     }
 
-    void deleteData(
+    void delete_data(
             void* data) override
     {
     }
 
-    bool getKey(
+    bool compute_key(
+            rtps::SerializedPayload_t& payload,
+            rtps::InstanceHandle_t& ihandle,
+            bool force_md5 = false) override
+    {
+        return false;
+    }
+
+    bool compute_key(
             const void* const data,
-            rtps::InstanceHandle_t* ihandle,
+            rtps::InstanceHandle_t& ihandle,
             bool force_md5 = false) override
     {
         return false;

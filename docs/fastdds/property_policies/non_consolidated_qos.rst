@@ -398,7 +398,7 @@ Setting ``fastdds.max_message_size`` At Participant Level
             :language: c++
             :start-after: // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
             :end-before: //!--
-            :dedent: 6
+            :dedent: 8
 
     .. tab:: XML
 
@@ -421,7 +421,7 @@ Setting ``fastdds.max_message_size`` At Writer Level
             :language: c++
             :start-after: // MAX_MESSAGE_SIZE_PROPERTY_WRITER
             :end-before: //!--
-            :dedent: 6
+            :dedent: 8
 
     .. tab:: XML
 
@@ -430,3 +430,83 @@ Setting ``fastdds.max_message_size`` At Writer Level
             :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
             :end-before: <!--><-->
             :lines: 2,4-14
+
+.. _property_type_propagation:
+
+Type Propagation
+^^^^^^^^^^^^^^^^
+
+By default, *Fast DDS* leverages :ref:`xtypes_discovery_matching` both to discover remote types and to propagate local
+ones.
+Type propagation entails both adding meta-information to the EDP messages (see :ref:`disc_phases`) and using a
+dedicated set of builtin endpoints to transmit type definitions between the different |DomainParticipants| in the
+network.
+
+Depending on the application design and deployment, it might be desirable to change the default type propagation
+behavior to save bandwidth and/or resources.
+For this reason, *Fast DDS* |DomainParticipants| can be configured with a property ``fastdds.type_propagation``
+that controls how type information is propagated.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.type_propagation"``
+     - ``"disabled"`` |br|
+       ``"enabled"`` |br|
+       ``"minimal_bandwidth"`` |br|
+       ``"registration_only"``
+     - ``"enabled"``
+
+The different property values have the following effects on the local |DomainParticipant|:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Value
+     - ``TypeObject`` registration
+     - Send type information on EDP
+     - Receive type information on EDP
+     - Type lookup service replies
+   * - ``"disabled"``
+     - NO
+     - NO
+     - IGNORED
+     - DISABLED
+   * - ``"enabled"``
+     - COMPLETE and MINIMAL
+     - COMPLETE and MINIMAL
+     - PROCESSED
+     - ENABLED
+   * - ``"minimal_bandwidth"``
+     - MINIMAL only
+     - MINIMAL only
+     - Only MINIMAL PROCESSED
+     - ENABLED
+   * - ``"registration_only"``
+     - COMPLETE and MINIMAL
+     - COMPLETE and MINIMAL
+     - IGNORED
+     - DISABLED
+
+.. tabs::
+
+    .. tab:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: // TYPE_PROPAGATION_PROPERTY
+            :end-before: //!--
+            :dedent: 8
+
+    .. tab:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
+            :end-before: <!--><-->
+            :lines: 2-4,6-16,18-19

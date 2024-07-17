@@ -67,6 +67,13 @@ The remote data type discovery feature only works if some requisites are met:
 If the prerequisites are not met, endpoint matching relies on type name and topic name in order to match the discovered
 endpoints.
 
+.. _xtypes_discovery_matching_config:
+
+Configuration
+-------------
+
+The level of propagation of local data types can be configured as specified in :ref:`property_type_propagation`.
+
 Remote types discovery example
 ------------------------------
 

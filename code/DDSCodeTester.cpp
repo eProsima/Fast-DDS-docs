@@ -954,6 +954,16 @@ void dds_domain_examples()
             "1200");
         //!--
     }
+
+    {
+        // TYPE_PROPAGATION_PROPERTY
+        DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back(
+            "fastdds.type_propagation",
+            "enabled");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

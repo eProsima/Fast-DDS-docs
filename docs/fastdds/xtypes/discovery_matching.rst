@@ -60,13 +60,6 @@ The remote data type discovery feature only works if some requisites are met:
      :code:`-no-typeobjectsupport` option disables the generation of these files and effectively disables the
      discovery of remote types.
 
-   .. note::
-
-     Currently there is no support to register the TypeObject when the data type is defined using the
-     :ref:`xtypes_language_binding`.
-     Consequently, local types defined using the dynamic language binding API, are not going to be discovered by remote
-     DomainParticipants.
-
 2. :code:`TypeInformation` should be received with the DomainParticipant's endpoint discovery information.
    A DomainParticipant that does not inform about its :code:`TypeInformation` would not trigger the remote data type
    discovery mechanism.

@@ -430,7 +430,7 @@ void dds_domain_examples()
         // Create a DomainParticipant with DomainParticipantExtendedQos from profile
         DomainParticipantExtendedQos profile_extended_qos;
         DomainParticipantFactory::get_instance()->get_participant_extended_qos_from_profile("participant_profile",
-            profile_extended_qos);
+                profile_extended_qos);
 
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(profile_extended_qos);
@@ -1225,6 +1225,7 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         // Print IDL representation
         std::cout << "Type discovered:\n" << idl.str() << std::endl;
     }
+
     //!--
 
     //!--DYNDATA_JSON_SERIALIZATION
@@ -1233,7 +1234,7 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
     {
         // Dynamic DataType
         DynamicData::_ref_type new_data =
-                            DynamicDataFactory::get_instance()->create_data(dyn_type_);
+                DynamicDataFactory::get_instance()->create_data(dyn_type_);
 
         SampleInfo info;
 
@@ -1611,42 +1612,52 @@ public:
     CustomDataType()
         : TopicDataType()
     {
-        setName("Foo");
+        set_name("Foo");
     }
 
     bool serialize(
             const void* const data,
-            eprosima::fastdds::rtps::SerializedPayload_t* payload) override
+            eprosima::fastdds::rtps::SerializedPayload_t& payload,
+            eprosima::fastdds::dds::DataRepresentationId_t data_representation) override
     {
         return true;
     }
 
     bool deserialize(
-            eprosima::fastdds::rtps::SerializedPayload_t* payload,
+            eprosima::fastdds::rtps::SerializedPayload_t& payload,
             void* data) override
     {
         return true;
     }
 
-    std::function<uint32_t()> getSerializedSizeProvider(
-            const void* const data) override
+    uint32_t calculate_serialized_size(
+            const void* const data,
+            eprosima::fastdds::dds::DataRepresentationId_t data_representation) override
     {
-        return std::function<uint32_t()>();
+        return 0;
     }
 
-    void* createData() override
+    void* create_data() override
     {
         return nullptr;
     }
 
-    void deleteData(
+    void delete_data(
             void* data) override
     {
     }
 
-    bool getKey(
+    bool compute_key(
+            eprosima::fastdds::rtps::SerializedPayload_t& payload,
+            eprosima::fastdds::rtps::InstanceHandle_t& ihandle,
+            bool force_md5) override
+    {
+        return true;
+    }
+
+    bool compute_key(
             const void* const data,
-            eprosima::fastdds::rtps::InstanceHandle_t* ihandle,
+            eprosima::fastdds::rtps::InstanceHandle_t& ihandle,
             bool force_md5) override
     {
         return true;
@@ -1978,7 +1989,8 @@ void dds_topic_examples()
 
         // Retrieve the an instance of the desired type
         DynamicTypeBuilder::_ref_type dyn_type_builder;
-        DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("DynamicType", dyn_type_builder);
+        DomainParticipantFactory::get_instance()->get_dynamic_type_builder_from_xml_by_name("DynamicType",
+                dyn_type_builder);
 
         // Register dynamic type
         TypeSupport dyn_type_support(new DynamicPubSubType(dyn_type_builder->build()));
@@ -3049,7 +3061,7 @@ void dds_dataWriter_examples()
         }
 
         // Get a data instance
-        void* data = custom_type_support->createData();
+        void* data = custom_type_support->create_data();
 
         // Fill the data values
         // (...)
@@ -3063,7 +3075,7 @@ void dds_dataWriter_examples()
 
         // The data instance can be reused to publish new values,
         // but delete it at the end to avoid leaks
-        custom_type_support->deleteData(data);
+        custom_type_support->delete_data(data);
         //!--
 
         {
@@ -3094,7 +3106,7 @@ void dds_dataWriter_examples()
 
             // The data instance can be reused to publish new values,
             // but delete it at the end to avoid leaks
-            custom_type_support->deleteData(data);
+            custom_type_support->delete_data(data);
             //!--
         }
 
@@ -5099,7 +5111,8 @@ void dynamictypes_examples()
                                                               create_type(type_descriptor)};
 
         // Define the bitmask type
-        DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_bitmask_type(8)};
+        DynamicTypeBuilder::_ref_type bitmask_builder {DynamicTypeBuilderFactory::get_instance()->create_bitmask_type(
+                                                           8)};
 
         /* Alternative
             TypeDescriptor::_ref_type bitmask_type_descriptor {traits<TypeDescriptor>::make_shared()};
@@ -6981,49 +6994,57 @@ public:
     LoanableHelloWorldPubSubType()
         : TopicDataType()
     {
-        setName("LoanableHelloWorld");
+        set_name("LoanableHelloWorld");
     }
 
     bool serialize(
             const void* const data,
-            eprosima::fastdds::rtps::SerializedPayload_t* payload) override
+            eprosima::fastdds::rtps::SerializedPayload_t& payload,
+            eprosima::fastdds::dds::DataRepresentationId_t data_representation) override
     {
         return true;
     }
 
     bool deserialize(
-            eprosima::fastdds::rtps::SerializedPayload_t* payload,
+            eprosima::fastdds::rtps::SerializedPayload_t& payload,
             void* data) override
     {
         return true;
     }
 
-    std::function<uint32_t()> getSerializedSizeProvider(
-            const void* const data) override
+    uint32_t calculate_serialized_size(
+            const void* const data,
+            eprosima::fastdds::dds::DataRepresentationId_t data_representation) override
     {
-        return std::function<uint32_t()>();
+        return 0;
     }
 
-    void* createData() override
+    void* create_data() override
     {
         return nullptr;
     }
 
-    void deleteData(
+    void delete_data(
             void* data) override
     {
     }
 
-    bool getKey(
-            const void* const data,
-            eprosima::fastdds::rtps::InstanceHandle_t* ihandle,
+    bool compute_key(
+            eprosima::fastdds::rtps::SerializedPayload_t& payload,
+            eprosima::fastdds::rtps::InstanceHandle_t& ihandle,
             bool force_md5) override
     {
         return true;
     }
 
-    eprosima::fastdds::MD5 m_md5;
-    unsigned char* m_keyBuffer;
+    bool compute_key(
+            const void* const data,
+            eprosima::fastdds::rtps::InstanceHandle_t& ihandle,
+            bool force_md5) override
+    {
+        return true;
+    }
+
 };
 
 class LoanableHelloWorld

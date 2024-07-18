@@ -101,15 +101,12 @@ building tools.
     ```bash
     sudo apt update
     sudo apt install -y \
-        # Build tools
         gcc \
         g++ \
         cmake \
-        # Fast DDS dependencies
         libasio-dev \
         libtinyxml2-dev \
         libssl-dev \
-        # Fast DDS-Docs dependencies
         python3-sphinx
     ```
 

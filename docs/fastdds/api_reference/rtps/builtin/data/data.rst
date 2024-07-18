@@ -8,3 +8,4 @@ Builtin data
 
     /fastdds/api_reference/rtps/builtin/data/ContentFilterProperty
     /fastdds/api_reference/rtps/builtin/data/PublicationBuiltinTopicData
+    /fastdds/api_reference/rtps/builtin/data/SubscriptionBuiltinTopicData

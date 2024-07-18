@@ -281,7 +281,7 @@ if read_the_docs_build:
 
     os.makedirs("{}/include/fastcdr".format(fastdds_repo_name), exist_ok=True)
     with open("{}/include/fastcdr/config.h".format(fastdds_repo_name), "w") as config_file:
-        config_file.write("#define FASTCDR_VERSION_MAJOR 1")
+        config_file.write("#define FASTCDR_VERSION_MAJOR 2")
 
     # Configure Doxyfile
     configure_doxyfile(

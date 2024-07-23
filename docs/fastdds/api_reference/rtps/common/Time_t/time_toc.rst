@@ -1,7 +1,7 @@
 .. _api_rtps_common_time_t:
 
 RTPS Time_t
---------------------
+-----------
 
 .. toctree::
     :titlesonly:

@@ -1,7 +1,7 @@
 .. rst-class:: api-ref
 
 Time_t DDS Operators
---------------------------------
+--------------------
 
 .. doxygenfunction:: eprosima::fastdds::dds::operator==(const Time_t &t1, const Time_t &t2)
     :project: FastDDS

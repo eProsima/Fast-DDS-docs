@@ -1,7 +1,7 @@
 .. rst-class:: api-ref
 
 Time_t RTPS Operators
---------------------------------
+---------------------
 
 .. doxygenfunction:: eprosima::fastdds::rtps::operator==(const Time_t &t1, const Time_t &t2)
     :project: FastDDS

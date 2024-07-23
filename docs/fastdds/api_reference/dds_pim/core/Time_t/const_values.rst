@@ -1,7 +1,7 @@
 .. rst-class:: api-ref
 
 Const values
---------------------------------
+------------
 
 .. doxygenvariable:: eprosima::fastdds::dds::c_TimeInfinite
     :project: FastDDS

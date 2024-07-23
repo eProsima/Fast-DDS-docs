@@ -465,9 +465,9 @@
 .. |EXCLUSIVE-xml-api| replace:: :cpp:enumerator:`EXCLUSIVE<eprosima::fastdds::dds::OwnershipQosPolicyKind::EXCLUSIVE_OWNERSHIP_QOS>`
 
 .. |Duration_t-api| replace:: :cpp:type:`Duration_t<eprosima::fastdds::Duration_t>`
-.. |c_TimeInfinite-api| replace:: :cpp:var:`c_TimeInfinite<eprosima::fastdds::c_TimeInfinite>`
-.. |c_TimeZero-api| replace:: :cpp:var:`c_TimeZero<eprosima::fastdds::c_TimeInfinite>`
-.. |c_TimeInvalid-api| replace:: :cpp:var:`c_TimeInvalid<eprosima::fastdds::c_TimeInfinite>`
+.. |c_TimeInfinite-api| replace:: :cpp:var:`c_TimeInfinite<eprosima::fastdds::dds::c_TimeInfinite>`
+.. |c_TimeZero-api| replace:: :cpp:var:`c_TimeZero<eprosima::fastdds::dds::c_TimeZero>`
+.. |c_TimeInvalid-api| replace:: :cpp:var:`c_TimeInvalid<eprosima::fastdds::dds::c_TimeInvalid>`
 .. |LocatorList_t-api| replace:: :cpp:type:`LocatorList<eprosima::fastdds::rtps::LocatorList>`
 .. |ExternalLocators-api| replace:: :cpp:type:`ExternalLocators<eprosima::fastdds::rtps::ExternalLocators>`
 .. |Locator_t-api| replace:: :cpp:class:`Locator_t<eprosima::fastdds::rtps::Locator_t>`

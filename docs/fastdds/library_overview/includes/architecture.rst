@@ -72,7 +72,7 @@ section.
 * **DataReader**.
   It is the entity that subscribes to the topics for the reception of publications.
   The user must provide a subscription Topic when creating this entity.
-  A DataReader receives the messages as changes in its HistoryDataReader.
+  A DataReader receives the messages as changes in its DataReaderHistory.
 * **DataReaderHistory**.
   It contains the `changes` in the data-objects that the DataReader receives as a result of subscribing to a certain
   Topic.

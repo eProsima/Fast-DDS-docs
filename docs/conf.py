@@ -299,7 +299,7 @@ if read_the_docs_build:
         sys.exit(doxygen_ret)
 
     # Generate SWIG code.
-    swig_ret = subprocess.call('swig -python -doxygen -I{}/include \
+    swig_ret = subprocess.call('swig4.1 -python -doxygen -I{}/include \
             -outdir {}/fastdds_python/src/swig -c++ -interface \
             _fastdds_python -o \
             {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \

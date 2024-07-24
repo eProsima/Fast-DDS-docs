@@ -302,8 +302,7 @@ if read_the_docs_build:
         -DFASTDDS_DOCS_BUILD \
         -outdir {}/fastdds_python/src/swig \
         -c++ \
-        -interface \
-        _fastdds_python \
+        -interface _fastdds_python \
         -o {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
         {}/fastdds_python/src/swig/fastdds.i'.format(
             fastdds_repo_name,

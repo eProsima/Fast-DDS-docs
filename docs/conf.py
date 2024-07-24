@@ -279,10 +279,6 @@ if read_the_docs_build:
     os.makedirs(os.path.dirname(output_dir), exist_ok=True)
     os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
 
-    os.makedirs("{}/include/fastcdr".format(fastdds_repo_name), exist_ok=True)
-    with open("{}/include/fastcdr/config.h".format(fastdds_repo_name), "w") as config_file:
-        config_file.write("#define FASTCDR_VERSION_MAJOR 1")
-
     # Configure Doxyfile
     configure_doxyfile(
         doxyfile_in,
@@ -299,16 +295,22 @@ if read_the_docs_build:
         sys.exit(doxygen_ret)
 
     # Generate SWIG code.
-    swig_ret = subprocess.call('swig -python -doxygen -I{}/include \
-            -outdir {}/fastdds_python/src/swig -c++ -interface \
-            _fastdds_python -o \
-            {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
-            {}/fastdds_python/src/swig/fastdds.i'.format(
-                fastdds_repo_name,
-                fastdds_python_repo_name,
-                fastdds_python_repo_name,
-                fastdds_python_repo_name
-                ), shell=True)
+    swig_ret = subprocess.call('swig \
+        -python \
+        -doxygen \
+        -I{}/include \
+        -DFASTDDS_DOCS_BUILD \
+        -outdir {}/fastdds_python/src/swig \
+        -c++ \
+        -interface _fastdds_python \
+        -o {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
+        {}/fastdds_python/src/swig/fastdds.i'.format(
+            fastdds_repo_name,
+            fastdds_python_repo_name,
+            fastdds_python_repo_name,
+            fastdds_python_repo_name
+        ), shell=True)
+
     if swig_ret != 0:
         print('SWIG failed with return code {}'.format(swig_ret))
         sys.exit(swig_ret)

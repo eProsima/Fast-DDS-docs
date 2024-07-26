@@ -4,8 +4,8 @@ addReaderLocator
 addReaderProxy
 addWriterProxy
 allowlist
-AppliedAnnotationPubSubType
 AppliedAnnotationParameterPubSubType
+AppliedAnnotationPubSubType
 AppliedBuiltinMemberAnnotationsPubSubType
 AppliedBuiltinTypeAnnotationsPubSubType
 AppliedVerbatimAnnotationPubSubType
@@ -78,6 +78,7 @@ datareader
 DataReader
 DataReaderListener
 DataReaderQos
+DataRepresentationId
 DataRepresentationQosPolicy
 DataSharingQosPolicy
 datawriter
@@ -124,8 +125,8 @@ Hashid
 heartbeat_period
 heartbeat_response_delay
 HistoryQosPolicy
-InconsistentTopicStatus
 Implementers
+InconsistentTopicStatus
 infos
 initial_acknack_delay
 initial_heartbeat_delay
@@ -258,9 +259,9 @@ Subclassed
 subclasses
 subentities
 subnetwork
-subsequence
 SubscriberListener
 SubscriptionMatchedStatus
+subsequence
 synchronism
 te
 TimeBasedFilterQosPolicy
@@ -301,8 +302,8 @@ untaken
 untyped
 url
 UserAllocatedSequence
-Utils
 utils
+Utils
 wakeup
 wdata
 WLPListener

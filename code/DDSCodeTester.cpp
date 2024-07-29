@@ -4653,7 +4653,9 @@ void dds_qos_examples()
         DomainParticipantQos participant_qos;
         // Set the guid prefix
         std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> participant_qos.wire_protocol().prefix;
-        //Configure Builtin Attributes
+        // Manually set the participantId
+        participant_qos.wire_protocol().participant_id = 11;
+        // Configure Builtin Attributes
         participant_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 eprosima::fastdds::rtps::DiscoveryProtocol::SERVER;
         // Add locator to unicast list
@@ -4686,6 +4688,8 @@ void dds_qos_examples()
         participant_qos.wire_protocol().default_external_unicast_locators[1][0].push_back(external_locator);
         // Drop non matching locators
         participant_qos.wire_protocol().ignore_non_matching_locators = true;
+        // Increase mutation tries
+        participant_qos.wire_protocol().builtin.mutation_tries = 300u;
         // Use modified QoS in the creation of the DomainParticipant entity
         participant_ = factory_->create_participant(domain, participant_qos);
         //!--

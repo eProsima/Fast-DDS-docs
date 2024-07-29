@@ -343,7 +343,8 @@ extensions = [
     'breathe',
     'sphinxcontrib.plantuml',
     'sphinx.ext.autodoc',  # Document Pydoc documentation from Python bindings.
-    'sphinx_tabs.tabs'
+    'sphinx_tabs.tabs',
+    'sphinx_toolbox.collapse'
 ]
 
 sphinx_tabs_disable_css_loading = False

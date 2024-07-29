@@ -1,158 +1,177 @@
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+
 .. _freq_xml_profiles_questions:
 
 XML PROFILES Frequently Asked Questions
 =======================================
 
-
-.. raw:: html
-
-   <style>
-       .question-box {
-           background-color: #e7f3fe;
-           border-left: 6px solid #2196F3;
-           padding: 10px;
-           margin: 10px 0;
-       }
-       .answer-box {
-           background-color: #f9f9f9;
-           border-left: 6px solid #4CAF50;
-           padding: 10px;
-           margin: 10px 0 20px 0;
-       }
-   </style>
-
-.. raw:: html
+   
+.. collapse::  How are XML profiles defined?
+   
+    \ 
 
 
-   <div class="question-box">
-       <b>Q: How are XML profiles defined?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The XML profiles are defined within the < dds > element, and in turn, within the < profiles > XML elements.
-   </div>
+    :Answer:
+   
+    The XML profiles are defined within the < dds > element, and in turn, within the ``<profiles>`` XML elements.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. raw:: html
+.. collapse::  What happens if an XML file is loaded multiple times?
+   
+    \ 
 
-   <div class="question-box">
-       <b>Q: What happens if an XML file is loaded multiple times?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> If the same XML profile file is loaded multiple times, the second loading of the file will result in an error together with the consequent error log.
-   </div>
 
-.. raw:: html
+    :Answer:
 
-   <div class="question-box">
-       <b>Q: What is stand-alone profiles definition?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The element defining the XML profile is the root element of the XML file.
-   </div>
+    If the same XML profile file is loaded multiple times, the second loading of the file will result in an error together with the consequent error log.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. raw:: html
 
-   <div class="question-box">
-       <b>Q: What is root profile definition?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The element defining the XML profile is the child element of another element.
-   </div>
+.. collapse::  What is stand-alone profiles definition?
+   
+    \ 
 
-.. raw:: html
 
-   <div class="question-box">
-       <b>Q: What do DomainParticipant profiles do?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The DomainParticipant profiles allow the definition of the configuration of DomainParticipants through XML files. These profiles are defined within the < participant > XML tags.
-   </div>
+    :Answer:
 
-.. raw:: html
+    The element defining the XML profile is the root element of the XML file.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-   <div class="question-box">
-       <b>Q: What are the domain participant XML attributes?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The <participant> element has two attributes defined: profile_name and is_default_profile.
-   </div>
+.. collapse::  What is root profile definition?
+   
+    \ 
 
-.. raw:: html
 
-   <div class="question-box">
-       <b>Q: How is the DomainParticipant configured?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The <participant> element has two child elements: <domainId> and <rtps>. All the DomainParticipant configuration options belong to the <rtps> element, except for the DDS DomainId which is defined by the <domainId> element.
-   </div>
+    :Answer:
 
-.. raw:: html
+    The element defining the XML profile is the child element of another element.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   
+.. collapse::  What do DomainParticipant profiles do?
+   
+    \ 
 
-   <div class="question-box">
-       <b>Q: What do DataWriter profiles do?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The DataWriter profiles allow for configuring DataWriters from an XML file. These profiles are defined within the < data_writer > XML tags.
-   </div>
 
-.. raw:: html
+    :Answer:
 
-   <div class="question-box">
-       <b>Q: What are the XML attributes of the DataWriter?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The <data_writer> element has two attributes defined: profile_name and is_default_profile.
-   </div>
+    The DomainParticipant profiles allow the definition of the configuration of DomainParticipants through XML files. These profiles are defined within the ``<participant>`` XML tags.
+   
 
-.. raw:: html
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-   <div class="question-box">
-       <b>Q: What do DataReader profiles do?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The DataReader profiles allow declaring DataReaders from an XML file. These profiles are defined within the < data_reader > XML tags.
-   </div>
+.. collapse::  What are the domain participant XML attributes?
+   
+    \ 
 
-.. raw:: html
 
-   <div class="question-box">
-       <b>Q: What are the XML attributes of the DataReader?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The <data_reader> element has two attributes defined: profile_name and is_default_profile.
-   </div>
+    :Answer:
 
-.. raw:: html
+    The ``<participant>`` element has two attributes defined: ``profile_name`` and ``is_default_profile``.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-   <div class="question-box">
-       <b>Q: What do Topic profiles do?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The <topic> element has two attributes defined: profile_name and is_default_profile.
-   </div>
+.. collapse::  How is the DomainParticipant configured?
+   
+    \ 
 
-.. raw:: html
 
-   <div class="question-box">
-       <b>Q: What are the available XML elements for configuring transport layer parameters in Fast DDS, and what is their purpose?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> This section defines the XML elements available for configuring the transport layer parameters in *Fast DDS*. These elements are defined within the XML tag "< transports_descriptors >". The "< transport_descriptors >" can contain one or more "< transport_descriptor >" XML elements. Each "< transport_descriptor >" element defines a configuration for a specific type of transport protocol.
-   </div>
+    :Answer:
 
-.. raw:: html
+    The ``<participant>`` element has two child elements: ``<domainId>`` and ``<rtps>.`` All the DomainParticipant configuration options belong to the ``<rtps>`` element, except for the DDS DomainId which is defined by the ``<domainId>`` element.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-   <div class="question-box">
-       <b>Q: Are log profiles available?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> eProsima Fast DDS allows for registering and configuring Log consumers using XML configuration files. The logging profiles are defined within the <log> XML tags. The <log> element has two child elements: <use_default> and <consumer>.
-   </div>
+.. collapse::  What do DataWriter profiles do?
+   
+    \ 
 
-.. raw:: html
 
-   <div class="question-box">
-       <b>Q: What is the advantage of having Dynamic Language Binding support in XML files?</b>
-   </div>
-   <div class="answer-box">
-       <b>A:</b> The topic data types can be modified without the need to modify the source code of the DDS application.
-   </div>
+    :Answer:
+
+    The DataWriter profiles allow for configuring DataWriters from an XML file. These profiles are defined within the ``<data_writer>`` XML tags.
+   
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  What are the XML attributes of the DataWriter?
+   
+    \ 
+
+
+    :Answer:
+
+    The ``<data_writer>`` element has two attributes defined: ``profile_name`` and ``is_default_profile``.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  What do DataReader profiles do?
+   
+    \ 
+
+
+    :Answer:
+
+    The DataReader profiles allow declaring DataReaders from an XML file. These profiles are defined within the ``<data_reader>`` XML tags.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   
+.. collapse::  What are the XML attributes of the DataReader?
+   
+    \ 
+
+
+    :Answer:
+
+    The ``<data_reader>`` element has two attributes defined: ``profile_name`` and ``is_default_profile``.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   
+.. collapse::  What do Topic profiles do?
+   
+    \ 
+
+
+    :Answer:
+
+    The ``<topic>`` element has two attributes defined: ``profile_name`` and ``is_default_profile``.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   
+.. collapse::  What are the available XML elements for configuring transport layer parameters in Fast DDS, and what is their purpose?
+   
+    \ 
+
+
+    :Answer:
+
+    This section defines the XML elements available for configuring the transport layer parameters in **Fast DDS**. These elements are defined within the XML tag ``<transports_descriptors>``. The ``<transport_descriptors>`` can contain one or more ``<transport_descriptor>`` XML elements. Each ``<transport_descriptor>`` element defines a configuration for a specific type of transport protocol.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  Are log profiles available?
+   
+    \ 
+
+
+    :Answer:
+
+    eProsima Fast DDS allows for registering and configuring Log consumers using XML configuration files. The logging profiles are defined within the ``<log>`` XML tags. The <log> element has two child elements: ``<use_default>`` and ``<consumer>``.
+   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  What is the advantage of having Dynamic Language Binding support in XML files?
+   
+    \ 
+
+    
+    :Answer:
+    
+    The topic data types can be modified without the need to modify the source code of the DDS application.
+
+|

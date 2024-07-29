@@ -681,7 +681,7 @@ Compatibility Rule
 
 To maintain the compatibility between LivelinessQosPolicy in DataReaders and DataWriters, the DataWriter kind must be
 higher or equal to the DataReader kind.
-And the order between the different kinds is::
+And the order between the different kinds is:
 
 |AUTOMATIC_LIVELINESS_QOS-api| < |MANUAL_BY_PARTICIPANT_LIVELINESS_QOS-api| < |MANUAL_BY_TOPIC_LIVELINESS_QOS-api|
 
@@ -1150,7 +1150,7 @@ Compatibility Rule
 
 To maintain the compatibility between ReliabilityQosPolicy in DataReaders and DataWriters, the DataWriter kind
 must be higher or equal to the DataReader kind.
-And the order between the different kinds is::
+And the order between the different kinds is:
 
 |BEST_EFFORT_RELIABILITY_QOS-api| < |RELIABLE_RELIABILITY_QOS-api|
 

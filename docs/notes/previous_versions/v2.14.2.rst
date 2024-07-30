@@ -3,8 +3,7 @@
 
 .. important::
 
-    Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS
-    v3.0.0, stay tuned!
+    Fast DDS v2.14 is the last minor version of Fast DDS v2, take a look at Fast DDS v3!
 
 This release includes the following **features** in an ABI compatible manner:
 

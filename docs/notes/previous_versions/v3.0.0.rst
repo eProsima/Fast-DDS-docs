@@ -1,0 +1,157 @@
+`Version 3.0.0 (latest) <https://fast-dds.docs.eprosima.com/en/v3.0.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **API** breaks:
+
+#. XTypes refactor:
+
+    #. Regenerated IDL files with types header-only fastddsgen version.
+    #. Implementation of ``DynamicType``.
+    #. Implementation of ``TypeLookup`` listeners.
+    #. Implementation of ``DynamicTypeBuilderFactoryImpl::create_type_w_type_object``.
+    #. Re-implementation of ``TypeObjectRegistry`` and ``TypeObjectUtils`` classes.
+    #. Partial implementation of X-Types1.3.
+    #. Structure ``DynamicType`` inheritance from ``TypeObject``.
+    #. Automatic ``TypeObject`` representation registration for ``DynamicTypes``.
+    #. Refactor ``TypeObjectRegistry``.
+    #. Fix proxy block in ``TypeLookup`` service.
+    #. Added Annotation dependencies.
+    #. Dynamic language binding tests.
+    #. Improve X-Types interoperability.
+    #. Only signed integers are allowed in Dynamic Language Binding enumerations.
+    #. Refactor XML Parser to return ``DynamicTypeBuilder`` instead of ``DynamicType``.
+    #. Make more flexible ``EDP::valid_matching`` with ``TypeInformation``.
+    #. Implementation of ``DynamicData`` to JSON serializer.
+    #. Implementation of ``DynamicType`` to IDL serializer.
+    #. Fixes for indirect hashes dependencies.
+    #. Add missing ``DynamicType`` includes.
+    #. Add new tests for testing new key hash calculation according to DDS-XTypes 1.3.
+    #. Support ``Type-Lookup`` Service with new new GUID-less Discovery Server.
+
+#. Migration from RTPS to DDS:
+
+    #. Migrate fastrtps namespace to fastdds.
+    #. Migrate classes from ``include/fastrtps`` to ``include/fastdds``.
+    #. Remove ``include/fastrtps``.
+    #. Migrate ``fixed_size_string`` file from fastrtps to fastcdr.
+    #. Migrate ``ResourceManagement`` to rtps attributes API.
+    #. Remove ``RTPSParticipant`` listener overloaded callbacks.
+    #. Move ``Time_t`` to dds namespace and some attributes to ``xmlparser``.
+    #. Migrate communication tests.
+    #. Remove deprecated fastrtps tests.
+
+#. Make private previously public API:
+
+    #. Make private the necessary headers from ``include/fastrtps``.
+    #. Make XML Parser API private.
+    #. Remove all redundant headers from ``include/fastrtps``.
+    #. Make RTPS messages headers private.
+    #. Make RTPS reader implementations private.
+    #. Make RTPS writer impl private.
+    #. Make security private.
+    #. Make ``NetworkConfiguration`` private.
+    #. Make ``ResourceEvent`` private.
+    #. Make ``TimedEvent`` private.
+    #. Remove ``WriterProxyData`` from public APIs.
+    #. Remove ``ReaderProxyData`` from public APIs.
+    #. Remove ``TopicAttributes`` from public APIs and make it private in ``xmlparser``.
+    #. Remove unnecessary header and make private ``SecurityException`` and ``Exception``.
+    #. Make ``ChangeForReader``, ``ReaderLocator``, and ``ReaderProxy`` private.
+    #. Make Blackbox tests not include any private API.
+
+#. Fastrtps package name migration to fastdds:
+
+    #. Branch-out to v3.0.0.
+    #. Migrate DLL API exporter and auto linkage to fastdds.
+    #. Change windows file names.
+    #. Migrate ``fastrtps.rc`` to ``fastdds.rc``.
+
+#. GUIDLess Discovery Server.
+#. Gather-send implementation.
+#. Refactor ``IPayloadPool``.
+#. Participant discovery structures refactor.
+#. Make all public headers .hpp.
+#. ``const`` qualify all data related inputs in DataWriter APIs.
+#. Refactor RTPS reader APIs.
+#. Refactor RTPS writer APIs.
+#. Refactor RTPS ``WriterHistory``.
+#. Refactor ``TopicDataType``.
+#. Make ``StdoutErrConsumer`` default ``LogConsumer``.
+#. All ``DataWriter::write`` overloads return ``ReturnCode_t`` type.
+#. Add XML configuration for ``FlowControllerDescriptor`` and remove ``ThroughputController``.
+#. Move ``DataReader::TypeConsistencyEnforcement`` and ``DataReader::DataRepresentation`` from ``TypeConsistency`` to ``DataReaderQos``.
+#. Migrate ``BuiltinEndpoints`` defines to variables.
+#. Remove ``string_convert`` header and source.
+#. Update Fast DDS docs QoS examples.
+
+#. Examples refactor for a more clear, homogeneous, and didactic explanation of several features.
+
+    #. Examples refactor: Hello World.
+    #. X-Types examples.
+    #. Examples refactor: Configuration.
+    #. Example refactor: Content filter.
+    #. Example refactor: Custom payload pool.
+    #. Examples refactor: Delivery mechanisms.
+    #. Example refactor: Discovery Server.
+    #. Examples refactor: Flow Controller.
+    #. Example Refactor: Request-Reply.
+    #. Examples refactor: Static EDP discovery.
+    #. Example refactor: Security.
+    #. Examples refactor: Topic Instances.
+    #. Example refactor: RTPS.
+    #. Fix non-defined duration Qos in configuration example.
+    #. Fix flakiness on test with participants in the same container.
+    #. Split example tests in different CTest tests.
+    #. Fix lack of entity argument issue in configuration example.
+
+This release includes the following **features** in an ABI compatible manner:
+
+#. Type propagation policy.
+#. Create Participant with default profile (use environment XML configuration).
+#. Create ``DomainParticipantExtendedQos`` class.
+#. Add product version on Participant Discovery information.
+#. Automatically unmatch remote participants on participant deletion.
+#. Refactor Statistics module IDL.
+#. Change PDP discovery database backup restore order.
+#. Create ``InitialConnection`` for TCP initial peers.
+#. New ``max_message_size`` property to limit output datagrams size.
+#. Use ``PID_DOMAIN_ID`` during PDP.
+#. Ubuntu example testing automation infrastructure.
+#. Update versions in fastdds.repos file.
+
+This release includes the following **improvements**:
+
+#. Make ``DataReader::return_loan`` return ``RETCODE_OK`` on loanable sequences without loans.
+#. Use absolute paths when loading XML files.
+#. Remove ``FASTCDR_VERSION_MAJOR == 1`` related code.
+#. Setting ``vendor_id`` on received ``CacheChange_t``.
+#. GitHub repository management.
+
+This release includes the following **fixes**:
+
+#. Handle errors when setting socket buffer sizes.
+#. Do not require ``PYTHON_VERSION`` to be defined in .bat files.
+#. Use ``%*`` instead of ``loop`` in .bat scripts.
+#. Set DataSharing in ``WriterProxyData`` and ``ReaderProxyData``.
+#. Minor fix in ``DDSBlackboxTestsBasic.cpp``.
+#. Fix PDP and EDP unittest compilation.
+#. Fix ``AllocTest`` compilation.
+#. Correct liveliness state in a multiple reader and one writer scenario.
+#. Only apply content filter to ALIVE changes.
+#. Fix compilation when building static library.
+#. Properly delete builtin statistics writers upon ``delete_contained_entities()``.
+#. Correctly initialize ``MatchingFailureMask`` constants to be used with the ``std::bitset`` API.
+#. Change monitor service writer entity id.
+#. Fix EDP build warning without security.
+#. Fix compilation warning.
+#. Fix discovery server not connecting due to ports logic.
+#. Fix assertion in ``TopicPayloadPool::release_history``.
+#. Fix topic interference on ``liveliness_changed`` status.
+#. Fix typo in CMakeLists.txt.
+#. Fuzzer regressions.
+#. Address build issues for documentation and different platforms.
+
+.. important::
+
+    When upgrading to version 3.0.0 it is **required** to regenerate generated source from IDL files
+    using `Fast DDS-Gen v4.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.0>`_.

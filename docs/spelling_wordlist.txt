@@ -141,6 +141,7 @@ homebrew
 Homebrew
 hostid
 hotfix
+hpp
 idl
 IDL
 ifaddrs
@@ -162,6 +163,7 @@ le
 Libp
 libs
 lifecycle
+loanable
 localhost
 localtime
 LogTopic
@@ -248,6 +250,7 @@ scalable
 seqNum
 SequenceNumber
 sequencenumbers
+Serialization
 shm
 SHM
 simpleEDP

@@ -21,8 +21,8 @@ This release includes the following **API** breaks:
     #. Only signed integers are allowed in Dynamic Language Binding enumerations.
     #. Refactor XML Parser to return ``DynamicTypeBuilder`` instead of ``DynamicType``.
     #. Make more flexible ``EDP::valid_matching`` with ``TypeInformation``.
-    #. Implementation of ``DynamicData`` to JSON serializer.
-    #. Implementation of ``DynamicType`` to IDL serializer.
+    #. Serialization of ``DynamicData`` to JSON.
+    #. Serialization of ``DynamicType`` to IDL.
     #. Fixes for indirect hashes dependencies.
     #. Add missing ``DynamicType`` includes.
     #. Add new tests for testing new key hash calculation according to DDS-XTypes 1.3.
@@ -46,8 +46,8 @@ This release includes the following **API** breaks:
     #. Make XML Parser API private.
     #. Remove all redundant headers from ``include/fastrtps``.
     #. Make RTPS messages headers private.
-    #. Make RTPS reader implementations private.
-    #. Make RTPS writer impl private.
+    #. Make RTPS reader implementation private.
+    #. Make RTPS writer implementation private.
     #. Make security private.
     #. Make ``NetworkConfiguration`` private.
     #. Make ``ResourceEvent`` private.
@@ -83,6 +83,7 @@ This release includes the following **API** breaks:
 #. Migrate ``BuiltinEndpoints`` defines to variables.
 #. Remove ``string_convert`` header and source.
 #. Update Fast DDS docs QoS examples.
+#. Link SHM locator kind with Fast DDS major version.
 
 #. Examples refactor for a more clear, homogeneous, and didactic explanation of several features.
 
@@ -101,7 +102,7 @@ This release includes the following **API** breaks:
     #. Example refactor: RTPS.
     #. Fix non-defined duration Qos in configuration example.
     #. Fix flakiness on test with participants in the same container.
-    #. Split example tests in different CTest tests.
+    #. Split example tests in different ctest tests.
     #. Fix lack of entity argument issue in configuration example.
 
 This release includes the following **features** in an ABI compatible manner:
@@ -150,6 +151,7 @@ This release includes the following **fixes**:
 #. Fix typo in CMakeLists.txt.
 #. Fuzzer regressions.
 #. Address build issues for documentation and different platforms.
+#. Solve ``SecurityManager`` memory issue.
 
 .. important::
 

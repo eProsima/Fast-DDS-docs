@@ -8,8 +8,8 @@ XTypes Frequently Asked Questions
 
 
  .. collapse::  What are XTypes?
-    
-    \ 
+
+
 
 
     :Answer:
@@ -20,7 +20,7 @@ XTypes Frequently Asked Questions
 
  .. collapse::  How does the remote data type discovery mechanism work?
 
-    \ 
+
 
 
     :Answer:
@@ -30,8 +30,8 @@ XTypes Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  .. collapse::  What prerequisites are required for the remote data type discovery feature to work?
-    
-    \ 
+
+
 
 
     :Answer:
@@ -41,8 +41,8 @@ XTypes Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  .. collapse::  What is the purpose of the Dynamic Language Binding API?
-        
-    \ 
+
+
 
 
     :Answer:
@@ -53,7 +53,7 @@ XTypes Frequently Asked Questions
 
  .. collapse::  How can complex data types be managed?
 
-    \ 
+
 
 
     :Answer:
@@ -64,7 +64,7 @@ XTypes Frequently Asked Questions
 
  .. collapse::  What is serialization?
 
-    \ 
+
 
 
     :Answer:
@@ -75,12 +75,12 @@ XTypes Frequently Asked Questions
 
  .. collapse::  What are the formats supported for the serialization?
 
-    \ 
 
-    
+
+
     :Answer:
-    
+
     A Dynamic Type can be serialized to its IDL representation and to JSON (primitives, strings, enumerations, bitmasks, sequences, arrays, maps, structures, unions, bitsets).
 
-| 
+|
 

@@ -47,8 +47,7 @@ def download_css(html_css_dir):
         False if not.
     """
     url = (
-        'https://raw.githubusercontent.com/eProsima/all-docs/'
-        'master/source/_static/css/fiware_readthedocs.css')
+        'https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/fiware_readthedocs.css')
     try:
         req = requests.get(url, allow_redirects=True, timeout=10)
     except requests.RequestException as e:
@@ -366,6 +365,7 @@ try:
     spelling_verbose = True
 except ImportError:
     pass
+
 
 # Default behaviour for `autodoc`: always show documented members.
 autodoc_default_options = {

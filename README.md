@@ -101,16 +101,15 @@ building tools.
     ```bash
     sudo apt update
     sudo apt install -y \
-        # Build tools
         gcc \
         g++ \
         cmake \
-        # Fast DDS dependencies
         libasio-dev \
         libtinyxml2-dev \
         libssl-dev \
-        # Fast DDS-Docs dependencies
         python3-sphinx
+    python -m pip install sphinx-toolbox
+    pip install xmlschema
     ```
 
 1. Create a colcon workspace containing Fast DDS and Fast DDS-docs:

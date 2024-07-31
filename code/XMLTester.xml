@@ -3248,6 +3248,30 @@
 </data_writer>
 <!--><-->
 
+<!-->TYPE_PROPAGATION_PROPERTY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="type_propagation_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>fastdds.type_propagation</name>
+                            <value>enable</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
 <!-->FASTDDS_STATISTICS_MODULE<-->
 <participant profile_name="statistics_domainparticipant_conf_xml_profile">
     <rtps>

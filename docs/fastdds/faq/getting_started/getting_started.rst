@@ -1,5 +1,6 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _freq_getting_started_questions:
 
@@ -12,9 +13,9 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    The **Data Distribution Service (DDS)** is a data-centric communication protocol used for distributed software application communications.
+    The Data Distribution Service (DDS) is a data-centric communication protocol used for distributed software application communications. For further information, go to :ref:`what_is_dds`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,9 +24,9 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    There are four basic entities: **Publisher**, **Subscriber**, **Topic**, **Domain**.
+    There are four basic entities: |Publisher|, |Subscriber|, |Topic|, |domain|. For further information, go to :ref:`what_is_dds`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -34,9 +35,9 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    DDS uses QoS to define the behavioral characteristics of DDS Entities. QoS are comprised of individual QoS policies (objects of type deriving from QoSPolicy).
+    DDS uses QoS to define the behavioral characteristics of DDS Entities. QoS are comprised of individual QoS policies (objects of type deriving from QoSPolicy). For further information, go to :ref:`what_is_dds`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -45,9 +46,9 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    **Publisher**. It is the DCPS entity in charge of the creation and configuration of the **DataWriters** it implements. The  **DataWriter** is the entity in charge of the actual publication of the messages. Each one will have an assigned **Topic** under which the messages are published.
+    |Publisher-api|. It is the DCPS entity in charge of the creation and configuration of the DataWriters it implements. The  |DataWriter-api| is the entity in charge of the actual publication of the messages. Each one will have an assigned Topic under which the messages are published. For further information, go to :ref:`dds_layer_publisher`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,9 +57,9 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    **Domain**. This is the concept used to link all publishers and subscribers, belonging to one or more applications, which exchange data under different topics. These individual applications that participate in a domain are called **DomainParticipant**. The DDS Domain is identified by a domain ID.
+    Domain. This is the concept used to link all publishers and subscribers, belonging to one or more applications, which exchange data under different topics. These individual applications that participate in a domain are called DomainParticipant. The DDS Domain is identified by a domain ID. For further information, go to :ref:`dds_layer_domain`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,9 +68,9 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    The **Real-Time Publish Subscribe (RTPS)** protocol, developed to support DDS applications, is a publication-subscription communication middleware over transports such as UDP/IP.
+    The Real-Time Publish Subscribe (RTPS) protocol, developed to support DDS applications, is a publication-subscription communication middleware over transports such as UDP/IP. For further information, go to :ref:`what_is_rtps`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -78,9 +79,9 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    It is designed to support both unicast and multicast communications.
+    It is designed to support both unicast and multicast communications. For further information, go to :ref:`what_is_rtps`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -89,9 +90,9 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    A RTPSParticipant can have any number of writer and reader endpoints.
+    A ``RTPSParticipant`` can have any number of writer and reader endpoints. For further information, go to :ref:`what_is_rtps`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -100,8 +101,8 @@ Frequently Asked Getting Started Questions
 
 
 
-    :Answer:
+    |br|
 
-    Communication revolves around **Topics**, which define and label the data being exchanged. The topics do not belong to a specific participant. The participant, through the **RTPSWriters**, makes changes in the data published under a topic, and through the **RTPSReaders** receives the data associated with the topics to which it subscribes. The communication unit is called **Change**, which represents an update in the data that is written under a Topic. **RTPSReaders/RTPSWriters** register these changes on their **History**, a data structure that serves as a cache for recent changes.
+    Communication revolves around Topics, which define and label the data being exchanged. The topics do not belong to a specific participant. The participant, through the RTPSWriters, makes changes in the data published under a topic, and through the RTPSReaders receives the data associated with the topics to which it subscribes. The communication unit is called Change, which represents an update in the data that is written under a Topic. RTPSReaders/RTPSWriters register these changes on their History, a data structure that serves as a cache for recent changes. For further information, go to :ref:`what_is_rtps`.
 
 |

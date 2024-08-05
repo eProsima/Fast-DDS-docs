@@ -1,5 +1,6 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _freq_rtps_layer_questions:
 
@@ -12,9 +13,9 @@ RTPS LAYER Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    The lower level RTPS Layer of **eprosima Fast DDS** serves as an implementation of the protocol defined in the RTPS standard. This layer provides more control over the internals of the communication protocol than the DDS Layer, so advanced users have finer control over the library's functionalities.
+    The lower level RTPS Layer of eprosima Fast DDS serves as an implementation of the protocol defined in the RTPS standard. This layer provides more control over the internals of the communication protocol than the DDS Layer, so advanced users have finer control over the library's functionalities. For further information, see :ref:`rtps_layer`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,9 +24,9 @@ RTPS LAYER Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    As the RTPS standard specifies, ``RTPSWriters`` and ``RTPSReaders`` are always associated with a ``History`` element. In the DDS Layer, its creation and management is hidden, but in the RTPS Layer, you have full control over its creation and configuration.
+    As the RTPS standard specifies, ``RTPSWriters`` and ``RTPSReaders`` are always associated with a ``History`` element. In the DDS Layer, its creation and management is hidden, but in the RTPS Layer, you have full control over its creation and configuration. For further information, see :ref:`rtps_layer`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -34,9 +35,9 @@ RTPS LAYER Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Writers are created with ``RTPSDomain::createRTPSWriter()`` and configured with a ``WriterAttributes`` structure. They also need a ``WriterHistory`` which is configured with a ``HistoryAttributes`` structure.
+    Writers are created with |RTPSDomain::createRTPSWriter-api| and configured with a ``WriterAttributes`` structure. They also need a ``WriterHistory`` which is configured with a ``HistoryAttributes`` structure. For further information, see :ref:`rtps_layer`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -45,8 +46,8 @@ RTPS LAYER Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    In the **RTPS Protocol**, **Readers** and **Writers** save the data about a topic in their associated Histories. Each piece of data is represented by a Change, which *eprosima Fast DDS* implements as ``CacheChange_t``. Changes are always managed by the **History**.
+    In the RTPS Protocol, Readers and Writers save the data about a topic in their associated Histories. Each piece of data is represented by a Change, which *eprosima Fast DDS* implements as ``CacheChange_t``. Changes are always managed by the History. For further information, see :ref:`rtps_layer`.
 
 |

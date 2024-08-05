@@ -1,5 +1,6 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _freq_logging_questions:
 
@@ -12,9 +13,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    There are three logging levels, for info, warnings and errors; message filtering and output to ``STDOUT``, ``STDERR`` and log files.
+    There are three logging levels, for info, warnings and errors; message filtering and output to ``STDOUT``, ``STDERR`` and log files. For further information, go to :ref:`dds_layer_log_intro`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,9 +24,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    The ``Log`` class is in charge of the logging operations and provides configuration APIs to set different logging configuration aspects and logging filtering at various levels. The ``LogConsumer`` class includes the member functions that derived classes should overload to consume log entries.
+    The ``Log`` class is in charge of the logging operations and provides configuration APIs to set different logging configuration aspects and logging filtering at various levels. The ``LogConsumer`` class includes the member functions that derived classes should overload to consume log entries. For further information, go to :ref:`dds_layer_log_classes`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -34,9 +35,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    When it is created, the logging module creates a thread that awakens every time an entry is added to the queue and falls back into idle state once the work is done.
+    When it is created, the logging module creates a thread that awakens every time an entry is added to the queue and falls back into idle state once the work is done. For further information, go to :ref:`dds_layer_log_thread`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -45,9 +46,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    It is handled by three macros, for log messages with ``Log::Kind::Info``, ``Log::Kind::Warning``, and ``Log::Kind::Info`` verbosities. These macros produce a log entry showing a message and some meta information.
+    It is handled by three macros, for log messages with ``Log::Kind::Info``, ``Log::Kind::Warning``, and ``Log::Kind::Info`` verbosities. These macros produce a log entry showing a message and some meta information. For further information, go to :ref:`dds_layer_log_logging`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,9 +57,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    The category component can be used to filter log entries so that only those categories specified in the filter are consumed.
+    The category component can be used to filter log entries so that only those categories specified in the filter are consumed. For further information, go to :ref:`dds_layer_log_category`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,9 +68,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    **Fast DDS** provides three different filtering possibilities: **Category Filtering, File Name Filtering, Content Filtering**.
+    Fast DDS provides three different filtering possibilities: Category Filtering, File Name Filtering, Content Filtering. For further information, go to :ref:`dds_layer_log_filter`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -78,9 +79,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Filters are applied in the specific order presented above, meaning that file name filtering is only applied to the entries that pattern-match the category filter, and content filtering is only applied to the entries that pattern-match both category and file name filters.
+    Filters are applied in the specific order presented above, meaning that file name filtering is only applied to the entries that pattern-match the category filter, and content filtering is only applied to the entries that pattern-match both category and file name filters. For further information, go to :ref:`dds_layer_log_filter`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -89,9 +90,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Log entries can be filtered upon consumption according to their **Category** component using regular expressions. Each time an entry is ready to be consumed, the category filter is applied using ``std::regex_search()``. To set a category filter, the member function ``Log::SetCategoryFilter()`` is used.
+    Log entries can be filtered upon consumption according to their Category component using regular expressions. Each time an entry is ready to be consumed, the category filter is applied using ``std::regex_search()``. To set a category filter, the member function |Log::SetCategoryFilter-api| is used. For further information, go to :ref:`dds_layer_log_filter_category`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -100,9 +101,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Log entries can be filtered upon consumption according to their File Context component using regular expressions. Each time an entry is ready to be consumed, the file name filter is applied using ``std::regex_search()``. To set a file name filter, the member function ``Log::SetFilenameFilter()`` is used.
+    Log entries can be filtered upon consumption according to their File Context component using regular expressions. Each time an entry is ready to be consumed, the file name filter is applied using ``std::regex_search()``. To set a file name filter, the member function |Log::SetFilenameFilter-api| is used. For further information, go to :ref:`dds_layer_log_filter_filename`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -111,9 +112,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Log entries can be filtered upon consumption according to their **Message** component using regular expressions. Each time an entry is ready to be consumed, the content filter is applied using ``std::regex_search()``. To set a content filter, the member function ``Log::SetErrorStringFilter()`` is used.
+    Log entries can be filtered upon consumption according to their Message component using regular expressions. Each time an entry is ready to be consumed, the content filter is applied using ``std::regex_search()``. To set a content filter, the member function |Log::SetErrorStringFilter-api| is used. For further information, go to :ref:`dds_layer_log_filter_content`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -122,9 +123,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    **Consumers** are classes that take a ``Log::Entry`` and produce a log output accordingly.
+    Consumers are classes that take a |Log::Entry-api| and produce a log output accordingly. For further information, go to :ref:`dds_layer_log_consumer`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -133,9 +134,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    ``StdoutErrConsumer``: Outputs log entries to ``STDOUT`` or ``STDERR`` depending on the given threshold.
+    ``StdoutErrConsumer``: Outputs log entries to ``STDOUT`` or ``STDERR`` depending on the given threshold. For further information, go to :ref:`dds_layer_log_consumer`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -144,9 +145,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    ``FileConsumer``: Outputs log entries to a user specified file.
+    ``FileConsumer``: Outputs log entries to a user specified file. For further information, go to :ref:`dds_layer_ostream_consumer_file`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -155,9 +156,9 @@ Logging Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    ``StdoutConsumer`` outputs log entries to the ``STDOUT`` stream following the convention specified in the **Log Entry Specification**. It is the default logging module if the CMake option ``LOG_CONSUMER_DEFAULT`` is set to ``STDOUT``.
+    ``StdoutConsumer`` outputs log entries to the ``STDOUT`` stream following the convention specified in the :ref:`dds_layer_log_logging_spec` . It is the default logging module if the CMake option ``LOG_CONSUMER_DEFAULT`` is set to ``STDOUT``.
 
 |
 

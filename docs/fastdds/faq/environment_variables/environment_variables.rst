@@ -1,5 +1,6 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _freq_env_variables_questions:
 
@@ -12,9 +13,9 @@ Environment Variables Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    ``FASTDDS_DEFAULT_PROFILES_FILE``, ``SKIP_DEFAULT_XML``, ``FASTDDS_BUILTIN_TRANSPORTS``, ``ROS_DISCOVERY_SERVER``, ``ROS_SUPER_CLIENT``, ``FASTDDS_STATISTICS``, ``FASTDDS_ENVIRONMENT_FILE``.
+    ``FASTDDS_DEFAULT_PROFILES_FILE``, ``SKIP_DEFAULT_XML``, ``FASTDDS_BUILTIN_TRANSPORTS``, ``ROS_DISCOVERY_SERVER``, ``ROS_SUPER_CLIENT``, ``FASTDDS_STATISTICS``, ``FASTDDS_ENVIRONMENT_FILE``. For further information, go to :ref:`env_vars`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,9 +24,9 @@ Environment Variables Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Defines the location of the default profile configuration XML file.
+    Defines the location of the default profile configuration XML file. For further information, go to :ref:`env_vars_fastdds_default_profiles_file`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -34,9 +35,9 @@ Environment Variables Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Skips looking for a default profile configuration XML file. If this variable is set to 1, Fast DDS will load the configuration parameters directly from the classes' definitions without looking for the **DEFAULT_FASTDDS_PROFILES.xml** in the working directory.
+    Skips looking for a default profile configuration XML file. If this variable is set to 1, Fast DDS will load the configuration parameters directly from the classes' definitions without looking for the ``DEFAULT_FASTDDS_PROFILES.xml`` in the working directory. For further information, go to :ref:`env_vars_skip_default_xml`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -45,9 +46,9 @@ Environment Variables Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Setting this variable allows to modify the builtin transports that are initialized during the DomainParticipant creation.
+    Setting this variable allows to modify the builtin transports that are initialized during the |DomainParticipant-api| creation. For further information, go to :ref:`env_vars_builtin_transports`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,9 +57,9 @@ Environment Variables Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Setting this variable configures the DomainParticipant to connect to one or more servers using the Discovery Server discovery mechanism.
+    Setting this variable configures the DomainParticipant to connect to one or more servers using the Discovery Server discovery mechanism. For further information, go to :ref:`env_vars_ros_discovery_server`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,9 +68,9 @@ Environment Variables Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    If the DomainParticipant's discovery protocol is set to ``SIMPLE``, and ``ROS_SUPER_CLIENT`` is set to ``TRUE``, the participant is automatically promoted to a ``SUPER_CLIENT``.
+    If the DomainParticipant's discovery protocol is set to ``SIMPLE``, and ``ROS_SUPER_CLIENT`` is set to ``TRUE``, the participant is automatically promoted to a ``SUPER_CLIENT``. For further information, go to :ref:`env_vars_ros_super_client`.
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -79,9 +80,9 @@ Environment Variables Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Setting this variable configures the **DomainParticipant** to enable the statistics **DataWriters** which topics are contained in the list set in this environment variable.
+    Setting this variable configures the |DomainParticipant-api| to enable the statistics DataWriters which topics are contained in the list set in this environment variable. For further information, go to :ref:`env_vars_fastdds_statistics`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -90,8 +91,8 @@ Environment Variables Frequently Asked Questions
 
 
 
-    :Answer:
+    |br|
 
-    Setting this environment variable to an existing ``json`` file allows to load the environment variables from the file instead of from the environment.
+    Setting this environment variable to an existing ``json`` file allows to load the environment variables from the file instead of from the environment. For further information, go to :ref:`env_vars_fastdds_environment_file`.
 
 |

@@ -1,5 +1,6 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
 
 .. _freq_dds_layer_questions:
 
@@ -14,9 +15,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    The unique ID ensures that each entity within the distributed system can be distinctly identified. This is crucial for maintaining the integrity and consistency of communications and operations within the system. By having a shared ID between DDS (Data Distribution Service) and RTPS (Real-Time Publish-Subscribe) entities, the system can seamlessly map and correlate data across different communication protocols and frameworks.
+    The unique ID ensures that each entity within the distributed system can be distinctly identified. This is crucial for maintaining the integrity and consistency of communications and operations within the system. By having a shared ID between DDS (Data Distribution Service) and RTPS (Real-Time Publish-Subscribe) entities, the system can seamlessly map and correlate data across different communication protocols and frameworks. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -25,9 +26,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    A shared ID between DDS and RTPS entities enables a unified reference point for entities involved in communication. This facilitates interoperability by allowing different components and services within the distributed system to easily recognize and interact with each other based on their unique identifiers, thus simplifying the integration and coordination processes.
+    A shared ID between DDS and RTPS entities enables a unified reference point for entities involved in communication. This facilitates interoperability by allowing different components and services within the distributed system to easily recognize and interact with each other based on their unique identifiers, thus simplifying the integration and coordination processes. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -36,9 +37,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Storing the ID on an **Instance Handle** object and declaring it on the **Entity** base class adheres to encapsulation by keeping the ID management within a dedicated object. This design also leverages inheritance, allowing derived classes to inherit the ID-related functionality from the base class, promoting code reuse and reducing redundancy.
+    Storing the ID on an Instance Handle object and declaring it on the |Entity-api| base class adheres to encapsulation by keeping the ID management within a dedicated object. This design also leverages inheritance, allowing derived classes to inherit the ID-related functionality from the base class, promoting code reuse and reducing redundancy. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,64 +48,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    The ability to access the unique ID via the ``get_instance_handle()`` function simplifies the implementation and maintenance of the system. Developers can uniformly manage entity identification across various parts of the system, making it easier to track, debug, and update entity-related code.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  What potential security concerns could arise from having a shared ID between DDS and RTPS entities, and how can these concerns be mitigated?
-
-
-
-
-    :Answer:
-
-    Potential security concerns include unauthorized access or manipulation of the unique IDs. These can be mitigated by implementing access controls, authentication mechanisms, and encryption to protect the IDs and the Instance Handle objects from unauthorized access and tampering.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  What error handling mechanisms should be in place when accessing the Instance Handle object through the ``get_instance_handle()`` function to ensure system robustness?
-
-
-
-
-    :Answer:
-
-    Error handling mechanisms should include checks for null or invalid Instance Handle objects, exceptions for failed retrievals, and logging of errors for diagnostic purposes. Additionally, implementing retries and fallback procedures can help maintain system robustness in case of transient errors.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  How might the storage and retrieval of unique IDs via Instance Handle objects impact the performance of a distributed system, particularly in high-throughput or real-time scenarios?
-
-
-
-
-    :Answer:
-
-    The impact on performance depends on the efficiency of the storage and retrieval mechanisms for Instance Handle objects. Optimized data structures and caching strategies can minimize latency and overhead, ensuring that the system remains performant even under high-throughput or real-time conditions.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  In what ways does the design choice of using a unique ID for each entity affect the scalability of the system as the number of entities grows?
-
-
-
-
-    :Answer:
-
-    Using unique IDs for each entity supports scalability by allowing the system to manage a large number of entities without confusion or collision. As the number of entities grows, the system can efficiently track and manage each one through its unique ID, ensuring consistent performance and reliability.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  How does the use of Instance Handle objects and the ``get_instance_handle()`` function support or hinder the integration of new components or legacy systems within the distributed architecture?
-
-
-
-
-    :Answer:
-
-    The design choice of using Instance Handle objects and the ``get_instance_handle()`` function enhances integration by providing a standardized way to identify and access entities. This standardization simplifies the addition of new components and the integration of legacy systems, as all parts of the system can rely on a consistent entity identification method.
+    The ability to access the unique ID via the ``get_instance_handle()`` function simplifies the implementation and maintenance of the system. Developers can uniformly manage entity identification across various parts of the system, making it easier to track, debug, and update entity-related code. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -113,9 +59,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    QoS policies determine the operational parameters of DDS entities, such as latency, reliability, and resource usage. Misconfigured QoS policies can lead to suboptimal performance, such as increased latency, dropped messages, or excessive resource consumption, which can negatively affect the overall system reliability and efficiency.
+    QoS policies determine the operational parameters of DDS entities, such as latency, reliability, and resource usage. Misconfigured QoS policies can lead to suboptimal performance, such as increased latency, dropped messages, or excessive resource consumption, which can negatively affect the overall system reliability and efficiency. For further information go to :ref:`dds_layer_core_policy`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -124,9 +70,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Scenarios necessitating QoS modification post-creation include changes in network conditions, evolving application requirements, or the need to optimize performance. Best practices include using the ``set_qos()`` function judiciously, validating the new policies before applying them, and monitoring the system for any adverse effects after changes.
+    Scenarios necessitating QoS modification post-creation include changes in network conditions, evolving application requirements, or the need to optimize performance. Best practices include using the ``set_qos()`` function judiciously, validating the new policies before applying them, and monitoring the system for any adverse effects after changes. For further information go to :ref:`dds_layer_domainParticipant`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -135,9 +81,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Listeners provide real-time notifications of status changes, improving responsiveness and allowing for event-driven programming. However, drawbacks include the potential for increased complexity and resource contention. Mitigation strategies involve keeping listener functions simple and offloading heavy processing to other parts of the system.
+    Listeners provide real-time notifications of status changes, improving responsiveness and allowing for event-driven programming. However, drawbacks include the potential for increased complexity and resource contention. Mitigation strategies involve keeping listener functions simple and offloading heavy processing to other parts of the system. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -146,9 +92,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    The inheritance of listener interfaces enhances flexibility by allowing different entity types to share common callback mechanisms while enabling customization for specific types. This modularity simplifies code management and fosters reuse.
+    The inheritance of listener interfaces enhances flexibility by allowing different entity types to share common callback mechanisms while enabling customization for specific types. This modularity simplifies code management and fosters reuse. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -157,9 +103,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Status objects track the communication state of entities, triggering listener callbacks when changes occur. This mechanism ensures that applications are promptly informed of relevant status updates, facilitating timely responses to communication events.
+    Status objects track the communication state of entities, triggering listener callbacks when changes occur. This mechanism ensures that applications are promptly informed of relevant status updates, facilitating timely responses to communication events. For further information go to :ref:`dds_layer_core_status`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -168,9 +114,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    **StatusCondition** provides a means to monitor multiple status changes efficiently by linking entities to Wait-sets. This linkage allows for consolidated event handling, reducing polling overhead and improving synchronization within the system.
+    StatusCondition provides a means to monitor multiple status changes efficiently by linking entities to Wait-sets. This linkage allows for consolidated event handling, reducing polling overhead and improving synchronization within the system. For further information go to :ref:`dds_layer_core_status`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -179,9 +125,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Creating entities in an enabled state allows for immediate operation, while disabled entities require explicit enabling before full functionality. The **EntityFactoryQosPolicy** governs this behavior, affecting initial system configuration and operational readiness.
+    Creating entities in an enabled state allows for immediate operation, while disabled entities require explicit enabling before full functionality. The |EntityFactoryQosPolicy-api| governs this behavior, affecting initial system configuration and operational readiness. For further information go to :ref:`entityfactoryqospolicy`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -190,9 +136,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Disabled entities can only perform basic operations such as QoS and listener management, status querying, and subentity creation/deletion. This restriction ensures that incomplete or improperly configured entities do not adversely impact the system.
+    Disabled entities can only perform basic operations such as QoS and listener management, status querying, and subentity creation/deletion. This restriction ensures that incomplete or improperly configured entities do not adversely impact the system. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -201,20 +147,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    The **StatusMask** allows selective enabling or disabling of specific callbacks, fine-tuning the system's responsiveness and avoiding unnecessary processing. Proper management of StatusMask settings ensures that only relevant events trigger callbacks, optimizing system behavior.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  What strategies can be employed to manage the complexity and potential performance issues arising from having multiple listener callbacks, especially given the single-threaded nature of listener execution?
-
-
-
-
-    :Answer:
-
-    To manage complexity and performance, listener functions should be concise, delegating extensive processing to other components. Utilizing multi-threading or task queues can help distribute the workload, preventing bottlenecks and ensuring efficient execution.
+    The |StatusMask-api| allows selective enabling or disabling of specific callbacks, fine-tuning the system's responsiveness and avoiding unnecessary processing. Proper management of |StatusMask-api| settings ensures that only relevant events trigger callbacks, optimizing system behavior. For further information go to :ref:`dds_layer_core_status`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -223,21 +158,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Creating or deleting entities within listener callbacks can cause race conditions, deadlocks, or undefined behavior due to concurrent access. It is recommended to use listeners solely for event notification and delegate entity management to higher-level
-    components outside the callback scope.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  What are the best practices for implementing listener functions to ensure they remain efficient and do not lead to undefined behavior or performance bottlenecks?
-
-
-
-
-    :Answer:
-
-    Listener functions should be designed to quickly handle events and offload detailed processing. This approach minimizes blocking time within the listener thread, ensuring timely handling of subsequent events and maintaining system responsiveness.
+    Creating or deleting entities within listener callbacks can cause race conditions, deadlocks, or undefined behavior due to concurrent access. It is recommended to use listeners solely for event notification and delegate entity management to higher-level components outside the callback scope. For further information go to :ref:`dds_layer_core_entity_commonchars_listener`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -246,9 +169,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Fast DDS-specific callbacks, such as ``on_participant_discovery `` and ``on_data_writer_discovery``, provide additional hooks for monitoring and responding to specific events within the DDS framework. These callbacks offer greater control and insight into the system's operational state.
+    Fast DDS-specific callbacks, such as ``on_participant_discovery `` and ``on_data_writer_discovery``, provide additional hooks for monitoring and responding to specific events within the DDS framework. These callbacks offer greater control and insight into the system's operational state. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -257,31 +180,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Unlike standard DDS callbacks, Fast DDS custom callbacks are always enabled and offer functionality tailored to the Fast DDS implementation. They provide more granular control over participant and data discovery processes, enhancing the application's ability to react to dynamic changes.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  How important is thorough documentation for each entity type and its corresponding QoS policies and listener interfaces in ensuring effective system implementation and maintenance?
-
-
-
-
-    :Answer:
-
-    Comprehensive documentation is crucial for understanding the configuration options and behavior of different entity types, QoS policies, and listener interfaces. It aids developers in implementing and maintaining systems that align with expected functionality and performance.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  What are the implications of setting a too short or too long deadline period on both the publishing and subscribing sides, and how does this affect the reliability and timeliness of data transmission?
-
-
-
-
-    :Answer:
-
-    Setting a too short deadline period on the publishing side can lead to frequent deadline misses if the application cannot keep up, causing unnecessary alarms and potential loss of trust in the system. On the subscribing side, a too short period can cause frequent notifications of missed deadlines, leading to potential data inconsistencies. Conversely, too long a deadline period might delay the detection of issues, affecting the timeliness and reliability of data transmission.
+    Unlike standard DDS callbacks, Fast DDS custom callbacks are always enabled and offer functionality tailored to the Fast DDS implementation. They provide more granular control over participant and data discovery processes, enhancing the application's ability to react to dynamic changes. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -290,9 +191,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    For topics with keys, the **DeadlineQoS policy** is applied individually to each key. This means that each unique key (e.g., each vehicle in a fleet) must meet its deadline. The practical consideration is that the publisher must manage deadlines for multiple keys simultaneously, which can be complex but allows for more granular control over data timeliness.
+    For topics with keys, the |DeadlineQosPolicy-api| is applied individually to each key. This means that each unique key (e.g., each vehicle in a fleet) must meet its deadline. The practical consideration is that the publisher must manage deadlines for multiple keys simultaneously, which can be complex but allows for more granular control over data timeliness. For further information go to :ref:`standard`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -301,20 +202,20 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    The requirement for the offered deadline period on **DataWriters** to be less than or equal to the requested deadline period on DataReaders ensures that the DataWriter can meet the DataReader's expectations. Mismatched periods could result in the DataReader perceiving missed deadlines, leading to potential data loss and reliability issues.
+    The requirement for the offered deadline period on DataWriters to be less than or equal to the requested deadline period on DataReaders ensures that the DataWriter can meet the DataReader's expectations. Mismatched periods could result in the DataReader perceiving missed deadlines, leading to potential data loss and reliability issues. For further information go to :ref:`deadline_compatibilityrule`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. collapse::  How should the DeadlineQoS policy be configured in conjunction with the TimeBasedFilterQoS policy to ensure consistency and avoid data loss or delays?
+.. collapse::  How should the DeadlineQosPolicy be configured in conjunction with the TimeBasedFilterQosPolicy to ensure consistency and avoid data loss or delays?
 
 
 
 
-    :Answer:
+    |br|
 
-    To ensure consistency, the **DeadlineQoS period** must be at least equal to the minimum separation specified in the **TimeBasedFilterQoS policy**. This prevents the system from attempting to enforce a stricter deadline than the filter allows, avoiding unnecessary alarms and ensuring smooth data flow.
+    To ensure consistency, the |DeadlineQosPolicy-api| period must be greater or equal to the minimum separation specified in the |TimeBasedFilterQosPolicy-api|. This prevents the system from attempting to enforce a stricter deadline than the filter allows, avoiding unnecessary alarms and ensuring smooth data flow. For further information go to :ref:`timebasedfilterqospolicy`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -323,9 +224,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    The default value of ``c_TimeInfinite`` means that there is no deadline, so **DataWriters** and **DataReaders** are not constrained by time. This is useful for applications where timeliness is not critical. However, for time-sensitive applications, this default should be changed to a specific duration to ensure timely data updates.
+    The default value of ``c_TimeInfinite`` means that there is no deadline, so DataWriters and DataReaders are not constrained by time. This is useful for applications where timeliness is not critical. However, for time-sensitive applications, this default should be changed to a specific duration to ensure timely data updates. For further information go to :ref:`deadlineqospolicy`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -334,9 +235,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    ``BY_RECEPTION_TIMESTAMP`` orders data based on when it is received, which can lead to different DataReaders having different final values due to network delays. ``BY_SOURCE_TIMESTAMP`` ensures consistency across all **DataReaders** by using the send time from the **DataWriter**. ``BY_SOURCE_TIMESTAMP`` is preferred for ensuring consistent data states across multiple **DataReaders**.
+    ``BY_RECEPTION_TIMESTAMP`` orders data based on when it is received, which can lead to different DataReaders having different final values due to network delays. ``BY_SOURCE_TIMESTAMP`` ensures consistency across all DataReaders by using the send time from the DataWriter. ``BY_SOURCE_TIMESTAMP`` is preferred for ensuring consistent data states across multiple DataReaders. Both can be configured by using |DestinationOrderQosPolicyKind-api|. For further information go to :ref:`destinationorderqospolicy`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -345,9 +246,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    ``BY_RECEPTION_TIMESTAMP`` might be preferred in scenarios where the most recent data is always the most relevant, regardless of source time (e.g., real-time sensor data). ``BY_SOURCE_TIMESTAMP`` is ideal for applications requiring consistency, such as financial transactions or coordinated control systems.
+    ``BY_RECEPTION_TIMESTAMP`` might be preferred in scenarios where the most recent data is always the most relevant, regardless of source time (e.g., real-time sensor data). ``BY_SOURCE_TIMESTAMP`` is ideal for applications requiring consistency, such as financial transactions or coordinated control systems. For further information go to :ref:`destinationorderqospolicykind`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -356,20 +257,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    Incompatible kinds can lead to data being ignored or reordered incorrectly, causing inconsistencies. The compatibility rule ensures that the DataReader can handle the ordering provided by the DataWriter. Solutions include aligning QoS settings across DataWriters and DataReaders and using appropriate fallback mechanisms.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  What are the best practices for handling errors or unexpected behavior when configuring and using DeadlineQoS and DestinationOrderQoS policies, especially in a dynamic or evolving system environment?
-
-
-
-
-    :Answer:
-
-    Best practices include thorough validation of QoS settings before deployment, using default values as fallbacks, and implementing robust error logging and alerting mechanisms. Regular audits and updates of QoS configurations help maintain optimal performance and prevent issues.
+    Incompatible kinds can lead to data being ignored or reordered incorrectly, causing inconsistencies. The compatibility rule ensures that the DataReader can handle the ordering provided by the DataWriter. Solutions include aligning QoS settings across DataWriters and DataReaders and using appropriate fallback mechanisms. For further information go to :ref:`destinationorder_compatibilityrule`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -378,20 +268,9 @@ CORE
 
 
 
-    :Answer:
+    |br|
 
-    In scenarios with multiple **DataWriters**, such as collaborative robotics or distributed simulations, the **DestinationOrderQoS** ensures that data from different writers is correctly ordered. Avoiding pitfalls like network-induced delays involves carefully configuring timestamps and ensuring synchronized clocks across systems.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  What are the key considerations for users when creating and linking their own listeners to entities, and how can they ensure that their implementation aligns with the documented behavior and expected system responses?
-
-
-
-
-    :Answer:
-
-    When creating and linking listeners, users should ensure their implementation adheres to documented interfaces and expected behaviors. This includes proper handling of status changes, efficient callback execution, and alignment with the application's overall architecture and design principles.
+    In scenarios with multiple DataWriters, such as collaborative robotics or distributed simulations, the |DestinationOrderQosPolicy-api| ensures that data from different writers is correctly ordered. Avoiding pitfalls like network-induced delays involves carefully configuring timestamps and ensuring synchronized clocks across systems. For further information go to :ref:`destinationorderqospolicy`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -403,9 +282,9 @@ DOMAIN
 
 
 
-    :Answer:
+    |br|
 
-    The ``DomainId`` identifies the domain where the DomainParticipant will be created. Do not use ``DomainId`` higher than 200.
+    The ``DomainId`` identifies the domain where the |DomainParticipant-api| will be created. Do not use ``DomainId`` higher than 200. For further information go to :ref:`dds_layer_domain`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -414,9 +293,9 @@ DOMAIN
 
 
 
-    :Answer:
+    |br|
 
-    A **Listener** derived from **DomainParticipantListener**, implementing the callbacks that will be triggered in response to events and state changes on the **DomainParticipant**. By default, empty callbacks are used.
+    A Listener derived from |DomainParticipantListener-api|, implementing the callbacks that will be triggered in response to events and state changes on the DomainParticipant. By default, empty callbacks are used. For further information go to :ref:`dds_layer_domainParticipantListener`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -425,9 +304,9 @@ DOMAIN
 
 
 
-    :Answer:
+    |br|
 
-    A ``StatusMask`` that activates or deactivates triggering of individual callbacks on the **DomainParticipantListener**. By default, all events are enabled.
+    A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the |DomainParticipantListener-api|. By default, all events are enabled. For further information go to :ref:`dds_layer_domainParticipantListener`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -436,9 +315,9 @@ DOMAIN
 
 
 
-    :Answer:
+    |br|
 
-    ``create_participant_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer.
+    ``create_participant_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. For further information go to :ref:`dds_layer_domainParticipant_creation`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -447,9 +326,9 @@ DOMAIN
 
 
 
-    :Answer:
+    |br|
 
-    A **Publisher** always belongs to a **DomainParticipant**. Creation of a Publisher is done with the ``create_publisher()`` member function on the DomainParticipant instance.
+    A |Publisher-api| always belongs to a DomainParticipant. Creation of a Publisher is done with the ``create_publisher()`` member function on the DomainParticipant instance. For further information go to :ref:`dds_layer_publisher_creation`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -458,9 +337,9 @@ DOMAIN
 
 
 
-    :Answer:
+    |br|
 
-    If there is an XML profile exported in the environment, those settings will be used. If the profile has not been exported, the **DomainParticipant** will be created with the default values per ``DomainParticipantQoS`` and ``0`` as ``DomainId``.
+    If there is an XML profile exported in the environment, those settings will be used. If the profile has not been exported, the |DomainParticipant-api| will be created with the default values per |DomainParticipantQoS-api| and ``0`` as ``DomainId``. For further information go to :ref:`dds_layer_domainParticipant_creation_default_profile`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -469,9 +348,9 @@ DOMAIN
 
 
 
-    :Answer:
+    |br|
 
-    To delete a **DomainParticipant**, it is necessary to delete first all the **Entities** belonging to this **DomainParticipant**. Otherwise, the function will issue an error and the **DomainParticipant** will not be deleted. To delete the entities, the ``delete_contained_entities`` member function must be used, or the entities must be deleted individually.
+    To delete a |DomainParticipant-api|, it is necessary to delete first all its associated entities to this |DomainParticipant-api|. Otherwise, the function will issue an error and the |DomainParticipant-api| will not be deleted. To delete the entities, the ``delete_contained_entities`` member function must be used, or the entities must be deleted individually. For further information go to :ref:`dds_layer_domainParticipant_deletion`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -480,20 +359,20 @@ DOMAIN
 
 
 
-    :Answer:
+    |br|
 
-    To modify the behavior of a **DomainParticipant**, the QoS values specified in the **DomainParticipantQoS**. These QoS values can be set at the creation of the **DomainParticipant** or modified with the ``DomainParticipant::set_qos()`` member function.
+    To modify the behavior of a |DomainParticipant-api|, the QoS values specified in the |DomainParticipantQoS-api|. These QoS values can be set at the creation of the DomainParticipant or modified with the |DomainParticipant::set_qos-api| member function. For further information go to :ref:`dds_layer_domainParticipant`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. collapse::  Under what circumstances does calling "ignore_participant" cause deadlock?
+.. collapse::  Under what circumstances does calling "ignore_participant()" member of a DomainParticipant cause deadlock?
 
 
 
 
-    :Answer:
+    |br|
 
-    When calling ``ignore_participant`` inside the listener. This should be used only when there is a need to ignore participants inside the discovery callback.
+    When calling ``ignore_participant`` inside the listener. This should be used only when there is a need to ignore participants inside the discovery callback. For further information go to :ref:`dds_layer_domainParticipantListener`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -505,9 +384,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    The **PublisherQos** describes the behavior of the Publisher. If the provided value is ``PUBLISHER_QOS_DEFAULT``, the value of the Default **PublisherQos** is used.
+    The PublisherQos describes the behavior of the Publisher. If the provided value is |PUBLISHER_QOS_DEFAULT-api|, the value of the default PublisherQos is used. For further information go to :ref:`dds_layer_publisher_publisherQos`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -516,9 +395,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    A **Listener** derived from **PublisherListener**, implementing the callbacks that will be triggered in response to events and state changes on the **Publisher**. By default, empty callbacks are used.
+    A Listener derived from |PublisherListener-api|, implementing the callbacks that will be triggered in response to events and state changes on the Publisher. By default, empty callbacks are used. For further information go to :ref:`dds_layer_publisher_publisherListener`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -527,9 +406,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    ``create_publisher()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This also applies to Subscriber and Topic.
+    ``create_publisher()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This also applies to Subscriber and |Topic-api|. For further information go to :ref:`dds_layer_publisher_creation`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -538,9 +417,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    A ``StatusMask`` that activates or deactivates triggering of individual callbacks on the PublisherListener/SubscriberListener/TopicListener. By default, all events are enabled.
+    A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the Publisher/Subscriber/Topic listener. By default, all events are enabled. For further information go to :ref:`dds_layer_publisher_creation`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -549,9 +428,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    ``create_publisher_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This is also valid for Subscribers.
+    ``create_publisher_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This is also valid for Subscribers. For further information go to :ref:`dds_layer_publisher_creation_profile`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -560,9 +439,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    ``create_datawriter_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This is also valid for DataReaders.
+    ``create_datawriter_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This is also valid for DataReaders. For further information go to :ref:`dds_layer_publisher_datawriter_creation_profile`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -571,9 +450,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    Once ``write()`` has been called with a loaned sample, the loan is considered returned, and it is not safe to make any changes on the contents of the sample.
+    Once ``write()`` has been called with a loaned sample, the loan is considered returned, and it is not safe to make any changes on the contents of the sample. For further information go to :ref:`dds_layer_publisher_write_loans`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -582,9 +461,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    If function ``loan_sample()`` is called but the sample is never written, the loan must be returned to the **DataWriter** using ``discard_loan()``. Otherwise, the DataWriter may run out of samples.
+    If function ``loan_sample()`` is called but the sample is never written, the loan must be returned to the DataWriter using ``discard_loan()``. Otherwise, the DataWriter may run out of samples. For further information go to :ref:`dds_layer_publisher_write_loans`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -593,9 +472,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    To delete a **Publisher**, it is necessary to delete first all the **Entities** belonging to this **Publisher (DataWriters)**. Otherwise, the function will issue an error and the **Publisher** will not be deleted. To delete the entities, the ``delete_contained_entities`` member function must be used. This is also valid for **Subscribers**.
+    To delete a Publisher, it is necessary to delete first all its associated entities. Otherwise, the function will issue an error and the Publisher will not be deleted. To delete the entities, the ``delete_contained_entities()`` member function must be used. This is also valid for Subscribers. For further information go to :ref:`dds_layer_publisher_deletion`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -604,11 +483,11 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    The value ``DATAWRITER_QOS_DEFAULT`` has different meanings depending on where it is used. This is also applicable for the ``DATAWRITER_QOS_DEFAULT`` and ``TOPIC_QOS_DEFAULT``.
-    * On ``create_datawriter()`` and ``DataWriter::set_qos()`` it refers to the default DataWriterQos as returned by ``get_default_datawriter_qos()``.
-    * On ``set_default_datawriter_qos()`` it refers to the default constructed ``DataWriterQos()``.
+    The value |DATAWRITER_QOS_DEFAULT-api| has different meanings depending on where it is used. This is also applicable for the |DATAWRITER_QOS_DEFAULT-api| and |TOPIC_QOS_DEFAULT-api|. For further information go to :ref:`dds_layer_publisher_dataWriterQos`.
+    * On ``create_datawriter()`` and |DataWriter::set_qos-api| it refers to the default DataWriterQos as returned by ``get_default_datawriter_qos()``.
+    * On ``set_default_datawriter_qos()`` it refers to the default constructed |DataWriterQos::DataWriterQos-api|.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -617,9 +496,9 @@ PUBLISHER
 
 
 
-    :Answer:
+    |br|
 
-    This could happen in constrained networks or if the publication throughput is too demanding. The callback ``on_unacknowledged_sample_removed()`` can be used to detect these situations so the publishing application can apply some solution to ease this issue like reducing the publication rate.
+    This could happen in constrained networks or if the publication throughput is too demanding. The callback ``on_unacknowledged_sample_removed()`` can be used to detect these situations so the publishing application can apply some solution to ease this issue like reducing the publication rate. For further information go to :ref:`dds_layer_publisher_dataWriterListener_on_unack_sample_removed`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -631,9 +510,9 @@ SUBSCRIBER
 
 
 
-    :Answer:
+    |br|
 
-    After calling the ``DataReader::read()`` or ``DataReader::take()`` operations, accessing the data on the returned sequences is quite easy. The sequences API provides a ``length()`` operation returning the number of elements in the collections. The application code just needs to check this value and use the ``[]`` operator to access the corresponding elements. Elements on the DDS data sequence should only be accessed when the corresponding element on the SampleInfo sequence indicates that valid data is present. When using Data Sharing, it is also important to check that the sample is valid (i.e., not replaced, refer to DataReader and DataWriter history coupling for further information in this regard.
+    After calling the |DataReader::read-api| or |DataReader::take-api| operations, accessing the data on the returned sequences is quite easy. The sequences API provides a ``length()`` operation returning the number of elements in the collections. The application code just needs to check this value and use the ``[]`` operator to access the corresponding elements. Elements on the DDS data sequence should only be accessed when the corresponding element on the SampleInfo sequence indicates that valid data is present. When using Data Sharing, it is also important to check that the sample is valid (i.e. not replaced, refer to DataReader and DataWriter history coupling for further information in this regard. For further information go to :ref:`dds_layer_subscriber_accessreceived_data`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -642,9 +521,9 @@ SUBSCRIBER
 
 
 
-    :Answer:
+    |br|
 
-    Instead of relying on the **Listener** to try and get new data values, the application can also dedicate a thread to wait until any new data is available on the **DataReader**. This can be done using a wait-set to wait for a change on the **DataAvailable** status.
+    Instead of relying on the Listener to try and get new data values, the application can also dedicate a thread to wait until any new data is available on the |DataReader-api|. This can be done using a wait-set to wait for a change on the DataAvailable status. For further information go to :ref:`dds_layer_subscriber_accessreceived_wait`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -653,9 +532,9 @@ SUBSCRIBER
 
 
 
-    :Answer:
+    |br|
 
-    Received DDS data samples in a sequence of the data type and corresponding information about each DDS sample in a **SampleInfo** sequence.
+    Received DDS data samples in a sequence of the data type and corresponding information about each DDS sample in a SampleInfo sequence. For further information go to :ref:`dds_layer_subscriber_accessreceived_loans`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -664,9 +543,9 @@ SUBSCRIBER
 
 
 
-    :Answer:
+    |br|
 
-    If the application does not return the loan by calling the ``DataReader::return_loan()`` operation, then Fast DDS will eventually run out of memory to store DDS data samples received from the network for that **DataReader**.
+    If the application does not return the loan by calling the |DataReader::return_loan-api| operation, then Fast DDS will eventually run out of memory to store DDS data samples received from the network for that DataReader. For further information go to :ref:`dds_layer_subscriber_accessreceived_loans`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -675,9 +554,9 @@ SUBSCRIBER
 
 
 
-    :Answer:
+    |br|
 
-    ``disposed_generation_count`` indicates the number of times the instance had become alive after it was disposed.
+    ``disposed_generation_count`` indicates the number of times the instance had become alive after it was disposed. For further information go to :ref:`dds_layer_subscriber_sampleInfo_disposedgenerationcount`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -686,9 +565,9 @@ SUBSCRIBER
 
 
 
-    :Answer:
+    |br|
 
-    ``no_writers_generation_count`` indicates the number of times the instance had become alive after it was disposed as ``NOT_ALIVE_NO_WRITERS``.
+    ``no_writers_generation_count`` indicates the number of times the instance had become alive after it was disposed as ``NOT_ALIVE_NO_WRITERS``. For further information go to :ref:`dds_layer_subscriber_sampleInfo_nowritersgenerationcount`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -697,9 +576,9 @@ SUBSCRIBER
 
 
 
-    :Answer:
+    |br|
 
-    ``related_sample_identity`` is an extension for requester-replier configuration. On reply messages, it contains the sample_identity of the related request message. It is used by the requester to be able to link each reply to the appropriate request.
+    ``related_sample_identity`` is an extension for requester-replier configuration. On reply messages, it contains the sample_identity of the related request message. It is used by the requester to be able to link each reply to the appropriate request. For further information go to :ref:`dds_layer_subscriber_sampleInfo_relatedsampleidentity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -708,9 +587,9 @@ SUBSCRIBER
 
 
 
-    :Answer:
+    |br|
 
-    ``valid_data`` is a boolean that indicates whether the data sample contains a change in the value or not. Samples with this value set to false are used to communicate a change in the instance status, e.g., a change in the liveliness of the instance. In this case, the data sample should be dismissed as all the relevant information is in the data members of **SampleInfo**.
+    ``valid_data`` is a boolean that indicates whether the data sample contains a change in the value or not. Samples with this value set to false are used to communicate a change in the instance status, e.g., a change in the liveliness of the instance. In this case, the data sample should be dismissed as all the relevant information is in the data members of SampleInfo. For further information go to :ref:`dds_layer_subscriber_sampleInfo_validdata`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -722,9 +601,9 @@ TOPIC
 
 
 
-    :Answer:
+    |br|
 
-    A ``Topic`` is a specialization of the broader concept of **TopicDescription**. A **Topic** represents a single data flow between **Publisher** and **Subscriber**.
+    A |Topic-api| is a specialization of the broader concept of TopicDescription. A |Topic-api| represents a single data flow between Publisher and Subscriber. For further information go to :ref:`dds_layer_topic`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -733,9 +612,9 @@ TOPIC
 
 
 
-    :Answer:
+    |br|
 
-    The like operator is similar to the one defined by SQL. This operator can only be used with strings. There are two wildcards that could be used in conjunction with this operator.
+    The like operator is similar to the one defined by SQL. This operator can only be used with strings. There are two wildcards that could be used in conjunction with this operator. For further information go to :ref:`dds_layer_topic_contentFilteredTopic_default_filter`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -744,9 +623,9 @@ TOPIC
 
 
 
-    :Answer:
+    |br|
 
-    The percent sign ``%"``(or its alias ``*``) represents zero, one, or multiple characters.
+    The percent sign ``%"``(or its alias ``*``) represents zero, one, or multiple characters. For further information go to :ref:`dds_layer_topic_contentFilteredTopic_default_filter`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -755,9 +634,9 @@ TOPIC
 
 
 
-    :Answer:
+    |br|
 
-    The underscore sign ``_`` (or its alias ``?``) represents one single character.
+    The underscore sign ``_`` (or its alias ``?``) represents one single character. For further information go to :ref:`dds_layer_topic_contentFilteredTopic_default_filter`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -766,9 +645,9 @@ TOPIC
 
 
 
-    :Answer:
+    |br|
 
-    If the expression is an empty string, that disables filtering as explained in creating a **ContentFilteredTopic**.
+    If the expression is an empty string, that disables filtering as explained in creating a ContentFilteredTopic. For further information go to :ref:`dds_layer_topic_filtering_data_on_topic`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -777,9 +656,9 @@ TOPIC
 
 
 
-    :Answer:
+    |br|
 
-    To be able to use the **Custom Filter** in an application, the Custom Filter's factory must be registered in the ``DomainParticipant``. The next snippet code shows how to register a factory through the API function ``register_content_filter_factory()``.
+    To be able to use the Custom Filter in an application, the Custom Filter's factory must be registered in the |DomainParticipant-api|. The next snippet code shows how to register a factory through the API function ``register_content_filter_factory()``. For further information go to :ref:`dds_layer_topic_customfilter_register`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -788,9 +667,9 @@ TOPIC
 
 
 
-    :Answer:
+    |br|
 
-    ``create_contentfilteredtopic()`` will return a null pointer if there was an error during the operation, e.g., if the related Topic belongs to a different **DomainParticipant**, a **Topic** with the same name already exists, syntax errors on the filter expression, or missing parameter values. It is advisable to check that the returned value is a valid pointer.
+    ``create_contentfilteredtopic()`` will return a null pointer if there was an error during the operation, e.g., if the related Topic belongs to a different DomainParticipant, a Topic with the same name already exists, syntax errors on the filter expression, or missing parameter values. It is advisable to check that the returned value is a valid pointer. For further information go to :ref:`dds_layer_topic_customfilter_create_topic`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -799,9 +678,9 @@ TOPIC
 
 
 
-    :Answer:
+    |br|
 
-    A **ContentFilteredTopic** can be deleted with the ``delete_contentfilteredtopic()`` member function on the **DomainParticipant** instance where the **ContentFilteredTopic** was created.
+    A ContentFilteredTopic can be deleted with the ``delete_contentfilteredtopic()`` member function on the DomainParticipant instance where the ContentFilteredTopic was created. For further information go to :ref:`dds_layer_topic_contentFilteredTopic_deletion`.
 
 |
 

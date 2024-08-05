@@ -95,7 +95,7 @@ jobs:
         uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
           packages: libasio-dev libtinyxml2-dev libssl-dev swig doxygen imagemagick plantuml
-          update: false
+          update: true
           upgrade: false
 
       - name: Install colcon

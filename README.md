@@ -108,8 +108,6 @@ building tools.
         libtinyxml2-dev \
         libssl-dev \
         python3-sphinx
-    python -m pip install sphinx-toolbox
-    pip install xmlschema
     ```
 
 1. Create a colcon workspace containing Fast DDS and Fast DDS-docs:

@@ -17,6 +17,5 @@ sphinxcontrib-plantuml==0.29
 sphinxcontrib-qthelp==1.0.7
 sphinxcontrib-serializinghtml==1.1.10
 sphinxcontrib.spelling==8.0.0
-sphinx-toolbox==3.7.0
 vcstool==0.3.0
-xmlschema==3.3.2
+xmlschema==2.1.1

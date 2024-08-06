@@ -84,6 +84,7 @@ This release includes the following **API** breaks:
 #. Remove ``string_convert`` header and source.
 #. Update Fast DDS docs QoS examples.
 #. Link SHM locator kind with Fast DDS major version.
+#. Discard local SHM locators that cannot be opened.
 
 #. Examples refactor for a more clear, homogeneous, and didactic explanation of several features.
 
@@ -126,7 +127,9 @@ This release includes the following **improvements**:
 #. Use absolute paths when loading XML files.
 #. Remove ``FASTCDR_VERSION_MAJOR == 1`` related code.
 #. Setting ``vendor_id`` on received ``CacheChange_t``.
+#. Builtin data related improvements.
 #. GitHub repository management.
+#. `Migration guide <https://github.com/eProsima/Fast-DDS/blob/master/UPGRADING.md>`_.
 
 This release includes the following **fixes**:
 
@@ -149,9 +152,9 @@ This release includes the following **fixes**:
 #. Fix assertion in ``TopicPayloadPool::release_history``.
 #. Fix topic interference on ``liveliness_changed`` status.
 #. Fix typo in CMakeLists.txt.
+#. Solve ``SecurityManager`` memory issue.
 #. Fuzzer regressions.
 #. Address build issues for documentation and different platforms.
-#. Solve ``SecurityManager`` memory issue.
 
 .. important::
 

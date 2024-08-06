@@ -218,6 +218,3 @@ This documentation is organized into the sections below.
 * :ref:`Fast DDS <getting_started>`
 * :ref:`Fast DDS-Gen <fastddsgen_intro>`
 * :ref:`Release Notes <release_notes>`
-
-The documentation includes a :ref:`Frequently Asked Questions (FAQ) <frequently_asked_questions>` section that can be
-consulted for a quick overview.

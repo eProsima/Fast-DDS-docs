@@ -47,7 +47,8 @@ def download_css(html_css_dir):
         False if not.
     """
     url = (
-        'https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/fiware_readthedocs.css')
+        'https://raw.githubusercontent.com/eProsima/all-docs/'
+        'master/source/_static/css/fiware_readthedocs.css')
     try:
         req = requests.get(url, allow_redirects=True, timeout=10)
     except requests.RequestException as e:
@@ -342,8 +343,7 @@ extensions = [
     'breathe',
     'sphinxcontrib.plantuml',
     'sphinx.ext.autodoc',  # Document Pydoc documentation from Python bindings.
-    'sphinx_tabs.tabs',
-    'sphinx_toolbox.collapse'
+    'sphinx_tabs.tabs'
 ]
 
 sphinx_tabs_disable_css_loading = False
@@ -365,7 +365,6 @@ try:
     spelling_verbose = True
 except ImportError:
     pass
-
 
 # Default behaviour for `autodoc`: always show documented members.
 autodoc_default_options = {
@@ -462,7 +461,7 @@ pygments_style = 'sphinx'
 
 suppress_warnings = [
     'cpp.duplicate_declaration',
-    'cpp.parse_function_declaration',
+    'cpp.parse_function_declaration'
 ]
 
 # Check if we are checking the spelling. In this case...
@@ -472,7 +471,6 @@ if 'spelling' in sys.argv or 'skip_python=' in sys.argv:
     # Avoid the warning of a wrong reference in the TOC entries,
     # because fails the Python API Reference reference.
     suppress_warnings.append('toc.excluded')
-    suppress_warnings.append('config.cache')
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False

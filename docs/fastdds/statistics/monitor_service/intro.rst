@@ -1,8 +1,6 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
 
-.. _monitor_intro:
-
 Introduction
 ============
 

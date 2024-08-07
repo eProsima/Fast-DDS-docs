@@ -130,6 +130,7 @@ This release includes the following **improvements**:
 #. Builtin data related improvements.
 #. GitHub repository management.
 #. `Migration guide <https://github.com/eProsima/Fast-DDS/blob/master/UPGRADING.md>`_.
+#. Update fastcdr thirdparty.
 
 This release includes the following **fixes**:
 

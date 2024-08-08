@@ -293,6 +293,7 @@ However, a custom Payload pool can be given to |RTPSDomain::createRTPSWriter-api
 Writers and Readers will use the provided pool when a new :class:`CacheChange_t` is requested
 or released.
 
+.. _rtps_layer_ipayload_pool_interface:
 
 IPayloadPool interface
 ^^^^^^^^^^^^^^^^^^^^^^

@@ -3,69 +3,10 @@
 
 This release includes the following **API** breaks:
 
-#. XTypes refactor:
-
-    #. Regenerated IDL files with types header-only fastddsgen version.
-    #. Implementation of ``DynamicType``.
-    #. Implementation of ``TypeLookup`` listeners.
-    #. Implementation of ``DynamicTypeBuilderFactoryImpl::create_type_w_type_object``.
-    #. Re-implementation of ``TypeObjectRegistry`` and ``TypeObjectUtils`` classes.
-    #. Partial implementation of X-Types1.3.
-    #. Structure ``DynamicType`` inheritance from ``TypeObject``.
-    #. Automatic ``TypeObject`` representation registration for ``DynamicTypes``.
-    #. Refactor ``TypeObjectRegistry``.
-    #. Fix proxy block in ``TypeLookup`` service.
-    #. Added Annotation dependencies.
-    #. Dynamic language binding tests.
-    #. Improve X-Types interoperability.
-    #. Only signed integers are allowed in Dynamic Language Binding enumerations.
-    #. Refactor XML Parser to return ``DynamicTypeBuilder`` instead of ``DynamicType``.
-    #. Make more flexible ``EDP::valid_matching`` with ``TypeInformation``.
-    #. Serialization of ``DynamicData`` to JSON.
-    #. Serialization of ``DynamicType`` to IDL.
-    #. Fixes for indirect hashes dependencies.
-    #. Add missing ``DynamicType`` includes.
-    #. Add new tests for testing new key hash calculation according to DDS-XTypes 1.3.
-    #. Support ``Type-Lookup`` Service with new new GUID-less Discovery Server.
-
-#. Migration from RTPS to DDS:
-
-    #. Migrate fastrtps namespace to fastdds.
-    #. Migrate classes from ``include/fastrtps`` to ``include/fastdds``.
-    #. Remove ``include/fastrtps``.
-    #. Migrate ``fixed_size_string`` file from fastrtps to fastcdr.
-    #. Migrate ``ResourceManagement`` to rtps attributes API.
-    #. Remove ``RTPSParticipant`` listener overloaded callbacks.
-    #. Move ``Time_t`` to dds namespace and some attributes to ``xmlparser``.
-    #. Migrate communication tests.
-    #. Remove deprecated fastrtps tests.
-
-#. Make private previously public API:
-
-    #. Make private the necessary headers from ``include/fastrtps``.
-    #. Make XML Parser API private.
-    #. Remove all redundant headers from ``include/fastrtps``.
-    #. Make RTPS messages headers private.
-    #. Make RTPS reader implementation private.
-    #. Make RTPS writer implementation private.
-    #. Make security private.
-    #. Make ``NetworkConfiguration`` private.
-    #. Make ``ResourceEvent`` private.
-    #. Make ``TimedEvent`` private.
-    #. Remove ``WriterProxyData`` from public APIs.
-    #. Remove ``ReaderProxyData`` from public APIs.
-    #. Remove ``TopicAttributes`` from public APIs and make it private in ``xmlparser``.
-    #. Remove unnecessary header and make private ``SecurityException`` and ``Exception``.
-    #. Make ``ChangeForReader``, ``ReaderLocator``, and ``ReaderProxy`` private.
-    #. Make Blackbox tests not include any private API.
-
-#. Fastrtps package name migration to fastdds:
-
-    #. Branch-out to v3.0.0.
-    #. Migrate DLL API exporter and auto linkage to fastdds.
-    #. Change windows file names.
-    #. Migrate ``fastrtps.rc`` to ``fastdds.rc``.
-
+#. Fastrtps package name migration to fastdds.
+#. API and namespace migration from RTPS to DDS.
+#. Make private previously public API.
+#. XTypes refactor.
 #. GUIDLess Discovery Server.
 #. Gather-send implementation.
 #. Refactor ``IPayloadPool``.
@@ -82,31 +23,12 @@ This release includes the following **API** breaks:
 #. Move ``DataReader::TypeConsistencyEnforcement`` and ``DataReader::DataRepresentation`` from ``TypeConsistency`` to ``DataReaderQos``.
 #. Migrate ``BuiltinEndpoints`` defines to variables.
 #. Remove ``string_convert`` header and source.
+#. Examples refactor.
 #. Update Fast DDS docs QoS examples.
 #. Link SHM locator kind with Fast DDS major version.
 #. Discard local SHM locators that cannot be opened.
 
-#. Examples refactor for a more clear, homogeneous, and didactic explanation of several features.
-
-    #. Examples refactor: Hello World.
-    #. X-Types examples.
-    #. Examples refactor: Configuration.
-    #. Example refactor: Content filter.
-    #. Example refactor: Custom payload pool.
-    #. Examples refactor: Delivery mechanisms.
-    #. Example refactor: Discovery Server.
-    #. Examples refactor: Flow Controller.
-    #. Example Refactor: Request-Reply.
-    #. Examples refactor: Static EDP discovery.
-    #. Example refactor: Security.
-    #. Examples refactor: Topic Instances.
-    #. Example refactor: RTPS.
-    #. Fix non-defined duration Qos in configuration example.
-    #. Fix flakiness on test with participants in the same container.
-    #. Split example tests in different ctest tests.
-    #. Fix lack of entity argument issue in configuration example.
-
-This release includes the following **features** in an ABI compatible manner:
+This release includes the following new **features**:
 
 #. Type propagation policy.
 #. Create Participant with default profile (use environment XML configuration).

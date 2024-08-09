@@ -63,6 +63,10 @@ The following table shows the minimum version required of the Fast DDS build sys
               - amd64
               - amd32
               - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 13.2
+              - **───**
+              - Tier 3: GCC 13.2
             * - Ubuntu Jammy (22.04)
               - Tier 1: GCC 11.4 |br|
                 Tier 3: Clang 15
@@ -74,8 +78,10 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - **───**
             * - Windows 10
-              - Tier 1: MSVC v142 (Visual Studio 2019)
-              - Tier 2: MSVC v142 (Visual Studio 2019)
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
               - **───**
             * - Windows 11
               - Tier 3: MSVC v143 (Visual Studio 2022)

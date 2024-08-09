@@ -23,7 +23,7 @@ This release includes the following **API breaks**:
 #. Refactor ``TopicDataType``.
 #. Make ``StdoutErrConsumer`` default ``LogConsumer``.
 #. All ``DataWriter::write`` overloads return ``ReturnCode_t`` type.
-#. Add :ref:`XML configuration<flow-controllers>`__ for ``FlowControllerDescriptor`` and remove ``ThroughputController``.
+#. Add :ref:`XML configuration<flow-controllers>` for ``FlowControllerDescriptor`` and remove ``ThroughputController``.
 #. Move ``DataReader::TypeConsistencyEnforcement`` and ``DataReader::DataRepresentation`` from ``TypeConsistency`` to ``DataReaderQos``.
 #. Migrate ``BuiltinEndpoints`` defines to variables.
 #. Remove ``string_convert`` header and source.
@@ -35,7 +35,8 @@ This release includes the following **API breaks**:
 This release includes the following new **features**:
 
 #. :ref:`property_type_propagation` policy.
-#. :ref:`Create Participant with default profile <dds_layer_domainParticipant_creation_default_profile:>`__ (use environment XML configuration).
+#. :ref:`Create Participant with default profile <dds_layer_domainParticipant_creation_default_profile>`
+   (use environment XML configuration).
 #. Create :ref:`dds_layer_domainParticipantExtendedQos` class.
 #. Add product version on Participant Discovery information.
 #. Automatically unmatch remote participants on participant deletion.

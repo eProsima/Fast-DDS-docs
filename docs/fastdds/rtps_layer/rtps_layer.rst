@@ -38,11 +38,10 @@ How to use the RTPS Layer
 We will now go over the use of the RTPS Layer like we did with the :ref:`dds_layer` one,
 explaining the new features it presents.
 
-We recommend you to look at the two examples describing how to use the RTPS layer that come with the distribution
+We recommend you to look at the example describing how to use the RTPS layer that come with the distribution
 while reading this section.
 They are located in
-`examples/cpp/rtps/AsSocket <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps/AsSocket>`_ and
-`examples/cpp/rtps/Registered <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps/Registered>`_
+`examples/cpp/rtps <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps>`_.
 
 Managing the Participant
 ^^^^^^^^^^^^^^^^^^^^^^^^

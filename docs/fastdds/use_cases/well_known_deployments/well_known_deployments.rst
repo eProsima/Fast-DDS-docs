@@ -47,8 +47,8 @@ Users can manually configure which :ref:`dds_layer_publisher` and :ref:`dds_laye
 each other, so they can start sharing user data right away, avoiding the EDP phase.
 
 A complete description of the feature can be found at :ref:`discovery_static`.
-There is also a fully functional helloworld example implementing STATIC EDP in the
-`examples/cpp/dds/StaticHelloWorldExample <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/StaticHelloWorldExample>`_
+There is also a fully functional hello world example implementing STATIC EDP in the
+`examples/cpp/static_edp_discovery <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/static_edp_discovery>`_
 folder.
 
 The following subsections present an example configuration where a Publisher in

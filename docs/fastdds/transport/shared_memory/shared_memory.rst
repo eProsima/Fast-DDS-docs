@@ -273,9 +273,10 @@ The examples below show this procedure in both C++ code and XML file.
 
 .. _transport_sharedMemory_example:
 
-HelloWorldExampleSharedMem
---------------------------
+Delivery Mechanisms example
+---------------------------
 
-A Shared Memory version of helloworld example can be found in the
-`HelloWorldExampleSharedMem folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/HelloWorldExampleSharedMem>`_.
-It shows a publisher and a subscriber that communicate through Shared Memory.
+A hello world example suitable for supported delivery mechanisms can be found in the
+`delivery_mechanisms folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_.
+It shows a publisher and a subscriber that communicate through the desired delivery mechanism (which can be set to
+shared memory only).

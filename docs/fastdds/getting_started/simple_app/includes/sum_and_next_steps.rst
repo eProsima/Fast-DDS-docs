@@ -10,4 +10,4 @@ Next steps
 
 In the *eProsima Fast DDS* Github repository you will find more complex examples that implement DDS communication for
 a multitude of use cases and scenarios. You can find them
-`here <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds>`_.
+`here <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp>`_.

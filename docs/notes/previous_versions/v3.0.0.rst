@@ -58,6 +58,7 @@ This release includes the following **improvements**:
 #. GitHub repository management.
 #. `Migration guide <https://github.com/eProsima/Fast-DDS/blob/master/UPGRADING.md>`__.
 #. Update fastcdr thirdparty.
+#. Documentation updates due to major version change.
 
 This release includes the following **fixes**:
 
@@ -81,8 +82,9 @@ This release includes the following **fixes**:
 #. Fix topic interference on ``liveliness_changed`` status.
 #. Fix typo in CMakeLists.txt.
 #. Solve ``SecurityManager`` memory issue.
-#. Fuzzer regressions.
+#. Fuzzer regressions and fix build issues.
 #. Address build issues for documentation and different platforms.
+#. Add unsigned specification to literals.
 
 .. important::
 

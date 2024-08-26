@@ -1,0 +1,92 @@
+`Version 3.0.0 (latest) <https://fast-dds.docs.eprosima.com/en/v3.0.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Fast DDS v3.0.0 is a mayor release that entails some **API breaks** and new features.
+This version is **not backwards compatible** with previous versions.
+Refer to the `migration guide <https://github.com/eProsima/Fast-DDS/blob/master/UPGRADING.md>`__ for hints moving to Fast DDS v3.0.0.
+
+This release includes the following **API breaks**:
+
+#. Fastrtps package name migration to fastdds.
+#. API and namespace migration from RTPS to DDS.
+#. Make private previously public API.
+#. Make all public headers .hpp.
+#. :ref:`dynamic-types` refactor.
+#. :ref:`IPayloadPool<rtps_layer_ipayload_pool_interface>` refactor.
+#. :ref:`Participant discovery structures <api_rtps_builtin_data_participantbuiltintopicdata>` refactor.
+#. GUIDLess :ref:`Discovery Server<discovery_server>`.
+#. Gather-send implementation.
+#. ``const`` qualify all data related inputs in DataWriter APIs.
+#. Refactor RTPS reader APIs.
+#. Refactor RTPS writer APIs.
+#. Refactor RTPS ``WriterHistory``.
+#. Refactor ``TopicDataType``.
+#. Make ``StdoutErrConsumer`` default ``LogConsumer``.
+#. All ``DataWriter::write`` overloads return ``ReturnCode_t`` type.
+#. Add :ref:`XML configuration<flow-controllers>` for ``FlowControllerDescriptor`` and remove ``ThroughputController``.
+#. Move ``DataReader::TypeConsistencyEnforcement`` and ``DataReader::DataRepresentation`` from ``TypeConsistency`` to ``DataReaderQos``.
+#. Migrate ``BuiltinEndpoints`` defines to variables.
+#. Remove ``string_convert`` header and source.
+#. `Examples <https://github.com/eProsima/Fast-DDS/blob/master/examples/cpp/hello_world/README.md>`__ refactor.
+#. Update Fast DDS docs QoS examples.
+#. Link SHM locator kind with Fast DDS major version.
+#. Discard local SHM locators that cannot be opened.
+
+This release includes the following new **features**:
+
+#. :ref:`property_type_propagation` policy.
+#. :ref:`Create Participant with default profile <dds_layer_domainParticipant_creation_default_profile>`
+   (use environment XML configuration).
+#. Create :ref:`dds_layer_domainParticipantExtendedQos` class.
+#. Add product version on Participant Discovery information.
+#. Automatically unmatch remote participants on participant deletion.
+#. Refactor Statistics module IDL.
+#. Change PDP discovery database backup restore order.
+#. Create ``InitialConnection`` for TCP initial peers.
+#. New :ref:`property_max_message_size` property to limit output datagrams size.
+#. Use ``PID_DOMAIN_ID`` during PDP.
+#. Ubuntu example testing automation infrastructure.
+#. Update versions in fastdds.repos file.
+
+This release includes the following **improvements**:
+
+#. Make ``DataReader::return_loan`` return ``RETCODE_OK`` on loanable sequences without loans.
+#. Use absolute paths when loading XML files.
+#. Remove ``FASTCDR_VERSION_MAJOR == 1`` related code.
+#. Setting ``vendor_id`` on received ``CacheChange_t``.
+#. Builtin data related improvements.
+#. GitHub repository management.
+#. `Migration guide <https://github.com/eProsima/Fast-DDS/blob/master/UPGRADING.md>`__.
+#. Update fastcdr thirdparty.
+#. Documentation updates due to major version change.
+
+This release includes the following **fixes**:
+
+#. Handle errors when setting socket buffer sizes.
+#. Do not require ``PYTHON_VERSION`` to be defined in .bat files.
+#. Use ``%*`` instead of ``loop`` in .bat scripts.
+#. Set DataSharing in ``WriterProxyData`` and ``ReaderProxyData``.
+#. Minor fix in ``DDSBlackboxTestsBasic.cpp``.
+#. Fix PDP and EDP unittest compilation.
+#. Fix ``AllocTest`` compilation.
+#. Correct liveliness state in a multiple reader and one writer scenario.
+#. Only apply content filter to ALIVE changes.
+#. Fix compilation when building static library.
+#. Properly delete builtin statistics writers upon ``delete_contained_entities()``.
+#. Correctly initialize ``MatchingFailureMask`` constants to be used with the ``std::bitset`` API.
+#. Change monitor service writer entity id.
+#. Fix EDP build warning without security.
+#. Fix compilation warning.
+#. Fix discovery server not connecting due to ports logic.
+#. Fix assertion in ``TopicPayloadPool::release_history``.
+#. Fix topic interference on ``liveliness_changed`` status.
+#. Fix typo in CMakeLists.txt.
+#. Solve ``SecurityManager`` memory issue.
+#. Fuzzer regressions and fix build issues.
+#. Address build issues for documentation and different platforms.
+#. Add unsigned specification to literals.
+
+.. important::
+
+    When upgrading to version 3.0.0 it is **required** to regenerate generated source from IDL files
+    using `Fast DDS-Gen v4.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.0>`_.

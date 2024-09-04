@@ -4,7 +4,7 @@ colcon-mixin==0.2.0
 doc8==0.10.1
 docutils==0.20.1
 GitPython==3.1.41
-setuptools==67.6.0
+setuptools==70.0.0
 sphinx_rtd_theme==2.0.0
 sphinx-tabs==3.4.5
 # TODO(anyone) remove if https://github.com/sphinx-doc/sphinx/pull/12298/files is merged

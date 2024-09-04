@@ -122,13 +122,13 @@ must listen for incoming Participant Discovery Protocol (PDP) discovery metatraf
 to a multicast address and another one linked to a unicast address.
 *Fast DDS* allows for the configuration of an initial peers list which contains one or more such IP-port address
 pairs corresponding to remote DomainParticipants PDP discovery listening resources, so that the local
-DomainParticipant will not only send its PDP traffic to the default multicast address-port specified by its domain,
-but also to all the IP-port address pairs specified in the initial peers list.
+DomainParticipant will only send its PDP traffic to the IP-port address pairs specified in the initial peers list.
 
 A DomainParticipant's initial peers list contains the list of IP-port address pairs of all other DomainParticipants
 with which it will communicate.
-It is a list of addresses that a DomainParticipant will use in the unicast discovery mechanism, together or as an
-alternative to multicast discovery.
+It is a list of addresses that a DomainParticipant will use in the PDP discovery mechanism, and can hold both multicast
+and unicast addresses.
+The default multicast address will be used if the list is empty.
 Therefore, this approach also applies to those scenarios in which multicast functionality is not available.
 
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the RTPSParticipants'

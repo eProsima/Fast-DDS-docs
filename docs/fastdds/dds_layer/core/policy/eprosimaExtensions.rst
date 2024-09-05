@@ -1244,13 +1244,12 @@ List of QoS Policy data members:
      :ref:`DS_modify_server_list`).
 
 .. note::
-     In single process deployments where multiple Datareaders and Datawriters are created within the same
-     DomainParticipant, each of them will have the same **participantId** but different *unicast locator* ports.
-     That can lead on participant creation failure if the amount of Datareaders and Datawriters to be created reaches
-     the value of
-     :cpp:var:`BuiltinAttributes::mutation_tries<eprosima::fastdds::rtps::BuiltinAttributes::mutation_tries>`, due to
-     exceeding the maximum amount of mutations of the same **participantId** into different port number for the
-     *unicast locator* creation.
+     Deployments where multiple DomainParticipants are created within the same host can lead into denying
+     available ports for them if the amount of DomainParticipants created reaches the value of
+     :cpp:var:`BuiltinAttributes::mutation_tries<eprosima::fastdds::rtps::BuiltinAttributes::mutation_tries>`
+     (100 by default).
+     When it happens, the DomainParticipants will not be able to create the listening ports and will be created
+     without locators configured.
 
 .. _wireprotocolconfigqos_example:
 

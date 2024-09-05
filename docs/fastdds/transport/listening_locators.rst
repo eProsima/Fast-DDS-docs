@@ -222,8 +222,8 @@ The default values can be modified using the |WireProtocolConfigQos::port-api| m
      available ports for them if the amount of DomainParticipants created reaches the value of
      :cpp:var:`BuiltinAttributes::mutation_tries<eprosima::fastdds::rtps::BuiltinAttributes::mutation_tries>`
      (100 by default).
-     When it happens, the DomainParticipants will not be able to create the listening ports and will be created
-     without locators configured.
+     When that happens, the DomainParticipants will not be able to create the listening ports (this is notified
+     with a log warning) and will be created without unicast locators configured.
 
     Refer to :ref:`this example <wireprotocolconfigqos_example>` for configuring both the *mutation_tries* values.
 

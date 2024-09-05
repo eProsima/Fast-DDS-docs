@@ -12,7 +12,7 @@ Discovery phases
    |DomainId-api|).
    Furthermore, it is possible to specify a list of addresses to send
    announcements using unicast (see in :ref:`Simple Initial Peers`).
-   Moreover, is is also possible to configure the periodicity of such announcements (see
+   Moreover, it is also possible to configure the periodicity of such announcements (see
    :ref:`Discovery Configuration <dconf>`).
 
 #. **Endpoint Discovery Phase (EDP)**:

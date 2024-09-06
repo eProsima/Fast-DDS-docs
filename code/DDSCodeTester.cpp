@@ -4240,6 +4240,8 @@ void dds_qos_examples()
         WireProtocolConfigQos wire_protocol;
         //Set the guid prefix
         std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> wire_protocol.prefix;
+        // Manually set the participantId
+        wire_protocol.participant_id = 11;
         //Configure Builtin Attributes
         wire_protocol.builtin.discovery_config.discoveryProtocol =
                 eprosima::fastrtps::rtps::DiscoveryProtocol_t::SERVER;
@@ -4272,6 +4274,8 @@ void dds_qos_examples()
         wire_protocol.default_external_unicast_locators[1][0].push_back(external_locator);
         // Drop non matching locators
         wire_protocol.ignore_non_matching_locators = true;
+        // Increase mutation tries
+        wire_protocol.builtin.mutation_tries = 300u;
         //!--
     }
 

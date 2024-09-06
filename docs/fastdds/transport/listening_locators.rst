@@ -177,6 +177,10 @@ further configuring the :ref:`comm-transports-configuration`.
    (neither *unicast* nor *multicast*), *Fast DDS* enables one *unicast* Locator
    that will be used for peer-to-peer communication of :ref:`dds_layer_topic_topic` data.
 
+ * If the application does not define any **participantId**, *Fast DDS* will use the value given by the
+   :ref:`dds_layer_domainParticipantFactory`, which will try always to provide the lowest available value per
+   DomainParticipantFactory (per process).
+
 For example, it is possible to prevent *multicast* traffic adding a single *metatraffic unicast* Locator
 as described in :ref:`transport_disableMulticast`.
 
@@ -211,6 +215,17 @@ Well-known ports are calculated using the following predefined rules:
 The values used in these rules are explained on the following table.
 The default values can be modified using the |WireProtocolConfigQos::port-api| member of the
 :ref:`wireprotocolconfigqos` on the :ref:`dds_layer_domainParticipantQos`.
+
+.. note::
+
+     Deployments where multiple DomainParticipants are created within the same host can lead into denying
+     available ports for them if the amount of DomainParticipants created reaches the value of
+     :cpp:var:`BuiltinAttributes::mutation_tries<eprosima::fastdds::rtps::BuiltinAttributes::mutation_tries>`
+     (100 by default).
+     When that happens, the DomainParticipants will not be able to create the listening ports (this is notified
+     with a log warning) and will be created without unicast locators configured.
+
+    Refer to :ref:`this example <wireprotocolconfigqos_example>` for configuring both the *mutation_tries* values.
 
 .. list-table:: Values used in the rules to calculate well-known ports
    :header-rows: 1

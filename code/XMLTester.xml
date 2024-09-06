@@ -3347,6 +3347,7 @@
 <participant profile_name="UDP SERVER WP" is_default_profile="true">
     <rtps>
         <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
+        <participantID>11</participantID>
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>
@@ -3365,6 +3366,7 @@
                     <port>34567</port>
                 </udpv4>
             </metatraffic_external_unicast_locators>
+            <mutation_tries>300</mutation_tries>
         </builtin>
         <defaultUnicastLocatorList>
             <locator>

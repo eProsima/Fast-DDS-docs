@@ -1066,6 +1066,16 @@ List of QoS Policy data members:
      |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
      :ref:`DS_modify_server_list`).
 
+.. note::
+     Deployments where multiple DomainParticipants are created within the same host can lead into denying
+     available ports for them if the amount of DomainParticipants created reaches the value of
+     :cpp:var:`BuiltinAttributes::mutation_tries<eprosima::fastdds::rtps::BuiltinAttributes::mutation_tries>`
+     (100 by default).
+     When that happens, the DomainParticipants will not be able to create the listening ports (this is notified
+     with a log warning) and will be created without unicast locators configured.
+
+.. _wireprotocolconfigqos_example:
+
 Example
 """""""
 
@@ -1125,3 +1135,7 @@ XML
     :language: xml
     :start-after: <!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
     :end-before: <!--><-->
+
+.. note::
+    For extended XML information, refer to :ref:`domainparticipantconfig` and :ref:`builtin` XML sections.
+

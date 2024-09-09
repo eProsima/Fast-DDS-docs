@@ -153,7 +153,7 @@ the TypeSupport and the example source files.
 
     If using Fast DDS *v3.0.0* or newer and generating the type with Fast DDS-Gen *v4.0.0*, the extensibility
     must be explicitly marked as ``@extensibility(FINAL)`` in idl structs.
-    Starting from Fast DDS-Gen *v4.0.1*, it can be left unspecified, as it defaults to ``@extensibility(FINAL)``.
+    Starting from Fast DDS-Gen *v4.0.1*, it can be left unspecified, as it defaults to ``@final``.
     Please, refer to :ref:`Fast DDS data types extensibility <extensibility>` for further information about type
     extensibility.
 

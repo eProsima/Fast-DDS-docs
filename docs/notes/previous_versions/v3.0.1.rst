@@ -1,0 +1,25 @@
+`Version 3.0.1 (latest) <https://fast-dds.docs.eprosima.com/en/v3.0.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This patch release includes the following **improvements**:
+
+#. Set string arguments as ``const`` references
+#. Improve resilience against clock adjustments
+#. Make Fast DDS build compatible with ``GCC 9``
+#. Use eProsima-CI action to install ``Qt``
+#. Update Fast CDR submodule to ``v2.2.4``
+#. Regenerate types with ``Fast DDS Gen v4.0.1``
+
+This release includes the following **fixes**:
+
+#. Secure simple participants with ``initialpeers`` over TCP match
+#. Register also the minimal created from the received complete ``TypeObject`` in the ``TypeLookupService``
+#. Fix issue with exclusive ownership and unordered samples
+#. Fix compilation error in ``Ubuntu 24.04``
+#. Correct iterator increment after erasing elements in ``connected_servers_list``
+
+.. important::
+
+    When upgrading to version 3.0.1 it is **required** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.0>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

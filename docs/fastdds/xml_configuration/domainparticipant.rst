@@ -183,6 +183,11 @@ These elements allow the user to define the DomainParticipant configuration.
        delivery is used. See :ref:`intraprocess-delivery`.
      - ``string``
      - Empty
+   * - ``<flow_controller_descriptor_list>``
+     - Defined flow controller descriptors to be used by the |br|
+       DomainParticipant. See :ref:`flowcontrollers_xml`.
+     - |FlowControllersQos|
+     -
 
 **Example**
 
@@ -190,7 +195,7 @@ These elements allow the user to define the DomainParticipant configuration.
     :language: xml
     :start-after: <!-->XML-PARTICIPANT<-->
     :end-before: <!--><-->
-    :lines: 2-3, 5-88, 90
+    :lines: 2-3, 5-97, 99
 
 .. note::
 

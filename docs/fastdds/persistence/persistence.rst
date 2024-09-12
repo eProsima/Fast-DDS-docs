@@ -40,7 +40,7 @@ The configuration of the persistence service is accomplished by setting of the a
 or DataReader) |PropertyPolicyQos|.
 
 * For the :ref:`persistence_service` to have any effect, the |DurabilityQosPolicyKind-api| needs to be set to
-  |TRANSIENT_DURABILITY_QOS-api|.
+  |TRANSIENT_DURABILITY_QOS-api| or |PERSISTENT_DURABILITY_QOS-api| (which behaves as |TRANSIENT_DURABILITY_QOS-api|).
 
 * A persistence identifier (|Guid_t-api|) must be set for the entity using the property ``dds.persistence.guid``.
   This identifier is used to load the appropriate data from the database, and also to synchronize DataWriter and
@@ -56,8 +56,15 @@ or DataReader) |PropertyPolicyQos|.
   For selecting an appropriate GUID for the DataReader and DataWriter, please refer to
   `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (section *9.3.1 The Globally Unique Identifier (GUID)*).
 
+  If no ``dds.persistence.guid`` is specified, the durability will fallback to |TRANSIENT_LOCAL_DURABILITY_QOS-api|.
+
 * A persistence plugin must be configured for managing the database using property ``dds.persistence.plugin`` (see
   :ref:`persistence_sqlite3_builtin_plugin`):
+
+.. note::
+
+    If the |DurabilityQosPolicyKind-api| is set to |TRANSIENT_DURABILITY_QOS-api| or |PERSISTENT_DURABILITY_QOS-api|
+    and no ``dds.persistence.guid`` is specified, |TRANSIENT_LOCAL_DURABILITY_QOS-api| will be used.
 
 
 .. _persistence_sqlite3_builtin_plugin:

@@ -17,6 +17,7 @@ This release includes the following **fixes**:
 #. Fix issue with exclusive ownership and unordered samples
 #. Fix compilation error in ``Ubuntu 24.04``
 #. Correct iterator increment after erasing elements in ``connected_servers_list``
+#. Fix request reply example isolated build
 
 .. important::
 

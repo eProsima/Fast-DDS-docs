@@ -3369,7 +3369,7 @@
         </participant>
 
         <!-- Generic profile for a specific statistics DataWriters -->
-        <data_writer profile_name="HISTORY_LATENCY_WRITER">
+        <data_writer profile_name="HISTORY_LATENCY_TOPIC">
             <!-- Configure History QoS as KEEP_LAST 20 -->
             <!-- History depth depends on the user application constraints (publication rate for instance) -->
             <topic>

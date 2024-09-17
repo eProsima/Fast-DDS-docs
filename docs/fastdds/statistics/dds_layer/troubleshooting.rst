@@ -49,6 +49,12 @@ buffer to answer to requests:
             :end-before: <!--><-->
             :lines: 2-4, 6-53, 55-56
 
+        .. warning::
+
+            Mind that the specific profile only targets to the DataWriter which profile name matches with the alias of
+            the corresponding statistics topic.
+            Check the complete list of topics and their aliases in the :ref:`statistics_topic_names` section.
+
 .. note::
     Increasing the History Depth of the statistics DataWriters has an impact on memory usage, as sufficient space is
     pre-allocated for each of the DataWriter's histories to hold that number of samples per topic instance.

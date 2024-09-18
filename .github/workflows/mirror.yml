@@ -6,7 +6,7 @@ on:
 
 jobs:
   mirror_job:
-    name: Mirror 2.6.9 branch to 2.6.x branch
+    name: Mirror 2.6.x branch to 2.6.9 branch
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

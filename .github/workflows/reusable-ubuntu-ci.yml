@@ -91,10 +91,13 @@ jobs:
         with:
           cmakeVersion: '3.22.6'
 
+      - name: Remove default swig version
+        run: sudo apt-get remove -y swig
+
       - name: Install apt dependencies
         uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
-          packages: libasio-dev libtinyxml2-dev libssl-dev swig doxygen imagemagick plantuml
+          packages: libasio-dev libtinyxml2-dev libssl-dev swig4.1 doxygen imagemagick plantuml
           update: true
           upgrade: false
 

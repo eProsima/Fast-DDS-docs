@@ -2,22 +2,22 @@
 on:
   push:
     branches:
-      - 'master'
+      - '2.6.x'
 
 jobs:
   mirror_job:
-    name: Mirror master branch to latest minor branches
+    name: Mirror 2.6.x branch to 2.6.9 branch
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         dest_branch:
-          - '2.6.x'
+          - '2.6.9'
     steps:
     - name: Mirror action step
       id: mirror
       uses: google/mirror-branch-action@v1.0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        source: 'master'
+        source: '2.6.x'
         dest: ${{ matrix.dest_branch }}

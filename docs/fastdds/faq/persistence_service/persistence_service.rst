@@ -7,11 +7,7 @@
 PERSISTENCE SERVICE Frequently Asked Questions
 ==============================================
 
-
 .. collapse::  What is persistence in eProsima Fast DDS?
-
-
-
 
     |br|
 
@@ -21,9 +17,6 @@ PERSISTENCE SERVICE Frequently Asked Questions
 
 .. collapse::  Why is it useful?
 
-
-
-
     |br|
 
     It adds robustness to applications in case of unexpected shutdowns. For further information, see :ref:`persistence_service`.
@@ -32,9 +25,6 @@ PERSISTENCE SERVICE Frequently Asked Questions
 
 .. collapse::  How is the persistence database managed?
 
-
-
-
     |br|
 
     A persistence plugin must be configured for managing the database using the property ``dds.persistence.plugin``. For more information, see :ref:`persistence_service_conf`.
@@ -42,9 +32,6 @@ PERSISTENCE SERVICE Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What type of database does the persistence plugin use?
-
-
-
 
     |br|
 

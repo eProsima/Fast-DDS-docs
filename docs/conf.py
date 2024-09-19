@@ -366,7 +366,6 @@ try:
 except ImportError:
     pass
 
-
 # Default behaviour for `autodoc`: always show documented members.
 autodoc_default_options = {
         'members': True,
@@ -462,7 +461,7 @@ pygments_style = 'sphinx'
 
 suppress_warnings = [
     'cpp.duplicate_declaration',
-    'cpp.parse_function_declaration',
+    'cpp.parse_function_declaration'
 ]
 
 # Check if we are checking the spelling. In this case...

@@ -7,11 +7,7 @@
 Logging Frequently Asked Questions
 ==================================
 
-
 .. collapse::  What are the functionalities of the logging module?
-
-
-
 
     |br|
 
@@ -21,9 +17,6 @@ Logging Frequently Asked Questions
 
 .. collapse::  What are the main classes in the logging module?
 
-
-
-
     |br|
 
     The ``Log`` class is in charge of the logging operations and provides configuration APIs to set different logging configuration aspects and logging filtering at various levels. The ``LogConsumer`` class includes the member functions that derived classes should overload to consume log entries. For further information, go to :ref:`dds_layer_log_classes`.
@@ -31,9 +24,6 @@ Logging Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How does the logging module prevent blocking of the application thread when a logging operation is performed?
-
-
-
 
     |br|
 
@@ -43,9 +33,6 @@ Logging Frequently Asked Questions
 
 .. collapse::  How is the logging of messages handled?
 
-
-
-
     |br|
 
     It is handled by three macros, for log messages with ``Log::Kind::Info``, ``Log::Kind::Warning``, and ``Log::Kind::Info`` verbosities. These macros produce a log entry showing a message and some meta information. For further information, go to :ref:`dds_layer_log_logging`.
@@ -53,9 +40,6 @@ Logging Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of assigning a category to log entries in the logging module?
-
-
-
 
     |br|
 
@@ -65,9 +49,6 @@ Logging Frequently Asked Questions
 
 .. collapse::  What are the three different filtering possibilities provided by the *eProsima Fast DDS* logging module for log entry filtering?
 
-
-
-
     |br|
 
     Fast DDS provides three different filtering possibilities: Category Filtering, File Name Filtering, Content Filtering. For further information, go to :ref:`dds_layer_log_filter`.
@@ -76,19 +57,13 @@ Logging Frequently Asked Questions
 
 .. collapse::  What is the order in which log entry filters are applied when consuming logs in *eProsima Fast DDS*?
 
-
-
-
     |br|
 
-    Filters are applied in the specific order presented above, meaning that file name filtering is only applied to the entries that pattern-match the category filter, and content filtering is only applied to the entries that pattern-match both category and file name filters. For further information, go to :ref:`dds_layer_log_filter`.
+    Filters are applied in the specific order presented in the previous question, meaning that file name filtering is only applied to the entries that pattern-match the category filter, and content filtering is only applied to the entries that pattern-match both category and file name filters. For further information, go to :ref:`dds_layer_log_filter`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the primary method for filtering log entries by their Category component in the *eProsima Fast DDS* logging module?
-
-
-
 
     |br|
 
@@ -98,9 +73,6 @@ Logging Frequently Asked Questions
 
 .. collapse::  What is the purpose of setting a file name filter in the context of log entry consumption?
 
-
-
-
     |br|
 
     Log entries can be filtered upon consumption according to their File Context component using regular expressions. Each time an entry is ready to be consumed, the file name filter is applied using ``std::regex_search()``. To set a file name filter, the member function |Log::SetFilenameFilter-api| is used. For further information, go to :ref:`dds_layer_log_filter_filename`.
@@ -108,9 +80,6 @@ Logging Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the method for filtering log entries in terms of their message component?
-
-
-
 
     |br|
 
@@ -120,9 +89,6 @@ Logging Frequently Asked Questions
 
 .. collapse::  What are consumers?
 
-
-
-
     |br|
 
     Consumers are classes that take a |Log::Entry-api| and produce a log output accordingly. For further information, go to :ref:`dds_layer_log_consumer`.
@@ -130,9 +96,6 @@ Logging Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the function of a "StdoutErrConsumer" in the context of log output?
-
-
-
 
     |br|
 
@@ -142,9 +105,6 @@ Logging Frequently Asked Questions
 
 .. collapse::  What is the primary function of the "FileConsumer" class in the context of logging?
 
-
-
-
     |br|
 
     ``FileConsumer``: Outputs log entries to a user specified file. For further information, go to :ref:`dds_layer_ostream_consumer_file`.
@@ -152,9 +112,6 @@ Logging Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the primary function of the "StdoutConsumer" class, as described in the provided text?
-
-
-
 
     |br|
 

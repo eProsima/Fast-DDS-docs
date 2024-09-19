@@ -7,22 +7,15 @@
 Security Frequently Asked Questions
 ===================================
 
-
- .. collapse::  Why is Fast DDS communication secure?
-
-
-
+.. collapse::  What security plugins does Fast DDS offer for secure communication?
 
     |br|
 
-    Because it implements pluggable security at three levels: authentication, access control, and data encryption. For further information, see :ref:`security`.
+    Fast DDS offers five built-in security plugins as part of the DDS Security specification: the Authentication plugin (:ref:`auth-pki-dh`) provides authentication between DomainParticipants using a trusted Certificate Authority (CA) and mutual authentication; the Access Control plugin (:ref:`access-permissions`) enforces permissions for protected operations; the Cryptographic plugin (:ref:`crypto-aes-gcm-gmac`) ensures authenticated encryption and data integrity using AES in Galois Counter Mode (AES-GCM); the Logging plugin (:ref:`logging-logtopic`) logs security-related events. For further information, see :ref:`security`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  Is the security support configured by default?
-
-
-
+.. collapse::  Is the security support configured by default?
 
     |br|
 
@@ -33,10 +26,7 @@ Security Frequently Asked Questions
 Authentication
 --------------
 
- .. collapse::  What is the purpose of authentication?
-
-
-
+.. collapse::  What is the purpose of authentication?
 
     |br|
 
@@ -44,10 +34,7 @@ Authentication
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  What happens if the authentication fails?
-
-
-
+.. collapse::  What happens if the authentication fails?
 
     |br|
 
@@ -55,26 +42,26 @@ Authentication
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  How is the DDS:Auth:PKI-DH authentication plugin activated?
-
-
-
+.. collapse::  How is the DDS:Auth:PKI-DH authentication plugin activated?
 
     |br|
 
     By setting the |DomainParticipantQos::properties-api| ``dds.sec.auth.plugin`` with the value`` ``builtin.PKI-DH``. For further information, see :ref:`auth-pki-dh`.
 
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+.. collapse::  What is the process for generating and managing security certificates for the Authentication plugin?
+
+    |br|
+
+    The process for generating and managing security certificates for the Authentication plugin involves creating and managing X.509 certificates. First, since multiple certificates will need to be issued, one for each of the DomainParticipants, a dedicated CA is set up, and the CA’s certificate is installed as the root key of all DomainParticipants. Thus, the DomainParticipants will accept all certificates issued by our own CA. To create a proprietary CA certificate, a configuration file must first be written with the CA information. After writing the configuration file, the certificate  is generates using the Elliptic Curve Digital Signature Algorithm (ECDSA). As was done for the CA, a DomainParticipant certificate configuration file needs to be created first. After writing the DomainParticipant certificate configuration file, the X.509 certificate is generated using ECDSA, for a DomainParticipant. Finally, the CRL is created. This is a list of the X.509 certificates revoked by the certificate issuing CA before they reach their expiration date. Any certificate that is on this list will no longer be trusted. For further information, see :ref:`generate_x509`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Access control
 --------------
 
- .. collapse::  What is the purpose of access control?
-
-
-
+.. collapse::  What is the purpose of access control?
 
     |br|
 
@@ -82,10 +69,7 @@ Access control
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  How is the DDS:Access:Permissions authentication plugin activated?
-
-
-
+.. collapse::  How is the DDS:Access:Permissions authentication plugin activated?
 
     |br|
 
@@ -93,10 +77,7 @@ Access control
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  Can a DomainParticipant match with a remote DomainParticipant without authentication?
-
-
-
+.. collapse::  Can a DomainParticipant match with a remote DomainParticipant without authentication?
 
     |br|
 
@@ -104,10 +85,7 @@ Access control
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  Can the secure channel of the endpoint discovery phase be encrypted?
-
-
-
+.. collapse::  Can the secure channel of the endpoint discovery phase be encrypted?
 
     |br|
 
@@ -115,10 +93,7 @@ Access control
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  How is the access to topics managed?
-
-
-
+.. collapse::  How is the access to topics managed?
 
     |br|
 
@@ -126,10 +101,7 @@ Access control
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  What is the purpose of a DomainParticipant Permissions Document in the DDS:Auth:PKI-DH plugin?
-
-
-
+.. collapse::  What is the purpose of a DomainParticipant Permissions Document in the DDS:Auth:PKI-DH plugin?
 
     |br|
 
@@ -137,10 +109,7 @@ Access control
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  What are the main components of a DomainParticipant Permissions document in DDS?
-
-
-
+.. collapse::  What are the main components of a DomainParticipant Permissions document in DDS?
 
     |br|
 
@@ -148,14 +117,10 @@ Access control
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 Data encryption
 ---------------
 
- .. collapse::  What is the function of the cryptographic plugin in the context of DDS?
-
-
-
+.. collapse::  What is the function of the cryptographic plugin in the context of DDS?
 
     |br|
 
@@ -163,10 +128,7 @@ Data encryption
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  How is the DDS:Crypto:AES-GCM-GMAC authentication plugin activated?
-
-
-
+.. collapse::  How is the DDS:Crypto:AES-GCM-GMAC authentication plugin activated?
 
     |br|
 
@@ -177,10 +139,7 @@ Data encryption
 Logging
 -------
 
- .. collapse::  What is the function of the logging plugin in Fast DDS?
-
-
-
+.. collapse::  What is the function of the logging plugin in Fast DDS?
 
     |br|
 
@@ -188,10 +147,7 @@ Logging
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- .. collapse::  How is the DDS:Logging:DDS_LogTopic authentication plugin activated?
-
-
-
+.. collapse::  How is the DDS:Logging:DDS_LogTopic authentication plugin activated?
 
     |br|
 

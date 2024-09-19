@@ -13,8 +13,8 @@ This section answers to frequently asked questions about FastDDS.
     getting_started/getting_started
     dds_layer/dds_layer
     rtps_layer/rtps_layer
-    transport_layer/transport_layer
     discovery/discovery
+    transport_layer/transport_layer
     persistence_service/persistence_service
     security/security
     logging/logging

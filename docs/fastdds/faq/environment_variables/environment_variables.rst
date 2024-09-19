@@ -7,11 +7,7 @@
 Environment Variables Frequently Asked Questions
 ================================================
 
-
 .. collapse::  What are the most important environment variables that affect the behavior of Fast DDS?
-
-
-
 
     |br|
 
@@ -21,9 +17,6 @@ Environment Variables Frequently Asked Questions
 
 .. collapse::  What is the purpose of the "FASTDDS_DEFAULT_PROFILES_FILE" environment variable?
 
-
-
-
     |br|
 
     Defines the location of the default profile configuration XML file. For further information, go to :ref:`env_vars_fastdds_default_profiles_file`.
@@ -31,9 +24,6 @@ Environment Variables Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What happens when the variable "SKIP_DEFAULT_XML" is set to 1?
-
-
-
 
     |br|
 
@@ -43,9 +33,6 @@ Environment Variables Frequently Asked Questions
 
 .. collapse::  What is the primary purpose of the FASTDDS_BUILTIN_TRANSPORTS environment variable?
 
-
-
-
     |br|
 
     Setting this variable allows to modify the builtin transports that are initialized during the |DomainParticipant-api| creation. For further information, go to :ref:`env_vars_builtin_transports`.
@@ -53,9 +40,6 @@ Environment Variables Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of the "ROS_DISCOVERY_SERVER" environment variable?
-
-
-
 
     |br|
 
@@ -65,20 +49,13 @@ Environment Variables Frequently Asked Questions
 
 .. collapse::  What happens to a "DomainParticipant" when its discovery protocol is set to "SIMPLE" and "ROS_SUPER_CLIENT" is set to TRUE?
 
-
-
-
     |br|
 
     If the DomainParticipant's discovery protocol is set to ``SIMPLE``, and ``ROS_SUPER_CLIENT`` is set to ``TRUE``, the participant is automatically promoted to a ``SUPER_CLIENT``. For further information, go to :ref:`env_vars_ros_super_client`.
 
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of setting the "FASTDDS_STATISTICS" environment variable, according to the provided information?
-
-
-
 
     |br|
 
@@ -87,9 +64,6 @@ Environment Variables Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What happens when you set the "FASTDDS_ENVIRONMENT_FILE" environment variable to a JSON file?
-
-
-
 
     |br|
 

@@ -7,11 +7,7 @@
 Discovery Frequently Asked Questions
 ====================================
 
-
 .. collapse::  What are the two main phases involved in the discovery process of Fast DDS?
-
-
-
 
     |br|
 
@@ -22,19 +18,21 @@ Discovery Frequently Asked Questions
 
 .. collapse::  What discovery mechanisms does FastDDS provide?
 
-
-
-
     |br|
 
     There are four discovery mechanisms in DDS: Simple Discovery, which follows the RTPS standard for both PDP and EDP, ensuring compatibility with other DDS implementations; Static Discovery, which uses the Simple Participant Discovery Protocol (SPDP) but skips the Endpoint Discovery phase if endpoint details are pre-known; Discovery Server, which employs a centralized server for meta traffic discovery; and Manual Discovery, which disables the PDP and requires users to manually match RTPS participants and endpoints using external meta-information channels. For further information, go to :ref:`disc_mechanisms`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+.. collapse:: How can you improve the chances of successful participant discovery when using the SIMPLE discovery protocol, and what role do initial announcements play in this process?
+
+    |br|
+
+    To improve the chances of successful participant discovery when using the SIMPLE discovery protocol, you can configure initial announcements to send multiple discovery messages at short intervals. This increases the likelihood that DomainParticipants will detect each other despite potential network disruptions or message loss. By adjusting the |InitialAnnouncementConfig::count-api| (number of announcements) and |InitialAnnouncementConfig::period-api| (interval between announcements), you can optimize discovery reliability during startup. For further information, go to :ref:`simple_disc_settings`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 .. collapse::  What is an initial peer list?
-
-
-
 
     |br|
 
@@ -44,9 +42,6 @@ Discovery Frequently Asked Questions
 
 .. collapse::  When could a static configuration of peers be used?
 
-
-
-
     |br|
 
     When all DataWriters and DataReaders, and their Topics and data types, are known beforehand, the EDP phase can be replaced with a static configuration of peers. For further information, go to :ref:`discovery_static`.
@@ -54,9 +49,6 @@ Discovery Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the primary difference between the Discovery Server mechanism and Simple discovery mechanism in terms of managing metatraffic?
-
-
-
 
     |br|
 
@@ -66,19 +58,13 @@ Discovery Frequently Asked Questions
 
 .. collapse::  What is the primary function of a Discovery Server in the DDS architecture?
 
-
-
-
     |br|
 
-    The role of the server is to redistribute its clients' discovery information to its known clients and servers. For further information, go to :ref:`discovery_server`.
+    The primary function of a Discovery Server in the DDS architecture is to centralize and redistribute discovery information among DomainParticipants, ensuring efficient communication between clients and servers. The server collects discovery data from clients (and other servers) and redistributes it to relevant participants, running a "matching" algorithm to provide only the necessary information for DataWriters and DataReaders to establish communication. It also facilitates server-to-server connections, enabling a more scalable discovery process across the network. For further information, go to :ref:`discovery_server`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the primary purpose of a "BACKUP" server in the Discovery Server mechanism?
-
-
-
 
     |br|
 
@@ -88,9 +74,6 @@ Discovery Frequently Asked Questions
 
 .. collapse::  What is a client in this context?
 
-
-
-
     |br|
 
     A ``CLIENT`` is a participant that connects to one or more servers from which it receives only the discovery information they require to establish communication with matching endpoints. For further information, go to :ref:`discovery_server`.
@@ -98,9 +81,6 @@ Discovery Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the difference between a CLIENT and a SUPER_CLIENT?
-
-
-
 
     |br|
 
@@ -110,9 +90,6 @@ Discovery Frequently Asked Questions
 
 .. collapse::  What is the purpose of each server specifying its own locator list in the context of discovery configuration?
 
-
-
-
     |br|
 
     Each client must keep a list of locators associated to the servers to which it wants to link. Each server specifies its own locator list which must be populated with ``RemoteServerAttributes`` objects with a valid ``metatrafficUnicastLocatorList`` or ``metatrafficMulticastLocatorList``. In XML the server list and its elements are simultaneously specified. For further information, go to :ref:`discovery_server`.
@@ -120,9 +97,6 @@ Discovery Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the typical interval of time between discovery messages sent by clients to servers, as described in the text?
-
-
-
 
     |br|
 

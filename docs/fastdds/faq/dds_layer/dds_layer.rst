@@ -10,10 +10,10 @@ DDS LAYER Frequently Asked Questions
 CORE
 ----
 
+Entity
+^^^^^^
+
 .. collapse::  What is the significance of a unique ID in the context of DDS and RTPS entities, and why is it important to have a shared ID between these entities?
-
-
-
 
     |br|
 
@@ -23,9 +23,6 @@ CORE
 
 .. collapse::  How does the shared ID between DDS and RTPS entities facilitate communication and interoperability within a distributed system?
 
-
-
-
     |br|
 
     A shared ID between DDS and RTPS entities enables a unified reference point for entities involved in communication. This facilitates interoperability by allowing different components and services within the distributed system to easily recognize and interact with each other based on their unique identifiers, thus simplifying the integration and coordination processes. For further information go to :ref:`dds_layer_core_entity`.
@@ -33,9 +30,6 @@ CORE
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  In what ways does storing the ID on an Instance Handle object and declaring it on the Entity base class adhere to principles of object-oriented design, such as encapsulation and inheritance?
-
-
-
 
     |br|
 
@@ -45,41 +39,13 @@ CORE
 
 .. collapse::  How might the ability to access the unique ID via the ``get_instance_handle()`` function influence the implementation and maintenance of a distributed system?
 
-
-
-
     |br|
 
     The ability to access the unique ID via the ``get_instance_handle()`` function simplifies the implementation and maintenance of the system. Developers can uniformly manage entity identification across various parts of the system, making it easier to track, debug, and update entity-related code. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. collapse::  How do QoS policies influence the behavior of DDS entities, and what are the potential impacts of misconfiguring these policies on system performance and reliability?
-
-
-
-
-    |br|
-
-    QoS policies determine the operational parameters of DDS entities, such as latency, reliability, and resource usage. Misconfigured QoS policies can lead to suboptimal performance, such as increased latency, dropped messages, or excessive resource consumption, which can negatively affect the overall system reliability and efficiency. For further information go to :ref:`dds_layer_core_policy`.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  In what scenarios might it be necessary to modify the QoS policies of an entity after its creation, and what are the best practices for doing so using the ``set_qos()`` function?
-
-
-
-
-    |br|
-
-    Scenarios necessitating QoS modification post-creation include changes in network conditions, evolving application requirements, or the need to optimize performance. Best practices include using the ``set_qos()`` function judiciously, validating the new policies before applying them, and monitoring the system for any adverse effects after changes. For further information go to :ref:`dds_layer_domainParticipant`.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 .. collapse::  What are the advantages and potential drawbacks of using listeners for asynchronous notifications in a DDS system, and how can these drawbacks be mitigated?
-
-
-
 
     |br|
 
@@ -89,52 +55,13 @@ CORE
 
 .. collapse::  How does the inheritance of listener interfaces across different entity types enhance the flexibility and modularity of the system?
 
-
-
-
     |br|
 
     The inheritance of listener interfaces enhances flexibility by allowing different entity types to share common callback mechanisms while enabling customization for specific types. This modularity simplifies code management and fosters reuse. For further information go to :ref:`dds_layer_core_entity`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. collapse::  What role do status objects play in the communication lifecycle of DDS entities, and how do they interact with listener callbacks to notify applications of status changes?
-
-
-
-
-    |br|
-
-    Status objects track the communication state of entities, triggering listener callbacks when changes occur. This mechanism ensures that applications are promptly informed of relevant status updates, facilitating timely responses to communication events. For further information go to :ref:`dds_layer_core_status`.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  How does the concept of StatusCondition link entities to Wait-sets, and what benefits does this linkage provide in terms of system synchronization and event handling?
-
-
-
-
-    |br|
-
-    StatusCondition provides a means to monitor multiple status changes efficiently by linking entities to Wait-sets. This linkage allows for consolidated event handling, reducing polling overhead and improving synchronization within the system. For further information go to :ref:`dds_layer_core_status`.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-.. collapse::  What are the implications of creating DDS entities in an enabled or disabled state, and how does the EntityFactoryQosPolicy affect this process?
-
-
-
-
-    |br|
-
-    Creating entities in an enabled state allows for immediate operation, while disabled entities require explicit enabling before full functionality. The |EntityFactoryQosPolicy-api| governs this behavior, affecting initial system configuration and operational readiness. For further information go to :ref:`entityfactoryqospolicy`.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 .. collapse::  How does the limitation of operations on disabled entities influence the design and implementation of a DDS-based system?
-
-
-
 
     |br|
 
@@ -142,21 +69,7 @@ CORE
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. collapse::  How does the use of StatusMask in enabling or disabling specific callbacks affect the responsiveness and behavior of a DDS system?
-
-
-
-
-    |br|
-
-    The |StatusMask-api| allows selective enabling or disabling of specific callbacks, fine-tuning the system's responsiveness and avoiding unnecessary processing. Proper management of |StatusMask-api| settings ensures that only relevant events trigger callbacks, optimizing system behavior. For further information go to :ref:`dds_layer_core_status`.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 .. collapse::  What potential issues could arise from creating or deleting entities within a listener callback, and why is it recommended to avoid such actions?
-
-
-
 
     |br|
 
@@ -164,21 +77,7 @@ CORE
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. collapse::  How do the specific callbacks provided by Fast DDS, such as on_participant_discovery and on_data_writer_discovery, enhance the functionality of the DDS system?
-
-
-
-
-    |br|
-
-    Fast DDS-specific callbacks, such as ``on_participant_discovery `` and ``on_data_writer_discovery``, provide additional hooks for monitoring and responding to specific events within the DDS framework. These callbacks offer greater control and insight into the system's operational state. For further information go to :ref:`dds_layer_core_entity`.
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 .. collapse::  In what ways do these custom callbacks differ from standard DDS callbacks, and what additional capabilities do they provide to the application developers?
-
-
-
 
     |br|
 
@@ -186,10 +85,42 @@ CORE
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Policy
+^^^^^^
+
+.. collapse::  How do QoS policies influence the behavior of DDS entities, and what are the potential impacts of misconfiguring these policies on system performance and reliability?
+
+    |br|
+
+    QoS policies determine the operational parameters of DDS entities, such as latency, reliability, and resource usage. Misconfigured QoS policies can lead to suboptimal performance, such as increased latency, dropped messages, or excessive resource consumption, which can negatively affect the overall system reliability and efficiency. For further information go to :ref:`dds_layer_core_policy`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  In what scenarios might it be necessary to modify the QoS policies of an entity after its creation, and what are the best practices for doing so using the ``set_qos()`` function?
+
+    |br|
+
+    Scenarios necessitating QoS modification post-creation include changes in network conditions, evolving application requirements, or the need to optimize performance. Best practices include using the ``set_qos()`` function judiciously, validating the new policies before applying them, and monitoring the system for any adverse effects after changes. For further information go to :ref:`dds_layer_domainParticipant`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  What are the implications of creating DDS entities in an enabled or disabled state, and how does the EntityFactoryQosPolicy affect this process?
+
+    |br|
+
+    Creating entities in an enabled state allows for immediate operation, while disabled entities require explicit enabling before full functionality. The |EntityFactoryQosPolicy-api| governs this behavior, affecting initial system configuration and operational readiness. For further information go to :ref:`entityfactoryqospolicy`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  How do the specific callbacks provided by Fast DDS, such as on_participant_discovery and on_data_writer_discovery, enhance the functionality of the DDS system?
+
+    |br|
+
+    Fast DDS-specific callbacks, such as ``on_participant_discovery`` and ``on_data_writer_discovery``, provide additional hooks for monitoring and responding to specific events within the DDS framework. These callbacks offer greater control and insight into the system's operational state. For further information go to :ref:`dds_layer_core_entity`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 .. collapse::  How does the DeadlineQoS policy apply differently to topics with keys compared to those without keys, and what are the practical considerations for using keys in such scenarios?
-
-
-
 
     |br|
 
@@ -199,8 +130,13 @@ CORE
 
 .. collapse::  Why is it crucial for the offered deadline period on DataWriters to be less than or equal to the requested deadline period on DataReaders, and what could be the consequences of mismatched periods?
 
+    |br|
 
+    The requirement for the offered deadline period on DataWriters to be less than or equal to the requested deadline period on DataReaders ensures that the DataWriter can meet the DataReader's expectations. Mismatched periods could result in the DataReader perceiving missed deadlines, leading to potential data loss and reliability issues. For further information go to :ref:`deadline_compatibilityrule`.
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  Why is it crucial for the offered deadline period on DataWriters to be less than or equal to the requested deadline period on DataReaders, and what could be the consequences of mismatched periods?
 
     |br|
 
@@ -210,9 +146,6 @@ CORE
 
 .. collapse::  How should the DeadlineQosPolicy be configured in conjunction with the TimeBasedFilterQosPolicy to ensure consistency and avoid data loss or delays?
 
-
-
-
     |br|
 
     To ensure consistency, the |DeadlineQosPolicy-api| period must be greater or equal to the minimum separation specified in the |TimeBasedFilterQosPolicy-api|. This prevents the system from attempting to enforce a stricter deadline than the filter allows, avoiding unnecessary alarms and ensuring smooth data flow. For further information go to :ref:`timebasedfilterqospolicy`.
@@ -220,9 +153,6 @@ CORE
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How does the default value of c_TimeInfinite for the period in DeadlineQoS affect the behavior of DataWriters and DataReaders, and under what circumstances might this default value be modified?
-
-
-
 
     |br|
 
@@ -232,9 +162,6 @@ CORE
 
 .. collapse::  What are the key differences between BY_RECEPTION_TIMESTAMP and BY_SOURCE_TIMESTAMP in DestinationOrderQoS, and how do these settings impact the consistency and order of received data?
 
-
-
-
     |br|
 
     ``BY_RECEPTION_TIMESTAMP`` orders data based on when it is received, which can lead to different DataReaders having different final values due to network delays. ``BY_SOURCE_TIMESTAMP`` ensures consistency across all DataReaders by using the send time from the DataWriter. ``BY_SOURCE_TIMESTAMP`` is preferred for ensuring consistent data states across multiple DataReaders. Both can be configured by using |DestinationOrderQosPolicyKind-api|. For further information go to :ref:`destinationorderqospolicy`.
@@ -242,9 +169,6 @@ CORE
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  In what scenarios might the BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS be preferred over BY_SOURCE_TIMESTAMP_DESTINATIONORDER_QOS, and vice versa?
-
-
-
 
     |br|
 
@@ -254,9 +178,6 @@ CORE
 
 .. collapse::  What are the potential challenges and solutions when DataWriters and DataReaders have incompatible DestinationOrderQoS kinds, and how does the compatibility rule ensure proper data ordering?
 
-
-
-
     |br|
 
     Incompatible kinds can lead to data being ignored or reordered incorrectly, causing inconsistencies. The compatibility rule ensures that the DataReader can handle the ordering provided by the DataWriter. Solutions include aligning QoS settings across DataWriters and DataReaders and using appropriate fallback mechanisms. For further information go to :ref:`destinationorder_compatibilityrule`.
@@ -265,44 +186,67 @@ CORE
 
 .. collapse::  How might the DestinationOrderQoS policy be applied in a multi-DataWriter scenario to ensure data consistency, and what are the potential pitfalls to avoid?
 
-
-
-
     |br|
 
     In scenarios with multiple DataWriters, such as collaborative robotics or distributed simulations, the |DestinationOrderQosPolicy-api| ensures that data from different writers is correctly ordered. Avoiding pitfalls like network-induced delays involves carefully configuring timestamps and ensuring synchronized clocks across systems. For further information go to :ref:`destinationorderqospolicy`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-DOMAIN
-------
+Status
+^^^^^^
 
-.. collapse::  What is the purpose of providing a "DomainId" when creating a DomainParticipant?
-
-
-
+.. collapse::  What role do status objects play in the communication lifecycle of DDS entities, and how do they interact with listener callbacks to notify applications of status changes?
 
     |br|
 
-    The ``DomainId`` identifies the domain where the |DomainParticipant-api| will be created. Do not use ``DomainId`` higher than 200. For further information go to :ref:`dds_layer_domain`.
+    Status objects track the communication state of entities, triggering listener callbacks when changes occur. This mechanism ensures that applications are promptly informed of relevant status updates, facilitating timely responses to communication events. For further information go to :ref:`dds_layer_core_status`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  How does the concept of StatusCondition link entities to Wait-sets, and what benefits does this linkage provide in terms of system synchronization and event handling?
+
+    |br|
+
+    StatusCondition provides a means to monitor multiple status changes efficiently by linking entities to Wait-sets. This linkage allows for consolidated event handling, reducing polling overhead and improving synchronization within the system. For further information go to :ref:`dds_layer_core_status`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  How does the use of StatusMask in enabling or disabling specific callbacks affect the responsiveness and behavior of a DDS system?
+
+    |br|
+
+    The |StatusMask-api| allows selective enabling or disabling of specific callbacks, fine-tuning the system's responsiveness and avoiding unnecessary processing. Proper management of |StatusMask-api| settings ensures that only relevant events trigger callbacks, optimizing system behavior. For further information go to :ref:`dds_layer_core_status`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DOMAIN
+------
+
+.. collapse:: Which are the mandatory arguments to create a DomainParticipant?
+
+    |br|
+
+    The mandatory arguments to create a |DomainParticipant-api| are the ``DomainId`` that identifies the domain where the DomainParticipant will be created and the |DomainParticipantQos-api| describing the behavior of the |DomainParticipant-api|. If the provided value is ``TOPIC_QOS_DEFAULT``, the value of the DomainParticipantQos is used. For further information go to :ref:`dds_layer_domainParticipant_creation`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse::  What is the purpose of providing a "DomainId" when creating a DomainParticipant?
+
+    |br|
+
+    The ``DomainId`` identifies the domain where the |DomainParticipant-api| will be created. Do not use ``DomainId`` higher than 200. Once created the |DomainParticipant-api|, its ``DomainId`` can not be changed. For further information go to :ref:`dds_layer_domain`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of providing a Listener when creating a DomainParticipant?
 
-
-
-
     |br|
 
-    A Listener derived from |DomainParticipantListener-api|, implementing the callbacks that will be triggered in response to events and state changes on the DomainParticipant. By default, empty callbacks are used. For further information go to :ref:`dds_layer_domainParticipantListener`.
+    A Listener derived from |DomainParticipantListener-api|, implementing the callbacks that will be triggered in response to events and state changes on the DomainParticipant. By default, empty callbacks are used. For further information about |DomainParticipantListener-api| and how to implement its callbacks go to :ref:`dds_layer_domainParticipantListener`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of providing a "StatusMask" when creating a DomainParticipant?
-
-
-
 
     |br|
 
@@ -312,9 +256,6 @@ DOMAIN
 
 .. collapse::  What happens when "create_participant_with_profile()" returns a null pointer in creating a DomainParticipant?
 
-
-
-
     |br|
 
     ``create_participant_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. For further information go to :ref:`dds_layer_domainParticipant_creation`.
@@ -322,9 +263,6 @@ DOMAIN
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the primary way to create a Publisher in the context of DomainParticipant?
-
-
-
 
     |br|
 
@@ -334,9 +272,6 @@ DOMAIN
 
 .. collapse::  What settings are used in the creation of a DomainParticipant?
 
-
-
-
     |br|
 
     If there is an XML profile exported in the environment, those settings will be used. If the profile has not been exported, the |DomainParticipant-api| will be created with the default values per |DomainParticipantQoS-api| and ``0`` as ``DomainId``. For further information go to :ref:`dds_layer_domainParticipant_creation_default_profile`.
@@ -344,9 +279,6 @@ DOMAIN
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  Why am I unable to delete a DomainParticipant?
-
-
-
 
     |br|
 
@@ -356,9 +288,6 @@ DOMAIN
 
 .. collapse::  How do I modify the behavior of a DomainParticipant?
 
-
-
-
     |br|
 
     To modify the behavior of a |DomainParticipant-api|, the QoS values specified in the |DomainParticipantQoS-api|. These QoS values can be set at the creation of the DomainParticipant or modified with the |DomainParticipant::set_qos-api| member function. For further information go to :ref:`dds_layer_domainParticipant`.
@@ -366,9 +295,6 @@ DOMAIN
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  Under what circumstances does calling "ignore_participant()" member of a DomainParticipant cause deadlock?
-
-
-
 
     |br|
 
@@ -381,9 +307,6 @@ PUBLISHER
 
 .. collapse::  What is the purpose of providing a PublisherQos when creating a Publisher?
 
-
-
-
     |br|
 
     The PublisherQos describes the behavior of the Publisher. If the provided value is |PUBLISHER_QOS_DEFAULT-api|, the value of the default PublisherQos is used. For further information go to :ref:`dds_layer_publisher_publisherQos`.
@@ -391,9 +314,6 @@ PUBLISHER
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of providing a Listener when creating a Publisher?
-
-
-
 
     |br|
 
@@ -403,9 +323,6 @@ PUBLISHER
 
 .. collapse::  What happens when "create_publisher()" returns a null pointer during the creation of a Publisher?
 
-
-
-
     |br|
 
     ``create_publisher()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This also applies to Subscriber and |Topic-api|. For further information go to :ref:`dds_layer_publisher_creation`.
@@ -413,9 +330,6 @@ PUBLISHER
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of the "StatusMask" in creating a Publisher or a Subscriber or a Topic?
-
-
-
 
     |br|
 
@@ -425,9 +339,6 @@ PUBLISHER
 
 .. collapse::  What happens when "create_publisher_with_profile()" returns a null pointer?
 
-
-
-
     |br|
 
     ``create_publisher_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This is also valid for Subscribers. For further information go to :ref:`dds_layer_publisher_creation_profile`.
@@ -436,19 +347,19 @@ PUBLISHER
 
 .. collapse::  What happens when "create_datawriter_with_profile()" returns a null pointer in creating a DataWriter?
 
-
-
-
     |br|
 
     ``create_datawriter_with_profile()`` will return a null pointer if there was an error during the operation, e.g., if the provided QoS is not compatible or is not supported. It is advisable to check that the returned value is a valid pointer. This is also valid for DataReaders. For further information go to :ref:`dds_layer_publisher_datawriter_creation_profile`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+.. collapse:: What is an efficient way to write large data types in DDS using a DataWriter to minimize memory usage and processing time?
+
+    |br|    An efficient way to write large data types in DDS is to make the |DataWriter-api| loan a sample from its memory to the user, and the user to fill this sample with the required values. When write() is called with such a loaned sample, the DataWriter does not copy its contents, as it already owns the buffer. For further information go to :ref:`dds_layer_publisher_write_loans`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 .. collapse::  What happens to the contents of a loaned data sample after "write()" has been successfully called with that sample?
-
-
-
 
     |br|
 
@@ -458,9 +369,6 @@ PUBLISHER
 
 .. collapse::  What happens if a loaned data sample is not written by the user?
 
-
-
-
     |br|
 
     If function ``loan_sample()`` is called but the sample is never written, the loan must be returned to the DataWriter using ``discard_loan()``. Otherwise, the DataWriter may run out of samples. For further information go to :ref:`dds_layer_publisher_write_loans`.
@@ -469,9 +377,6 @@ PUBLISHER
 
 .. collapse::  Why am I unable to delete a Publisher?
 
-
-
-
     |br|
 
     To delete a Publisher, it is necessary to delete first all its associated entities. Otherwise, the function will issue an error and the Publisher will not be deleted. To delete the entities, the ``delete_contained_entities()`` member function must be used. This is also valid for Subscribers. For further information go to :ref:`dds_layer_publisher_deletion`.
@@ -479,9 +384,6 @@ PUBLISHER
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the meaning of the value "DATAWRITER_QOS_DEFAULT"?
-
-
-
 
     |br|
 
@@ -492,9 +394,6 @@ PUBLISHER
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  When could a sample be removed without being received by the DataReaders?
-
-
-
 
     |br|
 
@@ -507,9 +406,6 @@ SUBSCRIBER
 
 .. collapse::  What is the primary consideration when accessing elements on a DDS data sequence after calling "DataReader::read()" or "DataReader::take()" operations?
 
-
-
-
     |br|
 
     After calling the |DataReader::read-api| or |DataReader::take-api| operations, accessing the data on the returned sequences is quite easy. The sequences API provides a ``length()`` operation returning the number of elements in the collections. The application code just needs to check this value and use the ``[]`` operator to access the corresponding elements. Elements on the DDS data sequence should only be accessed when the corresponding element on the SampleInfo sequence indicates that valid data is present. When using Data Sharing, it is also important to check that the sample is valid (i.e. not replaced, refer to DataReader and DataWriter history coupling for further information in this regard. For further information go to :ref:`dds_layer_subscriber_accessreceived_data`.
@@ -518,30 +414,21 @@ SUBSCRIBER
 
 .. collapse::  What is the primary method for an application to receive new data values from a DataReader without relying on a Listener?
 
-
-
-
     |br|
 
     Instead of relying on the Listener to try and get new data values, the application can also dedicate a thread to wait until any new data is available on the |DataReader-api|. This can be done using a wait-set to wait for a change on the DataAvailable status. For further information go to :ref:`dds_layer_subscriber_accessreceived_wait`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. collapse::  What is the meaning of the sequences returned by the "DataReader::read()" and "DataReader::take()" operations?
-
-
-
+.. collapse::  How do the "DataReader::read()" and "DataReader::take()" operations (and their variants) return information to the application?
 
     |br|
 
-    Received DDS data samples in a sequence of the data type and corresponding information about each DDS sample in a SampleInfo sequence. For further information go to :ref:`dds_layer_subscriber_accessreceived_loans`.
+    These two operations return information in two sequences: the received DDS data samples are returned in a sequence of the data type and the corresponding information about each DDS sample is returned in a SampleInfo sequence. For further information go to :ref:`dds_layer_subscriber_accessreceived_loans`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the consequence if an application does not return loaned sequences back to the middleware?
-
-
-
 
     |br|
 
@@ -551,9 +438,6 @@ SUBSCRIBER
 
 .. collapse::  What is the purpose of "disposed_generation_count" in relation to an object's lifecycle?
 
-
-
-
     |br|
 
     ``disposed_generation_count`` indicates the number of times the instance had become alive after it was disposed. For further information go to :ref:`dds_layer_subscriber_sampleInfo_disposedgenerationcount`.
@@ -561,9 +445,6 @@ SUBSCRIBER
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of "no_writers_generation_count" in relation to the instance's lifecycle?
-
-
-
 
     |br|
 
@@ -573,9 +454,6 @@ SUBSCRIBER
 
 .. collapse::  What is the purpose of the "related_sample_identity" extension in a requester-replier configuration?
 
-
-
-
     |br|
 
     ``related_sample_identity`` is an extension for requester-replier configuration. On reply messages, it contains the sample_identity of the related request message. It is used by the requester to be able to link each reply to the appropriate request. For further information go to :ref:`dds_layer_subscriber_sampleInfo_relatedsampleidentity`.
@@ -583,9 +461,6 @@ SUBSCRIBER
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the purpose of setting "valid_data" to false in a data sample?
-
-
-
 
     |br|
 
@@ -598,19 +473,29 @@ TOPIC
 
 .. collapse::  What is the primary function of a Topic in the context of Publisher-Subscriber communication?
 
-
-
-
     |br|
 
     A |Topic-api| is a specialization of the broader concept of TopicDescription. A |Topic-api| represents a single data flow between Publisher and Subscriber. For further information go to :ref:`dds_layer_topic`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+.. collapse:: What is the difference between Topics, Keys and Instances?
+
+    |br|
+
+    Topics define the structure of the data being exchanged and are linked to a specific data type. Keys are fields within the data type that uniquely identify different instances of the same Topic. An Instance refers to a specific set of data distinguished by its key values within a Topic, allowing multiple sets of related data (instances) to exist under a single Topic, with updates being directed to the correct instance based on the key. For further information go to :ref:`dds_layer_topic_instances`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. collapse:: How is a Topic created?
+
+    |br|
+
+    Creation of a Topic is done with the |DomainParticipant::create_topic-api| member function on the |DomainParticipant-api| instance, that acts as a factory for the Topic. Mandatory arguments for creating a Topic a string with the name that identifies the topic, the name of the registered data type that will be transmitted and the |TopicQos-api| that describes the behavior of the Topic. For further information go to :ref:`dds_layer_topic_creation`.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 .. collapse::  What type of values can the "like" operator be used with in the context of content Filtered Topic?
-
-
-
 
     |br|
 
@@ -620,9 +505,6 @@ TOPIC
 
 .. collapse::  What does the "like" operator represent in terms of character matching?
 
-
-
-
     |br|
 
     The percent sign ``%"``(or its alias ``*``) represents zero, one, or multiple characters. For further information go to :ref:`dds_layer_topic_contentFilteredTopic_default_filter`.
@@ -630,9 +512,6 @@ TOPIC
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What does the "like" operator's wildcard represent when used in a string comparison?
-
-
-
 
     |br|
 
@@ -642,9 +521,6 @@ TOPIC
 
 .. collapse::  How is filtering disabled?
 
-
-
-
     |br|
 
     If the expression is an empty string, that disables filtering as explained in creating a ContentFilteredTopic. For further information go to :ref:`dds_layer_topic_filtering_data_on_topic`.
@@ -652,9 +528,6 @@ TOPIC
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How to enable the usage of a Custom Filter in an application?
-
-
-
 
     |br|
 
@@ -664,9 +537,6 @@ TOPIC
 
 .. collapse::  What will happen if an error occurs during the creation of a ContentFilteredTopic using the "create_contentfilteredtopic()" function?
 
-
-
-
     |br|
 
     ``create_contentfilteredtopic()`` will return a null pointer if there was an error during the operation, e.g., if the related Topic belongs to a different DomainParticipant, a Topic with the same name already exists, syntax errors on the filter expression, or missing parameter values. It is advisable to check that the returned value is a valid pointer. For further information go to :ref:`dds_layer_topic_customfilter_create_topic`.
@@ -674,9 +544,6 @@ TOPIC
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the method used to delete a ContentFilteredTopic in the context of a DomainParticipant?
-
-
-
 
     |br|
 

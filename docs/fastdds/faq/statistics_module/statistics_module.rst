@@ -9,9 +9,6 @@ Statistics Module Frequently Asked Questions
 
 .. collapse::  What is the purpose of the statistics module?
 
-
-
-
     |br|
 
     The Fast DDS Statistics module is an extension of Fast DDS that enables the recollection of data concerning the DDS communication. For further information, see :ref:`statistics`.
@@ -19,9 +16,6 @@ Statistics Module Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How does the statistics module work?
-
-
-
 
     |br|
 
@@ -31,9 +25,6 @@ Statistics Module Frequently Asked Questions
 
 .. collapse::  What is the consequence of compiling the statistics module?
 
-
-
-
     |br|
 
     It may entail affecting the application's performance. For further information, see :ref:`statistics`.
@@ -41,9 +32,6 @@ Statistics Module Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How can we activate the statistics module?
-
-
-
 
     |br|
 
@@ -53,9 +41,6 @@ Statistics Module Frequently Asked Questions
 
 .. collapse::  How can we start collecting data?
 
-
-
-
     |br|
 
     In order to start collecting data in one of the statistics topics, the corresponding statistics DataWriter should be enabled. For further information, see :ref:`statistics_domainparticipant`.
@@ -63,9 +48,6 @@ Statistics Module Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How can we enable the statistics DataWriter?
-
-
-
 
     |br|
 
@@ -75,9 +57,6 @@ Statistics Module Frequently Asked Questions
 
 .. collapse::  How is the environment variable ``FASTDDS_STATISTICS`` used?
 
-
-
-
     |br|
 
     The environment variable is only used in the case where the CMake option ``FASTDDS_STATISTICS`` has been enabled. In any other case, the environment variable has no effect. The statistics DataWriters that will be enabled when the |DomainParticipant-api| is enabled would be the union between those specified in the ``properties()`` ``fastdds.statistics`` and those included with the environment variable. For further information, see :ref:`env_vars_fastdds_statistics`.
@@ -85,9 +64,6 @@ Statistics Module Frequently Asked Questions
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the monitor service?
-
-
-
 
     |br|
 
@@ -97,9 +73,6 @@ Statistics Module Frequently Asked Questions
 
 .. collapse::  What Information can the monitor service carry?
 
-
-
-
     |br|
 
     It can carry information about the monitoring information of the local entities of a particular DomainParticipant. For further information, see :ref:`monitor_intro`.
@@ -108,20 +81,13 @@ Statistics Module Frequently Asked Questions
 
 .. collapse::  How can the monitor service be activated?
 
-
-
-
     |br|
 
     The Monitor Service can be activated using the ``-DFASTDDS_STATISTICS=ON`` at CMake configuration step. For further information, see :ref:`monitor_service_configuration`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 .. collapse::  At which layers can the monitor service be enabled?
-
-
-
 
     |br|
 

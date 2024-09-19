@@ -12,59 +12,37 @@ Transport API
 
 .. collapse::  What is the role of the "TransportDescriptorInterface"?
 
-
-
-
     |br|
 
     It acts as a builder for a given transport, allowing to configure the transport and building it, using its ``create_transport`` factory member function. For further information, see :ref:`transport_transportApi_transportDescriptor`.
-
-
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How is the transport instance created?
 
-
-
-
     |br|
 
     Applications do not create the ``Transport`` instance themselves. Instead, applications use a ``TransportDescriptor`` instance to configure the desired transport, and add this configured instance to the list of user-defined transports of the DomainParticipant. The DomainParticipant will use the factory function on the ``TransportDescriptor`` to create the ``Transport`` when required. For further information, see :ref:`transport_transportApi_transport`.
-
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  Can I modify the ``transport_kind_`` data member?
 
-
-
-
     |br|
 
     No. ``transport_kind_`` is a protected data member for internal use. It cannot be accessed nor modified from the public API. However, users that are implementing a custom Transport need to fill it with a unique constant value in the new implementation. For further information, see :ref:`transport_transportApi_transport`.
 
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 .. collapse::  What is the function of a "Locator_t" in a DDS system?
 
-
-
-
     |br|
 
-    A ``Locator_t`` uniquely identifies a communication channel with a remote peer for a particular transport. For further information, see :ref:`transport_transportApi_locator`.
-
+    A ``Locator_t`` uniquely identifies a communication channel with a remote peer for a particular transport.  For example, on UDP transports, the Locator will contain the information of the IP address and port of the remote peer. The listening Locators, such as Multicast locators (listen to multicast communications), Unicast locators (listen to unicast communications), Metatraffic locators (used to receive metatraffic information, usually used by built-in endpoints to perform discovery), User locators (used by the endpoints created by the user to receive user Topic data changes), are used to receive incoming traffic on the DomainParticipant. For further information, see :ref:`transport_transportApi_locator`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 .. collapse::  What is the primary purpose of the "IPLocator" class?
-
-
-
 
     |br|
 
@@ -72,30 +50,18 @@ Transport API
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 UDP Transport
 -------------
 
-
-
 .. collapse::  What is the primary characteristic of UDP transport in terms of communication?
-
-
-
 
     |br|
 
     UDP is a connectionless transport, where the receiving DomainParticipant must open a UDP port listening for incoming messages, and the sending DomainParticipant sends messages to this port. For further information, see :ref:`transport_udp_udp`.
 
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
 .. collapse::  What is the best configuration for high-frequency best-effort writers?
-
-
-
 
     |br|
 
@@ -104,9 +70,6 @@ UDP Transport
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is required to enable a new UDP transport in a DomainParticipant?
-
-
-
 
     |br|
 
@@ -117,12 +80,7 @@ UDP Transport
 TCP Transport
 -------------
 
-
-
 .. collapse::  What is the primary requirement for establishing a connection using TCP transport in DDS?
-
-
-
 
     |br|
 
@@ -132,9 +90,6 @@ TCP Transport
 
 .. collapse::  What happens if there are multiple listening ports in TCP transport?
 
-
-
-
     |br|
 
     Only the first listening port will be effectively used. The rest of the ports will be ignored. For further information, see :ref:`transport_tcp_transportDescriptor`.
@@ -142,9 +97,6 @@ TCP Transport
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What happens if "listening_ports" is left empty?
-
-
-
 
     |br|
 
@@ -154,9 +106,6 @@ TCP Transport
 
 .. collapse::  How is TCP transport enabled?
 
-
-
-
     |br|
 
     There are several ways of enabling TCP transport in Fast-DDS. The first option is to modify the builtin transports that are responsible for the creation of the DomainParticipant transports. The second option is to set up a Server-Client configuration. You need to create an instance of |TCPv4TransportDescriptor-api| (for TCPv4) or |TCPv6TransportDescriptor-api| (for TCPv6), and add it to the user transport list of the DomainParticipant. For further information, see :ref:`transport_tcp_enabling`.
@@ -164,9 +113,6 @@ TCP Transport
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What configuration is required on the server side to enable communication with the client over TCP?
-
-
-
 
     |br|
 
@@ -176,19 +122,13 @@ TCP Transport
 
 .. collapse::  Which configuration is needed to allow incoming connections through a WAN?
 
-
-
-
     |br|
 
-    The |TCPv4TransportDescriptor-api| must indicate its public IP address in the "wan_addr" data member. On the client side, the DomainParticipant must be configured with the public IP address and "listening_ports" of the TCP as Initial peers.
+    The |TCPv4TransportDescriptor-api| must indicate its public IP address in the "wan_addr" data member. On the client side, the DomainParticipant must be configured with the public IP address and "listening_ports" of the TCP as Initial peers. For further information, see :ref:`transport_tcp_wan`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  Is there any configuration that makes the TCP transport more secure?
-
-
-
 
     |br|
 
@@ -196,13 +136,18 @@ TCP Transport
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+.. collapse:: What are the advantages and disadvantages of using TCP transport compared to UDP transport?
+
+    |br|
+
+    TCP offers reliable data transmission with built-in mechanisms for error detection, correction, and ordered delivery of packets, ensuring data integrity and sequencing. It also includes flow control to adjust the transmission rate between sender and receiver. However, this reliability comes with increased overhead, resulting in slower transmission speeds and higher latency compared to UDP. UDP, on the other hand, is faster with lower latency, as it does not ensure packet delivery, order, or perform error correction, making it ideal for real-time applications like video streaming or gaming, but less reliable for applications requiring data accuracy.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Shared Memory Transport
 -----------------------
 
 .. collapse::  What is the primary advantage of using the Shared Memory Transport (SHM) compared to other network transports like UDP/TCP?
-
-
-
 
     |br|
 
@@ -212,9 +157,6 @@ Shared Memory Transport
 
 .. collapse::  How are peers running in the same host identified?
 
-
-
-
     |br|
 
     Using the DomainParticipant's ``GuidPrefix_t``. Two participants with identical 4 first bytes on the ``GuidPrefix_t`` are considered to be running in the same host. For further information, see :ref:`transport_sharedMemory_sharedMemory`.
@@ -222,9 +164,6 @@ Shared Memory Transport
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is a Segment Buffer in the context of the Shared Memory Transport?
-
-
-
 
     |br|
 
@@ -234,9 +173,6 @@ Shared Memory Transport
 
 .. collapse::  What is a Buffer Descriptor?
 
-
-
-
     |br|
 
     It acts as a pointer to a specific Segment Buffer in a specific Segment. It contains the *segmentId* and the offset of the Segment Buffer from the base of the Segment. When communicating a message to other DomainParticipants, Shared Memory Transport only distributes the Buffer Descriptor, avoiding the copy of the message from a DomainParticipant to another. With this descriptor, the receiving DomainParticipant can access the message written in the buffer, as is uniquely identifies the Segment (through the segmentId) and the Segment Buffer (through its offset). For further information, see :ref:`transport_sharedMemory_concepts_bufferDescriptor`.
@@ -244,9 +180,6 @@ Shared Memory Transport
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the primary purpose of creating a listener for a DomainParticipant's receiving port in the context of Shared Memory Transport?
-
-
-
 
     |br|
 
@@ -256,9 +189,6 @@ Shared Memory Transport
 
 .. collapse::  What is the purpose of performing a health check when a DomainParticipant opens a Port?
 
-
-
-
     |br|
 
     Every time a DomainParticipant opens a Port (for reading or writing), a health check is performed to assess its correctness. The reason is that if one of the processes involved crashes while using a Port, that port can be left inoperative. If the attached listeners do not respond in a given timeout, the Port is considered damaged, and it is destroyed and created again. For further information, see :ref:`transport_sharedMemory_concepts_portHealthcheck`.
@@ -266,9 +196,6 @@ Shared Memory Transport
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How is SHM transport enabled?
-
-
-
 
     |br|
 
@@ -278,25 +205,16 @@ Shared Memory Transport
 
 .. collapse::  What happens to discovery traffic when multiple transports are enabled in a DomainParticipant?
 
-
-
-
     |br|
 
     The discovery traffic is always performed using the UDP/TCP transport, even if the SHM transport is enabled in both participants running in the same machine. For further information, see :ref:`transport_sharedMemory_enabling`.
 
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 Data Sharing Delivery
 ---------------------
 
-
 .. collapse::  What is the difference between Data Sharing Delivery and Shared Memory Transport?
-
-
-
 
     |br|
 
@@ -306,19 +224,13 @@ Data Sharing Delivery
 
 .. collapse::  Does the use of Data-sharing avoid data copies between the application and the DataReader and DataWriter?
 
-
-
-
     |br|
 
-    No, it does not prevent data copies. For further information, see :ref:`datasharing-delivery`.
+    No, it does not prevent data copies. Data-sharing helps avoid copies between the DataWriter and DataReader by using shared memory for communication, but data still needs to be copied between the application and the DataWriter or DataReader. To avoid these copies, a different mechanism, such as Zero-Copy communication, is required.  For further information, see :ref:`datasharing-delivery`.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How are data copies prevented?
-
-
-
 
     |br|
 
@@ -328,9 +240,6 @@ Data Sharing Delivery
 
 .. collapse::  What is required for two entities to use data-sharing delivery between them, according to their DataSharingQosPolicy configuration?
 
-
-
-
     |br|
 
     Two entities will be able to use data-sharing delivery between them only if both have at least a common domain. For further information, see :ref:`datasharing-delivery`.
@@ -338,9 +247,6 @@ Data Sharing Delivery
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  What is the default value for the maximum number of Data-sharing domain identifiers, and what does it affect?
-
-
-
 
     |br|
 
@@ -350,9 +256,6 @@ Data Sharing Delivery
 
 .. collapse::  What is the consequence of the DataWriter reusing a sample from the pool to publish new data?
 
-
-
-
     |br|
 
     The DataReader loses access to the old data sample. For further information, see :ref:`datareader-datawriter-history-coupling`.
@@ -361,9 +264,6 @@ Data Sharing Delivery
 
 .. collapse::  Can the communications between entities be sped up?
 
-
-
-
     |br|
 
     Yes, but only within the same process using intra-process delivery. For further information, see :ref:`intraprocess-delivery`.
@@ -371,9 +271,6 @@ Data Sharing Delivery
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. collapse::  How are peers running in the same process identified?
-
-
-
 
     |br|
 

@@ -62,12 +62,6 @@ or DataReader) |PropertyPolicyQos|.
 * A persistence plugin must be configured for managing the database using property ``dds.persistence.plugin`` (see
   :ref:`persistence_sqlite3_builtin_plugin`):
 
-.. note::
-
-    If the |DurabilityQosPolicyKind-api| is set to |TRANSIENT_DURABILITY_QOS-api| or |PERSISTENT_DURABILITY_QOS-api|
-    and no ``dds.persistence.guid`` is specified, |TRANSIENT_LOCAL_DURABILITY_QOS-api| will be used.
-
-
 .. _persistence_sqlite3_builtin_plugin:
 
 PERSISTENCE:SQLITE3 built-in plugin

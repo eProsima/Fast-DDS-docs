@@ -298,10 +298,6 @@ For the enumeration type to be consistent, the remaining enumeration literals mu
 Additionally, the enumeration literal value might be set using |MemberDescriptor-api| :code:`default_value` property.
 The behavior is the same as setting the :code:`@value` :ref:`builtin annotation<builtin_annotations>`.
 
-.. note::
-
-  Currently, Fast DDS-Gen does not support :code:`@value` builtin annotation.
-
 As the enumeration type is basically a signed integer type which might take only some specific values defined with the
 enumeration literals, the corresponding DynamicData getters and setters are the ones corresponding to the underlying
 signed integer type (and any other method promotable to that specific primitive type).

@@ -362,6 +362,7 @@ The following IDL enumeration:
     {
         RED,
         GREEN,
+        @value(3)
         BLUE
     };
 
@@ -572,7 +573,7 @@ annotations might be applied without the need of defining them).
       - ❌
     * - :code:`@value`
       - Set constant value to `enumerations`_ literal.
-      - ❌
+      - ✅
     * - :code:`@verbatim`
       - Add comment or text to the element.
       - ❌

@@ -8,6 +8,7 @@ acked
 acknack
 acknowledgement
 acks
+addr
 AES
 alignas
 allocator
@@ -112,6 +113,8 @@ executables
 extensibility
 externality
 extrastg
+fallbacks
+faq
 fastcdr
 fastdds
 fastddsgen
@@ -178,6 +181,7 @@ mebibyte
 metatraffic
 middleware
 misconfigurations
+Misconfigured
 mmap
 modularity
 msvc
@@ -208,6 +212,7 @@ overcomplicated
 param
 parseLogConfig
 parseXMLBitsetDynamicType
+performant
 persistency
 PKI
 pluggable
@@ -248,6 +253,7 @@ runtime
 sanitizers
 scalability
 scalable
+segmentId
 seqNum
 SequenceNumber
 sequencenumbers
@@ -263,12 +269,14 @@ struct
 Struct
 structs
 Structs
+subentity
 subfolder
 submessage
 submessages
 submodule
 submodules
 subnet
+suboptimal
 superset
 takeNextData
 targetting
@@ -303,6 +311,7 @@ updatability
 updatable
 Valgrind
 vcstool
+verbosities
 vm
 wget
 whitelist
@@ -314,3 +323,4 @@ WString
 Xcode
 XMLProfiles
 XTypes
+

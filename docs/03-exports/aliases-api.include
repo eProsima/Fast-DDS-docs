@@ -885,6 +885,7 @@
 .. |EntityId_t-api| replace:: :cpp:struct:`EntityId_t<eprosima::fastdds::rtps::EntityId_t>`
 .. |InitialAnnouncementConfig-api| replace:: :cpp:struct:`InitialAnnouncementConfig<eprosima::fastdds::rtps::InitialAnnouncementConfig>`
 .. |InitialAnnouncementConfig::period-api| replace:: :cpp:member:`period<eprosima::fastdds::rtps::InitialAnnouncementConfig::period>`
+.. |InitialAnnouncementConfig::count-api| replace:: :cpp:member:`count<eprosima::fastdds::rtps::InitialAnnouncementConfig::count>`
 .. |BuiltinAttributes-api| replace:: :cpp:class:`BuiltinAttributes<eprosima::fastdds::rtps::BuiltinAttributes>`
 .. |BuiltinAttributes::discovery_config-api| replace:: :cpp:member:`discovery_config<eprosima::fastdds::rtps::BuiltinAttributes::discovery_config>`
 .. |BuiltinAttributes::metatrafficUnicastLocatorList-api| replace:: :cpp:member:`metatrafficUnicastLocatorList<eprosima::fastdds::rtps::BuiltinAttributes::metatrafficUnicastLocatorList>`

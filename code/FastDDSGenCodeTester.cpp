@@ -163,7 +163,7 @@ enum Enumeration : int32_t
 {
     RED,
     GREEN,
-    BLUE
+    BLUE = 3
 };
 //!
 

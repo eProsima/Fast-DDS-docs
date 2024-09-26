@@ -150,8 +150,7 @@ Optionally, unsigned integer attribute :code:`value` might be added to set a spe
 
 .. note::
 
-    :code:`value` attribute is equivalent to :code:`@value` builtin annotation which is not still supported in neither
-    the plain (IDL) nor |DynamicTypes|.
+    :code:`value` attribute is equivalent to :code:`@value` builtin annotation.
 
 Please, refer to :ref:`xtypes_supportedtypes_enumeration` for more information on enumeration types.
 

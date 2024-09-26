@@ -21,6 +21,7 @@ This release includes the following **improvements**:
 #. Add unsigned specification to literals
 
 Github CI management:
+
 #. Set fallback branch for get_related_branch_from_repo correctly
 #. Fix sanitizers CI test summary report
 #. Run selected VS tool on Windows CI

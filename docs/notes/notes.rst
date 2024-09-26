@@ -5,83 +5,50 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.10.4
+Version 2.10.5
 ==============
 
 This release includes the following **features** in an ABI compatible manner:
 
-#. TCP Client and Server Participant Decision Making.
-#. :ref:`Authentication Handshake Properties <property_policies_security>` documentation.
-#. New :ref:`max_message_size property <property_max_message_size>` to limit output datagrams size.
+#. Add XML configuration for :ref:`FlowControllerDescriptor <flowcontrollers_xml>`
 
 This release includes the following **improvements**:
 
-#. Return const reference in ``get_log_resources``.
-#. Include variety of terminate process signals handler in discovery server.
-#. Check History QoS inconsistencies.
-#. Make DataWriters always send the key hash on keyed topics.
-#. ``LARGE_DATA`` Participants logic with same listening ports.
-#. Effectively assert ``AUTOMATIC/MANUAL_BY_PARTICIPANT`` liveliness.
-#. Improve checklist on PR template.
-#. Allow processing of ``AckNack`` submessages with ``count == 0``.
-#. Internal refactor on port handling.
-#. Upgrade Fast CDR submodule to v1.0.28
-
-TCP transport improvements:
-
-#. TCP ``non-blocking`` send.
-#. Enabling multiple interfaces through whitelist in TCP servers.
-#. Set real TCP ``non-blocking-send`` limitation.
-#. Clean up TCP send resources on peer disconnection.
+#. Use ``%*`` instead of loop in ``.bat`` scripts
+#. Documentation improvements
+#. Use absolute paths when loading XML files
+#. Reduce tests flakiness
+#. Add unsigned specification to literals
 
 Github CI management:
 
-#. Add macOS Github CI.
-#. Avoid running GitHub CI if PR has conflicts.
-#. Add Ubuntu Github CI.
-#. Improve CI version management.
-#. Pin CMake version and ``vm.mmap_rnd_bits`` in sanitizer workflows.
-#. Only run PRs CI when review is requested.
-#. Refactor Github CI sanitizer related jobs.
-#. Build ``ShapesDemo`` on Ubuntu Github CI.
-#. Fix Python version and environment.
-#. Add DNS entries to hosts files on Github workflows.
-#. Build Fast DDS Python bindings in Fast DDS Docs Github CI job.
+#. Set fallback branch for ``get_related_branch_from_repo`` correctly
+#. Fix sanitizers CI test summary report
+#. Run selected VS tool on Windows CI
+#. Use token for CCache action
+#. Refactor Fast DDS Ubuntu CI to include several tests
+#. Avoid CCache in some Github workflows
+#. Build profiling tests as alternate build in Ubuntu CI
+#. Add Ubuntu weekly CI
+#. Fix python version in sanitizers CI
+#. Fix windows CI and add vanilla build step in Ubuntu CI
+#. Use eProsima-CI action to install Qt
+#. Update types regeneration script homing path
 
 This release includes the following **fixes**:
 
-#. Fix and refactor Windows Github CI.
-#. Fix wrong log info messages on TCP.
-#. Add a keyed fragmented change to the reader data instance only when complete.
-#. Prevent index overflow and correctly assert the end iterator in DataSharing.
-#. Fix the shared memory cleaning script.
-#. Fix CI documentation workflow label triggering.
-#. Add missing virtual destructor for ``StatisticsAncillary``.
-#. Migrate apt package installation action to ``eProsima-CI``.
-#. Add missing ``TypeLookup`` listeners.
-#. Fix doxygen docs warnings. Prepare for compiling with ``Doxygen 1.10.0``.
-#. Upgrade dependency version to last patch version in ``.repos`` file.
-#. Fix TCP reconnection after open logical port failure.
-#. Avoid unhandled asio exceptions.
-#. Fix ``CVE-2024-28231``.
-#. Fix data race on PDP.
-#. Fix flaky Log tests.
-#. Fix some flaky MacOS tests.
-#. Fix hidden overloaded virtual methods.
-#. Fix test filtering in CMake files.
-#. Avoid first message loss in TCP.
-#. Fix ``CVE-2024-30258 / CVE-2024-30259``.
-#. Enforce SHM ports open mode exclusions.
-#. Force unlimited :ref:`ResourceLimits <resourcelimitsqospolicy>` if lower or equal to zero.
-#. Removed warning in ``ParameterList``.
-#. Make :cpp:func:`DataReader::get_first_untaken_info()<eprosima::fastdds::dds::DataReader::get_first_untaken_info>` coherent with ``read()/take()``.
-#. Fix leak in ``SecurityManager``.
-#. Fix support for ``@key`` annotation in ``DynamicTypes``.
-#. Fix leaks in XML parser for ``DynamicTypes``.
-#. Fix Discovery Server over TCP.
-#. Handle errors when setting socket buffer sizes.
-#. Fix :cpp:func:`on_sample_lost<eprosima::fastdds::dds::DataReaderListener::on_sample_lost>` notification on best-effort readers for fragmented samples.
-#. Fix DataSharing QoS deserialization.
+#. Automatically unmatch remote participants on participant deletion
+#. Only apply content filter to ALIVE changes
+#. Fix liveliness state in a multiple reader - one writer scenario
+#. Fix topic interference on ``liveliness_changed`` status
+#. Fix DS servers not connecting due to ports logic
+#. Fix issue with exclusive ownership and unordered samples
+#. Fix SecurityManager memory issue
+#. Correctly initialize ``MatchingFailureMask`` constants to be used with the ``std::bitset`` API
+#. Fix data race in ``TypeObjectFactory::get_instance``
+#. Properly delete builtin statistics writers upon ``delete_contained_entities()``
+#. Fix secure simple participants with initial peers not matching over TCP
+#. Fix access violations on XML parser detected by OSS-fuzz
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -91,6 +58,7 @@ This release includes the following **fixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.10.4.rst
 .. include:: previous_versions/v2.10.3.rst
 .. include:: previous_versions/v2.10.2.rst
 .. include:: previous_versions/v2.10.1.rst

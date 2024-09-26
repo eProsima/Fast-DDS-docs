@@ -22,16 +22,16 @@ This release includes the following **improvements**:
 
 Github CI management:
 
-#. Set fallback branch for get_related_branch_from_repo correctly
+#. Set fallback branch for ``get_related_branch_from_repo`` correctly
 #. Fix sanitizers CI test summary report
 #. Run selected VS tool on Windows CI
-#. Use token for ccache action
+#. Use token for CCache action
 #. Refactor Fast DDS Ubuntu CI to include several tests
-#. Avoid CCache in workflows and nightlies
+#. Avoid CCache in some Github workflows
 #. Build profiling tests as alternate build in Ubuntu CI
 #. Add Ubuntu weekly CI
 #. Fix python version in sanitizers CI
-#. Fix windows CI and add vanilla build step in ubuntu CI
+#. Fix windows CI and add vanilla build step in Ubuntu CI
 #. Use eProsima-CI action to install Qt
 #. Update types regeneration script homing path
 
@@ -48,7 +48,7 @@ This release includes the following **fixes**:
 #. Fix data race in ``TypeObjectFactory::get_instance``
 #. Properly delete builtin statistics writers upon ``delete_contained_entities()``
 #. Fix secure simple participants with initial peers not matching over TCP
-#. Fix access violations on XML parser detected by oss-fuzz
+#. Fix access violations on XML parser detected by OSS-fuzz
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

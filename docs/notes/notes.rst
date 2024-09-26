@@ -14,7 +14,7 @@ This release includes the following **features** in an ABI compatible manner:
 
 This release includes the following **improvements**:
 
-#. Use `%*` instead of loop in `.bat` scripts
+#. Use ``%*`` instead of loop in ``.bat`` scripts
 #. Documentation improvements
 #. Use absolute paths when loading XML files
 #. Reduce tests flakiness
@@ -40,14 +40,14 @@ This release includes the following **fixes**:
 #. Automatically unmatch remote participants on participant deletion
 #. Only apply content filter to ALIVE changes
 #. Fix liveliness state in a multiple reader - one writer scenario
-#. Fix topic interference on `liveliness_changed` status
+#. Fix topic interference on ``liveliness_changed`` status
 #. Fix DS servers not connecting due to ports logic
 #. Fix issue with exclusive ownership and unordered samples
 #. Fix SecurityManager memory issue
-#. Correctly initialize `MatchingFailureMask` constants to be used with the `std::bitset` API
-#. Fix data race in `TypeObjectFactory::get_instance`
-#. Properly delete builtin statistics writers upon `delete_contained_entities()`
-#. Fix secure simple participants with `initialpeers` not matching over `TCP`
+#. Correctly initialize ``MatchingFailureMask`` constants to be used with the ``std::bitset`` API
+#. Fix data race in ``TypeObjectFactory::get_instance``
+#. Properly delete builtin statistics writers upon ``delete_contained_entities()``
+#. Fix secure simple participants with initial peers not matching over TCP
 #. Fix access violations on XML parser detected by oss-fuzz
 
 .. note::

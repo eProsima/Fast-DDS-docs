@@ -25,8 +25,8 @@ The main difference between the two is that ``rmw_fastrtps_dynamic_cpp`` uses in
 decide on the serialization/deserialization mechanism, while ``rmw_fastrtps_cpp`` uses its own type support, which
 generates the mapping for each message type at build time.
 The default ROS 2 RMW implementation in all distributions except *EOL Galactic* is ``rmw_fastrtps_cpp``.
-For *EOL Galactic* the environment variable ``RMW_IMPLEMENTATION`` has to be set to select ``rmw_fastrtps_cpp`` in order to
-use *Fast DDS* as the middleware layer.
+For *EOL Galactic* the environment variable ``RMW_IMPLEMENTATION`` has to be set to select ``rmw_fastrtps_cpp`` in
+order to use *Fast DDS* as the middleware layer.
 This environment variable can also be used to select the ``rmw_fastrtps_dynamic_cpp`` implementation:
 
 #. Exporting ``RMW_IMPLEMENTATION`` environment variable:

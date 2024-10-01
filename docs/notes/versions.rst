@@ -390,13 +390,13 @@ Fast DDS as the core middleware.
             * - Product
               - Related version
             * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
-              - `v2.4.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.4.0>`__
+              - `v2.5.2 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.5.2>`__
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
-              - `v1.5.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v1.5.0>`__
+              - `v1.6.1 <https://github.com/eProsima/IDL-Parser/releases/tag/v1.6.1>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.2.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.2.1>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.10.4 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.10.4>`__
+              - `v2.10.5 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.10.5>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 

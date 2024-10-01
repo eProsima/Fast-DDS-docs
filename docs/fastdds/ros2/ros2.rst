@@ -24,9 +24,9 @@ DDS* as middleware layer: ``rmw_fastrtps_cpp`` and ``rmw_fastrtps_dynamic_cpp``.
 The main difference between the two is that ``rmw_fastrtps_dynamic_cpp`` uses introspection type support at run time to
 decide on the serialization/deserialization mechanism, while ``rmw_fastrtps_cpp`` uses its own type support, which
 generates the mapping for each message type at build time.
-The default ROS 2 RMW implementation until *Foxy* is ``rmw_fastrtps_cpp``.
-For *Galactic* the environment variable ``RMW_IMPLEMENTATION`` has to be set to select ``rmw_fastrtps_cpp`` in order to
-use *Fast DDS* as the middleware layer.
+The default ROS 2 RMW implementation in all distributions except *EOL Galactic* is ``rmw_fastrtps_cpp``.
+For *EOL Galactic* the environment variable ``RMW_IMPLEMENTATION`` has to be set to select ``rmw_fastrtps_cpp`` in
+order to use *Fast DDS* as the middleware layer.
 This environment variable can also be used to select the ``rmw_fastrtps_dynamic_cpp`` implementation:
 
 #. Exporting ``RMW_IMPLEMENTATION`` environment variable:
@@ -55,7 +55,7 @@ This environment variable can also be used to select the ``rmw_fastrtps_dynamic_
 
 .. note::
 
-   Since *Galactic* you may have to install the ``rmw_fastrtps_cpp`` package:
+   On *EOL Galactic* you may have to install the ``rmw_fastrtps_cpp`` package:
 
    .. code-block:: bash
 

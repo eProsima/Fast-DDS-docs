@@ -211,8 +211,8 @@ There are four possible values (see |DurabilityQosPolicyKind-api|):
 * |TRANSIENT_LOCAL_DURABILITY_QOS-api|: When a new DataReader joins, its History is filled with past samples.
 * |TRANSIENT_DURABILITY_QOS-api|: When a new DataReader joins, its History is filled with past samples, which are stored
   on persistent storage (see :ref:`persistence_service`).
-* |PERSISTENT_DURABILITY_QOS-api|: (`Not Implemented`): All the samples are stored on a permanent storage, so that they
-  can outlive a system session.
+* |PERSISTENT_DURABILITY_QOS-api|: When a new DataReader joins, its History is filled with past samples,
+  which are stored on persistent storage (see :ref:`persistence_service`).
 
 .. _durability_compatibilityrule:
 

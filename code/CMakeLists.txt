@@ -101,7 +101,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grep.py
     ${CMAKE_CURRENT_BINARY_DIR}/grep.py COPYONLY)
 
-configure_file(${FAST_INCLUDE_DIR}/../share/fastdds_profiles.xsd
+configure_file(${FAST_INCLUDE_DIR}/../share/fastdds/fastdds_profiles.xsd
     ${CMAKE_CURRENT_BINARY_DIR}/fastdds_profiles.xsd COPYONLY)
 
 # Check validity of Permissions and Governance XML files using Fast RTPS API

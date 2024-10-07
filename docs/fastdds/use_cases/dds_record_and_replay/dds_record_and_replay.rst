@@ -18,7 +18,8 @@ Getting started
 eProsima DDS Record & Replay includes the following tools:
 
 - **DDS Recorder tool**:  This tool's primary function is to store data in an MCAP database,
-  including the publication timestamp, serialized data, and its format. The output MCAP file can be read by any compatible tool,
+  including the publication timestamp, serialized data, and its format.
+  The output MCAP file can be read by any compatible tool,
   as it contains all necessary information for data reproduction.
 
 - **DDS Remote Controller tool**: This application enables remote control of the recording tool,
@@ -59,7 +60,8 @@ Recorder configuration
 ^^^^^^^^^^^^^^^^^^^^^^
 
 ``ddsrecorder`` runs with default configuration settings.
-This default configuration records all messages of all DDS Topics found in DDS Domain ``0`` in the ``output_YYYY-MM-DD-DD_hh-mm-ss.mcap`` file.
+This default configuration records all messages of all DDS Topics found in
+DDS Domain ``0`` in the ``output_YYYY-MM-DD-DD_hh-mm-ss.mcap`` file.
 
 Additionally, it is possible to change the default configuration parameters by means of a YAML configuration file.
 
@@ -95,5 +97,6 @@ Next Steps
 The usage of the DDS Remote Controller and DDS Replay tools follows
 the same steps as the DDS Recorder tool.
 
-For further information, please refer to the 
-`eProsima DDS Record and Replay documentation <https://dds-recorder.readthedocs.io/en/latest/index.html>`_.
+For further information, please refer to the
+`eProsima DDS Record and Replay documentation
+<https://dds-recorder.readthedocs.io/en/latest/index.html>`_.

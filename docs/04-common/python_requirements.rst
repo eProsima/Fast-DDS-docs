@@ -5,7 +5,7 @@ SWIG
 
 SWIG_ is a development tool that allows connecting programs written in C/C++ with a variety of
 other programming languages, among them Python.
-SWIG 4.0 is required in order to build Fast DDS Python bindings.
+SWIG 4.1 is required in order to build Fast DDS Python bindings.
 
 .. note::
 

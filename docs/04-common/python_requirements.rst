@@ -19,7 +19,7 @@ For Ubuntu, please run:
 
 .. code-block:: bash
 
-    sudo apt install swig
+    sudo apt install swig4.1
 
 .. end-swig
 

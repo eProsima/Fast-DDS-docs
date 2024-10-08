@@ -178,3 +178,7 @@ the |DomainParticipant-api| from |DomainParticipantQos-api|.
    :start-after: //DDS_CHANGE_DOMAINPARTICIPANTEXTENDEDQOS
    :end-before: //!
    :dedent: 8
+
+It is also possible to fill a |DomainParticipantExtendedQos-api| object directly from a raw XML string without the need
+to previously load any profile.
+Please refer to :ref:`loading_raw_xml_profiles` section for more information.

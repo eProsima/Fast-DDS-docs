@@ -78,6 +78,100 @@ Please, refer to :ref:`xml_profiles` for further information regarding loading p
 
     To load dynamic types from XML files see the :ref:`Usage` subsection of :ref:`xmldynamictypes`.
 
+.. _loading_raw_xml_profiles:
+
+Get QoS from raw XML profiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Although the :ref:`standard procedure <loadingapplyingprofiles>` is to first load XML profiles, and then create entities
+given the profile name of choice, it is also possible to get the desired QoS from the XML profile directly so it can be
+modified before being used.
+For this purpose, the following public methods are available:
+
+.. collapse:: DomainParticipantFactory
+
+    - |DomainParticipantFactory::get_participant_qos_from_xml-api|
+    - |DomainParticipantFactory::get_default_participant_qos_from_xml-api|
+    - |DomainParticipantFactory::get_participant_extended_qos_from_xml-api|
+    - |DomainParticipantFactory::get_default_participant_extended_qos_from_xml-api|
+
+----------
+
+.. collapse:: DomainParticipant
+
+    - |DomainParticipant::get_publisher_qos_from_xml-api|
+    - |DomainParticipant::get_default_publisher_qos_from_xml-api|
+    - |DomainParticipant::get_subscriber_qos_from_xml-api|
+    - |DomainParticipant::get_default_subscriber_qos_from_xml-api|
+    - |DomainParticipant::get_topic_qos_from_xml-api|
+    - |DomainParticipant::get_default_topic_qos_from_xml-api|
+    - |DomainParticipant::get_requester_qos_from_xml-api|
+    - |DomainParticipant::get_default_requester_qos_from_xml-api|
+    - |DomainParticipant::get_replier_qos_from_xml-api|
+    - |DomainParticipant::get_default_replier_qos_from_xml-api|
+
+----------
+
+.. collapse:: Publisher
+
+    - |Publisher::get_datawriter_qos_from_xml-api|
+    - |Publisher::get_default_datawriter_qos_from_xml-api|
+
+----------
+
+.. collapse:: Subscriber
+
+    - |Subscriber::get_datareader_qos_from_xml-api|
+    - |Subscriber::get_default_datareader_qos_from_xml-api|
+
+----------
+
+- |DomainParticipantFactory-api|
+
+    - |DomainParticipantFactory::get_participant_qos_from_xml-api|
+    - |DomainParticipantFactory::get_default_participant_qos_from_xml-api|
+    - |DomainParticipantFactory::get_participant_extended_qos_from_xml-api|
+    - |DomainParticipantFactory::get_default_participant_extended_qos_from_xml-api|
+
+- |DomainParticipant-api|
+
+    - |DomainParticipant::get_publisher_qos_from_xml-api|
+    - |DomainParticipant::get_default_publisher_qos_from_xml-api|
+    - |DomainParticipant::get_subscriber_qos_from_xml-api|
+    - |DomainParticipant::get_default_subscriber_qos_from_xml-api|
+    - |DomainParticipant::get_topic_qos_from_xml-api|
+    - |DomainParticipant::get_default_topic_qos_from_xml-api|
+    - |DomainParticipant::get_requester_qos_from_xml-api|
+    - |DomainParticipant::get_default_requester_qos_from_xml-api|
+    - |DomainParticipant::get_replier_qos_from_xml-api|
+    - |DomainParticipant::get_default_replier_qos_from_xml-api|
+
+- |Publisher-api|
+
+    - |Publisher::get_datawriter_qos_from_xml-api|
+    - |Publisher::get_default_datawriter_qos_from_xml-api|
+
+- |Subscriber-api|
+
+    - |Subscriber::get_datareader_qos_from_xml-api|
+    - |Subscriber::get_default_datareader_qos_from_xml-api|
+
+For each :code:`qos` kind there exists two method versions; with and without :code:`profile_name` argument.
+When provided, the method searches for the given profile name in the loaded XML profiles,
+and results in error if not found.
+When not provided, the method fills the provided :code:`qos` object with the first retrieved profile of the
+pertinent kind, and results in error when none found.
+In addition, there exists another method version which looks for the default profile of the pertinent kind
+in the provided XML string.
+
+Following is an example of how to get the QoS from a raw XML profile and modify it before creating a new entity.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: cpp
+    :start-after: //XML-GET-QOS-FROM-XML
+    :end-before: //!--
+    :dedent: 8
+
 .. _rootedvsstandalone:
 
 Rooted vs Standalone profiles definition

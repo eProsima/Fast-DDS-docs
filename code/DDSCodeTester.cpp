@@ -5844,6 +5844,41 @@ void xml_profiles_examples()
         }
         //!--
     }
+    {
+        //XML-GET-QOS-FROM-XML
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+
+        Topic* topic =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+
+        Publisher* publisher = participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+
+        // Load XML as string data buffer
+        std::string xml_profile =
+                "\
+                <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
+                <dds>\
+                    <profiles xmlns=\"http://www.eprosima.com\" >\
+                        <data_writer profile_name=\"test_datawriter_profile\" is_default_profile=\"true\">\
+                            <qos>\
+                                <durability>\
+                                    <kind>TRANSIENT_LOCAL</kind>\
+                                </durability>\
+                            </qos>\
+                        </data_writer>\
+                    </profiles>\
+                </dds>\
+                ";
+
+        // Extract Qos from XML
+        DataWriterQos qos;
+        if (RETCODE_OK == publisher->get_datawriter_qos_from_xml(xml_profile, qos, "test_datawriter_profile"))
+        {
+            // Modify extracted qos and use it to create DDS entities
+        }
+        //!--
+    }
 }
 
 void dds_transport_examples ()

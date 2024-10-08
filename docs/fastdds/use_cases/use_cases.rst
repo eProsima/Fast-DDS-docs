@@ -89,7 +89,7 @@ with distributed systems:
   this documentation includes a whole independent section to show the use of the library in ROS 2,
   and how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2 project.
 
-+ :ref:`rosbag_capture`.
++ :ref:`dds_record_and_replay`.
   Instructions on how to tune your application to be able to record and replay your DDS messages using ROS 2 rosbag2
   package.
 
@@ -117,6 +117,6 @@ with distributed systems:
     /fastdds/use_cases/unique_network_flows/unique_network_flows.rst
     /fastdds/use_cases/statistics_module/statistics_module.rst
     /fastdds/use_cases/dynamic_network_interfaces/dynamic_network_interfaces.rst
-    /fastdds/use_cases/rosbag_capture/rosbag_capture.rst
+    /fastdds/use_cases/dds_record_and_replay/dds_record_and_replay.rst
     /fastdds/use_cases/request_reply/request_reply.rst
     /fastdds/use_cases/remote_type_discovery_matching/remote_type_discovery_matching.rst

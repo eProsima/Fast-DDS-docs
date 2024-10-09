@@ -88,44 +88,6 @@ given the profile name of choice, it is also possible to get the desired QoS fro
 modified before being used.
 For this purpose, the following public methods are available:
 
-.. collapse:: DomainParticipantFactory
-
-    - |DomainParticipantFactory::get_participant_qos_from_xml-api|
-    - |DomainParticipantFactory::get_default_participant_qos_from_xml-api|
-    - |DomainParticipantFactory::get_participant_extended_qos_from_xml-api|
-    - |DomainParticipantFactory::get_default_participant_extended_qos_from_xml-api|
-
-----------
-
-.. collapse:: DomainParticipant
-
-    - |DomainParticipant::get_publisher_qos_from_xml-api|
-    - |DomainParticipant::get_default_publisher_qos_from_xml-api|
-    - |DomainParticipant::get_subscriber_qos_from_xml-api|
-    - |DomainParticipant::get_default_subscriber_qos_from_xml-api|
-    - |DomainParticipant::get_topic_qos_from_xml-api|
-    - |DomainParticipant::get_default_topic_qos_from_xml-api|
-    - |DomainParticipant::get_requester_qos_from_xml-api|
-    - |DomainParticipant::get_default_requester_qos_from_xml-api|
-    - |DomainParticipant::get_replier_qos_from_xml-api|
-    - |DomainParticipant::get_default_replier_qos_from_xml-api|
-
-----------
-
-.. collapse:: Publisher
-
-    - |Publisher::get_datawriter_qos_from_xml-api|
-    - |Publisher::get_default_datawriter_qos_from_xml-api|
-
-----------
-
-.. collapse:: Subscriber
-
-    - |Subscriber::get_datareader_qos_from_xml-api|
-    - |Subscriber::get_default_datareader_qos_from_xml-api|
-
-----------
-
 - |DomainParticipantFactory-api|
 
     - |DomainParticipantFactory::get_participant_qos_from_xml-api|

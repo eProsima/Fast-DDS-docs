@@ -94,8 +94,8 @@ Stop the recorder with ``Ctrl+C`` and check that the MCAP file exists.
 Next Steps
 ==========
 
-The usage of the DDS Remote Controller and DDS Replay tools follows
-the same steps as the DDS Recorder tool.
+Once having finished a recording session, it is possible to play it back by using **DDS Replay tool**, as shown
+in `this tutorial <https://dds-recorder.readthedocs.io/en/latest/rst/replaying/getting_started/usage_example.html>`_.
 
 For further information, please refer to the
 `eProsima DDS Record and Replay documentation

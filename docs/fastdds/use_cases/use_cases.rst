@@ -90,8 +90,8 @@ with distributed systems:
   and how to take full advantage of *Fast DDS* wide set of capabilities in a ROS 2 project.
 
 + :ref:`dds_record_and_replay`.
-  Instructions on how to tune your application to be able to record and replay your DDS messages using ROS 2 rosbag2
-  package.
+  Instructions on how to tune your application to be able to record and replay your DDS messages using
+  `eProsima DDS Record and Replay <https://github.com/eProsima/DDS-Record-Replay>`_.
 
 + :ref:`use-case-request-reply`.
   Although *Fast DDS* provides a *Publisher-Subscriber* communication protocol, it offers a mechanism to use

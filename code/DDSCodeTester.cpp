@@ -7739,28 +7739,6 @@ bool dds_permissions_test(
     return false;
 }
 
-bool dds_rosbag_example()
-{
-    //CREATE THE PARTICIPANT
-    DomainParticipant* participant_;
-    Topic* topic_;
-    TypeSupport type_;
-
-    participant_ = DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-
-    //CREATE THE TOPIC FOR ROSBAG
-    topic_ = participant_->create_topic(
-        "rt/HelloWorldTopic",
-        type_.get_type_name(),
-        TOPIC_QOS_DEFAULT);
-    if (topic_ == nullptr)
-    {
-        return false;
-    }
-    //!
-    return true;
-}
-
 void pubsub_api_example_create_entities()
 {
     //PUBSUB_API_CREATE_PARTICIPANT

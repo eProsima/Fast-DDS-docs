@@ -34,7 +34,7 @@ Step 1: Update the package name and CMake configuration
    * Rename ``FASTRTPS_DEFAULT_PROFILES_FILE`` to ``FASTDDS_DEFAULT_PROFILES_FILE``.
    * The configuration file for loading profiles is now ``DEFAULT_FASTDDS_PROFILES.xml``.
 
-3. Update CMakeFile names on Windows:
+3. Update CMake file names on Windows:
 
    * Rename ``fastrtps.manifest.in`` to ``fastdds.manifest.in``.
    * Rename ``fastrtps-config.cmake`` to ``fastdds-config.cmake``.
@@ -65,7 +65,7 @@ Verify these versions and update accordingly to avoid any integration issues.
 
 .. _step-4-apply-namespace-changes:
 
-Step 4: Apply Namespace changes
+Step 4: Apply namespace changes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Namespace migration:
@@ -471,8 +471,8 @@ In this delivery mechanisms example, the key changes are:
 
 Refactor the DiscoveryServerExample example with the current new example format.
 
-`Flow Controller <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/flow_controller>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+`Flow Controller <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/flow_control>`_
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the FlowControlExample example with the current new example format.
 In this Flow Controller example, the key changes are:

@@ -2,11 +2,11 @@
 .. include:: ../03-exports/aliases-api.include
 .. include:: ../03-exports/roles.include
 
-Migration Guide from Fast DDS v2 to Fast DDS v3
-===============================================
+Migration Guide to Fast DDS v3
+==============================
 
 This document aims to help during the migration process from eProsima *Fast DDS version* 2 to *Fast DDS version* 3.
-For more information about all the updates, please refer to the [release notes](https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html).
+For more information about all the updates, please refer to the :ref:`release notes <release_notes>`.
 
 Migration Steps
 ---------------
@@ -15,7 +15,7 @@ The following steps describe the possible changes that your project may require 
 
 - :ref:`step-1-update-the-package-name-and-cmake-configuration`
 - :ref:`step-2-update-dependencies`
-- :ref:`step-3-ensure-compability-with-related-products`
+- :ref:`step-3-ensure-compatibility-with-related-products`
 - :ref:`step-4-apply-namespace-changes`
 - :ref:`step-5-migrate-public-headers`
 - :ref:`step-6-handle-removed-or-private-headers`
@@ -25,15 +25,16 @@ The following steps describe the possible changes that your project may require 
 
 .. _step-1-update-the-package-name-and-cmake-configuration:
 
-Step 1: Update the Package Name and CMake Configuration
+Step 1: Update the package name and CMake configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. CMake Project Name: Rename the CMake project from ``fastrtps`` to ``fastdds``.
-2. Environment Variables:
+1. CMake project name: Rename the CMake project from ``fastrtps`` to ``fastdds``.
+2. Environment variables:
 
    * Rename ``FASTRTPS_DEFAULT_PROFILES_FILE`` to ``FASTDDS_DEFAULT_PROFILES_FILE``.
    * The configuration file for loading profiles is now ``DEFAULT_FASTDDS_PROFILES.xml``.
-3. Update CMake File Names on Windows:
+
+3. Update CMakeFile names on Windows:
 
    * Rename ``fastrtps.manifest.in`` to ``fastdds.manifest.in``.
    * Rename ``fastrtps-config.cmake`` to ``fastdds-config.cmake``.
@@ -41,38 +42,43 @@ Step 1: Update the Package Name and CMake Configuration
 
 .. _step-2-update-dependencies:
 
-Step 2: Update Dependencies
+Step 2: Update dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Fast DDS v3 is only compatible with Fast CDR v2.
-If you are not using Fast CDR as :ref:`third-party <third-party_libraries-options>`, please ensure that your local dependencies are up-to-date.
-Refer to the :ref:`library deprendencies table <dependencies_compatibilities_build_system_dependencies>` to verify version compatibility for all Fast DDS library dependencies.
+If you are not using Fast CDR as :ref:`third-party <third-party_libraries-options>`, please ensure that your local
+dependencies are up-to-date.
+Refer to the :ref:`library deprendencies table <dependencies_compatibilities_build_system_dependencies>` to verify
+version compatibility for all Fast DDS library dependencies.
 
-.. _step-3-ensure-compability-with-related-products:
+.. _step-3-ensure-compatibility-with-related-products:
 
-Step 3: Ensure Compability with Related Products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 3: Ensure compatibility with related products
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Fast DDS v3 requires Fast DDS Gen v4 for code generation. Make sure to regenerate types using this compatible version.
 
-For other compatibility requirements with related products (e.g., Shapes Demo, Discovery Server), refer to the table of [products compatibility](https://fast-dds.docs.eprosima.com/en/latest/notes/versions.html#eprosima-products-compatibility), which outlines version compatibility across the Fast DDS ecosystem.
+For other compatibility requirements with related products (e.g., Shapes Demo, Discovery Server), refer to the table
+of :ref:`products compatibility <dependencies_compatibilities_product_compatibility>`, which outlines version
+compatibility across the Fast DDS ecosystem.
 Verify these versions and update accordingly to avoid any integration issues.
 
 .. _step-4-apply-namespace-changes:
 
-Step 4: Apply Namespace Changes
+Step 4: Apply Namespace changes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Namespace Migration:
+1. Namespace migration:
 
    * Update all ``eprosima::fastrtps::`` namespace references to ``eprosima::fastdds::``.
-   * Move built-in topics ``SubscriptionBuiltinTopicData``, ``PublicationBuiltinTopicData``, and ``ParticipantBuiltinTopicData`` from ``fastdds::dds::builtin::`` to ``fastdds::dds::``.
+   * Move built-in topics ``SubscriptionBuiltinTopicData``, ``PublicationBuiltinTopicData``, and
+     ``ParticipantBuiltinTopicData`` from ``fastdds::dds::builtin::`` to ``fastdds::dds::``.
    * Move ``Duration_t`` and ``c_TimeInfinite`` references to ``dds::``.
    * Move ``Time_t.hpp`` references from ``eprosima::fastdds::`` to ``eprosima::fastdds::dds``.
 
    Ensure you update these namespace references across your code to avoid compilation errors.
 
-2. Renamed Types:
+2. Renamed types:
 
    * Change ``EventKindBits::`` references to ``EventKind::``.
    * Change ``EventKindEntityId::`` references to ``EntityId::``.
@@ -82,19 +88,20 @@ Step 4: Apply Namespace Changes
 
 .. _step-5-migrate-public-headers:
 
-Step 5: Migrate Public Headers
+Step 5: Migrate public headers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. File Location headers:
+1. Header files location:
 
    All the headers in ``include/fastrtps`` were migrated to ``include/fastdds``.
-   In particular, the following list includes headers that have been relocated to different paths or whose implementations have been incorporated into other headers:
+   In particular, the following list includes headers that have been relocated to different paths or whose
+   implementations have been incorporated into other headers:
 
    .. list-table::
       :header-rows: 1
 
-      * - Fast DDS 2.x file *include* path
-        - Fast DDS v3.0.0 file *include* path
+      * - Fast DDS v2 file *include* path
+        - Fast DDS v3 file *include* path
       * - ``fastdds/rtps/resources/ResourceManagement.hpp``
         - ``fastdds/rtps/attributes/ResourceManagement.hpp``
       * - ``fastrtps/eProsima_auto_link.h``
@@ -138,16 +145,17 @@ Step 5: Migrate Public Headers
 
    Also, the ``fixed_size_string.hpp`` implementation has been migrated from Fast DDS package to Fast CDR.
 
-2. File Extensions:
+2. File extensions:
 
    Rename file extensions from `.h` to `.hpp`.
 
 .. _step-6-handle-removed-or-private-headers:
 
-Step 6: Handle Removed or Private Headers
+Step 6: Handle removed or private headers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following list contains headers that were previously in the `include` folder and have been relocated to the `src/cpp` folder.
+The following list contains headers that were previously in the `include` folder and have been relocated to
+the `src/cpp` folder.
 Since they are no longer public, it is not possible to include them in external projects:
 
 * ParticipantAttributes.hpp
@@ -196,15 +204,18 @@ Since they are no longer public, it is not possible to include them in external 
 * TypeLookupService.hpp
 
 If your project previously included any of these headers, you will need to modify your implementation.
-Since these headers are now private, you should replace their usage with public alternatives or refactor the related code to ensure it does not depend on private headers.
+Since these headers are now private, you should replace their usage with public alternatives or refactor the
+related code to ensure it does not depend on private headers.
 
 .. _step-7-update-api-methods:
 
-Step 7: Update API Methods
+Step 7: Update API methods
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The table below contains the list of API changes, showing the previous methods and the corresponding new ones introduced in Fast DDS v3.
-The new API methods achieve the same functionality, even though the signature of the method is different from the deprecated one.
+The table below contains the list of API changes, showing the previous methods and the corresponding new ones
+introduced in Fast DDS v3.
+The new API methods achieve the same functionality, even though the signature of the method is different
+from the deprecated one.
 
 .. list-table::
    :header-rows: 1
@@ -344,14 +355,15 @@ Make the necessary updates to your implementation to ensure compatibility with t
 
 .. _step-8-update-structs-enums-and-variables:
 
-Step 8: Update Structs, Enums, and Variables
+Step 8: Update structs, enums, and variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As part of the Fast DDS migration, several structs, enums, and variables have been updated. You will need to modify your code to reflect these changes:
+As part of the Fast DDS migration, several structs, enums, and variables have been updated. You will need to modify
+your code to reflect these changes:
 
 1. Enum and Variable Changes:
 
-    * ``DiscoveryProtocol_t`` is now ``DiscoveryProtocol``.
+    * Rename ``DiscoveryProtocol_t`` to ``DiscoveryProtocol``.
     * Rename ``initialHeartbeatDelay`` to ``initial_heartbeat_delay``.
     * Rename ``heartbeatPeriod`` to ``heartbeat_period``.
     * Rename ``nackResponseDelay`` to ``nack_response_delay``.
@@ -367,31 +379,36 @@ As part of the Fast DDS migration, several structs, enums, and variables have be
 
     * ``SubscriptionBuiltinTopicData`` has been extended with additional fields to mimic those of ``ReaderProxyData``.
     * ``PublicationBuiltinTopicData`` has been extended with additional fields to mimic those of ``WriterProxyData``.
-    * ``ParticipantBuiltinTopicData`` has been extended to include the product version and fields from ``ParticipantProxyData``.
+    * ``ParticipantBuiltinTopicData`` has been extended to include the product version and fields from
+      ``ParticipantProxyData``.
 
 3. Other Struct Changes:
 
-    * ``SendBuffersAllocationAttributes`` has a new attribute to define the allocation configuration of the ``NetworkBuffers``.
-    * ``TypeConsistencyQos`` has been removed from ``DataReader``, and the ``TypeConsistencyEnforcementQosPolicy`` and ``DataRepresentationQosPolicy`` have been added.
+    * ``SendBuffersAllocationAttributes`` has a new attribute to define the allocation configuration of the
+      ``NetworkBuffers``.
+    * ``TypeConsistencyQos`` has been removed from ``DataReader``, and the ``TypeConsistencyEnforcementQosPolicy`` and
+      ``DataRepresentationQosPolicy`` have been added.
 
 .. _step-9-refactor-examples:
 
-Step 9: Refactor Examples
+Step 9: Examples refactor
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All examples have been refactored to follow a consistent structure across the Fast DDS project.
 This includes renaming files, restructuring classes, and updating the overall format.
-Additionally, it is important to note that some examples have been removed, renamed, or had significant changes to their options and configurations.
-If you have integrated any of these examples into your own implementation, carefully review the updated examples to ensure compatibility with your project.
+Additionally, it is important to note that some examples have been removed, renamed, or had significant changes
+to their options and configurations.
+If you have integrated any of these examples into your own implementation, carefully review the updated examples
+to ensure compatibility with your project.
 
 All the examples have been refactored to follow the same structure:
 
 * File names, guards, and classes follow new format.
 * Detailed and well-formed README.md with example explanation.
-* Example structured in applications, stopped by `SIGTERM` signal.
+* Example structured in applications, stopped by ``SIGTERM`` signal.
 
-Hello World
-"""""""""""
+`Hello World <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/hello_world>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the HelloWorld example with the current new example format.
 In this hello world example, the key changes are:
@@ -400,15 +417,15 @@ In this hello world example, the key changes are:
 * Add a subscriber implementing the waitsets mechanism.
 * Provide XML profiles examples targeting several scenarios (e.g., SampleConfig_Controller, Events, Multimedia).
 
-X-Types Examples
-""""""""""""""""
+`X-Types Examples <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/xtypes>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 In this X-Types example, a type is defined at runtime on the publisher side using the Dynamic Types API.
 The subscriber discovers the type, creates a reader for it, and prints the received data.
 This example is type compatible with the Hello World example.
 
-Configuration
-"""""""""""""
+`Configuration <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/configuration>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 In the configuration example, the key changes are:
 
@@ -422,8 +439,8 @@ In the configuration example, the key changes are:
   - Ownership (strength)
   - Partitions
 
-Content Filter
-""""""""""""""
+`Content Filter <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/content_filter>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the ContentFilteresTopicExample example with the current new example format.
 In this content filter example, the main changes are:
@@ -431,16 +448,17 @@ In this content filter example, the main changes are:
 * Added option to select filter type: Default, Custom, or None.
 * Customizable lower-bound and upper-bound options of the filter as arguments.
 
-  - For the Custom filter, they represent the maximum and minimum values of the message indexes that are filtered out through the filter.
+  - For the Custom filter, they represent the maximum and minimum values of the message indexes that are filtered out
+    through the filter.
   - For the Default filter, they represent the maximum and minimum value message indexes that are read.
 
-Custom Payload Pool
-"""""""""""""""""""
+`Custom Payload Pool <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/custom_payload_pool>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the CustomPayloadPoolExample example with the current new example format.
 
-Delivery Mechanisms
-"""""""""""""""""""
+`Delivery Mechanism <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 In this delivery mechanisms example, the key changes are:
 
@@ -448,13 +466,13 @@ In this delivery mechanisms example, the key changes are:
 * Loans mechanism for data management.
 * Option to select all delivery mechanisms.
 
-Discovery Server
-""""""""""""""""
+`Discovery Server <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/discovery_server>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the DiscoveryServerExample example with the current new example format.
 
-Flow Controller
-"""""""""""""""
+`Flow Controller <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/flow_controller>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the FlowControlExample example with the current new example format.
 In this Flow Controller example, the key changes are:
@@ -464,27 +482,28 @@ In this Flow Controller example, the key changes are:
 
   - Scheduler policy used by the flow controller.
   - Maximum number of bytes to be sent to the network per period.
-  - Period of time in milliseconds during which the flow controller is allowed to send the maximum number of bytes per period.
-  - Property fastdds.sfc.priority.
-  - Property fastdds.sfc.bandwidth_reservation.
+  - Period of time in milliseconds during which the flow controller is allowed to send the maximum number of bytes
+    per period.
+  - Property `fastdds.sfc.priority`.
+  - Property `fastdds.sfc.bandwidth_reservation`.
 
-Request-Reply
-"""""""""""""
+`Request-Reply <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/request_reply>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the Request-Reply example with the current new example format.
 
-Static EDP Discovery
-""""""""""""""""""""
+`Static EDP Discovery <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/static_edp_discovery>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the Static EDP Discovery example with the new example format.
 
-Security
-""""""""
+`Security <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/security>`_
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the SecureHelloWorld example with the current new example format.
 
-RTPS Entities
-"""""""""""""
+`RTPS Entities <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps>`_
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Refactor the rtps/Registered example with the current new example format.
 This RTPS example demonstrates a basic RTPS deployment.

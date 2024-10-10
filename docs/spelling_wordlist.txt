@@ -73,6 +73,7 @@ crypto
 cryptographic
 cryptosystem
 ctest
+Customizable
 datagram
 datagrams
 datarace
@@ -107,6 +108,8 @@ DurabilityKind
 eClock
 endian
 endianness
+enum
+enums
 eProsima
 ethernet
 executables
@@ -313,6 +316,7 @@ Valgrind
 vcstool
 verbosities
 vm
+waitsets
 wget
 whitelist
 whitelists

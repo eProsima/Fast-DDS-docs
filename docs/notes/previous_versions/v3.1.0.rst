@@ -3,10 +3,10 @@
 
 This minor release includes the following **features** in an ABI compatible manner:
 
-#. Allow runing CI on external contributions
+#. Allow running CI on external contributions
 #. Allow for all durability configurations
 #. Complete support for ``Dynamic Network Interfaces``
-#. Add QoS getters from raw ``XML``
+#. Add :ref:`QoS getters from raw XML <loading_raw_xml_profiles>`
 
 This release includes the following **improvements**:
 
@@ -14,7 +14,7 @@ This release includes the following **improvements**:
 #. Modify help command of ``XML CLI tool``
 #. Register and propagate ``MonitorService`` status type object
 #. Add tests for ``TypeLookup service``
-#. Convert ``Fast DDS v2`` to ``v3`` Migration Changes into a Step-by-Step User Guide
+#. Convert ``Fast DDS v2`` to ``v3`` Migration Changes into a :ref:`Step-by-Step User Guide <migration_guide>`
 #. Update ``asio`` version from ``1.18.1`` to ``1.31.0``
 #. Update ``nlohmann/json`` thirdparty version from ``3.9.1`` to ``3.11.3``
 #. Regenerate types with latest ``Fast DDS-Gen v4.0.2``
@@ -24,9 +24,9 @@ This release includes the following **improvements**:
 This release includes the following **fixes**:
 
 #. Update request reply example ``README``
-#. Fix ``xtypes example`` segfault if XML env var is not set
+#. Fix ``xtypes example`` segfault if XML environment var is not set
 #. Remove unused ``validMatching`` methods in ``EDP``
-#. Add Regression test for ``Fast DDS-Gen`` Use different typename for collections of ``TK_UINT8`` and ``TK_BYTE``
+#. Add Regression test for ``Fast DDS-Gen`` Use different ``typename`` for collections of ``TK_UINT8`` and ``TK_BYTE``
 #. Update latest ``2.10.x`` to ``2.10.5``
 #. Discard changes with big ``key-only`` payload and no key hash
 #. Add test for support of enumeration literal ``@value`` annotation
@@ -43,5 +43,5 @@ This release includes the following **fixes**:
 .. important::
 
     When upgrading to version 3.1.0 it is **required** to regenerate generated source from IDL files
-    using at least `Fast DDS-Gen v4.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.0>`_.
+    using at least `Fast DDS-Gen v4.0.2 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.2>`_.
     But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

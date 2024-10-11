@@ -1,9 +1,15 @@
 Supported versions
 ==================
 
-Version 3.0
-------------
+Version 3.1
+-----------
 
+.. include:: v3.1.0.rst
+
+Version 3.0
+-----------
+
+.. include:: v3.0.1.rst
 .. include:: v3.0.0.rst
 
 Version 2.14

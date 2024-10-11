@@ -2,6 +2,8 @@
 .. include:: ../03-exports/aliases-api.include
 .. include:: ../03-exports/roles.include
 
+.. _migration_guide:
+
 Migration Guide to Fast DDS v3
 ==============================
 

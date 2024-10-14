@@ -18,16 +18,30 @@ The *eProsima Fast DDS* library provides both an Application Programming Interfa
 that deploy
 a Data-Centric Publisher-Subscriber (DCPS) model, with the purpose of establishing efficient and reliable
 information distribution among Real-Time Systems.
+
+.. raw:: html
+
+    <br/>
+
+Commercial support
+^^^^^^^^^^^^^^^^^^
+
+Looking for commercial support? Write us to info@eprosima.com
+
+Find more about us at `eProsima's webpage <https://eprosima.com/>`__.
+
+Key features
+^^^^^^^^^^^^
+
 *eProsima Fast DDS* is predictable, scalable, flexible, and efficient in resource handling.
 For meeting these requirements, it makes use of typed interfaces and hinges on a many-to-many
 distributed network paradigm that neatly allows separation of the publisher and subscriber sides of the communication.
 *eProsima Fast DDS* comprises:
 
-#.  The :ref:`DDS API <dds_layer>` implementation.
-#.  :ref:`Fast DDS-Gen <fastddsgen_intro>`, a generation tool for bridging typed interfaces with the middleware
-    implementation.
-#.  The underlying :ref:`RTPS <rtps_layer>` wire protocol implementation.
-
+* The :ref:`DDS API <dds_layer>` implementation.
+* :ref:`Fast DDS-Gen <fastddsgen_intro>`, a generation tool for bridging typed interfaces with the middleware
+  implementation.
+* The underlying :ref:`RTPS <rtps_layer>` wire protocol implementation.
 
 For all the above, *eProsima Fast DDS* has been chosen as the default middleware supported by the
 `Robot Operating System 2 (ROS 2) <https://index.ros.org/doc/ros2/>`__ in every long term (LTS) releases and most of the
@@ -184,16 +198,6 @@ Finally, there are some other *eProsima* products that use Fast DDS as a middlew
 *DDS Router* and *Fast DDS python* wrapper.
 Those that are strongly attached to each Fast DDS supported version are described in :ref:`this product compatibility
 table<dependencies_compatibilities_product_compatibility>`.
-
-Contacts and Commercial support
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Find more about us at `eProsima's webpage <https://eprosima.com/>`__.
-
-Support available at:
-
-* Email: support@eprosima.com
-* Phone: +34 91 804 34 48
 
 Contributing to the documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -1,8 +1,6 @@
-.. raw:: html
 
-  <h1>
-    eProsima Fast DDS Documentation
-  </h1>
+eProsima Fast DDS Documentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: /01-figures/logo.png
   :height: 100px

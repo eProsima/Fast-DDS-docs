@@ -62,13 +62,13 @@ jobs:
       # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
       # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: ${{ inputs.os-version || 'ubuntu-24.04' }}
-      label: 'ubuntu-ci-master-main'
+      label: 'ubuntu-ci-3.1.x-2.1.x'
       colcon-args: ${{ inputs.colcon-args }}
       cmake-args: ${{ inputs.cmake-args }}
       ctest-args: ${{ inputs.ctest-args }}
       fastdds-docs-branch: ${{ inputs.fastdds-docs-branch || github.ref }}
-      fastdds-branch: ${{ inputs.fastdds-branch || 'master' }}
-      fastdds-python-branch: ${{ inputs.fastdds-python-branch || 'main' }}
+      fastdds-branch: ${{ inputs.fastdds-branch || '3.1.x' }}
+      fastdds-python-branch: ${{ inputs.fastdds-python-branch || '2.1.x' }}
       run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
       run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) }}
       use-ccache: ${{ inputs.use-ccache || false }}

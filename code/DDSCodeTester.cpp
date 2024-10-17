@@ -4288,13 +4288,13 @@ void dds_qos_examples()
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
         // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
-        // Change max_samples to 200
-        writer_qos.resource_limits().max_samples = 200;
+        // Change max_samples to 2000
+        writer_qos.resource_limits().max_samples = 2000;
         // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
         // Change max_instances to 20
         writer_qos.resource_limits().max_instances = 20;
         // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
-        // Change max_samples_per_instance to 100 as it must be lower than max_samples
+        // Change max_samples_per_instance to 100
         writer_qos.resource_limits().max_samples_per_instance = 100;
         // The ResourceLimitsQosPolicy is constructed with allocated_samples = 100 by default
         // Change allocated_samples to 50

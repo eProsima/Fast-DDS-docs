@@ -16,7 +16,7 @@ using Python API step by step.
 
 .. include:: ../simple_app/includes/background.rst
 
-.. include:: ../simple_app/includes/prerequisites.rst
+.. include:: includes/prerequisites.rst
 
 .. include:: includes/workspace.rst
 

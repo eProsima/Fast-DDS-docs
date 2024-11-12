@@ -58,6 +58,7 @@ This release includes the following **fixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.10.5.rst
 .. include:: previous_versions/v2.10.4.rst
 .. include:: previous_versions/v2.10.3.rst
 .. include:: previous_versions/v2.10.2.rst

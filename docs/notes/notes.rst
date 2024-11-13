@@ -5,50 +5,28 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.10.5
+Version 2.10.6
 ==============
-
-This release includes the following **features** in an ABI compatible manner:
-
-#. Add XML configuration for :ref:`FlowControllerDescriptor <flowcontrollers_xml>`
-
-This release includes the following **improvements**:
-
-#. Use ``%*`` instead of loop in ``.bat`` scripts
-#. Documentation improvements
-#. Use absolute paths when loading XML files
-#. Reduce tests flakiness
-#. Add unsigned specification to literals
-
-Github CI management:
-
-#. Set fallback branch for ``get_related_branch_from_repo`` correctly
-#. Fix sanitizers CI test summary report
-#. Run selected VS tool on Windows CI
-#. Use token for CCache action
-#. Refactor Fast DDS Ubuntu CI to include several tests
-#. Avoid CCache in some Github workflows
-#. Build profiling tests as alternate build in Ubuntu CI
-#. Add Ubuntu weekly CI
-#. Fix python version in sanitizers CI
-#. Fix windows CI and add vanilla build step in Ubuntu CI
-#. Use eProsima-CI action to install Qt
-#. Update types regeneration script homing path
 
 This release includes the following **fixes**:
 
-#. Automatically unmatch remote participants on participant deletion
-#. Only apply content filter to ALIVE changes
-#. Fix liveliness state in a multiple reader - one writer scenario
-#. Fix topic interference on ``liveliness_changed`` status
-#. Fix DS servers not connecting due to ports logic
-#. Fix issue with exclusive ownership and unordered samples
-#. Fix SecurityManager memory issue
-#. Correctly initialize ``MatchingFailureMask`` constants to be used with the ``std::bitset`` API
-#. Fix data race in ``TypeObjectFactory::get_instance``
-#. Properly delete builtin statistics writers upon ``delete_contained_entities()``
-#. Fix secure simple participants with initial peers not matching over TCP
-#. Fix access violations on XML parser detected by OSS-fuzz
+#. Remove double ``//`` in some installation paths
+#. Discard changes with big key-only payload and no key hash
+#. Fix DataReaderHistory regression
+#. Be less strict with parameter lengths
+#. Check if ``SHM`` transport is disabled in ``LARGE_DATA`` modes
+#. Fix issues in Dynamic Network Interfaces
+
+This release includes the following **improvements**:
+
+#. Add references to new nightly jobs per supported branch in README
+#. Update commercial support section in readme
+#. Modify help command of XML CLI tool
+
+
+Github CI management:
+
+#. Allow runing CI on external contributions
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

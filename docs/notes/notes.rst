@@ -20,13 +20,13 @@ This release includes the following **fixes**:
 This release includes the following **improvements**:
 
 #. Add references to new nightly jobs per supported branch in README
-#. Update commercial support section in readme
+#. Update commercial support section in README
 #. Modify help command of XML CLI tool
 
 
 Github CI management:
 
-#. Allow runing CI on external contributions
+#. Allow running CI on external contributions
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

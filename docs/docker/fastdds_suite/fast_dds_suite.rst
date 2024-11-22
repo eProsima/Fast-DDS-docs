@@ -112,28 +112,6 @@ or
     cd dds/HelloWorldExample/bin
     ./DDSHelloWorldExample subscriber
 
-Benchmark Example
-^^^^^^^^^^^^^^^^^
-
-This example creates either a Publisher or a Subscriber and on a successful match starts sending samples. After a
-few seconds the process that launched the Publisher will show a report with the number of samples transmitted.
-
-On the subscriber side, run:
-
-.. code-block:: bash
-
-    goToExamples
-    cd dds/Benchmark/bin
-    ./DDSBenchmark subscriber udp
-
-On the publisher side, run:
-
-.. code-block:: bash
-
-    goToExamples
-    cd dds/Benchmark/bin
-    ./DDSBenchmark publisher udp
-
 .. _fast_dds_suite_shapes_demo:
 
 Shapes Demo

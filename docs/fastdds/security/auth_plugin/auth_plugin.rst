@@ -59,9 +59,9 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
    * - preferred_key_agreement *(optional)*
      - The preferred algorithm to use for generating the session's shared secret |br|
        at the end of the authentication phase. Supported values are: |br|
-         a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. |br|
-         b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. |br|
-	   Will default to ``ECDH`` if the property is not present.
+       a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. |br|
+       b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. |br|
+       Will default to ``ECDH`` if the property is not present.
 
 .. note::
   All listed properties have "dds.sec.auth.builtin.PKI-DH." prefix.

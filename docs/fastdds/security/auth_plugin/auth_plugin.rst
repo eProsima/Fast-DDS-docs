@@ -24,7 +24,8 @@ The authentication plugin implemented in Fast DDS is referred to as "DDS:\Auth\:
 `DDS Security <https://www.omg.org/spec/DDS-SECURITY/1.1/>`_ specification.
 The DDS:\Auth\:PKI-DH plugin uses a trusted *Certificate Authority* (CA) and the ECDSA
 Digital Signature Algorithms to perform the mutual authentication.
-It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement Methods.
+It also establishes a shared secret using either Elliptic Curve Diffie-Hellman (ECDH) or MODP-2048 Diffie-Hellman (DH)
+as Key Agreement protocol.
 This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm-gmac`.
 
 The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos|

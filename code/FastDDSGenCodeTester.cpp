@@ -2,6 +2,10 @@
 #include <string>
 #include <bitset>
 
+#include <fastcdr/config.h>
+
+#if FASTCDR_VERSION_MAJOR > 1
+
 #include <fastcdr/xcdr/optional.hpp>
 
 using octet = unsigned char;
@@ -177,6 +181,8 @@ enum MyBitMask : uint8_t
     flag7 = 0x01 << 7
 };
 //!
+
+#endif // FASTCDR_VERSION_MAJOR > 1
 
 /*
    // INCLUDE_MORE_IDL_FILES

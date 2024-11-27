@@ -90,9 +90,9 @@ This is a minimal example that will perform a Publisher/Subscriber match and sta
 .. code-block:: bash
 
     goToExamples
-    cd dds/HelloWorldExample/bin
-    tmux new-session "./DDSHelloWorldExample publisher 0 1000" \; \
-        split-window "./DDSHelloWorldExample subscriber" \; \
+    cd hello_world/bin
+    tmux new-session "./hello_world publisher" \; \
+        split-window "./hello_world subscriber" \; \
         select-layout even-vertical
 
 This example is not constrained to the current instance. It's possible to run several instances of this
@@ -101,16 +101,16 @@ container to check the communication between them by running the following from 
 .. code-block:: bash
 
     goToExamples
-    cd dds/HelloWorldExample/bin
-    ./DDSHelloWorldExample publisher
+    cd hello_world/bin
+    ./hello_world publisher
 
 or
 
 .. code-block:: bash
 
     goToExamples
-    cd dds/HelloWorldExample/bin
-    ./DDSHelloWorldExample subscriber
+    cd hello_world/bin
+    ./hello_world subscriber
 
 .. _fast_dds_suite_shapes_demo:
 
@@ -165,11 +165,11 @@ DDS Router communicating both Domains.
 .. code-block:: bash
 
     goToExamples
-    cd dds/BasicConfigurationExample/bin
+    cd configuration/bin
     tmux new-session \
         "ddsrouter --config-path /config.yml" \; \
-        split-window -h "./BasicConfigurationExample publisher --domain 0 --interval 1000 --transport udp" \; \
-        split-window -v "./BasicConfigurationExample subscriber --domain 1 --transport udp"
+        split-window -h "./configuration publisher --domain 0 --interval 1000 --transport udp" \; \
+        split-window -v "./configuration subscriber --domain 1 --transport udp"
 
 eProsima DDS Router usage information can be found on the `DDS Router documentation
 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/getting_started/project_overview.html>`_.

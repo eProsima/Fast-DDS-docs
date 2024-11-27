@@ -206,7 +206,7 @@ Move Libraries, Examples, and Tests to the QNX Target
        # Move Fast-DDS library to the QNX target
        scp -r ~/qnx710/target/qnx7/aarch64le/usr/bin/Fast-DDS_test root@<target-ip-address>:/var
 
-Run DDSHelloWorldExample
+Run Hello World
 ------------------------
 
 #. Open a terminal and run a subscriber:
@@ -217,7 +217,7 @@ Run DDSHelloWorldExample
        ssh root@<target-ip-address>
 
        # Run a subscriber
-       /var/examples/cpp/dds/HelloWorldExample/bin/DDSHelloWorldExample subscriber
+       /var/examples/cpp/hello_world/bin/hello_world subscriber
 
 #. Open another terminal and run a publisher:
 
@@ -227,7 +227,7 @@ Run DDSHelloWorldExample
        ssh root@<target-ip-address>
 
        # Run a publisher
-       /var/examples/cpp/dds/HelloWorldExample/bin/DDSHelloWorldExample publisher
+       /var/examples/cpp/hello_world/bin/hello_world publisher
 
 The following output will be shown in the subscriber terminal:
 

@@ -63,7 +63,7 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
        a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. |br|
        b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. |br|
        c) ``AUTO`` for selecting the key agreement based on the signature algorithm in the Identity CA's certificate. |br|
-       Will default to ``AUTO`` if the property is not present.
+       Will default to ``DH`` if the property is not present.
 
 .. note::
   All listed properties have "dds.sec.auth.builtin.PKI-DH." prefix.

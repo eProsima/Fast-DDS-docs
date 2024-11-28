@@ -24,7 +24,8 @@ The authentication plugin implemented in Fast DDS is referred to as "DDS:\Auth\:
 `DDS Security <https://www.omg.org/spec/DDS-SECURITY/1.1/>`_ specification.
 The DDS:\Auth\:PKI-DH plugin uses a trusted *Certificate Authority* (CA) and the ECDSA
 Digital Signature Algorithms to perform the mutual authentication.
-It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement Methods.
+It also establishes a shared secret using either Elliptic Curve Diffie-Hellman (ECDH) or MODP-2048 Diffie-Hellman (DH)
+as Key Agreement protocol.
 This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm-gmac`.
 
 The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos|
@@ -56,6 +57,13 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
        If the *password* property is not present, then the value supplied in the |br|
        *private_key* property must contain the decrypted private key. |br|
        The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.
+   * - preferred_key_agreement *(optional)*
+     - The preferred algorithm to use for generating the session's shared secret |br|
+       at the end of the authentication phase. Supported values are: |br|
+       a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. |br|
+       b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. |br|
+       c) ``AUTO`` for selecting the key agreement based on the signature algorithm in the Identity CA's certificate. |br|
+       Will default to ``AUTO`` if the property is not present.
 
 .. note::
   All listed properties have "dds.sec.auth.builtin.PKI-DH." prefix.

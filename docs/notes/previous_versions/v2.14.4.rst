@@ -33,7 +33,7 @@ This release includes the following **fixes**:
 #. Solve SecurityManager memory issue.
 #. Fix issue with exclusive ownership and unordered samples.
 #. Fix data race in TypeObjectFactory::get_instance.
-#. Hotfix: Secure simple participants with initialpeers over TCP match.
+#. Fix: Secure simple participants with initialpeers over TCP match.
 #. Remove double // in some installation paths.
 #. Discard changes with big key-only payload and no key hash.
 #. Fix DataReaderHistory regression.
@@ -44,7 +44,6 @@ This release includes the following **fixes**:
 #. Improve OpenSSL lifecycle handling.
 #. Fix destruction data race on participant removal in intra-process.
 #. Be less strict with parameter lengths.
-#. Regenerate types with Fast DDS-Gen v3.3.1.
 
 .. note::
 

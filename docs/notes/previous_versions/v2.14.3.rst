@@ -1,6 +1,5 @@
 `Version 2.14.3 <https://fast-dds.docs.eprosima.com/en/v2.14.3/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. important::
 
     Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS

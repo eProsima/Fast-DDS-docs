@@ -27,13 +27,13 @@ This release includes the following **fixes**:
 #. Mitigate LogTests.flush_n flakiness.
 #. Mitigate buffer recover test flakiness on mac.
 #. Fix Python version in sanitizers CI.
-#. Fix oss-fuzz build.
-#. Fix warning in oss-fuzz build.
+#. Fix OSS fuzz build.
+#. Fix warning in OSS fuzz build.
 #. Change monitor service writer entity ID.
 #. Solve SecurityManager memory issue.
 #. Fix issue with exclusive ownership and unordered samples.
 #. Fix data race in TypeObjectFactory::get_instance.
-#. Fix: Secure simple participants with initialpeers over TCP match.
+#. Fix: Secure simple participants with initial peers over TCP match.
 #. Remove double // in some installation paths.
 #. Discard changes with big key-only payload and no key hash.
 #. Fix DataReaderHistory regression.

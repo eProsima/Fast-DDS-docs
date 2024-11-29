@@ -509,4 +509,4 @@ The different property values have the following effects on the local |DomainPar
             :language: xml
             :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
             :end-before: <!--><-->
-            :lines: 2-4,6-16,18-19
+            :lines: 2-4,6-17,19-20

@@ -593,6 +593,9 @@ void dds_domain_examples()
         pqos.properties().properties().emplace_back(
             "dds.sec.auth.builtin.PKI-DH.password",
             "domainParticipantPassword");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.preferred_key_agreement",
+            "ECDH");
         //!--
     }
     {

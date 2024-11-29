@@ -1,0 +1,52 @@
+`Version 2.14.4 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.4/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important::
+
+    Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS
+    v3.0.0, stay tuned!
+
+# Fast DDS v2.14.4
+
+This release includes the following **features** in an ABI compatible manner:
+
+#. Add unsigned specification to literals.
+#. Allow running CI on external contributions.
+#. Add references to new nightly jobs per supported branch in README.
+
+This release includes the following **improvements**:
+
+#. Add Ubuntu weekly CI.
+#. Fix Windows CI and add vanilla build step in Ubuntu CI.
+#. Use eProsima-CI action to install Qt.
+#. Modify help command of XML CLI tool.
+#. Update commercial support section in README.
+
+This release includes the following **fixes**:
+
+#. Mitigate LogTests.flush_n flakiness.
+#. Mitigate buffer recover test flakiness on mac.
+#. Fix Python version in sanitizers CI.
+#. Fix oss-fuzz build.
+#. Fix warning in oss-fuzz build.
+#. Change monitor service writer entity ID.
+#. Solve SecurityManager memory issue.
+#. Fix issue with exclusive ownership and unordered samples.
+#. Fix data race in TypeObjectFactory::get_instance.
+#. Hotfix: Secure simple participants with initialpeers over TCP match.
+#. Remove double // in some installation paths.
+#. Discard changes with big key-only payload and no key hash.
+#. Fix DataReaderHistory regression.
+#. Fix Secure Discovery Server client disposals GUID and handshake_handle assertion.
+#. Fix issues in Dynamic Network Interfaces.
+#. Check if SHM transport is disabled in LARGE_DATA modes.
+#. Release participant_stateless secure builtin writer history change when authentication has finished.
+#. Improve OpenSSL lifecycle handling.
+#. Fix destruction data race on participant removal in intra-process.
+#. Be less strict with parameter lengths.
+#. Regenerate types with Fast DDS-Gen v3.3.1.
+
+.. note::
+
+    When upgrading to version 2.14.4 it is **advisable** to regenerate generated source from IDL files
+    using `Fast DDS-Gen v3.3.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.1>`_.

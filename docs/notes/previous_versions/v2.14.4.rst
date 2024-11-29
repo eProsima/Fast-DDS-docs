@@ -3,8 +3,8 @@
 
 .. important::
 
-    Fast DDS v2.14 will be the last minor version of Fast DDS v2, the next major release will be Fast DDS
-    v3.0.0, stay tuned!
+    Fast DDS v2.14 is the last minor version of Fast DDS v2, the major release Fast DDS
+    v3 is already out! Check out all the new features and improvements in <https://fast-dds.docs.eprosima.com/en/latest/>
 
 # Fast DDS v2.14.4
 

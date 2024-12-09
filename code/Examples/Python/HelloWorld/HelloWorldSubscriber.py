@@ -58,13 +58,13 @@ class Reader:
         self.participant = factory.create_participant(0, self.participant_qos)
 
         self.topic_data_type = HelloWorld.HelloWorldPubSubType()
-        self.topic_data_type.setName("HelloWorld")
+        self.topic_data_type.set_name("HelloWorld")
         self.type_support = fastdds.TypeSupport(self.topic_data_type)
         self.participant.register_type(self.type_support)
 
         self.topic_qos = fastdds.TopicQos()
         self.participant.get_default_topic_qos(self.topic_qos)
-        self.topic = self.participant.create_topic("HelloWorldTopic", self.topic_data_type.getName(), self.topic_qos)
+        self.topic = self.participant.create_topic("HelloWorldTopic", self.topic_data_type.get_name(), self.topic_qos)
 
         self.subscriber_qos = fastdds.SubscriberQos()
         self.participant.get_default_subscriber_qos(self.subscriber_qos)

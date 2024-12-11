@@ -3110,6 +3110,10 @@
                     <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
                     <value>file://permissions.smime</value>
                 </property>
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.transmit_algorithms_as_legacy</name>
+                    <value>true</value>
+                </property>
             </properties>
         </propertiesPolicy>
     </rtps>

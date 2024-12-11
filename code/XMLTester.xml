@@ -3054,6 +3054,10 @@
                     <name>dds.sec.auth.builtin.PKI-DH.preferred_key_agreement</name>
                     <value>ECDH</value>
                 </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.transmit_algorithms_as_legacy</name>
+                    <value>true</value>
+                </property>
             </properties>
         </propertiesPolicy>
     </rtps>

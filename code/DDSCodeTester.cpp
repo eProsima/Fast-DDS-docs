@@ -596,6 +596,9 @@ void dds_domain_examples()
         pqos.properties().properties().emplace_back(
             "dds.sec.auth.builtin.PKI-DH.preferred_key_agreement",
             "ECDH");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.transmit_algorithms_as_legacy",
+            "true");
         //!--
     }
     {
@@ -631,6 +634,9 @@ void dds_domain_examples()
         pqos.properties().properties().emplace_back(
             "dds.sec.access.builtin.Access-Permissions.permissions",
             "file://certs/permissions.smime");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.access.builtin.Access-Permissions.transmit_algorithms_as_legacy",
+            "true");
         //!--
     }
     {

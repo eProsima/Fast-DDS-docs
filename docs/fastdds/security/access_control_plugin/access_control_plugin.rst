@@ -55,7 +55,7 @@ The following table outlines the properties used for the DDS\:Access\:Permission
    * - permissions
      - URI to the Participant permissions document signed by the |br| Permissions CA in S/MIME format. |br|
        Supported URI schemes: file.
-   * - ``transmit_algorithms_as_legacy`` *(optional)*
+   * - transmit_algorithms_as_legacy *(optional)*
      - Whether to transmit algorithm identifiers in non-standard legacy format. |br|
        Will default to ``false`` if the property is not present.
 

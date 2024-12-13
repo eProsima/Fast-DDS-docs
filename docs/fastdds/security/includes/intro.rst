@@ -44,4 +44,7 @@ and its value (:class:`std::string`).
   However, it is possible to configure basic system security settings, i.e. authentication, access control and
   encryption, to Fast DDS without this knowledge.
 
+.. warning::
+  The use of security plugins is incompatible with :ref:`Data-sharing delivery <datasharing-delivery>`.
+
 The following sections describe how to configure each of these properties to set up the Fast DDS security plugins.

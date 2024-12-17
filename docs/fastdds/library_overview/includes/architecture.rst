@@ -14,7 +14,7 @@ environments can be seen.
 * **RTPS layer**.
   Implementation of the `Real-Time Publish-Subscribe (RTPS) protocol <https://www.omg.org/spec/DDSI-RTPS/2.2>`_
   for interoperability with DDS applications.
-  This layer acts an abstraction layer of the transport layer.
+  This layer acts as an abstraction layer of the transport layer.
 * **Transport Layer**.
   *Fast DDS* can be used over various transport protocols such as unreliable transport protocols (UDP), reliable
   transport protocols (TCP), or shared memory transport protocols (SHM).

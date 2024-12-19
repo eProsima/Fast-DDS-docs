@@ -1,0 +1,34 @@
+`Version 3.1.1 (latest) <https://fast-dds.docs.eprosima.com/en/v3.1.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This patch release includes the following **features** in an ABI compatible manner:
+
+#. New property to select preferred key agreement algorithm
+
+This release includes the following **fixes**:
+
+#. Fix reach of maximum buffers in ``asio::send_to``
+#. Fix TCP discovery server locators translation
+#. Fix unique network flows with TCP transports
+#. Address OSS-Fuzz` regressions in XML parsers
+#. Fix ``DataReaderHistory`` regression
+#. Fix destruction data-race on participant removal in intra-process
+#. Several fixes in security plugins and ``SecurityManager``
+#. Fix ``cmake`` generator evaluation
+#. Fix build with ``-Werror=template-id-cdtor``
+#. Fix potential deadlock between ``StatefulWriter`` and ``FlowController``
+
+This release includes the following **improvements**:
+
+#. Update commercial support section in README
+#. Rename ``RTPSParticipantImpl.h`` to ``RTPSParticipantImpl.hpp``
+#. Check if ``SHM`` transport is disabled in ``LARGE_DATA`` modes
+#. Improve Blackbox TCP tests suite
+#. Test examples on Windows CI
+#. Regenerate types with Fast DDS Gen 4.0.3
+
+.. important::
+
+    When upgrading to version 3.1.1 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.3>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

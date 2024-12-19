@@ -13,7 +13,7 @@ DomainParticipant instance, that acts as a factory for the Subscriber.
 Mandatory arguments are:
 
  * The :ref:`dds_layer_subscriber_subscriberQos` describing the behavior of the Subscriber.
-   If the provided value is :class:`SUBSCRIBER_QOS_DEFAULT`,
+   If the provided value is :code:`SUBSCRIBER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultSubscriberQos` is used.
 
 Optional arguments are:

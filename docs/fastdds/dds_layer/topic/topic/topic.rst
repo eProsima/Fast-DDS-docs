@@ -84,7 +84,7 @@ Default TopicQos
 
 The default :ref:`dds_layer_topic_topicQos` refers to the value returned by the
 |DomainParticipant::get_default_topic_qos-api| member function on the :ref:`dds_layer_domainParticipant` instance.
-The special value ``TOPIC_QOS_DEFAULT`` can be used as QoS argument on |DomainParticipant::create_topic-api|
+The special value :code:`TOPIC_QOS_DEFAULT` can be used as QoS argument on |DomainParticipant::create_topic-api|
 or |Topic::set_qos-api| member functions to indicate that the current default TopicQos
 should be used.
 
@@ -101,7 +101,7 @@ instances.
    :end-before: //!
    :dedent: 8
 
-|DomainParticipant::get_default_topic_qos-api| member function also accepts the value ``TOPIC_QOS_DEFAULT``
+|DomainParticipant::get_default_topic_qos-api| member function also accepts the value :code:`TOPIC_QOS_DEFAULT`
 as input argument.
 This will reset the current default TopicQos to default constructed
 value |TopicQos::TopicQos-api|.
@@ -113,7 +113,7 @@ value |TopicQos::TopicQos-api|.
    :dedent: 8
 
 .. note::
-   The value ``TOPIC_QOS_DEFAULT`` has different meaning depending on where it is used:
+   The value :code:`TOPIC_QOS_DEFAULT` has different meaning depending on where it is used:
 
    * On |DomainParticipant::create_topic-api| and |Topic::set_qos-api| it refers to the default TopicQos
      as returned by |DomainParticipant::get_default_topic_qos-api|.

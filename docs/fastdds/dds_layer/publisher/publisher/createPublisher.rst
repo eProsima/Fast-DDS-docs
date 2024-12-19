@@ -13,7 +13,7 @@ DomainParticipant instance, that acts as a factory for the Publisher.
 Mandatory arguments are:
 
  * The :ref:`dds_layer_publisher_publisherQos` describing the behavior of the Publisher.
-   If the provided value is :class:`PUBLISHER_QOS_DEFAULT`,
+   If the provided value is :code:`PUBLISHER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultPublisherQos` is used.
 
 Optional arguments are:

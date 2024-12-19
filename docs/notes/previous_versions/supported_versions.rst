@@ -9,6 +9,7 @@ Version 3.0
 Version 2.14
 ------------
 
+.. include:: v2.14.4.rst
 .. include:: v2.14.3.rst
 .. include:: v2.14.2.rst
 .. include:: v2.14.1.rst

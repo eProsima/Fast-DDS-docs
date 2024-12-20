@@ -75,7 +75,7 @@ Step 4: Apply namespace changes
    * Update all ``eprosima::fastrtps::`` namespace references to ``eprosima::fastdds::``.
    * Move built-in topics ``SubscriptionBuiltinTopicData``, ``PublicationBuiltinTopicData``, and
      ``ParticipantBuiltinTopicData`` from ``fastdds::dds::builtin::`` to ``fastdds::dds::``.
-   * Move ``Duration_t`` and ``c_TimeInfinite`` references to ``dds::``.
+   * Move ``Duration_t`` and ``c_TimeInfinite`` references from ``eprosima::fastdds::`` to ``eprosima::fastdds::dds``.
    * Move ``Time_t.hpp`` references from ``eprosima::fastdds::`` to ``eprosima::fastdds::dds``.
 
    Ensure you update these namespace references across your code to avoid compilation errors.

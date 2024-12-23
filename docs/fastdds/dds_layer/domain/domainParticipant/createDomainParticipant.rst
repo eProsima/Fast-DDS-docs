@@ -18,7 +18,7 @@ Mandatory arguments are:
  * The |DomainId-api| that identifies the domain where the DomainParticipant will be created.
 
  * The :ref:`dds_layer_domainParticipantQos` describing the behavior of the DomainParticipant.
-   If the provided value is :class:`TOPIC_QOS_DEFAULT`, the value of the DomainParticipantQos is used.
+   If the provided value is :class:`PARTICIPANT_QOS_DEFAULT`, the value of the DomainParticipantQos is used.
 
 Alternatively, instead of the two mandatory arguments above, you can use:
 

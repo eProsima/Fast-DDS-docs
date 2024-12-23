@@ -230,7 +230,7 @@ List of status data members:
 * |LivelinessChangedStatus::last_publication_handle-api|:
   Handle to the last DataWriter
   whose liveliness status was changed.
-  If no liveliness has ever changed, it will have value ``c_InstanceHandle_Unknown``.
+  If no liveliness has ever changed, it will have value |c_InstanceHandle_Unknown-api|.
 
 
 .. _dds_layer_core_status_requestedDeadlineMissedStatus:
@@ -268,7 +268,7 @@ List of status data members:
 
 * |DeadlineMissedStatus::last_instance_handle-api|:
   Handle to the last instance that missed the deadline.
-  If no deadline was ever missed, it will have value ``c_InstanceHandle_Unknown``.
+  If no deadline was ever missed, it will have value |c_InstanceHandle_Unknown-api|.
 
 .. _dds_layer_core_status_requestedIncompatibleQosStatus:
 
@@ -428,7 +428,7 @@ List of status data members:
 
 * |SampleRejectedStatus::last_instance_handle-api|:
   Handle to the last instance whose sample was rejected.
-  If no sample was ever rejected, it will have value ``c_InstanceHandle_Unknown``.
+  If no sample was ever rejected, it will have value |c_InstanceHandle_Unknown-api|.
 
 .. warning::
 

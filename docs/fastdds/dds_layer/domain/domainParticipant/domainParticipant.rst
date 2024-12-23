@@ -101,7 +101,7 @@ Default DomainParticipantQos
 The default DomainParticipantQos refers to the value returned by the
 |DomainParticipantFactory::get_default_participant_qos-api| member function on the
 :ref:`dds_layer_domainParticipantFactory` singleton.
-The special value ``PARTICIPANT_QOS_DEFAULT`` can be used as QoS argument on
+The special value :code:`PARTICIPANT_QOS_DEFAULT` can be used as QoS argument on
 |DomainParticipantFactory::create_participant-api|
 or |DomainParticipant::set_qos-api| member functions to indicate that the current default
 DomainParticipantQos should be used.
@@ -121,7 +121,7 @@ DomainParticipant instances.
    :dedent: 8
 
 |DomainParticipantFactory::set_default_participant_qos-api|
-member function also accepts the value ``PARTICIPANT_QOS_DEFAULT``
+member function also accepts the value :code:`PARTICIPANT_QOS_DEFAULT`
 as input argument.
 This will reset the current default DomainParticipantQos to the default constructed value
 |DomainParticipantQos::DomainParticipantQos-api|.
@@ -133,7 +133,7 @@ This will reset the current default DomainParticipantQos to the default construc
    :dedent: 8
 
 .. note::
-   The value ``PARTICIPANT_QOS_DEFAULT`` has different meaning depending on where it is used:
+   The value :code:`PARTICIPANT_QOS_DEFAULT` has different meaning depending on where it is used:
 
    * On |DomainParticipantFactory::create_participant-api| and |DomainParticipant::set_qos-api| it refers to the
      default DomainParticipantQos as returned by |DomainParticipantFactory::get_default_participant_qos-api|.

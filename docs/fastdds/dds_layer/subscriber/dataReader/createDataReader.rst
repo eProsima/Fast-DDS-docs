@@ -15,7 +15,7 @@ Mandatory arguments are:
  * A :ref:`dds_layer_topic_topic` bound to the data type that will be transmitted.
 
  * The :ref:`dds_layer_subscriber_dataReaderQos` describing the behavior of the DataReader.
-   If the provided value is :class:`DATAREADER_QOS_DEFAULT`,
+   If the provided value is :code:`DATAREADER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultDataReaderQos` is used.
 
 Optional arguments are:

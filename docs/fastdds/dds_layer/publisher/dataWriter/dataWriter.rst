@@ -131,8 +131,8 @@ DataWriter instances.
    :end-before: //!
    :dedent: 8
 
-|Publisher::set_default_datawriter_qos-api| member function also accepts the special value :code:`DATAWRITER_QOS_DEFAULT`
-as input argument.
+|Publisher::set_default_datawriter_qos-api| member function also accepts the special value
+:code:`DATAWRITER_QOS_DEFAULT` as input argument.
 This will reset the current default DataWriterQos to default constructed
 value |DataWriterQos::DataWriterQos-api|.
 

@@ -118,7 +118,7 @@ Default DataReaderQos
 The default DataReaderQos refers to the value returned by the
 |Subscriber::get_default_datareader_qos-api| member function on the
 :ref:`dds_layer_subscriber_subscriber` instance.
-The special value ``DATAREADER_QOS_DEFAULT`` can be used as QoS argument on
+The special value :code:`DATAREADER_QOS_DEFAULT` can be used as QoS argument on
 |Subscriber::create_datareader-api| or
 |DataReader::set_qos-api| member functions to indicate that the current default
 DataReaderQos should be used.
@@ -138,7 +138,7 @@ Modifying the default DataReaderQos will not affect already existing
    :dedent: 8
 
 |Subscriber::set_default_datareader_qos-api| member function also accepts
-the special value ``DATAREADER_QOS_DEFAULT`` as input argument.
+the special value :code:`DATAREADER_QOS_DEFAULT` as input argument.
 This will reset the current default DataReaderQos to default constructed
 value |DataReaderQos::DataReaderQos-api|.
 
@@ -149,7 +149,7 @@ value |DataReaderQos::DataReaderQos-api|.
    :dedent: 8
 
 .. note::
-   The value ``DATAREADER_QOS_DEFAULT`` has different meaning depending on where it is used:
+   The value :code:`DATAREADER_QOS_DEFAULT` has different meaning depending on where it is used:
 
    * On |Subscriber::create_datareader-api|
      and |DataReader::set_qos-api| it refers to the default

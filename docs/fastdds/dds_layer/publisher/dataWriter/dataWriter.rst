@@ -93,7 +93,7 @@ default values.
 .. note::
 
    Reliability kind (whether the publication is reliable or best effort) is not mutable.
-   However, the ``max_blocking_time`` data member of |ReliabilityQosPolicy| can be modified any time.
+   However, the :code:`max_blocking_time` data member of |ReliabilityQosPolicy| can be modified any time.
 .. note::
 
    Not all data members of RTPSReliableWriterQos are mutable, please refer to |RTPSReliableWriterQos|
@@ -116,7 +116,7 @@ Default DataWriterQos
 
 The default :ref:`dds_layer_publisher_dataWriterQos` refers to the value returned by the
 |Publisher::get_default_datawriter_qos-api| member function on the Publisher instance.
-The special value :class:`DATAWRITER_QOS_DEFAULT` can be used as QoS argument on |Publisher::create_datawriter-api|
+The special value :code:`DATAWRITER_QOS_DEFAULT` can be used as QoS argument on |Publisher::create_datawriter-api|
 or |DataWriter::set_qos-api| member functions to indicate that the current default
 DataWriterQos should be used.
 
@@ -133,8 +133,8 @@ DataWriter instances.
    :end-before: //!
    :dedent: 8
 
-|Publisher::set_default_datawriter_qos-api| member function also accepts the special value ``DATAWRITER_QOS_DEFAULT``
-as input argument.
+|Publisher::set_default_datawriter_qos-api| member function also accepts the special value
+:code:`DATAWRITER_QOS_DEFAULT` as input argument.
 This will reset the current default DataWriterQos to default constructed
 value |DataWriterQos::DataWriterQos-api|.
 
@@ -145,7 +145,7 @@ value |DataWriterQos::DataWriterQos-api|.
    :dedent: 8
 
 .. note::
-   The value ``DATAWRITER_QOS_DEFAULT`` has different meaning depending on where it is used:
+   The value :code:`DATAWRITER_QOS_DEFAULT` has different meaning depending on where it is used:
 
    * On |Publisher::create_datawriter-api| and |DataWriter::set_qos-api| it refers to the default DataWriterQos
      as returned by |Publisher::get_default_datawriter_qos-api|.

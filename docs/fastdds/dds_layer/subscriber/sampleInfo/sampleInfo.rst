@@ -8,7 +8,7 @@ SampleInfo
 
 When a sample is retrieved from the :ref:`dds_layer_subscriber_dataReader`, in addition to the sample data,
 a |SampleInfo-api| instance is returned.
-This object contains additional information that complements the returned data value and helps on it interpretation.
+This object contains additional information that complements the returned data value and helps on its interpretation.
 For example, if the :ref:`dds_layer_subscriber_sampleInfo_validdata` value is ``false``, the
 DataReader is not informing the application about a new value in the data instance,
 but a change on its status, and the returned data value must be discarded.

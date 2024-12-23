@@ -27,20 +27,18 @@ The following steps describe the possible changes that your project may require 
 
 .. _step-1-update-the-package-name-and-cmake-configuration:
 
-Step 1: Update the package name and CMake configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 1: Update the package name and CMake and Colcon configurations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. CMake project name: Rename the CMake project from ``fastrtps`` to ``fastdds``.
-2. Environment variables:
+1. CMake project name: Rename all instances in the CMake project from ``fastrtps`` to ``fastdds``. For example, 
+   update ``target_link_libraries(fastrtps)`` to ``target_link_libraries(fastdds)``, and ``if(NOT fastrtps_FOUND)`` to
+   ``if(NOT fastdds_FOUND)``.
+2. If using Colcon, update the package name in ``colcon.pkg`` from ``fastrtps`` to ``fastdds``.
+3. Environment variables:
 
    * Rename ``FASTRTPS_DEFAULT_PROFILES_FILE`` to ``FASTDDS_DEFAULT_PROFILES_FILE``.
-   * The configuration file for loading profiles is now ``DEFAULT_FASTDDS_PROFILES.xml``.
-
-3. Update CMake file names on Windows:
-
-   * Rename ``fastrtps.manifest.in`` to ``fastdds.manifest.in``.
-   * Rename ``fastrtps-config.cmake`` to ``fastdds-config.cmake``.
-   * Rename ``fastrtps.rc`` to ``fastdds.rc``.
+   * The configuration file for loading profiles has been renamed from ``DEFAULT_FASTRTPS_PROFILES.xml`` to 
+     ``DEFAULT_FASTDDS_PROFILES.xml``.
 
 .. _step-2-update-dependencies:
 

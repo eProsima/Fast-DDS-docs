@@ -70,9 +70,9 @@ Step 4: Apply namespace changes
 
 1. Namespace migration:
 
-   * Update all ``eprosima::fastrtps::`` namespace references to ``eprosima::fastdds::``.
+   * First, update all ``eprosima::fastrtps::`` namespace references to ``eprosima::fastdds::``.
    * Move built-in topics ``SubscriptionBuiltinTopicData``, ``PublicationBuiltinTopicData``, and
-     ``ParticipantBuiltinTopicData`` from ``fastdds::dds::builtin::`` to ``fastdds::dds::``.
+     ``ParticipantBuiltinTopicData`` from ``eprosima::fastdds::dds::builtin::`` to ``eprosima::fastdds::rtps::``.
    * Move ``Duration_t`` and ``c_TimeInfinite`` references from ``eprosima::fastdds::`` to ``eprosima::fastdds::dds``.
    * Move ``Time_t.hpp`` references from ``eprosima::fastdds::`` to ``eprosima::fastdds::dds``.
 

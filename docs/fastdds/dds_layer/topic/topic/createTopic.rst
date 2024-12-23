@@ -17,7 +17,7 @@ Mandatory arguments are:
  * The name of the registered :ref:`data type<dds_layer_definition_data_types>` that will be transmitted.
 
  * The :ref:`dds_layer_topic_topicQos` describing the behavior of the Topic.
-   If the provided value is :class:`TOPIC_QOS_DEFAULT`,
+   If the provided value is :code:`TOPIC_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultTopicQos` is used.
 
 Optional arguments are:

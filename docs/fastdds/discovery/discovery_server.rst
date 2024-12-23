@@ -418,7 +418,7 @@ discovery.
 
 As in SDP, when using this feature, the Domain Governance Document of all *clients* and *servers* connecting to a
 *server* must match that of the *server*, which implies that all |DomainParticipants| belonging to the same Discovery
-Sever network must configure the discovery protection in the same manner.
+Server network must configure the discovery protection in the same manner.
 
 Although the *server* mediates the discovery process and creates connections between *clients*, the *clients* themselves
 still go through the PKI (Public Key Infrastructure) exchange in order to have a secure communication between them.

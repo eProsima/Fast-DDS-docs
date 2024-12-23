@@ -15,9 +15,9 @@ Mandatory arguments are:
  * A :ref:`dds_layer_topic_topic` bound to the data type that will be transmitted.
 
  * The :ref:`dds_layer_publisher_dataWriterQos` describing the behavior of the DataWriter.
-   If the provided value is :class:`DATAWRITER_QOS_DEFAULT`,
+   If the provided value is :code:`DATAWRITER_QOS_DEFAULT`,
    the value of the :ref:`dds_layer_defaultDataWriterQos` is used.
-   If the provided value is :class:`DATAWRITER_QOS_USE_TOPIC_QOS`,
+   If the provided value is :code:`DATAWRITER_QOS_USE_TOPIC_QOS`,
    the values of the default QoS and the provided TopicQoS are used, whereby any policy
    that is set on the TopicQoS overrides the corresponding policy on the default QoS.
 

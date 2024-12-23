@@ -59,7 +59,7 @@ Default SubscriberQos
 The default :ref:`dds_layer_subscriber_subscriberQos` refers to the value returned by the
 |DomainParticipant::get_default_subscriber_qos-api| member function
 on the :ref:`dds_layer_domainParticipant` instance.
-The special value ``SUBSCRIBER_QOS_DEFAULT`` can be used as QoS argument on
+The special value :code:`SUBSCRIBER_QOS_DEFAULT` can be used as QoS argument on
 |DomainParticipant::create_subscriber-api| or |Subscriber::set_qos-api|
 member functions to indicate that the current default SubscriberQos
 should be used.
@@ -79,7 +79,7 @@ Subscriber instances.
    :dedent: 8
 
 |DomainParticipant::set_default_subscriber_qos-api| member function also accepts
-the special value ``SUBSCRIBER_QOS_DEFAULT`` as input argument.
+the special value :code:`SUBSCRIBER_QOS_DEFAULT` as input argument.
 This will reset the current default SubscriberQos to default constructed
 value |SubscriberQos::SubscriberQos-api|.
 
@@ -90,7 +90,7 @@ value |SubscriberQos::SubscriberQos-api|.
    :dedent: 8
 
 .. note::
-   The value ``SUBSCRIBER_QOS_DEFAULT`` has different meaning depending on where it is used:
+   The value :code:`SUBSCRIBER_QOS_DEFAULT` has different meaning depending on where it is used:
 
    * On |DomainParticipant::create_subscriber-api| and |Subscriber::set_qos-api| it refers to the default
      SubscriberQos as returned by |DomainParticipant::get_default_subscriber_qos-api|.

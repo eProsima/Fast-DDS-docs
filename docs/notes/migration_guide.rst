@@ -27,20 +27,18 @@ The following steps describe the possible changes that your project may require 
 
 .. _step-1-update-the-package-name-and-cmake-configuration:
 
-Step 1: Update the package name and CMake configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 1: Update the package name and CMake and Colcon configurations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. CMake project name: Rename the CMake project from ``fastrtps`` to ``fastdds``.
-2. Environment variables:
+1. CMake project name: Rename all instances in the CMake project from ``fastrtps`` to ``fastdds``. For example, 
+   update ``target_link_libraries(fastrtps)`` to ``target_link_libraries(fastdds)``, and ``if(NOT fastrtps_FOUND)`` to
+   ``if(NOT fastdds_FOUND)``.
+2. If using Colcon, update the package name in ``colcon.pkg`` from ``fastrtps`` to ``fastdds``.
+3. Environment variables:
 
    * Rename ``FASTRTPS_DEFAULT_PROFILES_FILE`` to ``FASTDDS_DEFAULT_PROFILES_FILE``.
-   * The configuration file for loading profiles is now ``DEFAULT_FASTDDS_PROFILES.xml``.
-
-3. Update CMake file names on Windows:
-
-   * Rename ``fastrtps.manifest.in`` to ``fastdds.manifest.in``.
-   * Rename ``fastrtps-config.cmake`` to ``fastdds-config.cmake``.
-   * Rename ``fastrtps.rc`` to ``fastdds.rc``.
+   * The configuration file for loading profiles has been renamed from ``DEFAULT_FASTRTPS_PROFILES.xml`` to 
+     ``DEFAULT_FASTDDS_PROFILES.xml``.
 
 .. _step-2-update-dependencies:
 
@@ -72,10 +70,10 @@ Step 4: Apply namespace changes
 
 1. Namespace migration:
 
-   * Update all ``eprosima::fastrtps::`` namespace references to ``eprosima::fastdds::``.
+   * First, update all ``eprosima::fastrtps::`` namespace references to ``eprosima::fastdds::``.
    * Move built-in topics ``SubscriptionBuiltinTopicData``, ``PublicationBuiltinTopicData``, and
-     ``ParticipantBuiltinTopicData`` from ``fastdds::dds::builtin::`` to ``fastdds::dds::``.
-   * Move ``Duration_t`` and ``c_TimeInfinite`` references to ``dds::``.
+     ``ParticipantBuiltinTopicData`` from ``eprosima::fastdds::dds::builtin::`` to ``eprosima::fastdds::rtps::``.
+   * Move ``Duration_t`` and ``c_TimeInfinite`` references from ``eprosima::fastdds::`` to ``eprosima::fastdds::dds``.
    * Move ``Time_t.hpp`` references from ``eprosima::fastdds::`` to ``eprosima::fastdds::dds``.
 
    Ensure you update these namespace references across your code to avoid compilation errors.
@@ -145,7 +143,10 @@ Step 5: Migrate public headers
       * - ``fastdds/rtps/common/Time_t.hpp in namespace{fastdds}``
         - ``fastdds/dds/core/Time_t.hpp in namespace{fastdds::dds}``
 
-   Also, the ``fixed_size_string.hpp`` implementation has been migrated from Fast DDS package to Fast CDR.
+   Also, the ``fixed_size_string.hpp`` implementation has been migrated from ``fastrtps/utils/fixed_size_string.hpp``
+   to ``fastcdr/cdr/fixed_size_string.hpp``.
+
+   .. TODO:: Fix this table, ``fastdds/rtps/DomainParticipantQos.hpp`` has wrong path and doesn't include the content.
 
 2. File extensions:
 
@@ -209,6 +210,8 @@ If your project previously included any of these headers, you will need to modif
 Since these headers are now private, you should replace their usage with public alternatives or refactor the
 related code to ensure it does not depend on private headers.
 
+.. TODO:: Add a note about which headers to use instead of the private ones.
+  
 .. _step-7-update-api-methods:
 
 Step 7: Update API methods
@@ -396,6 +399,9 @@ your code to reflect these changes:
 Step 9: Examples refactor
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. TODO:: What to do here? Write which examples in 2 turned into which examples in 3?
+   A lot of the info seems too much.
+
 All examples have been refactored to follow a consistent structure across the Fast DDS project.
 This includes renaming files, restructuring classes, and updating the overall format.
 Additionally, it is important to note that some examples have been removed, renamed, or had significant changes
@@ -409,6 +415,8 @@ All the examples have been refactored to follow the same structure:
 * Detailed and well-formed README.md with example explanation.
 * Example structured in applications, stopped by ``SIGTERM`` signal.
 
+Please refactor the examples in your project to match the new format.
+
 `Hello World <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/hello_world>`_
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -416,8 +424,7 @@ Refactor the HelloWorld example with the current new example format.
 In this hello world example, the key changes are:
 
 * The XML profile is loaded from the environment (if defined), and the `--env` CLI option has been removed.
-* Add a subscriber implementing the waitsets mechanism.
-* Provide XML profiles examples targeting several scenarios (e.g., SampleConfig_Controller, Events, Multimedia).
+* Added a subscriber implementing the waitsets mechanism.
 
 `X-Types Examples <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/xtypes>`_
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

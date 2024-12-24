@@ -48,13 +48,3 @@ This must have generated the following files:
     * HelloWorldCdrAux.hpp: Header file for HelloWorldCdrAux.ipp.
     * HelloWorldTypeObjectSupport.cxx: |TypeObject| registration code.
     * HelloWorldTypeObjectSupport.hpp: Header file for HelloWorldTypeObjectSupport.cxx.
-
-CMakeLists.txt
-""""""""""""""
-
-Include the following code snippet at the end of the CMakeList.txt file you created earlier.
-This includes the files we have just created.
-
-.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
-    :language: bash
-    :lines: 44-45

@@ -47,13 +47,3 @@ This must have generated the following files:
     * HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
     * HelloWorldCdrAux.ipp: Serialization and Deserialization code for the HelloWorld type.
     * HelloWorldCdrAux.hpp: Header file for HelloWorldCdrAux.ipp.
-
-CMakeLists.txt
-""""""""""""""
-
-Include the following code snippet at the end of the CMakeList.txt file you created earlier.
-This includes the files we have just created.
-
-.. literalinclude:: /../code/Examples/C++/DDSHelloWorld/CMakeLists.txt
-    :language: bash
-    :lines: 44-45

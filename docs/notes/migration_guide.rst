@@ -143,7 +143,8 @@ Step 5: Migrate public headers
       * - ``fastdds/rtps/common/Time_t.hpp in namespace{fastdds}``
         - ``fastdds/dds/core/Time_t.hpp in namespace{fastdds::dds}``
 
-   Also, the ``fixed_size_string.hpp`` implementation has been migrated from Fast DDS package to Fast CDR.
+   Also, the ``fixed_size_string.hpp`` implementation has been migrated from ``fastrtps/utils/fixed_size_string.hpp``
+   to ``fastcdr/cdr/fixed_size_string.hpp``.
 
 2. File extensions:
 
@@ -407,6 +408,8 @@ All the examples have been refactored to follow the same structure:
 * Detailed and well-formed README.md with example explanation.
 * Example structured in applications, stopped by ``SIGTERM`` signal.
 
+Please refactor the examples in your project to match the new format.
+
 `Hello World <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/hello_world>`_
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -414,8 +417,7 @@ Refactor the HelloWorld example with the current new example format.
 In this hello world example, the key changes are:
 
 * The XML profile is loaded from the environment (if defined), and the `--env` CLI option has been removed.
-* Add a subscriber implementing the waitsets mechanism.
-* Provide XML profiles examples targeting several scenarios (e.g., SampleConfig_Controller, Events, Multimedia).
+* Added a subscriber implementing the waitsets mechanism.
 
 `X-Types Examples <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/xtypes>`_
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

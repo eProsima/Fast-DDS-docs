@@ -146,6 +146,8 @@ Step 5: Migrate public headers
    Also, the ``fixed_size_string.hpp`` implementation has been migrated from ``fastrtps/utils/fixed_size_string.hpp``
    to ``fastcdr/cdr/fixed_size_string.hpp``.
 
+   .. TODO:: Fix this table, ``fastdds/rtps/DomainParticipantQos.hpp`` has wrong path and doesn't include the content.
+
 2. File extensions:
 
    Rename file extensions from `.h` to `.hpp`.
@@ -208,6 +210,8 @@ If your project previously included any of these headers, you will need to modif
 Since these headers are now private, you should replace their usage with public alternatives or refactor the
 related code to ensure it does not depend on private headers.
 
+.. TODO:: Add a note about which headers to use instead of the private ones.
+  
 .. _step-7-update-api-methods:
 
 Step 7: Update API methods
@@ -394,6 +398,9 @@ your code to reflect these changes:
 
 Step 9: Examples refactor
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. TODO:: What to do here? Write which examples in 2 turned into which examples in 3?
+   A lot of the info seems too much.
 
 All examples have been refactored to follow a consistent structure across the Fast DDS project.
 This includes renaming files, restructuring classes, and updating the overall format.

@@ -245,7 +245,7 @@ if read_the_docs_build:
                 'origin/{}'.format(fastdds_python_branch))):
         fastdds_python_branch = 'origin/{}'.format(fastdds_python_branch)
     else:
-        fastdds_python_branch = 'origin/1.1.x'
+        fastdds_python_branch = 'origin/try/1.1_into_1.2'
         print(f'Fast DDS Python branch is not set by env var. Using "{fastdds_python_branch}"')
 
     # Actual checkout

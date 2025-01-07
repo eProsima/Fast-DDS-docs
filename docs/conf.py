@@ -261,7 +261,7 @@ if read_the_docs_build:
         print(
             'Fast DDS Python does not have either "{}" or "{}" branches'
             .format(fastdds_python_branch, docs_branch))
-        fastdds_python_branch = 'origin/main'
+        fastdds_python_branch = 'origin/1.2.x'
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(

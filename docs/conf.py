@@ -239,7 +239,7 @@ if read_the_docs_build:
     fastdds_python_branch = os.environ.get('FASTDDS_PYTHON_BRANCH', None)
 
     # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
-    # Else checkout to 1.2.x
+    # Else checkout to 1.1.x
     if (fastdds_python_branch and
             fastdds_python.refs.__contains__(
                 'origin/{}'.format(fastdds_python_branch))):

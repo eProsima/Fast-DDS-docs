@@ -36,7 +36,7 @@ Step 1: Update the package name and CMake configuration
 2. Environment variables:
 
    * Rename ``FASTRTPS_DEFAULT_PROFILES_FILE`` to ``FASTDDS_DEFAULT_PROFILES_FILE``.
-   * The configuration file for loading profiles has been renamed from ``DEFAULT_FASTRTPS_PROFILES.xml`` to 
+   * The configuration file for loading profiles has been renamed from ``DEFAULT_FASTRTPS_PROFILES.xml`` to
      ``DEFAULT_FASTDDS_PROFILES.xml``.
 
 .. _step-2-update-dependencies:
@@ -204,7 +204,7 @@ Since they are no longer public, it is not possible to include them in external 
 * TypeLookupService.hpp
 
 If your project previously included any of these headers, you will need to modify your implementation.
-  
+
 .. _step-7-update-api-methods:
 
 Step 7: Update API methods

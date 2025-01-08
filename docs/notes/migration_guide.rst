@@ -30,7 +30,7 @@ The following steps describe the possible changes that your project may require 
 Step 1: Update the package name and CMake configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. CMake project name: Rename all instances in the CMake project from ``fastrtps`` to ``fastdds``. For example, 
+1. CMake project name: Rename all instances in the CMake project from ``fastrtps`` to ``fastdds``. For example,
    update ``target_link_libraries(fastrtps)`` to ``target_link_libraries(fastdds)``, and ``if(NOT fastrtps_FOUND)`` to
    ``if(NOT fastdds_FOUND)``.
 2. Environment variables:

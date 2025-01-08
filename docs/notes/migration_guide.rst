@@ -27,14 +27,13 @@ The following steps describe the possible changes that your project may require 
 
 .. _step-1-update-the-package-name-and-cmake-configuration:
 
-Step 1: Update the package name and CMake and Colcon configurations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 1: Update the package name and CMake configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. CMake project name: Rename all instances in the CMake project from ``fastrtps`` to ``fastdds``. For example, 
    update ``target_link_libraries(fastrtps)`` to ``target_link_libraries(fastdds)``, and ``if(NOT fastrtps_FOUND)`` to
    ``if(NOT fastdds_FOUND)``.
-2. If using Colcon, update the package name in ``colcon.pkg`` from ``fastrtps`` to ``fastdds``.
-3. Environment variables:
+2. Environment variables:
 
    * Rename ``FASTRTPS_DEFAULT_PROFILES_FILE`` to ``FASTDDS_DEFAULT_PROFILES_FILE``.
    * The configuration file for loading profiles has been renamed from ``DEFAULT_FASTRTPS_PROFILES.xml`` to 
@@ -208,7 +207,8 @@ If your project previously included any of these headers, you will need to modif
 Since these headers are now private, you should replace their usage with public alternatives or refactor the
 related code to ensure it does not depend on private headers.
 
-.. TODO:: Add a note about which headers to use instead of the private ones.
+.. TODO:: Add a note about which headers to use instead of the private ones, since we mention that they should 
+  be replaced with public alternatives.
   
 .. _step-7-update-api-methods:
 
@@ -397,121 +397,8 @@ your code to reflect these changes:
 Step 9: Examples refactor
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. TODO:: What to do here? Write which examples in 2 turned into which examples in 3?
-   A lot of the info seems too much.
-
-All examples have been refactored to follow a consistent structure across the Fast DDS project.
-This includes renaming files, restructuring classes, and updating the overall format.
-Additionally, it is important to note that some examples have been removed, renamed, or had significant changes
-to their options and configurations.
-If you have integrated any of these examples into your own implementation, carefully review the updated examples
-to ensure compatibility with your project.
-
-All the examples have been refactored to follow the same structure:
-
-* File names, guards, and classes follow new format.
-* Detailed and well-formed README.md with example explanation.
-* Example structured in applications, stopped by ``SIGTERM`` signal.
-
-Please refactor the examples in your project to match the new format.
-
-`Hello World <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/hello_world>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the HelloWorld example with the current new example format.
-In this hello world example, the key changes are:
-
-* The XML profile is loaded from the environment (if defined), and the `--env` CLI option has been removed.
-* Added a subscriber implementing the waitsets mechanism.
-
-`X-Types Examples <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/xtypes>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-In this X-Types example, a type is defined at runtime on the publisher side using the Dynamic Types API.
-The subscriber discovers the type, creates a reader for it, and prints the received data.
-This example is type compatible with the Hello World example.
-
-`Configuration <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/configuration>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-In the configuration example, the key changes are:
-
-* Included LargeData as an option (builtin transport argument).
-* Included all previous QoS examples:
-
-  - Deadline
-  - Disable positive ACKs
-  - Lifespan
-  - Liveliness
-  - Ownership (strength)
-  - Partitions
-
-`Content Filter <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/content_filter>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the ContentFilteresTopicExample example with the current new example format.
-In this content filter example, the main changes are:
-
-* Added option to select filter type: Default, Custom, or None.
-* Customizable lower-bound and upper-bound options of the filter as arguments.
-
-  - For the Custom filter, they represent the maximum and minimum values of the message indexes that are filtered out
-    through the filter.
-  - For the Default filter, they represent the maximum and minimum value message indexes that are read.
-
-`Custom Payload Pool <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/custom_payload_pool>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the CustomPayloadPoolExample example with the current new example format.
-
-`Delivery Mechanism <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-In this delivery mechanisms example, the key changes are:
-
-* Loans and data-sharing compatible: bounded types, final extensibility.
-* Loans mechanism for data management.
-* Option to select all delivery mechanisms.
-
-`Discovery Server <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/discovery_server>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the DiscoveryServerExample example with the current new example format.
-
-`Flow Controller <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/flow_control>`_
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the FlowControlExample example with the current new example format.
-In this Flow Controller example, the key changes are:
-
-* Publishers continuously send samples. The user can set the number of samples to send.
-* User can set the following QoS and properties for the Flow Controller:
-
-  - Scheduler policy used by the flow controller.
-  - Maximum number of bytes to be sent to the network per period.
-  - Period of time in milliseconds during which the flow controller is allowed to send the maximum number of bytes
-    per period.
-  - Property `fastdds.sfc.priority`.
-  - Property `fastdds.sfc.bandwidth_reservation`.
-
-`Request-Reply <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/request_reply>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the Request-Reply example with the current new example format.
-
-`Static EDP Discovery <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/static_edp_discovery>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the Static EDP Discovery example with the new example format.
-
-`Security <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/security>`_
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the SecureHelloWorld example with the current new example format.
-
-`RTPS Entities <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps>`_
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Refactor the rtps/Registered example with the current new example format.
-This RTPS example demonstrates a basic RTPS deployment.
-The main change is that serialization and deserialization are done with overload methods from fastcdr.
+All examples in the Fast DDS project have been refactored to follow a consistent structure, having renamed files,
+restructured classes, and updated the overall format. Additionally, some examples have been removed, renamed, combined
+or had significant changes to their options and configurations. If you have integrated any example into your
+own implementation, carefully review the updated examples to ensure compatibility with your project. As reference,
+consider the example `Configuration <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/configuration>`.

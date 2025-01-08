@@ -107,7 +107,7 @@ Step 5: Migrate public headers
       * - ``fastrtps/eProsima_auto_link.h``
         - ``fastdds/fastdds_auto_link.hpp``
       * - ``fastrtps/attributes/ParticipantAttributes.h``
-        - ``fastdds/rtps/DomainParticipantQos.hpp``
+        - ``fastdds/dds/domain/qos/DomainParticipantExtendedQos.hpp``
       * - ``fastrtps/Domain.h``
         - ``fastdds/dds/domain/DomainParticipantFactory.hpp``
       * - ``fastrtps/log/Log.h``
@@ -145,8 +145,6 @@ Step 5: Migrate public headers
 
    Also, the ``fixed_size_string.hpp`` implementation has been migrated from ``fastrtps/utils/fixed_size_string.hpp``
    to ``fastcdr/cdr/fixed_size_string.hpp``.
-
-   .. TODO:: Fix this table, ``fastdds/rtps/DomainParticipantQos.hpp`` has wrong path and doesn't include the content.
 
 2. File extensions:
 

@@ -204,11 +204,6 @@ Since they are no longer public, it is not possible to include them in external 
 * TypeLookupService.hpp
 
 If your project previously included any of these headers, you will need to modify your implementation.
-Since these headers are now private, you should replace their usage with public alternatives or refactor the
-related code to ensure it does not depend on private headers.
-
-.. TODO:: Add a note about which headers to use instead of the private ones, since we mention that they should 
-  be replaced with public alternatives.
   
 .. _step-7-update-api-methods:
 

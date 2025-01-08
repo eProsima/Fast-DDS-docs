@@ -343,6 +343,10 @@ Zombie files are memory blocks that were reserved by shared memory and are no lo
 memory resources.
 This tool finds and frees those memory allocations.
 
+It is also possible to clean :ref:`Data Sharing<datasharing-delivery>` segments when the ``--force`` option is used.
+However, this option should be used with caution, as it will remove all Data Sharing segments, including the ones
+that are being used by active applications.
+
 .. code-block:: bash
 
     fastdds shm [<shm-command>]
@@ -356,8 +360,15 @@ This tool finds and frees those memory allocations.
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
 +==========================+===========================================================================================+
-| ``-h  -help``            | Produce help message.                                                                     |
+| ``-h  --help``           | Produce help message.                                                                     |
 +--------------------------+-------------------------------------------------------------------------------------------+
+| ``-f  --force``          | Force the deletion of data sharing segments.                                              |
++--------------------------+-------------------------------------------------------------------------------------------+
+
+.. warning::
+     Running this command with the ``--force`` option will remove all Data Sharing segments, including the ones that
+     are being used by active applications. Use this option only when there are no running Fast DDS applications,
+     as it might raise errors if the segments are still in use.
 
 .. _cli_xml:
 

@@ -393,7 +393,6 @@ Step 9: Examples refactor
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All examples in the Fast DDS project have been refactored to follow a consistent structure, having renamed files,
-restructured classes, and updated the overall format. Additionally, some examples have been removed, renamed, combined
-or had significant changes to their options and configurations. If you have integrated any example into your
+restructured classes, and updated the overall format. If you have integrated any example into your
 own implementation, carefully review the updated examples to ensure compatibility with your project. As reference,
 consider the example `Configuration <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/configuration>`_.

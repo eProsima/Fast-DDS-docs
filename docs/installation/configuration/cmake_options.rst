@@ -210,6 +210,8 @@ This module can be configured using *Fast DDS* CMake arguments regarding the fol
         - ``ON`` ``OFF``
         - ``ON``
 
+.. _third-party_libraries-options:
+
 Third-party libraries options
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

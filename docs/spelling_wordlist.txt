@@ -107,6 +107,8 @@ DurabilityKind
 eClock
 endian
 endianness
+enum
+enums
 eProsima
 ethernet
 executables

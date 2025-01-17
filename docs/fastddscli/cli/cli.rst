@@ -49,32 +49,105 @@ There are three verbs whose functionality is described in the following table:
 discovery
 ---------
 
-This command launches a |SERVER| (or |BACKUP|) for :ref:`Discovery Server <discovery_server>`. This *server* will manage
-the discovery phases of the |CLIENTS| which are connected to it.
-*Clients* must know how to reach the *server*, which is accomplished by specifying an IP address, a port and
-a transport protocol like UDP or TCP.
-*Servers* do not need any prior knowledge of their *clients*, but require the listening IP address and port
-where they may be reached.
+This command provides a simple and direct way to launch a *Fast DDS* :ref:`Discovery Server <discovery_server>`.
+It encompasses two main functionalities:
+
+* **Discovery Server CLI with EASY_MODE (Beta)**: It launches a background daemon which will automatically handle the creation of servers.
+  The port of each server is calculated based on the Domain ID (``-d`` argument or ``ROS_DOMAIN_ID``), which is the only parameter that the user must specify.
+  If no Domain ID is provided, the default value is 0.
+
+  It is intended to be used along with the ``EASY_MODE`` environment variable, which will manage clients connections automatically.
+  This CLI feature allows the user to dynamically manage servers from the network: launching, stopping, restarting and even modifying their remote servers connections.
+  For further information about this mode and its status refer to `Discovery Server EASY_MODE <https://docs.vulcanexus.org/en/latest/rst/enhancements/ds_auto_discovery/ds_auto_discovery.html>`__.
+
+* **Discovery Server CLI Standard Mode**: It launches a server running in foreground with the specified parameters.
+  Configurable parameters include IP address, port, transport protocol, XML profile, etc.
+  In this mode, *clients* must know how to reach the *server*, which is accomplished by specifying an IP address, a port and
+  a transport protocol like UDP or TCP.
+  *Servers* do not need any prior knowledge of their *clients*, but require the listening IP address and port
+  where they may be reached.
+
+.. warning::
+    Discovery Server EASY_MODE is a Beta feature. Its functionalities are still under development and they might contain bugs.
+    Its final version will be available soon. Any feedback is appreciated and can be provided at:
+
+
+.. _cli_discovery_easy_mode:
+
+Discovery Server EASY_MODE (Beta)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This mode aims to simplify the deployment and configuration of *Fast DDS* Discovery Servers by automatically handling the server's connections.
+This mode of the CLI is meant to be used along with the ``EASY_MODE`` environment variable, which can be used to remove to **multicast announcements** from DDS entities and interconnect different hosts by just using the environment variable ``EASY_MODE=<ip>``. (Check `Discovery Server EASY_MODE<https://docs.vulcanexus.org/en/latest/rst/enhancements/ds_auto_discovery/ds_auto_discovery.html>`__ to see a detailed explanation of this feature).
+
+In this way, the CLI provides an auxiliary tool to obtain more advanced configuration for specific cases of use.
+It can be used to manage running servers, modifying their remote connections, restarting them or stopping them.
+*Fast DDS* Discovery servers are handled and monitored from a background daemon which is automatically spawned when required.
+
+Configuration of servers launched with EASY_MODE is available by using the following command:
+
+.. code-block:: bash
+
+    fastdds discovery <command> [optional -d <domain>] [optional "<remote_server_list>"]
+
+The following table lists the available commands for the *Fast DDS* Discovery Server CLI:
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Command
+      - Description
+    * - auto
+      - Handle the daemon start-up automatically and creates a Discovery Server in the specified |br| domain (0 by default).
+    * - start
+      - Start the Discovery Server daemon with the remote connections specified. |br|
+        (Example: start -d 1 "127.0.0.1:2;10.0.0.3:42").
+    * - stop
+      - Stop the Discovery Server daemon if it is executed with no arguments.
+        If a domain is |br| specified with the ``-d`` argument it will only stop the corresponding server and the daemon |br| will remain alive.
+    * - add
+      - Add new remote Discovery Servers to the local server.
+        This will connect both servers and |br| their sub-networks without modifying existing remote servers. |br|
+        Example to add two new remote servers: add -d 7 "127.0.0.1:2;10.0.0.3:42".
+    * - set
+      - Rewrite the remote Discovery Servers connected to the local server.
+        This will replace |br| existing remote servers with the new connections. |br|
+        Example to replace remote servers with a new one: set -d 5 "10.0.0.3:42".
+    * - list
+      - List local active Discovery Servers created with the CLI Tool or the ``EASY_MODE=<ip>``.
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Option parameters
+      - Description
+    * - ``-d  --domain``
+      - Selects the domain of the server to target for this action.
+        It defaults to 0 if |br| this argument is missing and no value is found in the ``ROS_DOMAIN_ID`` environment variable.
+    * - "remote_server_list"
+      - It is only accepted with the `start`, `add` and `set` commands.
+        It is a list of |br| remote servers to connect to that follows this structure: "<IP:domain>;<IP:domain>;...".
+
+
+.. _cli_discovery_cli:
+
+Discovery Server CLI Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This mode allows the user to deeply customize Discovery Servers initialization avoiding programming.
+However, it requires manual configuration for clients to reach the server, as they must know the server's IP address, port and protocol.
 For more information on the different *Fast DDS* discovery mechanisms and how to configure them, please refer to
 :ref:`discovery`.
 
-.. important::
-    It is possible to interconnect *servers* (or *backup* servers) instantiated with ``fastdds discovery`` using
-    environment variable ``ROS_DISCOVERY_SERVER`` (see :ref:`env_vars_ros_discovery_server`) or a XML configuration
-    file.
-
-.. _cli_discovery_run:
-
-How to run
-^^^^^^^^^^
-
-On a shell, execute:
+To use this mode, execute on a shell:
 
 .. code-block:: bash
 
     fastdds discovery [optional parameters]
 
-Where the parameters are:
+The following table lists the available parameters for the *Fast DDS* Discovery Server CLI mode:
 
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
@@ -123,6 +196,11 @@ Once the *server* is instantiated, the *clients* can be configured either progra
 :ref:`discovery_server`), or using environment variable ``ROS_DISCOVERY_SERVER`` (see
 :ref:`env_vars_ros_discovery_server`)
 
+.. important::
+    It is possible to interconnect *servers* (or *backup* servers) instantiated with ``fastdds discovery`` using
+    environment variable ``ROS_DISCOVERY_SERVER`` (see :ref:`env_vars_ros_discovery_server`) or a XML configuration
+    file.
+
 .. note::
   The :ref:`security` configuration of the discovery server should be done through XML.
   See example below.
@@ -130,7 +208,7 @@ Once the *server* is instantiated, the *clients* can be configured either progra
 .. _cli_discovery_examples:
 
 Examples
-^^^^^^^^
+--------
 
 1.  Launch a **default server** listening on all available interfaces on UDP port '11811'.
     Only one server can use default values per machine.
@@ -330,7 +408,7 @@ Examples
 .. note::
      A server can be instantiated just by passing the port arguments ``-p``
      and ``-q``. Fast DDS CLI will use the default values of the IP addresses,
-     that is, ``0.0.0.0`` for UDP and ``0.0.0.0`` for TCP.
+     that is, ``0.0.0.0`` for both UDP and TCP.
 
 .. _cli_shm:
 

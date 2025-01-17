@@ -210,6 +210,8 @@ Well-known ports are calculated using the following predefined rules:
      - ``PB`` + ``DG`` * *domainId* + ``offsetd2``
    * - User unicast
      - ``PB`` + ``DG`` * *domainId* + ``offsetd3`` + ``PG`` * *participantId*
+   * - Discovery Server
+     - ``PB`` + ``DG`` * *domainId* + ``offsetd4``
 
 
 The values used in these rules are explained on the following table.
@@ -262,3 +264,7 @@ The default values can be modified using the |WireProtocolConfigQos::port-api| m
      - Additional offset
      - 11
      - |PortParameters::offsetd3-qos-api|
+   * - ``offsetd4``
+     - Additional offset
+     - 2
+     - |PortParameters::offsetd4-qos-api|

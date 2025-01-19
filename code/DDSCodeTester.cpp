@@ -3963,6 +3963,7 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
+<<<<<<< HEAD
         ResourceLimitsQosPolicy resource_limits;
         //The ResourceLimitsQosPolicy is default constructed with max_samples = 5000
         //Change max_samples to 200
@@ -3976,6 +3977,24 @@ void dds_qos_examples()
         //The ResourceLimitsQosPolicy is default constructed with allocated_samples = 100
         //Change allocated_samples to 50
         resource_limits.allocated_samples = 50;
+=======
+        // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
+        DataWriterQos writer_qos;
+        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
+        // Change max_samples to 2000
+        writer_qos.resource_limits().max_samples = 2000;
+        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
+        // Change max_instances to 20
+        writer_qos.resource_limits().max_instances = 20;
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
+        // Change max_samples_per_instance to 100
+        writer_qos.resource_limits().max_samples_per_instance = 100;
+        // The ResourceLimitsQosPolicy is constructed with allocated_samples = 100 by default
+        // Change allocated_samples to 50
+        writer_qos.resource_limits().allocated_samples = 50;
+        // Use modified QoS in the creation of the corresponding entity
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
+>>>>>>> d60571d (Adjust XML snippets to meet QoS constraints (#934))
         //!--
     }
 

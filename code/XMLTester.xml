@@ -2641,6 +2641,17 @@
                     <name>dds.sec.auth.builtin.PKI-DH.password</name>
                     <value>domainParticipantPassword</value>
                 </property>
+<<<<<<< HEAD
+=======
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.preferred_key_agreement</name>
+                    <value>ECDH</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.transmit_algorithms_as_legacy</name>
+                    <value>true</value>
+                </property>
+>>>>>>> cc95496 (Document new `transmit_algorithms_as_legacy` on builtin security plugins (#974))
             </properties>
         </propertiesPolicy>
     </rtps>
@@ -2692,6 +2703,10 @@
                 <property>
                     <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
                     <value>file://permissions.smime</value>
+                </property>
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.transmit_algorithms_as_legacy</name>
+                    <value>true</value>
                 </property>
             </properties>
         </propertiesPolicy>

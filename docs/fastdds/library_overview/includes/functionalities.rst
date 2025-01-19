@@ -40,7 +40,8 @@ Security
 * Authentication of remote DomainParticipants.
   The **DDS:Auth:PKI-DH** plugin provides authentication using a trusted Certificate
   Authority (CA) and ECDSA Digital Signature Algorithms to perform the mutual authentication.
-  It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement protocol.
+  It also establishes a shared secret using either Elliptic Curve Diffie-Hellman (ECDH) or MODP-2048 Diffie-Hellman (DH)
+  as Key Agreement protocol.
 * Access control of entities.
   The **DDS:Access:Permissions** plugin provides access control to DomainParticipants at the DDS Domain and Topic level.
 * Encryption of data.

@@ -42,6 +42,19 @@ The following table outlines the properties used for the :ref:`DDS\:Auth\:PKI-DH
        If the *password* property is not present, then the value supplied in the |br|
        *private_key* property must contain the decrypted private key. |br|
        The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.
+<<<<<<< HEAD
+=======
+   * - ``preferred_key_agreement`` *(optional)*
+     - The preferred algorithm to use for generating the session's shared secret |br|
+       at the end of the authentication phase. Supported values are: |br|
+       a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. |br|
+       b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. |br|
+       c) ``AUTO`` for selecting the key agreement based on the signature algorithm in the Identity CA's certificate. |br|
+       Will default to ``AUTO`` if the property is not present.
+   * - ``transmit_algorithms_as_legacy`` *(optional)*
+     - Whether to transmit algorithm identifiers in non-standard legacy format. |br|
+       Will default to ``false`` if the property is not present.
+>>>>>>> cc95496 (Document new `transmit_algorithms_as_legacy` on builtin security plugins (#974))
 
 .. note::
   All properties listed above have the ``dds.sec.auth.builtin.PKI-DH."`` prefix.

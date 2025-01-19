@@ -135,7 +135,7 @@ building tools.
     colcon build
     ```
 
-[^colcon_ignore]: If the virtual environment is placed within the colcon workspace, it is recommended to add an empty `COLCON_IGNORE` file in the root of the virtual environment so that colcon does not inspect it.
+    [^colcon_ignore]: If the virtual environment is placed within the colcon workspace, it is recommended to add an empty `COLCON_IGNORE` file in the root of the virtual environment so that colcon does not inspect it.
 
 1. Run documentation tests:
 
@@ -172,7 +172,7 @@ cd <path_to_repo>/fastdds-docs/build
 ctest -VV
 ```
 
-### Simulating Read the Docs
+### Simulating Read the Docs (optional)
 
 ReadTheDocs generates the documentation using Sphinx and [conf.py](docs/conf.py).
 This means that it does not execute any colcon or CMake commands.

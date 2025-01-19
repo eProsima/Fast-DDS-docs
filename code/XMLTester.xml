@@ -116,6 +116,8 @@
             <qos>
                 <data_sharing>
                     <kind>AUTOMATIC</kind>
+                    <shared_dir>/home</shared_dir>
+                    <max_domains>10</max_domains>
                     <domain_ids>
                         <domainId>123</domainId>
                         <domainId>098</domainId>
@@ -3277,7 +3279,7 @@
                     <properties>
                         <property>
                             <name>fastdds.type_propagation</name>
-                            <value>enable</value>
+                            <value>enabled</value>
                         </property>
                     </properties>
                 </propertiesPolicy>

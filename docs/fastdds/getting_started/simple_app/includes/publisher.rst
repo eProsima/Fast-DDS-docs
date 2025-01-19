@@ -85,7 +85,7 @@ event.
 The overridden callback |DataWriterListener::on_publication_matched-api|
 allows the definition of a series of actions when a new DataReader
 is detected listening to the topic under which the DataWriter is publishing.
-The :func:`info.current_count_change` detects these changes of DataReaders that are matched to the
+The :attr:`info.current_count_change` detects these changes of DataReaders that are matched to the
 DataWriter.
 This is a member in the |MatchedStatus-api| structure that allows tracking changes in the status of subscriptions.
 Finally, the ``listener_`` object of the class is defined as an instance of :class:`PubListener`.

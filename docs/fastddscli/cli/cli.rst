@@ -134,7 +134,7 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
       - Selects the domain of the server to target for this action.
         It defaults to 0 if |br| this argument is missing and no value is found in the ``ROS_DOMAIN_ID``
         environment variable.
-    * - "remote_server_list"
+    * - ``<remote_server_list>``
       - It is only accepted with the `start`, `add` and `set` commands.
         It is a list of |br| remote servers to connect to that follows this structure: "<IP:domain>;<IP:domain>;...".
 

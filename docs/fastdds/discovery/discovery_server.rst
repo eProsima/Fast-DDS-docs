@@ -16,7 +16,8 @@ ease Discovery Server setup and testing.
 
 .. note::
 
-  :ref:`DDS Domain <dds_layer_domain>` concept does not apply when enabling the Discovery Server mechanism.
+  :ref:`DDS Domain <dds_layer_domain>` concept does not apply when enabling the default Discovery Server mechanism,
+  but it applies when using :ref:`EASY_MODE<env_vars_easy_mode>`.
 
 .. contents::
     :local:

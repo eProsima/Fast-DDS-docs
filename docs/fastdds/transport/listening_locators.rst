@@ -210,7 +210,7 @@ Well-known ports are calculated using the following predefined rules:
      - ``PB`` + ``DG`` * *domainId* + ``offsetd2``
    * - User unicast
      - ``PB`` + ``DG`` * *domainId* + ``offsetd3`` + ``PG`` * *participantId*
-   * - Discovery Server
+   * - Discovery Server (Easy Mode)
      - ``PB`` + ``DG`` * *domainId* + ``offsetd4``
 
 

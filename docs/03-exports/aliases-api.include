@@ -737,6 +737,7 @@
 .. |PortParameters::offsetd1-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd1<eprosima::fastdds::rtps::PortParameters::offsetd1>`
 .. |PortParameters::offsetd2-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd2<eprosima::fastdds::rtps::PortParameters::offsetd2>`
 .. |PortParameters::offsetd3-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd3<eprosima::fastdds::rtps::PortParameters::offsetd3>`
+.. |PortParameters::offsetd4-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd4<eprosima::fastdds::rtps::PortParameters::offsetd4>`
 
 .. |WriterResourceLimitsQos-api| replace:: :cpp:class:`WriterResourceLimitsQos<eprosima::fastdds::dds::WriterResourceLimitsQos>`
 .. |WriterResourceLimitsQos::matched_subscriber_allocation-api| replace:: :cpp:member:`matched_subscriber_allocation<eprosima::fastdds::dds::WriterResourceLimitsQos::matched_subscriber_allocation>`

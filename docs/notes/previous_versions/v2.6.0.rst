@@ -18,7 +18,7 @@ This minor release includes the following **features**:
 4. Endpoint discovery RTPS API
 5. ``on_sample_lost`` RTPS API
 6. Transport layer API extension
-7. :ref:`XML support for Fast DDS CLI <cli_discovery_run>`
+7. :ref:`XML support for Fast DDS CLI <cli_discovery_cli>`
 8. :ref:`New exchange format to reduce bandwidth in Static Discovery <property_policies_edp_exchange_format>`
 
 It also includes the following **improvements**:

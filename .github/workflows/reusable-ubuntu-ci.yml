@@ -51,6 +51,11 @@ on:
         required: false
         type: boolean
         default: false
+      add-label:
+        description: 'Add the ci-pending label to the PR'
+        required: false
+        type: boolean
+        default: false
 env:
     build-meta: ${{ inputs.run-tests == true && './src/fastdds-docs/.github/workflows/config/build.meta ./src/fastdds-docs/.github/workflows/config/test.meta' || './src/fastdds-docs/.github/workflows/config/build.meta' }}
 defaults:
@@ -68,7 +73,7 @@ jobs:
           - 'RelWithDebInfo'
     steps:
       - name: Add ci-pending label if PR
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request' && inputs.add-label == true}}
         uses: eProsima/eProsima-CI/external/add_labels@v0
         with:
           labels: ci-pending

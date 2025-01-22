@@ -278,17 +278,17 @@ which will try to connect to another Discovery Server located in the host ``10.0
 
 .. code-block:: bash
 
-   $> export EASY_MODE=10.0.0.1
+    export EASY_MODE=10.0.0.1
 
 The port of the Discovery Server is calculated using the rules explained in the :ref:`listening_locators_defaultPorts`.
-The transports configured in this new mode include :ref:`TCP<transport_tcp_tcp>` for discovery and user data and
-:ref:`Shared Memory<transport_sharedMemory_sharedMemory>` for user data.
+The transports configured in this new mode include :ref:`UDP<transport_udp_udp>` unicast for discovery and
+:ref:`TCP<transport_tcp_tcp>` and :ref:`Shared Memory<transport_sharedMemory_sharedMemory>` for user data.
 
 A detailed tutorial can be found in the
 `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__ documentation.
 
 .. warning::
-    Discovery Server ``EASY_MODE`` is not yet available for Windows.
+    Discovery Server ``EASY_MODE`` is not yet available for Windows platforms.
 
 .. _env_vars_ros_super_client:
 

@@ -254,14 +254,14 @@ The following example shows how to set the address of two remote discovery serve
 
 .. _env_vars_easy_mode:
 
-``EASY_MODE``
--------------
+``ROS2_EASY_MODE``
+------------------
 
-Setting ``EASY_MODE`` to an IP value allows a participant to automatically enter the
+Setting ``ROS2_EASY_MODE`` to an IP value allows a participant to automatically enter the
 `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__.
 This mode completely disables **multicast communication**, and relies on Discovery Servers for discovery purposes.
 
-With ``EASY_MODE`` a new Discovery Server will be automatically spawned locally in the given
+With ``ROS2_EASY_MODE`` a new Discovery Server will be automatically spawned locally in the given
 :ref:`domain<dds_layer_domain>`, pointing to another Discovery Server located in the specified IP.
 If the specified IP belongs to the same host, it will only work in localhost, until another host connects to it.
 If there exists a Discovery Server for that domain, the spawn process will be skipped, relying on the existing server
@@ -278,7 +278,7 @@ which will try to connect to another Discovery Server located in the host ``10.0
 
 .. code-block:: bash
 
-    export EASY_MODE=10.0.0.1
+    export ROS2_EASY_MODE=10.0.0.1
 
 The port of the Discovery Server is calculated using the rules explained in the :ref:`listening_locators_defaultPorts`.
 The transports configured in this new mode include :ref:`UDP<transport_udp_udp>` unicast for discovery and
@@ -288,7 +288,7 @@ A detailed tutorial can be found in the
 `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__ documentation.
 
 .. warning::
-    Discovery Server ``EASY_MODE`` is not yet available for Windows platforms.
+    Discovery Server ``ROS2_EASY_MODE`` is not yet available for Windows platforms.
 
 .. _env_vars_ros_super_client:
 

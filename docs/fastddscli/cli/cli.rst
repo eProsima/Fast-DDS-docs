@@ -58,8 +58,8 @@ It encompasses two main functionalities:
   only parameter that the user must specify.
   If no Domain ID is provided, the default value is 0.
 
-  It is intended to be used along with the ``EASY_MODE`` environment variable, which will manage clients connections
-  automatically.
+  It is intended to be used along with the ``ROS2_EASY_MODE`` environment variable, which will manage clients
+  connections automatically.
   This CLI feature allows the user to dynamically manage servers from the network: launching, stopping, restarting
   and even modifying their remote servers connections.
   For further information about this mode refer to `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__.
@@ -78,9 +78,9 @@ Discovery Server CLI Easy Mode
 
 This mode aims to simplify the deployment and configuration of *Fast DDS* Discovery Servers by automatically handling
 the server's connections.
-This mode of the CLI is meant to be used along with the ``EASY_MODE`` environment variable, which can be used to
+This mode of the CLI is meant to be used along with the ``ROS2_EASY_MODE`` environment variable, which can be used to
 remove to **multicast announcements** from DDS entities and interconnect different hosts by just using the environment
-variable ``EASY_MODE=<ip>``.
+variable ``ROS2_EASY_MODE=<ip>``.
 (Check `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__
 to see a detailed explanation of this feature).
 
@@ -89,7 +89,7 @@ It can be used to manage running servers, modifying their remote connections, re
 *Fast DDS* Discovery servers are handled and monitored from a background daemon which is automatically spawned when
 required.
 
-Configuration of servers launched with ``EASY_MODE`` is available by using the following command:
+Configuration of servers launched with ``ROS2_EASY_MODE`` is available by using the following command:
 
 .. code-block:: bash
 
@@ -122,7 +122,7 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
         This will replace |br| existing remote servers with the new connections. |br|
         Example to replace remote servers with a new one: set -d 5 "10.0.0.3:42".
     * - list
-      - List local active Discovery Servers created with the CLI Tool or the ``EASY_MODE=<ip>``.
+      - List local active Discovery Servers created with the CLI Tool or the ``ROS2_EASY_MODE=<ip>``.
 
 .. list-table::
     :header-rows: 1

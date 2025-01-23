@@ -16,7 +16,8 @@ ease Discovery Server setup and testing.
 
 .. note::
 
-  :ref:`DDS Domain <dds_layer_domain>` concept does not apply when enabling the Discovery Server mechanism.
+  :ref:`DDS Domain <dds_layer_domain>` concept does not apply when enabling the default Discovery Server mechanism,
+  but it applies when using :ref:`ROS2_EASY_MODE<env_vars_easy_mode>`.
 
 .. contents::
     :local:
@@ -50,6 +51,7 @@ In this architecture there are several key concepts to understand:
     * A *server* also announces the existence of a new *server* to its known *servers*, and vice versa.
       In this way, a new server can connect to every other existing *server* in the network by just knowing the
       existence of one of them.
+      In this way, a mesh topology between servers is created with minimal configuration.
     * The discovery information that is redistributed might come from a **direct** *client* connected to the |SERVER|,
       or from another *server* that is redirecting the discovery data from **its** *clients*.
     * Known *servers* will receive all the information from the **direct** *clients* known by the *server* and the

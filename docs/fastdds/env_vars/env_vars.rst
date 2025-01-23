@@ -252,6 +252,44 @@ The following example shows how to set the address of two remote discovery serve
     (that has been initialized with this environment variable previously) if loaded from an environment file using
     :ref:`env_vars_fastdds_environment_file`.
 
+.. _env_vars_easy_mode:
+
+``ROS2_EASY_MODE``
+------------------
+
+Setting ``ROS2_EASY_MODE`` to an IP value allows a participant to automatically enter the
+`Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__.
+This mode completely disables **multicast communication**, and relies on Discovery Servers for discovery purposes.
+
+With ``ROS2_EASY_MODE`` a new Discovery Server will be automatically spawned locally in the given
+:ref:`domain<dds_layer_domain>`, pointing to another Discovery Server located in the specified IP.
+If the specified IP belongs to the same host, it will only work in localhost, until another host connects to it.
+If there exists a Discovery Server for that domain, the spawn process will be skipped, relying on the existing server
+for discovery purposes.
+Therefore, only one Discovery Server per host will be present in the domain.
+
+In order for this variable to take effect, the participant must have its
+:ref:`discovery protocol<discovery_protocol>` set to |SIMPLE| (default), to automatically enter the
+`Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__.
+If this happens, the participant will be configured as a |SUPER_CLIENT| pointing to the local server.
+
+The following example will configure participants as |SUPER_CLIENT| pointing to a local Discovery Server,
+which will try to connect to another Discovery Server located in the host ``10.0.0.1``.
+
+.. code-block:: bash
+
+    export ROS2_EASY_MODE=10.0.0.1
+
+The port of the Discovery Server is calculated using the rules explained in the :ref:`listening_locators_defaultPorts`.
+The transports configured in this new mode include :ref:`UDP<transport_udp_udp>` unicast for discovery and
+:ref:`TCP<transport_tcp_tcp>` and :ref:`Shared Memory<transport_sharedMemory_sharedMemory>` for user data.
+
+A detailed tutorial can be found in the
+`Vucanexus Easy Mode Tutorial <https://docs.vulcanexus.org/en/latest/rst/tutorials/core/wifi/easy_mode/easy_mode.html>`__ documentation.
+
+.. warning::
+    Discovery Server ``ROS2_EASY_MODE`` is not yet available for Windows platforms.
+
 .. _env_vars_ros_super_client:
 
 ``ROS_SUPER_CLIENT``

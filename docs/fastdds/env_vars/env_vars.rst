@@ -285,7 +285,7 @@ The transports configured in this new mode include :ref:`UDP<transport_udp_udp>`
 :ref:`TCP<transport_tcp_tcp>` and :ref:`Shared Memory<transport_sharedMemory_sharedMemory>` for user data.
 
 A detailed tutorial can be found in the
-`Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__ documentation.
+`Vucanexus Easy Mode Tutorial <https://docs.vulcanexus.org/en/latest/rst/tutorials/core/wifi/easy_mode/easy_mode.html>`__ documentation.
 
 .. warning::
     Discovery Server ``ROS2_EASY_MODE`` is not yet available for Windows platforms.

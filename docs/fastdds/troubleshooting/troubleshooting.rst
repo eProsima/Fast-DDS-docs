@@ -44,3 +44,8 @@ issues.
 
 * If having problems with transmitting **large samples such as video or point clouds**, please refer to
   :ref:`use-case-largeData`.
+
+* Fast DDS v3 introduced the new feature :ref:`XTypes<dynamic-types>`, which allows to discover remote types.
+  In consequence, discovery traffic can be increased during start up.
+  If you are experiencing high load during discovery, try disabling the new feature.
+  Please refer to :ref:`disable type propagation<property_type_propagation>` to learn how to do it.

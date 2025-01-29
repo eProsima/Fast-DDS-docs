@@ -10,6 +10,12 @@ Migration Guide to Fast DDS v3
 This document aims to help during the migration process from eProsima *Fast DDS version* 2 to *Fast DDS version* 3.
 For more information about all the updates, please refer to the :ref:`release notes <release_notes>`.
 
+.. warning::
+    Fast DDS v3 introduces a new feature :ref:`XTypes<dynamic-types>` that allows to discover remote types.
+    In consequence, discovery traffic can be increased during start up.
+    If you are experiencing high load during discovery, try disabling the new feature.
+    Please refer to :ref:`disable type propagation<property_type_propagation>` to learn how to do it.
+
 Migration Steps
 ---------------
 

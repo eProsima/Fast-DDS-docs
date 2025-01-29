@@ -961,7 +961,7 @@ void dds_domain_examples()
 
         pqos.properties().properties().emplace_back(
             "fastdds.type_propagation",
-            "enabled");
+            "disabled");
         //!--
     }
 }

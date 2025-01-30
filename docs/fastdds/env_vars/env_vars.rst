@@ -287,6 +287,14 @@ The transports configured in this new mode include :ref:`UDP<transport_udp_udp>`
 A detailed tutorial can be found in the
 `Vucanexus Easy Mode Tutorial <https://docs.vulcanexus.org/en/latest/rst/tutorials/core/wifi/easy_mode/easy_mode.html>`__ documentation.
 
+.. note::
+    When ``ROS2_EASY_MODE`` is enabled, Fast DDS automatically loads a custom XML profile named ``service``.
+    This profile increases the server's response timeout for ROS2 services by modifying the
+    |ReliabilityQosPolicy::max_blocking_time-api|.
+    However, if the user provides an XML file that already contains a profile with the same name, Fast DDS will not
+    load any extra profile.
+    Instead, the |ReliabilityQosPolicy::max_blocking_time-api| value defined in the user's XML file will be used.
+
 .. warning::
     Discovery Server ``ROS2_EASY_MODE`` is not yet available for Windows platforms.
 

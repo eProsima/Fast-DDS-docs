@@ -24,7 +24,7 @@ This section describes how to specify this extended configuration.
 Changing publication mode
 -------------------------
 
-*rmw_fastrtps* in ROS 2 uses asynchronous publication by default.
+*rmw_fastrtps* in ROS 2 uses synchronous publication by default.
 This can be easily changed setting the environment variable ``RMW_FASTRTPS_PUBLICATION_MODE``
 to one of the following allowed values:
 

@@ -66,7 +66,7 @@ Said parameters, and their default values under ROS 2, are:
        in a queue that is managed in a different thread, |br|
        meaning that the user thread is available right |br|
        after the call to send data.
-     - |ASYNCHRONOUS_PUBLISH_MODE-api|
+     - |SYNCHRONOUS_PUBLISH_MODE-api|
 
 
 .. _ros2_configure_xml:

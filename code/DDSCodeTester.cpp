@@ -12,6 +12,8 @@
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipantListener.hpp>
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
+#include <fastdds/dds/domain/qos/ReplierQos.hpp>
+#include <fastdds/dds/domain/qos/RequesterQos.hpp>
 #include <fastdds/dds/log/FileConsumer.hpp>
 #include <fastdds/dds/log/Log.hpp>
 #include <fastdds/dds/log/OStreamConsumer.hpp>
@@ -22,6 +24,11 @@
 #include <fastdds/dds/publisher/PublisherListener.hpp>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
+#include <fastdds/dds/rpc/Replier.hpp>
+#include <fastdds/dds/rpc/Requester.hpp>
+#include <fastdds/dds/rpc/RequestInfo.hpp>
+#include <fastdds/dds/rpc/Service.hpp>
+#include <fastdds/dds/rpc/ServiceTypeSupport.hpp>
 #include <fastdds/dds/subscriber/DataReader.hpp>
 #include <fastdds/dds/subscriber/DataReaderListener.hpp>
 #include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>
@@ -49,19 +56,20 @@
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/BlockedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/NetmaskFilterKind.hpp>
+#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPv6TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv6TransportDescriptor.hpp>
-#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
 #include <fastdds/utils/IPLocator.hpp>
 
 using namespace eprosima::fastdds::dds;
+using namespace eprosima::fastdds::dds::rpc;
 
 class CustomChainingTransportDescriptor : public eprosima::fastdds::rtps::ChainingTransportDescriptor
 {
@@ -7783,6 +7791,196 @@ void pubsub_api_example_create_entities()
     //PUBSUB_API_CREATE_SUBSCRIBER
     Subscriber* subscriber = participant->create_subscriber(eprosima::fastdds::dds::SUBSCRIBER_QOS_DEFAULT);
     //!--
+}
+
+void rpcdds_internal_api_examples()
+{
+    {
+        //!--CREATE_DELETE_SERVICE_EXAMPLE
+        TypeSupport request_type_support = TypeSupport(new CustomDataType());
+        TypeSupport reply_type_support = TypeSupport(new CustomDataType());
+        DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+
+        // Create a new ServiceTypeSupport instance
+        ServiceTypeSupport service_type_support(request_type_support, reply_type_support);
+
+        // Register the ServiceTypeSupport instance in a DomainParticipant
+        ReturnCode_t ret;
+        ret = participant->register_service_type(service_type_support, "ServiceType");
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        // Create a new Service instance
+        Service* service = participant->create_service("Service", "ServiceType");
+        if (!service)
+        {
+            // Error
+            return;
+        }
+
+        // ... Create Requesters and Repliers here
+
+        // Delete the created Service
+        ret = participant->delete_service(service);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        TypeSupport request_type_support = TypeSupport(new CustomDataType());
+        TypeSupport reply_type_support = TypeSupport(new CustomDataType());
+        ServiceTypeSupport service_type_support(request_type_support, reply_type_support);
+        participant->register_service_type(service_type_support, "ServiceType");
+        participant->create_service("Service", "ServiceType");
+
+        //!--RPC_REQUESTER_EXAMPLE
+        ReturnCode_t ret;
+
+        // Get a valid service
+        Service* service = participant->find_service("Service");
+        if (!service)
+        {
+            // Error
+            return;
+        }
+
+        /* Create a new Requester instance */
+        // Configure the Requester QoS
+        RequesterQos requester_qos;
+        requester_qos.service_name = "Service";
+        requester_qos.request_type = "Foo";
+        requester_qos.reply_type = "Foo";
+        requester_qos.request_topic_name = "Service_Request";
+        requester_qos.reply_topic_name = "Service_Reply";
+        requester_qos.writer_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
+        requester_qos.reader_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
+
+        Requester* requester = participant->create_service_requester(service, requester_qos);
+        if (!requester)
+        {
+            // Error
+            return;
+        }
+
+        /* Send a new Request sample and check if a received Reply sample is a match */
+        RequestInfo expected_request_info;
+        RequestInfo received_request_info;
+        // Create a new Request sample
+        void* request_data = request_type_support->create_data();
+        ret = requester->send_request(request_data, expected_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+ 
+        // ... Wait here until a Reply sample is received
+
+        void* data = nullptr;
+        ret = requester->take_reply(data, received_request_info); 
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+    
+        if (expected_request_info.related_sample_identity == received_request_info.related_sample_identity)
+        {
+          // Received Reply sample is associated to the sent Request sample
+        }
+    
+        // Delete created Requester
+        ret = participant->delete_service_requester(requester->get_service_name(), requester);
+        if (RETCODE_OK != ret)
+        {
+          // Error
+          return;
+        }
+        //!--
+    }
+
+    {
+        DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        TypeSupport request_type_support = TypeSupport(new CustomDataType());
+        TypeSupport reply_type_support = TypeSupport(new CustomDataType());
+        ServiceTypeSupport service_type_support(request_type_support, reply_type_support);
+        participant->register_service_type(service_type_support, "ServiceType");
+        participant->create_service("Service", "ServiceType");
+        
+        //!--RPC_REPLIER_EXAMPLE
+        ReturnCode_t ret;
+
+        // Get a valid service
+        Service* service = participant->find_service("Service");
+        if (!service)
+        {
+            // Error
+            return;
+        }
+
+        /* Create a new Replier instance */
+        // Configure the Replier QoS
+        ReplierQos replier_qos;
+        replier_qos.service_name = "Service";
+        replier_qos.request_type = "Foo";
+        replier_qos.reply_type = "Foo";
+        replier_qos.request_topic_name = "Service_Request";
+        replier_qos.reply_topic_name = "Service_Reply";
+        replier_qos.writer_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
+        replier_qos.reader_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
+
+        Replier* replier = participant->create_service_replier(service, replier_qos);
+        if (!replier)
+        {
+            // Error
+            return;
+        }
+
+        /* Take a received Request sample and send a new Reply sample */
+        RequestInfo received_request_info;
+
+        // ... Wait here until a Request sample is received
+
+        void* received_data = nullptr;
+
+        ret = replier->take_request(received_data, received_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        // ... Process received data 
+        
+        // Send a Reply with the received related_sample_identity
+        void* reply_data = reply_type_support->create_data();
+        ret = replier->send_reply(reply_data, received_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        /* Delete created Replier */
+        ret = participant->delete_service_replier(replier->get_service_name(), replier);
+        if (RETCODE_OK != ret)
+        {
+          // Error
+          return;
+        }
+        //!--
+    }
 }
 
 int main(

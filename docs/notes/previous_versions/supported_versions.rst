@@ -10,6 +10,7 @@ Version 3.1
 Version 3.0
 -----------
 
+.. include:: v3.0.2.rst
 .. include:: v3.0.1.rst
 .. include:: v3.0.0.rst
 

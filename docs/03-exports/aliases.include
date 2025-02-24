@@ -89,3 +89,7 @@
 .. |WireProtocolConfigQos| replace:: :ref:`WireProtocolConfigQos<wireprotocolconfigqos>`
 .. |WriterDataLifecycleQosPolicy| replace:: :ref:`WriterDataLifecycleQosPolicy<writerdatalifecycleqospolicy>`
 .. |WriterResourceLimitsQos| replace:: :ref:`WriterResourceLimitsQos<writerresourcelimitsqos>`
+.. |Service| replace:: :ref:`Service<rpc_service>`
+.. |Replier| replace:: :ref:`Replier<rpc_replier>`
+.. |Listeners| replace:: :ref:`Listeners<dds_layer_core_entity_commonchars_listener>`
+.. |WaitSet| replace:: :ref:`WaitSet<dds_layer_core_waitsets>`

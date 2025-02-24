@@ -52,6 +52,7 @@
    /fastdds/xtypes/xtypes
    /fastdds/use_cases/use_cases
    /fastdds/ros2/ros2
+   /fastdds/rpc_dds/rpc_dds_intro
    /fastdds/troubleshooting/troubleshooting
    /fastdds/faq/faq
    /fastdds/api_reference/api_reference

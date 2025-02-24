@@ -1,0 +1,36 @@
+`Version 3.0.2 <https://fast-dds.docs.eprosima.com/en/v3.0.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+#. Add default subscriber profile in ROS 2 XML configuration
+#. Enhance Fast DDS docs with a FAQs section covering every subsection
+#. Add support `@value` annotation on `fastddsgen`
+#. Add notes from `v2.10.5`
+#. Update `fastdds_profiles.xsd` file location
+#. Include link to Python installation Getting started
+#. Add Spell Check error summary to reusable workflow
+#. Add notes from `v2.10.6`
+#. Allow run CI on external contributions
+#. Add notes from `v2.14.4`
+#. Add data-sharing with security incompatibility warning
+#. Add documentation for `preferred_key_agreement` property
+#. Add documentation for transmit_algorithms_as_legacy` on builtin security plugins
+#. Update migration guide removing things not related to application developer
+
+This release includes the following **fixes**:
+
+#. Fix typo in statistics troubleshooting XML snippet
+#. Fix master build to run on Ubuntu 24.04
+#. Fix `sphinx-toolbox` version in `requirements.txt`
+#. Avoid referring to specific ROS 2 distributions
+#. Adjust XML snippets to meet QoS constraints
+#. Fix issues on typos and unified some formats
+#. Fix typo in getting started C++ section
+#. Fix default ROS 2 publication mode
+
+.. important::
+
+    When upgrading to version 3.0.2 it is **required** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.0>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

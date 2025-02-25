@@ -921,11 +921,29 @@ void dds_domain_examples()
     }
 
     {
-        // IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT
+        // IGNORE_LOCAL_ENDPOINTS
+        // DomainParticipant level: every local endpoint is not matched with
+        // any other local endpoint.
         DomainParticipantQos participant_qos;
 
         // Avoid local matching of this participant's endpoints
         participant_qos.properties().properties().emplace_back(
+            "fastdds.ignore_local_endpoints",
+            "true");
+
+        // Endpoint level: DataWriter ignores any other local endpoint
+        DataWriterQos datawriter_qos;
+
+        // Avoid local matching with any other local endpoint
+        datawriter_qos.properties().properties().emplace_back(
+            "fastdds.ignore_local_endpoints",
+            "true");
+
+        // Endpoint level: DataReader ignores any other local endpoint
+        DataReaderQos datareader_qos;
+
+        // Avoid local matching with any other local endpoint
+        datareader_qos.properties().properties().emplace_back(
             "fastdds.ignore_local_endpoints",
             "true");
         //!--

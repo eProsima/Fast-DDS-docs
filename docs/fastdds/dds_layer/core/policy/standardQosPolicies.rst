@@ -12,12 +12,6 @@ Standard QoS Policies
 
 This section explains each of the DDS standard QoS Policies:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _deadlineqospolicy:
 
 DeadlineQosPolicy

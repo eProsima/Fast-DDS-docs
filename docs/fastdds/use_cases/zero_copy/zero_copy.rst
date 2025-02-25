@@ -13,11 +13,6 @@ without copying data in memory, saving time and resources.
 In order to achieve this, it uses Data-sharing delivery between the |DataWriter|
 and the |DataReader|, and data buffer loans between the application and *Fast DDS*.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 Overview
 ---------
 

@@ -15,13 +15,6 @@ logging output to different destinations (see :ref:`dds_layer_log_register_consu
 In addition, some of the logging features can be configured using *eProsima Fast DDS* XML configuration files (see
 :ref:`dds_layer_log_xml`).
 
-
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _dds_layer_log_config_entry:
 
 Log Entry

@@ -32,11 +32,6 @@ These can be avoided in some cases using :ref:`use-case-zero-copy`.
     and from the transport to the DataReader.
     With Data-sharing these copies can be avoided.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 Overview
 ---------
 

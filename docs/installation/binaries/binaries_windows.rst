@@ -7,11 +7,6 @@ The instructions for installing *eProsima Fast DDS* in a Windows environment fro
 binaries are provided in this page.
 It is organized as follows:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 First of all, the :ref:`requirements_bw` detailed below need to be met.
 
 

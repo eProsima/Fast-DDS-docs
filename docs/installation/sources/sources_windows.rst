@@ -7,11 +7,6 @@ The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>
 and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources are provided in this page.
 It is organized as follows:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 .. _fastdds_lib_sw:
 
 Fast DDS library installation

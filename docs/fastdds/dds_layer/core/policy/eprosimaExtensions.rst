@@ -12,12 +12,6 @@ eProsima Extensions
 
 The eProsima QoS Policies extensions are those that allow changing the values of the RTPS layer configurable settings.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _datasharingqospolicy:
 
 DataSharingQosPolicy

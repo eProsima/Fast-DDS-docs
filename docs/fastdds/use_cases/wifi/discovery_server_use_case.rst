@@ -19,12 +19,6 @@ and then distributes the appropriate information among the rest of the clients.
 A complete description of the feature can be found at :ref:`discovery_server`.
 The following subsections present configurations for different discovery server use cases.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _discovery_server_major_scenario_setup:
 
 UDPv4 basic example setup

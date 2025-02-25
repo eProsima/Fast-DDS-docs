@@ -7,11 +7,6 @@ The instructions for installing :ref:`Fast DDS library <fastdds_lib_qnx>`
 and running examples and tests on QNX 7.1 are provided in this page.
 It is organized as follows:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 .. _fastdds_lib_qnx:
 
 Fast DDS library installation

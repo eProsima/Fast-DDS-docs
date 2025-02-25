@@ -35,13 +35,6 @@ It shows the abstract API interfaces, and the classes required to implement a tr
     CustomTransport <--right CustomTransportDescriptor : create
     Locator <--right TransportInterface
 
-
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _transport_transportApi_transportDescriptor:
 
 TransportDescriptorInterface

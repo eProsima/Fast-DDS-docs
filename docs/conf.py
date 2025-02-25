@@ -482,7 +482,15 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
+html_title = f'<strong>{project}</strong> <i>{release}</i>'
+html_static_path = ['_static']
+html_theme_options = {
+    'light_logo': 'eprosima-logo.svg',
+    'dark_logo': 'eprosima-logo.svg',
+    'navigation_with_keys': True,
+}
+html_use_smartypants = True
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -518,7 +526,7 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-html_style = select_css(script_path)
+#html_style = select_css(script_path)
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied

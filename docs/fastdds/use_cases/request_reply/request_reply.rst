@@ -21,11 +21,6 @@ will send a *Reply* to the *Client application*.
     client --> server : Request
     server --> client : Reply
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 Overview
 --------
 

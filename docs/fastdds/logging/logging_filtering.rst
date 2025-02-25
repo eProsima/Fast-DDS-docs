@@ -11,11 +11,6 @@ Filters
 execution output can be limited to specific areas of interest.
 Beside the :ref:`dds_layer_log_verbosity_level`, *Fast DDS* provides three different filtering possibilities.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 It is worth mentioning that filters are applied in the specific order presented above, meaning that file name filtering
 is only applied to the entries that pattern-match the category filter, and content filtering is only applied to the
 entries that pattern-match both category and file name filters.

@@ -9,11 +9,6 @@ Unique network flows
 
 This section explains which APIs should be used on Fast DDS in order to have unique network flows on specific topics.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 Background
 ----------
 

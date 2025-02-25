@@ -13,12 +13,6 @@ However, *rmw_fastrtps* offers extended configuration capabilities
 to take full advantage of the features in *Fast DDS*.
 This section describes how to specify this extended configuration.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
-
 .. _ros2_configure_publication_mode:
 
 Changing publication mode

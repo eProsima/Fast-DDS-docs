@@ -19,11 +19,6 @@ ease Discovery Server setup and testing.
   :ref:`DDS Domain <dds_layer_domain>` concept does not apply when enabling the default Discovery Server mechanism,
   but it applies when using :ref:`ROS2_EASY_MODE<env_vars_easy_mode>`.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 .. figure:: /01-figures/fast_dds/discovery/discovery-server.svg
     :align: center
     :width: 50%

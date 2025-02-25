@@ -8,11 +8,6 @@ the :ref:`Fast DDS Python bindings <fastdds_python_sl>`
 and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources are provided in this page.
 It is organized as follows:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 .. _fastdds_lib_sl:
 
 Fast DDS library installation

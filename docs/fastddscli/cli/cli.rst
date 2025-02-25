@@ -9,11 +9,6 @@ CLI
 The *Fast DDS* command line interface provides a set commands and sub-commands to perform, *Fast DDS*
 related, maintenance and configuration tasks.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 An executable file for Linux and Windows that runs the *Fast DDS CLI* application is
 available in the `tools` folder.
 If the `tools/fastdds` folder path is added to the ``PATH``, or by sourcing the `<path/to/fastdds>/install/setup.bash`

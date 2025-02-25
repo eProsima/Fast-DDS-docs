@@ -3,6 +3,7 @@ colcon-common-extensions==0.2.1
 colcon-mixin==0.2.0
 doc8==0.10.1
 docutils==0.20.1
+furo
 GitPython==3.1.41
 setuptools==70.0.0
 sphinx_rtd_theme==2.0.0

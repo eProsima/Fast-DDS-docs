@@ -480,16 +480,28 @@ todo_include_todos = False
 
 # -- Options for HTML output ----------------------------------------------
 
+# Add any paths that contain custom static files (such as style sheets) here,
+# relative to this directory. They are copied after the builtin static files,
+# so a file named "default.css" will overwrite the builtin "default.css".
+html_static_path = ['_static']
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
 html_theme = 'furo'
-html_title = f'<strong>{project}</strong> <i>{release}</i>'
-html_static_path = ['_static']
+html_logo = '_static/fast-dds-logo.png'
+html_title = f'<center><i>{release}</i></center>'
+html_favicon = '_static/eprosima-logo.svg'
 html_theme_options = {
-    'light_logo': 'eprosima-logo.svg',
-    'dark_logo': 'eprosima-logo.svg',
     'navigation_with_keys': True,
+    "light_css_variables": {
+        "color-brand-primary": "#0895CD",
+        "color-brand-content": "#0895CD",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#0895CD",
+        "color-brand-content": "#0895CD",
+    },
 }
 html_use_smartypants = True
 
@@ -521,11 +533,6 @@ html_use_smartypants = True
 # pixels large.
 #
 # html_favicon = None
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
 
 #html_style = select_css(script_path)
 

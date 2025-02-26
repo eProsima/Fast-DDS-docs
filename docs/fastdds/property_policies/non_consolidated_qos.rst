@@ -182,23 +182,25 @@ In case ``FASTDDS_STATISTICS`` is defined, and the reporting of statistics over 
 the ``DISCOVERY_TOPIC`` (see :ref:`statistics_topic_names_physical`) whenever one |DomainParticipant-api| discovers
 another one.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :start-after: // FASTDDS_PHYSICAL_PROPERTIES
-       :end-before: //!--
-       :dedent: 8
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: // FASTDDS_PHYSICAL_PROPERTIES
+            :end-before: //!--
+            :dedent: 8
 
-  .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-   .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->FASTDDS_PHYSICAL_PROPERTIES<-->
-      :end-before: <!--><-->
-      :lines: 2-4,6-25,27-28
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->FASTDDS_PHYSICAL_PROPERTIES<-->
+            :end-before: <!--><-->
+            :lines: 2-4,6-25,27-28
 
 .. important::
 
@@ -281,22 +283,24 @@ Currently there are two different exchange formats which can be selected using t
        Discovery's information in the Participant Discovery Phase (PDP).
      -
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
-           :language: c++
-           :start-after: //DDS-STATIC-DISCOVERY-FORMAT
-           :end-before: //!--
-           :dedent: 8
+            :language: c++
+            :start-after: //DDS-STATIC-DISCOVERY-FORMAT
+            :end-before: //!--
+            :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
-           :language: xml
-           :start-after: <!-->XML-STATIC-DISCOVERY-FORMAT
-           :end-before: <!--><-->
+            :language: xml
+            :start-after: <!-->XML-STATIC-DISCOVERY-FORMAT
+            :end-before: <!--><-->
 
 .. _property_policies_shm_enforce_metatraffic:
 
@@ -335,22 +339,24 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
   When SHM is the only transport configured for a participant, the setting of this property is ignored,
   and considered to be ``"all"``.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
-           :language: c++
-           :start-after: //DDS-SHM-ENFORCE-META-TRAFFIC
-           :end-before: //!--
-           :dedent: 8
+            :language: c++
+            :start-after: //DDS-SHM-ENFORCE-META-TRAFFIC
+            :end-before: //!--
+            :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
-           :language: xml
-           :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
-           :end-before: <!--><-->
+            :language: xml
+            :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
+            :end-before: <!--><-->
 
 .. _property_max_message_size:
 
@@ -390,9 +396,10 @@ applications can achieve a lower sending limit while maintaining the ability to 
 Setting ``fastdds.max_message_size`` At Participant Level
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -400,7 +407,8 @@ Setting ``fastdds.max_message_size`` At Participant Level
             :end-before: //!--
             :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
@@ -413,9 +421,10 @@ Setting ``fastdds.max_message_size`` At Participant Level
 Setting ``fastdds.max_message_size`` At Writer Level
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -423,7 +432,8 @@ Setting ``fastdds.max_message_size`` At Writer Level
             :end-before: //!--
             :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
@@ -493,9 +503,10 @@ The different property values have the following effects on the local |DomainPar
      - IGNORED
      - DISABLED
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -503,7 +514,8 @@ The different property values have the following effects on the local |DomainPar
             :end-before: //!--
             :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml

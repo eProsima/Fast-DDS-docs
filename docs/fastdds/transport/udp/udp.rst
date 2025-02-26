@@ -142,9 +142,10 @@ create an instance of :ref:`transport_udp_v4transportDescriptor` (for UDPv4) or
 
 The examples below show this procedure in both C++ code and XML file.
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: C++
+   .. tab-item:: C++
+      :sync: cpp
 
       .. literalinclude:: /../code/DDSCodeTester.cpp
          :language: c++
@@ -152,7 +153,8 @@ The examples below show this procedure in both C++ code and XML file.
          :end-before: //!--
          :dedent: 8
 
-   .. tab:: XML
+   .. tab-item:: XML
+      :sync: xml
 
       .. literalinclude:: /../code/XMLTester.xml
          :language: xml

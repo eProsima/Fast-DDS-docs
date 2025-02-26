@@ -19,45 +19,49 @@ have its |TCPTransportDescriptor::apply_security-api| data member set to ``true`
 |TCPTransportDescriptor-api|.
 The following is an example of configuration of TLS on the *TCP server*.
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF-TCP-TLS-SERVER
-         :end-before: //!--
-         :dedent: 8
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //CONF-TCP-TLS-SERVER
+            :end-before: //!--
+            :dedent: 8
 
-   .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-TCP-TLS-SERVER
-         :end-before: <!--><-->
-         :lines: 2-3,5-
-         :append: </profiles>
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->CONF-TCP-TLS-SERVER
+            :end-before: <!--><-->
+            :lines: 2-3,5-
+            :append: </profiles>
 
 The corresponding configuration on the *TCP client* is shown in the following example.
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF-TCP-TLS-CLIENT
-         :end-before: //!--
-         :dedent: 8
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //CONF-TCP-TLS-CLIENT
+            :end-before: //!--
+            :dedent: 8
 
-   .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-TCP-TLS-CLIENT
-         :end-before: <!--><-->
-         :lines: 2-3,5-
-         :append: </profiles>
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->CONF-TCP-TLS-CLIENT
+            :end-before: <!--><-->
+            :lines: 2-3,5-
+            :append: </profiles>
 
 The following table describes the data members that are configurable on |TCPTransportDescriptor::TLSConfig-api|.
 

@@ -25,45 +25,49 @@ For example:
 
 * Interface whitelist filled with IP address:
 
-  .. tabs::
+  .. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //TRANSPORT-DESCRIPTORS
-        :end-before: //!--
-        :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //TRANSPORT-DESCRIPTORS
+          :end-before: //!--
+          :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->TRANSPORT-DESCRIPTORS
-        :end-before: <!--><-->
-        :lines: 2-3,5-
-        :append: </profiles>
+       .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->TRANSPORT-DESCRIPTORS
+          :end-before: <!--><-->
+          :lines: 2-3,5-
+          :append: </profiles>
 
 * Interface whitelist filled with interface names:
 
-  .. tabs::
+  .. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //WHITELIST-NAME
-        :end-before: //!--
-        :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //WHITELIST-NAME
+          :end-before: //!--
+          :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->WHITELIST-NAME
-        :end-before: <!--><-->
-        :lines: 2-3,5-
-        :append: </profiles>
+       .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->WHITELIST-NAME
+          :end-before: <!--><-->
+          :lines: 2-3,5-
+          :append: </profiles>
 
 .. important::
 

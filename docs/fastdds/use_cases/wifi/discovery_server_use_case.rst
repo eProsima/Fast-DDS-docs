@@ -36,9 +36,10 @@ Only one parameter needs be configured in this type of implementation:
 | **SERVER**                                                  |
 +=============================================================+
 |                                                             |
-|.. tabs::                                                    |
+|.. tab-set::                                                 |
 |                                                             |
-|   .. tab:: **C++**                                          |
+|   .. tab-item:: C++                                         | 
+|      :sync: cpp                                             |
 |                                                             |
 |      .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |         :language: c++                                      |
@@ -46,7 +47,8 @@ Only one parameter needs be configured in this type of implementation:
 |         :end-before: //!--                                  |
 |         :dedent: 8                                          |
 |                                                             |
-|   .. tab:: **XML**                                          |
+|   .. tab-item:: XML                                         |
+|      :sync: xml                                             |
 |                                                             |
 |      .. literalinclude:: /../code/XMLTester.xml             |
 |         :language: xml                                      |
@@ -60,9 +62,10 @@ Only one parameter needs be configured in this type of implementation:
 | **CLIENT**                                                  |
 +=============================================================+
 |                                                             |
-|.. tabs::                                                    |
+|.. tab-set::                                                 |
 |                                                             |
-|   .. tab:: **C++**                                          |
+|   .. tab-item:: C++                                         | 
+|      :sync: cpp                                             |
 |                                                             |
 |      .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |         :language: c++                                      |
@@ -70,7 +73,8 @@ Only one parameter needs be configured in this type of implementation:
 |         :end-before: //!--                                  |
 |         :dedent: 8                                          |
 |                                                             |
-|   .. tab:: **XML**                                          |
+|   .. tab-item:: XML                                         |
+|      :sync: xml                                             |
 |                                                             |
 |      .. literalinclude:: /../code/XMLTester.xml             |
 |         :language: xml                                      |
@@ -150,9 +154,10 @@ Likewise, several servers can share the same port if their IP addresses are diff
 | **SERVER**                                                  |
 +=============================================================+
 |                                                             |
-|.. tabs::                                                    |
+| .. tab-set::                                                |
 |                                                             |
-|   .. tab:: **C++**                                          |
+|   .. tab-item:: C++                                         |
+|      :sync: cpp                                             |
 |                                                             |
 |      .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |         :language: c++                                      |
@@ -160,7 +165,8 @@ Likewise, several servers can share the same port if their IP addresses are diff
 |         :end-before: //!--                                  |
 |         :dedent: 8                                          |
 |                                                             |
-|   .. tab:: **XML**                                          |
+|   .. tab-item:: XML                                         |
+|      :sync: xml                                             |
 |                                                             |
 |      .. literalinclude:: /../code/XMLTester.xml             |
 |         :language: xml                                      |
@@ -174,9 +180,10 @@ Likewise, several servers can share the same port if their IP addresses are diff
 | **CLIENT**                                                  |
 +=============================================================+
 |                                                             |
-|.. tabs::                                                    |
+| .. tab-set::                                                |
 |                                                             |
-|   .. tab:: **C++**                                          |
+|   .. tab-item:: C++                                         |
+|      :sync: cpp                                             |
 |                                                             |
 |      .. literalinclude:: /../code/DDSCodeTester.cpp         |
 |         :language: c++                                      |
@@ -184,7 +191,8 @@ Likewise, several servers can share the same port if their IP addresses are diff
 |         :end-before: //!--                                  |
 |         :dedent: 8                                          |
 |                                                             |
-|   .. tab:: **XML**                                          |
+|   .. tab-item:: XML                                         |
+|      :sync: xml                                             |
 |                                                             |
 |      .. literalinclude:: /../code/XMLTester.xml             |
 |         :language: xml                                      |
@@ -357,9 +365,10 @@ Consider two servers, each one managing an isolated network:
 
 In order to communicate both networks we can set server A to act as  a client of server B:
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: **C++**
+   .. tab-item:: **C++**
+      :sync: cpp
 
       .. literalinclude:: /../code/DDSCodeTester.cpp
          :language: c++
@@ -367,7 +376,8 @@ In order to communicate both networks we can set server A to act as  a client of
          :end-before: //!--
          :dedent: 8
 
-   .. tab:: **XML**
+   .. tab-item:: **XML**
+      :sync: xml
 
       .. literalinclude:: /../code/XMLTester.xml
          :language: xml
@@ -396,9 +406,10 @@ server (C) that will be used to connect the first two:
 
 In order to communicate both networks we can setup server C to act as client of servers A and B as follows:
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: **C++**
+   .. tab-item:: C++
+      :sync: cpp
 
       .. literalinclude:: /../code/DDSCodeTester.cpp
          :language: c++
@@ -406,7 +417,8 @@ In order to communicate both networks we can setup server C to act as client of 
          :end-before: //!--
          :dedent: 8
 
-   .. tab:: **XML**
+   .. tab-item:: XML
+      :sync: xml
 
       .. literalinclude:: /../code/XMLTester.xml
          :language: xml

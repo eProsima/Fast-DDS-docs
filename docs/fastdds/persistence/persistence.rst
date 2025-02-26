@@ -103,23 +103,25 @@ Example
 This example shows how to configure the persistence service using :ref:`persistence_sqlite3_builtin_plugin` plugin both
 from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles`).
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+  .. tab-item:: C++
+     :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :start-after: //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE
-       :end-before: //!--
-       :dedent: 4
+     .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE
+        :end-before: //!--
+        :dedent: 4
 
-  .. tab:: XML
+  .. tab-item:: XML
+     :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
-       :end-before: <!--><-->
-       :lines: 2-4, 6-61, 63-64
+     .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
+        :end-before: <!--><-->
+        :lines: 2-4, 6-61, 63-64
 
 .. note::
     For instructions on how to create DomainParticipants, DataReaders, and DataWriters, please refer to

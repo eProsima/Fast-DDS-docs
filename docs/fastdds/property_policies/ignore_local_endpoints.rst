@@ -28,9 +28,10 @@ endpoints through the following property:
      - ``"true"``/``"false"``
      - ``"false"``
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -38,7 +39,8 @@ endpoints through the following property:
             :end-before: //!--
             :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml

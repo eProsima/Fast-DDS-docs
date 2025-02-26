@@ -341,8 +341,8 @@ if fastdds_python_imported_location:
 extensions = [
     'breathe',
     'sphinxcontrib.plantuml',
+    'sphinx_design',
     'sphinx.ext.autodoc',  # Document Pydoc documentation from Python bindings.
-    'sphinx_tabs.tabs',
     'sphinx_toolbox.collapse'
 ]
 
@@ -452,6 +452,7 @@ exclude_patterns = [
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
+pygments_dark_style = "solarized_dark256"
 
 # A list of ignored prefixes for module index sorting.
 # modindex_common_prefix = []

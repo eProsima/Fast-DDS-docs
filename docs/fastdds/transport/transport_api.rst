@@ -237,23 +237,25 @@ resolve the IP address.
 This address will in turn be used to create the listening locator in the case of *server*, or as the address of the
 remote *server* in the case of *clients* (and *servers* that connect to other *servers*).
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF_SERVER_DNS_LOCATORS
-         :end-before: //!--
-         :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //CONF_SERVER_DNS_LOCATORS
+          :end-before: //!--
+          :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF_SERVER_DNS_LOCATORS<-->
-         :end-before: <!--><-->
-         :dedent: 20
+       .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF_SERVER_DNS_LOCATORS<-->
+          :end-before: <!--><-->
+          :dedent: 20
 
 .. warning::
 

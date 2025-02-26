@@ -157,23 +157,26 @@ The :code:`TypeKind` is used to query the DynamicTypeBuilderFactory for the spec
 
 The example below shows how to create an structure with primitive members.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_PRIMITIVES
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_PRIMITIVES<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -252,23 +255,26 @@ parameter (:code:`LENGTH_UNLIMITED` is used for unbounded strings).
 |DynamicData-api| class provides also with specific getters and setters: |DynamicData::get_string_value|,
 |DynamicData::get_wstring_value|, |DynamicData::set_string_value|, and |DynamicData::set_wstring_value|.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_STRINGS
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_STRINGS<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -302,23 +308,26 @@ As the enumeration type is basically a signed integer type which might take only
 enumeration literals, the corresponding DynamicData getters and setters are the ones corresponding to the underlying
 signed integer type (and any other method promotable to that specific primitive type).
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_ENUM
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_ENUM<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -355,23 +364,26 @@ Bitmask types can be manipulated either using the |DynamicData::get_boolean_valu
 order to set a specific bitflag, or by using the unsigned integer setter/getter corresponding to the bitmask bound.
 In this latest case, only bitflags are going to be set (bits not named are always unset).
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_BITMASK
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_BITMASK<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -394,23 +406,26 @@ Alias recursion is supported by defining another alias type as the base type.
 
 Once the |DynamicData-api| is created, information can be accessed as if working with the base type.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_TYPEDEF
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_TYPEDEF<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -447,23 +462,26 @@ input.
 Specific collection's element can be also be modified using the :func:`get_value` / :func:`set_value` passing the index
 of the element to be modified.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_SEQUENCES
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_SEQUENCES<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -504,23 +522,26 @@ input.
 Specific collection's element can be also be modified using the :func:`get_value` / :func:`set_value` passing the index
 of the element to be modified.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_ARRAYS
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_ARRAYS<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -563,23 +584,26 @@ In order to call this method, the correct :code:`string` representation of the k
 The map value can now be set using the API corresponding to the map value type.
 For complex map values, please refer to :ref:`xtypes_complextypes`.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_MAPS
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_MAPS<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -639,23 +663,26 @@ Member data can be managed using the corresponding accessors for the underlying 
 Member ID might be retrieved using |DynamicData::get_member_id_by_name| API.
 For managing complex type members, please refer to :ref:`xtypes_complextypes`.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_STRUCT
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_STRUCT<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -733,23 +760,26 @@ When reading a member, the discriminator must be selecting the member being read
 Member ID might be retrieved using |DynamicData::get_member_id_by_name| API.
 For managing complex type members, please refer to :ref:`xtypes_complextypes`.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_UNION
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_UNION<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -806,23 +836,26 @@ If not set, the minimum unsigned integer type is used instead:
 Each bitfield (or member) works like its primitive type with the only difference that the internal storage only
 modifies the involved bits instead of the full primitive value.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_BITSET
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_BITSET<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -873,23 +906,26 @@ The annotation parameter value must be converted to its string representation.
 
   Currently, custom annotations are not supported with :ref:`XML DynamicTypes <xmldynamictypes>`.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+       :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
             :start-after: //!--IDL_CUSTOM_ANNOTATION
             :end-before: //!--
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_CUSTOM_ANNOTATION<-->
             :end-before: <!--><-->
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++

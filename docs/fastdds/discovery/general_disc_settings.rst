@@ -70,9 +70,10 @@ The possible values are:
 |                     |                     | RTPS layer methods.                                                      |
 +---------------------+---------------------+--------------------------------------------------------------------------+
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -80,7 +81,8 @@ The possible values are:
             :end-before: //!--
             :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
@@ -114,9 +116,10 @@ The possible values are:
 |                                                            | host is discarded.                                      |
 +------------------------------------------------------------+---------------------------------------------------------+
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -124,7 +127,8 @@ The possible values are:
             :end-before: //!--
             :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
@@ -150,9 +154,10 @@ DomainParticipant receives any kind of traffic from the local DomainParticipant.
 
 The lease duration is specified as a time expressed in seconds and nanosecond using a |Duration_t-api|.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -160,7 +165,8 @@ The lease duration is specified as a time expressed in seconds and nanosecond us
             :end-before: //!--
             :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
@@ -182,9 +188,10 @@ delay the discovery of late joiners.
 DomainParticipant's announcement period is specified as a time expressed in seconds and nanosecond using a
 |Duration_t-api|.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
             :language: c++
@@ -192,7 +199,8 @@ DomainParticipant's announcement period is specified as a time expressed in seco
             :end-before: //!--
             :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml

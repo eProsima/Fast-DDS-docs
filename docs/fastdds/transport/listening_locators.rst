@@ -58,24 +58,26 @@ Metatraffic Multicast Locators
 Users can set their own metatraffic multicast locators within the :ref:`wireprotocolconfigqos`:
 |BuiltinAttributes::metatrafficMulticastLocatorList-qos-api|.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+  .. tab-item:: C++
+     :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TRANSPORT_METAMULTICASTLOCATOR
-      :end-before: //!--
-      :dedent: 8
+     .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-TRANSPORT_METAMULTICASTLOCATOR
+        :end-before: //!--
+        :dedent: 8
 
-  .. tab:: XML
+  .. tab-item:: XML
+     :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-TRANSPORT_METAMULTICASTLOCATOR
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+     .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-TRANSPORT_METAMULTICASTLOCATOR
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. _listening_locators_metaUnicast:
 
@@ -84,24 +86,26 @@ Metatraffic Unicast Locators
 Users can set their own metatraffic unicast locators within the :ref:`wireprotocolconfigqos`:
 |BuiltinAttributes::metatrafficUnicastLocatorList-qos-api|.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+  .. tab-item:: C++
+     :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TRANSPORT_METAUNICASTLOCATOR
-      :end-before: //!--
-      :dedent: 8
+     .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-TRANSPORT_METAUNICASTLOCATOR
+        :end-before: //!--
+        :dedent: 8
 
-  .. tab:: XML
+  .. tab-item:: XML
+     :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-TRANSPORT_METAUNICASTLOCATOR
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+     .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-TRANSPORT_METAUNICASTLOCATOR
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. _listening_locators_userMulticast:
 
@@ -110,24 +114,26 @@ User-traffic Multicast Locators
 Users can set their own user-traffic multicast locators within the :ref:`wireprotocolconfigqos`:
 |WireProtocolConfigQos::default_multicast_locator_list-api|.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+  .. tab-item:: C++
+     :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TRANSPORT_USERMULTICASTLOCATOR
-      :end-before: //!--
-      :dedent: 8
+     .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-TRANSPORT_USERMULTICASTLOCATOR
+        :end-before: //!--
+        :dedent: 8
 
-  .. tab:: XML
+  .. tab-item:: XML
+     :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-TRANSPORT_USERMULTICASTLOCATOR
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+     .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-TRANSPORT_USERMULTICASTLOCATOR
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. _listening_locators_userUnicast:
 
@@ -136,24 +142,26 @@ User-traffic Unicast Locators
 Users can set their own user-traffic unicast locators within the :ref:`wireprotocolconfigqos`:
 |WireProtocolConfigQos::default_unicast_locator_list-api|.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+  .. tab-item:: C++
+     :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TRANSPORT_USERUNICASTLOCATOR
-      :end-before: //!--
-      :dedent: 8
+     .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-TRANSPORT_USERUNICASTLOCATOR
+        :end-before: //!--
+        :dedent: 8
 
-  .. tab:: XML
+  .. tab-item:: XML
+     :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-TRANSPORT_USERUNICASTLOCATOR
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+     .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-TRANSPORT_USERUNICASTLOCATOR
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. _listening_locators_default:
 

@@ -213,9 +213,9 @@ This verification can be performed on :ref:`dds_layer_domainParticipantFactory` 
 |DomainParticipantFactory::check_xml_static_discovery-api|, using either XML files or the configuration directly,
 as in the examples below.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: File
+    .. tab-item:: File
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
            :language: c++
@@ -223,7 +223,7 @@ as in the examples below.
            :end-before: //!--
            :dedent: 8
 
-    .. tab:: Data
+    .. tab-item:: Data
 
         .. literalinclude:: /../code/DDSCodeTester.cpp
            :language: c++

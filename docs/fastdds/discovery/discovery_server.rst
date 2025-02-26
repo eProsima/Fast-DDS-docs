@@ -99,24 +99,26 @@ A participant can only play one role (despite the fact that a *server* may conne
 It is mandatory to fill this value because it defaults to |SIMPLE|.
 The examples below shows how to set this parameter both programmatically and using XML.
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: **C++**
+    .. tab-item:: C++
+        :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL
-         :end-before: //!--
-         :dedent: 8
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL
+            :end-before: //!--
+            :dedent: 8
 
-   .. tab:: **XML**
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->
-         :end-before: <!--><-->
-         :lines: 2-3,5-18
-         :append: </profiles>
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->
+            :end-before: <!--><-->
+            :lines: 2-3,5-18
+            :append: </profiles>
 
 .. _DS_locators:
 
@@ -137,24 +139,26 @@ Each locator must contain:
 - Port.
 - Transport protocol (UDPv4/6 or TCPv4/6).
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: **C++**
+    .. tab-item:: C++
+        :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF_SERVER_SERVER_LOCATORS
-         :end-before: //!--
-         :dedent: 8
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //CONF_SERVER_SERVER_LOCATORS
+            :end-before: //!--
+            :dedent: 8
 
-   .. tab:: **XML**
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->
-         :end-before: <!--><-->
-         :lines: 2-3,5-19
-         :append: </profiles>
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->
+            :end-before: <!--><-->
+            :lines: 2-3,5-19
+            :append: </profiles>
 
 Note that a *server* can connect to other *servers*, thus, the following section may also apply.
 
@@ -166,24 +170,26 @@ Each *client* must keep a list of locators associated to the *servers* to which 
 Note that providing an unreachable locator will result in the *client* sending ping messages to that direction at
 regular intervals until it is connected to the same amount of servers that has been configured in the locator list.
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: **C++**
+    .. tab-item:: C++
+        :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF_SERVER_CLIENT_LOCATORS
-         :end-before: //!--
-         :dedent: 8
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //CONF_SERVER_CLIENT_LOCATORS
+            :end-before: //!--
+            :dedent: 8
 
-   .. tab:: **XML**
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->
-         :end-before: <!--><-->
-         :lines: 2-3,5-21
-         :append: </profiles>
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->
+            :end-before: <!--><-->
+            :lines: 2-3,5-21
+            :append: </profiles>
 
 .. note::
 
@@ -204,24 +210,26 @@ intervals (ping period) until they receive as many message reception acknowledge
 Mind that this period also applies for those *servers* which connect to other *servers*.
 The default value for this period is 450 ms, but it can be configured to a different value.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: **C++**
+   .. tab-item:: C++
+       :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF_SERVER_CLIENT_PING
-      :end-before: //!--
-      :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //CONF_SERVER_CLIENT_PING
+           :end-before: //!--
+           :dedent: 8
 
-  .. tab:: **XML**
+   .. tab-item:: XML
+       :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-SERVER-CLIENT-PING<-->
-      :end-before: <!--><-->
-      :lines: 2-3,5-16
-      :append: </profiles>
+       .. literalinclude:: /../code/XMLTester.xml
+           :language: xml
+           :start-after: <!-->CONF-SERVER-CLIENT-PING<-->
+           :end-before: <!--><-->
+           :lines: 2-3,5-16
+           :append: </profiles>
 
 .. _DS_guidPrefix:
 
@@ -241,32 +249,34 @@ Server side setup
 
 The examples below show how to manage the corresponding enum data member and XML tag.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: **C++** - Option 1
+   .. tab-item:: C++ - Option 1
+       :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
-        :end-before: //!--
-        :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
+           :end-before: //!--
+           :dedent: 8
 
-  .. tab:: **C++** - Option 2
+   .. tab-item:: C++ - Option 2
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
-        :end-before: //!--
-        :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
+           :end-before: //!--
+           :dedent: 8
 
-  .. tab:: **XML**
+   .. tab-item:: XML
+       :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->
-        :end-before: <!--><-->
-        :lines: 2-3,5-
-        :append: </profiles>
+       .. literalinclude:: /../code/XMLTester.xml
+           :language: xml
+           :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->
+           :end-before: <!--><-->
+           :lines: 2-3,5-
+           :append: </profiles>
 
 .. important::
      When selecting a GUID prefix for the *server*, it is important to take into account that Fast DDS also uses this
@@ -307,15 +317,16 @@ in case that the remote server is relaunched with a different listening locator.
     It is strongly advised to use either the API or the environment file.
     Using both at the same time may cause undefined behavior.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: **C++**
+  .. tab-item:: C++
+      :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF_SERVER_ADD_SERVERS
-      :end-before: //!--
-      :dedent: 8
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //CONF_SERVER_ADD_SERVERS
+          :end-before: //!--
+          :dedent: 8
 
 .. _DS_dns_name:
 
@@ -337,46 +348,50 @@ similar to the one discussed in this section, as well as multiple other examples
 Server side setup
 """""""""""""""""
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: **C++**
+  .. tab-item:: C++
+      :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :start-after: //CONF_SERVER_FULL_EXAMPLE
-       :end-before: //!--
-       :dedent: 8
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //CONF_SERVER_FULL_EXAMPLE
+          :end-before: //!--
+          :dedent: 8
 
-  .. tab:: XML
+  .. tab-item:: XML
+      :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->CONF_SERVER_FULL_EXAMPLE<-->
-       :end-before: <!--><-->
-       :lines: 2-3,5-36
-       :append: </profiles>
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF_SERVER_FULL_EXAMPLE<-->
+          :end-before: <!--><-->
+          :lines: 2-3,5-36
+          :append: </profiles>
 
 Client side setup
 """""""""""""""""
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: **C++**
+  .. tab-item:: C++
+      :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :start-after: //CONF_CLIENT_FULL_EXAMPLE
-       :end-before: //!--
-       :dedent: 8
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //CONF_CLIENT_FULL_EXAMPLE
+          :end-before: //!--
+          :dedent: 8
 
-  .. tab:: **XML**
+  .. tab-item:: XML
+      :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->CONF_CLIENT_FULL_EXAMPLE<-->
-       :end-before: <!--><-->
-       :lines: 2-3,5-31
-       :append: </profiles>
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF_CLIENT_FULL_EXAMPLE<-->
+          :end-before: <!--><-->
+          :lines: 2-3,5-31
+          :append: </profiles>
 
 .. _DS_security:
 

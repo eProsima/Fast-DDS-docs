@@ -31,9 +31,9 @@ With this configuration, the following may happen:
 The easiest fix to overcome this situation is to simply increase the History Depth of the DataWriter to create Some
 buffer to answer to requests:
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: Generic profile
+  .. tab-item:: Generic profile
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
@@ -41,7 +41,7 @@ buffer to answer to requests:
             :end-before: <!--><-->
             :lines: 2-4, 6-53, 55-56
 
-  .. tab:: Specific profile
+  .. tab-item:: Specific profile
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml

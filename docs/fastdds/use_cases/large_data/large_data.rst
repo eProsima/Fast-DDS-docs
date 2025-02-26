@@ -160,19 +160,19 @@ Also increasing the ``txqueuelen`` should go together with increasing the buffer
 
 The settings for a specific network adapter can be viewed using the one of the following commands:
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: ``ip``
+    .. tab-item:: ``ip``
 
-    .. code-block:: bash
+        .. code-block:: bash
 
-      ip link show ${interface}
+            ip link show ${interface}
 
-  .. tab:: ``ifconfig``
+    .. tab-item:: ``ifconfig``
 
-    .. code-block:: bash
+        .. code-block:: bash
 
-        ifconfig ${interface}
+            ifconfig ${interface}
 
 This will display the configuration of the adapter, and among the parameters the ``txqueuelen``.
 This parameter can be a value between 1000 and 20000.
@@ -184,19 +184,19 @@ This parameter can be a value between 1000 and 20000.
 The ``txqueuelen`` can be modified for the current session using either the ``ifconfig`` or ``ip`` commands.
 However, take into account that after rebooting the default values will be configured again.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: ``ip``
+    .. tab-item:: ``ip``
 
-    .. code-block:: bash
+        .. code-block:: bash
 
-      ip link set txqueuelen ${value} dev ${interface}
+            ip link set txqueuelen ${value} dev ${interface}
 
-  .. tab:: ``ifconfig``
+    .. tab-item:: ``ifconfig``
 
-    .. code-block:: bash
+        .. code-block:: bash
 
-      ifconfig ${interface} txqueuelen ${size}
+            ifconfig ${interface} txqueuelen ${size}
 
 .. _flow-controllers:
 
@@ -246,24 +246,26 @@ They only differ in the way they decide the order in which the samples are sent.
 Example configuration
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF-QOS-FLOWCONTROLLER
-         :end-before: //!--
-         :dedent: 8
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //CONF-QOS-FLOWCONTROLLER
+            :end-before: //!--
+            :dedent: 8
 
-   .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-QOS-FLOWCONTROLLER
-         :end-before: <!--><-->
-         :lines: 2-3, 5-
-         :append: </profiles>
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->CONF-QOS-FLOWCONTROLLER
+            :end-before: <!--><-->
+            :lines: 2-3, 5-
+            :append: </profiles>
 
 .. Warning::
 

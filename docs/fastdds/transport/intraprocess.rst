@@ -51,9 +51,9 @@ using XML.
     Thus, if at runtime, the network interfaces change, any new DomainParticipant will have a different GUID prefix and
     will be considered to be running on another host.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: **C++** - ASCII format.
+  .. tab-item:: C++ - ASCII format.
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
@@ -61,7 +61,7 @@ using XML.
         :end-before: //!--
         :dedent: 8
 
-  .. tab:: **C++** - Extraction operator.
+  .. tab-item:: C++ - Extraction operator.
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
@@ -69,7 +69,7 @@ using XML.
         :end-before: //!--
         :dedent: 8
 
-  .. tab:: **XML**
+  .. tab-item:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml

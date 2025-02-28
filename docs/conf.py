@@ -427,11 +427,6 @@ html_static_path = ['_static']
 #
 html_theme = 'furo'
 
-# The name of an image file (relative to this directory) to place at the top
-# of the sidebar.
-#
-html_logo = '_static/fast-dds-logo.png'
-
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
@@ -448,6 +443,8 @@ html_favicon = '_static/eprosima-logo.svg'
 # documentation.
 #
 html_theme_options = {
+    "light_logo": "fast-dds-logo.png",
+    "dark_logo": "fast-dds-logo-dark.png",
     'navigation_with_keys': True,
     "light_css_variables": {
         "color-brand-primary": "#0895CD",

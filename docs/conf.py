@@ -34,66 +34,6 @@ def setup(app):
     app.add_config_value('skip_python', None, '')
 
 
-def download_css(html_css_dir):
-    """
-    Download the common theme of eProsima readthedocs documentation.
-
-    The theme is defined in a CSS file that is hosted in the eProsima GitHub
-    repository with the index of all eProsima product documentation
-    (https://github.com/eProsima/all-docs).
-
-    :param html_css_dir: The directory to save the CSS stylesheet.
-    :return: True if the file was downloaded and generated successfully.
-        False if not.
-    """
-    url = (
-        'https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/fiware_readthedocs.css')
-    try:
-        req = requests.get(url, allow_redirects=True, timeout=10)
-    except requests.RequestException as e:
-        print(
-            'Failed to download the CSS with the eProsima rtd theme.'
-            'Request Error: {}'.format(e)
-        )
-        return False
-    if req.status_code != 200:
-        print(
-            'Failed to download the CSS with the eProsima rtd theme.'
-            'Return code: {}'.format(req.status_code))
-        return False
-    os.makedirs(
-        os.path.dirname('{}/_static/css/'.format(html_css_dir)),
-        exist_ok=True)
-    theme_path = '{}/_static/css/eprosima_rtd_theme.css'.format(html_css_dir)
-    with open(theme_path, 'wb') as f:
-        try:
-            f.write(req.content)
-        except OSError:
-            print('Failed to create the file: {}'.format(theme_path))
-            return False
-    return True
-
-
-def select_css(html_css_dir):
-    """
-    Select CSS file with the website's template.
-
-    :param html_css_dir: The directory to save the CSS stylesheet.
-    :return: Returns a list of CSS files to be imported.
-    """
-    ret = ''
-    common_css = 'css/eprosima_rtd_theme.css'
-    local_css = 'css/fiware_readthedocs.css'
-    if download_css(html_css_dir):
-        print('Applying common CSS style file: {}'.format(common_css))
-        ret = common_css
-    else:
-        print('Applying local CSS style file: {}'.format(local_css))
-        ret = local_css
-
-    return ret
-
-
 def get_git_branch():
     """Get the git branch this repository is currently on."""
     path_to_here = os.path.abspath(os.path.dirname(__file__))
@@ -451,10 +391,6 @@ exclude_patterns = [
 #
 # show_authors = False
 
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'monokai'
-pygments_dark_style = "solarized_dark256"
-
 # A list of ignored prefixes for module index sorting.
 # modindex_common_prefix = []
 
@@ -490,52 +426,53 @@ html_static_path = ['_static']
 # a list of builtin themes.
 #
 html_theme = 'furo'
-html_logo = '_static/fast-dds-logo.png'
-html_title = f'<center><i>{release}</i></center>'
-html_favicon = '_static/eprosima-logo.svg'
-html_theme_options = {
-    'navigation_with_keys': True,
-    "light_css_variables": {
-        "color-brand-primary": "#0895CD",
-        "color-brand-content": "#0895CD",
-    },
-    "dark_css_variables": {
-        "color-brand-primary": "#0895CD",
-        "color-brand-content": "#0895CD",
-    },
-}
-html_use_smartypants = True
-
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-#
-# html_theme_options = {}
-
-# Add any paths that contain custom themes here, relative to this directory.
-# html_theme_path = []
-
-# The name for this set of Sphinx documents.
-# "<project> v<release> documentation" by default.
-#
-# html_title = u'sphynx-demo v0.0.1'
-
-# A shorter title for the navigation bar.  Default is the same as html_title.
-#
-# html_short_title = None
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 #
-# html_logo = None
+html_logo = '_static/fast-dds-logo.png'
+
+# The name for this set of Sphinx documents.
+# "<project> v<release> documentation" by default.
+#
+html_title = f'<center><i>{release}</i></center>'
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs. This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #
-# html_favicon = None
+html_favicon = '_static/eprosima-logo.svg'
 
-#html_style = select_css(script_path)
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For a list of options available for each theme, see the
+# documentation.
+#
+html_theme_options = {
+    'navigation_with_keys': True,
+    "light_css_variables": {
+        "color-brand-primary": "#0895CD",
+        "color-brand-content": "#0895CD",
+        "sidebar-item-spacing-vertical" : "5px",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#0895CD",
+        "color-brand-content": "#0895CD",
+        "sidebar-item-spacing-vertical" : "5px",
+    },
+}
+
+html_use_smartypants = True
+
+html_css_files = [ 'css/eprosima-furo.css' ]
+
+# Add any paths that contain custom themes here, relative to this directory.
+# html_theme_path = []
+
+# A shorter title for the navigation bar.  Default is the same as html_title.
+#
+# html_short_title = None
+
+#html_style = 'css/custom.css'
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied

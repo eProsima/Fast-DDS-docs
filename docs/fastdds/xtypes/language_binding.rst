@@ -182,6 +182,7 @@ The example below shows how to create an structure with primitive members.
             :language: c++
             :start-after: //!--CPP_PRIMITIVES
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`XML Primitive Types <xmldynamictypes_primivites>`.
@@ -280,6 +281,7 @@ parameter (:code:`LENGTH_UNLIMITED` is used for unbounded strings).
             :language: c++
             :start-after: //!--CPP_STRINGS
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML String Types <xmldynamictypes_strings>`.
@@ -333,6 +335,7 @@ signed integer type (and any other method promotable to that specific primitive 
             :language: c++
             :start-after: //!--CPP_ENUM
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Enumeration Types <xmldynamictypes_enums>`.
@@ -389,6 +392,7 @@ In this latest case, only bitflags are going to be set (bits not named are alway
             :language: c++
             :start-after: //!--CPP_BITMASK
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Bitmask Types<xmldynamictypes_bitmask>`.
@@ -431,6 +435,7 @@ Once the |DynamicData-api| is created, information can be accessed as if working
             :language: c++
             :start-after: //!--CPP_TYPEDEF
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Alias Types<xmldynamictypes_typedef>`.
@@ -487,6 +492,7 @@ of the element to be modified.
             :language: c++
             :start-after: //!--CPP_SEQUENCES
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Sequence Types <xmldynamictypes_sequence>`.
@@ -547,6 +553,7 @@ of the element to be modified.
             :language: c++
             :start-after: //!--CPP_ARRAYS
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Array Types<xmldynamictypes_array>`.
@@ -609,6 +616,7 @@ For complex map values, please refer to :ref:`xtypes_complextypes`.
             :language: c++
             :start-after: //!--CPP_MAPS
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Map Types<xmldynamictypes_map>`.
@@ -688,6 +696,7 @@ For managing complex type members, please refer to :ref:`xtypes_complextypes`.
             :language: c++
             :start-after: //!--CPP_STRUCT
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Structure Types<xmldynamictypes_struct>`.
@@ -785,6 +794,7 @@ For managing complex type members, please refer to :ref:`xtypes_complextypes`.
             :language: c++
             :start-after: //!--CPP_UNION
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Union Types<xmldynamictypes_union>`.
@@ -861,6 +871,7 @@ modifies the involved bits instead of the full primitive value.
             :language: c++
             :start-after: //!--CPP_BITSET
             :end-before: //!--
+            :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Bitset Types<xmldynamictypes_bitset>`.
@@ -931,6 +942,7 @@ The annotation parameter value must be converted to its string representation.
             :language: c++
             :start-after: //!--CPP_CUSTOM_ANNOTATION
             :end-before: //!--
+            :dedent: 8
 
 
 Builtin annotations

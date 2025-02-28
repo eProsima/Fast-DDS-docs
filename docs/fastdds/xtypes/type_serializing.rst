@@ -51,6 +51,7 @@ remote type discovery.
     :language: c++
     :start-after: //!--DYNTYPE_IDL_SERIALIZATION
     :end-before: //!--
+    :dedent: 4
 
 DynamicData to JSON
 --------------------

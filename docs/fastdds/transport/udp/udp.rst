@@ -142,22 +142,16 @@ create an instance of :ref:`transport_udp_v4transportDescriptor` (for UDPv4) or
 
 The examples below show this procedure in both C++ code and XML file.
 
-.. tab-set::
+.. tab-set-code::
 
-   .. tab-item:: C++
-      :sync: cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-UDP-TRANSPORT-SETTING
+        :end-before: //!--
+        :dedent: 8
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF-UDP-TRANSPORT-SETTING
-         :end-before: //!--
-         :dedent: 8
-
-   .. tab-item:: XML
-      :sync: xml
-
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-UDP-TRANSPORT-SETTING
-         :end-before: <!--><-->
-         :lines: 2-4,6-37,39-40
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-UDP-TRANSPORT-SETTING
+        :end-before: <!--><-->
+        :lines: 2-4,6-37,39-40

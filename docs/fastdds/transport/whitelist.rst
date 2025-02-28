@@ -25,21 +25,15 @@ For example:
 
 * Interface whitelist filled with IP address:
 
-  .. tab-set::
+  .. tab-set-code::
 
-    .. tab-item:: C++
-       :sync: cpp
-
-       .. literalinclude:: /../code/DDSCodeTester.cpp
+      .. literalinclude:: /../code/DDSCodeTester.cpp
           :language: c++
           :start-after: //TRANSPORT-DESCRIPTORS
           :end-before: //!--
           :dedent: 8
 
-    .. tab-item:: XML
-       :sync: xml
-
-       .. literalinclude:: /../code/XMLTester.xml
+      .. literalinclude:: /../code/XMLTester.xml
           :language: xml
           :start-after: <!-->TRANSPORT-DESCRIPTORS
           :end-before: <!--><-->
@@ -48,21 +42,15 @@ For example:
 
 * Interface whitelist filled with interface names:
 
-  .. tab-set::
+  .. tab-set-code::
 
-    .. tab-item:: C++
-       :sync: cpp
-
-       .. literalinclude:: /../code/DDSCodeTester.cpp
+      .. literalinclude:: /../code/DDSCodeTester.cpp
           :language: c++
           :start-after: //WHITELIST-NAME
           :end-before: //!--
           :dedent: 8
 
-    .. tab-item:: XML
-       :sync: xml
-
-       .. literalinclude:: /../code/XMLTester.xml
+      .. literalinclude:: /../code/XMLTester.xml
           :language: xml
           :start-after: <!-->WHITELIST-NAME
           :end-before: <!--><-->

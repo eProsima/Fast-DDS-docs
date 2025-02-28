@@ -246,26 +246,20 @@ They only differ in the way they decide the order in which the samples are sent.
 Example configuration
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. tab-set::
+.. tab-set-code::
 
-    .. tab-item:: C++
-        :sync: cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-QOS-FLOWCONTROLLER
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //CONF-QOS-FLOWCONTROLLER
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab-item:: XML
-        :sync: xml
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->CONF-QOS-FLOWCONTROLLER
-            :end-before: <!--><-->
-            :lines: 2-3, 5-
-            :append: </profiles>
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-QOS-FLOWCONTROLLER
+        :end-before: <!--><-->
+        :lines: 2-3, 5-
+        :append: </profiles>
 
 .. Warning::
 

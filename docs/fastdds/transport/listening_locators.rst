@@ -58,21 +58,15 @@ Metatraffic Multicast Locators
 Users can set their own metatraffic multicast locators within the :ref:`wireprotocolconfigqos`:
 |BuiltinAttributes::metatrafficMulticastLocatorList-qos-api|.
 
-.. tab-set::
+.. tab-set-code::
 
-  .. tab-item:: C++
-     :sync: cpp
-
-     .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: //CONF-TRANSPORT_METAMULTICASTLOCATOR
         :end-before: //!--
         :dedent: 8
 
-  .. tab-item:: XML
-     :sync: xml
-
-     .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF-TRANSPORT_METAMULTICASTLOCATOR
         :end-before: <!--><-->
@@ -86,21 +80,15 @@ Metatraffic Unicast Locators
 Users can set their own metatraffic unicast locators within the :ref:`wireprotocolconfigqos`:
 |BuiltinAttributes::metatrafficUnicastLocatorList-qos-api|.
 
-.. tab-set::
+.. tab-set-code::
 
-  .. tab-item:: C++
-     :sync: cpp
-
-     .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: //CONF-TRANSPORT_METAUNICASTLOCATOR
         :end-before: //!--
         :dedent: 8
 
-  .. tab-item:: XML
-     :sync: xml
-
-     .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF-TRANSPORT_METAUNICASTLOCATOR
         :end-before: <!--><-->
@@ -114,21 +102,15 @@ User-traffic Multicast Locators
 Users can set their own user-traffic multicast locators within the :ref:`wireprotocolconfigqos`:
 |WireProtocolConfigQos::default_multicast_locator_list-api|.
 
-.. tab-set::
+.. tab-set-code::
 
-  .. tab-item:: C++
-     :sync: cpp
-
-     .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: //CONF-TRANSPORT_USERMULTICASTLOCATOR
         :end-before: //!--
         :dedent: 8
 
-  .. tab-item:: XML
-     :sync: xml
-
-     .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF-TRANSPORT_USERMULTICASTLOCATOR
         :end-before: <!--><-->
@@ -142,21 +124,15 @@ User-traffic Unicast Locators
 Users can set their own user-traffic unicast locators within the :ref:`wireprotocolconfigqos`:
 |WireProtocolConfigQos::default_unicast_locator_list-api|.
 
-.. tab-set::
+.. tab-set-code::
 
-  .. tab-item:: C++
-     :sync: cpp
-
-     .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: //CONF-TRANSPORT_USERUNICASTLOCATOR
         :end-before: //!--
         :dedent: 8
 
-  .. tab-item:: XML
-     :sync: xml
-
-     .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF-TRANSPORT_USERUNICASTLOCATOR
         :end-before: <!--><-->

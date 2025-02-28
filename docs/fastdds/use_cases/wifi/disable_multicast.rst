@@ -15,24 +15,18 @@ Consideration should be given to the assignment of the ports in the ``metatraffi
 avoiding the assignment of ports that are not available or do not match the address-port
 listed in the :ref:`intial peers list<Simple Initial Peers>` of the peer participant.
 
-.. tab-set::
+.. tab-set-code::
 
-    .. tab-item:: C++
-        :sync: cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_INITIAL_PEERS_METAUNICAST
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //CONF_INITIAL_PEERS_METAUNICAST
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab-item:: XML
-        :sync: xml
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->CONF_INITIAL_PEERS_METAUNICAST<-->
-            :end-before: <!--><-->
-            :lines: 2-3,5-
-            :append: </profiles>
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF_INITIAL_PEERS_METAUNICAST<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 

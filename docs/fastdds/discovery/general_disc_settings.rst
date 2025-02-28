@@ -70,25 +70,19 @@ The possible values are:
 |                     |                     | RTPS layer methods.                                                      |
 +---------------------+---------------------+--------------------------------------------------------------------------+
 
-.. tab-set::
+.. tab-set-code::
 
-    .. tab-item:: C++
-       :sync: cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-DISCOVERY-PROTOCOL
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //CONF-DISCOVERY-PROTOCOL
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab-item:: XML
-       :sync: xml
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->CONF-DISCOVERY-PROTOCOL
-            :end-before: <!--><-->
-            :lines: 2-4,6-14,16-17
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-DISCOVERY-PROTOCOL
+        :end-before: <!--><-->
+        :lines: 2-4,6-14,16-17
 
 .. _discovery_ignore_flags:
 
@@ -116,25 +110,19 @@ The possible values are:
 |                                                            | host is discarded.                                      |
 +------------------------------------------------------------+---------------------------------------------------------+
 
-.. tab-set::
+.. tab-set-code::
 
-    .. tab-item:: C++
-       :sync: cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-DISCOVERY-IGNORE-FLAGS
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //CONF-DISCOVERY-IGNORE-FLAGS
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab-item:: XML
-       :sync: xml
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->CONF-DISCOVERY-IGNORE-FLAGS
-            :end-before: <!--><-->
-            :lines: 2-4,6-14,16-17
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-DISCOVERY-IGNORE-FLAGS
+        :end-before: <!--><-->
+        :lines: 2-4,6-14,16-17
 
 .. note::
     To configure a |DomainParticipant| to not receive data from its own |DataWriters|, please refer to :ref:`property_ignore_local_endpoints`.
@@ -154,25 +142,19 @@ DomainParticipant receives any kind of traffic from the local DomainParticipant.
 
 The lease duration is specified as a time expressed in seconds and nanosecond using a |Duration_t-api|.
 
-.. tab-set::
+.. tab-set-code::
 
-    .. tab-item:: C++
-       :sync: cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-DISCOVERY-LEASE-DURATION
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //CONF-DISCOVERY-LEASE-DURATION
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab-item:: XML
-       :sync: xml
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->CONF-DISCOVERY-LEASE-DURATION
-            :end-before: <!--><-->
-            :lines: 2-4,6-17,19-20
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-DISCOVERY-LEASE-DURATION
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20
 
 .. _discovery_lease_announ:
 
@@ -188,22 +170,16 @@ delay the discovery of late joiners.
 DomainParticipant's announcement period is specified as a time expressed in seconds and nanosecond using a
 |Duration_t-api|.
 
-.. tab-set::
+.. tab-set-code::
 
-    .. tab-item:: C++
-       :sync: cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-DISCOVERY-LEASE-ANNOUNCEMENT
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //CONF-DISCOVERY-LEASE-ANNOUNCEMENT
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab-item:: XML
-       :sync: xml
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->CONF-DISCOVERY-LEASE-ANNOUNCEMENT
-            :end-before: <!--><-->
-            :lines: 2-4,6-17,19-20
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-DISCOVERY-LEASE-ANNOUNCEMENT
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20

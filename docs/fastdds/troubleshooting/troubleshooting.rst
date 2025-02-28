@@ -23,7 +23,6 @@ issues.
               export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
 
       .. tab-item:: XML
-          :sync: xml
 
           .. literalinclude:: /../code/XMLTester.xml
               :language: xml
@@ -32,7 +31,6 @@ issues.
               :lines: 2-4, 6-13, 15-16
 
       .. tab-item:: C++
-          :sync: cpp
 
           .. literalinclude:: ../../../code/DDSCodeTester.cpp
               :language: c++

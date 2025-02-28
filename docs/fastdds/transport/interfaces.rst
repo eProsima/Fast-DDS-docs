@@ -74,22 +74,16 @@ network interface would be able to reach it according to its network mask.
 
 Netmask filtering can be enabled at participant level both via C++ API or XML configuration:
 
-.. tab-set::
+.. tab-set-code::
 
-  .. tab-item:: C++
-     :sync: cpp
-
-     .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: //CONF-NETMASK-FILTER
         :end-before: //!--
         :lines: 3-5
         :dedent: 8
 
-  .. tab-item:: XML
-     :sync: xml
-
-     .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->PARTICIPANT-NETMASK-FILTER
         :end-before: <!--><-->
@@ -98,22 +92,16 @@ Netmask filtering can be enabled at participant level both via C++ API or XML co
 
 For socket (UDP/TCP) transport descriptors:
 
-.. tab-set::
+.. tab-set-code::
 
-  .. tab-item:: C++
-     :sync: cpp
-
-     .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: //CONF-NETMASK-FILTER
         :end-before: //!--
         :lines: 7-12
         :dedent: 8
 
-  .. tab-item:: XML
-     :sync: xml
-
-     .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->TRANSPORT-NETMASK-FILTER
         :end-before: <!--><-->
@@ -142,21 +130,15 @@ configuration value (|NetmaskFilterKind::AUTO-api| by default).
 
 For example:
 
-.. tab-set::
+.. tab-set-code::
 
-  .. tab-item:: C++
-     :sync: cpp
-
-     .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: //CONF-INTERFACES-ALLOWLIST
         :end-before: //!--
         :dedent: 8
 
-  .. tab-item:: XML
-     :sync: xml
-
-     .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->INTERFACES-ALLOWLIST
         :end-before: <!--><-->
@@ -188,21 +170,15 @@ or interface name.
 
 For example:
 
-.. tab-set::
+.. tab-set-code::
 
-  .. tab-item:: C++
-     :sync: cpp
-
-     .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: //CONF-INTERFACES-BLOCKLIST
         :end-before: //!--
         :dedent: 8
 
-  .. tab-item:: XML
-     :sync: xml
-
-     .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->INTERFACES-BLOCKLIST
         :end-before: <!--><-->

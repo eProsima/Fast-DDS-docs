@@ -399,7 +399,8 @@ exclude_patterns = [
 
 suppress_warnings = [
     'cpp.duplicate_declaration',
-    'cpp.parse_function_declaration'
+    'cpp.parse_function_declaration',
+    'config.cache'
 ]
 
 # Check if we are checking the spelling. In this case...
@@ -409,7 +410,6 @@ if 'spelling' in sys.argv or 'skip_python=' in sys.argv:
     # Avoid the warning of a wrong reference in the TOC entries,
     # because fails the Python API Reference reference.
     suppress_warnings.append('toc.excluded')
-    suppress_warnings.append('config.cache')
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False

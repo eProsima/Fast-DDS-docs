@@ -25,10 +25,8 @@ To activate case sensitivity use option :code:`-cs` when running *Fast DDS-Gen* 
 
 .. warning::
 
-  Note that IDL files created by ROS2 are not necessarilly compatible with Fast DDS applications, since they are
-  processed in a different manner and can lead to incompatible type definitons. For a detailed explanation on
-  how to ensure compatibility between ROS2 and Fast DDS applications, please refer to this
-  `Vulcanexus tutorial <https://docs.vulcanexus.org/en/jazzy/rst/tutorials/core/deployment/dds2vulcanexus/dds2vulcanexus_ros2idl.html>`_.
+  Note that IDL files created by ROS 2 are not necessarily compatible with Fast DDS applications, since they are processed in a different manner and can lead to incompatible type definitons.
+  For a detailed explanation on how to ensure compatibility between ROS 2 and Fast DDS applications, please refer to this `Vulcanexus tutorial <https://docs.vulcanexus.org/en/jazzy/rst/tutorials/core/deployment/dds2vulcanexus/dds2vulcanexus_ros2idl.html>`_.
 
 .. _idl_primitive_types:
 

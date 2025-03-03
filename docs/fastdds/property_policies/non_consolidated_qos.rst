@@ -51,7 +51,7 @@ See :ref:`tuning-heartbeat-period` for more details.
        :start-after: // PULL_MODE_DATAWRITER
        :end-before: //!--
        :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml
        :start-after: <!-->PULL_MODE_DATAWRITER<-->

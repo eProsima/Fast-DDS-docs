@@ -207,7 +207,7 @@ Example
         :dedent: 8
         :start-after: //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
         :end-before: //!
- 
+
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS

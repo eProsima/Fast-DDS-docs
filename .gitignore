@@ -21,7 +21,7 @@ compile_commands.json
 
 # Common CSS
 
-docs/_static/css/eprosima_rtd_theme.css
+docs/_static/css/eprosima-furo.css
 
 # Colcon
 

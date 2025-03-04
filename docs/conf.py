@@ -18,20 +18,103 @@
 #
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import git
+import json
 import os
 import pathlib
+import requests
 import shutil
 import subprocess
 import sys
 
-import git
-
-import requests
-
 
 def setup(app):
     # Add property to avoid warning.
-    app.add_config_value('skip_python', None, '')
+    app.add_config_value("skip_python", None, "")
+
+
+def download_json():
+    """
+    Download the common theme options of eProsima readthedocs documentation.
+
+    The theme options are defined in a JSON file that is hosted in the eProsima GitHub
+    repository with the index of all eProsima product documentation
+    (https://github.com/eProsima/all-docs).
+
+    :return: dictionary.
+    """
+    url = "https://raw.githubusercontent.com/eProsima/all-docs/furo/source/_static/json/eprosima-furo.json"
+    ret = dict()
+    try:
+        req = requests.get(url, allow_redirects=True, timeout=10)
+    except requests.RequestException as e:
+        print(
+            "Failed to download the JSON with the eProsima theme."
+            "Request Error: {}".format(e)
+        )
+        return ret
+    if req.status_code != 200:
+        print(
+            "Failed to download the JSON with the eProsima theme."
+            "Return code: {}".format(req.status_code)
+        )
+        return ret
+    ret = json.loads(req.content)
+    return ret
+
+
+def download_css(html_css_dir):
+    """
+    Download the common theme of eProsima readthedocs documentation.
+
+    The theme is defined in a CSS file that is hosted in the eProsima GitHub
+    repository with the index of all eProsima product documentation
+    (https://github.com/eProsima/all-docs).
+
+    :param html_css_dir: The directory to save the CSS stylesheet.
+    :return: True if the file was downloaded and generated successfully.
+        False if not.
+    """
+    url = "https://raw.githubusercontent.com/eProsima/all-docs/furo/source/_static/css/eprosima-furo.css"
+    try:
+        req = requests.get(url, allow_redirects=True, timeout=10)
+    except requests.RequestException as e:
+        print(
+            "Failed to download the CSS with the eProsima rtd theme."
+            "Request Error: {}".format(e)
+        )
+        return False
+    if req.status_code != 200:
+        print(
+            "Failed to download the CSS with the eProsima rtd theme."
+            "Return code: {}".format(req.status_code)
+        )
+        return False
+    os.makedirs(os.path.dirname("{}/_static/css/".format(html_css_dir)), exist_ok=True)
+    theme_path = "{}/_static/css/eprosima-furo.css".format(html_css_dir)
+    with open(theme_path, "wb") as f:
+        try:
+            f.write(req.content)
+        except OSError:
+            print("Failed to create the file: {}".format(theme_path))
+            return False
+    return True
+
+
+def select_css(html_css_dir):
+    """
+    Select CSS file with the website's template.
+
+    :param html_css_dir: The directory to save the CSS stylesheet.
+    :return: Returns a list of CSS files to be imported.
+    """
+    ret = ""
+    common_css = "css/eprosima-furo.css"
+    if download_css(html_css_dir):
+        print("Applying common CSS style file: {}".format(common_css))
+        ret = common_css
+
+    return ret
 
 
 def get_git_branch():
@@ -41,23 +124,23 @@ def get_git_branch():
     # Invoke git to get the current branch which we use to get the theme
     try:
         p = subprocess.Popen(
-            ['git', 'rev-parse', '--verify', 'HEAD'],
+            ["git", "rev-parse", "--verify", "HEAD"],
             stdout=subprocess.PIPE,
-            cwd=path_to_here
+            cwd=path_to_here,
         )
 
         commit = p.communicate()[0].decode().rstrip()
 
         p = subprocess.Popen(
-            ['git', 'name-rev', '--name-only', commit],
+            ["git", "name-rev", "--name-only", commit],
             stdout=subprocess.PIPE,
-            cwd=path_to_here
+            cwd=path_to_here,
         )
 
         return p.communicate()[0].decode().rstrip()
 
     except Exception:
-        print('Could not get the branch')
+        print("Could not get the branch")
 
     # Couldn't figure out the branch probably due to an error
     return None
@@ -69,7 +152,7 @@ def configure_doxyfile(
     input_dir,
     output_dir,
     project_binary_dir,
-    project_source_dir
+    project_source_dir,
 ):
     """
     Configure Doxyfile in the CMake style.
@@ -81,65 +164,52 @@ def configure_doxyfile(
     :param project_binary_dir: CMakeLists.txt value of PROJECT_BINARY_DIR
     :param project_source_dir: CMakeLists.txt value of PROJECT_SOURCE_DIR
     """
-    print('Configuring Doxyfile')
-    with open(doxyfile_in, 'r') as file:
+    print("Configuring Doxyfile")
+    with open(doxyfile_in, "r") as file:
         filedata = file.read()
 
-    filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
-    filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
-    filedata = filedata.replace('@PROJECT_BINARY_DIR@', project_binary_dir)
-    filedata = filedata.replace('@PROJECT_SOURCE_DIR@', project_source_dir)
+    filedata = filedata.replace("@DOXYGEN_INPUT_DIR@", input_dir)
+    filedata = filedata.replace("@DOXYGEN_OUTPUT_DIR@", output_dir)
+    filedata = filedata.replace("@PROJECT_BINARY_DIR@", project_binary_dir)
+    filedata = filedata.replace("@PROJECT_SOURCE_DIR@", project_source_dir)
 
     os.makedirs(os.path.dirname(doxyfile_out), exist_ok=True)
-    with open(doxyfile_out, 'w') as file:
+    with open(doxyfile_out, "w") as file:
         file.write(filedata)
 
 
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
-project_source_dir = os.path.abspath('{}/../code'.format(script_path))
-project_binary_dir = os.path.abspath('{}/../build'.format(script_path))
-output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
-doxygen_html = os.path.abspath('{}/html/doxygen'.format(project_binary_dir))
+project_source_dir = os.path.abspath("{}/../code".format(script_path))
+project_binary_dir = os.path.abspath("{}/../build".format(script_path))
+output_dir = os.path.abspath("{}/doxygen".format(project_binary_dir))
+doxygen_html = os.path.abspath("{}/html/doxygen".format(project_binary_dir))
 fastdds_python_imported_location = None
 
 # Doxyfile
-doxyfile_in = os.path.abspath(
-    '{}/doxygen-config.in'.format(project_source_dir)
-)
-doxyfile_out = os.path.abspath('{}/doxygen-config'.format(project_binary_dir))
+doxyfile_in = os.path.abspath("{}/doxygen-config.in".format(project_source_dir))
+doxyfile_out = os.path.abspath("{}/doxygen-config".format(project_binary_dir))
 
 # Header files
-input_dir = os.path.abspath(
-    '{}/fastdds/include/fastdds'.format(
-        project_binary_dir
-    )
-)
+input_dir = os.path.abspath("{}/fastdds/include/fastdds".format(project_binary_dir))
 
 # Check if we're running on Read the Docs' servers
-read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
 if read_the_docs_build:
-    print('Read the Docs environment detected!')
+    print("Read the Docs environment detected!")
 
-    fastdds_repo_name = os.path.abspath(
-        '{}/fastdds'.format(
-            project_binary_dir
-        )
-    )
+    fastdds_repo_name = os.path.abspath("{}/fastdds".format(project_binary_dir))
 
     fastdds_python_repo_name = os.path.abspath(
-        '{}/fastdds_python'.format(
-            project_binary_dir
-        )
+        "{}/fastdds_python".format(project_binary_dir)
     )
 
     # Remove repository if exists
     if os.path.isdir(fastdds_repo_name):
-        print('Removing existing repository in {}'.format(fastdds_repo_name))
+        print("Removing existing repository in {}".format(fastdds_repo_name))
         shutil.rmtree(fastdds_repo_name)
     if os.path.isdir(fastdds_python_repo_name):
-        print('Removing existing repository in {}'.format(
-            fastdds_python_repo_name))
+        print("Removing existing repository in {}".format(fastdds_python_repo_name))
         shutil.rmtree(fastdds_python_repo_name)
 
     # Create necessary directory path
@@ -149,9 +219,9 @@ if read_the_docs_build:
     # Clone repositories
 
     # - Fast DDS
-    print('Cloning Fast DDS')
+    print("Cloning Fast DDS")
     fastdds = git.Repo.clone_from(
-        'https://github.com/eProsima/Fast-DDS.git',
+        "https://github.com/eProsima/Fast-DDS.git",
         fastdds_repo_name,
     )
 
@@ -160,59 +230,58 @@ if read_the_docs_build:
     print('Current documentation branch is "{}"'.format(docs_branch))
 
     # User specified Fast DDS branch
-    fastdds_branch = os.environ.get('FASTDDS_BRANCH', None)
+    fastdds_branch = os.environ.get("FASTDDS_BRANCH", None)
 
     # First try to checkout to ${FASTDDS_BRANCH}
     # Else try with current documentation branch
     # Else checkout to master
-    if (fastdds_branch and
-            fastdds.refs.__contains__('origin/{}'.format(fastdds_branch))):
-        fastdds_branch = 'origin/{}'.format(fastdds_branch)
-    elif (docs_branch and
-            fastdds.refs.__contains__('origin/{}'.format(docs_branch))):
-        fastdds_branch = 'origin/{}'.format(docs_branch)
+    if fastdds_branch and fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
+        fastdds_branch = "origin/{}".format(fastdds_branch)
+    elif docs_branch and fastdds.refs.__contains__("origin/{}".format(docs_branch)):
+        fastdds_branch = "origin/{}".format(docs_branch)
     else:
         print(
             'Fast DDS does not have either "{}" or "{}" branches'.format(
-                fastdds_branch,
-                docs_branch
+                fastdds_branch, docs_branch
             )
         )
-        fastdds_branch = 'origin/master'
+        fastdds_branch = "origin/master"
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
     fastdds.refs[fastdds_branch].checkout()
 
     # - Fast DDS Python Bindings
-    print('Cloning Fast DDS Python Bindings')
+    print("Cloning Fast DDS Python Bindings")
     fastdds_python = git.Repo.clone_from(
-        'https://github.com/eProsima/Fast-DDS-python.git',
+        "https://github.com/eProsima/Fast-DDS-python.git",
         fastdds_python_repo_name,
     )
 
     # User specified Fast DDS branch
-    fastdds_python_branch = os.environ.get('FASTDDS_PYTHON_BRANCH', None)
+    fastdds_python_branch = os.environ.get("FASTDDS_PYTHON_BRANCH", None)
 
     # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
     # Else try with current documentation branch
     # Else checkout to master
-    if (fastdds_python_branch and
-            fastdds_python.refs.__contains__(
-                'origin/{}'.format(fastdds_python_branch))):
-        fastdds_python_branch = 'origin/{}'.format(fastdds_python_branch)
-    elif (docs_branch and
-            fastdds_python.refs.__contains__('origin/{}'.format(docs_branch))):
-        fastdds_python_branch = 'origin/{}'.format(docs_branch)
+    if fastdds_python_branch and fastdds_python.refs.__contains__(
+        "origin/{}".format(fastdds_python_branch)
+    ):
+        fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
+    elif docs_branch and fastdds_python.refs.__contains__(
+        "origin/{}".format(docs_branch)
+    ):
+        fastdds_python_branch = "origin/{}".format(docs_branch)
     else:
         print(
-            'Fast DDS Python does not have either "{}" or "{}" branches'
-            .format(fastdds_python_branch, docs_branch))
-        fastdds_python_branch = 'origin/main'
+            'Fast DDS Python does not have either "{}" or "{}" branches'.format(
+                fastdds_python_branch, docs_branch
+            )
+        )
+        fastdds_python_branch = "origin/main"
 
     # Actual checkout
-    print('Checking out Fast DDS Python branch "{}"'.format(
-        fastdds_python_branch))
+    print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))
     fastdds_python.refs[fastdds_python_branch].checkout()
 
     os.makedirs(os.path.dirname(output_dir), exist_ok=True)
@@ -225,16 +294,17 @@ if read_the_docs_build:
         input_dir,
         output_dir,
         project_binary_dir,
-        project_source_dir
+        project_source_dir,
     )
     # Generate doxygen documentation
-    doxygen_ret = subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
+    doxygen_ret = subprocess.call("doxygen {}".format(doxyfile_out), shell=True)
     if doxygen_ret != 0:
-        print('Doxygen failed with return code {}'.format(doxygen_ret))
+        print("Doxygen failed with return code {}".format(doxygen_ret))
         sys.exit(doxygen_ret)
 
     # Generate SWIG code.
-    swig_ret = subprocess.call('swig \
+    swig_ret = subprocess.call(
+        "swig \
         -python \
         -doxygen \
         -I{}/include \
@@ -243,26 +313,27 @@ if read_the_docs_build:
         -c++ \
         -interface _fastdds_python \
         -o {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
-        {}/fastdds_python/src/swig/fastdds.i'.format(
+        {}/fastdds_python/src/swig/fastdds.i".format(
             fastdds_repo_name,
             fastdds_python_repo_name,
             fastdds_python_repo_name,
-            fastdds_python_repo_name
-        ), shell=True)
+            fastdds_python_repo_name,
+        ),
+        shell=True,
+    )
 
     if swig_ret != 0:
-        print('SWIG failed with return code {}'.format(swig_ret))
+        print("SWIG failed with return code {}".format(swig_ret))
         sys.exit(swig_ret)
 
-    fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(
-            fastdds_python_repo_name)
+    fastdds_python_imported_location = "{}/fastdds_python/src/swig".format(
+        fastdds_python_repo_name
+    )
     autodoc_mock_imports = ["_fastdds_python"]
 
 
-breathe_projects = {
-    'FastDDS': os.path.abspath('{}/xml'.format(output_dir))
-}
-breathe_default_project = 'FastDDS'
+breathe_projects = {"FastDDS": os.path.abspath("{}/xml".format(output_dir))}
+breathe_default_project = "FastDDS"
 breathe_show_define_initializer = True
 
 # Tell `autodoc` where is the Pydoc documentation if it was set.
@@ -279,12 +350,12 @@ if fastdds_python_imported_location:
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'breathe',
-    'sphinxcontrib.plantuml',
-    'sphinx_copybutton',
-    'sphinx_design',
-    'sphinx.ext.autodoc',  # Document Pydoc documentation from Python bindings.
-    'sphinx_toolbox.collapse'
+    "breathe",
+    "sphinxcontrib.plantuml",
+    "sphinx_copybutton",
+    "sphinx_design",
+    "sphinx.ext.autodoc",  # Document Pydoc documentation from Python bindings.
+    "sphinx_toolbox.collapse",
 ]
 
 sphinx_tabs_disable_css_loading = False
@@ -292,15 +363,17 @@ sphinx_tabs_disable_tab_closing = True
 
 try:
     import sphinxcontrib.spelling  # noqa: F401
-    extensions.append('sphinxcontrib.spelling')
+
+    extensions.append("sphinxcontrib.spelling")
 
     # spelling_word_list_filename = 'spelling_wordlist.txt'
     spelling_word_list_filename = [
-        'spelling_wordlist.txt',
-        'fastdds/api_reference/spelling_wordlist.txt'
+        "spelling_wordlist.txt",
+        "fastdds/api_reference/spelling_wordlist.txt",
     ]
 
     from sphinxcontrib.spelling.filters import ContractionFilter
+
     spelling_filters = [ContractionFilter]
     spelling_ignore_contributor_names = False
     spelling_verbose = True
@@ -309,49 +382,49 @@ except ImportError:
 
 # Default behaviour for `autodoc`: always show documented members.
 autodoc_default_options = {
-        'members': True,
-        'undoc-members': False,
-        }
+    "members": True,
+    "undoc-members": False,
+}
 
-plantuml = '/usr/bin/plantuml -Djava.awt.headless=true '
+plantuml = "/usr/bin/plantuml -Djava.awt.headless=true "
 plantuml_output_format = "svg"
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The encoding of source files.
 #
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
-project = u'Fast DDS'
-copyright = u'2019, eProsima'
-author = u'eProsima'
+project = "Fast DDS"
+copyright = "2019, eProsima"
+author = "eProsima"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = u'3.2.0'
+version = "3.2.0"
 # The full version, including alpha/beta/rc tags.
-release = u'3.2.0'
+release = "3.2.0"
 
 # The language for content autogenerated by Sphinx. Refer to documentation
 # for a list of supported languages.
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'en'
+language = "en"
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -366,10 +439,10 @@ language = 'en'
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = [
-    '*/includes/*.rst',
-    '*/*/includes/*.rst',
-    '*/*/*/includes/*.rst',
-    '*/*/*/*/includes/*.rst'
+    "*/includes/*.rst",
+    "*/*/includes/*.rst",
+    "*/*/*/includes/*.rst",
+    "*/*/*/*/includes/*.rst",
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -398,18 +471,18 @@ exclude_patterns = [
 # keep_warnings = False
 
 suppress_warnings = [
-    'cpp.duplicate_declaration',
-    'cpp.parse_function_declaration',
-    'config.cache'
+    "cpp.duplicate_declaration",
+    "cpp.parse_function_declaration",
+    "config.cache",
 ]
 
 # Check if we are checking the spelling. In this case...
-if 'spelling' in sys.argv or 'skip_python=' in sys.argv:
+if "spelling" in sys.argv or "skip_python=" in sys.argv:
     # Exclude Python API Reference because `autodoc` shows warnings.
-    exclude_patterns.append('fastdds/python_api_reference/dds_pim/*')
+    exclude_patterns.append("fastdds/python_api_reference/dds_pim/*")
     # Avoid the warning of a wrong reference in the TOC entries,
     # because fails the Python API Reference reference.
-    suppress_warnings.append('toc.excluded')
+    suppress_warnings.append("toc.excluded")
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
@@ -420,23 +493,23 @@ todo_include_todos = False
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'furo'
+html_theme = "furo"
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-html_title = f'<center><i>{release}</i></center>'
+html_title = f"<center><i>{release}</i></center>"
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs. This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #
-html_favicon = '_static/eprosima-logo.svg'
+html_favicon = "_static/eprosima-logo.svg"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -445,22 +518,12 @@ html_favicon = '_static/eprosima-logo.svg'
 html_theme_options = {
     "light_logo": "fast-dds-logo.png",
     "dark_logo": "fast-dds-logo-dark.png",
-    'navigation_with_keys': True,
-    "light_css_variables": {
-        "color-brand-primary": "#0895CD",
-        "color-brand-content": "#0895CD",
-        "sidebar-item-spacing-vertical" : "5px",
-    },
-    "dark_css_variables": {
-        "color-brand-primary": "#0895CD",
-        "color-brand-content": "#0895CD",
-        "sidebar-item-spacing-vertical" : "5px",
-    },
 }
+html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
-html_css_files = [ 'css/eprosima-furo.css' ]
+html_css_files = [select_css(script_path)]
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []
@@ -469,7 +532,7 @@ html_css_files = [ 'css/eprosima-furo.css' ]
 #
 # html_short_title = None
 
-#html_style = 'css/custom.css'
+# html_style = 'css/custom.css'
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -549,34 +612,30 @@ html_css_files = [ 'css/eprosima-furo.css' ]
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'FastDDSManual'
+htmlhelp_basename = "FastDDSManual"
 
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-     # The paper size ('letterpaper' or 'a4paper').
-     #
-     # 'papersize': 'letterpaper',
-
-     # The font size ('10pt', '11pt' or '12pt').
-     #
-     # 'pointsize': '10pt',
-
-     # Additional stuff for the LaTeX preamble.
-     #
-     # 'preamble': '',
-
-     # Latex figure (float) alignment
-     #
-     # 'figure_align': 'htbp',
+    # The paper size ('letterpaper' or 'a4paper').
+    #
+    # 'papersize': 'letterpaper',
+    # The font size ('10pt', '11pt' or '12pt').
+    #
+    # 'pointsize': '10pt',
+    # Additional stuff for the LaTeX preamble.
+    #
+    # 'preamble': '',
+    # Latex figure (float) alignment
+    #
+    # 'figure_align': 'htbp',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'FastDDS.tex', u'Fast DDS Documentation',
-     u'eProsima', 'manual'),
+    (master_doc, "FastDDS.tex", "Fast DDS Documentation", "eProsima", "manual"),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -616,10 +675,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'Fast DDS', u'Fast DDS Documentation',
-     [author], 1)
-]
+man_pages = [(master_doc, "Fast DDS", "Fast DDS Documentation", [author], 1)]
 
 # If true, show URL addresses after external links.
 #
@@ -632,9 +688,15 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Fast DDS', u'Fast DDS Documentation',
-     author, 'Fast DDS', 'Documentation of eProsima Fast DDS',
-     'Miscellaneous'),
+    (
+        master_doc,
+        "Fast DDS",
+        "Fast DDS Documentation",
+        author,
+        "Fast DDS",
+        "Documentation of eProsima Fast DDS",
+        "Miscellaneous",
+    ),
 ]
 
 # Documents to append as an appendix to all manuals.

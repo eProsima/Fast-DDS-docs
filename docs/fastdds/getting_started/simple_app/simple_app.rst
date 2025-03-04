@@ -12,12 +12,6 @@ It is also possible to self-generate a similar example to the one implemented in
 *eProsima Fast DDS-Gen* tool.
 This additional approach is explained in :ref:`fastddsgen_pubsub_app`.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
-
 .. include:: includes/background.rst
 
 .. include:: includes/prerequisites.rst

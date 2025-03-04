@@ -25,45 +25,37 @@ For example:
 
 * Interface whitelist filled with IP address:
 
-  .. tabs::
-
-    .. tab:: C++
+  .. tab-set-code::
 
       .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //TRANSPORT-DESCRIPTORS
-        :end-before: //!--
-        :dedent: 8
-
-    .. tab:: XML
+          :language: c++
+          :start-after: //TRANSPORT-DESCRIPTORS
+          :end-before: //!--
+          :dedent: 8
 
       .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->TRANSPORT-DESCRIPTORS
-        :end-before: <!--><-->
-        :lines: 2-3,5-
-        :append: </profiles>
+          :language: xml
+          :start-after: <!-->TRANSPORT-DESCRIPTORS
+          :end-before: <!--><-->
+          :lines: 2-3,5-
+          :append: </profiles>
 
 * Interface whitelist filled with interface names:
 
-  .. tabs::
-
-    .. tab:: C++
+  .. tab-set-code::
 
       .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //WHITELIST-NAME
-        :end-before: //!--
-        :dedent: 8
-
-    .. tab:: XML
+          :language: c++
+          :start-after: //WHITELIST-NAME
+          :end-before: //!--
+          :dedent: 8
 
       .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->WHITELIST-NAME
-        :end-before: <!--><-->
-        :lines: 2-3,5-
-        :append: </profiles>
+          :language: xml
+          :start-after: <!-->WHITELIST-NAME
+          :end-before: <!--><-->
+          :lines: 2-3,5-
+          :append: </profiles>
 
 .. important::
 

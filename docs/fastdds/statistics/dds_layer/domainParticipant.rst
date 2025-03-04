@@ -12,11 +12,6 @@ statistics DataWriter should be enabled.
 In fact, *Fast DDS Statistics module* can be enabled and disabled at runtime.
 For this purpose, *Fast DDS Statistics module* exposes an extended DDS |StatisticsDomainParticipant-api| API:
 
-.. contents::
-  :local:
-  :backlinks: none
-  :depth: 2
-
 .. _statistics_enable_datawriters:
 
 Enable statistics DataWriters

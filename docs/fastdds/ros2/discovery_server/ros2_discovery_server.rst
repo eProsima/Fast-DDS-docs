@@ -13,11 +13,6 @@ or read the :ref:`common use cases <discovery-server-use-case>` for this configu
 
 The following tutorial gathers the steps to check this functionality and learn how to use it with ROS 2.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 The :ref:`Simple Discovery Protocol <simple_disc_settings>` is the
 standard protocol defined in the `DDS standard <https://www.omg.org/omg-dds-portal/>`__.
 However, it has certain known disadvantages in some scenarios, mainly:

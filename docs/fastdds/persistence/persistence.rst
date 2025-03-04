@@ -103,17 +103,13 @@ Example
 This example shows how to configure the persistence service using :ref:`persistence_sqlite3_builtin_plugin` plugin both
 from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles`).
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
        :language: c++
        :start-after: //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE
        :end-before: //!--
        :dedent: 4
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml

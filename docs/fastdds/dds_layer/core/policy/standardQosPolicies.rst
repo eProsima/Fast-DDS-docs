@@ -12,12 +12,6 @@ Standard QoS Policies
 
 This section explains each of the DDS standard QoS Policies:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _deadlineqospolicy:
 
 DeadlineQosPolicy
@@ -70,18 +64,13 @@ period must be higher or equal to the minimum separation.
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_DEADLINE_QOS_POLICY
         :end-before: //!
-
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -255,17 +244,13 @@ Table with the possible combinations:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_DURABILITY_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -362,19 +347,19 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+    .. tab-item:: C++
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: //DDS_CHANGE_ENTITY_FACTORY_QOS_POLICY
-        :end-before: //!
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :dedent: 8
+            :start-after: //DDS_CHANGE_ENTITY_FACTORY_QOS_POLICY
+            :end-before: //!
 
-  .. tab:: XML
+    .. tab-item:: XML
 
-    This QoS Policy cannot be configured using XML for the moment.
+        This QoS Policy cannot be configured using XML for the moment.
 
 .. _groupqospolicy:
 
@@ -404,22 +389,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :dedent: 8
-       :start-after: //DDS_CHANGE_GROUP_DATA_QOS_POLICY
-       :end-before: //!
-
-  .. tab:: XML
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_GROUP_DATA_QOS_POLICY
+        :end-before: //!
 
     .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->XML_CHANGE_GROUP_DATA_QOS_POLICY
-       :end-before: <!--><-->
+        :language: xml
+        :start-after: <!-->XML_CHANGE_GROUP_DATA_QOS_POLICY
+        :end-before: <!--><-->
 
 .. _historyqospolicy:
 
@@ -503,22 +484,18 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-  .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_HISTORY_QOS_POLICY
+        :end-before: //!
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :dedent: 8
-            :start-after: //DDS_CHANGE_HISTORY_QOS_POLICY
-            :end-before: //!
-
-  .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML-HISTORY<-->
-            :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML-HISTORY<-->
+        :end-before: <!--><-->
 
 
 .. _latencybudgetqospolicy:
@@ -592,17 +569,13 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_LIFESPAN_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -715,17 +688,13 @@ the |LivelinessQosPolicy::lease_duration-api| of the DataReader.
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_LIVELINESS_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -804,17 +773,13 @@ Table with the possible combinations:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_OWNERSHIP_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -847,17 +812,13 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_OWNERSHIP_STRENGTH_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -901,17 +862,13 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_PARTITION_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1171,17 +1128,13 @@ Table with the possible combinations:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_RELIABILITY_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1255,17 +1208,13 @@ conditions:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1329,17 +1278,13 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
        :language: c++
        :dedent: 8
        :start-after: //DDS_CHANGE_TOPIC_DATA_QOS_POLICY
        :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml
@@ -1400,22 +1345,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :dedent: 8
-       :start-after: //DDS_CHANGE_USER_DATA_QOS_POLICY
-       :end-before: //!
-
-  .. tab:: XML
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_USER_DATA_QOS_POLICY
+        :end-before: //!
 
     .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->XML_CHANGE_USER_DATA_QOS_POLICY
-       :end-before: <!--><-->
+        :language: xml
+        :start-after: <!-->XML_CHANGE_USER_DATA_QOS_POLICY
+        :end-before: <!--><-->
 
 .. _writerdatalifecycleqospolicy:
 

@@ -49,29 +49,31 @@ To achieve this, the ``sockets_size`` parameter must be set to a value at least 
 
 The following snippets show how to configure the ``LARGE_DATA`` mode:
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: Environment Variable
+    .. tab-item:: Environment Variable
 
-      .. code-block:: bash
+        .. code-block:: bash
 
-         export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=1MB&sockets_size=1MB&non_blocking=true&tcp_negotiation_timeout=50
+            export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=1MB&sockets_size=1MB&non_blocking=true&tcp_negotiation_timeout=50
 
-   .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS_OPTIONS<-->
-         :end-before: <!--><-->
-         :lines: 2-4, 6-10, 12-13
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS_OPTIONS<-->
+            :end-before: <!--><-->
+            :lines: 2-4, 6-10, 12-13
 
-   .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
-      .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-         :language: c++
-         :dedent: 8
-         :start-after: //LARGE_DATA_BUILTIN_TRANSPORTS_OPTIONS
-         :end-before: //!
+        .. literalinclude:: ../../../../code/DDSCodeTester.cpp
+            :language: c++
+            :dedent: 8
+            :start-after: //LARGE_DATA_BUILTIN_TRANSPORTS_OPTIONS
+            :end-before: //!
 
 .. note::
 

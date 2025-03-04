@@ -9,12 +9,6 @@ Defining a data type via IDL
 This section describes the data types that can be defined using IDL files, as well as other mechanisms for building
 data types using IDL files.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
-
 Supported IDL types
 -------------------
 

@@ -44,24 +44,20 @@ See :ref:`tuning-heartbeat-period` for more details.
      - ``"true"``/``"false"``
      - ``"true"``
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // PULL_MODE_DATAWRITER                                                                             |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->PULL_MODE_DATAWRITER<-->                                                                       |
-|    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-                                                                                                    |
-|    :append: </profiles>                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: // PULL_MODE_DATAWRITER
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->PULL_MODE_DATAWRITER<-->
+       :end-before: <!--><-->
+       :lines: 2-3,5-
+       :append: </profiles>
 
 .. note::
     * Communication to readers running on the same process (:ref:`intraprocess-delivery`) will always use ``push mode``.
@@ -101,22 +97,18 @@ In this case, the property value is a semicolon separated list containing the
      - Semicolon separated list of :ref:`statistics topic name aliases<statistics_topic_names>`
      - ``""``
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // FASTDDS_STATISTICS_MODULE                                                                        |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->                                                                  |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: // FASTDDS_STATISTICS_MODULE
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->
+       :end-before: <!--><-->
 
 .. _property_policies_physical_data:
 
@@ -182,23 +174,19 @@ In case ``FASTDDS_STATISTICS`` is defined, and the reporting of statistics over 
 the ``DISCOVERY_TOPIC`` (see :ref:`statistics_topic_names_physical`) whenever one |DomainParticipant-api| discovers
 another one.
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :start-after: // FASTDDS_PHYSICAL_PROPERTIES
-       :end-before: //!--
-       :dedent: 8
+        :language: c++
+        :start-after: // FASTDDS_PHYSICAL_PROPERTIES
+        :end-before: //!--
+        :dedent: 8
 
-  .. tab:: XML
-
-   .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->FASTDDS_PHYSICAL_PROPERTIES<-->
-      :end-before: <!--><-->
-      :lines: 2-4,6-25,27-28
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->FASTDDS_PHYSICAL_PROPERTIES<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-25,27-28
 
 .. important::
 
@@ -240,22 +228,18 @@ to belong to.
      - Semicolon separated list of partition names
      - ``""``
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // PARTITION-ON-ENDPOINT                                                                            |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->XML-PARTITION                                                                                  |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: // PARTITION-ON-ENDPOINT
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->XML-PARTITION
+       :end-before: <!--><-->
 
 .. _property_policies_edp_exchange_format:
 
@@ -281,22 +265,18 @@ Currently there are two different exchange formats which can be selected using t
        Discovery's information in the Participant Discovery Phase (PDP).
      -
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //DDS-STATIC-DISCOVERY-FORMAT
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-           :language: c++
-           :start-after: //DDS-STATIC-DISCOVERY-FORMAT
-           :end-before: //!--
-           :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-           :language: xml
-           :start-after: <!-->XML-STATIC-DISCOVERY-FORMAT
-           :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML-STATIC-DISCOVERY-FORMAT
+        :end-before: <!--><-->
 
 .. _property_policies_shm_enforce_metatraffic:
 
@@ -335,22 +315,18 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
   When SHM is the only transport configured for a participant, the setting of this property is ignored,
   and considered to be ``"all"``.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //DDS-SHM-ENFORCE-META-TRAFFIC
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-           :language: c++
-           :start-after: //DDS-SHM-ENFORCE-META-TRAFFIC
-           :end-before: //!--
-           :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-           :language: xml
-           :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
-           :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
+        :end-before: <!--><-->
 
 .. _property_max_message_size:
 
@@ -390,46 +366,38 @@ applications can achieve a lower sending limit while maintaining the ability to 
 Setting ``fastdds.max_message_size`` At Participant Level
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
-            :end-before: <!--><-->
-            :lines: 2,4-16
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
+        :end-before: <!--><-->
+        :lines: 2,4-16
 
 .. _setting_max_message_size_writer:
 
 Setting ``fastdds.max_message_size`` At Writer Level
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // MAX_MESSAGE_SIZE_PROPERTY_WRITER
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: // MAX_MESSAGE_SIZE_PROPERTY_WRITER
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
-            :end-before: <!--><-->
-            :lines: 2,4-14
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
+        :end-before: <!--><-->
+        :lines: 2,4-14
 
 .. _property_type_propagation:
 
@@ -493,20 +461,16 @@ The different property values have the following effects on the local |DomainPar
      - IGNORED
      - DISABLED
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // TYPE_PROPAGATION_PROPERTY
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: // TYPE_PROPAGATION_PROPERTY
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
-            :end-before: <!--><-->
-            :lines: 2-4,6-17,19-20
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20

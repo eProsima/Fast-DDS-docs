@@ -70,15 +70,17 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
 
   An example of FIELDNAMEs:
 
-  .. tabs::
+  .. tab-set::
 
-      .. tab:: Filter expression
+      .. tab-item:: Filter expression
+         :sync: expr
 
           .. code::
 
               "points[0] = 0 AND color.red < 100"
 
-      .. tab:: Associated IDL
+      .. tab-item:: Associated IDL
+         :sync: idl
 
           .. code:: IDL
 
@@ -165,15 +167,17 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
 
   An example of ENUMERATEDVALUE:
 
-  .. tabs::
+  .. tab-set::
 
-      .. tab:: Filter expression
+      .. tab-item:: Filter expression
+         :sync: expr
 
           .. code::
 
               value = 'ENUM_VALUE_1'
 
-      .. tab:: Associated IDL
+      .. tab-item:: Associated IDL
+         :sync: idl
 
           .. code::
 
@@ -219,15 +223,17 @@ All wildcards can also be used in combinations.
 
 An example of ``like`` operator
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Filter expression
+    .. tab-item:: Filter expression
+       :sync: expr
 
         .. code::
 
             "str like '%bird%'"
 
-    .. tab:: Associated IDL
+    .. tab-item:: Associated IDL
+       :sync: idl
 
         .. code:: IDL
 
@@ -249,15 +255,17 @@ It uses the `Basic Regular Expression (BRE) defined by POSIX`_.
 
 An example of ``match`` operator
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Filter expression
+    .. tab-item:: Filter expression
+       :sync: expr
 
         .. code::
 
             "str match '^The'"
 
-    .. tab:: Associated IDL
+    .. tab-item:: Associated IDL
+       :sync: idl
 
         .. code:: IDL
 

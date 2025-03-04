@@ -43,7 +43,7 @@ def download_json():
 
     :return: dictionary.
     """
-    url = "https://raw.githubusercontent.com/eProsima/all-docs/furo/source/_static/json/eprosima-furo.json"
+    url = "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/json/eprosima-furo.json"
     ret = dict()
     try:
         req = requests.get(url, allow_redirects=True, timeout=10)
@@ -75,7 +75,7 @@ def download_css(html_css_dir):
     :return: True if the file was downloaded and generated successfully.
         False if not.
     """
-    url = "https://raw.githubusercontent.com/eProsima/all-docs/furo/source/_static/css/eprosima-furo.css"
+    url = "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css"
     try:
         req = requests.get(url, allow_redirects=True, timeout=10)
     except requests.RequestException as e:

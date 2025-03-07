@@ -7858,8 +7858,8 @@ void rpcdds_internal_api_examples()
         // Configure the Requester QoS
         RequesterQos requester_qos;
         requester_qos.service_name = "Service";
-        requester_qos.request_type = "Foo";
-        requester_qos.reply_type = "Foo";
+        requester_qos.request_type = "ServiceType_Request";
+        requester_qos.reply_type = "ServiceType_Reply";
         requester_qos.request_topic_name = "Service_Request";
         requester_qos.reply_topic_name = "Service_Reply";
         requester_qos.writer_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
@@ -7873,6 +7873,26 @@ void rpcdds_internal_api_examples()
         }
 
         /* Send a new Request sample and check if a received Reply sample is a match */
+        // Make sure that all RPC Entities are enabled
+        if (!service->is_enabled())
+        {
+            ret = service->enable();
+            if (RETCODE_OK != ret)
+            {
+                // Error
+                return;
+            }
+        }
+
+        //  Enabling the service enables the registered Requester unless
+        //  the creation of the internal DataWriter and DataReader failed.
+        //  We can make sure that they have been created correctly by checking if the Requester is enabled.
+        if (!requester->is_enabled())
+        {
+            // Error
+            return;
+        }
+
         RequestInfo expected_request_info;
         RequestInfo received_request_info;
         // Create a new Request sample
@@ -7917,7 +7937,7 @@ void rpcdds_internal_api_examples()
         ServiceTypeSupport service_type_support(request_type_support, reply_type_support);
         participant->register_service_type(service_type_support, "ServiceType");
         participant->create_service("Service", "ServiceType");
-        
+
         //!--RPC_REPLIER_EXAMPLE
         ReturnCode_t ret;
 
@@ -7933,8 +7953,8 @@ void rpcdds_internal_api_examples()
         // Configure the Replier QoS
         ReplierQos replier_qos;
         replier_qos.service_name = "Service";
-        replier_qos.request_type = "Foo";
-        replier_qos.reply_type = "Foo";
+        replier_qos.request_type = "ServiceType_Request";
+        replier_qos.reply_type = "ServiceType_Reply";
         replier_qos.request_topic_name = "Service_Request";
         replier_qos.reply_topic_name = "Service_Reply";
         replier_qos.writer_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
@@ -7948,6 +7968,27 @@ void rpcdds_internal_api_examples()
         }
 
         /* Take a received Request sample and send a new Reply sample */
+
+        // Make sure that all RPC Entities are enabled
+        if (!service->is_enabled())
+        {
+            ret = service->enable();
+            if (RETCODE_OK != ret)
+            {
+                // Error
+                return;
+            }
+        }
+
+        //  Enabling the service enables the registered Replier unless
+        //  the creation of the internal DataWriter and DataReader failed.
+        //  We can make sure that they have been created correctly by checking if the Replier is enabled.
+        if (!replier->is_enabled())
+        {
+            // Error
+            return;
+        }
+
         RequestInfo received_request_info;
 
         // ... Wait here until a Request sample is received
@@ -7961,8 +8002,8 @@ void rpcdds_internal_api_examples()
             return;
         }
 
-        // ... Process received data 
-        
+        // ... Process received data
+
         // Send a Reply with the received related_sample_identity
         void* reply_data = reply_type_support->create_data();
         ret = replier->send_reply(reply_data, received_request_info);

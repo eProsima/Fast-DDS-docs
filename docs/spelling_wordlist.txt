@@ -247,9 +247,9 @@ reconnection
 RecursiveTimedMutex
 redistributable
 replier
-Repliers
+repliers
 repos
-Requesters
+requesters
 RETCODE_OK
 retransmission
 rnd

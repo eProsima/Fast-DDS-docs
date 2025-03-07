@@ -13,7 +13,7 @@ In the context of Data Distribution Service (DDS), the client and server are mod
 and they contain all the necessary objects to communicate with each other.
 Each client (internally represented by a *Requester* entity) sends a request sample
 to the server through a request topic;
-the server (internally represented by a *Replier* entity) process it and sends a reply sample back to the client
+the server (internally represented by a *Replier* entity) processes it and sends a reply sample back to the client
 through a different topic (reply topic).
 All the Requesters and Repliers internally have a DataWriter and DataReader to send and receive samples.
 

@@ -373,6 +373,7 @@
                     <readerPayloadSize>512</readerPayloadSize>
                     <writerPayloadSize>512</writerPayloadSize>
                     <mutation_tries>55</mutation_tries>
+                    <flow_controller_name>example_flow_controller</flow_controller_name>
                 </builtin>
 
                 <port>

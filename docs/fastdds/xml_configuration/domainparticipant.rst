@@ -333,6 +333,11 @@ This section specifies the available XML members for the configuration of this
        port is already in use.
      - ``uint32_t``
      - 100
+   * - ``<flow_controller_name>``
+     - :ref:`flowcontrollersqos` name.
+     - ``string``
+     - Empty
+
 
 **Example**
 

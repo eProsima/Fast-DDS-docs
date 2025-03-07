@@ -4699,6 +4699,8 @@ void dds_qos_examples()
         participant_qos.wire_protocol().ignore_non_matching_locators = true;
         // Increase mutation tries
         participant_qos.wire_protocol().builtin.mutation_tries = 300u;
+        // Use a specific flow controller to control the builtin writers
+        participant_qos.wire_protocol().builtin.flow_controller_name = "AlreadyExistingFlowController";
         // Use modified QoS in the creation of the DomainParticipant entity
         participant_ = factory_->create_participant(domain, participant_qos);
         //!--
@@ -6692,6 +6694,9 @@ void dds_usecase_examples()
         // Register flow controller on participant
         DomainParticipantQos participant_qos;
         participant_qos.flow_controllers().push_back(flow_control_300k_per_sec);
+
+        // [OPTIONAL] Link builtin writers to any of the registered flow controllers
+        participant_qos.wire_protocol().builtin.flow_controller_name = "example_flow_controller";
 
         // .... create participant and publisher
 

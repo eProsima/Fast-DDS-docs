@@ -836,6 +836,10 @@
                     </sender_thread>
                 </flow_controller_descriptor>
             </flow_controller_descriptor_list>
+
+            <builtin> <!-- Optional use of flow controller for participant's meta traffic-->
+                <flow_controller_name>example_flow_controller</flow_controller_name>
+            </builtin>
         </rtps>
     </participant>
 

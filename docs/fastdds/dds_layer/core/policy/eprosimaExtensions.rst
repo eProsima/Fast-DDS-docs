@@ -1153,6 +1153,25 @@ List of QoS Policy data members:
       - ``bool``
       - false
 
+List of QoS Policy methods:
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Method name
+      - Input parameters
+      - Return type
+      - Description
+    * - |WireProtocolConfigQos::easy_mode-api|
+      - ``std::string ip``
+      - ``void``
+      - Setter for ``easy_mode_ip_`` private member.
+    * - |WireProtocolConfigQos::easy_mode-api|
+      - Empty
+      - ``std::string``
+      - Getter for ``easy_mode_ip_`` private member.
+
 * |WireProtocolConfigQos::prefix-api|:
   This data member allows the user to set manually the GUID prefix.
 * |WireProtocolConfigQos::participant_id-api|:
@@ -1176,6 +1195,13 @@ List of QoS Policy data members:
 * |WireProtocolConfigQos::ignore_non_matching_locators-api|:
   Defines whether to ignore locators received on announcements from other DDS participants when they don't match with
   any of the locators announced by this DDS participant.
+* |WireProtocolConfigQos::easy_mode-api|:
+  This method allows the user to set or get the ``easy_mode_ip_`` private member, which stores the IP address to be used
+  in the `Discovery Server Easy Mode
+  <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__ configuration.
+  When |WireProtocolConfigQos::easy_mode-api| setter is called, the input string parameter is validated to make sure
+  it is a valid IPv4 address.
+  If not, ``easy_mode_ip_`` will be set to an empty string, indicating that ROS 2 Easy Mode is disabled.
 
 .. note::
      This QoS Policy applies to |DomainParticipant| entities.

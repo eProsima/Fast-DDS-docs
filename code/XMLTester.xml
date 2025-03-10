@@ -3811,6 +3811,7 @@
     <rtps>
         <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
         <participantID>11</participantID>
+        <easy_mode_ip>127.0.0.1</easy_mode_ip>
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>

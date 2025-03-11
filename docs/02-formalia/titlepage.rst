@@ -1,6 +1,6 @@
 
-eProsima Fast DDS Documentation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+What is *Fast DDS*?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: /_static/eprosima-logo.svg
   :height: 100px

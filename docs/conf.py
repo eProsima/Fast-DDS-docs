@@ -21,6 +21,7 @@
 import git
 import json
 import os
+import os.path
 import pathlib
 import requests
 import shutil
@@ -60,6 +61,94 @@ def download_json():
         )
         return ret
     ret = json.loads(req.content)
+    return ret
+
+
+def retrieve_custom_sidebar(root_dir):
+    """
+    Generate the custom sidebar, downloading necessary custom files.
+
+    Custom files are hosted in the eProsima GitHub repository with the index of all eProsima product documentation
+    (https://github.com/eProsima/all-docs).
+
+    :return: Custom sidebars if the file was downloaded and generated successfully.
+        Readthedocs default ones if not.
+    """
+    url = "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_templates/sidebar/commercial-support.html"
+    url_img = "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/eprosima-logo-white.png"
+    ret = {
+        "**": [
+            "sidebar/brand.html",
+            "sidebar/search.html",
+            "sidebar/scroll-start.html",
+            "sidebar/navigation.html",
+            "sidebar/ethical-ads.html",
+            "sidebar/scroll-end.html",
+            "sidebar/variant-selector.html",
+        ]
+    }
+    if not os.path.isfile(
+        "{}/_templates/sidebar/commercial-support.html".format(root_dir)
+    ):
+        try:
+            req = requests.get(url, allow_redirects=True, timeout=10)
+        except requests.RequestException as e:
+            print(
+                "Failed to download the HTML with the eProsima commecial support button."
+                "Request Error: {}".format(e)
+            )
+            return ret
+        if req.status_code != 200:
+            print(
+                "Failed to download the HTML with the eProsima commercial support button."
+                "Return code: {}".format(req.status_code)
+            )
+            return ret
+        os.makedirs(
+            os.path.dirname("{}/_templates/sidebar/".format(root_dir)), exist_ok=True
+        )
+        html_path = "{}/_templates/sidebar/commercial-support.html".format(root_dir)
+        with open(html_path, "wb") as f:
+            try:
+                f.write(req.content)
+            except OSError:
+                print("Failed to create the file: {}".format(html_path))
+                return ret
+
+    if not os.path.isfile("{}/_static/eprosima-logo-white.png".format(root_dir)):
+        try:
+            req = requests.get(url_img, allow_redirects=True, timeout=10)
+        except requests.RequestException as e:
+            print(
+                "Failed to download the image for the eProsima commecial support button."
+                "Request Error: {}".format(e)
+            )
+            return ret
+        if req.status_code != 200:
+            print(
+                "Failed to download the image for the eProsima commercial support button."
+                "Return code: {}".format(req.status_code)
+            )
+            return ret
+        img_path = "{}/_static/eprosima-logo-white.png".format(root_dir)
+        with open(img_path, "wb") as f:
+            try:
+                f.write(req.content)
+            except OSError:
+                print("Failed to create the file: {}".format(img_path))
+                return ret
+    ret = {
+        "**": [
+            "sidebar/brand.html",
+            "sidebar/commercial-support.html",
+            "sidebar/search.html",
+            "sidebar/scroll-start.html",
+            "sidebar/navigation.html",
+            "sidebar/ethical-ads.html",
+            "sidebar/scroll-end.html",
+            "sidebar/variant-selector.html",
+        ]
+    }
     return ret
 
 
@@ -500,6 +589,8 @@ html_static_path = ["_static"]
 #
 html_theme = "furo"
 
+html_logo = "_static/fast-dds-logo.png"
+
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
@@ -515,10 +606,7 @@ html_favicon = "_static/eprosima-logo.svg"
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {
-    "light_logo": "fast-dds-logo.png",
-    "dark_logo": "fast-dds-logo-dark.png",
-}
+html_theme_options = {}
 html_theme_options.update(download_json())
 
 html_use_smartypants = True
@@ -553,7 +641,7 @@ html_css_files = [select_css(script_path)]
 
 # Custom sidebar templates, maps document names to template names.
 #
-# html_sidebars = {}
+html_sidebars = retrieve_custom_sidebar(script_path)
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.

@@ -36,9 +36,10 @@ dependency on other options.
           to the Microsoft Visual C++ compiler (MSVC). Setting :class:`EPROSIMA_INSTALLER` |br|
           to ``ON`` has the following effects on other options:
 
-            - :class:`EPROSIMA_BUILD` is set to ``ON``.
-            - :class:`BUILD_DOCUMENTATION` is set to ``ON``.
-            - :class:`INSTALL_EXAMPLES` is set to ``ON``.
+          - :class:`EPROSIMA_BUILD` is set to ``ON``.
+          - :class:`BUILD_DOCUMENTATION` is set to ``ON``.
+          - :class:`INSTALL_EXAMPLES` is set to ``ON``.
+
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`EPROSIMA_BUILD`
@@ -47,13 +48,14 @@ dependency on other options.
           ``ON``. Setting :class:`EPROSIMA_BUILD` to ``ON`` has the following effects on other |br|
           options:
 
-            - :class:`INTERNAL_DEBUG` is set to ``ON``.
-            - :class:`COMPILE_EXAMPLES` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
-            - :class:`THIRDPARTY_fastcdr` is set to ``ON`` if it was not set to ``FORCE``.
-            - :class:`THIRDPARTY_Asio` is set to ``ON`` if it was not set to ``FORCE``.
-            - :class:`THIRDPARTY_TinyXML2` is set to ``ON`` if it was not set to ``FORCE``.
-            - :class:`THIRDPARTY_android-ifaddrs` is set to ``ON`` if it was not set to ``FORCE``.
-            - :class:`EPROSIMA_BUILD_TESTS` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
+          - :class:`INTERNAL_DEBUG` is set to ``ON``.
+          - :class:`COMPILE_EXAMPLES` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
+          - :class:`THIRDPARTY_fastcdr` is set to ``ON`` if it was not set to ``FORCE``.
+          - :class:`THIRDPARTY_Asio` is set to ``ON`` if it was not set to ``FORCE``.
+          - :class:`THIRDPARTY_TinyXML2` is set to ``ON`` if it was not set to ``FORCE``.
+          - :class:`THIRDPARTY_android-ifaddrs` is set to ``ON`` if it was not set to ``FORCE``.
+          - :class:`EPROSIMA_BUILD_TESTS` is set to ``ON`` if :class:`EPROSIMA_INSTALLER` is ``OFF``.
+
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`BUILD_SHARED_LIBS`
@@ -147,8 +149,9 @@ dependency on other options.
     *   - :class:`SANITIZER`
         - Adds run-time instrumentation to the code. Supported options are:
 
-            - ``Thread`` enables Thread Sanitizer. |br|
-            - ``Address`` enables Address Sanitizer.
+          - ``Thread`` enables Thread Sanitizer. |br|
+          - ``Address`` enables Address Sanitizer.
+
         - ``OFF`` |br| ``Address`` |br| ``Thread``
         - ``OFF``
 

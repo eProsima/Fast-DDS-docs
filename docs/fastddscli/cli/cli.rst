@@ -16,15 +16,15 @@ configuration file, *Fast DDS CLI* can be executed running the following command
 
 - Linux:
 
-    .. code-block:: bash
+  .. code-block:: bash
 
-        $ fastdds <command> [<command-args>]
+      $ fastdds <command> [<command-args>]
 
--  Windows:
+- Windows:
 
-    .. code-block:: bash
+  .. code-block:: winbatch
 
-        > fastdds.bat <command> [<command-args>]
+      > fastdds.bat <command> [<command-args>]
 
 There are three verbs whose functionality is described in the following table:
 

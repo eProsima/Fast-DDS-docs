@@ -367,31 +367,31 @@ your code to reflect these changes:
 
 1. Enum and Variable Changes:
 
-    * Rename ``DiscoveryProtocol_t`` to ``DiscoveryProtocol``.
-    * Rename ``initialHeartbeatDelay`` to ``initial_heartbeat_delay``.
-    * Rename ``heartbeatPeriod`` to ``heartbeat_period``.
-    * Rename ``nackResponseDelay`` to ``nack_response_delay``.
-    * Rename ``nackSupressionDuration`` to ``nack_supression_duration``.
-    * Rename ``heartbeatResponseDelay`` to ``heartbeat_response_delay``.
-    * Rename ``initialAcknackDelay`` to ``initial_acknack_delay``.
-    * Rename ``expectsInlineQos`` to ``expects_inline_qos``.
-    * Rename ``m_typeSize`` to ``max_serialized_type_size``.
-    * Rename ``m_isGetKeyDefined`` to ``is_compute_key_provided``.
-    * Rename ``m_topicDataTypeName`` to ``topic_data_typename``.
+   * Rename ``DiscoveryProtocol_t`` to ``DiscoveryProtocol``.
+   * Rename ``initialHeartbeatDelay`` to ``initial_heartbeat_delay``.
+   * Rename ``heartbeatPeriod`` to ``heartbeat_period``.
+   * Rename ``nackResponseDelay`` to ``nack_response_delay``.
+   * Rename ``nackSupressionDuration`` to ``nack_supression_duration``.
+   * Rename ``heartbeatResponseDelay`` to ``heartbeat_response_delay``.
+   * Rename ``initialAcknackDelay`` to ``initial_acknack_delay``.
+   * Rename ``expectsInlineQos`` to ``expects_inline_qos``.
+   * Rename ``m_typeSize`` to ``max_serialized_type_size``.
+   * Rename ``m_isGetKeyDefined`` to ``is_compute_key_provided``.
+   * Rename ``m_topicDataTypeName`` to ``topic_data_typename``.
 
 2. Extend Built-in Topics:
 
-    * ``SubscriptionBuiltinTopicData`` has been extended with additional fields to mimic those of ``ReaderProxyData``.
-    * ``PublicationBuiltinTopicData`` has been extended with additional fields to mimic those of ``WriterProxyData``.
-    * ``ParticipantBuiltinTopicData`` has been extended to include the product version and fields from
-      ``ParticipantProxyData``.
+   * ``SubscriptionBuiltinTopicData`` has been extended with additional fields to mimic those of ``ReaderProxyData``.
+   * ``PublicationBuiltinTopicData`` has been extended with additional fields to mimic those of ``WriterProxyData``.
+   * ``ParticipantBuiltinTopicData`` has been extended to include the product version and fields from
+     ``ParticipantProxyData``.
 
 3. Other Struct Changes:
 
-    * ``SendBuffersAllocationAttributes`` has a new attribute to define the allocation configuration of the
-      ``NetworkBuffers``.
-    * ``TypeConsistencyQos`` has been removed from ``DataReader``, and the ``TypeConsistencyEnforcementQosPolicy`` and
-      ``DataRepresentationQosPolicy`` have been added.
+   * ``SendBuffersAllocationAttributes`` has a new attribute to define the allocation configuration of the
+     ``NetworkBuffers``.
+   * ``TypeConsistencyQos`` has been removed from ``DataReader``, and the ``TypeConsistencyEnforcementQosPolicy`` and
+     ``DataRepresentationQosPolicy`` have been added.
 
 .. _step-9-refactor-examples:
 

@@ -85,10 +85,10 @@ If the variable is missing build process will default to static linking.
 
 For example in order to build the examples dynamically linked to **Fast-DDS** do:
 
-   .. code-block:: bash
+.. code-block:: bash
 
-    $ cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
-    $ cmake --build buildexample --target install
+ $ cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
+ $ cmake --build buildexample --target install
 
 .. _cli_bl:
 

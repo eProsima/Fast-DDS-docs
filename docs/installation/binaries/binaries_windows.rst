@@ -120,10 +120,10 @@ project using next mechanisms.
 
 For example in order to build the examples dynamically linked to **Fast-DDS** do:
 
-   .. code-block:: console
+.. code-block:: console
 
-    > cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
-    > cmake --build buildexample --target install
+ > cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
+ > cmake --build buildexample --target install
 
 
 .. _cli_bw:

@@ -103,14 +103,14 @@ project using next mechanisms.
 
 2. Through the custom CMake variable `fastdds_SHARED_LIBS`.
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        cmake -Dfastdds_SHARED_LIBS=ON .. # Load shared library target
        cmake -Dfastdds_SHARED_LIBS=OFF .. # Load static library target
 
 3. Through the built-in CMake variable `BUILD_SHARED_LIBS`.
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        cmake -DBUILD_SHARED_LIBS=ON .. # Load shared library target
        cmake -DBUILD_SHARED_LIBS=OFF .. # Load static library target
@@ -120,10 +120,10 @@ project using next mechanisms.
 
 For example in order to build the examples dynamically linked to **Fast-DDS** do:
 
-.. code-block:: console
+.. code-block:: winbatch
 
- > cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
- > cmake --build buildexample --target install
+ cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
+ cmake --build buildexample --target install
 
 
 .. _cli_bw:
@@ -136,7 +136,7 @@ sub-commands to perform, Fast DDS related, maintenance and configuration tasks.
 As an optional tool, its dependencies are not installed by default, but they can be installed by running the
 following command:
 
-.. code-block:: bash
+.. code-block:: winbatch
 
     choco install python
     python -m pip install --upgrade pywin32 xmlschema

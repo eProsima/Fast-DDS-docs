@@ -42,13 +42,13 @@ be able to communicate through the default nameless Partition.
 
 .. warning::
 
-Partitions are linked to the endpoint and not to the changes.
-This means that the endpoint history is oblivious to modifications in the Partitions.
-For example, if a Publisher switches Partitions and afterwards needs to resend some older change again,
-it will deliver it to the new Partition set, regardless of which Partitions were defined
-when the change was created.
-This means that a late joiner Subscriber may receive changes that were created when another
-set of Partitions was active.
+    Partitions are linked to the endpoint and not to the changes.
+    This means that the endpoint history is oblivious to modifications in the Partitions.
+    For example, if a Publisher switches Partitions and afterwards needs to resend some older change again,
+    it will deliver it to the new Partition set, regardless of which Partitions were defined
+    when the change was created.
+    This means that a late joiner Subscriber may receive changes that were created when another
+    set of Partitions was active.
 
 Wildcards in Partitions
 -----------------------
@@ -129,23 +129,19 @@ The following table provides the communication matrix for the given example:
 The following piece of code shows the set of parameters needed for the use case depicted in this example.
 
 
-+-----------------------------------------------------+
-| **C++**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp      |
-|    :language: c++                                   |
-|    :start-after: //CONF-QOS-PARTITIONS              |
-|    :end-before: //!--                               |
-|    :dedent: 8                                       |
-+-----------------------------------------------------+
-| **XML**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml          |
-|    :language: xml                                   |
-|    :start-after: <!-->CONF-QOS-PARTITIONS           |
-|    :end-before: <!--><-->                           |
-|    :lines: 2-3,5-                                   |
-|    :append: </profiles>                             |
-+-----------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-QOS-PARTITIONS
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-QOS-PARTITIONS
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 

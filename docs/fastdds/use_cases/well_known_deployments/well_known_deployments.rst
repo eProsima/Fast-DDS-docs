@@ -83,45 +83,39 @@ Create entities and load STATIC discovery XML files
 When creating the entities, the local writer/reader attributes must match those defined in the STATIC discovery
 XML file loaded by the remote entity.
 
-+-----------------------------------------------------+
-| **PUBLISHER**                                       |
-+=====================================================+
-| **C++**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp      |
-|    :language: c++                                   |
-|    :start-after: //STATIC_DISCOVERY_USE_CASE_PUB    |
-|    :end-before: //!--                               |
-|    :dedent: 8                                       |
-+-----------------------------------------------------+
-| **XML**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml          |
-|    :language: xml                                   |
-|    :start-after: <!-->STATIC_DISCOVERY_USE_CASE_PUB |
-|    :end-before: <!--><-->                           |
-|    :lines: 2-3,5-                                   |
-|    :append: </profiles>                             |
-+-----------------------------------------------------+
+.. dropdown:: PUBLISHER
+    :open:
 
-+-----------------------------------------------------+
-| **SUBSCRIBER**                                      |
-+=====================================================+
-| **C++**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp      |
-|    :language: c++                                   |
-|    :start-after: //STATIC_DISCOVERY_USE_CASE_SUB    |
-|    :end-before: //!--                               |
-|    :dedent: 8                                       |
-+-----------------------------------------------------+
-| **XML**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml          |
-|    :language: xml                                   |
-|    :start-after: <!-->STATIC_DISCOVERY_USE_CASE_SUB |
-|    :end-before: <!--><-->                           |
-|    :lines: 2-3,5-                                   |
-|    :append: </profiles>                             |
-+-----------------------------------------------------+
+    .. tab-set-code::
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //STATIC_DISCOVERY_USE_CASE_PUB
+           :end-before: //!--
+           :dedent: 8
+
+        .. literalinclude:: /../code/XMLTester.xml
+           :language: xml
+           :start-after: <!-->STATIC_DISCOVERY_USE_CASE_PUB
+           :end-before: <!--><-->
+           :lines: 2-3,5-
+           :append: </profiles>
+
+.. dropdown:: SUBSCRIBER
+    :open:
+
+    .. tab-set-code::
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //STATIC_DISCOVERY_USE_CASE_SUB
+            :end-before: //!--
+            :dedent: 8
+       
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->STATIC_DISCOVERY_USE_CASE_SUB
+            :end-before: <!--><-->
+            :lines: 2-3,5-
+            :append: </profiles>
 

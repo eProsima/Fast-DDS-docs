@@ -111,23 +111,19 @@ the ``dds.sec.auth.builtin.PKI-DH`` plugin:
 The following is an example of how to set the properties of DomainParticipantQoS for the
 authentication handshake configuration.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // DDS_SECURITY_AUTH_HANDSHAKE_PROPS                                                                |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DDS_SECURITY_AUTH_HANDSHAKE_PROPS<-->                                                          |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
 
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SECURITY_AUTH_HANDSHAKE_PROPS
+        :end-before: //!--
+        :dedent: 8
+   
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SECURITY_AUTH_HANDSHAKE_PROPS<-->
+        :end-before: <!--><-->
+ 
 Cryptographic plugin settings
 *****************************
 

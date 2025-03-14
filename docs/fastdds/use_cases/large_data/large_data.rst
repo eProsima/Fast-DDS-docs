@@ -69,24 +69,20 @@ By default *eProsima Fast DDS* creates socket buffers with the system default si
 However, these sizes can be modified using the :ref:`dds_layer_domainParticipantQos`,
 as shown in the example below.
 
-+-------------------------------------------------------+
-| **C++**                                               |
-+-------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp        |
-|    :language: c++                                     |
-|    :start-after: //CONF-QOS-INCREASE-SOCKETBUFFERS    |
-|    :end-before: //!--                                 |
-|    :dedent: 8                                         |
-+-------------------------------------------------------+
-| **XML**                                               |
-+-------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml            |
-|    :language: xml                                     |
-|    :start-after: <!-->CONF-QOS-INCREASE-SOCKETBUFFERS |
-|    :end-before: <!--><-->                             |
-|    :lines: 2-3,5-                                     |
-|    :append: </profiles>                               |
-+-------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: //CONF-QOS-INCREASE-SOCKETBUFFERS
+       :end-before: //!--
+       :dedent: 8
+   
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->CONF-QOS-INCREASE-SOCKETBUFFERS
+       :end-before: <!--><-->
+       :lines: 2-3,5-
+       :append: </profiles>
 
 .. _finding-out-maximum-socket-values:
 

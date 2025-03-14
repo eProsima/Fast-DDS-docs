@@ -132,14 +132,14 @@ The previous |DynamicData-api| object would be serialized as follows in the diff
     .. tab-item:: eProsima
        :sync: eprosima
 
-        .. literalinclude:: /../code/json/Enum_EPROSIMA.json
-            :language: json
+       .. literalinclude:: /../code/json/Enum_EPROSIMA.json
+           :language: json
 
     .. tab-item:: OMG
        :sync: omg
 
-        .. literalinclude:: /../code/json/Enum_OMG.json
-            :language: json
+       .. literalinclude:: /../code/json/Enum_OMG.json
+           :language: json
 
 .. _xtypes_serialization_utilities_bitmask:
 
@@ -163,14 +163,14 @@ The previous |DynamicData-api| object would be serialized as follows in the diff
     .. tab-item:: eProsima
        :sync: eprosima
 
-        .. literalinclude:: /../code/json/Bitmask_EPROSIMA.json
-            :language: json
+       .. literalinclude:: /../code/json/Bitmask_EPROSIMA.json
+           :language: json
 
     .. tab-item:: OMG
        :sync: omg
 
-        .. literalinclude:: /../code/json/Bitmask_OMG.json
-            :language: json
+       .. literalinclude:: /../code/json/Bitmask_OMG.json
+           :language: json
 
 .. _xtypes_serialization_utilities_sequence:
 

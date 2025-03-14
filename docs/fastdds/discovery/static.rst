@@ -36,23 +36,19 @@ STATIC EDP
 To activate the STATIC EDP, the SEDP must be disabled on the |WireProtocolConfigQos-api|.
 This can be done either by code or using an XML configuration file:
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_STATIC_DISCOVERY_CODE                                                                        |
-|    :end-before: //!                                                                                                  |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF_STATIC_DISCOVERY_CODE                                                                     |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
 
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_STATIC_DISCOVERY_CODE
+        :end-before: //!
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF_STATIC_DISCOVERY_CODE
+        :end-before: <!--><-->
+ 
 Currently two different formats of exchanging information in the Participant Discovery Phase (PDP) are supported:
 the default one and another that reduces the network bandwidth used.
 :ref:`property_policies_edp_exchange_format` explains how to change this.
@@ -262,41 +258,33 @@ Statically discovered remote DataReaders/DataWriters **must** define a unique *u
 **must** agree with the one specified in the discovery configuration XML.
 This is done by setting the user ID on the |DataReaderQoS|/|DataWriterQoS|:
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_QOS_STATIC_DISCOVERY_USERID                                                                  |
-|    :end-before: //!                                                                                                  |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF_QOS_STATIC_DISCOVERY_USERID                                                               |
-|    :end-before: <!-->                                                                                                |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_QOS_STATIC_DISCOVERY_USERID
+        :end-before: //!
+        :dedent: 8
+   
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF_QOS_STATIC_DISCOVERY_USERID
+        :end-before: <!-->
 
 On the local DomainParticipant, you can load STATIC EDP configuration content specifying the file containing it.
 
-+------------------------------------------------------+
-| **C++**                                              |
-+------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp       |
-|    :language: c++                                    |
-|    :start-after: //CONF_STATIC_DISCOVERY_XML_FILE    |
-|    :end-before: //!                                  |
-|    :dedent: 8                                        |
-+------------------------------------------------------+
-| **XML**                                              |
-+------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml           |
-|    :language: xml                                    |
-|    :start-after: <!-->CONF_STATIC_DISCOVERY_XML_FILE |
-|    :end-before: <!-->                                |
-+------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_STATIC_DISCOVERY_XML_FILE
+        :end-before: //!
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF_STATIC_DISCOVERY_XML_FILE
+        :end-before: <!-->
 
 Or you can specify the STATIC EDP configuration content directly.
 

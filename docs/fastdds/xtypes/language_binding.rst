@@ -942,3 +942,4 @@ The following snippet includes an example of managing complex data using the sam
     :language: c++
     :start-after: //!--CPP_COMPLEX_DATA
     :end-before: //!--
+    :dedent: 8

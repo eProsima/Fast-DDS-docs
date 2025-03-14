@@ -54,22 +54,18 @@ Once this phase is over, the only announcements enforced are the standard ones b
 | period                    | It defines the specific period for initial announcements.   | |Duration_t-api| | 100ms   |
 +---------------------------+-------------------------------------------------------------+------------------+---------+
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT                                                             |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<-->                                                      |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<-->
+        :end-before: <!--><-->
 
 .. _`Simple EDP Attributes`:
 
@@ -94,22 +90,18 @@ Simple EDP Attributes
 |                             | related |br| EDP endpoints.                                    |             |         |
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES                                                                 |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES                                                              |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
+        :end-before: <!--><-->
 
 .. _`Simple Initial Peers`:
 
@@ -148,19 +140,15 @@ DomainParticipant ID 1 in domain 0.
    Consequently, setting this value to at least the maximum expected number of DomainParticipants will ensure discovery
    and communication.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_INITIAL_PEERS_BASIC                                                                          |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->                                                                   |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_INITIAL_PEERS_BASIC
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->
+        :end-before: <!--><-->

@@ -334,6 +334,7 @@ User has to specify the ``low_level_transport_`` in the definition of its new cu
    :language: c++
    :start-after: //CONF-CUSTOM-CHAINING-TRANSPORT-SETTING
    :end-before: //!
+   :dedent: 8
 
 ChainingTransport
 ^^^^^^^^^^^^^^^^^

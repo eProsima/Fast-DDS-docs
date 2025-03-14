@@ -95,34 +95,34 @@ environment variable.
 
 The following examples show how to use all the previous methods:
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // FASTDDS_STATISTICS_MODULE                                                                        |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->                                                                  |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
-| **Environment Variable Linux**                                                                                       |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. code-block:: bash                                                                                                 |
-|                                                                                                                      |
-|    export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC"         |
-+----------------------------------------------------------------------------------------------------------------------+
-| **Environment Variable Windows**                                                                                     |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. code-block:: bash                                                                                                 |
-|                                                                                                                      |
-|    set FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC              |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set::
+
+    .. tab-item:: C++
+
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: // FASTDDS_STATISTICS_MODULE
+            :end-before: //!--
+            :dedent: 8
+
+    .. tab-item:: XML
+
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->
+            :end-before: <!--><-->
+
+    .. tab-item:: Environment Variable Linux
+
+        .. code-block:: bash
+
+            export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC"
+
+    .. tab-item:: Environment Variable Windows
+
+        .. code-block:: bash
+
+            set FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;ACKNACK_COUNT_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC
 
 .. note::
 

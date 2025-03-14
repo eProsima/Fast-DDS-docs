@@ -24,23 +24,19 @@ More information about configuring local and remote locators on endpoints can be
    Multicast over UDP can be problematic on some scenarios, mainly WiFi and complex networks
    with multiple network links.
 
-+-------------------------------------------------------+
-| **C++**                                               |
-+-------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp        |
-|    :language: c++                                     |
-|    :start-after: //DDS_MULTICAST_DELIVERY             |
-|    :end-before: //!--                                 |
-|    :dedent: 8                                         |
-+-------------------------------------------------------+
-| **XML**                                               |
-+-------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml            |
-|    :language: xml                                     |
-|    :start-after: <!-->DDS_MULTICAST_DELIVERY          |
-|    :end-before: <!--><-->                             |
-|    :lines: 2-3,5-                                     |
-|    :append: </profiles>                               |
-+-------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: //DDS_MULTICAST_DELIVERY
+       :end-before: //!--
+       :dedent: 8
+   
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->DDS_MULTICAST_DELIVERY
+       :end-before: <!--><-->
+       :lines: 2-3,5-
+       :append: </profiles>
 
 

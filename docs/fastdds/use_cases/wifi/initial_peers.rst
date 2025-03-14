@@ -20,24 +20,19 @@ on host ``192.168.10.13`` with participant ID ``1`` in domain ``0``.
     ``maxInitialPeersRange`` to at least the maximum expected number of DomainParticipants will ensure discovery and
     communication.
 
+.. tab-set-code::
 
-+---------------------------------------------------------+
-| **C++**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp          |
-|    :language: c++                                       |
-|    :start-after: //CONF_INITIAL_PEERS_BASIC             |
-|    :end-before: //!--                                   |
-|    :dedent: 8                                           |
-+---------------------------------------------------------+
-| **XML**                                                 |
-+---------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml              |
-|    :language: xml                                       |
-|    :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->      |
-|    :end-before: <!--><-->                               |
-|    :lines: 2-3,5-                                       |
-|    :append: </profiles>                                 |
-+---------------------------------------------------------+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: //CONF_INITIAL_PEERS_BASIC
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->
+       :end-before: <!--><-->
+       :lines: 2-3,5-
+       :append: </profiles>
 
 

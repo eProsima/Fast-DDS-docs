@@ -41,46 +41,46 @@ In this architecture there are several key concepts to understand:
 
 - A |SERVER| is a participant to which the *clients* (and maybe other *servers*) send their discovery information.
 
-    * The role of the *server* is to redistribute its *clients* discovery information to its known
-      *clients* and *servers*.
-    * A *server* also announces the existence of a new *server* to its known *servers*, and vice versa.
-      In this way, a new server can connect to every other existing *server* in the network by just knowing the
-      existence of one of them.
-      In this way, a mesh topology between servers is created with minimal configuration.
-    * The discovery information that is redistributed might come from a **direct** *client* connected to the |SERVER|,
-      or from another *server* that is redirecting the discovery data from **its** *clients*.
-    * Known *servers* will receive all the information from the **direct** *clients* known by the *server* and the
-      participant information of other *servers* (to announce a new server).
-    * Known *clients* will only receive the information they need to establish communication, i.e. the information
-      about the DomainParticipants, DataWriters, and DataReaders to which they match.
-      This means that the *server* runs a "matching" algorithm to sort out which information is required by which
-      *client*.
+  * The role of the *server* is to redistribute its *clients* discovery information to its known
+    *clients* and *servers*.
+  * A *server* also announces the existence of a new *server* to its known *servers*, and vice versa.
+    In this way, a new server can connect to every other existing *server* in the network by just knowing the
+    existence of one of them.
+    In this way, a mesh topology between servers is created with minimal configuration.
+  * The discovery information that is redistributed might come from a **direct** *client* connected to the |SERVER|,
+    or from another *server* that is redirecting the discovery data from **its** *clients*.
+  * Known *servers* will receive all the information from the **direct** *clients* known by the *server* and the
+    participant information of other *servers* (to announce a new server).
+  * Known *clients* will only receive the information they need to establish communication, i.e. the information
+    about the DomainParticipants, DataWriters, and DataReaders to which they match.
+    This means that the *server* runs a "matching" algorithm to sort out which information is required by which
+    *client*.
 
 - A |BACKUP| *server* is a *server* that persists its discovery database into a file.
 
-    * This type of *server* can load the network graph from a file on start-up without the need of receiving any
-      *client's* information.
-    * It can be used to persist the *server* knowledge about the network between runs, thus securing the *server's*
-      information in case of unexpected shutdowns.
-    * It is important to note that the discovery times will be negatively affected when using this type of *server*,
-      since periodically writing to a file is an expensive operation.
+  * This type of *server* can load the network graph from a file on start-up without the need of receiving any
+    *client's* information.
+  * It can be used to persist the *server* knowledge about the network between runs, thus securing the *server's*
+    information in case of unexpected shutdowns.
+  * It is important to note that the discovery times will be negatively affected when using this type of *server*,
+    since periodically writing to a file is an expensive operation.
 
 - A |CLIENT| is a participant that connects to one or more *servers* from which it receives only the discovery
   information they require to establish communication with matching endpoints.
 
-    * *Clients* require prior knowledge of the *servers* to which they want to link.
-      Basically, it consists of a list of locators where the *servers* are listening, namely, an IP address and a port.
-      These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
+  * *Clients* require prior knowledge of the *servers* to which they want to link.
+    Basically, it consists of a list of locators where the *servers* are listening, namely, an IP address and a port.
+    These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
 
 - A |SUPER_CLIENT| is a *client* that receives the discovery information known by the *server*, in opposition to
   *clients*, which only receive the information they need.
 
   .. note::
 
-    A |SUPER_CLIENT| does not behave as a *Server* as it only receives the discovery information through the *Server* to
-    which it is connected.
-    It will not connect to other servers, and it will not redistribute the information it receives.
-    Any DomainParticipant discovered by the *Server* with no endpoints will not be known by the |SUPER_CLIENT|.
+      A |SUPER_CLIENT| does not behave as a *Server* as it only receives the discovery information through the *Server* to
+      which it is connected.
+      It will not connect to other servers, and it will not redistribute the information it receives.
+      Any DomainParticipant discovered by the *Server* with no endpoints will not be known by the |SUPER_CLIENT|.
 
 - *Servers* do not require any prior knowledge of their *clients*, but they must listen in the address specified
   by the locator provided to the *clients*.

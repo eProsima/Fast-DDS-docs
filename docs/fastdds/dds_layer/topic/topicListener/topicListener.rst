@@ -15,14 +15,14 @@ Callbacks that are not overridden will maintain their empty implementation.
 
 TopicListener has the following callback:
 
- * |TopicListener::on_inconsistent_topic-api|: A remote Topic is discovered with the same name
-   but different characteristics as another locally created Topic.
+* |TopicListener::on_inconsistent_topic-api|: A remote Topic is discovered with the same name
+  but different characteristics as another locally created Topic.
 
 .. warning::
-   Currently |TopicListener::on_inconsistent_topic-api| is not implemented (it will never be called), and will be
-   implemented on a future release of *Fast DDS*.
+    Currently |TopicListener::on_inconsistent_topic-api| is not implemented (it will never be called), and will be
+    implemented on a future release of *Fast DDS*.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_TOPIC_LISTENER_SPECIALIZATION
-   :end-before: //!
+    :language: c++
+    :start-after: //DDS_TOPIC_LISTENER_SPECIALIZATION
+    :end-before: //!

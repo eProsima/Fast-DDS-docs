@@ -22,17 +22,17 @@ SHM transport provides better performance than other network transports like UDP
 even when these transports use loopback interface.
 This is mainly due to the following reasons:
 
- * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
-   network stacks requirements, increasing communication overhead.
-   SHM transport allows the copy of full messages where the only size limit is the machine's memory capacity.
+* Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
+  network stacks requirements, increasing communication overhead.
+  SHM transport allows the copy of full messages where the only size limit is the machine's memory capacity.
 
- * Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can
-   directly share the same memory buffer with all the destination endpoints.
-   Other protocols require to perform one copy of the message per endpoint.
+* Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can
+  directly share the same memory buffer with all the destination endpoints.
+  Other protocols require to perform one copy of the message per endpoint.
 
- * Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system
-   calls than the other protocols.
-   Therefore, there is a performance/time consume gain by using SHM.
+* Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system
+  calls than the other protocols.
+  Therefore, there is a performance/time consume gain by using SHM.
 
 
 .. _transport_sharedMemory_concepts:

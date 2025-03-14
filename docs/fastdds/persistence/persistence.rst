@@ -47,8 +47,8 @@ or DataReader) |PropertyPolicyQos|.
   DataReader between restarts.
   The GUID consists of 16 bytes separated into two groups:
 
-    * The first 12 bytes correspond to the |GuidPrefix_t-api|.
-    * The last 4 bytes correspond to the |EntityId_t-api|.
+  * The first 12 bytes correspond to the |GuidPrefix_t-api|.
+  * The last 4 bytes correspond to the |EntityId_t-api|.
 
   The persistence identifier is specified using a string of 12 dot-separated bytes, expressed in hexadecimal base,
   followed by a vertical bar separator (``|``) and another 4 dot-separated bytes, also expressed in hexadecimal base

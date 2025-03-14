@@ -73,14 +73,14 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
   .. tab-set::
 
       .. tab-item:: Filter expression
-         :sync: expr
+          :sync: expr
 
           .. code::
 
               "points[0] = 0 AND color.red < 100"
 
       .. tab-item:: Associated IDL
-         :sync: idl
+          :sync: idl
 
           .. code:: IDL
 
@@ -170,14 +170,14 @@ The syntax and meaning of the tokens used in the SQL grammar is described as fol
   .. tab-set::
 
       .. tab-item:: Filter expression
-         :sync: expr
+          :sync: expr
 
           .. code::
 
               value = 'ENUM_VALUE_1'
 
       .. tab-item:: Associated IDL
-         :sync: idl
+          :sync: idl
 
           .. code::
 
@@ -226,14 +226,14 @@ An example of ``like`` operator
 .. tab-set::
 
     .. tab-item:: Filter expression
-       :sync: expr
+        :sync: expr
 
         .. code::
 
             "str like '%bird%'"
 
     .. tab-item:: Associated IDL
-       :sync: idl
+        :sync: idl
 
         .. code:: IDL
 
@@ -258,14 +258,14 @@ An example of ``match`` operator
 .. tab-set::
 
     .. tab-item:: Filter expression
-       :sync: expr
+        :sync: expr
 
         .. code::
 
             "str match '^The'"
 
     .. tab-item:: Associated IDL
-       :sync: idl
+        :sync: idl
 
         .. code:: IDL
 
@@ -367,10 +367,10 @@ A :ref:`dds_layer_topic_contentFilteredTopic` may be created using this filter e
 :ref:`dds_layer_topic_contentFilteredTopic_creation`.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_CONTENT_FILTERED_TOPIC_SQL_EXAMPLE
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_CONTENT_FILTERED_TOPIC_SQL_EXAMPLE
+    :end-before: //!
+    :dedent: 8
 
 In this example parameters are used.
 Internally the :ref:`dds_layer_topic_contentFilteredTopic` will be created with the filter expression below, after

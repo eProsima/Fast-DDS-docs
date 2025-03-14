@@ -90,33 +90,33 @@ For this purpose, the following public methods are available:
 
 - |DomainParticipantFactory-api|
 
-    - |DomainParticipantFactory::get_participant_qos_from_xml-api|
-    - |DomainParticipantFactory::get_default_participant_qos_from_xml-api|
-    - |DomainParticipantFactory::get_participant_extended_qos_from_xml-api|
-    - |DomainParticipantFactory::get_default_participant_extended_qos_from_xml-api|
+  - |DomainParticipantFactory::get_participant_qos_from_xml-api|
+  - |DomainParticipantFactory::get_default_participant_qos_from_xml-api|
+  - |DomainParticipantFactory::get_participant_extended_qos_from_xml-api|
+  - |DomainParticipantFactory::get_default_participant_extended_qos_from_xml-api|
 
 - |DomainParticipant-api|
 
-    - |DomainParticipant::get_publisher_qos_from_xml-api|
-    - |DomainParticipant::get_default_publisher_qos_from_xml-api|
-    - |DomainParticipant::get_subscriber_qos_from_xml-api|
-    - |DomainParticipant::get_default_subscriber_qos_from_xml-api|
-    - |DomainParticipant::get_topic_qos_from_xml-api|
-    - |DomainParticipant::get_default_topic_qos_from_xml-api|
-    - |DomainParticipant::get_requester_qos_from_xml-api|
-    - |DomainParticipant::get_default_requester_qos_from_xml-api|
-    - |DomainParticipant::get_replier_qos_from_xml-api|
-    - |DomainParticipant::get_default_replier_qos_from_xml-api|
+  - |DomainParticipant::get_publisher_qos_from_xml-api|
+  - |DomainParticipant::get_default_publisher_qos_from_xml-api|
+  - |DomainParticipant::get_subscriber_qos_from_xml-api|
+  - |DomainParticipant::get_default_subscriber_qos_from_xml-api|
+  - |DomainParticipant::get_topic_qos_from_xml-api|
+  - |DomainParticipant::get_default_topic_qos_from_xml-api|
+  - |DomainParticipant::get_requester_qos_from_xml-api|
+  - |DomainParticipant::get_default_requester_qos_from_xml-api|
+  - |DomainParticipant::get_replier_qos_from_xml-api|
+  - |DomainParticipant::get_default_replier_qos_from_xml-api|
 
 - |Publisher-api|
 
-    - |Publisher::get_datawriter_qos_from_xml-api|
-    - |Publisher::get_default_datawriter_qos_from_xml-api|
+  - |Publisher::get_datawriter_qos_from_xml-api|
+  - |Publisher::get_default_datawriter_qos_from_xml-api|
 
 - |Subscriber-api|
 
-    - |Subscriber::get_datareader_qos_from_xml-api|
-    - |Subscriber::get_default_datareader_qos_from_xml-api|
+  - |Subscriber::get_datareader_qos_from_xml-api|
+  - |Subscriber::get_default_datareader_qos_from_xml-api|
 
 For each :code:`qos` kind there exists two method versions; with and without :code:`profile_name` argument.
 When provided, the method searches for the given profile name in the loaded XML profiles,

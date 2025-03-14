@@ -9,21 +9,21 @@ Accessing received data
 The application can access and consume the data values received on the :ref:`dds_layer_subscriber_dataReader`
 by *reading* or *taking*.
 
- * **Reading** is done with any of the following member functions:
+* **Reading** is done with any of the following member functions:
 
-   * |DataReader::read_next_sample-api| reads the next, non-previously accessed data value available
-     on the DataReader, and stores it in the provided data buffer.
-   * |DataReader::read-api|, |DataReader::read_instance-api|, and |DataReader::read_next_instance-api|
-     provide mechanisms to get a collection of samples matching certain conditions.
+  * |DataReader::read_next_sample-api| reads the next, non-previously accessed data value available
+    on the DataReader, and stores it in the provided data buffer.
+  * |DataReader::read-api|, |DataReader::read_instance-api|, and |DataReader::read_next_instance-api|
+    provide mechanisms to get a collection of samples matching certain conditions.
 
- * **Taking** is done with any of the following member functions:
+* **Taking** is done with any of the following member functions:
 
-   * |DataReader::take_next_sample-api| reads the next, non-previously accessed data value available on the DataReader,
-     and stores it in the provided data buffer.
-   * |DataReader::take-api|, |DataReader::take_instance-api|, and |DataReader::take_next_instance-api|
-     provide mechanisms to get a collection of samples matching certain conditions.
+  * |DataReader::take_next_sample-api| reads the next, non-previously accessed data value available on the DataReader,
+    and stores it in the provided data buffer.
+  * |DataReader::take-api|, |DataReader::take_instance-api|, and |DataReader::take_next_instance-api|
+    provide mechanisms to get a collection of samples matching certain conditions.
 
-   When taking data, the returned samples are also removed from the DataReader, so they are no longer accessible.
+  When taking data, the returned samples are also removed from the DataReader, so they are no longer accessible.
 
 When there is no data in the DataReader matching the required conditions, all the operations will return
 ``NO_DATA`` and output parameter will remain unchanged.
@@ -41,8 +41,8 @@ Loaning and Returning Data and SampleInfo Sequences
 The |DataReader::read-api| and |DataReader::take-api| operations (and their variants) return information to the
 application in two sequences:
 
- * Received DDS data samples in a sequence of the data type
- * Corresponding information about each DDS sample in a SampleInfo sequence
+* Received DDS data samples in a sequence of the data type
+* Corresponding information about each DDS sample in a SampleInfo sequence
 
 These sequences are parameters that are passed by the application code into the
 |DataReader::read-api| and |DataReader::take-api| operations.
@@ -58,10 +58,10 @@ will eventually run out of memory to store DDS data samples received from the ne
 See the code below for an example of borrowing and returning loaned sequences.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAREADER_LOAN_SEQUENCES
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DATAREADER_LOAN_SEQUENCES
+    :end-before: //!
+    :dedent: 8
 
 .. _dds_layer_subscriber_accessreceived_data:
 
@@ -78,10 +78,10 @@ When using Data Sharing, it is also important to check that the sample is valid 
 refer to :ref:`datareader-datawriter-history-coupling` for further information in this regard).
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAREADER_PROCESS_DATA
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DATAREADER_PROCESS_DATA
+    :end-before: //!
+    :dedent: 8
 
 .. _dds_layer_subscriber_accessreceived_listener:
 
@@ -98,15 +98,15 @@ two Listener callbacks:
 These callbacks can be used to retrieve the newly arrived data, as in the following example.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAREADER_READ_LISTENER
-   :end-before: //!
-
+    :language: c++
+    :start-after: //DDS_DATAREADER_READ_LISTENER
+    :end-before: //!
+ 
 .. note::
-   If several new data changes are received at once, the callbacks may be triggered just once,
-   instead of once per change.
-   The application must keep *reading* or *taking* until no new changes are available.
-
+    If several new data changes are received at once, the callbacks may be triggered just once,
+    instead of once per change.
+    The application must keep *reading* or *taking* until no new changes are available.
+ 
 
 .. _dds_layer_subscriber_accessreceived_wait:
 
@@ -122,10 +122,10 @@ DataReader.
 This can be done using a wait-set to wait for a change on the `DataAvailable` status.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAREADER_READ_WAITSET
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DATAREADER_READ_WAITSET
+    :end-before: //!
+    :dedent: 8
 
 DataReader non-blocking calls
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -137,7 +137,7 @@ This function returning with value ``true`` means there is new data available on
 :ref:`dds_layer_subscriber_dataReader` ready for the application to retrieve.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAREADER_WAIT_FOR_UNREAD
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DATAREADER_WAIT_FOR_UNREAD
+    :end-before: //!
+    :dedent: 8

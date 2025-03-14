@@ -41,10 +41,10 @@ To do this, run the following command from the ``src`` directory.
 
 This must have generated the following files:
 
-    * HelloWorld.hpp: HelloWorld type definition.
-    * HelloWorldPubSubTypes.cxx: Interface used by Fast DDS to support HelloWorld type.
-    * HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
-    * HelloWorldCdrAux.ipp: Serialization and Deserialization code for the HelloWorld type.
-    * HelloWorldCdrAux.hpp: Header file for HelloWorldCdrAux.ipp.
-    * HelloWorldTypeObjectSupport.cxx: |TypeObject| registration code.
-    * HelloWorldTypeObjectSupport.hpp: Header file for HelloWorldTypeObjectSupport.cxx.
+* HelloWorld.hpp: HelloWorld type definition.
+* HelloWorldPubSubTypes.cxx: Interface used by Fast DDS to support HelloWorld type.
+* HelloWorldPubSubTypes.h: Header file for HelloWorldPubSubTypes.cxx.
+* HelloWorldCdrAux.ipp: Serialization and Deserialization code for the HelloWorld type.
+* HelloWorldCdrAux.hpp: Header file for HelloWorldCdrAux.ipp.
+* HelloWorldTypeObjectSupport.cxx: |TypeObject| registration code.
+* HelloWorldTypeObjectSupport.hpp: Header file for HelloWorldTypeObjectSupport.cxx.

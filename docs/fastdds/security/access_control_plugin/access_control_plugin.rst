@@ -30,9 +30,9 @@ This builtin plugin provides access control using a permissions document signed 
 The DDS\:Access\:Permissions plugin requires three documents for its configuration which contents are explained
 in detail below.
 
-   1. The Permissions CA certificate.
-   2. The Domain governance signed by the Permissions CA.
-   3. The DomainParticipant permissions signed by the Permissions CA.
+1. The Permissions CA certificate.
+2. The Domain governance signed by the Permissions CA.
+3. The DomainParticipant permissions signed by the Permissions CA.
 
 The DDS\:Access\:Permissions authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|

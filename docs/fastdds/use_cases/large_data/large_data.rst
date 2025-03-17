@@ -76,7 +76,7 @@ as shown in the example below.
        :start-after: //CONF-QOS-INCREASE-SOCKETBUFFERS
        :end-before: //!--
        :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml
        :start-after: <!-->CONF-QOS-INCREASE-SOCKETBUFFERS

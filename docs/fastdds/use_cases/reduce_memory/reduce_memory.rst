@@ -75,7 +75,7 @@ not freed and is reused for future messages.
         :start-after: //CONF-MEMORY-QOS-ENDPOINTS
         :end-before: //!--
         :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF-MEMORY-QOS-ENDPOINTS

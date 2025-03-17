@@ -118,12 +118,12 @@ authentication handshake configuration.
         :start-after: // DDS_SECURITY_AUTH_HANDSHAKE_PROPS
         :end-before: //!--
         :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->DDS_SECURITY_AUTH_HANDSHAKE_PROPS<-->
         :end-before: <!--><-->
- 
+
 Cryptographic plugin settings
 *****************************
 

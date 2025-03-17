@@ -111,7 +111,7 @@ XML file loaded by the remote entity.
             :start-after: //STATIC_DISCOVERY_USE_CASE_SUB
             :end-before: //!--
             :dedent: 8
-       
+
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->STATIC_DISCOVERY_USE_CASE_SUB

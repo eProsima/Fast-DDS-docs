@@ -65,10 +65,8 @@ plugin configuration.
         :start-after: // DDS_SECURITY_LOGGING_PLUGIN
         :end-before: //!--
         :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->DDS_SECURITY_LOGGING_PLUGIN<-->
         :end-before: <!--><-->
- 
-

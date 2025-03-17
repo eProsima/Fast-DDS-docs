@@ -29,16 +29,21 @@ Additionally, DomainParticipantListener adds the following non-standard callback
 * |DomainParticipantListener::on_participant_discovery-api|: A new DomainParticipant is discovered in the same domain,
   a previously known DomainParticipant has been removed, or some DomainParticipant
   has changed its QoS.
-  This method provides an overload with an additional boolean output parameter so a discovery callback can tell the middleware if a newly discovered participant has to be ignored via the use of the |DomainParticipant::ignore_participant-api|.
-  This overload should be used when there is a need to ignore participants inside the discovery callback, since calling |DomainParticipant::ignore_participant-api| inside the listener might deadlock.
-  If both callbacks are implemented, the discovery callback with the ``should_be_ignored`` boolean flag takes precedence.
-  The second discovery callback is only executed if the discovered DomainParticipant is not ignored in the first callback (``should_be_ignored`` parameter returns ``false``).
+  This method provides an overload with an additional boolean output parameter so a discovery callback can tell the
+  middleware if a newly discovered participant has to be ignored via the use of the
+  |DomainParticipant::ignore_participant-api|.
+  This overload should be used when there is a need to ignore participants inside the discovery callback, since calling
+  |DomainParticipant::ignore_participant-api| inside the listener might deadlock.
+  If both callbacks are implemented, the discovery callback with the ``should_be_ignored`` boolean flag takes
+  precedence.
+  The second discovery callback is only executed if the discovered DomainParticipant is not ignored in the first
+  callback (``should_be_ignored`` parameter returns ``false``).
 
-* |DomainParticipantListener::on_data_reader_discovery-api|: A new :ref:`dds_layer_subscriber_dataReader` is discovered in the same domain,
-  a previously known DataReader has been removed, or some DataReader has changed its QoS.
+* |DomainParticipantListener::on_data_reader_discovery-api|: A new :ref:`dds_layer_subscriber_dataReader` is discovered
+  in the same domain, a previously known DataReader has been removed, or some DataReader has changed its QoS.
 
-* |DomainParticipantListener::on_data_writer_discovery-api|: A new :ref:`dds_layer_publisher_dataWriter` is discovered in the same domain,
-  a previously known DataWriter has been removed, or some DataWriter has changed its QoS.
+* |DomainParticipantListener::on_data_writer_discovery-api|: A new :ref:`dds_layer_publisher_dataWriter` is discovered
+  in the same domain, a previously known DataWriter has been removed, or some DataWriter has changed its QoS.
 
 * |DomainParticipantListener::onParticipantAuthentication-api|: Informs about the result of the authentication process
   of a remote DomainParticipant (either on failure or success).

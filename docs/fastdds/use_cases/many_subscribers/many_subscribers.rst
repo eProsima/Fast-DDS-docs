@@ -31,7 +31,7 @@ More information about configuring local and remote locators on endpoints can be
        :start-after: //DDS_MULTICAST_DELIVERY
        :end-before: //!--
        :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml
        :start-after: <!-->DDS_MULTICAST_DELIVERY

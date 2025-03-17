@@ -76,7 +76,7 @@ alternatives given by these data members.
         :start-after: //CONF-ALLOCATION-QOS-PARTICIPANTS
         :end-before: //!--
         :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF-ALLOCATION-QOS-PARTICIPANTS
@@ -130,7 +130,7 @@ to configure the allocation behavior of content filter discovery information:
        :start-after: //CONF-ALLOCATION-QOS-PARAMETERS
        :end-before: //!--
        :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml
        :start-after: <!-->CONF-ALLOCATION-QOS-PARAMETERS
@@ -175,7 +175,7 @@ alternatives given by these data members.
         :start-after: //CONF-ALLOCATION-QOS-WRITER
         :end-before: //!--
         :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF-ALLOCATION-QOS-WRITER

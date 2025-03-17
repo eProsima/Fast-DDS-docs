@@ -48,7 +48,7 @@ This can be done either by code or using an XML configuration file:
         :language: xml
         :start-after: <!-->CONF_STATIC_DISCOVERY_CODE
         :end-before: <!--><-->
- 
+
 Currently two different formats of exchanging information in the Participant Discovery Phase (PDP) are supported:
 the default one and another that reduces the network bandwidth used.
 :ref:`property_policies_edp_exchange_format` explains how to change this.
@@ -265,7 +265,7 @@ This is done by setting the user ID on the |DataReaderQoS|/|DataWriterQoS|:
         :start-after: //CONF_QOS_STATIC_DISCOVERY_USERID
         :end-before: //!
         :dedent: 8
-   
+
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF_QOS_STATIC_DISCOVERY_USERID

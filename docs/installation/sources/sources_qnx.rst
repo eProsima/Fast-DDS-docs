@@ -271,7 +271,7 @@ test binaries must be run on a target which is running QNX.
 
     # ssh into the QNX target
     ssh root@<target-ip-address>
- 
+
     # Run a test
     cd /var/Fast-DDS_test/unittest/dds/core/entity
     ./EntityTests
@@ -294,7 +294,7 @@ The following test output for EntityTests will be shown:
     [ RUN      ] EntityTests.get_statuscondition
     [       OK ] EntityTests.get_statuscondition (0 ms)
     [----------] 5 tests from EntityTests (0 ms total)
- 
+
     [----------] Global test environment tear-down
     [==========] 5 tests from 1 test suite ran. (0 ms total)
     [  PASSED  ] 5 tests.

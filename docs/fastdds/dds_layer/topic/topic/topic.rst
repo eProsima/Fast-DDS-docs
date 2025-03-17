@@ -114,7 +114,7 @@ value |TopicQos::TopicQos-api|.
 
 .. note::
     The value :code:`TOPIC_QOS_DEFAULT` has different meaning depending on where it is used:
- 
+
     * On |DomainParticipant::create_topic-api| and |Topic::set_qos-api| it refers to the default TopicQos
       as returned by |DomainParticipant::get_default_topic_qos-api|.
     * On |DomainParticipant::get_default_topic_qos-api| it refers to the default constructed |TopicQos::TopicQos-api|.

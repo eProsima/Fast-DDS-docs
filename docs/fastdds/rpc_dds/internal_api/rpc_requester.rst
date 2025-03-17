@@ -50,12 +50,13 @@ Each Service can contain multiple Requester instances.
 
 All Requester's DDS entities Qos can be configured manually when
 creating the |Requester-api| instance using |RequesterQos-api|.
-Before creating the Requester, Service validates the provided |RequesterQos-api| instance:
+Before creating the Requester, Service validates |DataWriterQos-api| and |DataReaderQos-api| provided
+in the |RequesterQos-api| instance:
 if some field is not valid, Service will notify it to the user using a log message error and Requester is not created.
 
-User must ensure that Service configuration in |RequesterQos-api| match
-with the |Service-api| instance configuration and that |ReliabilityQosPolicyKind-api|
+User must ensure that |ReliabilityQosPolicyKind-api|
 of both DataWriter and DataReader are set to |RELIABLE_RELIABILITY_QOS-api|.
+This is configured automatically when a new |RequesterQos-api| instance is created.
 
 .. note::
   Before creating a new Requester, user must create its associated |Service-api| instance in the DomainParticipant.

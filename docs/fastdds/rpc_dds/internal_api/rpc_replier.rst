@@ -50,12 +50,13 @@ Each Service can contain multiple Replier instances.
 
 All Replier's DDS entities Qos can be configured manually when
 creating the |Replier-api| instance using |ReplierQos-api|.
-Before creating the Replier, Service validates the provided |ReplierQos-api| instance:
+Before creating the Replier, Service validates |DataWriterQos-api| and |DataReaderQos-api| provided
+in the |ReplierQos-api| instance:
 if some field is not valid, Service will notify it to the user using a log message error and Replier is not created.
 
-User must ensure that Service configuration in |ReplierQos-api| match
-with the |Service-api| instance configuration and that |ReliabilityQosPolicyKind-api|
+User must ensure that |ReliabilityQosPolicyKind-api|
 of both DataWriter and DataReader are set to |RELIABLE_RELIABILITY_QOS-api|.
+This is configured automatically when a new |ReplierQos-api| instance is created.
 
 .. note::
   Before creating a new Replier, user must create its associated |Service-api| instance in the DomainParticipant.

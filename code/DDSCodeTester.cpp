@@ -7855,15 +7855,7 @@ void rpcdds_internal_api_examples()
         }
 
         /* Create a new Requester instance */
-        // Configure the Requester QoS
         RequesterQos requester_qos;
-        requester_qos.service_name = "Service";
-        requester_qos.request_type = "ServiceType_Request";
-        requester_qos.reply_type = "ServiceType_Reply";
-        requester_qos.request_topic_name = "Service_Request";
-        requester_qos.reply_topic_name = "Service_Reply";
-        requester_qos.writer_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
-        requester_qos.reader_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
 
         Requester* requester = participant->create_service_requester(service, requester_qos);
         if (!requester)
@@ -7904,10 +7896,11 @@ void rpcdds_internal_api_examples()
             return;
         }
  
-        // ... Wait here until a Reply sample is received
+        // Wait until a Reply sample is received
+        requester->get_requester_reader()->wait_for_unread_message();
 
         void* data = nullptr;
-        ret = requester->take_reply(data, received_request_info); 
+        ret = requester->take_reply(data, received_request_info);
         if (RETCODE_OK != ret)
         {
             // Error
@@ -7950,15 +7943,7 @@ void rpcdds_internal_api_examples()
         }
 
         /* Create a new Replier instance */
-        // Configure the Replier QoS
         ReplierQos replier_qos;
-        replier_qos.service_name = "Service";
-        replier_qos.request_type = "ServiceType_Request";
-        replier_qos.reply_type = "ServiceType_Reply";
-        replier_qos.request_topic_name = "Service_Request";
-        replier_qos.reply_topic_name = "Service_Reply";
-        replier_qos.writer_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
-        replier_qos.reader_qos.reliability().kind = RELIABLE_RELIABILITY_QOS;
 
         Replier* replier = participant->create_service_replier(service, replier_qos);
         if (!replier)
@@ -7991,7 +7976,8 @@ void rpcdds_internal_api_examples()
 
         RequestInfo received_request_info;
 
-        // ... Wait here until a Request sample is received
+        // Wait until a Request sample is received
+        replier->get_replier_reader()->wait_for_unread_message();
 
         void* received_data = nullptr;
 

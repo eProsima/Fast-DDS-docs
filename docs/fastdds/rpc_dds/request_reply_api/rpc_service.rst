@@ -83,7 +83,7 @@ used for publishing and receiving Request and Reply samples.
 
 .. note::
   If the DomainParticipant is unable to enable the Service when it is created, it is considered an error.
-  The instance is destroyed, and |DomainParticipant::create_service-api| returns `nullptr`.
+  The instance is destroyed, and |DomainParticipant::create_service-api| returns :code:`nullptr`.
 
 Only the DomainParticipant that created the |Service-api| instance can delete it.
 Attempting to delete a |Service-api| instance from a different DomainParticipant

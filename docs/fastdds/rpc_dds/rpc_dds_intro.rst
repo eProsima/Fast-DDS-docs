@@ -20,4 +20,4 @@ All the Requesters and Repliers internally have a DataWriter and DataReader to s
 .. toctree::
     :maxdepth: 2
 
-    /fastdds/rpc_dds/internal_api/internal_api_intro
+    /fastdds/rpc_dds/request_reply_api/request_reply_api_intro

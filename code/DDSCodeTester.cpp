@@ -7896,8 +7896,8 @@ void rpcdds_internal_api_examples()
             return;
         }
  
-        // Wait until a Reply sample is received
-        requester->get_requester_reader()->wait_for_unread_message();
+        // Wait for some time until a Reply sample is received
+        requester->get_requester_reader()->wait_for_unread_message(Duration_t{3,0});
 
         void* data = nullptr;
         ret = requester->take_reply(data, received_request_info);
@@ -7976,8 +7976,8 @@ void rpcdds_internal_api_examples()
 
         RequestInfo received_request_info;
 
-        // Wait until a Request sample is received
-        replier->get_replier_reader()->wait_for_unread_message();
+        // Wait for some time until a Request sample is received
+        replier->get_replier_reader()->wait_for_unread_message(Duration_t{3,0});
 
         void* received_data = nullptr;
 

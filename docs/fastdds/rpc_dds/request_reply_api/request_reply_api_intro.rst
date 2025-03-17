@@ -1,12 +1,12 @@
 .. include:: ../../../03-exports/aliases.include
 .. include:: ../../../03-exports/aliases-api.include
 
-.. _internal_api_intro:
+.. _request_reply_api_intro:
 
-RPC over DDS internal API overview
-==================================
+RPC over DDS Request-Reply API overview
+=======================================
 
-*Fast DDS* |DomainParticipant| provides a high-level internal API
+*Fast DDS* |DomainParticipant| provides a high-level Request-Reply API
 to create all the DDS entities required for RPC over DDS communication.
 The API provides methods for creating and deleting three types of entities:
 
@@ -75,6 +75,6 @@ When a Requester is created, its DataReader is created from this |ContentFiltere
 .. toctree::
   :maxdepth: 1
 
-  /fastdds/rpc_dds/internal_api/rpc_service
-  /fastdds/rpc_dds/internal_api/rpc_requester
-  /fastdds/rpc_dds/internal_api/rpc_replier
+  /fastdds/rpc_dds/request_reply_api/rpc_service
+  /fastdds/rpc_dds/request_reply_api/rpc_requester
+  /fastdds/rpc_dds/request_reply_api/rpc_replier

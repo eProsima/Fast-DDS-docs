@@ -46,7 +46,7 @@ The online documentation generated with this project can be found in [Fast DDS d
 
 ## Installation Guide
 
-The following guide has been developed and tested in Ubuntu 20.04.
+The following guide has been developed and tested in Ubuntu 24.04.
 It covers two mechanisms for build and testing the documentation (colcon and CMake), and one that just generates the HTML, which can be used to simulate the process followed in ReadTheDocs.
 Contributors are asked to not only generate the HTML, but to also build and test their changes locally following one of the two first methods.
 
@@ -73,6 +73,7 @@ sudo apt install -y \
     python3-pip \
     python3-venv \
     imagemagick \
+    aspell-en \
     libenchant-2-2 \
     plantuml
 ```

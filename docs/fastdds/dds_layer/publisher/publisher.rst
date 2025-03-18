@@ -15,7 +15,6 @@ that describes the data type that is being transmitted.
 Remote subscriptions that match with this
 Topic will be able to receive the data value updates from the DataWriter.
 
-
 .. image:: /01-figures/publisher_class_diagram.svg
 
 .. toctree::

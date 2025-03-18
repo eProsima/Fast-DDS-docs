@@ -51,6 +51,7 @@ remote type discovery.
     :language: c++
     :start-after: //!--DYNTYPE_IDL_SERIALIZATION
     :end-before: //!--
+    :dedent: 4
 
 DynamicData to JSON
 --------------------
@@ -126,17 +127,19 @@ The previous DynamicData object can be serialized in two different formats, `ePr
 flexibility depending on the required interoperability and compatibility with other systems.
 The previous |DynamicData-api| object would be serialized as follows in the different formats:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: eProsima
+    .. tab-item:: eProsima
+       :sync: eprosima
 
-        .. literalinclude:: /../code/json/Enum_EPROSIMA.json
-            :language: json
+       .. literalinclude:: /../code/json/Enum_EPROSIMA.json
+           :language: json
 
-    .. tab:: OMG
+    .. tab-item:: OMG
+       :sync: omg
 
-        .. literalinclude:: /../code/json/Enum_OMG.json
-            :language: json
+       .. literalinclude:: /../code/json/Enum_OMG.json
+           :language: json
 
 .. _xtypes_serialization_utilities_bitmask:
 
@@ -155,17 +158,19 @@ Here is an example of the definition of bitmask types in IDL:
 Bitmask also present different serialized structures in the different formats `eProsima` and `OMG`.
 The previous |DynamicData-api| object would be serialized as follows in the different formats:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: eProsima
+    .. tab-item:: eProsima
+       :sync: eprosima
 
-        .. literalinclude:: /../code/json/Bitmask_EPROSIMA.json
-            :language: json
+       .. literalinclude:: /../code/json/Bitmask_EPROSIMA.json
+           :language: json
 
-    .. tab:: OMG
+    .. tab-item:: OMG
+       :sync: omg
 
-        .. literalinclude:: /../code/json/Bitmask_OMG.json
-            :language: json
+       .. literalinclude:: /../code/json/Bitmask_OMG.json
+           :language: json
 
 .. _xtypes_serialization_utilities_sequence:
 

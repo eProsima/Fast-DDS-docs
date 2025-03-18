@@ -7,11 +7,6 @@ The instructions for installing :ref:`Fast DDS library <fastdds_lib_qnx>`
 and running examples and tests on QNX 7.1 are provided in this page.
 It is organized as follows:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 .. _fastdds_lib_qnx:
 
 Fast DDS library installation
@@ -89,8 +84,8 @@ Build and Installation
 
 #. Initialize git submodules for Asio, Fast-CDR and TinyXML2 and apply QNX patches to them:
 
-    .. note::
-        OpenSSL is already installed in the QNX SDP 7.1.
+   .. note::
+       OpenSSL is already installed in the QNX SDP 7.1.
 
    .. code-block:: bash
 
@@ -122,9 +117,9 @@ Build and Installation
 
 #. Optional: clone GoogleTest and apply QNX patch to it:
 
-    .. note::
+   .. note::
 
-       GoogleTest is required for building Fast-DDS tests.
+      GoogleTest is required for building Fast-DDS tests.
 
    .. code-block:: bash
 
@@ -141,12 +136,12 @@ Build and Installation
 
 #. Build and install Fast-DDS and its dependencies:
 
-    .. note::
+   .. note::
 
        | To build examples, set COMPILE_EXAMPLES to ON in $WORKSPACE/build_qnx/common.mk.
        | To build tests, set EPROSIMA_BUILD_TESTS to ON in $WORKSPACE/build_qnx/common.mk.
 
-    .. note::
+   .. note::
 
        | All libraries will be installed to $(QNX_TARGET)/$(CPUVARDIR)/usr/lib.
        | All examples will be installed to $(QNX_TARGET)/$(CPUVARDIR)/usr/examples.
@@ -175,8 +170,8 @@ Move Libraries, Examples, and Tests to the QNX Target
 
 #. Move the built libraries to the QNX target:
 
-    The following steps assume that $(QNX_TARGET) is ~/qnx710/target/qnx7 and that $(CPUVARDIR) is aarch64le.
-    Adjust the values if this is not the case.
+   The following steps assume that $(QNX_TARGET) is ~/qnx710/target/qnx7 and that $(CPUVARDIR) is aarch64le.
+   Adjust the values if this is not the case.
 
    .. code-block:: bash
 
@@ -198,7 +193,7 @@ Move Libraries, Examples, and Tests to the QNX Target
 
 #. Move examples and tests to the QNX target:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
        # Move Fast-CDR library to the QNX target
        scp -r ~/qnx710/target/qnx7/aarch64le/usr/examples root@<target-ip-address>:/var
@@ -211,7 +206,7 @@ Run Hello World
 
 #. Open a terminal and run a subscriber:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
        # ssh into the QNX target
        ssh root@<target-ip-address>
@@ -221,7 +216,7 @@ Run Hello World
 
 #. Open another terminal and run a publisher:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
        # ssh into the QNX target
        ssh root@<target-ip-address>
@@ -231,75 +226,75 @@ Run Hello World
 
 The following output will be shown in the subscriber terminal:
 
-    .. code-block:: console
+.. code-block:: console
 
-       Starting
-       Subscriber running. Please press enter to stop the Subscriber
-       Subscriber matched.
-       Message HelloWorld 1 RECEIVED
-       Message HelloWorld 2 RECEIVED
-       Message HelloWorld 3 RECEIVED
-       Message HelloWorld 4 RECEIVED
-       Message HelloWorld 5 RECEIVED
-       Message HelloWorld 6 RECEIVED
-       Message HelloWorld 7 RECEIVED
-       Message HelloWorld 8 RECEIVED
-       Message HelloWorld 9 RECEIVED
-       Message HelloWorld 10 RECEIVED
-       Subscriber unmatched.
+    Starting
+    Subscriber running. Please press enter to stop the Subscriber
+    Subscriber matched.
+    Message HelloWorld 1 RECEIVED
+    Message HelloWorld 2 RECEIVED
+    Message HelloWorld 3 RECEIVED
+    Message HelloWorld 4 RECEIVED
+    Message HelloWorld 5 RECEIVED
+    Message HelloWorld 6 RECEIVED
+    Message HelloWorld 7 RECEIVED
+    Message HelloWorld 8 RECEIVED
+    Message HelloWorld 9 RECEIVED
+    Message HelloWorld 10 RECEIVED
+    Subscriber unmatched.
 
 The following output will be shown for the publisher:
 
-    .. code-block:: console
+.. code-block:: console
 
-       Starting
-       Publisher running 10 samples.
-       Publisher matched.
-       Message: HelloWorld with index: 1 SENT
-       Message: HelloWorld with index: 2 SENT
-       Message: HelloWorld with index: 3 SENT
-       Message: HelloWorld with index: 4 SENT
-       Message: HelloWorld with index: 5 SENT
-       Message: HelloWorld with index: 6 SENT
-       Message: HelloWorld with index: 7 SENT
-       Message: HelloWorld with index: 8 SENT
-       Message: HelloWorld with index: 9 SENT
-       Message: HelloWorld with index: 10 SENT
+    Starting
+    Publisher running 10 samples.
+    Publisher matched.
+    Message: HelloWorld with index: 1 SENT
+    Message: HelloWorld with index: 2 SENT
+    Message: HelloWorld with index: 3 SENT
+    Message: HelloWorld with index: 4 SENT
+    Message: HelloWorld with index: 5 SENT
+    Message: HelloWorld with index: 6 SENT
+    Message: HelloWorld with index: 7 SENT
+    Message: HelloWorld with index: 8 SENT
+    Message: HelloWorld with index: 9 SENT
+    Message: HelloWorld with index: 10 SENT
 
 Run a Test
 ----------
 
-    Because test binaries compiled for QNX cannot be run on Ubuntu,
-    test binaries must be run on a target which is running QNX.
+Because test binaries compiled for QNX cannot be run on Ubuntu,
+test binaries must be run on a target which is running QNX.
 
-    .. code-block:: bash
+.. code-block:: bash
 
-       # ssh into the QNX target
-       ssh root@<target-ip-address>
+    # ssh into the QNX target
+    ssh root@<target-ip-address>
 
-       # Run a test
-       cd /var/Fast-DDS_test/unittest/dds/core/entity
-       ./EntityTests
+    # Run a test
+    cd /var/Fast-DDS_test/unittest/dds/core/entity
+    ./EntityTests
 
 The following test output for EntityTests will be shown:
 
-    .. code-block:: console
+.. code-block:: console
 
-       [==========] Running 5 tests from 1 test suite.
-       [----------] Global test environment set-up.
-       [----------] 5 tests from EntityTests
-       [ RUN      ] EntityTests.entity_constructor
-       [       OK ] EntityTests.entity_constructor (0 ms)
-       [ RUN      ] EntityTests.entity_enable
-       [       OK ] EntityTests.entity_enable (0 ms)
-       [ RUN      ] EntityTests.entity_get_instance_handle
-       [       OK ] EntityTests.entity_get_instance_handle (0 ms)
-       [ RUN      ] EntityTests.entity_equal_operator
-       [       OK ] EntityTests.entity_equal_operator (0 ms)
-       [ RUN      ] EntityTests.get_statuscondition
-       [       OK ] EntityTests.get_statuscondition (0 ms)
-       [----------] 5 tests from EntityTests (0 ms total)
+    [==========] Running 5 tests from 1 test suite.
+    [----------] Global test environment set-up.
+    [----------] 5 tests from EntityTests
+    [ RUN      ] EntityTests.entity_constructor
+    [       OK ] EntityTests.entity_constructor (0 ms)
+    [ RUN      ] EntityTests.entity_enable
+    [       OK ] EntityTests.entity_enable (0 ms)
+    [ RUN      ] EntityTests.entity_get_instance_handle
+    [       OK ] EntityTests.entity_get_instance_handle (0 ms)
+    [ RUN      ] EntityTests.entity_equal_operator
+    [       OK ] EntityTests.entity_equal_operator (0 ms)
+    [ RUN      ] EntityTests.get_statuscondition
+    [       OK ] EntityTests.get_statuscondition (0 ms)
+    [----------] 5 tests from EntityTests (0 ms total)
 
-       [----------] Global test environment tear-down
-       [==========] 5 tests from 1 test suite ran. (0 ms total)
-       [  PASSED  ] 5 tests.
+    [----------] Global test environment tear-down
+    [==========] 5 tests from 1 test suite ran. (0 ms total)
+    [  PASSED  ] 5 tests.

@@ -58,21 +58,15 @@ The following table outlines the properties used for the DDS\:Logging\:DDS_LogTo
 The following is an example of how to set the properties of DomainParticipantQoS for the DDS\:Logging\:DDS_LogTopic
 plugin configuration.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // DDS_SECURITY_LOGGING_PLUGIN                                                                      |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DDS_SECURITY_LOGGING_PLUGIN<-->                                                                |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
 
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SECURITY_LOGGING_PLUGIN
+        :end-before: //!--
+        :dedent: 8
 
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SECURITY_LOGGING_PLUGIN<-->
+        :end-before: <!--><-->

@@ -19,15 +19,15 @@ the following commands:
 
 - Linux:
 
-    .. code-block:: bash
+  .. code-block:: bash
 
-        $ fastddsgen
+      $ fastddsgen
 
 -  Windows:
 
-    .. code-block:: bash
+   .. code-block:: winbatch
 
-        > fastddsgen.bat
+       > fastddsgen.bat
 
 .. note::
 

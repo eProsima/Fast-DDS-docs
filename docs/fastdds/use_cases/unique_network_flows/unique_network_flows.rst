@@ -9,11 +9,6 @@ Unique network flows
 
 This section explains which APIs should be used on Fast DDS in order to have unique network flows on specific topics.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 Background
 ----------
 
@@ -48,10 +43,10 @@ Definitions
 **Network flow**: A tuple of networking resources selected by the middleware for transmission of messages from a
 DataWriter to a DataReader, namely:
 
-  - Transport protocol: UDP or TCP
-  - Transport port
-  - Internet protocol: IPv4 or IPv6
-  - IP address
+- Transport protocol: UDP or TCP
+- Transport port
+- Internet protocol: IPv4 or IPv6
+- IP address
 
 **Network Flow Endpoint (NFE)**: The portion of a network flow specific to the DataWriter or the DataReader.
 In other words, each network flow has two NFEs; one for the DataWriter, and the other for the DataReader.

@@ -9,12 +9,6 @@ Defining a data type via IDL
 This section describes the data types that can be defined using IDL files, as well as other mechanisms for building
 data types using IDL files.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
-
 Supported IDL types
 -------------------
 
@@ -608,23 +602,14 @@ IDL 4.2 aliases
 
 IDL 4.2 allows using the following names for primitive types:
 
-+------------------------+
-| int8                   |
-+------------------------+
-| uint8                  |
-+------------------------+
-| int16                  |
-+------------------------+
-| uint16                 |
-+------------------------+
-| int32                  |
-+------------------------+
-| uint32                 |
-+------------------------+
-| int64                  |
-+------------------------+
-| uint64                 |
-+------------------------+
+* ``int8``
+* ``uint8``
+* ``int16``
+* ``uint16``
+* ``int32``
+* ``uint32``
+* ``int64``
+* ``uint64``
 
 IDL 4.2 comments
 -----------------

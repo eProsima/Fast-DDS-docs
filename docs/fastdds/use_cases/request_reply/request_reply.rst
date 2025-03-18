@@ -21,11 +21,6 @@ will send a *Reply* to the *Client application*.
     client --> server : Request
     server --> client : Reply
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 Overview
 --------
 
@@ -88,19 +83,19 @@ For *Request-Reply* communication perform the following steps:
 
 2. In the client application, create a DataWriter for the request and a DataReader for the reply.
 
-    .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-       :language: c++
-       :dedent: 4
-       :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_CREATE_ENTITIES
-       :end-before: //!
+   .. literalinclude:: ../../../../code/DDSCodeTester.cpp
+      :language: c++
+      :dedent: 4
+      :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_CREATE_ENTITIES
+      :end-before: //!
 
 3. In the server application, create a DataWriter for the reply and a DataReader for the request.
 
-    .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-       :language: c++
-       :dedent: 4
-       :start-after: //REQUEST_REPLY_EXAMPLE_SERVER_CREATE_ENTITIES
-       :end-before: //!
+   .. literalinclude:: ../../../../code/DDSCodeTester.cpp
+      :language: c++
+      :dedent: 4
+      :start-after: //REQUEST_REPLY_EXAMPLE_SERVER_CREATE_ENTITIES
+      :end-before: //!
 
 Sending the request and storing the assigned identifier
 -------------------------------------------------------
@@ -112,10 +107,10 @@ a reference to a |WriteParams-api| object.
 The assigned identifier will be stored in the |WriteParams-api|'s attribute |WriteParams-sample_identity-api|.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 4
-   :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_RETRIEVE_ID
-   :end-before: //!
+    :language: c++
+    :dedent: 4
+    :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_RETRIEVE_ID
+    :end-before: //!
 
 Receiving the request and sending a reply associated with it
 ------------------------------------------------------------
@@ -124,19 +119,19 @@ When the server application receives the request (for example through |DataReade
 it has to retrieve the request's identifier using |SampleInfo::sample_identity-api|.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 4
-   :start-after: //REQUEST_REPLY_EXAMPLE_SERVER_GET_ID
-   :end-before: //!
+    :language: c++
+    :dedent: 8
+    :start-after: //REQUEST_REPLY_EXAMPLE_SERVER_GET_ID
+    :end-before: //!
 
 After processing the request, the server should send the reply to the client with the related request attached.
 This is done assigning the stored identifier in |WriteParams-related_sample_identity-api|.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 4
-   :start-after: //REQUEST_REPLY_EXAMPLE_SERVER_SEND_REPLY
-   :end-before: //!
+    :language: c++
+    :dedent: 4
+    :start-after: //REQUEST_REPLY_EXAMPLE_SERVER_SEND_REPLY
+    :end-before: //!
 
 Identifying the reply for the client
 ------------------------------------
@@ -147,9 +142,9 @@ For this the client application has to compare the stored |SampleIdentity-api| w
 |SampleInfo::related_sample_identity-api|.
 
 .. literalinclude:: ../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 4
-   :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_RECEIVE_REPLY
-   :end-before: //!
+    :language: c++
+    :dedent: 8
+    :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_RECEIVE_REPLY
+    :end-before: //!
 
 .. _Fast DDS repository: https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/request_reply

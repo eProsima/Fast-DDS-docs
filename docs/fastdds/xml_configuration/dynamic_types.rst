@@ -94,21 +94,23 @@ Please, refer to :ref:`xtypes_supportedtypes_primitive` for more information on 
 
 All of them are declared as follows:
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->XML_PRIMITIVES<-->
-        :end-before: <!--><-->
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_PRIMITIVES<-->
+            :end-before: <!--><-->
 
-   .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
-      .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-        :language: omg-idl
-        :start-after: //!--IDL_PRIMITIVES
-        :end-before: //!--
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_PRIMITIVES
+            :end-before: //!--
 
 
 .. _xmldynamictypes_strings:
@@ -122,21 +124,23 @@ String types are defined with attribute :code:`type` set to :code:`string` or :c
 An optional attribute :code:`stringMaxLength` might used to set a maximum length for the string collection.
 Please, refer to :ref:`xtypes_supportedtypes_string` for more information on string types.
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->XML_STRINGS<-->
-        :end-before: <!--><-->
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_STRINGS<-->
+            :end-before: <!--><-->
 
-   .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
-      .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-        :language: omg-idl
-        :start-after: //!--IDL_STRINGS
-        :end-before: //!--
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_STRINGS
+            :end-before: //!--
 
 .. _xmldynamictypes_enums:
 
@@ -154,16 +158,18 @@ Optionally, unsigned integer attribute :code:`value` might be added to set a spe
 
 Please, refer to :ref:`xtypes_supportedtypes_enumeration` for more information on enumeration types.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_ENUM<-->
             :end-before: <!--><-->
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
@@ -182,16 +188,18 @@ Bitflag elements are defined using the :code:`<bit_value>` tag with mandatory at
 Optionally, :code:`position` attribute might be defined to set the bitflag position within the bitmask.
 Please, refer to :ref:`xtypes_supportedtypes_bitmask` for more information on bitmask types.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_BITMASK<-->
             :end-before: <!--><-->
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
@@ -210,16 +218,18 @@ Non-primitive types must define the :code:`type` attribute as :code:`nonBasic` a
 attribute with the name of the aliased type.
 Please, refer to :ref:`xtypes_supportedtypes_alias` for more information on alias types.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_TYPEDEF<-->
             :end-before: <!--><-->
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
@@ -238,21 +248,23 @@ Sequence types are defined with mandatory attributes :code:`type` set to the col
 Unbounded sequences should set :code:`sequenceMaxLength` attribute to :code:`-1`.
 Please, refer to :ref:`xtypes_supportedtypes_sequence` for more information on sequence types.
 
-.. tabs::
+.. tab-set::
 
-   .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->XML_SEQUENCES<-->
-        :end-before: <!--><-->
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_SEQUENCES<-->
+            :end-before: <!--><-->
 
-   .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
-      .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-        :language: omg-idl
-        :start-after: //!--IDL_SEQUENCES
-        :end-before: //!--
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_SEQUENCES
+            :end-before: //!--
 
 .. _xmldynamictypes_array:
 
@@ -266,21 +278,23 @@ Array types are defined with mandatory attributes :code:`type` set to the collec
 The format of :code:`arrayDimensions` attribute value is the size of each dimension separated by commas.
 Please, refer to :ref:`xtypes_supportedtypes_array` for more information on array types.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->XML_ARRAYS<-->
-      :end-before: <!--><-->
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_ARRAYS<-->
+            :end-before: <!--><-->
 
-  .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
-    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-      :language: omg-idl
-      :start-after: //!--IDL_ARRAYS
-      :end-before: //!--
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_ARRAYS
+            :end-before: //!--
 
 .. _xmldynamictypes_map:
 
@@ -294,21 +308,23 @@ map's key type, and :code:`mapMaxLength` used to set the maximum map's number of
 Unbounded maps should set :code:`mapMaxLength` attribute to :code:`-1`.
 Please, refer to :ref:`xtypes_supportedtypes_map` for more information on map types.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->XML_MAPS<-->
-      :end-before: <!--><-->
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->XML_MAPS<-->
+            :end-before: <!--><-->
 
-  .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
-    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-      :language: omg-idl
-      :start-after: //!--IDL_MAPS
-      :end-before: //!--
+        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+            :language: omg-idl
+            :start-after: //!--IDL_MAPS
+            :end-before: //!--
 
 .. _xmldynamictypes_struct:
 
@@ -336,16 +352,18 @@ attribute with the name of the member type.
 
 Please, refer to :ref:`xtypes_supportedtypes_structure` for more information on structure types.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_STRUCT<-->
             :end-before: <!--><-->
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
@@ -379,16 +397,18 @@ At least one union member must be defined for the union type to be consistent.
 
 Please, refer to :ref:`xtypes_supportedtypes_union` for more information on the union types.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_UNION<-->
             :end-before: <!--><-->
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl
@@ -412,16 +432,18 @@ The :code:`type` attribute can ease bitfield management explicitly setting an in
 
 Please, refer to :ref:`xtypes_supportedtypes_bitset` for more information about the bitset types.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->XML_BITSET<-->
             :end-before: <!--><-->
 
-    .. tab:: IDL
+    .. tab-item:: IDL
+        :sync: idl
 
         .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
             :language: omg-idl

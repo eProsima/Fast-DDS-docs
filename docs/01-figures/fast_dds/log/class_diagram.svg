@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:xhtml="http://www.w3.org/1999/xhtml"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="148mm"
    height="105mm"
@@ -15,7 +7,15 @@
    content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-26T07:37:24.921Z&quot; agent=&quot;5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36&quot; version=&quot;13.1.3&quot; etag=&quot;zAg-HsQqGidBK6lqN6wr&quot; type=&quot;google&quot;&gt;&lt;diagram id=&quot;h1aG65vgbbE6H1VkKz_N&quot;&gt;3VhRb9owEP41vEzaRGxC0sdC2+2hkyYxaeujiU3iNclljlNgv35n4mCc0I1p7QR7wvf57mJ/d/dBGNF5sXmvWJV9BC7yERnzzYjejAgJaBjih0G2LRKFUQukSnLr5ICF/CEsOLZoI7moPUcNkGtZ+WACZSkS7WFMKVj7bivI/adWLBUDYJGwfIh+kVxnLRqHY4d/EDLNuicHY7tTsM7ZAnXGOKwPIHo7onMFoNtVsZmL3JDX8dLG3T2zuz+YEqU+JYC0AU8sb+zdRmSaY+hsaU6nt/bK0++NOdJsBaV+W+8Kco0OAamwqDO3j6vUfuad/18luoe0y4W3aNP5j0B46TDiPY0oaEouzGXHuL3OpBaLiiVmd429iVimixytwJ7JNltA9tmehNJi8yy/wb5q2O4CCqHVFl1sAJ3aQttOJxNrr13fRBbKDlqGWozZTk33mV0xcWHreby2dMCG4NjG1gSlM0ihZPmtQ2c+X87nHqCyLH0TWm8tTazR4HMoNlJ/NeHvQms92GRmfbM5NLadUeLN2qAo7OyHLqExXNzOcoH82owzmssckscWupOGks7hsKDHC2xY8cpbQ6MSC02svDCVClub+OQmUCJnWj752Y+VdBeKV2HbA4cKZKnrg8yfDOB6axKHXm/RqDfrff8g/pU/LtoTuObaX+Wkfpucu5ZgY4g5lHVTCHXJojIhvcLHQ1EJyCupSniBqkLOTVWm56sqNPC/sX6nKjSir6oq03NXlYXm0Oj/QVdI2Cv9v9SV6HJ0ZS8PXLICSv45k6UnEsFQJE4QhXgoCuTlReHUesTnPnf4ZtAfuqV6kaNd4uzS/uwGw9m9eqXRvRq0ypsBP3gz7ZNQawWP+HssB4VICaWZ6BUOUA9iuUxxvG4SZAJLTWeGJ4kv49d2o5Cc7+TgGOt+XV6C6Lj3Rnc1JHpyhGjy50Sj6f4JaL863f8p9PYn&lt;/diagram&gt;&lt;/mxfile&gt;"
    id="svg3885"
    sodipodi:docname="class_diagram.svg"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+   inkscape:version="1.4 (e7c3feb, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <metadata
      id="metadata3889">
     <rdf:RDF>
@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -37,19 +37,23 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1848"
-     inkscape:window-height="1016"
+     inkscape:window-width="2560"
+     inkscape:window-height="1403"
      id="namedview3887"
      showgrid="false"
      inkscape:snap-others="false"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="403.05067"
-     inkscape:cy="184.06399"
-     inkscape:window-x="1992"
-     inkscape:window-y="27"
+     inkscape:zoom="2.8284272"
+     inkscape:cx="330.74919"
+     inkscape:cy="205.76807"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g3875"
-     units="mm" />
+     inkscape:current-layer="g3829"
+     units="mm"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm" />
   <defs
      id="defs3821" />
   <g
@@ -62,12 +66,13 @@
        height="39.796223"
        pointer-events="all"
        id="rect3823"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.4246949" />
+       style="fill:#ffffff;stroke:#636363;stroke-width:1.4246949;stroke-opacity:1" />
     <g
        transform="matrix(1.5301116,0,0,1.3265407,11.674229,-144.63285)"
        id="g3829">
       <switch
-         id="switch3827">
+         id="switch3827"
+         style="fill-opacity:1">
         <foreignObject
            style="overflow: visible; text-align: left;"
            pointer-events="none"
@@ -94,11 +99,9 @@
            y="19"
            font-size="12px"
            id="text3825"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
-          <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.62349701px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
-             id="tspan936">Log</tspan>
-        </text>
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill-opacity:1"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.6235px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill-opacity:1"
+             id="tspan936">Log</tspan></text>
       </switch>
     </g>
     <path
@@ -107,7 +110,7 @@
        pointer-events="all"
        id="path3833"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.4246949;stroke-miterlimit:10" />
+       style="fill:none;stroke:#636363;stroke-width:1.4246949;stroke-miterlimit:10;stroke-opacity:1" />
     <rect
        x="328.92987"
        y="111.37999"
@@ -115,7 +118,7 @@
        height="39.796223"
        pointer-events="all"
        id="rect3835"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.16441023" />
+       style="fill:#ffffff;stroke:#636363;stroke-width:1.16441023;stroke-opacity:1" />
     <g
        transform="matrix(1.5301116,0,0,1.3265407,31.944444,-74.998999)"
        id="g3841">
@@ -147,11 +150,9 @@
            y="159"
            font-size="12px"
            id="text3837"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
-          <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.74899769px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
-             id="tspan4898">FileConsumer</tspan>
-        </text>
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.749px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             id="tspan4898">FileConsumer</tspan></text>
       </switch>
     </g>
     <rect
@@ -161,7 +162,7 @@
        height="39.950939"
        pointer-events="all"
        id="rect3847"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.25852716" />
+       style="fill:#ffffff;stroke:#636363;stroke-width:1.25852716;stroke-opacity:1" />
     <g
        transform="matrix(1.5301116,0,0,1.3265407,-21.099992,-74.628135)"
        id="g3853">
@@ -193,11 +194,9 @@
            y="159"
            font-size="12px"
            id="text3849"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.52389717px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000">
-          <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.74899769px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
-             id="tspan4894">StdoutConsumer</tspan>
-        </text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.5239px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.749px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             id="tspan4894">StdoutConsumer</tspan></text>
       </switch>
     </g>
     <path
@@ -206,13 +205,13 @@
        pointer-events="stroke"
        id="path3855"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.7455194;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#636363;stroke-width:1.7455194;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        d="m 234.30547,-102.86003 5.84503,8.622518 -5.84503,8.622516 -5.84502,-8.622516 z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3857"
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.4246949;stroke-miterlimit:10"
+       style="fill:none;fill-opacity:1;stroke:#636363;stroke-width:1.4246949;stroke-miterlimit:10;stroke-opacity:1"
        inkscape:connector-curvature="0" />
     <rect
        x="164.24051"
@@ -221,7 +220,7 @@
        height="39.796223"
        pointer-events="all"
        id="rect3859"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.4246949" />
+       style="fill:#ffffff;stroke:#636363;stroke-width:1.4246949;stroke-opacity:1" />
     <g
        transform="matrix(1.5301116,0,0,1.3265407,12.406174,-133.97447)"
        id="g3865">
@@ -255,11 +254,9 @@
            y="89"
            font-size="12px"
            id="text3861"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
-          <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.62349701px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
-             id="tspan934">LogConsumer</tspan>
-        </text>
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.6235px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             id="tspan934">LogConsumer</tspan></text>
       </switch>
     </g>
     <rect
@@ -270,39 +267,6 @@
        pointer-events="all"
        id="rect3867"
        style="fill:none;stroke:none;stroke-width:1.4246949" />
-    <g
-       transform="matrix(1.5301116,0,0,1.3265407,13.348793,-128.01915)"
-       id="g3873">
-      <switch
-         id="switch3871"
-         transform="translate(0,-6.7732608)">
-        <foreignObject
-           style="overflow: visible; text-align: left;"
-           pointer-events="none"
-           width="100%"
-           height="100%"
-           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 60px; margin-left: 131px;">
-            <xhtml:div
-               style="box-sizing: border-box; font-size: 0; text-align: center; ">
-              <xhtml:div
-                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">*</xhtml:div>
-            </xhtml:div>
-          </xhtml:div>
-        </foreignObject>
-        <text
-           x="150"
-           y="64"
-           font-size="12px"
-           id="text3869"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
-          <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.55993462px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
-             id="tspan4900">*</tspan>
-        </text>
-      </switch>
-    </g>
     <rect
        x="151.33032"
        y="111.33463"
@@ -310,7 +274,7 @@
        height="39.907349"
        pointer-events="all"
        id="rect3847-3"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.36459279" />
+       style="fill:#ffffff;stroke:#636363;stroke-width:1.36459279;stroke-opacity:1" />
     <g
        transform="matrix(1.5301116,0,0,1.3265407,142.57384,-76.142142)"
        id="g3853-6">
@@ -343,11 +307,9 @@
            y="159"
            font-size="12px"
            id="text3849-5"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
-          <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.74899769px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
-             id="tspan4896">StdoutErrConsumer</tspan>
-        </text>
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.749px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             id="tspan4896">StdoutErrConsumer</tspan></text>
       </switch>
     </g>
     <rect
@@ -357,7 +319,7 @@
        height="39.907349"
        pointer-events="all"
        id="rect3847-3-4"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.36459279" />
+       style="fill:#ffffff;stroke:#636363;stroke-width:1.36459279;stroke-opacity:1" />
     <g
        transform="matrix(1.5301116,0,0,1.3265407,11.298813,-53.045658)"
        id="g3865-4">
@@ -391,11 +353,9 @@
            y="89"
            font-size="12px"
            id="text3861-6"
-           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">
-          <tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.74899769px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
-             id="tspan932">OStreamConsumer</tspan>
-        </text>
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.749px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle"
+             id="tspan932">OStreamConsumer</tspan></text>
       </switch>
     </g>
     <path
@@ -404,72 +364,85 @@
        pointer-events="stroke"
        id="path3855-7"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:2.35928535;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#636363;stroke-width:2.35928535;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        d="m 146.27348,65.098214 -19.89236,8.620949 0.002,-17.245025 z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3833-5"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.4246949;stroke-miterlimit:10" />
+       style="fill:none;stroke:#636363;stroke-width:1.4246949;stroke-miterlimit:10;stroke-opacity:1" />
     <path
        d="M 234.13944,80.726946 239.74972,90.7524 228.63429,90.789 Z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3833-5-9"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:0.8127771;stroke-miterlimit:10" />
+       style="fill:none;stroke:#636363;stroke-width:0.8127771;stroke-miterlimit:10;stroke-opacity:1" />
     <path
        d="M 234.06939,111.268 V 95.658365 103.4632 90.96771"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:2.35928535;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#636363;stroke-width:2.35928535;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        d="M 68.298321,111.43985 V 75.577183 93.50856 64.800591"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6-2"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.4246949;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#636363;stroke-width:1.4246949;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        d="m 68.29809,65.470242 44.36234,-0.264101 -22.181242,0.132124 35.512032,-0.211411"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6-2-1"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.43043733;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#636363;stroke-width:1.43043733;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        d="m 337.33612,65.261684 43.20307,-0.26434 -21.60162,0.132256 34.58404,-0.21161"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6-2-1-7"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.41203225;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#636363;stroke-width:1.41203225;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        d="M 392.75671,111.26718 V 75.134025 93.200655 64.27617"
        stroke-miterlimit="10"
        pointer-events="stroke"
        id="path3855-7-6-2-8"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.43005729;stroke-miterlimit:10;stroke-dasharray:none" />
+       style="fill:none;stroke:#636363;stroke-width:1.43005729;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <path
        d="m 234.78911,0.44791679 5.61028,10.02545221 -11.11543,0.03661 z"
        stroke-miterlimit="10"
        pointer-events="all"
        id="path3833-5-9-5"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:0.8127771;stroke-miterlimit:10" />
+       style="fill:none;stroke:#636363;stroke-width:0.8127771;stroke-miterlimit:10;stroke-opacity:1" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot938"
-       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
          id="flowRegion940"><rect
            id="rect942"
            width="899.43982"
            height="507.70267"
            x="-71.417786"
            y="-4.7862382" /></flowRegion><flowPara
-         id="flowPara944"></flowPara></flowRoot>  </g>
+         id="flowPara944" /></flowRoot>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.8719px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#636363;fill-opacity:1;stroke:none;stroke-width:0.827997;stroke-opacity:1"
+       x="250.08528"
+       y="-52.911228"
+       id="text1"
+       transform="scale(0.97795942,1.0225373)"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.8719px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#636363;fill-opacity:1;stroke:none;stroke-width:0.827997;stroke-opacity:1"
+         x="250.08528"
+         y="-52.911228">*</tspan></text>
+  </g>
 </svg>

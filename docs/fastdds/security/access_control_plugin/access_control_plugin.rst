@@ -30,9 +30,9 @@ This builtin plugin provides access control using a permissions document signed 
 The DDS\:Access\:Permissions plugin requires three documents for its configuration which contents are explained
 in detail below.
 
-   1. The Permissions CA certificate.
-   2. The Domain governance signed by the Permissions CA.
-   3. The DomainParticipant permissions signed by the Permissions CA.
+1. The Permissions CA certificate.
+2. The Domain governance signed by the Permissions CA.
+3. The DomainParticipant permissions signed by the Permissions CA.
 
 The DDS\:Access\:Permissions authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|
@@ -67,23 +67,18 @@ The following table outlines the properties used for the DDS\:Access\:Permission
 The following is an example of how to set the properties of |DomainParticipantQoS| for the DDS\:Access\:Permissions
 configuration.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // DDS_SECURITY_ACCESS_CONTROL_PLUGIN                                                               |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DDS_SECURITY_ACCESS_CONTROL_PLUGIN<-->                                                         |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
 
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SECURITY_ACCESS_CONTROL_PLUGIN
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SECURITY_ACCESS_CONTROL_PLUGIN<-->
+        :end-before: <!--><-->
 
 .. _permissions_ca_cert:
 

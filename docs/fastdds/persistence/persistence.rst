@@ -47,8 +47,8 @@ or DataReader) |PropertyPolicyQos|.
   DataReader between restarts.
   The GUID consists of 16 bytes separated into two groups:
 
-    * The first 12 bytes correspond to the |GuidPrefix_t-api|.
-    * The last 4 bytes correspond to the |EntityId_t-api|.
+  * The first 12 bytes correspond to the |GuidPrefix_t-api|.
+  * The last 4 bytes correspond to the |EntityId_t-api|.
 
   The persistence identifier is specified using a string of 12 dot-separated bytes, expressed in hexadecimal base,
   followed by a vertical bar separator (``|``) and another 4 dot-separated bytes, also expressed in hexadecimal base
@@ -103,17 +103,13 @@ Example
 This example shows how to configure the persistence service using :ref:`persistence_sqlite3_builtin_plugin` plugin both
 from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles`).
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
        :language: c++
        :start-after: //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE
        :end-before: //!--
        :dedent: 4
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml

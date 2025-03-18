@@ -12,12 +12,6 @@ eProsima Extensions
 
 The eProsima QoS Policies extensions are those that allow changing the values of the RTPS layer configurable settings.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _datasharingqospolicy:
 
 DataSharingQosPolicy
@@ -128,23 +122,19 @@ so it must be done before the entity is enabled.
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
-
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_DATASHARING_QOS_POLICY
         :end-before: //!
 
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->CONF-QOS-DATASHARING<-->
-          :end-before: <!--><-->
-          :lines: 2-4, 6-34, 36-37
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-QOS-DATASHARING<-->
+        :end-before: <!--><-->
+        :lines: 2-4, 6-34, 36-37
 
 .. _disablepositiveacksqospolicy:
 
@@ -210,22 +200,18 @@ Table with the possible combinations:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
+        :end-before: <!--><-->
 
 .. _rtpsreliablereaderqos:
 
@@ -283,22 +269,18 @@ List of structure members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
-
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_RTPS_RELIABLE_READER_QOS
         :end-before: //!
 
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_RTPS_RELIABLE_READER_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_RTPS_RELIABLE_READER_QOS<-->
+        :end-before: <!--><-->
 
 
 .. _rtpsreliablewriterqos:
@@ -388,22 +370,18 @@ This mechanism can be disabled using this policy.
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
+        :end-before: <!--><-->
 
 .. _flowcontrollersqos:
 
@@ -655,24 +633,20 @@ List of structure members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
-          :dedent: 4
-          :end-before: <data_writer
-          :lines: 5-
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
+        :dedent: 4
+        :end-before: <data_writer
+        :lines: 5-
 
 .. _propertypolicyqos:
 
@@ -694,22 +668,18 @@ This could be done by setting as :code:`true` the :code:`propagate` value of the
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_PROPERTY_POLICY_QOS
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_PROPERTY_POLICY_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_PROPERTY_POLICY
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_PROPERTY_POLICY
+        :end-before: <!--><-->
 
 .. _publishmodeqospolicy:
 
@@ -761,22 +731,18 @@ descriptor name.
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_PUBLISH_MODE_QOS
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_PUBLISH_MODE_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->CONF-QOS-PUBLISHMODE<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-QOS-PUBLISHMODE<-->
+        :end-before: <!--><-->
 
 .. _readerresourcelimitsqos:
 
@@ -804,22 +770,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_READER_RESOURCE_LIMITS_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_READER_RESOURCE_LIMITS_QOS<-->
+        :end-before: <!--><-->
 
 .. _writerresourcelimitsqos:
 
@@ -848,22 +810,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
+        :end-before: <!--><-->
 
 .. _rtpsendpointqos:
 
@@ -957,22 +915,18 @@ There are four possible values (see |MemoryManagementPolicy-api|):
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_RTPS_ENDPOINT_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_RTPS_ENDPOINT_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_RTPS_ENDPOINT_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_RTPS_ENDPOINT_QOS<-->
+        :end-before: <!--><-->
 
 .. _threadsettingsqos:
 
@@ -1023,17 +977,13 @@ Example
 
 The following example illustrate a thread settings configuration:
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-      :language: c++
-      :dedent: 8
-      :start-after: //DDS_CHANGE_THREAD_SETTINGS
-      :end-before: //!
-
-  .. tab:: XML
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_THREAD_SETTINGS
+        :end-before: //!
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1043,17 +993,13 @@ The following example illustrate a thread settings configuration:
 
 The subsequent example depicts a reception threads settings configuration:
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-      :language: c++
-      :dedent: 8
-      :start-after: //DDS_RECEPTION_THREADS_SETTINGS
-      :end-before: //!
-
-  .. tab:: XML
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_RECEPTION_THREADS_SETTINGS
+        :end-before: //!
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1148,22 +1094,18 @@ List of structure members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_TRANSPORT_CONFIG_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_TRANSPORT_CONFIG_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING<-->
+        :end-before: <!--><-->
 
 .. note::
      :ref:`transportconfigqos` can also be configured modifying the builtin
@@ -1256,22 +1198,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
+        :end-before: <!--><-->
 
 .. note::
     For extended XML information, refer to :ref:`domainparticipantconfig` and :ref:`builtin` XML sections.

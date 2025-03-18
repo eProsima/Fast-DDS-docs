@@ -47,64 +47,10 @@ Build system dependencies
 
 The following table shows the minimum version required of the Fast DDS build system dependencies.
 
-.. tabs::
+.. tab-set::
 
-    .. group-tab:: 3.1.x
-
-        .. list-table::
-
-            * - **CMake**
-              - 3.20
-
-        .. list-table::
-            :header-rows: 1
-
-            * - OS \ Architecture
-              - amd64
-              - amd32
-              - arm64
-            * - Ubuntu Noble (24.04)
-              - Tier 3: GCC 13.2
-              - **───**
-              - Tier 3: GCC 13.2
-            * - Ubuntu Jammy (22.04)
-              - Tier 1: GCC 11.4 |br|
-                Tier 3: Clang 15
-              - **───**
-              - Tier 1: GCC 11.4 |br|
-                Tier 3: Clang 15
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 15
-              - **───**
-              - **───**
-            * - Windows 10
-              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
-                Tier 3: MSVC v141 (Visual Studio 2017)
-              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
-                Tier 3: MSVC v141 (Visual Studio 2017)
-              - **───**
-            * - Windows 11
-              - Tier 3: MSVC v143 (Visual Studio 2022)
-              - Tier 3: MSVC v143 (Visual Studio 2022)
-              - **───**
-            * - Debian Buster (10)
-              - Tier 3: GCC 8
-              - **───**
-              - Tier 3: GCC 8
-            * - Android 12
-              - Tier 3: SDK 31
-              - **───**
-              - Tier 3: SDK 31
-            * - Android 13
-              - Tier 3: SDK 33
-              - **───**
-              - Tier 3: SDK 33
-            * - QNX 7.1
-              - Tier 3: QCC (over GCC 8.3)
-              - **───**
-              - Tier 3: QCC (over GCC 8.3)
-
-    .. group-tab:: 3.0.x
+    .. tab-item:: 3.1.x
+        :sync: 3.1.x
 
         .. list-table::
 
@@ -159,7 +105,64 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 3: QCC (over GCC 8.3)
 
-    .. group-tab:: 2.14.x
+    .. tab-item:: 3.0.x
+        :sync: 3.0.x
+
+        .. list-table::
+
+            * - **CMake**
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - OS \ Architecture
+              - amd64
+              - amd32
+              - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 13.2
+              - **───**
+              - Tier 3: GCC 13.2
+            * - Ubuntu Jammy (22.04)
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+              - **───**
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+            * - MacOS Mojave (10.14)
+              - Tier 1: Clang 15
+              - **───**
+              - **───**
+            * - Windows 10
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - **───**
+            * - Windows 11
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - **───**
+            * - Debian Buster (10)
+              - Tier 3: GCC 8
+              - **───**
+              - Tier 3: GCC 8
+            * - Android 12
+              - Tier 3: SDK 31
+              - **───**
+              - Tier 3: SDK 31
+            * - Android 13
+              - Tier 3: SDK 33
+              - **───**
+              - Tier 3: SDK 33
+            * - QNX 7.1
+              - Tier 3: QCC (over GCC 8.3)
+              - **───**
+              - Tier 3: QCC (over GCC 8.3)
+
+    .. tab-item:: 2.14.x
+        :sync: 2.14.x
 
         .. list-table::
 
@@ -214,7 +217,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 3: QCC (over GCC 8.3)
 
-    .. group-tab:: 2.10.x
+    .. tab-item:: 2.10.x
+        :sync: 2.10.x
 
         .. list-table::
 
@@ -263,7 +267,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 3: QCC (over GCC 8.3)
 
-    .. group-tab:: 2.6.x (maintenance)
+    .. tab-item:: 2.6.x (maintenance)
+        :sync: 2.6.x
 
         .. list-table::
 
@@ -311,9 +316,10 @@ Library dependencies
 
 The following table shows the corresponding versions of the Fast DDS library dependencies.
 
-.. tabs::
+.. tab-set::
 
-    .. group-tab:: 3.1.x
+    .. tab-item:: 3.1.x
+        :sync: 3.1.x
 
         .. list-table::
             :header-rows: 1
@@ -331,7 +337,8 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
 
-    .. group-tab:: 3.0.x
+    .. tab-item:: 3.0.x
+        :sync: 3.0.x
 
         .. list-table::
             :header-rows: 1
@@ -349,7 +356,8 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
 
-    .. group-tab:: 2.14.x
+    .. tab-item:: 2.14.x
+        :sync: 2.14.x
 
         .. list-table::
             :header-rows: 1
@@ -367,7 +375,8 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
 
-    .. group-tab:: 2.10.x
+    .. tab-item:: 2.10.x
+        :sync: 2.10.x
 
         .. list-table::
             :header-rows: 1
@@ -385,7 +394,8 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
 
-    .. group-tab:: 2.6.x (maintenance)
+    .. tab-item:: 2.6.x (maintenance)
+        :sync: 2.6.x
 
         .. list-table::
             :header-rows: 1
@@ -417,9 +427,10 @@ eProsima products compatibility
 The following table shows the compatibility between the different versions of the eProsima software products that use
 Fast DDS as the core middleware.
 
-.. tabs::
+.. tab-set::
 
-    .. group-tab:: 3.1.x
+    .. tab-item:: 3.1.x
+        :sync: 3.1.x
 
         .. list-table::
             :header-rows: 1
@@ -437,7 +448,8 @@ Fast DDS as the core middleware.
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v2.0.0 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.0.0>`__
 
-    .. group-tab:: 3.0.x
+    .. tab-item:: 3.0.x
+        :sync: 3.0.x
 
         .. list-table::
             :header-rows: 1
@@ -455,7 +467,8 @@ Fast DDS as the core middleware.
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v2.0.0 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.0.0>`__
 
-    .. group-tab:: 2.14.x
+    .. tab-item:: 2.14.x
+        :sync: 2.14.x
 
         .. list-table::
             :header-rows: 1
@@ -473,7 +486,8 @@ Fast DDS as the core middleware.
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.2 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.2>`__
 
-    .. group-tab:: 2.10.x
+    .. tab-item:: 2.10.x
+        :sync: 2.10.x
 
         .. list-table::
             :header-rows: 1
@@ -491,7 +505,8 @@ Fast DDS as the core middleware.
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 
-    .. group-tab:: 2.6.x (maintenance)
+    .. tab-item:: 2.6.x (maintenance)
+        :sync: 2.6.x
 
         .. list-table::
             :header-rows: 1

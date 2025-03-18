@@ -14,8 +14,8 @@ the :ref:`dds_layer_publisher_publisher` and the :ref:`dds_layer_domainParticipa
 
 The function takes two arguments:
 
- * A pointer to the data instance with the new values.
- * The handler to the instance.
+* A pointer to the data instance with the new values.
+* The handler to the instance.
 
 An empty (i.e., default constructed |InstanceHandle_t-api|) instance handler can be used for the argument handle.
 This indicates that the identity of the instance should be automatically deduced from the key of the
@@ -28,10 +28,10 @@ If the handle is not empty, then it must correspond to the value obtained with t
 Otherwise the write function will fail with ``RETCODE_PRECONDITION_NOT_MET``.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAWRITER_WRITE
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DATAWRITER_WRITE
+    :end-before: //!
+    :dedent: 8
 
 
 .. _dds_layer_publisher_write_blocking:
@@ -79,7 +79,7 @@ Otherwise the DataWriter may run out of samples.
 
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAWRITER_LOAN_SAMPLES
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DATAWRITER_LOAN_SAMPLES
+    :end-before: //!
+    :dedent: 8

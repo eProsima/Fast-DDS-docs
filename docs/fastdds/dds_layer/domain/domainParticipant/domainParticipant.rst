@@ -88,9 +88,9 @@ Internally it contains the following |QosPolicy-api| objects:
     This entails that applications willing to further modify the |DomainParticipantQos-api| after
     |DomainParticipant-api| creation should:
 
-         1. Retrieve the internal |DomainParticipantQos-api| by the means of |DomainParticipant::get_qos-api|.
-         2. Perform the desired modifications.
-         3. Update the |DomainParticipantQos-api| by the means of |DomainParticipant::set_qos-api|.
+    1. Retrieve the internal |DomainParticipantQos-api| by the means of |DomainParticipant::get_qos-api|.
+    2. Perform the desired modifications.
+    3. Update the |DomainParticipantQos-api| by the means of |DomainParticipant::set_qos-api|.
 
 Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.

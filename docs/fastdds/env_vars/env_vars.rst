@@ -195,28 +195,28 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
 
 * The value of the variable must list the locator of the server in the form of:
 
-    + An IPv4 address like ``192.168.2.23``. The UDP protocol is used by default. The UDP port can be appended using `:`
-      as in ``192.168.2.23:35665``.
-    + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again, it uses the UDP
-      protocol by default. An UDP port can be appended like in ``[1080::8:800:200C:417A]:35665``. Note the use of square
-      brackets to avoid ambiguities.
-    + TCPv4 specifier + IPv4 address like ``TCPv4:[127.0.0.1]``. The TCP protocol is used to communicate with the server.
-      The TCP port can be appended using `:` as in ``TCPv4:[127.0.0.1]:42100``.
-    + TCPv6 specifier + IPv6 address like ``TCPv6:[::1]``. The TCP protocol is used to communicate with the server. The
-      TCP port can be appended using `:` as in ``TCPv6:[::1]:42100``.
-    + A DNS name can be specified. This name will be used to query known hosts and available DNS servers to try to
-      resolve valid IP addresses. Several formats are acceptable:
+  + An IPv4 address like ``192.168.2.23``. The UDP protocol is used by default. The UDP port can be appended using `:`
+    as in ``192.168.2.23:35665``.
+  + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again, it uses the UDP
+    protocol by default. An UDP port can be appended like in ``[1080::8:800:200C:417A]:35665``. Note the use of square
+    brackets to avoid ambiguities.
+  + TCPv4 specifier + IPv4 address like ``TCPv4:[127.0.0.1]``. The TCP protocol is used to communicate with the server.
+    The TCP port can be appended using `:` as in ``TCPv4:[127.0.0.1]:42100``.
+  + TCPv6 specifier + IPv6 address like ``TCPv6:[::1]``. The TCP protocol is used to communicate with the server. The
+    TCP port can be appended using `:` as in ``TCPv6:[::1]:42100``.
+  + A DNS name can be specified. This name will be used to query known hosts and available DNS servers to try to
+    resolve valid IP addresses. Several formats are acceptable:
 
-        - Plain domain name: ``eprosima.com``. This will include all available IP addresses.
-        - Domain name + port: ``eprosima.com:35665``. As above but using a specific port.
-        - UDPv4 specifier + domain name: ``UDPv4:[eprosima.com]``. Only the first IPv4 address resolved will be used.
-        - UDPv4 specifier + domain name + port: ``UDPv4:[eprosima.com]:35665``. As above but using a specific port.
-        - UDPv6 specifier + domain name: ``UDPv6:[<dns>]``. Only the first IPv6 address resolved will be used.
-        - UDPv6 specifier + domain name + port: ``UDPv6:[<dns>]:35665``. As above but using a specific port.
-        - TCPv4 specifier + domain name: ``TCPv4:[eprosima.com]``. Only the first IPv4 address resolver will be used.
-        - TCPv4 specifier + domain name + port: ``TCPv4:[eprosima.com]:42100``. As above but using a specific port.
-        - TCPv6 specifier + domain name: ``TCPv6:[<dns>]``. Only the first IPv4 address resolver will be used.
-        - TCPv6 specifier + domain name + port: ``TCPv6:[<dns>]:42100``. As above but using a specific port.
+    - Plain domain name: ``eprosima.com``. This will include all available IP addresses.
+    - Domain name + port: ``eprosima.com:35665``. As above but using a specific port.
+    - UDPv4 specifier + domain name: ``UDPv4:[eprosima.com]``. Only the first IPv4 address resolved will be used.
+    - UDPv4 specifier + domain name + port: ``UDPv4:[eprosima.com]:35665``. As above but using a specific port.
+    - UDPv6 specifier + domain name: ``UDPv6:[<dns>]``. Only the first IPv6 address resolved will be used.
+    - UDPv6 specifier + domain name + port: ``UDPv6:[<dns>]:35665``. As above but using a specific port.
+    - TCPv4 specifier + domain name: ``TCPv4:[eprosima.com]``. Only the first IPv4 address resolver will be used.
+    - TCPv4 specifier + domain name + port: ``TCPv4:[eprosima.com]:42100``. As above but using a specific port.
+    - TCPv6 specifier + domain name: ``TCPv6:[<dns>]``. Only the first IPv4 address resolver will be used.
+    - TCPv6 specifier + domain name + port: ``TCPv6:[<dns>]:42100``. As above but using a specific port.
 
 * If no port is specified when using default UDP transport, the default port 11811 is used.
 * If no port is specified when using TCP transport, the default port 42100 is used.
@@ -227,19 +227,19 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
 The following example shows how to set the address of two remote discovery servers with addresses
 '84.22.259.329:8888' and 'localhost:1234'.
 
-    +----------------------------------------------------------------------------+
-    | **Linux**                                                                  |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    export ROS_DISCOVERY_SERVER="84.22.259.329:8888;localhost:1234"         |
-    +----------------------------------------------------------------------------+
-    | **Windows**                                                                |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    set ROS_DISCOVERY_SERVER=84.22.259.329:8888;localhost:1234              |
-    +----------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+| **Linux**                                                                  |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    export ROS_DISCOVERY_SERVER="84.22.259.329:8888;localhost:1234"         |
++----------------------------------------------------------------------------+
+| **Windows**                                                                |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    set ROS_DISCOVERY_SERVER=84.22.259.329:8888;localhost:1234              |
++----------------------------------------------------------------------------+
 
 .. important::
     IP addresses specified in ``ROS_DISCOVERY_SERVER`` must be either valid IPv4/IPv6 addresses or domain names.
@@ -317,19 +317,19 @@ The possible values are: **TRUE**, **true**, **True**, **1**, **FALSE**, **false
 
 The following example shows how to set the environment variable to true.
 
-    +----------------------------------------------------------------------------+
-    | **Linux**                                                                  |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    export ROS_SUPER_CLIENT=TRUE                                            |
-    +----------------------------------------------------------------------------+
-    | **Windows**                                                                |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    set ROS_SUPER_CLIENT=TRUE                                               |
-    +----------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+| **Linux**                                                                  |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    export ROS_SUPER_CLIENT=TRUE                                            |
++----------------------------------------------------------------------------+
+| **Windows**                                                                |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    set ROS_SUPER_CLIENT=TRUE                                               |
++----------------------------------------------------------------------------+
 
 .. _env_vars_fastdds_statistics:
 
@@ -349,19 +349,19 @@ The elements of the list should be separated by semicolons and match the
 For example, to enable the statistics DataWriters that report the latency measurements, the environment variable should
 be set as follows:
 
-    +----------------------------------------------------------------------------+
-    | **Linux**                                                                  |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC" |
-    +----------------------------------------------------------------------------+
-    | **Windows**                                                                |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    set FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC      |
-    +----------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+| **Linux**                                                                  |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC" |
++----------------------------------------------------------------------------+
+| **Windows**                                                                |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    set FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC      |
++----------------------------------------------------------------------------+
 
 .. important::
     This environment variable can be used together with the XML profiles

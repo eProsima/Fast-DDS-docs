@@ -18,10 +18,10 @@ cmake_minimum_required(VERSION 3.20)
 file(STRINGS
     ${CMAKE_SOURCE_DIR}/docs/conf.py
     LIB_VERSION_TMP
-    REGEX "^version = u'[0-9]+.[0-9]+.[0-9]+'"
+    REGEX "^version = \"[0-9]+.[0-9]+.[0-9]+\""
     )
 
-string(REGEX REPLACE "^version = u'([0-9]+.[0-9]+.[0-9]+)'"
+string(REGEX REPLACE "^version = \"([0-9]+.[0-9]+.[0-9]+)\""
     "\\1"
     LIB_VERSION_STR
     ${LIB_VERSION_TMP}

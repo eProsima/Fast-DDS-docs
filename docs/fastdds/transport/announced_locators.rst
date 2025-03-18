@@ -87,8 +87,8 @@ When the externality level on which the communication will be established has be
 * Keep locators that match with the selected externality level.
 * For the locators with an address that does not match with any of the locators announced by the local entity:
 
-    * Keep them when ``ignore_non_matching_locators`` is ``false`` (default behavior)
-    * Remove them when ``ignore_non_matching_locators`` is ``true``
+  * Keep them when ``ignore_non_matching_locators`` is ``false`` (default behavior)
+  * Remove them when ``ignore_non_matching_locators`` is ``true``
 
 Additional considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^^

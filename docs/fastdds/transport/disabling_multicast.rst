@@ -21,21 +21,17 @@ not match the address-port listed in the publisher participant Initial Peers Lis
 The following is an example of how to disable all multicast traffic configuring one
 *metatraffic unicast* locator.
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-DISABLE-MULTICAST
-      :end-before: //!--
-      :dedent: 8
-
-  .. tab:: XML
+        :language: c++
+        :start-after: //CONF-DISABLE-MULTICAST
+        :end-before: //!--
+        :dedent: 8
 
     .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-DISABLE-MULTICAST
-      :end-before: <!--><-->
-      :lines: 2-3,5-
-      :append: </profiles>
+        :language: xml
+        :start-after: <!-->CONF-DISABLE-MULTICAST
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>

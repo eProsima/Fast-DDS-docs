@@ -14,37 +14,37 @@ installation followed and the operating system.
 
 * On Linux:
 
-    - For an **installation from binaries** or a **colcon installation**:
+  - For an **installation from binaries** or a **colcon installation**:
 
-    .. code:: bash
+  .. code:: bash
 
-        <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen -example CMake HelloWorld.idl
+      <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen -example CMake HelloWorld.idl
 
-    - For a **stand-alone installation**, run:
+  - For a **stand-alone installation**, run:
 
-    .. code:: bash
+  .. code:: bash
 
-        <path-to-Fast-DDS-Gen>/scripts/fastddsgen -example CMake HelloWorld.idl
+      <path-to-Fast-DDS-Gen>/scripts/fastddsgen -example CMake HelloWorld.idl
 
 * On Windows:
 
-    - For a **colcon installation**:
+  - For a **colcon installation**:
 
-    .. code:: bash
+  .. code:: winbatch
 
-        <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen.bat -example CMake HelloWorld.idl
+      <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
-    - For a **stand-alone installation**, run:
+  - For a **stand-alone installation**, run:
 
-    .. code:: bash
+  .. code:: winbatch
 
-        <path-to-Fast-DDS-Gen>/scripts/fastddsgen.bat -example CMake HelloWorld.idl
+      <path-to-Fast-DDS-Gen>/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
-    - For an **installation from binaries**, run:
+  - For an **installation from binaries**, run:
 
-    .. code:: bash
+  .. code:: winbatch
 
-        fastddsgen.bat -example CMake HelloWorld.idl
+      fastddsgen.bat -example CMake HelloWorld.idl
 
 .. warning::
 

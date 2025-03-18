@@ -10,9 +10,9 @@ A |Topic-api| is a specialization of the broader concept of :ref:`dds_layer_topi
 A Topic represents a single data flow between :ref:`dds_layer_publisher_publisher`
 and :ref:`dds_layer_subscriber_subscriber`, providing:
 
- * The name to identify the data flow.
- * The data type that is transmitted on that flow.
- * The QoS values related to the data itself.
+* The name to identify the data flow.
+* The data type that is transmitted on that flow.
+* The QoS values related to the data itself.
 
 The behavior of the Topic can be modified with the QoS values
 specified on :ref:`dds_layer_topic_topicQos`.
@@ -71,10 +71,10 @@ The QoS value of a previously created Topic can be modified using the
 |Topic::set_qos-api| member function.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_CHANGE_TOPICQOS
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_CHANGE_TOPICQOS
+    :end-before: //!
+    :dedent: 8
 
 
 .. _dds_layer_defaultTopicQos:
@@ -96,10 +96,10 @@ Modifying the default TopicQos will not affect already existing Topic
 instances.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_CHANGE_DEFAULT_TOPICQOS
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_CHANGE_DEFAULT_TOPICQOS
+    :end-before: //!
+    :dedent: 8
 
 |DomainParticipant::get_default_topic_qos-api| member function also accepts the value :code:`TOPIC_QOS_DEFAULT`
 as input argument.
@@ -107,16 +107,16 @@ This will reset the current default TopicQos to default constructed
 value |TopicQos::TopicQos-api|.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_CHANGE_TOPICQOS_TO_DEFAULT
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_CHANGE_TOPICQOS_TO_DEFAULT
+    :end-before: //!
+    :dedent: 8
 
 .. note::
-   The value :code:`TOPIC_QOS_DEFAULT` has different meaning depending on where it is used:
+    The value :code:`TOPIC_QOS_DEFAULT` has different meaning depending on where it is used:
 
-   * On |DomainParticipant::create_topic-api| and |Topic::set_qos-api| it refers to the default TopicQos
-     as returned by |DomainParticipant::get_default_topic_qos-api|.
-   * On |DomainParticipant::get_default_topic_qos-api| it refers to the default constructed |TopicQos::TopicQos-api|.
+    * On |DomainParticipant::create_topic-api| and |Topic::set_qos-api| it refers to the default TopicQos
+      as returned by |DomainParticipant::get_default_topic_qos-api|.
+    * On |DomainParticipant::get_default_topic_qos-api| it refers to the default constructed |TopicQos::TopicQos-api|.
 
 

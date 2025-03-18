@@ -9,11 +9,6 @@ Writing a simple Python publisher and subscriber application
 This section details how to create a simple Fast DDS application with a publisher and a subscriber
 using Python API step by step.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 .. include:: ../simple_app/includes/background.rst
 
 .. include:: includes/prerequisites.rst

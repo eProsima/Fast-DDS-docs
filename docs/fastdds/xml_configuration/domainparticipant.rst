@@ -146,6 +146,12 @@ These elements allow the user to define the DomainParticipant configuration.
        |DomainParticipantFactory|.
      - ``int32_t``
      - 0
+   * - ``<easy_mode_ip>``
+     - IP address of the remote discovery server |br|
+       to connect to using
+       `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__.
+     - ``string``
+     - Empty
    * - ``<userTransports>``
      - Transport descriptors to be used by the |br|
        DomainParticipant. See |br|

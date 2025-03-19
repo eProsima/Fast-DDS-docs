@@ -4705,6 +4705,8 @@ void dds_qos_examples()
         participant_qos.wire_protocol().default_external_unicast_locators[1][0].push_back(external_locator);
         // Drop non matching locators
         participant_qos.wire_protocol().ignore_non_matching_locators = true;
+        // Configure the ROS 2 Easy Mode master Discovery Server IP
+        participant_qos.wire_protocol().easy_mode("127.0.0.1");
         // Increase mutation tries
         participant_qos.wire_protocol().builtin.mutation_tries = 300u;
         // Use modified QoS in the creation of the DomainParticipant entity

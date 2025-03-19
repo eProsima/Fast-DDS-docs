@@ -74,7 +74,7 @@ Discovery Server CLI Easy Mode
 This mode aims to simplify the deployment and configuration of *Fast DDS* Discovery Servers by automatically handling
 the server's connections.
 This mode of the CLI is meant to be used along with the ``ROS2_EASY_MODE`` environment variable, which can be used to
-remove to **multicast announcements** from DDS entities and interconnect different hosts by just using the environment
+remove **multicast announcements** from DDS entities and interconnect different hosts by just using the environment
 variable ``ROS2_EASY_MODE=<ip>``.
 (Check `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__
 to see a detailed explanation of this feature).

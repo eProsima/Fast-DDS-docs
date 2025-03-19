@@ -2849,10 +2849,6 @@ void dds_dataWriter_examples()
                     return;
                 }
             }
-
-            // The data instance can be reused to publish new values,
-            // but delete it at the end to avoid leaks
-            custom_type_support->deleteData(data);
             //!--
         }
 

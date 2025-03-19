@@ -1165,7 +1165,7 @@ List of QoS Policy methods:
       - Description
     * - |WireProtocolConfigQos::easy_mode-api|
       - ``std::string ip``
-      - ``void``
+      - ``ReturnCode_t``
       - Setter for ``easy_mode_ip_`` private member.
     * - |WireProtocolConfigQos::easy_mode-api|
       - Empty

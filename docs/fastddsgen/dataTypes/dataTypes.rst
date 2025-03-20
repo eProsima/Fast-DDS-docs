@@ -17,6 +17,11 @@ Be aware that *Fast DDS-Gen* is not case sensitive as it is specified in the
 To activate case sensitivity use option :code:`-cs` when running *Fast DDS-Gen* (see
 :ref:`fastddsgen_supported_options`).
 
+.. warning::
+
+  Note that IDL files created by ROS 2 are not necessarily compatible with Fast DDS applications, since they are processed in a different manner and can lead to incompatible type definitions.
+  For a detailed explanation on how to ensure compatibility between ROS 2 and Fast DDS applications, please refer to this `Vulcanexus tutorial <https://docs.vulcanexus.org/en/jazzy/rst/tutorials/core/deployment/dds2vulcanexus/dds2vulcanexus_ros2idl.html>`_.
+
 .. _idl_primitive_types:
 
 Primitive types

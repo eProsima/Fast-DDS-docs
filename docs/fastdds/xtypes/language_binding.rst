@@ -867,22 +867,22 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
         |MemberDescriptor-api| :code:`type` property for :ref:`xtypes_supportedtypes_enumeration`.
       - ✅
       - ✅❌ (`Enumeration types`_ not configurable).
-      - TODO (Eugenio)
+      - ❌
     * - :code:`@default`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
       - ❌
-      - TODO (Eugenio)
+      - ❌
     * - :code:`default_literal`
       - |MemberDescriptor-api| :code:`is_default_label` property.
       - ✅
       - ❌
-      - TODO (Eugenio)
+      - ❌
     * - :code:`@extensibility`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - TODO (Eugenio)
+      - ❌
     * - :code:`@external`
       - |MemberDescriptor-api| :code:`is_shared` property.
       - ❌
@@ -897,7 +897,7 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
       - ❌
-      - TODO (Eugenio)
+      - ❌
     * - :code:`@key` / :code:`@Key`
       - |MemberDescriptor-api| :code:`is_key` property.
       - ✅
@@ -912,7 +912,7 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - |TypeDescriptor-api| :code:`is_nested` property.
       - ❌
       - ❌
-      - TODO (Eugenio)
+      - ❌
     * - :code:`@optional`
       - |MemberDescriptor-api| :code:`is_optional` property.
       - ❌
@@ -922,22 +922,22 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
       - ✅
-      - TODO (Eugenio)
+      - ❌
     * - :code:`@try_construct`
       - |MemberDescriptor-api| :code:`try_construct_kind` property.
       - ❌
       - ❌
-      - TODO (Eugenio)
+      - ❌
     * - :code:`@value`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
       - ✅
-      - TODO (Eugenio)
+      - ❌
     * - :code:`@verbatim`
       - |VerbatimTextDescriptor-api|
       - ❌
       - ❌
-      - TODO (Eugenio)
+      - ❌
 
 .. _xtypes_complextypes:
 

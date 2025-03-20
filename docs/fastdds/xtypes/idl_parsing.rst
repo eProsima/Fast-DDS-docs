@@ -28,9 +28,9 @@ For further information about the supported |DynamicTypes|, please, refer to :re
 * :ref:`xtypes_supportedtypes_array`
 * :ref:`xtypes_supportedtypes_union`
 * :ref:`xtypes_supportedtypes_enumeration`
-* :ref:`xtypes_annotations` (you can see the full table in :ref:`xtypes_builtin_annotations`)
-
-- TODO (Eugenio): arithmetic expressions, union/struct forward declarations, switch-case.
+* :ref:`xtypes_annotations`
+* Arithmetic expressions
+* Union/struct forward declarations
 
 The following types are currently not supported by the IDL parsing feature:
 
@@ -38,9 +38,10 @@ The following types are currently not supported by the IDL parsing feature:
 * :ref:`xtypes_supportedtypes_sequence`
 * :ref:`xtypes_supportedtypes_map`
 * :ref:`xtypes_supportedtypes_bitset`
-
-
-- TODO (Eugenio): module,inheritance, member id
+* :ref:`xtypes_builtin_annotations`
+* Module
+* Inheritance
+* Member ID
 
 Example
 ^^^^^^^

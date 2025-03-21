@@ -20,7 +20,7 @@ This release includes the following **improvements**:
 #. Update sqlite from 3.36.0 to 3.47.2
 #. Update submodules when cloning Fast DDS on CI
 #. Improve PDPClients initialization
-#. Log any errors before cancel_init()
+#. Log any errors before ``cancel_init()``
 #. Add ``replace`` tag to ``package.xml``
 
 .. important::

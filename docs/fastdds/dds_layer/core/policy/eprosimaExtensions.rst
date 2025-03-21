@@ -1204,6 +1204,11 @@ List of QoS Policy methods:
   If not, ``easy_mode_ip_`` will be set to an empty string, indicating that ROS 2 Easy Mode is disabled.
 
 .. note::
+     If the Easy Mode Discovery Server IP is configured simultaneously using
+     the :ref:`ROS2_EASY_MODE<env_vars_easy_mode>` environment variable and manually via XML or with |WireProtocolConfigQos-api|,
+     the manually configured value takes precedence, thereby ignoring the environment variable value.
+
+.. note::
      This QoS Policy applies to |DomainParticipant| entities.
 
 .. important::

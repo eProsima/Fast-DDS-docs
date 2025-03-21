@@ -7,7 +7,8 @@
 Dynamic Types IDL Parsing
 =========================
 
-*Fast DDS* supports the implementation of |DynamicTypes| for parsing IDL files at runtime to generate dynamic data types.
+*Fast DDS* supports the implementation of |DynamicTypes| for parsing IDL files at runtime to generate dynamic
+data types.
 The |DynamicTypeBuilderFactory::create_type_w_uri| API allows users to provide a URI pointing to an IDL file.
 Fast DDS will process the file and return the corresponding DynamicTypeBuilder, which can then be used to create a
 DynamicType.

@@ -1,0 +1,30 @@
+`Version 3.1.2 <https://fast-dds.docs.eprosima.com/en/v3.1.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **fixes**:
+
+#. Arithmetic overflow in fragment size calculations
+#. Fix EDP reliability timings
+#. Address ``parseXMLMemberDynamicType`` regressions
+#. Fix double-locking issue in ``DataSharingListener``
+#. Fix Discovery CLI Tool in Windows (No privileges)
+#. Fix log category name macro collision in ``MacOS``
+#. Handle socket buffer size setting when system's maximum exceeded
+#. Decouple transport receivers creation using unique network flows
+#. Fix dropped samples on reliable writers
+#. System Log error: infinite loop when setting thread affinity fails
+
+This release includes the following **improvements**:
+
+#. Benchmark example updated
+#. Update sqlite from 3.36.0 to 3.47.2
+#. Update submodules when cloning Fast DDS on CI
+#. Improve PDPClients initialization
+#. Log any errors before ``cancel_init()``
+#. Add ``replace`` tag to ``package.xml``
+
+.. important::
+
+    When upgrading to version 3.1.2 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.3>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

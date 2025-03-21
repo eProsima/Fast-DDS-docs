@@ -6,10 +6,10 @@ This minor release includes the following **features**:
 #. Implementation of ``get_matched_publication/subscription()`` ``DataReader/Writer`` API
 #. Extended incompatible QoS for monitor service
 #. Transform locators using new ``machine_id PID``
-#. New property to select preferred key agreement algorithm
-#. Parse IDL file on ``DynamicTypeBuilderFactory::create_type_w_uri``
-#. Fast DDS ``ROS2_EASY_MODE``
-#. Add ``RPC`` related interfaces
+#. New property to select :ref:`preferred key agreement algorithm. <property_policies_security>`
+#. Parse IDL file on :ref:`DynamicTypeBuilderFactory::create_type_w_uri <dynamic-types-idl-parsing>`
+#. Fast DDS `ROS2 Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`_
+#. Add :ref:`RPC <rpc_dds_intro>` related interfaces
 #. Extend ``QoS`` in discovery data
 
 This release includes the following **improvements**:
@@ -28,7 +28,7 @@ This release includes the following **improvements**:
 #. Make the machine id the physical_data host info
 #. Filter interested readers on ``PDP`` writer
 #. Make ``*ProxyData`` inherit from ``*BuiltinTopicData`` and refactor it
-#. Flow controller configuration for ``built-in endpoints``
+#. :ref:`Flow controller configuration for built-in endpoints <flow-controllers>`
 
 **Security:**
 
@@ -44,8 +44,8 @@ This release includes the following **improvements**:
 
 **Tools and examples:**
 
-#. Add ``-v`` or ``--version`` to CLI command tool
-#. Enable ``Datasharing`` segments clean from CLI
+#. Add ``-v`` or ``--version`` to :ref:`CLI command tool <ffastddscli_cli>`
+#. Enable :ref:`Datasharing segments clean from CLI <cli_shm>`
 #. Update examples ``CMakeList`` to force default ``CMAKE_BUILD_TYPE``
 #. Update ``Benchmark`` example
 #. Remove ``SHM`` option from discovery server example
@@ -77,11 +77,11 @@ This release includes the following **improvements**:
 #. Run examples in Windows CI
 #. Update submodules when cloning Fast DDS on CI
 #. Split Windows nightly tests using ``name filter regex``
-#. Add missing ``psutil`` python module in sanitizers ci
+#. Add missing ``psutil`` python module in sanitizers CI
 
 This release includes the following **fixes**:
 
-#. Fix ``CVE-2025-24807``
+#. Fix `CVE-2025-24807 <https://nvd.nist.gov/vuln/detail/cve-2025-24807>`_
 #. Remove unused code
 #. Fix destruction data-race on participant removal in intra-process
 #. ``SecurityManager`` fixes
@@ -116,5 +116,5 @@ This release includes the following **fixes**:
 .. important::
 
     When upgrading to version 3.2.0 it is **highly recommended** to regenerate generated source from IDL files
-    using at least `Fast DDS-Gen v4.0.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.4>`_.
+    using at least `Fast DDS-Gen v4.0.4 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.4>`_.
     But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

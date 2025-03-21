@@ -2059,7 +2059,7 @@ void dds_topic_examples()
         std::string idl_file = "<path_to_idl>.idl";
         std::string type_name = "YourType";
         std::vector<std::string> include_paths;
-        include_paths.push_back("<path_to_included_idl>.idl");
+        include_paths.push_back("<path/to/folder/containing/included/idl/files>");
 
         // Retrieve the instance of the desired type
         DynamicTypeBuilder::_ref_type dyn_type_builder = 

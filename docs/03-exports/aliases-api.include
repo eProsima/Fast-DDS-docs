@@ -1040,9 +1040,12 @@
 .. |DynamicTypeBuilderFactory::create_sequence_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_sequence_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_sequence_type>`
 .. |DynamicTypeBuilderFactory::create_string_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_string_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_string_type>`
 .. |DynamicTypeBuilderFactory::create_type_w_type_object| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_type_w_type_object <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_type_w_type_object>`
+.. |DynamicTypeBuilderFactory::create_type_w_uri| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_type_w_uri <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_type_w_uri>`
 .. |DynamicTypeBuilderFactory::create_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_type>`
 .. |DynamicTypeBuilderFactory::create_wstring_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_wstring_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_wstring_type>`
 .. |DynamicTypeBuilderFactory::get_primitive_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::get_primitive_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::get_primitive_type>`
+.. |DynamicTypeBuilderFactory::set_preprocessor| replace:: :cpp:func:`DynamicTypeBuilderFactory::set_preprocessor <eprosima::fastdds::dds::DynamicTypeBuilderFactory::set_preprocessor>`
+
 .. |DynamicTypeMember-api| replace:: :cpp:class:`DynamicTypeMember <eprosima::fastdds::dds::DynamicTypeMember>`
 .. |MemberDescriptor-api| replace:: :cpp:class:`MemberDescriptor <eprosima::fastdds::dds::MemberDescriptor>`
 .. |TypeDescriptor-api| replace:: :cpp:class:`TypeDescriptor <eprosima::fastdds::dds::TypeDescriptor>`

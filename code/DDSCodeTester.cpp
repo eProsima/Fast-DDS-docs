@@ -2040,6 +2040,45 @@ void dds_topic_examples()
         }
         //!--
     }
+
+    {
+        //DDS_DYNAMIC_TYPES_IDL_PARSING
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Optional: Set the preprocessor to be executed before parsing the IDL
+        DynamicTypeBuilderFactory::get_instance()->set_preprocessor("<optional_path_to_your_preprocessor_executable>");
+
+        // Load the IDL file
+        std::string idl_file = "<path_to_idl>.idl";
+        std::string type_name = "YourType";
+        std::vector<std::string> include_paths;
+        include_paths.push_back("<path/to/folder/containing/included/idl/files>");
+
+        // Retrieve the instance of the desired type
+        DynamicTypeBuilder::_ref_type dyn_type_builder = 
+                DynamicTypeBuilderFactory::get_instance()->create_type_w_uri(idl_file, type_name, include_paths);
+
+        // Register dynamic type
+        TypeSupport dyn_type_support(new DynamicPubSubType(dyn_type_builder->build()));
+        dyn_type_support.register_type(participant, nullptr);
+
+        // Create a Topic with the registered type.
+        Topic* topic =
+                participant->create_topic("topic_name", dyn_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
 }
 
 void dds_content_filtered_topic_examples()

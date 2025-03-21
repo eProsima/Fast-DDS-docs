@@ -21,6 +21,7 @@ This release includes the following **improvements**:
 #. Improve ``Blackbox`` TCP tests suite
 #. Decouple transport receivers creation using unique network flows
 #. Improve ``max_allocations`` calculation on SHM transport
+#. Improve SHM configuration on large data transports
 
 **Discovery:**
 

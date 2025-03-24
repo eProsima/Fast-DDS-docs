@@ -10,7 +10,8 @@ Dynamic Language Binding
 The Dynamic Language Binding API allows to define data types at runtime instead of having the types predefined as it is
 required by the Plain Language Binding.
 This API includes both the type definition and, the getters and setters required to use the defined types.
-Type definition can also be done using a XML configuration file as explained in :ref:`xmldynamictypes` section.
+Type definition can also be done using a XML configuration file as explained in :ref:`xmldynamictypes` section or by
+parsing an IDL file at runtime, as explained in :ref:`dynamic-types-idl-parsing` section.
 
 This section presents first the Dynamic Language Binding API, and then the supported types and specific examples
 defining and using those types.
@@ -836,6 +837,7 @@ The annotation parameter value must be converted to its string representation.
         :end-before: //!--
         :dedent: 8
 
+.. _xtypes_builtin_annotations:
 
 Builtin annotations
 """""""""""""""""""
@@ -854,69 +856,86 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - Dynamic Language Binding API
       - Dynamic Language Binding support
       - XML Dynamic Type profiles support
+      - IDL Parsing Dynamic Type support
     * - :code:`@appendable`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
+      - ❌
       - ❌
     * - :code:`@bit_bound`
       - |TypeDescriptor-api| :code:`bound` property for :ref:`xtypes_supportedtypes_bitset`. |br|
         |MemberDescriptor-api| :code:`type` property for :ref:`xtypes_supportedtypes_enumeration`.
       - ✅
       - ✅❌ (`Enumeration types`_ not configurable).
+      - ❌
     * - :code:`@default`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
+      - ❌
       - ❌
     * - :code:`default_literal`
       - |MemberDescriptor-api| :code:`is_default_label` property.
       - ✅
       - ❌
+      - ❌
     * - :code:`@extensibility`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
+      - ❌
     * - :code:`@external`
       - |MemberDescriptor-api| :code:`is_shared` property.
+      - ❌
       - ❌
       - ❌
     * - :code:`@final`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
+      - ❌
     * - :code:`@id`
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
+      - ❌
       - ❌
     * - :code:`@key` / :code:`@Key`
       - |MemberDescriptor-api| :code:`is_key` property.
       - ✅
       - ❌
+      - ❌
     * - :code:`@mutable`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
+      - ❌
     * - :code:`@nested`
       - |TypeDescriptor-api| :code:`is_nested` property.
+      - ❌
       - ❌
       - ❌
     * - :code:`@optional`
       - |MemberDescriptor-api| :code:`is_optional` property.
       - ❌
       - ❌
+      - ❌
     * - :code:`@position`
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
       - ✅
+      - ❌
     * - :code:`@try_construct`
       - |MemberDescriptor-api| :code:`try_construct_kind` property.
+      - ❌
       - ❌
       - ❌
     * - :code:`@value`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
       - ✅
+      - ❌
     * - :code:`@verbatim`
       - |VerbatimTextDescriptor-api|
+      - ❌
       - ❌
       - ❌
 

@@ -60,5 +60,6 @@ The following snippet shows the previously explained steps:
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
      :language: c++
+     :dedent: 8
      :start-after: //DDS_DYNAMIC_TYPES_IDL_PARSING
      :end-before: //!--

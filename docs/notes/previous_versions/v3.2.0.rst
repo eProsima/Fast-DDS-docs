@@ -1,0 +1,121 @@
+`Version 3.2.0 (latest) <https://fast-dds.docs.eprosima.com/en/v3.2.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This minor release includes the following **features**:
+
+#. Implementation of ``get_matched_publication/subscription()`` ``DataReader/Writer`` API
+#. Extended incompatible QoS for monitor service
+#. Transform locators using new ``machine_id PID``
+#. New property to select :ref:`preferred key agreement algorithm. <property_policies_security>`
+#. Parse IDL file on :ref:`DynamicTypeBuilderFactory::create_type_w_uri <dynamic-types-idl-parsing>`
+#. Fast DDS `ROS2 Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`_
+#. Add :ref:`RPC <rpc_dds_intro>` related interfaces
+#. Extend ``QoS`` in discovery data
+
+This release includes the following **improvements**:
+
+**Transport:**
+
+#. Check if SHM transport is disabled in ``LARGE_DATA`` modes
+#. Allow domain names (DNS) when parsing TCP locators XML elements
+#. Improve ``Blackbox`` TCP tests suite
+#. Decouple transport receivers creation using unique network flows
+#. Improve ``max_allocations`` calculation on SHM transport
+#. Improve SHM configuration on large data transports
+
+**Discovery:**
+
+#. Improve ``PDPClients`` initialization
+#. Make the machine id the physical_data host info
+#. Filter interested readers on ``PDP`` writer
+#. Make ``*ProxyData`` inherit from ``*BuiltinTopicData`` and refactor it
+#. :ref:`Flow controller configuration for built-in endpoints <flow-controllers>`
+
+**Security:**
+
+#. Improve ``OpenSSL`` lifecycle handling
+#. Use correct algorithm strings on ``PermissionsToken`` and ``IdentityToken``
+#. Log any errors before ``cancel_init()``
+#. Add test for security initialization error
+
+**Tests:**
+
+#. Add test for a union using an alias with scope
+#. Tests for regression test: fix sequence of alias of primitives inside modules
+
+**Tools and examples:**
+
+#. Add ``-v`` or ``--version`` to :ref:`CLI command tool <ffastddscli_cli>`
+#. Enable :ref:`Datasharing segments clean from CLI <cli_shm>`
+#. Update examples ``CMakeList`` to force default ``CMAKE_BUILD_TYPE``
+#. Update ``Benchmark`` example
+#. Remove ``SHM`` option from discovery server example
+
+**Documentation:**
+
+#. Roadmap update
+#. Update latest notes from ``2.10.x`` to ``2.10.6``
+#. Update RELEASE_SUPPORT after ``v2.14.4`` release
+#. Set ``3.0.x`` as ``EOL``
+#. Update RELEASE_SUPPORT after ``3.0.2`` release
+#. Correct examples on README
+#. Warn about ``XTypes`` in ``Fast DDS v3``
+
+**Other:**
+
+#. Rename ``RTPSParticipantImpl.h`` to ``RTPSParticipantImpl.hpp``
+#. Update ``sqlite`` from ``3.36.0`` to ``3.47.2``
+#. Add modules support to ``idl_serialize``
+
+**Release management:**
+
+#. Add replace tag to ``package.xml``
+#. Prepare for Release ``v3.2.0``
+
+**Github CI management:**
+
+#. Add Debug CI to master nightly job
+#. Run examples in Windows CI
+#. Update submodules when cloning Fast DDS on CI
+#. Split Windows nightly tests using ``name filter regex``
+#. Add missing ``psutil`` python module in sanitizers CI
+
+This release includes the following **fixes**:
+
+#. Fix `CVE-2025-24807 <https://nvd.nist.gov/vuln/detail/cve-2025-24807>`_
+#. Remove unused code
+#. Fix destruction data-race on participant removal in intra-process
+#. ``SecurityManager`` fixes
+#. Address ``XMLDynamicParser`` regression
+#. Fix assertion deleting a ``DataWriter`` configured with persistent and flow controller
+#. Fix comparison in ``is_update_allowed()``
+#. Fix build with ``-Werror=template-id-cdtor``
+#. Fix commercial support link
+#. Fix ``cmake`` generator evaluation
+#. Fix reach of maximum buffers in ``asio::send_to``
+#. Fix unique network flows with TCP transports
+#. Fix ``tsan`` potential deadlock between ``StatefulWriter`` and ``FlowController``
+#. Fix Discovery CLI Tool in Windows
+#. Arithmetic overflow in fragment size calculations
+#. Fix ``double-locking`` issue in ``DataSharingListener``
+#. Fix ``EDP`` reliability timings
+#. Handle socket buffer size setting when ``system's`` maximum exceeded
+#. Fix log category name macro collision in ``MacOS``
+#. Reliable volatile change dropped when all history ``acked``
+#. Increase ``max_blocking_time`` for services in ``Easy Mode``
+#. Unacknowledged sample removed in ``KEEP_ALL`` mode
+#. Fix System Log error infinite loop when setting thread affinity
+#. Support compiler ``MSYS2-MinGW``
+#. Fix python warning in ``shm`` CLI tool
+#. Fix error handling logic in ``try_setting_buffer_size``
+#. Remove repeated header include and fix log
+#. Flush logs in ``CliDiscoveryManager`` destructor
+#. Fix cleanup race condition with exclusive and shared lock files
+#. Fix assertion on ``OutputTrafficManager``
+#. Fix ``several_writers_on_unack_sample_removed`` flaky test
+
+.. important::
+
+    When upgrading to version 3.2.0 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.4 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.4>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

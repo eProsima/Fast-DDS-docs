@@ -519,7 +519,7 @@ Fast DDS as the core middleware.
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v2.2.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.2.0>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v3.2.0 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.2.0>`__
+              - `v3.2.1 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.2.1>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v2.0.0 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.0.0>`__
 

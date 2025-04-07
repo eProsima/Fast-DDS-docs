@@ -103,11 +103,11 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
         (Example: start -d 1 10.0.0.1:1).
     * - stop
       - Stop the Discovery Server daemon if it is executed with no arguments.
-        If a domain is |br| specified with the ``-d`` argument it will only stop the corresponding server and the
-        daemon |br| will remain alive.
+        If a domain is |br| specified with the ``-d`` argument it will only stop the corresponding server and |br|
+        the daemon will remain alive.
     * - add
       - Add new remote Discovery Servers to the local server.
-        This will connect both servers and |br| their sub-networks without modifying existing remote servers.
+        This will connect both servers |br| and their sub-networks without modifying existing remote servers.
     * - set
       - Rewrite the remote Discovery Servers connected to the local server.
         This will replace |br| existing remote servers with the new connections.
@@ -123,22 +123,21 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
     * - ``-d  --domain``
       - Selects the domain of the server to target for this action.
         It is mandatory for |br| commands ``start``, ``add`` and ``set``.
-    * - ``<remote_server_list>``
-      - It is a list of remote servers to connect to that follows this structure: |br|
-        ``<IP:domain>;<IP:domain>;...``.
+    * - ``<remote_server>``
+      - It is an IP-domain pair defining a remote server to connect to: |br|
+        ``<IP:domain>``.
         It is mandatory with the `start`, `add` and `set` commands. |br|
         Only valid IPv4 addresses are accepted.
 
-.. important::
-    The domain argument (``-d`` or ``--domain``) and an ``<IP>:<domain>`` pair are mandatory for commands ``start``,
-    ``add`` and ``set``.
+.. note::
+    The command ``add`` also accepts a remote server list using the structure ``"<IP:domain>;<IP:domain>;..."``.
 
 .. _easy_mode_discovery_examples:
 
 Examples
 """"""""
 
-1.  Start a DS in the default domain 0:
+1.  Start a DS in the default domain 0 pointing to itself (no remote server):
 
     .. code-block:: bash
 

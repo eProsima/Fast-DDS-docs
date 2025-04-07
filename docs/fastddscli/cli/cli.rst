@@ -98,24 +98,19 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
 
     * - Command
       - Description
-    * - auto
-      - Handle the daemon start-up automatically and creates a Discovery Server in the specified
-        |br| domain (0 by default).
     * - start
       - Start the Discovery Server daemon with the remote connections specified. |br|
-        (Example: start -d 1 "127.0.0.1:2;10.0.0.3:42").
+        (Example: start -d 1 10.0.0.1:1).
     * - stop
       - Stop the Discovery Server daemon if it is executed with no arguments.
-        If a domain is |br| specified with the ``-d`` argument it will only stop the corresponding server and the
-        daemon |br| will remain alive.
+        If a domain is |br| specified with the ``-d`` argument it will only stop the corresponding server and |br|
+        the daemon will remain alive.
     * - add
       - Add new remote Discovery Servers to the local server.
-        This will connect both servers and |br| their sub-networks without modifying existing remote servers. |br|
-        Example to add two new remote servers: add -d 7 "127.0.0.1:2;10.0.0.3:42".
+        This will connect both servers |br| and their sub-networks without modifying existing remote servers.
     * - set
       - Rewrite the remote Discovery Servers connected to the local server.
-        This will replace |br| existing remote servers with the new connections. |br|
-        Example to replace remote servers with a new one: set -d 5 "10.0.0.3:42".
+        This will replace |br| existing remote servers with the new connections.
     * - list
       - List local active Discovery Servers created with the CLI Tool or the ``ROS2_EASY_MODE=<ip>``.
 
@@ -127,22 +122,26 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
       - Description
     * - ``-d  --domain``
       - Selects the domain of the server to target for this action.
-        It defaults to 0 if |br| this argument is missing and no value is found in the ``ROS_DOMAIN_ID``
-        environment variable.
-    * - ``<remote_server_list>``
-      - It is only accepted with the `start`, `add` and `set` commands.
-        It is a list of |br| remote servers to connect to that follows this structure: "<IP:domain>;<IP:domain>;...".
+        It is mandatory for |br| commands ``start``, ``add`` and ``set``.
+    * - ``<remote_server>``
+      - It is an IP-domain pair defining a remote server to connect to: |br|
+        ``<IP:domain>``.
+        It is mandatory with the `start`, `add` and `set` commands. |br|
+        Only valid IPv4 addresses are accepted.
+
+.. note::
+    The command ``add`` also accepts a remote server list using the structure ``"<IP:domain>;<IP:domain>;..."``.
 
 .. _easy_mode_discovery_examples:
 
 Examples
 """"""""
 
-1.  Start a DS in the default domain 0:
+1.  Start a DS in the default domain 0 pointing to itself (no remote server):
 
     .. code-block:: bash
 
-        fastdds discovery auto
+        fastdds discovery start -d 0 127.0.0.1:0
 
 2.  Stop all running DS and shut down Fast DDS daemon:
 
@@ -156,37 +155,25 @@ Examples
 
         fastdds discovery stop -d 0
 
-4.  Start a DS in the domain 42:
-
-    .. code-block:: bash
-
-        fastdds discovery auto -d 42
-
-    OR
-
-    .. code-block:: bash
-
-        ROS_DOMAIN_ID=42 fastdds discovery auto
-
-5.  Start a DS in domain 4 pointing to remote DS in domain 4:
+4.  Start a DS in domain 4 pointing to remote DS in domain 4 and IP 10.0.0.7:
 
     .. code-block:: bash
 
         fastdds discovery start -d 4 10.0.0.7:4
 
-6.  Add a new remote server to DS running in domain 4 :
+5.  Add a new remote server to DS running in domain 4 :
 
     .. code-block:: bash
 
         fastdds discovery add -d 4 10.0.0.7:4
 
-7.  List all servers running locally:
+6.  List all servers running locally:
 
     .. code-block:: bash
 
         fastdds discovery list
 
-8.  Starts a DS in domain 3 pointing to local DS in domain 6:
+7.  Starts a DS in domain 3 pointing to local DS in domain 6:
 
     .. code-block:: bash
 

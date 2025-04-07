@@ -1,0 +1,26 @@
+`Version 3.2.1 (latest) <https://fast-dds.docs.eprosima.com/en/v3.2.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This patch release includes the following **fixes**:
+
+#. Reduce trace category when failing to unregister type
+#. Avoid sending statistics msg with big msgs and no fragmentation
+
+This release includes the following **test fixes**:
+
+#. Fix ``MacOS`` nightly flaky tests
+#. IDL parsing tests included paths
+#. Fix Windows example tests in ``Debug`` and mitigate rtps example flakiness
+
+This release includes the following **improvements**:
+
+#. Setup ``ROS 2 Easy Mode`` at participant creation
+#. Update CLI commands for Easy Mode
+#. Get correct Fast CDR related branch in CI
+#. Update excluded IDL files from ``Gen`` CI
+
+.. important::
+
+    When upgrading to version 3.2.1 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.4 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.4>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

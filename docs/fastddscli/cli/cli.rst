@@ -156,25 +156,25 @@ Examples
 
         fastdds discovery stop -d 0
 
-5.  Start a DS in domain 4 pointing to remote DS in domain 4 and IP 10.0.0.7:
+4.  Start a DS in domain 4 pointing to remote DS in domain 4 and IP 10.0.0.7:
 
     .. code-block:: bash
 
         fastdds discovery start -d 4 10.0.0.7:4
 
-6.  Add a new remote server to DS running in domain 4 :
+5.  Add a new remote server to DS running in domain 4 :
 
     .. code-block:: bash
 
         fastdds discovery add -d 4 10.0.0.7:4
 
-7.  List all servers running locally:
+6.  List all servers running locally:
 
     .. code-block:: bash
 
         fastdds discovery list
 
-8.  Starts a DS in domain 3 pointing to local DS in domain 6:
+7.  Starts a DS in domain 3 pointing to local DS in domain 6:
 
     .. code-block:: bash
 

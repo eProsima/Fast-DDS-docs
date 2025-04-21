@@ -27,6 +27,7 @@ For further information about the supported |DynamicTypes|, please, refer to :re
 * :ref:`xtypes_supportedtypes_structure`
 * :ref:`xtypes_supportedtypes_alias`
 * :ref:`xtypes_supportedtypes_array`
+* :ref:`xtypes_supportedtypes_sequence`
 * :ref:`xtypes_supportedtypes_union`
 * :ref:`xtypes_supportedtypes_enumeration`
 * :ref:`xtypes_annotations`
@@ -36,7 +37,6 @@ For further information about the supported |DynamicTypes|, please, refer to :re
 The following types are currently not supported by the IDL parsing feature:
 
 * :ref:`xtypes_supportedtypes_bitmask`
-* :ref:`xtypes_supportedtypes_sequence`
 * :ref:`xtypes_supportedtypes_map`
 * :ref:`xtypes_supportedtypes_bitset`
 * :ref:`xtypes_builtin_annotations`

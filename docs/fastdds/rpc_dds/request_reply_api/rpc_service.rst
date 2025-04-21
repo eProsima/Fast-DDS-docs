@@ -5,7 +5,7 @@
 
 RPC Service
 ===========
-A Service is the RPCEntity used to register all RPCEntities involved in an RPC communication,
+A Service is the RPC entity used to register all RPC entities involved in an RPC communication,
 both on the client side (|Requesters|) and on the server side (|Repliers|).
 Two or more participants can communicate with each other via RPC if they register the same service
 and create Requesters and Repliers in it.

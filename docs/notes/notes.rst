@@ -3,61 +3,39 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.9 (maintenance)
-===========================
+Version 2.6.10 (maintenance)
+============================
 
 .. important::
   According to our
   `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
-  Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
-  From now on, the v2.6 minor will only receive patches for critical issues and security fixes.
+  the v2.6 minor will only receive patches for critical issues and security fixes.
 
-This release includes the following **features**:
+This release includes the following critical fixes:
 
-#. Add XML configuration for FlowControllerDescriptor to 2.x
-#. New `max_message_size` property to limit output datagrams size
+This release includes the following **critical fixes**:
+
+#. Fix ``CVE-2025-24807``
+#. Discard changes with big ``key-only`` payload and no key hash
+#. Update types regeneration script ``homing`` path
+#. Fix topic interference on ``liveliness_changed`` status
 
 This release includes the following **improvements**:
 
-#. Update Fast CDR thirdparty submodule
-#. Consider library behavior changes as ABI breaks in the PR template checklist
-#. Allow processing of AckNack submessages with count == 0
-#. Use `%*` instead of loop in `.bat` scripts.
-#. Use absolute paths when loading XML files
-#. TCPSendResources cleanup
+#. Add ``unsigned`` specification to literals
+#. Update commercial support section in README
+#. Update ``sqlite`` from ``3.36.0`` to ``3.47.2``
 
-Github CI management:
+This release includes the following **ci management updates**:
 
-#. Fix Python Installation version in Github CI. Address failing system tests environment issues
-#. Set fallback branch for `get_related_branch_from_repo` correctly
-#. Fix sanitizers CI test summary report
-#. Protect asio exception
-#. Set Fallback branch to 2.6.x
-#. Run selected VS tool on Windows CI
-#. Add DNS entries to hosts files on Github workflows
-#. Refactor Fast DDS Ubuntu CI to include several tests
-#. Avoid `CCache` in workflows and nighties
-#. Update README.md with GitHub actions Ubuntu CI nightly
-#. Label flaky tests with `xfail`
-
-This release includes the following **fixes**:
-
-#. Fix leak in `SecurityManager::participant_volatile_message_secure_writer_`
-#. Fix Discovery Server over TCP
-#. Fix some leaks in XML DynamicTypes Parser
-#. Correct liveliness state in a multiple reader - one writer scenario
-#. Fix support for `@key` annotation in Dynamic types
-#. Properly delete builtin statistics writers upon `delete_contained_entities()`
-#. Correctly initialize `MatchingFailureMask` constants to be used with the `std::bitset` API
-#. Set DataSharing in `Writer|ReaderProxyData`
-#. Only apply content filter to ALIVE changes
-#. Handle errors when setting socket buffer sizes
-#. Automatically unmatch remote participants on participant deletion
-#. Fix on_sample_lost notification on best-effort readers for fragmented samples
-#. Handle errors when setting socket buffer sizes
-#. Fix DS servers not connecting due to ports logic
-#. Manual fix for documentation generation
-#. Create `InitialConnection` for TCP initial peers
+#. Exclude flaky tests when compiling without security
+#. Fix python version in sanitizers CI
+#. Fix Windows CI and add vanilla build step in Ubuntu CI
+#. Update submodules when cloning Fast DDS on CI
+#. Add Ubuntu weekly CI
+#. Allow running CI on external contributions
+#. Use ``eProsima-CI`` action to install ``Qt``
+#. Add references to new nightly jobs per supported branch in README
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -67,6 +45,7 @@ This release includes the following **fixes**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.9.rst
 .. include:: previous_versions/v2.6.8.rst
 .. include:: previous_versions/v2.6.7.rst
 .. include:: previous_versions/v2.6.6.rst

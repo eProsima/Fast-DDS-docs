@@ -6,13 +6,13 @@ on:
 
 jobs:
   mirror_job:
-    name: Mirror 2.6.x branch to 2.6.9 branch
+    name: Mirror 2.6.x branch to 2.6.10 branch
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         dest_branch:
-          - '2.6.9'
+          - '2.6.10'
     steps:
     - name: Mirror action step
       id: mirror

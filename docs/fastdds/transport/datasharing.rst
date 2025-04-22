@@ -53,6 +53,7 @@ This feature is available only if the following requirements are met:
   i.e., its |TopicDataType::is_bounded-api| member function returns true.
 * The Topic :ref:`is not keyed<dds_layer_topic_keyed_data_types>`.
 * The DataWriter is configured with |PREALLOCATED_MEMORY_MODE-api| or |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|.
+* No :ref:`security <security>` plugins are used.
 
 There is also a limitation with the DataReader's HistoryQos.
 Using Data-sharing mechanism, the DataWriter's history is shared with the DataReaders.

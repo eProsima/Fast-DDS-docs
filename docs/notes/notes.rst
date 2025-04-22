@@ -15,7 +15,7 @@ This release includes the following critical fixes:
 
 This release includes the following **critical fixes**:
 
-#. Fix ``CVE-2025-24807``
+#. Fix `CVE-2025-24807 <https://www.cve.org/CVERecord?id=CVE-2025-24807>`_
 #. Discard changes with big ``key-only`` payload and no key hash
 #. Update types regeneration script ``homing`` path
 #. Fix topic interference on ``liveliness_changed`` status

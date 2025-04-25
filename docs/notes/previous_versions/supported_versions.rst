@@ -37,6 +37,7 @@ Version 2.10
 Version 2.6 (maintenance)
 -------------------------
 
+.. include:: v2.6.10.rst
 .. include:: v2.6.9.rst
 .. include:: v2.6.8.rst
 .. include:: v2.6.7.rst

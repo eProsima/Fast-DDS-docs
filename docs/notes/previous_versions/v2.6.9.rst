@@ -1,5 +1,5 @@
-`Version 2.6.9 (maintenance) <https://fast-dds.docs.eprosima.com/en/v2.6.9/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 2.6.9 <https://fast-dds.docs.eprosima.com/en/v2.6.9/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
   According to our

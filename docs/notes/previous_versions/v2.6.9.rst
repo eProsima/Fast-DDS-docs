@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 Version 2.6.9 (maintenance)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=======
+`Version 2.6.9 <https://fast-dds.docs.eprosima.com/en/v2.6.9/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>>>>>>> 31848c1 (Add notes from `2.6.10` (#1057))
 
 .. important::
   According to our

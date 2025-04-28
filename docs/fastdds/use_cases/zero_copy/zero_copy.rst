@@ -53,6 +53,7 @@ To enable Zero-Copy perform the following steps:
 
     .. code-block:: omg-idl
 
+        @extensibility(FINAL)
         struct LoanableHelloWorld
         {
             unsigned long index;

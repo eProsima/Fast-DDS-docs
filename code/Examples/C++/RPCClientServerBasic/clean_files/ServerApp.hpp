@@ -20,27 +20,21 @@
 #include <string>
 
 #include "fastdds/dds/domain/DomainParticipant.hpp"
-//!--
 
-//!--APPLICATION_HEADERS
 #include "Application.hpp"
 #include "CLIParser.hpp"
 #include "types/calculatorServer.hpp"
-//!--
 
 namespace eprosima {
 namespace fastdds {
 namespace examples {
 namespace rpc_client_server {
 
-//!--CLASS_NAME
 class ServerApp : public Application
-//!--
 {
 
 public:
 
-//!--PUBLIC_METHODS
     ServerApp(
             const CLIParser::config& config,
             const std::string& service_name);
@@ -50,11 +44,9 @@ public:
     void run() override;
 
     void stop() override;
-//!--
 
 private:
 
-//!--PRIVATE_METHODS
     void create_participant();
 
     void create_server(
@@ -64,14 +56,11 @@ private:
     {
         return stop_.load();
     }
-//!--
 
-//!--PRIVATE_MEMBERS
     std::shared_ptr<calculator_example::CalculatorServer> server_;
     dds::DomainParticipant* participant_;
     size_t thread_pool_size_;
     std::atomic<bool> stop_;
-//!--
 
 };
 

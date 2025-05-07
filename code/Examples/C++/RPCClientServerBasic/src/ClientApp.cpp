@@ -42,6 +42,7 @@ using calculator_example::create_CalculatorClient;
 using namespace eprosima::fastdds::dds;
 using namespace eprosima::fastdds::dds::rpc;
 
+//!--PING
 Ping::Ping(
         std::shared_ptr<calculator_example::Calculator> client)
     : client_(client)
@@ -81,7 +82,9 @@ OperationStatus Ping::execute()
         throw std::runtime_error("Client reference expired");
     }
 }
+//!--
 
+//!--REPRESENTATION_LIMITS
 RepresentationLimits::RepresentationLimits(
         std::shared_ptr<calculator_example::Calculator> client)
     : client_(client)
@@ -124,7 +127,9 @@ OperationStatus RepresentationLimits::execute()
         throw std::runtime_error("Client reference expired");
     }
 }
+//!--
 
+//!--ADDITION
 Addition::Addition(
         std::shared_ptr<calculator_example::Calculator> client,
         std::int32_t x,
@@ -169,7 +174,9 @@ OperationStatus Addition::execute()
         throw std::runtime_error("Client reference expired");
     }
 }
+//!--
 
+//!--SUBSTRACTION
 Substraction::Substraction(
         std::shared_ptr<calculator_example::Calculator> client,
         std::int32_t x,
@@ -215,7 +222,9 @@ OperationStatus Substraction::execute()
         throw std::runtime_error("Client reference expired");
     }
 }
+//!--
 
+//!--CONSTRUCTOR
 ClientApp::ClientApp(
         const CLIParser::config& config,
         const std::string& service_name)
@@ -229,7 +238,9 @@ ClientApp::ClientApp(
 
     client_server_info("ClientApp", "Client initialized with ID: " << participant_->guid().guidPrefix);
 }
+//!--
 
+//!--DESTRUCTOR
 ClientApp::~ClientApp()
 {
     // TODO (Carlosespicur): deleting the client manually here is necessary because participant_->delete_contained_entities()
@@ -245,7 +256,9 @@ ClientApp::~ClientApp()
         DomainParticipantFactory::get_shared_instance()->delete_participant(participant_);
     }
 }
+//!--
 
+//!--RUN
 void ClientApp::run()
 {
     if (is_stopped())
@@ -302,13 +315,17 @@ void ClientApp::run()
         ClientApp::stop();
     }
 }
+//!--
 
+//!--STOP
 void ClientApp::stop()
 {
     stop_.store(true);
     client_server_info("ClientApp", "Client execution stopped");
 }
+//!--
 
+//!--CREATE_PARTICIPANT
 void ClientApp::create_participant()
 {
     // Create the participant
@@ -331,7 +348,9 @@ void ClientApp::create_participant()
         throw std::runtime_error("Participant initialization failed");
     }
 }
+//!--
 
+//!--CREATE_CLIENT
 void ClientApp::create_client(
         const std::string& service_name)
 {
@@ -343,7 +362,9 @@ void ClientApp::create_client(
         throw std::runtime_error("Failed to create client");
     }
 }
+//!--
 
+//!--SET_OPERATION
 void ClientApp::set_operation(
         bool ping /* = false */)
 {
@@ -370,6 +391,7 @@ void ClientApp::set_operation(
             throw std::runtime_error("Invalid operation");
     }
 }
+//!--
 
 } // namespace rpc_client_server
 } // namespace examples

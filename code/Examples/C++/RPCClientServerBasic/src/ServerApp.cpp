@@ -32,10 +32,10 @@ namespace examples {
 namespace rpc_client_server {
 
 using namespace calculator_example;
-using namespace calculator_example::detail;
 using namespace eprosima::fastdds::dds;
 using namespace eprosima::fastdds::dds::rpc;
 
+//!--CONSTRUCTOR
 ServerApp::ServerApp(
         const CLIParser::config& config,
         const std::string& service_name)
@@ -49,7 +49,9 @@ ServerApp::ServerApp(
 
     client_server_info("ServerApp", "Server initialized with ID: " << participant_->guid().guidPrefix);
 }
+//!--
 
+//!--DESTRUCTOR
 ServerApp::~ServerApp()
 {
     // TODO (Carlosespicur): deleting the server manually here is necessary because participant_->delete_contained_entities()
@@ -65,7 +67,9 @@ ServerApp::~ServerApp()
         DomainParticipantFactory::get_shared_instance()->delete_participant(participant_);
     }
 }
+//!--
 
+//!--RUN/STOP
 void ServerApp::run()
 {
     if (is_stopped())
@@ -85,7 +89,9 @@ void ServerApp::stop()
 
     client_server_info("ServerApp", "Server execution stopped");
 }
+//!--
 
+//!--CREATE_PARTICIPANT
 void ServerApp::create_participant()
 {
     // Create the participant
@@ -108,12 +114,14 @@ void ServerApp::create_participant()
         throw std::runtime_error("Participant initialization failed");
     }
 }
+//!--
 
+//!--CREATE_SERVER
 void ServerApp::create_server(
         const std::string& service_name)
 {
     // Create the server with default QoS
-    std::shared_ptr<CalculatorServer::IServerImplementation> server_impl =
+    std::shared_ptr<CalculatorServer_IServerImplementation> server_impl =
             std::make_shared<CalculatorServerImplementation>();
 
     server_ = create_CalculatorServer(
@@ -128,6 +136,7 @@ void ServerApp::create_server(
         throw std::runtime_error("Server initialization failed");
     }
 }
+//!--
 
 } // namespace rpc_client_server
 } // namespace examples

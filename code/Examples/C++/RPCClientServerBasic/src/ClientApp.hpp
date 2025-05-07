@@ -34,9 +34,9 @@ namespace fastdds {
 namespace examples {
 namespace rpc_client_server {
 
+//!--OPERATION_INTERFACE
 enum class OperationStatus
 {
-    PENDING, // TODO (Carlosespicur): Perhaps it is unnecessary (for non-feed operations)
     SUCCESS,
     TIMEOUT,
     ERROR
@@ -50,7 +50,9 @@ public:
     virtual OperationStatus execute() = 0;
 
 };
+//!--
 
+//!--OPERATIONS
 class Ping : public Operation
 {
 public:
@@ -125,11 +127,15 @@ private:
     std::weak_ptr<calculator_example::Calculator> client_;
 
 };
+//!--
 
+//!--CLASS_NAME
 class ClientApp : public Application
+//!--
 {
 public:
 
+//!--PUBLIC_METHODS
     ClientApp(
             const CLIParser::config& config,
             const std::string& service_name);
@@ -139,18 +145,16 @@ public:
     void run() override;
 
     void stop() override;
+//!--
 
 private:
 
+//!--PRIVATE_METHODS
     //! Create a participant for internal RPCDDS entities
     void create_participant();
 
     //! Create a client
     void create_client(const std::string& service_name);
-
-    //! Test connection to the server. Returns true if the server is reachable and false otherwise
-    bool ping_server(
-            std::chrono::milliseconds wait_time = std::chrono::milliseconds(1000));
 
     //! Set the operation to be executed. If ping is true, a ping operation is set
     void set_operation(
@@ -160,12 +164,15 @@ private:
     {
         return stop_.load();
     }
+//!--
 
+//!--PRIVATE_MEMBERS
     std::shared_ptr<calculator_example::Calculator> client_;
     dds::DomainParticipant* participant_;
     CLIParser::config config_;
     std::unique_ptr<Operation> operation_;
     std::atomic<bool> stop_;
+//!--
 
 };
 

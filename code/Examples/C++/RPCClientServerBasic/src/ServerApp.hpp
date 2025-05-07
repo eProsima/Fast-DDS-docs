@@ -15,10 +15,13 @@
 #ifndef FASTDDS_EXAMPLES_CPP_RPC_CLIENT_SERVER_BASIC__SERVERAPP_HPP
 #define FASTDDS_EXAMPLES_CPP_RPC_CLIENT_SERVER_BASIC__SERVERAPP_HPP
 
+//!--STANDARD_HEADERS
 #include <atomic>
 #include <memory>
 #include <string>
+//!--
 
+//!--FASTDDS_HEADERS
 #include "fastdds/dds/domain/DomainParticipant.hpp"
 //!--
 

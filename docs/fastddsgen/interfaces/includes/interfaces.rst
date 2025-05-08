@@ -1,10 +1,7 @@
-.. include:: ../../03-exports/aliases-api.include
-.. include:: ../../03-exports/roles.include
-
 .. _fastddsgen_interfaces_definition:
 
 Defining an IDL interface
-=========================
+-------------------------
 
 The `OMG IDL specification <https://www.omg.org/spec/IDL/4.2/PDF>`_ defines interfaces
 that client and server objects may use, for example, in the context of a *Remote Procedure Calls* communication
@@ -37,7 +34,7 @@ Each interface represents a set of operations and attributes, and it is constitu
 Interfaces can also be forward declared, for example :code:`interface MyInterface;`.
 
 Code generation from interfaces
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *eProsima Fast DDS-Gen* allows the generation of the code required by both the client and the server
 to use the *Fast DDS* Request-Reply internal API (see :ref:`request_reply_api_intro`),
@@ -45,9 +42,8 @@ given an IDL interface provided by the user.
 In this case, data streaming can be specified using the ``@feed`` builtin annotation;
 
 
-
 Example
--------
+^^^^^^^
 
 The following example shows how to define a simple interface:
 
@@ -85,3 +81,7 @@ The following example shows how to define a simple interface:
         };
 
     };
+
+.. warning::
+    For now, *Fast DDS-Gen* tool does not support the generation of code for interfaces
+    which contain attributes. Only operations are supported.

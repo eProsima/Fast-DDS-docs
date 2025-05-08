@@ -37,6 +37,7 @@ namespace fastdds {
 namespace examples {
 namespace rpc_client_server {
 
+//!--OPERATION_STATUS
 enum class OperationStatus
 {
     PENDING,
@@ -44,6 +45,7 @@ enum class OperationStatus
     TIMEOUT,
     ERROR
 };
+//!--
 
 // TODO (Carlosespicur): Move operations to a different file?
 
@@ -131,6 +133,7 @@ private:
 
 };
 
+//!--FEED_OPERATIONS
 class FibonacciSeq : public Operation
 {
 
@@ -208,6 +211,7 @@ private:
     bool input_feed_closed_;
 
 };
+//!--
 
 class ClientApp : public Application
 {

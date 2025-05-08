@@ -1,3 +1,5 @@
+.. _fastddsgen_rpc_calculator_basic_app_dependencies:
+
 Import linked libraries and its dependencies
 --------------------------------------------
 

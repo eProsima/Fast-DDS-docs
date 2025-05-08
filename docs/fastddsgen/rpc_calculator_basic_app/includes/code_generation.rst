@@ -1,61 +1,10 @@
-.. _fastddsgen_rpc_code_generation_basic_example:
+.. _fastddsgen_rpc_calculator_basic_app_code_generation:
 
-Generating *Fast DDS* source code for a basic example
------------------------------------------------------
-
-The purpose of this example is to show how to create a simple IDL interface,
-and understand the files generated using the *eProsima Fast DDS-Gen* tool.
-
-The example consists of a simple calculator service that allows the client to call the following operations:
-
-* **addition**: Adds two integers and returns the result.
-* **subtraction**: Subtracts two integers and returns the result.
-* **representation_limits**: Returns the minimum and maximum representable values.
-
-Creating the IDL file with the interface
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The operations of the calculator service should be specified in an IDL file using an interface and
-following the syntax explained in :ref:`fastddsgen_interfaces_definition`.
-
-To define this interface, create a *Calculator.idl* file in the *CalculatorBasic* directory
-with the following content:
-
-.. code-block:: omg-idl
-
-    // Calculator.idl
-    module calculator_example
-    {
-        // This exception will be thrown when an operation result cannot be represented in a long
-        exception OverflowException
-        {
-        };
-
-        interface Calculator
-        {
-            // Returns the minimum and maximum representable values
-            void representation_limits(out long min_value, out long max_value);
-
-            // Returns the result of value1 + value2
-            long addition(in long value1, in long value2) raises (OverflowException);
-
-            // Returns the result of value1 + value2
-            long subtraction(in long value1, in long value2) raises (OverflowException);
-        };
-    };
-
-
-For additions and substractions, an overflow exception is raised in case of working with
-operands which produce a result that cannot be represented in a long integer.
-For more information about how to define exceptions in IDL files, please check :ref:`fastddsgen_interfaces_exceptions`.
-
-.. _fastddsgen_rpc_code_generation_basic_example_generate_source_code:
-
-Generate the Fast DDS source code
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Generate the Fast DDS source code from the IDL file
+---------------------------------------------------
 
 Once the IDL file is created, the application files can be generated using **Fast DDS-Gen**.
-In the workspace directory (*CalculatorBasic* directory), execute one of the following commands according to the
+In the workspace (*workspace_CalculatorBasic/types* directory), execute one of the following commands according to the
 installation followed and the operating system:
 
 * On Linux:
@@ -102,26 +51,28 @@ installation followed and the operating system:
         cd <path-to-Fast-DDS-workspace>/src/fastddsgen
         gradle assemble
 
-After executing the command, the *FastDDSGenCalculator* directory will have the following structure:
+After executing the command, the workspace directory will have the following structure:
 
 .. code-block:: shell-session
 
-    CalculatorBasic
-    ├── build
-    ├── calculatorCdrAux.hpp
-    ├── calculatorCdrAux.ipp
-    ├── calculatorClient.cxx
-    ├── calculatorClient.hpp
-    ├── calculator_details.hpp
-    ├── calculator.hpp
-    ├── calculator.idl
-    ├── calculatorPubSubTypes.cxx
-    ├── calculatorPubSubTypes.hpp
-    ├── calculatorServer.cxx
-    ├── calculatorServer.hpp
-    ├── calculatorServer.ipp
-    ├── calculatorTypeObjectSupport.cxx
-    └── calculatorTypeObjectSupport.hpp
+  .
+  ├── CMakeLists.txt
+  └── src
+      └── types
+          ├── calculatorCdrAux.hpp
+          ├── calculatorCdrAux.ipp
+          ├── calculatorClient.cxx
+          ├── calculatorClient.hpp
+          ├── calculator_details.hpp
+          ├── calculator.hpp
+          ├── calculator.idl
+          ├── calculatorPubSubTypes.cxx
+          ├── calculatorPubSubTypes.hpp
+          ├── calculatorServer.cxx
+          ├── calculatorServer.hpp
+          ├── calculatorServerImpl.hpp
+          ├── calculatorTypeObjectSupport.cxx
+          └── calculatorTypeObjectSupport.hpp
 
 .. _fastddsgen_rpc_code_generation_basic_example_files_description:
 
@@ -191,7 +142,17 @@ can be instantiated by the user calling ``create_CalculatorServer`` function.
 ``CalculatorServer`` struct represents the public API of the server. User can run or a stop a server calling
 ``CalculatorServer::run()`` or ``CalculatorServer::stop()`` methods, respectively.
 
-Additionally, user can implement the methods specified in the IDL interface in the ``calculatorServer.ipp`` file.
+calculatorServerImpl
+""""""""""""""""""""
+
+Contains the implementation of the interface methods in the server side.
+By default, the server implementation is empty and the user must implement the methods.
+
+For this example, overwrite the methods in the ``calculatorServerImpl.hpp`` file with the following content:
+
+.. literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/types/calculatorServerImpl.hpp
+    :language: cpp
+
 
 calculatorCdrAux
 """"""""""""""""

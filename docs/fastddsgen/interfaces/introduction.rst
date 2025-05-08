@@ -1,3 +1,6 @@
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
+
 .. _fastddsgen_interfaces_introduction:
 
 IDL interfaces
@@ -11,8 +14,5 @@ defined in the OMG IDL `specification <https://www.omg.org/spec/IDL/4.2/PDF>`_.
 The next subsections serves as a guide to how to define your own IDL interface and
 how to define exceptions for its operations.
 
-.. toctree::
-    :maxdepth: 2
-
-    /fastddsgen/interfaces/interfaces
-    /fastddsgen/interfaces/exceptions
+.. include:: includes/interfaces.rst
+.. include:: includes/exceptions.rst

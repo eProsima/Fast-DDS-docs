@@ -219,6 +219,7 @@ OperationStatus Substraction::execute()
     }
 }
 
+//!--FIBONACCI_SEQ
 FibonacciSeq::FibonacciSeq(
     std::shared_ptr<calculator_example::Calculator> client,
     std::uint32_t n_results)
@@ -280,7 +281,9 @@ OperationStatus FibonacciSeq::execute()
         throw std::runtime_error("Client reference expired");
     }
 }
+//!--
 
+//!--SUM_ALL
 SumAll::SumAll(
         std::shared_ptr<calculator_example::Calculator> client)
     : client_(client)
@@ -363,7 +366,9 @@ OperationStatus SumAll::execute()
         throw std::runtime_error("Client reference expired");
     }
 }
+//!--
 
+//!--ACCUMULATOR
 Accumulator::Accumulator(
         std::shared_ptr<calculator_example::Calculator> client)
     : client_(client)
@@ -461,7 +466,9 @@ OperationStatus Accumulator::execute()
         throw std::runtime_error("Client reference expired");
     }
 }
+//!--
 
+//!--FILTER
 Filter::Filter(
         std::shared_ptr<calculator_example::Calculator> client,
         std::uint8_t filter_kind)
@@ -561,6 +568,7 @@ OperationStatus Filter::execute()
         throw std::runtime_error("Client reference expired");
     }
 }
+//!--
 
 ClientApp::ClientApp(
         const CLIParser::config& config,
@@ -632,6 +640,7 @@ void ClientApp::run()
     if (!is_stopped())
     {
         // Server available. Execute the operation.
+        //!--FEED_LOOP
         set_operation();
 
         OperationStatus status = operation_->execute();
@@ -649,6 +658,7 @@ void ClientApp::run()
             client_server_error("ClientApp", "Operation failed");
             throw std::runtime_error("Operation failed");
         }
+        //!--
     }
 
     if (!is_stopped())
@@ -700,6 +710,7 @@ void ClientApp::create_client(
     }
 }
 
+//!--SET_OPERATION
 void ClientApp::set_operation(
         bool ping /* = false */)
 {
@@ -738,6 +749,7 @@ void ClientApp::set_operation(
             throw std::runtime_error("Invalid operation");
     }
 }
+//!--
 
 } // namespace rpc_client_server
 } // namespace examples

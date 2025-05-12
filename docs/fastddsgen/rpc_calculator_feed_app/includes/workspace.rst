@@ -3,6 +3,8 @@
 Create the application workspace
 --------------------------------
 
+First, create a directory named *workspace_CalculatorFeed*, which will represent the workspace of the application.
+
 The appplication workspace will have the following structure at the end of the project.
 The file ``build/calculator`` corresponds to the generated *Fast DDS* application:
 

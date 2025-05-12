@@ -375,7 +375,7 @@ The generated executable will be located in the *build* subdirectory.
 Run the application
 -------------------
 
-To test the application, open two terminals in the *workspace_CalculatorBasic/build* directory
+To test the application, open two terminals in the *workspace_CalculatorBasic* directory
 and execute the following commands:
 
 * In the first terminal, run the server application:

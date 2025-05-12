@@ -40,11 +40,17 @@ endif()
 message(STATUS "Configuring client server feed example...")
 file(GLOB CLIENT_SERVER_FEED_TYPES_SOURCES_CXX "src/types/*.cxx")
 file(GLOB CLIENT_SERVER_FEED_TYPES_SOURCES_IPP "src/types/*.ipp")
-file(GLOB CLIENT_SERVER_FEED_SOURCES_CPP "src/*.cpp")
 
-add_executable(calculator
+add_executable(client src/CalculatorClient.cpp
     ${CLIENT_SERVER_FEED_TYPES_SOURCES_CXX}
     ${CLIENT_SERVER_FEED_TYPES_SOURCES_IPP}
-    ${CLIENT_SERVER_FEED_SOURCES_CPP}
 )
-target_link_libraries(calculator fastdds fastcdr)
+
+target_link_libraries(client fastdds fastcdr)
+
+add_executable(server src/CalculatorServer.cpp
+    ${CLIENT_SERVER_FEED_TYPES_SOURCES_CXX}
+    ${CLIENT_SERVER_FEED_TYPES_SOURCES_IPP}
+)
+
+target_link_libraries(server fastdds fastcdr)

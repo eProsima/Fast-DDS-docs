@@ -474,3 +474,68 @@ The different property values have the following effects on the local |DomainPar
         :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
         :end-before: <!--><-->
         :lines: 2-4,6-17,19-20
+
+.. _property_serialize_optional_qos:
+
+Adding optional QoS to Discovery data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During the Endpoint Discovery Phase (EDP), |DataWriters-api| and |DataReaders-api| acknowledge each other.
+To do that, the DomainParticipants share information about their DataWriters and DataReaders with each other,
+using the communication channels established during the PDP.
+This information contains all data required to match the endpoints, such as the |Topic-api|, data type, and
+certain :ref:`QoS Policies <dds_layer_core_policy>` that might affect matching.
+Specific compatibility rules can be found in each QoS section of :ref:`QoS Policies <dds_layer_core_policy>`.
+
+However, there are some QoS that are not mandatory for matching, but can be useful to have in the EDP messages.
+Property ``fastdds.serialize_optional_qos`` allows the user to include these optional QoS in the EDP messages.
+This property is configured at the |DomainParticipant-api| level through the policy :ref:`propertypolicyqos`.
+Hence, all associated endpoints to that |DomainParticipant-api| will send their optional QoS in the EDP messages.
+
+Optional QoS, like any other QoS, will only be serialized if they have non-default values.
+Not receiving information about a QoS in the EDP message means that it has a default value.
+Optional QoS will be serialized if the value of the property is set to ``TRUE``, ``True``, ``true`` or ``1``, any
+other value will be considered as not set or ``FALSE``.
+
+The following table lists all the optional QoS that can be serialized in the EDP messages:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos
+     - Applies to:
+   * - |ResourceLimitsQosPolicy-api|
+     - |DataWriter-api| and |DataReaders-api|.
+   * - |TransportPriorityQosPolicy-api|
+     - |DataWriter-api|.
+   * - |WriterDataLifecycleQosPolicy-api|
+     - |DataWriter-api|.
+   * - |ReaderDataLifecycleQosPolicy-api|
+     - |DataReaders-api|.
+   * - |PublishModeQosPolicy-api|
+     - |DataWriter-api|.
+   * - |RTPSReliableWriterQos-api|
+     - |DataWriter-api|.
+   * - |RTPSReliableReaderQos-api|
+     - |DataReaders-api|.
+   * - |RTPSEndpointQos-api|
+     - |DataWriter-api| and |DataReaders-api|.
+   * - |WriterResourceLimitsQos-api|
+     - |DataWriter-api|.
+   * - |ReaderResourceLimitsQos-api|
+     - |DataReaders-api|.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // SERIALIZE_OPTIONAL_QOS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20

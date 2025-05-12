@@ -981,6 +981,16 @@ void dds_domain_examples()
             "disabled");
         //!--
     }
+
+    {
+        // SERIALIZE_OPTIONAL_QOS_PROPERTY
+        DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back(
+            "fastdds.serialize_optional_qos",
+            "True");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS
@@ -2062,7 +2072,7 @@ void dds_topic_examples()
         include_paths.push_back("<path/to/folder/containing/included/idl/files>");
 
         // Retrieve the instance of the desired type
-        DynamicTypeBuilder::_ref_type dyn_type_builder = 
+        DynamicTypeBuilder::_ref_type dyn_type_builder =
                 DynamicTypeBuilderFactory::get_instance()->create_type_w_uri(idl_file, type_name, include_paths);
 
         // Register dynamic type
@@ -7937,7 +7947,7 @@ void rpcdds_internal_api_examples()
             // Error
             return;
         }
- 
+
         // Wait for some time until a Reply sample is received
         requester->get_requester_reader()->wait_for_unread_message(Duration_t{3,0});
 
@@ -7948,12 +7958,12 @@ void rpcdds_internal_api_examples()
             // Error
             return;
         }
-    
+
         if (expected_request_info.related_sample_identity == received_request_info.related_sample_identity)
         {
           // Received Reply sample is associated to the sent Request sample
         }
-    
+
         // Delete created Requester
         ret = participant->delete_service_requester(requester->get_service_name(), requester);
         if (RETCODE_OK != ret)

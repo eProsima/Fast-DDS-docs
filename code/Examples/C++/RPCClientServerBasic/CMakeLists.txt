@@ -41,16 +41,16 @@ message(STATUS "Configuring client server basic example...")
 file(GLOB CLIENT_SERVER_BASIC_TYPES_SOURCES_CXX "src/types/*.cxx")
 file(GLOB CLIENT_SERVER_BASIC_TYPES_SOURCES_IPP "src/types/*.ipp")
 
-add_executable(client src/CalculatorClient.cpp
+add_executable(basic_client src/CalculatorClient.cpp
     ${CLIENT_SERVER_BASIC_TYPES_SOURCES_CXX}
     ${CLIENT_SERVER_BASIC_TYPES_SOURCES_IPP}
 )
 
-target_link_libraries(client fastdds fastcdr)
+target_link_libraries(basic_client fastdds fastcdr)
 
-add_executable(server src/CalculatorServer.cpp
+add_executable(basic_server src/CalculatorServer.cpp
     ${CLIENT_SERVER_BASIC_TYPES_SOURCES_CXX}
     ${CLIENT_SERVER_BASIC_TYPES_SOURCES_IPP}
 )
 
-target_link_libraries(server fastdds fastcdr)
+target_link_libraries(basic_server fastdds fastcdr)

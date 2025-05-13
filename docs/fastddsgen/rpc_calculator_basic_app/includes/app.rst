@@ -106,7 +106,7 @@ All this members are initialized calling ``init()`` method, in the same way as i
 
 When the client performs an operation (*i.e*: sends a request), three different situations can happen:
 
-* The operation is performed succesfully (*i.e* the client sends the request and receives the reply
+* The operation is successful (*i.e* the client sends the request and receives the reply
   from the server).
 * The operation fails (*i.e* the client sends the request but an exception occurs). For example, if the
   operation is not implemented in the server side or an RPC exception occurs (for example, if computing
@@ -133,7 +133,7 @@ cases previously described):
     :end-before: //!--
 
 It makes easier to add new operations (for example, ``@feed`` operations) without modifying the
-main execution flow. Each operation stores the data required to perfom the operation,
+main execution flow. Each operation stores the data required to execute the operation,
 for example, a reference to the client used to send the request, as well as the operation input data.
 
 When ``RepresentationLimits`` operation is executed, client sends a request to the server and waits
@@ -169,7 +169,7 @@ the input parsing:
     :end-before: //!--
 
 When ``send_request()`` method is called, the input operation is configured and the client executes it.
-A boolean is returned, ``true`` if the operation finnished succesfully or ``false`` otherwise:
+A boolean is returned, ``true`` if the operation is successful or ``false`` otherwise:
 
 ..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/code_blocks/CalculatorClient.cpp
     :language: cpp
@@ -223,14 +223,14 @@ and execute the following commands:
 
 .. code-block:: bash
 
-    ./build/server
+    ./build/basic_server
 
 * In the second terminal, run the client application and specify the operation to be performed.
   For example, to perform an addition of two numbers (5 and 3), run the following command:
 
 .. code-block:: bash
 
-    ./build/client add
+    ./build/basic_client add
 
 You should see the result of the operation printed on the screen:
 
@@ -246,7 +246,7 @@ The output of the rest operations should be similar to the following:
 
 .. code-block:: shell-session
 
-    ./build/client sub
+    ./build/basic_client sub
 
     Attempting to send request, attempt 2/10
     Subtraction result: 5 - 3 = 2
@@ -257,7 +257,7 @@ The output of the rest operations should be similar to the following:
 
 .. code-block:: shell-session
 
-    ./build/client rep
+    ./build/basic_client rep
 
     Attempting to send request, attempt 2/10
     Representation limits received: min_value = -2147483648, max_value = 2147483647

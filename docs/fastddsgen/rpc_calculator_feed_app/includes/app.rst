@@ -165,14 +165,14 @@ and execute the following commands:
 
 .. code-block:: bash
 
-    ./build/server
+    ./build/feed_server
 
 * In the second terminal, run the client application and specify the operation to be performed.
   For example, to get the first five numbers of the Fibonacci sequence, run the following command:
 
 .. code-block:: bash
 
-    ./build/client fib
+    ./build/feed_client fib
 
 You should see the result of the operation printed on the screen:
 
@@ -194,7 +194,7 @@ The output of the rest operations should be similar to the following:
 
 .. code-block:: shell-session
 
-    ./build/client sumall
+    ./build/feed_client sumall
 
     Configuring SUM_ALL operation
     Input feed help:
@@ -220,7 +220,7 @@ The output of the rest operations should be similar to the following:
 
 .. code-block:: shell-session
 
-    ./build/client acc
+    ./build/feed_client acc
 
     Configuring ACCUMULATOR operation
     Input feed help:
@@ -250,7 +250,7 @@ The output of the rest operations should be similar to the following:
 
 .. code-block:: shell-session
 
-    ./build/client filter
+    ./build/feed_client filter
 
     Configuring FILTER operation for even numbers
     Input feed help:

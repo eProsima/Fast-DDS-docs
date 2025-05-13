@@ -112,7 +112,7 @@ used in the request/reply topics:
   and ``calculator_<operator_name>_Result`` structures.
   The first one contains the *out* and *inout* parameters of the operation,
   in the same order as declared in the IDL file.
-  The second one contains optional members for the result of the operation and for each esception that
+  The second one contains optional members for the result of the operation and for each exception that
   can be raised.
 
 In the top level, two structures ``Calculator_Request`` and ``Calculator_Reply`` are defined,

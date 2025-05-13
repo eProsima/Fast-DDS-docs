@@ -20,6 +20,6 @@ with a text editor and copy the following content inside it:
 .. literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/types/calculator.idl
     :language: omg-idl
 
-For additions and substractions, an overflow exception is raised in case of working with
+For additions and subtractions, an overflow exception is raised in case of working with
 operands which produce a result that cannot be represented in a 32-bit integer.
 For more information about how to define exceptions in IDL files, please check :ref:`fastddsgen_interfaces_exceptions`.

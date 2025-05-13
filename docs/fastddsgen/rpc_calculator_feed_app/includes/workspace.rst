@@ -5,27 +5,21 @@ Create the application workspace
 
 First, create a directory named *workspace_CalculatorFeed*, which will represent the workspace of the application.
 
-The appplication workspace will have the following structure at the end of the project.
-The file ``build/calculator`` corresponds to the generated *Fast DDS* application:
+The workspace will have the following structure at the end of the project.
+The files ``build/client`` and ``build/server`` corresponds to
+the generated *Fast DDS* client and server applications, respectively:
 
 .. code-block:: shell-session
-    
+
     .
     ├── build
-    │   ├── calculator
+    │   ├── client
+    │   ├── server
     │   ├── ...
     ├── CMakeLists.txt
     └── src
-        ├── Application.cpp
-        ├── Application.hpp
-        ├── app_utils.hpp
-        ├── ClientApp.cpp
-        ├── ClientApp.hpp
-        ├── CLIParser.hpp
-        ├── InputFeedProcessor.hpp
-        ├── main.cpp
-        ├── ServerApp.cpp
-        ├── ServerApp.hpp
+        ├── CalculatorClient.cpp
+        ├── CalculatorServer.cpp
         └── types
             ├── calculatorCdrAux.hpp
             ├── calculatorCdrAux.ipp

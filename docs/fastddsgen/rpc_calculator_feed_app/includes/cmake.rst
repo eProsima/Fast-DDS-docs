@@ -9,6 +9,6 @@ be `workspace_CalculatorFeed`.
 
 .. literalinclude:: /../code/Examples/C++/RPCClientServerFeed/CMakeLists.txt
     :language: cmake
-    :lines: 15-44
+    :lines: 15-42
 
 In each section we will complete this file to include the specific generated files.

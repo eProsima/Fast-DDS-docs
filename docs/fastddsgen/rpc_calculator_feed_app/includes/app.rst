@@ -4,90 +4,27 @@ Generate the source code for the application
 Now that the interface source code has been generated, the next step is to generate the application source code.
 All the following files should be created in the *workspace_CalculatorFeed/src* directory.
 
-CLI and logging related files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The following files are required to implement the CLI and logging functionalities of the application, and they are not
-directly related to the RPC functionality.
-
-First, create *Application.hpp* and *Application.cpp* files, which contains the abstract Application class and a factory
-method to create both client and server applications, respectively. Copy the following code into the files:
-
-* Application.hpp
-
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/clean_files/Application.hpp
-    :language: cpp
-
-* Application.cpp
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/clean_files/Application.cpp
-    :language: cpp
-
-
-Now, create a *CLIParser.hpp* file, which contains the ``CLIParser`` class that implements the command line parser.
-Copy the following code into the file:
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/clean_files/CLIParser.hpp
-    :language: cpp
-
-After that, create a *app_utils.hpp* file, which contains some logging utilities for our applications.
-Copy the following code into the file:
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/clean_files/app_utils.hpp
-    :language: cpp
-
-Now, create a *InputFeedProcessor.hpp* file, which contains a class used to read the input data
-from the terminal in operations with a ``@feed`` annotated input parameter.
-Copy the following code into the file:
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/clean_files/InputFeedProcessor.hpp
-    :language: cpp
-
-Finally, create a *main.cpp* file, which contains the main function of the application, and allows the user to
-close it by sending a signal. Copy the following code into the file:
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/clean_files/main.cpp
-    :language: cpp
-
-
 Server application
 ^^^^^^^^^^^^^^^^^^
 
 The server application that we will create is exactly the same as the one created in the basic example.
 Thus, copy the code provided in :ref:`fastddsgen_rpc_calculator_basic_server_application`
-into the *ServerApp.hpp* and *ServerApp.cpp* files.
+into the ``CalculatorServer.cpp`` file.
 
 Client application
 ^^^^^^^^^^^^^^^^^^
 
 The client application extends the functionality of the basic example by adding the new operations
-defined in the IDL file. First, create both *ClientApp.hpp* and *ClientApp.cpp* files and copy
-the following code:
+defined in the IDL file. Create a ``CalculatorClient.cpp`` file with the following content:
 
-* ClientApp.hpp
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/clean_files/ClientApp.hpp
-    :language: cpp
-
-* ClientApp.cpp
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/clean_files/ClientApp.cpp
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
 
 Examining the code
 """"""""""""""""""
 
-ClientApp.hpp
-*************
-
-The *ClientApp.hpp* file extends the code of the basic example by adding the new operations
-defined in the IDL file, following the same inheritance schema:
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/ClientApp.hpp
-    :language: cpp
-    :start-after: //!--FEED_OPERATIONS
-    :end-before: //!--
+The ``CalculatorClient.cpp`` file extends the code of the basic example by adding the new operations
+defined in the IDL file, following the same inheritance schema.
 
 Notice the following facts:
 
@@ -102,6 +39,14 @@ Notice the following facts:
   ``RpcClientWriter::write()`` method to send the values and the ``RpcClientWriter::finish()`` method to notify
   the server that the input feed is finished.
 
+For input feed operations, a simple ``InputFeedProcessor`` class is used to parse the input user data from terminal.
+It allows the user to send a new number or close the input feed by accepting the dialog with empty data:
+
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/code_blocks/CalculatorClient.cpp
+    :language: cpp
+    :start-after: //!--INPUT_FEED_PROCESSOR
+    :end-before: //!--
+
 For output feed operations, each time that ``Operation::execute()`` is called, the client will process the data
 of only one reply, so multiple calls will be required to read all the results. To address this, the
 ``Operation::execute()`` method will return an enum ``OperationStatus::PENDING`` when a new output feed value
@@ -109,24 +54,19 @@ is read, indicating that the output feed has not been closed yet and that client
 When the output feed is closed, the ``Operation::execute()`` method will return an enum
 ``OperationStatus::SUCCESS``, indicating that the operation has successfully read each of the output feed values:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/ClientApp.hpp
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/code_blocks/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--OPERATION_STATUS
     :end-before: //!--
 
-A more detailed description of each operation execution is provided in the following subsection.
+A more detailed description of each operation execution is provided below:
 
-ClientApp.cpp
-*************
-
-The *ClientApp.cpp* file extends the code of the basic example by adding the new operations:
-
-* ``FibonacciSeq`` stores the value of the ``--fibonacci`` CLI parameter using a ``n_results_`` member.
+* ``FibonacciSeq`` stores the number of requested numbers using using a ``n_results_`` member.
   The request is sent by calling the ``client_->fibonacci_seq()`` method, which returns an
   ``RpcClientReader`` object. The client will read the results using the ``RpcClientReader::read()`` method
   in each ``FibonacciSeq::execute()`` call, until the output feed is closed by the server.
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/ClientApp.cpp
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/code_blocks/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--FIBONACCI_SEQ
     :end-before: //!--
@@ -140,7 +80,7 @@ The *ClientApp.cpp* file extends the code of the basic example by adding the new
   and waits for the reply. When the reply is received,
   the result is stored in ``result_`` member and printed on the screen.
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/ClientApp.cpp
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/code_blocks/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--SUM_ALL
     :end-before: //!--
@@ -156,7 +96,7 @@ The *ClientApp.cpp* file extends the code of the basic example by adding the new
   Each time that ``Accumulator::execute()`` is called, the client sends a new input value to the server
   and waits for the accumulated sum result, until the input and output feeds are closed.
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/ClientApp.cpp
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/code_blocks/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--ACCUMULATOR
     :end-before: //!--
@@ -165,25 +105,24 @@ The *ClientApp.cpp* file extends the code of the basic example by adding the new
   by calling the ``client_->filter()`` method. First, the client will send to the server all the input feed
   data values and the filter kind using the ``RpcClientWriter::write()`` method.
   Then, each result is processed in a ``Filter::execute()`` call, until the output feed is closed by the server.
-  Notice that, due to the fact that ``filter_kind_ == 2`` case is not implemented in the server side, executing this operation
-  will cause an operation error.
+  To simplify the input parsing, the filter is fixed to be ``FilterKind::EVEN``, *i.e* the input feed is filtered
+  to only return even numbers:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/ClientApp.cpp
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/code_blocks/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--FILTER
     :end-before: //!--
 
 ``ClientApp::set_operation()`` has also been extended to include the new operations:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/ClientApp.cpp
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/code_blocks/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--SET_OPERATION
     :end-before: //!--
 
-Finally, a minimal change is required in the ``ClientApp::run()`` method to address the feed processing
-loop:
+Finally, a minimal change is required in the ``send_request()`` method to handle the feed operations:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/ClientApp.cpp
+..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/code_blocks/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--FEED_LOOP
     :end-before: //!--
@@ -200,7 +139,7 @@ of the file:
 
 ..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/CMakeLists.txt
     :language: cmake
-    :lines: 45-50
+    :lines: 44-56
 
 Build the application
 ---------------------
@@ -226,33 +165,28 @@ and execute the following commands:
 
 .. code-block:: bash
 
-    ./build/calculator server
+    ./build/server
 
 * In the second terminal, run the client application and specify the operation to be performed.
-  For example, to perform an addition of two numbers, run the following command:
+  For example, to get the first five numbers of the Fibonacci sequence, run the following command:
 
 .. code-block:: bash
 
-    ./build/calculator client --fibonacci 4
+    ./build/client fib
 
 You should see the result of the operation printed on the screen:
 
 .. code-block:: shell-session
 
-    2025-05-08T15:05:58.574 [INFO] [ClientApp] Fibonacci sequence value: 1
-    2025-05-08T15:05:59.574 [INFO] [ClientApp] Fibonacci sequence value: 1
-    2025-05-08T15:06:00.574 [INFO] [ClientApp] Fibonacci sequence value: 2
-    2025-05-08T15:06:01.574 [INFO] [ClientApp] Fibonacci sequence value: 3
-    2025-05-08T15:06:02.574 [INFO] [ClientApp] Fibonacci sequence feed finished
-    2025-05-08T15:06:02.574 [INFO] [ClientApp] Operation finished. Stopping client execution...
-    2025-05-08T15:06:02.574 [INFO] [ClientApp] Client execution stopped
-
-
-You can check all the available CLI options showing the help:
-
-.. code-block:: bash
-
-    ./build/calculator -h
+    Attempting to send request, attempt 1/10
+    Configuring FIBONACCI operation with 5 results
+    Fibonacci sequence value: 1
+    Fibonacci sequence value: 1
+    Fibonacci sequence value: 2
+    Fibonacci sequence value: 3
+    Fibonacci sequence value: 5
+    Fibonacci sequence feed finished
+    Request sent successfully
 
 The output of the rest operations should be similar to the following:
 
@@ -260,72 +194,86 @@ The output of the rest operations should be similar to the following:
 
 .. code-block:: shell-session
 
-    ./build/calculator client --sum-all
+    ./build/client sumall
 
-        Input feed help:
+    Configuring SUM_ALL operation
+    Input feed help:
       - Enter a number to process it.
       - Press Enter without typing anything to close the input feed.
     2
-    2025-05-08T14:59:49.835 [INFO] [ClientApp] Input sent: 2
-    5
-    2025-05-08T14:59:51.300 [INFO] [ClientApp] Input sent: 5
-    -3
-    2025-05-08T14:59:54.140 [INFO] [ClientApp] Input sent: -3
+    Input sent: 2
+    3
+    Input sent: 3
+    -32
+    Input sent: -32
+    -25
+    Input sent: -25
+    -12
+    Input sent: -12
 
-    2025-05-08T14:59:55.171 [INFO] [ClientApp] Input feed closed.
-    2025-05-08T14:59:55.173 [INFO] [ClientApp] Sum result: 4
-    2025-05-08T14:59:55.173 [INFO] [ClientApp] Operation finished. Stopping client execution...
-    2025-05-08T14:59:55.173 [INFO] [ClientApp] Client execution stopped
+    Input feed closed.
+    Sum result: -64
+    Request sent successfully
 
 
 * Accumulator:
 
 .. code-block:: shell-session
 
-    ./build/calculator client --accumulator
+    ./build/client acc
 
+    Configuring ACCUMULATOR operation
     Input feed help:
-  - Enter a number to process it.
-  - Press Enter without typing anything to close the input feed.
-    2
-    2025-05-08T15:01:43.786 [INFO] [ClientApp] Input sent: 2
-    2025-05-08T15:01:43.787 [INFO] [ClientApp] Accumulated sum: 2
-    5
-    2025-05-08T15:01:45.074 [INFO] [ClientApp] Input sent: 5
-    2025-05-08T15:01:45.075 [INFO] [ClientApp] Accumulated sum: 7
-    -32
-    2025-05-08T15:01:49.394 [INFO] [ClientApp] Input sent: -32
-    2025-05-08T15:01:49.395 [INFO] [ClientApp] Accumulated sum: -25
+      - Enter a number to process it.
+      - Press Enter without typing anything to close the input feed.
+    16
+    Input sent: 16
+    Accumulated sum: 16
+    32
+    Input sent: 32
+    Accumulated sum: 48
+    -13
+    Input sent: -13
+    Accumulated sum: 35
+    -22
+    Input sent: -22
+    Accumulated sum: 13
+    -1
+    Input sent: -1
+    Accumulated sum: 12
 
-    2025-05-08T15:01:50.489 [INFO] [ClientApp] Input feed closed.
-    2025-05-08T15:01:50.491 [INFO] [ClientApp] Accumulator feed finished
-    2025-05-08T15:01:50.491 [INFO] [ClientApp] Operation finished. Stopping client execution...
-    2025-05-08T15:01:50.491 [INFO] [ClientApp] Client execution stopped
+    Input feed closed.
+    Accumulator feed finished
+    Request sent successfully
 
 * Filter:
 
 .. code-block:: shell-session
 
-    ./build/calculator client --filter 0
+    ./build/client filter
 
+    Configuring FILTER operation for even numbers
     Input feed help:
-  - Enter a number to process it.
-  - Press Enter without typing anything to close the input feed.
-    1
-    2025-05-08T15:03:32.704 [INFO] [ClientApp] Input sent: 1
-    3
-    2025-05-08T15:03:34.072 [INFO] [ClientApp] Input sent: 3
+      - Enter a number to process it.
+      - Press Enter without typing anything to close the input feed.
     2
-    2025-05-08T15:03:34.656 [INFO] [ClientApp] Input sent: 2
+    Input sent: 2
+    11
+    Input sent: 11
+    32
+    Input sent: 32
+    15
+    Input sent: 15
+    -23
+    Input sent: -23
+    -15
+    Input sent: -15
     4
-    2025-05-08T15:03:36.480 [INFO] [ClientApp] Input sent: 4
-    6
-    2025-05-08T15:03:37.736 [INFO] [ClientApp] Input sent: 6
+    Input sent: 4
 
-    2025-05-08T15:03:39.280 [INFO] [ClientApp] Input feed closed.
-    2025-05-08T15:03:39.280 [INFO] [ClientApp] Filtered sequence value: 2
-    2025-05-08T15:03:40.280 [INFO] [ClientApp] Filtered sequence value: 4
-    2025-05-08T15:03:41.280 [INFO] [ClientApp] Filtered sequence value: 6
-    2025-05-08T15:03:42.281 [INFO] [ClientApp] Filtered sequence feed finished
-    2025-05-08T15:03:42.281 [INFO] [ClientApp] Operation finished. Stopping client execution...
-    2025-05-08T15:03:42.281 [INFO] [ClientApp] Client execution stopped
+    Input feed closed.
+    Filtered sequence value: 2
+    Filtered sequence value: 32
+    Filtered sequence value: 4
+    Filtered sequence feed finished
+    Request sent successfully

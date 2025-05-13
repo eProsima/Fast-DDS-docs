@@ -39,6 +39,7 @@ using namespace calculator_example;
 using namespace eprosima::fastdds::dds;
 using namespace eprosima::fastdds::dds::rpc;
 
+//!--INPUT_FEED_PROCESSOR
 class InputFeedProcessor
 {
 public:
@@ -97,7 +98,9 @@ public:
         std::cout << "  - Press Enter without typing anything to close the input feed." << std::endl;
     }
 };
+//!--
 
+//!--OPERATION_STATUS
 enum class OperationStatus
 {
     SUCCESS,
@@ -105,6 +108,7 @@ enum class OperationStatus
     ERROR,
     PENDING
 };
+//!--
 
 enum class OperationType
 {
@@ -302,6 +306,7 @@ protected:
 
 };
 
+//!--FIBONACCI_SEQ
 class FibonacciSeq : public Operation
 {
 
@@ -384,7 +389,9 @@ protected:
     std::shared_ptr<RpcClientReader<int32_t>> reader_;
 
 };
+//!--
 
+//!--SUM_ALL
 class SumAll : public Operation
 {
 
@@ -489,7 +496,9 @@ protected:
     bool input_feed_closed_;
 
 };
+//!--
 
+//!--ACCUMULATOR
 class Accumulator : public Operation
 {
 
@@ -610,7 +619,9 @@ protected:
     bool valid_user_input_;
 
 };
+//!--
 
+//!--FILTER
 class Filter : public Operation
 {
 
@@ -733,6 +744,7 @@ protected:
     bool input_feed_closed_;
 
 };
+//!--
 
 class Client
 {
@@ -803,6 +815,7 @@ public:
         set_operation(operation);
 
         // Execute the operation
+//!--FEED_LOOP
         if (operation_)
         {
             OperationStatus status = operation_->execute();
@@ -817,6 +830,7 @@ public:
 
             return (status == OperationStatus::SUCCESS);
         }
+//!--
 
         return false;
     }
@@ -824,6 +838,8 @@ public:
 protected:
 
     //! Set the operation to be executed.
+
+//!--SET_OPERATION
     void set_operation(
             const OperationType& operation)
     {
@@ -861,6 +877,7 @@ protected:
                 throw std::runtime_error("Invalid operation type");
         }
     }
+//!--
 
     std::shared_ptr<Calculator> client_;
     DomainParticipant* participant_;

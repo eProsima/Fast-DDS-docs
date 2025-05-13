@@ -8,7 +8,7 @@ or in a RPC application (see :ref:`RPC over DDS <rpc_dds_intro>`) to define the 
 
 In a RPC over DDS application (see :ref:`RPC over DDS <rpc_dds_intro>`), user provides
 through the IDL file the common interfaces that will be used by the client and server applications.
-An interface constains the collection of operations that can be invoked by the client on the server.
+An interface contains the collection of operations that can be invoked by the client on the server.
 Please refer to :ref:`IDL interfaces introduction <fastddsgen_interfaces_introduction>` for more information.
 
 Each interface defines a service, and *eProsima Fast DDS-Gen* generates the source code required to communicate

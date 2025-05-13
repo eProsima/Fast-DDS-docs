@@ -1,3 +1,6 @@
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
+
 .. _fastddsgen_rpc_calculator_feed_app_intro:
 
 Building a RPC Client/Server application with data streaming

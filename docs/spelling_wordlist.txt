@@ -44,6 +44,11 @@ boolean
 booleans
 Bugfix
 bugfixes
+calculatorCdrAux
+calculatorClient
+calculatorPubSubTypes
+calculatorServer
+calculatorServerImpl
 cancelled
 Cannonical
 Cardinality
@@ -73,6 +78,7 @@ crypto
 cryptographic
 cryptosystem
 ctest
+Ctrl
 Customizable
 datagram
 datagrams
@@ -97,6 +103,7 @@ deserialize
 deserialized
 deserializes
 destructor
+destructors
 diffie
 dir
 DNS
@@ -140,6 +147,7 @@ gradle
 gtest
 GTest
 gtest_discover_tests
+hardcoded
 helloworld
 HelloWorld
 HelloWorldTopic
@@ -159,6 +167,7 @@ interoperability
 interprocess
 intra
 Intra
+invokations
 IPv
 json
 kB
@@ -248,6 +257,7 @@ redistributable
 replier
 repliers
 repos
+representable
 requesters
 RETCODE_OK
 retransmission
@@ -275,6 +285,7 @@ struct
 Struct
 structs
 Structs
+subdirectory
 subentity
 subfolder
 submessage

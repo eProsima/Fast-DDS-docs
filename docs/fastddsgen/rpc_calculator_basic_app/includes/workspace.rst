@@ -13,8 +13,8 @@ the generated *Fast DDS* client and server applications, respectively:
 
     .
     ├── build
-    │   ├── client
-    │   ├── server
+    │   ├── basic_client
+    │   ├── basic_server
     │   ├── ...
     ├── CMakeLists.txt
     └── src

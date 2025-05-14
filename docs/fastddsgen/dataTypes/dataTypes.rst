@@ -562,7 +562,7 @@ annotations might be applied without the need of defining them).
       - ❌
     * - :code:`@feed`
       - Used in interface operations to indicate data streaming (see :ref:`fastddsgen_interfaces_definition`).
-      - ❌
+      - ✅
     * - :code:`@topic`
       - Structure or union is meant to be used as Topic Data Type.
       - ❌

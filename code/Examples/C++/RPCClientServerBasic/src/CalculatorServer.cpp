@@ -81,13 +81,11 @@ public:
             throw std::runtime_error("Failed to create participant");
         }
 
-        // Create the server with History QoS set to KEEP_ALL
+        // Create the server with default QoS
         std::shared_ptr<CalculatorServer_IServerImplementation> server_impl =
             std::make_shared<CalculatorServerImplementation>();
 
         ReplierQos qos;
-        qos.writer_qos.history().kind = KEEP_ALL_HISTORY_QOS;
-        qos.reader_qos.history().kind = KEEP_ALL_HISTORY_QOS;
 
         server_ = create_CalculatorServer(
                         *participant_,

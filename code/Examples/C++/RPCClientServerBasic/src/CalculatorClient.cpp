@@ -297,10 +297,8 @@ public:
             throw std::runtime_error("Participant initialization failed");
         }
 
-        // Create the client configuring History QoS to KEEP_ALL
+        // Create the client with default QoS
         RequesterQos qos;
-        qos.writer_qos.history().kind = KEEP_ALL_HISTORY_QOS;
-        qos.reader_qos.history().kind = KEEP_ALL_HISTORY_QOS;
 
         client_ = create_CalculatorClient(*participant_, service_name_.c_str(), qos);
 

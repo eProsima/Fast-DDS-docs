@@ -32,8 +32,7 @@ a Server instance and its related DomainParticipant instance:
 When a ``Server`` instance is initialized, both ``DomainParticipant`` and ``CalculatorServer`` instances
 are created. The ``CalculatorServer`` instance is created using the previously created
 ``DomainParticipant`` instance, the implementation of the server-side IDL interface's operations
-and the name of the RPC service. |HistoryQosPolicyKind-api| is set to |KEEP_ALL_HISTORY_QOS-api| to avoid losing
-replies when the server is processing multiple requests:
+and the name of the RPC service:
 
 ..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorServer.cpp
     :language: cpp

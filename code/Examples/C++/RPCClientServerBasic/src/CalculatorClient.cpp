@@ -37,20 +37,25 @@ using namespace calculator_example;
 using namespace eprosima::fastdds::dds;
 using namespace eprosima::fastdds::dds::rpc;
 
+//!--OPERATION_STATUS
 enum class OperationStatus
 {
     SUCCESS,
     TIMEOUT,
     ERROR
 };
+//!--
 
+//!--OPERATION_TYPE
 enum class OperationType
 {
     ADDITION,
-    SUBSTRACTION,
+    SUBTRACTION,
     REPRESENTATION_LIMITS
 };
+//!--
 
+//!--OPERATION_INTERFACE
 class Operation
 {
 
@@ -59,7 +64,9 @@ public:
     virtual OperationStatus execute() = 0;
 
 };
+//!--
 
+//!--REPRESENTATION_LIMITS
 class RepresentationLimits : public Operation
 {
 
@@ -116,7 +123,9 @@ protected:
     std::weak_ptr<Calculator> client_;
 
 };
+//!--
 
+//!--ADDITION
 class Addition : public Operation
 {
 
@@ -175,13 +184,15 @@ protected:
     std::weak_ptr<Calculator> client_;
 
 };
+//!--
 
-class Substraction : public Operation
+//!--SUBTRACTION
+class Subtraction : public Operation
 {
 
 public:
 
-    Substraction(
+    Subtraction(
             std::shared_ptr<Calculator> client,
             std::int32_t x,
             std::int32_t y)
@@ -235,6 +246,7 @@ protected:
     std::weak_ptr<Calculator> client_;
 
 };
+//!--
 
 class Client
 {
@@ -249,6 +261,7 @@ public:
     {
     }
 
+//!--DESTRUCTOR
     ~Client()
     {
         client_.reset();
@@ -262,7 +275,9 @@ public:
             DomainParticipantFactory::get_shared_instance()->delete_participant(participant_);
         }
     }
+//!--
 
+//!--INIT
     void init()
     {
         // Create the participant in Domain 0 with default QoS
@@ -296,9 +311,11 @@ public:
 
         std::cout << "Client initialized with ID: " << participant_->guid().guidPrefix << std::endl;
     }
+//!--
 
     //! Send a request to the server and wait for the reply.
     //  Returns true if the reply was successfully received, false otherwise.
+//!--SEND_REQUEST
     bool send_request(const OperationType& operation)
     {
         // Set the operation to be executed
@@ -314,10 +331,12 @@ public:
 
         return false;
     }
+//!--
 
 protected:
 
     //! Set the operation to be executed.
+//!--SET_OPERATION
     void set_operation(
             const OperationType& operation)
     {
@@ -326,8 +345,8 @@ protected:
             case OperationType::ADDITION:
                 operation_ = std::unique_ptr<Operation>(new Addition(client_, 5, 3));
                 break;
-            case OperationType::SUBSTRACTION:
-                operation_ = std::unique_ptr<Operation>(new Substraction(client_, 5, 3));
+            case OperationType::SUBTRACTION:
+                operation_ = std::unique_ptr<Operation>(new Subtraction(client_, 5, 3));
                 break;
             case OperationType::REPRESENTATION_LIMITS:
                 operation_ = std::unique_ptr<Operation>(new RepresentationLimits(client_));
@@ -336,14 +355,18 @@ protected:
                 throw std::runtime_error("Invalid operation type");
         }
     }
+//!--
 
+//!--CLIENT_PROTECTED_MEMBERS
     std::shared_ptr<Calculator> client_;
     DomainParticipant* participant_;
     std::unique_ptr<Operation> operation_;
     std::string service_name_;
+//!--
 
 };
 
+//!--MAIN
 int main(
         int argc,
         char** argv)
@@ -364,7 +387,7 @@ int main(
     }
     else if (std::string(argv[1]) == "sub")
     {
-        operation = OperationType::SUBSTRACTION;
+        operation = OperationType::SUBTRACTION;
     }
     else if (std::string(argv[1]) == "rep")
     {
@@ -381,6 +404,9 @@ int main(
 
     // Initialize the client
     client.init();
+
+    // Wait for endpoint matching
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     int n_attempts = 10;
     for (int i = 0; i < n_attempts; ++i)
@@ -409,3 +435,4 @@ int main(
 
     return 0;
 }
+//!--

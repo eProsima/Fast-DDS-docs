@@ -45,6 +45,7 @@ public:
     {
     }
 
+//!--DESTRUCTOR
     ~Server()
     {
         server_.reset();
@@ -58,7 +59,9 @@ public:
             DomainParticipantFactory::get_shared_instance()->delete_participant(participant_);
         }
     }
+//!--
 
+//!--INIT
     void init()
     {
         // Create the participant in Domain 0 with default QoS
@@ -100,7 +103,9 @@ public:
 
         std::cout << "Server initialized with ID: " << participant_->guid().guidPrefix << std::endl;
     }
+//!--
 
+//!--STOP
     void stop()
     {
         stop_.store(true);
@@ -108,12 +113,14 @@ public:
 
         std::cout << "Server execution stopped" << std::endl;
     }
+//!--
 
     bool is_stopped()
     {
         return stop_.load();
     }
 
+//!--RUN
     void run()
     {
         if (is_stopped())
@@ -125,13 +132,16 @@ public:
 
         std::cout << "Server running" << std::endl;
     }
+//!--
 
+//!--SERVER_PROTECTED_MEMBERS
 protected:
 
     std::shared_ptr<CalculatorServer> server_;
     DomainParticipant* participant_;
     std::string service_name_;
     std::atomic<bool> stop_;
+//!--
 };
 
 std::function<void(int)> stop_handler;
@@ -142,6 +152,7 @@ void signal_handler(
     stop_handler(signum);
 }
 
+//!--MAIN
 int main(
         int argc,
         char** argv)
@@ -172,3 +183,4 @@ int main(
 
     return 0;
 }
+//!--

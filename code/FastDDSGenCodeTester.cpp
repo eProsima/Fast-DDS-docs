@@ -133,8 +133,17 @@ enum MyBitMask : uint8_t
 //!
 
 /*
+<<<<<<< HEAD
 // INCLUDE_MORE_IDL_FILES
 #include "OtherFile.idl"
 #include <AnotherFile.idl>
 //!
 /**/
+=======
+   // INCLUDE_MORE_IDL_FILES
+ #include "OtherFile.idl"
+ #include <AnotherFile.idl>
+ #include <IncludedIDL.idl>
+   //!
+   /**/
+>>>>>>> bf0dfe6 (Docs - Apply custom templates to included IDL files (#1066))

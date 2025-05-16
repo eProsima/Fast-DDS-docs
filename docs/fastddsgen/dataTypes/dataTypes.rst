@@ -451,7 +451,7 @@ The parameter ``-ppDisable`` can be used to disable the usage of the C/C++ prepr
 
 The parameter ``-extrastg`` can also be used to apply custom templates to included IDL files.
 To enable this feature, the output file name passed to ``-extrastg`` must include the character ``@``, which will be
-be replaced by the name of the included file to generate the output file.
+replaced by the name of the included file to generate the output file.
 
 The following command will generate two custom templates, one for the main IDL file and another for the included one:
 

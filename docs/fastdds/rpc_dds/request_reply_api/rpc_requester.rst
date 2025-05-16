@@ -59,6 +59,11 @@ of both DataWriter and DataReader are set to |RELIABLE_RELIABILITY_QOS-api|.
 This is configured automatically when a new |RequesterQos-api| instance is created.
 
 .. note::
+  When a new |RequesterQos-api| instance is created, |HistoryQosPolicyKind-api| and
+  |DurabilityQosPolicyKind-api| are by default |KEEP_ALL_HISTORY_QOS-api| and |VOLATILE_DURABILITY_QOS-api|
+  in both DataWriter and DataReader QoS, respectively.
+
+.. note::
   Before creating a new Requester, user must create its associated |Service-api| instance in the DomainParticipant.
   If a null pointer or a Service associated with a different participant are provided,
   Requester is not created and |DomainParticipant::create_service_requester-api| method returns a null pointer.
@@ -120,9 +125,8 @@ depending on whether you want to take only the next sample or all samples from t
   finishing processing the samples.
 
 .. warning::
-  If a Request sample is sent before discovering a |Replier|,
-  the middleware will not be able to deliver the Request sample and will discard it.
-  The endpoint matching algorithm described in RPC over DDS Standard 7.6.2.2 will be implemented in future releases.
+  If a Request sample is sent before matching a |Replier| completely, |Requester::send_request-api| method
+  will fail, returning ``RETCODE_PRECONDITION_NOT_MET``.
 
 .. warning::
   RPC over DDS implementation in *Fast DDS* is designed to be incompatible with |Listeners|.

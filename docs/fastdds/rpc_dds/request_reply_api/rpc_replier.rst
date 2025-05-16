@@ -59,6 +59,11 @@ of both DataWriter and DataReader are set to |RELIABLE_RELIABILITY_QOS-api|.
 This is configured automatically when a new |ReplierQos-api| instance is created.
 
 .. note::
+  When a new |ReplierQos-api| instance is created, |HistoryQosPolicyKind-api| and
+  |DurabilityQosPolicyKind-api| are by default |KEEP_ALL_HISTORY_QOS-api| and |VOLATILE_DURABILITY_QOS-api|
+  in both DataWriter and DataReader QoS, respectively.
+
+.. note::
   Before creating a new Replier, user must create its associated |Service-api| instance in the DomainParticipant.
   If a null pointer or a Service associated with a different participant are provided,
   Replier is not created and |DomainParticipant::create_service_replier-api| method returns a null pointer.
@@ -121,9 +126,10 @@ the :code:`related_sample_identity` of the Request sample that originated the Re
 to allow Request and Reply samples correlation at the Requester side.
 
 .. warning::
-  If a Reply sample is sent before discovering the Requester Reply topic DataReader,
-  the middleware will not be able to deliver the Reply sample and will discard it.
-  The endpoint matching algorithm described in RPC over DDS Standard will be implemented in future releases.
+  |Replier::send_reply-api| method will fail if the communication with the Requester cannot be established,
+  returning ``RETCODE_NO_DATA`` if the Requester that sent the request is disconnected and ``RETCODE_TIMEOUT``
+  if it is only partially matched (*i.e* if Request topic endpoints are matched but
+  Reply topic endpoints are not).
 
 .. warning::
   RPC over DDS implementation in *Fast DDS* is designed to be incompatible with |Listeners|.

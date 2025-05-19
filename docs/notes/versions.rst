@@ -12,6 +12,54 @@ together with Fast DDS.
 This section provides information about the required dependencies for building Fast DDS, as well as about the versions
 of the eProsima software products related to Fast DDS.
 
+.. _currently_supported_versions:
+
+Currently supported versions
+----------------------------
+The following table shows the currently supported versions of Fast DDS and their corresponding release and EOL dates.
+
+.. list-table::
+    :header-rows: 1
+
+    * - Version
+      - Version Branch
+      - Latest Release
+      - Release date
+      - End of Standard Support date
+      - EOL date
+    * - 3.2
+      - `3.2.x <https://github.com/eProsima/Fast-DDS/tree/3.2.x>`__ (LTS)
+      - `v3.2.2 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.2.2>`__
+      - March 2025
+      - March 2026 (*)
+      - March 2026 (*)
+    * - 3.1
+      - `3.1.x <https://github.com/eProsima/Fast-DDS/tree/3.1.x>`__
+      - `v3.2.0 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.1.2>`__
+      - October 2024
+      - April 2025
+      - April 2025
+    * - 2.14
+      - `2.14.x <https://github.com/eProsima/Fast-DDS/tree/2.14.x>`__
+      - `v2.14.4 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.4>`__
+      - March 2024
+      - March 2025 (*)
+      - March 2025 (*)
+    * - 2.10
+      - `2.10.x <https://github.com/eProsima/Fast-DDS/tree/2.10.x>`__
+      - `v2.10.6 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.10.6>`__
+      - March 2023
+      - May 2025 (*)
+      - May 2025 (*)
+    * - 2.6 (maintenance)
+      - `2.6.x <https://github.com/eProsima/Fast-DDS/tree/2.6.x>`__
+      - `v2.6.10 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.6.10>`__
+      - March 2022
+      - July 2024
+      - May 2025
+
+(*): Support may be extended.
+
 .. _dependencies_compatibilities_platform_support:
 
 Platform support

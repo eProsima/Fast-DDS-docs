@@ -5,7 +5,7 @@ doc8==0.10.1
 docutils==0.20.1
 furo==2024.8.6
 GitPython==3.1.44
-setuptools==75.8.2
+setuptools==78.1.1
 sphinx==8.2.1
 sphinx-copybutton==0.5.2
 sphinx-design==0.6.1

@@ -61,6 +61,12 @@ The possible values are described in the following table:
 
 .. note::
 
+    The ``ProxyInfo`` within the ``Monitor Service Status Topic``
+    always includes the :ref:`optional qos <property_serialize_optional_qos>` independently of the
+    ``fastdds.serialize_optional_qos`` property.
+
+.. note::
+
     If the service is enabled in a :ref:`RTPS layer <rtps_layer>` context, :ref:`not all
     the statuses will be published <monitor_service_in_rtps_note>`,
     only the ``ProxyInfo`` and ``ConnectionList``.

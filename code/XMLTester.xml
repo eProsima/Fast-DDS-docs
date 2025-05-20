@@ -3305,7 +3305,7 @@
                     <properties>
                         <property>
                             <name>fastdds.serialize_optional_qos</name>
-                            <value>true</value><!-- True, TRUE, 1 -->
+                            <value>true</value> <!-- true, True, TRUE, 1 -->
                         </property>
                     </properties>
                 </propertiesPolicy>

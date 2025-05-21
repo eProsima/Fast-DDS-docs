@@ -127,3 +127,4 @@ The following code snippet shows how to create and delete a Service instance:
       :language: c++
       :start-after: //!--CREATE_DELETE_SERVICE_EXAMPLE
       :end-before: //!--
+      :dedent: 8

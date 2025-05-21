@@ -480,24 +480,26 @@ The different property values have the following effects on the local |DomainPar
 Adding optional QoS to Discovery data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-During the Endpoint Discovery Phase (EDP), |DataWriters-api| and |DataReaders-api| acknowledge each other.
+During :ref:`discovery`, |DomainParticipants-api|, |DataWriters-api| and |DataReaders-api| acknowledge each other.
+This is performed in two phases, the Participant Discovery Phase (PDP) and the Endpoint Discovery Phase (EDP).
 To do that, the DomainParticipants share information about their DataWriters and DataReaders with each other,
-using the communication channels established during the PDP.
+using the communication channels established during the PDP phase.
 This information contains all data required to match the endpoints, such as the |Topic-api|, data type, and
 certain :ref:`QoS Policies <dds_layer_core_policy>` that might affect matching.
 Specific compatibility rules can be found in each QoS section of :ref:`QoS Policies <dds_layer_core_policy>`.
 
-However, there are some QoS that are not mandatory for matching, but can be useful to have in the EDP messages.
-Property ``fastdds.serialize_optional_qos`` allows the user to include these optional QoS in the EDP messages.
+However, there are some QoS that are not mandatory for matching, but can be useful to have upon discovery.
+Property ``fastdds.serialize_optional_qos`` allows the user to include these optional QoS during discovery.
 This property is configured at the |DomainParticipant-api| level through the policy :ref:`propertypolicyqos`.
-Hence, all associated endpoints to that |DomainParticipant-api| will send their optional QoS in the EDP messages.
+Hence, the |DomainParticipant-api| and all its associated endpoints will send their optional QoS
+in the discovery messages.
 
 Optional QoS, like any other QoS, will only be serialized if they have non-default values.
 Not receiving information about a QoS in the EDP message means that it has a default value.
 Optional QoS will be serialized if the value of the property is set to ``TRUE``, ``True``, ``true`` or ``1``, any
 other value will be considered as not set or ``FALSE``.
 
-The following table lists all the optional QoS that can be serialized in the EDP messages:
+The following table lists all the optional QoS that can be serialized in the discovery messages:
 
 .. list-table::
    :header-rows: 1
@@ -505,6 +507,8 @@ The following table lists all the optional QoS that can be serialized in the EDP
 
    * - PropertyPolicyQos
      - Applies to:
+   * - |WireProtocolConfigQos-api|
+     - |DomainParticipant-api|.
    * - |ResourceLimitsQosPolicy-api|
      - |DataWriter-api| and |DataReaders-api|.
    * - |TransportPriorityQosPolicy-api|

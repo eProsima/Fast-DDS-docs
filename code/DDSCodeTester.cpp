@@ -988,7 +988,7 @@ void dds_domain_examples()
 
         pqos.properties().properties().emplace_back(
             "fastdds.serialize_optional_qos",
-            "True");
+            "true"); // true or True or TRUE or 1
         //!--
     }
 }

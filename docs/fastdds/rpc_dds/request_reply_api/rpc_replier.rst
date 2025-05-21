@@ -144,3 +144,4 @@ The following code snippet shows how to use a Replier instance:
       :language: c++
       :start-after: //!--RPC_REPLIER_EXAMPLE
       :end-before: //!--
+      :dedent: 8

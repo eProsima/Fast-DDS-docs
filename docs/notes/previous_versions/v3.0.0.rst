@@ -1,5 +1,5 @@
-`Version 3.0.0 <https://fast-dds.docs.eprosima.com/en/v3.0.0/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 3.0.0 (EOL) <https://fast-dds.docs.eprosima.com/en/v3.0.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Fast DDS v3.0.0 is a mayor release that entails some **API breaks** and new features.
 This version is **not backwards compatible** with previous versions.

@@ -46,6 +46,6 @@ The RPC specification provides two different APIs to build RPC over DDS applicat
 .. include:: includes/rpc_service.rst
 .. include:: includes/rpc_requester.rst
 .. include:: includes/rpc_replier.rst
-.. include:: includes/rpc_data_streaming_intro.rst
 .. include:: includes/rpc_exceptions.rst
+.. include:: includes/rpc_data_streaming_intro.rst
 .. include:: includes/rpc_data_streaming_interfaces.rst

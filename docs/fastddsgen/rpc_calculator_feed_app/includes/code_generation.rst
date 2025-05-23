@@ -27,6 +27,8 @@ Similarly, input ``<param_type>`` parameters with a ``@feed`` annotation have a 
 ``<param_type>`` to the server using the ``RpcClientWriter::write()`` method or notify the server that the feed is
 finished using the ``RpcClientWriter::finish()`` method.
 
+For more information about input and output feeds, see :ref:`rpc_data_streaming_interfaces`.
+
 calculator_details
 """"""""""""""""""
 
@@ -42,12 +44,3 @@ which is used to notify the client that the output feed is finished (and the cau
 
 Finally, an additional ``feed_cancel_`` optional member is added to the ``Calculator_Request`` structure,
 which is used to notify the server that the client has cancelled the output feed.
-
-calculatorServerImpl
-""""""""""""""""""""
-
-For this example, we need to implement the new operations in the server side. Overwrite the
-``calculatorServerImpl.hpp`` file with the following content:
-
-.. literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/types/calculatorServerImpl.hpp
-    :language: cpp

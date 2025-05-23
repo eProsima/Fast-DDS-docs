@@ -145,14 +145,9 @@ can be instantiated by the user calling ``create_CalculatorServer`` function.
 calculatorServerImpl
 """"""""""""""""""""
 
-Contains the implementation of the interface methods in the server side.
-By default, the server implementation is empty and the user must implement the methods.
-
-For this example, overwrite the methods in the ``calculatorServerImpl.hpp`` file with the following content:
-
-.. literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/types/calculatorServerImpl.hpp
-    :language: cpp
-
+Contains the base class for an implementation of the interface methods in the server side.
+By default, the server implementation is empty and the user must implement the methods inheriting
+from this class.
 
 calculatorCdrAux
 """"""""""""""""

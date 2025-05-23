@@ -1,4 +1,4 @@
-Generate the source code for the application
+Writing the application source code
 --------------------------------------------
 
 Now that the interface source code has been generated, the next step is to generate the application source code.
@@ -15,8 +15,19 @@ ready to process requests from client applications and send replies.
 Create a ``CalculatorServer.cpp`` file and
 copy the following code into the file:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorServer.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorServer.cpp
     :language: cpp
+
+Additionally, create a ``ServerImplementation.hpp`` file with the implementation of the server-side operations:
+
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/ServerImplementation.hpp
+    :language: cpp
+
+.. warning::
+    The user implementation of the server-side operations should be placed in a separate file
+    and inherit from the ``CalculatorServerImplementation`` struct to avoid being overridden
+    by *Fast DDS-Gen* when IDL interface's source code is regenerated. User should use this derived
+    class when creates the server instance.
 
 Examining the code
 """"""""""""""""""
@@ -24,7 +35,7 @@ Examining the code
 The ``CalculatorServer.cpp`` file contains the implementation of the ``Server`` class, formed by
 a Server instance and its related DomainParticipant instance:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorServer.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorServer.cpp
     :language: cpp
     :start-after: //!--SERVER_PROTECTED_MEMBERS
     :end-before: //!--
@@ -34,7 +45,7 @@ are created. The ``CalculatorServer`` instance is created using the previously c
 ``DomainParticipant`` instance, the implementation of the server-side IDL interface's operations
 and the name of the RPC service:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorServer.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorServer.cpp
     :language: cpp
     :start-after: //!--INIT
     :end-before: //!--
@@ -42,7 +53,7 @@ and the name of the RPC service:
 Once all the Server's entities are created, the RPC server is started using the
 ``CalculatorServer::run()`` method:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorServer.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorServer.cpp
     :language: cpp
     :start-after: //!--RUN
     :end-before: //!--
@@ -50,7 +61,7 @@ Once all the Server's entities are created, the RPC server is started using the
 Similarly, when the application is stopped, the
 RPC server is also stopped using the ``CalculatorServer::stop()`` method:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorServer.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorServer.cpp
     :language: cpp
     :start-after: //!--STOP
     :end-before: //!--
@@ -58,7 +69,7 @@ RPC server is also stopped using the ``CalculatorServer::stop()`` method:
 Before finishing the application, all the internal DDS and RPC entities involved in the RPC
 communication are deleted by calling ``CalculatorServer`` and ``DomainParticipant`` destructors:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorServer.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorServer.cpp
     :language: cpp
     :start-after: //!--DESTRUCTOR
     :end-before: //!--
@@ -66,7 +77,7 @@ communication are deleted by calling ``CalculatorServer`` and ``DomainParticipan
 The ``main()`` function contains all the steps described above. It runs the ``Server::run()`` method
 in a different thread to allow the user to stop the server by sending a signal (for example, Ctrl+C):
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorServer.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorServer.cpp
     :language: cpp
     :start-after: //!--MAIN
     :end-before: //!--
@@ -79,10 +90,9 @@ and ready to send requests to the server application. User can send requests
 by specifying the operation name and through the CLI, and the results
 will be printed on the screen after receiving the reply from the server.
 
-Create a ``CalculatorClient.cpp`` file and copy the following content:
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
-    :language: cpp
+Create a ``CalculatorClient.cpp`` file with this
+`content <https://github.com/eProsima/Fast-DDS-docs/tree/master/code/Examples/
+C++/RpcClientServerBasic/src/CalculatorClient.cpp>`_:
 
 Examining the code
 """"""""""""""""""
@@ -91,14 +101,14 @@ The ``CalculatorClient.cpp`` file contains the implementation of the ``Client`` 
 a ``Calculator`` client instance and its related ``DomainParticipant``.
 Additionally, the operation to be performed is also stored:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--CLIENT_PROTECTED_MEMBERS
     :end-before: //!--
 
 All this members are initialized calling ``init()`` method, in the same way as in the ``Server`` class:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--INIT
     :end-before: //!--
@@ -117,7 +127,7 @@ When the client performs an operation (*i.e*: sends a request), three different 
 To process each operation in the same way, the following design pattern is used: each operation implements
 a ``Operation`` abstract class, which contains a ``execute()`` method:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--OPERATION_INTERFACE
     :end-before: //!--
@@ -126,7 +136,7 @@ After calling this method, it will
 return an enum ``OperationStatus`` indicating the result of the operation (and addressing each of the
 cases previously described):
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--OPERATION_STATUS
     :end-before: //!--
@@ -139,21 +149,21 @@ When ``RepresentationLimits`` operation is executed, client sends a request to t
 for the server reply, printing the received result. If something fails or the timeout is exceeded (for example,
 if no servers are available), the operation fails:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--REPRESENTATION_LIMITS
     :end-before: //!--
 
 Similarly for ``Addition`` operation:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--ADDITION
     :end-before: //!--
 
 and ``Subtraction`` operation:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--SUBTRACTION
     :end-before: //!--
@@ -162,7 +172,7 @@ The operation to be performed is configured from the parsed CLI input
 using the ``set_operation()`` factory method. Input operands are hardcoded to simply
 the input parsing:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--SET_OPERATION
     :end-before: //!--
@@ -170,7 +180,7 @@ the input parsing:
 When ``send_request()`` method is called, the input operation is configured and the client executes it.
 A boolean is returned, ``true`` if the operation is successful or ``false`` otherwise:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--SEND_REQUEST
     :end-before: //!--
@@ -178,7 +188,7 @@ A boolean is returned, ``true`` if the operation is successful or ``false`` othe
 Finally, the ``main()`` function process the user input (specifying the operation to be performed),
 initializes a new client and tries to execute the operation until a max number of attempts ``n_attempts``:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--MAIN
     :end-before: //!--
@@ -194,7 +204,7 @@ Before building the application, we need to update the *CMakeLists.txt* file of 
 to add the executable and the required libraries. The following code should be added at the end
 of the file:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerBasic/CMakeLists.txt
+..  literalinclude:: /../code/Examples/C++/RpcClientServerBasic/CMakeLists.txt
     :language: cmake
     :lines: 44-56
 

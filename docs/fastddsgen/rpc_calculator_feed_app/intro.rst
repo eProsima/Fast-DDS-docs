@@ -17,6 +17,9 @@ This section extends the previously discussed example of a calculator service
 * **accumulator**: Returns a feed of results with the sum of all received values.
 * **filter**: Returns a feed of results with the received values that match an input filter.
 
+The entire example source code is available in this
+`link <https://github.com/eProsima/Fast-DDS-docs/tree/master/code/Examples/C++/RpcClientServerFeed>`_
+
 .. include:: includes/background.rst
 .. include:: includes/workspace.rst
 .. include:: includes/cmake.rst

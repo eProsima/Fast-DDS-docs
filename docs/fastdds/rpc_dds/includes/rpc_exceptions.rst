@@ -18,7 +18,8 @@ It also provides some builtin exceptions, described in the following table:
    * - |RpcTimeoutException-api|
      - Exception thrown by the RPC API when an operation times out.
 
-According to the `RPC over DDS specification`_ 7.5.2, server-side error conditions are communicated back to the client
+According to the `RPC over DDS specification <https://www.omg.org/spec/DDS-RPC/1.0/PDF>`_ 7.5.2,
+server-side error conditions are communicated back to the client
 using error codes, represented by the |RemoteExceptionCode_t-api| enumeration. *Fast DDS* provides a
 |RpcRemoteException-api| subclass that serves as a base class for a set of exceptions that can be thrown by the RPC API
 when a server-side error condition occurs.

@@ -49,6 +49,7 @@ Three different scenarios can be considered:
   operation, sending a message back to the client after receiving each request message.
 
 For more information about how to define an IDL interface for data streaming and further details about handling input
-and output data feeds, please refer to :ref:`rpc_data_streaming_interfaces` and :ref:`fastddsgen_interfaces_data_streaming`.
+and output data feeds, please refer to :ref:`rpc_data_streaming_interfaces` and
+:ref:`fastddsgen_interfaces_data_streaming`.
 For more information about how to build data streaming applications using the *Fast DDS-Gen* tool,
 see :ref:`fastddsgen_rpc_calculator_feed_app_intro`.

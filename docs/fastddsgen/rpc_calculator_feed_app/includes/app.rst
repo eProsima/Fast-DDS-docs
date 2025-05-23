@@ -1,4 +1,4 @@
-Generate the source code for the application
+Writing the application source code
 --------------------------------------------
 
 Now that the interface source code has been generated, the next step is to generate the application source code.
@@ -11,14 +11,24 @@ The server application that we will create is exactly the same as the one create
 Thus, copy the code provided in :ref:`fastddsgen_rpc_calculator_basic_server_application`
 into the ``CalculatorServer.cpp`` file.
 
+Additionally, create a ``ServerImplementation.hpp`` file with the implementation of the server-side operations:
+
+.. literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/ServerImplementation.hpp
+   :language: cpp
+
+.. warning::
+    The user implementation of the server-side operations should be placed in a separate file
+    and inherit from the ``CalculatorServerImplementation`` struct to avoid being overridden
+    by *Fast DDS-Gen* when IDL interface's source code is regenerated. User should use this derived
+    class when creates the server instance.
+
 Client application
 ^^^^^^^^^^^^^^^^^^
 
 The client application extends the functionality of the basic example by adding the new operations
-defined in the IDL file. Create a ``CalculatorClient.cpp`` file with the following content:
-
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
-    :language: cpp
+defined in the IDL file. Create a ``CalculatorClient.cpp`` file with this
+`content <https://github.com/eProsima/Fast-DDS-docs/tree/master/code/Examples/
+C++/RpcClientServerFeed/src/CalculatorClient.cpp>`_:
 
 Examining the code
 """"""""""""""""""
@@ -42,7 +52,7 @@ Notice the following facts:
 For input feed operations, a simple ``InputFeedProcessor`` class is used to parse the input user data from terminal.
 It allows the user to send a new number or close the input feed by accepting the dialog with empty data:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--INPUT_FEED_PROCESSOR
     :end-before: //!--
@@ -54,7 +64,7 @@ is read, indicating that the output feed has not been closed yet and that client
 When the output feed is closed, the ``Operation::execute()`` method will return an enum
 ``OperationStatus::SUCCESS``, indicating that the operation has successfully read each of the output feed values:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--OPERATION_STATUS
     :end-before: //!--
@@ -66,7 +76,7 @@ A more detailed description of each operation execution is provided below:
   ``RpcClientReader`` object. The client will read the results using the ``RpcClientReader::read()`` method
   in each ``FibonacciSeq::execute()`` call, until the output feed is closed by the server.
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--FIBONACCI_SEQ
     :end-before: //!--
@@ -80,7 +90,7 @@ A more detailed description of each operation execution is provided below:
   and waits for the reply. When the reply is received,
   the result is stored in ``result_`` member and printed on the screen.
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--SUM_ALL
     :end-before: //!--
@@ -96,7 +106,7 @@ A more detailed description of each operation execution is provided below:
   Each time that ``Accumulator::execute()`` is called, the client sends a new input value to the server
   and waits for the accumulated sum result, until the input and output feeds are closed.
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--ACCUMULATOR
     :end-before: //!--
@@ -108,21 +118,21 @@ A more detailed description of each operation execution is provided below:
   To simplify the input parsing, the filter is fixed to be ``FilterKind::EVEN``, *i.e* the input feed is filtered
   to only return even numbers:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--FILTER
     :end-before: //!--
 
 ``ClientApp::set_operation()`` has also been extended to include the new operations:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--SET_OPERATION
     :end-before: //!--
 
 Finally, a minimal change is required in the ``send_request()`` method to handle the feed operations:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/src/CalculatorClient.cpp
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp
     :language: cpp
     :start-after: //!--FEED_LOOP
     :end-before: //!--
@@ -137,7 +147,7 @@ Before building the application, we need to update the *CMakeLists.txt* file of 
 to add the executable and the required libraries. The following code should be added at the end
 of the file:
 
-..  literalinclude:: /../code/Examples/C++/RPCClientServerFeed/CMakeLists.txt
+..  literalinclude:: /../code/Examples/C++/RpcClientServerFeed/CMakeLists.txt
     :language: cmake
     :lines: 44-56
 

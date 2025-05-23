@@ -20,6 +20,7 @@ the generated *Fast DDS* client and server applications, respectively:
     └── src
         ├── CalculatorClient.cpp
         ├── CalculatorServer.cpp
+        ├── ServerImplementation.hpp
         └── types
             ├── calculatorCdrAux.hpp
             ├── calculatorCdrAux.ipp

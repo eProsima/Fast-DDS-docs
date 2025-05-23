@@ -7,7 +7,7 @@ and copy and paste the following code snippet.
 Save this file in the root directory of your workspace. If you have followed these steps, it should
 be `workspace_CalculatorBasic`.
 
-.. literalinclude:: /../code/Examples/C++/RPCClientServerBasic/CMakeLists.txt
+.. literalinclude:: /../code/Examples/C++/RpcClientServerBasic/CMakeLists.txt
     :language: cmake
     :lines: 15-43
 

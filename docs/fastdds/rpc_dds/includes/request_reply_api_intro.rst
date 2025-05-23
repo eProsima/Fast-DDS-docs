@@ -68,7 +68,3 @@ The content filtered topic filters reply samples comparing the DataReader's |Gui
 the |GuidPrefix_t-api| of the received |SampleInfo::related_sample_identity-api|,
 so only replier samples associated to request samples sent by the same DomainParticipant are received.
 When a Requester is created, its DataReader is created from this |ContentFilteredTopic-api| instance.
-
-.. include:: includes/rpc_service.rst
-.. include:: includes/rpc_requester.rst
-.. include:: includes/rpc_replier.rst

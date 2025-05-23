@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """
-Run the RPCClientServerFeed example test.
+Run the RpcClientServerFeed example test.
 
 Runs the client and server applications in
 parallel for each implemented operation. These return an exit code equal to 0 in case of
@@ -150,7 +150,7 @@ def run_non_input_feed_operation(operation: str) -> int:
 
 def run_test():
     """
-    Run the test for the RPCClientServerBasic example.
+    Run the test for the RpcClientServerBasic example.
 
     :return: The command return code.
     """

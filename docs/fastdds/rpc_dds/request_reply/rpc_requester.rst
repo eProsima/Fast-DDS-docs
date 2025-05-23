@@ -4,7 +4,7 @@
 .. _rpc_requester:
 
 RPC Requester
-=============
+^^^^^^^^^^^^^
 
 A |Requester| is the RPC Entity used in the communication at the client side,
 sending Request samples and processing the received Reply samples.
@@ -32,7 +32,7 @@ where :code:`requester_state` is the state of the Requester instance and :code:`
 is the state of the associated Service, and the order of the states is defined as :math:`disabled < enabled`.
 
 Creating a Requester
---------------------
+""""""""""""""""""""
 
 A new Requester instance can be created in an enabled or disabled Service using
 |DomainParticipant::create_service_requester-api| method.
@@ -59,12 +59,18 @@ of both DataWriter and DataReader are set to |RELIABLE_RELIABILITY_QOS-api|.
 This is configured automatically when a new |RequesterQos-api| instance is created.
 
 .. note::
+  When a new |RequesterQos-api| instance is created, |HistoryQosPolicyKind-api| and
+  |DurabilityQosPolicyKind-api| are by default |KEEP_ALL_HISTORY_QOS-api| and |VOLATILE_DURABILITY_QOS-api|
+  in both DataWriter and DataReader QoS, respectively.
+
+.. note::
   Before creating a new Requester, user must create its associated |Service-api| instance in the DomainParticipant.
   If a null pointer or a Service associated with a different participant are provided,
   Requester is not created and |DomainParticipant::create_service_requester-api| method returns a null pointer.
 
 Enabling and disabling a Requester
-----------------------------------
+""""""""""""""""""""""""""""""""""
+
 |Requester-api| instances can be enabled or disabled using
 |RPCEntity::enable-api| and |RPCEntity::close-api| methods, respectively.
 
@@ -84,7 +90,7 @@ making the Requester not participate in the communication through the Service.
   using the |RPCEntity::is_enabled-api| method before accessing the Requester's internal DDS entities.
 
 Deleting a Requester
---------------------
+""""""""""""""""""""
 
 A |Requester-api| instance can be unregistered from a Service and deleted using
 |DomainParticipant::delete_service_requester-api| method.
@@ -98,7 +104,7 @@ returning a :code:`ReturnCode_t` error if it was not possible to close the Reque
   |DomainParticipant::delete_service_requester-api| method will return a :code:`ReturnCode_t` error.
 
 Sending and receiving samples
------------------------------
+"""""""""""""""""""""""""""""
 
 Request samples can be sent using the |Requester::send_request-api| method.
 When this method is called, the created DataWriter sends a new Request sample with the provided data and
@@ -120,16 +126,15 @@ depending on whether you want to take only the next sample or all samples from t
   finishing processing the samples.
 
 .. warning::
-  If a Request sample is sent before discovering a |Replier|,
-  the middleware will not be able to deliver the Request sample and will discard it.
-  The endpoint matching algorithm described in RPC over DDS Standard 7.6.2.2 will be implemented in future releases.
+  If a Request sample is sent before matching a |Replier| completely, |Requester::send_request-api| method
+  will fail, returning ``RETCODE_PRECONDITION_NOT_MET``.
 
 .. warning::
   RPC over DDS implementation in *Fast DDS* is designed to be incompatible with |Listeners|.
   If user needs to process status changes, it can be done creating a |WaitSet| on a different thread.
 
 Example
--------
+"""""""
 
 The following code snippet shows how to use a Requester instance:
 
@@ -137,3 +142,4 @@ The following code snippet shows how to use a Requester instance:
       :language: c++
       :start-after: //!--RPC_REQUESTER_EXAMPLE
       :end-before: //!--
+      :dedent: 8

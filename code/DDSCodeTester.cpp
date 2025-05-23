@@ -4,6 +4,7 @@
 #include <thread>
 
 #include <fastcdr/Cdr.h>
+#include <fastcdr/xcdr/optional.hpp>
 
 #include <fastdds/dds/builtin/topic/ParticipantBuiltinTopicData.hpp>
 #include <fastdds/dds/core/condition/GuardCondition.hpp>
@@ -24,6 +25,9 @@
 #include <fastdds/dds/publisher/PublisherListener.hpp>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
+#include <fastdds/dds/rpc/exceptions.hpp>
+#include <fastdds/dds/rpc/interfaces.hpp>
+#include <fastdds/dds/rpc/RemoteExceptionCode_t.hpp>
 #include <fastdds/dds/rpc/Replier.hpp>
 #include <fastdds/dds/rpc/Requester.hpp>
 #include <fastdds/dds/rpc/RequestInfo.hpp>

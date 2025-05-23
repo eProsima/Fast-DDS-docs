@@ -1,10 +1,7 @@
-.. include:: ../../../03-exports/aliases.include
-.. include:: ../../../03-exports/aliases-api.include
-
 .. _request_reply_api_intro:
 
 RPC over DDS Request-Reply API overview
-=======================================
+---------------------------------------
 
 *Fast DDS* |DomainParticipant| provides a high-level Request-Reply API
 to create all the DDS entities required for RPC over DDS communication.
@@ -72,9 +69,6 @@ the |GuidPrefix_t-api| of the received |SampleInfo::related_sample_identity-api|
 so only replier samples associated to request samples sent by the same DomainParticipant are received.
 When a Requester is created, its DataReader is created from this |ContentFilteredTopic-api| instance.
 
-.. toctree::
-  :maxdepth: 1
-
-  /fastdds/rpc_dds/request_reply_api/rpc_service
-  /fastdds/rpc_dds/request_reply_api/rpc_requester
-  /fastdds/rpc_dds/request_reply_api/rpc_replier
+.. include:: includes/rpc_service.rst
+.. include:: includes/rpc_requester.rst
+.. include:: includes/rpc_replier.rst

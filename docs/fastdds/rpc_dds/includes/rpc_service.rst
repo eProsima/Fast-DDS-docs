@@ -1,10 +1,8 @@
-.. include:: ../../../03-exports/aliases.include
-.. include:: ../../../03-exports/aliases-api.include
-
 .. _rpc_service:
 
 RPC Service
-===========
+^^^^^^^^^^^
+
 A Service is the RPC entity used to register all RPC entities involved in an RPC communication,
 both on the client side (|Requesters|) and on the server side (|Repliers|).
 Two or more participants can communicate with each other via RPC if they register the same service
@@ -30,7 +28,7 @@ according to whether they contain DDS entities or not:
   Therefore, it cannot take requests nor send replies.
 
 Service types
--------------
+"""""""""""""
 
 Due to the fact that a Service represents a Request/Reply communication,
 a Service type is represented by a pair of topic types: the Request topic type and the Reply topic type.
@@ -65,7 +63,7 @@ are reserved for RPC communication though a unique service and
 not used by external DDS entities which are not part of the Service.
 
 Creating and deleting a Service
--------------------------------
+"""""""""""""""""""""""""""""""
 
 A DomainParticipant can create and register a
 |Service-api| instance using |DomainParticipant::create_service-api| method.
@@ -90,7 +88,7 @@ Attempting to delete a |Service-api| instance from a different DomainParticipant
 will result in a :code:`ReturnCode_t` error.
 
 Enabling and disabling a Service
---------------------------------
+""""""""""""""""""""""""""""""""
 
 |Service-api| instances can be enabled or disabled using
 |RPCEntity::enable-api| and |RPCEntity::close-api| methods, respectively.
@@ -119,7 +117,7 @@ It implies disabling all containing Requesters and Repliers and deleting the Req
   |RPCEntity::close-api| returns an error code.
 
 Example
--------
+"""""""
 
 The following code snippet shows how to create and delete a Service instance:
 

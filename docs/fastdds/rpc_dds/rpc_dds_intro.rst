@@ -1,3 +1,6 @@
+.. include:: ../../03-exports/aliases.include
+.. include:: ../../03-exports/aliases-api.include
+
 .. _rpc_dds_intro:
 
 RPC over DDS
@@ -10,7 +13,7 @@ is a type of bidirectional communication, used in a request-reply pattern, that 
 using DDS entities such as DomainParticipants, Topics, DataWriters and DataReaders.
 
 The RPC architecture is based on the client-server model: the client sends a request to the server,
-and the server sends one or more responses (replies) back to the client.
+and the server sends one response (reply) back to the client.
 
 The RPC specification provides two different APIs to build RPC over DDS applications:
 
@@ -39,10 +42,7 @@ The RPC specification provides two different APIs to build RPC over DDS applicat
    :align: center
    :alt: RPC over DDS API comparison
 
-For more information about how to build RPC over DDS applications using the *Fast DDS-Gen* tool,
-see :ref:`fastddsgen_rpc_calculator_basic_app_intro` and :ref:`fastddsgen_rpc_calculator_feed_app_intro`.
-
-.. toctree::
-    :maxdepth: 2
-
-    /fastdds/rpc_dds/request_reply_api/request_reply_api_intro
+.. include:: includes/request_reply_api_intro.rst
+.. include:: includes/rpc_data_streaming_intro.rst
+.. include:: includes/rpc_exceptions.rst
+.. include:: includes/rpc_data_streaming_interfaces.rst

@@ -1,10 +1,7 @@
-.. include:: ../../../03-exports/aliases.include
-.. include:: ../../../03-exports/aliases-api.include
-
 .. _rpc_replier:
 
 RPC Replier
-===========
+^^^^^^^^^^^
 
 A |Replier| is the RPC Entity used in the communication at the server side, processing the received Request samples
 and sending Reply samples back to the Requester when the result of the operation is ready.
@@ -32,7 +29,7 @@ where :code:`replier_state` is the state of the Replier instance and :code:`serv
 is the state of the associated Service, and the order of the states is defined as :math:`disabled < enabled`.
 
 Creating a Replier
-------------------
+""""""""""""""""""
 
 A new Replier instance can be created in an enabled or disabled Service using
 |DomainParticipant::create_service_replier-api| method.
@@ -69,7 +66,8 @@ This is configured automatically when a new |ReplierQos-api| instance is created
   Replier is not created and |DomainParticipant::create_service_replier-api| method returns a null pointer.
 
 Enabling and disabling a Replier
---------------------------------
+""""""""""""""""""""""""""""""""
+
 |Replier-api| instances can be enabled or disabled using
 |RPCEntity::enable-api| and |RPCEntity::close-api| methods, respectively.
 
@@ -89,7 +87,7 @@ making the Replier not participate in the communication through the Service.
   using the |RPCEntity::is_enabled-api| method before accessing the Replier's internal DDS entities.
 
 Deleting a Replier
-------------------
+""""""""""""""""""
 
 A |Replier-api| instance can be unregistered from a Service and deleted using
 |DomainParticipant::delete_service_replier-api| method.
@@ -103,7 +101,7 @@ returning a :code:`ReturnCode_t` error if it was not possible to close the Repli
   |DomainParticipant::delete_service_replier-api| method will return a :code:`ReturnCode_t` error.
 
 Sending and receiving samples
------------------------------
+"""""""""""""""""""""""""""""
 
 Request samples are taken using the |Replier::take_request-api| method.
 When this method is called, Replier takes received Request samples from the history of the internal DataReader
@@ -136,7 +134,7 @@ to allow Request and Reply samples correlation at the Requester side.
   If user needs to process status changes, it can be done creating a |WaitSet| on a different thread.
 
 Example
--------
+"""""""
 
 The following code snippet shows how to use a Replier instance:
 

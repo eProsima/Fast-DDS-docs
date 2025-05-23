@@ -33,6 +33,9 @@ The RPC specification provides two different APIs to build RPC over DDS applicat
   by the *Fast DDS-Gen* tool from an IDL file, containing an interface with the operations to be used by both client
   and server (see :ref:`fastddsgen_interfaces_introduction`).
 
+  This high level API is intended to be used to implement RPC applications with multiple data flows,
+  including data streaming in both client and server sides, as described in  :ref:`rpc_data_streaming_intro`.
+
   Once the user declares the methods in the IDL file, *Fast DDS-Gen* generates the source code required
   to make remote invokations in a function-call, user-friendly style, and provides a source file to allow the user to
   implement the operations in the server side:
@@ -42,10 +45,9 @@ The RPC specification provides two different APIs to build RPC over DDS applicat
    :align: center
    :alt: RPC over DDS API comparison
 
-.. include:: includes/request_reply_api_intro.rst
-.. include:: includes/rpc_service.rst
-.. include:: includes/rpc_requester.rst
-.. include:: includes/rpc_replier.rst
-.. include:: includes/rpc_exceptions.rst
-.. include:: includes/rpc_data_streaming_intro.rst
-.. include:: includes/rpc_data_streaming_interfaces.rst
+.. toctree::
+   :maxdepth: 2
+
+   /fastdds/rpc_dds/request_reply/request_reply_api_intro
+   /fastdds/rpc_dds/exceptions/rpc_exceptions
+   /fastdds/rpc_dds/data_streaming/rpc_data_streaming_intro

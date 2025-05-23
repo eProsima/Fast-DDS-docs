@@ -1,15 +1,15 @@
 .. _rpc_data_streaming_interfaces:
 
 Data Streaming interfaces
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Fast DDS provides a set of interfaces to support data streaming in the RPC API,
-as explained in :ref:`rpc_data_streaming_intro`. When *Fast DDS-Gen* generates the source code,
+as explained in :ref:`rpc_data_streaming_scenarios`. When *Fast DDS-Gen* generates the source code,
 they are automatically implemented, so the user can use them directly in an RPC application involving
 data streaming without additional steps.
 
 Server side streaming
-^^^^^^^^^^^^^^^^^^^^^
+*********************
 
 Output feed is managed using the |RpcServerWriter-api| and |RpcClientReader-api| interfaces,
 implemented in the server and client files of the
@@ -31,7 +31,7 @@ thread until a new output feed value is available, or a configured timout expire
 User can also cancel an active output feed at the client side by calling |RpcClientReader::cancel-api| method.
 
 Client side streaming
-^^^^^^^^^^^^^^^^^^^^^
+*********************
 
 Input feed is managed using the |RpcClientWriter-api| and |RpcServerReader-api| interfaces,
 implemented in the client files and server files of the
@@ -54,7 +54,7 @@ which can be accessed by the user through the |RpcServerReader::read-api| method
 thread until a new input feed value is available, or a configured timout expires.
 
 Bidirectional streaming
-^^^^^^^^^^^^^^^^^^^^^^^
+***********************
 
 Bidirectional streaming uses independent input and output feeds, so they can be managed separately using the
 interfaces of the previous cases.

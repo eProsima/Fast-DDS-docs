@@ -1,3 +1,6 @@
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+
 .. _request_reply_api_intro:
 
 RPC over DDS Request-Reply API overview
@@ -68,3 +71,10 @@ The content filtered topic filters reply samples comparing the DataReader's |Gui
 the |GuidPrefix_t-api| of the received |SampleInfo::related_sample_identity-api|,
 so only replier samples associated to request samples sent by the same DomainParticipant are received.
 When a Requester is created, its DataReader is created from this |ContentFilteredTopic-api| instance.
+
+.. toctree::
+   :maxdepth: 2
+
+   /fastdds/rpc_dds/request_reply/rpc_service
+   /fastdds/rpc_dds/request_reply/rpc_replier
+   /fastdds/rpc_dds/request_reply/rpc_requester

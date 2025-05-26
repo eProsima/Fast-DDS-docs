@@ -1,5 +1,6 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/roles.include
 
 .. _rpc_dds_intro:
 
@@ -44,6 +45,8 @@ The RPC specification provides two different APIs to build RPC over DDS applicat
    :width: 100%
    :align: center
    :alt: RPC over DDS API comparison
+
+|br|
 
 .. toctree::
    :maxdepth: 2

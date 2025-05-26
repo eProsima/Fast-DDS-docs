@@ -26,7 +26,7 @@ Similarly, for each ``RpcClientReader`` implementation, *Fast DDS-Gen* stores a 
 to a |Requester-api| instance, which is used to received the reply samples associated to the output feed data.
 When a new sample is received, client stores the value sent by the server internally in a queue,
 which can be accessed by the user through the |RpcClientReader::read-api| methods. This operation blocks the
-thread until a new output feed value is available, or a configured timout expires.
+thread until a new output feed value is available, or a configured timeout expires.
 
 User can also cancel an active output feed at the client side by calling |RpcClientReader::cancel-api| method.
 
@@ -51,7 +51,7 @@ Similarly, for each ``RpcServerReader`` implementation, *Fast DDS-Gen* stores a 
 to a |Replier-api| instance, which is used to received the request samples associated to the input feed data.
 When a new sample is received, server stores the value sent by the client internally in a queue,
 which can be accessed by the user through the |RpcServerReader::read-api| methods. This operation blocks the
-thread until a new input feed value is available, or a configured timout expires.
+thread until a new input feed value is available, or a configured timeout expires.
 
 Bidirectional streaming
 ***********************

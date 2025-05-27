@@ -13,7 +13,7 @@ module calculator_example
         // Returns the result of value1 + value2
         long addition(in long value1, in long value2) raises (OverflowException);
 
-        // Returns the result of value1 + value2
+        // Returns the result of value1 - value2
         long subtraction(in long value1, in long value2) raises (OverflowException);
     };
 };

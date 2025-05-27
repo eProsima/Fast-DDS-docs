@@ -93,6 +93,9 @@ Contains the definition of the interface and its operations:
 * ``Calculator`` class represents the interface defined in the IDL file. Each operation is defined as
   a pure virtual function, expecting the client to implement it.
 
+Additionally, for operation containing *out* parameters, a ``calculator_<operation_name>_Out`` structure is defined,
+which is used to return the values of the *out* parameters after calling the operation.
+
 Note that, due to the asynchronous nature of *Remote Procedure Calls*, operation calls return a
 ``RpcFuture`` object, which can be used to retrieve the result of the operation when it is ready.
 
@@ -110,9 +113,8 @@ used in the request/reply topics:
 
 * On the other hand, the reply type is defined by ``calculator_<operation_name>_Out``
   and ``calculator_<operator_name>_Result`` structures.
-  The first one contains the *out* and *inout* parameters of the operation,
-  in the same order as declared in the IDL file.
-  The second one contains optional members for the result of the operation and for each exception that
+  The first one contains the result of the operation.
+  The second one contains optional members for the ``_Out`` structure and for each exception that
   can be raised.
 
 In the top level, two structures ``Calculator_Request`` and ``Calculator_Reply`` are defined,

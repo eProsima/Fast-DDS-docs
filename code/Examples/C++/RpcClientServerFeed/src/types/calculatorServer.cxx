@@ -124,7 +124,9 @@ public:
         finish_condition_.set_trigger_value(false);
         fdds::WaitSet waitset;
         waitset.attach_condition(finish_condition_);
-        waitset.attach_condition(replier_->get_replier_reader()->get_statuscondition());
+        fdds::StatusCondition& status_condition = replier_->get_replier_reader()->get_statuscondition();
+        status_condition.set_enabled_statuses(fdds::StatusMask::data_available());
+        waitset.attach_condition(status_condition);
 
         while (true)
         {
@@ -1118,17 +1120,10 @@ private:
                 if (req->request.representation_limits.has_value())
                 {
                     {
-                        int32_t min_value {};
-                        int32_t max_value {};
-                        /*void*/ implementation_->representation_limits(
-                            *req,
-                            min_value,
-                            max_value);
                         ReplyType reply{};
                         reply.representation_limits = calculator_example::detail::Calculator_representation_limits_Result{};
-                        reply.representation_limits->result = calculator_example::detail::Calculator_representation_limits_Out{};
-                        reply.representation_limits->result->min_value = min_value;
-                        reply.representation_limits->result->max_value = max_value;
+                        reply.representation_limits->result = implementation_->representation_limits(
+                            *req);
                         replier_->send_reply(&reply, req->info);
                     }
                     break;
@@ -1138,14 +1133,13 @@ private:
                 {
                     try
                     {
-                        int32_t result = implementation_->addition(
-                            *req,
-                            req->request.addition->value1,
-                            req->request.addition->value2);
                         ReplyType reply{};
                         reply.addition = calculator_example::detail::Calculator_addition_Result{};
                         reply.addition->result = calculator_example::detail::Calculator_addition_Out{};
-                        reply.addition->result->return_ = result;
+                        reply.addition->result->return_ = implementation_->addition(
+                            *req,
+                            req->request.addition->value1,
+                            req->request.addition->value2);
                         replier_->send_reply(&reply, req->info);
                     }
                     catch (const calculator_example::OverflowException& ex)
@@ -1162,14 +1156,13 @@ private:
                 {
                     try
                     {
-                        int32_t result = implementation_->subtraction(
-                            *req,
-                            req->request.subtraction->value1,
-                            req->request.subtraction->value2);
                         ReplyType reply{};
                         reply.subtraction = calculator_example::detail::Calculator_subtraction_Result{};
                         reply.subtraction->result = calculator_example::detail::Calculator_subtraction_Out{};
-                        reply.subtraction->result->return_ = result;
+                        reply.subtraction->result->return_ = implementation_->subtraction(
+                            *req,
+                            req->request.subtraction->value1,
+                            req->request.subtraction->value2);
                         replier_->send_reply(&reply, req->info);
                     }
                     catch (const calculator_example::OverflowException& ex)
@@ -1218,13 +1211,12 @@ private:
                 {
                     try
                     {
-                        int32_t result = implementation_->sum_all(
-                            *req,
-                            *(req->sum_all_feeds.value));
                         ReplyType reply{};
                         reply.sum_all = calculator_example::detail::Calculator_sum_all_Result{};
                         reply.sum_all->result = calculator_example::detail::Calculator_sum_all_Out{};
-                        reply.sum_all->result->return_ = result;
+                        reply.sum_all->result->return_ = implementation_->sum_all(
+                            *req,
+                            *(req->sum_all_feeds.value));
                         replier_->send_reply(&reply, req->info);
                     }
                     catch (const calculator_example::OverflowException& ex)

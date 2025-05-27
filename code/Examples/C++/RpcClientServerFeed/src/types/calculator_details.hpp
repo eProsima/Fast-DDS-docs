@@ -39,15 +39,10 @@ namespace calculator_example {
     };
 
 
-    struct Calculator_representation_limits_Out
-    {
-        int32_t min_value;
-        int32_t max_value;
-    };
 
     struct Calculator_representation_limits_Result
     {
-        eprosima::fastcdr::optional<Calculator_representation_limits_Out> result;
+        eprosima::fastcdr::optional<calculator_example::detail::Calculator_representation_limits_Out> result;
     };
 
     //}  // representation_limits
@@ -68,7 +63,7 @@ namespace calculator_example {
 
     struct Calculator_addition_Result
     {
-        eprosima::fastcdr::optional<Calculator_addition_Out> result;
+        eprosima::fastcdr::optional<calculator_example::detail::Calculator_addition_Out> result;
         eprosima::fastcdr::optional<calculator_example::OverflowException> calculator_example_OverflowException_ex;
     };
 
@@ -90,7 +85,7 @@ namespace calculator_example {
 
     struct Calculator_subtraction_Result
     {
-        eprosima::fastcdr::optional<Calculator_subtraction_Out> result;
+        eprosima::fastcdr::optional<calculator_example::detail::Calculator_subtraction_Out> result;
         eprosima::fastcdr::optional<calculator_example::OverflowException> calculator_example_OverflowException_ex;
     };
 
@@ -112,7 +107,7 @@ namespace calculator_example {
 
     struct Calculator_fibonacci_seq_Result
     {
-        eprosima::fastcdr::optional<Calculator_fibonacci_seq_Out> result;
+        eprosima::fastcdr::optional<calculator_example::detail::Calculator_fibonacci_seq_Out> result;
         eprosima::fastcdr::optional<calculator_example::OverflowException> calculator_example_OverflowException_ex;
     };
 
@@ -137,7 +132,7 @@ namespace calculator_example {
 
     struct Calculator_sum_all_Result
     {
-        eprosima::fastcdr::optional<Calculator_sum_all_Out> result;
+        eprosima::fastcdr::optional<calculator_example::detail::Calculator_sum_all_Out> result;
         eprosima::fastcdr::optional<calculator_example::OverflowException> calculator_example_OverflowException_ex;
     };
 
@@ -163,7 +158,7 @@ namespace calculator_example {
 
     struct Calculator_accumulator_Result
     {
-        eprosima::fastcdr::optional<Calculator_accumulator_Out> result;
+        eprosima::fastcdr::optional<calculator_example::detail::Calculator_accumulator_Out> result;
         eprosima::fastcdr::optional<calculator_example::OverflowException> calculator_example_OverflowException_ex;
     };
 
@@ -190,7 +185,7 @@ namespace calculator_example {
 
     struct Calculator_filter_Result
     {
-        eprosima::fastcdr::optional<Calculator_filter_Out> result;
+        eprosima::fastcdr::optional<calculator_example::detail::Calculator_filter_Out> result;
     };
 
     //}  // filter

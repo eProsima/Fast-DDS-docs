@@ -29,15 +29,16 @@ struct ServerImplementation :
     public calculator_example::CalculatorServerImplementation
 {
 
-    void representation_limits(
-            const calculator_example::CalculatorServer_ClientContext& info,
-            /*out*/ int32_t& min_value,
-            /*out*/ int32_t& max_value) override
+    calculator_example::detail::Calculator_representation_limits_Out representation_limits(
+            const calculator_example::CalculatorServer_ClientContext& info) override
     {
         static_cast<void>(info);
 
-        min_value = std::numeric_limits<int32_t>::min();
-        max_value = std::numeric_limits<int32_t>::max();
+        calculator_example::detail::Calculator_representation_limits_Out limits;
+        limits.min_value = std::numeric_limits<int32_t>::min();
+        limits.max_value = std::numeric_limits<int32_t>::max();
+
+        return limits;
     }
 
     int32_t addition(

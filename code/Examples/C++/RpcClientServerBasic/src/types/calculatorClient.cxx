@@ -333,14 +333,11 @@ private:
 
 public:
 
-    eprosima::fastdds::dds::rpc::RpcFuture<void> representation_limits(
-            /*out*/ int32_t& min_value,
-            /*out*/ int32_t& max_value) override
+    eprosima::fastdds::dds::rpc::RpcFuture<calculator_example::detail::Calculator_representation_limits_Out> representation_limits(
+) override
     {
         // Create a promise to hold the result
         auto result = std::make_shared<representation_limits_promise>();
-        result->min_value = &min_value;
-        result->max_value = &max_value;
 
         // Create and send the request
         RequestType request;
@@ -352,9 +349,7 @@ private:
 
     struct representation_limits_promise : public IReplyProcessor
     {
-        std::promise<void> promise;
-        int32_t* min_value = nullptr;
-        int32_t* max_value = nullptr;
+        std::promise<calculator_example::detail::Calculator_representation_limits_Out> promise;
 
         void process_reply(
                 const ReplyType& reply,
@@ -385,9 +380,7 @@ private:
                 if (result.result.has_value())
                 {
                     const auto& out = result.result.value();
-                    *min_value = out.min_value;
-                    *max_value = out.max_value;
-                    promise.set_value();
+                    promise.set_value(out);
                     return;
                 }
             }
@@ -412,6 +405,7 @@ public:
     {
         // Create a promise to hold the result
         auto result = std::make_shared<addition_promise>();
+
         // Create and send the request
         RequestType request;
         request.addition = calculator_example::detail::Calculator_addition_In{};
@@ -426,6 +420,7 @@ private:
     struct addition_promise : public IReplyProcessor
     {
         std::promise<int32_t> promise;
+
         void process_reply(
                 const ReplyType& reply,
                 const frpc::RequestInfo& req_info,
@@ -486,6 +481,7 @@ public:
     {
         // Create a promise to hold the result
         auto result = std::make_shared<subtraction_promise>();
+
         // Create and send the request
         RequestType request;
         request.subtraction = calculator_example::detail::Calculator_subtraction_In{};
@@ -500,6 +496,7 @@ private:
     struct subtraction_promise : public IReplyProcessor
     {
         std::promise<int32_t> promise;
+
         void process_reply(
                 const ReplyType& reply,
                 const frpc::RequestInfo& req_info,

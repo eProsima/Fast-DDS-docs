@@ -34,6 +34,7 @@
 #include "types/calculatorClient.hpp"
 
 using namespace calculator_example;
+using namespace calculator_example::detail;
 using namespace eprosima::fastdds::dds;
 using namespace eprosima::fastdds::dds::rpc;
 
@@ -83,7 +84,7 @@ public:
         // Send the request to the server and wait for the reply
         if (auto client = client_.lock())
         {
-            RpcFuture<void> future = client->representation_limits(min_value_, max_value_);
+            RpcFuture<Calculator_representation_limits_Out> future = client->representation_limits();
 
             if (future.wait_for(std::chrono::milliseconds(1000)) != std::future_status::ready)
             {
@@ -94,12 +95,12 @@ public:
 
             try
             {
-                future.get();
+                out_param_values_ = future.get();
 
                 // Print the results
                 std::cout <<
-                        "Representation limits received: min_value = " << min_value_
-                        << ", max_value = " << max_value_ << std::endl;
+                        "Representation limits received: min_value = " << out_param_values_.min_value
+                        << ", max_value = " << out_param_values_.max_value << std::endl;
 
                 return OperationStatus::SUCCESS;
             }
@@ -118,8 +119,7 @@ public:
 
 protected:
 
-    std::int32_t min_value_;
-    std::int32_t max_value_;
+    Calculator_representation_limits_Out out_param_values_;
     std::weak_ptr<Calculator> client_;
 
 };

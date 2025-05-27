@@ -61,10 +61,8 @@ struct CalculatorServer_IServerImplementation
 {
     virtual ~CalculatorServer_IServerImplementation() = default;
 
-    virtual void representation_limits(
-            const CalculatorServer_ClientContext& info,
-            /*out*/ int32_t& min_value,
-            /*out*/ int32_t& max_value) = 0;
+    virtual calculator_example::detail::Calculator_representation_limits_Out representation_limits(
+            const CalculatorServer_ClientContext& info) = 0;
 
 
 

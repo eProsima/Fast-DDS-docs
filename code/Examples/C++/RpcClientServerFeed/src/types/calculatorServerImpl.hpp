@@ -33,14 +33,10 @@ struct CalculatorServerImplementation :
     public CalculatorServer_IServerImplementation
 {
 
-    void representation_limits(
-            const CalculatorServer_ClientContext& info,
-            /*out*/ int32_t& min_value,
-            /*out*/ int32_t& max_value) override
+    calculator_example::detail::Calculator_representation_limits_Out representation_limits(
+            const CalculatorServer_ClientContext& info) override
     {
         static_cast<void>(info);
-        static_cast<void>(min_value);
-        static_cast<void>(max_value);
         throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'representation_limits' is not implemented");
     }
 

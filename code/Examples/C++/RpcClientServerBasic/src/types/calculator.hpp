@@ -115,6 +115,13 @@ private:
 
 };
 
+
+namespace detail {
+
+struct Calculator_representation_limits_Out;
+
+}
+
 /*!
  * @brief This class represents the interface Calculator defined by the user in the IDL file.
  * @ingroup calculator
@@ -124,19 +131,32 @@ class eProsima_user_DllExport Calculator
 public:
     virtual ~Calculator() = default;
 
-    virtual eprosima::fastdds::dds::rpc::RpcFuture<void> representation_limits(
-            /*out*/ int32_t& min_value,
-            /*out*/ int32_t& max_value) = 0;
+
+    virtual eprosima::fastdds::dds::rpc::RpcFuture<calculator_example::detail::Calculator_representation_limits_Out> representation_limits(
+    ) = 0;
+
 
     virtual eprosima::fastdds::dds::rpc::RpcFuture<int32_t> addition(
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) = 0;
+
 
     virtual eprosima::fastdds::dds::rpc::RpcFuture<int32_t> subtraction(
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) = 0;
 
 };
+
+namespace detail {
+
+struct Calculator_representation_limits_Out
+{
+    int32_t min_value;
+    int32_t max_value;
+};
+
+
+}
 
 } // namespace calculator_example
 

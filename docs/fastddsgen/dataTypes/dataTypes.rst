@@ -373,8 +373,6 @@ If *Fast DDS-Gen* does not find a C/C++ preprocessor in default system paths, th
 using parameter ``-ppPath``.
 The parameter ``-ppDisable`` can be used to disable the usage of the C/C++ preprocessor.
 
-<<<<<<< HEAD
-=======
 The parameter ``-extrastg`` can also be used to apply custom templates to included IDL files.
 To enable this feature, the output file name passed to ``-extrastg`` must include the character ``@``, which will be
 replaced by the name of the included file to generate the output file.
@@ -391,7 +389,6 @@ Where ``IncludedIDL.idl`` is included in ``MainIDL.idl`` file.
     <path/to/Fast DDS-Gen>/scripts/fastddsgen MainIDL.idl -I <path/to/idls> -extrastg <path/to/template>/Custom.stg @_Custom.cpp
 
 Check :ref:`fastddsgen_supported_options` for more information about the ``-extrastg`` option.
->>>>>>> bf0dfe6 (Docs - Apply custom templates to included IDL files (#1066))
 
 Annotations
 --------------

@@ -42,9 +42,11 @@ else()
 endif()
 
 ####################################################################################################
-# Compile getting started tutorial
+# Compile examples
 ####################################################################################################
 add_subdirectory(Examples/C++/DDSHelloWorld)
+add_subdirectory(Examples/C++/RpcClientServerBasic)
+add_subdirectory(Examples/C++/RpcClientServerFeed)
 
 ####################################################################################################
 # Compile test applications
@@ -98,6 +100,12 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/StaticTester.xml
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
     ${CMAKE_CURRENT_BINARY_DIR}/helloworld_test.py COPYONLY)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_basic_test.py
+${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_basic_test.py COPYONLY)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_feed_test.py
+${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_feed_test.py COPYONLY)
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grep.py
     ${CMAKE_CURRENT_BINARY_DIR}/grep.py COPYONLY)
 
@@ -132,7 +140,7 @@ add_test(NAME xml.fastdds_permissions_test
 # Check validity of Static discovery XML file
 add_test(NAME xml.static_discovery COMMAND dds-doctest StaticTester.xml)
 
-# Check that the helloworld example runs as expected
+# Check that the helloworld and RPC calculator examples run as expected
 find_package(Python3 COMPONENTS Interpreter Development)
 if(${Python3_FOUND} AND (${Python3_VERSION} VERSION_GREATER "3.6"))
     add_test(NAME helloworld COMMAND ${Python3_EXECUTABLE} helloworld_test.py)
@@ -140,6 +148,18 @@ if(${Python3_FOUND} AND (${Python3_VERSION} VERSION_GREATER "3.6"))
         APPEND PROPERTY ENVIRONMENT "HELLOWORLD_PUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldPublisher>")
     set_property(TEST helloworld
         APPEND PROPERTY ENVIRONMENT "HELLOWORLD_SUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldSubscriber>")
+
+    add_test(NAME calculator_basic COMMAND ${Python3_EXECUTABLE} rpc_calculator_basic_test.py)
+    set_property(TEST calculator_basic
+        APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:basic_client>")
+    set_property(TEST calculator_basic
+        APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:basic_server>")
+
+    add_test(NAME calculator_feed COMMAND ${Python3_EXECUTABLE} rpc_calculator_feed_test.py)
+    set_property(TEST calculator_feed
+        APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:feed_client>")
+    set_property(TEST calculator_feed
+        APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:feed_server>")
 endif()
 
 # Check docs style

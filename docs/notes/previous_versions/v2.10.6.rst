@@ -1,0 +1,27 @@
+Version 2.10.6
+^^^^^^^^^^^^^^
+
+This release includes the following **fixes**:
+
+#. Remove double ``//`` in some installation paths
+#. Discard changes with big key-only payload and no key hash
+#. Fix DataReaderHistory regression
+#. Be less strict with parameter lengths
+#. Check if ``SHM`` transport is disabled in ``LARGE_DATA`` modes
+#. Fix issues in Dynamic Network Interfaces
+
+This release includes the following **improvements**:
+
+#. Add references to new nightly jobs per supported branch in README
+#. Update commercial support section in README
+#. Modify help command of XML CLI tool
+
+
+Github CI management:
+
+#. Allow running CI on external contributions
+
+.. note::
+  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
+  files using *fastddsgen*.
+  If you are upgrading from any older version, regenerating the code is *highly recommended*.

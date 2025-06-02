@@ -28,7 +28,7 @@ This release includes the following **fixes**:
 #. Fix cleanup race condition with exclusive and shared lock files
 #. Fix TCP discovery server locators translation
 #. Use correct algorithm strings on ``PermissionsToken`` and ``IdentityToken``
-#. Fix tsan potential deadlock between ``StatefulWriter`` and ``FlowController``
+#. Fix potential deadlock between ``StatefulWriter`` and ``FlowController``
 #. Fix log category name macro collision in ``MacOS``
 #. Unacknowledged sample removed in KeepAll mode
 #. Fix assertion on ``OutputTrafficManager``

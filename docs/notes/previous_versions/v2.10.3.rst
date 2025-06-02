@@ -1,5 +1,5 @@
-Version 2.10.3
-^^^^^^^^^^^^^^
+Version 2.10.3 (EOL)
+^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **features** in an ABI compatible manner:
 

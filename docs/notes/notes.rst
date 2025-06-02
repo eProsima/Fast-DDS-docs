@@ -5,8 +5,8 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.10.7
-==============
+Version 2.10.7 (EOL)
+====================
 
 This release includes the following **fixes**:
 

@@ -1,5 +1,5 @@
-Version 2.10.2
-^^^^^^^^^^^^^^
+Version 2.10.2 (EOL)
+^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **bugfixes**:
 

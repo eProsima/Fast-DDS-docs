@@ -1,5 +1,5 @@
-Version 2.10.0
-^^^^^^^^^^^^^^
+Version 2.10.0 (EOL)
+^^^^^^^^^^^^^^^^^^^^
 
 This minor release includes several new features, improvements and bugfixes.
 

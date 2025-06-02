@@ -5,28 +5,52 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.10.6
-==============
+Version 2.10.7 (EOL)
+====================
 
 This release includes the following **fixes**:
 
-#. Remove double ``//`` in some installation paths
-#. Discard changes with big key-only payload and no key hash
-#. Fix DataReaderHistory regression
-#. Be less strict with parameter lengths
-#. Check if ``SHM`` transport is disabled in ``LARGE_DATA`` modes
-#. Fix issues in Dynamic Network Interfaces
+#. Fix `CVE-2025-24807 <https://www.cve.org/CVERecord?id=CVE-2025-24807>`_
+#. Release ``participant_stateless`` secure builtin writer history change when authentication has finished
+#. Improve ``OpenSSL`` lifecycle handling
+#. Fix comparison in ``is_update_allowed``
+#. Arithmetic overflow in fragment size calculations
+#. Fix ``-Werror=template-id-cdtor``
+#. Fix double-locking issue in ``DataSharingListener``
+#. Improve ``PDPClient`` initialization
+#. Fix unique network flows with TCP transports
+#. Decouple transport receivers creation using unique network flows
+#. Fix EDP reliability timings
+#. Fix ``several_writers_on_unack_sample_removed`` flaky test
+#. Reliable volatile change dropped when all history acked
+#. Create initial connection for TCP initial peers
+#. Filter interested readers on PDP writer
+#. Fix cleanup race condition with exclusive and shared lock files
+#. Fix TCP discovery server locators translation
+#. Use correct algorithm strings on ``PermissionsToken`` and ``IdentityToken``
+#. Fix potential deadlock between ``StatefulWriter`` and ``FlowController``
+#. Fix log category name macro collision in ``MacOS``
+#. Unacknowledged sample removed in KeepAll mode
+#. Fix assertion on ``OutputTrafficManager``
 
 This release includes the following **improvements**:
 
-#. Add references to new nightly jobs per supported branch in README
-#. Update commercial support section in README
-#. Modify help command of XML CLI tool
-
+#. Log any errors before ``cancel_init``
+#. Improve ``max_allocations`` calculation on SHM transport
+#. New property to select preferred key agreement algorithm
+#. Update reception timestamp when it is added to the instance
+#. Improve Blackbox TCP tests suite
+#. Handle socket buffer size setting when system's maximum exceeded
+#. Address some compilation warnings with GCC latest
+#. Refactor builtin writers & readers creation
+#. Update sqlite from 3.36.0 to 3.47.2
+#. Regenerate code with Fast DDS Gen v2.5.3
 
 Github CI management:
 
-#. Allow running CI on external contributions
+#. Force Asio thirdparty in MacOS CI
+#. Get correct Fast CDR related branch in CI
+#. Update submodules when cloning Fast DDS on CI
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
@@ -36,6 +60,7 @@ Github CI management:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.10.6.rst
 .. include:: previous_versions/v2.10.5.rst
 .. include:: previous_versions/v2.10.4.rst
 .. include:: previous_versions/v2.10.3.rst

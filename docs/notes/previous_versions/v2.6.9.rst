@@ -1,5 +1,5 @@
-Version 2.6.9 (maintenance)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Version 2.6.9
+^^^^^^^^^^^^^
 
 .. important::
   According to our

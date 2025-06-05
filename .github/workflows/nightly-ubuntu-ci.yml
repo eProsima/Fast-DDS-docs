@@ -20,34 +20,6 @@ jobs:
       run-tests: true
       use-ccache: false
 
-  nightly-ubuntu-ci-3_1_x:
-    uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@3.1.x
-    with:
-      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
-      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
-      os-version: 'ubuntu-24.04'
-      label: 'nightly-ubuntu-ci-3.1.x'
-      fastdds-docs-branch: '3.1.x'
-      fastdds-branch: '3.1.x'
-      fastdds-python-branch: '2.1.x'
-      run-build: true
-      run-tests: true
-      use-ccache: false
-
-  nightly-ubuntu-ci-3_0_x:
-    uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@3.0.x
-    with:
-      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
-      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
-      os-version: 'ubuntu-24.04'
-      label: 'nightly-ubuntu-ci-3.0.x'
-      fastdds-docs-branch: '3.0.x'
-      fastdds-branch: '3.0.x'
-      fastdds-python-branch: '2.0.x'
-      run-build: true
-      run-tests: true
-      use-ccache: false
-
   nightly-ubuntu-ci-2_14_x:
     uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@2.14.x
     with:
@@ -58,20 +30,6 @@ jobs:
       fastdds-docs-branch: '2.14.x'
       fastdds-branch: '2.14.x'
       fastdds-python-branch: '1.4.x'
-      run-build: true
-      run-tests: true
-      use-ccache: false
-
-  nightly-ubuntu-ci-2_10_x:
-    uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@2.10.x
-    with:
-      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
-      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
-      os-version: 'ubuntu-22.04'
-      label: '-nightly-ubuntu-ci-2.10.x'
-      fastdds-docs-branch: '2.10.x'
-      fastdds-branch: '2.10.x'
-      fastdds-python-branch: '1.2.x'
       run-build: true
       run-tests: true
       use-ccache: false

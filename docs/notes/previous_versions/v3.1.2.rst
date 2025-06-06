@@ -1,5 +1,5 @@
-`Version 3.1.2 (latest) <https://fast-dds.docs.eprosima.com/en/v3.1.2/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 3.1.2 (EOL) <https://fast-dds.docs.eprosima.com/en/v3.1.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **fixes**:
 

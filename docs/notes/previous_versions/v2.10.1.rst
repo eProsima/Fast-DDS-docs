@@ -1,5 +1,6 @@
-`Version 2.10.1 <https://fast-dds.docs.eprosima.com/en/v2.10.1/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 2.10.1 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.10.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 This release includes the following **feature** in an ABI compatible way:
 

@@ -3285,6 +3285,93 @@ void dds_dataWriter_examples()
             //!
         }
     }
+
+    {
+        //DDS_DATAWRITER_SAMPLE_PREFILTER
+        struct CustomUserWriteData : public eprosima::fastdds::rtps::WriteParams::UserWriteData
+        {
+            CustomUserWriteData(
+                    const eprosima::fastdds::rtps::GuidPrefix_t& prefix)
+                : filtered_out_prefix(prefix)
+            {
+            }
+
+            eprosima::fastdds::rtps::GuidPrefix_t filtered_out_prefix;
+        };
+
+        struct CustomPreFilter : public eprosima::fastdds::dds::IContentFilter
+        {
+            // Custom evaluation
+            bool evaluate(
+                    const SerializedPayload& payload,
+                    const FilterSampleInfo& filter_sample_info,
+                    const eprosima::fastdds::rtps::GUID_t& reader_guid) const override
+            {
+                bool sample_should_be_sent = true;
+
+                auto custom_write_data =
+                        std::static_pointer_cast<CustomUserWriteData>(
+                            filter_sample_info.user_write_data);
+
+                // If the reader is the one to filter out, do not send the sample
+                if (custom_write_data->filtered_out_prefix == reader_guid.guidPrefix)
+                {
+                    sample_should_be_sent = false;
+                }
+                return sample_should_be_sent;
+            }
+
+        };
+
+        // Create a DataWriter
+        DataWriter* data_writer =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr == data_writer)
+        {
+            // Error
+            return;
+        }
+
+        // Set a prefilter on the filtered reader
+        eprosima::fastdds::dds::ReturnCode_t ret = data_writer->set_sample_prefilter(
+                    std::make_shared<CustomPreFilter>());
+
+        if (ret != eprosima::fastdds::dds::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a custom user write data
+        eprosima::fastdds::rtps::GuidPrefix_t filtered_out_prefix;
+        filtered_out_prefix.value[0] = 0x01; // Example prefix to filter out
+        filtered_out_prefix.value[1] = eprosima::fastdds::rtps::octet(0x73);
+        filtered_out_prefix.value[2] = eprosima::fastdds::rtps::octet(0x71);
+        filtered_out_prefix.value[3] = eprosima::fastdds::rtps::octet(0x85);
+        filtered_out_prefix.value[4] = eprosima::fastdds::rtps::octet(0x69);
+        filtered_out_prefix.value[5] = eprosima::fastdds::rtps::octet(0x76);
+        filtered_out_prefix.value[6] = eprosima::fastdds::rtps::octet(0x95);
+        filtered_out_prefix.value[7] = eprosima::fastdds::rtps::octet(0x66);
+        filtered_out_prefix.value[8] = eprosima::fastdds::rtps::octet(0x65);
+        filtered_out_prefix.value[9] = eprosima::fastdds::rtps::octet(0x82);
+        filtered_out_prefix.value[10] = eprosima::fastdds::rtps::octet(0x82);
+        filtered_out_prefix.value[11] = eprosima::fastdds::rtps::octet(0x79);
+
+        std::shared_ptr<CustomUserWriteData> custom_write_data =
+                std::make_shared<CustomUserWriteData>(filtered_out_prefix);
+
+        // Set the custom user write data
+        eprosima::fastdds::rtps::WriteParams write_params;
+        write_params.user_write_data(custom_write_data);
+
+        HelloWorld sample;     //Auto-generated container class for topic data from Fast DDS-Gen
+        sample.msg("Hello there!");     // Add contents to the message
+
+        // Write a sample with the custom user write data
+        data_writer->write(&sample, write_params);
+
+        //!--
+    }
 }
 
 //DDS_SUBSCRIBER_LISTENER_SPECIALIZATION

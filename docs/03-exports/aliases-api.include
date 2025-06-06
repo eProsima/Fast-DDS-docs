@@ -88,6 +88,7 @@
 .. |DataWriter::register_instance_w_timestamp| replace:: :cpp:func:`DataWriter::register_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp>`
 .. |DataWriter::unregister_instance_w_timestamp| replace:: :cpp:func:`DataWriter::unregister_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp>`
 .. |DataWriter::dispose_w_timestamp| replace:: :cpp:func:`DataWriter::dispose_w_timestamp()<eprosima::fastdds::dds::DataWriter::dispose_w_timestamp>`
+.. |DataWriter::set_sample_prefilter| replace:: :cpp:func:`DataWriter::set_sample_prefilter()<eprosima::fastdds::dds::DataWriter::set_sample_prefilter>`
 
 .. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
 
@@ -238,6 +239,8 @@
 
 .. |IContentFilter-api| replace:: :cpp:class:`IContentFilter<eprosima::fastdds::dds::IContentFilter>`
 .. |IContentFilter::evaluate-api| replace:: :cpp:func:`evaluate()<eprosima::fastdds::dds::IContentFilter::evaluate>`
+.. |FilteredSampleInfo-api| replace:: :cpp:class:`FilteredSampleInfo<eprosima::fastdds::dds::IContentFilter::FilteredSampleInfo>`
+.. |FilteredSampleInfo::user_write_data-api| replace:: :cpp:member:`user_write_data<eprosima::fastdds::dds::IContentFilter::FilteredSampleInfo::user_write_data>`
 .. |IContentFilterFactory-api| replace:: :cpp:class:`IContentFilterFactory<eprosima::fastdds::dds::IContentFilterFactory>`
 .. |IContentFilterFactory::create_content_filter-api| replace:: :cpp:func:`create_content_filter()<eprosima::fastdds::dds::IContentFilterFactory::create_content_filter>`
 .. |IContentFilterFactory::delete_content_filter-api| replace:: :cpp:func:`delete_content_filter()<eprosima::fastdds::dds::IContentFilterFactory::delete_content_filter>`
@@ -1122,6 +1125,7 @@
 .. |WriteParams-api| replace:: :cpp:class:`WriteParams <eprosima::fastdds::rtps::WriteParams>`
 .. |WriteParams-sample_identity-api| replace:: :cpp:func:`sample_identity() <eprosima::fastdds::rtps::WriteParams::sample_identity>`
 .. |WriteParams-related_sample_identity-api| replace:: :cpp:func:`related_sample_identity() <eprosima::fastdds::rtps::WriteParams::related_sample_identity>`
+.. |WriteParams-user_write_data-api| replace:: :cpp:func:`user_write_data() <eprosima::fastdds::rtps::WriteParams::user_write_data>`
 
 .. |ThreadSettings::scheduling_policy-api| replace:: :cpp:member:`scheduling_policy<eprosima::fastdds::rtps::ThreadSettings::scheduling_policy>`
 .. |ThreadSettings::priority-api| replace:: :cpp:member:`priority<eprosima::fastdds::rtps::ThreadSettings::priority>`

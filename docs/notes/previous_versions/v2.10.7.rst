@@ -1,5 +1,5 @@
-`Version 2.10.7 <https://fast-dds.docs.eprosima.com/en/v2.10.7/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 2.10.7 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.10.7/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **fixes**:
 

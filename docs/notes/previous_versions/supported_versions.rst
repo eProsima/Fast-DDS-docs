@@ -10,6 +10,7 @@ Version 2.14
 .. include:: v2.14.1.rst
 .. include:: v2.14.0.rst
 
+<<<<<<< HEAD
 Version 2.13
 ------------
 
@@ -30,6 +31,8 @@ Version 2.10
 .. include:: v2.10.1.rst
 .. include:: v2.10.0.rst
 
+=======
+>>>>>>> ed85538 (Add notes from 2.10.7 and move 2.10.x to EOL versions (#1082))
 Version 2.6 (maintenance)
 -------------------------
 

@@ -22,7 +22,7 @@ This release includes the following **fixes**:
 #. Fix cleanup race condition with exclusive and shared lock files
 #. Remove ``SHM`` option from discovery server example
 #. Fix ``several_writers_on_unack_sample_removed`` flaky test
-#. Avoid sending statistics msg with big msgs and no fragmentation
+#. Avoid sending statistics msg with big messages and no fragmentation
 #. Fix windows example tests in Debug and mitigate ``rtps`` example flakiness
 #. Address some compilation warnings with GCC latest
 #. Solve Discovery Server race conditions

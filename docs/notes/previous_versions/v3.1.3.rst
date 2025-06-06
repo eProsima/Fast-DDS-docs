@@ -1,0 +1,41 @@
+`Version 3.1.3 (EOL)  <https://fast-dds.docs.eprosima.com/en/v3.1.3/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+#. Support compiler ``MSYS2-MinGW``
+#. Improve ``max_allocations`` calculation on SHM transport
+#. Filter interested readers on ``PDP writer``
+#. Update types with ``Fast DDS Gen v4.0.4``
+#. Refactor builtin writers and readers creation
+#. Add modules support to ``idl_serialize``
+#. Improve DS routines
+
+This release includes the following **fixes**:
+
+#. Fix error handling logic in ``try_setting_buffer_size``
+#. Avoid redefinition warning for ``OPENSSL_API_COMPAT``
+#. Solve fuzz ``XMLParser Null-dereference``
+#. Remove repeated header include and Fix log
+#. Fix Security tag in ``DS CLI``
+#. Fix assertion on ``OutputTrafficManager``
+#. Fix cleanup race condition with exclusive and shared lock files
+#. Remove ``SHM`` option from discovery server example
+#. Fix ``several_writers_on_unack_sample_removed`` flaky test
+#. Avoid sending statistics msg with big msgs and no fragmentation
+#. Fix windows example tests in Debug and mitigate ``rtps`` example flakiness
+#. Address some compilation warnings with GCC latest
+#. Solve Discovery Server race conditions
+#. Fix ``oss-fuzz`` regressions
+#. Avoid Data Race in Reader Locator
+
+This release includes the following **ci improvements**:
+
+#. Get correct Fast CDR related branch in CI
+#. Force Asio ``Thirdparty`` in MacOS CI
+
+.. important::
+
+    When upgrading to version 3.1.3 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.3>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

@@ -4,6 +4,7 @@ Supported versions
 Version 3.1
 -----------
 
+.. include:: v3.1.3.rst
 .. include:: v3.1.2.rst
 .. include:: v3.1.1.rst
 .. include:: v3.1.0.rst

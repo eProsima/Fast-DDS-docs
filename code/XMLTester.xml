@@ -3277,7 +3277,7 @@
                     <properties>
                         <property>
                             <name>fastdds.type_propagation</name>
-                            <value>enable</value>
+                            <value>disabled</value>
                         </property>
                     </properties>
                 </propertiesPolicy>

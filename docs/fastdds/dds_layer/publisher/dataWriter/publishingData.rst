@@ -100,16 +100,11 @@ within |FilteredSampleInfo::user_write_data-api|.
 If the return value of |IContentFilter::evaluate-api| is ``false``, the sample will not be sent to the DataReader
 identified by its |Guid_t-api| in the method's input argument.
 
-Constraints
-^^^^^^^^^^^
+.. warning::
 
-The following constraints must be met when using the prefiltering mechanism:
-
-* The :ref:`dds_layer_topic_contentFilteredTopic_writer_restrictions` are fulfilled.
-
-* Prefiltering is currently incompatible with :ref:`datasharingqospolicy`.
-  Hence, ensure that the |DataSharingQosPolicy::kind-api| is set to ``OFF`` or
-  if ``AUTO`` is used, :ref:`constraints<datasharing-delivery-constraints>` are not met.
+    Prefiltering is currently incompatible with :ref:`datasharingqospolicy`.
+    Hence, ensure that the |DataSharingQosPolicy::kind-api| is set to ``OFF`` or
+    if ``AUTO`` is used, :ref:`constraints<datasharing-delivery-constraints>` are not met.
 
 Next is an example of how to use the prefiltering mechanism:
 

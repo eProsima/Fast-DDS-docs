@@ -99,6 +99,8 @@ the content of the sample (|SerializedPayload_t-api|) and/or the |WriteParams-us
 within |FilteredSampleInfo::user_write_data-api|.
 If the return value of |IContentFilter::evaluate-api| is ``false``, the sample will not be sent to the DataReader
 identified by its |Guid_t-api| in the method's input argument.
+It is strongly recommended that the |IContentFilter::evaluate-api| implementation does not perform any blocking
+operation neither use the DataWriter, as this may lead to deadlocks or undesired behavior.
 
 .. warning::
 

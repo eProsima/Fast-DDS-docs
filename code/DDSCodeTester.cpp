@@ -3307,6 +3307,9 @@ void dds_dataWriter_examples()
                     const FilterSampleInfo& filter_sample_info,
                     const eprosima::fastdds::rtps::GUID_t& reader_guid) const override
             {
+                static_cast<void>(payload);
+                static_cast<void>(filter_sample_info);
+
                 bool sample_should_be_sent = true;
 
                 auto custom_write_data =

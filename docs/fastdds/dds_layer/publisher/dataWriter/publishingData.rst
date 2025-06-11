@@ -89,7 +89,7 @@ Otherwise the DataWriter may run out of samples.
 Prefiltering out DataReaders
 ----------------------------
 
-User can use an overloaded of the |DataWriter::write-api| providing a |WriteParams-api| structure.
+The user can use an overload of the |DataWriter::write-api| method that allows providing a |WriteParams-api| structure.
 One of the members of this latter structure is the |WriteParams-user_write_data-api| in which the user
 can store extra information to be used by the prefiltering mechanism.
 
@@ -99,8 +99,8 @@ the content of the sample (|SerializedPayload_t-api|) and/or the |WriteParams-us
 within |FilteredSampleInfo::user_write_data-api|.
 If the return value of |IContentFilter::evaluate-api| is ``false``, the sample will not be sent to the DataReader
 identified by its |Guid_t-api| in the method's input argument.
-It is strongly recommended that the |IContentFilter::evaluate-api| implementation does not perform any blocking
-operation neither use the DataWriter, as this may lead to deadlocks or undesired behavior.
+It is strongly recommended that the |IContentFilter::evaluate-api| implementation neither performs any blocking
+operation nor uses the DataWriter, as this may lead to deadlocks or undesired behavior.
 
 .. warning::
 

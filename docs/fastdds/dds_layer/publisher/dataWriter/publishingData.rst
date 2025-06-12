@@ -83,3 +83,35 @@ Otherwise the DataWriter may run out of samples.
     :start-after: //DDS_DATAWRITER_LOAN_SAMPLES
     :end-before: //!
     :dedent: 8
+
+.. _dds_layer_publisher_prefiltering:
+
+Prefiltering out DataReaders
+----------------------------
+
+The user can use an overload of the |DataWriter::write-api| method that allows providing a |WriteParams-api| structure.
+One of the members of this latter structure is the |WriteParams-user_write_data-api| in which the user
+can store extra information to be used by the prefiltering mechanism.
+
+By implementing the |IContentFilter-api| and passing it to the DataWriter with |DataWriter::set_sample_prefilter|,
+user can prevent the DataWriter from sending samples to the matched DataReaders based on both:
+the content of the sample (|SerializedPayload_t-api|) and/or the |WriteParams-user_write_data-api|
+within |FilteredSampleInfo::user_write_data-api|.
+If the return value of |IContentFilter::evaluate-api| is ``false``, the sample will not be sent to the DataReader
+identified by its |Guid_t-api| in the method's input argument.
+It is strongly recommended that the |IContentFilter::evaluate-api| implementation neither performs any blocking
+operation nor uses the DataWriter, as this may lead to deadlocks or undesired behavior.
+
+.. warning::
+
+    Prefiltering is currently incompatible with :ref:`datasharingqospolicy`.
+    Hence, ensure that the |DataSharingQosPolicy::kind-api| is set to ``OFF`` or
+    if ``AUTO`` is used, :ref:`constraints<datasharing-delivery-constraints>` are not met.
+
+Next is an example of how to use the prefiltering mechanism:
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: c++
+    :start-after: //DDS_DATAWRITER_SAMPLE_PREFILTER
+    :end-before: //!
+    :dedent: 8

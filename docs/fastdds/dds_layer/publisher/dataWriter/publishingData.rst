@@ -90,13 +90,14 @@ Prefiltering out DataReaders
 ----------------------------
 
 The user can use an overload of the |DataWriter::write-api| method that allows providing a |WriteParams-api| structure.
-One of the members of this latter structure is the |WriteParams-user_write_data-api| in which the user
-can store extra information to be used by the prefiltering mechanism.
+One of the members of this latter structure is the |WriteParams-UserWriteData-api| in which the user
+can store extra information to be used by the prefiltering mechanism and it can be set using the
+|WriteParams-user_write_data-api|.
 
 By implementing the |IContentFilter-api| and passing it to the DataWriter with |DataWriter::set_sample_prefilter|,
-user can prevent the DataWriter from sending samples to the matched DataReaders based on both:
-the content of the sample (|SerializedPayload_t-api|) and/or the |WriteParams-user_write_data-api|
-within |FilteredSampleInfo::user_write_data-api|.
+user can prevent the DataWriter from sending samples to the matched DataReaders based on both
+the content of the sample (|SerializedPayload_t-api|) and/or the |FilteredSampleInfo::user_write_data-api| within
+|FilteredSampleInfo-api|.
 If the return value of |IContentFilter::evaluate-api| is ``false``, the sample will not be sent to the DataReader
 identified by its |Guid_t-api| in the method's input argument.
 It is strongly recommended that the |IContentFilter::evaluate-api| implementation neither performs any blocking

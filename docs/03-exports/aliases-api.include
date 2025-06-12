@@ -1126,6 +1126,7 @@
 .. |WriteParams-sample_identity-api| replace:: :cpp:func:`sample_identity() <eprosima::fastdds::rtps::WriteParams::sample_identity>`
 .. |WriteParams-related_sample_identity-api| replace:: :cpp:func:`related_sample_identity() <eprosima::fastdds::rtps::WriteParams::related_sample_identity>`
 .. |WriteParams-user_write_data-api| replace:: :cpp:func:`user_write_data() <eprosima::fastdds::rtps::WriteParams::user_write_data>`
+.. |WriteParams-UserWriteData-api| replace:: :cpp:struct:`UserWriteData <eprosima::fastdds::rtps::WriteParams::UserWriteData>`
 
 .. |ThreadSettings::scheduling_policy-api| replace:: :cpp:member:`scheduling_policy<eprosima::fastdds::rtps::ThreadSettings::scheduling_policy>`
 .. |ThreadSettings::priority-api| replace:: :cpp:member:`priority<eprosima::fastdds::rtps::ThreadSettings::priority>`

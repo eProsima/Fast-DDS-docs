@@ -16,3 +16,9 @@ how to define exceptions for its operations.
 
 .. include:: includes/interfaces.rst
 .. include:: includes/exceptions.rst
+
+.. toctree::
+   :maxdepth: 2
+
+   /fastddsgen/rpc_calculator_basic_app/intro
+   /fastddsgen/rpc_calculator_feed_app/intro

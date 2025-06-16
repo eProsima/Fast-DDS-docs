@@ -24,6 +24,7 @@ RPC over DDS
     /fastdds/api_reference/dds_pim/rpc/rpcoperationerror.rst
     /fastdds/api_reference/dds_pim/rpc/rpcremoteexception.rst
     /fastdds/api_reference/dds_pim/rpc/rpcrequest.rst
+    /fastdds/api_reference/dds_pim/rpc/rpcserver.rst
     /fastdds/api_reference/dds_pim/rpc/rpcserverreader.rst
     /fastdds/api_reference/dds_pim/rpc/rpcserverwriter.rst
     /fastdds/api_reference/dds_pim/rpc/rpcstatuscode.rst

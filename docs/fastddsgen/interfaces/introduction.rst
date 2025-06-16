@@ -22,3 +22,4 @@ and how to develop RPC Client/Server applications.
    /fastddsgen/interfaces/exceptions
    /fastddsgen/rpc_calculator_basic_app/intro
    /fastddsgen/rpc_calculator_feed_app/intro
+   /fastddsgen/rpc_server_schedule/intro

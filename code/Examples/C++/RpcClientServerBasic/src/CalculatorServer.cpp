@@ -136,7 +136,7 @@ public:
 //!--SERVER_PROTECTED_MEMBERS
 protected:
 
-    std::shared_ptr<CalculatorServer> server_;
+    std::shared_ptr<RpcServer> server_;
     DomainParticipant* participant_;
     std::string service_name_;
     std::atomic<bool> stop_;

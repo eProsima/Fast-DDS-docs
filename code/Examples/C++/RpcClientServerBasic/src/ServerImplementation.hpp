@@ -30,7 +30,7 @@ struct ServerImplementation :
 {
 
     calculator_example::detail::Calculator_representation_limits_Out representation_limits(
-            const calculator_example::CalculatorServer_ClientContext& info) override
+            const eprosima::fastdds::dds::rpc::RpcRequest& info) override
     {
         static_cast<void>(info);
 
@@ -42,7 +42,7 @@ struct ServerImplementation :
     }
 
     int32_t addition(
-            const calculator_example::CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) override
     {
@@ -62,7 +62,7 @@ struct ServerImplementation :
     }
 
     int32_t subtraction(
-            const calculator_example::CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) override
     {

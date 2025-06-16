@@ -2,8 +2,8 @@
 
 .. rst-class:: api-ref
 
-RpcException
-------------
+RpcServer
+---------
 
 .. doxygenclass:: eprosima::fastdds::dds::rpc::RpcServer
     :project: FastDDS

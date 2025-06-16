@@ -2,8 +2,8 @@
 
 .. rst-class:: api-ref
 
-RpcException
-------------
+RpcServerSchedulingStrategy
+---------------------------
 
 .. doxygenclass:: eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy
     :project: FastDDS

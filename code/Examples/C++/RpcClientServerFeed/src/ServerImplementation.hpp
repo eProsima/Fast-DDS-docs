@@ -30,7 +30,7 @@ struct ServerImplementation :
 {
 
     calculator_example::detail::Calculator_representation_limits_Out representation_limits(
-            const calculator_example::CalculatorServer_ClientContext& info) override
+            const eprosima::fastdds::dds::rpc::RpcRequest& info) override
     {
         static_cast<void>(info);
 
@@ -42,7 +42,7 @@ struct ServerImplementation :
     }
 
     int32_t addition(
-            const calculator_example::CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) override
     {
@@ -62,7 +62,7 @@ struct ServerImplementation :
     }
 
     int32_t subtraction(
-            const calculator_example::CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) override
     {
@@ -82,7 +82,7 @@ struct ServerImplementation :
     }
 
     void fibonacci_seq(
-            const calculator_example::CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ uint32_t n_results,
             /*result*/ eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>& result_writer) override
     {
@@ -109,7 +109,7 @@ struct ServerImplementation :
     }
 
     int32_t sum_all(
-            const calculator_example::CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>& value) override
     {
         static_cast<void>(info);
@@ -142,7 +142,7 @@ struct ServerImplementation :
     }
 
     void accumulator(
-            const calculator_example::CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>& value,
             /*result*/ eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>& result_writer) override
     {
@@ -175,7 +175,7 @@ struct ServerImplementation :
     }
 
     void filter(
-            const calculator_example::CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>& value,
             /*in*/ calculator_example::FilterKind filter_kind,
             /*result*/ eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>& result_writer) override

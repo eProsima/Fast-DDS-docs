@@ -13,7 +13,7 @@ into the ``CalculatorServer.cpp`` file.
 
 Additionally, create a ``ServerImplementation.hpp`` file with the implementation of the server-side operations:
 
-.. literalinclude:: /../code/Examples/C++/RpcClientServerBasic/src/ServerImplementation.hpp
+.. literalinclude:: /../code/Examples/C++/RpcClientServerFeed/src/ServerImplementation.hpp
    :language: cpp
 
 .. warning::

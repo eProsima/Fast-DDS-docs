@@ -139,10 +139,10 @@ calculatorServer
 """"""""""""""""
 
 Contains the ``CalculatorServerLogic`` class which implements the generic |RpcServer-api| interface, representing the public API of the server.
-User can run or a stop a server calling |RpcServer::run-api| or |RpcServer::stop-api| methods, respectively.
+User can run or stop a server calling |RpcServer::run-api| or |RpcServer::stop-api| methods, respectively.
 
 The generated class can be instantiated by the user calling ``create_CalculatorServer`` function.
-Two overloads of this funcion are created, allowing the user to :ref:`customize the scheduling <_fastddsgen_rpc_server_schedule_intro>` of the incoming requests.
+Two overloads of this funcion are created, allowing the user to :ref:`customize the scheduling <fastddsgen_rpc_server_schedule_intro>` of the incoming requests.
 
 calculatorServerImpl
 """"""""""""""""""""

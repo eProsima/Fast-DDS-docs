@@ -6,7 +6,8 @@
 Customizing RPC Server request scheduling
 =========================================
 
-When processing an interface inside an IDL file, *Fast DDS-Gen* generates two method overloads for the creation of a server.
+When processing an interface inside an IDL file, *Fast DDS-Gen* generates two method overloads for the creation of a
+server.
 
 The first overload creates a server with a request scheduling based on a thread pool.
 Each request will be processed in a separate thread.
@@ -17,9 +18,12 @@ This is done by creating a custom class implementing the |RpcServerSchedulingStr
 A shared pointer to the custom class is then passed in the ``scheduler`` argument of the method.
 
 Special care must be taken when implementing a custom scheduling strategy.
-Calls to |RpcServerSchedulingStrategy::schedule_request-api| will be performed from the thread executing the server's |RpcServer::run-api| method.
-This means that incoming messages will not be processed until the execution of |RpcServerSchedulingStrategy::schedule_request-api| finishes.
-This becomes particularly important for operations that have input feed parameters, since values for input feeds will not be processed while inside that method.
+Calls to |RpcServerSchedulingStrategy::schedule_request-api| will be performed from the thread executing the server's
+|RpcServer::run-api| method.
+This means that incoming messages will not be processed until the execution of
+|RpcServerSchedulingStrategy::schedule_request-api| finishes.
+This becomes particularly important for operations that have input feed parameters, since values for input feeds will
+not be processed while inside that method.
 
 Example
 """""""

@@ -8145,6 +8145,46 @@ void rpcdds_internal_api_examples()
     }
 }
 
+void rpcdds_custom_scheduling_examples()
+{
+    //!--RPC_CUSTOM_SCHEDULING_EXAMPLES
+    // A scheduling strategy where requests are processed in the same thread where they are received.
+    // Should not be used in servers with feed operations.
+    struct DirectRequestScheduling : public eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy
+    {
+        void schedule_request(
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcRequest>& request,
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer>& server) override
+        {
+            server->execute_request(request);
+        }
+
+        void server_stopped(
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer>& server) override
+        {
+            static_cast<void>(server);
+        }
+    };
+
+    // A scheduling strategy where each request is processed in a detached thread.
+    struct DetachedThreadRequestScheduling : public eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy
+    {
+        void schedule_request(
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcRequest>& request,
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer>& server) override
+        {
+            std::thread([server, request](){server->execute_request(request);}).detach();
+        }
+
+        void server_stopped(
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer>& server) override
+        {
+            static_cast<void>(server);
+        }
+    };
+    //!--
+}
+
 int main(
         int argc,
         const char** argv)

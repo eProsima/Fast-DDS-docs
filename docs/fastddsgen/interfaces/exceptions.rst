@@ -1,7 +1,7 @@
 .. _fastddsgen_interfaces_exceptions:
 
 Exceptions
-----------
+==========
 
 Exceptions are user-defined structures that can be raised by members of an interface.
 They are declared similarly to ``struct`` types; using the ``exception`` keyword,

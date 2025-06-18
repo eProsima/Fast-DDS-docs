@@ -1,7 +1,7 @@
 .. _fastddsgen_interfaces_definition:
 
 Defining an IDL interface
--------------------------
+=========================
 
 *eProsima Fast DDS-Gen* allows the generation of the code required by both the client and the server
 to use the *Fast DDS* Request-Reply internal API (see :ref:`request_reply_api_intro`),
@@ -10,7 +10,7 @@ The following subsections will describe how to define an IDL interface for simpl
 and data streaming.
 
 IDL specification overview
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 The `OMG IDL specification <https://www.omg.org/spec/IDL/4.2/PDF>`_ defines interfaces
 that client and server objects may use, for example, in the context of a *Remote Procedure Calls* communication
@@ -45,7 +45,7 @@ Interfaces can also be forward declared, for example :code:`interface MyInterfac
 .. _fastddsgen_interfaces_data_streaming:
 
 Defining data streaming operations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 *eProsima Fast DDS-Gen* allows to generate code for data streaming in each use case
 described in :ref:`rpc_data_streaming_intro`, using the ``@feed`` builtin annotation in operations:
@@ -67,7 +67,7 @@ with ``@feed`` annotations input parameters, return types or both, respectively.
 
 
 Example
-^^^^^^^
+-------
 
 The following example shows how to define an interfaces, addressing the cases described before:
 

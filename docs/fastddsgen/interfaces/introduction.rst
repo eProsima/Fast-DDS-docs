@@ -11,8 +11,15 @@ from an IDL file. The IDL file must contain the operation that can be called on 
 and the parameters that can be passed to them. These operations are specified using the concept of interfaces
 defined in the OMG IDL `specification <https://www.omg.org/spec/IDL/4.2/PDF>`_.
 
-The next subsections serves as a guide to how to define your own IDL interface and
-how to define exceptions for its operations.
+The next subsections serves as a guide to how to define your own IDL interface, how to define exceptions for its
+operations, and how to develop RPC Client/Server applications.
 
-.. include:: includes/interfaces.rst
-.. include:: includes/exceptions.rst
+
+.. toctree::
+   :maxdepth: 2
+
+   /fastddsgen/interfaces/interfaces
+   /fastddsgen/interfaces/exceptions
+   /fastddsgen/rpc_calculator_basic_app/intro
+   /fastddsgen/rpc_calculator_feed_app/intro
+   /fastddsgen/rpc_server_schedule/intro

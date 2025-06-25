@@ -30,17 +30,16 @@ For further information about the supported |DynamicTypes|, please, refer to :re
 * :ref:`xtypes_supportedtypes_sequence`
 * :ref:`xtypes_supportedtypes_union`
 * :ref:`xtypes_supportedtypes_enumeration`
-* :ref:`xtypes_annotations`
 * Arithmetic expressions
 * Union/struct forward declarations
+* Modules/scoped types
 
 The following types are currently not supported by the IDL parsing feature:
 
 * :ref:`xtypes_supportedtypes_bitmask`
 * :ref:`xtypes_supportedtypes_map`
 * :ref:`xtypes_supportedtypes_bitset`
-* :ref:`xtypes_builtin_annotations`
-* Module
+* :ref:`xtypes_annotations`
 * Inheritance
 * Member ID
 
@@ -51,6 +50,11 @@ Example
 |DynamicTypeBuilderFactory-api| using |DynamicTypeBuilderFactory::create_type_w_uri|.
 After getting the DynamicType, objects of |DynamicPubSubType-api| class might be instantiated and used to write/read
 data.
+
+.. warning::
+
+    |DynamicTypeBuilderFactory::create_type_w_uri| requires the fully qualified name of the
+    type defined in the IDL file. If no scope is provided, global scope is assumed.
 
 .. note::
 

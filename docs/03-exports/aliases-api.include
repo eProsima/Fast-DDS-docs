@@ -342,6 +342,7 @@
 .. |SampleInfo::valid_data-api| replace:: :cpp:member:`valid_data<eprosima::fastdds::dds::SampleInfo::valid_data>`
 .. |SampleInfo::sample_identity-api| replace:: :cpp:member:`sample_identity<eprosima::fastdds::dds::SampleInfo::sample_identity>`
 .. |SampleInfo::related_sample_identity-api| replace:: :cpp:member:`related_sample_identity<eprosima::fastdds::dds::SampleInfo::related_sample_identity>`
+.. |SampleInfo::has_more_replies-api| replace:: :cpp:member:`has_more_replies<eprosima::fastdds::dds::SampleInfo::has_more_replies>`
 
 .. |Entity-api| replace:: :cpp:class:`Entity<eprosima::fastdds::dds::Entity>`
 .. |Entity::get_instance_handle-api| replace:: :cpp:func:`get_instance_handle()<eprosima::fastdds::dds::Entity::get_instance_handle>`
@@ -1135,6 +1136,7 @@
 .. |WriteParams-api| replace:: :cpp:class:`WriteParams <eprosima::fastdds::rtps::WriteParams>`
 .. |WriteParams-sample_identity-api| replace:: :cpp:func:`sample_identity() <eprosima::fastdds::rtps::WriteParams::sample_identity>`
 .. |WriteParams-related_sample_identity-api| replace:: :cpp:func:`related_sample_identity() <eprosima::fastdds::rtps::WriteParams::related_sample_identity>`
+.. |WriteParams-has_more_replies-api| replace:: :cpp:func:`has_more_replies() <eprosima::fastdds::rtps::WriteParams::has_more_replies>`
 .. |WriteParams-user_write_data-api| replace:: :cpp:func:`user_write_data() <eprosima::fastdds::rtps::WriteParams::user_write_data>`
 .. |WriteParams-UserWriteData-api| replace:: :cpp:struct:`UserWriteData <eprosima::fastdds::rtps::WriteParams::UserWriteData>`
 

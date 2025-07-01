@@ -8045,6 +8045,10 @@ void rpcdds_internal_api_examples()
         if (expected_request_info.related_sample_identity == received_request_info.related_sample_identity)
         {
           // Received Reply sample is associated to the sent Request sample
+          if (received_request_info.has_more_replies)
+          {
+              // More replies for the same request will be received
+          }
         }
 
         // Delete created Requester
@@ -8125,9 +8129,20 @@ void rpcdds_internal_api_examples()
 
         // ... Process received data
 
-        // Send a Reply with the received related_sample_identity
+        // Send a Reply with the received related_sample_identity, indicating there will be more replies.
         void* reply_data = reply_type_support->create_data();
+        received_request_info.has_more_replies = true;
         ret = replier->send_reply(reply_data, received_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        // Send a Reply with the received related_sample_identity, indicating it is the last one.
+        void* reply_data_2 = reply_type_support->create_data();
+        received_request_info.has_more_replies = false;
+        ret = replier->send_reply(reply_data_2, received_request_info);
         if (RETCODE_OK != ret)
         {
             // Error

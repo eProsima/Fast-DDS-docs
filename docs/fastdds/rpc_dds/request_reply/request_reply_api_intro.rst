@@ -54,6 +54,9 @@ and a sequence number, and can be accessed through |SampleInfo::related_sample_i
 When a Replier takes a new received Request sample,
 it extracts the |SampleInfo::related_sample_identity-api| information
 and uses it to create a new |RequestInfo-api| which is then associated to the Reply sample.
+The Replier can use the |SampleInfo::has_more_replies-api| field to indicate that additional replies for the same
+request will be sent.
+The Requester can take special actions when that field is set.
 
 |RequestInfo-api| works like a way to match a Reply with a previously sent Request:
 when a Requester receives a Reply sample,

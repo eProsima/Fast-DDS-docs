@@ -32,7 +32,6 @@
 #include <fastdds/dds/xtypes/type_representation/ITypeObjectRegistry.hpp>
 #include <fastdds/dds/xtypes/type_representation/TypeObject.hpp>
 #include <fastdds/dds/xtypes/type_representation/TypeObjectUtils.hpp>
-
 #include "HelloWorld.hpp"
 
 
@@ -135,4 +134,3 @@ void register_HelloWorld_type_identifier(
         }
     }
 }
-

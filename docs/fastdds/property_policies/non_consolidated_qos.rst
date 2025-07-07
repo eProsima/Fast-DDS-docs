@@ -125,10 +125,10 @@ This is done by setting the following properties within the :ref:`propertypolicy
 
    * - PropertyPolicyQos name
      - PropertyPolicyQos value
-     - Default value without |br| ``FASTDDS_STATISTICS``
-     - Default value with |br| ``FASTDDS_STATISTICS``
+     - Default value without  ``FASTDDS_STATISTICS``
+     - Default value with  ``FASTDDS_STATISTICS``
    * - ``"fastdds.physical_data.host"``
-     - Name of the host computer in which |br| the application runs
+     - Name of the host computer in which  the application runs
      - Not set
      - ``""``
    * - ``"fastdds.physical_data.user"``
@@ -261,7 +261,7 @@ Currently there are two different exchange formats which can be selected using t
      - Standard exchange format for Static Discovery.
      - ✅
    * - ``"v1_Reduced"``
-     - Format which reduces the necessary network bandwidth to transmit Static |br|
+     - Format which reduces the necessary network bandwidth to transmit Static 
        Discovery's information in the Participant Discovery Phase (PDP).
      -
 
@@ -305,8 +305,8 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
      - Enable SHM transport unicast communications.
      -
    * - ``"all"``
-     - Enable SHM transport unicast and multicast communications. |br|
-       This will enable discovery between SHM only participants |br|
+     - Enable SHM transport unicast and multicast communications. 
+       This will enable discovery between SHM only participants 
        and participants having several transports.
      -
 

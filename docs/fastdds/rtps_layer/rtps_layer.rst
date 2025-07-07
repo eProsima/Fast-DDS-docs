@@ -143,14 +143,14 @@ instantiated.
 | Builtin Transports Options | Description                                                                  |
 +============================+==============================================================================+
 | ``NONE``                   | No transport will be instantiated. Hence, the user must manually add         |
-|                            | the desired |br| transports. Otherwise, the participant creation will fail.  |
+|                            | the desired  transports. Otherwise, the participant creation will fail.      |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULT``                | UDPv4 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULTv6``              | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``SHM``                    | Only a SHM transport will be instantiated.                                   |
@@ -160,9 +160,9 @@ instantiated.
 | ``UDPv6``                  | Only a UDPv6 transport will be instantiated.                                 |
 +----------------------------+------------------------------------------------------------------------------+
 | ``LARGE_DATA``             | UDPv4, TCPv4, and SHM transports will be instantiated. However, UDP will     |
-|                            | only be used |br| for multicast announcements during the participant         |
-|                            | discovery phase (see :ref:`disc_phases`) |br| while the participant          |
-|                            | liveliness and the application data delivery occurs over TCP or SHM. |br|    |
+|                            | only be used  for multicast announcements during the participant             |
+|                            | discovery phase (see :ref:`disc_phases`)  while the participant              |
+|                            | liveliness and the application data delivery occurs over TCP or SHM.         |
 |                            | This configuration is useful when working with large data.(See               |
 |                            | :ref:`use-case-tcp`).                                                        |
 +----------------------------+------------------------------------------------------------------------------+

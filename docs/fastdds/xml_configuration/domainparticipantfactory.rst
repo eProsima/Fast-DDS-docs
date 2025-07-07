@@ -26,12 +26,12 @@ The ``<domainparticipant_factory>`` element has two attributes defined: ``profil
      - Description
      - Use
    * - ``profile_name``
-     - Sets the name under which the ``<domainparticipant_factory>`` profile is registered in the |br|
-       DDS Domain, so that it can be loaded later by the |DomainParticipantFactory-api|, as shown in |br|
+     - Sets the name under which the ``<domainparticipant_factory>`` profile is registered in the 
+       DDS Domain, so that it can be loaded later by the |DomainParticipantFactory-api|, as shown in 
        :ref:`loadingapplyingprofiles`.
      - Mandatory
    * - ``is_default_profile``
-     - Sets the ``<domainparticipant_factory>`` profile as the default profile. Thus, if a default |br|
+     - Sets the ``<domainparticipant_factory>`` profile as the default profile. Thus, if a default 
        profile exists, it will be used when creating the DomainParticipantFactory
      - Optional
 
@@ -69,7 +69,7 @@ QoS element type
      - Entity factory QoS Policy.
      - :ref:`xml_entity_factory`
    * - ``<shm_watchdog_thread>``
-     - |ThreadSettings| for the SHM watchdog thread. |br|
+     - |ThreadSettings| for the SHM watchdog thread. 
        See :ref:`concurrency_multithreading`.
      - :ref:`ThreadSettingsType`
    * - ``<file_watch_threads>``

@@ -56,8 +56,8 @@ The following table describes the common data members for both UDPv4 and UDPv6.
    * - |SocketTransportDescriptor::interface_allowlist-api|
      - ``vector<pair<string, NetmaskFilterKind>>``
      - Empty vector
-     - List of allowed interfaces with |br|
-       netmask filter configuration. |br|
+     - List of allowed interfaces with 
+       netmask filter configuration.     
        See |interfaces_allowlist|.
    * - |SocketTransportDescriptor::interface_blocklist-api|
      - ``vector<string>``
